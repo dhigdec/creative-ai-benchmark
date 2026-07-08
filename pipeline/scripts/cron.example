@@ -1,0 +1,14 @@
+# ── Adobe freelance dataset — daily auto-collection ──────────────────────────
+# Runs once a day at 02:15 (off-peak, polite). The pipeline self-throttles and
+# only stores what's new, so the database grows safely over weeks/months.
+# daily.sh does: collect (all sources) -> refresh CSV/JSON exports -> print stats.
+#
+# To enable:
+#   1)  crontab -e
+#   2)  paste the line below (already absolute-pathed for this machine)
+#   3)  save & quit
+#
+# Watch it:    tail -f /Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/pipeline/logs/daily.log
+# Disable:     crontab -e  → delete the line
+#
+15 2 * * * /Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/pipeline/scripts/daily.sh >> /Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/pipeline/logs/daily.log 2>&1
