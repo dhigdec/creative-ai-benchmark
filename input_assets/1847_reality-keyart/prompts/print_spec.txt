@@ -1,0 +1,14 @@
+Produce the PRINT SPECIFICATION sheet the network's key-art team hands the retoucher for the 24x36-inch “LAST ONE STANDING" one-sheet. These numbers are FIXED facts, not creative — transcribe them exactly and compute the obvious pixel sizes. Return ONE JSON object with a top-level key “specs”: a LIST of row objects (this list is rendered to a CSV whose columns are the row-object keys, EXACTLY: param, value, unit, note). Include EXACTLY these 12 rows, in order, param -> value/unit/note:
+1. trim_width -> 24 / in / final trim width (portrait one-sheet)
+2. trim_height -> 36 / in / final trim height
+3. resolution -> 300 / dpi / print resolution at final size
+4. trim_px_width -> 7200 / px / 24in x 300dpi
+5. trim_px_height -> 10800 / px / 36in x 300dpi
+6. bleed -> 0.125 / in / bleed on every edge
+7. bleed_px -> 37.5 / px / 0.125in x 300dpi per edge
+8. full_bleed_px -> 7275 x 10875 / px / trim plus bleed both edges (the generative-expand target)
+9. safe_margin -> 0.25 / in / keep title + billing block inside this safe area
+10. color_mode -> CMYK / profile / U.S. Web Coated (SWOP) v2 for the print PDF
+11. web_jpg_size -> 1200 x 1800 / px / flattened sRGB web JPG (2:3, downscaled from the master)
+12. file_outputs -> InDesign PDF + web JPG / format / print-ready 24x36 300dpi PDF and a flattened web JPG
+Every row MUST have non-empty param, value, unit and note. Voice for the notes: Our tone is confident and authoritative, conveying high-stakes drama with a premium, cinematic feel. We aim for an impactful, high-production broadcast aesthetic, suitable for major network key-art., terse and printer-facing.

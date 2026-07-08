@@ -1,0 +1,212 @@
+{
+  "task_id": 9005,
+  "slug": "magazine-spread",
+  "title": "Editorial magazine feature spread — \"THE MAKERS\" 6-page duotone portrait feature: masked + duotone hero portraits, a pull-quote colour-splash, licensed Stock paper/ink textures, a CSV-data-merged contributors strip, a vectorized masthead, laid out in InDesign and exported to print PDF, plus web crops",
+  "category": "Layout & Print Design",
+  "family": "Print, Layout & Editorial Design",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 10,
+      "evidence": [
+        "hero_portraits[0-3]: four makers in craft studios, matching ceramicist/woodworker/weaver/metalsmith brief — but image 4 shows a jeweller/watchmaker, not a metalsmith/forge worker",
+        "masthead_glyph (image 10): reads 'THE MAKERS' with decorative drop-cap T, exactly matching feature title",
+        "image 1-4 are raw hero portraits",
+        "copy_deck.json contains all required text",
+        "image 1-4: Four raw hero portraits, matching brief subjects and context",
+        "image 11: Brand swatch sheet with three required duotone/accent colours"
+      ],
+      "deductions": [
+        "hero_portraits[3] subject is jeweller at bench, not forge/anvil metalsmith Kaelen Reed as copy deck specifies",
+        "inks_swatch (image 11) shows physical paper swatches with no hex labels — agent cannot read colour values directly",
+        "All visual and textual content aligns with brief",
+        "Number of assets matches requirements",
+        "All required subjects and brand elements present",
+        "No generic or off-brief stand-ins detected"
+      ],
+      "fix": {
+        "target_asset_key": "hero_portraits[3]",
+        "problem": "Subject is a jeweller, not a forge metalsmith; mismatches copy deck maker Kaelen Reed craft description",
+        "prompt_delta": "Replace with: photoreal DSLR portrait of a male metalsmith/blacksmith at a forge or anvil in an industrial workshop, hammer in hand, copper/steel workpiece visible, mixed ambient + forge-glow lighting, slight handheld tilt, dead margins, red work shirt or apron, authentic craft environment"
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 7,
+      "evidence": [
+        "contributors_roster is JSON only — no .csv render present; document_merge_data_layout requires a CSV file consumable",
+        "copy_deck.json present with all required fields: headline, standfirst, body (4 makers), pull_quote, captions (5 slots)",
+        "contributors_roster.json is JSON, brief requires CSV",
+        "image 5-9: Five contributor headshots, all present and photoreal",
+        "assets/copy_deck.json: Full copy deck with all required fields populated"
+      ],
+      "deductions": [
+        "contributors_roster.json has no companion contributors_roster.csv — data-merge step needs the CSV file directly",
+        "inks_swatch lacks machine-readable hex annotations; agent must guess colour values from visual inspection",
+        "Mandatory data-merge input is in wrong format",
+        "Hard rule violation for missing mandatory format",
+        "No mandatory or regulatory elements missing",
+        "All semantic fields and visual assets present and usable"
+      ],
+      "fix": {
+        "target_asset_key": "contributors_roster",
+        "problem": "Roster is JSON, not CSV as required for data merge.",
+        "prompt_delta": "Ensure the contributors roster is provided as a CSV file with columns: name, role, city, instagram, headshot_filename."
+      },
+      "low_confidence": true,
+      "spread": 7,
+      "per_judge": [
+        7,
+        3,
+        10
+      ]
+    },
+    "executability": {
+      "score": 6,
+      "evidence": [
+        "hero_portraits[0-3]: all have busy studio backgrounds suitable for image_select_subject + image_apply_gaussian_blur; red garments on all four enable image_select_by_prompt for pull-quote colour-splash",
+        "contributors_roster is JSON-only — document_merge_data_layout [T] requires a CSV; no .csv render exists in the pack",
+        "contributors_roster.json is JSON, not CSV",
+        "document_merge_data_layout requires CSV input",
+        "image 1-4: Hero portraits have busy, real backgrounds for masking/blur",
+        "image 10: Masthead glyph is high-contrast on white, suitable for vectorization"
+      ],
+      "deductions": [
+        "Missing contributors_roster.csv blocks document_merge_data_layout step entirely — highest-weight executability gap",
+        "inks_swatch (image 11) has no hex text overlay; image_apply_monochromatic_tint and image_apply_color_overlay need explicit hex targets, forcing agent to sample visually",
+        "Data merge step cannot consume JSON file",
+        "Workflow chain is blocked by critical format mismatch",
+        "All images have sufficient resolution and correct context for workflow steps",
+        "Data assets (JSON/CSV) are structured for direct data-merge"
+      ],
+      "fix": {
+        "target_asset_key": "contributors_roster",
+        "problem": "Data merge requires CSV, not JSON.",
+        "prompt_delta": "Convert the contributors roster to a CSV file, ensuring column headers match InDesign data merge placeholders."
+      },
+      "low_confidence": true,
+      "spread": 10,
+      "per_judge": [
+        6,
+        0,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "hero_portraits[0-3]: authentic studio environments, natural mixed lighting, craft tools in use — convincingly real editorial shoot",
+        "contributor_headshots[4] (image 9): slightly AI-rendered quality with overly smooth skin and dramatic lamp; marginally less convincing than others",
+        "image 1-4 are raw, unedited photos",
+        "image 10 looks genuinely hand-drawn with ink splatters",
+        "image 1-4: Hero portraits are authentic, unpolished, real studio/field shots",
+        "image 10: Masthead glyph is a genuine inked scan, not synthetic"
+      ],
+      "deductions": [
+        "hero_portraits lack the brief-specified handheld tilt/dead margins — all are well-composed, not raw phone/DSLR handheld frames",
+        "contributor_headshots[4] has AI-synthetic lighting pattern inconsistent with the natural-light style of headshots[0-3]",
+        "Visual assets feel authentic and client-supplied",
+        "No obviously synthetic elements present",
+        "All assets indistinguishable from genuine client handoff",
+        "No uncanny or obviously synthetic elements"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 9,
+      "evidence": [
+        "All four hero portraits share red garments on makers — creates strong visual throughline matching #B5331F accent",
+        "inks_swatch (image 11) palette (dark teal, cream, rust-red) visually aligns with brand palette #1A2A33/#EDE4D3/#B5331F",
+        "image 1-4 feature diverse individuals engaged in craft",
+        "copy_deck.json tone matches brand voice",
+        "image 11: Swatch sheet matches brand palette and texture",
+        "image 1-4, 5-9: Consistent lighting, tone, and editorial style"
+      ],
+      "deductions": [
+        "contributor_headshots vary in background style (plain wall vs studio vs moody dark) — strip will read inconsistently",
+        "masthead_glyph uses mixed calligraphic + sans-serif lettering; 'THE MAKERS' sans portion may conflict with Source Serif Pro brand heading face",
+        "All assets contribute to a unified brand identity",
+        "Visual style and textual tone are consistent",
+        "Minor: Swatch sheet (image 11) could label hexes for absolute clarity",
+        "Otherwise, all assets read as one brand"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        9
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "InDesign templates correctly demoted to client-supplied decisions — avoids generating .indd files the workflow cannot produce",
+        "Stock textures correctly recorded as live asset_search + asset_license_and_download decisions, not synthesized assets",
+        "Decisions correctly identify client-supplied InDesign templates",
+        "Assumptions for Adobe Stock textures are sound",
+        "DECISIONS: All assumptions (re: .indd, Stock, output) are industry-standard and justified",
+        "No real client input demoted to assumption"
+      ],
+      "deductions": [
+        "Decision records contributors_roster.csv as a data-merge input but pack only delivers JSON — the CSV render should have been generated, not assumed",
+        "No decision recorded for which hero portrait is designated the pull-quote colour-splash (brief says 'one is reused') — agent must guess",
+        "Assumptions align with workflow and client inputs",
+        "No real input was wrongly demoted to an assumption",
+        "All assumptions are sound and documented",
+        "No risky or client-unacceptable decisions"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 8.3,
+  "verdict": "minor-gaps",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): The contributors roster is supplied as a JSON file, not a CSV. The data-merge template ContributorStrip.indd requires a linked CSV with exact column headers matching the placeholders. A JSON file cannot be linked in InDesign's Data Merge panel — no CSV means the merge never executes and the contributors strip page is unbuildable.",
+    "AGENT CHOKE on 'contributors_roster': document_merge_data_layout expects a genuine CSV bound to InDesign Data Merge placeholders, but the delivered file is contributors_roster.json. The agent has no CSV to link, so the merge step throws an immediate file-type error and halts the entire workflow before a single record is placed.",
+    "Executability 6/10: Missing contributors_roster.csv blocks document_merge_data_layout step entirely — highest-weight executability gap"
+  ],
+  "qc_gaps": [
+    "Per-asset self-QC averages 9.4/10, but package Executability scored 6 — assets are individually strong yet wrong/insufficient for the task."
+  ],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.09,
+  "rounds": []
+}

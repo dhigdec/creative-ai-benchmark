@@ -1,0 +1,62 @@
+{
+  "task_id": "AO-77",
+  "slug": "willowfen-kdp-picturebook-preflight-audit-report",
+  "title": "Willowfen Press KDP picture-book preflight: audit supplied interior + cover .indd/PDF against KDP print specs and emit a marked-up preflight report",
+  "vertical": "professional_services",
+  "one_line_ask": "Audit Willowfen Press's supplied 32-page KDP picture-book interior .indd, its exported interior PDF, and the wraparound cover PDF against the KDP spec sheet \u2014 checking trim, bleed, margins, spine width, image resolution and caption overset \u2014 and emit a marked-up preflight report plus proof renders that says whether the files will pass KDP preflight.",
+  "generated_at": "2026-07-07T16:32:02",
+  "assets": [
+    {
+      "name": "pip_interior_template.indd",
+      "kind": "data",
+      "path": "assets/pip_interior_template.indd.proxy.txt",
+      "provider": "gemini/gemini-2.5-flash",
+      "proxy": true,
+      "note": "Client-provided .indd template; represented here as an authored text proxy (binary Adobe format not synthesizable)."
+    },
+    {
+      "name": "pip_interior_export.pdf",
+      "kind": "data",
+      "path": "assets/pip_interior_export.pdf",
+      "provider": "openai/gpt-4.1-mini + reportlab-repdf",
+      "qc_note": "Content regenerated after QC (32-page 'Pip & the Paper Moon' interior with per-page captions + two deliberate defects: page 17 ~180 DPI, page 24 caption overset). Final acceptance: original .pdf was plain UTF-8 text (not a real PDF) so it could not be KDP-preflighted; re-emitted as a genuine %PDF-1.4 with 33 pages (1 header proof + 32 story pages), each 8.75x11.25 in = 8.5x11 trim + 0.125 in bleed all around, captions burned in, page-24 caption rendered inside an undersized frame so it visibly oversets/clips, page-17 marked ~180 DPI. Pre-fix text preserved in assets/_pretext_backup/."
+    },
+    {
+      "name": "pip_cover_wrap.pdf",
+      "kind": "data",
+      "path": "assets/pip_cover_wrap.pdf",
+      "provider": "gemini/gemini-2.5-flash + reportlab-repdf",
+      "qc_note": "Final acceptance: original .pdf was plain text (not a real PDF). Re-emitted as a genuine %PDF-1.4 wraparound cover sized to the real sheet geometry 17.3225 x 11.25 in (back 8.5 | spine 0.0725 | front 8.5 + 0.125 bleed all around), back/spine/front panels drawn with trim guides, title 'Pip & the Paper Moon' + WILLOWFEN PRESS wordmark on the front, and the deliberate spine defect (title overruns the ~0.0725 in spine into the front live area). Full layout spec preserved on page 2. Pre-fix text in assets/_pretext_backup/."
+    },
+    {
+      "name": "pip_captions.csv",
+      "kind": "data",
+      "path": "assets/pip_captions.csv",
+      "provider": "deterministic-rebuild",
+      "qc_note": "Deterministically rebuilt after QC: original had unquoted commas breaking 25/32 rows under a strict CSV parser. Now correctly QUOTE_MINIMAL-quoted, 32 rows, page-24 long caption (178 chars) preserved for the overset check."
+    },
+    {
+      "name": "kdp_spec_sheet.pdf",
+      "kind": "data",
+      "path": "assets/kdp_spec_sheet.pdf",
+      "provider": "openai/gpt-4.1-mini (qc-regen) + reportlab-repdf",
+      "qc_note": "Content regenerated after QC (clean spec table with all target numbers). Final acceptance: original .pdf was plain Markdown text (not a real PDF); re-emitted as a genuine %PDF-1.4 one-page 8.5x11 in reference sheet with the parameters rendered as a real labeled table. Pre-fix text in assets/_pretext_backup/."
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 5,
+    "produced": 5,
+    "missing": []
+  },
+  "qc_summary": {
+    "images": 0,
+    "passed": 0,
+    "min_scores": []
+  },
+  "cost_usd": 0.0,
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 0,
+    "verified_pass": 0
+  }
+}

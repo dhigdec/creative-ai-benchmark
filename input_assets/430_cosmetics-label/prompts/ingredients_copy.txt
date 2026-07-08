@@ -1,0 +1,10 @@
+Write the mandatory label copy for both Veridian Dew products (the jar face cream and
+the bottle serum from the product line). Return a JSON object with key "labels": a list of 2 objects,
+each with "product_name", "inci_list" (14-18 realistic INCI ingredient names in correct descending-
+concentration style, starting Aqua/Water), "directions" (<=30 words), "warnings" (standard external-use
++ patch-test + eye-contact lines), "net_contents" (e.g. 50 ml e 1.7 fl oz), "pao_symbol" (e.g. 12M),
+"made_in" (a country), "company_line" (Veridian Dew + a fictional address one-liner), "batch_note"
+(LOT + best-before placement note for the printer).
+
+[PATCH FEEDBACK]
+Restore/populate every record's mandatory fields: warnings, directions, inci_list, net_contents. None may be null or empty. (failing check: data check failed: labels[].warnings — records [0, 1] missing/empty 'warnings')

@@ -1,0 +1,226 @@
+{
+  "task_id": 5366,
+  "slug": "wedding-signage",
+  "title": "Wedding Signage for Print (high res, not AI generated)",
+  "category": "Invitations & Cards",
+  "family": "Express Template Design",
+  "archetype": "template",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 7,
+      "evidence": [
+        "image 2 (current_drafts[0]) shows 'Welcome Maren & Elliot' with correct date — directly on-brief for Welcome Gathering Sign",
+        "image 5 (script_example) shows 'Olivia & James' — wrong couple name, serves only as style reference not a deliverable asset",
+        "image 1",
+        "image 4",
+        "image 5",
+        "wedding_copy.json"
+      ],
+      "deductions": [
+        "image 3 (current_drafts[1]) is a seating chart template with placeholder 'Guest One/Two' names, not Maren & Elliot's actual guest data",
+        "No Welcome Ceremony & Reception Sign (35.4x23.6in landscape) asset exists in inventory at all",
+        "Existing signature drinks sign is provided as requested.",
+        "Both creative direction options have clear visual references.",
+        "All required content and print specifications are present.",
+        "Welcome sign and seating chart are generic, not Maren & Elliot, not correct palette/brand"
+      ],
+      "fix": {
+        "target_asset_key": "current_drafts[0]",
+        "problem": "Welcome sign is not for Maren & Elliot, not in required palette/brand, not correct copy",
+        "prompt_delta": "Regenerate as 'Welcome Maren & Elliot Hartwell', use #FBF7EF, #EAC9C1, #9CAF88, #3B3B38, and Source Serif Pro/Lora fonts"
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        7,
+        10,
+        4
+      ]
+    },
+    "completeness": {
+      "score": 6,
+      "evidence": [
+        "wedding_copy.json and print_spec.json supply all copy and production specs for all 6 deliverable types",
+        "No image asset exists for Welcome Ceremony & Reception Sign (35.4x23.6in landscape) — a distinct sign type from the Gathering Sign",
+        "wedding_copy.json",
+        "guest_list.json",
+        "print_spec.json",
+        "image 2"
+      ],
+      "deductions": [
+        "Welcome Ceremony & Reception Sign is a separately specified deliverable (different size, different wording) with zero reference or draft image supplied",
+        "seating_chart.json has 15 tables but the decision records only tables 1-6 get signs; the draft (image 3) shows up to 48 tables — structural mismatch an executor must resolve",
+        "All textual content for menu, program, welcome, and seating is present.",
+        "All print specifications (sizes, DPI, bleed) for deliverables are detailed.",
+        "Seating chart guest list is provided, fulfilling 'name lists soon' requirement.",
+        "No print-ready, high-res, editable template for any sign except signature drinks"
+      ],
+      "fix": {
+        "target_asset_key": "current_drafts[1]",
+        "problem": "Seating chart is generic, not Maren & Elliot, not correct guest list, not print-ready",
+        "prompt_delta": "Regenerate as Maren & Elliot Hartwell seating chart, 15 tables, use provided guest_list, correct palette/fonts"
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        6,
+        10,
+        4
+      ]
+    },
+    "executability": {
+      "score": 6,
+      "evidence": [
+        "image 2 (current_drafts[0]) is 1024x1536px — far below the 6000x9000px minimum the brief mandates; image_crop_and_resize cannot upscale to print quality",
+        "image 3 (current_drafts[1]) is 1024x1536px vs required 14160x10620px seating chart; fill_text step has no real names to merge into",
+        "image 1",
+        "image 4",
+        "image 5",
+        "wedding_copy.json"
+      ],
+      "deductions": [
+        "All raster reference/draft images are ~1MP thumbnails; document_convert_pdf for large-format print requires source files at 300 DPI native resolution",
+        "Seating chart draft has placeholder text cells — fill_text tool needs identifiable text fields mapped to seating_chart.json rows, not lorem-ipsum blocks",
+        "All image files are standard formats for direct use or reference.",
+        "JSON data is well-structured for automated text filling and spec application.",
+        "No low-resolution AI-generated backgrounds are used for new design inputs.",
+        "Images are low-res (1024x1536), not suitable for print or cropping to spec"
+      ],
+      "fix": {
+        "target_asset_key": "current_drafts[0]",
+        "problem": "Not high-res, not vector/layered, not suitable for image_crop_and_resize or PDF export",
+        "prompt_delta": "Regenerate at 6000x9000px, vector text, layered PSD/AI, correct copy and palette"
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        6,
+        10,
+        4
+      ]
+    },
+    "realism": {
+      "score": 7,
+      "evidence": [
+        "image 1 (signature_drinks_sign) is a polished watercolour illustration — believable as a real client-created file, consistent with brief's 'I created' claim",
+        "image 2 (current_drafts[0]) is an AI-generated mockup on an easel — the brief explicitly states current backgrounds are AI-generated and flags this as the problem to fix",
+        "image 1",
+        "image 4",
+        "image 5",
+        "wedding_copy.json"
+      ],
+      "deductions": [
+        "image 2 being an AI-generated scene mockup (easel, outdoor background) rather than a flat print-ready file confirms the exact quality problem the client hired to solve — it is the problem, not a usable input",
+        "image 3 seating chart with lorem-ipsum and non-sequential table numbers (13, 20, 23, 24…) would not come from a real client",
+        "Signature drinks sign is a believable custom wedding piece.",
+        "Floral and script references are authentic style examples.",
+        "JSON data contains realistic wedding details and guest lists.",
+        "Assets look like plausible drafts, but not real client handoff (wrong names, generic)"
+      ],
+      "fix": {
+        "target_asset_key": "current_drafts[0]",
+        "problem": "AI-generated scene mockup passed as a current draft; should be a flat design file showing the actual sign artwork without environmental staging",
+        "prompt_delta": "Render as a flat, white-background print-ready design file (no easel, no outdoor scene, no drop shadow). Show only the sign artwork at trim size with crop marks and bleed guides visible."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        7
+      ]
+    },
+    "coherence": {
+      "score": 6,
+      "evidence": [
+        "image 1 (signature_drinks_sign) uses ivory/blush/sage palette matching brand spec — strong anchor piece",
+        "image 2 (current_drafts[0]) uses pastel blue and lavender florals not in brand palette (#FBF7EF, #EAC9C1, #9CAF88, #3B3B38) — palette drift",
+        "image 1",
+        "image 4",
+        "image 5",
+        "BRAND / PERSONA details"
+      ],
+      "deductions": [
+        "image 2 floral colours (blue, lavender, peach) diverge from brand palette; new family must coordinate with image 1's blush/sage/ivory, not introduce new hues",
+        "image 3 seating chart uses cool blue-grey panel backgrounds inconsistent with ivory primary and charcoal ink secondary in brand spec",
+        "Signature drinks sign's style aligns with the brand's palette and voice.",
+        "Both floral and script references offer cohesive design directions for the brand.",
+        "Defined palette and fonts are consistently supported by visual assets.",
+        "Signature drinks sign is playful, others are generic and not in the same palette/brand"
+      ],
+      "fix": {
+        "target_asset_key": "current_drafts[0]",
+        "problem": "Not using brand fonts/colors, not visually matching signature drinks sign",
+        "prompt_delta": "Regenerate with Source Serif Pro/Lora, #FBF7EF, #EAC9C1, #9CAF88, #3B3B38, and floral style"
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        6,
+        10,
+        4
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Decision to derive table signs from seating_chart.json tables 1-6 is sound — brief says 'I'll provide name lists soon' and the JSON now supplies them",
+        "Decision to treat floral_reference.jpg as stand-in for the linked arch-arrangement URL is reasonable given URL cannot be fetched by an agent",
+        "RECORDED DECISIONS",
+        "assets/wedding_copy.json",
+        "assets/print_spec.json"
+      ],
+      "deductions": [
+        "image 4 (floral_reference) is a real-photo arch arrangement, not the silk-flower product from the linked URL — the substitution is plausible but the style (lush garden roses vs silk) differs enough to risk wrong direction",
+        "Decision records 'primary direction = Option 1 soft floral' without client confirmation — client explicitly left both options open; committing to one without flagging it as an unresolved client choice is a risky assumption",
+        "Assumptions for program and table signs correctly identify them as layouts from data/specs.",
+        "Creative direction references are accurately mapped to client options.",
+        "The 'untouched' constraint for the signature drinks sign is correctly captured.",
+        "All assumptions are justified and documented"
+      ],
+      "fix": {
+        "target_asset_key": "floral_reference",
+        "problem": "Real-photo garden-rose arch used as stand-in for silk-flower product reference; style gap could mislead floral illustration direction",
+        "prompt_delta": "Source or generate a reference image of a silk or watercolour-style floral arch arrangement featuring blush garden roses, white ranunculus, and sage eucalyptus — matching the soft, slightly stylised quality of the bifloralsilkflowers.com Emma arch product, not a photorealistic fresh-flower arrangement."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 6.8,
+  "verdict": "needs-rework",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): Every single source image is only 1024×1536 px — nowhere near the 6000×9000 px minimum I explicitly demanded for even the smallest sign. You cannot upscale a 1024px thumbnail to print-ready 300 DPI large-format and call it 'high res, not AI generated.' This entire handoff is built on low-res AI images dressed up with JSON specs.",
+    "AGENT CHOKE on 'current_drafts[1]': The image_crop_and_resize step will immediately fail or produce garbage when it tries to stretch a 1024×1536 px file to 14160×10620 px for the seating chart — a 9× upscale that destroys print quality and directly contradicts my core requirement of replacing AI-generated low-DPI backgrounds.",
+    "Completeness 6/10: Welcome Ceremony & Reception Sign is a separately specified deliverable (different size, different wording) with zero reference or draft image supplied",
+    "Executability 6/10: All raster reference/draft images are ~1MP thumbnails; document_convert_pdf for large-format print requires source files at 300 DPI native resolution"
+  ],
+  "qc_gaps": [
+    "Per-asset self-QC averages 9.2/10, but package Executability scored 6 — assets are individually strong yet wrong/insufficient for the task.",
+    "Per-asset self-QC averages 9.2/10, but package Completeness scored 6 — assets are individually strong yet wrong/insufficient for the task."
+  ],
+  "weights": {
+    "task_fit": 0.17,
+    "completeness": 0.22,
+    "executability": 0.1,
+    "realism": 0.17,
+    "coherence": 0.22,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.054,
+  "rounds": []
+}

@@ -1,0 +1,250 @@
+{
+  "task_id": 2335,
+  "slug": "flashdelivery-ads",
+  "title": "Marketing Designer & Video Editor (Facebook Ads)",
+  "category": "Ads & Marketing",
+  "family": "Express Template Design",
+  "archetype": "template",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 6,
+      "evidence": [
+        "image 1 (fd_logo): Flash Delivery logo present and on-brand for the delivery platform",
+        "ad_copy concepts 2,3,5 reference merchants 'Nights Out Express' and 'The Late Stop' — neither exists in brand_pack.json or as supplied logos",
+        "brand_pack.json",
+        "ad_copy.json",
+        "image 1",
+        "assets/ad_copy.json"
+      ],
+      "deductions": [
+        "Three of six ad concepts target phantom merchants not in the asset set, blocking fill_text for those cards",
+        "No doorstep/delivery photo supplied despite two concepts (id 1,6) explicitly pairing with 'delivery_doorstep.jpg'",
+        "Merchant brands are generic, not specific UK chains mentioned in brief.",
+        "Ad copy refers to merchants not present in brand_pack.json or merchant_logos.",
+        "All assets match Flash Delivery and merchant brands",
+        "Ad copy and images align with brief's subject and brand requirements"
+      ],
+      "fix": {
+        "target_asset_key": "ad_copy",
+        "problem": "Ad copy references non-existent merchants.",
+        "prompt_delta": "Ensure merchant names in ad copy match those in brand_pack.json (Gary's Groceries, The Night Nook)."
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        6,
+        4,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 4,
+      "evidence": [
+        "ad_copy references 'delivery_doorstep.jpg' (concepts 1,6) and 'product_flatlay.jpg' (concepts 4,5) — neither file is in the asset inventory",
+        "brand_pack.json lists only 2 merchants but ad_copy targets 4 distinct merchant names, leaving 2 concepts without any logo or palette asset",
+        "ad_copy.json",
+        "image 6",
+        "assets/brand_pack.json",
+        "assets/ad_copy.json"
+      ],
+      "deductions": [
+        "Two named photo assets missing; agent cannot run asset_add_file → fill_text for those concepts without halting",
+        "Logos for 'Nights Out Express' and 'The Late Stop' entirely absent; carousel slots for those merchants are unbuildable",
+        "Ad copy references merchant names not found in brand_pack.json or merchant_logos.",
+        "Ad copy references 'delivery_doorstep.jpg' which is a missing image asset.",
+        "Brand guidelines, merchant assets, and ad copy all present",
+        "Multiple product/store photos and logos included"
+      ],
+      "fix": {
+        "target_asset_key": "ad_copy",
+        "problem": "Ad copy references missing image and inconsistent merchants.",
+        "prompt_delta": "Update ad copy to reference existing image assets (e.g., store_product_photos[0], store_product_photos[1], store_product_photos[2]) and correct merchant names."
+      },
+      "low_confidence": true,
+      "spread": 7,
+      "per_judge": [
+        4,
+        3,
+        10
+      ]
+    },
+    "executability": {
+      "score": 6,
+      "evidence": [
+        "image 2 (merchant_logos[0]) and image 3 (merchant_logos[1]) have white/light backgrounds — background_removal step is feasible but logos are raster PNGs on white, not transparent, requiring an extra agent step",
+        "store_product_photos (images 4,5) are full-scene renders at 1024x1024 — suitable for image_crop_and_resize to all three aspect ratios without upscaling",
+        "ad_copy.json",
+        "brand_pack.json",
+        "image 4",
+        "assets/ad_copy.json"
+      ],
+      "deductions": [
+        "Merchant logos lack transparency; agent must run background-removal before compositing, adding an unplanned step",
+        "No raw video clips present; video_create_quick_cut and video_resize steps in the workflow have zero input media",
+        "Ad copy merchant names do not map to brand_pack.json or merchant_logos, blocking fill_text.",
+        "Ad copy 'pairs_with_photo' references specific filenames not consistently named or present.",
+        "All images are 1024x1024, suitable for cropping/resizing",
+        "Ad copy structured for template fill and cropping workflow"
+      ],
+      "fix": {
+        "target_asset_key": "ad_copy",
+        "problem": "Ad copy merchant names and photo references are inconsistent.",
+        "prompt_delta": "Align merchant names in ad_copy.json with brand_pack.json and use generic photo references or actual asset keys."
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        6,
+        4,
+        10
+      ]
+    },
+    "realism": {
+      "score": 5,
+      "evidence": [
+        "images 4,5 are hyper-clean CGI convenience store renders — no real UK corner-shop signage, no Premier/SPAR fascia, overly perfect lighting",
+        "image 6 (store_product_photos[2]) is a stock-style grocery flatlay — plausible but generic, not tied to any named merchant's hero products",
+        "merchant_logos[0]",
+        "store_product_photos[0]",
+        "image 4",
+        "image 5"
+      ],
+      "deductions": [
+        "CGI store exteriors would read as fake in Facebook ads targeting real UK store owners who know what their shops look like",
+        "No photo matches Gary's Groceries hero products (artisan bread, organic milk, local honey) specifically — misses brand_pack data",
+        "Merchant logos (image 2, image 3) appear generic and synthetic, not typical for real UK convenience stores.",
+        "Store photos (image 4, image 5) are overly polished and appear AI-generated, lacking real-world authenticity.",
+        "Store/product photos are realistic and context-appropriate",
+        "Logos and brand assets are polished, as expected from a real client"
+      ],
+      "fix": {
+        "target_asset_key": "merchant_logos[0]",
+        "problem": "Merchant logos are generic and lack realism for UK convenience stores.",
+        "prompt_delta": "Regenerate merchant logos to be more realistic and representative of typical UK convenience store branding."
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        5,
+        4,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 5,
+      "evidence": [
+        "brand_pack.json declares primary colour #FFD700 (Flash Yellow) but the brief/persona specifies primary #0047AB (Flash Blue); fd_logo (image 1) uses blue as dominant — JSON and persona contradict each other",
+        "ad_copy merchant names (Nights Out Express, The Late Stop) are entirely absent from brand_pack.json merchants list, creating a split identity across the asset set",
+        "brand_pack.json",
+        "BRAND / PERSONA section",
+        "assets/brand_pack.json",
+        "image 1"
+      ],
+      "deductions": [
+        "Palette conflict between brand_pack JSON and persona spec means fill_text colour tokens will be applied inconsistently across 18 variants",
+        "Four distinct merchant identities referenced across copy but only two logo assets — half the carousel set has no coherent merchant brand",
+        "The brand_pack.json defines a completely different color palette for Flash Delivery than specified in the brief's brand/persona.",
+        "Merchant logos (image 2, image 3) are generic and do not visually align with the Flash Delivery brand or typical UK convenience stores.",
+        "Consistent palette, fonts, and brand voice across all assets",
+        "Merchant assets harmonize with Flash Delivery brand"
+      ],
+      "fix": {
+        "target_asset_key": "brand_pack",
+        "problem": "Flash Delivery brand palette in brand_pack.json contradicts brief.",
+        "prompt_delta": "Update Flash Delivery palette in brand_pack.json to match: #0047AB (primary), #FF4500 (secondary), #FFD700 (accent), #333333 (secondary)."
+      },
+      "low_confidence": true,
+      "spread": 10,
+      "per_judge": [
+        5,
+        0,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 5,
+      "evidence": [
+        "Decision to exclude raw video clips is sound and honestly scoped — static pipeline only is a defensible pilot call",
+        "Decision to assume 6 concepts x 3 ratios = 18 variants is reasonable but the 6 concepts in ad_copy reference 4 merchants while only 2 merchant asset sets exist — the count assumption is built on a broken foundation",
+        "brand_pack.json",
+        "ad_copy.json",
+        "assets/ad_copy.json",
+        "assets/brand_pack.json"
+      ],
+      "deductions": [
+        "No assumption recorded for the palette conflict between brand_pack.json and the persona spec — a real executor would be blocked",
+        "Phantom merchant names in ad_copy were not flagged as an assumption or gap — they will silently break 3 of 6 concept executions",
+        "The brand_pack.json incorrectly defines the Flash Delivery brand palette, contradicting the brief's explicit definition.",
+        "The ad_copy.json refers to merchant names not provided as assets or defined in brand_pack.json.",
+        "Assumptions about video and static pipeline are justified and documented",
+        "Variation count and aspect ratio decisions are sound"
+      ],
+      "fix": {
+        "target_asset_key": "brand_pack",
+        "problem": "Brand palette in brand_pack.json is incorrect.",
+        "prompt_delta": "Correct Flash Delivery palette in brand_pack.json to match brief's specified hex codes and roles."
+      },
+      "low_confidence": true,
+      "spread": 10,
+      "per_judge": [
+        5,
+        0,
+        10
+      ]
+    }
+  },
+  "overall": 5.0,
+  "verdict": "needs-rework",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): The brand colour palette is contradicted between the coherence anchor (#0047AB primary) and brand_pack.json (Flash Yellow #FFD700 as primary) — I cannot approve a handoff where the agent will be fed conflicting brand guidelines and produce ads with the wrong primary colour from day one.",
+    "AGENT CHOKE on 'brand_pack': The agent's fill_text and template-colouring steps will ingest brand_pack.json and apply Flash Yellow as the primary colour, directly contradicting the #0047AB Flash Blue declared in the brief's brand anchor — causing every single one of the 18 static variants to render with the wrong dominant colour before a human can catch it.",
+    "Completeness 4/10: Two named photo assets missing; agent cannot run asset_add_file → fill_text for those concepts without halting",
+    "Realism 5/10: CGI store exteriors would read as fake in Facebook ads targeting real UK store owners who know what their shops look like"
+  ],
+  "qc_gaps": [
+    "Per-asset self-QC averages 9.5/10, but package Task Fit scored 6 — assets are individually strong yet wrong/insufficient for the task.",
+    "Per-asset self-QC averages 9.5/10, but package Realism scored 5 — assets are individually strong yet wrong/insufficient for the task.",
+    "Per-asset self-QC averages 9.5/10, but package Executability scored 6 — assets are individually strong yet wrong/insufficient for the task.",
+    "Per-asset self-QC averages 9.5/10, but package Completeness scored 4 — assets are individually strong yet wrong/insufficient for the task."
+  ],
+  "weights": {
+    "task_fit": 0.17,
+    "completeness": 0.22,
+    "executability": 0.1,
+    "realism": 0.17,
+    "coherence": 0.22,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.06,
+  "rounds": [
+    {
+      "round": 1,
+      "overall": 6.5,
+      "action": "regenerated",
+      "assets": [
+        "ad_copy",
+        "brand_pack"
+      ],
+      "regen_cost": 0.008
+    },
+    {
+      "round": 2,
+      "overall": 5.6,
+      "action": "stalled"
+    },
+    {
+      "round": "final",
+      "overall": 5.8,
+      "action": "final-judge"
+    }
+  ]
+}

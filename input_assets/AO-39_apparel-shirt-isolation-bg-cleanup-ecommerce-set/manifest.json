@@ -1,0 +1,171 @@
+{
+  "task_id": "AO-39",
+  "slug": "apparel-shirt-isolation-bg-cleanup-ecommerce-set",
+  "title": "Apparel Shirt Isolation, Background Cleanup and Marketplace-Ready E-commerce Set",
+  "vertical": "Fashion & Apparel",
+  "one_line_ask": "Turn a messy worn-shirt hero photo plus a flat-lay reference shirt into a clean, colour-true, marketplace-ready apparel product set (cleaned studio backdrop, isolated transparent packshot, vectorized logo, square + catalog crops).",
+  "generated_at": "2026-07-07T16:23:18",
+  "assets": [
+    {
+      "name": "SHIRT_FLATLAY.jpg",
+      "kind": "image",
+      "path": "assets/SHIRT_FLATLAY.jpg",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": true,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Background is pale grey rather than pure white (per brief, acceptable for source asset but will need removal for final packshot)",
+              "Faint grey background gradient visible (needs cleanup for final use)",
+              "Soft shadow under shirt (intended for edge testing, not an issue)"
+            ],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Sleeve fold creates slight asymmetry with left sleeve crossing over body at an angle rather than lying fully flat \u2014 minor compositing challenge at cuff overlap",
+              "Very subtle luminance noise visible in shadow areas under collar \u2014 within acceptable source-file tolerance",
+              "Background gradient is present (slightly warmer/darker at bottom-left corner) \u2014 expected and flagged for designer removal",
+              "Collar points show minor soft-edge rendering that may require manual masking refinement",
+              "Fabric creases are natural and convincing but the chest area is slightly smoother than a true garment photograph would show \u2014 borderline but acceptable"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.134,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "BRAND_LOGO.png",
+      "kind": "image",
+      "path": "assets/BRAND_LOGO.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Background is not fully transparent (checkerboard pattern visible, but this is a common placeholder for transparency in previews and may not be present in the source file)"
+            ],
+            "text_found": "NORTHGROVE"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Slight softness on leaf glyph edges may require minor cleanup before vectorizing",
+              "Stem detail on leaf is very fine and could drop out at small sizes"
+            ],
+            "text_found": "NORTHGROVE"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.134,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 10,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "HERO_WORN.jpg",
+      "kind": "image",
+      "path": "assets/HERO_WORN.jpg",
+      "provider": "openai",
+      "model": "gpt-image-2",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Very slight residual tilt present but within the \u22645\u00b0 acceptable tolerance",
+              "Exposure is marginally flat/dark as intended \u2014 no unintended clipping",
+              "Mixed warm/cool lighting visible \u2014 intentional per brief",
+              "Olive-green shirt reads slightly muddy/desaturated \u2014 intentional for colour-correction step",
+              "Background clutter (coat rack, cables, laundry basket, half-open closet) fully present and suitably distracting \u2014 intentional",
+              "No severe AI artefacts detected: finger count normal, hair flyaways natural, fabric wrinkles authentic, skin pores visible",
+              "Subject is sharp, centred, and clearly the dominant focal point",
+              "No real-world brands, logos, or trademarks visible"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.19,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 3,
+    "produced": 3,
+    "missing": []
+  },
+  "qc_summary": {
+    "images": 3,
+    "passed": 3,
+    "min_scores": [
+      9,
+      9,
+      9
+    ]
+  },
+  "cost_usd": 0.494,
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 3,
+    "verified_pass": 3
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "task_id": "AO-61",
+  "slug": "youtube-podcast-edit-branded-graphics-clean-audi",
+  "title": "Fun YouTube Podcast: clean-audio cut, reframed 1080p sizzle, and a branded graphics kit (lower-third + end-screen + vector logo)",
+  "vertical": "Music, Film, Publishing &amp; Media",
+  "one_line_ask": "Turn the raw podcast footage into a clean-voiced, reframed 1080p YouTube master plus a fun branded graphics kit (vector logo + lower-third + end-screen as PNG-transparent/vector), delivered separately.",
+  "generated_at": "2026-07-07T13:29:30",
+  "assets": [
+    {
+      "name": "host_voice_scratch_track.wav",
+      "kind": "audio",
+      "path": "assets/host_voice_scratch_track.wav",
+      "provider": "openai/gpt-4o-mini-tts",
+      "voice": "echo",
+      "roughened": true,
+      "duration": 197.36,
+      "qc": {
+        "min_score": 9,
+        "passed": true,
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 9,
+            "issues": []
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "The audio appears to extend slightly beyond the intended script's truncation point at the end, completing 'min' to 'mind-blowi'."
+            ]
+          }
+        ],
+        "transcript": "Alright, welcome back everyone to the, uh, the podcast. We're here again, sitting in what I'm pretty sure is a slightly less dusty studio this week. How you doing today, Mark? Yeah, I'm alright, I'm alright. Just, you know, trying to keep up with the world. It feels like every single day there's ano"
+      },
+      "note": "Representative ~197s take; the brief's full recording is ~25min (TTS caps at a few minutes)."
+    },
+    {
+      "name": "lower_third_texture_plate.jpg",
+      "kind": "image",
+      "path": "assets/lower_third_texture_plate.jpg",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Slight tilt present, but within brief tolerance and appropriate for source asset",
+              "Minor natural imperfections in paper texture, as expected for realism"
+            ],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Hand partially visible at bottom-left corner, though acceptable as 'hand-shot' source asset",
+              "Slight vignetting in corners \u2014 within acceptable range for raw material plate",
+              "Background bokeh reveals wooden table and window light, minor distraction but non-critical for intended use"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.134,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 10,
+          "gemini": 9,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "brand_logo_lockup.png",
+      "kind": "image",
+      "path": "assets/brand_logo_lockup.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": true,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Logo is slightly off-center, but within acceptable range for a source asset.",
+              "Background is busy and cluttered as per brief, but logo is well-isolated.",
+              "Minor edge softness and slight color cast, expected for a source asset."
+            ],
+            "text_found": "TRAILGREMLIN POD"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Logo is very slightly off-center as intended",
+              "Background notebook contains handwritten text that is partially legible and could theoretically reference real content, but appears to be generic placeholder notes",
+              "Soft edge/halo around circular sticker badge is present but acceptable as designer-fixable artifact",
+              "Campervan icon is small but legible"
+            ],
+            "text_found": "TRAILGREMLIN POD | notebook visible text (partial): 'Currency Notes', 'Tendalovor unlow (area's)', 'Add stlshel (travels breena)', 'Exit Greens', 'Camps and plant + cluriding', 'Make companies'"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 4
+      },
+      "cost": 0.536,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "podcast_raw_master_1080p.mp4",
+      "kind": "video",
+      "path": "assets/podcast_raw_master_1080p.mp4",
+      "provider": "seedance/seedance-1.0-pro",
+      "resolution": "1920x1088",
+      "duration": 5.04,
+      "has_audio": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "gemini",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Microphone boom arms appear slightly symmetrical/staged for raw candid footage",
+              "Lighting is slightly too clean/even for truly candid handheld video"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "note": "video-frame QC (motion-aware)"
+      },
+      "note": "Seedance 1.0 Pro (fal.ai) \u2014 SOTA video; silent raw clip (task audio comes from the separate VO track)."
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 4,
+    "produced": 4,
+    "missing": []
+  },
+  "qc_summary": {
+    "scored": 4,
+    "passed": 4,
+    "by_kind": {
+      "image": 2,
+      "video": 1,
+      "audio": 1
+    },
+    "min_scores": [
+      9,
+      9,
+      9,
+      9
+    ]
+  },
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 2,
+    "verified_pass": 2
+  }
+}

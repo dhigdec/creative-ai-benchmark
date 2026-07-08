@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "task_id": 5649,
+  "slug": "shopify-card-photos",
+  "title": "Shopify Product Photo Editor — Background Removal & Centering",
+  "task_type": "Background Removal + Center/Resize — Shopify Sports-Card Product Photos",
+  "category": "Background Removal & Cutouts",
+  "family": "Photo & Image Editing",
+  "feasibility": "full",
+  "source": "upwork",
+  "source_url": "https://www.upwork.com/nx/search/jobs/?q=Shopify%20Product%20Photo%20Editor%20—%20Background%20Removal%20&%20Ce",
+  "mcp_workflow": "asset_add_file (upload each iPhone product photo: trading cards, PSA slabs, sealed hobby boxes) -> image_remove_background (transparent cutout) -> image_auto_straighten (cards must be straight) -> image_crop_and_resize (center on white/transparent canvas, output 2048x2048 square) -> change_background_color (set clean white where white-bg is wanted) -> asset_preview_file",
+  "original_brief": "I run an online sports card store (pushingpacks.com) and need a photo editor to process product images taken on iPhone for upload to Shopify. What the job involves: Remove background from product photos (trading cards, graded PSA slabs, sealed hobby boxes) Center the product on a clean white or transparent background Resize and export to Shopify's recommended dimensions (2048 x 2048px) Deliver files named to match Shopify product handles for easy upload Maintain a consistent look across all product images Volume: Approximately 85 products with 2- 5 images each to start, with ongoing work as new inventory is added. Requirements: Proficient in Photoshop, Canva Pro, or equivalent Experience with Shopify product image standards Clean, consistent results — cards must be straight, centered, no shadows Fast turnaround (24–48 hours per batch) Attention to detail — these are collectibles worth up to $2,000 Deliverables: PNG files with transparent or white background 2048 x 2048px square format Files named by product handle (e.g. peyton-manning-1998-bowman-1-psa-10.png) Category to post under: Design & Creative → Photo Editing Skills to tag: Photo Editing, Adobe Photoshop, Background Removal, Shopify, Product Photography Contract type: Ongoing/hourly or fixed-price per batch — fixed price per image works best for this type of work so you're not paying for slow editors.",
+  "generated_at": "2026-06-10T23:22:21Z",
+  "pipeline_version": "0.1.0",
+  "client_persona": {
+    "brand_name": "Pushing Packs",
+    "tagline": "Your next collectible, perfectly presented.",
+    "industry": "online sports card store",
+    "palette": [
+      {
+        "name": "Deep Collector Blue",
+        "hex": "#0F4C81",
+        "role": "primary"
+      },
+      {
+        "name": "Card Back White",
+        "hex": "#F8F8F8",
+        "role": "secondary"
+      },
+      {
+        "name": "Gold Graded Accent",
+        "hex": "#FFD700",
+        "role": "accent"
+      }
+    ],
+    "fonts": {
+      "heading": "Manrope",
+      "body": "Inter"
+    },
+    "voice": "Our brand voice is enthusiastic and knowledgeable, reflecting the passion of collectors. We aim to be precise and trustworthy, ensuring customers feel confident in their purchases.",
+    "persona_file": "persona.json"
+  },
+  "assets": [
+    {
+      "key": "products",
+      "input_requirement": "Files named to match Shopify product handles (e.g. peyton-manning-1998-bowman-1-psa-10.png) — confirm handle list/mapping with client",
+      "kind": "data",
+      "file": "assets/products.json",
+      "format": "json",
+      "generator": {
+        "provider": "text",
+        "model": "writer-chain",
+        "prompt": "Invent exactly 4 FICTIONAL sports-card products for a card store's Shopify pilot.\nNo real athletes, teams, card brands or grading companies — invent player names, a fictional card line\n(e.g. 'Apex', 'Summit Prism' style), year 2023-2025, and use plain grades.\nReturn JSON: {\"products\": [{\"handle\": \"<shopify-style-kebab-handle e.g. marcus-vale-2024-apex-112-gem-10>\",\n\"player\": \"...\", \"card_line\": \"<fictional set name + card number>\", \"year\": 2024,\n\"type\": \"graded_slab\" | \"sealed_box\" | \"raw_card\", \"grade\": \"10\" | \"9.5\" | null,\n\"display_name\": \"<store listing title>\"}]}.\nMix: 2 graded slabs, 1 sealed hobby box, 1 raw card.",
+        "prompt_file": "prompts/products.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "49d332eaae9111fab583ad77afb74a58c7c59dc18bbdb22782199f7403a2e21a"
+    },
+    {
+      "key": "product_photos[0]",
+      "input_requirement": "~85 products x 2-5 images each (iPhone photos of trading cards, graded PSA slabs, sealed hobby boxes) to start, ongoing",
+      "kind": "image",
+      "file": "assets/kaelen-vance-2024-zenith-ascent-77-gem-10--raw-1.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Amateur iPhone product photo, vertical: a sports trading card sealed inside a clear acrylic grading slab with a plain white label strip at the top reading 'Zenith Ascent #77' and 'GEM MINT 10' in small plain black type (generic label, NO grading-company logo). The card shows a fictional athlete 'Kaelen Vance' in a generic unbranded uniform. Setting: cluttered home-office desk — wood grain, a corner of a keyboard, sticky notes, a charging cable, soft ring-light glare on the slab/wrap. Slightly imperfect framing (a few degrees of tilt), natural mixed indoor lighting, mild noise, realistic depth of field. The collectible is fully visible, sharp and in frame — every detail of it legible. This must look like a REAL phone snapshot for an online store listing, not a studio shot. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos. Background must be busy/cluttered — NOT white, NOT seamless.",
+        "prompt_file": "prompts/product_photos_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "17feb88ad8acd4f2ec5c38f3898cc2dc3a71e15cd9f812a7c51e48c75e102af9"
+    },
+    {
+      "key": "product_photos[1]",
+      "input_requirement": "~85 products x 2-5 images each (iPhone photos of trading cards, graded PSA slabs, sealed hobby boxes) to start, ongoing",
+      "kind": "image",
+      "file": "assets/kaelen-vance-2024-zenith-ascent-77-gem-10--raw-2.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Amateur iPhone product photo, vertical: a sports trading card sealed inside a clear acrylic grading slab with a plain white label strip at the top reading 'Zenith Ascent #77' and 'GEM MINT 10' in small plain black type (generic label, NO grading-company logo). The card shows a fictional athlete 'Kaelen Vance' in a generic unbranded uniform. Setting: cluttered home-office desk — wood grain, a corner of a keyboard, sticky notes, a charging cable, soft ring-light glare on the slab/wrap. Slightly imperfect framing (a few degrees of tilt), natural mixed indoor lighting, mild noise, realistic depth of field. The collectible is fully visible, sharp and in frame — every detail of it legible. This must look like a REAL phone snapshot for an online store listing, not a studio shot. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos. Background must be busy/cluttered — NOT white, NOT seamless.",
+        "prompt_file": "prompts/product_photos_1.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "de2beebf4f219f1c676f4d078e47287d64708c1ec35a33a801300256c972c093"
+    },
+    {
+      "key": "product_photos[2]",
+      "input_requirement": "~85 products x 2-5 images each (iPhone photos of trading cards, graded PSA slabs, sealed hobby boxes) to start, ongoing",
+      "kind": "image",
+      "file": "assets/anya-sharma-2023-stellar-flux-prizm-12-mint-9-5--raw-1.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Amateur iPhone product photo, vertical: a sports trading card sealed inside a clear acrylic grading slab with a plain white label strip at the top reading 'Stellar Flux Prizm #12' and 'GEM MINT 9.5' in small plain black type (generic label, NO grading-company logo). The card shows a fictional athlete 'Anya Sharma' in a generic unbranded uniform. Setting: cluttered home-office desk — wood grain, a corner of a keyboard, sticky notes, a charging cable, soft ring-light glare on the slab/wrap. Slightly imperfect framing (a few degrees of tilt), natural mixed indoor lighting, mild noise, realistic depth of field. The collectible is fully visible, sharp and in frame — every detail of it legible. This must look like a REAL phone snapshot for an online store listing, not a studio shot. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos. Background must be busy/cluttered — NOT white, NOT seamless.",
+        "prompt_file": "prompts/product_photos_2.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "863042939aeb159cce22c2c309491208c91d89c5e003147a3ea988524390d600"
+    },
+    {
+      "key": "product_photos[3]",
+      "input_requirement": "~85 products x 2-5 images each (iPhone photos of trading cards, graded PSA slabs, sealed hobby boxes) to start, ongoing",
+      "kind": "image",
+      "file": "assets/anya-sharma-2023-stellar-flux-prizm-12-mint-9-5--raw-2.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Amateur iPhone product photo, vertical: a sports trading card sealed inside a clear acrylic grading slab with a plain white label strip at the top reading 'Stellar Flux Prizm #12' and 'GEM MINT 9.5' in small plain black type (generic label, NO grading-company logo). The card shows a fictional athlete 'Anya Sharma' in a generic unbranded uniform. Setting: cluttered home-office desk — wood grain, a corner of a keyboard, sticky notes, a charging cable, soft ring-light glare on the slab/wrap. Slightly imperfect framing (a few degrees of tilt), natural mixed indoor lighting, mild noise, realistic depth of field. The collectible is fully visible, sharp and in frame — every detail of it legible. This must look like a REAL phone snapshot for an online store listing, not a studio shot. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos. Background must be busy/cluttered — NOT white, NOT seamless.",
+        "prompt_file": "prompts/product_photos_3.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "6d9d1c941149afe4ce5007cd2500d80cb37e18be8e914b10c5bf82cef2fddabf"
+    },
+    {
+      "key": "product_photos[4]",
+      "input_requirement": "~85 products x 2-5 images each (iPhone photos of trading cards, graded PSA slabs, sealed hobby boxes) to start, ongoing",
+      "kind": "image",
+      "file": "assets/2025-galactic-gridiron-series-1-hobby-box--raw-1.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Amateur iPhone product photo, vertical: a sealed trading-card hobby box with shrink-wrap glare, box art in abstract geometric style labeled 'Galactic Gridiron Series 1' in plain type (fictional brand). Setting: cluttered home-office desk — wood grain, a corner of a keyboard, sticky notes, a charging cable, soft ring-light glare on the slab/wrap. Slightly imperfect framing (a few degrees of tilt), natural mixed indoor lighting, mild noise, realistic depth of field. The collectible is fully visible, sharp and in frame — every detail of it legible. This must look like a REAL phone snapshot for an online store listing, not a studio shot. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos. Background must be busy/cluttered — NOT white, NOT seamless.",
+        "prompt_file": "prompts/product_photos_4.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "54ec44466167181230115d67659fa715a39d6f371c2db9397537308513616916"
+    },
+    {
+      "key": "product_photos[5]",
+      "input_requirement": "~85 products x 2-5 images each (iPhone photos of trading cards, graded PSA slabs, sealed hobby boxes) to start, ongoing",
+      "kind": "image",
+      "file": "assets/2025-galactic-gridiron-series-1-hobby-box--raw-2.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Amateur iPhone product photo, vertical: a sealed trading-card hobby box with shrink-wrap glare, box art in abstract geometric style labeled 'Galactic Gridiron Series 1' in plain type (fictional brand). Setting: cluttered home-office desk — wood grain, a corner of a keyboard, sticky notes, a charging cable, soft ring-light glare on the slab/wrap. Slightly imperfect framing (a few degrees of tilt), natural mixed indoor lighting, mild noise, realistic depth of field. The collectible is fully visible, sharp and in frame — every detail of it legible. This must look like a REAL phone snapshot for an online store listing, not a studio shot. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos. Background must be busy/cluttered — NOT white, NOT seamless.",
+        "prompt_file": "prompts/product_photos_5.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "0a906a265dcdd750bcf2f9594d85f60c2b11a0cb8e4a729421aecf469f5ceb11"
+    },
+    {
+      "key": "product_photos[6]",
+      "input_requirement": "~85 products x 2-5 images each (iPhone photos of trading cards, graded PSA slabs, sealed hobby boxes) to start, ongoing",
+      "kind": "image",
+      "file": "assets/jax-nova-2024-chronos-relic-210-raw--raw-1.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Amateur iPhone product photo, vertical: a raw unslabbed sports trading card of fictional athlete 'Jax Nova', 'Chronos Relic #210' set, in a clear penny sleeve. Setting: cluttered home-office desk — wood grain, a corner of a keyboard, sticky notes, a charging cable, soft ring-light glare on the slab/wrap. Slightly imperfect framing (a few degrees of tilt), natural mixed indoor lighting, mild noise, realistic depth of field. The collectible is fully visible, sharp and in frame — every detail of it legible. This must look like a REAL phone snapshot for an online store listing, not a studio shot. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos. Background must be busy/cluttered — NOT white, NOT seamless.",
+        "prompt_file": "prompts/product_photos_6.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "d994e24a1750c37a5b1c36e1397530557f56f5aedef483a8d5748082f3b897f8"
+    },
+    {
+      "key": "product_photos[7]",
+      "input_requirement": "~85 products x 2-5 images each (iPhone photos of trading cards, graded PSA slabs, sealed hobby boxes) to start, ongoing",
+      "kind": "image",
+      "file": "assets/jax-nova-2024-chronos-relic-210-raw--raw-2.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Amateur iPhone product photo, vertical: a raw unslabbed sports trading card of fictional athlete 'Jax Nova', 'Chronos Relic #210' set, in a clear penny sleeve. Setting: cluttered home-office desk — wood grain, a corner of a keyboard, sticky notes, a charging cable, soft ring-light glare on the slab/wrap. Slightly imperfect framing (a few degrees of tilt), natural mixed indoor lighting, mild noise, realistic depth of field. The collectible is fully visible, sharp and in frame — every detail of it legible. This must look like a REAL phone snapshot for an online store listing, not a studio shot. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos. Background must be busy/cluttered — NOT white, NOT seamless.",
+        "prompt_file": "prompts/product_photos_7.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "907db5a98e232f5c1652609d064a6df53e0506fe20b14d1a9780ed8c8a8247a3"
+    }
+  ],
+  "decisions": [
+    {
+      "requirement": "~85 products x 2-5 images each (iPhone photos of trading cards, graded PSA slabs, sealed hobby boxes) to start, ongoing",
+      "assumed_value": "Pilot scope: 4 fictional products x 2 photos = 8 images (of the ~85-product catalog)",
+      "why": "Pilot proves the pipeline; scaling to 85 products is a loop, not a design change."
+    },
+    {
+      "requirement": "Output: 2048x2048px square PNG, transparent OR clean white background",
+      "assumed_value": "Recorded as the OUTPUT spec for the Adobe agent (image_crop_and_resize to 2048x2048; white via change_background_color) — not an input asset",
+      "why": "This line describes the deliverable, which the Adobe workflow produces from our messy inputs."
+    },
+    {
+      "requirement": "Product centered, straight, no shadows (consistent look across all)",
+      "assumed_value": "Output requirement for the Adobe agent (image_auto_straighten + centering in crop step)",
+      "why": "Inputs are deliberately tilted/shadowed phone photos; the workflow fixes that."
+    },
+    {
+      "requirement": "Constraint: real photo, no color/detail loss (collectibles up to $2,000)",
+      "assumed_value": "Adobe agent must use lossless PNG output and no destructive color edits beyond background work",
+      "why": "Constraint binds the EDIT step; recorded so the agent honors it."
+    }
+  ],
+  "coverage": {
+    "inputs_total": 5,
+    "covered_by_assets": 2,
+    "covered_by_decisions": 3,
+    "uncovered": []
+  },
+  "stats": {
+    "images_generated": 8,
+    "regenerations": 0,
+    "est_cost_usd": 2.02,
+    "text_calls": 10,
+    "wall_time_s": 493
+  },
+  "ready_for_agent": true
+}

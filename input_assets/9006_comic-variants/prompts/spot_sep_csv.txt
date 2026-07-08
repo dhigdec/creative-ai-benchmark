@@ -1,0 +1,14 @@
+Build the 4-colour SPOT-SEPARATION table for the VOIDRUNNER #1 'Retro' variant,
+derived from the cover-spec / copy deck's spot_inks. Return a JSON object with ONE top-level key "rows":
+a LIST OF EXACTLY 4 row objects IN PRINT ORDER. Each row object's keys MUST be EXACTLY these five column
+names and NOTHING else — they bind to the Illustrator Variables in voidrunner_spot_sep.ai
+CHARACTER-FOR-CHARACTER:
+"ink_name", "pantone", "rgb_hex", "print_order", "lpi".
+The four rows, EXACTLY:
+- row 1: "ink_name"="White Underbase", "pantone"="None", "rgb_hex"="FFFFFF", "print_order"=1, "lpi"=0.
+- row 2: "ink_name"="Ben-Day Red", "pantone"="185 C", "rgb_hex"="ED1C24", "print_order"=2, "lpi"=55.
+- row 3: "ink_name"="Ben-Day Cyan", "pantone"="2995 C", "rgb_hex"="00AEEF", "print_order"=3, "lpi"=55.
+- row 4: "ink_name"="Ink Black", "pantone"="Black 6 C", "rgb_hex"="231F20", "print_order"=4, "lpi"=65.
+rgb_hex values are 6-char uppercase hex with NO leading hash (the {rgb_hex} Variable drives each swatch
+card's fill rectangle). print_order and lpi are integers. No extra keys, no missing keys. Output ONLY
+the rows object.

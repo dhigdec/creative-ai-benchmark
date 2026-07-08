@@ -1,0 +1,20 @@
+You are the listing coordinator for an invented suburban real-estate brokerage
+"Northern Bloom Properties" (this is the brokerage name; abbreviate it to NBP where short). Produce the
+just-listed rider-label data-merge sheet as a JSON object with a SINGLE top-level key "rows": a list
+of EXACTLY 6 listing objects (one per active just-listed property). Each row object MUST have EXACTLY
+these keys, in this EXACT order, because they map 1:1 to Illustrator Variables in rider_label.ai and
+become the CSV header row:
+  "status"      -> always the string "JUST LISTED"
+  "address"     -> a realistic fictional US street address on an INVENTED street (e.g.
+                   "4218 Mapleridge Ln, Northbrook" — no real street), varied across the 6 rows
+  "beds"        -> integer 2-5 as a string (e.g. "3")
+  "baths"       -> baths as a string, halves allowed (e.g. "2" or "2.5")
+  "sqft"        -> living area in square feet, comma-grouped string (e.g. "2,140")
+  "price"       -> US list price, "$" + comma-grouped, no cents (e.g. "$524,900")
+  "agent_name"  -> the SAME single listing agent on all 6 rows (invent one realistic full name)
+  "agent_phone" -> the same US phone in (555) area format (e.g. "(555) 318-2240")
+  "brokerage"   -> EXACTLY "Northern Bloom Properties" on every row
+  "logo"        -> EXACTLY the string "brokerage_logo.png" on every row (the linked-image Variable
+                   filename the merge swaps in)
+Keep prices/beds/baths/sqft internally consistent (bigger sqft -> more beds/higher price). Voice:
+Our tone is trustworthy and reflects deep local expertise. We communicate with plain language and confident assurance, avoiding unnecessary hype.. Output ONLY the JSON object.

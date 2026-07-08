@@ -1,0 +1,18 @@
+You are the pre-press tech at a custom screen-print shop, writing the production
+spec sheet the separator follows to halftone an airbrushed cloud-gradient design for a 4-colour spot
+print on a BLACK 100%% cotton tee (white underbase + lavender + cobalt + deep purple). Return a JSON
+object with EXACTLY these top-level keys:
+"job": {"job_name": "Head In The Clouds Tee", "garment": "black 100% cotton tee", "garment_colour":
+"black", "press": "automatic", "stations": 6, "total_screens": 4};
+"halftone": {"lpi": <choose a realistic value for a black-tee cloud gradient, 45-65 LPI>, "dot_shape":
+"round", "screen_angle_deg": <a single registration-safe angle, 22 or 45>, "min_printable_dot_pct":
+<8-12>, "max_dot_pct_on_underbase": <70-80, so shadows don't plug on the dark tee>};
+"dot_gain": {"expected_gain_pct": <18-25, realistic for plastisol on a black tee>, "choke_px":
+<1-3, the gaussian choke on the dot field to compensate>, "underbase_choke_px": <1-2>, "note":
+"<one line on why the choke is needed on a dark garment>"};
+"underbase": {"strategy": "white underbase printed first then flashed", "underbase_ink": "white",
+"flash": true, "highlight_white": false};
+"screen_budget": {"max_screens": 4, "mesh_per_colour": [<4 realistic mesh counts, e.g. 110 for the
+underbase white, 156-230 for the halftone spot colours>], "registration_tolerance_mm": <0.2-0.5>};
+"print_order": [EXACTLY 4 strings in lay-down order, starting "White Underbase" then the three spots].
+Use real, internally-consistent screen-print numbers. JSON only — no markdown, no commentary.

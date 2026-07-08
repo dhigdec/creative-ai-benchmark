@@ -1,0 +1,279 @@
+{
+  "assets": {
+    "ad_copy": {
+      "entries": [
+        {
+          "key": "ad_copy",
+          "input_requirement": "Creative copy + direction per ad (provided after hiring)",
+          "kind": "data",
+          "file": "assets/ad_copy.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are TeenTalk's growth lead writing the post-hire creative deck for 3\nstatic Meta retargeting ads. Audience: English-speaking mothers of a teen/preteen who already\nwatched 50%+ of TeenTalk's video ads — emotionally tired, relationship-driven, aware there is a\nreal problem at home, done with random parenting advice, looking for a real system, not one more\ntip. Each ad is a bridge creative: it must make the right mother feel \"This is about me, my teen,\nmy pattern at home — and there may be a real way forward\", and carry her to a story-driven\nlanding page with the right expectation. Return a JSON object with key \"concepts\": a list of\nEXACTLY 3 objects, one per angle in this order — \"recognition-of-the-pattern\",\n\"the-quiet-distance-at-home\", \"a-real-way-forward\" — each:\n{\"id\": <1, 2 or 3>, \"name\": \"<short concept name, 2-4 words>\",\n\"angle\": \"<this concept's angle slug from the list above>\",\n\"headline\": \"<max 9 words, speaks straight to an exhausted mother — dignified, specific, zero\nclickbait>\",\n\"supporting_line\": \"<max 15 words, bridges her recognition to what waits on the landing page>\",\n\"cta_label\": \"<2-4 words, a calm invitation — 'See how it works' energy, never pushy>\",\n\"photo_brief\": \"<45-70 words, a documentary photographer's shot brief: ONE specific mother+teen\nscene — concrete home setting, time of day, available light, body language, emotional register.\nThe mother (38-50) is the viewpoint character; the teen is 13-16; an everyday fully-clothed\ndomestic moment; tension or tenderness WITHOUT distress, tears or conflict imagery>\",\n\"mood\": \"<3-4 comma-separated mood words>\"}.\nVoice: Our tone is emotionally intelligent, serious-warm, and credible, aiming to resonate genuinely with exhausted parents. We avoid anything cheesy, clickbait, or clinical, focusing instead on empathetic understanding and practical solutions.. No therapy-clinic jargon, no fear-mongering, no exclamation marks, no emojis.",
+            "prompt_file": "prompts/ad_copy.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "ad_copy.render",
+          "input_requirement": "Creative copy + direction per ad (provided after hiring)",
+          "kind": "data",
+          "file": "assets/ad_copy.md",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are TeenTalk's growth lead writing the post-hire creative deck for 3\nstatic Meta retargeting ads. Audience: English-speaking mothers of a teen/preteen who already\nwatched 50%+ of TeenTalk's video ads — emotionally tired, relationship-driven, aware there is a\nreal problem at home, done with random parenting advice, looking for a real system, not one more\ntip. Each ad is a bridge creative: it must make the right mother feel \"This is about me, my teen,\nmy pattern at home — and there may be a real way forward\", and carry her to a story-driven\nlanding page with the right expectation. Return a JSON object with key \"concepts\": a list of\nEXACTLY 3 objects, one per angle in this order — \"recognition-of-the-pattern\",\n\"the-quiet-distance-at-home\", \"a-real-way-forward\" — each:\n{\"id\": <1, 2 or 3>, \"name\": \"<short concept name, 2-4 words>\",\n\"angle\": \"<this concept's angle slug from the list above>\",\n\"headline\": \"<max 9 words, speaks straight to an exhausted mother — dignified, specific, zero\nclickbait>\",\n\"supporting_line\": \"<max 15 words, bridges her recognition to what waits on the landing page>\",\n\"cta_label\": \"<2-4 words, a calm invitation — 'See how it works' energy, never pushy>\",\n\"photo_brief\": \"<45-70 words, a documentary photographer's shot brief: ONE specific mother+teen\nscene — concrete home setting, time of day, available light, body language, emotional register.\nThe mother (38-50) is the viewpoint character; the teen is 13-16; an everyday fully-clothed\ndomestic moment; tension or tenderness WITHOUT distress, tears or conflict imagery>\",\n\"mood\": \"<3-4 comma-separated mood words>\"}.\nVoice: Our tone is emotionally intelligent, serious-warm, and credible, aiming to resonate genuinely with exhausted parents. We avoid anything cheesy, clickbait, or clinical, focusing instead on empathetic understanding and practical solutions.. No therapy-clinic jargon, no fear-mongering, no exclamation marks, no emojis.",
+            "prompt_file": "prompts/ad_copy.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "brand_guide": {
+      "entries": [
+        {
+          "key": "brand_guide",
+          "input_requirement": "Brand colours: soft teal/turquoise, purple, warm yellow/gold CTA",
+          "kind": "text",
+          "file": "assets/brand_guide.md",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Write brand_guide.md — the one-page TeenTalk brand guide the growth lead\nhands the ad designer for the retargeting statics. Markdown, concise, directive. Sections:\n1. Palette — a table (colour / hex / role): Soft Teal #3AA8A0 calm background fields; Purple\n#6B4FA1 brand colour, wordmark + round stamp; Warm Gold #F2B23E CTA chips ONLY; Deep Ink #232A31\nheadline text; Warm Off-White #FAF6EF light fields. Note: teal and purple carry the emotion, gold\nis reserved for the single action moment.\n2. Stamp usage — the round purple TeenTalk stamp (file teentalk_stamp.png) sits SMALL in the top\ncorner of every creative (roughly 7-9% of canvas width), clearspace of at least half the stamp's\ndiameter on all sides, never enlarged into a hero logo, never recoloured, never placed over a\nface.\n3. Mobile-first type hierarchy — for all three formats (9:16 Stories/Reels, 4:5 Feed, 1:1\nSquare), in reading order: emotional visual first, then headline (Libre Franklin), then ONE\nshort supporting line (Lora), then the CTA block, then the small TeenTalk stamp. The\nheadline must survive a phone screen at feed size.\n4. Do / Don't — Do: real candid mother/teen imagery; serious, warm, credible; generous negative\nspace; main text readable on mobile. Don't: overly staged \"perfect family\" stock; childish\ndesign; generic therapy-clinic style; aggressive clickbait; overloading the canvas with text.\n5. CTA chip — warm gold #F2B23E rounded chip, deep ink label text, 2-4 calm words, exactly one\nchip per creative.\nVoice of the document: Our tone is emotionally intelligent, serious-warm, and credible, aiming to resonate genuinely with exhausted parents. We avoid anything cheesy, clickbait, or clinical, focusing instead on empathetic understanding and practical solutions..",
+            "prompt_file": "prompts/brand_guide.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "tt_logo_stamp": {
+      "entries": [
+        {
+          "key": "tt_logo_stamp",
+          "input_requirement": "TeenTalk small purple round logo stamp (top corner)",
+          "kind": "image",
+          "file": "assets/teentalk_stamp.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Small round brand stamp for a modern parent-support product: a clean\ncircular badge with a friendly modern sans-serif wordmark reading EXACTLY \"TeenTalk\" — one word,\ncapital T in \"Teen\" and capital T in \"Talk\" — set inside the circle. Solid purple #6B4FA1 and\nwhite ONLY. Flat vector style: no gradients, no shadows, no bevels. Built to stay perfectly\nlegible scaled down to 80px: sturdy simple letterforms, generous circular clearspace between the\nwordmark and the badge edge. Centered on a plain white background (the connector cuts the badge\nout later). No tagline, no other text, no extra glyphs or decorations.",
+            "prompt_file": "prompts/tt_logo_stamp_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "Badge form is a ring, not a filled round badge as required.",
+              "The purple is solid but the badge is not fully filled, only a ring."
+            ]
+          }
+        }
+      ]
+    },
+    "photos_tall": {
+      "entries": [
+        {
+          "key": "photos_tall[0]",
+          "input_requirement": "Real emotional mother/teen imagery — royalty-free / Adobe Stock",
+          "kind": "image",
+          "file": "assets/concept1_photo_tall.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1536",
+            "prompt": "Candid documentary photograph, vertical frame, shot on a 35mm lens at f/2.0, available natural window light only, subtle film grain, realistic depth of field. Scene brief from TeenTalk's creative team (concept 1, \"Same old dynamic\"): Late afternoon in a kitchen. Mother (40s) stands by the counter, looking towards her teen (15) who is scrolling on a phone, back slightly turned. Natural light fills the room. Her expression is thoughtful, a quiet weariness. The teen is absorbed, oblivious. A sense of unspoken distance in their shared space. The mother is a Black woman in her early 40s, natural coily hair loosely tied back with flyaway strands at her temples; the teen is her 14-year-old son. Invented people, no real likenesses, both in unremarkable everyday home clothes, dignity intact: the mother is the emotional viewpoint of the frame, and the moment reads as tension or tenderness — never distress, never tears. Mood: Weary, reflective, stagnant, hopeful. Photorealism is non-negotiable: natural skin texture with visible pores and fine lines, no beauty retouching or filter smoothness; individual hair strands with natural flyaways catching the light — hair must NOT look painted, helmet-like or plastic; anatomically correct hands with relaxed natural fingers; imperfect, lived-in domestic detail (believable fabric wrinkles, a stray mug, scuffed skirting, everyday clutter); asymmetric composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated. Style: candid domestic documentary, available window light, muted warm tones, lived-in home detail, 35mm film feel. Compose with usable quiet negative space (a soft-focus wall, doorway or window area) where ad copy will be overlaid later. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/photos_tall_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "photos_tall[1]",
+          "input_requirement": "Real emotional mother/teen imagery — royalty-free / Adobe Stock",
+          "kind": "image",
+          "file": "assets/concept2_photo_tall.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1536",
+            "prompt": "Candid documentary photograph, vertical frame, shot on a 35mm lens at f/2.0, available natural window light only, subtle film grain, realistic depth of field. Scene brief from TeenTalk's creative team (concept 2, \"Growing silent gaps\"): Evening in a living room. Mother (40s) is reading on one end of a sofa. Her teen (14) is on the other end, headphones on, looking at a device. A warm lamp casts soft light. Their bodies are close, yet their worlds feel apart. The mother's gaze is gentle, observant, not intrusive. The mother is a South Asian woman of about 38, long dark hair escaping a low bun; the teen is her 15-year-old daughter. Invented people, no real likenesses, both in unremarkable everyday home clothes, dignity intact: the mother is the emotional viewpoint of the frame, and the moment reads as tension or tenderness — never distress, never tears. Mood: Distant, observant, quiet, longing. Photorealism is non-negotiable: natural skin texture with visible pores and fine lines, no beauty retouching or filter smoothness; individual hair strands with natural flyaways catching the light — hair must NOT look painted, helmet-like or plastic; anatomically correct hands with relaxed natural fingers; imperfect, lived-in domestic detail (believable fabric wrinkles, a stray mug, scuffed skirting, everyday clutter); asymmetric composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated. Style: candid domestic documentary, available window light, muted warm tones, lived-in home detail, 35mm film feel. Compose with usable quiet negative space (a soft-focus wall, doorway or window area) where ad copy will be overlaid later. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/photos_tall_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "The pages of the book held by the mother appear slightly thick and uniform, lacking the subtle variations of individual paper sheets."
+            ]
+          }
+        },
+        {
+          "key": "photos_tall[2]",
+          "input_requirement": "Real emotional mother/teen imagery — royalty-free / Adobe Stock",
+          "kind": "image",
+          "file": "assets/concept3_photo_tall.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1536",
+            "prompt": "Candid documentary photograph, vertical frame, shot on a 35mm lens at f/2.0, available natural window light only, subtle film grain, realistic depth of field. Scene brief from TeenTalk's creative team (concept 3, \"A new framework\"): Morning light in a kitchen. Mother (40s) and teen (16) are both at the counter, preparing breakfast. The mother is looking at the teen, who is focused on cutting fruit, a subtle, almost imperceptible shared smile or moment of ease passing between them. The atmosphere is calm, purposeful, suggesting a foundation for connection. The mother is a white woman of about 50, shoulder-length silver-streaked hair worn loose; the teen is her 16-year-old son. Invented people, no real likenesses, both in unremarkable everyday home clothes, dignity intact: the mother is the emotional viewpoint of the frame, and the moment reads as tension or tenderness — never distress, never tears. Mood: Hopeful, calm, purposeful, connected. Photorealism is non-negotiable: natural skin texture with visible pores and fine lines, no beauty retouching or filter smoothness; individual hair strands with natural flyaways catching the light — hair must NOT look painted, helmet-like or plastic; anatomically correct hands with relaxed natural fingers; imperfect, lived-in domestic detail (believable fabric wrinkles, a stray mug, scuffed skirting, everyday clutter); asymmetric composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated. Style: candid domestic documentary, available window light, muted warm tones, lived-in home detail, 35mm film feel. Compose with usable quiet negative space (a soft-focus wall, doorway or window area) where ad copy will be overlaid later. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/photos_tall_2.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        }
+      ]
+    },
+    "photos_square": {
+      "entries": [
+        {
+          "key": "photos_square[0]",
+          "input_requirement": "Real emotional mother/teen imagery — royalty-free / Adobe Stock",
+          "kind": "image",
+          "file": "assets/concept1_photo_sq.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary photograph, square frame, shot on a 50mm lens at f/2.0, available natural window light only, subtle film grain, realistic depth of field. A SECOND frame of the same scene as this concept's vertical master — same home, same two people, same clothes, same light — but a different moment and camera position: a wider view from across the room, more of the home visible around them, the pair smaller in the frame. Scene brief from TeenTalk's creative team (concept 1, \"Same old dynamic\"): Late afternoon in a kitchen. Mother (40s) stands by the counter, looking towards her teen (15) who is scrolling on a phone, back slightly turned. Natural light fills the room. Her expression is thoughtful, a quiet weariness. The teen is absorbed, oblivious. A sense of unspoken distance in their shared space. The mother is a Black woman in her early 40s, natural coily hair loosely tied back with flyaway strands at her temples; the teen is her 14-year-old son. Invented people, no real likenesses, an everyday clothed domestic moment, dignity intact: tension or tenderness — never distress, never tears. Mood: Weary, reflective, stagnant, hopeful. Photorealism is non-negotiable: natural skin texture with visible pores and fine lines, no beauty retouching or filter smoothness; individual hair strands with natural flyaways catching the light — hair must NOT look painted, helmet-like or plastic; anatomically correct hands with relaxed natural fingers; imperfect, lived-in domestic detail (believable fabric wrinkles, a stray mug, scuffed skirting, everyday clutter); asymmetric composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated. Style: candid domestic documentary, available window light, muted warm tones, lived-in home detail, 35mm film feel. Keep usable quiet negative space for the ad copy overlay. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/photos_square_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "photos_square[1]",
+          "input_requirement": "Real emotional mother/teen imagery — royalty-free / Adobe Stock",
+          "kind": "image",
+          "file": "assets/concept2_photo_sq.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary photograph, square frame, shot on a 50mm lens at f/2.0, available natural window light only, subtle film grain, realistic depth of field. A SECOND frame of the same scene as this concept's vertical master — same home, same two people, same clothes, same light — but a different moment and camera position: an over-the-mother's-shoulder view, her shoulder and a few strands of her hair soft in the foreground, the teen in focus beyond. Scene brief from TeenTalk's creative team (concept 2, \"Growing silent gaps\"): Evening in a living room. Mother (40s) is reading on one end of a sofa. Her teen (14) is on the other end, headphones on, looking at a device. A warm lamp casts soft light. Their bodies are close, yet their worlds feel apart. The mother's gaze is gentle, observant, not intrusive. The mother is a South Asian woman of about 38, long dark hair escaping a low bun; the teen is her 15-year-old daughter. Invented people, no real likenesses, an everyday clothed domestic moment, dignity intact: tension or tenderness — never distress, never tears. Mood: Distant, observant, quiet, longing. Photorealism is non-negotiable: natural skin texture with visible pores and fine lines, no beauty retouching or filter smoothness; individual hair strands with natural flyaways catching the light — hair must NOT look painted, helmet-like or plastic; anatomically correct hands with relaxed natural fingers; imperfect, lived-in domestic detail (believable fabric wrinkles, a stray mug, scuffed skirting, everyday clutter); asymmetric composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated. Style: candid domestic documentary, available window light, muted warm tones, lived-in home detail, 35mm film feel. Keep usable quiet negative space for the ad copy overlay. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/photos_square_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "photos_square[2]",
+          "input_requirement": "Real emotional mother/teen imagery — royalty-free / Adobe Stock",
+          "kind": "image",
+          "file": "assets/concept3_photo_sq.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary photograph, square frame, shot on a 50mm lens at f/2.0, available natural window light only, subtle film grain, realistic depth of field. A SECOND frame of the same scene as this concept's vertical master — same home, same two people, same clothes, same light — but a different moment and camera position: a wider view caught a beat later, the two of them a little further apart, quiet space between them. Scene brief from TeenTalk's creative team (concept 3, \"A new framework\"): Morning light in a kitchen. Mother (40s) and teen (16) are both at the counter, preparing breakfast. The mother is looking at the teen, who is focused on cutting fruit, a subtle, almost imperceptible shared smile or moment of ease passing between them. The atmosphere is calm, purposeful, suggesting a foundation for connection. The mother is a white woman of about 50, shoulder-length silver-streaked hair worn loose; the teen is her 16-year-old son. Invented people, no real likenesses, an everyday clothed domestic moment, dignity intact: tension or tenderness — never distress, never tears. Mood: Hopeful, calm, purposeful, connected. Photorealism is non-negotiable: natural skin texture with visible pores and fine lines, no beauty retouching or filter smoothness; individual hair strands with natural flyaways catching the light — hair must NOT look painted, helmet-like or plastic; anatomically correct hands with relaxed natural fingers; imperfect, lived-in domestic detail (believable fabric wrinkles, a stray mug, scuffed skirting, everyday clutter); asymmetric composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated. Style: candid domestic documentary, available window light, muted warm tones, lived-in home detail, 35mm film feel. Keep usable quiet negative space for the ad copy overlay. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/photos_square_2.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        }
+      ]
+    }
+  }
+}

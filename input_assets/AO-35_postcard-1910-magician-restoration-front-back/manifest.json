@@ -1,0 +1,110 @@
+{
+  "task_id": "AO-35",
+  "slug": "postcard-1910-magician-restoration-front-back",
+  "title": "Restore a 1910 magician-troupe postcard: clarify the dark front photo and make the handwritten back legible, delivered as two book/social-ready files",
+  "vertical": "Photo Editing, Retouching & Restoration",
+  "one_line_ask": "Digitize and restore one 1910 magician-troupe postcard \u2014 clarify and lighten the dark sepia front photo and sharpen the contrast of the handwritten back so the description is legible \u2014 and deliver each side as its own clean, deskewed, print-and-social-ready file.",
+  "generated_at": "2026-07-07T16:20:58",
+  "assets": [
+    {
+      "name": "postcard_back_scan_raw.tif",
+      "kind": "image",
+      "path": "assets/postcard_back_scan_raw.tif",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1536",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Slight tilt and scanner margin visible (acceptable per brief, for deskew/crop).",
+              "Faintness and low contrast of handwriting (intended per brief).",
+              "Some stains and foxing on paper (realistic for age, not a flaw).",
+              "Stamp box is very faint.",
+              "Handwriting is slightly uneven and hard to read in places (expected per brief)."
+            ],
+            "text_found": "POST CARD\nSINGAPORE\nMAR\n1910\nFront row, my mother and Aunt Lillie with the Company at the Royal \u2014 Singapore, March 1910"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Slight warm/sepia tone cast across entire card \u2014 acceptable per brief as pipeline target",
+              "Minor tilt (~2-3 degrees clockwise) \u2014 within spec, designer to deskew",
+              "Faint brown stain/foxing mark on left side of card \u2014 period-appropriate aging, not an artifact",
+              "Stamp box upper right is mostly empty (stamp appears missing/very faint) \u2014 consistent with used postcard",
+              "Postmark day numeral partially illegible ('MAR [?] 1910') \u2014 intentional faintness per brief",
+              "Paper texture shows authentic yellowing and edge wear \u2014 correct",
+              "No severe AI artifacts detected",
+              "No real-world brands or trademarks visible"
+            ],
+            "text_found": "POST CARD | SINGAPORE / MAR [?] / 1910 | Front row, my mother and Aunt Lillie with the Company at the Royal \u2014 Singapore, March 1910"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.134
+    },
+    {
+      "name": "postcard_front_scan_raw.tif",
+      "kind": "image",
+      "path": "assets/postcard_front_scan_raw.tif",
+      "provider": "openai",
+      "model": "gpt-image-2",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Slight clockwise tilt (~2-3\u00b0) present \u2014 acceptable per brief",
+              "Shadow crush in left and right flanking figures reduces costume detail \u2014 acceptable per brief",
+              "Blown highlight from stage footlight/spotlight at top-center \u2014 acceptable per brief",
+              "Faint cool/greenish scanner cast visible over warm sepia \u2014 acceptable per brief",
+              "Scanner margin visible around image edges \u2014 acceptable per brief",
+              "Minor corner wear/foxing on print \u2014 adds authenticity",
+              "Table/prop on stage-left slightly cuts into composition but does not obscure subject",
+              "Central figure (magician in tailcoat) is sharp, well-centered, and clearly the focal point",
+              "All ~8-9 supporting performers in period Asian-tour costuming visible and correctly positioned",
+              "No CGI/render artifacts detected \u2014 reads as genuine photographic emulsion grain",
+              "No real-world brands, logos, or trademarks visible"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.19
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 2,
+    "produced": 2,
+    "missing": []
+  },
+  "qc_summary": {
+    "images": 2,
+    "passed": 2,
+    "min_scores": [
+      9,
+      9
+    ]
+  },
+  "cost_usd": 0.348,
+  "ready_for_agent": true
+}

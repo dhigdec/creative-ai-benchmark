@@ -1,0 +1,215 @@
+{
+  "task_id": 1847,
+  "slug": "reality-keyart",
+  "title": "Reality-show key-art rebuild — repaint every AI region of an approved competition-show poster with masked, licensed Adobe Stock photography, graded to one cinematic look, generative-expanded to 24x36 full-bleed and shipped as a genuine print-ready InDesign PDF plus a flattened web JPG",
+  "category": "Photo Compositing & Retouching",
+  "family": "Photo & Image Editing",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 7,
+      "evidence": [
+        "approved_keyart shows two male silhouettes facing off in dusk arena — correct show, correct composition lock",
+        "mood_reference shows a solo female athlete in warm dusk arena — useful lighting ref but gender/pose diverges from approved_keyart's two-male confrontation",
+        "image 3 includes a small icon",
+        "image 1 and image 3 show slightly different title lockups",
+        "image 1",
+        "image 2"
+      ],
+      "deductions": [
+        "mood_reference subject (solo woman) mismatches approved_keyart hero/foil gender pairing, risking wrong cast-stand-in search brief",
+        "typography_sample title reads '.AST ONE STANDING' — leading character clipped, incomplete title string for font_recommend",
+        "Typography sample has an extra icon not in the approved key-art.",
+        "Composition and typography are locked, but the sample deviates slightly.",
+        "No licensed Adobe Stock plates for hero, foil, sky, or stadium environment present",
+        "Only AI key-art and a mood reference, not the required photographic replacements"
+      ],
+      "fix": {
+        "target_asset_key": "image 1",
+        "problem": "Missing all four required Adobe Stock photographic plates for compositing",
+        "prompt_delta": "Add: Four licensed Adobe Stock photos (hero stand-in, foil stand-in, dusk sky, stadium-floor texture) matching the AI comp regions"
+      },
+      "low_confidence": true,
+      "spread": 5,
+      "per_judge": [
+        7,
+        9,
+        4
+      ]
+    },
+    "completeness": {
+      "score": 7,
+      "evidence": [
+        "print_spec.json present with all required fields: trim, bleed, safe margin, CMYK profile, web JPG size, file outputs",
+        "All four client-promised inputs present: approved_keyart, mood_reference, typography_sample, print_spec.json",
+        "image 1, image 2, image 3, print_spec.json are all present",
+        "Decisions correctly account for PSD and Stock sourcing",
+        "image 1",
+        "image 2"
+      ],
+      "deductions": [
+        "No Lightroom preset file or preset name supplied; image_apply_preset step has no named preset to call — agent must guess or halt",
+        "Billing-block text strings (host name, EP credits) visible in typography_sample but not extracted to a structured data asset for document_render_layout",
+        "All client-required inputs are provided.",
+        "Assumptions about non-generatable assets are sound.",
+        "No photographic plates to replace AI regions; cannot start compositing",
+        "Layered PSD reference not present; only flattened JPG"
+      ],
+      "fix": {
+        "target_asset_key": "image 1",
+        "problem": "No real photographic plates for hero, foil, sky, or environment; required for rebuild",
+        "prompt_delta": "Add: Four licensed Adobe Stock photographic plates (hero, foil, sky, stadium-floor) as separate assets"
+      },
+      "low_confidence": true,
+      "spread": 7,
+      "per_judge": [
+        7,
+        10,
+        3
+      ]
+    },
+    "executability": {
+      "score": 6,
+      "evidence": [
+        "approved_keyart is a flattened JPG with busy composite background — image_select_subject and image_remove_background can operate on it as blend-target reference",
+        "typography_sample is a raster JPG of the title lockup — image_vectorize requires an imperfect raster, which this satisfies; however clipped 'L' means vectorized output will be wrong",
+        "All images are standard JPGs",
+        "print_spec.json is valid JSON",
+        "image 1",
+        "image 2"
+      ],
+      "deductions": [
+        "typography_sample left-edge crop means image_vectorize produces a broken logo vector — document_render_layout will embed defective title lockup",
+        "mood_reference at 1024x1536px is portrait but serves only as a visual reference; no blocking issue there, but approved_keyart at 1024x1536 is far below 7275x10875 target — generative_expand must 7x upscale, which is at the outer limit of reliable quality",
+        "All assets are in consumable formats for the workflow steps.",
+        "Typography sample is clear for font recognition and vectorization.",
+        "Workflow requires real stock plates for background removal and compositing steps",
+        "Cannot run asset_license_and_download_stock or background-removal on AI comp"
+      ],
+      "fix": {
+        "target_asset_key": "image 1",
+        "problem": "No stock plates for hero, foil, sky, or environment; blocks all downstream steps",
+        "prompt_delta": "Add: Four licensed Adobe Stock photographic plates (hero, foil, sky, stadium-floor) as separate assets"
+      },
+      "low_confidence": true,
+      "spread": 7,
+      "per_judge": [
+        6,
+        10,
+        3
+      ]
+    },
+    "realism": {
+      "score": 8,
+      "evidence": [
+        "mood_reference reads as a genuine editorial/stock-style photograph — warm dusk arena lighting, realistic skin sheen, believable stadium background",
+        "approved_keyart is clearly AI-generated (hyper-smooth figures, perfect symmetry) but this is intentional — it IS the AI key-art the client supplies as the blend target",
+        "image 1 looks like an AI-generated poster as described",
+        "image 2 is a believable, high-quality photographic reference",
+        "image 1",
+        "image 2"
+      ],
+      "deductions": [
+        "approved_keyart's AI-generated quality is expected per brief, not a flaw, but the agent must not mistake it for a real photo reference when driving asset_search",
+        "typography_sample white-background flat layout is plausible as a client-supplied type spec sheet",
+        "Assets accurately reflect their described nature (AI source, photo reference).",
+        "All inputs appear authentic for a client handoff.",
+        "Inputs look like plausible client handoff (AI comp, mood ref, type sample)",
+        "Missing the real stock plates a network would supply for a photographic rebuild"
+      ],
+      "fix": null,
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        8,
+        10,
+        7
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "approved_keyart uses #E8A24A amber in title text and warm dusk palette matching brand spec",
+        "typography_sample uses amber (#E8A24A) figure icon and dark headline consistent with brand palette",
+        "All images align with the 'VANTAGE NETWORK' brand aesthetic",
+        "Palette and dramatic feel are consistent across assets",
+        "image 1",
+        "image 3"
+      ],
+      "deductions": [
+        "mood_reference subject wears grey/neutral — no brand palette colours present, weakening coherence signal for color-grading steps",
+        "Vantage Network logo in approved_keyart top-left is tiny and partially obscured; no standalone logo asset provided for document_render_layout",
+        "Consistent cinematic, high-stakes drama aesthetic across all visual assets.",
+        "Typography and mood align with brand guidelines.",
+        "Brand palette, logo, and typography are consistent across assets",
+        "Voice and visual style match VANTAGE NETWORK brief"
+      ],
+      "fix": {
+        "target_asset_key": "approved_keyart",
+        "problem": "Network logo too small/obscured to extract for render_layout; no standalone logo asset in pack",
+        "prompt_delta": "Add a separate approved_keyart_logo asset: Vantage Network beetle logo + wordmark on transparent PNG background, minimum 400x200px, white on transparent, matching the logo visible in approved_keyart top-left"
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Decision to source Stock plates live at execution (not generate them) is correct and directly satisfies the brief's 'licensed Adobe Stock' requirement",
+        "Decision to generate flattened JPG blend target and record layered PSD as desktop export is sound — avoids overclaiming headless PSD generation",
+        "Decision to source Stock plates at execution is correct",
+        "Decision to treat PSD as human export is sound",
+        "assets/print_spec.json",
+        "recorded decisions"
+      ],
+      "deductions": [
+        "No assumption recorded for the missing Lightroom preset name — a real executor would halt at image_apply_preset without it",
+        "Generative-expand target recorded as 7275x10875 but bleed_px field shows 37.5px (non-integer) — should be 38px; minor but could cause off-by-one crop errors",
+        "All recorded decisions are logical and align with the task's intent.",
+        "No critical inputs were wrongly assumed or omitted.",
+        "All assumptions about stock sourcing and deliverables are justified and industry-standard",
+        "No real input wrongly demoted to assumption"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 7.4,
+  "verdict": "minor-gaps",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): The approved key-art (approved_keyart) shows TWO MALE silhouettes as hero and foil, but the mood_reference supplied is a SINGLE FEMALE athlete — the cast gender and figure count are completely mismatched, making it impossible to source matching Adobe Stock stand-ins that satisfy both the locked composition and the lighting reference simultaneously without client clarification. I will not approve work that starts from contradictory inputs.",
+    "AGENT CHOKE on 'approved_keyart': The pipeline's first critical action is image_select_subject + image_remove_background on the hero figure, but approved_keyart is a 1024x1536 flattened JPG with two deeply merged, backlit silhouettes sharing overlapping edges against a blown-out dusk sky — subject selection will either grab both figures as one blob or fail to isolate either cleanly, immediately corrupting every downstream composite step before a single Stock plate is even licensed.",
+    "Executability 6/10: typography_sample left-edge crop means image_vectorize produces a broken logo vector — document_render_layout will embed defective title lockup"
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.042,
+  "rounds": []
+}

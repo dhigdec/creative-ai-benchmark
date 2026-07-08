@@ -1,0 +1,168 @@
+{
+  "task_id": "AO-58",
+  "slug": "exercise-reference-reel-pipeline",
+  "title": "Repeatable Adobe pipeline turning one raw exercise clip into a branded vertical coaching reel (subtitles cue, cleaned VO, watermark, muscle-group callout)",
+  "vertical": "Health, Wellness & Fitness",
+  "one_line_ask": "Run our repeatable exercise-reel pipeline on one raw 'Goblet Squat' clip: summarize it for subtitle/cue text and naming, clean the coaching voiceover, build the reusable white-watermark and branded muscle-group arrow overlays, reframe to vertical, cut a 30s reference reel, and file everything under our naming convention.",
+  "generated_at": "2026-07-07T18:19:57",
+  "assets": [
+    {
+      "name": "coach_cue_script.json",
+      "kind": "data",
+      "path": "assets/coach_cue_script.json",
+      "provider": "gemini/gemini-2.5-flash"
+    },
+    {
+      "name": "muscle_arrow_callout_raw.png",
+      "kind": "image",
+      "path": "assets/muscle_arrow_callout_raw.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 10,
+            "issues": [],
+            "text_found": "GLUTES"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Slight luminance/texture variation in the red fill (acceptable marker texture)",
+              "Arrow tail label box is small and slightly low contrast but legible",
+              "Curve of arrow is slightly asymmetric but consistent with hand-drawn style"
+            ],
+            "text_found": "Glutes"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 5
+      },
+      "cost": 0.67,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "gym_logo_square.png",
+      "kind": "image",
+      "path": "assets/gym_logo_square.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": true,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Slight paper texture visible (acceptable per brief, but not perfectly flat vector)",
+              "Very subtle shadow/drop effect around the square (not a pure digital flat background)"
+            ],
+            "text_found": "IRONLINE COACHING"
+          },
+          {
+            "provider": "anthropic",
+            "score": 8,
+            "issues": [
+              "Monogram mark reads ambiguously \u2014 resembles 'HEH' or a stylised barbell icon rather than a clearly intentional letterform monogram; the geometric construction is slightly inconsistent (left and right barbell collar elements differ subtly in weight)",
+              "Background is a very light grey which is acceptable but the card/square is presented as a slight 3D mockup with drop shadow and perspective tilt \u2014 adds mild CGI/mockup quality rather than a flat source file feel, though within tolerable range",
+              "Wordmark is split across two lines (IRONLINE / COACHING) which may or may not match brief intent \u2014 no explicit line-break instruction given",
+              "Minor soft edge on the card corners due to mockup rendering"
+            ],
+            "text_found": "IRONLINE COACHING"
+          }
+        ],
+        "min_score": 8,
+        "passed": true,
+        "gens": 8
+      },
+      "cost": 1.206,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 10,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "goblet_squat_raw_4k.mp4",
+      "kind": "video",
+      "path": "assets/goblet_squat_raw_4k.mp4",
+      "provider": "gemini/veo-3.1-generate-preview",
+      "resolution": "1920x1080",
+      "duration": 8.0,
+      "has_audio": true,
+      "qc": {
+        "min_score": 9,
+        "passed": true,
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "gemini",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Slight motion blur on dumbbell hand consistent with movement - acceptable for raw video",
+              "Squat depth not fully visible due to crop - minor framing note"
+            ],
+            "text_found": ""
+          }
+        ],
+        "transcript": "Chest up. Weight in the heels. Drive to the floor."
+      },
+      "note": "Representative ~8s Veo-3.1 clip WITH NATIVE AUDIO: the coach demonstrates a goblet squat (single dumbbell held at the chest) and speaks audible English form cues with slight gym-mic reverb ('Chest up. Weight in the heels. Drive to the floor.') so the downstream media_summarize (transcribe) and media_enhance_speech (de-echo) connector steps have real speech to operate on. Regenerated by independent audit because the prior Seedance take was silent, violating the spec's 'Native audio required'. The brief's raw clip is ~45s; length is not load-bearing (task reframes/cuts it). Audio verified by Whisper transcription; frames verified brand-clean."
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 4,
+    "produced": 4,
+    "missing": []
+  },
+  "qc_summary": {
+    "scored": 3,
+    "passed": 3,
+    "by_kind": {
+      "image": 2,
+      "video": 1,
+      "audio": 0
+    },
+    "min_scores": [
+      9,
+      8,
+      9
+    ]
+  },
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 2,
+    "verified_pass": 2
+  }
+}

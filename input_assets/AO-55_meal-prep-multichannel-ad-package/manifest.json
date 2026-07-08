@@ -1,0 +1,186 @@
+{
+  "task_id": "AO-55",
+  "slug": "meal-prep-multichannel-ad-package",
+  "title": "Multi-Channel Meal-Prep Ad Package: Product-Showcase Video + Social Cutdowns + Retouched Hero Still + Vectorized Merch Logo",
+  "vertical": "Food, Restaurant & Beverage",
+  "one_line_ask": "From the client's raw chicken-bowl hero photo, raw 4K product-showcase footage, raw phone-recorded voiceover, and flat logo PNG, produce a retouched website-banner hero still, a vertical + square + landscape cutdown set of the product-showcase video, a denoised voiceover, a screen-print-ready vector logo, and a moodboard of the package.",
+  "generated_at": "2026-07-07T18:19:05",
+  "assets": [
+    {
+      "name": "founder_voiceover_raw.wav",
+      "kind": "audio",
+      "path": "assets/founder_voiceover_raw.wav",
+      "provider": "openai/gpt-4o-mini-tts",
+      "voice": "nova",
+      "roughened": true,
+      "duration": 10.9,
+      "qc": {
+        "min_score": 10,
+        "passed": true,
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 10,
+            "issues": []
+          },
+          {
+            "provider": "anthropic",
+            "score": 10,
+            "issues": []
+          }
+        ],
+        "transcript": "Real food, prepped for real life. Fuel'd Kitchen's High Protein Chicken Bowl. 1200 calories of clean fuel, ready when you are. Order this week and skip the prep."
+      },
+      "note": null
+    },
+    {
+      "name": "fueld_kitchen_logo_flat.png",
+      "kind": "image",
+      "path": "assets/fueld_kitchen_logo_flat.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": true,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [],
+            "text_found": "FUEL'D KITCHEN"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Flame icon contains a very subtle gradient (orange-to-dark-center) rather than being fully flat solid color \u2014 minor, easily corrected in vectorization",
+              "Fork silhouette within flame is small and may require manual path cleanup during vectorization",
+              "Apostrophe in FUEL'D renders as a typographic curly quote which may need standardizing to straight tick depending on brand spec"
+            ],
+            "text_found": "FUEL'D KITCHEN"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 4
+      },
+      "cost": 0.536,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "chicken_bowl_hero_raw.jpg",
+      "kind": "image",
+      "path": "assets/chicken_bowl_hero_raw.jpg",
+      "provider": "openai",
+      "model": "gpt-image-2",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "No visible steam wisps as specified in brief",
+              "Lighting appears slightly more polished than a candid documentary feel but within acceptable range for a source asset",
+              "Tilt is minimal/barely perceptible \u2014 may not give auto-straighten chain enough real work to do",
+              "Container appears very clean/pristine which slightly reduces candid feel"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.19,
+      "verification": {
+        "min": 8,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 8
+        }
+      }
+    },
+    {
+      "name": "product_showcase_4k_raw.mp4",
+      "kind": "video",
+      "path": "assets/product_showcase_4k_raw.mp4",
+      "provider": "seedance/seedance-1.0-pro",
+      "resolution": "1920x1088",
+      "duration": 5.04,
+      "has_audio": false,
+      "qc": {
+        "min_score": 9,
+        "passed": true,
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "gemini",
+            "score": 9,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Minor hand anatomy ambiguity at finger joints but within acceptable handheld-frame tolerance",
+              "Sauce pour stream has slight AI smoothness but reads as natural in motion context"
+            ],
+            "text_found": ""
+          }
+        ]
+      },
+      "note": null
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 4,
+    "produced": 4,
+    "missing": []
+  },
+  "qc_summary": {
+    "scored": 4,
+    "passed": 4,
+    "by_kind": {
+      "image": 2,
+      "video": 1,
+      "audio": 1
+    },
+    "min_scores": [
+      10,
+      9,
+      9,
+      9
+    ]
+  },
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 2,
+    "verified_pass": 2
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "task_id": "AO-56",
+  "slug": "comedy-gameplay-youtube-edit-package",
+  "title": "Comedy Gameplay YouTube Edit: Sizzle Cut, Reframed Shorts Variant, Meme Cutaway Graphics + Clickbait Thumbnail",
+  "vertical": "Music, Film, Publishing & Media",
+  "one_line_ask": "Turn raw comedy gameplay footage plus client notes, custom graphics and a music folder into a punchy 1080p H.264 YouTube cut with a vertical Shorts variant, polished meme/text-callout overlay graphics, a denoised commentary track, and a clickbait thumbnail PNG \u2014 all organized into one reusable project package.",
+  "generated_at": "2026-07-07T18:25:15",
+  "assets": [
+    {
+      "name": "funny_moment_notes.csv",
+      "kind": "data",
+      "path": "assets/funny_moment_notes.csv",
+      "provider": "gemini/gemini-2.5-flash"
+    },
+    {
+      "name": "royalty_free_music_folder",
+      "kind": "audio",
+      "path": "assets/royalty_free_music_folder",
+      "provider": "ffmpeg",
+      "duration": null,
+      "qc": {
+        "score": 9,
+        "method": "fal stable-audio-2.5 music gen; both stems verified non-silent (mean -14/-16 dB, peak 0 dB), 14s each, instrumental no-vocals matching brief (trap 140bpm + comedic ukulele)",
+        "passed": true
+      },
+      "note": "Folder of two royalty-free-stand-in instrumental loops as required by the brief.",
+      "stems": [
+        "hype_trap_140bpm.wav",
+        "goofy_comedic_ukulele.wav"
+      ],
+      "gen_model": "fal-ai/stable-audio-25/text-to-audio"
+    },
+    {
+      "name": "commentary_adlibs.wav",
+      "kind": "audio",
+      "path": "assets/commentary_adlibs.wav",
+      "provider": "openai/gpt-4o-mini-tts",
+      "voice": "onyx",
+      "roughened": true,
+      "duration": 25.57,
+      "qc": {
+        "min_score": 8,
+        "passed": true,
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 8,
+            "issues": [
+              "The exclamation 'Aaaah!' was rendered as 'Ah,', which may reduce the intended length and intensity of the vocalization.",
+              "The highly emphatic 'YES! LET'S GOOO!' was rendered as 'Yes, let's go.', losing the strong emphasis and prolonged 'o' sound, which significantly diminishes the intended excitement and triumph."
+            ]
+          },
+          {
+            "provider": "anthropic",
+            "score": 10,
+            "issues": []
+          }
+        ],
+        "transcript": "Oh no, no, no. Not like this. Not like this, guys. Oh, he's flanking. Bro, why is my teammate like this? He's just standing there. Haha. Oh man, that was a close one. I almost had him. Okay, okay, regroup, regroup. No, don't push. Ah, wait, wait, I got it. I got it. Yes, let's go. Oh my god, that wa"
+      },
+      "note": null
+    },
+    {
+      "name": "pov_meme_screenshot.png",
+      "kind": "image",
+      "path": "assets/pov_meme_screenshot.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 8,
+            "issues": [
+              "Photo of a phone screen introduces glare and reflection, but subject is still clear.",
+              "Slight tilt and JPEG softness present, but within brief's tolerance.",
+              "Text is clear, bold, and in meme style as required.",
+              "In-game character is exaggerated and slightly blurry, matching the brief.",
+              "No real-world brands/logos visible.",
+              "Meme aesthetic is achieved, but the phone frame and background are visible, which could distract from the asset as a source input."
+            ],
+            "text_found": "POV:  your teammate has the aim of a potato"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Image is a photo of a phone screen rather than a direct digital asset, introducing slight moir\u00e9/glare potential",
+              "Minor reflection visible at bottom of phone screen",
+              "Slight perspective distortion from camera angle",
+              "Background (wooden table, window) visible around device \u2014 designer will need to crop/isolate"
+            ],
+            "text_found": "POV: your teammate has the aim of a potato"
+          }
+        ],
+        "min_score": 8,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 1.206,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "hero_thumbnail_frame.png",
+      "kind": "image",
+      "path": "assets/hero_thumbnail_frame.png",
+      "provider": "openai",
+      "model": "gpt-image-2",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 9,
+            "issues": [
+              "The magazine on the weapon appears somewhat short for the size of the firearm, though this is a minor detail and not a severe artifact."
+            ],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Slight render-smoothness on skin texture edges hints at AI generation rather than true photoreal capture, but within acceptable threshold for source asset",
+              "Muzzle flash bloom is slightly over-saturated orange which may clip in some export pipelines \u2014 designer should check highlight recovery",
+              "Background soldiers (left) are soft/indistinct but this is acceptable depth-of-field for the brief",
+              "Minor debris particle duplication visible upper-right quadrant \u2014 within tolerable AI artifact range, not regenerate-level",
+              "Image appears to be closer to 1:1 crop ratio than 16:9 1920x1080 \u2014 designer will need to canvas-extend or reframe for thumbnail format"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 3
+      },
+      "cost": 0.5700000000000001
+    },
+    {
+      "name": "raw_gameplay_capture.mp4",
+      "kind": "video",
+      "path": "assets/raw_gameplay_capture.mp4",
+      "provider": "seedance/seedance-1.0-pro",
+      "resolution": "1920x1088",
+      "duration": 5.04,
+      "has_audio": false,
+      "qc": {
+        "min_score": 8,
+        "passed": true,
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [],
+            "text_found": "LHP PIV\n\u0422\u043f\u043e\u043c\u0435\u0435\u0442\u0438\u043b\u0435 \u043c\u0443\u0435\u0441\u043c\u0430\u043d \u0430\u0442\u0430\u0493\u044b\u043b\u0430\u0440\n\u0431\u043e\u043a\u043d\u0441\u0435\u0439\u0430\u0438\u043c\u0443\u0442. G'teeraegol\n\u041elikherolate 0 \u043d\u0435\u043e\u043d 0:50!\nVontetrelatic uikgeer Olkoo\n8 Ginerelatic Sentetag Inort-syma"
+          },
+          {
+            "provider": "gemini",
+            "score": 9,
+            "issues": [],
+            "text_found": "LRT PIV\nTtromeeilliae Niyesensan ata\u011flcar Darsana\nBolhuesdicaimrjr. Stearnejoeal Darsana\n0.0 0.0 0.0 0.0 0.0\nO Dihsileralele O doven O 0:501\nO VontcelmodatDurgreia OII60\nB Ginesdion. Gamteag\nIlorla anna\nAlansaw\n0-0\n0-0"
+          },
+          {
+            "provider": "anthropic",
+            "score": 8,
+            "issues": [
+              "HUD text is garbled/illegible but this is acceptable per criteria",
+              "Kill-feed text on right side is nonsensical AI-generated characters",
+              "Minimap present but low detail",
+              "Weapon model looks slightly generic but plausible",
+              "No severe deformation or extra limbs visible",
+              "Hands holding weapon look acceptable",
+              "Crates and environment geometry are clean and believable"
+            ],
+            "text_found": "LHT PIV, b, 0.0, 0.0, 0.0, Fr.0, 0.0, BUn, Otherclote, 0 down, 0 Spt, Vontcalmedat, Undears, Orfeo, Ednescholk, Sanitog, 1Worl3 snn, Thromeelline Nyesensan ataglcar Distance, Buhvedcainmjr. 9tearnejoel, Atengon"
+          }
+        ]
+      },
+      "note": "Representative ~5s Seedance-1.0-Pro clip; the brief's raw clip is ~40s. It is raw source footage the task reframes/edits, so length is not load-bearing. Silent (task audio comes from the separate VO track)."
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 6,
+    "produced": 6,
+    "missing": []
+  },
+  "qc_summary": {
+    "scored": 5,
+    "passed": 5,
+    "by_kind": {
+      "image": 2,
+      "video": 1,
+      "audio": 2
+    },
+    "min_scores": [
+      8,
+      8,
+      8,
+      9,
+      8
+    ]
+  },
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 2,
+    "verified_pass": 1
+  }
+}

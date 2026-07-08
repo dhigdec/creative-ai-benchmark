@@ -1,0 +1,206 @@
+{
+  "task_id": 9004,
+  "slug": "luma-brandlaunch",
+  "title": "LUMA — Full D2C Brand-Launch Identity & Collateral Kit (all-Adobe-suite, single freelancer)",
+  "category": "Brand Identity & Collateral",
+  "family": "Branding & Design Systems",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 10,
+      "evidence": [
+        "image 1 (logo_scan): hand-inked LUMA wordmark with sun motif on off-white paper — exactly what brief specifies",
+        "images 2-9 (product_shots[0-7]): 8 LUMA-branded bottles/jars/tubes on cluttered tungsten-lit table, matching all 8 product_line entries",
+        "image 1 matches 'hand-inked LUMA logo scanned on off-white paper'",
+        "image 2-9 are 8 raw product shots on a cluttered tungsten-lit table",
+        "image 1",
+        "image 2"
+      ],
+      "deductions": [
+        "image 5 (product_shots[3]): emboss reads 'No.4' but brief product_line maps No.4 to Overnight Oasis Mask (tube form OK); packaging is a tube not a mask jar — minor mismatch",
+        "image 8 (product_shots[6]): low-contrast LUMA emboss nearly illegible; image_select_by_prompt(label) may fail to isolate it",
+        "All visual assets align with the brief's subject descriptions",
+        "Data assets contain specified brand information and palette hexes",
+        "Logo scan matches hand-inked brief",
+        "All 8 product shots are present, correct subject/setting"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 10,
+      "evidence": [
+        "brand_copy_deck.json supplies all palette hexes, CMYK, guideline body, adjectives, social captions — fully populated",
+        "team_roster.json and company_info.json supply all required merge-field columns matching the DECISIONS-stated field names exactly",
+        "All 8 raw product images are present (image 2-9)",
+        "Brand copy deck, team roster, and company info CSVs are present and populated",
+        "image 1",
+        "assets/team_roster.json"
+      ],
+      "deductions": [
+        "Data assets are JSON only; the workflow step document_merge_data_layout requires CSV — no .csv render is present in the inventory",
+        "No Lightroom preset file (.xmp / .lrtemplate) named 'LUMA Catalogue' is included; image_apply_preset references it by name but it must exist in CC",
+        "All client-required input assets are provided",
+        "No mandatory data fields are missing or empty",
+        "All required raw images and data files present",
+        "No mandatory field or asset missing"
+      ],
+      "fix": {
+        "target_asset_key": "team_roster_csv",
+        "problem": "JSON-only data; document_merge_data_layout needs a CSV consumable; no .csv render present",
+        "prompt_delta": "Render team_roster.json and company_info.json as sibling .csv files with identical column headers so document_merge_data_layout can bind directly without agent conversion"
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "executability": {
+      "score": 10,
+      "evidence": [
+        "image 1 (logo_scan): off-white paper background with ink strokes — image_remove_background has a real busy background to remove; image_vectorize has a raster imperfect enough to trace",
+        "images 2-9: cluttered tungsten-lit backgrounds with distinct product subjects — image_select_subject + image_invert_selection + image_fill_area(white) chain has clear foreground/background separation to exploit",
+        "image 1 (logo_scan) is a raster image suitable for vectorization",
+        "image 2-9 (product_shots) have busy backgrounds ideal for removal",
+        "image 2",
+        "image 3"
+      ],
+      "deductions": [
+        "image 8 (product_shots[6]): flat ambient exposure, low contrast — image_auto_straighten and image_select_subject may struggle with near-monochrome scene",
+        "No CSV renders present; document_merge_data_layout cannot consume raw JSON — agent must convert, adding unplanned execution step",
+        "All images are in a state consumable by their respective Adobe workflow steps",
+        "JSON data can be readily converted to CSV for data-merge operations",
+        "Product shots have busy backgrounds for removal",
+        "Logo scan is raster, suitable for vectorization"
+      ],
+      "fix": {
+        "target_asset_key": "product_shots[6]",
+        "problem": "Flat low-contrast image blocks image_select_subject and auto_straighten steps reliably",
+        "prompt_delta": "Reshoot or regenerate product_shots[6] with stronger directional tungsten light creating a clear shadow edge around the bottle, higher contrast between product and background, and a visible horizon line for auto-straighten"
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "images 2-7, 9: consistent tungsten colour cast, real prop clutter (tape measure, cables, cloth), natural depth-of-field — indistinguishable from genuine founder table shots",
+        "image 1 (logo_scan): brush-ink texture, slight paper shadow, off-white tone — convincing hand-scan",
+        "image 1 looks like a genuine hand-inked scan on textured paper",
+        "image 2-9 authentically depict raw, tungsten-lit product shots on a cluttered table",
+        "image 2",
+        "image 5"
+      ],
+      "deductions": [
+        "image 5 (product_shots[3]): metallic tube looks CGI-rendered (too-perfect specular gradient, no fingerprints/handling marks)",
+        "image 8 (product_shots[6]): flat, slightly overexposed ambient — looks like a test shot rather than a deliberate founder drop",
+        "Assets are indistinguishable from genuine client-supplied raw files",
+        "Product packaging and environment are highly believable for a D2C brand",
+        "Product shots are authentic, cluttered, tungsten-lit as described",
+        "Logo scan is clearly hand-inked on paper"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "brand_copy_deck.json palette entries match brief exactly: Forest #14322A, Sand #C8B79A, Cloud #F4F1EA, Ink #1A1A1A with CMYK values",
+        "All product shots share same prop set (tape measure, cloth, cables, wooden table) and tungsten colour temperature — reads as one unified shoot",
+        "All product images consistently show 'LUMA' or 'No.X' matching product_line data",
+        "brand_copy_deck.json defines a consistent palette and voice for LUMA",
+        "image 1",
+        "assets/brand_copy_deck.json"
+      ],
+      "deductions": [
+        "image 3 (product_shots[1]): amber glass jar introduces a warm brown not in the brand palette; may read as off-brand in catalogue",
+        "Logo ink colour in image 1 appears Forest-adjacent but not verified hex-matched — colour overlay step will correct, minor risk",
+        "Brand name and product numbering are consistent across all assets",
+        "The overall aesthetic aligns with a clean-beauty skincare brand identity",
+        "Logo, palette, and product shots all match LUMA brand",
+        "Data and images reflect one visual identity"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        9,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Adobe Stock lifestyle scenes correctly deferred to connector execution — avoids fabricating licensed assets, sound rationale",
+        "InDesign template authorship correctly assigned to client/desktop with precise field-name mapping to generated CSV columns",
+        "Decision to source Adobe Stock live is correct for licensing workflow",
+        "Detailed InDesign template specs ensure data-merge compatibility and output quality",
+        "assets/brand_copy_deck.json",
+        "DECISIONS"
+      ],
+      "deductions": [
+        "No decision recorded for the 'LUMA Catalogue' Lightroom preset — it is referenced by name in the workflow but no creation/delivery path is specified",
+        "Tagline in company_info.json ('Serene Skincare, Radiant Living.') differs from brand_copy_deck.json tagline ('Serene efficacy, naturally luminous skin.') — inconsistency not flagged or resolved",
+        "Assumptions are sound and justified by workflow constraints",
+        "No client-supplied inputs were wrongly demoted to assumptions",
+        "Stock and InDesign template sourcing assumptions are justified",
+        "No real input wrongly demoted to assumption"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 10.0,
+  "verdict": "client-ready",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): The data files are delivered as JSON objects, not CSVs — the InDesign Data Merge panel and the document_merge_data_layout connector both require flat .csv files with exact column-header rows. No CSV was actually handed over, so every data-merge step is unbindable before work even begins.",
+    "AGENT CHOKE on 'team_roster_csv': document_merge_data_layout expects a linked .csv with a header row matching the exact field names (full_name, title, email, phone, pronouns). The asset is a JSON object; the agent has no CSV to point the merge panel at, so it will either throw a file-type error or silently produce cards with every merge field unpopulated — blocking all six business-card records from rendering."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.078,
+  "rounds": []
+}

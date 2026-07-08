@@ -1,0 +1,129 @@
+{
+  "task_id": "AO-82",
+  "slug": "lumen-quarterly-brand-consistency-audit",
+  "title": "Lumen Quarterly magazine issue: brand-guideline consistency audit of the laid-out pages against the supplied style guide (marked-up findings report)",
+  "vertical": "media_publishing",
+  "one_line_ask": "Audit every page of the laid-out Lumen Quarterly issue proof against the supplied Lumen brand style guide and return a marked-up, page-referenced brand-consistency findings report listing each colour / logo / typography / imagery drift and the exact rule it breaks.",
+  "generated_at": "2026-07-06T18:32:21",
+  "assets": [
+    {
+      "name": "lumen_palette_swatches.png",
+      "kind": "image",
+      "path": "assets/lumen_palette_swatches.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 10,
+            "issues": [],
+            "text_found": "Lumen Ink #1B2A4A\nSignal Coral #FF5A47\nPaper #F4F1EA"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Colour chip proportions are unequal (navy chip appears slightly wider than coral, coral slightly wider than paper \u2014 minor layout inconsistency)",
+              "Paper chip (#F4F1EA) has very low contrast against the white background making its right edge soft/barely visible \u2014 acceptable as a source file imperfection but worth flagging for designer to add a hairline border",
+              "Overall strip height feels compact relative to a 2000x600px spec but composition is clean and functional"
+            ],
+            "text_found": "Lumen Ink #1B2A4A Signal Coral #FF5A47 Paper #F4F1EA"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.134,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 10,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "lumen_masthead_lockup.png",
+      "kind": "image",
+      "path": "assets/lumen_masthead_lockup.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Background is pure white, not off-white/near-white as sometimes expected for realism in source assets; however, this is not a penalizable flaw per brief. No visible AI artifacts, stretching, or composition issues. Proportions and type treatment appear correct. PNG is not 2400x800px (appears square, not wide), which is a minor technical issue for a source asset."
+            ],
+            "text_found": "LUMEN QUARTERLY"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Canvas appears to be approximately 1024x1024px (square) rather than the specified 2400x800px landscape ratio \u2014 designer will need to confirm export dimensions",
+              "'QUARTERLY' tracking/letterspacing is generous but acceptable as a source asset",
+              "Slight optical weight imbalance: 'N' terminal on 'LUMEN' appears marginally heavier than 'L' \u2014 within serif rendering tolerance"
+            ],
+            "text_found": "LUMEN QUARTERLY"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.134,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "lumen_autumn2026_proof.pdf",
+      "kind": "data",
+      "path": "assets/lumen_autumn2026_proof.pdf",
+      "provider": "gemini/gemini-2.5-flash"
+    },
+    {
+      "name": "lumen_brand_styleguide.pdf",
+      "kind": "data",
+      "path": "assets/lumen_brand_styleguide.pdf",
+      "provider": "gemini/gemini-2.5-flash"
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 4,
+    "produced": 4,
+    "missing": []
+  },
+  "qc_summary": {
+    "images": 2,
+    "passed": 2,
+    "min_scores": [
+      9,
+      9
+    ]
+  },
+  "cost_usd": 0.292,
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 2,
+    "verified_pass": 2
+  }
+}

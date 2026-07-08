@@ -1,0 +1,12 @@
+You are the registration operations lead for the Northwind Applied Intelligence Summit 2026, a three-day applied-AI industry conference hosted by the Northwind Forum. Produce the FINAL attendee roster that will drive BOTH a name-badge data merge and a completion-certificate data merge in InDesign. Return ONE JSON object with EXACTLY one top-level key "rows": a list of EXACTLY 510 attendee objects. Each object MUST have EXACTLY these eight keys, spelled and ordered exactly like this (they are the InDesign data-merge field names — do not rename, add or drop any): "first_name", "last_name", "organization", "role", "certificate_number", "track", "completion_date", "photo".
+
+Content rules:
+- first_name / last_name: realistic, richly diverse adult names spanning many cultural backgrounds (do NOT cluster one ethnicity; no celebrities; no placeholders like John Doe; include a few hyphenated surnames and one or two suffixes like Jr.). Across the 510 rows aim for distinct people.
+- organization: a believable employer — invented companies, universities, startups, agencies and non-profits (e.g. "Tessellate Labs", "Cedarbrook University", "Meridian Health Systems"); NO real-world company names.
+- role: a realistic job title (e.g. "Data Scientist", "VP Engineering", "ML Researcher", "Product Manager", "Founder & CEO", "Solutions Architect", "PhD Candidate").
+- certificate_number: a unique sequential ID of the EXACT form "NAIS26-0001" .. "NAIS26-0510" (zero-padded to 4 digits, ascending, one per row, no gaps, no duplicates).
+- track: one of EXACTLY these five conference tracks — "Foundations", "Applied ML", "Responsible AI", "AI in Production", "Leadership" — distributed across the roster.
+- completion_date: one of the three summit days, formatted EXACTLY as "14 March 2026", "15 March 2026" or "16 March 2026".
+- photo: the headshot FILENAME this attendee maps to in the InDesign additionalImageFiles map, of the EXACT form "attendee_0001.jpg" .. "attendee_0510.jpg" (zero-padded to 4 digits, matching the certificate_number index — row N's photo is "attendee_<NNNN>.jpg").
+
+JSON only — no markdown, no commentary. The list MUST contain all 510 rows.

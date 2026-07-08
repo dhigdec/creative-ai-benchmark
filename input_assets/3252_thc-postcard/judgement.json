@@ -1,0 +1,209 @@
+{
+  "task_id": 3252,
+  "slug": "thc-postcard",
+  "title": "Double-Sided 5x7 THC Beverage Postcard Design",
+  "category": "Invitations & Cards",
+  "family": "Express Template Design",
+  "archetype": "template",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 8,
+      "evidence": [
+        "image 1 (distributor_logo): Arch & Prairie Beverage Co. logo matches named brand exactly",
+        "images 2-10 cover all 9 named brands (HiSide, Howdy, THC Social, Stay Cool, SUP, 8th Wonder, Tempters, CURRNT, Don't Be That Dude)",
+        "image 3",
+        "image 8",
+        "image 4",
+        "image 5"
+      ],
+      "deductions": [
+        "No branded product shots (actual THC beverage cans/bottles); lifestyle photos show generic unlabeled cans",
+        "Brief says 'product photos will be provided' — generic stock substituted, reducing brand specificity",
+        "'Howdy' logo (image 3) has a western rope style, slightly less 'modern premium'.",
+        "'Tempters' logo (image 8) script font and devil tail are less 'premium hospitality'.",
+        "All other assets align well with the 'clean, modern, premium' brief.",
+        "brand_logos[2] and brand_logos[3] are visually weak/low-res for premium brief"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        8,
+        9,
+        8
+      ]
+    },
+    "completeness": {
+      "score": 7,
+      "evidence": [
+        "postcard_copy.json contains all front + back copy, all 9 brand names, compliance line, both QR labels and URLs",
+        "images 14-15 (qr_codes[0], qr_codes[1]): two distinct QR codes present and scannable-format",
+        "postcard_copy.json",
+        "image 1-15",
+        "image 4",
+        "image 5"
+      ],
+      "deductions": [
+        "No product photos of Spirit Bottles or THC Drops — back side calls out three product categories but only RTD cans are visually represented",
+        "Compliance line present in JSON but no dedicated asset slot or placement instruction for print-safe sizing",
+        "All front and back copy, including mandatory 'Legal in Missouri', is present.",
+        "All specified distributor, brand logos, lifestyle photos, and QR codes are provided.",
+        "All required assets present, but 2 logos are too sparse/low-res for print",
+        "No missing asset, but 2 logos may not be usable for premium print"
+      ],
+      "fix": {
+        "target_asset_key": "lifestyle_photos[2]",
+        "problem": "Third lifestyle slot unused for product category coverage; Spirit Bottles and THC Drops have zero visual representation",
+        "prompt_delta": "Flat-lay or styled shot of a premium spirit bottle alongside small dropper/tincture bottle on a dark bar surface; warm amber lighting; hospitality-grade product photography; no people"
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        7
+      ]
+    },
+    "executability": {
+      "score": 8,
+      "evidence": [
+        "images 14-15: 444x444px QR PNGs are program-rendered, clean black-on-white — asset_add_file and image_crop_and_resize can consume directly",
+        "All brand logos at 1024x1024px on white backgrounds — suitable for asset_add_file and placement in Express template",
+        "image 3",
+        "image 4",
+        "image 5"
+      ],
+      "deductions": [
+        "Several brand logos (images 3,4,5) have white backgrounds, not transparent PNGs — placement on dark (#18271F) postcard background will require background removal step not in the stated workflow",
+        "image 3 (brand_logos[1] Howdy) self-QC score 4 — raster detail at print scale may be insufficient for 5x7 at 300dpi",
+        "Some brand logos (image 3, 4, 5) have low self-QC scores, indicating potential quality issues.",
+        "All assets are in standard formats and resolutions suitable for the workflow steps.",
+        "All assets are in correct format/dims for workflow",
+        "2 logos may require minor cleanup before print"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        8,
+        9,
+        8
+      ]
+    },
+    "realism": {
+      "score": 7,
+      "evidence": [
+        "image 11 (lifestyle_photos[0]): professional bar photography, correct hospitality aesthetic, indistinguishable from real client asset",
+        "image 3 (brand_logos[1] Howdy) and image 4 (brand_logos[2] THC Social): appear AI-generated or recreated rather than supplied by actual brand owners",
+        "image 11-13",
+        "image 2-10",
+        "image 4",
+        "image 5"
+      ],
+      "deductions": [
+        "THC Social logo (image 4) looks like a generic SaaS chat-app icon, not a cannabis beverage brand — real client would supply actual brand files",
+        "Stay Cool logo (image 5) is a plain text wordmark that reads as a placeholder, not a real brand asset",
+        "Lifestyle photos (image 11-13) are professional and depict realistic premium hospitality scenes.",
+        "Brand logos (image 2-10) show a realistic diversity of styles for a distributor's portfolio.",
+        "Most logos/photos are realistic client handoff quality",
+        "2 logos (brand_logos[2], brand_logos[3]) look synthetic or unfinished"
+      ],
+      "fix": {
+        "target_asset_key": "brand_logos[2]",
+        "problem": "THC Social logo looks like generic tech SaaS icon, not a THC beverage brand; undermines premium hospitality feel",
+        "prompt_delta": "THC Social brand logo for a premium cannabis social beverage; modern sans-serif wordmark with subtle social/community motif; dark charcoal or teal palette; beverage-industry aesthetic; transparent PNG background"
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        7
+      ]
+    },
+    "coherence": {
+      "score": 7,
+      "evidence": [
+        "postcard_copy.json and distributor_logo (image 1) consistently use Arch & Prairie brand with correct palette hex colors (#18271F, #B97A36)",
+        "Brand logos span navy blue (HiSide), rope-brown (Howdy), teal (THC Social), sky blue (Stay Cool), orange (Don't Be That Dude), crimson (Tempters) — no unifying palette treatment applied",
+        "image 1",
+        "postcard_copy.json",
+        "image 4",
+        "image 5"
+      ],
+      "deductions": [
+        "Nine partner logos have wildly divergent color palettes with no normalization strategy; on a dark #18271F background they will clash visually",
+        "No style-guide asset or placement spec showing how logos will be unified (e.g., all-white knockout treatment) — executor must guess",
+        "Distributor logo (image 1) uses brand palette and premium aesthetic.",
+        "Postcard copy (postcard_copy.json) maintains confident B2B, hospitality-grade voice.",
+        "Most assets fit premium, modern, hospitality vibe",
+        "2 logos (brand_logos[2], brand_logos[3]) break visual coherence"
+      ],
+      "fix": {
+        "target_asset_key": "brand_logos[4]",
+        "problem": "Stay Cool logo (sky blue on white) has no coherence treatment for dark background placement; no knockout/white version provided",
+        "prompt_delta": "Provide Stay Cool logo as white monochrome knockout version on transparent PNG background; retain original letterform and outline style; suitable for placement on dark (#18271F) background"
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        6,
+        10,
+        7
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Decision to consolidate front+back copy into single postcard_copy.json with emphasize:true flag on 'Legal in Missouri' is sound and directly serves fill_text determinism",
+        "Canva editable file correctly recorded as human-handoff item outside Adobe workflow scope — avoids false gap",
+        "Recorded Decisions 1",
+        "Recorded Decisions 2",
+        "assets/postcard_copy.json",
+        "brief"
+      ],
+      "deductions": [
+        "No assumption recorded about logo normalization strategy (white knockout vs. full-color) for dark background — a real art director would flag this",
+        "Orientation (horizontal vs. vertical) left entirely open per brief, but no recommendation recorded despite brief explicitly inviting designer recommendation",
+        "Consolidating copy into one JSON with emphasis flag is efficient and accurate.",
+        "Output spec definition correctly separates workflow deliverables from human tasks.",
+        "All assumptions are justified and documented",
+        "No real input wrongly demoted to assumption"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 7.6,
+  "verdict": "minor-gaps",
+  "top_risks": [
+    "CLIENT-REJECT (sev 8): Multiple brand logos (brand_logos[2] and brand_logos[3]) have vision scores of 3 — critically low quality — meaning they are likely too degraded, low-contrast, or illegible to reproduce cleanly on a premium print piece. I will not approve a handoff where partner brand logos print as muddy blobs on a piece going to bars and liquor stores.",
+    "AGENT CHOKE on 'brand_logos[2]': Vision score of 3 means the automated image_crop_and_resize step will attempt to scale an already-degraded raster logo to fit a print-resolution 5x7 layout, producing a pixelated or unreadable result that fails print QC before the document_convert_pdf step is even reached."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.17,
+    "completeness": 0.22,
+    "executability": 0.1,
+    "realism": 0.17,
+    "coherence": 0.22,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.114,
+  "rounds": []
+}

@@ -1,0 +1,206 @@
+{
+  "task_id": 502,
+  "slug": "lockhouse-pack",
+  "title": "Reality Show Graphic Designer",
+  "category": "Social Media Graphics",
+  "family": "Express Template Design",
+  "archetype": "template",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 10,
+      "evidence": [
+        "image 1: show_logo correctly renders 'The Lock House' with teal/gold palette matching brand spec",
+        "image 2–7: six contestant photos match all six named contestants in show_copy.json",
+        "image 1",
+        "show_copy.json",
+        "image 2"
+      ],
+      "deductions": [
+        "show_logo is a raster render with dark atmospheric background, not a clean transparent-background logo file usable for overlay placement",
+        "no teaser/promotional graphic or event banner visual reference supplied; brief explicitly lists these as scope items",
+        "All assets directly match the specified show, contestants, and content types.",
+        "Brand name 'The Lock House' is correctly represented.",
+        "Show logo matches 'The Lock House' brand and palette",
+        "Contestant photos provided for all 6 as per brief"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 10,
+      "evidence": [
+        "show_copy.json contains all six contestant intros, taglines, episode synopsis, voting_text, elimination_text, and CTAs",
+        "brief requires sponsor branding creatives; only two sponsor logos supplied (image 8, image 9) with no sponsor placement brief or co-branding guidelines",
+        "show_copy.json",
+        "image 2-7",
+        "assets/show_copy.json",
+        "image 8"
+      ],
+      "deductions": [
+        "No host name, channel handle, or broadcast time/platform copy provided; fill_text step will have placeholder gaps on episode/promo creatives",
+        "Sponsor usage rights or safe-zone specs absent; agent cannot confidently size sponsor lockups on standees",
+        "All required copy elements are present and structured.",
+        "Sufficient number of contestant photos and logos are provided.",
+        "All required copy (intros, voting, episode) present",
+        "Sponsor logos and all contestant photos included"
+      ],
+      "fix": {
+        "target_asset_key": "show_copy",
+        "problem": "Missing host name, broadcast platform, air-time, and sponsor placement notes needed for fill_text across all creative types",
+        "prompt_delta": "Append to show_copy.json: add 'broadcast': {'host':'[HOST NAME]','platform':'[CHANNEL/OTT]','air_time':'[DAY TIME TZ]'} and 'sponsor_notes': [{'logo_key':'sponsor_logos[0]','safe_zone_px':20,'placement':'bottom-right'},{'logo_key':'sponsor_logos[1]','safe_zone_px':20,'placement':'bottom-left'}]"
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "executability": {
+      "score": 7,
+      "evidence": [
+        "contestant_photos[0–5] all have busy teal studio backgrounds — ideal for image_remove_background step",
+        "show_logo (image 1) has a non-transparent dark background; asset_add_file overlay onto poster templates will require an extra background-removal pass not planned in the workflow",
+        "image 1",
+        "image 8",
+        "image 2"
+      ],
+      "deductions": [
+        "sponsor_logos[0] (Voltra) and sponsor_logos[1] (StreamNest) are on solid white backgrounds — image_remove_background will work but white-background logos risk halo artifacts on dark poster templates",
+        "show_logo background removal is unplanned in workflow; adds an unscripted tool call",
+        "Logos (show and sponsors) are too low resolution (1024px) for assumed print standee output.",
+        "Complex 3D logo (image 1) may not yield clean background removal for all uses.",
+        "Contestant photos have busy backgrounds for removal",
+        "Sponsor logos are high-res and isolated for placement"
+      ],
+      "fix": {
+        "target_asset_key": "show_logo",
+        "problem": "Logo resolution too low for print standees.",
+        "prompt_delta": "Generate a high-resolution (e.g., 4000px wide) or vector version of 'The Lock House' logo, suitable for large-format print, maintaining its 3D metallic style."
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        7,
+        6,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "images 2–7 are consistent studio-lit dramatic portraits matching a real Indian reality-show production shoot aesthetic",
+        "show_copy.json reads as genuine production copy with voting shortcode, episode title, and character backstories",
+        "image 1",
+        "image 2-7",
+        "image 2"
+      ],
+      "deductions": [
+        "Contestant names are Western/anglicised (Anya Sharma aside); brief notes Hindi/Indian audience — minor authenticity drift for a Bollywood-adjacent show",
+        "Sponsor brands 'Voltra' and 'StreamNest' are clearly fictional; acceptable as placeholders but reduces realism of sponsor creatives",
+        "Show logo is professionally rendered, fitting a high-stakes reality show.",
+        "Contestant photos are polished studio portraits, appropriate for TV branding.",
+        "Contestant photos are studio-quality, matching reality show standards",
+        "Logo is polished and plausible for a TV show"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 9,
+      "evidence": [
+        "All six contestant photos share identical teal-backdrop dramatic lighting, consistent with #00566B brand primary",
+        "sponsor_logos[0] (Voltra: neon green) and sponsor_logos[1] (StreamNest: coral/navy) clash with teal-black-gold brand palette",
+        "image 1",
+        "image 2-7",
+        "image 8"
+      ],
+      "deductions": [
+        "Sponsor logo palettes are entirely off-brand; co-branded creatives will look incoherent without explicit colour-isolation treatment",
+        "show_logo uses a slightly blue-shifted teal vs. the specified #00566B deep teal — minor but visible on side-by-side poster layouts",
+        "Show logo's metallic gold and dark teal align with brand palette and dramatic tone.",
+        "Contestant photos share consistent teal lighting, reinforcing brand colors.",
+        "Show logo and contestant photos use consistent palette and tone",
+        "Sponsor logos are off-brand but expected for external brands"
+      ],
+      "fix": {
+        "target_asset_key": "sponsor_logos[0]",
+        "problem": "Voltra neon-green palette conflicts with show brand; needs a monochrome/white version for dark poster placement",
+        "prompt_delta": "Provide a white monochrome version of the Voltra logo on transparent background, suitable for placement on dark (#000000 or #00566B) poster backgrounds. Retain original logo shape and letterforms exactly."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        9
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Assumption that 33x80in @150dpi is the standee size is flagged with 'confirm' — appropriately hedged",
+        "Decision to size input set for 20–30 output creatives is correctly scoped to output count, not input count",
+        "Recorded Decisions: Counts",
+        "Recorded Decisions: Targets",
+        "assets/show_copy.json",
+        "image 1"
+      ],
+      "deductions": [
+        "No assumption recorded for missing host/broadcast details — a real executor would flag this as a blocking gap, not silently omit it",
+        "Standee resolution assumed at 150dpi; industry standard for large-format print is 100–150dpi at final size, but 33x80in @150dpi = ~4950x12000px — no source asset meets this; should be flagged",
+        "Assumption on creative count correctly scopes agent output, not input.",
+        "Standee size assumption is a reasonable industry standard for unstated print dimensions.",
+        "Assumptions on creative count and standee size are industry-standard",
+        "No real input wrongly demoted to assumption"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 9.5,
+  "verdict": "client-ready",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): The show logo is a rasterized, baked-in 3D render with a dark atmospheric background — there is no transparent/vector version provided. Placing it on any dark creative will make the background clash visibly, and it cannot be cleanly composited without a proper PNG with transparency or an AI/EPS file. This makes every single deliverable unusable at a professional level.",
+    "AGENT CHOKE on 'show_logo': The image_remove_background step will catastrophically fail on this logo: the dark smoky background bleeds into the teal letterforms and the metallic lock graphic, making edge detection nearly impossible. The agent will either leave dark halos around the letters or eat into the logo itself, destroying the asset on the very first pipeline step it touches."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.17,
+    "completeness": 0.22,
+    "executability": 0.1,
+    "realism": 0.17,
+    "coherence": 0.22,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.078,
+  "rounds": []
+}

@@ -1,0 +1,191 @@
+{
+  "task_id": "AO-99",
+  "slug": "lunara-silver-reel-repurpose-multiformat-pack",
+  "title": "Lunara Silver Reel repurpose pack: reframe one product-showcase clip to 9:16 / 1:1 / 16:9, AI sizzle cutdown, cleaned founder VO, caption sheet + vectorized wordmark end-card asset",
+  "vertical": "Retail & E-commerce",
+  "one_line_ask": "Take Lunara Silver's one raw vertical pendant-showcase clip, raw founder voiceover, product hero still, and flat wordmark PNG, and repurpose them into a platform pack: 9:16 / 1:1 / 16:9 reframes of the clip (same runtime), an AI sizzle cutdown for the Meta ad, a cleaned founder VO, a caption/scheduling sheet, and a graded end-card still with a vectorized wordmark.",
+  "generated_at": "2026-07-07T13:29:30",
+  "assets": [
+    {
+      "name": "founder_vo_raw.wav",
+      "kind": "audio",
+      "path": "assets/founder_vo_raw.wav",
+      "provider": "openai/gpt-4o-mini-tts",
+      "voice": "shimmer",
+      "roughened": true,
+      "duration": 12.27,
+      "qc": {
+        "min_score": 9,
+        "passed": true,
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 9,
+            "issues": [
+              "Minor punctuation differences (missing commas, em dash replaced by period).",
+              "Slightly altered sentence flow due to punctuation changes, breaking a longer phrase into shorter sentences."
+            ]
+          },
+          {
+            "provider": "anthropic",
+            "score": 10,
+            "issues": []
+          }
+        ],
+        "transcript": "Every Lunara piece is poured not printed. This is the moonlit pendant. Solid sterling silver. Hand finished, made to be worn every single day. Meet the new collection this week."
+      },
+      "note": null
+    },
+    {
+      "name": "lunara_wordmark_flat.png",
+      "kind": "image",
+      "path": "assets/lunara_wordmark_flat.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": true,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Background is a checkerboard pattern indicating transparency, which is acceptable for a source asset but not a true alpha channel preview; however, this is standard for showing transparency in previews.",
+              "Crescent moon glyph is correctly placed over the 'A', but the moon shape is slightly off-center relative to the 'A' apex, which may require minor adjustment in final design."
+            ],
+            "text_found": "LUNARA"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Crescent moon glyph is positioned above the 'A' but slightly closer to the 'N/A' junction rather than perfectly centered over the apex of the 'A' \u2014 minor alignment nuance for designer to finalize",
+              "Canvas appears wider than 2400x700 ratio (image reads as roughly square crop), though this may be a preview artifact",
+              "Very subtle shadow/drop beneath the text block visible \u2014 near-white bg artifact, acceptable as source file"
+            ],
+            "text_found": "LUNARA"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.134,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 10,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "pendant_hero_raw.jpg",
+      "kind": "image",
+      "path": "assets/pendant_hero_raw.jpg",
+      "provider": "openai",
+      "model": "gpt-image-2",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Pendant charm is very slightly large relative to chain gauge (minor proportion quibble)",
+              "Crescent moon relief could read as slightly over-darkened in the recess, reducing micro-detail legibility at thumbnail scale",
+              "Dried botanicals in background are marginally more in-focus than ideal for a soft-prop treatment, could compete slightly with subject at small sizes"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.19,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "product_reel_moonlit_raw.mp4",
+      "kind": "video",
+      "path": "assets/product_reel_moonlit_raw.mp4",
+      "provider": "seedance/seedance-1.0-pro",
+      "resolution": "1088x1920",
+      "duration": 5.04,
+      "has_audio": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "gemini",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Chain and secondary pendant slightly out of focus at bottom of frame, but consistent with shallow depth of field in handheld video"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "note": "video-frame QC (motion-aware)"
+      },
+      "note": "Seedance 1.0 Pro (fal.ai) \u2014 SOTA video; silent raw clip (task audio comes from the separate VO track)."
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 4,
+    "produced": 4,
+    "missing": []
+  },
+  "qc_summary": {
+    "scored": 4,
+    "passed": 4,
+    "by_kind": {
+      "image": 2,
+      "video": 1,
+      "audio": 1
+    },
+    "min_scores": [
+      9,
+      9,
+      9,
+      9
+    ]
+  },
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 2,
+    "verified_pass": 2
+  }
+}

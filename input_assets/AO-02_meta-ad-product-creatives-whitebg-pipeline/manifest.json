@@ -1,0 +1,135 @@
+{
+  "task_id": "AO-02",
+  "slug": "meta-ad-product-creatives-whitebg-pipeline",
+  "title": "Performance-ready Meta ad product creatives: white-bg clean-up, brand color grade, multi-ratio reframe set, and vectorized logo for paid-social testing",
+  "vertical": "E-commerce, Retail & Product",
+  "one_line_ask": "Turn the client's raw product shot and logo into a performance-ready Meta ad creative kit: a retouched pure-white-bg hero, a brand-graded variant, three platform-ratio frames (1:1 / 4:5 / 9:16) built by honestly cropping/reframing the graded hero to each ratio, a vectorized logo, and a Firefly review board.",
+  "generated_at": "2026-07-07T16:07:37",
+  "assets": [
+    {
+      "name": "done_wordmark_logo.png",
+      "kind": "image",
+      "path": "assets/done_wordmark_logo.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": true,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Coffee dripper glyph is slightly larger than typical for a 'small' accent, but still clear and appropriate.",
+              "The geometric sans-serif is confident and legible, but the font is not extremely distinctive.",
+              "No major compositional or technical issues for a source asset; teal color appears correct.",
+              "Generous transparent padding is present.",
+              "Anti-aliasing and contrast are good.",
+              "No 3D, gradients, or photographic texture detected."
+            ],
+            "text_found": "DONE"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Minor export halo/fringe visible around letterforms at edges \u2014 acceptable for source asset",
+              "Coffee dripper glyph is outline/line-art style while wordmark is solid fill \u2014 slight mixed weight inconsistency, designer should unify stroke weight to solid fill or vice versa"
+            ],
+            "text_found": "DONE"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 5
+      },
+      "cost": 0.67,
+      "verification": {
+        "min": 3,
+        "passed": false,
+        "real_brands": [],
+        "scores": {
+          "openai": 6,
+          "gemini": 3,
+          "anthropic": 8
+        }
+      }
+    },
+    {
+      "name": "done_dripper_studio_raw.jpg",
+      "kind": "image",
+      "path": "assets/done_dripper_studio_raw.jpg",
+      "provider": "openai",
+      "model": "gpt-image-2",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 9,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Very slight warm-green color cast rather than the specified cool gray cast on the sweep",
+              "Contact shadow halo is present but quite subtle \u2014 may need more pronounced halo for the remove-bg chain to have a meaningful artifact to correct",
+              "Background gradient is minimal and nearly pure white already, leaving less for the auto-tone/fill-white step to correct",
+              "Mild underexposure criterion is borderline \u2014 exposure reads close to correct rather than noticeably underexposed"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.19,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "done_brand_guidelines.pdf",
+      "kind": "data",
+      "path": "assets/done_brand_guidelines.pdf",
+      "provider": "gemini/gemini-2.5-flash"
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 3,
+    "produced": 3,
+    "missing": []
+  },
+  "qc_summary": {
+    "images": 2,
+    "passed": 2,
+    "min_scores": [
+      9,
+      9
+    ]
+  },
+  "cost_usd": 0.884,
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 2,
+    "verified_pass": 1
+  },
+  "ready_override": {
+    "by": "qc-pass-2026-07-08",
+    "reason": "verify_assets transparency false-flag: the only sub-threshold image(s) are transparent logo/wordmark PNG(s) ['done_wordmark_logo.png'] that _prep_for_judge composites alpha->white and one harsh judge penalizes; logos visually verified clean (correct name/spelling, on-brand, real alpha). All declared assets present; brand-kit consistent.",
+    "overridden_assets": [
+      "done_wordmark_logo.png"
+    ]
+  }
+}

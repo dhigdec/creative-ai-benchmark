@@ -1,0 +1,219 @@
+{
+  "task_id": 9002,
+  "slug": "conference-badges",
+  "title": "Conference attendee badge + certificate suite — 510 personalized A6 badges and matching completion certificates, data-merged from one roster CSV and exported as print-ready CMYK PDFs",
+  "category": "Print & Data Merge",
+  "family": "Layout & Print Production",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 9,
+      "evidence": [
+        "attendee_headshots[0-15]: 16 real conference-environment headshots with lanyards/badges, mixed lighting/tilt — exactly what brief specifies",
+        "attendee_roster JSON: all 8 required columns (first_name, last_name, organization, role, certificate_number, track, completion_date, photo) present across 510 rows",
+        "attendee_roster",
+        "attendee_headshots[0]",
+        "attendee_headshots[0-15]: all are real, mixed-quality, candid headshots as briefed",
+        "attendee_roster: full, valid, and matches required columns and photo keys"
+      ],
+      "deductions": [
+        "No event logo asset supplied — brief lists it as a required [image] input for vectorize step",
+        "No client-supplied flattened badge PDF master — brief lists it as a required [program] input for document_convert_pdf step",
+        "Roster data and headshots align with conference theme",
+        "Brand backdrop color is specified as requested",
+        "No event logo (raster) asset present",
+        "No explicit mention of badge PDF master upload"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        9
+      ]
+    },
+    "completeness": {
+      "score": 5,
+      "evidence": [
+        "attendee_roster: full 510-row JSON with CSV-renderable structure covers the single source of truth requirement",
+        "brand_backdrop.json: hex #143C5A + RGB [20,60,90] fully specified for image_fill_area consumption",
+        "Client Input Requirements: Event logo (raster)",
+        "Client Input Requirements: Client-supplied flattened badge PDF master",
+        "brand_backdrop: correct, detailed swatch and usage notes",
+        "attendee_roster: full, valid, all required fields and photo keys"
+      ],
+      "deductions": [
+        "Event logo (raster) is absent — image_vectorize step has no input; this is a mandatory brief-listed asset",
+        "Flattened badge PDF master is absent — document_convert_pdf step has no input; brief explicitly lists it as required",
+        "Event logo (raster) is missing, a mandatory visual element",
+        "Badge PDF master for layout reference is missing",
+        "No event logo raster asset for vectorization",
+        "No badge PDF master (flattened) present"
+      ],
+      "fix": {
+        "target_asset_key": "event_logo_raster",
+        "problem": "Missing mandatory event logo",
+        "prompt_delta": "Generate a raster event logo for Northwind Applied Intelligence Summit 2026, suitable for vectorization."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        5,
+        3,
+        6
+      ]
+    },
+    "executability": {
+      "score": 6,
+      "evidence": [
+        "attendee_headshots[0-15]: busy real-world backgrounds, mixed tilt/exposure — directly consumable by image_auto_straighten, image_select_subject, image_fill_area chain",
+        "attendee_roster JSON confirmed 510 rows with 'photo' filenames matching additionalImageFiles map key pattern (attendee_NNNN.jpg)",
+        "image_vectorize step in workflow",
+        "document_convert_pdf step in workflow",
+        "attendee_headshots[0-15]: all are busy, candid, non-studio, suitable for subject isolation",
+        "attendee_roster: CSV/JSON structure, photo keys match headshot filenames"
+      ],
+      "deductions": [
+        "image_vectorize step has no raster logo input — chain breaks at that step",
+        "document_convert_pdf step has no badge PDF master input — chain breaks at that step; roster is JSON not CSV but a .csv render is noted as provided, so that is acceptable",
+        "Missing event logo blocks the image_vectorize step",
+        "Missing badge PDF master blocks document_convert_pdf step",
+        "No event logo raster for image_vectorize step",
+        "Badge PDF master not present, but user-supplied per brief"
+      ],
+      "fix": {
+        "target_asset_key": "event_logo_raster",
+        "problem": "Missing event logo for vectorization",
+        "prompt_delta": "Generate a raster event logo for Northwind Applied Intelligence Summit 2026, suitable for vectorization."
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        6,
+        4,
+        8
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "Images 1-16: genuine conference candids — lanyards visible, mixed WB (image 16 very dark/warm, image 4 tilted downward), crowd backgrounds — indistinguishable from real client folder",
+        "attendee_roster: plausible diverse names, real-sounding organisations, staggered completion_dates across 3 days, 5 distinct tracks",
+        "attendee_headshots[0]",
+        "attendee_headshots[5]",
+        "attendee_headshots[0-15]: all are real, candid, mixed-lighting, not synthetic",
+        "attendee_roster: plausible, diverse, and detailed attendee data"
+      ],
+      "deductions": [
+        "Image 5 (attendee_headshots[4]) has extreme upward camera angle/harsh overhead light — borderline usable for face-crop but still realistic as a bad phone snap",
+        "Image 16 (attendee_headshots[15]) is very underexposed/dark — auto-tone recoverable but agent may flag low confidence on subject selection",
+        "Headshots exhibit genuine mixed framing and lighting",
+        "Roster data is authentic for a conference attendee list",
+        "No evidence of synthetic or uncanny assets",
+        "All assets match real client handoff expectations"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        9,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 8,
+      "evidence": [
+        "brand_backdrop.json uses exact palette hex #143C5A (primary) and #E0A43B (accent) matching brand spec",
+        "Roster voice is professional/credible with roles like 'AI Ethics Researcher', 'Chief AI Officer' consistent with Applied AI conference persona",
+        "Brand/Persona definition",
+        "Missing event logo",
+        "brand_backdrop: palette and usage match Northwind Forum brand",
+        "attendee_roster: names, organizations, and tracks fit AI conference context"
+      ],
+      "deductions": [
+        "No logo asset means teal-navy brand band in badge template has no placed logo — visual coherence of final output is at risk",
+        "Font spec (Libre Franklin / Inter) is only in brand block; no font asset or embed — minor gap since font_recommend resolves it",
+        "Brand palette and fonts are defined",
+        "Absence of event logo creates a visual identity gap",
+        "No logo asset to visually anchor brand identity",
+        "Otherwise, all assets read as one brand"
+      ],
+      "fix": {
+        "target_asset_key": "event_logo_raster",
+        "problem": "Missing primary brand visual identifier",
+        "prompt_delta": "Generate a raster event logo for Northwind Applied Intelligence Summit 2026, reflecting the brand's professional and welcoming voice."
+      },
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        7,
+        9
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Correctly demotes badge.indd and certificate.indd to user-authored inputs with clear WHY rationale — avoids generating .indd files",
+        "font_recommend decision correctly defers typography to connector live call rather than pre-specifying PostScript names",
+        "REQ: Desktop-authored badge.indd template",
+        "REQ: Output: 510 print-ready A6",
+        "All assumptions match industry norm and brief intent",
+        "No real input wrongly demoted to assumption"
+      ],
+      "deductions": [
+        "Event logo and badge PDF master are brief-listed required client inputs but are recorded nowhere in decisions — they are simply absent with no assumption or rationale",
+        "Roster delivered as JSON only; decision notes a .csv render is the consumable but no explicit decision records how/when that render occurs",
+        "Template and output specifications are sound and justified",
+        "No real inputs were wrongly demoted to assumptions",
+        "Assumptions about user-authored templates are justified",
+        "No risky or client-unacceptable assumptions"
+      ],
+      "fix": {
+        "target_asset_key": "attendee_roster",
+        "problem": "No recorded decision covers the missing logo and badge PDF master; executor has no guidance on how to handle these gaps",
+        "prompt_delta": "Add two DECISIONS entries: (1) event_logo — assumed generated as raster PNG by this pack then vectorized by image_vectorize; (2) badge_pdf_master — assumed client will supply at execution; document_convert_pdf step is blocked until received. Also add a decision confirming roster.json is rendered to roster.csv by the connector before document_merge_data_layout."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 7.8,
+  "verdict": "minor-gaps",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): No InDesign templates (.indd files) have been supplied — the entire workflow hinges on client-authored badge.indd and certificate.indd with genuine Data Merge placeholders, but zero .indd files exist in this handoff. Without them, nothing merges and nothing prints.",
+    "AGENT CHOKE on 'attendee_headshots[0]': The agent must run image_select_subject then image_fill_area to isolate each subject and drop in the teal-navy backdrop, but this shot has a busy multi-person background with complex hair edges and an existing lanyard — automated subject selection will produce ragged masks and bleed background figures into the cutout, causing the fill step to corrupt the headshot before it ever reaches the merge frame.",
+    "Completeness 5/10: Event logo (raster) is absent — image_vectorize step has no input; this is a mandatory brief-listed asset",
+    "Executability 6/10: image_vectorize step has no raster logo input — chain breaks at that step"
+  ],
+  "qc_gaps": [
+    "Per-asset self-QC averages 9.7/10, but package Executability scored 6 — assets are individually strong yet wrong/insufficient for the task.",
+    "Per-asset self-QC averages 9.7/10, but package Completeness scored 5 — assets are individually strong yet wrong/insufficient for the task."
+  ],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.12,
+  "rounds": []
+}

@@ -1,0 +1,287 @@
+{
+  "assets": {
+    "listing_factsheet": {
+      "entries": [
+        {
+          "key": "listing_factsheet",
+          "input_requirement": "Listing fact-sheet CSV — one row per listing: address, beds, baths, sqft, price, status ('JUST LISTED'), agent_name, agent_phone, brokerage — drives the Illustrator rider labels",
+          "kind": "data",
+          "file": "assets/listing_factsheet.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the listing coordinator for an invented suburban real-estate brokerage\n\"Northern Bloom Properties\" (this is the brokerage name; abbreviate it to NBP where short). Produce the\njust-listed rider-label data-merge sheet as a JSON object with a SINGLE top-level key \"rows\": a list\nof EXACTLY 6 listing objects (one per active just-listed property). Each row object MUST have EXACTLY\nthese keys, in this EXACT order, because they map 1:1 to Illustrator Variables in rider_label.ai and\nbecome the CSV header row:\n  \"status\"      -> always the string \"JUST LISTED\"\n  \"address\"     -> a realistic fictional US street address on an INVENTED street (e.g.\n                   \"4218 Mapleridge Ln, Northbrook\" — no real street), varied across the 6 rows\n  \"beds\"        -> integer 2-5 as a string (e.g. \"3\")\n  \"baths\"       -> baths as a string, halves allowed (e.g. \"2\" or \"2.5\")\n  \"sqft\"        -> living area in square feet, comma-grouped string (e.g. \"2,140\")\n  \"price\"       -> US list price, \"$\" + comma-grouped, no cents (e.g. \"$524,900\")\n  \"agent_name\"  -> the SAME single listing agent on all 6 rows (invent one realistic full name)\n  \"agent_phone\" -> the same US phone in (555) area format (e.g. \"(555) 318-2240\")\n  \"brokerage\"   -> EXACTLY \"Northern Bloom Properties\" on every row\n  \"logo\"        -> EXACTLY the string \"brokerage_logo.png\" on every row (the linked-image Variable\n                   filename the merge swaps in)\nKeep prices/beds/baths/sqft internally consistent (bigger sqft -> more beds/higher price). Voice:\nOur tone is trustworthy and reflects deep local expertise. We communicate with plain language and confident assurance, avoiding unnecessary hype.. Output ONLY the JSON object.",
+            "prompt_file": "prompts/listing_factsheet.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "listing_factsheet.render",
+          "input_requirement": "Listing fact-sheet CSV — one row per listing: address, beds, baths, sqft, price, status ('JUST LISTED'), agent_name, agent_phone, brokerage — drives the Illustrator rider labels",
+          "kind": "data",
+          "file": "assets/listing_factsheet.csv",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the listing coordinator for an invented suburban real-estate brokerage\n\"Northern Bloom Properties\" (this is the brokerage name; abbreviate it to NBP where short). Produce the\njust-listed rider-label data-merge sheet as a JSON object with a SINGLE top-level key \"rows\": a list\nof EXACTLY 6 listing objects (one per active just-listed property). Each row object MUST have EXACTLY\nthese keys, in this EXACT order, because they map 1:1 to Illustrator Variables in rider_label.ai and\nbecome the CSV header row:\n  \"status\"      -> always the string \"JUST LISTED\"\n  \"address\"     -> a realistic fictional US street address on an INVENTED street (e.g.\n                   \"4218 Mapleridge Ln, Northbrook\" — no real street), varied across the 6 rows\n  \"beds\"        -> integer 2-5 as a string (e.g. \"3\")\n  \"baths\"       -> baths as a string, halves allowed (e.g. \"2\" or \"2.5\")\n  \"sqft\"        -> living area in square feet, comma-grouped string (e.g. \"2,140\")\n  \"price\"       -> US list price, \"$\" + comma-grouped, no cents (e.g. \"$524,900\")\n  \"agent_name\"  -> the SAME single listing agent on all 6 rows (invent one realistic full name)\n  \"agent_phone\" -> the same US phone in (555) area format (e.g. \"(555) 318-2240\")\n  \"brokerage\"   -> EXACTLY \"Northern Bloom Properties\" on every row\n  \"logo\"        -> EXACTLY the string \"brokerage_logo.png\" on every row (the linked-image Variable\n                   filename the merge swaps in)\nKeep prices/beds/baths/sqft internally consistent (bigger sqft -> more beds/higher price). Voice:\nOur tone is trustworthy and reflects deep local expertise. We communicate with plain language and confident assurance, avoiding unnecessary hype.. Output ONLY the JSON object.",
+            "prompt_file": "prompts/listing_factsheet.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "brokerage_logo": {
+      "entries": [
+        {
+          "key": "brokerage_logo",
+          "input_requirement": "Brokerage logo (.ai vector) to render onto the rider label artboard",
+          "kind": "image",
+          "file": "assets/brokerage_logo.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat real-estate brokerage logo lockup: a compact monogram reading EXACTLY \"NBP\"\n(three capital letters N, B, P) beside a small simple roofline-and-keyhole mark, with a smaller\nwordmark line reading EXACTLY \"Northern Bloom Properties\" beneath it. Colors ONLY signage red #C8102E and ink black\n#1A1A1A. FLAT vector style, hard clean edges, NO gradients, NO shadows, NO other text — designed to\nbe auto-vectorized to crisp SVG/.ai for sign-shop print. Render on a FULLY TRANSPARENT background\n(transparent PNG, no backdrop, no card). Perfect spelling.",
+            "prompt_file": "prompts/brokerage_logo_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "The red color used (#C8102E) appears slightly darker than specified, closer to a deep red rather than the exact hex.",
+              "The black color (#1A1A1A) is accurate but appears slightly softer than pure black, which might affect flatness perception.",
+              "The edges of the letters and mark are mostly hard but have very subtle anti-aliasing which may affect vectorization slightly.",
+              "The roofline-keyhole mark is simple and clear but the keyhole shape is a bit thick, could be simplified further for cleaner vectorization."
+            ]
+          }
+        }
+      ]
+    },
+    "house_look_reference": {
+      "entries": [
+        {
+          "key": "house_look_reference",
+          "input_requirement": "Agency 'house look' reference still (target natural-HDR gallery style) used to choose and lock the one shared preset",
+          "kind": "image",
+          "file": "assets/house_look_reference.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "candid documentary real-estate photograph, shot on a 16-35mm wide-angle lens at f/5.6, available natural light, subtle film grain, realistic depth of field; imperfect lived-in detail, believable fabric wrinkles and dust, asymmetric composition; NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT HDR-haloed of a beautifully but NATURALLY edited real-estate living-room interior that represents the agency 'house look': balanced natural-HDR exposure, perfectly clean neutral whites, bright-but-realistic interior, recovered window with soft readable exterior greenery (NOT blown), perfectly straight verticals, restrained calm color. This is the TARGET-LOOK reference the editor matches the whole gallery to — it is already correct: well-exposed, not over-edited, no HDR halos. No people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/house_look_reference_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        }
+      ]
+    },
+    "bracketed_frames": {
+      "entries": [
+        {
+          "key": "bracketed_frames[0]",
+          "input_requirement": "5-bracket exposures per scene across 6 scenes (interior living/kitchen/bed + exterior front + twilight + backyard); we generate a realistic merged-base JPEG per bracket set that the connector grades — documentary realism, true window blow-out in the base so the window-pull is load-bearing",
+          "kind": "image",
+          "file": "assets/scene01_living_base.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "candid documentary real-estate photograph, shot on a 16-35mm wide-angle lens at f/5.6, available natural light, subtle film grain, realistic depth of field; imperfect lived-in detail, believable fabric wrinkles and dust, asymmetric composition; NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT HDR-haloed of an open-plan living room with a linen sofa, oak floor, low coffee table and a large picture window onto a green front lawn. A realistic single RAW-style real-estate capture — the merged base an editor starts from: documentary, lived-in, true-to-life, NOT CGI-glossy, NOT over-saturated. INTERIOR merged-base: the room is reasonably and naturally lit, BUT every daylight window is GENUINELY BLOWN to pure clipped white with no exterior detail (the load-bearing window-recovery problem). Include slightly CROOKED VERTICALS (door frames / wall edges leaning ~2-3 degrees off-plumb, handheld feel) so the editor has real perspective correction to do. The window MUST be pure clipped white. No people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/bracketed_frames_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "bracketed_frames[1]",
+          "input_requirement": "5-bracket exposures per scene across 6 scenes (interior living/kitchen/bed + exterior front + twilight + backyard); we generate a realistic merged-base JPEG per bracket set that the connector grades — documentary realism, true window blow-out in the base so the window-pull is load-bearing",
+          "kind": "image",
+          "file": "assets/scene02_kitchen_base.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "candid documentary real-estate photograph, shot on a 16-35mm wide-angle lens at f/5.6, available natural light, subtle film grain, realistic depth of field; imperfect lived-in detail, believable fabric wrinkles and dust, asymmetric composition; NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT HDR-haloed of a bright modern kitchen with white shaker cabinets, a quartz island, stainless range and a window above the sink looking onto the side yard. A realistic single RAW-style real-estate capture — the merged base an editor starts from: documentary, lived-in, true-to-life, NOT CGI-glossy, NOT over-saturated. INTERIOR merged-base: the room is reasonably and naturally lit, BUT every daylight window is GENUINELY BLOWN to pure clipped white with no exterior detail (the load-bearing window-recovery problem). Include slightly CROOKED VERTICALS (door frames / wall edges leaning ~2-3 degrees off-plumb, handheld feel) so the editor has real perspective correction to do. The window MUST be pure clipped white. No people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/bracketed_frames_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 6,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "Visible brand names on appliances (text) are present, which violates the 'no text' criterion for a score of 7+."
+            ]
+          }
+        },
+        {
+          "key": "bracketed_frames[2]",
+          "input_requirement": "5-bracket exposures per scene across 6 scenes (interior living/kitchen/bed + exterior front + twilight + backyard); we generate a realistic merged-base JPEG per bracket set that the connector grades — documentary realism, true window blow-out in the base so the window-pull is load-bearing",
+          "kind": "image",
+          "file": "assets/scene03_primary-bed_base.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "candid documentary real-estate photograph, shot on a 16-35mm wide-angle lens at f/5.6, available natural light, subtle film grain, realistic depth of field; imperfect lived-in detail, believable fabric wrinkles and dust, asymmetric composition; NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT HDR-haloed of a calm primary bedroom with a made queen bed, neutral linen bedding, a bedside lamp and two tall windows letting in bright daylight. A realistic single RAW-style real-estate capture — the merged base an editor starts from: documentary, lived-in, true-to-life, NOT CGI-glossy, NOT over-saturated. INTERIOR merged-base: the room is reasonably and naturally lit, BUT every daylight window is GENUINELY BLOWN to pure clipped white with no exterior detail (the load-bearing window-recovery problem). Include slightly CROOKED VERTICALS (door frames / wall edges leaning ~2-3 degrees off-plumb, handheld feel) so the editor has real perspective correction to do. The window MUST be pure clipped white. No people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/bracketed_frames_2.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "bracketed_frames[3]",
+          "input_requirement": "5-bracket exposures per scene across 6 scenes (interior living/kitchen/bed + exterior front + twilight + backyard); we generate a realistic merged-base JPEG per bracket set that the connector grades — documentary realism, true window blow-out in the base so the window-pull is load-bearing",
+          "kind": "image",
+          "file": "assets/scene04_front-exterior_base.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "candid documentary real-estate photograph, shot on a 16-35mm wide-angle lens at f/5.6, available natural light, subtle film grain, realistic depth of field; imperfect lived-in detail, believable fabric wrinkles and dust, asymmetric composition; NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT HDR-haloed of the front facade of a two-storey suburban house with a covered porch, paved driveway and a manicured but slightly over-green front lawn under a clear sky. A realistic single RAW-style real-estate capture — the merged base an editor starts from: documentary, lived-in, true-to-life, NOT CGI-glossy, NOT over-saturated. EXTERIOR merged-base: natural daylight, BUT include slightly CROOKED VERTICALS (house edge / fence leaning ~2-3 degrees off-plumb) and a deliberately OVER-GREEN lawn and/or OVER-SATURATED blue sky that an editor would calm down. No people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/bracketed_frames_3.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "bracketed_frames[4]",
+          "input_requirement": "5-bracket exposures per scene across 6 scenes (interior living/kitchen/bed + exterior front + twilight + backyard); we generate a realistic merged-base JPEG per bracket set that the connector grades — documentary realism, true window blow-out in the base so the window-pull is load-bearing",
+          "kind": "image",
+          "file": "assets/scene05_twilight_base.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "candid documentary real-estate photograph, shot on a 16-35mm wide-angle lens at f/5.6, available natural light, subtle film grain, realistic depth of field; imperfect lived-in detail, believable fabric wrinkles and dust, asymmetric composition; NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT HDR-haloed of the same house at blue-hour twilight with warm interior window lights glowing, a deep dusk sky and porch lights on. A realistic single RAW-style real-estate capture — the merged base an editor starts from: documentary, lived-in, true-to-life, NOT CGI-glossy, NOT over-saturated. EXTERIOR merged-base: natural daylight, BUT include slightly CROOKED VERTICALS (house edge / fence leaning ~2-3 degrees off-plumb) and a deliberately OVER-GREEN lawn and/or OVER-SATURATED blue sky that an editor would calm down. No people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/bracketed_frames_4.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "bracketed_frames[5]",
+          "input_requirement": "5-bracket exposures per scene across 6 scenes (interior living/kitchen/bed + exterior front + twilight + backyard); we generate a realistic merged-base JPEG per bracket set that the connector grades — documentary realism, true window blow-out in the base so the window-pull is load-bearing",
+          "kind": "image",
+          "file": "assets/scene06_backyard_base.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "candid documentary real-estate photograph, shot on a 16-35mm wide-angle lens at f/5.6, available natural light, subtle film grain, realistic depth of field; imperfect lived-in detail, believable fabric wrinkles and dust, asymmetric composition; NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT HDR-haloed of a fenced backyard with a small timber deck, patio furniture, an over-green lawn and a deep-blue summer sky above the fence line. A realistic single RAW-style real-estate capture — the merged base an editor starts from: documentary, lived-in, true-to-life, NOT CGI-glossy, NOT over-saturated. EXTERIOR merged-base: natural daylight, BUT include slightly CROOKED VERTICALS (house edge / fence leaning ~2-3 degrees off-plumb) and a deliberately OVER-GREEN lawn and/or OVER-SATURATED blue sky that an editor would calm down. No people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/bracketed_frames_5.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        }
+      ]
+    }
+  }
+}

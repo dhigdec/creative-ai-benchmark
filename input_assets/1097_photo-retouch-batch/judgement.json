@@ -1,0 +1,220 @@
+{
+  "task_id": 1097,
+  "slug": "photo-retouch-batch",
+  "title": "Photo Retouching Specialist Needed",
+  "category": "Photo Retouching & Enhancement",
+  "family": "Photo & Image Editing",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 7,
+      "evidence": [
+        "photo_batch[0–9] cover portraits, interiors, food, outdoor — matching assumed mixed-set decision",
+        "photo_batch[9] (water bottle/trail) reads as outdoor-product; brief never specified product shots",
+        "Client brief: '20+ photos'",
+        "Asset inventory: 10 photos (photo_batch[0] to photo_batch[9])",
+        "image 1",
+        "image 6"
+      ],
+      "deductions": [
+        "Brief says 20+ photos; only 10 delivered — pilot batch is half the stated minimum",
+        "No explicit 'outdoor-product' category in brief; water-bottle shot is minor drift",
+        "Client's explicit quantity requirement of '20+ photos' is not met.",
+        "The 'pilot batch' assumption directly contradicts the brief's stated need.",
+        "Only 10 photos provided, brief expects 20+",
+        "Subjects match assumed mix: portraits, interiors, food, outdoor-product"
+      ],
+      "fix": {
+        "target_asset_key": "photo_batch",
+        "problem": "Insufficient number of photos provided.",
+        "prompt_delta": "Generate 15 additional photos, maintaining mixed subject matter and degraded quality."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        4,
+        7
+      ]
+    },
+    "completeness": {
+      "score": 4,
+      "evidence": [
+        "Client input requirements list 10 image slots; all 10 are filled with usable photos",
+        "Brief mandates 20+ photos; only 10 provided — 10+ photos still outstanding",
+        "Client brief: '20+ photos'",
+        "Asset inventory: 10 photos (photo_batch[0] to photo_batch[9])",
+        "image 1",
+        "image 10"
+      ],
+      "deductions": [
+        "Batch is 50% of the minimum required count; workflow loop over 20+ cannot be demonstrated",
+        "No originals/ ground-truth folder referenced or confirmed deliverable — assumption not verified",
+        "The mandatory quantity of '20+ photos' is not fulfilled.",
+        "Only half the minimum required assets are present.",
+        "Only half the required photo count present",
+        "All required subject types are covered in pilot batch"
+      ],
+      "fix": {
+        "target_asset_key": "photo_batch",
+        "problem": "Required quantity of photos is missing.",
+        "prompt_delta": "Generate 15 additional photos to meet the '20+ photos' requirement."
+      },
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        5,
+        3,
+        4
+      ]
+    },
+    "executability": {
+      "score": 10,
+      "evidence": [
+        "photo_batch[0] has warm-cast vignette degradation; photo_batch[4] is underexposed — both give image_apply_auto_tone real work",
+        "photo_batch[5] (desk scene) is severely blown-out/overexposed, giving brightness_and_contrast a meaningful correction target",
+        "All images (photo_batch[0] to photo_batch[9]) are 1024x1024 px JPEGs.",
+        "Images show varying lighting and color casts, suitable for retouching.",
+        "image 2",
+        "image 8"
+      ],
+      "deductions": [
+        "photo_batch[1] and photo_batch[3] appear already well-exposed/clean — auto-tone has little to do, weakening batch-preset demonstration",
+        "Only 10 images means image_apply_preset batch loop cannot run across 20+ as the workflow specifies",
+        "Standard image formats and dimensions are fully compatible with Adobe tools.",
+        "The images are ideal for demonstrating brightness/contrast and color correction.",
+        "All images are 1024x1024 JPEG, suitable for workflow",
+        "Varied lighting/degradation profiles for retouching steps"
+      ],
+      "fix": {
+        "target_asset_key": "photo_batch[1]",
+        "problem": "Image is pristine/clean; provides no correction signal for auto-tone or brightness step",
+        "prompt_delta": "Re-render same cozy-reading-man interior scene at 1024x1024 but apply a strong cool blue color cast (+40 cyan tint) and reduce exposure by 1.5 stops to create a meaningful color-temperature and brightness correction target."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "photo_batch[9] (water bottle) looks like a genuine phone snapshot — handheld framing, natural bokeh, authentic",
+        "photo_batch[3] (living room fireplace) reads as a CG render — overly perfect symmetry and lighting inconsistent with real client photo",
+        "Images (photo_batch[0] to photo_batch[9]) depict natural scenes and subjects.",
+        "The 'programmatically degraded' aspect is appropriate for a retouching task.",
+        "image 3",
+        "image 7"
+      ],
+      "deductions": [
+        "photo_batch[3] CG-render quality would not be handed over by a real lifestyle blogger as a 'photo to retouch'",
+        "photo_batch[4] (kitchen) also appears 3D-rendered — two renders in a 10-photo set is noticeable",
+        "Photos appear authentic and suitable for a lifestyle blog.",
+        "The quality is consistent with real client photos needing enhancement.",
+        "Photos convincingly resemble real client lifestyle shots",
+        "Degradation profiles are plausible for amateur photography"
+      ],
+      "fix": {
+        "target_asset_key": "photo_batch[3]",
+        "problem": "CG-render aesthetic; real client would supply a DSLR/phone photo not a 3D visualization",
+        "prompt_delta": "Replace with a real-looking DSLR-style interior living room photo, slight lens distortion, natural window light with mild chromatic aberration, shot at f/2.8 — avoid CGI perfection; add subtle noise grain ISO 800."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "All 10 images share warm, home-and-family lifestyle aesthetic consistent with Willow Creek Living brand palette",
+        "Sage greens, warm linens, terracotta tones appear across photo_batch[0,2,4,6,7,8] — palette coherent",
+        "Subjects across all images align with 'Family & Home Lifestyle Blog' theme.",
+        "Visual themes include home, family, food, and outdoor activities.",
+        "image 4",
+        "image 5"
+      ],
+      "deductions": [
+        "photo_batch[9] outdoor trail/mountain scene feels slightly off-brand vs. domestic home-life focus",
+        "The content of the images perfectly matches the brand's identity.",
+        "Overall mood and subjects are consistent with the brand voice.",
+        "Consistent warm, inviting palette and home/family vibe",
+        "No visual drift from Willow Creek Living brand"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 7,
+      "evidence": [
+        "Per-image correction assumption is sound — varied degradation profiles genuinely prevent single-preset fix",
+        "Mixed subject assumption (portraits/interiors/food/outdoor) correctly anticipates skin-tone correction complexity",
+        "REQ: 'The 20+ photos the client will provide'",
+        "ASSUMED: 'Pilot batch: 10 photos (of the 20+)'",
+        "image 1",
+        "image 3"
+      ],
+      "deductions": [
+        "Pilot batch of 10 demoted from 20+ without client confirmation — risky if client expects full set before approving workflow",
+        "Output format assumed JPEG 1024x1024 ≥90 quality without noting that blog use may require specific aspect ratios (16:9, etc.)",
+        "Assuming a 'pilot batch' of 10 photos directly contradicts the client's explicit '20+' requirement.",
+        "This assumption reduces the scope of the task without client confirmation.",
+        "Assumptions on subject mix and per-image correction are justified",
+        "JPEG format and dimensions are industry standard"
+      ],
+      "fix": {
+        "target_asset_key": "photo_batch",
+        "problem": "The pilot batch assumption contradicts the client's explicit quantity.",
+        "prompt_delta": "Generate 15 additional photos to fulfill the '20+ photos' requirement, ensuring varied degradation profiles."
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        7,
+        4,
+        10
+      ]
+    }
+  },
+  "overall": 8.2,
+  "verdict": "minor-gaps",
+  "top_risks": [
+    "CLIENT-REJECT (sev 8): You promised 20+ photos but only delivered 10 — the asset inventory literally lists the same placeholder '[image] The 20+ photos the client will provide' repeated and only 10 actual images show up. I'm not approving half a batch.",
+    "AGENT CHOKE on 'photo_batch[0]': This image was clearly AI-generated and programmatically degraded, not a real client photo — the agent's asset_add_file ingest loop will hit this first and the artificial darkening/vignette profile won't match any real-world degradation preset, causing image_apply_auto_tone to overcorrect and blow the baseline for the entire batch.",
+    "Completeness 4/10: Batch is 50% of the minimum required count; workflow loop over 20+ cannot be demonstrated"
+  ],
+  "qc_gaps": [
+    "Per-asset self-QC averages 9.3/10, but package Completeness scored 4 — assets are individually strong yet wrong/insufficient for the task."
+  ],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.084,
+  "rounds": []
+}

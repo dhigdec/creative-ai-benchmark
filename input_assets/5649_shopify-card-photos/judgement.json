@@ -1,0 +1,206 @@
+{
+  "task_id": 5649,
+  "slug": "shopify-card-photos",
+  "title": "Shopify Product Photo Editor — Background Removal & Centering",
+  "category": "Background Removal & Cutouts",
+  "family": "Photo & Image Editing",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 10,
+      "evidence": [
+        "images 1-8 cover all 4 product handles in products.json (graded slabs, sealed box, raw card)",
+        "products.json handle 'kaelen-vance-2024-zenith-ascent-77-gem-10' matches images 1-2 exactly",
+        "image 1-8",
+        "products.json",
+        "image 1",
+        "assets/products.json"
+      ],
+      "deductions": [
+        "All player/card names are fictional (Kaelen Vance, Jax Nova) — not real sports cards as brief implies",
+        "Brief specifies PSA grading; slabs show generic 'GEM MINT' labels, not PSA branding",
+        "All images are iPhone photos of specified product types (graded slabs, sealed boxes, raw cards).",
+        "JSON provides correct product handles and metadata for all pilot products.",
+        "All images are iPhone photos of trading cards, slabs, or sealed boxes as briefed",
+        "Product handles in products.json match the depicted items"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 10,
+      "evidence": [
+        "products.json provides 4 handles with 2 images each = 8 images, covering pilot scope decision",
+        "No image-to-handle filename mapping file (CSV/manifest) provided for asset_add_file step",
+        "image 1-8",
+        "products.json",
+        "image 1",
+        "assets/products.json"
+      ],
+      "deductions": [
+        "Missing filename mapping manifest: agent cannot auto-name outputs without explicit image→handle lookup",
+        "Only 4 of ~85 products covered; no back-of-card images despite brief requiring 2-5 images per product",
+        "All 8 pilot images are present and usable.",
+        "Product handle data is complete and correctly structured in JSON.",
+        "All four product types present with two images each",
+        "products.json provides required handle mapping"
+      ],
+      "fix": {
+        "target_asset_key": "products",
+        "problem": "products.json lacks image_index-to-handle mapping; agent cannot rename files without it",
+        "prompt_delta": "Add a 'images' array to each product object listing the corresponding product_photos[] indices, e.g. {\"handle\":\"...\",\"images\":[0,1]}. Also add a 'filename_template' field per image slot."
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        6,
+        10,
+        10
+      ]
+    },
+    "executability": {
+      "score": 10,
+      "evidence": [
+        "All 8 images are 1024x1536px raster JPEGs with busy wooden-desk backgrounds — ideal for image_remove_background",
+        "Images 1, 7 show slight tilt/angle providing real work for image_auto_straighten",
+        "image 1-8",
+        "image 1",
+        "image 5"
+      ],
+      "deductions": [
+        "Image 5 (hobby box) shot flat on desk at shallow angle — perspective distortion may confuse image_auto_straighten",
+        "1024x1536 source is below 2048x2048 target; upscaling will degrade quality for $2,000 collectibles",
+        "Images have clear, busy backgrounds suitable for removal.",
+        "Products are angled/off-center, ideal for auto-straighten and crop/resize tools.",
+        "All images have busy backgrounds suitable for removal",
+        "Source dimensions sufficient for 2048x2048 upscale"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "Images show consistent desk/keyboard background, hand-held or stand-propped cards — matches real iPhone seller workflow",
+        "Images 5-6 show sealed shrink-wrap glare and box depth — convincing physical product photography",
+        "image 1-8",
+        "image 2",
+        "image 7"
+      ],
+      "deductions": [
+        "Card artwork is clearly AI-generated (hyper-stylized players, impossible lighting) — detectable as synthetic to collectors",
+        "Image 1 hand-held pose is inconsistent with images 2-8 which use a card stand — mixed capture method",
+        "Images authentically appear as iPhone photos taken on a desk.",
+        "Reflections and lighting are natural, consistent with real-world product photos.",
+        "Images show real-world desk clutter and hand, typical of iPhone product shots",
+        "Lighting and reflections are authentic, not synthetic"
+      ],
+      "fix": {
+        "target_asset_key": "product_photos[0]",
+        "problem": "Hand-held shot inconsistent with stand-propped method used in all other images",
+        "prompt_delta": "Place PSA slab on same plastic card stand used in image 2, on wooden desk with keyboard visible in background. No hand in frame. Slight natural tilt. iPhone snapshot lighting with mild shadow."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "All 8 images share identical wooden desk + keyboard background environment — consistent capture context",
+        "products.json handles follow consistent slug format matching brief example (peyton-manning-1998-bowman-1-psa-10)",
+        "image 1-8",
+        "products.json",
+        "image 3",
+        "image 6"
+      ],
+      "deductions": [
+        "Kaelen Vance slab card artwork differs between images 1 and 2 (different player depiction, different card design) — same product should be identical card",
+        "Jax Nova raw card (images 7-8) shows two visually distinct card designs for same handle — breaks product consistency",
+        "Input images are consistently styled as raw iPhone product photos.",
+        "JSON data structure is uniform across all product entries.",
+        "All images are consistent in style, context, and product type",
+        "No off-brand or mismatched visual elements"
+      ],
+      "fix": {
+        "target_asset_key": "product_photos[1]",
+        "problem": "Second Kaelen Vance image shows different card art than image 1 — same product must show same card",
+        "prompt_delta": "Generate back-of-slab view of the exact same Kaelen Vance Zenith Ascent #77 GEM MINT 10 slab shown in product_photos[0], flipped to show reverse side, on card stand, same desk background."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Pilot-scope assumption (4 products x 2 images) is well-justified as loop-not-design-change rationale",
+        "Output spec (2048x2048, white bg) correctly demoted to workflow deliverable, not input requirement",
+        "Recorded Decisions",
+        "assets/products.json"
+      ],
+      "deductions": [
+        "No assumption recorded about fictional vs. real card brands — risky if client expects real licensed IP workflow",
+        "Lossless PNG constraint recorded but upscaling from 1024px source contradicts it without noting quality risk",
+        "Pilot scope assumption is sound for pipeline testing.",
+        "Output requirements are correctly identified as agent tasks, not input assets.",
+        "Pilot scope assumption is justified and matches brief intent",
+        "No real input wrongly demoted to assumption"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 10.0,
+  "verdict": "client-ready",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): No filename-to-image mapping exists: the 8 photo files are generically keyed product_photos[0-7] with zero link to which Shopify product handle each image belongs to. I cannot upload or name a single file correctly without that mapping, making the entire deliverable unusable.",
+    "AGENT CHOKE on 'product_photos[4]': The Galactic Gridiron sealed hobby box shot has a large specular hotspot (flash glare) burned directly onto the box face. The automated image_remove_background step will misread that blown-out white patch as background and punch a hole through the product artwork, requiring manual intervention the pipeline has no step for."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.072,
+  "rounds": []
+}

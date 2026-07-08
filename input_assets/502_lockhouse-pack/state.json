@@ -1,0 +1,319 @@
+{
+  "assets": {
+    "show_copy": {
+      "entries": [
+        {
+          "key": "show_copy",
+          "input_requirement": "Copy: contestant intros, voting/elimination text, episode details",
+          "kind": "data",
+          "file": "assets/show_copy.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Write the season-launch copy pack for 'The Lock House' reality competition.\nReturn a JSON object with keys:\n\"contestants\": EXACTLY 6, each an object with \"name\" (invented first name + surname, diverse cast),\n\"age_desc\" (e.g. 24, bartender from a fictional town), \"tagline\" (<=7 words, big personality),\n\"intro\" (30-40 words, third person, dramatic);\n\"episode\": object with number (1), \"title\", \"synopsis\" (40 words), \"voting_text\" (how viewers vote,\nincludes a short code format like VOTE NAME to 5-55-55), \"elimination_text\" (suspenseful 25 words);\n\"ctas\": list of 3 short calls-to-action for posts/banners.\nVoice: Our tone is intensely dramatic and suspenseful, aiming to create a sense of high-stakes intrigue. It should feel bold and energetic, reflecting the competitive nature and emotional intensity of the show.",
+            "prompt_file": "prompts/show_copy.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "show_copy.render",
+          "input_requirement": "Copy: contestant intros, voting/elimination text, episode details",
+          "kind": "data",
+          "file": "assets/show_copy.md",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Write the season-launch copy pack for 'The Lock House' reality competition.\nReturn a JSON object with keys:\n\"contestants\": EXACTLY 6, each an object with \"name\" (invented first name + surname, diverse cast),\n\"age_desc\" (e.g. 24, bartender from a fictional town), \"tagline\" (<=7 words, big personality),\n\"intro\" (30-40 words, third person, dramatic);\n\"episode\": object with number (1), \"title\", \"synopsis\" (40 words), \"voting_text\" (how viewers vote,\nincludes a short code format like VOTE NAME to 5-55-55), \"elimination_text\" (suspenseful 25 words);\n\"ctas\": list of 3 short calls-to-action for posts/banners.\nVoice: Our tone is intensely dramatic and suspenseful, aiming to create a sense of high-stakes intrigue. It should feel bold and energetic, reflecting the competitive nature and emotional intensity of the show.",
+            "prompt_file": "prompts/show_copy.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "show_logo": {
+      "entries": [
+        {
+          "key": "show_logo",
+          "input_requirement": "Show logo ('The Lock House') + brand colours",
+          "kind": "image",
+          "file": "assets/show_logo.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Cinematic reality-TV show logo: bold logotype reading EXACTLY \"THE LOCK HOUSE\" with\nan integrated padlock/keyhole motif. Colors: #00566B, #000000, #FFD700 on a deep dark background. Glossy\nbroadcast key-art finish, dramatic metallic lighting on the letterforms, perfectly legible, no tagline,\nno other text.",
+            "prompt_file": "prompts/show_logo_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": []
+          }
+        }
+      ]
+    },
+    "contestant_photos": {
+      "entries": [
+        {
+          "key": "contestant_photos[0]",
+          "input_requirement": "Contestant photos",
+          "kind": "image",
+          "file": "assets/contestant_01_anya-sharma.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1536",
+            "prompt": "Dramatic reality-TV cast portrait: Anya Sharma, 29, high-stakes poker player from Oakhaven, exuding the vibe \"Bluffing her way to the top.\". Waist-up studio shot on a moody dark-teal seamless background with a single rim light and bold key light, confident direct-to-camera gaze, styled streetwear-smart wardrobe. Consistent cast-photoshoot look across the season. Invented person, no real-celebrity likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+            "prompt_file": "prompts/contestant_photos_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "contestant_photos[1]",
+          "input_requirement": "Contestant photos",
+          "kind": "image",
+          "file": "assets/contestant_02_marcus-mac-thorne.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1536",
+            "prompt": "Dramatic reality-TV cast portrait: Marcus \"Mac\" Thorne, 35, ex-military strategist from Port Blossom, exuding the vibe \"Discipline and strategy define his game.\". Waist-up studio shot on a moody dark-teal seamless background with a single rim light and bold key light, confident direct-to-camera gaze, styled streetwear-smart wardrobe. Consistent cast-photoshoot look across the season. Invented person, no real-celebrity likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+            "prompt_file": "prompts/contestant_photos_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "contestant_photos[2]",
+          "input_requirement": "Contestant photos",
+          "kind": "image",
+          "file": "assets/contestant_03_isabella-izzy-rossi.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1536",
+            "prompt": "Dramatic reality-TV cast portrait: Isabella \"Izzy\" Rossi, 22, aspiring fashion designer from Silverwood, exuding the vibe \"Underestimate her at your peril.\". Waist-up studio shot on a moody dark-teal seamless background with a single rim light and bold key light, confident direct-to-camera gaze, styled streetwear-smart wardrobe. Consistent cast-photoshoot look across the season. Invented person, no real-celebrity likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+            "prompt_file": "prompts/contestant_photos_2.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "The rim light on the hair, while present, is slightly too uniform and intense, creating a somewhat artificial 'halo' effect rather than a natural light fall-off, which slightly detracts from absolute photorealism."
+            ]
+          }
+        },
+        {
+          "key": "contestant_photos[3]",
+          "input_requirement": "Contestant photos",
+          "kind": "image",
+          "file": "assets/contestant_04_kai-tanaka.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1536",
+            "prompt": "Dramatic reality-TV cast portrait: Kai Tanaka, 41, renowned escape room designer from Crestfall, exuding the vibe \"Master of puzzles, ready to unlock victory.\". Waist-up studio shot on a moody dark-teal seamless background with a single rim light and bold key light, confident direct-to-camera gaze, styled streetwear-smart wardrobe. Consistent cast-photoshoot look across the season. Invented person, no real-celebrity likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+            "prompt_file": "prompts/contestant_photos_3.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "contestant_photos[4]",
+          "input_requirement": "Contestant photos",
+          "kind": "image",
+          "file": "assets/contestant_05_brenda-bree-jenkins.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1536",
+            "prompt": "Dramatic reality-TV cast portrait: Brenda \"Bree\" Jenkins, 58, retired detective from Northwood, exuding the vibe \"No secret stays hidden from her.\". Waist-up studio shot on a moody dark-teal seamless background with a single rim light and bold key light, confident direct-to-camera gaze, styled streetwear-smart wardrobe. Consistent cast-photoshoot look across the season. Invented person, no real-celebrity likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+            "prompt_file": "prompts/contestant_photos_4.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "The background, while dark-teal and appearing generally seamless, has a subtle, almost painterly texture rather than the perfectly smooth appearance of a typical seamless paper backdrop. This is a minor stylistic deviation from a strict interpretation of 'seamless'."
+            ]
+          }
+        },
+        {
+          "key": "contestant_photos[5]",
+          "input_requirement": "Contestant photos",
+          "kind": "image",
+          "file": "assets/contestant_06_liam-o-connell.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1536",
+            "prompt": "Dramatic reality-TV cast portrait: Liam O'Connell, 27, charismatic personal trainer from Riverbend, exuding the vibe \"Charm and strength, a dangerous combination.\". Waist-up studio shot on a moody dark-teal seamless background with a single rim light and bold key light, confident direct-to-camera gaze, styled streetwear-smart wardrobe. Consistent cast-photoshoot look across the season. Invented person, no real-celebrity likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+            "prompt_file": "prompts/contestant_photos_5.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        }
+      ]
+    },
+    "sponsor_logos": {
+      "entries": [
+        {
+          "key": "sponsor_logos[0]",
+          "input_requirement": "Sponsor logos",
+          "kind": "image",
+          "file": "assets/sponsor_logo_01.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat sponsor logo #1 of 2 for a reality TV show's lower-third and banner placements.\nSponsor #1 is \"VOLTRA\" (a fictional energy drink — angular electric wordmark, lime + black).\nSponsor #2 is \"StreamNest\" (a fictional streaming app — rounded friendly wordmark + play-nest icon,\ncoral + navy). Render ONLY the sponsor for this image number, exact spelling, flat vector on white\nbackground, no taglines, no other text. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- Not a flat vector, appears to have shading and 3D effects.\n- Logo is not clean due to multiple gradients and shadows.\n- The size and legibility at small scale is questionable due to intricate details.\n- Background is white, which is correct.\n- Text is spelled correctly as VOLTRA.",
+            "prompt_file": "prompts/sponsor_logos_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 8,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 2,
+            "issues": [
+              "The logo uses green and black colors, not flat single color vector.",
+              "The logo has black outlines which may reduce legibility at very small sizes.",
+              "The style is somewhat complex with lightning bolt shapes integrated into letters, which may affect small-size legibility."
+            ]
+          }
+        },
+        {
+          "key": "sponsor_logos[1]",
+          "input_requirement": "Sponsor logos",
+          "kind": "image",
+          "file": "assets/sponsor_logo_02.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat sponsor logo #2 of 2 for a reality TV show's lower-third and banner placements.\nSponsor #1 is \"VOLTRA\" (a fictional energy drink — angular electric wordmark, lime + black).\nSponsor #2 is \"StreamNest\" (a fictional streaming app — rounded friendly wordmark + play-nest icon,\ncoral + navy). Render ONLY the sponsor for this image number, exact spelling, flat vector on white\nbackground, no taglines, no other text. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/sponsor_logos_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "The logo is not purely flat due to the shading inside the nest, which may affect flat vector criteria.",
+              "The logo is slightly large but still legible at small sizes."
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

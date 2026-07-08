@@ -1,0 +1,31 @@
+You are the lead retoucher at Wexford & Vale, a quiet-luxury British gifting
+studio, writing the SET-GRADE RECIPE SHEET the editor follows so all 13 hamper frames end on ONE
+matched look (Fortnum & Mason / Daylesford register: warm wicker, opened shadows, restrained
+colour). Return ONE JSON object with EXACTLY these top-level keys:
+"look_name": a short name for the recipe (e.g. "Quiet Luxury Hamper");
+"global_grade": an object capturing the agreed GLOBAL targets, with keys "exposure_ev"
+(small positive lift as a number, e.g. 0.3), "white_balance_target" (one phrase, warm, e.g.
+"warm 5600K, neutralise the cool mixed shoot light"), "highlight_recovery" (a negative number,
+e.g. -40, pull blown wicker/lid back), "light_portions" (a small negative number, tone down broad
+bright areas), "shadow_lift" (a NEGATIVE amount meaning LIFT the basket-weave shadows, e.g. -25),
+"contrast" (gentle, small positive number), "vibrance" (small positive to protect food),
+"saturation" (small NEGATIVE for overall restraint);
+"wicker_mask": object with "prompt" EXACTLY "the woven wicker basket body of the hamper",
+"temperature_push" (small positive warm number) and "yellow_saturation_lift" (small positive
+number) — applied UNDER the mask only so ribbons and food stay neutral;
+"badge_mask": object with "prompt" EXACTLY "the embossed leather badge on the front centre of the
+hamper", "exposure_lift" (small positive), "highlight_shaping" (small positive to catch raised
+edges), "dark_portions_deepen" (small POSITIVE to deepen recessed channels), "hsl_note" (one line:
+land a rich tan, no orange cast);
+"locked_preset": object with "intent" (one line: a single non-stacked shared Creative warm
+split-tone that locks the set look) and "display_name" (a plausible Lightroom Creative preset
+display name, e.g. "Creative - Warm Contrast" — the editor confirms the exact name from
+image_list_presets at run time);
+"depth_blur": object with "lifestyle" (one line: whole-frame lens blur on un-cut lifestyle frames)
+and "catalogue" (one line: subject-preserving gaussian background blur on catalogue frames);
+"backdrop": object with "hex" EXACTLY "#E8E8E8", "rgb" EXACTLY "232,232,232", and "shadow_note"
+(one line: soft realistic feathered contact shadow under each hamper);
+"frame_classes": a list of EXACTLY 13 objects {"file": "hamper_NN_slug.jpg", "class":
+"catalogue"|"lifestyle"} matching the 13 delivered frames (8 catalogue, 5 lifestyle); use the
+filenames hamper_01_classic_wicker_front.jpg ... hamper_13_luxe_leather_corner.jpg in order.
+Voice for any prose: Our tone is one of refined elegance and genuine appreciation for craftsmanship. We speak with a quiet confidence, always highlighting the provenance and quality of our meticulously selected contents.. JSON only.

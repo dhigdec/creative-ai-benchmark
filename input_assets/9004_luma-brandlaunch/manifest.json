@@ -1,0 +1,470 @@
+{
+  "schema_version": 1,
+  "task_id": 9004,
+  "slug": "luma-brandlaunch",
+  "title": "LUMA — Full D2C Brand-Launch Identity & Collateral Kit (all-Adobe-suite, single freelancer)",
+  "task_type": "full brand-launch kit",
+  "category": "Brand Identity & Collateral",
+  "family": "Branding & Design Systems",
+  "feasibility": "template",
+  "source": "composite",
+  "source_url": "internal-brief (session brand-launch-kit brief); pattern grounded in real Upwork/PeoplePerHour \"complete brand identity + collateral package\" listings",
+  "mcp_workflow": "asset_create_folders -> asset_initialize_file_upload -> asset_finalize_file_upload -> image_remove_background -> image_apply_color_overlay -> image_vectorize -> document_render_vector -> [per product x8: image_auto_straighten -> image_crop_to_bounds -> image_select_subject -> image_invert_selection -> image_fill_area(white) -> image_select_by_prompt(label) -> image_adjust_highlights -> image_adjust_exposure -> image_adjust_dark_portions -> image_adjust_color_temperature -> image_adjust_vibrance_and_saturation -> image_apply_preset('LUMA Catalogue')] -> asset_search -> asset_license_and_download_stock -> image_apply_preset -> image_adjust_hsl -> image_apply_lens_blur -> image_apply_monochromatic_tint -> image_add_grain -> image_generative_expand(21:9) -> font_recommend -> document_merge_data_layout(cards) -> document_render_layout -> document_merge_data_layout(letterhead) -> document_render_layout -> document_render_layout(guidelines) -> image_crop_and_resize(social) -> image_crop_and_resize(avatar/cover) -> asset_inline_preview -> asset_copy_assets",
+  "original_brief": "LUMA is a brand-new direct-to-consumer clean-beauty skincare label launching online. One freelancer takes the founder's raw drop — a hand-inked LUMA logo scanned on off-white paper, 8 raw product shots on a cluttered tungsten-lit table, a team roster CSV, a company-info CSV and a brand copy deck (palette hexes, positioning, guideline body) — and delivers a complete launch kit: a vectorized multi-format logo set, 8 white-sweep retouched product images sharing one 'LUMA Catalogue' Lightroom preset, 3 Adobe-Stock lifestyle scenes licensed and graded to match, a Forest->Sand duotone film-grained hero expanded to a 21:9 web banner, InDesign data-merged business cards (one per teammate) + a company letterhead rendered to print PDF (CMYK, 3mm bleed, crop marks), a multi-page print Brand Guidelines booklet, and a platform-ready social launch set, all in a structured Creative Cloud delivery tree. The kit must HOLD one coherent visual system — Forest #14322A / Sand #C8B79A / Cloud #F4F1EA / Ink #1A1A1A, one shared preset, one duotone, one type pairing — across logo, products, lifestyle, hero, collateral and social.",
+  "generated_at": "2026-06-15T09:15:49Z",
+  "pipeline_version": "0.1.0",
+  "client_persona": {
+    "brand_name": "LUMA",
+    "tagline": "Nature's quiet glow, bottled with care.",
+    "industry": "Direct-to-consumer clean-beauty skincare",
+    "palette": [
+      {
+        "name": "Forest",
+        "hex": "#14322A",
+        "role": "primary"
+      },
+      {
+        "name": "Sand",
+        "hex": "#C8B79A",
+        "role": "secondary"
+      },
+      {
+        "name": "Cloud",
+        "hex": "#F4F1EA",
+        "role": "secondary"
+      },
+      {
+        "name": "Ink",
+        "hex": "#1A1A1A",
+        "role": "secondary"
+      }
+    ],
+    "fonts": {
+      "heading": "Lora",
+      "body": "Inter"
+    },
+    "voice": "Our tone is calm and quietly confident, reflecting a deep literacy in clean-beauty ingredients. We aim for an approach that is never hyped nor clinical, focusing instead on serene efficacy.",
+    "persona_file": "persona.json"
+  },
+  "assets": [
+    {
+      "key": "brand_copy_deck",
+      "input_requirement": "Brand copy deck (positioning adjectives, palette hexes, guideline body copy)",
+      "kind": "data",
+      "file": "assets/brand_copy_deck.json",
+      "format": "json",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "You are the founder of LUMA, a brand-new D2C clean-beauty skincare label about to\nlaunch online. Write the brand copy deck the freelancer follows for the entire launch kit. Voice:\nOur tone is calm and quietly confident, reflecting a deep literacy in clean-beauty ingredients. We aim for an approach that is never hyped nor clinical, focusing instead on serene efficacy.. Return a JSON object with these keys:\n\"brand\": {\"name\": \"LUMA\", \"tagline\": \"<=6 words, calm and luminous\", \"founded_year\": 2026,\n\"category\": \"clean-beauty skincare\"};\n\"positioning\": {\"one_liner\": \"<=20 words, what LUMA is and for whom\", \"manifesto\": \"EXACTLY 3 short\nsentences, calm and confident\", \"adjectives\": a list of EXACTLY 6 single-word positioning adjectives\n(e.g. luminous, calm, honest, botanical, considered, warm)};\n\"palette\": a list of EXACTLY 4 objects, each {\"name\": \"Forest\"|\"Sand\"|\"Cloud\"|\"Ink\", \"hex\":\n\"#14322A\" for Forest, \"#C8B79A\" for Sand, \"#F4F1EA\" for Cloud, \"#1A1A1A\" for Ink, \"role\": one line on\nwhere it is used, \"cmyk\": a plausible CMYK string, \"rgb\": a plausible R,G,B string} — the hexes are\nNON-NEGOTIABLE and MUST be exactly those four values;\n\"product_line\": a list of EXACTLY 8 objects, one per launch SKU, each {\"name\": \"elegant 2-3 word\nproduct name\", \"category\": \"serum\"|\"cream\"|\"lotion\"|\"cleanser\"|\"mask\"|\"eye serum\"|\"moisturiser\"|\"balm\",\n\"size\": \"e.g. 30 ml\", \"hero_active\": \"one plausible active (niacinamide, squalane, bakuchiol, etc.)\",\n\"emboss_word\": \"the short word physically embossed on the vessel front — usually LUMA, occasionally a\n2-3 letter product code like 'No.3'\"};\n\"guideline_body\": {\"logo_usage\": \"60-90 words on clearspace, min-size, the one-ink rule and the\nforest/reversed/full-colour variants\", \"colour_usage\": \"40-70 words on how Forest/Sand/Cloud/Ink are\napplied\", \"type_usage\": \"30-50 words describing the display+text pairing intent\", \"photo_style\":\n\"40-70 words on the white-sweep product look and the warm lifestyle look\", \"tone_of_voice\": \"30-50\nwords, with two do / two don't bullets folded into the prose\", \"do_dont\": a list of EXACTLY 6 short\nstrings, three starting 'Do ' and three starting 'Don\\u2019t '};\n\"social_captions\": a list of EXACTLY 4 launch caption strings (<=140 chars each, on-brand, at most one\nemoji).",
+        "prompt_file": "prompts/brand_copy_deck.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "48ad12d6412a41fe1af64eb173f4371c1982654b696984c751bb6541505d8221"
+    },
+    {
+      "key": "brand_copy_deck.render",
+      "input_requirement": "Brand copy deck (positioning adjectives, palette hexes, guideline body copy)",
+      "kind": "data",
+      "file": "assets/brand_copy_deck.md",
+      "format": "md",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "You are the founder of LUMA, a brand-new D2C clean-beauty skincare label about to\nlaunch online. Write the brand copy deck the freelancer follows for the entire launch kit. Voice:\nOur tone is calm and quietly confident, reflecting a deep literacy in clean-beauty ingredients. We aim for an approach that is never hyped nor clinical, focusing instead on serene efficacy.. Return a JSON object with these keys:\n\"brand\": {\"name\": \"LUMA\", \"tagline\": \"<=6 words, calm and luminous\", \"founded_year\": 2026,\n\"category\": \"clean-beauty skincare\"};\n\"positioning\": {\"one_liner\": \"<=20 words, what LUMA is and for whom\", \"manifesto\": \"EXACTLY 3 short\nsentences, calm and confident\", \"adjectives\": a list of EXACTLY 6 single-word positioning adjectives\n(e.g. luminous, calm, honest, botanical, considered, warm)};\n\"palette\": a list of EXACTLY 4 objects, each {\"name\": \"Forest\"|\"Sand\"|\"Cloud\"|\"Ink\", \"hex\":\n\"#14322A\" for Forest, \"#C8B79A\" for Sand, \"#F4F1EA\" for Cloud, \"#1A1A1A\" for Ink, \"role\": one line on\nwhere it is used, \"cmyk\": a plausible CMYK string, \"rgb\": a plausible R,G,B string} — the hexes are\nNON-NEGOTIABLE and MUST be exactly those four values;\n\"product_line\": a list of EXACTLY 8 objects, one per launch SKU, each {\"name\": \"elegant 2-3 word\nproduct name\", \"category\": \"serum\"|\"cream\"|\"lotion\"|\"cleanser\"|\"mask\"|\"eye serum\"|\"moisturiser\"|\"balm\",\n\"size\": \"e.g. 30 ml\", \"hero_active\": \"one plausible active (niacinamide, squalane, bakuchiol, etc.)\",\n\"emboss_word\": \"the short word physically embossed on the vessel front — usually LUMA, occasionally a\n2-3 letter product code like 'No.3'\"};\n\"guideline_body\": {\"logo_usage\": \"60-90 words on clearspace, min-size, the one-ink rule and the\nforest/reversed/full-colour variants\", \"colour_usage\": \"40-70 words on how Forest/Sand/Cloud/Ink are\napplied\", \"type_usage\": \"30-50 words describing the display+text pairing intent\", \"photo_style\":\n\"40-70 words on the white-sweep product look and the warm lifestyle look\", \"tone_of_voice\": \"30-50\nwords, with two do / two don't bullets folded into the prose\", \"do_dont\": a list of EXACTLY 6 short\nstrings, three starting 'Do ' and three starting 'Don\\u2019t '};\n\"social_captions\": a list of EXACTLY 4 launch caption strings (<=140 chars each, on-brand, at most one\nemoji).",
+        "prompt_file": "prompts/brand_copy_deck.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "fff9369e465eab6b886b7c050c3c5f972040068cb5fb5bc4c13ed726d30c7d36"
+    },
+    {
+      "key": "logo_scan",
+      "input_requirement": "Hand-inked LUMA logo scanned on off-white paper (to clean, flatten, vectorize)",
+      "kind": "image",
+      "file": "assets/luma_logo_inked_scan.png",
+      "format": "png",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-3-pro-image",
+        "quality": null,
+        "size": "1024x1024",
+        "prompt": "A flatbed-scanned sheet of slightly textured OFF-WHITE art paper (warm cream\n#F4F1EA paper tone, faint paper grain and a couple of soft scanner shadows at the edges) on which a\ndesigner has HAND-INKED, by brush and pen, the logo for a new skincare brand: a wordmark reading\nEXACTLY \"LUMA\" in confident hand-lettered capitals — organic brush character, very slightly uneven\nstroke weights and tiny natural ink-bleed at a few terminals (clearly inked by hand, not a digital\nfont) — paired with ONE small minimal hand-drawn sun / rising-crescent 'glow' glyph above or beside\nthe word. Drawn in a SINGLE solid dark forest-green ink (#14322A) — one flat ink colour only, no\ngradients, no second colour, no shading — sitting on the bare off-white paper with nothing else on the\nsheet. High-contrast clean scan, the inked mark crisp and unbroken against the paper so it can be\nbackground-removed and traced to vector. Spelling MUST be flawless: four letters L U M A, capital, in\norder, no extra or missing letters, no stray marks resembling letters. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- Text is in mixed case with lowercase 'u' and 'm', not all capitals as required.\n- Ink color is a dark green but appears slightly uneven and with some gradient-like variation, not a single flat color.\n- The glyph above the text is a sun but not a crescent; requirement was for a sun/crescent glyph, ideally minimal and singular.\n- The ink bleed is minimal but the strokes are somewhat thick and inconsistent, reducing crispness for vectorization.\n- Background paper is off-white/cream but has some slight texture and shadows that may complicate background removal.",
+        "prompt_file": "prompts/logo_scan_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 9,
+        "judge": "openai/gpt-4.1-mini",
+        "attempts": 2,
+        "issues": [
+          "Ink color is very close to specified #14322A but slightly darker and less flat than ideal.",
+          "The sun/crescent glyph is a sun, not a crescent as requested.",
+          "Ink bleed is minimal, almost too crisp, reducing organic hand-inked feel slightly."
+        ]
+      },
+      "sha256": "277acbe9a25bfc8d3429725c9afedd4e052e964b0ca58b7e98d1d917b8de0e02"
+    },
+    {
+      "key": "product_shots[0]",
+      "input_requirement": "Raw product photos of the skincare line (bottles/jars/tubes) on a cluttered tungsten-lit table",
+      "kind": "image",
+      "file": "assets/product_raw_01_bottle.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Raw, unretouched product photograph straight off a founder's camera for a new skincare brand: a single frosted glass dropper serum bottle with a matte forest-green cap standing on a cluttered home-studio wooden table under warm tungsten desk lamps. Real working mess around it — a coiled tape measure, a couple of other unlit sample vessels slightly out of focus, a crumpled microfibre cloth, a coffee ring on the wood, a power strip cable snaking past the edge. The bottle/jar is very slightly OFF-LEVEL (tilted a few degrees, not perfectly upright) and the camera horizon is a touch crooked, as a handheld shot would be. The front of the vessel carries a small REAL EMBOSSED / debossed mark pressed into the glass or metal reading exactly \"LUMA\" — physically raised lettering catching a glint of the lamp, NOT a printed sticker, the rest of the label area left clean and blank ready for the studio retouch later. Strong warm tungsten colour cast (orange/amber), mixed household lighting, visible soft reflections and a real specular hotspot on the glass, a few dust specks and a fingerprint smudge near the cap. Candid documentary product photograph, shot on a 50mm lens at f/2.8, available tungsten light, subtle film grain, realistic shallow depth of field. Imperfect, lived-in, believable material detail — true glass refraction, real metal brushing, genuine soft shadow pooled under the off-level base on the wood. NOT a clean white-sweep studio shot, NOT CGI-glossy, NOT over-saturated, NOT a staged stock photo. No hands, no people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/product_shots_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 8,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": [
+          "The vessel itself is standing upright and not 'clearly slightly OFF-LEVEL (tilted)' as specified in the criteria. While the overall image has a faintly crooked horizon, the bottle maintains a perpendicular orientation to the table surface."
+        ]
+      },
+      "sha256": "cacce65bca0020ce3c090ba8772b9b9d22163b146ded37d41ad535af71f29adc"
+    },
+    {
+      "key": "product_shots[1]",
+      "input_requirement": "Raw product photos of the skincare line (bottles/jars/tubes) on a cluttered tungsten-lit table",
+      "kind": "image",
+      "file": "assets/product_raw_02_jar.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Raw, unretouched product photograph straight off a founder's camera for a new skincare brand: a single squat amber glass cream jar with a brushed metal lid standing on a cluttered home-studio wooden table under warm tungsten desk lamps. Real working mess around it — a coiled tape measure, a couple of other unlit sample vessels slightly out of focus, a crumpled microfibre cloth, a coffee ring on the wood, a power strip cable snaking past the edge. The bottle/jar is very slightly OFF-LEVEL (tilted a few degrees, not perfectly upright) and the camera horizon is a touch crooked, as a handheld shot would be. The front of the vessel carries a small REAL EMBOSSED / debossed mark pressed into the glass or metal reading exactly \"No.1\" — physically raised lettering catching a glint of the lamp, NOT a printed sticker, the rest of the label area left clean and blank ready for the studio retouch later. Strong warm tungsten colour cast (orange/amber), mixed household lighting, visible soft reflections and a real specular hotspot on the glass, a few dust specks and a fingerprint smudge near the cap. Candid documentary product photograph, shot on a 50mm lens at f/2.8, available tungsten light, subtle film grain, realistic shallow depth of field. Imperfect, lived-in, believable material detail — true glass refraction, real metal brushing, genuine soft shadow pooled under the off-level base on the wood. NOT a clean white-sweep studio shot, NOT CGI-glossy, NOT over-saturated, NOT a staged stock photo. No hands, no people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The most critical issue is the complete absence of a 'REAL raised/embossed mark on the front (physical 3-D lettering catching the light)'. The front label area of the main vessel is entirely blank, which directly contradicts this key requirement.\n- While the overall composition is off-level, the vessel itself appears to be sitting flat on the table, rather than being 'tilted' as implied by 'vessel is clearly slightly OFF-LEVEL'.",
+        "prompt_file": "prompts/product_shots_1.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 9,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 2,
+        "issues": [
+          "A distinct fingerprint smudge, as specified in the criteria, is not clearly visible on the vessel or lid. There are minor imperfections, but not a clear smudge."
+        ]
+      },
+      "sha256": "007647ed384b64d24393819795d71b3e929af12c5318198cd059d249168985b2"
+    },
+    {
+      "key": "product_shots[2]",
+      "input_requirement": "Raw product photos of the skincare line (bottles/jars/tubes) on a cluttered tungsten-lit table",
+      "kind": "image",
+      "file": "assets/product_raw_03_bottle.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Raw, unretouched product photograph straight off a founder's camera for a new skincare brand: a single tall opaque cloud-white pump bottle (lotion) standing on a cluttered home-studio wooden table under warm tungsten desk lamps. Real working mess around it — a coiled tape measure, a couple of other unlit sample vessels slightly out of focus, a crumpled microfibre cloth, a coffee ring on the wood, a power strip cable snaking past the edge. The bottle/jar is very slightly OFF-LEVEL (tilted a few degrees, not perfectly upright) and the camera horizon is a touch crooked, as a handheld shot would be. The front of the vessel carries a small REAL EMBOSSED / debossed mark pressed into the glass or metal reading exactly \"LUMA\" — physically raised lettering catching a glint of the lamp, NOT a printed sticker, the rest of the label area left clean and blank ready for the studio retouch later. Strong warm tungsten colour cast (orange/amber), mixed household lighting, visible soft reflections and a real specular hotspot on the glass, a few dust specks and a fingerprint smudge near the cap. Candid documentary product photograph, shot on a 50mm lens at f/2.8, available tungsten light, subtle film grain, realistic shallow depth of field. Imperfect, lived-in, believable material detail — true glass refraction, real metal brushing, genuine soft shadow pooled under the off-level base on the wood. NOT a clean white-sweep studio shot, NOT CGI-glossy, NOT over-saturated, NOT a staged stock photo. No hands, no people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/product_shots_2.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 8,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": [
+          "A clear fingerprint smudge is explicitly requested but not visible in the image. There is a water ring, but no fingerprint.",
+          "The vessel is not 'clearly slightly OFF-LEVEL (tilted)'. While the overall composition might have a very subtle tilt, the bottle itself stands quite upright, and the 'faintly crooked horizon' is also very subtle, not as pronounced as implied by 'clearly slightly OFF-LEVEL'."
+        ]
+      },
+      "sha256": "cd0a8fcc598ccce84686652df7a75c3ae43ef260980be300bea94957ea33d61c"
+    },
+    {
+      "key": "product_shots[3]",
+      "input_requirement": "Raw product photos of the skincare line (bottles/jars/tubes) on a cluttered tungsten-lit table",
+      "kind": "image",
+      "file": "assets/product_raw_04_tube.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Raw, unretouched product photograph straight off a founder's camera for a new skincare brand: a single soft-touch aluminium squeeze tube with a flip cap (cleanser) standing on a cluttered home-studio wooden table under warm tungsten desk lamps. Real working mess around it — a coiled tape measure, a couple of other unlit sample vessels slightly out of focus, a crumpled microfibre cloth, a coffee ring on the wood, a power strip cable snaking past the edge. The bottle/jar is very slightly OFF-LEVEL (tilted a few degrees, not perfectly upright) and the camera horizon is a touch crooked, as a handheld shot would be. The front of the vessel carries a small REAL EMBOSSED / debossed mark pressed into the glass or metal reading exactly \"No.4\" — physically raised lettering catching a glint of the lamp, NOT a printed sticker, the rest of the label area left clean and blank ready for the studio retouch later. Strong warm tungsten colour cast (orange/amber), mixed household lighting, visible soft reflections and a real specular hotspot on the glass, a few dust specks and a fingerprint smudge near the cap. Candid documentary product photograph, shot on a 50mm lens at f/2.8, available tungsten light, subtle film grain, realistic shallow depth of field. Imperfect, lived-in, believable material detail — true glass refraction, real metal brushing, genuine soft shadow pooled under the off-level base on the wood. NOT a clean white-sweep studio shot, NOT CGI-glossy, NOT over-saturated, NOT a staged stock photo. No hands, no people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The most critical issue is the complete absence of a 'REAL raised/embossed mark on the front (physical 3-D lettering catching the light)'. The skincare vessel is entirely blank, which directly contradicts this key requirement for branding and product identity.\n- A distinct 'fingerprint smudge' was requested but is not visible; only a circular water stain is present on the table.\n- While the vessel is tilted, the 'faintly crooked horizon' of the table is not noticeably crooked, appearing mostly straight.",
+        "prompt_file": "prompts/product_shots_3.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "accepted_with_warnings",
+        "technical": "pass",
+        "vision_score": 6,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 3,
+        "issues": [
+          "Readable numbers are present on the measuring tape (e.g., 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103), which contradicts the instruction 'no readable text/watermarks beyond the embossed brand word'."
+        ]
+      },
+      "sha256": "f8facd8b4ecf0f6fddcdf61f28dbd51215a1a1b10e70e654f6e6e4a94ed113ed"
+    },
+    {
+      "key": "product_shots[4]",
+      "input_requirement": "Raw product photos of the skincare line (bottles/jars/tubes) on a cluttered tungsten-lit table",
+      "kind": "image",
+      "file": "assets/product_raw_05_jar.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Raw, unretouched product photograph straight off a founder's camera for a new skincare brand: a single wide frosted glass jar with a wood-grain lid (overnight mask) standing on a cluttered home-studio wooden table under warm tungsten desk lamps. Real working mess around it — a coiled tape measure, a couple of other unlit sample vessels slightly out of focus, a crumpled microfibre cloth, a coffee ring on the wood, a power strip cable snaking past the edge. The bottle/jar is very slightly OFF-LEVEL (tilted a few degrees, not perfectly upright) and the camera horizon is a touch crooked, as a handheld shot would be. The front of the vessel carries a small REAL EMBOSSED / debossed mark pressed into the glass or metal reading exactly \"LUMA\" — physically raised lettering catching a glint of the lamp, NOT a printed sticker, the rest of the label area left clean and blank ready for the studio retouch later. Strong warm tungsten colour cast (orange/amber), mixed household lighting, visible soft reflections and a real specular hotspot on the glass, a few dust specks and a fingerprint smudge near the cap. Candid documentary product photograph, shot on a 50mm lens at f/2.8, available tungsten light, subtle film grain, realistic shallow depth of field. Imperfect, lived-in, believable material detail — true glass refraction, real metal brushing, genuine soft shadow pooled under the off-level base on the wood. NOT a clean white-sweep studio shot, NOT CGI-glossy, NOT over-saturated, NOT a staged stock photo. No hands, no people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The most critical issue is the complete absence of a 'REAL raised/embossed mark on the front (physical 3-D lettering catching the light)'. The jar's label area is entirely blank, failing a key product feature requirement.\n- While there is a water ring on the table, a distinct 'fingerprint smudge' on the vessel or table is not clearly visible.\n- The horizon in the background appears relatively straight, whereas the prompt requested a 'faintly crooked horizon' to complement the off-level vessel.",
+        "prompt_file": "prompts/product_shots_4.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 2,
+        "issues": []
+      },
+      "sha256": "1ae0d2cf1056dd1d173dba59017b134bf0e58f032bc656da25f449ca2c52c536"
+    },
+    {
+      "key": "product_shots[5]",
+      "input_requirement": "Raw product photos of the skincare line (bottles/jars/tubes) on a cluttered tungsten-lit table",
+      "kind": "image",
+      "file": "assets/product_raw_06_bottle.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Raw, unretouched product photograph straight off a founder's camera for a new skincare brand: a single slim clear glass roller bottle (eye serum) standing on a cluttered home-studio wooden table under warm tungsten desk lamps. Real working mess around it — a coiled tape measure, a couple of other unlit sample vessels slightly out of focus, a crumpled microfibre cloth, a coffee ring on the wood, a power strip cable snaking past the edge. The bottle/jar is very slightly OFF-LEVEL (tilted a few degrees, not perfectly upright) and the camera horizon is a touch crooked, as a handheld shot would be. The front of the vessel carries a small REAL EMBOSSED / debossed mark pressed into the glass or metal reading exactly \"No.6\" — physically raised lettering catching a glint of the lamp, NOT a printed sticker, the rest of the label area left clean and blank ready for the studio retouch later. Strong warm tungsten colour cast (orange/amber), mixed household lighting, visible soft reflections and a real specular hotspot on the glass, a few dust specks and a fingerprint smudge near the cap. Candid documentary product photograph, shot on a 50mm lens at f/2.8, available tungsten light, subtle film grain, realistic shallow depth of field. Imperfect, lived-in, believable material detail — true glass refraction, real metal brushing, genuine soft shadow pooled under the off-level base on the wood. NOT a clean white-sweep studio shot, NOT CGI-glossy, NOT over-saturated, NOT a staged stock photo. No hands, no people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The main skincare vessel completely lacks the specified 'REAL raised/embossed mark on the front (physical 3-D lettering catching the light)'. The label area is entirely clean and blank, which contradicts this core requirement.\n- A distinct 'fingerprint smudge' is not clearly visible, although there is dust and a water ring on the table.",
+        "prompt_file": "prompts/product_shots_5.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 2,
+        "issues": []
+      },
+      "sha256": "e3acb686e86b939d478ca020f46343d434e285f729bf99566883afe1b36abe60"
+    },
+    {
+      "key": "product_shots[6]",
+      "input_requirement": "Raw product photos of the skincare line (bottles/jars/tubes) on a cluttered tungsten-lit table",
+      "kind": "image",
+      "file": "assets/product_raw_07_bottle.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Raw, unretouched product photograph straight off a founder's camera for a new skincare brand: a single matte sand-coloured airless pump bottle (moisturiser) standing on a cluttered home-studio wooden table under warm tungsten desk lamps. Real working mess around it — a coiled tape measure, a couple of other unlit sample vessels slightly out of focus, a crumpled microfibre cloth, a coffee ring on the wood, a power strip cable snaking past the edge. The bottle/jar is very slightly OFF-LEVEL (tilted a few degrees, not perfectly upright) and the camera horizon is a touch crooked, as a handheld shot would be. The front of the vessel carries a small REAL EMBOSSED / debossed mark pressed into the glass or metal reading exactly \"LUMA\" — physically raised lettering catching a glint of the lamp, NOT a printed sticker, the rest of the label area left clean and blank ready for the studio retouch later. Strong warm tungsten colour cast (orange/amber), mixed household lighting, visible soft reflections and a real specular hotspot on the glass, a few dust specks and a fingerprint smudge near the cap. Candid documentary product photograph, shot on a 50mm lens at f/2.8, available tungsten light, subtle film grain, realistic shallow depth of field. Imperfect, lived-in, believable material detail — true glass refraction, real metal brushing, genuine soft shadow pooled under the off-level base on the wood. NOT a clean white-sweep studio shot, NOT CGI-glossy, NOT over-saturated, NOT a staged stock photo. No hands, no people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/product_shots_6.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 9,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": [
+          "While there are circular smudges on the wooden table, a clear, recognizable 'fingerprint smudge' as specifically requested is not distinctly visible. The existing smudges appear more like water rings."
+        ]
+      },
+      "sha256": "59c786282b202a356a0cd109d888133f560e5bb6b14b41b7138a220517a8fa7b"
+    },
+    {
+      "key": "product_shots[7]",
+      "input_requirement": "Raw product photos of the skincare line (bottles/jars/tubes) on a cluttered tungsten-lit table",
+      "kind": "image",
+      "file": "assets/product_raw_08_jar.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Raw, unretouched product photograph straight off a founder's camera for a new skincare brand: a single short kraft-and-glass balm jar with a screw lid (lip+cheek balm) standing on a cluttered home-studio wooden table under warm tungsten desk lamps. Real working mess around it — a coiled tape measure, a couple of other unlit sample vessels slightly out of focus, a crumpled microfibre cloth, a coffee ring on the wood, a power strip cable snaking past the edge. The bottle/jar is very slightly OFF-LEVEL (tilted a few degrees, not perfectly upright) and the camera horizon is a touch crooked, as a handheld shot would be. The front of the vessel carries a small REAL EMBOSSED / debossed mark pressed into the glass or metal reading exactly \"No.8\" — physically raised lettering catching a glint of the lamp, NOT a printed sticker, the rest of the label area left clean and blank ready for the studio retouch later. Strong warm tungsten colour cast (orange/amber), mixed household lighting, visible soft reflections and a real specular hotspot on the glass, a few dust specks and a fingerprint smudge near the cap. Candid documentary product photograph, shot on a 50mm lens at f/2.8, available tungsten light, subtle film grain, realistic shallow depth of field. Imperfect, lived-in, believable material detail — true glass refraction, real metal brushing, genuine soft shadow pooled under the off-level base on the wood. NOT a clean white-sweep studio shot, NOT CGI-glossy, NOT over-saturated, NOT a staged stock photo. No hands, no people. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- No visible raised/embossed mark on the front of the vessel; label area is blank and smooth.\n- Vessel is not clearly tilted; it appears mostly level.\n- Horizon is not faintly crooked; it is straight.\n- No visible fingerprint smudge on the vessel.\n- Reflections and specular highlights appear somewhat artificial and too uniform, lacking natural variation.\n- Clutter is present but not strongly defined as 'working clutter'; some elements look staged or too clean.",
+        "prompt_file": "prompts/product_shots_7.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 9,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 2,
+        "issues": [
+          "The circular mark on the table appears more like a water ring stain than a fingerprint smudge, though it contributes to the 'real, used' aesthetic.",
+          "The horizon line is mostly straight, not 'faintly crooked' as requested, although the tilted jar gives an overall off-kilter feel."
+        ]
+      },
+      "sha256": "0452d161f944f5eeae6040ba66ffbca922d0d5d7313b3caf84b828313d9fb6d9"
+    },
+    {
+      "key": "team_roster_csv",
+      "input_requirement": "Team roster CSV for business-card data-merge (one row per teammate)",
+      "kind": "data",
+      "file": "assets/team_roster.json",
+      "format": "json",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "Produce the LUMA team roster that the InDesign business-card data-merge consumes.\nThe authored Business_Card.indd binds these EXACT data-merge field names as its CSV columns (state them\nto yourself and match them EXACTLY): full_name, title, email, phone, pronouns. Return a JSON object with\na SINGLE top-level key \"rows\": a list of EXACTLY 6 row objects, and EVERY row object MUST have EXACTLY\nthese keys with these meanings:\n\"full_name\" (first + last, a diverse small-startup founding team),\n\"title\" (their role at a launching D2C skincare brand: e.g. Founder & CEO, Head of Product, Brand &\nCreative Director, Operations Lead, Customer Experience Lead, Growth Marketing Lead),\n\"email\" (firstname@luma.co — lowercase, the invented brand domain luma.co, consistent across the team),\n\"phone\" (a plausible US-format number using the 555 prefix, e.g. +1 (415) 555-0142),\n\"pronouns\" (e.g. she/her, he/him, they/them — varied across the team).\nUse ONLY those five keys per row (these become the business-card merge columns); do not add extra keys.\nMake the names and pronouns genuinely diverse and the titles non-duplicated. Voice for any phrasing:\nOur tone is calm and quietly confident, reflecting a deep literacy in clean-beauty ingredients. We aim for an approach that is never hyped nor clinical, focusing instead on serene efficacy..",
+        "prompt_file": "prompts/team_roster_csv.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "e0fd3e63677965a6f9d1f174e8d9583865ab2849204097086535f257ed91e7a5"
+    },
+    {
+      "key": "team_roster_csv.render",
+      "input_requirement": "Team roster CSV for business-card data-merge (one row per teammate)",
+      "kind": "data",
+      "file": "assets/team_roster.csv",
+      "format": "md",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "Produce the LUMA team roster that the InDesign business-card data-merge consumes.\nThe authored Business_Card.indd binds these EXACT data-merge field names as its CSV columns (state them\nto yourself and match them EXACTLY): full_name, title, email, phone, pronouns. Return a JSON object with\na SINGLE top-level key \"rows\": a list of EXACTLY 6 row objects, and EVERY row object MUST have EXACTLY\nthese keys with these meanings:\n\"full_name\" (first + last, a diverse small-startup founding team),\n\"title\" (their role at a launching D2C skincare brand: e.g. Founder & CEO, Head of Product, Brand &\nCreative Director, Operations Lead, Customer Experience Lead, Growth Marketing Lead),\n\"email\" (firstname@luma.co — lowercase, the invented brand domain luma.co, consistent across the team),\n\"phone\" (a plausible US-format number using the 555 prefix, e.g. +1 (415) 555-0142),\n\"pronouns\" (e.g. she/her, he/him, they/them — varied across the team).\nUse ONLY those five keys per row (these become the business-card merge columns); do not add extra keys.\nMake the names and pronouns genuinely diverse and the titles non-duplicated. Voice for any phrasing:\nOur tone is calm and quietly confident, reflecting a deep literacy in clean-beauty ingredients. We aim for an approach that is never hyped nor clinical, focusing instead on serene efficacy..",
+        "prompt_file": "prompts/team_roster_csv.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "2df87fbe8acc593ed6c800935352b6b6306b65370ae2b6374d567a90d5cbe72d"
+    },
+    {
+      "key": "company_info_csv",
+      "input_requirement": "Company-info CSV (single row) for the letterhead data-merge",
+      "kind": "data",
+      "file": "assets/company_info.json",
+      "format": "json",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "Produce the single-row company-info record the InDesign letterhead data-merge\nconsumes. The authored Letterhead.indd binds these EXACT data-merge field names as its CSV columns\n(match them EXACTLY): company_name, tagline, street, city_state_zip, website, phone, social_handle.\nReturn a JSON object with a SINGLE top-level key \"rows\": a list containing EXACTLY ONE row object whose\nkeys are EXACTLY:\n\"company_name\" (\"LUMA\" or \"LUMA Skincare, Inc.\"),\n\"tagline\" (LUMA's calm <=6-word tagline — keep it consistent with the brand copy deck),\n\"street\" (a plausible invented US street address line, e.g. a unit on a real-sounding but fictional\nstreet),\n\"city_state_zip\" (e.g. Portland, OR 97209),\n\"website\" (\"luma.co\" or \"www.luma.co\" — the invented brand domain, consistent with the team emails),\n\"phone\" (a plausible US main line using the 555 prefix),\n\"social_handle\" (\"@luma\" or \"@luma.skin\" — one consistent handle).\nUse ONLY those seven keys (these become the letterhead merge columns); exactly one row. Voice:\nOur tone is calm and quietly confident, reflecting a deep literacy in clean-beauty ingredients. We aim for an approach that is never hyped nor clinical, focusing instead on serene efficacy..",
+        "prompt_file": "prompts/company_info_csv.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "9ab9fb38af3f85de564b27b7d97aa19f89f39a6ecda22551d958a9935f415f4b"
+    },
+    {
+      "key": "company_info_csv.render",
+      "input_requirement": "Company-info CSV (single row) for the letterhead data-merge",
+      "kind": "data",
+      "file": "assets/company_info.csv",
+      "format": "md",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "Produce the single-row company-info record the InDesign letterhead data-merge\nconsumes. The authored Letterhead.indd binds these EXACT data-merge field names as its CSV columns\n(match them EXACTLY): company_name, tagline, street, city_state_zip, website, phone, social_handle.\nReturn a JSON object with a SINGLE top-level key \"rows\": a list containing EXACTLY ONE row object whose\nkeys are EXACTLY:\n\"company_name\" (\"LUMA\" or \"LUMA Skincare, Inc.\"),\n\"tagline\" (LUMA's calm <=6-word tagline — keep it consistent with the brand copy deck),\n\"street\" (a plausible invented US street address line, e.g. a unit on a real-sounding but fictional\nstreet),\n\"city_state_zip\" (e.g. Portland, OR 97209),\n\"website\" (\"luma.co\" or \"www.luma.co\" — the invented brand domain, consistent with the team emails),\n\"phone\" (a plausible US main line using the 555 prefix),\n\"social_handle\" (\"@luma\" or \"@luma.skin\" — one consistent handle).\nUse ONLY those seven keys (these become the letterhead merge columns); exactly one row. Voice:\nOur tone is calm and quietly confident, reflecting a deep literacy in clean-beauty ingredients. We aim for an approach that is never hyped nor clinical, focusing instead on serene efficacy..",
+        "prompt_file": "prompts/company_info_csv.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "9e2784e05cd462d7f22897e5d347ff9c289ed64b24b57177df5b42c17ae1a114"
+    }
+  ],
+  "decisions": [
+    {
+      "requirement": "Adobe Stock lifestyle scenes (sunlit shelf, hands applying balm, linen flatlay) — sourced via connector, not generated",
+      "assumed_value": "Sourced LIVE at execution via the connector (asset_search entityScope StockAsset, then asset_license_and_download_stock) — 3 on-brand lifestyle frames: (1) a sunlit bathroom shelf with skincare vessels, (2) hands applying a balm/cream, (3) a linen flatlay with botanicals; photo content-type, horizontal/landscape orientation, licensable, then graded to the 'LUMA Catalogue' preset + forest/sand HSL + shallow lens blur. NOT generated by this spec — they are real Adobe Stock assets per FEASIBILITY [C].",
+      "why": "Adobe Stock inputs are sourced through the connector at execution, not fabricated; generating stand-ins would defeat the licensing step the workflow exercises."
+    },
+    {
+      "requirement": "Authored InDesign templates with genuine data-merge fields + the guideline booklet (client-supplied, made in desktop InDesign now that CC Pro is active)",
+      "assumed_value": "USER-AUTHORED in desktop InDesign (Data Merge panel / live picture frames), 3 files supplied by the client; we do NOT generate .indd:\n(1) Business_Card.indd — 90x55mm, 3mm bleed, 2 pages (front/back). FRONT: placed master logo .ai centered on a Forest #14322A field. BACK on white: data-merge fields <<full_name>> (display face, 11pt), <<title>> (text face, 8pt, Sand #C8B79A), <<email>>, <<phone>>, <<pronouns>>, plus static <<company>>=LUMA wordmark + <<website>>. Data Merge linked to the roster CSV with columns EXACTLY full_name,title,email,phone,pronouns (one record per page-pair).\n(2) Letterhead.indd — A4 210x297mm, 3mm bleed, single page. Header: placed logo .ai top-left + data-merge <<company_name>>, <<tagline>>. Forest #14322A footer band with <<street>>, <<city_state_zip>>, <<website>>, <<phone>>, <<social_handle>>; empty live body text frame. Data Merge linked to the single-row company CSV with columns EXACTLY company_name,tagline,street,city_state_zip,website,phone,social_handle.\n(3) Brand_Guidelines.indd — A5 landscape, ~12 pages, NO data-merge (a layout to render). Named/pre-sized picture frames so the kit plates drop straight in: p1 cover = duotone hero + logo; p3 logo-usage (render_vector full-colour/1-colour/reversed knockout + clearspace/min-size diagram); p4 palette swatches Forest #14322A / Sand #C8B79A / Cloud #F4F1EA / Ink #1A1A1A with HEX/CMYK/RGB; p5 type spec (font_recommend display+text pairing); p6-7 photography style (product-on-white plates + graded lifestyle); p8 do/don't; p9-11 collateral + social grid; p12 contact. Field/column names above match the generated CSV keys so document_merge_data_layout binds genuinely.",
+      "why": "The connector data-merges and renders authored .indd files but cannot author them headlessly; the client builds these once in desktop InDesign (CC Pro active). The merge-field/column names are stated so they bind to the generated roster/company CSVs."
+    }
+  ],
+  "coverage": {
+    "inputs_total": 7,
+    "covered_by_assets": 5,
+    "covered_by_decisions": 2,
+    "uncovered": []
+  },
+  "stats": {
+    "images_generated": 16,
+    "regenerations": 7,
+    "est_cost_usd": 4.23,
+    "text_calls": 20,
+    "wall_time_s": 2819
+  },
+  "ready_for_agent": true
+}

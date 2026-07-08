@@ -1,0 +1,359 @@
+{
+  "schema_version": 1,
+  "task_id": 5366,
+  "slug": "wedding-signage",
+  "title": "Wedding Signage for Print (high res, not AI generated)",
+  "task_type": "Wedding Signage Family — welcome, seating chart, menu, program, table signs (print-ready)",
+  "category": "Invitations & Cards",
+  "family": "Express Template Design",
+  "feasibility": "template",
+  "source": "upwork",
+  "source_url": "https://www.upwork.com/nx/search/jobs/?q=Wedding%20Signage%20for%20Print%20(high%20res,%20not%20AI%20generated)",
+  "mcp_workflow": "search_design (Express wedding signage templates: welcome / seating chart / menu / program / table number) -> fill_text (couple names, copy, menu, table assignments) -> asset_add_file (floral / black-script reference) -> image_crop_and_resize (each exact trim size) -> document_convert_pdf (print-ready PDF w/ bleed)",
+  "original_brief": "Applicants, please share examples of similar work in your proposal. Hello! I love the attached signature drinks image I created and would like to keep that sign as is. However, the other signs do not coordinate well with it, and they are not high enough resolution for professional print quality. The current backgrounds were AI-generated, which limits the DPI and makes them risky for large-format printing. I’m looking to create a cohesive new family of signs in print-ready resolution. The attached seating chart and welcome sign drafts show the general sign types that need to be redesigned. Creative direction: Option 1: Continue with the soft floral theme. The flowers should be inspired by this arrangement: https://bifloralsilkflowers.com/producto/emma/arch-arrangement-6/ Option 2: Use a more elevated black script direction, similar to the attached example.jpg. Either way, I’d like the signs to feel like a coordinated family, while allowing the signature drinks sign to remain the more playful, personal piece. Files needed: 1. Welcome Gathering Sign Size: 20 in x 30 in Minimum resolution at 300 DPI: 6000 x 9000 pixels 2. Welcome Wedding Ceremony & Reception Sign Size: 35.4 in x 23.6 in Minimum resolution at 300 DPI: 10,620 x 7,080 pixels 3. Menu / Thank You Long Card 4 in × 9 in, portrait orientation, with 0.125 in bleed on all sides. Minimum export resolution should be 1200 × 2700 pixels at final trim size, 4. Seating Chart Size: 47.2 in x 35.4 in Minimum resolution at 300 DPI: 14,160 x 10,620 pixels (I'll provide the name lists soon) 5. Wedding Program Size: 5 x 7 folded, 10 x 7 flat Bleed: 0.125 in on all sides Safe margin: 0.25 in Resolution: 300 DPI minimum 6. Table signs for tables 1-6 5 x 7 inches Resolution: 300 DPI minimum Please provide the final files as print-ready PDFs, preferably with vector text and artwork where possible, plus editable source files. Please also include bleed if required by the printer, ideally 0.125 in to 0.25 in, and keep all important text safely inside the trim area. Thank you!",
+  "generated_at": "2026-06-11T20:49:20Z",
+  "pipeline_version": "0.1.0",
+  "client_persona": {
+    "brand_name": "Maren & Elliot",
+    "tagline": "Happily ever Hartwell",
+    "industry": "private wedding — day-of signage & stationery",
+    "palette": [
+      {
+        "name": "Ivory",
+        "hex": "#FBF7EF",
+        "role": "primary"
+      },
+      {
+        "name": "Blush",
+        "hex": "#EAC9C1",
+        "role": "accent"
+      },
+      {
+        "name": "Sage",
+        "hex": "#9CAF88",
+        "role": "accent"
+      },
+      {
+        "name": "Charcoal Ink",
+        "hex": "#3B3B38",
+        "role": "secondary"
+      }
+    ],
+    "fonts": {
+      "heading": "Source Serif Pro",
+      "body": "Lora"
+    },
+    "voice": "The tone is warm, gracious, and quietly precise, reflecting a bride who knows exactly what she wants for her special day. It balances traditional elegance with a personal, heartfelt touch.",
+    "persona_file": "persona.json"
+  },
+  "assets": [
+    {
+      "key": "wedding_copy",
+      "input_requirement": "Menu / Thank You card 4x9in portrait, 0.125in bleed, min 1200x2700px",
+      "kind": "data",
+      "file": "assets/wedding_copy.json",
+      "format": "json",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "You are Maren Hartwell, the bride, writing the master copy deck for your wedding\nsignage suite. Facts (use EXACTLY, never vary a spelling): couple Maren & Elliot Hartwell; Saturday,\nSeptember 19, 2026 at Willowmere Estate in Cedar Hollow — ceremony on the south lawn late afternoon,\ndinner and dancing in the manor ballroom; your dog Barnaby (golden retriever) and your cat Clementine\n(orange tabby) each have a signature drink named after them. Voice: The tone is warm, gracious, and quietly precise, reflecting a bride who knows exactly what she wants for her special day. It balances traditional elegance with a personal, heartfelt touch..\nReturn a JSON object with EXACTLY these top-level keys:\n\"couple\": {\"partner_a\": \"Maren\", \"partner_b\": \"Elliot\", \"married_surname\": \"Hartwell\", \"pets\":\n[{\"name\": \"Barnaby\", \"species\": \"dog\", \"breed\": \"golden retriever\"}, {\"name\": \"Clementine\",\n\"species\": \"cat\", \"breed\": \"orange tabby\"}]};\n\"event\": {\"date\": \"Saturday, September 19, 2026\", \"venue\": \"Willowmere Estate\", \"town\":\n\"Cedar Hollow\", \"ceremony_time\": \"<pick, e.g. 4:00 PM>\", \"reception_time\": \"<pick, e.g. 6:00 PM>\"};\n\"welcome_wordings\": {\"gathering\": \"<2-3 short warm lines for the 20x30in welcome-gathering sign —\nmust include the names and the date>\", \"ceremony_reception\": \"<wording for the 35.4x23.6in welcome\nceremony & reception sign — names, date, and one graceful line welcoming guests to both the ceremony\nand the reception>\"};\n\"menu\": {\"courses\": [EXACTLY 3 objects {\"course\": \"First Course\"|\"Main Course\"|\"Dessert\",\n\"choices\": [EXACTLY 2 objects {\"name\": \"<dish>\", \"description\": \"<elegant plated-dinner wording,\n<=14 words, no prices>\"}]}]};\n\"thank_you_message\": \"<2-3 warm sentences from Maren & Elliot for the back of the 4x9in card>\";\n\"program\": [AT LEAST 6 ordered objects {\"title\": \"<moment, e.g. The Processional>\", \"line\": \"<one\ngraceful descriptive line>\"} running from processional through last dance];\n\"signature_drinks\": EXACTLY 2 objects — first {\"name\": \"The Barnaby\", \"pet_story\": \"<one charming\nline about Barnaby the golden retriever>\", \"ingredients\": [<3-4 ingredients of a bourbon-forward\ncocktail>]}, second {\"name\": \"The Clementine\", \"pet_story\": \"<one charming line about Clementine\nthe orange tabby>\", \"ingredients\": [<3-4 ingredients of a citrusy gin spritz>]};\n\"hashtag\": \"#HappilyEverHartwell\".\nJSON only — no markdown, no commentary.",
+        "prompt_file": "prompts/wedding_copy.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "4d38360f7bdbd6f91c19b5d3ec428828ad38b08b213db36be91c9ee69ef9866a"
+    },
+    {
+      "key": "wedding_copy.render",
+      "input_requirement": "Menu / Thank You card 4x9in portrait, 0.125in bleed, min 1200x2700px",
+      "kind": "data",
+      "file": "assets/wedding_copy.md",
+      "format": "md",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "You are Maren Hartwell, the bride, writing the master copy deck for your wedding\nsignage suite. Facts (use EXACTLY, never vary a spelling): couple Maren & Elliot Hartwell; Saturday,\nSeptember 19, 2026 at Willowmere Estate in Cedar Hollow — ceremony on the south lawn late afternoon,\ndinner and dancing in the manor ballroom; your dog Barnaby (golden retriever) and your cat Clementine\n(orange tabby) each have a signature drink named after them. Voice: The tone is warm, gracious, and quietly precise, reflecting a bride who knows exactly what she wants for her special day. It balances traditional elegance with a personal, heartfelt touch..\nReturn a JSON object with EXACTLY these top-level keys:\n\"couple\": {\"partner_a\": \"Maren\", \"partner_b\": \"Elliot\", \"married_surname\": \"Hartwell\", \"pets\":\n[{\"name\": \"Barnaby\", \"species\": \"dog\", \"breed\": \"golden retriever\"}, {\"name\": \"Clementine\",\n\"species\": \"cat\", \"breed\": \"orange tabby\"}]};\n\"event\": {\"date\": \"Saturday, September 19, 2026\", \"venue\": \"Willowmere Estate\", \"town\":\n\"Cedar Hollow\", \"ceremony_time\": \"<pick, e.g. 4:00 PM>\", \"reception_time\": \"<pick, e.g. 6:00 PM>\"};\n\"welcome_wordings\": {\"gathering\": \"<2-3 short warm lines for the 20x30in welcome-gathering sign —\nmust include the names and the date>\", \"ceremony_reception\": \"<wording for the 35.4x23.6in welcome\nceremony & reception sign — names, date, and one graceful line welcoming guests to both the ceremony\nand the reception>\"};\n\"menu\": {\"courses\": [EXACTLY 3 objects {\"course\": \"First Course\"|\"Main Course\"|\"Dessert\",\n\"choices\": [EXACTLY 2 objects {\"name\": \"<dish>\", \"description\": \"<elegant plated-dinner wording,\n<=14 words, no prices>\"}]}]};\n\"thank_you_message\": \"<2-3 warm sentences from Maren & Elliot for the back of the 4x9in card>\";\n\"program\": [AT LEAST 6 ordered objects {\"title\": \"<moment, e.g. The Processional>\", \"line\": \"<one\ngraceful descriptive line>\"} running from processional through last dance];\n\"signature_drinks\": EXACTLY 2 objects — first {\"name\": \"The Barnaby\", \"pet_story\": \"<one charming\nline about Barnaby the golden retriever>\", \"ingredients\": [<3-4 ingredients of a bourbon-forward\ncocktail>]}, second {\"name\": \"The Clementine\", \"pet_story\": \"<one charming line about Clementine\nthe orange tabby>\", \"ingredients\": [<3-4 ingredients of a citrusy gin spritz>]};\n\"hashtag\": \"#HappilyEverHartwell\".\nJSON only — no markdown, no commentary.",
+        "prompt_file": "prompts/wedding_copy.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "2b1bed8b440eb1ceccc2409a7b5840b0f864883706a2d19fdfee6def27cf9bbb"
+    },
+    {
+      "key": "guest_list",
+      "input_requirement": "Seating Chart 47.2x35.4in (14160x10620px) — name list provided later",
+      "kind": "data",
+      "file": "assets/seating_chart.json",
+      "format": "json",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "Produce the FINAL seating chart name data for the Hartwell wedding (Maren &\nElliot, Saturday, September 19, 2026 — 120 seated guests at 15 tables of 8). Return a JSON object\nwith EXACTLY these top-level keys:\n\"tables\": a list of EXACTLY 15 objects {\"table\": <integer 1-15, ascending>, \"guests\": [EXACTLY 8\nfull names]}. Names must be realistic, diverse adult guest names (a believable mix of cultural\nbackgrounds; several married couples sharing a surname seated at the same table; one or two suffixes\nlike Jr.; NO celebrities, NO placeholder names like John Doe, NO honorifics). All 120 names unique.\nWithin EACH table, alphabetize the 8 names by surname.\n\"head_table_note\": one line noting that Maren & Elliot sit at an unnumbered sweetheart table, and\nthat tables 1-6 additionally receive printed table signs.\nJSON only.",
+        "prompt_file": "prompts/guest_list.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "845c36e3c0b24ee699bed20329147f2ac37d0490678a0531fa095cbd35d56d9e"
+    },
+    {
+      "key": "guest_list.render",
+      "input_requirement": "Seating Chart 47.2x35.4in (14160x10620px) — name list provided later",
+      "kind": "data",
+      "file": "assets/seating_chart.csv",
+      "format": "md",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "Produce the FINAL seating chart name data for the Hartwell wedding (Maren &\nElliot, Saturday, September 19, 2026 — 120 seated guests at 15 tables of 8). Return a JSON object\nwith EXACTLY these top-level keys:\n\"tables\": a list of EXACTLY 15 objects {\"table\": <integer 1-15, ascending>, \"guests\": [EXACTLY 8\nfull names]}. Names must be realistic, diverse adult guest names (a believable mix of cultural\nbackgrounds; several married couples sharing a surname seated at the same table; one or two suffixes\nlike Jr.; NO celebrities, NO placeholder names like John Doe, NO honorifics). All 120 names unique.\nWithin EACH table, alphabetize the 8 names by surname.\n\"head_table_note\": one line noting that Maren & Elliot sit at an unnumbered sweetheart table, and\nthat tables 1-6 additionally receive printed table signs.\nJSON only.",
+        "prompt_file": "prompts/guest_list.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "8677370d003c37270592b10ee12694daba2c5fe5802ba4407aa09eafe7710cb9"
+    },
+    {
+      "key": "print_spec",
+      "input_requirement": "Welcome Ceremony & Reception Sign 35.4x23.6in (10620x7080px)",
+      "kind": "data",
+      "file": "assets/print_spec.json",
+      "format": "json",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "Transcribe the print production spec for the six deliverables of the Hartwell\nwedding signage suite. Return a JSON object with EXACTLY one top-level key \"deliverables\": a list of\nEXACTLY 6 objects, each {\"piece\": \"...\", \"trim_size\": \"...\", \"px_target\": \"...\", \"dpi\": 300,\n\"bleed_in\": <number>, \"safe_margin_in\": <number>, \"orientation\": \"...\", \"notes\": \"...\"}.\nUse these EXACT values, in this order — transcribe faithfully, do not change a single number:\n1. piece \"Welcome Gathering Sign\", trim_size \"20 x 30 in\", px_target \"6000 x 9000 px\", dpi 300,\nbleed_in 0.125, safe_margin_in 0.25, orientation \"portrait\", notes \"large-format board; minimum\nresolution at 300 DPI is 6000 x 9000 pixels; bleed 0.125-0.25 in per printer\".\n2. piece \"Welcome Ceremony & Reception Sign\", trim_size \"35.4 x 23.6 in\", px_target\n\"10620 x 7080 px\", dpi 300, bleed_in 0.125, safe_margin_in 0.25, orientation \"landscape\", notes\n\"minimum resolution at 300 DPI is 10,620 x 7,080 pixels; welcomes guests to ceremony and reception\".\n3. piece \"Menu / Thank You Long Card\", trim_size \"4 x 9 in\", px_target \"min 1200 x 2700 px at final\ntrim\", dpi 300, bleed_in 0.125, safe_margin_in 0.25, orientation \"portrait\", notes \"double-sided:\nmenu on the front, thank-you message on the back; 0.125 in bleed on all sides\".\n4. piece \"Seating Chart\", trim_size \"47.2 x 35.4 in\", px_target \"14160 x 10620 px\", dpi 300,\nbleed_in 0.125, safe_margin_in 0.25, orientation \"landscape\", notes \"minimum resolution at 300 DPI\nis 14,160 x 10,620 pixels; names from seating_chart.json, 15 tables of 8\".\n5. piece \"Wedding Program\", trim_size \"5 x 7 in folded / 10 x 7 in flat\", px_target \"3000 x 2100 px\nflat (10 x 7 in at 300 DPI)\", dpi 300, bleed_in 0.125, safe_margin_in 0.25, orientation \"portrait\nfolded\", notes \"bleed 0.125 in on all sides; safe margin 0.25 in; copy from wedding_copy.json\".\n6. piece \"Table Signs (tables 1-6)\", trim_size \"5 x 7 in\", px_target \"1500 x 2100 px each\", dpi 300,\nbleed_in 0.125, safe_margin_in 0.25, orientation \"portrait\", notes \"six signs, numerals 1-6,\npurely typographic, 300 DPI minimum\".\nJSON only.",
+        "prompt_file": "prompts/print_spec.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "3e1633b876376b8cdeea33f87f33ff1bc2bbeaae3d913da89a833aaa001af333"
+    },
+    {
+      "key": "signature_drinks_sign",
+      "input_requirement": "Direction: soft floral (ref URL) OR elevated black-script; keep existing signature-drinks sign untouched; print-ready PDFs w/ vector text + source files",
+      "kind": "image",
+      "file": "assets/signature_drinks_sign.png",
+      "format": "png",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-3-pro-image",
+        "quality": null,
+        "size": "1024x1536",
+        "prompt": "The finished flat artwork of a playful, personal wedding bar sign (front-on, full-bleed print file, no environment, no frame, no mockup): headline in elegant hand-script reading EXACTLY \"Signature Sips\" at the top, then two stacked drink blocks — first a charming loose watercolor portrait of Barnaby the dog beside the drink name in romantic hand-script reading EXACTLY \"The Barnaby\", with its ingredient list beneath in small clean serif reading EXACTLY \"Bourbon, Sweet Vermouth, Angostura Bitters, Cherry Garnish\"; second a charming loose watercolor portrait of Clementine the cat beside the drink name in romantic hand-script reading EXACTLY \"The Clementine\", with its ingredient list beneath in small clean serif reading EXACTLY \"Gin, Fresh Grapefruit Juice, Elderflower Liqueur, Sparkling Wine\". Ivory #FBF7EF background, loose blush #EAC9C1 and sage #9CAF88 watercolor accents, all lettering in charcoal ink #3B3B38. A tasteful mix of romantic hand-script and clean serif typography, finished printed-sign quality, every word crisply rendered. No other text besides the quoted wording. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/signature_drinks_sign_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 9,
+        "judge": "openai/gpt-4.1-mini",
+        "attempts": 1,
+        "issues": [
+          "Only one pet illustration is a dog; the other is a cat, which is correct, but the dog illustration is a golden retriever style, which is acceptable but not explicitly charming or playful enough compared to the cat.",
+          "Background is ivory with blush and sage watercolor accents, but the accents are somewhat muted and could be more vibrant for a playful feel.",
+          "Lettering is charcoal and uses a good hand-script + clean serif mix, but the serif font is slightly less clean in some ingredient lines due to slight pixelation on close inspection.",
+          "No stray text or mockup environment present."
+        ]
+      },
+      "sha256": "3cc17562baad29d603eb12f7e5184ab31debbfecce8431b289de5234c957dbcf"
+    },
+    {
+      "key": "current_drafts[0]",
+      "input_requirement": "Welcome Gathering Sign 20x30in (6000x9000px @300dpi)",
+      "kind": "image",
+      "file": "assets/draft_welcome_sign.png",
+      "format": "png",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-image",
+        "quality": null,
+        "size": "1024x1536",
+        "prompt": "A generic AI-generated wedding welcome sign graphic, portrait: the word \"Welcome\" in ornate script at the top, the couple's names reading EXACTLY \"Maren & Elliot\" beneath it, and a small date line reading \"Saturday, September 19, 2026\", all over a soft pastel watercolor floral background. Pleasant but unmistakably generic AI-wedding-template look: waxy over-smooth flowers, airbrushed gradients, perfectly centered stock composition, slightly mushy detail. No other text. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/current_drafts_0.txt"
+      },
+      "post_process": [
+        {
+          "op": "soften",
+          "params": {
+            "op": "soften",
+            "seed": 5366,
+            "down_to": 479,
+            "jpeg_quality": 84
+          },
+          "original": "originals/clean_draft_welcome_sign.png"
+        }
+      ],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 9,
+        "judge": "openai/gpt-4.1-mini",
+        "attempts": 1,
+        "issues": [
+          "The floral design is generic and typical of AI-generated wedding signs, fitting the expected soft-floral template look.",
+          "The text is clear and correctly spells the couple's names 'Maren & Elliot' with no distortion or heavy artifacts.",
+          "The overall image has a waxy, airbrushed, and over-smooth appearance, which is acceptable for a draft.",
+          "No heavy distortion or nightmare artifacts present."
+        ]
+      },
+      "sha256": "4245952ec29f7f1de929ce14d5c9596a03467e34504d4863d73e9b1ce988d9ef"
+    },
+    {
+      "key": "current_drafts[1]",
+      "input_requirement": "Welcome Gathering Sign 20x30in (6000x9000px @300dpi)",
+      "kind": "image",
+      "file": "assets/draft_seating_chart.png",
+      "format": "png",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-image",
+        "quality": null,
+        "size": "1024x1536",
+        "prompt": "A generic AI-generated wedding seating chart graphic, portrait: a script title reading \"Find Your Seat\" at the top, below it rows of small table-number cards suggesting columns of tiny guest names (the small text may be soft and indistinct), soft pastel watercolor florals in the corners. Pleasant but unmistakably generic AI-wedding-template look — airbrushed, over-smooth, low on character. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/current_drafts_1.txt"
+      },
+      "post_process": [
+        {
+          "op": "soften",
+          "params": {
+            "op": "soften",
+            "seed": 5366,
+            "down_to": 479,
+            "jpeg_quality": 84
+          },
+          "original": "originals/clean_draft_seating_chart.png"
+        }
+      ],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 8,
+        "judge": "openai/gpt-4.1-mini",
+        "attempts": 1,
+        "issues": [
+          "Some table numbers are repeated (e.g., 20 and 41 appear twice).",
+          "Several guest names are placeholders or nonsensical (e.g., 'Guest One', 'Guest Three', 'Lorem Ipsum', 'Guest Tivon', 'Guest Fleve', 'Guest Flevn').",
+          "Minor garbling in guest names is acceptable but some are clearly incorrect or inconsistent.",
+          "No heavy distortion or nightmare artifacts present."
+        ]
+      },
+      "sha256": "7ea38c62dd2d63d76bb83deb465e38b490b130ed5c93b43cb9f010d58767c1db"
+    },
+    {
+      "key": "floral_reference",
+      "input_requirement": "Direction: soft floral (ref URL) OR elevated black-script; keep existing signature-drinks sign untouched; print-ready PDFs w/ vector text + source files",
+      "kind": "image",
+      "file": "assets/floral_reference.jpg",
+      "format": "jpg",
+      "dims": [
+        1536,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1536x1024",
+        "prompt": "Candid documentary photograph a wedding florist would take of their just-finished\nceremony-arch arrangement at an outdoor estate venue: an asymmetric crescent of blush garden roses,\ncream ranunculus, sage eucalyptus and white delphinium climbing one side of a simple wooden arch, a\nfew stems intentionally loose, two or three fallen petals on the grass below. Shot on a 35mm lens at\nf/2.0, available natural daylight, subtle film grain, realistic depth of field with the estate lawn\nsoftly blurred behind. Imperfect, lived-in detail: believable foliage overlap, uneven stem spacing,\nnatural unforced color; asymmetric composition. NOT a staged stock photo, NOT CGI-glossy, NOT\nover-saturated. romantic editorial wedding florals, soft natural daylight, blush-and-sage garden palette, fine-art film feel, gentle grain. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/floral_reference_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "d473e78fb00ffe6add67246246defb659cf14bc9532dad07ead940a567d0d816"
+    },
+    {
+      "key": "script_example",
+      "input_requirement": "Direction: soft floral (ref URL) OR elevated black-script; keep existing signature-drinks sign untouched; print-ready PDFs w/ vector text + source files",
+      "kind": "image",
+      "file": "assets/script_style_example.png",
+      "format": "png",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-3-pro-image",
+        "quality": null,
+        "size": "1024x1536",
+        "prompt": "The full flat artwork of an elevated, ultra-minimal wedding welcome sign for a\nDIFFERENT couple (the client's style reference, \"example.jpg\"): fine modern calligraphy in near-black\ncharcoal ink on a smooth ivory board, front-on, no environment, no mockup. Three centered lines only —\nsmall letterspaced serif capitals reading EXACTLY \"WELCOME TO THE WEDDING OF\", large flowing\ncalligraphic script reading EXACTLY \"Olivia & James\", and a slender script date line reading EXACTLY\n\"June 20, 2026\". Generous negative space, confident thick-and-thin pen strokes, perfectly legible,\nultra-minimal: NO florals, no ornament, no border, no flourishes beyond the letterforms, no other\ntext. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/script_example_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "openai/gpt-4.1-mini",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "77b0edcd2f06bd90ea85f3eff4022bebbb086d6e5d3882728ccbb2f741c803c2"
+    }
+  ],
+  "decisions": [
+    {
+      "requirement": "Wedding Program 5x7 folded / 10x7 flat, 0.125in bleed, 0.25in safe",
+      "assumed_value": "No separate input file needed: the program copy (6+ ordered moments, processional through last dance) lives in wedding_copy.json -> program, and the folded/flat trim, bleed and safe-margin numbers are transcribed as print_spec.json deliverable #5",
+      "why": "The program is a layout the designer builds from copy + production spec; both already exist as assets, so a third file would only duplicate them."
+    },
+    {
+      "requirement": "Table signs tables 1-6, 5x7in, 300dpi",
+      "assumed_value": "No dedicated asset: the table numbers derive from seating_chart.json tables 1-6 (head_table_note records that only tables 1-6 get signs), and the 5x7in / 300dpi spec is print_spec.json deliverable #6 — purely typographic pieces set in the chosen direction's lettering",
+      "why": "Six numerals styled in the family typography need no client input beyond the numbering and the print spec, which are both supplied."
+    },
+    {
+      "requirement": "Direction: soft floral (ref URL) OR elevated black-script; keep existing signature-drinks sign untouched; print-ready PDFs w/ vector text + source files",
+      "assumed_value": "Primary direction = Option 1 soft floral (floral_reference.jpg stands in for the linked arch-arrangement URL); script_style_example.png supplies Option 2 so the designer/agent can pitch either. signature_drinks_sign.png must remain UNTOUCHED — it is the playful anchor piece the new family coordinates around, never restyles. 'Print-ready PDFs w/ vector text + source files' is recorded as the OUTPUT spec for the Adobe workflow: vector-text PDF export plus native source files, flagged as the human-finish handoff",
+      "why": "Both creative directions needed concrete reference files to replace a URL and an attachment; the keep-as-is constraint binds the agent's edit scope; the PDF/source line describes deliverables the workflow produces, not collectible inputs."
+    }
+  ],
+  "coverage": {
+    "inputs_total": 7,
+    "covered_by_assets": 5,
+    "covered_by_decisions": 2,
+    "uncovered": []
+  },
+  "stats": {
+    "images_generated": 5,
+    "regenerations": 0,
+    "est_cost_usd": 0.66,
+    "text_calls": 9,
+    "wall_time_s": 304
+  },
+  "ready_for_agent": true
+}

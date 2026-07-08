@@ -1,0 +1,244 @@
+{
+  "task_id": 3437,
+  "slug": "blausweta-insert",
+  "title": "graphic designer / print designer to recreate a two-sided DIN A5 package",
+  "category": "Flyers & Posters",
+  "family": "Express Template Design",
+  "archetype": "template",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 7,
+      "evidence": [
+        "image 1 (logo_official): correct Blausweta-Rasur logo, navy/purple straight razor mark, on-brand",
+        "draft_refs[0] (image 2): existing insert uses hearts, watercolour wash, handwritten script — explicitly prohibited style",
+        "image 2",
+        "image 3",
+        "logo_official",
+        "campaign_copy"
+      ],
+      "deductions": [
+        "draft_refs[0] is the exact 'wedding-y' aesthetic the brief forbids; it misleads the style-reference step",
+        "icon_set lacks 'shield' and 'package' hints required by campaign_copy back_benefits items 4 and 5",
+        "Reference draft (image 2) contradicts 'not wedding-y' style with hearts and script font.",
+        "Reference draft (image 3) contains outdated discount codes and percentages conflicting with brief.",
+        "Official logo provided as required",
+        "All campaign copy and codes present and correct"
+      ],
+      "fix": {
+        "target_asset_key": "search_design",
+        "problem": "Reference drafts contain conflicting style and outdated discount codes.",
+        "prompt_delta": "Strictly adhere to the 'not wedding-y' style and use only the discount codes and percentages provided in `campaign_copy`. Disregard hearts, script fonts, and specific codes from `draft_refs`."
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        7,
+        4,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 7,
+      "evidence": [
+        "campaign_copy has all 6 back benefits with icon_hints including 'shield' and 'package', but no matching icon assets exist in inventory",
+        "icon_set[2] (image 7) maps to 'star'; icon_set[3] (image 8) maps to 'people'; truck and percent covered — shield and package icons absent",
+        "campaign_copy",
+        "icon_set",
+        "warehouse_header"
+      ],
+      "deductions": [
+        "Two of six back-benefit icons (shield, package) are missing; fill_text step cannot place them without agent improvisation",
+        "No QR-code or URL visual asset for CTA 'www.blausweta-rasur.de' — minor but executor must generate it",
+        "Two icons ('shield', 'package') hinted in `campaign_copy` for benefits are missing from `icon_set`.",
+        "All required copy, codes, and legal text present",
+        "Clean warehouse header image included"
+      ],
+      "fix": {
+        "target_asset_key": "icon_set[4]",
+        "problem": "shield and package icons absent; back side has 6 benefit blocks requiring 6 matched icons",
+        "prompt_delta": "Generate two flat-line icons on white background: (1) a shield outline for 'Fachberatung', (2) an open box/package outline for 'Sortiment'. Use navy #1E2D5C stroke, purple #5B4A9E accent fill, 1024x1024 px, same visual style as icon_set[0]–[3]."
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        6,
+        7,
+        10
+      ]
+    },
+    "executability": {
+      "score": 10,
+      "evidence": [
+        "icon_set[0]–[3] (images 5–8): raster PNGs on white background — image_vectorize can consume these directly as imperfect rasters",
+        "warehouse_header (image 4): 1536x1024 px landscape, no baked-in logo — image_crop_and_resize can extend to 152x214 mm bleed canvas",
+        "image 1",
+        "campaign_copy",
+        "icon_set[0]",
+        "logo_official"
+      ],
+      "deductions": [
+        "logo_official (image 1) is a raster PNG 1024x1024; brief says 'real vector logo' — agent must vectorize it, adding an unplanned step",
+        "warehouse_header is landscape 3:2; portrait A5 crop will lose significant content without manual art-direction guidance",
+        "All provided image assets are in standard formats and suitable for their intended workflow steps.",
+        "The `campaign_copy` JSON is well-structured and directly consumable by `fill_text`.",
+        "Icons are clean, vectorizable rasters for image_vectorize",
+        "Logo is ready for direct use, not tracing"
+      ],
+      "fix": {
+        "target_asset_key": "logo_official",
+        "problem": "Logo is raster PNG; brief and workflow require a true vector; image_vectorize will be needed but logo has gradient — result may be imperfect",
+        "prompt_delta": "Supply logo as SVG or EPS with embedded paths; if regenerating raster reference, render at 2048x2048 px minimum, pure flat colours #1E2D5C and #5B4A9E, no anti-aliasing gradients, to maximise auto-trace fidelity."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "draft_refs[1] (image 3): real photographed insert on wood surface — authentic client hand-over artefact with legible old discount code RASUR-FREUNDE10",
+        "warehouse_header (image 4): clean, unbranded, plausible fulfilment-centre photo — indistinguishable from genuine client asset",
+        "image 2",
+        "image 4",
+        "warehouse_header",
+        "draft_refs[0]"
+      ],
+      "deductions": [
+        "draft_refs[0] (image 2) looks AI-generated with watercolour wash; client would not hand over this as a 'current visual reference'",
+        "icon_set icons are visually polished/uniform — slightly synthetic but acceptable for a brief that asks for clean icons",
+        "`draft_refs` (image 2, 3) appear to be genuine client drafts, not overly polished or synthetic.",
+        "`warehouse_header` (image 4) is a believable stock photo for a retailer's operations.",
+        "Warehouse header is a genuine photo, not synthetic",
+        "Reference drafts match typical client handoff quality"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 7,
+      "evidence": [
+        "icon_set[0]–[3] all use #1E2D5C stroke + #5B4A9E accent — consistent with persona palette",
+        "draft_refs[0] uses watercolour purple wash and hearts; draft_refs[1] uses green thumbs-up and gold/brown gift icons — both break palette",
+        "draft_refs[0] (image 2)",
+        "Recorded Decisions",
+        "icon_set[1]",
+        "logo_official"
+      ],
+      "deductions": [
+        "draft_refs[1] contains green and brown icons explicitly prohibited by brief; if agent uses it as style reference, palette breaks",
+        "draft_refs[0] romantic script font conflicts with Libre Franklin / Work Sans brand fonts",
+        "`draft_refs[0]` (image 2) introduces a 'wedding-y' aesthetic incoherent with the 'businesslike' brand identity.",
+        "The purple shade in `draft_refs[0]` (image 2) appears slightly different from the pinned Rich Purple #5B4A9E.",
+        "All icons and logo use the same navy/purple palette",
+        "Brand fonts and colors are consistent across assets"
+      ],
+      "fix": {
+        "target_asset_key": "draft_refs[1]",
+        "problem": "Back-side reference contains green, brown, gold icons and informal 'Du-form' copy — violates palette and voice rules",
+        "prompt_delta": "Regenerate as a clean A5 back-side layout mock: white bg, navy #1E2D5C header 'VORTEILE BEI BLAUSWETA-RASUR', 6 benefit rows each with a navy/purple flat icon, codes SHOP7 7% and DANKE5 5% in a navy bordered box, Sie-form German copy, no green, no gold, no brown."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        7,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Assumption pinning palette to #1E2D5C / #5B4A9E is sound and directly derived from logo_official colours",
+        "Editable .ai/.indd flagged as human-finish handoff is correct given feasibility=partial — avoids over-promising connector scope",
+        "Recorded Decisions (Palette/Prohibitions)",
+        "Recorded Decisions (Output specs)",
+        "campaign_copy",
+        "persona.json"
+      ],
+      "deductions": [
+        "No assumption recorded about missing shield/package icons — gap should have been flagged and filled proactively",
+        "Assumption treats 'no Trustpilot badge' as a prohibition but brief never mentions Trustpilot — minor noise, not harmful",
+        "The decision to pin specific hex codes and list explicit prohibitions is sound and clarifies the brief.",
+        "The decision to treat print setup and deliverables as output specs is correct for the workflow.",
+        "All assumptions (palette, format, output spec) are justified and documented",
+        "No real input wrongly demoted to assumption"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 8.2,
+  "verdict": "minor-gaps",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): The logo file (logo_official) is a 1024x1024 px raster PNG — not a real vector file. The brief explicitly demands the official vector logo for print-ready output, yet no actual .ai/.eps/.svg source has been provided. At 300 dpi print resolution this raster logo will be too small and unusable for a clean SAXOPRINT-ready PDF without retracing, which the brief explicitly forbids.",
+    "AGENT CHOKE on 'logo_official': The automated image_crop_and_resize and document_convert_pdf steps require a true vector logo for crisp CMYK print output. A 1024x1024 px raster placed into a 152x214 mm bleed document at 300 dpi yields roughly 86x86 mm at acceptable resolution — borderline — but more critically Adobe Express cannot embed it as a scalable vector, so the PDF/X-4 export will contain a low-quality rasterized logo, failing SAXOPRINT preflight."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.17,
+    "completeness": 0.22,
+    "executability": 0.1,
+    "realism": 0.17,
+    "coherence": 0.22,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.072,
+  "rounds": [
+    {
+      "round": 1,
+      "overall": 3.5,
+      "action": "regenerated",
+      "assets": [
+        "campaign_copy"
+      ],
+      "resolved": [
+        "campaign_copy"
+      ],
+      "unresolved": [],
+      "regen_cost": 0.004
+    },
+    {
+      "round": 2,
+      "overall": 7.8,
+      "action": "regenerated",
+      "assets": [
+        "icon_set"
+      ],
+      "resolved": [
+        "icon_set"
+      ],
+      "unresolved": [],
+      "regen_cost": 0.382
+    },
+    {
+      "round": "final",
+      "overall": 8.1,
+      "action": "final-judge"
+    }
+  ]
+}

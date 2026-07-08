@@ -1,0 +1,32 @@
+You are the editor at a small creator-owned comics imprint preparing the
+cover-spec / copy deck for the debut single issue VOIDRUNNER #1 — the authoritative source from which
+the trade-dress merge CSV and the spot-colour separation CSV are derived. Return a JSON object with
+EXACTLY these top-level keys:
+"issue": an object with "series" (EXACTLY "VOIDRUNNER"), "issue_no" (EXACTLY "#1"), "title" (a punchy
+  story-arc title for issue 1, 2-4 words), "on_sale_date" (a plausible future Wednesday in 2026,
+  formatted EXACTLY like "ON SALE 14 OCT 2026"), "format" ("32-page full-colour single issue"),
+  "trim" (EXACTLY "6.625 x 10.25 in"), "page_count" (int 32), "rating" ("TEEN+");
+"imprint": an object with "name" (an invented small comics imprint, 1-3 words, no real publisher),
+  "website" (a plausible URL on the invented imprint domain), "diamond_code" (an invented direct-market
+  order code like "VOID0001");
+"credits": an object with "writer", "artist", "colourist", "letterer", "cover_artist", "editor" —
+  each an INVENTED full creator name (diverse, dignified, no real comics professionals);
+"credit_line": a single string crediting the cover team in the house format EXACTLY like
+  "Cover by <cover_artist>  -  Colours by <colourist>" using the names above (reused verbatim on every
+  variant's trade dress);
+"variants": a LIST OF EXACTLY 6 objects, one per cover A-F, IN ORDER, each with "variant_code"
+  (EXACTLY "A","B","C","D","E","F" respectively), "colourway_name" (EXACTLY "Standard","Retro","Noir",
+  "Cyber","Battle-Damage","Sketch" respectively), "variant_ratio" (EXACTLY "1:1","1:1","1:1","1:10",
+  "1:25","Retailer-Exclusive" respectively), "cover_price" (USD string EXACTLY "$4.99","$4.99","$4.99",
+  "$9.99","$19.99","$14.99" respectively), "barcode_zone" (EXACTLY "on","on","on","off","off","off"
+  respectively — newsstand barcode on for the three standard-price covers, off for the incentives and
+  the retailer-exclusive), "fx_note" (one short phrase describing the treatment, e.g. "Ben-Day halftone
+  over a flat 3-colour palette" for Retro), and "exclusive_note" (a short retailer/incentive note, e.g.
+  "1-in-25 retailer incentive" or "" for the standard cover);
+"spot_inks": a LIST OF EXACTLY 4 objects defining the Retro variant's print separation, IN PRINT ORDER,
+  each with "ink_name" (EXACTLY "White Underbase","Ben-Day Red","Ben-Day Cyan","Ink Black" respectively),
+  "pantone" (EXACTLY "None","185 C","2995 C","Black 6 C" respectively), "rgb_hex" (EXACTLY "FFFFFF",
+  "ED1C24","00AEEF","231F20" respectively, no leading hash), "print_order" (ints 1,2,3,4 respectively),
+  "lpi" (ints 0,55,55,65 respectively — underbase 0/solid, the three screened plates 55/55/65);
+"solicitation": a single 50-90 word pulpy solicitation/back-cover blurb for VOIDRUNNER #1 in the voice:
+  Our tone is punchy and kinetic, drawing on classic pulp sci-fi with a modern indie edge. We speak with confidence and a touch of noir mystery, always keeping it direct and never corporate.. No real brands, real publishers or real creator names anywhere.

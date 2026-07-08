@@ -1,0 +1,155 @@
+{
+  "task_id": "AO-95",
+  "slug": "voltcast-tech-channel-delivery-qc-video-audit",
+  "title": "Voltcast tech-channel delivery QC: audit the outsourced editor's YouTube master + vertical cut against the channel delivery-spec sheet (timecode-referenced video findings report)",
+  "vertical": "Music, Film, Publishing & Media",
+  "one_line_ask": "Audit the outsourced editor's Voltcast episode deliverables -- the 16:9 YouTube master and the 9:16 vertical cut -- against the channel's written delivery-spec sheet, and return a timestamp-referenced QC findings report (as a report PDF plus structured JSON) listing every spec drift: duration, resolution/fps, loudness, music-vs-narration balance, missing intro/outro, unsafe-margin overlays and off-brand text.",
+  "generated_at": "2026-07-07T18:36:03",
+  "assets": [
+    {
+      "name": "voltcast_delivery_spec.pdf",
+      "kind": "data",
+      "path": "assets/voltcast_delivery_spec.pdf",
+      "provider": "gemini/gemini-2.5-flash"
+    },
+    {
+      "name": "voltcast_brand_frames.png",
+      "kind": "image",
+      "path": "assets/voltcast_brand_frames.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "2400x1350",
+      "size_note": "Rescaled 2026-07-08 from 1536x1024 to the spec's 2400x1350 with invisible #EEF0F3 letterbox padding; panels/text unchanged and crisp.",
+      "transparent": false,
+      "qc": {
+        "min_score": 9,
+        "passed": true,
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 10,
+            "issues": [],
+            "text_found": "VOLTCAST \u2014 APPROVED ON-SCREEN ELEMENTS\n1. INTRO END-CARD\nVOLTCAST\nEPISODE STRAP\n2. LOWER-THIRD\nAlex Chen | Lead Engineer\n3. PRICE / SPEC CALLOUT\n$299 | 4K 60fps\nsafe margin"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Minor: the three panel cards appear slightly portrait/tall in proportion rather than standard 16:9 widescreen preview frames, which is a minor layout inconsistency for a broadcast overlay reference sheet"
+            ],
+            "text_found": "VOLTCAST \u2014 APPROVED ON-SCREEN ELEMENTS | 1. INTRO END-CARD | VOLTCAST | EPISODE STRAP | 2. LOWER-THIRD | Alex Chen | Lead Engineer | 3. PRICE / SPEC CALLOUT | $299 | 4K 60fps | safe margin"
+          }
+        ],
+        "gens": 3
+      },
+      "cost": 0.402,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 10,
+          "gemini": 10,
+          "anthropic": 9
+        },
+        "note": "Run directly via verify_assets.verify_one (the batch harness's collect() skips this file because its name contains the substring 'frame' in its '_frame' exclusion filter, so the sweep never scored it; scored here explicitly). Passes 3/3 acceptance, brand-clean."
+      }
+    },
+    {
+      "name": "voltcast_e42_vertical_9x16.mp4",
+      "kind": "video",
+      "path": "assets/voltcast_e42_vertical_9x16.mp4",
+      "provider": "seedance base footage + ffmpeg composite (overlays/audio) by audit fixer",
+      "resolution": "1080x1920",
+      "duration": 50.0,
+      "has_audio": true,
+      "qc": {
+        "min_score": 9,
+        "passed": true,
+        "regenerated": true,
+        "method": "REBUILT 2026-07-08 by independent audit fixer. Prior deliverable was a 5.04s SILENT clip with NO overlays and NONE of the planted vertical defects -> unauditable. Rebuilt as a real ~50s 9:16 Shorts cut: looped brand-clean Seedance host footage (green-cased blank phone, no logos) + burned-in price callout + real AAC narration/bed audio, with the two planted vertical defects baked in.",
+        "panel": [
+          {
+            "provider": "agent-visual-audit",
+            "score": 9,
+            "issues": [],
+            "text_found": "$299 | 4K 60fps (price callout, clipped at bottom edge)",
+            "frames_checked": [
+              10,
+              48
+            ],
+            "notes": "~50s 9:16 1080x1920 24fps H.264 + stereo AAC 48k. PLANTED DEFECT 1: the $299|4K 60fps price callout is carried over at the 16:9 bottom position, so on the tighter mobile frame its lower edge is CLIPPED outside the mobile safe area (bottom of the digits cut off). PLANTED DEFECT 2: NO subscribe/outro end-card anywhere on the short (missing on vertical). Host is the same brand-clean budget-phone reviewer; green-cased blank unbranded phone; NO Apple/iPhone/wordmarks. On-intent and auditable."
+          }
+        ]
+      },
+      "note": "REBUILT to be a genuine auditable Shorts deliverable. 1080x1920, 50s, WITH audio. Both vertical-specific planted defects (clipped price callout outside mobile safe area; missing outro card) are now baked into the file so the QC agent can actually find them. Base host footage is the earlier brand-clean Seedance grab (Apple violation already removed)."
+    },
+    {
+      "name": "voltcast_e42_master_16x9.mp4",
+      "kind": "video",
+      "path": "assets/voltcast_e42_master_16x9.mp4",
+      "provider": "seedance base footage + ffmpeg composite (overlays/TTS narration/music bed) by audit fixer",
+      "resolution": "3840x2160",
+      "duration": 740.0,
+      "has_audio": true,
+      "qc": {
+        "min_score": 9,
+        "passed": true,
+        "regenerated": true,
+        "method": "REBUILT 2026-07-08 by independent audit fixer. Prior deliverable was a 5.04s SILENT 1920x1088 clip with NO overlays and NONE of the planted defects -> the QC agent would have had nothing to audit. Rebuilt as a genuine 4K master: brand-clean Seedance desk footage looped to 12:20, real burned-in overlays (intro end-card, lower-third, price callouts, subscribe card) + real TTS narration (incl. sponsor read ~2:00 + verdict) mixed with a music bed, with every planted spec drift baked in.",
+        "panel": [
+          {
+            "provider": "agent-visual-audit",
+            "score": 9,
+            "issues": [],
+            "text_found": "VOLTCAST / EPISODE 42 \u2014 BUDGET PHONE SHOOTOUT / Alex Chen | Lead Engineer / $189 | 6.5\" 90Hz / $249 | 50MP triple / $299 | 4K 60fps / SUBSCRIBE VOLTCAST",
+            "frames_checked": [
+              2,
+              12,
+              310,
+              733
+            ],
+            "notes": "3840x2160 24fps H.264 High + stereo AAC 48k, 12:20 runtime. PLANTED DRIFTS all present & findable: (1) runtime 12:20 OVERSHOOTS the 12:00 ceiling; (2) integrated loudness -12.7 LUFS (HOT vs -14 +/-1 target); (3) during the sponsor read (~120-151s) the music bed sits only ~3-4 LU below narration, NOT the required >=12 LU (no ducking); (4) lower-third 'Alex Chen | Lead Engineer' set in generic Arial default sans, NOT the approved Voltcast lower-third style (off-brand font); (5) the $299|4K 60fps callout sits very low near the bottom edge (risky/near-unsafe). Spec-COMPLIANT elements also present so drifts stand out: branded intro end-card concludes within first ~5.5s; subscribe/outro card in final 15s. Host + devices brand-clean (no Apple/MacBook/iPhone/wordmarks)."
+          }
+        ]
+      },
+      "note": "REBUILT to be the genuine primary artefact under audit. 3840x2160 4K, 24fps, H.264, 12:20, WITH narration+music audio and real burned-in overlays. All five planted master drifts (over-runtime, hot loudness, no music duck under the sponsor read, off-brand Arial lower-third, near-edge callout) are baked into the file so the timecode-referenced QC report has real findings to cite. Base host footage is the earlier brand-clean Seedance grab."
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 4,
+    "produced": 4,
+    "missing": []
+  },
+  "qc_summary": {
+    "scored": 3,
+    "passed": 3,
+    "by_kind": {
+      "image": 1,
+      "video": 2,
+      "audio": 0
+    },
+    "min_scores": [
+      9,
+      9,
+      9
+    ]
+  },
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 1,
+    "verified_pass": 1
+  },
+  "av_audit": {
+    "auditor": "independent audit fixer",
+    "date": "2026-07-08",
+    "videos_manually_judged": [
+      "voltcast_e42_vertical_9x16.mp4",
+      "voltcast_e42_master_16x9.mp4"
+    ],
+    "audio_assets": 0,
+    "prior_state": "Both videos shipped by the previous agent were 5.04s SILENT clips at 1920x1088 / 1088x1920 with NO burned-in overlays, NO intro/outro cards, and NO audio -> NONE of the planted spec drifts existed, so this QC-audit task was unauditable. The prior manifest rationalized this as 'representative clips / length not load-bearing / audio from a separate VO track' but there was no VO track and audio_assets=0.",
+    "fix": "REBUILT both deliverables 2026-07-08 by compositing overlays + TTS narration + music bed onto the brand-clean base host footage. Master: 3840x2160 4K, 24fps, H.264, 12:20, stereo AAC; planted drifts baked in = over-runtime (12:20 vs 12:00), hot loudness (-12.7 LUFS), no music duck under the sponsor read (~2:00), off-brand Arial lower-third, near-edge callout; spec-compliant intro end-card (<8s) + subscribe card (final 15s) present. Vertical: 1080x1920, 24fps, 50s, stereo AAC; planted drifts = price callout clipped outside the mobile safe area + NO outro card. Brand_frames.png rescaled to spec 2400x1350.",
+    "result": "All four deliverables now match their spec requirements and are brand-clean; the two videos carry every planted defect so the timecode-referenced QC report has genuine findings to cite."
+  }
+}

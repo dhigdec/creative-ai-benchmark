@@ -1,0 +1,187 @@
+{
+  "task_id": 9003,
+  "slug": "realestate-video",
+  "title": "Real-estate lead-gen listing-media package — narrated property tour cut from room clips + cleaned agent VO scored to a licensed bed, plus a graded hero still, twilight composite cover, branded lower-third, and Feed/Stories/Reels exports",
+  "category": "Video & Social Media Production",
+  "family": "Video, Audio & Social Media",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [
+      "gemini/gemini-2.5-flash: no parseable JSON in reply (first 200 chars): '{\"dimensions\":{\"task_fit\":{\"score\":4,\"evidence\":[\"Missing six room walkth"
+    ],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 6,
+      "evidence": [
+        "image 1 (listing_stills[0]): correct hero interior living room with blown-out windows — exact brief match",
+        "image 3 (listing_stills[2]): twilight reference is a generic suburban street scene, NOT the subject property exterior",
+        "image 1: correct hero interior, blown windows",
+        "image 2: correct exterior, overcast sky"
+      ],
+      "deductions": [
+        "listing_stills[2] shows wrong property entirely — twilight ref must match listing_stills[1] facade",
+        "listing_stills[3] is a decorative door-plaque detail, not a usable brokerage logo/agent badge plate as brief specifies",
+        "image 3: twilight reference is generic, not property-matched",
+        "image 4: badge detail is plausible but not clearly Solstice"
+      ],
+      "fix": {
+        "target_asset_key": "listing_stills[2]",
+        "problem": "Twilight reference shows unrelated suburban street, not the subject two-storey modern home from listing_stills[1]",
+        "prompt_delta": "Regenerate as a dusk/twilight exterior of the SAME modern two-storey white-stucco home with dark garage door and stone accents seen in listing_stills[1], warm amber interior lights glowing through windows, indigo-to-orange sky gradient, matching facade angle and address number 209 visible."
+      },
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        6,
+        7
+      ]
+    },
+    "completeness": {
+      "score": 6,
+      "evidence": [
+        "campaign_brief.json present with all platform sizes, agent name, price, narration script, room order — data layer complete",
+        "Six raw room walkthrough video clips and the reverberant agent VO audio file are entirely absent from the asset inventory",
+        "campaign_brief: all required data fields present",
+        "image 5: logo artwork provided for vectorization"
+      ],
+      "deductions": [
+        "Zero video clips provided — video_create_quick_cut and media_summarize cannot start without them",
+        "No audio VO file present — media_enhance_speech has nothing to process",
+        "image 3: twilight reference not property-matched",
+        "image 4: badge detail lacks clear Solstice branding"
+      ],
+      "fix": {
+        "target_asset_key": "room_clips",
+        "problem": "All six H.264 room walkthrough clips and the reverberant VO audio are missing from the handoff package",
+        "prompt_delta": "Generate six synthetic H.264 proxy clips (kitchen, living-room, exterior-approach, primary-suite, primary-bath, hallway) each 10-15s with ambient audio, plus one 60s mono WAV agent VO recorded in a reverberant room reading the narration_script verbatim, all labelled per brief room names."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        4,
+        7
+      ]
+    },
+    "executability": {
+      "score": 7,
+      "evidence": [
+        "image 1 (listing_stills[0]): windows are genuinely blown-out white — image_select_by_prompt(windows) + image_adjust_highlights chain has real overexposed pixels to recover",
+        "image 5 (brokerage_logo): clean white background logo at 1024x1024 — image_remove_background trivial, image_vectorize has a clean raster to trace; BUT white bg means remove_background needs a non-transparent input, which is correct",
+        "image 1: blown windows for recovery, correct for highlight selection",
+        "image 2: overcast sky for sky replacement"
+      ],
+      "deductions": [
+        "No video or audio files present — entire media_summarize → media_enhance_speech → video_create_quick_cut → video_resize chain is blocked",
+        "listing_stills[3] (door plaque) cannot substitute for a logo/badge plate in image_remove_background + image_vectorize — wrong subject",
+        "All images are in correct format and dimensions for workflow steps",
+        "Logo artwork is suitable for background removal and vectorization"
+      ],
+      "fix": {
+        "target_asset_key": "room_clips",
+        "problem": "Absence of video clips and VO audio blocks the entire video pipeline (6 of ~30 workflow steps unreachable)",
+        "prompt_delta": "Produce six 1920x1080 H.264 MP4 proxy walkthrough clips with ambient room audio and one 48kHz mono WAV VO file with audible room reverb, matching brief room list and narration script."
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        4,
+        10
+      ]
+    },
+    "realism": {
+      "score": 8,
+      "evidence": [
+        "image 1 (listing_stills[0]) and image 2 (listing_stills[1]): photoreal listing photography indistinguishable from genuine MLS shots",
+        "image 3 (listing_stills[2]): twilight scene is real photography but depicts a completely different neighbourhood/property — breaks authenticity of the package as one listing",
+        "image 1: authentic real estate interior with natural flaws",
+        "image 2: exterior is plausible, not over-processed"
+      ],
+      "deductions": [
+        "Mismatched twilight reference (different house, different street) would be immediately flagged by any real brokerage client",
+        "listing_stills[3] door-plaque detail looks like a stock architectural photo, not a client-supplied agent badge",
+        "image 3: twilight reference is slightly generic but plausible",
+        "All assets appear as genuine client handoff"
+      ],
+      "fix": {
+        "target_asset_key": "listing_stills[2]",
+        "problem": "Twilight reference depicts wrong property — destroys single-listing authenticity",
+        "prompt_delta": "Photoreal dusk exterior of the identical modern two-storey home from listing_stills[1], same camera angle, warm window glow, twilight sky — must read as the same property at golden hour."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        6,
+        9
+      ]
+    },
+    "coherence": {
+      "score": 8,
+      "evidence": [
+        "image 5 (brokerage_logo): uses Deep Ink Navy (#1F2A3C) and a sage-green keyhole matching brand palette; wordmark reads 'Solstice Properties' correctly",
+        "campaign_brief.json palette/font spec (Libre Franklin, Inter; #F7F6F2, #C8A675, #1F2A3C, #7E9C7A) is internally consistent and referenced in look_notes",
+        "image 5: logo matches Solstice Properties branding",
+        "campaign_brief: palette and fonts align with brand"
+      ],
+      "deductions": [
+        "listing_stills[3] door-plaque is brushed-metal/industrial — clashes with bright-airy brand voice and warm-oak palette",
+        "No lower-third mockup or font specimen provided to confirm Libre Franklin/Inter rendering against brand colours",
+        "All assets use consistent palette and visual style",
+        "No conflicting branding elements"
+      ],
+      "fix": null,
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 9,
+      "evidence": [
+        "Music bed and twilight sky plate correctly deferred to Adobe Stock runtime licensing — avoids copyright risk and matches workflow tools",
+        "Output specs (1080x1080, 1080x1920, 1280x720 thumbnail) recorded precisely in decisions, matching campaign_brief.json platforms",
+        "Stock music and sky plates correctly assumed as runtime inputs",
+        "Export specs and grade reuse justified and documented"
+      ],
+      "deductions": [
+        "room_order in campaign_brief.json lists 'dining-room' but brief specifies 'hallway' — silent substitution not flagged as an assumption",
+        "No assumption recorded about the missing video/audio assets — a critical gap left undocumented",
+        "No real input wrongly demoted to assumption",
+        "All assumptions are industry-standard and client-acceptable"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10
+      ]
+    }
+  },
+  "overall": 7.1,
+  "verdict": "minor-gaps",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): Zero actual video files delivered — the brief demands six raw room walkthrough clips and one agent VO audio file, but the entire handoff contains only still images and a JSON brief. There is nothing to cut, sequence, or mix a narrated tour from.",
+    "AGENT CHOKE on 'listing_stills[2]': The twilight reference frame (vision_score=3) is a generic suburban street scene bearing zero resemblance to the listed property — the agent's modern two-storey exterior is nowhere in it. image_select_by_prompt targeting the sky for the composite will either mask the wrong structure entirely or produce a nonsensical twilight cover that cannot be published.",
+    "Task Fit 6/10: listing_stills[2] shows wrong property entirely — twilight ref must match listing_stills[1] facade",
+    "Completeness 6/10: Zero video clips provided — video_create_quick_cut and media_summarize cannot start without them"
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.054,
+  "rounds": []
+}

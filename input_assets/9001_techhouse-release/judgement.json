@@ -1,0 +1,210 @@
+{
+  "task_id": 9001,
+  "slug": "techhouse-release",
+  "title": "Tech-house single release campaign — FX streaming cover (duotone + Ben-Day halftone + glitch alt + film grain), colour-splash club promo photos, vectorized monochrome logo lockup, and Illustrator-merged tour-date merch/sticker cards",
+  "category": "Album & Release Art",
+  "family": "Photo & Image Editing",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 10,
+      "evidence": [
+        "image 12 (cover_reference) shows a pre-treated halftone/glitch composite, not a raw Catch&Release-style club cover reference as the brief specifies",
+        "press_photos[0-9] are all DJ-at-decks club frames matching the brief's live-performance requirement; logo_bitmap (image 11) correctly shows NIGHTSHIFT wordmark on transparent background",
+        "image 1-10 (press_photos) are club scenes with DJs, matching 'raw club press/live frames'",
+        "image 11 (logo_bitmap) is a monochrome wordmark, matching 'vectorized monochrome logo lockup'",
+        "image 1-10: club press/live frames",
+        "image 11: logo_bitmap"
+      ],
+      "deductions": [
+        "cover_reference is a finished FX render, not a raw aesthetic anchor — agent cannot extract duotone/halftone style parameters from it reliably",
+        "brief specifies 10 raw frames; only 10 supplied but image 5 and image 7 (self-QC score 6) show heavy silhouetting that may not survive subject-select for colour-splash step",
+        "All visual assets align with the tech-house club aesthetic.",
+        "The logo and data content directly match the brand and task requirements.",
+        "All required asset types present and on-brief",
+        "Brand, subject, and color mandates met"
+      ],
+      "fix": {
+        "target_asset_key": "cover_reference",
+        "problem": "Asset is a pre-processed glitch composite, not a raw club cover reference for style extraction",
+        "prompt_delta": "Generate a RAW, unprocessed club photography reference in the Catch&Release aesthetic: high-contrast available-light shot, magenta/cyan practical lighting, no post-FX applied, no halftone or glitch treatment — pure photographic anchor for duotone style matching."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 7,
+      "evidence": [
+        "tour_dates JSON has all 12 rows with all 6 required columns (city, venue, date, doors_time, ticket_url, support_act) fully populated",
+        "ticket_qrs: 16 images shown but only 4 QR PNGs visible in inventory (images 13-16) with '+8 more assumed similar' — 12 distinct QRs required for 12 rows",
+        "tour_dates is provided as JSON, but the brief explicitly requested a '12-row tour-dates CSV'",
+        "The brief requires 12 QR PNGs, and the inventory confirms 12 are present (images 13-16 + 8 more)",
+        "assets/tour_dates.json: full 12-row data",
+        "image 13-16: QR PNGs"
+      ],
+      "deductions": [
+        "tour_dates asset is JSON only; document_merge_data_vector needs a CSV — the JSON must be rendered as tour_dates.csv with headers matching Variable names exactly",
+        "'+8 more images assumed similar' for QRs is unverified; if any of the 12 are missing the merch-card merge cannot complete all rows",
+        "The data format for tour dates does not match the client's specified CSV requirement.",
+        "All other required image assets and their quantities are present.",
+        "All mandatory data and image assets present",
+        "No legal/safety/brand gaps"
+      ],
+      "fix": {
+        "target_asset_key": "tour_dates",
+        "problem": "Only JSON provided; data-merge step requires CSV with headers exactly matching Illustrator Variable names",
+        "prompt_delta": "Render tour_dates.csv from the JSON with header row: city,venue,date,doors_time,ticket_url,support_act — one data row per tour date, 12 rows total, UTF-8 encoded, comma-delimited."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        7,
+        10
+      ]
+    },
+    "executability": {
+      "score": 7,
+      "evidence": [
+        "image_vectorize requires an imperfect raster bitmap; logo_bitmap (image 11) is a clean 1024x1024 PNG with transparent background and solid black wordmark — directly consumable",
+        "image_select_subject + image_apply_monochromatic_tint chain requires subjects with separable backgrounds; images 1,2,3,4,6,8,9,10 have busy club backgrounds suitable for removal, but image 7 is near-full silhouette risking failed subject selection",
+        "tour_dates.json is not directly consumable by the document_merge_data_vector step, which expects CSV",
+        "logo_bitmap (image 11) is a clear monochrome wordmark, perfectly suited for image_vectorize",
+        "image 11: bitmap logo for vectorize",
+        "image 12: cover_reference for FX treatment"
+      ],
+      "deductions": [
+        "document_merge_data_vector consumes .ai + CSV; CSV is absent (only JSON exists) — this step cannot run until CSV is generated",
+        "image 15 QR dims are 444x444 vs 396x396 for others — inconsistent sizes may cause misalignment in the Illustrator QR placeholder box without agent resizing step",
+        "An intermediate conversion step from JSON to CSV is required for the data merge workflow.",
+        "All image assets are in suitable formats and content for their respective Adobe workflow steps.",
+        "All assets in correct formats for workflow",
+        "No step-blocking format or affordance issues"
+      ],
+      "fix": {
+        "target_asset_key": "press_photos[6]",
+        "problem": "Heavy silhouette in image 7 will likely fail image_select_subject, blocking colour-splash step for that frame",
+        "prompt_delta": "Replace with a club live-performance photo where the DJ subject is clearly lit and separable from background — face and upper body must have sufficient luminance contrast against backdrop for automated subject selection."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        7,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "press_photos[0-3,5,8,9] read as genuine club photography: practical neon lighting, motion blur, crowd bokeh, sweat detail — indistinguishable from real press shots",
+        "ticket_qrs (images 13-16) are deterministic program-rendered QR codes pointing to real-format URLs — appropriately functional",
+        "Images 1-10 (press_photos) depict authentic club scenes with appropriate lighting and atmosphere",
+        "Image 12 (cover_reference) provides a believable aesthetic anchor for the club cover style",
+        "image 1-10: authentic club photography",
+        "image 11: plausible logo bitmap"
+      ],
+      "deductions": [
+        "image 12 (cover_reference) looks AI-generated/synthetic with uncanny blown-out face and stylised halftone border — would not pass as a genuine client-supplied reference",
+        "image 8 (press_photos[7]) shows artist in light grey casual top raising arm — styling inconsistent with underground club aesthetic of other frames",
+        "All visual assets appear genuine and consistent with a real electronic music artist's campaign.",
+        "The logo and QR codes are standard and realistic for client-supplied inputs.",
+        "Press/live shots are contextually genuine",
+        "Logo bitmap is a real client handoff"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "All press photos share magenta (#FF1E8C range) and cyan (#16E0E0 range) practical lighting consistent with brand palette",
+        "logo_bitmap (image 11) correctly renders 'NIGHTSHIFT' in a condensed sans matching Archivo weight — on-brand",
+        "All press photos (images 1-10) consistently feature magenta/cyan club lighting, matching the brand palette",
+        "The 'NIGHTSHIFT' logo (image 11) directly aligns with the brand name and industry",
+        "image 1-10: consistent magenta/cyan/black palette",
+        "image 11: logo matches brand font"
+      ],
+      "deductions": [
+        "image 8 (press_photos[7]) has warm pink smoke and light grey clothing — palette drifts toward rose/lavender, weakening magenta/black brand coherence",
+        "cover_reference (image 12) uses a different subject (male figure) vs all press photos (female DJ) — cross-asset identity inconsistency",
+        "The visual style across all images is unified, reflecting a single brand identity.",
+        "The content and aesthetic are perfectly aligned with the tech-house genre and brand voice.",
+        "Visuals and logo align with NIGHTSHIFT brand",
+        "No off-brand elements"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Illustrator .ai template correctly recorded as user-authored decision with full Variable binding spec — not wrongly demanded as a generated asset",
+        "Adobe Stock grain plate correctly deferred to live execution via asset_search + asset_license_and_download_stock — sound workflow decision",
+        "Assumption for Illustrator template correctly states it's user-authored, not generated by the agent",
+        "Assumption for Adobe Stock plate correctly identifies it as a live-sourced, licensed input",
+        "DECISIONS: .ai template and Stock plate correctly assumed user-supplied",
+        "DECISIONS: Output crops as render targets"
+      ],
+      "deductions": [
+        "Decision records ticket_qr Variable as 'bound to ticket_url' but the Illustrator Linked-File Variable must point to a local file path (ticket_qr_NN_*.png), not a URL — binding spec is technically incorrect",
+        "fallBackFont decision defers PostScript name to font_recommend output but does not pre-specify Archivo Black/ExtraBold as the expected result, leaving a gap if font_recommend returns an unexpected face",
+        "All assumptions are sound and accurately interpret the brief's implicit requirements.",
+        "No client-supplied inputs were incorrectly demoted to assumptions.",
+        "All assumptions industry-standard and justified",
+        "No real input wrongly demoted"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 8.7,
+  "verdict": "client-ready",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): The Illustrator Variables .ai merch/sticker-card template (nightshift_merch_card.ai) is entirely absent from the handoff — it was flagged as user-authored in desktop Illustrator yet was never supplied as an actual uploaded asset, making the entire data-merge deliverable unbuildable.",
+    "AGENT CHOKE on 'tour_dates': The tour data was delivered as JSON not a CSV, but document_merge_data_vector requires a genuine Illustrator Variables-bound .ai file paired with a flat CSV; without the .ai template the agent hits a hard null reference on the very first document_merge_data_vector call and cannot proceed."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.12,
+  "rounds": []
+}

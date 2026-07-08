@@ -1,0 +1,199 @@
+{
+  "task_id": 3491,
+  "slug": "seniorcare-brand",
+  "title": "Graphic Designer for Premium Senior Home Care / Dignity-First Brand (Long-Term Partner)",
+  "category": "Brochures",
+  "family": "Express Template Design",
+  "archetype": "template",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 10,
+      "evidence": [
+        "mcc_logo: correct brand name, palette-matched terracotta/sage hands motif, serif wordmark",
+        "care_photos[0-4]: all show caregiver+senior dyads in warm home/outdoor settings matching dignity-first brief",
+        "image 1",
+        "care_photos[0-4]",
+        "services_copy.json",
+        "image 2"
+      ],
+      "deductions": [
+        "care_photos[4] caregiver wears casual dark shirt, not scrubs — slightly less 'premium provider' signal",
+        "No male senior shown with female caregiver in non-grooming context; diversity coverage thin for LinkedIn",
+        "Logo and photos align with 'premium senior home care' and 'dignity-first' brief.",
+        "Copy reflects 'warm, empathetic, trustworthy' brand voice.",
+        "Logo matches Modern Care Collective brand",
+        "All photos depict warm, empathetic caregiver-senior interactions"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 10,
+      "evidence": [
+        "services_copy.json supplies all five service blurbs, taglines, family/caregiver messaging — fill_text has full content",
+        "Five care photos + logo present; all eight client-promised input slots filled",
+        "mcc_logo.png",
+        "care_photos[0-4]",
+        "services_copy.json",
+        "image 1"
+      ],
+      "deductions": [
+        "No contact/location copy (Alpharetta, GA phone/web) in services_copy.json — brochure footer will be blank",
+        "No style-guide or font-file reference asset; agent must assume Lora/Libre Franklin availability in Express",
+        "All 1 logo, 5 photos, and copy files explicitly requested by the client are present.",
+        "No mandatory elements are missing or empty.",
+        "Logo, required photography, and copy all present",
+        "No mandatory or regulatory elements missing"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "executability": {
+      "score": 10,
+      "evidence": [
+        "mcc_logo 1024x1024 PNG on white background — asset_add_file accepts directly; image_crop_and_resize can isolate mark",
+        "care_photos all 1536x1024 px — sufficient resolution for A4 brochure bleed and 1080x1080 crop",
+        "mcc_logo.png",
+        "care_photos[0-4]",
+        "services_copy.json",
+        "image 1"
+      ],
+      "deductions": [
+        "mcc_logo has solid white background, not transparent — logo placement on coloured template panels will show white box unless agent removes background first",
+        "No transparent/alpha-channel PNG variant of logo supplied for overlay use",
+        "All image files are standard formats, suitable for design tools.",
+        "JSON copy is well-structured and directly consumable by 'fill_text' step.",
+        "Logo and photos are high-res, suitable for cropping/resizing",
+        "Copy is structured for data-merge and template fill"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "care_photos[0-3] pass as genuine stock photography — lighting, depth-of-field, and subject interaction are convincing",
+        "care_photos[4] (gardening) has slightly over-saturated AI-rendered foliage texture visible on close inspection",
+        "image 1",
+        "care_photos[0-4]",
+        "image 2",
+        "image 4"
+      ],
+      "deductions": [
+        "care_photos[4] AI rendering artifacts in plant leaves reduce believability as real client-supplied photography",
+        "mcc_logo is clearly generated but brief explicitly allows a simulated stand-in — acceptable per decision",
+        "Logo appears professionally designed, not generic.",
+        "Photos are high-quality, authentic, and consistent with a premium brand's visual assets.",
+        "Photography is natural, context-appropriate, and premium-feeling",
+        "Logo is plausible as a real client handoff"
+      ],
+      "fix": {
+        "target_asset_key": "care_photos[4]",
+        "problem": "AI foliage artifacts make image read as synthetic in a premium-photography context",
+        "prompt_delta": "Photorealistic DSLR-quality image, shallow depth of field, natural bokeh on background plants, no AI texture artifacts; senior woman and caregiver gardening together, golden-hour warm light, same composition"
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "mcc_logo uses #CB9D8C terracotta and #4A6D5A sage exactly matching persona.json palette",
+        "services_copy.json voice is consistently warm, empathetic, understated — matches brand voice spec throughout all five service blurbs",
+        "image 1",
+        "care_photos[0-4]",
+        "services_copy.json"
+      ],
+      "deductions": [
+        "care_photos feature navy scrubs prominently; navy is not in the defined palette and may clash with #4A6D5A sage in template layouts",
+        "Logo colors align with brand palette; visual style is consistent.",
+        "Photos and copy consistently convey a warm, empathetic, and dignified brand voice.",
+        "Palette and typography consistent with brand definition",
+        "Voice and visuals unified across all assets"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        9,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Logo stand-in assumption is correctly flagged as pilot-only with production swap path — sound and transparent",
+        "Standard output sizes (A4, A5, 1080x1080, 1200x627) are industry-standard and appropriate for the named workflow steps",
+        "Recorded Decisions for logo, brand elements, and deliverables",
+        "services_copy.json",
+        "image 1"
+      ],
+      "deductions": [
+        "Palette and typography defined as assumptions but brief explicitly asks designer to 'develop' brand identity — these are deliverables, not assumptions; should be flagged for client sign-off before template fill",
+        "No assumption recorded about placeholder contact details — silent gap that will surface at print stage",
+        "Assumptions for logo simulation and brand element definition are sound for a pilot.",
+        "Deliverable size assumptions are reasonable and flagged for confirmation.",
+        "Logo stand-in assumption is justified and documented",
+        "Palette/typography decisions align with brief and persona"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 10.0,
+  "verdict": "client-ready",
+  "top_risks": [
+    "CLIENT-REJECT (sev 8): The care photos are clearly stock images (Getty/Shutterstock watermark-style compositions, identical scrubs across unrelated shoots) — no proof of licensed commercial usage rights has been provided. I will not allow my brand collateral to go to print or social media on unlicensed stock photography that could expose Modern Care Collective to copyright liability.",
+    "AGENT CHOKE on 'mcc_logo': The logo is a PNG with a white background, not a transparent or vector file. The automated asset_add_file step feeding into Express templates will embed a white rectangle behind the logo mark, making it unusable on any colored or photographic background without manual intervention the agent cannot perform."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.17,
+    "completeness": 0.22,
+    "executability": 0.1,
+    "realism": 0.17,
+    "coherence": 0.22,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.06,
+  "rounds": []
+}

@@ -1,0 +1,213 @@
+{
+  "task_id": 6004,
+  "slug": "realestate-stills",
+  "title": "Real-estate weekly listing stills package — 6 scenes from 5-bracket RAW: masked window-pull HDR grade, straightened verticals, one shared gallery preset, print + web JPEGs, plus Illustrator data-merged 'just-listed' rider labels",
+  "category": "Photo Retouching & Enhancement",
+  "family": "Photo & Image Editing",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 7,
+      "evidence": [
+        "bracketed_frames[0]-[5] cover living/kitchen/bed/exterior-front/twilight/backyard — all 6 required scene types present",
+        "bracketed_frames[0] (image 3) is a single clean interior, not a blown-window bracket base; brief demands true window blow-out in the base",
+        "Brief specifies '5-bracket exposures per scene'.",
+        "Assets bracketed_frames[0-5] are single JPEGs.",
+        "image 3-8: all 6 scenes present, correct subject types",
+        "image 1: correct brokerage logo, matches brand"
+      ],
+      "deductions": [
+        "Only ONE merged-base JPEG per scene supplied, not 5 bracketed exposures per scene (30 frames expected, 6 delivered)",
+        "bracketed_frames[0] window is not blown out; window-pull step has no load-bearing highlight to recover",
+        "Core input for HDR blending is missing.",
+        "Provided images are pre-merged, skipping a mandatory initial step.",
+        "image 4: verticals not straight, minor drift from brief"
+      ],
+      "fix": {
+        "target_asset_key": "bracketed_frames",
+        "problem": "Input images are single JPEGs, not 5-bracket RAWs.",
+        "prompt_delta": "Generate 5-bracket RAW exposures for each scene, not a single merged JPEG. Ensure true window blow-out in the base exposure."
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        7,
+        3,
+        9
+      ]
+    },
+    "completeness": {
+      "score": 5,
+      "evidence": [
+        "listing_factsheet.csv present with all 10 required columns, 6 rows, headers matching CSV spec exactly",
+        "Brief mandates 5 bracketed exposures per scene × 6 scenes = 30 source frames; only 6 single frames delivered",
+        "Brief requires '5-bracket exposures per scene'.",
+        "Brief requires 'Brokerage logo (.ai vector)', image 1 is PNG.",
+        "listing_factsheet.csv: all required fields populated, matches brief",
+        "image 3-8: all 6 bracketed scenes present"
+      ],
+      "deductions": [
+        "24 of 30 required bracket frames are missing — image_apply_auto_tone and HDR blend have no exposure range to work from",
+        "brokerage_logo delivered as raster PNG (checkerboard alpha visible), not .ai vector as brief specifies for rider label artboard",
+        "Mandatory 5-bracket RAW inputs are missing.",
+        "Brokerage logo is not in the specified vector format.",
+        "No mandatory/required field missing"
+      ],
+      "fix": {
+        "target_asset_key": "bracketed_frames",
+        "problem": "Missing 5-bracket RAW exposures for each scene.",
+        "prompt_delta": "Provide 5-bracket RAW exposures for each of the 6 scenes, not single merged JPEGs."
+      },
+      "low_confidence": true,
+      "spread": 8,
+      "per_judge": [
+        5,
+        2,
+        10
+      ]
+    },
+    "executability": {
+      "score": 5,
+      "evidence": [
+        "listing_factsheet.csv column headers (status,address,beds,baths,sqft,price,agent_name,agent_phone,brokerage,logo) match the Variables spec exactly — document_merge_data_vector can bind directly",
+        "image_select_by_prompt('windows') requires a blown-out window region; bracketed_frames[0],[1],[4] show fully white windows — those three frames are usable; bracketed_frames[3] exterior front has no interior windows to select",
+        "Workflow implies HDR merge from brackets, but bracketed_frames are single JPEGs.",
+        "document_merge_data_vector expects vector logo, image 1 is PNG.",
+        "image 3-8: busy backgrounds, true window blow-out for window-pull",
+        "listing_factsheet.csv: CSV format, ready for data-merge"
+      ],
+      "deductions": [
+        "image_adjust_exposure / HDR blend steps require multi-exposure input; single-frame delivery means the entire bracket-merge sub-chain cannot execute",
+        "brokerage_logo is a raster PNG not an .ai; the 'logo' Variable in rider_label.ai is a linked-image Variable — PNG is actually acceptable for a linked image, but the checkerboard background must be confirmed transparent before placement",
+        "Initial HDR merge step cannot be executed.",
+        "Logo format is not optimal for vector data merge.",
+        "All assets directly consumable by workflow"
+      ],
+      "fix": {
+        "target_asset_key": "bracketed_frames",
+        "problem": "Workflow step for HDR merge from brackets cannot run.",
+        "prompt_delta": "Provide 5-bracket RAW exposures for each scene to enable HDR merge step."
+      },
+      "low_confidence": true,
+      "spread": 7,
+      "per_judge": [
+        5,
+        3,
+        10
+      ]
+    },
+    "realism": {
+      "score": 9,
+      "evidence": [
+        "bracketed_frames[3] (kitchen, image 6) and bracketed_frames[4] (bedroom, image 7) show authentic blown-out windows and real-estate staging — documentary realism achieved",
+        "bracketed_frames[0] (image 3) looks like a styled editorial shoot, not a raw bracket base — too polished, no exposure latitude artifacts",
+        "Images 3-8 depict realistic interior/exterior real estate scenes.",
+        "Images 5 and 6 show natural window blow-out.",
+        "image 3,5,6,7,8: documentary realism, natural light, plausible bracketed RAW look",
+        "image 4: slightly off-level, but plausible as real agent capture"
+      ],
+      "deductions": [
+        "No exposure-sequence metadata or EXIF variation between frames; automated HDR tool cannot verify bracket alignment",
+        "bracketed_frames[0] lacks the slightly underexposed/flat look of a 0EV bracket base from a real shoot",
+        "Photographic quality and content are highly authentic.",
+        "Window blow-out supports the 'window-pull' requirement.",
+        "image 4: slightly off-level, but not synthetic"
+      ],
+      "fix": {
+        "target_asset_key": "bracketed_frames[0]",
+        "problem": "Scene reads as finished editorial, not a raw 0EV bracket; window blow-out absent, no bracket-sequence realism",
+        "prompt_delta": "Reshoot as a realistic 0EV real-estate bracket: slight underexposure on room interior (shadows slightly crushed), windows fully blown to pure white, no post-processing warmth or vignette, slight lens distortion consistent with wide-angle real-estate camera, ambient mixed lighting (warm lamp + cool daylight)."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        9
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "brokerage_logo (image 1) uses #C8102E red and #1A1A1A black exactly matching brand palette; 'Northern Bloom Properties' wordmark present",
+        "All 6 CSV rows carry consistent agent Eleanor Vance, brokerage 'Northern Bloom Properties', logo filename — single identity across data",
+        "Image 1 (logo) matches 'Northern Bloom Properties' brand.",
+        "Logo uses specified red and black palette.",
+        "image 1: logo, palette, and fonts match brand",
+        "listing_factsheet.csv: brokerage, agent, and branding consistent"
+      ],
+      "deductions": [
+        "house_look_reference (image 2) is a warm British-cottage interior; suburban Midwest brokerage scenes (images 3-8) have different architectural character — style reference may not lock the right preset",
+        "No font specimen or swatch asset confirms Libre Franklin / Inter usage in the label layout",
+        "All assets align with the specified brand identity.",
+        "Palette and industry voice are consistently represented.",
+        "No inconsistency across assets"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "rider_label.ai correctly demoted to user-authored client template with clear Variable binding spec — not generated, not marked missing",
+        "Print/web JPEG specs recorded as agent output specs, not demanded as input assets — correct per SCOPE RULE",
+        "Decisions correctly identify user-authored template and output specs.",
+        "Assumptions about variable naming and linked image variable are sound.",
+        "rider_label.ai template correctly assumed as user-supplied",
+        "output specs (print/web JPEG) correctly recorded as workflow outputs"
+      ],
+      "deductions": [
+        "Decision records only ONE merged-base JPEG per scene but brief explicitly states '5 bracketed exposures per scene' as a WE-generate input — this is a generation gap, not a client-supplied item",
+        "No decision records how the single-frame bases will substitute for a true 5-bracket merge, leaving the HDR chain assumption undocumented",
+        "All recorded decisions are logical and justified.",
+        "No client input was wrongly demoted to an assumption.",
+        "No risky or unjustified assumptions"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 7.0,
+  "verdict": "minor-gaps",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): You handed me 8 single JPEGs and called them '5-bracket exposures per scene across 6 scenes' — that's 30 RAW bracket files I need and you delivered exactly 0. Without the actual exposure brackets there is no HDR merge, no load-bearing window-pull, and the entire grading workflow collapses on step one.",
+    "AGENT CHOKE on 'bracketed_frames[0]': document_merge_data_vector will never even get its turn — the agent will choke immediately trying to run image_select_by_prompt('windows') and image_adjust_highlights on a flat single-exposure JPEG passed off as a 5-bracket set. There is no luminosity range to blend, so the masked window-pull step has nothing to pull from and the pipeline hard-fails at the first HDR composite call.",
+    "Completeness 5/10: 24 of 30 required bracket frames are missing — image_apply_auto_tone and HDR blend have no exposure range to work from",
+    "Executability 5/10: image_adjust_exposure / HDR blend steps require multi-exposure input; single-frame delivery means the entire bracket-merge sub-chain cannot execute"
+  ],
+  "qc_gaps": [
+    "Per-asset self-QC averages 8.9/10, but package Executability scored 5 — assets are individually strong yet wrong/insufficient for the task.",
+    "Per-asset self-QC averages 8.9/10, but package Completeness scored 5 — assets are individually strong yet wrong/insufficient for the task."
+  ],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.072,
+  "rounds": []
+}

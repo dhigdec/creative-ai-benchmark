@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-06-15T16:08:42Z",
+  "panel": [
+    "anthropic/claude-sonnet-4-6",
+    "gemini/gemini-2.5-flash",
+    "openai/gpt-4.1"
+  ],
+  "totals": {
+    "judge_cost_usd": 0.072,
+    "n_tasks": 1,
+    "avg_overall": 7.0
+  },
+  "tasks": [
+    {
+      "task_id": 6004,
+      "slug": "realestate-stills",
+      "overall": 7.0,
+      "verdict": "minor-gaps",
+      "dimensions": {
+        "task_fit": 7,
+        "completeness": 5,
+        "executability": 5,
+        "realism": 9,
+        "coherence": 10,
+        "decision_quality": 10
+      },
+      "top_risks": [
+        "CLIENT-REJECT (sev 9): You handed me 8 single JPEGs and called them '5-bracket exposures per scene across 6 scenes' \u2014 that's 30 RAW bracket files I need and you delivered exactly 0. Without the actual exposure brackets there is no HDR merge, no load-bearing window-pull, and the entire grading workflow collapses on step one.",
+        "AGENT CHOKE on 'bracketed_frames[0]': document_merge_data_vector will never even get its turn \u2014 the agent will choke immediately trying to run image_select_by_prompt('windows') and image_adjust_highlights on a flat single-exposure JPEG passed off as a 5-bracket set. There is no luminosity range to blend, so the masked window-pull step has nothing to pull from and the pipeline hard-fails at the first HDR composite call.",
+        "Completeness 5/10: 24 of 30 required bracket frames are missing \u2014 image_apply_auto_tone and HDR blend have no exposure range to work from",
+        "Executability 5/10: image_adjust_exposure / HDR blend steps require multi-exposure input; single-frame delivery means the entire bracket-merge sub-chain cannot execute"
+      ],
+      "qc_gaps": [
+        "Per-asset self-QC averages 8.9/10, but package Executability scored 5 \u2014 assets are individually strong yet wrong/insufficient for the task.",
+        "Per-asset self-QC averages 8.9/10, but package Completeness scored 5 \u2014 assets are individually strong yet wrong/insufficient for the task."
+      ]
+    }
+  ]
+}

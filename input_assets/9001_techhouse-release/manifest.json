@@ -1,0 +1,755 @@
+{
+  "schema_version": 1,
+  "task_id": 9001,
+  "slug": "techhouse-release",
+  "title": "Tech-house single release campaign — FX streaming cover (duotone + Ben-Day halftone + glitch alt + film grain), colour-splash club promo photos, vectorized monochrome logo lockup, and Illustrator-merged tour-date merch/sticker cards",
+  "task_type": "release_art_bundle",
+  "category": "Album & Release Art",
+  "family": "Photo & Image Editing",
+  "feasibility": "template",
+  "source": "composite",
+  "source_url": "https://www.freelancer.com/projects/album-design/tech-house-single-cover.html",
+  "mcp_workflow": "asset_initialize_file_upload -> asset_finalize_file_upload -> asset_search -> asset_license_and_download_stock -> image_select_subject -> image_apply_lens_blur -> image_adjust_exposure -> image_adjust_dark_portions -> image_adjust_hsl -> image_select_by_prompt -> image_adjust_single_color_saturation -> image_invert_selection -> image_apply_monochromatic_tint -> image_apply_monochromatic_tint -> image_apply_halftone -> image_apply_color_overlay -> image_add_grain -> image_apply_glitch_effect -> image_add_noise -> font_recommend -> image_vectorize -> document_render_vector -> document_merge_data_vector -> document_render_vector -> image_select_subject -> image_invert_selection -> image_fill_area -> image_crop_and_resize",
+  "original_brief": "Release-art bundle for the tech-house single \"NIGHTSHIFT\". From 10 raw club press/live frames and a supplied cover reference, deliver a 1600x1600 streaming cover (magenta/black duotone + Ben-Day halftone + brand-wash + film grain), a VHS-glitch alt colourway, a set of promo photos depth-graded to a moody club look with a single magenta colour-splash accent, a vectorized monochrome logo lockup re-rendered print-clean, and a print-ready batch of tour-date merch/sticker cards data-merged from a 12-row tour-dates CSV through a client-authored Illustrator Variables template, plus 1:1 + 9:16 social crops.",
+  "generated_at": "2026-06-15T09:46:52Z",
+  "pipeline_version": "0.1.0",
+  "client_persona": {
+    "brand_name": "NIGHTSHIFT",
+    "tagline": "Rhythms of the deep urban pulse.",
+    "industry": "Electronic Music (Tech-House Artist)",
+    "palette": [
+      {
+        "name": "Nightshift Magenta",
+        "hex": "#FF1E8C",
+        "role": "primary"
+      },
+      {
+        "name": "Electric Cyan",
+        "hex": "#16E0E0",
+        "role": "secondary"
+      },
+      {
+        "name": "Club Black",
+        "hex": "#0A0A0F",
+        "role": "background"
+      },
+      {
+        "name": "Type White",
+        "hex": "#F2F2F0",
+        "role": "accent"
+      }
+    ],
+    "fonts": {
+      "heading": "Archivo",
+      "body": "Inter"
+    },
+    "voice": "The brand voice is confident and atmospheric, echoing the nocturnal energy of underground clubs. It speaks with an understated intensity, focusing on the immersive experience rather than overt hype.",
+    "persona_file": "persona.json"
+  },
+  "assets": [
+    {
+      "key": "tour_dates",
+      "input_requirement": "Tour/club dates CSV driving the data-merged merch/sticker cards (columns: city, venue, date, doors_time, ticket_url, support_act)",
+      "kind": "data",
+      "file": "assets/tour_dates.json",
+      "format": "json",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "You are the tour manager for the tech-house act NIGHTSHIFT producing the master\ntour/club-dates sheet that drives a data-merged run of merch/sticker cards in Illustrator.\nReturn a JSON object with ONE top-level key \"dates\": a LIST OF EXACTLY 12 row objects. Each row object's\nkeys MUST be EXACTLY these six column names (the Illustrator Variables bind to them character-for-\ncharacter): \"city\", \"venue\", \"date\", \"doors_time\", \"ticket_url\", \"support_act\".\nRules for every row:\n- \"city\": a real European/UK club city (vary them; no repeats), e.g. Berlin, London, Amsterdam, Manchester.\n- \"venue\": an INVENTED underground club name fitting that city (no real venue, no trademarks), 2-4 words.\n- \"date\": a Friday or Saturday night in autumn/winter 2026, formatted EXACTLY like \"FRI 12 SEP 2026\"\n  (3-letter weekday caps, day, 3-letter month caps, year). Dates must be in chronological order and all distinct.\n- \"doors_time\": EXACTLY like \"DOORS 22:00\" (24h clock, late-night club doors between 21:00 and 23:30).\n- \"ticket_url\": a plausible URL on the invented domain tix.nightshift-music.live with a short city slug,\n  e.g. https://tix.nightshift-music.live/berlin .\n- \"support_act\": EXACTLY like \"w/ <invented DJ name>\" (one invented support DJ per row, no real artists).\nTone: The brand voice is confident and atmospheric, echoing the nocturnal energy of underground clubs. It speaks with an understated intensity, focusing on the immersive experience rather than overt hype.. No real brands, venues, or real artist names anywhere.",
+        "prompt_file": "prompts/tour_dates.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "5cfe983cd48b3d19ad3cf50a8125f6dea6f5793e955a05ad60bc8f3dde20aa8b"
+    },
+    {
+      "key": "tour_dates.render",
+      "input_requirement": "Tour/club dates CSV driving the data-merged merch/sticker cards (columns: city, venue, date, doors_time, ticket_url, support_act)",
+      "kind": "data",
+      "file": "assets/tour_dates.csv",
+      "format": "md",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "You are the tour manager for the tech-house act NIGHTSHIFT producing the master\ntour/club-dates sheet that drives a data-merged run of merch/sticker cards in Illustrator.\nReturn a JSON object with ONE top-level key \"dates\": a LIST OF EXACTLY 12 row objects. Each row object's\nkeys MUST be EXACTLY these six column names (the Illustrator Variables bind to them character-for-\ncharacter): \"city\", \"venue\", \"date\", \"doors_time\", \"ticket_url\", \"support_act\".\nRules for every row:\n- \"city\": a real European/UK club city (vary them; no repeats), e.g. Berlin, London, Amsterdam, Manchester.\n- \"venue\": an INVENTED underground club name fitting that city (no real venue, no trademarks), 2-4 words.\n- \"date\": a Friday or Saturday night in autumn/winter 2026, formatted EXACTLY like \"FRI 12 SEP 2026\"\n  (3-letter weekday caps, day, 3-letter month caps, year). Dates must be in chronological order and all distinct.\n- \"doors_time\": EXACTLY like \"DOORS 22:00\" (24h clock, late-night club doors between 21:00 and 23:30).\n- \"ticket_url\": a plausible URL on the invented domain tix.nightshift-music.live with a short city slug,\n  e.g. https://tix.nightshift-music.live/berlin .\n- \"support_act\": EXACTLY like \"w/ <invented DJ name>\" (one invented support DJ per row, no real artists).\nTone: The brand voice is confident and atmospheric, echoing the nocturnal energy of underground clubs. It speaks with an understated intensity, focusing on the immersive experience rather than overt hype.. No real brands, venues, or real artist names anywhere.",
+        "prompt_file": "prompts/tour_dates.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "53f2579e2145c72538d67d2b9c6ee437f7262a8e63c78498538da8da12879cf8"
+    },
+    {
+      "key": "press_photos[0]",
+      "input_requirement": "Raw artist press / live-performance photos to depth-grade, colour-splash and treat (one becomes the cover hero frame)",
+      "kind": "image",
+      "file": "assets/press_01_cover-hero-frame.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "HERO COVER FRAME (square-safe, centred with head-room for a 1:1 crop): a lone tech-house DJ leaning into the mixer mid-set, one hand on a fader, head tilted down into the music, a large buzzing MAGENTA neon sign directly behind their shoulder and a cyan LED strip raking across the booth — the single dominant magenta neon must be unmistakable for the cover duotone and the colour-splash accent. Candid documentary photograph, shot on a 35mm lens at f/2.0, available stage light only, subtle film grain, realistic shallow depth of field with natural motion-blur on a moving hand. Natural skin texture with visible pores and sweat sheen under hot stage lights, NO beauty retouching or airbrushing; individual hair strands with real flyaways backlit by the haze — hair must NOT look painted, helmet-like or plastic; anatomically correct hands on the decks. Genuine club-stage lighting: real practical magenta and cyan neon signage and LED bars actually in frame casting coloured spill and lens flare, atmospheric haze, imperfect lived-in venue detail, believable fabric wrinkles, asymmetric crowd-eye-level composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT a clean studio shot. Invented diverse performer, dignified, no real-person likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/press_photos_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "3e6b9b230aeea4d9178fcc6b68b7e7b798d5a8d0314fb72dd48ee65a68cb269c"
+    },
+    {
+      "key": "press_photos[1]",
+      "input_requirement": "Raw artist press / live-performance photos to depth-grade, colour-splash and treat (one becomes the cover hero frame)",
+      "kind": "image",
+      "file": "assets/press_02_decks-side.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "tight side-on profile of the DJ working two CDJ decks, cyan key light from camera-left, magenta neon glow on the far cheek, sweat catching the light. Candid documentary photograph, shot on a 35mm lens at f/2.0, available stage light only, subtle film grain, realistic shallow depth of field with natural motion-blur on a moving hand. Natural skin texture with visible pores and sweat sheen under hot stage lights, NO beauty retouching or airbrushing; individual hair strands with real flyaways backlit by the haze — hair must NOT look painted, helmet-like or plastic; anatomically correct hands on the decks. Genuine club-stage lighting: real practical magenta and cyan neon signage and LED bars actually in frame casting coloured spill and lens flare, atmospheric haze, imperfect lived-in venue detail, believable fabric wrinkles, asymmetric crowd-eye-level composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT a clean studio shot. Invented diverse performer, dignified, no real-person likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/press_photos_1.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "ef0da350c60907be419b141ec90845a266f466abc1486306f69f1ed600b22eb2"
+    },
+    {
+      "key": "press_photos[2]",
+      "input_requirement": "Raw artist press / live-performance photos to depth-grade, colour-splash and treat (one becomes the cover hero frame)",
+      "kind": "image",
+      "file": "assets/press_03_hands-faders.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "close-up of both hands riding the channel faders and a filter knob, knuckle detail and a thin sheen of sweat, shallow focus, magenta and cyan bokeh of the booth behind. Candid documentary photograph, shot on a 35mm lens at f/2.0, available stage light only, subtle film grain, realistic shallow depth of field with natural motion-blur on a moving hand. Natural skin texture with visible pores and sweat sheen under hot stage lights, NO beauty retouching or airbrushing; individual hair strands with real flyaways backlit by the haze — hair must NOT look painted, helmet-like or plastic; anatomically correct hands on the decks. Genuine club-stage lighting: real practical magenta and cyan neon signage and LED bars actually in frame casting coloured spill and lens flare, atmospheric haze, imperfect lived-in venue detail, believable fabric wrinkles, asymmetric crowd-eye-level composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT a clean studio shot. Invented diverse performer, dignified, no real-person likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- Left hand anatomy: The fingers, particularly the thumb and index finger, appear unnaturally thick and somewhat distorted, lacking realistic articulation and proportion.\n- Skin texture: While there is a sheen, the skin lacks distinct pores and visible sweat droplets, appearing somewhat airbrushed rather than showing realistic 'stage-sweat'.",
+        "prompt_file": "prompts/press_photos_2.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 3,
+        "issues": []
+      },
+      "sha256": "a171281a92166e53da642d11674facec034ce97ce8ec571ecb933cc8e68c5f6d"
+    },
+    {
+      "key": "press_photos[3]",
+      "input_requirement": "Raw artist press / live-performance photos to depth-grade, colour-splash and treat (one becomes the cover hero frame)",
+      "kind": "image",
+      "file": "assets/press_04_crowd-pov.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "from the dance-floor looking up at the DJ silhouetted against a wall of magenta neon and haze, raised crowd hands soft and out of focus in the foreground. Candid documentary photograph, shot on a 35mm lens at f/2.0, available stage light only, subtle film grain, realistic shallow depth of field with natural motion-blur on a moving hand. Natural skin texture with visible pores and sweat sheen under hot stage lights, NO beauty retouching or airbrushing; individual hair strands with real flyaways backlit by the haze — hair must NOT look painted, helmet-like or plastic; anatomically correct hands on the decks. Genuine club-stage lighting: real practical magenta and cyan neon signage and LED bars actually in frame casting coloured spill and lens flare, atmospheric haze, imperfect lived-in venue detail, believable fabric wrinkles, asymmetric crowd-eye-level composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT a clean studio shot. Invented diverse performer, dignified, no real-person likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/press_photos_3.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "de36dd4351f1feecf4930714da2c001140a9c1f6cded5d523df1c792db1e6382"
+    },
+    {
+      "key": "press_photos[4]",
+      "input_requirement": "Raw artist press / live-performance photos to depth-grade, colour-splash and treat (one becomes the cover hero frame)",
+      "kind": "image",
+      "file": "assets/press_05_booth-wide.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "wide environmental shot of the whole DJ booth inside a dark concrete club, neon signage and LED bars defining the space, the artist small but central, real atmospheric haze. Candid documentary photograph, shot on a 35mm lens at f/2.0, available stage light only, subtle film grain, realistic shallow depth of field with natural motion-blur on a moving hand. Natural skin texture with visible pores and sweat sheen under hot stage lights, NO beauty retouching or airbrushing; individual hair strands with real flyaways backlit by the haze — hair must NOT look painted, helmet-like or plastic; anatomically correct hands on the decks. Genuine club-stage lighting: real practical magenta and cyan neon signage and LED bars actually in frame casting coloured spill and lens flare, atmospheric haze, imperfect lived-in venue detail, believable fabric wrinkles, asymmetric crowd-eye-level composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT a clean studio shot. Invented diverse performer, dignified, no real-person likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/press_photos_4.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "accepted_with_warnings",
+        "technical": "pass",
+        "vision_score": 6,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 3,
+        "issues": [
+          "The skin texture on the DJ's face lacks distinct pores and visible stage-sweat, appearing somewhat airbrushed rather than raw and realistic for a performance setting.",
+          "While the hair has some texture, it could benefit from more individual strand definition and visible flyaways to fully achieve a 'natural' look, as some areas appear slightly sculpted.",
+          "The DJ's expression is quite neutral and focused, which doesn't strongly convey 'genuine candid performance emotion' as requested. It lacks the dynamic or expressive quality often seen in live performers."
+        ]
+      },
+      "sha256": "1e00ba30ddcf10a48641cd58a5b851af190719d7ef313dbcefc6c055410d153c"
+    },
+    {
+      "key": "press_photos[5]",
+      "input_requirement": "Raw artist press / live-performance photos to depth-grade, colour-splash and treat (one becomes the cover hero frame)",
+      "kind": "image",
+      "file": "assets/press_06_portrait-neon.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "waist-up press portrait of the artist leaning on the booth rail between tracks, direct calm gaze just off-camera, a magenta neon tube behind their head acting as a halo rim light. Candid documentary photograph, shot on a 35mm lens at f/2.0, available stage light only, subtle film grain, realistic shallow depth of field with natural motion-blur on a moving hand. Natural skin texture with visible pores and sweat sheen under hot stage lights, NO beauty retouching or airbrushing; individual hair strands with real flyaways backlit by the haze — hair must NOT look painted, helmet-like or plastic; anatomically correct hands on the decks. Genuine club-stage lighting: real practical magenta and cyan neon signage and LED bars actually in frame casting coloured spill and lens flare, atmospheric haze, imperfect lived-in venue detail, believable fabric wrinkles, asymmetric crowd-eye-level composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT a clean studio shot. Invented diverse performer, dignified, no real-person likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The left hand's pinky finger appears unnaturally short and somewhat stubby, lacking realistic anatomical proportion and articulation.\n- The fingers on the right hand, particularly the index and middle, appear slightly thick and less distinctly separated at their base, giving a somewhat fused or unnatural appearance.\n- While the skin texture is present, the 'stage-sweat' is very subtle and could be more pronounced for a 'real photograph' in a club environment, especially given the intense lighting.",
+        "prompt_file": "prompts/press_photos_5.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 3,
+        "issues": []
+      },
+      "sha256": "cdbafc05b9f27de7398fbad920b44b1064ff237d6c76d9a3f866562406efd4ba"
+    },
+    {
+      "key": "press_photos[6]",
+      "input_requirement": "Raw artist press / live-performance photos to depth-grade, colour-splash and treat (one becomes the cover hero frame)",
+      "kind": "image",
+      "file": "assets/press_07_backlit-haze.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "the DJ thrown into near-silhouette by a backlight through thick haze, only the rim of the face and flyaway hair strands lit magenta-cyan, very low-key and moody. Candid documentary photograph, shot on a 35mm lens at f/2.0, available stage light only, subtle film grain, realistic shallow depth of field with natural motion-blur on a moving hand. Natural skin texture with visible pores and sweat sheen under hot stage lights, NO beauty retouching or airbrushing; individual hair strands with real flyaways backlit by the haze — hair must NOT look painted, helmet-like or plastic; anatomically correct hands on the decks. Genuine club-stage lighting: real practical magenta and cyan neon signage and LED bars actually in frame casting coloured spill and lens flare, atmospheric haze, imperfect lived-in venue detail, believable fabric wrinkles, asymmetric crowd-eye-level composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT a clean studio shot. Invented diverse performer, dignified, no real-person likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/press_photos_6.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "accepted_with_warnings",
+        "technical": "pass",
+        "vision_score": 6,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 3,
+        "issues": [
+          "Skin texture is not realistic; it appears overly smooth and lacks visible pores or stage-sweat, giving an airbrushed or artificial appearance.",
+          "Hair, while showing some individual strands, still has a slightly 'rendered' or less natural feel, particularly around the edges where light catches it, lacking the ultimate randomness and fine detail of real hair and flyaways.",
+          "Overall realism is slightly compromised by the combination of the smoothed skin and subtly artificial hair, preventing it from being indistinguishable from a genuine photograph."
+        ]
+      },
+      "sha256": "5b417f4c1bf6811fc68d579c94811ed06c2d0d15ef700b690d11178b38fc79a7"
+    },
+    {
+      "key": "press_photos[7]",
+      "input_requirement": "Raw artist press / live-performance photos to depth-grade, colour-splash and treat (one becomes the cover hero frame)",
+      "kind": "image",
+      "file": "assets/press_08_smoke-lights.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "arms raised over the crowd as a CO2 jet and strobe fire, frozen smoke and individual lit hair strands, high-energy candid peak-time moment. Candid documentary photograph, shot on a 35mm lens at f/2.0, available stage light only, subtle film grain, realistic shallow depth of field with natural motion-blur on a moving hand. Natural skin texture with visible pores and sweat sheen under hot stage lights, NO beauty retouching or airbrushing; individual hair strands with real flyaways backlit by the haze — hair must NOT look painted, helmet-like or plastic; anatomically correct hands on the decks. Genuine club-stage lighting: real practical magenta and cyan neon signage and LED bars actually in frame casting coloured spill and lens flare, atmospheric haze, imperfect lived-in venue detail, believable fabric wrinkles, asymmetric crowd-eye-level composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT a clean studio shot. Invented diverse performer, dignified, no real-person likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/press_photos_7.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 9,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": [
+          "While skin texture is realistic, explicit 'stage-sweat' is not clearly visible.",
+          "Fingers on the raised right hand appear slightly elongated, though anatomically correct."
+        ]
+      },
+      "sha256": "1d05588d9ca8568b234d9665f67f84454d8720fd7ba5080bf4821695a97e5ed1"
+    },
+    {
+      "key": "press_photos[8]",
+      "input_requirement": "Raw artist press / live-performance photos to depth-grade, colour-splash and treat (one becomes the cover hero frame)",
+      "kind": "image",
+      "file": "assets/press_09_backstage-candid.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "quiet backstage candid: the artist checking a phone-light-free moment by a graffiti wall, a cold cyan corridor light and a distant warm bulb, tired honest expression, off-duty. Candid documentary photograph, shot on a 35mm lens at f/2.0, available stage light only, subtle film grain, realistic shallow depth of field with natural motion-blur on a moving hand. Natural skin texture with visible pores and sweat sheen under hot stage lights, NO beauty retouching or airbrushing; individual hair strands with real flyaways backlit by the haze — hair must NOT look painted, helmet-like or plastic; anatomically correct hands on the decks. Genuine club-stage lighting: real practical magenta and cyan neon signage and LED bars actually in frame casting coloured spill and lens flare, atmospheric haze, imperfect lived-in venue detail, believable fabric wrinkles, asymmetric crowd-eye-level composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT a clean studio shot. Invented diverse performer, dignified, no real-person likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- Skin texture lacks visible pores and stage-sweat, appearing somewhat smoother/airbrushed than requested.\n- Hair, while natural-looking, could exhibit more distinct individual strands and flyaways for maximum realism, appearing slightly less detailed than a real photograph.",
+        "prompt_file": "prompts/press_photos_8.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 8,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 2,
+        "issues": [
+          "The fingers on the left hand, particularly the pinky and ring finger, appear slightly elongated and somewhat unnatural in their articulation and definition, especially where they interact with the DJ equipment."
+        ]
+      },
+      "sha256": "c933c6184f91797daf4f876d805416d24911e013ba5d2bc9a79a9e2010320ea9"
+    },
+    {
+      "key": "press_photos[9]",
+      "input_requirement": "Raw artist press / live-performance photos to depth-grade, colour-splash and treat (one becomes the cover hero frame)",
+      "kind": "image",
+      "file": "assets/press_10_merch-table-detail.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "low-light detail of the artist signing a record at the merch table, hands and a marker in focus, magenta neon reflected in the vinyl, warm-cool mixed lighting. Candid documentary photograph, shot on a 35mm lens at f/2.0, available stage light only, subtle film grain, realistic shallow depth of field with natural motion-blur on a moving hand. Natural skin texture with visible pores and sweat sheen under hot stage lights, NO beauty retouching or airbrushing; individual hair strands with real flyaways backlit by the haze — hair must NOT look painted, helmet-like or plastic; anatomically correct hands on the decks. Genuine club-stage lighting: real practical magenta and cyan neon signage and LED bars actually in frame casting coloured spill and lens flare, atmospheric haze, imperfect lived-in venue detail, believable fabric wrinkles, asymmetric crowd-eye-level composition. NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated, NOT a clean studio shot. Invented diverse performer, dignified, no real-person likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/press_photos_9.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "a3807e98656a20f1c08e416cc6f97f961a029d531a0feb05b73ef1568cf9044f"
+    },
+    {
+      "key": "logo_bitmap",
+      "input_requirement": "Artist logo bitmap (flat monochrome wordmark on transparent/white) to vectorize into a scalable lockup",
+      "kind": "image",
+      "file": "assets/nightshift_logo.png",
+      "format": "png",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-3-pro-image",
+        "quality": null,
+        "size": "1024x1024",
+        "prompt": "Flat MONOCHROME artist wordmark logo reading EXACTLY \"NIGHTSHIFT\" — a single\ncondensed heavy geometric techno sans-serif, all caps, locked up tight as one solid black shape on a\nfully TRANSPARENT background (no card, no box, no backdrop). Absolutely FLAT: one solid colour, hard\nclean edges, NO gradient, NO glow, NO neon, NO drop shadow, NO 3D, NO texture — it must vectorize to a\nrazor-clean SVG. Perfect spelling, no tagline, no other text, no icon, no other symbols.",
+        "prompt_file": "prompts/logo_bitmap_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 8,
+        "judge": "openai/gpt-4.1-mini",
+        "attempts": 1,
+        "issues": [
+          "Font is bold and condensed but not strictly techno sans, more of a bold sans serif.",
+          "Edges are mostly clean but some slight pixelation visible, not fully vectorized.",
+          "Background is transparent but checkerboard pattern is visible (assumed for transparency)."
+        ]
+      },
+      "sha256": "2eab8e4d28254dc08ddcd70c11de5a482c9d77b6f88ae8a2caede100f1304de9"
+    },
+    {
+      "key": "cover_reference",
+      "input_requirement": "Client-supplied Catch&Release-style club cover reference (aesthetic anchor for the duotone/halftone treatment)",
+      "kind": "image",
+      "file": "assets/cover_reference_plate.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-image",
+        "quality": null,
+        "size": "1024x1024",
+        "prompt": "A secondary REFERENCE mood plate (an existing record-label club-single cover the\nclient likes, handed over as an aesthetic anchor — NOT a final deliverable). A high-contrast on-camera-\nFLASH club snapshot of a faceless figure, harsh direct flash blowing out the foreground and crushing the\nbackground to black, magenta-and-cyan neon bleeding at the edges, heavy grain and a coarse halftone-dot\ntexture, gritty zine/photocopy feel. Slightly imperfect, lo-fi, deliberately rough. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/cover_reference_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 8,
+        "judge": "openai/gpt-4.1-mini",
+        "attempts": 1,
+        "issues": [
+          "Face is completely blown out with no detail, which is harsh but borderline overdone for the style.",
+          "Crushed blacks are present but some areas could be deeper to enhance grit.",
+          "Magenta/cyan neon bleed is visible but a bit too smooth and lacks the harshness expected in a lo-fi zine aesthetic.",
+          "Grain and halftone-dot texture are well applied but could be more pronounced for stronger zine feel.",
+          "No readable text or real brands present, which is correct."
+        ]
+      },
+      "sha256": "8bb129f0740d19872296046f98e4c085f067ef8323a1942b060c16fa20333756"
+    },
+    {
+      "key": "ticket_qrs[0]",
+      "input_requirement": "Per-row scannable ticket QR PNGs (one per tour-dates row) for the {ticket_qr} Linked-File Variable in the merch card",
+      "kind": "program",
+      "file": "assets/ticket_qr_01_london.png",
+      "format": "png",
+      "generator": {
+        "provider": "deterministic",
+        "model": "Render one scannable ticket-URL QR PNG per tour-dates CSV row for the merch-card {ticket_qr} linked Variable.",
+        "prompt": "{\"qr_count\": 12, \"rows\": [{\"file\": \"ticket_qr_01_london.png\", \"ticket_url\": \"https://tix.nightshift-music.live/london\", \"city\": \"London\"}, {\"file\": \"ticket_qr_02_berlin.png\", \"ticket_url\": \"https://tix.nightshift-music.live/berlin\", \"city\": \"Berlin\"}, {\"file\": \"ticket_qr_03_amsterdam.png\", \"ticket_url\": \"https://tix.nightshift-music.live/amsterdam\", \"city\": \"Amsterdam\"}, {\"file\": \"ticket_qr_04_paris.png\", \"ticket_url\": \"https://tix.nightshift-music.live/paris\", \"city\": \"Paris\"}, {\"file\": \"ticket"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "dims": [
+        396,
+        396
+      ],
+      "sha256": "52ae1a28094bfe53c2570a72e8292757e8b84937efca8dc119631f1997c6f72c"
+    },
+    {
+      "key": "ticket_qrs[1]",
+      "input_requirement": "Per-row scannable ticket QR PNGs (one per tour-dates row) for the {ticket_qr} Linked-File Variable in the merch card",
+      "kind": "program",
+      "file": "assets/ticket_qr_02_berlin.png",
+      "format": "png",
+      "generator": {
+        "provider": "deterministic",
+        "model": "Render one scannable ticket-URL QR PNG per tour-dates CSV row for the merch-card {ticket_qr} linked Variable.",
+        "prompt": "{\"qr_count\": 12, \"rows\": [{\"file\": \"ticket_qr_01_london.png\", \"ticket_url\": \"https://tix.nightshift-music.live/london\", \"city\": \"London\"}, {\"file\": \"ticket_qr_02_berlin.png\", \"ticket_url\": \"https://tix.nightshift-music.live/berlin\", \"city\": \"Berlin\"}, {\"file\": \"ticket_qr_03_amsterdam.png\", \"ticket_url\": \"https://tix.nightshift-music.live/amsterdam\", \"city\": \"Amsterdam\"}, {\"file\": \"ticket_qr_04_paris.png\", \"ticket_url\": \"https://tix.nightshift-music.live/paris\", \"city\": \"Paris\"}, {\"file\": \"ticket"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "dims": [
+        396,
+        396
+      ],
+      "sha256": "da90048037887fdde70f21c1436f53ea7d3ee9c29e65080b794f8e5f0e464542"
+    },
+    {
+      "key": "ticket_qrs[2]",
+      "input_requirement": "Per-row scannable ticket QR PNGs (one per tour-dates row) for the {ticket_qr} Linked-File Variable in the merch card",
+      "kind": "program",
+      "file": "assets/ticket_qr_03_amsterdam.png",
+      "format": "png",
+      "generator": {
+        "provider": "deterministic",
+        "model": "Render one scannable ticket-URL QR PNG per tour-dates CSV row for the merch-card {ticket_qr} linked Variable.",
+        "prompt": "{\"qr_count\": 12, \"rows\": [{\"file\": \"ticket_qr_01_london.png\", \"ticket_url\": \"https://tix.nightshift-music.live/london\", \"city\": \"London\"}, {\"file\": \"ticket_qr_02_berlin.png\", \"ticket_url\": \"https://tix.nightshift-music.live/berlin\", \"city\": \"Berlin\"}, {\"file\": \"ticket_qr_03_amsterdam.png\", \"ticket_url\": \"https://tix.nightshift-music.live/amsterdam\", \"city\": \"Amsterdam\"}, {\"file\": \"ticket_qr_04_paris.png\", \"ticket_url\": \"https://tix.nightshift-music.live/paris\", \"city\": \"Paris\"}, {\"file\": \"ticket"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "dims": [
+        444,
+        444
+      ],
+      "sha256": "995ffc9a10ee13d25035b28c42c6b3b4f441e6e063796ecfad87764f64ea1a21"
+    },
+    {
+      "key": "ticket_qrs[3]",
+      "input_requirement": "Per-row scannable ticket QR PNGs (one per tour-dates row) for the {ticket_qr} Linked-File Variable in the merch card",
+      "kind": "program",
+      "file": "assets/ticket_qr_04_paris.png",
+      "format": "png",
+      "generator": {
+        "provider": "deterministic",
+        "model": "Render one scannable ticket-URL QR PNG per tour-dates CSV row for the merch-card {ticket_qr} linked Variable.",
+        "prompt": "{\"qr_count\": 12, \"rows\": [{\"file\": \"ticket_qr_01_london.png\", \"ticket_url\": \"https://tix.nightshift-music.live/london\", \"city\": \"London\"}, {\"file\": \"ticket_qr_02_berlin.png\", \"ticket_url\": \"https://tix.nightshift-music.live/berlin\", \"city\": \"Berlin\"}, {\"file\": \"ticket_qr_03_amsterdam.png\", \"ticket_url\": \"https://tix.nightshift-music.live/amsterdam\", \"city\": \"Amsterdam\"}, {\"file\": \"ticket_qr_04_paris.png\", \"ticket_url\": \"https://tix.nightshift-music.live/paris\", \"city\": \"Paris\"}, {\"file\": \"ticket"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "dims": [
+        396,
+        396
+      ],
+      "sha256": "176dc7da5ab9c4cb759c43ee2e583449f01f7036a468a393476e52e032f16ca3"
+    },
+    {
+      "key": "ticket_qrs[4]",
+      "input_requirement": "Per-row scannable ticket QR PNGs (one per tour-dates row) for the {ticket_qr} Linked-File Variable in the merch card",
+      "kind": "program",
+      "file": "assets/ticket_qr_05_manchester.png",
+      "format": "png",
+      "generator": {
+        "provider": "deterministic",
+        "model": "Render one scannable ticket-URL QR PNG per tour-dates CSV row for the merch-card {ticket_qr} linked Variable.",
+        "prompt": "{\"qr_count\": 12, \"rows\": [{\"file\": \"ticket_qr_01_london.png\", \"ticket_url\": \"https://tix.nightshift-music.live/london\", \"city\": \"London\"}, {\"file\": \"ticket_qr_02_berlin.png\", \"ticket_url\": \"https://tix.nightshift-music.live/berlin\", \"city\": \"Berlin\"}, {\"file\": \"ticket_qr_03_amsterdam.png\", \"ticket_url\": \"https://tix.nightshift-music.live/amsterdam\", \"city\": \"Amsterdam\"}, {\"file\": \"ticket_qr_04_paris.png\", \"ticket_url\": \"https://tix.nightshift-music.live/paris\", \"city\": \"Paris\"}, {\"file\": \"ticket"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "dims": [
+        444,
+        444
+      ],
+      "sha256": "1b2ab5b10a2eb9dd4e3586d5dff441d12e2c2f78fd8354ba5235315ee8f27e8e"
+    },
+    {
+      "key": "ticket_qrs[5]",
+      "input_requirement": "Per-row scannable ticket QR PNGs (one per tour-dates row) for the {ticket_qr} Linked-File Variable in the merch card",
+      "kind": "program",
+      "file": "assets/ticket_qr_06_glasgow.png",
+      "format": "png",
+      "generator": {
+        "provider": "deterministic",
+        "model": "Render one scannable ticket-URL QR PNG per tour-dates CSV row for the merch-card {ticket_qr} linked Variable.",
+        "prompt": "{\"qr_count\": 12, \"rows\": [{\"file\": \"ticket_qr_01_london.png\", \"ticket_url\": \"https://tix.nightshift-music.live/london\", \"city\": \"London\"}, {\"file\": \"ticket_qr_02_berlin.png\", \"ticket_url\": \"https://tix.nightshift-music.live/berlin\", \"city\": \"Berlin\"}, {\"file\": \"ticket_qr_03_amsterdam.png\", \"ticket_url\": \"https://tix.nightshift-music.live/amsterdam\", \"city\": \"Amsterdam\"}, {\"file\": \"ticket_qr_04_paris.png\", \"ticket_url\": \"https://tix.nightshift-music.live/paris\", \"city\": \"Paris\"}, {\"file\": \"ticket"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "dims": [
+        396,
+        396
+      ],
+      "sha256": "da55493a0d01a82399190b4199205c55bae3e4908db25eb0ba1460e7f455bcf1"
+    },
+    {
+      "key": "ticket_qrs[6]",
+      "input_requirement": "Per-row scannable ticket QR PNGs (one per tour-dates row) for the {ticket_qr} Linked-File Variable in the merch card",
+      "kind": "program",
+      "file": "assets/ticket_qr_07_dublin.png",
+      "format": "png",
+      "generator": {
+        "provider": "deterministic",
+        "model": "Render one scannable ticket-URL QR PNG per tour-dates CSV row for the merch-card {ticket_qr} linked Variable.",
+        "prompt": "{\"qr_count\": 12, \"rows\": [{\"file\": \"ticket_qr_01_london.png\", \"ticket_url\": \"https://tix.nightshift-music.live/london\", \"city\": \"London\"}, {\"file\": \"ticket_qr_02_berlin.png\", \"ticket_url\": \"https://tix.nightshift-music.live/berlin\", \"city\": \"Berlin\"}, {\"file\": \"ticket_qr_03_amsterdam.png\", \"ticket_url\": \"https://tix.nightshift-music.live/amsterdam\", \"city\": \"Amsterdam\"}, {\"file\": \"ticket_qr_04_paris.png\", \"ticket_url\": \"https://tix.nightshift-music.live/paris\", \"city\": \"Paris\"}, {\"file\": \"ticket"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "dims": [
+        396,
+        396
+      ],
+      "sha256": "627e3be1d1661f7426d4190e250fcbd7667195f375d57cb070ca40d31167b538"
+    },
+    {
+      "key": "ticket_qrs[7]",
+      "input_requirement": "Per-row scannable ticket QR PNGs (one per tour-dates row) for the {ticket_qr} Linked-File Variable in the merch card",
+      "kind": "program",
+      "file": "assets/ticket_qr_08_brussels.png",
+      "format": "png",
+      "generator": {
+        "provider": "deterministic",
+        "model": "Render one scannable ticket-URL QR PNG per tour-dates CSV row for the merch-card {ticket_qr} linked Variable.",
+        "prompt": "{\"qr_count\": 12, \"rows\": [{\"file\": \"ticket_qr_01_london.png\", \"ticket_url\": \"https://tix.nightshift-music.live/london\", \"city\": \"London\"}, {\"file\": \"ticket_qr_02_berlin.png\", \"ticket_url\": \"https://tix.nightshift-music.live/berlin\", \"city\": \"Berlin\"}, {\"file\": \"ticket_qr_03_amsterdam.png\", \"ticket_url\": \"https://tix.nightshift-music.live/amsterdam\", \"city\": \"Amsterdam\"}, {\"file\": \"ticket_qr_04_paris.png\", \"ticket_url\": \"https://tix.nightshift-music.live/paris\", \"city\": \"Paris\"}, {\"file\": \"ticket"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "dims": [
+        396,
+        396
+      ],
+      "sha256": "b80ab6e77682b611ed59c0b9d1b7e36e7a79df362252399eb24828eb59ec0daf"
+    },
+    {
+      "key": "ticket_qrs[8]",
+      "input_requirement": "Per-row scannable ticket QR PNGs (one per tour-dates row) for the {ticket_qr} Linked-File Variable in the merch card",
+      "kind": "program",
+      "file": "assets/ticket_qr_09_copenhagen.png",
+      "format": "png",
+      "generator": {
+        "provider": "deterministic",
+        "model": "Render one scannable ticket-URL QR PNG per tour-dates CSV row for the merch-card {ticket_qr} linked Variable.",
+        "prompt": "{\"qr_count\": 12, \"rows\": [{\"file\": \"ticket_qr_01_london.png\", \"ticket_url\": \"https://tix.nightshift-music.live/london\", \"city\": \"London\"}, {\"file\": \"ticket_qr_02_berlin.png\", \"ticket_url\": \"https://tix.nightshift-music.live/berlin\", \"city\": \"Berlin\"}, {\"file\": \"ticket_qr_03_amsterdam.png\", \"ticket_url\": \"https://tix.nightshift-music.live/amsterdam\", \"city\": \"Amsterdam\"}, {\"file\": \"ticket_qr_04_paris.png\", \"ticket_url\": \"https://tix.nightshift-music.live/paris\", \"city\": \"Paris\"}, {\"file\": \"ticket"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "dims": [
+        444,
+        444
+      ],
+      "sha256": "044dee047ac0075ab58ddfbdcc767acee0404a93072e63ce8fe4dc3d8222f7a7"
+    },
+    {
+      "key": "ticket_qrs[9]",
+      "input_requirement": "Per-row scannable ticket QR PNGs (one per tour-dates row) for the {ticket_qr} Linked-File Variable in the merch card",
+      "kind": "program",
+      "file": "assets/ticket_qr_10_rome.png",
+      "format": "png",
+      "generator": {
+        "provider": "deterministic",
+        "model": "Render one scannable ticket-URL QR PNG per tour-dates CSV row for the merch-card {ticket_qr} linked Variable.",
+        "prompt": "{\"qr_count\": 12, \"rows\": [{\"file\": \"ticket_qr_01_london.png\", \"ticket_url\": \"https://tix.nightshift-music.live/london\", \"city\": \"London\"}, {\"file\": \"ticket_qr_02_berlin.png\", \"ticket_url\": \"https://tix.nightshift-music.live/berlin\", \"city\": \"Berlin\"}, {\"file\": \"ticket_qr_03_amsterdam.png\", \"ticket_url\": \"https://tix.nightshift-music.live/amsterdam\", \"city\": \"Amsterdam\"}, {\"file\": \"ticket_qr_04_paris.png\", \"ticket_url\": \"https://tix.nightshift-music.live/paris\", \"city\": \"Paris\"}, {\"file\": \"ticket"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "dims": [
+        396,
+        396
+      ],
+      "sha256": "69225131216adf2f54a79ecbe711350e002a648a6c827b4e96471ed67c99a05e"
+    },
+    {
+      "key": "ticket_qrs[10]",
+      "input_requirement": "Per-row scannable ticket QR PNGs (one per tour-dates row) for the {ticket_qr} Linked-File Variable in the merch card",
+      "kind": "program",
+      "file": "assets/ticket_qr_11_lisbon.png",
+      "format": "png",
+      "generator": {
+        "provider": "deterministic",
+        "model": "Render one scannable ticket-URL QR PNG per tour-dates CSV row for the merch-card {ticket_qr} linked Variable.",
+        "prompt": "{\"qr_count\": 12, \"rows\": [{\"file\": \"ticket_qr_01_london.png\", \"ticket_url\": \"https://tix.nightshift-music.live/london\", \"city\": \"London\"}, {\"file\": \"ticket_qr_02_berlin.png\", \"ticket_url\": \"https://tix.nightshift-music.live/berlin\", \"city\": \"Berlin\"}, {\"file\": \"ticket_qr_03_amsterdam.png\", \"ticket_url\": \"https://tix.nightshift-music.live/amsterdam\", \"city\": \"Amsterdam\"}, {\"file\": \"ticket_qr_04_paris.png\", \"ticket_url\": \"https://tix.nightshift-music.live/paris\", \"city\": \"Paris\"}, {\"file\": \"ticket"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "dims": [
+        396,
+        396
+      ],
+      "sha256": "eecc8d1bf09d0d7d083ec42e27a1f67fee618ae24a02d21cbf984667537ee61a"
+    },
+    {
+      "key": "ticket_qrs[11]",
+      "input_requirement": "Per-row scannable ticket QR PNGs (one per tour-dates row) for the {ticket_qr} Linked-File Variable in the merch card",
+      "kind": "program",
+      "file": "assets/ticket_qr_12_budapest.png",
+      "format": "png",
+      "generator": {
+        "provider": "deterministic",
+        "model": "Render one scannable ticket-URL QR PNG per tour-dates CSV row for the merch-card {ticket_qr} linked Variable.",
+        "prompt": "{\"qr_count\": 12, \"rows\": [{\"file\": \"ticket_qr_01_london.png\", \"ticket_url\": \"https://tix.nightshift-music.live/london\", \"city\": \"London\"}, {\"file\": \"ticket_qr_02_berlin.png\", \"ticket_url\": \"https://tix.nightshift-music.live/berlin\", \"city\": \"Berlin\"}, {\"file\": \"ticket_qr_03_amsterdam.png\", \"ticket_url\": \"https://tix.nightshift-music.live/amsterdam\", \"city\": \"Amsterdam\"}, {\"file\": \"ticket_qr_04_paris.png\", \"ticket_url\": \"https://tix.nightshift-music.live/paris\", \"city\": \"Paris\"}, {\"file\": \"ticket"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "dims": [
+        396,
+        396
+      ],
+      "sha256": "c0c7199c30a62cc5e0e39fd78cff64bd5b2fc851fef6be7681ad3ebaff61ce1e"
+    }
+  ],
+  "decisions": [
+    {
+      "requirement": "Client-authored Illustrator (.ai) merch/sticker-card template with named Illustrator Variables bound to the CSV columns — the [T] data-merge input the user makes once in desktop Illustrator",
+      "assumed_value": "USER-AUTHORED in desktop Illustrator (Object→Variables panel): nightshift_merch_card.ai, A6 landscape (148x105mm, 3mm bleed). Static art: the vectorized NIGHTSHIFT wordmark lockup top-left, a magenta-on-black duotone band, hairline crop/cut marks, and a placeholder QR box. Named Variables, each bound to a CSV column header so document_merge_data_vector emits one card per row — TEXT Variables: city (display heading 28pt), venue (subhead 16pt), date (14pt, e.g. 'FRI 12 SEP 2026'), doors_time (11pt, 'DOORS 22:00'), support_act (11pt italic, 'w/ <name>'); LINKED-FILE/VISIBILITY Variable: ticket_qr bound to ticket_url, swapping the per-row ticket_qr_NN_*.png into the QR box. CSV column headers MUST exactly match the Variable names: city,venue,date,doors_time,ticket_url,support_act. Fonts embedded or supplied as fontFiles; fallBackFont = the recommended display face's PostScript name from font_recommend.",
+      "why": "document_merge_data_vector needs a GENUINE Illustrator-Variables .ai (literal text won't bind); the user authors it once in desktop Illustrator — we do not generate .ai files."
+    },
+    {
+      "requirement": "Adobe Stock film-grain / neon-bokeh texture plate licensed for the cover wash and merch backdrop accent",
+      "assumed_value": "Sourced live at execution via asset_search (entityScope StockAsset, contentType photo/texture, search 'film grain overlay neon bokeh magenta cyan') then asset_license_and_download_stock for a full-res URL (license-before-edit). Used as the image_add_grain reference for the cover film-grain finish and as the merch backdrop accent. Not generated — it is a licensed Adobe Stock input.",
+      "why": "The brief calls for a licensed Adobe Stock plate; Stock-sourced inputs are decisions (sourced + licensed live), not assets we synthesize."
+    },
+    {
+      "requirement": "Output crops: 1600x1600 streaming cover + 1600x1600 square + 1080x1920 story",
+      "assumed_value": "Output spec for the Adobe agent (image_crop_and_resize): finished FX cover -> 1600x1600 streaming single cover (Apple Music/Spotify), 1600x1600 square announce, and 1080x1920 story crop. These are render targets, not collectible inputs.",
+      "why": "Deliverable sizes are an output instruction the agent crops to from the generated frames, not an input asset."
+    }
+  ],
+  "coverage": {
+    "inputs_total": 7,
+    "covered_by_assets": 5,
+    "covered_by_decisions": 2,
+    "uncovered": []
+  },
+  "stats": {
+    "images_generated": 0,
+    "regenerations": 0,
+    "est_cost_usd": 0.0,
+    "text_calls": 1,
+    "wall_time_s": 0
+  },
+  "ready_for_agent": true
+}

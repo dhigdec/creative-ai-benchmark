@@ -1,0 +1,200 @@
+{
+  "assets": {
+    "cover_spec": {
+      "entries": [
+        {
+          "key": "cover_spec",
+          "input_requirement": "Cover-spec / copy deck JSON — issue metadata, credits (writer/artist/colourist/letterer), price, on-sale date, variant ratios and retailer-exclusive notes — the authoritative source the CSVs are derived from",
+          "kind": "data",
+          "file": "assets/cover_spec.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the editor at a small creator-owned comics imprint preparing the\ncover-spec / copy deck for the debut single issue VOIDRUNNER #1 — the authoritative source from which\nthe trade-dress merge CSV and the spot-colour separation CSV are derived. Return a JSON object with\nEXACTLY these top-level keys:\n\"issue\": an object with \"series\" (EXACTLY \"VOIDRUNNER\"), \"issue_no\" (EXACTLY \"#1\"), \"title\" (a punchy\n  story-arc title for issue 1, 2-4 words), \"on_sale_date\" (a plausible future Wednesday in 2026,\n  formatted EXACTLY like \"ON SALE 14 OCT 2026\"), \"format\" (\"32-page full-colour single issue\"),\n  \"trim\" (EXACTLY \"6.625 x 10.25 in\"), \"page_count\" (int 32), \"rating\" (\"TEEN+\");\n\"imprint\": an object with \"name\" (an invented small comics imprint, 1-3 words, no real publisher),\n  \"website\" (a plausible URL on the invented imprint domain), \"diamond_code\" (an invented direct-market\n  order code like \"VOID0001\");\n\"credits\": an object with \"writer\", \"artist\", \"colourist\", \"letterer\", \"cover_artist\", \"editor\" —\n  each an INVENTED full creator name (diverse, dignified, no real comics professionals);\n\"credit_line\": a single string crediting the cover team in the house format EXACTLY like\n  \"Cover by <cover_artist>  -  Colours by <colourist>\" using the names above (reused verbatim on every\n  variant's trade dress);\n\"variants\": a LIST OF EXACTLY 6 objects, one per cover A-F, IN ORDER, each with \"variant_code\"\n  (EXACTLY \"A\",\"B\",\"C\",\"D\",\"E\",\"F\" respectively), \"colourway_name\" (EXACTLY \"Standard\",\"Retro\",\"Noir\",\n  \"Cyber\",\"Battle-Damage\",\"Sketch\" respectively), \"variant_ratio\" (EXACTLY \"1:1\",\"1:1\",\"1:1\",\"1:10\",\n  \"1:25\",\"Retailer-Exclusive\" respectively), \"cover_price\" (USD string EXACTLY \"$4.99\",\"$4.99\",\"$4.99\",\n  \"$9.99\",\"$19.99\",\"$14.99\" respectively), \"barcode_zone\" (EXACTLY \"on\",\"on\",\"on\",\"off\",\"off\",\"off\"\n  respectively — newsstand barcode on for the three standard-price covers, off for the incentives and\n  the retailer-exclusive), \"fx_note\" (one short phrase describing the treatment, e.g. \"Ben-Day halftone\n  over a flat 3-colour palette\" for Retro), and \"exclusive_note\" (a short retailer/incentive note, e.g.\n  \"1-in-25 retailer incentive\" or \"\" for the standard cover);\n\"spot_inks\": a LIST OF EXACTLY 4 objects defining the Retro variant's print separation, IN PRINT ORDER,\n  each with \"ink_name\" (EXACTLY \"White Underbase\",\"Ben-Day Red\",\"Ben-Day Cyan\",\"Ink Black\" respectively),\n  \"pantone\" (EXACTLY \"None\",\"185 C\",\"2995 C\",\"Black 6 C\" respectively), \"rgb_hex\" (EXACTLY \"FFFFFF\",\n  \"ED1C24\",\"00AEEF\",\"231F20\" respectively, no leading hash), \"print_order\" (ints 1,2,3,4 respectively),\n  \"lpi\" (ints 0,55,55,65 respectively — underbase 0/solid, the three screened plates 55/55/65);\n\"solicitation\": a single 50-90 word pulpy solicitation/back-cover blurb for VOIDRUNNER #1 in the voice:\n  Our tone is punchy and kinetic, drawing on classic pulp sci-fi with a modern indie edge. We speak with confidence and a touch of noir mystery, always keeping it direct and never corporate.. No real brands, real publishers or real creator names anywhere.",
+            "prompt_file": "prompts/cover_spec.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "cover_spec.render",
+          "input_requirement": "Cover-spec / copy deck JSON — issue metadata, credits (writer/artist/colourist/letterer), price, on-sale date, variant ratios and retailer-exclusive notes — the authoritative source the CSVs are derived from",
+          "kind": "data",
+          "file": "assets/cover_spec.md",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the editor at a small creator-owned comics imprint preparing the\ncover-spec / copy deck for the debut single issue VOIDRUNNER #1 — the authoritative source from which\nthe trade-dress merge CSV and the spot-colour separation CSV are derived. Return a JSON object with\nEXACTLY these top-level keys:\n\"issue\": an object with \"series\" (EXACTLY \"VOIDRUNNER\"), \"issue_no\" (EXACTLY \"#1\"), \"title\" (a punchy\n  story-arc title for issue 1, 2-4 words), \"on_sale_date\" (a plausible future Wednesday in 2026,\n  formatted EXACTLY like \"ON SALE 14 OCT 2026\"), \"format\" (\"32-page full-colour single issue\"),\n  \"trim\" (EXACTLY \"6.625 x 10.25 in\"), \"page_count\" (int 32), \"rating\" (\"TEEN+\");\n\"imprint\": an object with \"name\" (an invented small comics imprint, 1-3 words, no real publisher),\n  \"website\" (a plausible URL on the invented imprint domain), \"diamond_code\" (an invented direct-market\n  order code like \"VOID0001\");\n\"credits\": an object with \"writer\", \"artist\", \"colourist\", \"letterer\", \"cover_artist\", \"editor\" —\n  each an INVENTED full creator name (diverse, dignified, no real comics professionals);\n\"credit_line\": a single string crediting the cover team in the house format EXACTLY like\n  \"Cover by <cover_artist>  -  Colours by <colourist>\" using the names above (reused verbatim on every\n  variant's trade dress);\n\"variants\": a LIST OF EXACTLY 6 objects, one per cover A-F, IN ORDER, each with \"variant_code\"\n  (EXACTLY \"A\",\"B\",\"C\",\"D\",\"E\",\"F\" respectively), \"colourway_name\" (EXACTLY \"Standard\",\"Retro\",\"Noir\",\n  \"Cyber\",\"Battle-Damage\",\"Sketch\" respectively), \"variant_ratio\" (EXACTLY \"1:1\",\"1:1\",\"1:1\",\"1:10\",\n  \"1:25\",\"Retailer-Exclusive\" respectively), \"cover_price\" (USD string EXACTLY \"$4.99\",\"$4.99\",\"$4.99\",\n  \"$9.99\",\"$19.99\",\"$14.99\" respectively), \"barcode_zone\" (EXACTLY \"on\",\"on\",\"on\",\"off\",\"off\",\"off\"\n  respectively — newsstand barcode on for the three standard-price covers, off for the incentives and\n  the retailer-exclusive), \"fx_note\" (one short phrase describing the treatment, e.g. \"Ben-Day halftone\n  over a flat 3-colour palette\" for Retro), and \"exclusive_note\" (a short retailer/incentive note, e.g.\n  \"1-in-25 retailer incentive\" or \"\" for the standard cover);\n\"spot_inks\": a LIST OF EXACTLY 4 objects defining the Retro variant's print separation, IN PRINT ORDER,\n  each with \"ink_name\" (EXACTLY \"White Underbase\",\"Ben-Day Red\",\"Ben-Day Cyan\",\"Ink Black\" respectively),\n  \"pantone\" (EXACTLY \"None\",\"185 C\",\"2995 C\",\"Black 6 C\" respectively), \"rgb_hex\" (EXACTLY \"FFFFFF\",\n  \"ED1C24\",\"00AEEF\",\"231F20\" respectively, no leading hash), \"print_order\" (ints 1,2,3,4 respectively),\n  \"lpi\" (ints 0,55,55,65 respectively — underbase 0/solid, the three screened plates 55/55/65);\n\"solicitation\": a single 50-90 word pulpy solicitation/back-cover blurb for VOIDRUNNER #1 in the voice:\n  Our tone is punchy and kinetic, drawing on classic pulp sci-fi with a modern indie edge. We speak with confidence and a touch of noir mystery, always keeping it direct and never corporate.. No real brands, real publishers or real creator names anywhere.",
+            "prompt_file": "prompts/cover_spec.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "trade_dress_csv": {
+      "entries": [
+        {
+          "key": "trade_dress_csv",
+          "input_requirement": "Trade-dress merge CSV — 6 rows (Covers A-F) with columns: issue_no, colourway_name, variant_ratio, cover_price, barcode_zone, credit_line, variant_code — column headers match the Illustrator Variable names exactly",
+          "kind": "data",
+          "file": "assets/trade_dress_merge.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Build the Illustrator trade-dress DATA-MERGE table for the VOIDRUNNER #1\nvariant-cover pack, derived directly from the cover-spec / copy deck. Return a JSON object with ONE\ntop-level key \"rows\": a LIST OF EXACTLY 6 row objects, ONE PER COVER A-F IN ORDER. Each row object's keys\nMUST be EXACTLY these eight column names and NOTHING else — they bind to the Illustrator Variables in\nvoidrunner_variant_covers.ai CHARACTER-FOR-CHARACTER:\n\"cover_art\", \"issue_no\", \"colourway_name\", \"variant_ratio\", \"cover_price\", \"credit_line\",\n\"variant_code\", \"barcode_zone\".\nRules for every row (use the SAME credits/price/code values as the copy deck):\n- \"cover_art\": the linked-file name of that variant's rendered raster the merge places into the ART frame,\n  EXACTLY one of (in order) \"coverA_standard.png\",\"coverB_retro.png\",\"coverC_noir.png\",\"coverD_cyber.png\",\n  \"coverE_battledamage.png\",\"coverF_sketch.png\".\n- \"issue_no\": EXACTLY \"VOIDRUNNER #1\" on every row (the masthead carries the series; this is the issue line).\n- \"colourway_name\": EXACTLY \"Standard\",\"Retro\",\"Noir\",\"Cyber\",\"Battle-Damage\",\"Sketch\" (rows A-F in order).\n- \"variant_ratio\": EXACTLY \"1:1\",\"1:1\",\"1:1\",\"1:10\",\"1:25\",\"Retailer-Exclusive\" (rows A-F in order).\n- \"cover_price\": EXACTLY \"$4.99\",\"$4.99\",\"$4.99\",\"$9.99\",\"$19.99\",\"$14.99\" (rows A-F in order).\n- \"credit_line\": EXACTLY the same single credit-line string on every row (the cover-team credit from the\n  copy deck, e.g. \"Cover by <name>  -  Colours by <name>\"). Identical on all 6 rows.\n- \"variant_code\": EXACTLY \"A\",\"B\",\"C\",\"D\",\"E\",\"F\" (rows A-F in order).\n- \"barcode_zone\": EXACTLY \"on\",\"on\",\"on\",\"off\",\"off\",\"off\" (rows A-F in order) — controls the visibility\n  of the reserved lower-left UPC barcode rectangle (on = newsstand barcode shown, off = direct-market).\nNo extra keys, no missing keys, no real brands or real creator names. Output ONLY the rows object.",
+            "prompt_file": "prompts/trade_dress_csv.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "trade_dress_csv.render",
+          "input_requirement": "Trade-dress merge CSV — 6 rows (Covers A-F) with columns: issue_no, colourway_name, variant_ratio, cover_price, barcode_zone, credit_line, variant_code — column headers match the Illustrator Variable names exactly",
+          "kind": "data",
+          "file": "assets/trade_dress_merge.csv",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Build the Illustrator trade-dress DATA-MERGE table for the VOIDRUNNER #1\nvariant-cover pack, derived directly from the cover-spec / copy deck. Return a JSON object with ONE\ntop-level key \"rows\": a LIST OF EXACTLY 6 row objects, ONE PER COVER A-F IN ORDER. Each row object's keys\nMUST be EXACTLY these eight column names and NOTHING else — they bind to the Illustrator Variables in\nvoidrunner_variant_covers.ai CHARACTER-FOR-CHARACTER:\n\"cover_art\", \"issue_no\", \"colourway_name\", \"variant_ratio\", \"cover_price\", \"credit_line\",\n\"variant_code\", \"barcode_zone\".\nRules for every row (use the SAME credits/price/code values as the copy deck):\n- \"cover_art\": the linked-file name of that variant's rendered raster the merge places into the ART frame,\n  EXACTLY one of (in order) \"coverA_standard.png\",\"coverB_retro.png\",\"coverC_noir.png\",\"coverD_cyber.png\",\n  \"coverE_battledamage.png\",\"coverF_sketch.png\".\n- \"issue_no\": EXACTLY \"VOIDRUNNER #1\" on every row (the masthead carries the series; this is the issue line).\n- \"colourway_name\": EXACTLY \"Standard\",\"Retro\",\"Noir\",\"Cyber\",\"Battle-Damage\",\"Sketch\" (rows A-F in order).\n- \"variant_ratio\": EXACTLY \"1:1\",\"1:1\",\"1:1\",\"1:10\",\"1:25\",\"Retailer-Exclusive\" (rows A-F in order).\n- \"cover_price\": EXACTLY \"$4.99\",\"$4.99\",\"$4.99\",\"$9.99\",\"$19.99\",\"$14.99\" (rows A-F in order).\n- \"credit_line\": EXACTLY the same single credit-line string on every row (the cover-team credit from the\n  copy deck, e.g. \"Cover by <name>  -  Colours by <name>\"). Identical on all 6 rows.\n- \"variant_code\": EXACTLY \"A\",\"B\",\"C\",\"D\",\"E\",\"F\" (rows A-F in order).\n- \"barcode_zone\": EXACTLY \"on\",\"on\",\"on\",\"off\",\"off\",\"off\" (rows A-F in order) — controls the visibility\n  of the reserved lower-left UPC barcode rectangle (on = newsstand barcode shown, off = direct-market).\nNo extra keys, no missing keys, no real brands or real creator names. Output ONLY the rows object.",
+            "prompt_file": "prompts/trade_dress_csv.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "spot_sep_csv": {
+      "entries": [
+        {
+          "key": "spot_sep_csv",
+          "input_requirement": "Spot-colour separation CSV — 4 rows (White Underbase + 3 Ben-Day spots) with columns: ink_name, pantone, rgb_hex, print_order, lpi — feeds the Retro separation-sheet .ai",
+          "kind": "data",
+          "file": "assets/spot_separation.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Build the 4-colour SPOT-SEPARATION table for the VOIDRUNNER #1 'Retro' variant,\nderived from the cover-spec / copy deck's spot_inks. Return a JSON object with ONE top-level key \"rows\":\na LIST OF EXACTLY 4 row objects IN PRINT ORDER. Each row object's keys MUST be EXACTLY these five column\nnames and NOTHING else — they bind to the Illustrator Variables in voidrunner_spot_sep.ai\nCHARACTER-FOR-CHARACTER:\n\"ink_name\", \"pantone\", \"rgb_hex\", \"print_order\", \"lpi\".\nThe four rows, EXACTLY:\n- row 1: \"ink_name\"=\"White Underbase\", \"pantone\"=\"None\", \"rgb_hex\"=\"FFFFFF\", \"print_order\"=1, \"lpi\"=0.\n- row 2: \"ink_name\"=\"Ben-Day Red\", \"pantone\"=\"185 C\", \"rgb_hex\"=\"ED1C24\", \"print_order\"=2, \"lpi\"=55.\n- row 3: \"ink_name\"=\"Ben-Day Cyan\", \"pantone\"=\"2995 C\", \"rgb_hex\"=\"00AEEF\", \"print_order\"=3, \"lpi\"=55.\n- row 4: \"ink_name\"=\"Ink Black\", \"pantone\"=\"Black 6 C\", \"rgb_hex\"=\"231F20\", \"print_order\"=4, \"lpi\"=65.\nrgb_hex values are 6-char uppercase hex with NO leading hash (the {rgb_hex} Variable drives each swatch\ncard's fill rectangle). print_order and lpi are integers. No extra keys, no missing keys. Output ONLY\nthe rows object.",
+            "prompt_file": "prompts/spot_sep_csv.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "spot_sep_csv.render",
+          "input_requirement": "Spot-colour separation CSV — 4 rows (White Underbase + 3 Ben-Day spots) with columns: ink_name, pantone, rgb_hex, print_order, lpi — feeds the Retro separation-sheet .ai",
+          "kind": "data",
+          "file": "assets/spot_separation.csv",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Build the 4-colour SPOT-SEPARATION table for the VOIDRUNNER #1 'Retro' variant,\nderived from the cover-spec / copy deck's spot_inks. Return a JSON object with ONE top-level key \"rows\":\na LIST OF EXACTLY 4 row objects IN PRINT ORDER. Each row object's keys MUST be EXACTLY these five column\nnames and NOTHING else — they bind to the Illustrator Variables in voidrunner_spot_sep.ai\nCHARACTER-FOR-CHARACTER:\n\"ink_name\", \"pantone\", \"rgb_hex\", \"print_order\", \"lpi\".\nThe four rows, EXACTLY:\n- row 1: \"ink_name\"=\"White Underbase\", \"pantone\"=\"None\", \"rgb_hex\"=\"FFFFFF\", \"print_order\"=1, \"lpi\"=0.\n- row 2: \"ink_name\"=\"Ben-Day Red\", \"pantone\"=\"185 C\", \"rgb_hex\"=\"ED1C24\", \"print_order\"=2, \"lpi\"=55.\n- row 3: \"ink_name\"=\"Ben-Day Cyan\", \"pantone\"=\"2995 C\", \"rgb_hex\"=\"00AEEF\", \"print_order\"=3, \"lpi\"=55.\n- row 4: \"ink_name\"=\"Ink Black\", \"pantone\"=\"Black 6 C\", \"rgb_hex\"=\"231F20\", \"print_order\"=4, \"lpi\"=65.\nrgb_hex values are 6-char uppercase hex with NO leading hash (the {rgb_hex} Variable drives each swatch\ncard's fill rectangle). print_order and lpi are integers. No extra keys, no missing keys. Output ONLY\nthe rows object.",
+            "prompt_file": "prompts/spot_sep_csv.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "hero_cover_art": {
+      "entries": [
+        {
+          "key": "hero_cover_art",
+          "input_requirement": "Approved inked hero cover illustration for VOIDRUNNER #1 — full-bleed sci-fi composition (central armored runner figure leaping across a neon night-city rooftop, ink line-art with flat colour fills), ~4500px, drawn to comic trim+bleed proportions",
+          "kind": "image",
+          "file": "assets/voidrunner1_hero_inked.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1536",
+            "prompt": "A single approved INKED COMIC-BOOK COVER ILLUSTRATION for a creator-owned sci-fi comic, drawn in a clean professional American-comics house style: bold confident BLACK INK LINE-ART with controlled line weights and crisp hand-inked contours, filled with FLAT CEL COLOUR (solid flat colour fills, hard-edged colour holds, only minimal flat cel shadow shapes — NO airbrush gradients, NO soft painterly rendering, NO photographic texture). Composition (full-bleed, vertical comic-cover proportions): a single CENTRAL ARMORED RUNNER hero figure caught mid-leap, sprinting and vaulting across the edge of a rain-slicked neon NIGHT-CITY ROOFTOP, body angled dynamically into the leap, trailing cape/coat-tail and motion. The runner wears a sleek matte-charcoal exo-suit with glowing cyan energy-conduit lines down the arms and spine and a faceted visored helmet. Behind: a towering cyberpunk skyline of dark slab towers, holographic billboard glow (abstract glyph shapes ONLY, NO readable words), drifting aircraft lights, and a deep indigo-to-magenta night sky with a low neon haze. Strict limited palette: ink black #10131A line and shadow, deep night indigo #1B2447, signal cyan #16E0E0 for the suit glow and rim light, hot magenta #FF2E88 neon accents in the skyline, and a warm amber #F2A03D practical-light pop. Generous NEGATIVE SPACE / clean sky at the TOP of the frame (room for the masthead logo to be added later) and a calmer LOWER-LEFT area (reserved for a barcode block) — the central figure does NOT touch the top or bottom edges. The art must read as a finished pencil-and-ink-and-flats cover with NO lettering of any kind: no title, no logo, no issue number, no credits, no price, no captions, no sound effects, no signature. Crisp solid black ink and flat fills suitable to halftone, duotone, glitch and to vectorize cleanly to black-and-white line-art. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hero_cover_art_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "accepted_with_warnings",
+            "technical": "pass",
+            "vision_score": 6,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 3,
+            "issues": [
+              "The figure is not leaping but running on the rooftop, lacking the dynamic leap pose required.",
+              "The black ink line-art is present but not consistently bold; some lines are thin or soft, reducing the crispness.",
+              "The color fills are mostly flat but some gradients and soft shading are visible, which is not allowed.",
+              "The palette includes purples and warm orange window lights that are not part of the specified limited palette (ink black, night indigo, signal cyan, magenta neon, warm amber pop).",
+              "The figure is not perfectly centered vertically; it is closer to the bottom edge and touches the rooftop edge, which is not allowed.",
+              "There is visible text on the buildings in neon signs, which may be considered lettering and is not allowed."
+            ]
+          }
+        }
+      ]
+    },
+    "logo_lockup": {
+      "entries": [
+        {
+          "key": "logo_lockup",
+          "input_requirement": "VOIDRUNNER title/logo lockup — gritty distressed sci-fi wordmark on transparent ground, ~2500px, the trade-dress masthead reused on every variant",
+          "kind": "image",
+          "file": "assets/voidrunner_logo_lockup.png",
+          "format": "png",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1536x1024",
+            "prompt": "A comic-book TITLE / MASTHEAD logo lockup reading EXACTLY \"VOIDRUNNER\" in one word, all-caps, as a gritty distressed sci-fi wordmark: a heavy condensed angular techno display typeface with sharp chiseled bevels and a forward italic lean suggesting speed, the letterforms locked up tight into one solid horizontal masthead shape. Finish: solid FLAT colour fills only — the main letterform fill in signal cyan #16E0E0 with a clean ink-black #10131A outline/keyline and a subtle hard-edged distress (a few flat chipped/ scratched notches knocked OUT of the letters, like worn printed ink) — NO soft glow, NO gradient, NO drop shadow, NO neon blur, NO 3D extrude. Set on a FULLY TRANSPARENT background (no card, no box, no backdrop, no panel — alpha transparency around the wordmark). Perfectly horizontal, centred, generous and even letter-spacing, flawless spelling \"VOIDRUNNER\" with no extra, missing, doubled or garbled letters. No tagline, no issue number, no other words, no icon, no other symbols — just the single distressed wordmark, with razor-clean hard edges so it vectorizes to a crisp scalable SVG. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/logo_lockup_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "The cyan fill is slightly off from the exact #16E0E0 color, leaning more towards a brighter cyan.",
+              "The black keyline is clean but slightly thicker than ideal for razor-clean vector edges.",
+              "Distress notches are present but could be sharper and more angular to fully meet 'hard-edged chipped' criteria.",
+              "The italic speed-lean is present but could be slightly more forward for stronger sci-fi speed effect."
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

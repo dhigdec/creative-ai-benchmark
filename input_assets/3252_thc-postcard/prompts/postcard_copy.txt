@@ -1,0 +1,33 @@
+You are the sales director of Arch & Prairie Beverage Co., a Missouri distributor of
+hemp-derived Delta-9 THC drinks sold to bars, restaurants and liquor stores. Transcribe the
+FINAL postcard copy deck below into JSON. This wording is client-approved: transcribe it
+FAITHFULLY, character for character — invent NOTHING except the three [WRITE] fields.
+
+FRONT copy (verbatim):
+- headline: SERVE WHAT’S NEXT
+- subhead: Add a high-margin revenue stream with THC drinks. No alcohol. No hangover. 21+. Made with hemp - marijuana’s milder cousin - for a lighter, more buildable buzz.
+- stat_line: Alcohol consumption in the U.S. is at a 90-year low.
+- supporting_line: Consumers still want social experiences - just different options.
+- front_bullets, exactly these 3: High-margin pours | Repeat purchase behavior | Easy to add to existing menus
+- qr_label: Scan for Product & Pricing Guide
+
+BACK copy (verbatim):
+- headline: A NEW KIND OF BUZZ
+- back_sections, exactly these 3 (name → desc): Spirit Bottles → for shots + cocktails (“Hightails”) | RTD Cans → ready-to-drink social beverages | THC Drops → turn any alcohol-free drink into a THC drink
+- key_points, exactly these 5 in order: Delta-9 THC | Hemp-derived | Legal in Missouri | Social alternative to alcohol | Multiple mg/dose options available. Set emphasize=true ONLY on "Legal in Missouri" (the client: "This is a key point we need to get across"); emphasize=false on the other four.
+- qr_label: WHAT’S THE BUZZ ABOUT? THC Drinks Explained - Scan to Watch
+- brands, exactly these 9, spelled EXACTLY: HiSide | Howdy | THC Social | Stay Cool | SUP | 8th Wonder | Tempters | CURRNT | Don’t Be That Dude. (CURRNT is six letters C-U-R-R-N-T with no E; keep the apostrophe in Don’t Be That Dude; HiSide is one word, capital H and S.)
+
+Return ONE JSON object with EXACTLY these top-level keys:
+{"front": {"headline": "...", "subhead": "...", "stat_line": "...", "supporting_line": "...", "qr_label": "..."},
+"front_bullets": ["...", "...", "..."],
+"back": {"headline": "...", "qr_label": "..."},
+"back_sections": [{"name": "...", "desc": "..."}] — exactly 3, desc = the text after each arrow, verbatim,
+"key_points": [{"point": "...", "emphasize": true|false}] — exactly 5,
+"brands": [{"name": "...", "style_hint": "..."}] — exactly 9; [WRITE] style_hint: one short phrase you write capturing that brand's personality (e.g. friendly western, art-deco monumental, electric modern),
+"qr_links": [{"side": "front", "label": "<the front qr_label>", "url": "..."}, {"side": "back", "label": "<the back qr_label>", "url": "..."}] — [WRITE] urls: plausible https URLs on archandprairie.com (a /trade pricing-guide page for the front; a what's-the-buzz explainer-video page for the back),
+"compliance_line": "..."} — [WRITE] one fine-print line: 21+ only; hemp-derived Delta-9 THC compliant with the 2018 Farm Bill and Missouri law; enjoy responsibly — tight enough for 7pt postcard fine print.
+Voice for the [WRITE] fields: Confident B2B beverage-sales, hospitality-grade — sells margin and repeat business to bar owners, never giggly about THC. The tone is sophisticated and professional.
+
+[PATCH FEEDBACK]
+In the brands list, the 9th brand's name has a stray trailing period: "Don’t Be That Dude." — it must be EXACTLY "Don’t Be That Dude" with NO trailing period. Remove only that period; change nothing else.

@@ -1,0 +1,21 @@
+Produce the SHOPIFY IMAGE-SPEC SHEET that drives the export + QA pass for the
+13 retouched Wexford & Vale hampers. This renders to a CSV, so the JSON top-level key "rows" must be
+a LIST OF ROW OBJECTS whose keys are EXACTLY the CSV column names (state nothing extra): each row
+object has EXACTLY these keys, in this order:
+"filename" — the FINAL Shopify export name, EXACTLY one of
+hamper-01-classic-wicker-front.jpg ... hamper-13-luxe-leather-corner.jpg (hyphenated, lowercase,
+matching the 13 source frames in order);
+"sku" — a plausible SKU like "WV-HMP-001" through "WV-HMP-013" (zero-padded, ascending);
+"product_title" — a short quiet-luxury product name for that hamper (e.g. "The Classic Willow
+Hamper"), Title Case, no brand prefix;
+"target_px" — EXACTLY "2048x2048" for every row (the Shopify square);
+"max_file_weight_kb" — an integer max file weight in KB (Shopify-sane, e.g. 480), same value every
+row;
+"format" — EXACTLY "JPG" for every row;
+"backdrop_hex" — EXACTLY "#E8E8E8" for every row;
+"frame_class" — "catalogue" or "lifestyle", matching that frame's class in the grade recipe
+(8 catalogue, 5 lifestyle; rows 09-12 are the lifestyle_* frames, plus none others — i.e. frames
+09 lifestyle_kitchen, 10 lifestyle_doorstep, 11 lifestyle_table_spread, 12 lifestyle_hands_carry
+are lifestyle, all others catalogue).
+Return EXACTLY 13 rows, one per frame, in ascending order 01..13. Voice for product titles:
+Our tone is one of refined elegance and genuine appreciation for craftsmanship. We speak with a quiet confidence, always highlighting the provenance and quality of our meticulously selected contents.. JSON only.

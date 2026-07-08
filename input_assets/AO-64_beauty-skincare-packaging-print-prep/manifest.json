@@ -1,0 +1,199 @@
+{
+  "task_id": "AO-64",
+  "slug": "beauty-skincare-packaging-print-prep",
+  "title": "Premium skincare packaging: retouch hero shot, vectorize logo, render authored dieline + data-merge SKU labels, print-ready PDFs",
+  "vertical": "Beauty, Cosmetics & Personal Care",
+  "one_line_ask": "Take Aurelia Botanics' supplied hero serum photo, logo, authored carton dieline (.ai) + label (.indd) and SKU data, and produce retouched/CMYK-graded imagery, a clean vector logo, data-merged print-ready label PDFs for all 3 SKUs, and high-res mockup assets.",
+  "generated_at": "2026-07-07T13:05:07",
+  "assets": [
+    {
+      "name": "leaf_motif.png",
+      "kind": "image",
+      "path": "assets/leaf_motif.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Background is off-white rather than pure white (acceptable for source asset per brief).",
+              "Very slight paper tilt and visible edge (acceptable for source asset per brief).",
+              "Some minor luminance noise and soft edges (acceptable for source asset per brief)."
+            ],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Very slight luminance noise on the cream background (acceptable for source file)",
+              "A few line intersections create minor visual complexity in the centre that could challenge clean halftone separation, but within acceptable range for a source asset",
+              "Edges of the paper show very subtle yellowing/aging tone \u2014 designer will need to neutralise to true white for print-safe output",
+              "Pattern density is slightly heavier in the centre-left quadrant, marginally affecting repeat-friendliness, but correctable in layout"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 4
+      },
+      "cost": 0.536,
+      "verification": {
+        "min": 7,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 7
+        }
+      }
+    },
+    {
+      "name": "hero_serum_bottle.jpg",
+      "kind": "image",
+      "path": "assets/hero_serum_bottle.jpg",
+      "provider": "openai",
+      "model": "gpt-image-2",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Very slight tilt present as intended \u2014 within acceptable brief parameters",
+              "Dropper pipette visible through glass showing a small liquid droplet mid-shaft, which adds authentic realism but could be flagged by some clients as needing retouching",
+              "Shallow depth of field causes very subtle softness at bottle base edges \u2014 within acceptable brief parameters",
+              "Faint luminance noise visible in background gradient \u2014 within acceptable brief parameters",
+              "Near-white/light-grey seamless background with subtle gradient reflection present as specified",
+              "No label on bottle as required"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.19,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "aurelia_logo_raster.png",
+      "kind": "image",
+      "path": "assets/aurelia_logo_raster.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": true,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 10,
+            "issues": [],
+            "text_found": "AURELIA BOTANICS"
+          },
+          {
+            "provider": "gemini",
+            "score": 7,
+            "issues": [],
+            "text_found": "AURELIA BOTANICS"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [],
+            "text_found": "AURELIA BOTANICS"
+          }
+        ],
+        "min_score": 7,
+        "passed": true,
+        "gens": 5,
+        "note": "qc refreshed after regenerating logo as genuine RGBA transparent PNG (prior checkerboard-fake-transparency defect fixed); matches passing verification panel"
+      },
+      "cost": 1.206,
+      "verification": {
+        "min": 6,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 6,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "aurelia_carton_dieline.ai",
+      "kind": "data",
+      "path": "assets/aurelia_carton_dieline.ai.proxy.txt",
+      "provider": "gemini/gemini-2.5-flash",
+      "proxy": true,
+      "note": "Client-provided .ai template; represented here as an authored text proxy (binary Adobe format not synthesizable)."
+    },
+    {
+      "name": "aurelia_label_template.indd",
+      "kind": "data",
+      "path": "assets/aurelia_label_template.indd.proxy.txt",
+      "provider": "gemini/gemini-2.5-flash",
+      "proxy": true,
+      "note": "Client-provided .indd template; represented here as an authored text proxy (binary Adobe format not synthesizable)."
+    },
+    {
+      "name": "skus.csv",
+      "kind": "data",
+      "path": "assets/skus.csv",
+      "provider": "gemini/gemini-2.5-flash"
+    },
+    {
+      "name": "brand_guide.pdf",
+      "kind": "data",
+      "path": "assets/brand_guide.pdf",
+      "provider": "gemini/gemini-2.5-flash",
+      "note": "AO-64 audit fix: regenerated as a genuine 4-page CMYK PDF (was a markdown stub with .pdf extension). Content = spec sections; brand colors preserved."
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 7,
+    "produced": 7,
+    "missing": []
+  },
+  "qc_summary": {
+    "images": 3,
+    "passed": 2,
+    "min_scores": [
+      9,
+      9,
+      7
+    ]
+  },
+  "cost_usd": 1.968,
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 3,
+    "verified_pass": 3
+  }
+}

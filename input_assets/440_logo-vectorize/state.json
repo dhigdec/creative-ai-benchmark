@@ -1,0 +1,69 @@
+{
+  "assets": {
+    "logo_raster": {
+      "entries": [
+        {
+          "key": "logo_raster",
+          "input_requirement": "The ChatGPT-generated raster logo file",
+          "kind": "image",
+          "file": "assets/logo_chatgpt_raster.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-1",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Flat graphic logo for \"Emberleaf Teas\" — Artisanal loose-leaf tea blending and sales. The logo should feature a simplified, flat emblem of a stylized tea leaf or a small tea plant, paired with 'Emberleaf Teas' as a clear, elegant wordmark. It should use 3-4 flat colors from the palette, avoiding gradients for clean vectorization.\nWordmark text reading EXACTLY \"Emberleaf Teas\" beneath a simple flat emblem.\nColors strictly limited to: #4A5F4B, #C77C5F, #F5EFE6. Plain white background, centered composition,\n3-5 flat solid colors, crisp shapes, no gradients, no shadows, no photo elements, no extra\ntext besides the brand name. Style: the slightly-soft look of an AI chatbot-generated logo.",
+            "prompt_file": "prompts/logo_raster_0.txt"
+          },
+          "post_process": [
+            {
+              "op": "soften",
+              "params": {
+                "op": "soften",
+                "seed": 440,
+                "down_to": 445,
+                "jpeg_quality": 84
+              },
+              "original": "originals/clean_logo_chatgpt_raster.png"
+            }
+          ],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        }
+      ]
+    },
+    "brand_colors": {
+      "entries": [
+        {
+          "key": "brand_colors",
+          "input_requirement": "Intended brand colours / target hex for colour-accuracy fix — confirm",
+          "kind": "data",
+          "file": "assets/brand_colors.json",
+          "format": "json",
+          "generator": {
+            "provider": "text",
+            "model": "writer-chain",
+            "prompt": "Output the brand color spec for Emberleaf Teas as JSON:\n{\"brand\": \"Emberleaf Teas\", \"colors\": [{\"name\": \"...\", \"hex\": \"...\", \"usage\": \"emblem|wordmark|background\"}],\n\"notes\": \"exact hexes the vector output must match after tracing\"}.\nUse exactly these palette colors: #4A5F4B (Ember Green), #C77C5F (Terracotta Blush), #F5EFE6 (Cream Brew).",
+            "prompt_file": "prompts/brand_colors.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    }
+  }
+}

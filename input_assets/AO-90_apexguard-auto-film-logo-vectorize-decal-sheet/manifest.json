@@ -1,0 +1,183 @@
+{
+  "task_id": "AO-90",
+  "slug": "apexguard-auto-film-logo-vectorize-decal-sheet",
+  "title": "Apexguard Auto Film: vectorize the AI-drafted master + two sub-brand marks into production SVGs and assemble a multi-size die-cut vinyl decal sheet on the supplied cut-line template",
+  "vertical": "automotive_transport",
+  "one_line_ask": "Clean and de-skew Apexguard's three AI-drafted PPF/tint logo rasters, trace them into crisp production SVG masters, derive one-color knockouts for vinyl weeding, then assemble a multi-size die-cut vinyl decal/sticker sheet by binding the vector marks and the approved-sizes CSV into the client's authored cut-line template and exporting a press-ready PDF + SVG.",
+  "generated_at": "2026-07-07T14:48:55",
+  "assets": [
+    {
+      "name": "apexguard_master_wordmark_raw.png",
+      "kind": "image",
+      "path": "assets/apexguard_master_wordmark_raw.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": true,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [],
+            "text_found": "APEXGUARD\nAUTO FILM - PPF & TINT"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Image appears to be 1:1 square crop rather than 1600x1000 (16:10) aspect ratio",
+              "Tilt is essentially imperceptible \u2014 may be sub-1deg rather than the specified ~2.5deg",
+              "Texture/noise on background is very subtle, borderline absent \u2014 minimal paper grain visible",
+              "Soft edges on letterforms are very mild, may need more pronounced halo for downstream fix-chain testing"
+            ],
+            "text_found": "APEXGUARD AUTO FILM - PPF & TINT"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.134,
+      "verification": {
+        "min": 6,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 6
+        }
+      }
+    },
+    {
+      "name": "apexguard_tint_submark_raw.png",
+      "kind": "image",
+      "path": "assets/apexguard_tint_submark_raw.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": true,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Slightly soft edges and faint texture (acceptable per brief)",
+              "Minor tilt (acceptable per brief)",
+              "Tint bar bands could be slightly more visually distinct in tone for maximum print safety, but within brief's allowance"
+            ],
+            "text_found": "APEXGUARD TINT"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Tint bar bands could be slightly more distinct/higher contrast between the lightest and mid band",
+              "'TINT' label sits very close to the right edge of the wordmark rather than cleanly beneath 'APEXGUARD' \u2014 minor alignment quirk",
+              "Soft edge on the blue frame border consistent with AI export (acceptable per brief)"
+            ],
+            "text_found": "APEXGUARD TINT"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 2
+      },
+      "cost": 0.268,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 9,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "apexguard_shield_submark_raw.png",
+      "kind": "image",
+      "path": "assets/apexguard_shield_submark_raw.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": true,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Slightly soft anti-aliased edges and faint noise (acceptable per brief for a source asset)",
+              "Mildly uneven lighting and very subtle tilt (acceptable per brief for a source asset)",
+              "No severe artifacts or composition issues"
+            ],
+            "text_found": "APEXGUARD\nSHIELD"
+          },
+          {
+            "provider": "anthropic",
+            "score": 8,
+            "issues": [
+              "Shield glyph appears more rounded/traditional shield shape rather than strictly hexagonal as specified",
+              "Lockup appears essentially level/horizontal rather than showing the specified ~3-degree counter-clockwise rotation",
+              "Text weight hierarchy is acceptable but 'SHIELD' could be slightly more differentiated in size relative to 'APEXGUARD'",
+              "Very minor: inner shield core reads as dark charcoal rather than fully matte black, though within acceptable source-file tolerance"
+            ],
+            "text_found": "APEXGUARD SHIELD"
+          }
+        ],
+        "min_score": 8,
+        "passed": true,
+        "gens": 4
+      },
+      "cost": 1.206,
+      "verification": {
+        "min": 8,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 10,
+          "anthropic": 8
+        }
+      }
+    },
+    {
+      "name": "decal_sheet_template.ai",
+      "kind": "data",
+      "path": "assets/decal_sheet_template.ai.proxy.txt",
+      "provider": "gemini/gemini-2.5-flash",
+      "proxy": true,
+      "note": "Client-provided .ai template; represented here as an authored text proxy (binary Adobe format not synthesizable)."
+    },
+    {
+      "name": "decal_sizes.csv",
+      "kind": "data",
+      "path": "assets/decal_sizes.csv",
+      "provider": "gemini/gemini-2.5-flash"
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 5,
+    "produced": 5,
+    "missing": []
+  },
+  "qc_summary": {
+    "images": 3,
+    "passed": 3,
+    "min_scores": [
+      9,
+      9,
+      8
+    ]
+  },
+  "cost_usd": 1.644,
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 3,
+    "verified_pass": 3
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "task_id": 440,
+  "slug": "logo-vectorize",
+  "title": "Logo Refinement for Print",
+  "category": "Vectorize (Raster → Vector)",
+  "family": "Vector & Illustrator",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 10,
+      "evidence": [
+        "logo_raster shows 'Emberleaf Teas' wordmark with leaf/ember emblem matching brand name exactly",
+        "brand_colors.json maps all three palette hexes to correct logo zones (emblem/wordmark/background)",
+        "image 1",
+        "brand_colors.json"
+      ],
+      "deductions": [
+        "Wordmark text colour reads closer to muted olive than #4A5F4B Ember Green; minor colour drift",
+        "Terracotta cup element appears desaturated vs #C77C5F target hex",
+        "Logo image matches brief's description of a ChatGPT-generated raster.",
+        "Brand colors provided for requested color accuracy fix.",
+        "Logo subject and palette match Emberleaf Teas brief",
+        "All required elements present"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        9,
+        10,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 10,
+      "evidence": [
+        "Both mandatory client inputs present: logo_raster (image) and brand_colors.json (hex data)",
+        "brand_colors.json includes usage field mapping each hex to logo zone — executor needs nothing more",
+        "image 1",
+        "brand_colors.json"
+      ],
+      "deductions": [
+        "No minimum print output size or bleed spec stated; minor gap for document_render_vector step",
+        "Font name 'Lora' confirmed in persona but no font file supplied — agent must source independently",
+        "All client input requirements are present.",
+        "No mandatory elements are missing or empty.",
+        "Raster logo provided",
+        "Brand color hexes confirmed"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        9,
+        10,
+        10
+      ]
+    },
+    "executability": {
+      "score": 10,
+      "evidence": [
+        "logo_raster is a JPEG-roundtripped downscaled raster — gives image_vectorize a genuinely imperfect input to clean",
+        "brand_colors.json is valid JSON with exact hex strings consumable by document_render_vector colour-match step",
+        "image 1",
+        "brand_colors.json"
+      ],
+      "deductions": [
+        "White background is very clean/flat; image_vectorize may auto-include it as a filled region rather than transparent",
+        "1024×1024 source is modest; heavy JPEG artefacts not clearly visible, so vectorize improvement delta may be small",
+        "Raster logo is ideal input for image_vectorize tool.",
+        "JSON provides structured hex codes for color accuracy step.",
+        "Imperfect raster for vectorization",
+        "Color targets for vector output"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "Logo is clean and centred — plausible ChatGPT/DALL-E export aesthetic with soft edges",
+        "Deliberate downscale+JPEG roundtrip noted in decisions, consistent with real chatbot PNG-to-JPEG export artefact",
+        "image 1",
+        "Recorded Decisions"
+      ],
+      "deductions": [
+        "Image looks too polished/studio-clean for a 'ChatGPT-generated' file a real client would hand over",
+        "No visible compression noise or resolution softness that would motivate a vectorize request",
+        "Simulated degraded raster realistically mimics ChatGPT output.",
+        "Brand colors JSON is a standard way to provide palette data.",
+        "Raster logo is realistically degraded",
+        "Brand color file is plausible client handoff"
+      ],
+      "fix": {
+        "target_asset_key": "logo_raster",
+        "problem": "Insufficient degradation makes the 'needs vectorizing' premise unconvincing to the tool chain",
+        "prompt_delta": "Apply JPEG quality 55-65 save, then upscale 2× with nearest-neighbour to introduce visible pixelation and edge softness mimicking a real low-res chatbot export."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "logo_raster wordmark uses a serif font consistent with 'Lora' heading spec in persona",
+        "brand_colors.json hexes align with palette declared in brand/persona block",
+        "image 1",
+        "brand_colors.json"
+      ],
+      "deductions": [
+        "Cup element colour in image appears slightly more muted/brown than #C77C5F Terracotta Blush hex",
+        "Logo design and colors align perfectly with Emberleaf Teas brand.",
+        "JSON explicitly defines brand and consistent color palette.",
+        "Consistent palette and brand voice",
+        "Logo and color file match Emberleaf Teas"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        9,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Assuming persona palette as target hexes is sound — brief says 'confirm' implying hexes exist, not unknown",
+        "Simulating degraded raster is explicitly justified and technically correct for image_vectorize affordance",
+        "Recorded Decisions",
+        "brand_colors.json"
+      ],
+      "deductions": [
+        "Degradation simulation was under-executed (image still looks clean), undermining the stated rationale",
+        "No assumption recorded for missing print bleed/output-size spec — silent gap",
+        "Assumptions for brand colors and output spec are sound and actionable.",
+        "Simulating degraded raster ensures realistic test for vectorization.",
+        "Assumption on color hexes is justified",
+        "No real input wrongly demoted"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 10.0,
+  "verdict": "client-ready",
+  "top_risks": [
+    "CLIENT-REJECT (sev 8): The 'raster logo' is a clean, crisp AI-generated image with no visible JPEG artifacts, compression noise, or degradation — the handoff claims it was deliberately degraded to mimic a soft chatbot export, but it looks perfectly sharp. I never handed over my actual original file; this is a fabricated substitute, not my real asset. I cannot approve work based on a simulated stand-in.",
+    "AGENT CHOKE on 'logo_raster': image_vectorize will auto-trace a clean flat raster with smooth anti-aliased edges and produce bloated, over-anchored paths or miss subtle colour zones entirely — the 'degraded' premise the workflow depends on is false, so tracing thresholds will be miscalibrated from the start."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.03,
+  "rounds": []
+}

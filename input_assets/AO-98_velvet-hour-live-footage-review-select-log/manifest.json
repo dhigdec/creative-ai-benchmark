@@ -1,0 +1,132 @@
+{
+  "task_id": "AO-98",
+  "slug": "velvet-hour-live-footage-review-select-log",
+  "title": "Velvet Hour Sessions live-set footage review: multi-clip raw-concert audit, best-take selection + unusable-clip cull, delivered as a shot-selection log with a flagged-frame contact-sheet PDF",
+  "vertical": "Arts, Culture & Music",
+  "one_line_ask": "Review every raw concert clip from the Velvet Hour Sessions multi-cam shoot, judge keepers vs unusable takes, and deliver a structured shot-selection log (per-clip verdict, reason, best usable stretch, usability rating, coverage tag) plus a contact-sheet PDF of the flagged best-take frames.",
+  "generated_at": "2026-07-07T18:43:44",
+  "assets": [
+    {
+      "name": "shoot_notes.csv",
+      "kind": "data",
+      "path": "assets/shoot_notes.csv",
+      "provider": "gemini/gemini-2.5-flash"
+    },
+    {
+      "name": "velvet_hour_brand_note.pdf",
+      "kind": "data",
+      "path": "assets/velvet_hour_brand_note.pdf",
+      "provider": "gemini/gemini-2.5-flash"
+    },
+    {
+      "name": "velvet_hour_raw_clips",
+      "kind": "video_folder",
+      "path": "assets/velvet_hour_raw_clips",
+      "provider": "seedance/seedance-1.0-pro (3 base angles) + ffmpeg (per-clip derivation, planted defects, native-audio mux)",
+      "clip_count": 12,
+      "resolution": "1920x1088",
+      "aspect": "16:9",
+      "duration_range_s": "24-33",
+      "has_audio": true,
+      "audio": "native-style diegetic camera audio muxed per clip (acoustic-guitar performance bed; tuning/room-tone on pre-set + dead-air clips) via fal stable-audio; AAC 44.1kHz stereo. No music bed added in edit.",
+      "clips": [
+        {
+          "file": "VH_20231026_001.mov",
+          "camera": "wide",
+          "song": "pre-set",
+          "verdict_hint": "keeper-ish pre-set: tuning + chatter"
+        },
+        {
+          "file": "VH_20231026_002.mov",
+          "camera": "handheld",
+          "song": "pre-set",
+          "defect": "DEAD AIR ~24s, song only in last ~6s"
+        },
+        {
+          "file": "VH_20231026_003.mov",
+          "camera": "wide",
+          "song": "song1",
+          "verdict_hint": "clean KEEPER"
+        },
+        {
+          "file": "VH_20231026_004.mov",
+          "camera": "closeup",
+          "song": "song1",
+          "defect": "mildly SOFT focus (borderline MAYBE)"
+        },
+        {
+          "file": "VH_20231026_005.mov",
+          "camera": "handheld",
+          "song": "song2",
+          "defect": "DRIFTS off performer onto floor/empty chair for the second half"
+        },
+        {
+          "file": "VH_20231026_006.mov",
+          "camera": "wide",
+          "song": "song2",
+          "defect": "hard CAMERA BUMP/whip ~0:15 + reframe"
+        },
+        {
+          "file": "VH_20231026_007.mov",
+          "camera": "closeup",
+          "song": "song2",
+          "defect": "OUT OF FOCUS throughout (hard REJECT)"
+        },
+        {
+          "file": "VH_20231026_008.mov",
+          "camera": "wide",
+          "song": "song3",
+          "defect": "near-DUPLICATE of 003 locked-wide take"
+        },
+        {
+          "file": "VH_20231026_009.mov",
+          "camera": "handheld",
+          "song": "song3",
+          "verdict_hint": "steady KEEPER"
+        },
+        {
+          "file": "VH_20231026_010.mov",
+          "camera": "closeup",
+          "song": "song4",
+          "verdict_hint": "tight clean KEEPER"
+        },
+        {
+          "file": "VH_20231026_011.mov",
+          "camera": "wide",
+          "song": "song4",
+          "verdict_hint": "clean KEEPER"
+        },
+        {
+          "file": "VH_20231026_012.mov",
+          "camera": "handheld",
+          "song": "song1",
+          "verdict_hint": "clean re-take KEEPER"
+        }
+      ],
+      "note": "QC+fix rebuild (2026-07-08): prior asset was a single ~5s SILENT clip and did NOT match the spec (folder of ~12 raw clips with native audio + planted keep/cut defects). Rebuilt as a folder of 12 raw ungraded multi-cam clips (wide/handheld/closeup) matching shoot_notes.csv 1:1, each with native-style camera audio, and the six planted defects (soft focus, camera bump, dead air, redundant take, drift-to-floor) restored so the review pass has real KEEP/MAYBE/REJECT teeth. Plain unbranded gear (blank guitar headstock, no real logos), flat camera-original look, no on-screen text."
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 3,
+    "produced": 3,
+    "missing": []
+  },
+  "qc_summary": {
+    "scored": 1,
+    "passed": 1,
+    "by_kind": {
+      "image": 0,
+      "video": 1,
+      "audio": 0
+    },
+    "min_scores": [
+      9
+    ],
+    "qc_fix_2026_07_08": "brand_note.pdf converted from markdown-renamed-.pdf to a genuine 2-page PDF (content preserved); velvet_hour_raw_clips rebuilt from a single silent 5s clip into a 12-clip folder with native audio + restored planted defects."
+  },
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 0,
+    "verified_pass": 0
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "task_id": "AO-62",
+  "slug": "variable-data-event-catalog-merge-overset-safe",
+  "title": "Variable-Data Event Promo Catalog + Price-Tag Merge (Overset-Safe Auto-Fit Template)",
+  "vertical": "Party, Events & Promotion",
+  "one_line_ask": "Run our variable-data merge into the auto-fit (shrink-to-fit) InDesign catalog template and the Illustrator price-tag template so long product names no longer overset, prepping the product hero art and licensed background first, and export print-ready PDFs.",
+  "generated_at": "2026-07-07T16:29:06",
+  "assets": [
+    {
+      "name": "logo_master.png",
+      "kind": "image",
+      "path": "assets/logo_master.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1536x1024",
+      "transparent": true,
+      "audit_fix": "2026-07-08 final-acceptance: original was RGB on solid white (spec requires transparent bg for image_vectorize). Regenerated clean pure-white wordmark then keyed white->true alpha (89% transparent, crisp AA edges). Artwork unchanged: 'PARTYWORKS' 2-colour blue+orange with confetti burst.",
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Background is not fully transparent; visible checkerboard pattern indicates semi-transparency or a mockup PNG preview, not a true transparent PNG export. This will need to be fixed before vectorization."
+            ],
+            "text_found": "PARTYWORKS"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Slight luminance noise/checkerboard pattern visible in background (transparent PNG artifact, acceptable for source file)",
+              "Confetti-burst mark is relatively small and positioned upper-right of the 'S' \u2014 slightly unconventional placement but readable",
+              "Blue and orange rays in burst mark are minimal/simple but functional for vectorization"
+            ],
+            "text_found": "PARTYWORKS"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.134,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 10,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "bg_texture_ref",
+      "kind": "image",
+      "path": "assets/bg_texture_ref",
+      "provider": "openai",
+      "model": "gpt-image-2",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Handle positioned to right side limits full front-face mockup utility but is acceptable for reference use",
+              "Very slight cool-grey colour cast on mug body may need correction in final deliverable",
+              "Bokeh circles are slightly large/prominent but within acceptable range for a festive reference texture",
+              "Confetti scatter is sparse at top of frame but adequate for reference purposes"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.19
+    },
+    {
+      "name": "hero_product.jpg",
+      "kind": "image",
+      "path": "assets/hero_product.jpg",
+      "provider": "openai",
+      "model": "gpt-image-2",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 9,
+            "issues": [],
+            "text_found": "40"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Slight luminance noise visible on tabletop surface (acceptable per brief)",
+              "Minor wrinkle visible in paper backdrop (acceptable per brief)",
+              "Small amount of clutter visible in background left side including books, plants, containers (acceptable per brief \u2014 deliberate candid studio feel)",
+              "Gold and black curling ribbon strands slightly tangled at base \u2014 minor compositional density but acceptable",
+              "Window light creates mild left-side luminance gradient \u2014 acceptable natural lighting condition"
+            ],
+            "text_found": "40"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.19,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 10,
+          "gemini": 9,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "catalog_template.indd",
+      "kind": "data",
+      "path": "assets/catalog_template.indd.proxy.txt",
+      "provider": "gemini/gemini-2.5-flash",
+      "proxy": true,
+      "note": "Client-provided .indd template; represented here as an authored text proxy (binary Adobe format not synthesizable)."
+    },
+    {
+      "name": "pricetag_template.ai",
+      "kind": "data",
+      "path": "assets/pricetag_template.ai.proxy.txt",
+      "provider": "gemini/gemini-2.5-flash",
+      "proxy": true,
+      "note": "Client-provided .ai template; represented here as an authored text proxy (binary Adobe format not synthesizable)."
+    },
+    {
+      "name": "catalog_data.csv",
+      "kind": "data",
+      "path": "assets/catalog_data.csv",
+      "provider": "gemini/gemini-2.5-flash"
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 6,
+    "produced": 6,
+    "missing": []
+  },
+  "qc_summary": {
+    "images": 3,
+    "passed": 3,
+    "min_scores": [
+      9,
+      9,
+      9
+    ]
+  },
+  "cost_usd": 0.55,
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 3,
+    "verified_pass": 2
+  }
+}

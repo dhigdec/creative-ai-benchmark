@@ -1,0 +1,108 @@
+<html><head><meta charset='utf-8'><title>AO-85 — Ironclad parts catalog pre-press audit: merge-proof render, spec-row extraction + CSV cross-check, overset/missing-field findings report</title><style>
+*{box-sizing:border-box}body{font-family:-apple-system,Segoe UI,Inter,sans-serif;background:#0c0715;color:#ece7f6;margin:0;padding:30px}
+a{color:#8bd6ee;text-decoration:none}a:hover{text-decoration:underline}.muted{color:#9b93b3}.wrap{max-width:1280px;margin:0 auto}
+h1{letter-spacing:-1px;margin:0 0 4px}h2{margin:34px 0 12px;border-bottom:1px solid #2c2440;padding-bottom:8px;font-size:19px}
+h3{margin:22px 0 8px;font-size:15px;color:#c9bff0}
+.summary{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0 26px}
+.stat{background:#171028;border:1px solid #2c2440;border-radius:12px;padding:12px 18px;min-width:120px}
+.stat .n{font-size:26px;font-weight:800}.stat .l{font-size:12px;color:#9b93b3}
+.idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:#171028;border:1px solid #2c2440;border-radius:14px;padding:13px;overflow:hidden}
+.card .cover{width:100%;height:170px;object-fit:cover;border-radius:9px;background:#fff;display:block}
+.card .novid{width:100%;height:170px;border-radius:9px;background:#221a38;display:flex;align-items:center;justify-content:center;color:#6b6088;font-size:13px}
+.tid{font-size:12px;color:#8bd6ee;font-weight:700;margin-top:9px}
+.ttl{font-weight:700;font-size:14px;line-height:1.25;margin:2px 0 6px}
+.brief{font-size:12px;color:#9b93b3;line-height:1.35;max-height:52px;overflow:hidden}
+.counts{font-size:11.5px;color:#b9aee0;margin:9px 0 6px}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;border-radius:99px;padding:3px 9px;margin:2px 4px 0 0}
+.pass{background:#10402c;color:#5ee0a8}.warn{background:#4a3a10;color:#f4cf67}.fail{background:#4a1620;color:#ff8b9e}.kit{background:#123047;color:#7cc7ee}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.asset{background:#120c22;border:1px solid #2c2440;border-radius:11px;padding:10px}
+.asset img,.asset video{width:100%;border-radius:8px;background:#fff;display:block}
+.asset audio{width:100%;margin-top:6px}
+.aname{font-size:12px;font-weight:600;margin-top:8px;word-break:break-all}
+.ameta{font-size:11px;color:#9b93b3;margin-top:3px}
+details{margin-top:7px;font-size:12px}summary{cursor:pointer;color:#b9aee0}
+pre{white-space:pre-wrap;background:#0a0512;border:1px solid #2c2440;border-radius:8px;padding:9px;font-size:11px;color:#cfc6e8;max-height:280px;overflow:auto}
+.pill{display:inline-block;background:#221a38;border-radius:6px;padding:2px 8px;font-size:11px;margin:2px 4px 2px 0;color:#c9bff0}
+.work{background:#141026;border:1px solid #2c2440;border-radius:12px;padding:12px 14px;margin:14px 0 8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
+.chip{font-size:11px;font-weight:700;background:#221a38;color:#c9bff0;border-radius:99px;padding:3px 10px}
+.chip.src{background:#123047;color:#7cc7ee}.chip.long{background:#3a2410;color:#f4b567}
+.steps{margin:6px 0 0 18px;padding:0;font-size:12px;color:#c9bff0}.steps li{margin:2px 0}
+.work code{background:#0a0512;border-radius:4px;padding:1px 5px;color:#8bd6ee;font-size:11px}
+.work ul{margin:6px 0 0 18px;font-size:12px;color:#c9bff0}
+.cx{font-size:11.5px;color:#f4b567;margin:2px 0 6px;font-weight:600}
+</style></head><body><div class='wrap'><p class='muted'><a href='../index_studiobench.html'>← all 100 tasks</a> · <a href='../all_assets.html'>all assets on one page</a></p><h1>AO-85 — Ironclad parts catalog pre-press audit: merge-proof render, spec-row extraction + CSV cross-check, overset/missing-field findings report</h1><span class='pill'>manufacturing_industrial</span> <span class='badge pass'>ready for agent</span> <span class='badge kit'>brand-kit consistent</span><p class='muted' style='margin-top:10px'>Render our authored InDesign parts-catalog template against the master parts CSV into a proof, then audit it page by page — read back every printed spec row, cross-check it against the source data, and hand back a flagged-pages findings note (each defective page keyed to its issue) plus a findings report calling out overset/clipped part numbers, blank spec cells, and section-count mismatches before we send ~100 pages to print.</p><div class='work'><div class='chips'><span class='chip src'>Upwork</span><span class='chip'>14 tool calls</span><span class='chip'>9 distinct tools</span><span class='chip'>analyze</span></div><div class='ameta'>grounded in a real brief: Catalog designer needed — B2B electrical/elevator parts distributor (100+ pages)</div><details><summary>Full client brief</summary><pre>Ironclad Elevator &amp; Electrical Supply is a wholesale distributor of electrical and elevator replacement parts selling to service technicians, maintenance supervisors, and electrical contractors. Our buyers open this catalog in the field — often as a phone PDF — when they need to spec a replacement part fast and prepare a quote, so a wrong part number, a blank voltage, or a price that got clipped off the edge of the page is a real problem that costs us an order. We are about to send our new parts catalog to the printer (~100 pages across five sections: Contactors &amp; Relays, Elevator Door Operators, Push-Button Fixtures, Fuses &amp; Breakers, and Cables &amp; Connectors). We already have the InDesign catalog template authored with real data-merge fields (&lt;&lt;part_no&gt;&gt;, &lt;&lt;description&gt;&gt;, &lt;&lt;voltage&gt;&gt;, &lt;&lt;amperage&gt;&gt;, &lt;&lt;list_price&gt;&gt;, &lt;&lt;section&gt;&gt;) laid out as one spec card per part, and our master parts spreadsheet (catalog_parts.csv, ~180 SKUs). Before we spend money on the print run we need a pre-press data-integrity and spec-completeness audit — not a redesign. Specifically: (1) run our authored template through the data merge against the CSV and export a proof PDF so we can see exactly what will print; (2) convert/inspect that proof page by page and read back what actually rendered on each card; (3) extract the printed spec rows and cross-check them against the source CSV to catch part numbers that ran overset (long codes clipped by the frame), any blank/empty voltage-amperage-price cells that would leave a technician guessing, and any section whose printed card count does not match the number of SKUs in the CSV for that section; (4) re-inspect the pages carrying a defect in context and deliver a flagged-pages findings note that keys each defective page number to its issue and part_no so we can find each problem card fast; and (5) deliver a written findings report — a table listing every flagged part number, its page, the field at fault, the CSV value vs. the printed value, and a pass/fail per section — plus a one-line go / no-go recommendation for the print run. Page size is US Letter portrait; keep our section order. Deliver the flagged-pages findings note, the findings report table, the report summary, and the whole audit package as a single zip.</pre></details><details><summary>Deliverables (5)</summary><ul><li><b>Ironclad_Catalog_proof.pdf</b> — Proof PDF exported from the data-merged InDesign template against catalog_parts.csv — one spec card per part across the five sections, US Letter portrait — representing exactly what would print. This </li><li><b>catalog_audit_flagged_pages.md</b> — Flagged-pages findings note: a short markdown/text index of every proof page the cross-check identified as carrying a defect (overset-clipped part numbers, blank voltage/amperage/price cells, section-</li><li><b>catalog_audit_findings.csv</b> — Findings report table: one row per flagged item with columns part_no, page, section, field_at_fault, csv_value, printed_value, issue_type (overset_clip / blank_cell / count_mismatch), plus per-section</li><li><b>catalog_audit_report.txt</b> — Human-readable audit summary: total SKUs checked, count of clipped part numbers, count of blank spec cells, the section whose printed card count did not match the CSV, the explicit acceptance-rule ver</li><li><b>Ironclad_catalog_audit_package.zip</b> — Single zip bundling the proof PDF, the flagged-pages findings note, the findings CSV, and the report txt for handoff to the client&#x27;s pre-press contact.</li></ul></details><details><summary>Workflow — 14 tool steps</summary><ol class='steps'><li><code>asset_create_folders</code> — Stand up the CC asset workspace (e.g. /L12/inputs, /proof, /audit) to hold the authored template, CSV, brand note, logo, and the audit outputs.</li><li><code>asset_initialize_file_upload</code> — Initialize an upload session for the client-supplied inputs: parts_catalog_template.indd, catalog_parts.csv, brand_kit_note.txt, catalog_logo.png.</li><li><code>asset_finalize_file_upload</code> — Finalize the uploads so the authored .indd, the parts CSV, the brand note, and the logo are real CC assets with URNs the merge/render steps can reference.</li><li><code>document_merge_data_layout</code> — [T] InDesign data-merge: bind catalog_parts.csv (~180 rows) into the client-authored parts_catalog_template.indd (real &lt;&lt;part_no&gt;&gt;/&lt;&lt;description&gt;&gt;/&lt;&lt;voltage&gt;&gt;/&lt;</li><li><code>document_render_layout</code> — Export the merged .indd to a US Letter portrait proof PDF — exactly what would go to the printer. This is the artifact the audit will read back, page by page.</li><li><code>document_convert_pdf</code> — Convert/normalize the proof PDF into a per-page-inspectable form so each catalog page&#x27;s rendered spec cards can be previewed and read back individually (inspect</li><li><code>asset_preview_file</code> — Generate page previews of the normalized proof so the audit can visually inspect each spec card as it will print (look for clipped part codes at frame edges, em</li><li><code>asset_inline_preview</code> — Inline-preview the proof pages to read back the actual printed text of each spec card (printed part_no / voltage / amperage / price strings), producing the &#x27;pri</li><li><code>media_summarize</code> — Summarize/extract the rendered spec rows across all proof pages and align them against the source catalog_parts.csv — surfacing where a printed part_no is trunc</li><li><code>asset_inline_preview</code> — Re-inspect ONLY the pages the cross-check flagged (from extraction_vs_source&#x27;s defective-page list) by inline-previewing those specific pages of the existing pr</li><li><code>local_write_recipe_note</code> — Emit the flagged-pages findings NOTE: a short index listing, per defective page, the page number, the part_no(s) on it, and the issue_type (overset_clip / blank</li><li><code>local_write_recipe_note</code> — Emit the findings report TABLE: one row per flagged item — part_no, page, section, field_at_fault, csv_value, printed_value, issue_type (overset_clip / blank_ce</li><li><code>local_write_recipe_note</code> — Emit the human-readable audit summary: SKUs checked, clipped-part-number count, blank-spec-cell count, the section with a card-count mismatch, the acceptance-ru</li><li><code>local_zip</code> — Single trailing [L] packaging step: bundle the proof PDF, the flagged-pages findings note, the findings CSV, and the report txt into one zip for handoff to the </li></ol></details><details><summary>Why it's non-trivial</summary><pre>Long-horizon analyze task: 13 connector calls, 9 distinct Adobe tools across three groups (asset/storage+preview, document/merge+render+convert, media_summarize), above the analyze floor. Difficulty comes from the two-sided cross-check: the agent must first EXECUTE a genuine [T] data-merge + render to produce the exact proof that would print, then INSPECT it back page by page (convert -&gt; preview -&gt; inline-preview -&gt; summarize) and align the printed strings against the source CSV to catch three distinct defect classes — part numbers that ran overset because the authored frame is narrow, blank voltage/amperage/price cells seeded in the data, and a section whose printed card count does not match its CSV SKU count — before emitting a flagged-pages proof extract and a structured findings table with a go/no-go verdict. It respects every hard limit: it is a review/audit that produces a findings report + a flagged-pages proof extract (true analyze), NOT a redesign; no layout is composed by the connector — document_merge_data_layout is [T] and only binds the client&#x27;s authored .indd (a supplied input), and document_render_layout/document_convert_pdf only export/normalize that genuine file; the flagged-pages extract only SELECTS existing rendered pages (no new annotations drawn — the page-&gt;issue mapping lives in the findings CSV); no generative fill, no generative-expand, no object-remova</pre></details></div><p class='muted' style='margin-top:14px'>Client-supplied input assets: 4 total · 1 images · 0 video · 0 audio · 3 data</p><h2>Images (1)</h2><div class='grid'><div class='asset'><a href='assets/catalog_logo.png' target='_blank'><img loading='lazy' src='assets/catalog_logo.png'></a><div class='aname'>catalog_logo.png</div><div class='ameta'>gemini</div></div></div><h2>Data &amp; other (3)</h2><div class='asset' style='margin-bottom:10px'><b><a href='assets/brand_kit_note.txt' target='_blank'>brand_kit_note.txt</a></b><div class='ameta'>gemini/gemini-2.5-flash</div><details><summary>content</summary><pre>Pre-press Guidelines: Ironclad Elevator &amp; Electrical Supply
+
+This note outlines critical brand and pre-press specifications for all Ironclad Elevator &amp; Electrical Supply print assets. Our official brand colors are Industrial Navy (#1B2A41) and Safety-Orange Accent (#E8621F). Please utilize `Ironclad_Logo_Primary_CMYK.ai` for our primary logo, ensuring it is always used in its original vector format. All print layouts should be designed for US Letter portrait (8.5&quot; x 11&quot;) dimensions.
+
+For all product listings, catalogs, and data sheets, the following section order is mandatory: Contactors &amp; Relays; Elevator Door Operators; Push-Button Fixtures; Fuses &amp; Breakers; and Cables &amp; Connectors. This sequence must be strictly adhered to across all materials.
+
+Final print proofs will be audited against the following non-negotiable acceptance criteria: no part number may be clipped, and no voltage/amperage/price cell may be blank on the printed card. Any proof failing these specific checks will be rejected and require immediate correction.</pre></details></div><div class='asset' style='margin-bottom:10px'><b><a href='assets/catalog_parts.csv' target='_blank'>catalog_parts.csv</a></b><div class='ameta'>gemini/gemini-2.5-flash</div><details><summary>content</summary><pre>part_no,description,voltage,amperage,list_price,section
+CR-20A-3P-24VDC,IEC Contactor,24VDC,20A,$85.50,Contactors &amp; Relays
+RELAY-SPDT-12VDC,Miniature SPDT Relay,12VDC,5A,$12.30,Contactors &amp; Relays
+IEC-DOL-STARTER-40A-3P-480VAC-AUX-2NO2NC,Direct-On-Line Starter with Aux Contacts,480VAC,40A,$450.00,Contactors &amp; Relays
+CR-40,Heavy Duty Power Contactor,240VAC,100A,$320.00,Contactors &amp; Relays
+THERMAL-OVERLOAD-RELAY-10-14A,Adjustable Thermal Overload Relay,480VAC,14A,$55.00,Contactors &amp; Relays
+CR-AUX-CONTACT-BLOCK-2NO2NC,Auxiliary Contact Block,NA,10A,$22.00,Contactors &amp; Relays
+TIME-DELAY-RELAY-ON-DELAY-10S,On-Delay Time Relay,24VDC,3A,$48.00,Contactors &amp; Relays
+SOLID-STATE-RELAY-SSR-25A-240V,Solid State Relay,240VAC,25A,$75.00,Contactors &amp; Relays
+CR-MINI-16A-2P-120VAC,Mini Contactor,120VAC,16A,$58.90,Contactors &amp; Relays
+LOW-VOLTAGE-COIL-48VDC,Replacement Contactor Coil,,NA,$25.00,Contactors &amp; Relays
+RS-8P,8-Pin Relay Socket,NA,10A,$8.50,Contactors &amp; Relays
+CR-30,Standard Contactor,480VAC,30A,$110.00,Contactors &amp; Relays
+OVERLOAD-RELAY-6A-9A-CLASS10,Motor Overload Relay,400VAC,9A,$45.00,Contactors &amp; Relays
+IEC-CONTACTOR-50A-3P-208VAC,IEC Standard Contactor,208VAC,50A,$180.00,Contactors &amp; Relays
+RELAY-LATCHING-2P-24VDC,Latching Relay,24VDC,8A,$38.00,Contactors &amp; Relays
+CR-VACUUM-CONTACTOR-200A-600V,High Voltage Vacuum Contactor,600VAC,200A,$850.00,Contactors &amp; Relays
+MONITOR-RELAY-PHASE-LOSS-480V,Phase Loss Monitoring Relay,480VAC,NA,$120.00,Contactors &amp; Relays
+CR-AC-CONTACTOR-18A-3P-24VAC,AC Contactor,24VAC,18A,$60.00,Contactors &amp; Relays
+POWER-RELAY-HEAVY-DUTY-30A-120V,Heavy Duty Power Relay,120VAC,30A,$49.50,Contactors &amp; Relays
+CR-MINIATURE-CONTROLLER-AUX,Miniature Contactor with Aux,240VAC,12A,$70.00,Contactors &amp; Relays
+RELAY-GENERAL-PURPOSE-DPDT-120VAC,General Purpose DPDT Relay,120VAC,10A,$19.99,Contactors &amp; Relays
+CR-MODULAR-CONTACTOR-25A-230V,Modular Contactor,230VAC,25A,$95.00,Contactors &amp; Relays
+RELAY-CONTROL-4NO-4NC-24VDC,Control Relay,24VDC,5A,$28.00,Contactors &amp; Relays
+THERMAL-RELAY-HEATER-ELEMENT-KIT,Heater Element Replacement Kit,NA,NA,$35.00,Contactors &amp; Relays
+IEC-CONTACTOR-LONG-CODE-150A-4P-600VAC-2NO2NC-COIL-120V,Industrial Power Contactor,,,,Contactors &amp; Relays
+CR-DC-CONTACTOR-80A-2P-48VDC,DC Power Contactor,48VDC,80A,$210.00,Contactors &amp; Relays
+RELAY-SAFETY-DUAL-CHANNEL-24VDC,Safety Relay,24VDC,6A,$150.00,Contactors &amp; Relays
+CR-BLOCK-CONTACTOR-9A</pre></details></div><div class='asset' style='margin-bottom:10px'><b><a href='assets/parts_catalog_template.indd.proxy.txt' target='_blank'>parts_catalog_template.indd.proxy.txt</a></b><details><summary>content</summary><pre>**Template Description: `parts_catalog_template.indd`**
+
+**File Type:** Adobe InDesign Document (.indd)
+
+**Purpose:** This template is designed as a US Letter portrait B2B parts catalog, optimized for data merge to generate individual part specification cards.
+
+**Dimensions:** US Letter (8.5&quot; x 11&quot;), portrait orientation.
+
+**Structure &amp; Layout:**
+The template is structured to display multiple &quot;spec cards&quot; per page, with each card detailing a single part. Content is logically grouped under five primary section headers:
+1.  Contactors &amp; Relays
+2.  Elevator Door Operators
+3.  Push-Button Fixtures
+4.  Fuses &amp; Breakers
+5.  Cables &amp; Connectors
+
+A consistent running header and footer are present across all pages. Each individual part card includes a dedicated, small image frame for a product photograph.
+
+**Layers:**
+Standard InDesign layers are employed for organization, typically including:
+*   **Text:** For all dynamic and static text elements.
+*   **Images:** For product photo frames and any static graphics.
+*   **Background/Graphics:** For layout elements, rules, and background colors.
+*   **Headers/Footers:** For recurring page elements.
+
+**Placeholders (Data Merge Fields):**
+The template is authored with genuine Adobe InDesign data merge fields, ensuring dynamic content population from an external data source. These fields include:
+*   `&lt;&lt;part_no&gt;&gt;`
+*   `&lt;&lt;description&gt;&gt;`
+*   `&lt;&lt;voltage&gt;&gt;`
+*   `&lt;&lt;amperage&gt;&gt;`
+*   `&lt;&lt;list_price&gt;&gt;`
+*   `&lt;&lt;section&gt;&gt;` (used for section grouping/navigation)
+
+**Brand Styling:**
+The design follows a clean, professional, and highly functional B2B aesthetic. Emphasis is placed on clear typography, organized presentation of technical specifications, and readability, characteristic of industrial parts catalogs.
+
+**Critical Audit Finding (Intentional Authoring Defect):**
+The text frame specifically designated for the `&lt;&lt;part_no&gt;&gt;` data merge field has been deliberately authored with a narrow width. Crucially, auto-fit options (such as &quot;Auto-Fit Frame to Content&quot; or similar) are *not* enabled for this frame. This intentional design flaw will cause text overset and clipping for any alphanumeric part codes that exceed the frame&#x27;s limited width when data is merged or the document is exported, providing a genuine finding for content overflow during the audit process.</pre></details></div></div></body></html>

@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "task_id": 440,
+  "slug": "logo-vectorize",
+  "title": "Logo Refinement for Print",
+  "task_type": "Raster logo → print-ready vector",
+  "category": "Vectorize (Raster → Vector)",
+  "family": "Vector & Illustrator",
+  "feasibility": "full",
+  "source": "freelancer",
+  "source_url": "https://www.freelancer.com/projects/adobe-illustrator/Logo-Refinement-for-Print",
+  "mcp_workflow": "asset_add_file (existing AI-generated raster logo) -> image_vectorize (clean sharp vector edges) -> document_render_vector (AI/EPS + high-res PNG for print)",
+  "original_brief": "Enhance an existing logo created on ChatGPT. Love the design but need it made professional. Improve resolution for printing, make edges sharper, enhance colour accuracy. Ideal skills: vector software (AI, EPS), eye for colour, logo refinement.",
+  "generated_at": "2026-06-10T22:56:50Z",
+  "pipeline_version": "0.1.0",
+  "client_persona": {
+    "brand_name": "Emberleaf Teas",
+    "tagline": "Crafted warmth in every cup.",
+    "industry": "Artisanal loose-leaf tea blending and sales",
+    "palette": [
+      {
+        "name": "Ember Green",
+        "hex": "#4A5F4B",
+        "role": "primary"
+      },
+      {
+        "name": "Terracotta Blush",
+        "hex": "#C77C5F",
+        "role": "secondary"
+      },
+      {
+        "name": "Cream Brew",
+        "hex": "#F5EFE6",
+        "role": "accent"
+      }
+    ],
+    "fonts": {
+      "heading": "Lora",
+      "body": "Work Sans"
+    },
+    "voice": "Our brand voice is comforting and knowledgeable, like a friendly guide sharing a cherished recipe. We aim to evoke a sense of quiet ritual and natural goodness.",
+    "persona_file": "persona.json"
+  },
+  "assets": [
+    {
+      "key": "logo_raster",
+      "input_requirement": "The ChatGPT-generated raster logo file",
+      "kind": "image",
+      "file": "assets/logo_chatgpt_raster.png",
+      "format": "png",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "Flat graphic logo for \"Emberleaf Teas\" — Artisanal loose-leaf tea blending and sales. The logo should feature a simplified, flat emblem of a stylized tea leaf or a small tea plant, paired with 'Emberleaf Teas' as a clear, elegant wordmark. It should use 3-4 flat colors from the palette, avoiding gradients for clean vectorization.\nWordmark text reading EXACTLY \"Emberleaf Teas\" beneath a simple flat emblem.\nColors strictly limited to: #4A5F4B, #C77C5F, #F5EFE6. Plain white background, centered composition,\n3-5 flat solid colors, crisp shapes, no gradients, no shadows, no photo elements, no extra\ntext besides the brand name. Style: the slightly-soft look of an AI chatbot-generated logo.",
+        "prompt_file": "prompts/logo_raster_0.txt"
+      },
+      "post_process": [
+        {
+          "op": "soften",
+          "params": {
+            "op": "soften",
+            "seed": 440,
+            "down_to": 445,
+            "jpeg_quality": 84
+          },
+          "original": "originals/clean_logo_chatgpt_raster.png"
+        }
+      ],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "faa6aeec0a4930dd89553f7dc55d9bb31aada8f450dd6e9a2d0b222466ccdd02"
+    },
+    {
+      "key": "brand_colors",
+      "input_requirement": "Intended brand colours / target hex for colour-accuracy fix — confirm",
+      "kind": "data",
+      "file": "assets/brand_colors.json",
+      "format": "json",
+      "generator": {
+        "provider": "text",
+        "model": "writer-chain",
+        "prompt": "Output the brand color spec for Emberleaf Teas as JSON:\n{\"brand\": \"Emberleaf Teas\", \"colors\": [{\"name\": \"...\", \"hex\": \"...\", \"usage\": \"emblem|wordmark|background\"}],\n\"notes\": \"exact hexes the vector output must match after tracing\"}.\nUse exactly these palette colors: #4A5F4B (Ember Green), #C77C5F (Terracotta Blush), #F5EFE6 (Cream Brew).",
+        "prompt_file": "prompts/brand_colors.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "13f398a3f0840d0c458c0f622280fa9c684da7837edc98940ad20ce46a358215"
+    }
+  ],
+  "decisions": [
+    {
+      "requirement": "Intended brand colours / target hex for colour-accuracy fix — confirm",
+      "assumed_value": "Assumed = the persona palette, written to brand_colors.json",
+      "why": "Brief says 'confirm'; we fixed the hexes so the Adobe agent has a concrete target."
+    },
+    {
+      "requirement": "Output: vector AI/EPS, print-resolution, sharp edges",
+      "assumed_value": "OUTPUT spec for the Adobe agent: image_vectorize -> document_render_vector to AI/EPS + high-res PNG",
+      "why": "Describes the deliverable, not an input."
+    },
+    {
+      "requirement": "The ChatGPT-generated raster logo file",
+      "assumed_value": "Simulated: generated flat logo deliberately degraded (downscale + JPEG roundtrip) to mimic a soft chatbot-exported raster",
+      "why": "Gives image_vectorize a genuinely imperfect raster to clean up — same starting point as the real client's file."
+    }
+  ],
+  "coverage": {
+    "inputs_total": 3,
+    "covered_by_assets": 2,
+    "covered_by_decisions": 1,
+    "uncovered": []
+  },
+  "stats": {
+    "images_generated": 0,
+    "regenerations": 0,
+    "est_cost_usd": 0.0,
+    "text_calls": 1,
+    "wall_time_s": 0
+  },
+  "ready_for_agent": true
+}

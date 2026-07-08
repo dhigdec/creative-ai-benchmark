@@ -1,0 +1,209 @@
+{
+  "task_id": 5388,
+  "slug": "teentalk-ads",
+  "title": "Meta Ads Designer Needed for 3 Parenting Retargeting Static Creatives",
+  "category": "Ads & Marketing",
+  "family": "Express Template Design",
+  "archetype": "template",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 10,
+      "evidence": [
+        "images 2-7 each show a mother/teen pair in domestic settings matching all 3 concept photo briefs precisely",
+        "tt_logo_stamp (image 1) is purple round stamp exactly as brief mandates for top-corner placement",
+        "ad_copy.json concepts 1-3",
+        "images 2-7",
+        "image 2",
+        "image 3"
+      ],
+      "deductions": [
+        "photos_tall[2] / photos_square[2] (images 4,7) show a white-haired older mother — concept 3 specifies 40s mother, this reads late 50s",
+        "no asset covers the brief's explicit requirement for English-speaking / diverse audience breadth across all 3 concepts — concepts 1 & 2 are diverse, concept 3 is not",
+        "All images depict mothers and teens in emotional scenarios matching the brief.",
+        "Logo (image 1) is the specified TeenTalk purple round stamp.",
+        "Mother/teen imagery matches each concept's photo_brief",
+        "Logo stamp (image 1) matches brand requirement"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 10,
+      "evidence": [
+        "ad_copy.json supplies all 3 concept headlines, supporting lines, CTAs, and photo briefs — full copy coverage",
+        "brand_guide.md supplies hex palette, stamp rules, type hierarchy, and do/don't list",
+        "ad_copy.json",
+        "brand_guide.md",
+        "images 1-7",
+        "ad_copy"
+      ],
+      "deductions": [
+        "creative copy is marked 'provided after hiring' in brief but IS present in ad_copy.json — no actual gap, but the brief's own framing creates ambiguity an executor must resolve",
+        "no transparent-background version of tt_logo_stamp supplied; asset_add_file step needs PNG with alpha to overlay cleanly on photos",
+        "All required creative copy, brand guidelines, logo, and imagery are present.",
+        "Six distinct mother/teen images (tall and square pairs) are provided for the three concepts.",
+        "All 3 photo_briefs have matching tall and square imagery",
+        "All required brand, copy, and visual assets present"
+      ],
+      "fix": {
+        "target_asset_key": "tt_logo_stamp",
+        "problem": "Logo stamp has white background fill — overlay on photo will show white square halo",
+        "prompt_delta": "Regenerate as PNG with fully transparent background; purple ring and wordmark only, no white fill, no drop shadow, 1024x1024 px"
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "executability": {
+      "score": 10,
+      "evidence": [
+        "photos_tall dims 1024x1536 are narrower than target 1080x1920 — upscale of ~5% needed before crop, minor but real agent step",
+        "tt_logo_stamp has opaque white background (image 1 visible) — asset_add_file overlay will produce white halo on every creative",
+        "images 2-7 dimensions",
+        "ad_copy.json fields",
+        "image 2",
+        "image 5"
+      ],
+      "deductions": [
+        "stamp white background blocks clean compositing in asset_add_file step without an extra remove-background call not in the stated workflow",
+        "photos_square at 1024x1024 must be upscaled to 1080x1080 before image_crop_and_resize — small but adds an unlisted step",
+        "Image dimensions (1024x1536, 1024x1024) are suitable for cropping to target aspect ratios.",
+        "Ad copy provides clear headline, supporting line, and CTA for text filling.",
+        "Tall and square images allow cropping for all formats",
+        "Logo stamp is isolated and high-res for overlay"
+      ],
+      "fix": {
+        "target_asset_key": "tt_logo_stamp",
+        "problem": "Opaque white fill blocks asset_add_file overlay; workflow has no background-removal step for the stamp",
+        "prompt_delta": "Output as PNG32 with transparent background; only the purple circle ring and TeenTalk wordmark rendered, alpha channel preserved, 1024x1024 px"
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        6,
+        10,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "images 2 and 5 (concept 1 kitchen/phone scene) are indistinguishable from editorial stock — candid framing, natural light, authentic wariness",
+        "images 3 and 6 (concept 2 sofa/headphones) have correct mood and warm lamp atmosphere matching brief",
+        "images 2-7",
+        "ad_copy.json photo_briefs",
+        "image 2",
+        "image 3"
+      ],
+      "deductions": [
+        "photos_tall[2] (image 4) feels slightly too polished/editorial for the 'real, not staged' directive — pristine kitchen, perfect composition",
+        "photos_square[2] (image 7) similarly reads as high-end lifestyle shoot rather than candid domestic moment",
+        "Images portray realistic, un-staged emotional interactions between mothers and teens.",
+        "Moods like 'weary, reflective' and 'distant, observant' are authentically captured.",
+        "Imagery is candid, documentary, not staged or clinical",
+        "Logo stamp is plausible as a supplied asset"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "brand_guide.md and brand/persona block agree on all five hex values and both font names — no contradiction",
+        "tt_logo_stamp colour (#6B4FA1 purple) matches Brand Purple in palette exactly",
+        "tt_logo_stamp (image 1)",
+        "brand_guide.md",
+        "ad_copy.json moods",
+        "brand_guide"
+      ],
+      "deductions": [
+        "photos span three distinct ethnicities across concepts — visually coherent as a diverse campaign set, but concept 3 demographic shift (older white mother) breaks the 40s-mother consistency thread",
+        "no font specimen asset supplied — executor must trust brand_guide.md spec without visual confirmation",
+        "Logo color matches brand guide's purple.",
+        "Brand guide defines consistent palette, fonts, and voice for all elements.",
+        "Image selection and copy align with the 'emotionally intelligent, serious-warm' brand voice.",
+        "All assets use consistent palette and brand voice"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        9,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "assumption to skip Adobe Stock licensing and use generated photography is reasonable given commercial-clearance equivalence and scene-control benefit",
+        "two-frame-per-concept input strategy (tall + square) to cover three output ratios is sound and well-justified",
+        "RECORDED DECISIONS assumptions",
+        "ad_copy",
+        "photos_tall[0]"
+      ],
+      "deductions": [
+        "ad_copy.json is recorded as 'provided after hiring' in brief inputs yet is fully present — this real input is wrongly framed as a future deliverable, creating executor confusion about whether copy is final",
+        "stamp transparency issue is not flagged anywhere in decisions — a foreseeable blocker left unaddressed",
+        "Decision to provide tall and square images for crop latitude is sound and efficient.",
+        "Decision to use generated photography as stock stand-in ensures commercial clearance and control.",
+        "Assumptions about cropping and generated stock are justified",
+        "No real input wrongly demoted to assumption"
+      ],
+      "fix": {
+        "target_asset_key": "ad_copy",
+        "problem": "Decision log misclassifies present copy as future input, risking executor treating it as placeholder",
+        "prompt_delta": "Update decision record: ad_copy.json is CONFIRMED FINAL client-approved copy for all 3 concepts; executor should treat all fields as locked and proceed without awaiting further copy delivery"
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        6,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 10.0,
+  "verdict": "client-ready",
+  "top_risks": [
+    "CLIENT-REJECT (sev 8): The actual creative copy and directional brief for all 3 ads is explicitly stated as 'provided after hiring' — meaning the single most critical input needed to begin design work is missing at handoff. I cannot approve production starting on placeholder assets when the headlines, supporting lines, and CTA text that drive every layout decision haven't been delivered yet.",
+    "AGENT CHOKE on 'ad_copy': Although ad_copy.json appears populated in the inventory, the original brief repeatedly states copy is 'provided after hiring,' creating a contractual ambiguity about whether this JSON is final and approved. The agent will treat it as provisional or stall awaiting client confirmation before fill_text can execute, blocking all 9 downstream file outputs."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.17,
+    "completeness": 0.22,
+    "executability": 0.1,
+    "realism": 0.17,
+    "coherence": 0.22,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.066,
+  "rounds": []
+}

@@ -1,0 +1,185 @@
+{
+  "assets": {
+    "drink_menus": {
+      "entries": [
+        {
+          "key": "drink_menus",
+          "input_requirement": "Full drink lists/prices for 3 tri-fold menus: Drinks (beer/cider/spirits/soft), Wine list, Cocktail menu",
+          "kind": "data",
+          "file": "assets/drink_menus.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the general manager of The George Inn, Oundle — a traditional premium\nBritish pub / gastro pub in a Northamptonshire market town. Write the COMPLETE priced drink\nlists for the pub's three new tri-fold (6-panel) menus, exactly as they will be typeset.\nReturn a JSON object: {\"menus\": [EXACTLY 3 menu objects, in this order, each\n{\"menu\": \"<exact menu name>\", \"trifold_note\": \"<one line suggesting how the sections flow\nacross the six panels of the tri-fold>\", \"sections\": [<that menu's exact sections, in the\nexact order listed below, each {\"name\": \"<exact section name>\", \"items\": [3-8 item\nobjects]}>]}]}.\n\nMENU 1 — \"menu\" MUST be \"Main Drinks Menu\" — sections EXACTLY these 11, in this order:\n\"Draught Beer & Cider\", \"Bottled Beer & Cider\", \"Gin\", \"Vodka\", \"Rum\", \"Whisky & Bourbon\",\n\"Brandy & Cognac\", \"Tequila, Shots & Liqueurs\", \"Soft Drinks\", \"Mixers\", \"Juices\".\nMENU 2 — \"menu\" MUST be \"Wine List\" — sections EXACTLY these 8, in this order:\n\"White Wines\", \"Rosé Wines\", \"Red Wines\", \"Premium Wines\", \"Sparkling Wines\", \"Prosecco\",\n\"Port\", \"Wine by the Glass & Bottle Pricing\".\nMENU 3 — \"menu\" MUST be \"Cocktail Menu\" — sections EXACTLY these 6, in this order:\n\"Signature Cocktails\", \"Classic Cocktails\", \"Spritz Selection\", \"Mocktails\",\n\"Premium Serves\", \"Seasonal Specials\".\nNever drop, rename, merge or reorder a section.\n\nItem shapes:\n- Beers, ciders, soft drinks, mixers, juices, cocktails and mocktails:\n  {\"name\": \"...\", \"detail\": \"<one line: style, ABV% and origin — or the ingredients, for\n  cocktails>\", \"price\": \"£5.80\"} (draught priced per pint; give bottle/can sizes in detail).\n- Spirits (Gin, Vodka, Rum, Whisky & Bourbon, Brandy & Cognac, Tequila/Shots/Liqueurs)\n  should instead use \"prices\": {\"25ml\": \"£4.20\", \"50ml\": \"£7.90\"}.\n- Wines use \"prices\": {\"175ml\": \"£7.20\", \"250ml\": \"£9.40\", \"bottle\": \"£27.00\"};\n  Premium Wines may be bottle-only: \"prices\": {\"bottle\": \"£46.00\"}.\n- The \"Wine by the Glass & Bottle Pricing\" section holds 3-4 note-style items explaining the\n  measures (125ml available on request, every wine by the glass also by the bottle, sparkling\n  served in 125ml flutes): {\"name\": \"<short heading>\", \"detail\": \"<the note, one line>\"} —\n  no price needed on these.\n\nPricing must be realistic 2026 UK market-town pub pricing: cask ale £5.20-£6.20 a pint, craft\nkeg up to £6.90, premium gins 25ml £4.20-£6.50 plus mixer, house wine 175ml £6.50-£8.00,\nbottles £24-£58, cocktails £9.00-£12.50, mocktails £5.00-£7.00. British spellings throughout\n(flavour, draught, liqueur). Real drink styles — a proper best bitter, a cloudy West Country\ncider, London dry and rhubarb gins, Speyside and Islay style single malts, VS/VSOP cognac —\nbut NO real brewery, distillery or wine-house trademarks: invent plausible producer names\n(river-, county- or market-town-flavoured) or describe the style generically. Gin and\nWhisky & Bourbon should carry 6-8 entries each so the back-bar reads seriously; Mixers and\nJuices may carry 3-4. Voice: Our tone is warm and inviting, embodying the timeless hospitality of a countryside inn. We speak with a quietly premium British sensibility, never flashy or overly modern.",
+            "prompt_file": "prompts/drink_menus.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "drink_menus.render",
+          "input_requirement": "Full drink lists/prices for 3 tri-fold menus: Drinks (beer/cider/spirits/soft), Wine list, Cocktail menu",
+          "kind": "data",
+          "file": "assets/drink_menus.md",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the general manager of The George Inn, Oundle — a traditional premium\nBritish pub / gastro pub in a Northamptonshire market town. Write the COMPLETE priced drink\nlists for the pub's three new tri-fold (6-panel) menus, exactly as they will be typeset.\nReturn a JSON object: {\"menus\": [EXACTLY 3 menu objects, in this order, each\n{\"menu\": \"<exact menu name>\", \"trifold_note\": \"<one line suggesting how the sections flow\nacross the six panels of the tri-fold>\", \"sections\": [<that menu's exact sections, in the\nexact order listed below, each {\"name\": \"<exact section name>\", \"items\": [3-8 item\nobjects]}>]}]}.\n\nMENU 1 — \"menu\" MUST be \"Main Drinks Menu\" — sections EXACTLY these 11, in this order:\n\"Draught Beer & Cider\", \"Bottled Beer & Cider\", \"Gin\", \"Vodka\", \"Rum\", \"Whisky & Bourbon\",\n\"Brandy & Cognac\", \"Tequila, Shots & Liqueurs\", \"Soft Drinks\", \"Mixers\", \"Juices\".\nMENU 2 — \"menu\" MUST be \"Wine List\" — sections EXACTLY these 8, in this order:\n\"White Wines\", \"Rosé Wines\", \"Red Wines\", \"Premium Wines\", \"Sparkling Wines\", \"Prosecco\",\n\"Port\", \"Wine by the Glass & Bottle Pricing\".\nMENU 3 — \"menu\" MUST be \"Cocktail Menu\" — sections EXACTLY these 6, in this order:\n\"Signature Cocktails\", \"Classic Cocktails\", \"Spritz Selection\", \"Mocktails\",\n\"Premium Serves\", \"Seasonal Specials\".\nNever drop, rename, merge or reorder a section.\n\nItem shapes:\n- Beers, ciders, soft drinks, mixers, juices, cocktails and mocktails:\n  {\"name\": \"...\", \"detail\": \"<one line: style, ABV% and origin — or the ingredients, for\n  cocktails>\", \"price\": \"£5.80\"} (draught priced per pint; give bottle/can sizes in detail).\n- Spirits (Gin, Vodka, Rum, Whisky & Bourbon, Brandy & Cognac, Tequila/Shots/Liqueurs)\n  should instead use \"prices\": {\"25ml\": \"£4.20\", \"50ml\": \"£7.90\"}.\n- Wines use \"prices\": {\"175ml\": \"£7.20\", \"250ml\": \"£9.40\", \"bottle\": \"£27.00\"};\n  Premium Wines may be bottle-only: \"prices\": {\"bottle\": \"£46.00\"}.\n- The \"Wine by the Glass & Bottle Pricing\" section holds 3-4 note-style items explaining the\n  measures (125ml available on request, every wine by the glass also by the bottle, sparkling\n  served in 125ml flutes): {\"name\": \"<short heading>\", \"detail\": \"<the note, one line>\"} —\n  no price needed on these.\n\nPricing must be realistic 2026 UK market-town pub pricing: cask ale £5.20-£6.20 a pint, craft\nkeg up to £6.90, premium gins 25ml £4.20-£6.50 plus mixer, house wine 175ml £6.50-£8.00,\nbottles £24-£58, cocktails £9.00-£12.50, mocktails £5.00-£7.00. British spellings throughout\n(flavour, draught, liqueur). Real drink styles — a proper best bitter, a cloudy West Country\ncider, London dry and rhubarb gins, Speyside and Islay style single malts, VS/VSOP cognac —\nbut NO real brewery, distillery or wine-house trademarks: invent plausible producer names\n(river-, county- or market-town-flavoured) or describe the style generically. Gin and\nWhisky & Bourbon should carry 6-8 entries each so the back-bar reads seriously; Mixers and\nJuices may carry 3-4. Voice: Our tone is warm and inviting, embodying the timeless hospitality of a countryside inn. We speak with a quietly premium British sensibility, never flashy or overly modern.",
+            "prompt_file": "prompts/drink_menus.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "pub_logo": {
+      "entries": [
+        {
+          "key": "pub_logo",
+          "input_requirement": "The George Inn Oundle logo (provided)",
+          "kind": "image",
+          "file": "assets/george_inn_logo.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Traditional British pub crest logo for a 17th-century coaching inn. Layout:\narched lettering across the top reading EXACTLY \"THE GEORGE INN\", the word \"OUNDLE\" set\nsmaller and centred beneath the emblem, and a small line at the base reading EXACTLY\n\"EST. 1684\". Central heraldic motif in engraved pub-sign style: a St George cross shield\nflanked by oak-leaf sprigs beneath a small crown. Colours strictly: dark green #1E3B2A and\ngold #B08D3C artwork on a plain white or pale cream #F3ECD9 background. Flat engraved\nline-art style, timeless and premium, crisp perfectly legible letterforms, no gradients,\nno photo elements, no other text.",
+            "prompt_file": "prompts/pub_logo_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 7,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "Lettering 'THE GEORGE INN' is arched and spelled correctly but is gold with dark green outline, not strictly dark green and gold as required.",
+              "The shield contains a red cross, which is not strictly dark green and gold.",
+              "The oak leaves and crown are gold with dark green outlines, which is acceptable but the red cross breaks the strict color requirement.",
+              "Background is cream, which is acceptable.",
+              "No stray text present.",
+              "The small line 'EST. 1684' is clean and correct."
+            ]
+          }
+        }
+      ]
+    },
+    "parchment_texture": {
+      "entries": [
+        {
+          "key": "parchment_texture",
+          "input_requirement": "Palette: cream/parchment background, dark-green accents, black text, optional subtle gold; traditional premium British pub style",
+          "kind": "image",
+          "file": "assets/parchment_texture.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-image",
+            "quality": null,
+            "size": "1024x1536",
+            "prompt": "Full-frame close-up photograph of QUIET aged cream parchment paper texture,\noverall tone close to #F3ECD9: faint natural paper fibres, very gentle mottling, the\nslightest warm age-toning. Even, soft, shadowless lighting; a perfectly flat sheet filling\nthe entire frame edge to edge — no table or background visible, no curled or torn edges,\nno burns, no stains, no ink blots, no dramatic vignette. It must be subtle enough to sit\nbehind small black menu text as a full-bleed print background. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+            "prompt_file": "prompts/parchment_texture_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "Texture is slightly mottled in some areas but remains light and uniform enough for readability."
+            ]
+          }
+        }
+      ]
+    },
+    "pub_photos": {
+      "entries": [
+        {
+          "key": "pub_photos[0]",
+          "input_requirement": "Palette: cream/parchment background, dark-green accents, black text, optional subtle gold; traditional premium British pub style",
+          "kind": "image",
+          "file": "assets/pub_exterior.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Candid documentary photograph of a 17th-century honey-limestone English coaching inn at dusk on a quiet market-town street: warm sash windows glowing from inside, hanging flower baskets either side of a panelled front door, a wrought-iron bracket holding a hanging PICTORIAL pub sign (a painted knight on horseback, NO readable lettering on it), worn cobbled kerb and stone setts in the foreground. honey-stone English coaching inn, warm amber interior light, dark oak and brass, editorial pub photography. Shot on a 35mm lens at f/2.0, available natural light at blue hour, subtle film grain, realistic depth of field. Imperfect, lived-in detail: weathered lime mortar, slightly crooked sign bracket, moss between the cobbles, soft reflections on damp stone. Asymmetric composition — NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/pub_photos_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "accepted_with_warnings",
+            "technical": "pass",
+            "vision_score": 6,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 3,
+            "issues": [
+              "The interior visible through the window does not clearly show oak beams.",
+              "The interior lighting appears to be from lamps, not candles, failing the 'candlelit bar' requirement.",
+              "No brass rail is visible in the interior.",
+              "No lit stone fireplace is visible in the interior."
+            ]
+          }
+        },
+        {
+          "key": "pub_photos[1]",
+          "input_requirement": "Palette: cream/parchment background, dark-green accents, black text, optional subtle gold; traditional premium British pub style",
+          "kind": "image",
+          "file": "assets/pub_interior.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Candid documentary photograph inside a traditional English pub: an oak-beamed bar with a polished brass foot rail, a lit stone inglenook fireplace throwing warm light across the room, and two freshly pulled pints of amber ale with tight foam heads standing on the polished dark oak bar top, faint condensation on the glass. honey-stone English coaching inn, warm amber interior light, dark oak and brass, editorial pub photography. Shot on a 35mm lens at f/2.0, available light from candles and the fire only, subtle film grain, realistic shallow depth of field. Imperfect, lived-in detail: beer mats slightly askew, patina on the brass, centuries-worn floorboards, horse brasses on a beam catching the firelight. No people — or at most one distant unrecognisable blur. Asymmetric composition — NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/pub_photos_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "The 'oak-beamed' ceiling mentioned in the prompt is not explicitly visible in the image, though the overall dark wood aesthetic is consistent with a traditional pub.",
+              "The foam on the pints, while good, could have slightly more natural irregularity for absolute photorealism."
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

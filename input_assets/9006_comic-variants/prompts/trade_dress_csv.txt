@@ -1,0 +1,21 @@
+Build the Illustrator trade-dress DATA-MERGE table for the VOIDRUNNER #1
+variant-cover pack, derived directly from the cover-spec / copy deck. Return a JSON object with ONE
+top-level key "rows": a LIST OF EXACTLY 6 row objects, ONE PER COVER A-F IN ORDER. Each row object's keys
+MUST be EXACTLY these eight column names and NOTHING else — they bind to the Illustrator Variables in
+voidrunner_variant_covers.ai CHARACTER-FOR-CHARACTER:
+"cover_art", "issue_no", "colourway_name", "variant_ratio", "cover_price", "credit_line",
+"variant_code", "barcode_zone".
+Rules for every row (use the SAME credits/price/code values as the copy deck):
+- "cover_art": the linked-file name of that variant's rendered raster the merge places into the ART frame,
+  EXACTLY one of (in order) "coverA_standard.png","coverB_retro.png","coverC_noir.png","coverD_cyber.png",
+  "coverE_battledamage.png","coverF_sketch.png".
+- "issue_no": EXACTLY "VOIDRUNNER #1" on every row (the masthead carries the series; this is the issue line).
+- "colourway_name": EXACTLY "Standard","Retro","Noir","Cyber","Battle-Damage","Sketch" (rows A-F in order).
+- "variant_ratio": EXACTLY "1:1","1:1","1:1","1:10","1:25","Retailer-Exclusive" (rows A-F in order).
+- "cover_price": EXACTLY "$4.99","$4.99","$4.99","$9.99","$19.99","$14.99" (rows A-F in order).
+- "credit_line": EXACTLY the same single credit-line string on every row (the cover-team credit from the
+  copy deck, e.g. "Cover by <name>  -  Colours by <name>"). Identical on all 6 rows.
+- "variant_code": EXACTLY "A","B","C","D","E","F" (rows A-F in order).
+- "barcode_zone": EXACTLY "on","on","on","off","off","off" (rows A-F in order) — controls the visibility
+  of the reserved lower-left UPC barcode rectangle (on = newsstand barcode shown, off = direct-market).
+No extra keys, no missing keys, no real brands or real creator names. Output ONLY the rows object.

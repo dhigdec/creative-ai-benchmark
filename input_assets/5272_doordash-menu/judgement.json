@@ -1,0 +1,208 @@
+{
+  "task_id": 5272,
+  "slug": "doordash-menu",
+  "title": "Create Online DoorDash Menu",
+  "category": "Menus",
+  "family": "Express Template Design",
+  "archetype": "template",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 7,
+      "evidence": [
+        "menu_data covers 14 items across 4 categories matching Levantine street-food brief exactly",
+        "image 1 (logo) clearly branded 'Zaytoun' with olive motif; dish photos match menu items",
+        "menu_data",
+        "image 2 to image 8",
+        "image 2",
+        "assets/menu.json"
+      ],
+      "deductions": [
+        "7 dish photos cover only ~half of 14 menu items; no photos for Kofta Bowl, Falafel Pita, Halloumi Wrap, Tabbouleh, Fries, Baba Ghanoush individually",
+        "Brief names no restaurant; invented brand is a sound assumption but is not client-confirmed",
+        "Only 7 dish photos provided for 14 menu items.",
+        "Half of the menu items lack a visual representation.",
+        "The number of photos (7) is half the number of menu items (14).",
+        "7 dish photos for 14 menu items"
+      ],
+      "fix": {
+        "target_asset_key": "dish_photos",
+        "problem": "Missing photos for half the menu items.",
+        "prompt_delta": "Generate photos for: Crispy Falafel Pita, Grilled Halloumi Wrap, Spiced Kofta Bowl, Smoky Baba Ghanoush, Golden Falafel (4 pcs), Fresh Tabbouleh Salad, Seasoned French Fries."
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        7,
+        4,
+        8
+      ]
+    },
+    "completeness": {
+      "score": 4,
+      "evidence": [
+        "menu_data (menu.json) is fully structured with name, description, price, category, dietary flags for all 14 items",
+        "logo (image 1) and 7 dish photos present; brief required dish photos per item but only ~half covered",
+        "menu_data",
+        "image 2 to image 8",
+        "assets/menu.json",
+        "image 2"
+      ],
+      "deductions": [
+        "7 of 14 menu items lack a dedicated dish photo; image_crop_and_resize step will have missing inputs for those items",
+        "No allergen data beyond dietary flags; DoorDash platform often requires modifier/allergen fields",
+        "Only 7 dish photos provided for 14 menu items.",
+        "Half of the menu items lack a visual representation.",
+        "The brief implies per-item photos, but many items are missing visuals.",
+        "menu.json covers all items"
+      ],
+      "fix": {
+        "target_asset_key": "dish_photos",
+        "problem": "Missing photos for half the menu items.",
+        "prompt_delta": "Generate photos for: Crispy Falafel Pita, Grilled Halloumi Wrap, Spiced Kofta Bowl, Smoky Baba Ghanoush, Golden Falafel (4 pcs), Fresh Tabbouleh Salad, Seasoned French Fries."
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        7,
+        3,
+        4
+      ]
+    },
+    "executability": {
+      "score": 8,
+      "evidence": [
+        "All images are 1024x1024 px raster JPEGs — directly consumable by image_crop_and_resize for DoorDash square spec",
+        "menu_data JSON is well-formed with all fill_text fields (name, description, price, category) present",
+        "menu_data",
+        "image 2 to image 8",
+        "image 2",
+        "assets/menu.json"
+      ],
+      "deductions": [
+        "image 8 (mint lemonade) shows liquid in a bowl overhead — atypical drink presentation; crop tool may produce awkward square for a beverage listing",
+        "Logo (image 1) has cream background, not transparent PNG; asset_add_file overlay onto template may require background removal step not in the stated workflow",
+        "Menu data is a valid JSON structure, directly usable for text filling.",
+        "All image assets are in standard square format, suitable for cropping/resizing.",
+        "all images are square and high-res",
+        "menu.json is structured for data-merge"
+      ],
+      "fix": null,
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        8,
+        10,
+        7
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "Dish photos (images 2-8) use consistent warm studio lighting, beige linen/wood props — believable fast-casual food photography",
+        "image 8 (lemonade in bowl) looks stylised/artificial; real client would supply a glass or cup shot",
+        "image 2 to image 8",
+        "image 1",
+        "image 2",
+        "image 4"
+      ],
+      "deductions": [
+        "image 8 lemonade served in a wide ceramic bowl is implausible as a real restaurant photo",
+        "All photos share near-identical prop set (same wooden board, same terracotta bowls) — slightly synthetic uniformity",
+        "Dish photos exhibit consistent professional styling and lighting.",
+        "Logo design is clean and appropriate for a modern fast-casual brand.",
+        "photos are styled as genuine restaurant shots",
+        "logo and palette match real brand handoff"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "Logo (image 1) uses #5D705C olive green and #C77C4F orange leaf — exact palette match to persona.json",
+        "All dish photos share identical warm-beige background, wooden props, parsley garnish — unified visual language",
+        "image 1",
+        "menu_data",
+        "assets/menu.json"
+      ],
+      "deductions": [
+        "image 3 (Shawarma Plate) is slightly darker/cooler in tone than other photos — minor lighting inconsistency",
+        "Font spec (Lora/Inter) cannot be verified in image assets; only enforceable at fill_text step",
+        "All visual assets share a consistent aesthetic, plating, and background elements.",
+        "Menu item names and descriptions in `menu_data` align perfectly with the Levantine brand identity.",
+        "consistent palette and brand voice",
+        "all assets use Zaytoun identity"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        9,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Assumption to invent 'Zaytoun' brand is well-justified and fully executed across all assets coherently",
+        "DoorDash landscape spec flag (>=1400x800) is correctly noted as a deviation risk in the decision log",
+        "Recorded Decisions REQ 1",
+        "Recorded Decisions REQ 2",
+        "assets/menu.json",
+        "image 1"
+      ],
+      "deductions": [
+        "Decision to supply 'BOTH menu graphic AND per-item photos' is sound but 7 photos for 14 items was not flagged as a gap in the decisions log",
+        "Square photo format kept despite noting DoorDash prefers landscape — should have been escalated as a client decision, not just flagged",
+        "Assumptions made directly address ambiguities in the original client brief.",
+        "The decision to invent a brand and palette ensures coherence across all generated assets.",
+        "assumptions are justified and flagged",
+        "brand invention is coherent and reasonable"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 8.0,
+  "verdict": "minor-gaps",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): The entire brand — name, logo, menu items, photos, and persona — was invented by the freelancer. I never provided my actual restaurant name, real menu, or any of my own photos. I cannot publish a fabricated brand on DoorDash as my business.",
+    "AGENT CHOKE on 'menu_data': The menu JSON is entirely AI-generated fiction with no real item names, prices, or categories supplied by me. The agent will attempt to fill_text from this data into the DoorDash template and publish fake menu items live on my actual storefront, causing immediate order errors and potential platform violations.",
+    "Completeness 4/10: 7 of 14 menu items lack a dedicated dish photo; image_crop_and_resize step will have missing inputs for those items"
+  ],
+  "qc_gaps": [
+    "Per-asset self-QC averages 9.5/10, but package Completeness scored 4 — assets are individually strong yet wrong/insufficient for the task."
+  ],
+  "weights": {
+    "task_fit": 0.17,
+    "completeness": 0.22,
+    "executability": 0.1,
+    "realism": 0.17,
+    "coherence": 0.22,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.072,
+  "rounds": []
+}

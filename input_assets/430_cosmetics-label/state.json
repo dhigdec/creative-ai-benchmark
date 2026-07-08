@@ -1,0 +1,203 @@
+{
+  "assets": {
+    "product_lines": {
+      "entries": [
+        {
+          "key": "product_lines",
+          "input_requirement": "Product names, mandatory ingredient/regulatory copy, die-line measurements (client supplies at start)",
+          "kind": "data",
+          "file": "assets/product_lines.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Define the two-product launch line for Veridian Dew (Clean-beauty skincare (botanical-clinical)). Return a JSON\nobject with key \"products\": a list of EXACTLY 2 objects — first a face cream in a JAR, second a serum in\na pump BOTTLE — each with \"name\" (elegant 2-3 word product name), \"container\" (\"jar\" or \"bottle\"),\n\"size_ml\" (50 for jar, 30 for bottle), \"product_type\", \"key_actives\" (3 plausible actives like\nniacinamide / squalane / bakuchiol), \"scent_note\" (one phrase), \"shelf_life_months\" (12 or 18).\nVoice: Our tone is grounded and clear, prioritizing transparency and scientific insight over fleeting trends. We communicate the essence of our botanical ingredients with quiet confidence, always respecting the user's intelligence.",
+            "prompt_file": "prompts/product_lines.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "ingredients_copy": {
+      "entries": [
+        {
+          "key": "ingredients_copy",
+          "input_requirement": "Product names, mandatory ingredient/regulatory copy, die-line measurements (client supplies at start)",
+          "kind": "data",
+          "file": "assets/ingredients.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Write the mandatory label copy for both Veridian Dew products (the jar face cream and\nthe bottle serum from the product line). Return a JSON object with key \"labels\": a list of 2 objects,\neach with \"product_name\", \"inci_list\" (14-18 realistic INCI ingredient names in correct descending-\nconcentration style, starting Aqua/Water), \"directions\" (<=30 words), \"warnings\" (standard external-use\n+ patch-test + eye-contact lines), \"net_contents\" (e.g. 50 ml e 1.7 fl oz), \"pao_symbol\" (e.g. 12M),\n\"made_in\" (a country), \"company_line\" (Veridian Dew + a fictional address one-liner), \"batch_note\"\n(LOT + best-before placement note for the printer).",
+            "prompt_file": "prompts/ingredients_copy.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "ingredients_copy.render",
+          "input_requirement": "Product names, mandatory ingredient/regulatory copy, die-line measurements (client supplies at start)",
+          "kind": "data",
+          "file": "assets/ingredients.md",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Write the mandatory label copy for both Veridian Dew products (the jar face cream and\nthe bottle serum from the product line). Return a JSON object with key \"labels\": a list of 2 objects,\neach with \"product_name\", \"inci_list\" (14-18 realistic INCI ingredient names in correct descending-\nconcentration style, starting Aqua/Water), \"directions\" (<=30 words), \"warnings\" (standard external-use\n+ patch-test + eye-contact lines), \"net_contents\" (e.g. 50 ml e 1.7 fl oz), \"pao_symbol\" (e.g. 12M),\n\"made_in\" (a country), \"company_line\" (Veridian Dew + a fictional address one-liner), \"batch_note\"\n(LOT + best-before placement note for the printer).",
+            "prompt_file": "prompts/ingredients_copy.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "dieline_spec": {
+      "entries": [
+        {
+          "key": "dieline_spec",
+          "input_requirement": "Product names, mandatory ingredient/regulatory copy, die-line measurements (client supplies at start)",
+          "kind": "data",
+          "file": "assets/dieline_spec.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Produce the die-line measurement sheet the client hands the label designer for the\ntwo Veridian Dew products (50ml jar, 30ml pump bottle). Return a JSON object with key \"dielines\": a list\nof 2 objects with \"product_name\", \"container\", \"label_shape\" (wrap rectangle for the jar, front rectangle\nfor the bottle), \"width_mm\", \"height_mm\" (realistic for those containers), \"corner_radius_mm\" (2-3),\n\"bleed_mm\" (3), \"safe_margin_mm\" (3), \"finish\" (matte BOPP or soft-touch), \"application_note\" (one line\nabout seam/overlap or curvature).",
+            "prompt_file": "prompts/dieline_spec.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "dieline_spec.render",
+          "input_requirement": "Product names, mandatory ingredient/regulatory copy, die-line measurements (client supplies at start)",
+          "kind": "data",
+          "file": "assets/dieline_spec.csv",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Produce the die-line measurement sheet the client hands the label designer for the\ntwo Veridian Dew products (50ml jar, 30ml pump bottle). Return a JSON object with key \"dielines\": a list\nof 2 objects with \"product_name\", \"container\", \"label_shape\" (wrap rectangle for the jar, front rectangle\nfor the bottle), \"width_mm\", \"height_mm\" (realistic for those containers), \"corner_radius_mm\" (2-3),\n\"bleed_mm\" (3), \"safe_margin_mm\" (3), \"finish\" (matte BOPP or soft-touch), \"application_note\" (one line\nabout seam/overlap or curvature).",
+            "prompt_file": "prompts/dieline_spec.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "brand_logo": {
+      "entries": [
+        {
+          "key": "brand_logo",
+          "input_requirement": "Brand logo + any palette guidance (creative open) — confirm",
+          "kind": "image",
+          "file": "assets/logo.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Refined clean-beauty logo: lowercase wordmark reading EXACTLY \"Veridian Dew\" with a\nsmall minimal leaf-droplet glyph. Colors only from: #214E3B, #F7F2E8, #C5B48D. White background, flat, elegant\nletterspacing, apothecary-modern feel, no gradients, no tagline, no other text.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- Background is transparent, not white as required.\n- The wordmark is not in lowercase; it uses all lowercase but the brand name 'Veridian Dew' should be exactly as specified (case sensitive).\n- There is a minimal glyph (leaf and drop) which is not allowed.\n- Colors used include a goldish color for the glyph, which is not a brand color.\n- The wordmark is not flat and refined due to the glyph and color variation.",
+            "prompt_file": "prompts/brand_logo_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "accepted_with_warnings",
+            "technical": "pass",
+            "vision_score": 6,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 3,
+            "issues": [
+              "Wordmark is lowercase and reads 'veridian dew' instead of 'Veridian Dew' as required (case sensitive).",
+              "Presence of a glyph (leaf with a drop) which is not minimal and not allowed.",
+              "Color appears to be a dark green which may be a brand color but needs confirmation.",
+              "Background is white and flat, which is correct."
+            ]
+          }
+        }
+      ]
+    },
+    "container_photos": {
+      "entries": [
+        {
+          "key": "container_photos[0]",
+          "input_requirement": "Container types to mock up (at least one jar + one bottle)",
+          "kind": "image",
+          "file": "assets/container_jar_bio-renewal-cream.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1536",
+            "prompt": "Premium e-commerce product photograph: a frosted amber glass cosmetic jar with a brushed gold lid, COMPLETELY BLANK with no label applied (clean surface ready for label mockup), centered on a soft beige studio sweep with gentle shadow and a subtle botanical out-of-focus element behind. soft beige studio sweep, gentle natural shadow, botanical hints, luxe minimalism. Crisp, luxurious, true-to-material rendering. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/container_photos_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "container_photos[1]",
+          "input_requirement": "Container types to mock up (at least one jar + one bottle)",
+          "kind": "image",
+          "file": "assets/container_bottle_concentrated-clarity.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1536
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1536",
+            "prompt": "Premium e-commerce product photograph: a matte glass pump bottle with a slim gold collar, COMPLETELY BLANK with no label applied (clean surface ready for label mockup), centered on a soft beige studio sweep with gentle shadow and a subtle botanical out-of-focus element behind. soft beige studio sweep, gentle natural shadow, botanical hints, luxe minimalism. Crisp, luxurious, true-to-material rendering. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/container_photos_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        }
+      ]
+    }
+  }
+}

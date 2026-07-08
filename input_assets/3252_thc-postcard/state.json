@@ -1,0 +1,520 @@
+{
+  "assets": {
+    "postcard_copy": {
+      "entries": [
+        {
+          "key": "postcard_copy",
+          "input_requirement": "FRONT copy: headline 'SERVE WHAT'S NEXT', subhead, 90-year-low stat, 3 business bullets, 'Scan for Product & Pricing Guide' QR",
+          "kind": "data",
+          "file": "assets/postcard_copy.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the sales director of Arch & Prairie Beverage Co., a Missouri distributor of\nhemp-derived Delta-9 THC drinks sold to bars, restaurants and liquor stores. Transcribe the\nFINAL postcard copy deck below into JSON. This wording is client-approved: transcribe it\nFAITHFULLY, character for character — invent NOTHING except the three [WRITE] fields.\n\nFRONT copy (verbatim):\n- headline: SERVE WHAT’S NEXT\n- subhead: Add a high-margin revenue stream with THC drinks. No alcohol. No hangover. 21+. Made with hemp - marijuana’s milder cousin - for a lighter, more buildable buzz.\n- stat_line: Alcohol consumption in the U.S. is at a 90-year low.\n- supporting_line: Consumers still want social experiences - just different options.\n- front_bullets, exactly these 3: High-margin pours | Repeat purchase behavior | Easy to add to existing menus\n- qr_label: Scan for Product & Pricing Guide\n\nBACK copy (verbatim):\n- headline: A NEW KIND OF BUZZ\n- back_sections, exactly these 3 (name → desc): Spirit Bottles → for shots + cocktails (“Hightails”) | RTD Cans → ready-to-drink social beverages | THC Drops → turn any alcohol-free drink into a THC drink\n- key_points, exactly these 5 in order: Delta-9 THC | Hemp-derived | Legal in Missouri | Social alternative to alcohol | Multiple mg/dose options available. Set emphasize=true ONLY on \"Legal in Missouri\" (the client: \"This is a key point we need to get across\"); emphasize=false on the other four.\n- qr_label: WHAT’S THE BUZZ ABOUT? THC Drinks Explained - Scan to Watch\n- brands, exactly these 9, spelled EXACTLY: HiSide | Howdy | THC Social | Stay Cool | SUP | 8th Wonder | Tempters | CURRNT | Don’t Be That Dude. (CURRNT is six letters C-U-R-R-N-T with no E; keep the apostrophe in Don’t Be That Dude; HiSide is one word, capital H and S.)\n\nReturn ONE JSON object with EXACTLY these top-level keys:\n{\"front\": {\"headline\": \"...\", \"subhead\": \"...\", \"stat_line\": \"...\", \"supporting_line\": \"...\", \"qr_label\": \"...\"},\n\"front_bullets\": [\"...\", \"...\", \"...\"],\n\"back\": {\"headline\": \"...\", \"qr_label\": \"...\"},\n\"back_sections\": [{\"name\": \"...\", \"desc\": \"...\"}] — exactly 3, desc = the text after each arrow, verbatim,\n\"key_points\": [{\"point\": \"...\", \"emphasize\": true|false}] — exactly 5,\n\"brands\": [{\"name\": \"...\", \"style_hint\": \"...\"}] — exactly 9; [WRITE] style_hint: one short phrase you write capturing that brand's personality (e.g. friendly western, art-deco monumental, electric modern),\n\"qr_links\": [{\"side\": \"front\", \"label\": \"<the front qr_label>\", \"url\": \"...\"}, {\"side\": \"back\", \"label\": \"<the back qr_label>\", \"url\": \"...\"}] — [WRITE] urls: plausible https URLs on archandprairie.com (a /trade pricing-guide page for the front; a what's-the-buzz explainer-video page for the back),\n\"compliance_line\": \"...\"} — [WRITE] one fine-print line: 21+ only; hemp-derived Delta-9 THC compliant with the 2018 Farm Bill and Missouri law; enjoy responsibly — tight enough for 7pt postcard fine print.\nVoice for the [WRITE] fields: Confident B2B beverage-sales, hospitality-grade — sells margin and repeat business to bar owners, never giggly about THC. The tone is sophisticated and professional.",
+            "prompt_file": "prompts/postcard_copy.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "postcard_copy.render",
+          "input_requirement": "FRONT copy: headline 'SERVE WHAT'S NEXT', subhead, 90-year-low stat, 3 business bullets, 'Scan for Product & Pricing Guide' QR",
+          "kind": "data",
+          "file": "assets/postcard_copy.md",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the sales director of Arch & Prairie Beverage Co., a Missouri distributor of\nhemp-derived Delta-9 THC drinks sold to bars, restaurants and liquor stores. Transcribe the\nFINAL postcard copy deck below into JSON. This wording is client-approved: transcribe it\nFAITHFULLY, character for character — invent NOTHING except the three [WRITE] fields.\n\nFRONT copy (verbatim):\n- headline: SERVE WHAT’S NEXT\n- subhead: Add a high-margin revenue stream with THC drinks. No alcohol. No hangover. 21+. Made with hemp - marijuana’s milder cousin - for a lighter, more buildable buzz.\n- stat_line: Alcohol consumption in the U.S. is at a 90-year low.\n- supporting_line: Consumers still want social experiences - just different options.\n- front_bullets, exactly these 3: High-margin pours | Repeat purchase behavior | Easy to add to existing menus\n- qr_label: Scan for Product & Pricing Guide\n\nBACK copy (verbatim):\n- headline: A NEW KIND OF BUZZ\n- back_sections, exactly these 3 (name → desc): Spirit Bottles → for shots + cocktails (“Hightails”) | RTD Cans → ready-to-drink social beverages | THC Drops → turn any alcohol-free drink into a THC drink\n- key_points, exactly these 5 in order: Delta-9 THC | Hemp-derived | Legal in Missouri | Social alternative to alcohol | Multiple mg/dose options available. Set emphasize=true ONLY on \"Legal in Missouri\" (the client: \"This is a key point we need to get across\"); emphasize=false on the other four.\n- qr_label: WHAT’S THE BUZZ ABOUT? THC Drinks Explained - Scan to Watch\n- brands, exactly these 9, spelled EXACTLY: HiSide | Howdy | THC Social | Stay Cool | SUP | 8th Wonder | Tempters | CURRNT | Don’t Be That Dude. (CURRNT is six letters C-U-R-R-N-T with no E; keep the apostrophe in Don’t Be That Dude; HiSide is one word, capital H and S.)\n\nReturn ONE JSON object with EXACTLY these top-level keys:\n{\"front\": {\"headline\": \"...\", \"subhead\": \"...\", \"stat_line\": \"...\", \"supporting_line\": \"...\", \"qr_label\": \"...\"},\n\"front_bullets\": [\"...\", \"...\", \"...\"],\n\"back\": {\"headline\": \"...\", \"qr_label\": \"...\"},\n\"back_sections\": [{\"name\": \"...\", \"desc\": \"...\"}] — exactly 3, desc = the text after each arrow, verbatim,\n\"key_points\": [{\"point\": \"...\", \"emphasize\": true|false}] — exactly 5,\n\"brands\": [{\"name\": \"...\", \"style_hint\": \"...\"}] — exactly 9; [WRITE] style_hint: one short phrase you write capturing that brand's personality (e.g. friendly western, art-deco monumental, electric modern),\n\"qr_links\": [{\"side\": \"front\", \"label\": \"<the front qr_label>\", \"url\": \"...\"}, {\"side\": \"back\", \"label\": \"<the back qr_label>\", \"url\": \"...\"}] — [WRITE] urls: plausible https URLs on archandprairie.com (a /trade pricing-guide page for the front; a what's-the-buzz explainer-video page for the back),\n\"compliance_line\": \"...\"} — [WRITE] one fine-print line: 21+ only; hemp-derived Delta-9 THC compliant with the 2018 Farm Bill and Missouri law; enjoy responsibly — tight enough for 7pt postcard fine print.\nVoice for the [WRITE] fields: Confident B2B beverage-sales, hospitality-grade — sells margin and repeat business to bar owners, never giggly about THC. The tone is sophisticated and professional.",
+            "prompt_file": "prompts/postcard_copy.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "distributor_logo": {
+      "entries": [
+        {
+          "key": "distributor_logo",
+          "input_requirement": "Distributor logo + product/lifestyle photos (client provides)",
+          "kind": "image",
+          "file": "assets/distributor_logo.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Premium beverage-distribution wordmark logo for \"Arch & Prairie Beverage Co.\" — a Missouri\ndistributor of hemp-derived THC drinks selling to bars, restaurants and liquor stores. Confident\nhospitality-grade lockup: a refined wordmark reading EXACTLY \"Arch & Prairie Beverage Co.\" with one small flat\nspirit/beverage motif (coupe glass, slim can, or an arched-river glyph) worked into the lockup.\nColors only from: #18271F, #F4EDDC, #B97A36, #DCA54C, on a PLAIN WHITE background. Flat vector style — think\ncraft-spirits importer, NOT cannabis dispensary: no leaf imagery, no smoke, no psychedelic\npatterns, no gradients, no tagline, no other text. Must stay legible printed about one inch wide\non a 5x7 trade postcard.",
+            "prompt_file": "prompts/distributor_logo_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 8,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "Wordmark missing the period after 'Co' (should be 'Co.' not 'CO.'), incorrect capitalization in 'CO.' which should be 'Co.'",
+              "The ampersand is correct but the glass motif replaces the letter 'I' in 'PRAIRIE', which may affect legibility at small sizes.",
+              "The text 'Arch & Prairie Beverage Co.' is split into two lines, which may reduce clarity in some uses.",
+              "The color scheme is premium and flat, but the gold gradient on the glass motif slightly deviates from a flat color style."
+            ]
+          }
+        }
+      ]
+    },
+    "brand_logos": {
+      "entries": [
+        {
+          "key": "brand_logos[0]",
+          "input_requirement": "Brand logos to place: HiSide, Howdy, THC Social, Stay Cool, SUP, 8th Wonder, Tempters, CURRNT, Don't Be That Dude",
+          "kind": "image",
+          "file": "assets/brand_hiside.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat stand-in wordmark logo for \"HiSide\", one of nine THC-drink brands carried by a Missouri beverage distributor. Personality: elevated modern-minimal, thin geometric sans with generous letterspacing and a small rising-line accent. Wordmark reading EXACTLY \"HiSide\" (one word, capital H and capital S — HiSide). Colors: midnight navy and cool silver-gray, on a PLAIN WHITE background. Flat vector, crisp solid shapes, no gradients, legible at small print size — it sits in a nine-logo strip on a 5x7 trade postcard. Premium beverage-brand finish, NOT cartoonish, NOT psychedelic. No taglines, no other text. Invented stand-in design — do not imitate any real company's logo. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The brand name is spelled 'HiSide' but the 'S' and 'i' are merged in a way that reduces legibility at small sizes.\n- There is a gray angled line above the text which adds clutter and is not a flat solid shape, violating the flat stand-in wordmark requirement.\n- The background is clean white, which is correct.\n- The logo uses two colors (navy and gray), which is acceptable, but the gray line is not a solid flat shape and looks like a design element rather than part of a wordmark.\n- The overall finish is not fully premium beverage-brand style; the gray line and font choice give a more generic or tech feel rather than premium beverage branding.\n- No tagline or other text is present, which is correct.",
+            "prompt_file": "prompts/brand_logos_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 7,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 2,
+            "issues": [
+              "The brand name is spelled 'HiSide' but the prompt specifies it should be one word with no capitalization errors; 'HiSide' is correct but the 'S' is capitalized which may be acceptable depending on brand guidelines, needs confirmation.",
+              "There is a small grey shape under the text which may be considered clutter and not a flat solid shape, potentially reducing legibility at small sizes.",
+              "The font is thin and may reduce legibility at small print size, which is critical for premium beverage branding."
+            ]
+          }
+        },
+        {
+          "key": "brand_logos[1]",
+          "input_requirement": "Brand logos to place: HiSide, Howdy, THC Social, Stay Cool, SUP, 8th Wonder, Tempters, CURRNT, Don't Be That Dude",
+          "kind": "image",
+          "file": "assets/brand_howdy.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat stand-in wordmark logo for \"Howdy\", one of nine THC-drink brands carried by a Missouri beverage distributor. Personality: friendly western rope-script with a warm hand-lettered lasso feel. Wordmark reading EXACTLY \"Howdy\". Colors: saddle tan and cream, on a PLAIN WHITE background. Flat vector, crisp solid shapes, no gradients, legible at small print size — it sits in a nine-logo strip on a 5x7 trade postcard. Premium beverage-brand finish, NOT cartoonish, NOT psychedelic. No taglines, no other text. Invented stand-in design — do not imitate any real company's logo. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- Logo is not a single flat wordmark; it is a complex rope design with shading and texture.\n- The word 'Howdy' does not match any of the prompt brand names (CURRNT, Don't Be That Dude, HiSide).\n- The design is not flat solid shapes; it has a 3D rope effect which is not suitable for a premium beverage-brand finish.\n- Background is clean white, which is correct, but the logo style is not appropriate.\n- No tagline or other text present, which is correct.",
+            "prompt_file": "prompts/brand_logos_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "accepted_with_warnings",
+            "technical": "pass",
+            "vision_score": 4,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 3,
+            "issues": [
+              "The logo is not a flat solid shape; it has a rope texture and shading, which is not flat.",
+              "The logo is not legible at small print size due to the intricate rope design.",
+              "The style is more decorative and illustrative, not a premium beverage-brand finish.",
+              "The logo is a single word 'Heady' which does not match any of the prompt brand names (CURRNT, Don't Be That Dude, HiSide).",
+              "There is no apostrophe where required for 'Don't Be That Dude'.",
+              "The background is clean white, which is correct, but the logo itself fails multiple criteria."
+            ]
+          }
+        },
+        {
+          "key": "brand_logos[2]",
+          "input_requirement": "Brand logos to place: HiSide, Howdy, THC Social, Stay Cool, SUP, 8th Wonder, Tempters, CURRNT, Don't Be That Dude",
+          "kind": "image",
+          "file": "assets/brand_thc_social.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat stand-in wordmark logo for \"THC Social\", one of nine THC-drink brands carried by a Missouri beverage distributor. Personality: clean contemporary sans with a small rounded speech-bubble mark. Wordmark reading EXACTLY \"THC Social\". Colors: vibrant teal and charcoal, on a PLAIN WHITE background. Flat vector, crisp solid shapes, no gradients, legible at small print size — it sits in a nine-logo strip on a 5x7 trade postcard. Premium beverage-brand finish, NOT cartoonish, NOT psychedelic. No taglines, no other text. Invented stand-in design — do not imitate any real company's logo. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- Brand name does not match any of the specified prompts (CURRNT, Don't Be That Dude, HiSide).\n- Logo includes an icon (speech bubble) which is not allowed; only a single flat wordmark is permitted.\n- Font style and finish do not convey a premium beverage-brand feel; it looks more generic and tech-oriented.\n- More than one color used (black and teal).\n- Additional text 'Social' present, which is not part of any prompt brand name.\n- No apostrophe present as required for 'Don't Be That Dude'.",
+            "prompt_file": "prompts/brand_logos_2.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "accepted_with_warnings",
+            "technical": "pass",
+            "vision_score": 3,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 3,
+            "issues": [
+              "Brand name does not match any of the specified prompts (CURRNT, Don't Be That Dude, HiSide).",
+              "Logo includes a speech bubble icon, which is additional graphic clutter beyond a single flat wordmark.",
+              "The style is modern and clean but does not reflect a premium beverage-brand finish as requested.",
+              "No apostrophe present for 'Don't Be That Dude' if that was the intended brand.",
+              "Text 'THC Social' found, which is not one of the required brand names."
+            ]
+          }
+        },
+        {
+          "key": "brand_logos[3]",
+          "input_requirement": "Brand logos to place: HiSide, Howdy, THC Social, Stay Cool, SUP, 8th Wonder, Tempters, CURRNT, Don't Be That Dude",
+          "kind": "image",
+          "file": "assets/brand_stay_cool.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat stand-in wordmark logo for \"Stay Cool\", one of nine THC-drink brands carried by a Missouri beverage distributor. Personality: retro-cool 1970s-tinged letterforms with a frosted, just-chilled vibe. Wordmark reading EXACTLY \"Stay Cool\". Colors: ice blue and deep navy, on a PLAIN WHITE background. Flat vector, crisp solid shapes, no gradients, legible at small print size — it sits in a nine-logo strip on a 5x7 trade postcard. Premium beverage-brand finish, NOT cartoonish, NOT psychedelic. No taglines, no other text. Invented stand-in design — do not imitate any real company's logo. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/brand_logos_3.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "accepted_with_warnings",
+            "technical": "pass",
+            "vision_score": 3,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 3,
+            "issues": [
+              "Brand name does not match any of the specified prompts (CURRNT, Don't Be That Dude, HiSide).",
+              "Logo uses two colors but has a thick outline that gives a less premium, more casual feel.",
+              "The font style and outline effect appear more cartoonish than a premium beverage brand finish.",
+              "The text is not a single flat wordmark; it has an outline and shadow effect, which adds clutter.",
+              "The text is legible but the style does not meet the premium beverage brand criteria."
+            ]
+          }
+        },
+        {
+          "key": "brand_logos[4]",
+          "input_requirement": "Brand logos to place: HiSide, Howdy, THC Social, Stay Cool, SUP, 8th Wonder, Tempters, CURRNT, Don't Be That Dude",
+          "kind": "image",
+          "file": "assets/brand_sup.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat stand-in wordmark logo for \"SUP\", one of nine THC-drink brands carried by a Missouri beverage distributor. Personality: bold minimal all-caps with a single wave/paddle stroke worked into the letterforms. Wordmark reading EXACTLY \"SUP\" (all caps, exactly three letters S-U-P). Colors: ocean blue and warm sand, on a PLAIN WHITE background. Flat vector, crisp solid shapes, no gradients, legible at small print size — it sits in a nine-logo strip on a 5x7 trade postcard. Premium beverage-brand finish, NOT cartoonish, NOT psychedelic. No taglines, no other text. Invented stand-in design — do not imitate any real company's logo. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nJUDGE FEEDBACK — a package reviewer flagged this asset. Fix specifically:\nThis regeneration is for the SUP logo ONLY. Previous attempt failed because the sand-colored wave swoosh merged into the letter P and the word read 'SUR'. The wave must sit clearly BELOW the baseline, fully SEPARATE from the letterforms — it must not touch, replace or intersect any letter. The letters S, U and a fully closed P must each be complete, unambiguous shapes. The word must unmistakably read \"SUP\".",
+            "prompt_file": "prompts/brand_logos_4.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "accepted_with_warnings",
+            "technical": "pass",
+            "vision_score": 6,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 3,
+            "issues": [
+              "Logo includes a graphic element (wave and paddle) which is not allowed; only a single flat wordmark is permitted.",
+              "The brand name in the logo is 'SUP' which does not match any of the specified brand names (CURRNT, Don't Be That Dude, HiSide).",
+              "The logo uses two colors which is acceptable, but the overall style is more casual and not clearly a premium beverage-brand finish.",
+              "No tagline or other text is present, which is correct."
+            ]
+          }
+        },
+        {
+          "key": "brand_logos[5]",
+          "input_requirement": "Brand logos to place: HiSide, Howdy, THC Social, Stay Cool, SUP, 8th Wonder, Tempters, CURRNT, Don't Be That Dude",
+          "kind": "image",
+          "file": "assets/brand_8th_wonder.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat stand-in wordmark logo for \"8th Wonder\", one of nine THC-drink brands carried by a Missouri beverage distributor. Personality: art-deco monumental — geometric inline caps like a 1920s theater marquee. Wordmark reading EXACTLY \"8th Wonder\" (starts with the numeral 8). Colors: black and metallic gold, on a PLAIN WHITE background. Flat vector, crisp solid shapes, no gradients, legible at small print size — it sits in a nine-logo strip on a 5x7 trade postcard. Premium beverage-brand finish, NOT cartoonish, NOT psychedelic. No taglines, no other text. Invented stand-in design — do not imitate any real company's logo. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/brand_logos_5.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "The logo includes a decorative emblem to the left of the wordmark, which is not a single flat stand-in wordmark logo.",
+              "The word '8TH' uses a numeral '8' instead of spelling out 'EIGHT' or using letters only, which may not meet the letter-for-letter criterion if the brand name is expected as text only.",
+              "The logo uses two colors (black and gold) with a premium finish, which is acceptable, but the gold has a gradient effect, not a flat solid color.",
+              "The wordmark is legible and on a clean white background, with no tagline or other text clutter."
+            ]
+          }
+        },
+        {
+          "key": "brand_logos[6]",
+          "input_requirement": "Brand logos to place: HiSide, Howdy, THC Social, Stay Cool, SUP, 8th Wonder, Tempters, CURRNT, Don't Be That Dude",
+          "kind": "image",
+          "file": "assets/brand_tempters.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat stand-in wordmark logo for \"Tempters\", one of nine THC-drink brands carried by a Missouri beverage distributor. Personality: playful tempting swash script, the final letter ending in a subtle devil-tail flick. Wordmark reading EXACTLY \"Tempters\". Colors: deep crimson and black, on a PLAIN WHITE background. Flat vector, crisp solid shapes, no gradients, legible at small print size — it sits in a nine-logo strip on a 5x7 trade postcard. Premium beverage-brand finish, NOT cartoonish, NOT psychedelic. No taglines, no other text. Invented stand-in design — do not imitate any real company's logo. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/brand_logos_6.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "accepted_with_warnings",
+            "technical": "pass",
+            "vision_score": 6,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 3,
+            "issues": [
+              "Logo uses two colors but includes a gradient-like effect in the red parts, not flat solid shapes.",
+              "The script style with flourishes and the arrow tail makes it less legible at small print sizes.",
+              "The style is more decorative and playful, not fitting a premium beverage-brand finish.",
+              "No tagline or other text present, which is correct.",
+              "The brand name 'Templers' is spelled correctly and exactly as shown."
+            ]
+          }
+        },
+        {
+          "key": "brand_logos[7]",
+          "input_requirement": "Brand logos to place: HiSide, Howdy, THC Social, Stay Cool, SUP, 8th Wonder, Tempters, CURRNT, Don't Be That Dude",
+          "kind": "image",
+          "file": "assets/brand_currnt.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat stand-in wordmark logo for \"CURRNT\", one of nine THC-drink brands carried by a Missouri beverage distributor. Personality: electric modern condensed type with a clean current/voltage notch through the letters. Wordmark reading EXACTLY \"CURRNT\" (exactly six letters C-U-R-R-N-T — deliberately NO letter E, do not add vowels). Colors: electric chartreuse and charcoal, on a PLAIN WHITE background. Flat vector, crisp solid shapes, no gradients, legible at small print size — it sits in a nine-logo strip on a 5x7 trade postcard. Premium beverage-brand finish, NOT cartoonish, NOT psychedelic. No taglines, no other text. Invented stand-in design — do not imitate any real company's logo. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The brand name is spelled 'CURRNT' in the prompt but the logo spells it 'CURRENT' with an extra 'E'.\n- The lightning bolt element adds clutter and complexity, detracting from a flat solid shape and premium beverage-brand finish.\n- The logo uses two colors, which is acceptable, but the bright neon green may not convey a premium beverage-brand finish as it leans towards a more energetic or electric feel.\n- The font is bold and legible but the lightning bolt slicing through the text affects legibility at small print sizes.",
+            "prompt_file": "prompts/brand_logos_7.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 3,
+            "issues": [
+              "The yellow zigzag line crossing through the letters adds visual clutter and may reduce legibility at small print sizes."
+            ]
+          }
+        },
+        {
+          "key": "brand_logos[8]",
+          "input_requirement": "Brand logos to place: HiSide, Howdy, THC Social, Stay Cool, SUP, 8th Wonder, Tempters, CURRNT, Don't Be That Dude",
+          "kind": "image",
+          "file": "assets/brand_dont_be_that_dude.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat stand-in wordmark logo for \"Don't Be That Dude\", one of nine THC-drink brands carried by a Missouri beverage distributor. Personality: irreverent deadpan bold sans stacked on three lines. Wordmark reading EXACTLY \"Don't Be That Dude\" (apostrophe in Don't rendered correctly). Colors: matte black and safety orange, on a PLAIN WHITE background. Flat vector, crisp solid shapes, no gradients, legible at small print size — it sits in a nine-logo strip on a 5x7 trade postcard. Premium beverage-brand finish, NOT cartoonish, NOT psychedelic. No taglines, no other text. Invented stand-in design — do not imitate any real company's logo. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- Logo contains multiple lines of text instead of one single wordmark.\n- Includes an orange bar under the text, which is additional clutter.\n- Uses two colors but the layout and multiple lines reduce legibility at small sizes.\n- Overall style is bold but not fully aligned with a premium beverage-brand finish; it feels more like a poster or statement graphic.\n- No tagline present, which is correct.",
+            "prompt_file": "prompts/brand_logos_8.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 7,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 2,
+            "issues": [
+              "Logo is not a single flat wordmark; it is stacked in three lines.",
+              "Two colors used, which is acceptable, but the underline shape under 'Dude' adds clutter and is not a flat solid shape.",
+              "The font is bold and legible but the underline element reduces the premium beverage-brand finish, making it less clean and more decorative.",
+              "No tagline or other text present, which is correct.",
+              "Background is clean white, which is correct."
+            ]
+          }
+        }
+      ]
+    },
+    "lifestyle_photos": {
+      "entries": [
+        {
+          "key": "lifestyle_photos[0]",
+          "input_requirement": "Distributor logo + product/lifestyle photos (client provides)",
+          "kind": "image",
+          "file": "assets/bar_pour.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Candid documentary photograph, shot on a 35mm lens at f/2.0, available natural light, subtle film grain, realistic depth of field: a craft bartender behind a warm wood bar with brass rail details, mid-pour — a sparkling citrus seltzer streaming from a matte UNBRANDED slim aluminum can into a rocks glass over one large clear ice cube, fine fizz catching the moody premium light. moody premium bar lighting, warm wood and brass, editorial drinks photography. Natural skin texture with visible pores, no beauty retouching; individual hair strands with natural flyaways — hair must NOT look painted, helmet-like or plastic; anatomically correct hands gripping the can and glass. Imperfect, lived-in detail: creased apron, water rings and a crumpled bar towel on the wood, asymmetric composition — NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated. The can is completely blank brushed aluminum with an empty label area (brand marks are composited separately in layout). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/lifestyle_photos_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "lifestyle_photos[1]",
+          "input_requirement": "Distributor logo + product/lifestyle photos (client provides)",
+          "kind": "image",
+          "file": "assets/cooler_lineup.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Candid documentary photograph, shot on a 35mm lens at f/2.8, available ambient bar light, subtle film grain, realistic depth of field: a sleek glass-door back-bar cooler glowing in a dim premium lounge, rows of colorful UNBRANDED slim cans in muted jewel tones lined on lit shelves, beads of condensation on the glass, reflections of warm wood and brass from the room. Every label area blank or turned away — anonymous cans only (our logos are composited later in layout). moody premium bar lighting, warm wood and brass, editorial drinks photography. Imperfect, lived-in detail: faint fingerprints on the cooler glass, one can a few degrees off-line, asymmetric composition — NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/lifestyle_photos_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "While generally excellent, some cans, particularly on the far left, exhibit a very subtle uniformity in texture and sheen that, under strict scrutiny, could be perceived as slightly less organic than a real photograph of mass-produced cans, despite the convincing condensation and reflections."
+            ]
+          }
+        },
+        {
+          "key": "lifestyle_photos[2]",
+          "input_requirement": "Distributor logo + product/lifestyle photos (client provides)",
+          "kind": "image",
+          "file": "assets/patio_toast.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Candid documentary photograph, shot on a 35mm lens at f/2.0, golden-hour available light, subtle film grain, realistic depth of field: a restaurant patio at golden hour — three adults, all clearly 25 or older and visibly diverse in gender and ethnicity, caught mid-laugh as they lean in and toast matte UNBRANDED slim cans over a shared table of small plates, string lights soft and out of focus behind them. Genuine candid emotion — a real laugh between friends, NOT stock-posed. Natural skin texture with visible pores, no beauty retouching; individual hair strands with natural flyaways — hair must NOT look painted, helmet-like or plastic; anatomically correct hands on every can. Imperfect, lived-in detail: believable fabric wrinkles in linen shirts, crumbs and condensation rings on the table, asymmetric composition — NOT a staged stock photo, NOT CGI-glossy, NOT over-saturated. moody premium bar lighting, warm wood and brass, editorial drinks photography. Cans completely blank, no readable labels (logos are composited in layout). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/lifestyle_photos_2.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        }
+      ]
+    },
+    "qr_codes": {
+      "entries": [
+        {
+          "key": "qr_codes[0]",
+          "input_requirement": "Two QR codes (client provides)",
+          "kind": "program",
+          "file": "assets/qr_front_pricing.png",
+          "format": "png",
+          "generator": {
+            "provider": "deterministic",
+            "model": "qrcode lib — real scannable codes",
+            "prompt": "{\"links\": [{\"label\": \"Scan for Product & Pricing Guide\", \"url\": \"https://archandprairie.com/trade/product-pricing-guide\"}, {\"label\": \"WHAT\\u2019S THE BUZZ ABOUT? THC Drinks Explained - Scan to Watch\", \"url\": \"https://archandprairie.com/whats-the-buzz/thc-drinks-explained\"}], \"lib\": \"qrcode\", \"scannable\": true}"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          },
+          "dims": [
+            444,
+            444
+          ]
+        },
+        {
+          "key": "qr_codes[1]",
+          "input_requirement": "Two QR codes (client provides)",
+          "kind": "program",
+          "file": "assets/qr_back_video.png",
+          "format": "png",
+          "generator": {
+            "provider": "deterministic",
+            "model": "qrcode lib — real scannable codes",
+            "prompt": "{\"links\": [{\"label\": \"Scan for Product & Pricing Guide\", \"url\": \"https://archandprairie.com/trade/product-pricing-guide\"}, {\"label\": \"WHAT\\u2019S THE BUZZ ABOUT? THC Drinks Explained - Scan to Watch\", \"url\": \"https://archandprairie.com/whats-the-buzz/thc-drinks-explained\"}], \"lib\": \"qrcode\", \"scannable\": true}"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          },
+          "dims": [
+            444,
+            444
+          ]
+        }
+      ]
+    }
+  }
+}

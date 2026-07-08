@@ -1,0 +1,42 @@
+You are the general manager of The George Inn, Oundle — a traditional premium
+British pub / gastro pub in a Northamptonshire market town. Write the COMPLETE priced drink
+lists for the pub's three new tri-fold (6-panel) menus, exactly as they will be typeset.
+Return a JSON object: {"menus": [EXACTLY 3 menu objects, in this order, each
+{"menu": "<exact menu name>", "trifold_note": "<one line suggesting how the sections flow
+across the six panels of the tri-fold>", "sections": [<that menu's exact sections, in the
+exact order listed below, each {"name": "<exact section name>", "items": [3-8 item
+objects]}>]}]}.
+
+MENU 1 — "menu" MUST be "Main Drinks Menu" — sections EXACTLY these 11, in this order:
+"Draught Beer & Cider", "Bottled Beer & Cider", "Gin", "Vodka", "Rum", "Whisky & Bourbon",
+"Brandy & Cognac", "Tequila, Shots & Liqueurs", "Soft Drinks", "Mixers", "Juices".
+MENU 2 — "menu" MUST be "Wine List" — sections EXACTLY these 8, in this order:
+"White Wines", "Rosé Wines", "Red Wines", "Premium Wines", "Sparkling Wines", "Prosecco",
+"Port", "Wine by the Glass & Bottle Pricing".
+MENU 3 — "menu" MUST be "Cocktail Menu" — sections EXACTLY these 6, in this order:
+"Signature Cocktails", "Classic Cocktails", "Spritz Selection", "Mocktails",
+"Premium Serves", "Seasonal Specials".
+Never drop, rename, merge or reorder a section.
+
+Item shapes:
+- Beers, ciders, soft drinks, mixers, juices, cocktails and mocktails:
+  {"name": "...", "detail": "<one line: style, ABV% and origin — or the ingredients, for
+  cocktails>", "price": "£5.80"} (draught priced per pint; give bottle/can sizes in detail).
+- Spirits (Gin, Vodka, Rum, Whisky & Bourbon, Brandy & Cognac, Tequila/Shots/Liqueurs)
+  should instead use "prices": {"25ml": "£4.20", "50ml": "£7.90"}.
+- Wines use "prices": {"175ml": "£7.20", "250ml": "£9.40", "bottle": "£27.00"};
+  Premium Wines may be bottle-only: "prices": {"bottle": "£46.00"}.
+- The "Wine by the Glass & Bottle Pricing" section holds 3-4 note-style items explaining the
+  measures (125ml available on request, every wine by the glass also by the bottle, sparkling
+  served in 125ml flutes): {"name": "<short heading>", "detail": "<the note, one line>"} —
+  no price needed on these.
+
+Pricing must be realistic 2026 UK market-town pub pricing: cask ale £5.20-£6.20 a pint, craft
+keg up to £6.90, premium gins 25ml £4.20-£6.50 plus mixer, house wine 175ml £6.50-£8.00,
+bottles £24-£58, cocktails £9.00-£12.50, mocktails £5.00-£7.00. British spellings throughout
+(flavour, draught, liqueur). Real drink styles — a proper best bitter, a cloudy West Country
+cider, London dry and rhubarb gins, Speyside and Islay style single malts, VS/VSOP cognac —
+but NO real brewery, distillery or wine-house trademarks: invent plausible producer names
+(river-, county- or market-town-flavoured) or describe the style generically. Gin and
+Whisky & Bourbon should carry 6-8 entries each so the back-bar reads seriously; Mixers and
+Juices may carry 3-4. Voice: Our tone is warm and inviting, embodying the timeless hospitality of a countryside inn. We speak with a quietly premium British sensibility, never flashy or overly modern.

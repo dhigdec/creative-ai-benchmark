@@ -1,0 +1,375 @@
+{
+  "assets": {
+    "campaign_brief": {
+      "entries": [
+        {
+          "key": "campaign_brief",
+          "input_requirement": "Campaign brief / spec sheet: target platforms + sizes (Feed 1:1, Stories 9:16, Reels 9:16), bright-airy listing look notes, agent name + list price for the lower-third, and the narration script for the voiceover",
+          "kind": "data",
+          "file": "assets/campaign_brief.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the marketing lead at Solstice Properties, a small residential real-estate\nbrokerage, preparing a lead-gen listing-media campaign for ONE just-listed home. Produce the\ncampaign brief as a JSON object with EXACTLY these top-level keys:\n\"property\": an object with invented \"address\" (invented street, no real street), \"city_area\",\n  \"price\" (USD string like \"$849,000\"), \"beds\" (int 4), \"baths\" (number 3), \"sqft\" (int);\n\"highlights\": a TOP-LEVEL list of EXACTLY 4 short selling-point phrases for the property;\n\"agent\": an object with \"name\", \"title\", \"phone\" (555 area code), \"email\" (at a fictional\n  brokerage domain), and \"license_no\" (like \"RE-0192834\");\n\"lower_third\": an object with \"agent_name_line\" (agent name + title) and \"price_strip\"\n  (e.g. \"Just Listed - $849,000\") — these are the exact strings the lower-third will typeset;\n\"look_notes\": a list of EXACTLY 3 grading notes for the shared bright-airy listing look\n  (white balance, exposure, palette) in the voice: We approach every client relationship with genuine warmth and expertise, guiding you confidently through your real estate journey. Our focus is always on your unique benefits and discovering the perfect home that elevates your lifestyle.;\n\"platforms\": a list of EXACTLY 3 objects, each {\"platform\": ..., \"label\": ..., \"size\": ...,\n  \"aspect\": ...} for Facebook Feed (1080x1080, 1:1), Stories (1080x1920, 9:16) and Reels\n  (1080x1920, 9:16);\n\"room_order\": a list of EXACTLY 6 room slugs in the recommended cut order, leading with the\n  strongest hook room (e.g. [\"living-room\",\"exterior-approach\",\"kitchen\",\"primary-suite\",\n  \"primary-bath\",\"hallway\"]);\n\"narration_script\": a single string of 90-130 words — a warm, benefit-led tour-guide voiceover\n  the agent reads, opening with a punchy hook line for the first 3 seconds, walking the viewer\n  through the living room, kitchen, primary suite and bath, and closing with a soft\n  call-to-action to book a showing. Conversational, NO prices read aloud, NO real brands.",
+            "prompt_file": "prompts/campaign_brief.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "campaign_brief.render",
+          "input_requirement": "Campaign brief / spec sheet: target platforms + sizes (Feed 1:1, Stories 9:16, Reels 9:16), bright-airy listing look notes, agent name + list price for the lower-third, and the narration script for the voiceover",
+          "kind": "data",
+          "file": "assets/campaign_brief.md",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the marketing lead at Solstice Properties, a small residential real-estate\nbrokerage, preparing a lead-gen listing-media campaign for ONE just-listed home. Produce the\ncampaign brief as a JSON object with EXACTLY these top-level keys:\n\"property\": an object with invented \"address\" (invented street, no real street), \"city_area\",\n  \"price\" (USD string like \"$849,000\"), \"beds\" (int 4), \"baths\" (number 3), \"sqft\" (int);\n\"highlights\": a TOP-LEVEL list of EXACTLY 4 short selling-point phrases for the property;\n\"agent\": an object with \"name\", \"title\", \"phone\" (555 area code), \"email\" (at a fictional\n  brokerage domain), and \"license_no\" (like \"RE-0192834\");\n\"lower_third\": an object with \"agent_name_line\" (agent name + title) and \"price_strip\"\n  (e.g. \"Just Listed - $849,000\") — these are the exact strings the lower-third will typeset;\n\"look_notes\": a list of EXACTLY 3 grading notes for the shared bright-airy listing look\n  (white balance, exposure, palette) in the voice: We approach every client relationship with genuine warmth and expertise, guiding you confidently through your real estate journey. Our focus is always on your unique benefits and discovering the perfect home that elevates your lifestyle.;\n\"platforms\": a list of EXACTLY 3 objects, each {\"platform\": ..., \"label\": ..., \"size\": ...,\n  \"aspect\": ...} for Facebook Feed (1080x1080, 1:1), Stories (1080x1920, 9:16) and Reels\n  (1080x1920, 9:16);\n\"room_order\": a list of EXACTLY 6 room slugs in the recommended cut order, leading with the\n  strongest hook room (e.g. [\"living-room\",\"exterior-approach\",\"kitchen\",\"primary-suite\",\n  \"primary-bath\",\"hallway\"]);\n\"narration_script\": a single string of 90-130 words — a warm, benefit-led tour-guide voiceover\n  the agent reads, opening with a punchy hook line for the first 3 seconds, walking the viewer\n  through the living room, kitchen, primary suite and bath, and closing with a soft\n  call-to-action to book a showing. Conversational, NO prices read aloud, NO real brands.",
+            "prompt_file": "prompts/campaign_brief.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "clip_exterior_sora": {
+      "entries": [
+        {
+          "key": "clip_exterior_sora",
+          "input_requirement": "Six room-by-room property walkthrough clips (kitchen, living room, primary suite, primary bath, hallway, exterior approach) — raw H.264 with native ambient audio — to summarize, order, and cut into the narrated tour with a 3-second hook",
+          "kind": "video",
+          "file": "assets/walkthrough_01_exterior-approach.mp4",
+          "format": "mp4",
+          "generator": {
+            "provider": "openai",
+            "model": "sora-2",
+            "prompt": "Establishing aerial-to-eye-level pan of a contemporary two-storey suburban home on a quiet tree-lined street in the golden hour before dusk: warm low sun raking across a pale stucco-and-cedar facade, a tidy front lawn with a young maple, a paved driveway, and soft long shadows. Documentary real-estate b-roll, NO people, NO cars moving, no on-screen text or graphics of any kind. Camera move: a slow smooth gimbal push-in that begins slightly elevated looking down the street and settles to a level three-quarter view of the front elevation. Natural available light, realistic depth of field, gentle"
+          },
+          "dims": [
+            1280,
+            720
+          ],
+          "duration_s": 8.0,
+          "has_audio": true,
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "clips_rooms_landscape": {
+      "entries": [
+        {
+          "key": "clips_rooms_landscape[0]",
+          "input_requirement": "Six room-by-room property walkthrough clips (kitchen, living room, primary suite, primary bath, hallway, exterior approach) — raw H.264 with native ambient audio — to summarize, order, and cut into the narrated tour with a 3-second hook",
+          "kind": "video",
+          "file": "assets/walkthrough_02_kitchen.mp4",
+          "format": "mp4",
+          "generator": {
+            "provider": "gemini",
+            "model": "veo-3.0-fast-generate-001",
+            "prompt": "Slow steady gimbal glide through a bright modern kitchen: white shaker cabinets, a large quartz-topped island with three pendant lights, stainless appliances, and a wide window over the sink letting in flat midday daylight. The camera moves left-to-right past the island toward the window. Documentary real-estate walkthrough b-roll, NO people on screen, no on-screen text, captions, watermarks or graphics of any kind. Natural available interior light with genuinely bright (slightly blown) windows, realistic depth of field, subtle handheld micro-motion, believable lived-in detail (a stray cushion"
+          },
+          "dims": [
+            1280,
+            720
+          ],
+          "duration_s": 8.0,
+          "has_audio": true,
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "clips_rooms_landscape[1]",
+          "input_requirement": "Six room-by-room property walkthrough clips (kitchen, living room, primary suite, primary bath, hallway, exterior approach) — raw H.264 with native ambient audio — to summarize, order, and cut into the narrated tour with a 3-second hook",
+          "kind": "video",
+          "file": "assets/walkthrough_03_living-room.mp4",
+          "format": "mp4",
+          "generator": {
+            "provider": "gemini",
+            "model": "veo-3.0-fast-generate-001",
+            "prompt": "Smooth dolly-in across an airy open-plan living room: a low grey sectional sofa, a woven area rug, a wall of tall windows blown bright with outdoor light, light oak floors. The camera pushes gently from the hallway opening toward the sofa and windows. Documentary real-estate walkthrough b-roll, NO people on screen, no on-screen text, captions, watermarks or graphics of any kind. Natural available interior light with genuinely bright (slightly blown) windows, realistic depth of field, subtle handheld micro-motion, believable lived-in detail (a stray cushion, a book on a counter), NOT CGI-glossy"
+          },
+          "dims": [
+            1280,
+            720
+          ],
+          "duration_s": 8.0,
+          "has_audio": true,
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "clips_rooms_landscape[2]",
+          "input_requirement": "Six room-by-room property walkthrough clips (kitchen, living room, primary suite, primary bath, hallway, exterior approach) — raw H.264 with native ambient audio — to summarize, order, and cut into the narrated tour with a 3-second hook",
+          "kind": "video",
+          "file": "assets/walkthrough_04_primary-suite.mp4",
+          "format": "mp4",
+          "generator": {
+            "provider": "gemini",
+            "model": "veo-3.0-fast-generate-001",
+            "prompt": "Gentle reveal pan around a calm primary bedroom: a low upholstered platform bed with crisp linen, two nightstands with small lamps, sheer curtains glowing from afternoon sun, soft neutral walls. The camera arcs slowly from the doorway across the foot of the bed to the window. Documentary real-estate walkthrough b-roll, NO people on screen, no on-screen text, captions, watermarks or graphics of any kind. Natural available interior light with genuinely bright (slightly blown) windows, realistic depth of field, subtle handheld micro-motion, believable lived-in detail (a stray cushion, a book on a"
+          },
+          "dims": [
+            1280,
+            720
+          ],
+          "duration_s": 8.0,
+          "has_audio": true,
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "clips_rooms_landscape[3]",
+          "input_requirement": "Six room-by-room property walkthrough clips (kitchen, living room, primary suite, primary bath, hallway, exterior approach) — raw H.264 with native ambient audio — to summarize, order, and cut into the narrated tour with a 3-second hook",
+          "kind": "video",
+          "file": "assets/walkthrough_05_hallway.mp4",
+          "format": "mp4",
+          "generator": {
+            "provider": "gemini",
+            "model": "veo-3.0-fast-generate-001",
+            "prompt": "Steady forward tracking shot down a bright upstairs hallway lined with closed doors and a runner rug, ending on an open doorway that spills daylight into the corridor. The camera walks the hallway at a calm even pace. Documentary real-estate walkthrough b-roll, NO people on screen, no on-screen text, captions, watermarks or graphics of any kind. Natural available interior light with genuinely bright (slightly blown) windows, realistic depth of field, subtle handheld micro-motion, believable lived-in detail (a stray cushion, a book on a counter), NOT CGI-glossy, NOT over-saturated. Native ambie"
+          },
+          "dims": [
+            1280,
+            720
+          ],
+          "duration_s": 8.0,
+          "has_audio": true,
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "clip_room_vertical": {
+      "entries": [
+        {
+          "key": "clip_room_vertical",
+          "input_requirement": "Six room-by-room property walkthrough clips (kitchen, living room, primary suite, primary bath, hallway, exterior approach) — raw H.264 with native ambient audio — to summarize, order, and cut into the narrated tour with a 3-second hook",
+          "kind": "video",
+          "file": "assets/walkthrough_06_primary-bath_vertical.mp4",
+          "format": "mp4",
+          "generator": {
+            "provider": "gemini",
+            "model": "veo-3.0-fast-generate-001",
+            "prompt": "Vertical 9:16 slow tilt-up of a clean spa-style primary bathroom: a freestanding white soaking tub beneath a frosted window, matte black fixtures, large-format grey floor tile, and a floating wood vanity with a round mirror. The camera tilts up from the tub to the window, then settles on the vanity. Documentary real-estate walkthrough b-roll, NO people on screen, no on-screen text, captions, watermarks or graphics of any kind. Natural available interior light with genuinely bright (slightly blown) windows, realistic depth of field, subtle handheld micro-motion, believable lived-in detail (a st"
+          },
+          "dims": [
+            720,
+            1280
+          ],
+          "duration_s": 8.0,
+          "has_audio": true,
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "agent_voiceover": {
+      "entries": [
+        {
+          "key": "agent_voiceover",
+          "input_requirement": "Agent voiceover narration recorded over a rough music bed and roomy reverb (deliberately noisy) so the speech-cleanup leg has real audio to isolate and de-reverb into a broadcast dialogue stem",
+          "kind": "audio",
+          "file": "assets/agent_vo_rough.mp3",
+          "format": "mp3",
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-4o-mini-tts+roughen",
+            "prompt": "Discover an oasis where every detail elevates your daily life! Step into the expansive, light-filled living room, perfect for cherished gatherings. The chef-inspired kitchen, with its generous island and premium finishes, flows seamlessly for entertaining and culinary adventures. Retreat to the serene primary suite, a true sanctuary designed for relaxation. Its spa-like en-suite bath offers a luxurious, comforting escape. Imagine starting and ending your days here. Ready to experience this exceptional property? Contact us today to schedule your private showing and uncover your new beginning."
+          },
+          "duration_s": 40.18,
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "listing_stills": {
+      "entries": [
+        {
+          "key": "listing_stills[0]",
+          "input_requirement": "Listing stills (photoreal): hero interior living room with genuinely blown-out windows to recover, exterior under a flat overcast sky to swap to twilight, a twilight reference frame, and a brokerage logo/agent badge detail plate",
+          "kind": "image",
+          "file": "assets/hero-interior-living-room.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Real-estate listing photograph of a bright airy living room shot for a just-listed campaign: a low grey sectional sofa, a woven jute rug, light oak floors, and a WALL OF TALL WINDOWS that are GENUINELY BLOWN OUT to near-pure white — the outdoor view is completely overexposed and lost, the brightest highlights clipped, while the room interior sits a touch dark and the warm tungsten lamp light fights the cool window light (visibly mixed white balance). The vertical window frames and the wall edge are SLIGHTLY CROOKED / not perfectly plumb, as if shot handheld on a phone. Wide-angle architectural interior, candid documentary feel shot on a 24mm lens at f/4 in available light, subtle film grain, realistic depth of field. Imperfect, lived-in detail: a throw blanket slightly bunched on the sofa, a coffee-table book left open, faint dust in a sunbeam. NOT a polished HDR magazine shot, NOT CGI-glossy, NOT over-saturated — this is the raw frame the editor must rescue. No people.",
+            "prompt_file": "prompts/listing_stills_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "listing_stills[1]",
+          "input_requirement": "Listing stills (photoreal): hero interior living room with genuinely blown-out windows to recover, exterior under a flat overcast sky to swap to twilight, a twilight reference frame, and a brokerage logo/agent badge detail plate",
+          "kind": "image",
+          "file": "assets/exterior-front-overcast.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Real-estate listing photograph of the front exterior of the same contemporary two-storey suburban home under a FLAT, FEATURELESS, OVERCAST GREY-WHITE SKY — the sky is dull and washed out with no clouds or colour, an obvious candidate to replace with a twilight plate. Pale stucco-and-cedar facade, a young maple on a tidy lawn, a paved driveway, a panelled front door. The roofline meets the blank sky cleanly along the top third of the frame (clear sky region for masking). Verticals slightly off-plumb as if handheld. Wide architectural exterior, candid documentary feel shot on a 28mm lens at f/5.6 in soft flat daylight, subtle film grain. Imperfect lived-in detail: a coiled garden hose, a recycling bin set back by the garage. NOT CGI-glossy, NOT over-saturated. No people.",
+            "prompt_file": "prompts/listing_stills_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "accepted_with_warnings",
+            "technical": "pass",
+            "vision_score": 6,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 3,
+            "issues": [
+              "House number '209' is clearly visible on the pillar next to the front door, violating the strict 'no text anywhere' criterion."
+            ]
+          }
+        },
+        {
+          "key": "listing_stills[2]",
+          "input_requirement": "Listing stills (photoreal): hero interior living room with genuinely blown-out windows to recover, exterior under a flat overcast sky to swap to twilight, a twilight reference frame, and a brokerage logo/agent badge detail plate",
+          "kind": "image",
+          "file": "assets/twilight-reference-frame.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Atmospheric reference photograph of a residential street at deep twilight / blue hour for colour-grading reference: a richly graded dusk sky going from warm amber at the horizon up through magenta to deep indigo, a few backlit clouds, warm glowing windows in distant homes, and long cool-blue shadows on the pavement. This is a MOOD/COLOUR reference frame, not the listing itself — the home is small and distant. Candid documentary feel shot on a 35mm lens at f/2.8 at blue hour, subtle film grain, realistic depth of field, believable lived-in detail. NOT CGI-glossy, NOT over-saturated. No people.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The image is an exterior shot, not a 'hero interior' shot as specified.\n- The sky is a vibrant, cloudy sunset, not a 'flat featureless overcast sky with a clean sky region along the top to mask'.\n- The windows in the houses are glowing warmly but are not 'genuinely blown-out near-white (clipped, no outdoor view)' as described for an interior shot.\n- The overall aesthetic is a dramatic sunset scene, which does not align with 'photoreal real-estate stills looking like real handheld phone photos NOT staged HDR stock'. It appears more like a professionally composed and processed image with high dynamic range.\n- Natural film grain is not visibly prominent.",
+            "prompt_file": "prompts/listing_stills_2.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "accepted_with_warnings",
+            "technical": "pass",
+            "vision_score": 3,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 3,
+            "issues": [
+              "The sky is a vibrant sunset with clouds, not a flat featureless overcast sky as explicitly requested.",
+              "A street sign with legible text is visible on the right side of the image, which was explicitly forbidden."
+            ]
+          }
+        },
+        {
+          "key": "listing_stills[3]",
+          "input_requirement": "Listing stills (photoreal): hero interior living room with genuinely blown-out windows to recover, exterior under a flat overcast sky to swap to twilight, a twilight reference frame, and a brokerage logo/agent badge detail plate",
+          "kind": "image",
+          "file": "assets/brokerage-badge-detail.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Tight candid documentary photograph of a brushed-metal real-estate brokerage badge plaque mounted on a textured plaster wall by a front door, shot at a slight angle in soft natural side light — the metal has real brushed grain, fine scratches and a couple of fingerprints, casting a soft real contact shadow on the wall. The engraved emblem on the plaque is a SIMPLE ABSTRACT GEOMETRIC MARK (an open doorway / keyhole motif) with NO readable lettering or words. Shot on a 50mm lens at f/2.0, shallow depth of field, subtle film grain, imperfect lived-in detail. NOT CGI-glossy, NOT over-saturated. No people. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The image depicts an exterior scene, whereas the prompt primarily describes a 'hero interior' with specific characteristics.\n- The windows/glass in the image are not 'genuinely blown-out near-white' with 'no outdoor view'; a blurred outdoor scene with trees and buildings is clearly visible through the glass.\n- The verticals of the door/window frame appear straight, not 'slightly crooked' as specified for the interior windows.\n- The white balance appears consistent throughout the image, not 'visibly mixed warm/cool' as described.\n- The exterior scene does not sit under a 'flat featureless overcast sky'; the lighting suggests a bright, possibly sunny day, and there is no 'clean sky region along the top to mask' visible.",
+            "prompt_file": "prompts/listing_stills_3.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 2,
+            "issues": [
+              "The 'slightly crooked verticals' are very subtle; while not perfectly straight, they are close enough that they might not fully convey the 'handheld phone photo' aesthetic as strongly as a more noticeable tilt could."
+            ]
+          }
+        }
+      ]
+    },
+    "brokerage_logo": {
+      "entries": [
+        {
+          "key": "brokerage_logo",
+          "input_requirement": "Brokerage logo/agent badge artwork to background-remove and vectorize for the lower-third / logo bug overlaid on every export",
+          "kind": "image",
+          "file": "assets/brokerage_logo.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Flat vector real-estate brokerage logo lockup on a clean SOLID WHITE\nbackground: a simple geometric mark of an OPEN DOORWAY framing a small keyhole, set above a\nclean wordmark reading EXACTLY \"Solstice Properties\", with a small thin tagline beneath reading\nEXACTLY \"BOUTIQUE RESIDENTIAL\". Strict palette: deep ink navy #1F2A3C for the mark and the\nwordmark, a single fresh-sage #7E9C7A accent inside the doorway. Modern geometric sans-serif,\ngenerous spacing, perfectly centred, FLAT with no gradients, no drop shadows, no photographic\nelements, no other text. Crisp clean edges suitable to background-remove and vectorize to a\nscalable SVG. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/brokerage_logo_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "Navy color is slightly off from #1F2A3C, appearing a bit lighter.",
+              "Sage accent color is slightly muted compared to #7E9C7A.",
+              "The door/keyhole mark is more detailed than a simple open-doorway/keyhole mark, with a small door handle detail present."
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

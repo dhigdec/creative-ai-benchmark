@@ -1,0 +1,241 @@
+{
+  "task_id": 430,
+  "slug": "cosmetics-label",
+  "title": "Cosmetics Label Sticker Design",
+  "category": "Labels & Stickers",
+  "family": "Express Template Design",
+  "archetype": "template",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 10,
+      "evidence": [
+        "brand_logo shows 'veridian dew' wordmark matching brief brand name exactly",
+        "container_photos[0] is a jar, container_photos[1] is a pump bottle — satisfies 'at least one jar and one bottle'",
+        "image 1",
+        "product_lines.json",
+        "image 1: brand logo matches 'Veridian Dew'",
+        "assets/ingredients.json: full regulatory/ingredient copy present"
+      ],
+      "deductions": [
+        "brand_logo has plain white background; asset_add_file placement on dark label may show white box artifact",
+        "product_lines.json product names differ slightly from ingredients.json product names ('Bio-Renewal Cream' vs 'Veridian Dew Face Cream')",
+        "Brand logo and product data align with cosmetics label task.",
+        "Container photos are suitable for mockups as requested.",
+        "All required subjects and brand elements present",
+        "Regulatory and product data match brief requirements"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 5,
+      "evidence": [
+        "dieline_spec.json contains a 'decisions' field explicitly flagging 'BLOCKER: directions and warnings REQUIRED before fill_text'",
+        "ingredients_copy has directions and warnings text present, but dieline_spec.json itself records this as unresolved blocker rather than resolved",
+        "dieline_spec.json",
+        "ingredients_copy.json",
+        "assets/dieline_spec.json: die-line specs for both jar and bottle",
+        "container_photos[0] and [1]: both required mock-up types present"
+      ],
+      "deductions": [
+        "dieline_spec.json self-declares a workflow blocker yet the data to resolve it (directions/warnings) already exists in ingredients.json — contradiction not reconciled, leaving executor uncertain",
+        "No PAO open-jar symbol graphic asset supplied; fill_text cannot render the '9M'/'12M' PAO icon — mandatory EU cosmetics regulatory element",
+        "'dieline_spec.json' contains an explicit 'BLOCKER' for mandatory text.",
+        "'ingredients_copy.json' shows dual company addresses, a regulatory inconsistency.",
+        "All data and image assets for workflow present and populated",
+        "No regulatory or legal fields missing"
+      ],
+      "fix": {
+        "target_asset_key": "dieline_spec.json",
+        "problem": "Unresolved regulatory inconsistency and internal blocker.",
+        "prompt_delta": "Ensure all regulatory text, including company address, is consistent across all products or clearly specify different regulatory requirements per product. Remove internal blocker notes."
+      },
+      "low_confidence": true,
+      "spread": 7,
+      "per_judge": [
+        5,
+        3,
+        10
+      ]
+    },
+    "executability": {
+      "score": 10,
+      "evidence": [
+        "dieline_spec.json provides pixel dimensions (1949x413 and 413x827) and bleed/safe-margin values — image_crop_to_bounds can consume these directly",
+        "brand_logo has white background, not transparent — asset_add_file composite step will require extra masking agent effort",
+        "image 1",
+        "dieline_spec.json",
+        "image 1: logo is high-res, usable for asset_add_file",
+        "container_photos[0] and [1]: suitable for mockup compositing"
+      ],
+      "deductions": [
+        "Logo white background blocks clean asset_add_file placement without additional remove-background step not in the specified workflow",
+        "No PAO icon file means fill_text/template step cannot place mandatory symbol glyph",
+        "All image and data files are in correct formats for workflow tools.",
+        "JSON data structures are parseable for text fill and dimension extraction.",
+        "All assets in correct format/dims for workflow steps",
+        "No asset blocks any workflow tool"
+      ],
+      "fix": {
+        "target_asset_key": "brand_logo",
+        "problem": "Opaque white background requires unplanned background-removal tool call outside specified workflow",
+        "prompt_delta": "Export logo as PNG-24 with transparent alpha; confirm no white bounding box; test composite over #214E3B swatch before delivery."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "container_photos[0] and [1] are polished studio shots with consistent warm-neutral backdrop and gold hardware — appropriate for luxury cosmetics brief",
+        "ingredients.json contains full INCI lists, PAO symbols, net contents with 'e' mark, and printer batch-code placeholders — matches real EU/US label copy conventions",
+        "image 2",
+        "ingredients_copy.json",
+        "container_photos[0]: realistic, premium product photography",
+        "assets/ingredients.json: regulatory copy is detailed and plausible"
+      ],
+      "deductions": [
+        "ingredients.json company addresses differ between products (Paris vs LA) without client confirmation — real client would have flagged this",
+        "product_lines.json omits INCI/regulatory data that ingredients.json covers under different product names — looks like two separate documents not reconciled",
+        "Container photos are high-quality, professional product shots.",
+        "Ingredient lists and product details are realistic for a cosmetics brand.",
+        "Assets indistinguishable from genuine client handoff",
+        "No synthetic/uncanny elements"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 7,
+      "evidence": [
+        "brand_logo green (#214E3B approx) matches persona primary palette colour — logo and palette are aligned",
+        "product_lines.json and ingredients.json use inconsistent product naming ('Bio-Renewal Cream' vs 'Veridian Dew Face Cream') breaking single-brand identity in data layer",
+        "ingredients_copy.json",
+        "image 1",
+        "image 1: logo color matches palette #214E3B",
+        "all assets reference 'Veridian Dew' and botanical-clinical theme"
+      ],
+      "deductions": [
+        "Naming mismatch between the two JSON files will cause fill_text to fail product-name lookup or produce wrong label copy",
+        "No font specification embedded in any asset file; executor must infer Libre Franklin/Inter from persona.json alone with no fallback",
+        "'ingredients_copy.json' has inconsistent 'Made In' and company addresses.",
+        "Visuals (logo, containers) align with brand persona, but data breaks consistency.",
+        "Consistent palette, brand, and tone across all assets",
+        "Fonts and style match brand persona"
+      ],
+      "fix": {
+        "target_asset_key": "ingredients_copy.json",
+        "problem": "Inconsistent company addresses and 'Made In' locations.",
+        "prompt_delta": "Ensure all company addresses and 'Made In' locations are consistent for the 'Veridian Dew' brand, or provide clear justification for multiple locations if intended for different markets."
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        7,
+        4,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 6,
+      "evidence": [
+        "Assumption 'palette pinned in persona.json; logo supplied as asset' is sound — brief explicitly says creative open on palette",
+        "dieline_spec.json decisions field raises dual-address inconsistency as needing client confirmation but does not halt or flag it prominently enough for executor",
+        "dieline_spec.json",
+        "persona.json: palette/brand decisions justified as per brief",
+        "dieline_spec.json: regulatory text requirement flagged and fulfilled"
+      ],
+      "deductions": [
+        "Blocker note in dieline_spec.json is contradictory — data exists in ingredients.json to resolve it, yet it was not resolved, leaving executor in ambiguous state",
+        "PAO symbol requirement (mandatory EU Regulation 1223/2009) was never recorded as a decision or assumption — genuine regulatory gap silently ignored",
+        "Junior embedded an unresolved 'BLOCKER' and client query within a data asset.",
+        "Critical regulatory inconsistency (dual addresses) was not resolved or escalated.",
+        "All assumptions are sound and justified",
+        "No real input wrongly demoted to assumption"
+      ],
+      "fix": {
+        "target_asset_key": "dieline_spec.json",
+        "problem": "Contains an internal blocker and unaddressed client query.",
+        "prompt_delta": "Remove internal 'decisions' field from dieline_spec.json. Resolve or escalate the dual-address inconsistency and ensure all mandatory copy is confirmed and consistent."
+      },
+      "low_confidence": true,
+      "spread": 7,
+      "per_judge": [
+        6,
+        3,
+        10
+      ]
+    }
+  },
+  "overall": 7.8,
+  "verdict": "minor-gaps",
+  "top_risks": [
+    "CLIENT-REJECT (sev 8): The data inputs are duplicated five times identically and no actual die-line files or confirmed regulatory copy have been delivered yet — the brief explicitly says these are supplied 'at start' but they're still placeholders. I cannot approve work that begins without finalized, legally-reviewed ingredient/regulatory text, especially for a cosmetics line with EU and US compliance requirements flagged as a BLOCKER in the spec itself.",
+    "AGENT CHOKE on 'brand_logo': Vision score of only 6/10 on a white-background logo PNG means the agent's image_crop_to_bounds step will struggle to isolate the mark cleanly against the dark label background (#214E3B), risking a blown-out or misregistered logo composite before the workflow even reaches fill_text.",
+    "Completeness 5/10: dieline_spec.json self-declares a workflow blocker yet the data to resolve it (directions/warnings) already exists in ingredients.json — contradiction not reconciled, leaving executor uncertain",
+    "Decision Quality 6/10: Blocker note in dieline_spec.json is contradictory — data exists in ingredients.json to resolve it, yet it was not resolved, leaving executor in ambiguous state"
+  ],
+  "qc_gaps": [
+    "Per-asset self-QC averages 8.7/10, but package Completeness scored 5 — assets are individually strong yet wrong/insufficient for the task."
+  ],
+  "weights": {
+    "task_fit": 0.17,
+    "completeness": 0.22,
+    "executability": 0.1,
+    "realism": 0.17,
+    "coherence": 0.22,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.042,
+  "rounds": [
+    {
+      "round": 1,
+      "overall": 5.0,
+      "action": "regenerated",
+      "assets": [
+        "ingredients_copy"
+      ],
+      "resolved": [
+        "ingredients_copy"
+      ],
+      "unresolved": [],
+      "regen_cost": 0.004
+    },
+    {
+      "round": 2,
+      "overall": 5.0,
+      "action": "stalled"
+    },
+    {
+      "round": "final",
+      "overall": 5.0,
+      "action": "final-judge"
+    }
+  ]
+}

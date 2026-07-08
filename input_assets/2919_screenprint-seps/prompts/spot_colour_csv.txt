@@ -1,0 +1,17 @@
+Produce the SPOT-COLOUR data table the shop hands the Illustrator separation-sheet
+template (screenprint_sep_sheet.ai) for a 4-colour spot print on a black tee. The CSV that render_csv
+emits from this JSON drives a data-merge: ONE registration/swatch card per row, so the JSON top-level
+key holds a LIST OF ROW OBJECTS whose keys are the EXACT Illustrator Variable / CSV column names the
+template binds. Return a JSON object with EXACTLY one top-level key "rows": a list of EXACTLY 4 objects,
+each with these keys spelled EXACTLY (these are the merge field names):
+"ink_name", "pantone", "rgb_hex", "mesh_count", "squeegee_durometer", "flash_temp_F", "print_order".
+Use these EXACT 4 rows, in this order (transcribe the fixed values faithfully):
+1. ink_name "White Underbase", pantone "—", rgb_hex "FFFFFF", mesh_count 110, squeegee_durometer 70,
+   flash_temp_F <a realistic plastisol flash cure temp, ~300>, print_order 1.
+2. ink_name "Lavender", pantone "2635C", rgb_hex "C9B6E4", mesh_count <156-200>, squeegee_durometer 70,
+   flash_temp_F <~300>, print_order 2.
+3. ink_name "Cobalt Blue", pantone "2945C", rgb_hex "1E3FAE", mesh_count <156-200>, squeegee_durometer
+   70, flash_temp_F <~300>, print_order 3.
+4. ink_name "Deep Purple", pantone "2685C", rgb_hex "3B1E63", mesh_count <156-200>, squeegee_durometer
+   75, flash_temp_F <~320, last-down dark ink>, print_order 4.
+rgb_hex values MUST be exactly FFFFFF, C9B6E4, 1E3FAE, 3B1E63 (no leading #). JSON only.

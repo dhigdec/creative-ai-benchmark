@@ -1,0 +1,283 @@
+{
+  "assets": {
+    "menu_data": {
+      "entries": [
+        {
+          "key": "menu_data",
+          "input_requirement": "Full DoorDash item list: names, descriptions, prices, categories",
+          "kind": "data",
+          "file": "assets/menu.json",
+          "format": "json",
+          "generator": {
+            "provider": "text",
+            "model": "writer-chain",
+            "prompt": "You are the owner of Zaytoun (Fast-casual Levantine Street Food). Produce the full DoorDash menu as JSON:\n{\"restaurant\": \"Zaytoun\", \"tagline\": \"Authentic Flavors, Modern Street Eats.\", \"items\": [12-16 items across 3-4 categories:\n{\"name\": \"<=4 words, distinctive not generic\", \"description\": \"18-30 words, sensory, names key ingredients,\nno emojis\", \"price_usd\": <realistic fast-casual, mix .49/.99 endings with whole numbers>,\n\"category\": \"...\", \"dietary\": [\"veg\"|\"vegan\"|\"gf\" where true], \"popular\": true|false}]}.\nEXACTLY 3 items have popular=true. Voice: Our tone is warmly inviting and speaks directly to the senses, evoking the vibrant aromas and comforting tastes of the Levant. We aim for authenticity and approachability, focusing on the freshness and quality of our ingredients.",
+            "prompt_file": "prompts/menu_data.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "menu_data.render",
+          "input_requirement": "Full DoorDash item list: names, descriptions, prices, categories",
+          "kind": "data",
+          "file": "assets/menu.md",
+          "format": "md",
+          "generator": {
+            "provider": "text",
+            "model": "writer-chain",
+            "prompt": "You are the owner of Zaytoun (Fast-casual Levantine Street Food). Produce the full DoorDash menu as JSON:\n{\"restaurant\": \"Zaytoun\", \"tagline\": \"Authentic Flavors, Modern Street Eats.\", \"items\": [12-16 items across 3-4 categories:\n{\"name\": \"<=4 words, distinctive not generic\", \"description\": \"18-30 words, sensory, names key ingredients,\nno emojis\", \"price_usd\": <realistic fast-casual, mix .49/.99 endings with whole numbers>,\n\"category\": \"...\", \"dietary\": [\"veg\"|\"vegan\"|\"gf\" where true], \"popular\": true|false}]}.\nEXACTLY 3 items have popular=true. Voice: Our tone is warmly inviting and speaks directly to the senses, evoking the vibrant aromas and comforting tastes of the Levant. We aim for authenticity and approachability, focusing on the freshness and quality of our ingredients.",
+            "prompt_file": "prompts/menu_data.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "logo": {
+      "entries": [
+        {
+          "key": "logo",
+          "input_requirement": "Brand logo + brand identity colours",
+          "kind": "image",
+          "file": "assets/logo.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-1",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Flat vector-style restaurant logo for \"Zaytoun\", a Fast-casual Levantine Street Food fast-casual spot.\nWordmark spelling EXACTLY \"Zaytoun\" plus ONE simple food-inspired emblem. Colors strictly:\n#5D705C, #C77C4F, #F5F5DC. Solid white background, centered, flat shapes, no gradients, no photo elements,\nno tagline, no other text.",
+            "prompt_file": "prompts/logo_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        }
+      ]
+    },
+    "dish_photos": {
+      "entries": [
+        {
+          "key": "dish_photos[0]",
+          "input_requirement": "Dish photos (DoorDash favours per-item square photos)",
+          "kind": "image",
+          "file": "assets/dish_01_chicken-shawarma-wrap.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-1",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Professional overhead food photograph for a delivery-app listing: Chicken Shawarma Wrap — Savor the tender, marinated chicken, slow-roasted to perfection, wrapped in warm pita with creamy garlic sauce, crisp pickles, and fresh tomatoes.. Served in simple matte ceramic on a clean surface; overhead shot, rustic ceramic bowls, wooden cutting boards, fresh herbs, soft dappled sunlight, terracotta accents, natural textures, vibrant and inviting, shallow depth of field, 35mm look. Natural soft window light from the left, shallow depth of field, appetizing, styled like a top DoorDash listing photo. Square composition, dish centered filling ~70% of frame. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/dish_photos_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "dish_photos[1]",
+          "input_requirement": "Dish photos (DoorDash favours per-item square photos)",
+          "kind": "image",
+          "file": "assets/dish_02_shawarma-chicken-plate.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-1",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Professional overhead food photograph for a delivery-app listing: Shawarma Chicken Plate — A generous plate featuring our succulent chicken shawarma, served alongside fluffy basmati rice, a fresh garden salad, and our signature creamy hummus.. Served in simple matte ceramic on a clean surface; overhead shot, rustic ceramic bowls, wooden cutting boards, fresh herbs, soft dappled sunlight, terracotta accents, natural textures, vibrant and inviting, shallow depth of field, 35mm look. Natural soft window light from the left, shallow depth of field, appetizing, styled like a top DoorDash listing photo. Square composition, dish centered filling ~70% of frame. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/dish_photos_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 8,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "The texture of the chicken pieces appears somewhat uniform and slightly artificial, lacking the natural fibrous detail of real cooked meat upon close inspection.",
+              "The hummus texture is a bit too smooth and lacks the subtle graininess often found in real hummus. The olive oil swirl is also a bit too perfectly circular."
+            ]
+          }
+        },
+        {
+          "key": "dish_photos[2]",
+          "input_requirement": "Dish photos (DoorDash favours per-item square photos)",
+          "kind": "image",
+          "file": "assets/dish_03_pistachio-baklava-bites.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-1",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Professional overhead food photograph for a delivery-app listing: Pistachio Baklava Bites — Delicate layers of flaky phyllo pastry, generously filled with crushed pistachios, baked to golden perfection, and drenched in sweet, aromatic syrup.. Served in simple matte ceramic on a clean surface; overhead shot, rustic ceramic bowls, wooden cutting boards, fresh herbs, soft dappled sunlight, terracotta accents, natural textures, vibrant and inviting, shallow depth of field, 35mm look. Natural soft window light from the left, shallow depth of field, appetizing, styled like a top DoorDash listing photo. Square composition, dish centered filling ~70% of frame. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/dish_photos_2.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "dish_photos[3]",
+          "input_requirement": "Dish photos (DoorDash favours per-item square photos)",
+          "kind": "image",
+          "file": "assets/dish_04_beef-lamb-gyro.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-1",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Professional overhead food photograph for a delivery-app listing: Beef & Lamb Gyro — Experience the rich blend of seasoned beef and lamb, shaved thin, nestled in warm pita with cool tzatziki, fresh lettuce, and ripe tomatoes.. Served in simple matte ceramic on a clean surface; overhead shot, rustic ceramic bowls, wooden cutting boards, fresh herbs, soft dappled sunlight, terracotta accents, natural textures, vibrant and inviting, shallow depth of field, 35mm look. Natural soft window light from the left, shallow depth of field, appetizing, styled like a top DoorDash listing photo. Square composition, dish centered filling ~70% of frame. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The texture of the meat appears somewhat artificial and uniform, lacking the natural variations and crispness expected from thinly sliced, seared meat.\n- The parsley garnishes, particularly the one in the top left, look somewhat flat and less natural, resembling AI-generated foliage rather than fresh herbs.\n- The pita bread has a very smooth and almost plastic-like texture, lacking the subtle charring, bubbles, or unevenness typically found in real pita bread.\n- Overall, while photoreal, there's a subtle 'too perfect' or slightly synthetic quality to some elements that hints at AI generation upon close inspection, detracting from absolute photorealism.",
+            "prompt_file": "prompts/dish_photos_3.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 2,
+            "issues": [
+              "The meat strips are remarkably uniform in size and shape, which, while not explicitly unphotoreal, gives it a slightly processed or AI-generated feel rather than freshly carved meat. This minor detail slightly reduces the ultimate photorealism and authenticity."
+            ]
+          }
+        },
+        {
+          "key": "dish_photos[4]",
+          "input_requirement": "Dish photos (DoorDash favours per-item square photos)",
+          "kind": "image",
+          "file": "assets/dish_05_mezze-sampler-platter.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-1",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Professional overhead food photograph for a delivery-app listing: Mezze Sampler Platter — A vibrant assortment of creamy hummus, smoky baba ghanoush, crispy falafel, fresh tabbouleh, and warm pita bread, perfect for sharing and savoring.. Served in simple matte ceramic on a clean surface; overhead shot, rustic ceramic bowls, wooden cutting boards, fresh herbs, soft dappled sunlight, terracotta accents, natural textures, vibrant and inviting, shallow depth of field, 35mm look. Natural soft window light from the left, shallow depth of field, appetizing, styled like a top DoorDash listing photo. Square composition, dish centered filling ~70% of frame. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- Falafel balls exhibit excessive uniformity in shape, size, and texture, appearing cloned rather than naturally varied. This common AI artifact detracts from the overall photorealism expected for a high-quality food asset.",
+            "prompt_file": "prompts/dish_photos_4.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 3,
+            "issues": []
+          }
+        },
+        {
+          "key": "dish_photos[5]",
+          "input_requirement": "Dish photos (DoorDash favours per-item square photos)",
+          "kind": "image",
+          "file": "assets/dish_06_creamy-hummus-pita.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-1",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Professional overhead food photograph for a delivery-app listing: Creamy Hummus & Pita — Our velvety smooth chickpea dip, blended with tahini and lemon, drizzled with olive oil and served with warm, soft pita bread for dipping.. Served in simple matte ceramic on a clean surface; overhead shot, rustic ceramic bowls, wooden cutting boards, fresh herbs, soft dappled sunlight, terracotta accents, natural textures, vibrant and inviting, shallow depth of field, 35mm look. Natural soft window light from the left, shallow depth of field, appetizing, styled like a top DoorDash listing photo. Square composition, dish centered filling ~70% of frame. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/dish_photos_5.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "dish_photos[6]",
+          "input_requirement": "Dish photos (DoorDash favours per-item square photos)",
+          "kind": "image",
+          "file": "assets/dish_07_zesty-mint-lemonade.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-1",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Professional overhead food photograph for a delivery-app listing: Zesty Mint Lemonade — Our invigorating house-made lemonade, freshly squeezed with a bright, tangy kick, perfectly infused with cooling, aromatic mint leaves for ultimate refreshment.. Served in simple matte ceramic on a clean surface; overhead shot, rustic ceramic bowls, wooden cutting boards, fresh herbs, soft dappled sunlight, terracotta accents, natural textures, vibrant and inviting, shallow depth of field, 35mm look. Natural soft window light from the left, shallow depth of field, appetizing, styled like a top DoorDash listing photo. Square composition, dish centered filling ~70% of frame. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The mint leaves, both floating in the liquid and scattered on the board, exhibit a somewhat artificial and uniform texture, lacking the natural variations, subtle imperfections, and distinct vein patterns typically found in real leaves. Some leaves appear to be near-duplicates.\n- The pulp texture of the lemon slice in the bowl and the wedge on the board appears somewhat flat, overly uniform, or slightly blurred/indistinct upon close inspection, not fully convincing as real lemon flesh.\n- The liquid in the bowl is very uniform in color and surface texture, lacking the subtle reflections, natural depth, or slight variations in surface tension that would enhance its photorealism.\n- The overall composition, while aesthetically pleasing, feels overly composed and somewhat sterile due to the artificial perfection of the elements, which can detract from absolute photorealism.",
+            "prompt_file": "prompts/dish_photos_6.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 2,
+            "issues": [
+              "The mint leaves appear almost too uniformly perfect and symmetrically arranged, which, while aesthetically pleasing, can sometimes subtly hint at AI generation rather than a completely natural, organic placement."
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

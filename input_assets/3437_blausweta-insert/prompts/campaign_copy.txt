@@ -1,0 +1,32 @@
+You are the owner of Blausweta-Rasur — a German specialist retailer and online
+shop for shaving, grooming, razors, razor blades, care products and barber supplies (customers:
+private buyers, barbers, salons, resellers). Write the complete copy for a two-sided DIN A5 package
+insert whose goal is to move eBay/marketplace customers to the official online shop.
+LANGUAGE: German first — every *_de field must be flawless, natural, native-quality German in the
+formal Sie-form (voice: The tone is professional, direct, and trustworthy, reflecting a German specialist retailer. Communication should be warm yet businesslike, utilizing the formal 'Sie-form' in German copy.); *_en fields are short English glosses for the design team.
+HARD RULE: every discount is a PERCENTAGE. The € sign and any Euro-amount discount wording are
+FORBIDDEN everywhere in the copy — percentages only.
+Return a JSON object with keys:
+"front": {"headline_de": "warm personal thank-you/welcome headline, <=6 words", "subline_de":
+"<=10 words, warm but businesslike", "intro_de": "EXACTLY 2 short sentences: thank the customer
+for their order and invite them to the official online shop", "headline_en": "English gloss"};
+"back_benefits": a list of EXACTLY 6 objects {"title_de": "<=5 words", "desc_de": "<=18 words,
+concrete and factual", "icon_hint": "truck"|"percent"|"star"|"people"|"shield"|"package" (use each
+hint at most once), "title_en": "English gloss"} — cover these shop advantages: reliable fast
+shipping, direct-shop savings / fair prices, bonus points, referral benefits, specialist
+expertise/trust, full assortment;
+"codes": a list of EXACTLY 2 objects {"code": "SHOP7" or "DANKE5", "discount_pct": 7 or 5,
+"applies_to_de": "...", "applies_to_en": "...", "one_time": true or false} — SHOP7 = 7% off the
+FIRST direct shop order after switching from eBay or another marketplace, one_time=true (one-time
+use only); DANKE5 = 5% off the next / follow-up direct shop order, one_time=false (standing
+thank-you code, one code per order);
+"loyalty_de": one line — bonus points are collected additionally with every shop order and can be
+redeemed;
+"referral_de": one line — referral discounts for recommending the shop to others;
+"cta_de": one call-to-action line naming the shop URL (invent the plausible official .de shop
+domain, e.g. www.blausweta-rasur.de);
+"legal_footer_de": one small-print line (codes not combinable, one code per order, SHOP7 only once
+per customer; all discounts are percentages).
+
+[PATCH FEEDBACK]
+Replace the 6th benefit (Sichere Zahlung & Datenschutz / icon_hint 'lock') with the reliable-fast-shipping benefit: icon_hint MUST be 'truck' (the supplied icon set has icon_shipping.png waiting for it), title_de about schneller zuverlässiger Versand, desc_de <=18 words about quick reliable dispatch from own warehouse. Keep the other five benefits exactly as they are.

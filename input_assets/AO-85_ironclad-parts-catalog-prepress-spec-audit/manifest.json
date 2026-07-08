@@ -1,0 +1,92 @@
+{
+  "task_id": "AO-85",
+  "slug": "ironclad-parts-catalog-prepress-spec-audit",
+  "title": "Ironclad parts catalog pre-press audit: merge-proof render, spec-row extraction + CSV cross-check, overset/missing-field findings report",
+  "vertical": "manufacturing_industrial",
+  "one_line_ask": "Render our authored InDesign parts-catalog template against the master parts CSV into a proof, then audit it page by page \u2014 read back every printed spec row, cross-check it against the source data, and hand back a flagged-pages findings note (each defective page keyed to its issue) plus a findings report calling out overset/clipped part numbers, blank spec cells, and section-count mismatches before we send ~100 pages to print.",
+  "generated_at": "2026-07-07T16:32:38",
+  "assets": [
+    {
+      "name": "catalog_logo.png",
+      "kind": "image",
+      "path": "assets/catalog_logo.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Checkerboard transparency pattern is visible, but this is acceptable for a source PNG asset. No major composition or rendering issues. Artwork is flat, front-on, and horizontal. Colors and icon match brief. Minor: logo is not perfectly vertically centered in the frame, but this is minor for a source asset."
+            ],
+            "text_found": "IRONCLAD"
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Slight export halo visible around icon mark edges \u2014 acceptable for source file",
+              "Background appears as checkerboard transparency pattern rather than true transparent PNG, but this is likely a preview rendering artifact"
+            ],
+            "text_found": "IRONCLAD"
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 2
+      },
+      "cost": 0.268,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 9,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "parts_catalog_template.indd",
+      "kind": "data",
+      "path": "assets/parts_catalog_template.indd.proxy.txt",
+      "provider": "gemini/gemini-2.5-flash",
+      "proxy": true,
+      "note": "Client-provided .indd template; represented here as an authored text proxy (binary Adobe format not synthesizable)."
+    },
+    {
+      "name": "catalog_parts.csv",
+      "kind": "data",
+      "path": "assets/catalog_parts.csv",
+      "provider": "gemini/gemini-2.5-flash"
+    },
+    {
+      "name": "brand_kit_note.txt",
+      "kind": "data",
+      "path": "assets/brand_kit_note.txt",
+      "provider": "gemini/gemini-2.5-flash"
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 4,
+    "produced": 4,
+    "missing": []
+  },
+  "qc_summary": {
+    "images": 1,
+    "passed": 1,
+    "min_scores": [
+      9
+    ]
+  },
+  "cost_usd": 0.28,
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 1,
+    "verified_pass": 1
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "task_id": 9006,
+  "slug": "comic-variants",
+  "title": "VOIDRUNNER #1 variant-cover pack — one inked hero illustration spun into six print-ready graphic-novel variant covers (vectorized line-art, Ben-Day/duotone/grain/glitch FX treatments, a licensed grunge-distress incentive variant, spot-colour separations) plus an Illustrator data-merged trade-dress run that stamps issue #/colourway/price/barcode-zone per variant from a CSV, all rendered print-ready out of Illustrator",
+  "category": "Comic & Cover Art",
+  "family": "Illustration & Vector Design",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 7,
+      "evidence": [
+        "image 1: armored runner leaping neon night-city rooftop — matches brief subject exactly",
+        "trade_dress_csv.render: credit_line reads 'Cover by Artist A - Colours by Colorist B' not 'Cover by Elias Thorne - Colours by Zara Vance' per cover_spec",
+        "image 1",
+        "trade_dress_csv.render",
+        "image 1: Hero is armored, leaping neon city, fits sci-fi brief",
+        "image 2: VOIDRUNNER logo, distressed, sci-fi style"
+      ],
+      "deductions": [
+        "CSV credit_line uses placeholder names, not the named credits from cover_spec.json",
+        "image 1 hero is not mid-leap (running pose, one foot on ledge) — brief says 'leaping'",
+        "Hero art resolution (1024x1536) is significantly lower than requested ~4500px.",
+        "Credit line in trade_dress_csv.render is generic, not matching cover_spec.json.",
+        "image 1: Colour fills present, but not pure ink line-art as required",
+        "image 2: Logo is not clearly vectorized, only raster PNG supplied"
+      ],
+      "fix": {
+        "target_asset_key": "logo_lockup",
+        "problem": "Logo resolution is lower than requested (~2500px).",
+        "prompt_delta": "Ensure the logo lockup is approximately 2500px on its longest side."
+      },
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        7,
+        6,
+        7
+      ]
+    },
+    "completeness": {
+      "score": 7,
+      "evidence": [
+        "cover_spec.json, trade_dress_merge.csv, spot_separation.csv all present with correct column headers and row counts",
+        "hero_cover_art (image 1) at 1024x1536px — brief specifies ~4500px for print at 300dpi comic trim",
+        "cover_spec.json",
+        "trade_dress_csv.render",
+        "cover_spec.json: All variant/copy/spot-ink data present",
+        "trade_dress_csv.render: All required CSV columns/rows present"
+      ],
+      "deductions": [
+        "hero_cover_art true source dims 1024x1536px is well below ~4500px brief spec; may be insufficient for 300dpi print",
+        "No separate per-variant raster files (coverA_standard.png … coverF_sketch.png) present — though these are workflow outputs, the CSV references them as linked-file Variable inputs the merge template expects",
+        "All required data and image assets are present.",
+        "All mandatory data fields in JSON and CSVs are populated.",
+        "image 1: No separate ink-only line-art for Sketch/line-art vectorization",
+        "image 2: No vector SVG of logo, only raster"
+      ],
+      "fix": {
+        "target_asset_key": "hero_cover_art",
+        "problem": "Source image 1024x1536px is ~72dpi equivalent at comic trim; print requires ~2000x3075px minimum, brief says ~4500px",
+        "prompt_delta": "Regenerate hero cover illustration at minimum 2000x3075px (target 4500px tall), full-bleed comic trim proportions 6.625x10.25in at 300dpi, armored runner in clear mid-leap pose clearing rooftop edge."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        7
+      ]
+    },
+    "executability": {
+      "score": 7,
+      "evidence": [
+        "trade_dress_merge.csv headers (cover_art, issue_no, colourway_name, variant_ratio, cover_price, credit_line, variant_code, barcode_zone) match recorded Variable names exactly — document_merge_data_vector can consume directly",
+        "image 1 has busy neon-city background suitable for image_select_subject and image_apply_halftone; image 2 has transparent ground (checkerboard visible) suitable for image_vectorize",
+        "image 1",
+        "image 2",
+        "trade_dress_csv.render: CSV headers match Variables, ready for data-merge",
+        "spot_sep_csv.render: Spot separation CSV matches template spec"
+      ],
+      "deductions": [
+        "image 1 at 1024px true dims risks pixelation artifacts when image_crop_and_resize targets 300dpi comic trim — may force agent to upscale",
+        "logo_lockup (image 2) is landscape 1536x1024px but a wordmark needs to be raster-imperfect for image_vectorize; current render looks already clean/vector-like, reducing vectorize value-add",
+        "Hero cover art resolution (1024x1536) is too low for 300dpi print-ready output (1988x3075px).",
+        "Logo resolution (1536x1024) is lower than requested, impacting vectorization quality.",
+        "image 1: Source is 1024x1536px, below 4500px/print spec; may limit print quality",
+        "image 2: Logo is raster, not SVG, so not directly reusable for vector placement"
+      ],
+      "fix": {
+        "target_asset_key": "hero_cover_art",
+        "problem": "Hero cover art resolution is too low for print-ready 300dpi output.",
+        "prompt_delta": "Regenerate the hero cover art at a minimum resolution of 1988x3075 pixels to meet print-ready 300dpi requirements for a 6.625x10.25in comic trim+bleed."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        4,
+        7
+      ]
+    },
+    "realism": {
+      "score": 9,
+      "evidence": [
+        "image 1 reads as AI-generated illustration — flat mid-tones, no genuine ink line-art separation, cape anatomy slightly off; brief says 'approved inked hero cover'",
+        "image 2 logo is clean digital type with a light grunge filter — passes as a distressed masthead but lacks the hand-crafted roughness of a real indie comic logo",
+        "image 1",
+        "cover_spec.json",
+        "image 1: Art style, palette, and composition match pro comic cover handoff",
+        "cover_spec.json: Copy/metadata reads as genuine publisher input"
+      ],
+      "deductions": [
+        "hero_cover_art lacks distinct ink line-art layer; looks painted/rendered, not inked flat-colour as brief specifies",
+        "credit_line placeholder names in CSV would be immediately flagged by any real client reviewing the merge proof",
+        "Art style and composition of hero image are authentic for a sci-fi comic.",
+        "Cover spec JSON contains realistic and comprehensive comic production metadata.",
+        "image 2: Logo PNG is plausible, but vector would be more typical for pro workflow"
+      ],
+      "fix": {
+        "target_asset_key": "hero_cover_art",
+        "problem": "Image reads as digital painting not inked line-art with flat colour fills; fails 'approved inked hero cover' realism bar",
+        "prompt_delta": "Redraw as comic book ink line-art style: bold black ink outlines, flat colour fills (no gradients), cel-shaded neon city background, visible ink hatching on shadows, consistent with professional comic book interior art."
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        6,
+        10,
+        9
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "image 2 logo uses #16E0E0 Signal Cyan matching brand palette exactly",
+        "image 1 palette (deep indigo, cyan, magenta neon) aligns with #1B2447/#16E0E0/#FF2E88 brand colours",
+        "image 1",
+        "logo_lockup",
+        "image 1: Palette matches brand (cyan, magenta, indigo, black)",
+        "image 2: Logo style, colour, and distressing match comic's sci-fi/noir tone"
+      ],
+      "deductions": [
+        "Warm Amber (#F2A03D) and Ben-Day Red (#ED1C24) absent from hero_cover_art — minor palette gap for Cover B Retro variant",
+        "Visuals (neon city, distressed logo) align perfectly with the VOIDRUNNER brand and sci-fi aesthetic.",
+        "Palette elements (cyan, magenta) are consistent with the brand's defined colours."
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 8,
+      "evidence": [
+        "Adobe Stock grunge texture correctly demoted to live execution decision — not synthesized, matches brief's 'licensed' requirement",
+        "Illustrator .ai templates correctly recorded as user-authored, not generated — sound rationale for document_merge_data_vector binding",
+        "DECISIONS.REQ: User-authored Illustrator trade-dress template",
+        "trade_dress_csv.render",
+        "Decisions: All user-authored template and stock assumptions are industry-standard",
+        "No real input wrongly demoted; all gaps justified"
+      ],
+      "deductions": [
+        "Decision records cover_art Variable as linking to coverA_standard.png…coverF_sketch.png but these per-variant processed rasters are workflow outputs not yet generated — the merge will fail at runtime if they are absent",
+        "credit_line placeholder values in CSV were not caught as a data-quality risk in decisions",
+        "Assumptions about user-authored Illustrator templates and stock sourcing are sound and justified.",
+        "The 'credit_line' in trade_dress_csv.render uses generic names, contradicting the authoritative cover_spec.json."
+      ],
+      "fix": {
+        "target_asset_key": "trade_dress_csv.render",
+        "problem": "'credit_line' in CSV uses generic names, not specific names from cover_spec.json.",
+        "prompt_delta": "Update 'credit_line' column in CSV to use specific names from `cover_spec.json`: 'Cover by Elias Thorne - Colours by Zara Vance'."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        8,
+        7,
+        10
+      ]
+    }
+  },
+  "overall": 7.6,
+  "verdict": "minor-gaps",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): The hero cover art (hero_cover_art) is only 1024x1536px — nowhere near the ~4500px specified and fatally under-resolution for a 300dpi comic trim+bleed print file; it will pixelate on press and cannot be salvaged by the workflow.",
+    "AGENT CHOKE on 'hero_cover_art': image_vectorize and every downstream raster step require a high-res source; at 1024x1536px the agent will either fail the resolution gate or produce a blown-out, artifact-ridden vectorization that makes all six variant covers unprintable."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.036,
+  "rounds": []
+}

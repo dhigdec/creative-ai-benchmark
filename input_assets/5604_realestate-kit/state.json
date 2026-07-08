@@ -1,0 +1,268 @@
+{
+  "assets": {
+    "listing_data": {
+      "entries": [
+        {
+          "key": "listing_data",
+          "input_requirement": "Listing/open-house photos + market-tip copy",
+          "kind": "data",
+          "file": "assets/listing.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the marketing lead of Sterling & Chase, a luxury real-estate team. Produce the\njust-listed campaign data as a JSON object with these keys:\n\"property\": fictional address (invented street name, no real street), city_area, price (USD string),\nbeds, baths, sqft, three selling_points, and \"photo_shots\" — a list of EXACTLY 5 shots, each an object\nwith \"name\" (e.g. twilight-exterior, chef-kitchen, living-room, primary-suite, backyard) and\n\"description\" (one vivid line for the photographer);\n\"open_house\": date (a weekend this month), time_window;\n\"market_tips\": list of EXACTLY 3 tips, each an object with \"title\" (<=6 words) and \"tip\" (25-40 words,\nhomeowner-facing, confident voice: The brand voice is authoritative yet refined, exuding confidence and exclusivity. It speaks with the personalized touch of a dedicated luxury concierge, anticipating client needs.);\n\"agent\": name, title, phone (555 area), email at a fictional domain, license_no like RE-12345.",
+            "prompt_file": "prompts/listing_data.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "listing_data.render",
+          "input_requirement": "Listing/open-house photos + market-tip copy",
+          "kind": "data",
+          "file": "assets/listing.md",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the marketing lead of Sterling & Chase, a luxury real-estate team. Produce the\njust-listed campaign data as a JSON object with these keys:\n\"property\": fictional address (invented street name, no real street), city_area, price (USD string),\nbeds, baths, sqft, three selling_points, and \"photo_shots\" — a list of EXACTLY 5 shots, each an object\nwith \"name\" (e.g. twilight-exterior, chef-kitchen, living-room, primary-suite, backyard) and\n\"description\" (one vivid line for the photographer);\n\"open_house\": date (a weekend this month), time_window;\n\"market_tips\": list of EXACTLY 3 tips, each an object with \"title\" (<=6 words) and \"tip\" (25-40 words,\nhomeowner-facing, confident voice: The brand voice is authoritative yet refined, exuding confidence and exclusivity. It speaks with the personalized touch of a dedicated luxury concierge, anticipating client needs.);\n\"agent\": name, title, phone (555 area), email at a fictional domain, license_no like RE-12345.",
+            "prompt_file": "prompts/listing_data.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "team_logo": {
+      "entries": [
+        {
+          "key": "team_logo",
+          "input_requirement": "Team logo; brand kit black/white/gold/red (must follow)",
+          "kind": "image",
+          "file": "assets/team_logo.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Luxury real-estate team logo: an elegant serif monogram above a refined wordmark\nreading EXACTLY \"Sterling & Chase\". Strict brand kit: black #0A0A0A and gold #C9A227 on a white background,\nwith one minimal red #B3282D accent detail. Flat vector style, premium and timeless, generous spacing,\nno gradients, no taglines, no other text.",
+            "prompt_file": "prompts/team_logo_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "Red accent is an underline below the 'E' in 'CHASE', which is a subtle but unusual choice for an accent and may not be considered elegant or premium by all standards.",
+              "The gold color used for the 'SC' monogram is slightly muted and might benefit from a richer gold tone to enhance the premium feel."
+            ]
+          }
+        }
+      ]
+    },
+    "agent_headshot": {
+      "entries": [
+        {
+          "key": "agent_headshot",
+          "input_requirement": "Deliverables: IG/FB reels, just-listed/just-sold postcards & mailers, static IG/FB/LinkedIn posts, stories, flyers",
+          "kind": "image",
+          "file": "assets/agent_headshot.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Professional corporate headshot of a confident realtor in their 40s, warm genuine\nsmile, tailored charcoal blazer with a subtle gold pocket-square accent, photographed on a clean\nlight-gray studio background with soft key light. Editorial business-portrait quality, sharp focus on\nthe eyes, shallow depth of field. No real-person likeness. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+            "prompt_file": "prompts/agent_headshot_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 8,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "Skin texture is very smooth, appearing heavily retouched or AI-smoothed, which slightly detracts from a truly \"natural\" look. While not overtly \"plastic,\" it lacks some subtle imperfections and pores expected for natural skin, making it lean towards an airbrushed aesthetic."
+            ]
+          }
+        }
+      ]
+    },
+    "listing_photos": {
+      "entries": [
+        {
+          "key": "listing_photos[0]",
+          "input_requirement": "Listing/open-house photos + market-tip copy",
+          "kind": "image",
+          "file": "assets/listing_01_twilight-exterior.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Professional real-estate listing photograph, magazine quality: Capture the home's grand facade at dusk, lights glowing, highlighting architectural elegance and curb appeal. — for a 6-bed 7.5-bath luxury home listed at $12,850,000. warm twilight glow, editorial real-estate magazine, crisp architectural lines. Wide-angle architectural composition, HDR-balanced exposure, inviting and aspirational, shot for a just-listed postcard. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/listing_photos_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "While excellent overall, some foliage, particularly the large tree on the left and distant background trees, exhibits a slightly artificial or 'painted' appearance upon close inspection, lacking the absolute fine detail and natural variation expected from a truly photoreal, magazine-grade photograph."
+            ]
+          }
+        },
+        {
+          "key": "listing_photos[1]",
+          "input_requirement": "Listing/open-house photos + market-tip copy",
+          "kind": "image",
+          "file": "assets/listing_02_chef-kitchen.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Professional real-estate listing photograph, magazine quality: Showcase the professional-grade appliances, oversized island, and seamless flow of the gourmet kitchen. — for a 6-bed 7.5-bath luxury home listed at $12,850,000. warm twilight glow, editorial real-estate magazine, crisp architectural lines. Wide-angle architectural composition, HDR-balanced exposure, inviting and aspirational, shot for a just-listed postcard. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/listing_photos_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "Very subtle, almost imperceptible, repetition in the marble veining on the backsplash, particularly noticeable when comparing the areas to the left and right of the range hood.",
+              "Slight fall-off in detail and sharpness on elements at the extreme right edge of the frame (e.g., the furthest cabinet and the last bar stool)."
+            ]
+          }
+        },
+        {
+          "key": "listing_photos[2]",
+          "input_requirement": "Listing/open-house photos + market-tip copy",
+          "kind": "image",
+          "file": "assets/listing_03_primary-suite.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Professional real-estate listing photograph, magazine quality: Emphasize the spaciousness, private balcony, and spa-like en-suite bathroom of the master retreat. — for a 6-bed 7.5-bath luxury home listed at $12,850,000. warm twilight glow, editorial real-estate magazine, crisp architectural lines. Wide-angle architectural composition, HDR-balanced exposure, inviting and aspirational, shot for a just-listed postcard. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/listing_photos_2.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "listing_photos[3]",
+          "input_requirement": "Listing/open-house photos + market-tip copy",
+          "kind": "image",
+          "file": "assets/listing_04_infinity-pool-backyard.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Professional real-estate listing photograph, magazine quality: Frame the stunning infinity pool, lounge areas, and the breathtaking city-to-ocean vista beyond. — for a 6-bed 7.5-bath luxury home listed at $12,850,000. warm twilight glow, editorial real-estate magazine, crisp architectural lines. Wide-angle architectural composition, HDR-balanced exposure, inviting and aspirational, shot for a just-listed postcard. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/listing_photos_3.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "Extremely subtle, almost imperceptible, softness or slight fuzziness on the very top edge of the roofline against the sky on the left side, and a minor lack of absolute crispness in the corner where the ceiling meets the wall on the far left of the main structure. These are very minor artifacts that might be mistaken for compression or lens effects in a real photograph, but for strict QC, they are noted."
+            ]
+          }
+        },
+        {
+          "key": "listing_photos[4]",
+          "input_requirement": "Listing/open-house photos + market-tip copy",
+          "kind": "image",
+          "file": "assets/listing_05_grand-foyer.jpg",
+          "format": "jpg",
+          "dims": [
+            1536,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1536x1024",
+            "prompt": "Professional real-estate listing photograph, magazine quality: Illustrate the dramatic entrance with high ceilings, exquisite finishes, and a sweeping staircase. — for a 6-bed 7.5-bath luxury home listed at $12,850,000. warm twilight glow, editorial real-estate magazine, crisp architectural lines. Wide-angle architectural composition, HDR-balanced exposure, inviting and aspirational, shot for a just-listed postcard. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/listing_photos_4.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "The extreme top-left corner of the image, specifically the ceiling area above the door frame, appears marginally less sharp and defined compared to the rest of the highly detailed image.",
+              "There is a very subtle, almost imperceptible, outward bowing distortion on the vertical lines of the door frame on the far left, characteristic of wide-angle lenses, which could be corrected for absolute architectural precision.",
+              "The texture on the large wall surfaces, particularly to the right of the staircase, while generally good, exhibits a very slight uniformity in its finish that could be perceived as less organic than a truly bespoke, hand-applied plaster."
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

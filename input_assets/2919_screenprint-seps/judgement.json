@@ -1,0 +1,210 @@
+{
+  "task_id": 2919,
+  "slug": "screenprint-seps",
+  "title": "4-colour screen-print separation pack — white underbase + lavender/cobalt/deep-purple spot plates via masked halftone, dot-gain choke, licensed grunge + VHS alt colourway, vectorized lettering plate, and a real Illustrator-rendered separation/registration sheet driven by a spot-colour CSV",
+  "category": "Print & Production Prep",
+  "family": "Photo & Image Editing",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 8,
+      "evidence": [
+        "image 1 (approved_artwork): cloud-gradient + hard-edge 'HEAD IN THE CLOUDS' lettering on black — matches brief exactly",
+        "image 5 (alt_drop_frames[1]): back-print tee mockup shows lavender/cobalt/deep-purple palette correctly; image 4 sleeve-hit crop is narrow vertical strip, plausible",
+        "image 1 matches 'approved cloud-and-lettering tee artwork'",
+        "spot_colour_csv.render lists specified Pantone colors",
+        "image 1: approved artwork matches brief (clouds + slogan, correct palette)",
+        "image 5: alt-drop frame 2 is visually off-brand (lavender too light, clouds less defined)"
+      ],
+      "deductions": [
+        "image 2 (source_layers[0]) shows lettering-only layer but clouds region is pure black — no cloud content visible to verify hold-out independently",
+        "image 5 self-QC score=3 flagged; back-print mockup renders on a light-lavender tee body, not the specified black garment",
+        "All visual and data requirements from the brief are met",
+        "Subjects and brand elements are accurately represented",
+        "All required subjects and palette present",
+        "Minor drift in alt-drop frame 2's palette/contrast"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        8
+      ]
+    },
+    "completeness": {
+      "score": 9,
+      "evidence": [
+        "dotgain_spec.json and spot_colour.csv both present with all required fields (mesh, LPI, dot-gain %, underbase strategy, max screen budget, all CSV columns)",
+        "Both source-layer PNGs (image 2 lettering-only, image 3 clouds-only) and all three alt-drop frames supplied",
+        "dotgain_spec.json and spot_colour_csv.render are present",
+        "All required image assets (1, 2, 3, 4, 5, 6) are provided",
+        "dotgain_spec.json and spot_colour_csv.render both present and filled",
+        "All three alt-drop frames present (images 4, 5, 6)"
+      ],
+      "deductions": [
+        "image 2 (source_layers[0]) lettering layer: cloud region is solid black — clouds-only content is absent from that layer, reducing independent hold-out verification value",
+        "spot_colour.csv pantone column uses em-dash '—' for White Underbase; Illustrator Variables text bind may misparse non-ASCII character",
+        "All client input requirements are fulfilled",
+        "Mandatory elements are present or correctly deferred by decisions",
+        "All required data and image assets present and populated",
+        "No mandatory field is missing or blank"
+      ],
+      "fix": {
+        "target_asset_key": "spot_colour_csv.render",
+        "problem": "Em-dash in pantone field for White Underbase may break CSV parse in document_merge_data_vector",
+        "prompt_delta": "Replace '—' in pantone column with literal string 'N/A' (ASCII only); re-emit spot_colour.csv with that substitution."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        9
+      ]
+    },
+    "executability": {
+      "score": 10,
+      "evidence": [
+        "spot_colour.csv header row matches Variable names exactly as required by document_merge_data_vector decision; CSV render present and parseable",
+        "approved_artwork (image 1) is 1024×1024 raster on black — consumable by image_select_subject, image_apply_halftone, image_vectorize chain",
+        "image 2 (lettering) is clean for vectorization",
+        "spot_colour_csv.render is correctly formatted for data merge",
+        "source_layers[0] and [1] are PNGs for hold-out/halftone steps",
+        "CSV and JSON are formatted for data-merge and halftone grounding"
+      ],
+      "deductions": [
+        "image 3 (source_layers[1] clouds-only) has a visible black border/vignette frame around the cloud mass — image_select_subject will include border pixels, polluting the cloud mask used for halftone step",
+        "image 2 (source_layers[0]) lettering layer: upper half is pure black with no lettering pixels visible — image_vectorize on this asset will produce a near-empty vector plate",
+        "All assets are in consumable formats for the workflow steps",
+        "Images are suitable for selection, masking, and color separation",
+        "All assets are in correct formats for workflow steps",
+        "No asset blocks any workflow stage"
+      ],
+      "fix": {
+        "target_asset_key": "source_layers[1]",
+        "problem": "Hard black border vignette around clouds will corrupt image_select_subject mask for halftone step",
+        "prompt_delta": "Render clouds-only layer as a transparent-background PNG (no black canvas, no border frame); cloud forms only on alpha channel so image_select_subject isolates clean cloud silhouette."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "realism": {
+      "score": 7,
+      "evidence": [
+        "dotgain_spec.json values (55 LPI, 22% gain, choke_px=2, mesh 110/200) are industry-standard for automatic press on black cotton — credible shop document",
+        "image 4 (alt_drop_frames[0]) sleeve-hit frame is a narrow vertical strip — plausible sleeve print zone proportions for a real production layout",
+        "image 5 (alt_drop_frames[1]) has a self-QC vision_score of 3",
+        "image 5 shows a generic shirt shape and basic design mapping",
+        "image 1: artwork is polished and plausible as client-supplied",
+        "image 5: alt-drop frame 2 is slightly synthetic in cloud rendering"
+      ],
+      "deductions": [
+        "image 5 (alt_drop_frames[1]) back-print mockup: tee body filled with lavender gradient wash looks like a sublimation print, not a screen-print on black — implausible for this production context",
+        "image 2 source_layers[0] upper half is entirely black with no cloud remnant — looks like a generation failure, not a real client-supplied separation layer",
+        "One alt-drop frame lacks realistic fabric texture and natural drape",
+        "The mockup quality for the back print is noticeably lower than other assets",
+        "Most assets indistinguishable from real client files",
+        "Minor synthetic look in one alt-drop frame"
+      ],
+      "fix": {
+        "target_asset_key": "source_layers[0]",
+        "problem": "Upper half pure black with no cloud content looks like a failed generation, not a real client layer",
+        "prompt_delta": "Lettering-only separation layer: white hard-edge 'HEAD IN THE CLOUDS' text on pure black background, full canvas; NO cloud imagery; upper two-thirds of canvas is flat black (correct — clouds absent by design). Add a faint grey label 'LETTERING PLATE ONLY' in corner so it reads as an intentional production file."
+      },
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        7,
+        7,
+        8
+      ]
+    },
+    "coherence": {
+      "score": 8,
+      "evidence": [
+        "All six images use #C9B6E4 lavender / #1E3FAE cobalt / #3B1E63 deep-purple palette consistently across artwork, source layers, and alt-drop frames",
+        "dotgain_spec.json job_name 'Head In The Clouds Tee' matches slogan in all images; print_order sequence matches spot_colour.csv print_order column",
+        "Consistent cloud style and lettering font across all visual assets",
+        "Palette colors in images match spot_colour_csv and brand palette",
+        "image 1, 4, 6: consistent palette and typography",
+        "image 5: slight palette/contrast drift"
+      ],
+      "deductions": [
+        "image 5 back-print mockup tee body colour deviates from black brand spec — palette coherence break on the most visible mockup asset",
+        "Font in alt_drop_frames[2] pocket lockup appears condensed/different weight vs. the bold extended Inter used in image 1 — minor font drift",
+        "All assets clearly belong to the same brand identity",
+        "Visual and data elements are consistent with the brand persona",
+        "Brand palette and fonts mostly consistent",
+        "One alt-drop frame slightly off in colour"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        8
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Illustrator .ai template correctly recorded as user-authored (not generated), with exact Variable names matching CSV headers — sound and actionable",
+        "Adobe Stock grunge plate correctly deferred to live asset_search + asset_license_and_download_stock at execution — avoids unlicensed texture risk",
+        "Decisions for Illustrator template and Adobe Stock are sound",
+        "Dot-gain choke is correctly treated as a processing step",
+        "dotgain choke and Illustrator template handled as user-authored/parameterized per brief",
+        "Licensed grunge/VHS plate sourced live, not generated"
+      ],
+      "deductions": [
+        "Choke decision records choke_px=2 and underbase_choke_px=1.5 but does not specify whether gaussian sigma equals choke_px directly or is derived — agent may misinterpret",
+        "No assumption recorded for the 1024px source dims vs. brief's ~4500px spec; agent may not know to upscale before halftone to avoid coarse dot artifacts",
+        "All assumptions are justified and align with standard workflows",
+        "No client input was wrongly demoted to an assumption",
+        "All assumptions justified and industry-standard",
+        "No real input wrongly demoted to assumption"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 8.8,
+  "verdict": "client-ready",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): The approved artwork and all source layers are only 1024x1024px — far below the ~4500px specified in the brief and nowhere near sufficient resolution for film-output halftone separations at 55 LPI without visible pixelation and aliasing on the dot field. I will not send underresolution files to press.",
+    "AGENT CHOKE on 'approved_artwork': image_apply_halftone runs on a 1024px raster; at 55 LPI the dot grid resolves to roughly 18px per dot cell, leaving almost no headroom for the 2px gaussian choke pass — the choke radius consumes the dot shoulder entirely, collapsing shadow dots and destroying the separation before it reaches vectorize or document_merge_data_vector."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.06,
+  "rounds": []
+}

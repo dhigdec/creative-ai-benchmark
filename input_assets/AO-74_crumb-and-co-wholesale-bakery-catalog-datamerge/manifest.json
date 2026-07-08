@@ -1,0 +1,124 @@
+{
+  "task_id": "AO-74",
+  "slug": "crumb-and-co-wholesale-bakery-catalog-datamerge",
+  "title": "Crumb & Co. wholesale bakery catalog: prep 12 product photos + InDesign catalog data-merge to a print-ready B2B PDF and hi-res JPEG",
+  "vertical": "retail_ecommerce",
+  "one_line_ask": "Grade and consistently crop twelve raw bakery product photos, vectorize the Crumb & Co. wordmark, upload the prepped assets, then run the client's authored InDesign catalog template through a data-merge against the wholesale roster CSV to produce a print-ready B2B PDF and a high-resolution JPEG.",
+  "generated_at": "2026-07-06T18:32:21",
+  "assets": [
+    {
+      "name": "crumbco_wordmark.png",
+      "kind": "image",
+      "path": "assets/crumbco_wordmark.png",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
+      "size": "1024x1024",
+      "transparent": true,
+      "qc": {
+        "panel": [
+          {
+            "provider": "openai",
+            "score": 9,
+            "issues": [
+              "Background is off-white rather than fully transparent (acceptable per brief, but not ideal for a PNG source).",
+              "Slight rustic texture and minor color cast present (acceptable as per brief)."
+            ],
+            "text_found": "Crumb & Co."
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Background is off-white/cream rather than transparent, but this is an acceptable source-file condition for the designer to fix",
+              "Slight rustic/distressed texture on letterforms is present and intentional per brief",
+              "Wheat icon is a simplified leaf/grain sprig rather than a highly detailed sheaf, but reads correctly for the brief"
+            ],
+            "text_found": "Crumb & Co."
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 1
+      },
+      "cost": 0.134,
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 10,
+          "gemini": 10,
+          "anthropic": 9
+        }
+      }
+    },
+    {
+      "name": "raw_product_photos_x12.zip",
+      "kind": "image",
+      "path": "assets/raw_product_photos_x12.zip",
+      "provider": "openai",
+      "model": "gpt-image-2",
+      "size": "1024x1024",
+      "transparent": false,
+      "qc": {
+        "panel": [
+          {
+            "provider": "gemini",
+            "score": 10,
+            "issues": [],
+            "text_found": ""
+          },
+          {
+            "provider": "anthropic",
+            "score": 9,
+            "issues": [
+              "Image delivered as a single composite grid rather than 12 individually addressable JPEGs as specified in the brief",
+              "Top-right loaf reads more as a standard white sandwich loaf than a distinctly honey whole-wheat loaf (colour and crust texture are very pale/neutral)",
+              "Bottom-right blondie could be mistaken for a caramel brownie \u2014 salted-caramel character is present but subtle",
+              "Slight luminance noise and cool WB cast visible across several panels \u2014 acceptable per brief",
+              "Minor crumb scatter and parchment wrinkles in several shots \u2014 acceptable per brief as deliberate snapshot realism"
+            ],
+            "text_found": ""
+          }
+        ],
+        "min_score": 9,
+        "passed": true,
+        "gens": 2
+      },
+      "cost": 0.38
+    },
+    {
+      "name": "crumbco_catalog_template.indd",
+      "kind": "data",
+      "path": "assets/crumbco_catalog_template.indd.proxy.txt",
+      "provider": "gemini/gemini-2.5-flash",
+      "proxy": true,
+      "note": "Client-provided .indd template; represented here as an authored text proxy (binary Adobe format not synthesizable)."
+    },
+    {
+      "name": "crumbco_wholesale_roster.csv",
+      "kind": "data",
+      "path": "assets/crumbco_wholesale_roster.csv",
+      "provider": "gemini/gemini-2.5-flash"
+    }
+  ],
+  "coverage": {
+    "declared_inputs": 4,
+    "produced": 4,
+    "missing": []
+  },
+  "qc_summary": {
+    "images": 2,
+    "passed": 2,
+    "min_scores": [
+      9,
+      9
+    ]
+  },
+  "cost_usd": 0.538,
+  "ready_for_agent": true,
+  "verification_summary": {
+    "images": 2,
+    "verified_pass": 1
+  }
+}

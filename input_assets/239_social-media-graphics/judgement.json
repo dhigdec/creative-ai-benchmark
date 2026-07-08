@@ -1,0 +1,209 @@
+{
+  "task_id": 239,
+  "slug": "social-media-graphics",
+  "title": "Social Media Graphics Creation",
+  "category": "Social Media Graphics",
+  "family": "Express Template Design",
+  "archetype": "template",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 10,
+      "evidence": [
+        "image 2/3/4 show distinct ceramic products (vase, jar, pitcher) matching Aura & Clay handcrafted homeware brief",
+        "post_copy.json post id=1 references 'Serene Mug' but no dedicated mug catalogue photo exists; image 6 lifestyle shows a mug contextually",
+        "image 1",
+        "image 2",
+        "brand_guide.md",
+        "assets/post_copy.json"
+      ],
+      "deductions": [
+        "post_copy pairs_with='product_01.jpg' (mug) has no matching isolated catalogue photo",
+        "post_copy pairs_with='product_03.jpg' (plate) also has no matching catalogue photo; only 3 catalogue shots provided",
+        "All images and text assets align with Aura & Clay brand.",
+        "Product and lifestyle photos match 'Handcrafted Ceramic Homeware' theme.",
+        "Logo and guidelines match Aura & Clay brand",
+        "Product and lifestyle photos fit handcrafted ceramics brief"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 7,
+      "evidence": [
+        "brand_guide.md and post_copy.json fully present with palette, fonts, copy, hashtags, and platform mappings",
+        "post_copy references product_01.jpg and product_03.jpg but catalogue_photos only covers 3 items (vase, jar, pitcher)",
+        "Original Client Brief",
+        "assets/brand_guide.md",
+        "assets/post_copy.json"
+      ],
+      "deductions": [
+        "Two of six copy posts lack a corresponding catalogue source photo, forcing agent to improvise or stall",
+        "No explicit logo file format noted as transparent PNG; logo background appears white, may block asset_add_file compositing",
+        "Mandatory 'Video shoot and editing' deliverable is entirely missing.",
+        "No assets or decisions address the video requirement.",
+        "Brand guide covers palette, fonts, logo, photo style",
+        "Post copy mapped 1:1 to images, all required images present"
+      ],
+      "fix": {
+        "target_asset_key": "video_assets",
+        "problem": "Mandatory 'Video shoot and editing' deliverable is missing.",
+        "prompt_delta": "Generate 15-30 second social media video clips showcasing Aura & Clay ceramic homeware in lifestyle settings, consistent with brand guide photo style and tone."
+      },
+      "low_confidence": true,
+      "spread": 7,
+      "per_judge": [
+        7,
+        3,
+        10
+      ]
+    },
+    "executability": {
+      "score": 7,
+      "evidence": [
+        "image 2/3/4 have warm beige studio backgrounds — image_remove_background can cleanly separate subject from uniform backdrop",
+        "image 1 (logo) has solid white background, not transparent; asset_add_file overlay step will produce white box artefact on coloured templates",
+        "post_copy.json",
+        "Asset Inventory",
+        "image 2",
+        "image 3"
+      ],
+      "deductions": [
+        "Logo white background blocks clean compositing in asset_add_file step without extra removal pass not in the stated workflow",
+        "lifestyle_photos[2] (image 7) is AI-rendered with hyper-clean lighting; fill_text overlay contrast may be unpredictable on busy shelf scene",
+        "'pairs_with' keys in post_copy.json do not match actual asset keys.",
+        "Agent cannot deterministically map copy to images without manual intervention.",
+        "Product photos have busy backgrounds for removal",
+        "All images are 1024x1024, suitable for crop/resize"
+      ],
+      "fix": {
+        "target_asset_key": "logo",
+        "problem": "Solid white logo background requires unplanned background-removal step before asset_add_file",
+        "prompt_delta": "Render logo with transparent background (PNG alpha), no white fill, no shadow, Aura & Clay vase icon in Desert Rose #C27664 and Sage Whisper #7A8E7A, wordmark in Sage Whisper, 1024x1024."
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        6,
+        7,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "image 5/6 lifestyle photos show genuine photographic grain, natural window light, linen props — indistinguishable from real client shoot",
+        "image 7 has AI-characteristic hyper-smooth skin, perfectly arranged pampas grass, and overly uniform shelf styling",
+        "image 2",
+        "image 5",
+        "brand_guide.md",
+        "image 6"
+      ],
+      "deductions": [
+        "image 7 reads as AI-generated stock, not a real client photo; may undermine brand authenticity claim",
+        "image 3 (jar) has a flat sage oval patch that looks like a placeholder label, slightly synthetic",
+        "Product and lifestyle photos are high-quality and authentic to the brand.",
+        "Brand guide and copy feel genuine for a handcrafted homeware business.",
+        "Lifestyle photos show genuine, natural settings",
+        "Product shots are studio-quality, matching brief"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "logo (image 1) uses exact #C27664 Desert Rose and #7A8E7A Sage Whisper; catalogue photos echo same terracotta-sage palette",
+        "brand_guide.md, post_copy.json voice, and lifestyle photo styling all align on warm-minimal artisan aesthetic",
+        "image 1",
+        "image 2",
+        "brand_guide.md",
+        "post_copy.json"
+      ],
+      "deductions": [
+        "lifestyle_photos[0] (image 5) features dark slate-blue cups not in the brand palette, minor colour drift",
+        "No deduction severe enough to drop below 9",
+        "All assets consistently use the brand's palette, fonts, and visual style.",
+        "Brand voice is uniform across the brand guide and post copy.",
+        "Consistent palette and font usage across all assets",
+        "Photo style and tone match brand guide"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        9,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 9,
+      "evidence": [
+        "Assumption to author 6 posts mapped 1:1 to photos is sound and makes fill_text step deterministic",
+        "Platform crop spec (1080x1080 IG + FB feed) correctly derived from brief's platform list",
+        "Original Client Brief",
+        "Recorded Decisions",
+        "assets/brand_guide.md",
+        "assets/post_copy.json"
+      ],
+      "deductions": [
+        "Assumption that brand colours/fonts are 'confirmed via persona.json' is slightly circular — no real client sign-off documented",
+        "No assumption recorded about logo format (transparent vs opaque), which is a real execution risk",
+        "Mandatory 'Video shoot and editing' requirement was completely ignored.",
+        "No decision was recorded regarding the video deliverable.",
+        "Assumptions on palette/fonts are justified by persona",
+        "Post-image mapping is logical and documented"
+      ],
+      "fix": {
+        "target_asset_key": "video_assets",
+        "problem": "Mandatory video deliverable was not addressed in decisions.",
+        "prompt_delta": "Generate 15-30 second social media video clips showcasing Aura & Clay ceramic homeware in lifestyle settings, consistent with brand guide photo style and tone."
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        9,
+        4,
+        10
+      ]
+    }
+  },
+  "overall": 8.9,
+  "verdict": "client-ready",
+  "top_risks": [
+    "CLIENT-REJECT (sev 8): The brief explicitly asked for video shoot and editing deliverables, yet the entire handoff contains zero video assets, no footage, no storyboard, and no mention of how video will be handled — it was simply ignored. That is a core scope gap I cannot accept.",
+    "AGENT CHOKE on 'catalogue_photos[0]': The image_remove_background step requires a clean, isolated subject against a plain background, but catalogue_photos[0] (the vase) sits on a warm beige surface with a visible cast shadow and gradient backdrop — the AI background remover will bleed into the terracotta glaze edges and misfire on the shadow, producing a ragged, unusable cut-out."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.17,
+    "completeness": 0.22,
+    "executability": 0.1,
+    "realism": 0.17,
+    "coherence": 0.22,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.066,
+  "rounds": []
+}

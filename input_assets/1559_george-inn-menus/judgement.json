@@ -1,0 +1,202 @@
+{
+  "task_id": 1559,
+  "slug": "george-inn-menus",
+  "title": "Tri-Fold Menu Design for Traditional Pub",
+  "category": "Menus",
+  "family": "Express Template Design",
+  "archetype": "template",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 10,
+      "evidence": [
+        "image 1 (pub_logo): correct brand name 'The George Inn Oundle' with crest, crown, oak leaves — matches brief exactly",
+        "drink_menus.json: all 3 menus present with every named section (Draught Beer, Gin, White Wines, Signature Cocktails, etc.)",
+        "image 1",
+        "drink_menus.json",
+        "assets/drink_menus.json"
+      ],
+      "deductions": [
+        "Logo background is cream/flat — no transparent PNG; asset_add_file overlay step needs transparency",
+        "pub_photos[0] (image 3) shows a generic Cotswolds-style pub sign with knight, not The George Inn Oundle signage",
+        "Logo explicitly names 'The George Inn Oundle' matching brief.",
+        "Menu content (names, categories) aligns perfectly with client requirements.",
+        "Logo is exact brand as brief",
+        "Drink menus match all required categories and structure"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 10,
+      "evidence": [
+        "drink_menus.json confirmed complete: 3 menus, all brief-mandated sections, items with prices and dual-measure pricing where applicable",
+        "parchment_texture (image 2) and palette hexes in persona.json supply the colour/background requirement",
+        "drink_menus.json",
+        "image 1",
+        "assets/drink_menus.json"
+      ],
+      "deductions": [
+        "Logo lacks transparent variant — fill_text + asset_add_file chain will require an extra de-background step not in the workflow",
+        "No explicit bleed/margin spec file or dimension guide supplied; executor must infer tri-fold panel size",
+        "All three menu data sets are present and fully populated.",
+        "The required brand logo is provided.",
+        "All drink lists/prices for 3 menus present and detailed",
+        "Logo and palette assets provided as required"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "executability": {
+      "score": 10,
+      "evidence": [
+        "parchment_texture (image 2) at 1024x1536 is a clean raster texture — directly consumable by image_apply_color_overlay as a base layer",
+        "drink_menus.json is valid structured JSON with nested items/prices — fill_text can iterate sections directly",
+        "drink_menus.json",
+        "image 1",
+        "image 2",
+        "assets/drink_menus.json"
+      ],
+      "deductions": [
+        "pub_logo (image 1) has opaque cream background; asset_add_file will composite incorrectly without prior background removal",
+        "pub_photos are atmospheric mood shots with no defined role in the Adobe workflow steps listed — executor must decide placement or skip",
+        "JSON data is well-structured for `fill_text` operation.",
+        "Logo is a clear image suitable for `asset_add_file`.",
+        "Parchment texture is suitable for color overlay/background",
+        "Drink data is structured for text fill"
+      ],
+      "fix": {
+        "target_asset_key": "pub_logo",
+        "problem": "Opaque background blocks clean asset_add_file compositing onto parchment template",
+        "prompt_delta": "Produce transparent-background PNG; remove all background fill so crest floats on alpha; verify no anti-aliasing halo against cream."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "image 4 (pub_photos[1]): authentic warm fireplace interior shot — indistinguishable from real gastropub photography",
+        "image 1 (pub_logo): 'EST. 1684' detail and heraldic crest are plausible for a real historic Oundle inn",
+        "image 3",
+        "drink_menus.json",
+        "image 4"
+      ],
+      "deductions": [
+        "image 3 (pub_photos[0]): pub sign shows a knight on horseback — generic stock feel, not The George Inn's actual signage",
+        "drink_menus.json uses invented brand names (e.g. 'Oundle Gold Best Bitter', 'George Inn London Dry') — acceptable fiction but slightly synthetic for a real handover",
+        "Pub photos (exterior/interior) are highly authentic to a British pub.",
+        "Menu item names and pricing structures are realistic for a gastro pub.",
+        "Pub photos are authentic, context-appropriate for a real client handoff",
+        "Logo and menu data are plausible and professional"
+      ],
+      "fix": {
+        "target_asset_key": "pub_photos[0]",
+        "problem": "Generic knight-sign pub exterior reduces authenticity; brief implies real venue photography",
+        "prompt_delta": "Replace with a dusk exterior photograph of a traditional Northamptonshire stone-built coaching inn on a cobbled market-town street, warm window glow, hanging flower baskets, no visible pub sign text — atmospheric and location-specific."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "pub_logo (image 1) uses forest green, gold, and cream — matches persona palette #1E3B2A, #B08D3C, #F3ECD9 precisely",
+        "drink_menus.json trifold_note voice ('thoughtfully curated', 'shaken or stirred to perfection') matches persona warm-premium British tone",
+        "image 1",
+        "drink_menus.json",
+        "image 2"
+      ],
+      "deductions": [
+        "Logo green reads slightly more olive/khaki than the pinned #1E3B2A forest green — minor hex drift across assets",
+        "pub_photos atmospheric warmth (amber/brown tones) diverges from the cool parchment+green palette; may create visual inconsistency if used as panel backgrounds",
+        "Logo's style and colours align with the traditional pub aesthetic.",
+        "Menu content consistently references the brand and location.",
+        "Logo, palette, and menu data use consistent brand identity",
+        "All assets reflect the same traditional pub style"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 1,
+      "per_judge": [
+        9,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Canva-source limitation honestly flagged as human-handoff gap — correct, avoids overpromising to client",
+        "Palette hexes pinned (#F3ECD9, #1E3B2A, #161412, #B08D3C) — sound, checkable, directly usable by image_apply_color_overlay",
+        "Recorded Decisions: Outputs",
+        "Recorded Decisions: Palette",
+        "persona.json (hexes fixed)",
+        "recorded_decisions"
+      ],
+      "deductions": [
+        "No assumption recorded about tri-fold panel dimensions (e.g. DL 99×210mm or A4 trifold) — executor must guess print size",
+        "Invented drink names assumed acceptable without flagging to client — mild risk if client expects real supplier SKUs",
+        "Output specification clarifies workflow deliverables vs. Canva files.",
+        "Palette hex codes are precisely defined, ensuring consistent branding.",
+        "Palette hexes and Canva-source gap are justified, not risky",
+        "All assumptions are sound and documented"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 10.0,
+  "verdict": "client-ready",
+  "top_risks": [
+    "CLIENT-REJECT (sev 8): The brief explicitly requires Canva editable source files as a core deliverable, but the handoff openly admits this cannot be delivered — the agent only outputs rendered PDFs and PNGs. That is a fundamental breach of the stated requirements, not a minor gap.",
+    "AGENT CHOKE on 'pub_logo': The logo is a generated AI crest with 'EST. 1684' — not the actual George Inn Oundle logo. The asset_add_file step will place a fabricated logo onto print-ready menus destined for a real venue, which is unusable and potentially embarrassing. The 1024x1024 PNG also lacks transparency, meaning placement over the parchment texture will produce a visible cream box rather than a clean crest overlay."
+  ],
+  "qc_gaps": [],
+  "weights": {
+    "task_fit": 0.17,
+    "completeness": 0.22,
+    "executability": 0.1,
+    "realism": 0.17,
+    "coherence": 0.22,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.048,
+  "rounds": []
+}

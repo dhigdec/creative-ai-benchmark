@@ -1,0 +1,494 @@
+{
+  "schema_version": 1,
+  "task_id": 9005,
+  "slug": "magazine-spread",
+  "title": "Editorial magazine feature spread — \"THE MAKERS\" 6-page duotone portrait feature: masked + duotone hero portraits, a pull-quote colour-splash, licensed Stock paper/ink textures, a CSV-data-merged contributors strip, a vectorized masthead, laid out in InDesign and exported to print PDF, plus web crops",
+  "task_type": "magazine-feature-spread",
+  "category": "Layout & Print Design",
+  "family": "Print, Layout & Editorial Design",
+  "feasibility": "template",
+  "source": "upwork",
+  "source_url": "https://www.upwork.com/freelance-jobs/apply/InDesign-magazine-feature-spread-with-duotone-portraits-and-data-merged-contributors_~021/",
+  "mcp_workflow": "asset_initialize_file_upload -> asset_finalize_file_upload -> image_auto_straighten -> image_crop_to_bounds -> image_select_subject -> image_apply_gaussian_blur (blurTarget:background) -> image_apply_auto_tone -> image_adjust_exposure -> image_adjust_highlights -> image_adjust_dark_portions -> image_adjust_brightness_and_contrast -> image_apply_monochromatic_tint (duotone) -> image_add_grain -> image_select_by_prompt (garment colour) -> image_invert_selection -> image_adjust_single_color_saturation -> image_adjust_hsl -> asset_search (paper + ink textures) -> asset_license_and_download_stock -> image_adjust_light_portions (GROUND_PAPER) -> image_apply_color_overlay (GROUND_INK) -> image_apply_halftone (accent block) -> image_vectorize (masthead) -> document_render_vector (MASTHEAD) -> font_recommend -> document_merge_data_layout [T] (ContributorStrip.indd + roster.csv) -> document_render_layout (FeatureSpread_6pp.indd -> print PDF) -> document_convert_pdf (PDF -> .indd round-trip) -> image_crop_and_resize (web crops) -> asset_inline_preview",
+  "original_brief": "An independent design-and-culture quarterly is producing its 6-page \"THE MAKERS\" feature profiling four local makers in a two-ink editorial duotone. The client supplies four raw hero portraits (tilted, mixed light), a hand-drawn masthead scan, five contributor headshots, a contributors roster, a copy deck and the authored InDesign templates, and needs a print-ready spread: each hero straightened, cropped, subject-masked off a soft-blurred background, fully graded and rendered to a consistent two-ink duotone with grain; one full-colour hero turned into a single-garment-colour pull-quote splash; two licensed Stock textures graded into paper and ink-wash grounds; the masthead vectorized; a recommended display+body type pairing; a five-name contributors strip data-merged from the roster CSV; the whole 6-page feature laid out and rendered to a CMYK print PDF (A4 + 3mm bleed); and 1080x1350 + 1080x1080 web teaser crops of the hero.",
+  "generated_at": "2026-06-15T09:12:06Z",
+  "pipeline_version": "0.1.0",
+  "client_persona": {
+    "brand_name": "Atelier & Form",
+    "tagline": "Exploring craft, culture, and creative spirit.",
+    "industry": "Print quarterly: contemporary craft & culture",
+    "palette": [
+      {
+        "name": "Deep Ink Shadow",
+        "hex": "#1A2A33",
+        "role": "primary"
+      },
+      {
+        "name": "Warm Paper Highlight",
+        "hex": "#EDE4D3",
+        "role": "secondary"
+      },
+      {
+        "name": "Near-Black Text",
+        "hex": "#14110E",
+        "role": "primary"
+      },
+      {
+        "name": "Deep Red Accent",
+        "hex": "#B5331F",
+        "role": "accent"
+      }
+    ],
+    "fonts": {
+      "heading": "Source Serif Pro",
+      "body": "Inter"
+    },
+    "voice": "Our prose is considered and warm, offering literate insights into the world of design and craft. We aim for sensory and specific descriptions, maintaining an editorial tone that is never breathless or salesy.",
+    "persona_file": "persona.json"
+  },
+  "assets": [
+    {
+      "key": "copy_deck",
+      "input_requirement": "Feature copy deck JSON — headline, standfirst, body, the pull-quote string and the image captions — placed into the layout and used as the font_recommend sample",
+      "kind": "data",
+      "file": "assets/copy_deck.json",
+      "format": "json",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "You are the features editor of an independent design-and-culture quarterly,\nwriting the copy deck for a 6-page feature titled \"THE MAKERS\" that profiles four local makers (a\nceramicist, a woodworker, a weaver and a metalsmith). Return a JSON object with EXACTLY these\ntop-level keys:\n\"headline\": a short, evocative feature headline (3-6 words), title case;\n\"standfirst\": a single 30-50 word standfirst / deck paragraph that sets up the feature, in the\n  voice: Our prose is considered and warm, offering literate insights into the world of design and craft. We aim for sensory and specific descriptions, maintaining an editorial tone that is never breathless or salesy.;\n\"pull_quote\": ONE punchy pulled quotation of 8-18 words from a maker (no surrounding quote marks\n  in the string) — this is the string typeset large on the colour-splash pull-quote page;\n\"body\": a LIST of EXACTLY 4 body sections, one per maker, each an object with keys \"maker_name\"\n  (an invented full name), \"craft\" (one of \"ceramicist\",\"woodworker\",\"weaver\",\"metalsmith\"),\n  \"city\" (an invented town/city) and \"text\" (a 90-140 word profile paragraph in the voice above —\n  sensory, specific, about the craft and the person, no prices, no real brands);\n\"captions\": a LIST of EXACTLY 5 short image captions (one per maker portrait plus one for the\n  opening hero), each an object with keys \"slot\" (one of \"HERO_DUOTONE\",\"SPLASH\",\"PORTRAIT_2\",\n  \"PORTRAIT_3\",\"PORTRAIT_4\" — the InDesign image-frame names) and \"text\" (a 6-16 word caption).\nTone throughout: Our prose is considered and warm, offering literate insights into the world of design and craft. We aim for sensory and specific descriptions, maintaining an editorial tone that is never breathless or salesy.. No real brands, no real people, no prices.",
+        "prompt_file": "prompts/copy_deck.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "4cf259b674460b3ab2140ccd3438c26acb33017fa44628aba558c053c1dfc807"
+    },
+    {
+      "key": "copy_deck.render",
+      "input_requirement": "Feature copy deck JSON — headline, standfirst, body, the pull-quote string and the image captions — placed into the layout and used as the font_recommend sample",
+      "kind": "data",
+      "file": "assets/copy_deck.md",
+      "format": "md",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "You are the features editor of an independent design-and-culture quarterly,\nwriting the copy deck for a 6-page feature titled \"THE MAKERS\" that profiles four local makers (a\nceramicist, a woodworker, a weaver and a metalsmith). Return a JSON object with EXACTLY these\ntop-level keys:\n\"headline\": a short, evocative feature headline (3-6 words), title case;\n\"standfirst\": a single 30-50 word standfirst / deck paragraph that sets up the feature, in the\n  voice: Our prose is considered and warm, offering literate insights into the world of design and craft. We aim for sensory and specific descriptions, maintaining an editorial tone that is never breathless or salesy.;\n\"pull_quote\": ONE punchy pulled quotation of 8-18 words from a maker (no surrounding quote marks\n  in the string) — this is the string typeset large on the colour-splash pull-quote page;\n\"body\": a LIST of EXACTLY 4 body sections, one per maker, each an object with keys \"maker_name\"\n  (an invented full name), \"craft\" (one of \"ceramicist\",\"woodworker\",\"weaver\",\"metalsmith\"),\n  \"city\" (an invented town/city) and \"text\" (a 90-140 word profile paragraph in the voice above —\n  sensory, specific, about the craft and the person, no prices, no real brands);\n\"captions\": a LIST of EXACTLY 5 short image captions (one per maker portrait plus one for the\n  opening hero), each an object with keys \"slot\" (one of \"HERO_DUOTONE\",\"SPLASH\",\"PORTRAIT_2\",\n  \"PORTRAIT_3\",\"PORTRAIT_4\" — the InDesign image-frame names) and \"text\" (a 6-16 word caption).\nTone throughout: Our prose is considered and warm, offering literate insights into the world of design and craft. We aim for sensory and specific descriptions, maintaining an editorial tone that is never breathless or salesy.. No real brands, no real people, no prices.",
+        "prompt_file": "prompts/copy_deck.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "4249668103e12f0c28b4339109bba4736ef5f207be7091ebfd28bd31ab03c52b"
+    },
+    {
+      "key": "contributors_roster",
+      "input_requirement": "Contributors roster CSV driving the InDesign data-merge strip (columns: name, role, city, instagram, headshot_filename)",
+      "kind": "data",
+      "file": "assets/contributors_roster.json",
+      "format": "json",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "You are the managing editor compiling the contributors roster that drives an\nInDesign data-merge strip on the closing page of the \"THE MAKERS\" feature. Return a JSON object with\nONE top-level key \"contributors\": a LIST OF EXACTLY 5 row objects. Each row object's keys MUST be\nEXACTLY these five column names (the InDesign data-merge placeholders bind to them character-for-\ncharacter): \"name\", \"role\", \"city\", \"instagram\", \"headshot_filename\".\nThe 5 rows are, IN THIS ORDER, the contributors with these EXACT \"role\" and \"headshot_filename\"\nvalues (do NOT change the role or filename — they map to the supplied headshots):\n  row 1: role=\"Writer\",        headshot_filename=\"contrib_writer.jpg\"\n  row 2: role=\"Photographer\",  headshot_filename=\"contrib_photographer.jpg\"\n  row 3: role=\"Stylist\",       headshot_filename=\"contrib_stylist.jpg\"\n  row 4: role=\"Editor\",        headshot_filename=\"contrib_editor.jpg\"\n  row 5: role=\"Illustrator\",   headshot_filename=\"contrib_illustrator.jpg\"\nFor every row, invent the remaining fields:\n- \"name\": an invented full personal name (vary gender and ethnicity; no real people), e.g.\n  \"Marlow Adeyemi\".\n- \"city\": an invented or plausible small-press city (vary them; no repeats).\n- \"instagram\": a plausible Instagram handle starting with \"@\", lowercase, derived from the name,\n  no real accounts, e.g. \"@m.adeyemi\".\nTone: Our prose is considered and warm, offering literate insights into the world of design and craft. We aim for sensory and specific descriptions, maintaining an editorial tone that is never breathless or salesy.. No real brands, no real people's handles.",
+        "prompt_file": "prompts/contributors_roster.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "926661873eda46bc58c0ac3efad4dc31813f0d79730d874b328157621e0c4f86"
+    },
+    {
+      "key": "contributors_roster.render",
+      "input_requirement": "Contributors roster CSV driving the InDesign data-merge strip (columns: name, role, city, instagram, headshot_filename)",
+      "kind": "data",
+      "file": "assets/contributors_roster.csv",
+      "format": "md",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "You are the managing editor compiling the contributors roster that drives an\nInDesign data-merge strip on the closing page of the \"THE MAKERS\" feature. Return a JSON object with\nONE top-level key \"contributors\": a LIST OF EXACTLY 5 row objects. Each row object's keys MUST be\nEXACTLY these five column names (the InDesign data-merge placeholders bind to them character-for-\ncharacter): \"name\", \"role\", \"city\", \"instagram\", \"headshot_filename\".\nThe 5 rows are, IN THIS ORDER, the contributors with these EXACT \"role\" and \"headshot_filename\"\nvalues (do NOT change the role or filename — they map to the supplied headshots):\n  row 1: role=\"Writer\",        headshot_filename=\"contrib_writer.jpg\"\n  row 2: role=\"Photographer\",  headshot_filename=\"contrib_photographer.jpg\"\n  row 3: role=\"Stylist\",       headshot_filename=\"contrib_stylist.jpg\"\n  row 4: role=\"Editor\",        headshot_filename=\"contrib_editor.jpg\"\n  row 5: role=\"Illustrator\",   headshot_filename=\"contrib_illustrator.jpg\"\nFor every row, invent the remaining fields:\n- \"name\": an invented full personal name (vary gender and ethnicity; no real people), e.g.\n  \"Marlow Adeyemi\".\n- \"city\": an invented or plausible small-press city (vary them; no repeats).\n- \"instagram\": a plausible Instagram handle starting with \"@\", lowercase, derived from the name,\n  no real accounts, e.g. \"@m.adeyemi\".\nTone: Our prose is considered and warm, offering literate insights into the world of design and craft. We aim for sensory and specific descriptions, maintaining an editorial tone that is never breathless or salesy.. No real brands, no real people's handles.",
+        "prompt_file": "prompts/contributors_roster.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "6646263ed0c2ab2963119a767665ff76f3f36e8085ea1340199fc808347ef0dc"
+    },
+    {
+      "key": "hero_portraits[0]",
+      "input_requirement": "Four raw hero portraits from the feature shoot (photoreal): mixed framing and lighting, tilted handheld phone/DSLR frames with dead margins — the subjects of the duotone treatment; one is reused full-colour for the pull-quote colour-splash",
+      "kind": "image",
+      "file": "assets/hero_01_ceramicist_red-jacket.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "OPENING-SPREAD HERO — a mid-thirties ceramicist standing at a wheel in a cluttered studio, looking just off-camera with a calm, candid half-smile, clay drying on the backs of the hands. They wear a single bold DEEP-RED canvas work jacket that is the ONLY strongly saturated colour in an otherwise muted earthy scene (this red garment must be unmistakable and isolated for a downstream colour-splash) — everything else is dusty greys, browns and raw clay. Three-quarter waist-up framing with head-room. Candid documentary editorial portrait, shot on an 85mm lens at f/2.0 in available natural light, subtle film grain, realistic shallow depth of field. Natural skin texture with visible pores and no beauty retouching; individual hair strands with natural flyaways — hair must NOT look painted, helmet-like or plastic; anatomically correct hands. The frame is shot HANDHELD and clearly TILTED a few degrees off-level with uneven dead margin around the subject (so it needs straightening and cropping), and the light is visibly MIXED — warm tungsten/window light on one side, cooler shade on the other. Imperfect, lived-in detail: believable fabric wrinkles, a stray thread, faint workshop dust; asymmetric composition. Invented, diverse, dignified subject, no real-person likeness. NOT a staged glossy stock portrait, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+        "prompt_file": "prompts/hero_portraits_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "d2cee731bf708e4c20f982e04258780217e9e200106cff493149afd787c91ad4"
+    },
+    {
+      "key": "hero_portraits[1]",
+      "input_requirement": "Four raw hero portraits from the feature shoot (photoreal): mixed framing and lighting, tilted handheld phone/DSLR frames with dead margins — the subjects of the duotone treatment; one is reused full-colour for the pull-quote colour-splash",
+      "kind": "image",
+      "file": "assets/hero_02_woodworker.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "a woodworker in their fifties at a workbench, mid-task, planing a length of oak with both hands on the plane, sawdust catching a shaft of window light, reading glasses pushed up on the forehead, a worn denim apron over a grey henley. Muted timber tones, warm raking side light from a high workshop window. Candid documentary editorial portrait, shot on an 85mm lens at f/2.0 in available natural light, subtle film grain, realistic shallow depth of field. Natural skin texture with visible pores and no beauty retouching; individual hair strands with natural flyaways — hair must NOT look painted, helmet-like or plastic; anatomically correct hands. The frame is shot HANDHELD and clearly TILTED a few degrees off-level with uneven dead margin around the subject (so it needs straightening and cropping), and the light is visibly MIXED — warm tungsten/window light on one side, cooler shade on the other. Imperfect, lived-in detail: believable fabric wrinkles, a stray thread, faint workshop dust; asymmetric composition. Invented, diverse, dignified subject, no real-person likeness. NOT a staged glossy stock portrait, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The most critical issue is the complete absence of the required 'single bold deep-red garment'. The prompt explicitly states that the hero portrait 'must wear a single bold deep-red garment that is the ONLY strongly saturated colour in an otherwise muted earthy frame, clearly isolable for a colour-splash'. The subject is wearing a grey shirt and a blue denim apron, neither of which is deep red or serves as the sole strongly saturated color.\n- While the image is aesthetically pleasing and meets most other criteria for realism and photographic quality, this fundamental failure to meet the specific color requirement for the 'opening-spread hero' shot means it cannot be delivered for the intended downstream use (color-splash) and therefore 'must regenerate'.",
+        "prompt_file": "prompts/hero_portraits_1.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 9,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 3,
+        "issues": [
+          "While realistic skin texture is present, individual pores are not distinctly visible upon close inspection.",
+          "The hair, while natural and textured, does not show an abundance of clearly defined individual flyaways, particularly on the top of the head."
+        ]
+      },
+      "sha256": "49695e72779507ee5b4dba222914fd68f3b68458d9e2a3750300f12eb5f08e67"
+    },
+    {
+      "key": "hero_portraits[2]",
+      "input_requirement": "Four raw hero portraits from the feature shoot (photoreal): mixed framing and lighting, tilted handheld phone/DSLR frames with dead margins — the subjects of the duotone treatment; one is reused full-colour for the pull-quote colour-splash",
+      "kind": "image",
+      "file": "assets/hero_03_weaver.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "a young textile weaver seated at a large floor loom, hands lifting the shuttle through the warp threads, looking down at the work in quiet concentration, loose strands of hair escaping a low bun. Soft north-window light, muted oatmeal and indigo yarns, a softly out-of-focus studio behind. Candid documentary editorial portrait, shot on an 85mm lens at f/2.0 in available natural light, subtle film grain, realistic shallow depth of field. Natural skin texture with visible pores and no beauty retouching; individual hair strands with natural flyaways — hair must NOT look painted, helmet-like or plastic; anatomically correct hands. The frame is shot HANDHELD and clearly TILTED a few degrees off-level with uneven dead margin around the subject (so it needs straightening and cropping), and the light is visibly MIXED — warm tungsten/window light on one side, cooler shade on the other. Imperfect, lived-in detail: believable fabric wrinkles, a stray thread, faint workshop dust; asymmetric composition. Invented, diverse, dignified subject, no real-person likeness. NOT a staged glossy stock portrait, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The subject is wearing a deep blue shirt, not a single bold deep-red garment as explicitly requested. This is a critical failure for the 'load-bearing' color-splash requirement.\n- The deep blue of the shirt and the woven fabric are also strongly saturated colors, which violates the 'ONLY strongly saturated colour in an otherwise muted earthy frame' criterion, even if a red garment were present.",
+        "prompt_file": "prompts/hero_portraits_2.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 2,
+        "issues": []
+      },
+      "sha256": "8e2e2f79645621c2a25746bbe311e4e71dab987c094f726d07d334165a781d66"
+    },
+    {
+      "key": "hero_portraits[3]",
+      "input_requirement": "Four raw hero portraits from the feature shoot (photoreal): mixed framing and lighting, tilted handheld phone/DSLR frames with dead margins — the subjects of the duotone treatment; one is reused full-colour for the pull-quote colour-splash",
+      "kind": "image",
+      "file": "assets/hero_04_metalsmith.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "a metalsmith in their forties at a jeweller's bench, leaning into a piece held in a ring clamp, an optical loupe pushed up onto the brow, a leather bench apron, fine tools racked behind. A warm task-lamp pool on the hands and bench against a cooler dim workshop. Candid documentary editorial portrait, shot on an 85mm lens at f/2.0 in available natural light, subtle film grain, realistic shallow depth of field. Natural skin texture with visible pores and no beauty retouching; individual hair strands with natural flyaways — hair must NOT look painted, helmet-like or plastic; anatomically correct hands. The frame is shot HANDHELD and clearly TILTED a few degrees off-level with uneven dead margin around the subject (so it needs straightening and cropping), and the light is visibly MIXED — warm tungsten/window light on one side, cooler shade on the other. Imperfect, lived-in detail: believable fabric wrinkles, a stray thread, faint workshop dust; asymmetric composition. Invented, diverse, dignified subject, no real-person likeness. NOT a staged glossy stock portrait, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The subject is not wearing a single bold deep-red garment, which was a critical requirement for the intended colour-splash effect. The subject is wearing a black sweater and a brown leather apron, completely missing this load-bearing creative direction.",
+        "prompt_file": "prompts/hero_portraits_3.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 2,
+        "issues": []
+      },
+      "sha256": "6605bf4a9c7eb51067d141b3bfc3a5eaa81d8c09ca952b78f02407f7d96fe7ea"
+    },
+    {
+      "key": "contributor_headshots[0]",
+      "input_requirement": "Five contributor headshots (photoreal): writer, photographer, stylist, editor and illustrator — content-fitted into the data-merged contributors strip",
+      "kind": "image",
+      "file": "assets/contrib_writer.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "Editorial contributor HEADSHOT — a features writer in their forties, relaxed candid head-and-shoulders against a soft neutral wall, warm window light from camera-left, an open, thoughtful expression looking just off-camera. Tight head-and-shoulders portrait, shot on a 50mm lens at f/2.2 in available natural light, subtle film grain, realistic shallow depth of field. Natural skin texture with visible pores and no beauty retouching; individual hair strands with natural flyaways — hair must NOT look painted or plastic; anatomically correct hands if visible. Genuine candid expression (not stock-posed), believable lived-in detail, asymmetric framing with head-room and a calm neutral background suitable to drop into a small strip card. Invented, diverse, dignified subject, no real-person likeness. NOT CGI-glossy, NOT over-saturated, NOT airbrushed. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+        "prompt_file": "prompts/contributor_headshots_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "a3b8a6f1671bf97d512bf89db03e30b1de0b5947c1226380b16db25fcb9bf454"
+    },
+    {
+      "key": "contributor_headshots[1]",
+      "input_requirement": "Five contributor headshots (photoreal): writer, photographer, stylist, editor and illustrator — content-fitted into the data-merged contributors strip",
+      "kind": "image",
+      "file": "assets/contrib_photographer.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "Editorial contributor HEADSHOT — a documentary photographer in their thirties, a camera strap visible at the shoulder, candid half-smile, cool daylight from a large window, slightly low casual angle. Tight head-and-shoulders portrait, shot on a 50mm lens at f/2.2 in available natural light, subtle film grain, realistic shallow depth of field. Natural skin texture with visible pores and no beauty retouching; individual hair strands with natural flyaways — hair must NOT look painted or plastic; anatomically correct hands if visible. Genuine candid expression (not stock-posed), believable lived-in detail, asymmetric framing with head-room and a calm neutral background suitable to drop into a small strip card. Invented, diverse, dignified subject, no real-person likeness. NOT CGI-glossy, NOT over-saturated, NOT airbrushed. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+        "prompt_file": "prompts/contributor_headshots_1.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "5c2fc10dda3fb27e0841ed0a90d7e837e13de044f6867cf7320910bcbcca930b"
+    },
+    {
+      "key": "contributor_headshots[2]",
+      "input_requirement": "Five contributor headshots (photoreal): writer, photographer, stylist, editor and illustrator — content-fitted into the data-merged contributors strip",
+      "kind": "image",
+      "file": "assets/contrib_stylist.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "Editorial contributor HEADSHOT — a fashion stylist in their late twenties, expressive and warm, soft directional studio light, a few measuring-tape-and-fabric details just out of focus behind. Tight head-and-shoulders portrait, shot on a 50mm lens at f/2.2 in available natural light, subtle film grain, realistic shallow depth of field. Natural skin texture with visible pores and no beauty retouching; individual hair strands with natural flyaways — hair must NOT look painted or plastic; anatomically correct hands if visible. Genuine candid expression (not stock-posed), believable lived-in detail, asymmetric framing with head-room and a calm neutral background suitable to drop into a small strip card. Invented, diverse, dignified subject, no real-person likeness. NOT CGI-glossy, NOT over-saturated, NOT airbrushed. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+        "prompt_file": "prompts/contributor_headshots_2.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "9555c1e18712e525eb790e3e562f8d42f94d91f88142c22cffeadadd0b702865"
+    },
+    {
+      "key": "contributor_headshots[3]",
+      "input_requirement": "Five contributor headshots (photoreal): writer, photographer, stylist, editor and illustrator — content-fitted into the data-merged contributors strip",
+      "kind": "image",
+      "file": "assets/contrib_editor.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "Editorial contributor HEADSHOT — the issue editor in their fifties, composed and approachable, neutral grey backdrop, even soft light, reading glasses in hand. Tight head-and-shoulders portrait, shot on a 50mm lens at f/2.2 in available natural light, subtle film grain, realistic shallow depth of field. Natural skin texture with visible pores and no beauty retouching; individual hair strands with natural flyaways — hair must NOT look painted or plastic; anatomically correct hands if visible. Genuine candid expression (not stock-posed), believable lived-in detail, asymmetric framing with head-room and a calm neutral background suitable to drop into a small strip card. Invented, diverse, dignified subject, no real-person likeness. NOT CGI-glossy, NOT over-saturated, NOT airbrushed. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+        "prompt_file": "prompts/contributor_headshots_3.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "4850ead832600d5350b85a2192af2603ab45c8f7c7c623c1bf4e4dc843abf395"
+    },
+    {
+      "key": "contributor_headshots[4]",
+      "input_requirement": "Five contributor headshots (photoreal): writer, photographer, stylist, editor and illustrator — content-fitted into the data-merged contributors strip",
+      "kind": "image",
+      "file": "assets/contrib_illustrator.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1024",
+        "prompt": "Editorial contributor HEADSHOT — an illustrator in their thirties, ink on the fingers, a quietly amused candid expression, warm desk-lamp light against a dim studio. Tight head-and-shoulders portrait, shot on a 50mm lens at f/2.2 in available natural light, subtle film grain, realistic shallow depth of field. Natural skin texture with visible pores and no beauty retouching; individual hair strands with natural flyaways — hair must NOT look painted or plastic; anatomically correct hands if visible. Genuine candid expression (not stock-posed), believable lived-in detail, asymmetric framing with head-room and a calm neutral background suitable to drop into a small strip card. Invented, diverse, dignified subject, no real-person likeness. NOT CGI-glossy, NOT over-saturated, NOT airbrushed. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+        "prompt_file": "prompts/contributor_headshots_4.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "af4463917854ec762485ce4f131a40061afd3ba3581ad0a86b93c19de06e6ed8"
+    },
+    {
+      "key": "masthead_glyph",
+      "input_requirement": "Hand-drawn masthead / decorative drop-cap glyph inked on white paper (high-contrast, flat, no greyscale wash) — to vectorize into the masthead lockup",
+      "kind": "image",
+      "file": "assets/masthead_makers.png",
+      "format": "png",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-3-pro-image",
+        "quality": null,
+        "size": "1024x1024",
+        "prompt": "A HAND-DRAWN masthead / decorative drop-cap glyph for an editorial feature,\nphotographed/scanned as flat artwork on plain WHITE paper. The lettering reads EXACTLY \"THE MAKERS\"\nas a hand-inked brush-and-nib title, with the opening \"T\" enlarged into an ornate decorative\nDROP-CAP. Pure HIGH-CONTRAST solid black ink on white — NO greyscale wash, NO halftone, NO colour,\nNO gradient, NO drop shadow, NO photographic background — just confident inked strokes with a\nlittle natural brush texture and tiny ink flecks, the kind of artwork an illustrator scans to hand\nover for vectorizing. Flawless spelling of \"THE MAKERS\". Centred, generous white margin all round,\ncrisp clean black edges on a clean white field so it vectorizes to razor-clean line art. No other\ntext, no numbers, no symbols besides the lettering.",
+        "prompt_file": "prompts/masthead_glyph_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 8,
+        "judge": "openai/gpt-4.1-mini",
+        "attempts": 1,
+        "issues": [
+          "Ink splatters around the enlarged 'T' create noise and reduce the clean white field requirement.",
+          "Edges of the 'T' have slight unevenness, not perfectly crisp for vectorization.",
+          "The 'T' is decorative and enlarged as required, but the splatters and slight edge irregularities detract from flawless quality."
+        ]
+      },
+      "sha256": "00251b44cf96d7c680a0a350cf5cfaf78f793b4277e9159c721aa0d3295c6231"
+    },
+    {
+      "key": "inks_swatch",
+      "input_requirement": "Brand swatch sheet — the two duotone inks (shadow ink + warm paper highlight hex) and the colour-splash accent, supplied as a reference swatch image with a hex list",
+      "kind": "image",
+      "file": "assets/inks_swatch.png",
+      "format": "png",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-3.1-flash-image",
+        "quality": null,
+        "size": "1024x1024",
+        "prompt": "A simple flat BRAND SWATCH reference plate (an aesthetic/colour anchor handed\nover with the brief, NOT a final deliverable) on a clean white field: THREE large clean rectangular\ncolour chips laid in a neat horizontal row. Left chip a deep ink slate #1A2A33 (the duotone shadow\nink), middle chip a warm uncoated-paper tone #EDE4D3 (the duotone paper highlight), right chip a\nsingle deep brick-red #B5331F (the colour-splash accent). Flat solid colour fills, soft printed\npaper texture, gentle even studio light. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image.",
+        "prompt_file": "prompts/inks_swatch_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 6,
+        "judge": "openai/gpt-4.1-mini",
+        "attempts": 1,
+        "issues": [
+          "The colour chips have a textured, paper-like surface rather than flat solid fills.",
+          "Edges of the chips are uneven and not clean rectangles.",
+          "Background is off-white with visible texture, not a pure white field.",
+          "No text or branding present, which is correct."
+        ]
+      },
+      "sha256": "23858fa167ac7a3a48524c33eb1f9f4d65a33a90e9702cca6c444e9722989229"
+    }
+  ],
+  "decisions": [
+    {
+      "requirement": "Authored 6-page InDesign feature-spread template (FeatureSpread_6pp.indd) with the page grid, named image frames and text frames into which the graded duotone PNGs, textures, masthead and contributors strip drop straight in — client-supplied",
+      "assumed_value": "USER-AUTHORED in desktop InDesign: FeatureSpread_6pp.indd — a genuine 6-page document, A4 portrait (210x297mm) + 3mm bleed, CMYK intent. Pages: (1) opening spread with a full-bleed image frame named 'HERO_DUOTONE' + a masthead-glyph frame named 'MASTHEAD' + headline/standfirst text frames; (2) colour-splash pull-quote page with image frame 'SPLASH' + a large pull-quote text frame; (3-4) body-copy spread with two portrait frames 'PORTRAIT_2'/'PORTRAIT_3' over a paper-texture ground frame 'GROUND_PAPER', plus body and caption text frames; (5) portrait-plus-ink-wash page with frame 'PORTRAIT_4' over ground frame 'GROUND_INK'; (6) closing contributors page hosting the placed contributors strip. Image frames are named/positioned so the graded duotone PNGs and graded texture PNGs drop straight in; the headline uses the font_recommend display face and the body uses the recommended body face. The .indd is a client-supplied input — we do not generate .indd files.",
+      "why": "document_render_layout needs a GENUINE desktop-authored .indd with named frames; the user authors it once in desktop InDesign — we do not generate .indd files."
+    },
+    {
+      "requirement": "Authored InDesign data-merge template (ContributorStrip.indd) with genuine <<name>>/<<role>>/<<city>>/<<instagram>>/<<headshot_filename>> data-merge placeholders for the page-6 contributors strip — client-supplied",
+      "assumed_value": "USER-AUTHORED in desktop InDesign (Data Merge panel): ContributorStrip.indd — a genuine data-merge template laid out as a single repeating record (a row card): an image frame bound to the <<headshot_filename>> data-merge IMAGE placeholder (content-fitted), plus three text frames bound to <<name>> (display face, 11pt), <<role>> (italic body, 8.5pt) and <<city>> + ' · ' + <<instagram>> (body, 8pt). The Data Merge panel is linked to contributors_roster.csv with a Multiple-Records layout (5 records across one strip). The field names MUST be GENUINE InDesign data-merge placeholders (<<name>>, <<role>>, <<city>>, <<instagram>>, <<headshot_filename>>), not literal typed text. The CSV column headers MUST exactly match these placeholder names: name,role,city,instagram,headshot_filename. The .indd is a client-supplied input.",
+      "why": "document_merge_data_layout needs a GENUINE InDesign data-merge .indd (literal text won't bind); the user authors it once in desktop InDesign — we do not generate .indd files."
+    },
+    {
+      "requirement": "Two Adobe Stock editorial textures — an uncoated paper grain and an ink-bleed wash — licensed at full print resolution to ground the body and ink-wash pages",
+      "assumed_value": "Sourced LIVE from Adobe Stock at execution via asset_search (entityScope StockAsset, contentType photo/texture) then asset_license_and_download_stock for full-res print downloads (license-before-edit): (1) an uncoated paper-grain texture searched as 'uncoated paper grain texture editorial' -> graded with image_adjust_light_portions into the subtle GROUND_PAPER page ground; (2) an ink-bleed/ink-wash texture searched as 'ink bleed wash texture monochrome' -> tinted with image_apply_color_overlay toward the duotone shadow ink #1A2A33 into the GROUND_INK ground. The generated inks_swatch only sets the colour targets — the textures themselves are licensed Adobe Stock inputs, not generated.",
+      "why": "The brief calls for two licensed Adobe Stock textures; Stock-sourced inputs are decisions (searched + licensed live), not assets we synthesize."
+    },
+    {
+      "requirement": "Output deliverables: a 6-page print-ready feature PDF (CMYK, A4 trim 210x297mm + 3mm bleed) plus web/social teaser crops of the duotone hero at 1080x1350 portrait and 1080x1080 square",
+      "assumed_value": "Output spec recorded for the Adobe agent: document_render_layout emits a 6-page print-ready feature PDF at A4 trim (210x297mm) + 3mm bleed, CMYK intent, from the authored FeatureSpread_6pp.indd; document_convert_pdf round-trips that proof PDF back to a genuine .indd (ZIP) for last-minute editor tweaks; image_crop_and_resize then cuts the finished duotone hero to web/social teaser crops at 1080x1350 (4:5 portrait) and 1080x1080 (1:1 square) for the issue announcement. These are render targets, not collectible inputs.",
+      "why": "Deliverable sizes/formats are an output instruction the agent renders/crops to, not an input asset — recorded for the downstream agent rather than generated."
+    }
+  ],
+  "coverage": {
+    "inputs_total": 10,
+    "covered_by_assets": 6,
+    "covered_by_decisions": 4,
+    "uncovered": []
+  },
+  "stats": {
+    "images_generated": 15,
+    "regenerations": 4,
+    "est_cost_usd": 3.4,
+    "text_calls": 18,
+    "wall_time_s": 2583
+  },
+  "ready_for_agent": true
+}

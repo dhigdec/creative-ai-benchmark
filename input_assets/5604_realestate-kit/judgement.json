@@ -1,0 +1,219 @@
+{
+  "task_id": 5604,
+  "slug": "realestate-kit",
+  "title": "Freelance Real Estate Creative — Social Media Reels, Print Mailers & Marketing Design",
+  "category": "Flyers & Posters",
+  "family": "Express Template Design",
+  "archetype": "template",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 6,
+      "evidence": [
+        "image 1 (team_logo): Sterling & Chase logo with correct black/gold/red palette — on-brand",
+        "image 2 (agent_headshot): male subject; listing_data names agent 'Victoria Sterling' (female) — gender mismatch",
+        "image 1",
+        "listing_data",
+        "assets/listing.json"
+      ],
+      "deductions": [
+        "Headshot gender contradicts named agent Victoria Sterling in listing_data",
+        "Brief specifies Keller Williams South Florida team; brand persona is 'Sterling & Chase' — no KW affiliation visible anywhere",
+        "Brand 'Sterling & Chase' does not match 'Keller Williams team'.",
+        "Listing location 'Beverly Hills' does not match 'South Florida'.",
+        "Logo and palette match Sterling & Chase brand kit",
+        "Listing data and photos align with luxury real estate brief"
+      ],
+      "fix": {
+        "target_asset_key": "team_logo",
+        "problem": "Logo does not reflect 'Keller Williams' affiliation.",
+        "prompt_delta": "Ensure the logo clearly incorporates 'Keller Williams' branding and is for a South Florida team."
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        6,
+        4,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 10,
+      "evidence": [
+        "listing_data provides address, price, beds/baths, selling points, open-house date/time, agent contact — all copy fields present",
+        "Five listing photos cover all five named shot types (twilight-exterior, chef-kitchen, primary-suite, infinity-pool, grand-foyer) — photo set complete",
+        "image 1-7",
+        "listing_data",
+        "assets/listing.json",
+        "image 3"
+      ],
+      "deductions": [
+        "No transparent-background version of team_logo supplied; asset_add_file overlay step requires PNG with alpha for clean placement on dark templates",
+        "No 'just sold' copy or second property data provided; workflow covers only one listing, leaving just-sold mailer deliverable unexecutable",
+        "All required client inputs (logo, photos, listing data/copy) are present and usable.",
+        "All required listing data and market tips present",
+        "Full set of listing photos for template population"
+      ],
+      "fix": {
+        "target_asset_key": "team_logo",
+        "problem": "Logo on white background; asset_add_file overlay needs transparent PNG",
+        "prompt_delta": "Re-export the Sterling & Chase logo on a fully transparent background (PNG-24, alpha channel); retain all existing mark and wordmark elements exactly."
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        6,
+        10,
+        10
+      ]
+    },
+    "executability": {
+      "score": 10,
+      "evidence": [
+        "listing_photos[0-4] at 1536x1024px — sufficient resolution for image_crop_and_resize to 1080x1080 and 6x9in 300dpi postcard",
+        "team_logo has white background; asset_add_file compositing onto dark templates will produce white box artifact",
+        "image 3-7",
+        "listing_data",
+        "image 3",
+        "assets/listing.json"
+      ],
+      "deductions": [
+        "Logo white background blocks clean overlay in asset_add_file step",
+        "agent_headshot grey studio sweep is too clean for background-removal tool affordance; tool expects busy/non-neutral background",
+        "Image assets are high-res and suitable for cropping, resizing, and video creation.",
+        "JSON data is well-structured for text filling.",
+        "Photos are high-res, suitable for crop/resize and print",
+        "JSON data structured for text fill and merge"
+      ],
+      "fix": {
+        "target_asset_key": "team_logo",
+        "problem": "White background prevents clean asset_add_file overlay on dark postcard templates",
+        "prompt_delta": "Output logo as PNG-24 with transparent background; no white fill, no shadow, no border."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "listing_photos[0-4] are polished twilight/golden-hour architectural shots consistent with $12.85M luxury listing photography",
+        "agent_headshot reads as AI-generated stock (overly perfect skin, generic grey sweep) rather than a real broker's professional photo",
+        "image 2",
+        "image 3-7",
+        "image 3"
+      ],
+      "deductions": [
+        "AI-synthetic headshot would be flagged by a real client as not their actual agent",
+        "Property shown is not South Florida architecture (steep-roof, deciduous trees in image 3 suggest inland/mountain region)",
+        "All visuals are professional, high-quality, and consistent with luxury real estate marketing.",
+        "Headshot and property photos are studio-quality, luxury-appropriate",
+        "Listing copy and tips are authentic, not generic"
+      ],
+      "fix": {
+        "target_asset_key": "listing_photos[0]",
+        "problem": "Exterior shows non-South Florida architecture and deciduous trees; inconsistent with stated Beverly Hills/South Florida market",
+        "prompt_delta": "Twilight exterior of a contemporary South Florida mega-mansion: flat or low-pitch roof, white stucco, floor-to-ceiling glass, lush tropical landscaping, warm interior glow, dramatic sunset sky; photorealistic architectural photography style."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "image 1 logo uses gold (#C9A227 range) and near-black wordmark with red underline accent — matches declared palette",
+        "listing_data city_area is 'Beverly Hills' but brief/persona states South Florida; geographic identity inconsistent across assets",
+        "image 1",
+        "image 2",
+        "listing_data",
+        "assets/listing.json"
+      ],
+      "deductions": [
+        "Beverly Hills address in listing_data contradicts South Florida brand/market positioning",
+        "Agent headshot (male) breaks persona coherence with female agent name Victoria Sterling across all copy assets",
+        "Visuals and text maintain a consistent luxury brand identity, palette, and voice.",
+        "Logo, palette, and copy all reflect Sterling & Chase identity",
+        "Consistent luxury tone and color usage"
+      ],
+      "fix": {
+        "target_asset_key": "listing_data",
+        "problem": "city_area 'Beverly Hills' contradicts South Florida brand; all copy-fill steps will output wrong market",
+        "prompt_delta": "Update city_area to 'Coral Gables, FL' and ensure address, neighborhood references, and any geo-specific selling points reflect South Florida luxury market."
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 7,
+      "evidence": [
+        "6x9in + 0.125in bleed at 300dpi assumption is sound EDDM standard — client would accept without question",
+        "Decision to exclude reels from static pilot is pragmatic given mcp_workflow scope, but not flagged as a client-visible scope reduction",
+        "Recorded Decisions",
+        "REQ: Deliverables: IG/FB reels",
+        "assets/listing.json"
+      ],
+      "deductions": [
+        "Reel exclusion assumption not surfaced as a client deliverable gap — client explicitly listed reels as primary need",
+        "Brand hexes pinned without confirming against actual Canva brand kit; assumed values may differ from client's live kit",
+        "Decision to exclude reels directly contradicts client's explicit request.",
+        "Decision misrepresents workflow's capability to create quick-cut videos.",
+        "Assumptions (postcard size, palette hexes) are industry-standard and justified",
+        "No real input wrongly demoted to assumption"
+      ],
+      "fix": {
+        "target_asset_key": "recorded_decisions",
+        "problem": "Incorrectly excluded a mandatory deliverable (Reels).",
+        "prompt_delta": "Remove the decision to exclude Reels. The workflow includes steps for video creation and resizing, which should be utilized to produce Instagram and Facebook Reels as requested by the client."
+      },
+      "low_confidence": true,
+      "spread": 10,
+      "per_judge": [
+        7,
+        0,
+        10
+      ]
+    }
+  },
+  "overall": 9.0,
+  "verdict": "client-ready",
+  "top_risks": [
+    "CLIENT-REJECT (sev 9): The entire workflow is built on Adobe Express while the client explicitly demands Canva-only work inside their shared team account — this is a fundamental platform mismatch that invalidates every deliverable before a single pixel is placed.",
+    "AGENT CHOKE on 'agent_headshot': The headshot shows a male agent but listing_data names the agent as 'Victoria Sterling' — a clear gender mismatch the automated agent cannot reconcile when populating agent identity fields, causing it to stall or produce brand-damaging output on the very first personalized asset.",
+    "Task Fit 6/10: Headshot gender contradicts named agent Victoria Sterling in listing_data"
+  ],
+  "qc_gaps": [
+    "Per-asset self-QC averages 9.0/10, but package Task Fit scored 6 — assets are individually strong yet wrong/insufficient for the task."
+  ],
+  "weights": {
+    "task_fit": 0.17,
+    "completeness": 0.22,
+    "executability": 0.1,
+    "realism": 0.17,
+    "coherence": 0.22,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.066,
+  "rounds": []
+}

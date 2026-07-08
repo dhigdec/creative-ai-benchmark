@@ -1,0 +1,588 @@
+{
+  "assets": {
+    "grade_recipe": {
+      "entries": [
+        {
+          "key": "grade_recipe",
+          "input_requirement": "Set-grade recipe sheet (target exposure key, WB, shadow-lift, locked preset name) as a small JSON the editor follows so all 13 frames match",
+          "kind": "data",
+          "file": "assets/grade_recipe.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the lead retoucher at Wexford & Vale, a quiet-luxury British gifting\nstudio, writing the SET-GRADE RECIPE SHEET the editor follows so all 13 hamper frames end on ONE\nmatched look (Fortnum & Mason / Daylesford register: warm wicker, opened shadows, restrained\ncolour). Return ONE JSON object with EXACTLY these top-level keys:\n\"look_name\": a short name for the recipe (e.g. \"Quiet Luxury Hamper\");\n\"global_grade\": an object capturing the agreed GLOBAL targets, with keys \"exposure_ev\"\n(small positive lift as a number, e.g. 0.3), \"white_balance_target\" (one phrase, warm, e.g.\n\"warm 5600K, neutralise the cool mixed shoot light\"), \"highlight_recovery\" (a negative number,\ne.g. -40, pull blown wicker/lid back), \"light_portions\" (a small negative number, tone down broad\nbright areas), \"shadow_lift\" (a NEGATIVE amount meaning LIFT the basket-weave shadows, e.g. -25),\n\"contrast\" (gentle, small positive number), \"vibrance\" (small positive to protect food),\n\"saturation\" (small NEGATIVE for overall restraint);\n\"wicker_mask\": object with \"prompt\" EXACTLY \"the woven wicker basket body of the hamper\",\n\"temperature_push\" (small positive warm number) and \"yellow_saturation_lift\" (small positive\nnumber) — applied UNDER the mask only so ribbons and food stay neutral;\n\"badge_mask\": object with \"prompt\" EXACTLY \"the embossed leather badge on the front centre of the\nhamper\", \"exposure_lift\" (small positive), \"highlight_shaping\" (small positive to catch raised\nedges), \"dark_portions_deepen\" (small POSITIVE to deepen recessed channels), \"hsl_note\" (one line:\nland a rich tan, no orange cast);\n\"locked_preset\": object with \"intent\" (one line: a single non-stacked shared Creative warm\nsplit-tone that locks the set look) and \"display_name\" (a plausible Lightroom Creative preset\ndisplay name, e.g. \"Creative - Warm Contrast\" — the editor confirms the exact name from\nimage_list_presets at run time);\n\"depth_blur\": object with \"lifestyle\" (one line: whole-frame lens blur on un-cut lifestyle frames)\nand \"catalogue\" (one line: subject-preserving gaussian background blur on catalogue frames);\n\"backdrop\": object with \"hex\" EXACTLY \"#E8E8E8\", \"rgb\" EXACTLY \"232,232,232\", and \"shadow_note\"\n(one line: soft realistic feathered contact shadow under each hamper);\n\"frame_classes\": a list of EXACTLY 13 objects {\"file\": \"hamper_NN_slug.jpg\", \"class\":\n\"catalogue\"|\"lifestyle\"} matching the 13 delivered frames (8 catalogue, 5 lifestyle); use the\nfilenames hamper_01_classic_wicker_front.jpg ... hamper_13_luxe_leather_corner.jpg in order.\nVoice for any prose: Our tone is one of refined elegance and genuine appreciation for craftsmanship. We speak with a quiet confidence, always highlighting the provenance and quality of our meticulously selected contents.. JSON only.",
+            "prompt_file": "prompts/grade_recipe.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "grade_recipe.render",
+          "input_requirement": "Set-grade recipe sheet (target exposure key, WB, shadow-lift, locked preset name) as a small JSON the editor follows so all 13 frames match",
+          "kind": "data",
+          "file": "assets/grade_recipe.md",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the lead retoucher at Wexford & Vale, a quiet-luxury British gifting\nstudio, writing the SET-GRADE RECIPE SHEET the editor follows so all 13 hamper frames end on ONE\nmatched look (Fortnum & Mason / Daylesford register: warm wicker, opened shadows, restrained\ncolour). Return ONE JSON object with EXACTLY these top-level keys:\n\"look_name\": a short name for the recipe (e.g. \"Quiet Luxury Hamper\");\n\"global_grade\": an object capturing the agreed GLOBAL targets, with keys \"exposure_ev\"\n(small positive lift as a number, e.g. 0.3), \"white_balance_target\" (one phrase, warm, e.g.\n\"warm 5600K, neutralise the cool mixed shoot light\"), \"highlight_recovery\" (a negative number,\ne.g. -40, pull blown wicker/lid back), \"light_portions\" (a small negative number, tone down broad\nbright areas), \"shadow_lift\" (a NEGATIVE amount meaning LIFT the basket-weave shadows, e.g. -25),\n\"contrast\" (gentle, small positive number), \"vibrance\" (small positive to protect food),\n\"saturation\" (small NEGATIVE for overall restraint);\n\"wicker_mask\": object with \"prompt\" EXACTLY \"the woven wicker basket body of the hamper\",\n\"temperature_push\" (small positive warm number) and \"yellow_saturation_lift\" (small positive\nnumber) — applied UNDER the mask only so ribbons and food stay neutral;\n\"badge_mask\": object with \"prompt\" EXACTLY \"the embossed leather badge on the front centre of the\nhamper\", \"exposure_lift\" (small positive), \"highlight_shaping\" (small positive to catch raised\nedges), \"dark_portions_deepen\" (small POSITIVE to deepen recessed channels), \"hsl_note\" (one line:\nland a rich tan, no orange cast);\n\"locked_preset\": object with \"intent\" (one line: a single non-stacked shared Creative warm\nsplit-tone that locks the set look) and \"display_name\" (a plausible Lightroom Creative preset\ndisplay name, e.g. \"Creative - Warm Contrast\" — the editor confirms the exact name from\nimage_list_presets at run time);\n\"depth_blur\": object with \"lifestyle\" (one line: whole-frame lens blur on un-cut lifestyle frames)\nand \"catalogue\" (one line: subject-preserving gaussian background blur on catalogue frames);\n\"backdrop\": object with \"hex\" EXACTLY \"#E8E8E8\", \"rgb\" EXACTLY \"232,232,232\", and \"shadow_note\"\n(one line: soft realistic feathered contact shadow under each hamper);\n\"frame_classes\": a list of EXACTLY 13 objects {\"file\": \"hamper_NN_slug.jpg\", \"class\":\n\"catalogue\"|\"lifestyle\"} matching the 13 delivered frames (8 catalogue, 5 lifestyle); use the\nfilenames hamper_01_classic_wicker_front.jpg ... hamper_13_luxe_leather_corner.jpg in order.\nVoice for any prose: Our tone is one of refined elegance and genuine appreciation for craftsmanship. We speak with a quiet confidence, always highlighting the provenance and quality of our meticulously selected contents.. JSON only.",
+            "prompt_file": "prompts/grade_recipe.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "shopify_spec": {
+      "entries": [
+        {
+          "key": "shopify_spec",
+          "input_requirement": "Shopify image-spec CSV (filename, SKU, target square px, max file weight) driving the export/QA pass",
+          "kind": "data",
+          "file": "assets/shopify_spec.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Produce the SHOPIFY IMAGE-SPEC SHEET that drives the export + QA pass for the\n13 retouched Wexford & Vale hampers. This renders to a CSV, so the JSON top-level key \"rows\" must be\na LIST OF ROW OBJECTS whose keys are EXACTLY the CSV column names (state nothing extra): each row\nobject has EXACTLY these keys, in this order:\n\"filename\" — the FINAL Shopify export name, EXACTLY one of\nhamper-01-classic-wicker-front.jpg ... hamper-13-luxe-leather-corner.jpg (hyphenated, lowercase,\nmatching the 13 source frames in order);\n\"sku\" — a plausible SKU like \"WV-HMP-001\" through \"WV-HMP-013\" (zero-padded, ascending);\n\"product_title\" — a short quiet-luxury product name for that hamper (e.g. \"The Classic Willow\nHamper\"), Title Case, no brand prefix;\n\"target_px\" — EXACTLY \"2048x2048\" for every row (the Shopify square);\n\"max_file_weight_kb\" — an integer max file weight in KB (Shopify-sane, e.g. 480), same value every\nrow;\n\"format\" — EXACTLY \"JPG\" for every row;\n\"backdrop_hex\" — EXACTLY \"#E8E8E8\" for every row;\n\"frame_class\" — \"catalogue\" or \"lifestyle\", matching that frame's class in the grade recipe\n(8 catalogue, 5 lifestyle; rows 09-12 are the lifestyle_* frames, plus none others — i.e. frames\n09 lifestyle_kitchen, 10 lifestyle_doorstep, 11 lifestyle_table_spread, 12 lifestyle_hands_carry\nare lifestyle, all others catalogue).\nReturn EXACTLY 13 rows, one per frame, in ascending order 01..13. Voice for product titles:\nOur tone is one of refined elegance and genuine appreciation for craftsmanship. We speak with a quiet confidence, always highlighting the provenance and quality of our meticulously selected contents.. JSON only.",
+            "prompt_file": "prompts/shopify_spec.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "shopify_spec.render",
+          "input_requirement": "Shopify image-spec CSV (filename, SKU, target square px, max file weight) driving the export/QA pass",
+          "kind": "data",
+          "file": "assets/shopify_spec.csv",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Produce the SHOPIFY IMAGE-SPEC SHEET that drives the export + QA pass for the\n13 retouched Wexford & Vale hampers. This renders to a CSV, so the JSON top-level key \"rows\" must be\na LIST OF ROW OBJECTS whose keys are EXACTLY the CSV column names (state nothing extra): each row\nobject has EXACTLY these keys, in this order:\n\"filename\" — the FINAL Shopify export name, EXACTLY one of\nhamper-01-classic-wicker-front.jpg ... hamper-13-luxe-leather-corner.jpg (hyphenated, lowercase,\nmatching the 13 source frames in order);\n\"sku\" — a plausible SKU like \"WV-HMP-001\" through \"WV-HMP-013\" (zero-padded, ascending);\n\"product_title\" — a short quiet-luxury product name for that hamper (e.g. \"The Classic Willow\nHamper\"), Title Case, no brand prefix;\n\"target_px\" — EXACTLY \"2048x2048\" for every row (the Shopify square);\n\"max_file_weight_kb\" — an integer max file weight in KB (Shopify-sane, e.g. 480), same value every\nrow;\n\"format\" — EXACTLY \"JPG\" for every row;\n\"backdrop_hex\" — EXACTLY \"#E8E8E8\" for every row;\n\"frame_class\" — \"catalogue\" or \"lifestyle\", matching that frame's class in the grade recipe\n(8 catalogue, 5 lifestyle; rows 09-12 are the lifestyle_* frames, plus none others — i.e. frames\n09 lifestyle_kitchen, 10 lifestyle_doorstep, 11 lifestyle_table_spread, 12 lifestyle_hands_carry\nare lifestyle, all others catalogue).\nReturn EXACTLY 13 rows, one per frame, in ascending order 01..13. Voice for product titles:\nOur tone is one of refined elegance and genuine appreciation for craftsmanship. We speak with a quiet confidence, always highlighting the provenance and quality of our meticulously selected contents.. JSON only.",
+            "prompt_file": "prompts/shopify_spec.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "lookboard": {
+      "entries": [
+        {
+          "key": "lookboard[0]",
+          "input_requirement": "Brand reference look-board (Fortnum & Mason / Daylesford quiet-luxury aesthetic, 2 boards) anchoring the target grade",
+          "kind": "image",
+          "file": "assets/lookboard_01_palette.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Quiet-luxury BRAND REFERENCE LOOK-BOARD, board 1 of 2, in the register of premium British food-hall gifting (Fortnum & Mason / Daylesford editorial mood — evoke the AESTHETIC ONLY, invent no real brand marks). A clean flat-lay collage on warm off-white: a tidy row of muted swatch chips in the target palette (warm honey wicker, soft cream, sage green, oat linen, deep burgundy ribbon, rich tan leather), a small woven-wicker texture tile, and a leather-grain tile. Tasteful sans-serif annotation labels reading EXACTLY \"QUIET LUXURY\", \"WARM WICKER\", \"OPENED SHADOWS\", \"RESTRAINED COLOUR\" and \"#E8E8E8 BACKDROP\" placed beside the relevant chips — flawless spelling, small and elegant. Flat, editorial, magazine-moodboard feel. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/lookboard_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "Label text size is slightly larger than 'small and tidy' specification.",
+              "The 'soft contact shadow' effect is not clearly visible or is too subtle on the texture tiles.",
+              "The label text color is black, which is slightly stronger than the preferred flat, restrained tone; a softer dark grey would be better."
+            ]
+          }
+        },
+        {
+          "key": "lookboard[1]",
+          "input_requirement": "Brand reference look-board (Fortnum & Mason / Daylesford quiet-luxury aesthetic, 2 boards) anchoring the target grade",
+          "kind": "image",
+          "file": "assets/lookboard_02_finish.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Quiet-luxury BRAND REFERENCE LOOK-BOARD, board 2 of 2, same premium-gifting register (Fortnum & Mason / Daylesford editorial mood — aesthetic only, no real brand marks). A grid of small example treatment thumbnails on warm off-white showing the TARGET FINISH for the hamper retouch: a hamper cleanly cut out on a flat light-grey backdrop with a soft contact shadow; a close-up of a richly-lit embossed leather badge; honey-warmed wicker; a softly blurred lifestyle background. Small elegant sans-serif captions reading EXACTLY \"CUT-OUT ON #E8E8E8\", \"SOFT CONTACT SHADOW\", \"BADGE ENHANCED\", \"TWO-STAGE DEPTH BLUR\" and \"ONE SHARED PRESET\" — perfect spelling, small and tidy. Flat, calm, editorial moodboard styling. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/lookboard_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 8,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "The label 'HONEY-WARMED WICKER' uses 'WARMED' which is less elegant than 'WARM' as per the brief tone; consider revising to 'HONEY-WARM WICKER'.",
+              "The wicker texture image is slightly more saturated and warm than the muted palette expected, reducing the 'restrained colour' feel.",
+              "The overall label text size is slightly larger than 'small and tidy' and could be more refined in weight to enhance quiet luxury feel.",
+              "The background is very close to #E8E8E8 but has a slight warm tint; ensure exact color match for consistency."
+            ]
+          }
+        }
+      ]
+    },
+    "grey_swatch": {
+      "entries": [
+        {
+          "key": "grey_swatch",
+          "input_requirement": "Light-grey website background swatch — a flat, perfectly even #E8E8E8 (RGB 232,232,232) plate the cut-outs must sit on",
+          "kind": "program",
+          "file": "assets/backdrop_e8e8e8.png",
+          "format": "png",
+          "generator": {
+            "provider": "deterministic",
+            "model": "PIL flat #E8E8E8 fill",
+            "prompt": "{\"hex\": \"#E8E8E8\", \"rgb\": \"232,232,232\", \"even\": true}"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          },
+          "dims": [
+            1024,
+            1024
+          ]
+        }
+      ]
+    },
+    "hamper_photos": {
+      "entries": [
+        {
+          "key": "hamper_photos[0]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_01_classic_wicker_front.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: a large classic willow gift hamper, lid closed, photographed straight-on and front-centred on a pale studio sweep with generous dead floor around it to crop away. Shot HANDHELD so the basket lip / table-edge horizon is slightly crooked (a few degrees off level — leave it tilted, do NOT pre-level it). Mixed, slightly cool/uneven shoot lighting that needs warming. The brightest wicker highlights, the pale lid and any window behind are GENUINELY BLOWN OUT to near-white with clipped detail. Leave plenty of empty studio floor around the hamper to be cropped later. The front-centre embossed leather badge is real raised leather but currently sits a touch flat and under-lit (so it can be selectively enhanced later). No applied logo or readable text on the badge — blank embossed leather only. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hamper_photos_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 8,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "The front-centre badge is genuine and raised, but it does not appear to be \"embossed\" as it is smooth and blank, lacking any pressed-in texture or pattern as implied by the term.",
+              "The 'slightly crooked horizon' is present, but it is extremely subtle, potentially less noticeable than intended by the brief's wording."
+            ]
+          }
+        },
+        {
+          "key": "hamper_photos[1]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_02_open_lid_overhead.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: the same style hamper with the lid open from a high three-quarter angle, jars of preserves, a wedge of cheese, crackers and a wine bottle nested in straw inside. Shot HANDHELD so the basket lip / table-edge horizon is slightly crooked (a few degrees off level — leave it tilted, do NOT pre-level it). Mixed, slightly cool/uneven shoot lighting that needs warming. The brightest wicker highlights, the pale lid and any window behind are GENUINELY BLOWN OUT to near-white with clipped detail. Leave plenty of empty studio floor around the hamper to be cropped later. The front-centre embossed leather badge is real raised leather but currently sits a touch flat and under-lit (so it can be selectively enhanced later). No applied logo or readable text on the badge — blank embossed leather only. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hamper_photos_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "hamper_photos[2]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_03_ribbon_detail.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: a medium hamper tied with a wide satin ribbon and bow across the lid, framed tight on the bow and the embossed leather badge below it. Shot HANDHELD so the basket lip / table-edge horizon is slightly crooked (a few degrees off level — leave it tilted, do NOT pre-level it). Mixed, slightly cool/uneven shoot lighting that needs warming. The brightest wicker highlights, the pale lid and any window behind are GENUINELY BLOWN OUT to near-white with clipped detail. Leave plenty of empty studio floor around the hamper to be cropped later. The front-centre embossed leather badge is real raised leather but currently sits a touch flat and under-lit (so it can be selectively enhanced later). No applied logo or readable text on the badge — blank embossed leather only. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hamper_photos_2.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "hamper_photos[3]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_04_tall_picnic_basket.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: a tall two-tier picnic hamper with leather buckle straps, standing on a plain surface, slightly low camera angle showing the front badge. Shot HANDHELD so the basket lip / table-edge horizon is slightly crooked (a few degrees off level — leave it tilted, do NOT pre-level it). Mixed, slightly cool/uneven shoot lighting that needs warming. The brightest wicker highlights, the pale lid and any window behind are GENUINELY BLOWN OUT to near-white with clipped detail. Leave plenty of empty studio floor around the hamper to be cropped later. The front-centre embossed leather badge is real raised leather but currently sits a touch flat and under-lit (so it can be selectively enhanced later). No applied logo or readable text on the badge — blank embossed leather only. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hamper_photos_3.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "The stitching on the front-centre leather badge on the lower hamper is slightly soft and lacks crispness, which could be improved for a luxury item."
+            ]
+          }
+        },
+        {
+          "key": "hamper_photos[4]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_05_wine_and_cheese.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: a small wine-and-cheese hamper, a dark wine bottle and a board of cheeses arranged beside the open basket. Shot HANDHELD so the basket lip / table-edge horizon is slightly crooked (a few degrees off level — leave it tilted, do NOT pre-level it). Mixed, slightly cool/uneven shoot lighting that needs warming. The brightest wicker highlights, the pale lid and any window behind are GENUINELY BLOWN OUT to near-white with clipped detail. Leave plenty of empty studio floor around the hamper to be cropped later. The front-centre embossed leather badge is real raised leather but currently sits a touch flat and under-lit (so it can be selectively enhanced later). No applied logo or readable text on the badge — blank embossed leather only. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hamper_photos_4.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "hamper_photos[5]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_06_afternoon_tea_set.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: an afternoon-tea hamper with a tea caddy, a jar of honey and shortbread tins tucked into the wicker, soft pale props. Shot HANDHELD so the basket lip / table-edge horizon is slightly crooked (a few degrees off level — leave it tilted, do NOT pre-level it). Mixed, slightly cool/uneven shoot lighting that needs warming. The brightest wicker highlights, the pale lid and any window behind are GENUINELY BLOWN OUT to near-white with clipped detail. Leave plenty of empty studio floor around the hamper to be cropped later. The front-centre embossed leather badge is real raised leather but currently sits a touch flat and under-lit (so it can be selectively enhanced later). No applied logo or readable text on the badge — blank embossed leather only. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hamper_photos_5.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "The 'raised embossed leather' effect on the front-centre badge, while clearly not a flat sticker, could exhibit a slightly more pronounced and crisp embossing for a truly premium, deeply debossed appearance.",
+              "While the bright window area introduces a cool white balance and blown-out highlights as requested, the overall 'mixed cool-ish white balance' throughout the entire scene is subtle rather than strongly contrasting, leaning more towards a generally bright and natural light."
+            ]
+          }
+        },
+        {
+          "key": "hamper_photos[6]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_07_festive_red_ribbon.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: a festive hamper with a deep-red ribbon and a sprig of greenery on the lid, front-centre leather badge visible. Shot HANDHELD so the basket lip / table-edge horizon is slightly crooked (a few degrees off level — leave it tilted, do NOT pre-level it). Mixed, slightly cool/uneven shoot lighting that needs warming. The brightest wicker highlights, the pale lid and any window behind are GENUINELY BLOWN OUT to near-white with clipped detail. Leave plenty of empty studio floor around the hamper to be cropped later. The front-centre embossed leather badge is real raised leather but currently sits a touch flat and under-lit (so it can be selectively enhanced later). No applied logo or readable text on the badge — blank embossed leather only. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hamper_photos_6.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "hamper_photos[7]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_08_compact_desk_gift.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: a compact desk-sized gift basket of chocolates and biscuits, shot square-on at eye level on a clean sweep. Shot HANDHELD so the basket lip / table-edge horizon is slightly crooked (a few degrees off level — leave it tilted, do NOT pre-level it). Mixed, slightly cool/uneven shoot lighting that needs warming. The brightest wicker highlights, the pale lid and any window behind are GENUINELY BLOWN OUT to near-white with clipped detail. Leave plenty of empty studio floor around the hamper to be cropped later. The front-centre embossed leather badge is real raised leather but currently sits a touch flat and under-lit (so it can be selectively enhanced later). No applied logo or readable text on the badge — blank embossed leather only. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hamper_photos_7.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "hamper_photos[8]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_09_lifestyle_kitchen.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: a full hamper resting on a marble kitchen island in a bright English country kitchen, a vase of eucalyptus and a linen runner softly behind it — an un-cut lifestyle frame meant to keep its room context. Shot HANDHELD with a slightly crooked horizon (a few degrees off level — leave it tilted). Mixed, slightly cool window light that needs warming. The brightest window / bright background patches are GENUINELY BLOWN OUT to near-white with clipped detail. The front-centre embossed leather badge is real raised leather, currently a touch flat and under-lit. Keep the surrounding room/garden context in frame (this is an un-cut lifestyle frame). Blank embossed leather badge, no applied logo or readable text. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hamper_photos_8.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        },
+        {
+          "key": "hamper_photos[9]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_10_lifestyle_doorstep.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: a gift hamper left on a painted period front doorstep beside potted bay trees, warm morning light, a lived-in lifestyle frame with the porch softly behind. Shot HANDHELD with a slightly crooked horizon (a few degrees off level — leave it tilted). Mixed, slightly cool window light that needs warming. The brightest window / bright background patches are GENUINELY BLOWN OUT to near-white with clipped detail. The front-centre embossed leather badge is real raised leather, currently a touch flat and under-lit. Keep the surrounding room/garden context in frame (this is an un-cut lifestyle frame). Blank embossed leather badge, no applied logo or readable text. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The image fails to include 'empty studio floor around the hamper to crop' as explicitly requested in the brief for a required fault. Instead, it features a natural, realistic outdoor doorstep setting, which contradicts this specific instruction.",
+            "prompt_file": "prompts/hamper_photos_9.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 2,
+            "issues": []
+          }
+        },
+        {
+          "key": "hamper_photos[10]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_11_lifestyle_table_spread.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: an opened hamper on a wooden garden table with its contents spread on a linen cloth — glasses, a board, blooms — a relaxed editorial lifestyle scene. Shot HANDHELD with a slightly crooked horizon (a few degrees off level — leave it tilted). Mixed, slightly cool window light that needs warming. The brightest window / bright background patches are GENUINELY BLOWN OUT to near-white with clipped detail. The front-centre embossed leather badge is real raised leather, currently a touch flat and under-lit. Keep the surrounding room/garden context in frame (this is an un-cut lifestyle frame). Blank embossed leather badge, no applied logo or readable text. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- The specified fault 'empty studio floor around the hamper to crop' is not present; the image depicts a fully furnished lifestyle scene rather than a studio setting with extra floor space.\n- The 'slightly crooked horizon' is extremely subtle, almost negligible, and not as pronounced as might be expected for a specified fault.\n- While there is a mix of warm and cool light sources, the overall white balance on the main subject leans warm, and the description 'mixed cool-ish white balance' is not strongly met.",
+            "prompt_file": "prompts/hamper_photos_10.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 3,
+            "issues": []
+          }
+        },
+        {
+          "key": "hamper_photos[11]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_12_lifestyle_hands_carry.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: a hamper being carried by its handle, framed from the chest down so only forearms and hands show — anatomically correct hands gripping the willow handle, the rest of the body out of frame, soft garden bokeh behind. Natural skin texture with visible pores on the forearms and hands (no beauty retouching); anatomically correct hands with five fingers each, knuckles and tendons believable, gripping the willow handle; no face in frame. Shot HANDHELD with a slightly crooked horizon (a few degrees off level — leave it tilted). Mixed, slightly cool window light that needs warming. The brightest window / bright background patches are GENUINELY BLOWN OUT to near-white with clipped detail. The front-centre embossed leather badge is real raised leather, currently a touch flat and under-lit. Keep the surrounding room/garden context in frame (this is an un-cut lifestyle frame). Blank embossed leather badge, no applied logo or readable text. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hamper_photos_11.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": [
+              "The 'genuine RAISED embossed leather' detail on the front-centre badge is not unequivocally clear; while it appears to be a real leather tag and not a flat sticker, the 'raised embossed' characteristic is subtle and not distinctly evident."
+            ]
+          }
+        },
+        {
+          "key": "hamper_photos[12]",
+          "input_requirement": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge, genuinely blown highlights and slightly crooked verticals) — the 13-image set",
+          "kind": "image",
+          "file": "assets/hamper_13_luxe_leather_corner.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: a premium leather-trimmed hamper, three-quarter view emphasising the corner leather and the embossed front badge, on a neutral sweep. Shot HANDHELD so the basket lip / table-edge horizon is slightly crooked (a few degrees off level — leave it tilted, do NOT pre-level it). Mixed, slightly cool/uneven shoot lighting that needs warming. The brightest wicker highlights, the pale lid and any window behind are GENUINELY BLOWN OUT to near-white with clipped detail. Leave plenty of empty studio floor around the hamper to be cropped later. The front-centre embossed leather badge is real raised leather but currently sits a touch flat and under-lit (so it can be selectively enhanced later). No applied logo or readable text on the badge — blank embossed leather only. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hamper_photos_12.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        }
+      ]
+    },
+    "hero_fabric_frame": {
+      "entries": [
+        {
+          "key": "hero_fabric_frame",
+          "input_requirement": "Hero hamper frame with draped fabric/material underneath that must be removed before compositing onto the backdrop",
+          "kind": "image",
+          "file": "assets/hero_fabric_base.jpg",
+          "format": "jpg",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "openai",
+            "model": "gpt-image-2",
+            "quality": "high",
+            "size": "1024x1024",
+            "prompt": "Candid documentary product photograph, shot on a 50mm lens at f/4, available natural window light from a softbox, subtle film grain, realistic depth of field. Photoreal materials, true-to-life: the woven willow/wicker shows individual strands of weave with real texture and small imperfections; the embossed leather front-centre badge has genuine raised-and-recessed emboss with real grain, NOT a printed flat sticker; believable fabric wrinkles in ribbons and tissue. Imperfect, lived-in detail; asymmetric composition; NOT a staged glossy stock photo, NOT CGI-glossy, NOT over-saturated, NOT airbrushed. Scene: the HERO luxury willow gift hamper, lid closed, front-centred and shot straight-on, sitting on a generous piece of DRAPED FABRIC / soft material that pools and folds underneath and around the base of the basket (e.g. a crumpled linen or velvet drape) — the fabric is clearly a separate layer beneath the hamper, with visible folds and a soft edge, so it can be cleanly selected and removed later. The hamper itself sits sharp and fully in frame with a little clean space around it. Mixed slightly cool light and a few GENUINELY BLOWN highlights on the pale wicker; the front-centre embossed leather badge is real raised leather, blank (no logo or text), a touch under-lit. Slightly crooked horizon. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/hero_fabric_frame_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 10,
+            "judge": "gemini/gemini-2.5-flash",
+            "attempts": 1,
+            "issues": []
+          }
+        }
+      ]
+    }
+  }
+}

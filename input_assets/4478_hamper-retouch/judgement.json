@@ -1,0 +1,213 @@
+{
+  "task_id": 4478,
+  "slug": "hamper-retouch",
+  "title": "Luxury Shopify hamper line — 13-hamper editorial retouch: per-frame geometry + masked tonal grade, selectively-enhanced embossed leather badge, warmed wicker, two-stage depth blur, shared quiet-luxury preset, cut-out onto a light-grey studio backdrop with a realistic contact shadow, Shopify exports",
+  "category": "Photo Retouching & Enhancement",
+  "family": "Photo & Image Editing",
+  "archetype": "editing",
+  "panel": {
+    "judges_ran": [
+      "anthropic/claude-sonnet-4-6",
+      "gemini/gemini-2.5-flash",
+      "openai/gpt-4.1"
+    ],
+    "judges_failed": [],
+    "confidence": "panel"
+  },
+  "dimensions": {
+    "task_fit": {
+      "score": 7,
+      "evidence": [
+        "hamper_photos[0-12]: all 13 frames show wicker hampers with leather badges matching brief's core subject",
+        "grade_recipe.json names badge_mask prompt, wicker_mask prompt, frame_classes split 8 catalogue / 5 lifestyle correctly",
+        "shopify_spec.json",
+        "image 4-16: all show luxury hampers with visible embossed leather badge and wicker",
+        "assets/grade_recipe.json: contains all grade, mask, and preset details as briefed"
+      ],
+      "deductions": [
+        "No dedicated hero-fabric frame supplied; brief mandates one hamper on draped fabric for removal — none of the 13 clearly shows draped fabric beneath the hamper as primary removal target",
+        "shopify_spec.json filenames diverge from grade_recipe.json frame_classes filenames (e.g. 'hamper_02_gourmet_selection_open.jpg' vs 'hamper-02-countryside-picnic-overhead.jpg'), creating SKU-to-file mapping ambiguity",
+        "Shopify spec provided as JSON, but brief requested CSV.",
+        "All 13 hamper frames match the briefed subject and styling",
+        "Reference look-boards and swatch match quiet-luxury and #E8E8E8 requirements"
+      ],
+      "fix": {
+        "target_asset_key": "hamper_photos[12]",
+        "problem": "No hero frame with draped fabric beneath hamper for image_fill_area removal step",
+        "prompt_delta": "Regenerate as a luxury wicker hamper sitting ON a visibly draped cream/linen fabric that extends across the full floor beneath it; fabric must be the dominant background element requiring removal; studio lighting, slightly crooked vertical, blown window highlight"
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        7,
+        10
+      ]
+    },
+    "completeness": {
+      "score": 9,
+      "evidence": [
+        "grade_recipe.json present with all required keys: exposure_ev, white_balance_target, wicker_mask, badge_mask, locked_preset, depth_blur, frame_classes",
+        "shopify_spec.json present with all 13 rows, target_px, max_file_weight_kb, SKU, format",
+        "shopify_spec.json",
+        "assets/grade_recipe.json: full grade, mask, and frame class data present",
+        "assets/shopify_spec.json: all 13 filenames, SKUs, and export specs present"
+      ],
+      "deductions": [
+        "Hero hamper frame on draped fabric (brief states 'required' input) is absent — no image in the 13 clearly fulfils image_select_by_prompt('draped fabric/material underneath the hamper')",
+        "shopify_spec delivered as .json not .csv; brief and workflow specify CSV; the .json render does not satisfy data-merge CSV consumability without agent conversion",
+        "All required data fields for Shopify spec are present in the JSON.",
+        "All 13 raw hamper images are provided.",
+        "No mandatory data or image asset missing",
+        "All required reference, swatch, and recipe assets present"
+      ],
+      "fix": {
+        "target_asset_key": "shopify_spec",
+        "problem": "Spec delivered as JSON only; workflow step needs a .csv file directly",
+        "prompt_delta": "Render shopify_spec as BOTH shopify_spec.json AND shopify_spec.csv (identical rows); CSV must have header row: filename,sku,product_title,target_px,max_file_weight_kb,format,backdrop_hex,frame_class"
+      },
+      "low_confidence": true,
+      "spread": 4,
+      "per_judge": [
+        6,
+        9,
+        10
+      ]
+    },
+    "executability": {
+      "score": 6,
+      "evidence": [
+        "image 4 (hamper_photos[0]): studio backdrop with visible tripod/equipment, slightly cool mixed light, leather badge present — image_auto_straighten and image_select_by_prompt(badge) have clear targets",
+        "image 3 (grey_swatch): deterministic flat #E8E8E8 fill confirmed visually — image_fill_area and contact_shadow_composite PIL step can consume directly",
+        "shopify_spec.json",
+        "image 4-16: raw, uncut, mixed-light hamper photos with badges and backgrounds",
+        "image 3: flat #E8E8E8 swatch for compositing/cut-out"
+      ],
+      "deductions": [
+        "image_select_by_prompt('draped fabric/material underneath the hamper') has no valid target frame — the hero-fabric removal step in the workflow chain cannot execute",
+        "shopify_spec.csv absent; image_crop_and_resize QA loop references CSV rows by filename; agent must parse JSON instead, adding fragile conversion step",
+        "Shopify spec is JSON, but workflow requires CSV for data consumption.",
+        "This format mismatch will block the export/QA pass.",
+        "All images have busy backgrounds for cut-out and background removal",
+        "All data assets are in JSON/CSV for direct agent consumption"
+      ],
+      "fix": {
+        "target_asset_key": "shopify_spec",
+        "problem": "Shopify spec is JSON, not CSV.",
+        "prompt_delta": "Render the Shopify image specification as a CSV file, ensuring it contains all rows and columns from the original JSON data."
+      },
+      "low_confidence": true,
+      "spread": 6,
+      "per_judge": [
+        6,
+        4,
+        10
+      ]
+    },
+    "realism": {
+      "score": 10,
+      "evidence": [
+        "images 13-16 (lifestyle frames): genuine environmental depth, natural window light, real props (wine glasses, flowers, doorstep) — indistinguishable from client shoot",
+        "image 4 (hamper_photos[0]): visible studio equipment (tripod arm top-left), slightly cool uneven floor — authentic raw-shoot feel with blown window",
+        "hamper_photos[0]",
+        "lookboard[0]",
+        "image 4-16: authentic, slightly imperfect studio/lifestyle raw frames",
+        "image 1-2: look-boards are plausible, not synthetic or uncanny"
+      ],
+      "deductions": [
+        "image 11 (hamper_photos[7]): near-perfect studio white background with no crooked verticals or blown highlights — too clean for 'raw' brief requirement",
+        "lookboard[1] (image 2): badge-enhanced and wicker reference panels look AI-rendered rather than real brand tearsheet — minor credibility gap for client-facing reference",
+        "Raw hamper photos exhibit genuine shoot characteristics and imperfections.",
+        "Look-boards are professionally designed and authentic to a luxury brand.",
+        "Hamper photos show real-world lighting, scuffs, and badge details",
+        "Reference boards are styled as genuine client handover"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    },
+    "coherence": {
+      "score": 10,
+      "evidence": [
+        "lookboard[0] (image 1): palette swatches match brand hex set exactly — burgundy, cream, sage, tan, #E8E8E8 all present and labelled",
+        "grade_recipe.json locked_preset 'Creative - Warm Shadow Lift' and wicker/badge mask values consistent across all 13 frame_classes entries",
+        "lookboard[0]",
+        "grade_recipe.json",
+        "image 1: palette matches brand (burgundy, cream, sage, tan, #E8E8E8)",
+        "image 4-16: all hampers use consistent badge, ribbon, and wicker styling"
+      ],
+      "deductions": [
+        "Frame filename keys in grade_recipe.json (snake_case .jpg) do not match shopify_spec.json (kebab-case .jpg) — agent cannot auto-join the two data assets without fuzzy matching",
+        "image 11 (hamper_photos[7]) uses grey ribbon/bow; image 9 (hamper_photos[5]) uses pink tissue — ribbon colour inconsistency across set may survive grading but weakens set coherence",
+        "Look-boards and grade recipe consistently reflect the 'quiet luxury' brand aesthetic.",
+        "Palette and styling cues are well-integrated across all reference materials.",
+        "No visual drift from Wexford & Vale brand identity",
+        "All assets use the same palette and quiet-luxury cues"
+      ],
+      "fix": {
+        "target_asset_key": "grade_recipe",
+        "problem": "frame_classes filenames use snake_case but shopify_spec uses kebab-case; agent join will fail",
+        "prompt_delta": "Regenerate grade_recipe.json frame_classes so every 'file' value exactly matches the 'filename' field in shopify_spec.json (kebab-case, e.g. 'hamper-01-classic-wicker-front.jpg')"
+      },
+      "low_confidence": true,
+      "spread": 3,
+      "per_judge": [
+        7,
+        10,
+        10
+      ]
+    },
+    "decision_quality": {
+      "score": 10,
+      "evidence": [
+        "Decision correctly demotes Fortnum & Mason licensed imagery to run-time Adobe Stock lookup — avoids IP risk, sound assumption",
+        "Contact shadow correctly flagged as local PIL step with honest [L] label — accurate capability boundary for the connector chain",
+        "DECISIONS[0]",
+        "DECISIONS[6]",
+        "All assumptions in RECORDED DECISIONS are justified and match the brief",
+        "No real input demoted to assumption; all are output/processing specs"
+      ],
+      "deductions": [
+        "Decision assumes lifestyle frames are indices 09-12 but grade_recipe.json frame_classes lists only 4 lifestyle entries (02,04,06,08) not matching that index range — blur routing will misfire",
+        "shopify_spec.json assumed to satisfy 'CSV' requirement without generating actual .csv — risky assumption that agent can transparently convert",
+        "All assumptions are sound interpretations of the brief and workflow.",
+        "No real inputs were wrongly demoted to assumptions.",
+        "No risky or client-unfriendly assumptions made",
+        "All output specs are clearly separated from input assets"
+      ],
+      "fix": null,
+      "low_confidence": false,
+      "spread": 2,
+      "per_judge": [
+        8,
+        10,
+        10
+      ]
+    }
+  },
+  "overall": 8.0,
+  "verdict": "minor-gaps",
+  "top_risks": [
+    "CLIENT-REJECT (sev 8): No dedicated hero frame with draped fabric is supplied — the brief explicitly requires one hero_fabric_base image for the fabric-removal step, but every asset in the inventory is labelled as a generic hamper_photos[] entry; there is no separately identified hero fabric shot to hand over, making that deliverable unexecutable from the provided assets.",
+    "AGENT CHOKE on 'hamper_photos[0]': The workflow calls image_select_by_prompt('the draped fabric/material underneath the hamper') on the hero frame, but hamper_photos[0] shows a plain studio floor with zero draped fabric present — the prompt-mask will return an empty or garbage selection, causing image_fill_area to flood the wrong region and corrupting the very first frame before the pipeline even reaches grading.",
+    "Executability 6/10: image_select_by_prompt('draped fabric/material underneath the hamper') has no valid target frame — the hero-fabric removal step in the workflow chain cannot execute"
+  ],
+  "qc_gaps": [
+    "Per-asset self-QC averages 9.5/10, but package Executability scored 6 — assets are individually strong yet wrong/insufficient for the task."
+  ],
+  "weights": {
+    "task_fit": 0.22,
+    "completeness": 0.13,
+    "executability": 0.3,
+    "realism": 0.17,
+    "coherence": 0.06,
+    "decision_quality": 0.12
+  },
+  "judge_cost_usd": 0.12,
+  "rounds": []
+}

@@ -1,0 +1,298 @@
+{
+  "assets": {
+    "dotgain_spec": {
+      "entries": [
+        {
+          "key": "dotgain_spec",
+          "input_requirement": "Print-spec / dot-gain JSON (mesh, LPI, dot-gain %, underbase strategy, max screen budget) grounding halftone radius + choke",
+          "kind": "data",
+          "file": "assets/dotgain_spec.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the pre-press tech at a custom screen-print shop, writing the production\nspec sheet the separator follows to halftone an airbrushed cloud-gradient design for a 4-colour spot\nprint on a BLACK 100%% cotton tee (white underbase + lavender + cobalt + deep purple). Return a JSON\nobject with EXACTLY these top-level keys:\n\"job\": {\"job_name\": \"Head In The Clouds Tee\", \"garment\": \"black 100% cotton tee\", \"garment_colour\":\n\"black\", \"press\": \"automatic\", \"stations\": 6, \"total_screens\": 4};\n\"halftone\": {\"lpi\": <choose a realistic value for a black-tee cloud gradient, 45-65 LPI>, \"dot_shape\":\n\"round\", \"screen_angle_deg\": <a single registration-safe angle, 22 or 45>, \"min_printable_dot_pct\":\n<8-12>, \"max_dot_pct_on_underbase\": <70-80, so shadows don't plug on the dark tee>};\n\"dot_gain\": {\"expected_gain_pct\": <18-25, realistic for plastisol on a black tee>, \"choke_px\":\n<1-3, the gaussian choke on the dot field to compensate>, \"underbase_choke_px\": <1-2>, \"note\":\n\"<one line on why the choke is needed on a dark garment>\"};\n\"underbase\": {\"strategy\": \"white underbase printed first then flashed\", \"underbase_ink\": \"white\",\n\"flash\": true, \"highlight_white\": false};\n\"screen_budget\": {\"max_screens\": 4, \"mesh_per_colour\": [<4 realistic mesh counts, e.g. 110 for the\nunderbase white, 156-230 for the halftone spot colours>], \"registration_tolerance_mm\": <0.2-0.5>};\n\"print_order\": [EXACTLY 4 strings in lay-down order, starting \"White Underbase\" then the three spots].\nUse real, internally-consistent screen-print numbers. JSON only — no markdown, no commentary.",
+            "prompt_file": "prompts/dotgain_spec.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "dotgain_spec.render",
+          "input_requirement": "Print-spec / dot-gain JSON (mesh, LPI, dot-gain %, underbase strategy, max screen budget) grounding halftone radius + choke",
+          "kind": "data",
+          "file": "assets/dotgain_spec.md",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "You are the pre-press tech at a custom screen-print shop, writing the production\nspec sheet the separator follows to halftone an airbrushed cloud-gradient design for a 4-colour spot\nprint on a BLACK 100%% cotton tee (white underbase + lavender + cobalt + deep purple). Return a JSON\nobject with EXACTLY these top-level keys:\n\"job\": {\"job_name\": \"Head In The Clouds Tee\", \"garment\": \"black 100% cotton tee\", \"garment_colour\":\n\"black\", \"press\": \"automatic\", \"stations\": 6, \"total_screens\": 4};\n\"halftone\": {\"lpi\": <choose a realistic value for a black-tee cloud gradient, 45-65 LPI>, \"dot_shape\":\n\"round\", \"screen_angle_deg\": <a single registration-safe angle, 22 or 45>, \"min_printable_dot_pct\":\n<8-12>, \"max_dot_pct_on_underbase\": <70-80, so shadows don't plug on the dark tee>};\n\"dot_gain\": {\"expected_gain_pct\": <18-25, realistic for plastisol on a black tee>, \"choke_px\":\n<1-3, the gaussian choke on the dot field to compensate>, \"underbase_choke_px\": <1-2>, \"note\":\n\"<one line on why the choke is needed on a dark garment>\"};\n\"underbase\": {\"strategy\": \"white underbase printed first then flashed\", \"underbase_ink\": \"white\",\n\"flash\": true, \"highlight_white\": false};\n\"screen_budget\": {\"max_screens\": 4, \"mesh_per_colour\": [<4 realistic mesh counts, e.g. 110 for the\nunderbase white, 156-230 for the halftone spot colours>], \"registration_tolerance_mm\": <0.2-0.5>};\n\"print_order\": [EXACTLY 4 strings in lay-down order, starting \"White Underbase\" then the three spots].\nUse real, internally-consistent screen-print numbers. JSON only — no markdown, no commentary.",
+            "prompt_file": "prompts/dotgain_spec.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "spot_colour_csv": {
+      "entries": [
+        {
+          "key": "spot_colour_csv",
+          "input_requirement": "Spot-colour CSV (ink_name, pantone, rgb_hex, mesh_count, squeegee_durometer, flash_temp_F, print_order) feeding the registration/swatch-card merge",
+          "kind": "data",
+          "file": "assets/spot_colour.json",
+          "format": "json",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Produce the SPOT-COLOUR data table the shop hands the Illustrator separation-sheet\ntemplate (screenprint_sep_sheet.ai) for a 4-colour spot print on a black tee. The CSV that render_csv\nemits from this JSON drives a data-merge: ONE registration/swatch card per row, so the JSON top-level\nkey holds a LIST OF ROW OBJECTS whose keys are the EXACT Illustrator Variable / CSV column names the\ntemplate binds. Return a JSON object with EXACTLY one top-level key \"rows\": a list of EXACTLY 4 objects,\neach with these keys spelled EXACTLY (these are the merge field names):\n\"ink_name\", \"pantone\", \"rgb_hex\", \"mesh_count\", \"squeegee_durometer\", \"flash_temp_F\", \"print_order\".\nUse these EXACT 4 rows, in this order (transcribe the fixed values faithfully):\n1. ink_name \"White Underbase\", pantone \"—\", rgb_hex \"FFFFFF\", mesh_count 110, squeegee_durometer 70,\n   flash_temp_F <a realistic plastisol flash cure temp, ~300>, print_order 1.\n2. ink_name \"Lavender\", pantone \"2635C\", rgb_hex \"C9B6E4\", mesh_count <156-200>, squeegee_durometer 70,\n   flash_temp_F <~300>, print_order 2.\n3. ink_name \"Cobalt Blue\", pantone \"2945C\", rgb_hex \"1E3FAE\", mesh_count <156-200>, squeegee_durometer\n   70, flash_temp_F <~300>, print_order 3.\n4. ink_name \"Deep Purple\", pantone \"2685C\", rgb_hex \"3B1E63\", mesh_count <156-200>, squeegee_durometer\n   75, flash_temp_F <~320, last-down dark ink>, print_order 4.\nrgb_hex values MUST be exactly FFFFFF, C9B6E4, 1E3FAE, 3B1E63 (no leading #). JSON only.",
+            "prompt_file": "prompts/spot_colour_csv.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        },
+        {
+          "key": "spot_colour_csv.render",
+          "input_requirement": "Spot-colour CSV (ink_name, pantone, rgb_hex, mesh_count, squeegee_durometer, flash_temp_F, print_order) feeding the registration/swatch-card merge",
+          "kind": "data",
+          "file": "assets/spot_colour.csv",
+          "format": "md",
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-2.5-flash",
+            "prompt": "Produce the SPOT-COLOUR data table the shop hands the Illustrator separation-sheet\ntemplate (screenprint_sep_sheet.ai) for a 4-colour spot print on a black tee. The CSV that render_csv\nemits from this JSON drives a data-merge: ONE registration/swatch card per row, so the JSON top-level\nkey holds a LIST OF ROW OBJECTS whose keys are the EXACT Illustrator Variable / CSV column names the\ntemplate binds. Return a JSON object with EXACTLY one top-level key \"rows\": a list of EXACTLY 4 objects,\neach with these keys spelled EXACTLY (these are the merge field names):\n\"ink_name\", \"pantone\", \"rgb_hex\", \"mesh_count\", \"squeegee_durometer\", \"flash_temp_F\", \"print_order\".\nUse these EXACT 4 rows, in this order (transcribe the fixed values faithfully):\n1. ink_name \"White Underbase\", pantone \"—\", rgb_hex \"FFFFFF\", mesh_count 110, squeegee_durometer 70,\n   flash_temp_F <a realistic plastisol flash cure temp, ~300>, print_order 1.\n2. ink_name \"Lavender\", pantone \"2635C\", rgb_hex \"C9B6E4\", mesh_count <156-200>, squeegee_durometer 70,\n   flash_temp_F <~300>, print_order 2.\n3. ink_name \"Cobalt Blue\", pantone \"2945C\", rgb_hex \"1E3FAE\", mesh_count <156-200>, squeegee_durometer\n   70, flash_temp_F <~300>, print_order 3.\n4. ink_name \"Deep Purple\", pantone \"2685C\", rgb_hex \"3B1E63\", mesh_count <156-200>, squeegee_durometer\n   75, flash_temp_F <~320, last-down dark ink>, print_order 4.\nrgb_hex values MUST be exactly FFFFFF, C9B6E4, 1E3FAE, 3B1E63 (no leading #). JSON only.",
+            "prompt_file": "prompts/spot_colour_csv.txt"
+          },
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "attempts": 1
+          }
+        }
+      ]
+    },
+    "approved_artwork": {
+      "entries": [
+        {
+          "key": "approved_artwork",
+          "input_requirement": "Approved tee artwork — airbrushed cloud-gradient illustration + hard-edge slogan lettering on flat black, ~4500px",
+          "kind": "image",
+          "file": "assets/approved_tee_artwork.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3-pro-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "The finished APPROVED tee artwork as a FLAT FULL-BLEED PRINT FILE on a SOLID FLAT\nBLACK background (#000000), front-on, no garment, no mockup, no frame, no environment — this is the\nclient-approved separation source. Composition: the upper two thirds are an airbrushed cumulus\nCLOUD-GRADIENT illustration — billowing stylised clouds with a smooth continuous soft-airbrush tonal\ngradient running from pale LAVENDER (#C9B6E4) highlights through COBALT-blue (#1E3FAE) midtones into\nDEEP-PURPLE (#3B1E63) shadow; the lower third is the HARD-EDGE slogan lettering reading EXACTLY\n\"HEAD IN THE CLOUDS\" in a bold condensed varsity/block sans, FLAT PURE WHITE (#FFFFFF) with crisp\n100% hard vector edges (no gradient, no texture, no glow on the type). The clouds are smooth continuous\ntone (ready to be halftoned); the lettering is dead-flat hard edge (ready to be held out and vectorized).\nRich but believable airbrush blending, dramatic but printable, flawless slogan spelling, no duplicated\nor invented glyphs, no other text anywhere. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/approved_artwork_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 9,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "Cloud gradient colors do not fully match lavender->cobalt->deep-purple; the lavender and cobalt are present but the deep-purple is less distinct and more muted.",
+              "Cloud gradient is smooth and continuous but could be slightly smoother to avoid minor banding.",
+              "Text is crisp, flat, and hard-edge with no gradient or texture, but the font is very condensed, which may affect readability slightly.",
+              "Background is black but the clouds do not fill the upper two thirds perfectly, some black gaps are visible around edges."
+            ]
+          }
+        }
+      ]
+    },
+    "source_layers": {
+      "entries": [
+        {
+          "key": "source_layers[0]",
+          "input_requirement": "Lettering-only and clouds-only source layers (2 PNGs) to verify hold-out and halftone independently",
+          "kind": "image",
+          "file": "assets/source_lettering_only.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "A registration-locked SCREEN-PRINT SOURCE LAYER, full-bleed flat artwork on a SOLID FLAT BLACK background (#000000), front-on, no garment, no mockup, no environment: ONLY the hard-edge slogan lettering reading EXACTLY \"HEAD IN THE CLOUDS\" in a bold condensed sans/varsity block letterform, rendered in FLAT PURE WHITE (#FFFFFF) with crisp 100% hard vector edges, NO gradient, NO halftone, NO texture, NO outer glow inside the letters. The lettering sits in the lower third exactly where it falls in the approved composite so this layer registers pin-perfect to the clouds layer. Empty black everywhere else. This is the lettering hold-out plate the separator uses to mask the type out of the halftone. Flawless spelling, no duplicated or invented glyphs, no other text. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/source_layers_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 7,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "Only one layer visible, no separate clouds-only layer present.",
+              "The visible layer contains only the white slogan on flat black, which is correct for the lettering layer.",
+              "No clouds or cloud gradient visible in this layer, which is expected for the lettering layer.",
+              "The slogan text is spelled correctly and has crisp edges with minor acceptable softness.",
+              "No halftone or cloud elements present in the lettering layer."
+            ]
+          }
+        },
+        {
+          "key": "source_layers[1]",
+          "input_requirement": "Lettering-only and clouds-only source layers (2 PNGs) to verify hold-out and halftone independently",
+          "kind": "image",
+          "file": "assets/source_clouds_only.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "A registration-locked SCREEN-PRINT SOURCE LAYER, full-bleed flat artwork on a SOLID FLAT BLACK background (#000000), front-on, no garment, no mockup, no environment, and ABSOLUTELY NO lettering or words anywhere: ONLY the airbrushed cumulus CLOUD-GRADIENT illustration — billowing stylised clouds with a smooth soft-airbrush tonal gradient running from pale lavender highlights through cobalt-blue midtones into deep-purple shadow, the same cloud shapes and placement as the approved composite (upper two thirds). Smooth continuous tone (this is the layer that will be converted to halftone), rich but believable airbrush blending, no hard edges, no dot screen yet. The slogan area in the lower third is empty flat black. ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/source_layers_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 6,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 1,
+            "issues": [
+              "Only one layer present, showing clouds only; missing the lettering-only layer with the white slogan.",
+              "Clouds layer is correct with smooth airbrushed gradient and no lettering, but no flat black background visible around clouds as required for registration lock.",
+              "No lettering found on this layer; needs a separate layer with only the slogan 'HEAD IN THE CLOUDS' in flat hard-edge white, lower third, with crisp edges and no clouds or halftone."
+            ]
+          }
+        }
+      ]
+    },
+    "alt_drop_frames": {
+      "entries": [
+        {
+          "key": "alt_drop_frames[0]",
+          "input_requirement": "Three alt-drop layout frames for the merch run (sleeve hit, back print, pocket lockup)",
+          "kind": "image",
+          "file": "assets/altdrop_sleeve_hit.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Screen-print ALT-DROP LAYOUT FRAME #1 — SLEEVE HIT: a small narrow vertical lockup sized for an upper-sleeve print, the clouds compressed into a tall slim column with the slogan lettering set small beneath, front-on, no garment and no mockup environment — this is a FLAT ARTWORK LAYOUT FRAME on a SOLID FLAT BLACK background (#000000) showing how the approved cloud-and-slogan design is re-scaled and re-positioned for one placement on the merch run. Use the SAME airbrushed cumulus cloud-gradient (pale lavender -> cobalt -> deep purple) and the SAME hard-edge slogan lettering reading EXACTLY \"HEAD IN THE CLOUDS\"; only the size, crop and position change. Crisp, print-layout clarity, flawless slogan spelling, no other text. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/alt_drop_frames_0.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "accepted_with_warnings",
+            "technical": "pass",
+            "vision_score": 5,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 3,
+            "issues": [
+              "Only one layout frame present instead of three.",
+              "Text 'ALT-DROP LAYOUT FRAME #1 — SLEEVE HIT' is present, which is not allowed.",
+              "Cloud gradient colors are correct but the layout is only narrow tall sleeve hit; missing wide large back print and tiny compact pocket lockup.",
+              "Slogan text is correct and spelled properly but appears slightly soft.",
+              "Background is black as required, no garment or mockup present."
+            ]
+          }
+        },
+        {
+          "key": "alt_drop_frames[1]",
+          "input_requirement": "Three alt-drop layout frames for the merch run (sleeve hit, back print, pocket lockup)",
+          "kind": "image",
+          "file": "assets/altdrop_back_print.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Screen-print ALT-DROP LAYOUT FRAME #2 — BACK PRINT: a large wide full-back placement, the cloud gradient spread broad across the upper back with the slogan lettering large and bold across the centre, front-on, no garment and no mockup environment — this is a FLAT ARTWORK LAYOUT FRAME on a SOLID FLAT BLACK background (#000000) showing how the approved cloud-and-slogan design is re-scaled and re-positioned for one placement on the merch run. Use the SAME airbrushed cumulus cloud-gradient (pale lavender -> cobalt -> deep purple) and the SAME hard-edge slogan lettering reading EXACTLY \"HEAD IN THE CLOUDS\"; only the size, crop and position change. Crisp, print-layout clarity, flawless slogan spelling, no other text. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+            "prompt_file": "prompts/alt_drop_frames_1.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "accepted_with_warnings",
+            "technical": "pass",
+            "vision_score": 3,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 3,
+            "issues": [
+              "Only one layout frame shown (BACK print). Missing the narrow tall SLEEVE hit and tiny compact POCKET left-chest lockup frames.",
+              "Background is not flat black; the image includes a garment outline and a light purple shirt shape.",
+              "Cloud gradient colors appear correct (lavender/cobalt/deep purple) but cannot confirm consistency across missing frames.",
+              "Slogan text 'HEAD IN THE CLOUDS' is spelled correctly and uses a bold font, but the softness/airbrushed effect is not clearly visible due to the font style.",
+              "No scale/crop/position variation can be assessed without the other two frames.",
+              "Extra text present above the garment: 'ALT-DROP LAYOUT FRAME #2 — BACK PRINT', which should not be included."
+            ]
+          }
+        },
+        {
+          "key": "alt_drop_frames[2]",
+          "input_requirement": "Three alt-drop layout frames for the merch run (sleeve hit, back print, pocket lockup)",
+          "kind": "image",
+          "file": "assets/altdrop_pocket_lockup.png",
+          "format": "png",
+          "dims": [
+            1024,
+            1024
+          ],
+          "generator": {
+            "provider": "gemini",
+            "model": "gemini-3.1-flash-image",
+            "quality": null,
+            "size": "1024x1024",
+            "prompt": "Screen-print ALT-DROP LAYOUT FRAME #3 — POCKET LOCKUP: a tiny tight left-chest pocket lockup, a single compact cloud cluster with the slogan lettering set very small and condensed below it, front-on, no garment and no mockup environment — this is a FLAT ARTWORK LAYOUT FRAME on a SOLID FLAT BLACK background (#000000) showing how the approved cloud-and-slogan design is re-scaled and re-positioned for one placement on the merch run. Use the SAME airbrushed cumulus cloud-gradient (pale lavender -> cobalt -> deep purple) and the SAME hard-edge slogan lettering reading EXACTLY \"HEAD IN THE CLOUDS\"; only the size, crop and position change. Crisp, print-layout clarity, flawless slogan spelling, no other text. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- Only one layout frame shown instead of three (sleeve, back, pocket).\n- Background is not flat black; it has a dark gray border and text outside the artwork area.\n- No evidence of consistent cloud-gradient palette across multiple frames since only one frame is present.\n- Slogan text is correct but the font appears slightly too bold and not airbrushed as per criteria.\n- Extra descriptive text present outside the artwork frames, which is not allowed.",
+            "prompt_file": "prompts/alt_drop_frames_2.txt"
+          },
+          "post_process": [],
+          "qc": {
+            "status": "pass",
+            "technical": "pass",
+            "vision_score": 6,
+            "judge": "openai/gpt-4.1-mini",
+            "attempts": 3,
+            "issues": [
+              "Only one layout frame (pocket lockup) is shown; missing sleeve and back print frames.",
+              "Background is flat black as required, but no evidence of three different placements.",
+              "Cloud gradient colors appear correct (lavender/cobalt/deep purple) and slogan spelling is correct.",
+              "Slogan text is slightly soft but acceptable.",
+              "No garment, mockup, extra text or watermarks except the label text at top which should not be present for client delivery."
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
