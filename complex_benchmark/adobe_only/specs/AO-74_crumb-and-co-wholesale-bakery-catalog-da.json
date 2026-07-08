@@ -1,0 +1,497 @@
+{
+ "slot_id": "L01",
+ "category": "datamerge_print",
+ "title": "Crumb & Co. wholesale bakery catalog: prep 12 product photos + InDesign catalog data-merge to a print-ready B2B PDF and hi-res JPEG",
+ "slug": "crumb-and-co-wholesale-bakery-catalog-datamerge",
+ "vertical": "retail_ecommerce",
+ "source": {
+  "platform": "Freelancer.com",
+  "reference": "Bakery B2B Catalog Development"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com \"Bakery B2B Catalog Development\" brief: \"I'm looking for a skilled designer to develop a digital PDF catalog for my bakery business targeting B2B distributors\"; requirements \"Comprehensive product descriptions - Detailed pricing information - High-quality images for every product.\" REASONABLY ENRICHED to make it a runnable Adobe-only benchmark: the brief implies a from-scratch catalog layout, which is NOT in connector scope (the connector composes no layout; document_merge_data_layout / document_render_layout only BIND a genuine authored .indd's <<fields>> and EXPORT it). So the client is modeled as supplying the authored InDesign catalog template (a normal freelancer revision / second-round hand-off) carrying real repeating data-merge fields and image frames, the wholesale product roster as a CSV, twelve raw product photos shot on the bakery counter (dull, tilted, cool-cast, cluttered), and the brand wordmark PNG. The Adobe chain then does the genuinely-doable heavy lifting the brief rewards — grading + straightening + consistently cropping every product photo so they read as \"high-quality images for every product,\" vectorizing the wordmark for crisp print, uploading the prepped assets, then running the authored template through an InDesign data-merge against the roster CSV to bind \"comprehensive product descriptions\" and \"detailed pricing information\" into each catalog cell, and exporting the print-ready B2B PDF plus a hi-res JPEG. No deliverable was invented beyond the wholesale catalog the brief asks for.",
+ "one_line_ask": "Grade and consistently crop twelve raw bakery product photos, vectorize the Crumb & Co. wordmark, upload the prepped assets, then run the client's authored InDesign catalog template through a data-merge against the wholesale roster CSV to produce a print-ready B2B PDF and a high-resolution JPEG.",
+ "full_brief": "Crumb & Co., a small-batch wholesale bakery, needs its B2B distributor catalog finished for print and PDF hand-out. The owner has already authored an InDesign catalog template (crumbco_catalog_template.indd) — an 8.5x11 portrait, multi-page grid layout with repeating product cells, each cell holding an image frame plus real InDesign data-merge fields (<<product_name>>, <<sku>>, <<description>>, <<case_pack>>, <<wholesale_price>>) and section headers for Breads, Pastries, Cakes & Slices, and Cookies & Bars, with a masthead frame for the wordmark and a full-bleed cover panel. The owner has also handed off the wholesale product roster as a CSV (12 SKUs across the four sections, each with a keyword-rich product description, case-pack quantity, and B2B wholesale price) and twelve raw product photos shot quickly on the bakery counter — sourdough boules, seeded rye, croissants, cinnamon rolls, a layer cake, brownies, chocolate-chip cookies, and more. The photos are unappetizing as-shot: slightly tilted, flat and dull, cool fluorescent white balance, and cluttered counter backgrounds. The job: (1) make every product photo look like a \"high-quality image\" — straighten the tilted frames, auto-tone to fix the flat exposure, warm the cool white balance toward a golden bakery look, push vibrance so crust and glaze read appetizing, apply a consistent bakery-warm preset across all twelve so they match, and crop every photo to the identical square (1:1) ratio the template's cells expect; (2) vectorize the flat Crumb & Co. wordmark PNG into a clean SVG so the masthead stays razor-sharp at print size; (3) upload all the prepped assets (twelve graded 1:1 photos, the vector wordmark) to Creative Cloud storage; (4) run the client's authored .indd through an InDesign data-merge against the roster CSV so every product cell binds its name, SKU, description, case pack, and wholesale price, with each graded photo dropping into its matching cell; (5) export the merged catalog to a print-ready ~300 DPI PDF for the print run and a high-resolution JPEG of the cover/spread for emailing to distributors. Deliverable dimensions: US Letter 8.5x11 portrait, print-ready CMYK-quality PDF plus a max-quality JPEG. Brand constraints: keep the warm/golden bakery palette consistent across every photo, the wordmark must stay crisp at masthead scale, and all descriptions/prices bind verbatim from the supplied roster CSV — do not rewrite the copy.",
+ "inputs": [
+  {
+   "name": "crumbco_catalog_template.indd",
+   "kind": "data",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine Adobe InDesign document (.indd/.idml) for a multi-page US Letter (8.5x11) portrait wholesale bakery catalog. Must contain a repeating product-cell grid where each cell holds ONE image frame sized to a 1:1 (square) ratio plus REAL InDesign data-merge placeholder fields named <<product_name>>, <<sku>>, <<description>>, <<case_pack>>, <<wholesale_price>>, organized under four section headers (Breads, Pastries, Cakes & Slices, Cookies & Bars), a masthead frame for the wordmark, and a full-bleed cover panel. Authored by hand in InDesign so the data-merge fields actually bind; a PDF-converted .indd with literal typed text would NOT bind.",
+   "realism_notes": "Modeled as the client's own draft template (a normal freelancer revision/hand-off). document_merge_data_layout is [T] and REQUIRES a user-authored .indd carrying real merge fields plus an image-frame merge column — it cannot be connector-generated, so it is a supplied input, not a chain output."
+  },
+  {
+   "name": "crumbco_wholesale_roster.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a CSV with columns product_name,sku,description,case_pack,wholesale_price,image and a section column, holding 12 wholesale bakery rows: 3 Breads (e.g. Country Sourdough Boule, Seeded Deli Rye, Honey Whole-Wheat Loaf), 3 Pastries (Butter Croissant, Cinnamon Roll, Almond Danish), 3 Cakes & Slices (Vanilla Layer Cake, Fudge Brownie, Lemon Bar), 3 Cookies & Bars (Chocolate-Chip Cookie, Oatmeal-Raisin Cookie, Salted-Caramel Blondie). Each row has a keyword-rich one-to-two-line B2B product description, a SKU code, a case-pack quantity (e.g. 'Case of 12'), and a US-dollar wholesale price (e.g. $18.00 / case). The image column names the matching prepped photo file. Column names must exactly match the InDesign merge fields <<product_name>>,<<sku>>,<<description>>,<<case_pack>>,<<wholesale_price>> and the image-frame merge column.",
+   "realism_notes": "Honors the brief's 'comprehensive product descriptions' + 'detailed pricing information'; column headers match the authored .indd merge fields and the image-frame column so the [T] data-merge binds copy AND photos per row."
+  },
+  {
+   "name": "raw_product_photos_x12.zip",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "A set of 12 photoreal phone snapshots of wholesale bakery products shot quickly on a stainless bakery counter: (1) a round country sourdough boule with a scored crust, (2) a dark seeded deli rye loaf, (3) a honey whole-wheat sandwich loaf, (4) a flaky butter croissant, (5) a glazed cinnamon roll, (6) an almond danish, (7) a slice of vanilla layer cake on a plate, (8) a fudge brownie square, (9) a lemon bar dusted with sugar, (10) a stack of chocolate-chip cookies, (11) an oatmeal-raisin cookie, (12) a salted-caramel blondie. Every shot slightly tilted (about 3-5 degrees), flat dull lighting, cool bluish fluorescent white balance, with a cluttered counter background of trays, parchment, and utensils. Real crumb, crust, glaze and grease texture, candid documentary feel, no studio gloss, no CGI.",
+   "realism_notes": "Deliberately imperfect (tilt, flat tone, cool WB, cluttered background) so the grade+crop pipeline has real work to do across all 12; gpt-image-2 for photoreal food. Delivered as a zip of 12 individually addressable JPEGs."
+  },
+  {
+   "name": "crumbco_wordmark.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A flat artisanal-bakery wordmark logo reading 'Crumb & Co.' in a warm hand-lettered serif with a small wheat-sheaf mark, deep espresso-brown letters on a transparent background, slight rustic texture. Crisp flat raster PNG, high contrast, no gradients, suitable for vectorizing.",
+   "realism_notes": "gemini-3-pro-image for clean legible text/logo; flat high-contrast so image_vectorize produces a clean SVG for the masthead."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "CrumbCo_Wholesale_Catalog_print.pdf",
+   "kind": "pdf",
+   "spec": "Print-ready multi-page US Letter (8.5x11) portrait PDF exported from the data-merged InDesign catalog; every product cell bound from the roster CSV (name/SKU/description/case-pack/wholesale price) with its matching graded 1:1 photo placed, vector wordmark in the masthead; ~300 DPI print quality."
+  },
+  {
+   "name": "CrumbCo_Wholesale_Catalog_cover.jpg",
+   "kind": "image",
+   "spec": "High-resolution JPEG of the bound catalog cover/first spread (US Letter portrait, max-quality) for emailing to B2B distributors."
+  },
+  {
+   "name": "graded_product_photos_x12",
+   "kind": "image",
+   "spec": "Twelve color-graded, straightened, consistently 1:1-cropped bakery product photos matching the template cells, sharing a warm/golden bakery look."
+  },
+  {
+   "name": "crumbco_wordmark.svg",
+   "kind": "vector",
+   "spec": "Clean vector SVG of the Crumb & Co. wordmark for crisp scaling in the catalog masthead."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_product_photos_x12.zip#01_sourdough",
+   "output": "sourdough_straightened",
+   "note": "Level the tilted horizon on the sourdough boule shot (first of the 12-photo grade pipeline)."
+  },
+  {
+   "n": 2,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "sourdough_straightened",
+   "output": "sourdough_toned",
+   "note": "Auto-tone the straightened boule to fix the flat/dull counter exposure."
+  },
+  {
+   "n": 3,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "sourdough_toned",
+   "output": "sourdough_warmed",
+   "note": "Warm the cool fluorescent white balance toward the golden bakery look."
+  },
+  {
+   "n": 4,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "sourdough_warmed",
+   "output": "sourdough_vibrant",
+   "note": "Push vibrance so the crust and crumb read appetizing."
+  },
+  {
+   "n": 5,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "sourdough_vibrant",
+   "output": "bakery_warm_preset_locked",
+   "note": "Apply and lock a bakery-warm Lightroom preset — the SAME preset is reused across the other 11 photos for a consistent look."
+  },
+  {
+   "n": 6,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "bakery_warm_preset_locked",
+   "output": "sourdough_cropped_1x1",
+   "note": "Crop/resize the boule to the 1:1 square the template's product cells expect (same target applied to all 12)."
+  },
+  {
+   "n": 7,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_product_photos_x12.zip#02_rye",
+   "output": "rye_toned",
+   "note": "Run the seeded-rye photo through the grade pipeline: auto-tone to fix the flat exposure."
+  },
+  {
+   "n": 8,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "rye_toned, bakery_warm_preset_locked",
+   "output": "rye_popped",
+   "note": "Apply the locked bakery-warm preset so the rye matches the sourdough's white balance and tone."
+  },
+  {
+   "n": 9,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "rye_popped",
+   "output": "rye_cropped_1x1",
+   "note": "Crop the rye to the matching 1:1 template cell."
+  },
+  {
+   "n": 10,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_product_photos_x12.zip#03_wheat",
+   "output": "wheat_toned",
+   "note": "Auto-tone the honey whole-wheat loaf photo."
+  },
+  {
+   "n": 11,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "wheat_toned, bakery_warm_preset_locked",
+   "output": "wheat_popped",
+   "note": "Apply the locked bakery-warm preset to the wheat loaf for a consistent look."
+  },
+  {
+   "n": 12,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "wheat_popped",
+   "output": "wheat_cropped_1x1",
+   "note": "Crop the wheat loaf to the 1:1 template cell."
+  },
+  {
+   "n": 13,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_product_photos_x12.zip#04_croissant",
+   "output": "croissant_toned",
+   "note": "Auto-tone the butter croissant photo (Pastries section)."
+  },
+  {
+   "n": 14,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "croissant_toned, bakery_warm_preset_locked",
+   "output": "croissant_popped",
+   "note": "Apply the locked bakery-warm preset to the croissant."
+  },
+  {
+   "n": 15,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "croissant_popped",
+   "output": "croissant_cropped_1x1",
+   "note": "Crop the croissant to the 1:1 template cell."
+  },
+  {
+   "n": 16,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_product_photos_x12.zip#05_cinnamon_roll",
+   "output": "cinnamon_toned",
+   "note": "Auto-tone the glazed cinnamon roll photo."
+  },
+  {
+   "n": 17,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "cinnamon_toned, bakery_warm_preset_locked",
+   "output": "cinnamon_popped",
+   "note": "Apply the locked bakery-warm preset so the glaze reads warm and consistent."
+  },
+  {
+   "n": 18,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "cinnamon_popped",
+   "output": "cinnamon_cropped_1x1",
+   "note": "Crop the cinnamon roll to the 1:1 template cell."
+  },
+  {
+   "n": 19,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_product_photos_x12.zip#06_danish",
+   "output": "danish_toned",
+   "note": "Auto-tone the almond danish photo."
+  },
+  {
+   "n": 20,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "danish_toned, bakery_warm_preset_locked",
+   "output": "danish_popped",
+   "note": "Apply the locked bakery-warm preset to the danish."
+  },
+  {
+   "n": 21,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "danish_popped",
+   "output": "danish_cropped_1x1",
+   "note": "Crop the danish to the 1:1 template cell."
+  },
+  {
+   "n": 22,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_product_photos_x12.zip#07_layer_cake",
+   "output": "cake_toned",
+   "note": "Auto-tone the vanilla layer-cake slice (Cakes & Slices section)."
+  },
+  {
+   "n": 23,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "cake_toned, bakery_warm_preset_locked",
+   "output": "cake_popped",
+   "note": "Apply the locked bakery-warm preset to the layer cake."
+  },
+  {
+   "n": 24,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "cake_popped",
+   "output": "cake_cropped_1x1",
+   "note": "Crop the layer cake to the 1:1 template cell."
+  },
+  {
+   "n": 25,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_product_photos_x12.zip#08_brownie",
+   "output": "brownie_toned",
+   "note": "Auto-tone the fudge brownie photo."
+  },
+  {
+   "n": 26,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "brownie_toned, bakery_warm_preset_locked",
+   "output": "brownie_popped",
+   "note": "Apply the locked bakery-warm preset to the brownie."
+  },
+  {
+   "n": 27,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "brownie_popped",
+   "output": "brownie_cropped_1x1",
+   "note": "Crop the brownie to the 1:1 template cell."
+  },
+  {
+   "n": 28,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_product_photos_x12.zip#09_lemon_bar",
+   "output": "lemonbar_toned",
+   "note": "Auto-tone the lemon bar photo."
+  },
+  {
+   "n": 29,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "lemonbar_toned, bakery_warm_preset_locked",
+   "output": "lemonbar_popped",
+   "note": "Apply the locked bakery-warm preset to the lemon bar."
+  },
+  {
+   "n": 30,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "lemonbar_popped",
+   "output": "lemonbar_cropped_1x1",
+   "note": "Crop the lemon bar to the 1:1 template cell."
+  },
+  {
+   "n": 31,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_product_photos_x12.zip#10_choc_chip",
+   "output": "chocchip_toned",
+   "note": "Auto-tone the chocolate-chip cookie stack (Cookies & Bars section)."
+  },
+  {
+   "n": 32,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "chocchip_toned, bakery_warm_preset_locked",
+   "output": "chocchip_popped",
+   "note": "Apply the locked bakery-warm preset to the chocolate-chip cookies."
+  },
+  {
+   "n": 33,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "chocchip_popped",
+   "output": "chocchip_cropped_1x1",
+   "note": "Crop the chocolate-chip cookies to the 1:1 template cell."
+  },
+  {
+   "n": 34,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_product_photos_x12.zip#11_oatmeal",
+   "output": "oatmeal_toned",
+   "note": "Auto-tone the oatmeal-raisin cookie photo."
+  },
+  {
+   "n": 35,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "oatmeal_toned, bakery_warm_preset_locked",
+   "output": "oatmeal_popped",
+   "note": "Apply the locked bakery-warm preset to the oatmeal-raisin cookie."
+  },
+  {
+   "n": 36,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "oatmeal_popped",
+   "output": "oatmeal_cropped_1x1",
+   "note": "Crop the oatmeal-raisin cookie to the 1:1 template cell."
+  },
+  {
+   "n": 37,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_product_photos_x12.zip#12_blondie",
+   "output": "blondie_toned",
+   "note": "Auto-tone the salted-caramel blondie photo (final of the 12)."
+  },
+  {
+   "n": 38,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "blondie_toned, bakery_warm_preset_locked",
+   "output": "blondie_popped",
+   "note": "Apply the locked bakery-warm preset to the blondie."
+  },
+  {
+   "n": 39,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "blondie_popped",
+   "output": "blondie_cropped_1x1",
+   "note": "Crop the blondie to the 1:1 template cell so all 12 photos match."
+  },
+  {
+   "n": 40,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "crumbco_wordmark.png",
+   "output": "wordmark_svg",
+   "note": "Vectorize the flat Crumb & Co. wordmark PNG into a clean SVG for razor-sharp masthead scaling."
+  },
+  {
+   "n": 41,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "sourdough_cropped_1x1, rye_cropped_1x1, wheat_cropped_1x1, croissant_cropped_1x1, cinnamon_cropped_1x1, danish_cropped_1x1, cake_cropped_1x1, brownie_cropped_1x1, lemonbar_cropped_1x1, chocchip_cropped_1x1, oatmeal_cropped_1x1, blondie_cropped_1x1, wordmark_svg",
+   "output": "upload_session",
+   "note": "Initialize an upload session for all 12 graded 1:1 photos plus the vector wordmark."
+  },
+  {
+   "n": 42,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "uploaded_asset_urns",
+   "note": "Finalize the upload; returns asset URNs the InDesign template/data-merge will reference for each product cell and the masthead."
+  },
+  {
+   "n": 43,
+   "tool": "document_merge_data_layout",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": "crumbco_catalog_template.indd, crumbco_wholesale_roster.csv, uploaded_asset_urns",
+   "output": "catalog_merged_indd",
+   "note": "InDesign data-merge: bind each roster row (product_name/sku/description/case_pack/wholesale_price) into the authored .indd's repeating cells (which carry real <<fields>> + an image-frame merge column), dropping each graded 1:1 photo into its matching cell and the vector wordmark into the masthead. [T] requires the user-authored template."
+  },
+  {
+   "n": 44,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "catalog_merged_indd",
+   "output": "CrumbCo_Wholesale_Catalog_print.pdf",
+   "note": "Export the merged multi-page catalog to a print-ready ~300 DPI US Letter PDF deliverable."
+  },
+  {
+   "n": 45,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "catalog_merged_indd",
+   "output": "CrumbCo_Wholesale_Catalog_cover.jpg",
+   "note": "Export the cover/first spread of the same merged document to a high-resolution max-quality JPEG deliverable for distributor emails."
+  }
+ ],
+ "tools_used": [
+  "image_auto_straighten",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_adjust_vibrance_and_saturation",
+  "image_apply_preset",
+  "image_crop_and_resize",
+  "image_vectorize",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "document_merge_data_layout",
+  "document_render_layout"
+ ],
+ "tool_call_count": 45,
+ "distinct_adobe_tools": 11,
+ "chaining_note": "Strict output-to-input chaining throughout. The lead photo establishes and locks the shared look with a full 6-link grade pipeline: raw_product_photos_x12.zip#01_sourdough -> auto_straighten(1) -> auto_tone(2) -> color_temperature(3) -> vibrance(4) -> apply_preset(5) [locks bakery_warm_preset] -> crop_1x1(6). The remaining 11 photos each run a 3-link auto_tone -> apply_preset(reusing the locked bakery_warm_preset_locked handle) -> crop_1x1 sub-chain (rye 7-9, wheat 10-12, croissant 13-15, cinnamon 16-18, danish 19-21, cake 22-24, brownie 25-27, lemonbar 28-30, chocchip 31-33, oatmeal 34-36, blondie 37-39), so every preset step consumes both its own toned output AND the shared preset handle from step 5 — enforcing the 'consistent look across all 12' requirement as a real data dependency. The wordmark chains raw PNG -> vectorize(40). All 13 prepped outputs (twelve *_cropped_1x1 + wordmark_svg) converge into the upload session(41) -> finalize(42) -> data-merge(43), which also consumes the authored crumbco_catalog_template.indd + roster CSV. The merged .indd(43) is the single source for both exports — render PDF(44) and render JPEG(45). Nothing after the raw input loads originates outside the chain; the final catalog emerges only from the assembled pipeline.",
+ "difficulty_rationale": "Long-horizon flagship: 45 connector calls, 11 distinct Adobe tools across 3 groups (image_* raster grading, asset_* storage, document_* InDesign merge/export) — far above the >=10 calls / >=6 distinct-tool floor. Difficulty comes from running twelve separate product photos through a consistent multi-step grade-and-crop pipeline where a single locked preset is threaded as a real dependency into all eleven follow-on sub-chains, vectorizing the wordmark, uploading thirteen prepped assets, then converging everything into a genuine InDesign [T] data-merge that binds both copy (name/SKU/description/case-pack/price) AND the matching photo per row, followed by dual print/JPEG export. It respects every hard limit: no generative fill / generative-expand / object-removal / text-to-image / from-scratch layout / upscaling; image_fill_area is unused; image_remove_background is unused; the catalog layout is NOT composed by the connector — document_merge_data_layout binds and document_render_layout only EXPORTS the client's authored .indd, which is listed as a supplied authored input; all descriptions/prices bind verbatim from the supplied roster CSV per the brief.",
+ "workflow_nature": "edit",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "Confirmed NONE of the banned capabilities are used: no image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art/logo (the wordmark is a supplied PNG only vectorized, not generated); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area and image_remove_background are not used at all. The catalog is not composed from scratch — document_merge_data_layout [T] binds fields into a supplied user-authored .indd and document_render_layout [C] only exports it.",
+  "notes": "Reverified against slot L01 (operation O5 / family 'Layout & Data' / output_modality 'document' / workflow_nature 'edit' / vertical 'retail_ecommerce') and the AO-14 example for parity — all match. category='datamerge_print' matches the L-slot convention (cf. L09). Grounding is genuine: grounding_note quotes the real Freelancer.com 'Bakery B2B Catalog Development' brief verbatim and source.reference is the candidate title; brand is fictional/IP-clean ('Crumb & Co.'). Each potentially-risky step stays in-bounds: (1) document_merge_data_layout is tagged [T] and the authored crumbco_catalog_template.indd carrying real <<fields>> + an image-frame merge column is declared a supplied input (kind:data, gen_model:'n/a-authored-asset'); the roster CSV headers exactly match the merge fields so binding is genuine, and the spec explicitly notes a PDF-converted .indd with literal text would NOT bind. (2) document_render_layout (44/45) only exports the genuine merged .indd — PDF at 44 and a max-quality JPEG of the cover/spread at 45 — matching AO-14's precedent of exporting the same merged .indd to both PDF and JPEG; no connector-composed layout. (3) image_vectorize (40) operates on a supplied flat high-contrast PNG, producing an SVG — not from-scratch art. (4) image_apply_preset reuses a single locked preset for cross-photo consistency (honest, no generative step). (5) All descriptions/prices are supplied verbatim in the roster CSV — no copywriting or price invention is claimed as a connector capability. All 45 steps server=='adobe'; counts verified programmatically: 45 connector steps => tool_call_count=45, 11 distinct adobe tools => distinct_adobe_tools=11 (>=6 floor, >=10 calls floor). Qualifies as a long-horizon flagship data-merge/print task."
+ },
+ "id": "AO-74"
+}

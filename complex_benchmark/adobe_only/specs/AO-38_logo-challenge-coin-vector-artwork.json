@@ -1,0 +1,292 @@
+{
+ "id": "AO-38",
+ "slug": "logo-challenge-coin-vector-artwork",
+ "title": "Logo + Four Challenge-Coin Marks: Concept Rasters to Coin-Ready Vector Artwork with Black/White/Gold/Silver Variants",
+ "vertical": "Automotive, Industrial & Agriculture",
+ "category": "bg_removal_batch",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Logo%20Design%20&%20Challenge%20Coin%20Artwork"
+ },
+ "grounding_note": "Verbatim from the real Upwork brief (cand_38, db_i 95): client already HAS concept images and visual references; needs them turned into \"polished, professional, true vector artwork\" for a logo plus \"four symbolic challenge coin designs\"; must \"work in black, white, gold, and silver\", be \"readable at small sizes\", be \"coin-ready artwork that can be sent to a mint/manufacturer\"; deliverables explicitly list SVG, transparent PNG exports, and black/white/gold/silver versions; fixed price $400, \"first production-ready vector artwork phase\". Reasonably enriched for a runnable connector benchmark: I specify the five concrete source rasters (1 logo + 4 coin references) the client supplies, fix the export canvas at 2000x2000 px square for coin proofs, and name the exact color values (true black #000000, white #FFFFFF, gold #C8A24B, silver/gray #AAAAAA) used for the mono variants. The brief's \"editable Illustrator / EPS / vector PDF\" deliverables are honored by producing genuine SVG vector output via image_vectorize (the connector's true raster-to-vector path) and bundling the family in one packaging step; I do NOT claim from-scratch illustration — every vector is traced from a client-provided reference, which is exactly what the brief asks (\"turn those concepts into... true vector artwork\").",
+ "one_line_ask": "Turn the client's five supplied concept rasters (one logo + four challenge-coin references) into clean, coin-ready vector marks, each delivered as transparent-PNG and SVG in black, white, gold, and silver.",
+ "full_brief": "A challenge-coin / branding client (automotive-industrial sector) supplies five flat reference images: one primary logo concept and four symbolic coin-face concepts. They are pixelated mock-ups that cannot go to a mint. The task is to convert each into production-grade vector art and deliver a four-color family per mark.\n\nPipeline per the connector chain: (1) upload all five client rasters to CC storage and preview them; (2) on the primary logo, remove the busy background so only the mark survives on transparency; (3) auto-straighten the de-bagged logo so the mark sits square (coins are minted on a true axis); (4) crop the straightened logo tight to its own bounds so the trace has no dead margin; (5) reframe/resize that cropped mark to a fixed 2000x2000 px square proof canvas via image_crop_and_resize (a gen-free crop-and-scale to the target aspect — no pixels are invented), establishing the exact resolution every variant export inherits; (6) vectorize that clean, square, transparent master into a scalable SVG — this is the editable master vector that also seeds EPS/PDF on packaging; (7) select the mark's silhouette on the 2000x2000 master, then fill it with solid true-black to mint the BLACK variant; (8) on the same selected silhouette, fill it with solid white to mint the WHITE variant; (9) apply a flat color overlay in gold #C8A24B to mint the GOLD variant; (10) apply a monochromatic silver/gray tint to mint the SILVER variant. Then the four coin references are run through the same remove-background -> crop -> vectorize spine so all five marks are coin-ready vector. Finally, assemble every produced vector + variant asset into a single Firefly Board so the client can review the full logo+four-coin family in black/white/gold/silver before mint submission.\n\nHard constraints honored: no from-scratch illustration (every mark is traced from a client reference), no generative fill / outpaint / object removal / compositing / upscaling; image_crop_and_resize only crops-and-scales the existing mark to the square proof canvas (it never grows or invents canvas), image_fill_area is used only for SOLID color minting (black and white) of an isolated mask, and no generative tool is used at any step. Deliverables map 1:1 to the brief: transparent PNGs, SVG vector source, and black/white/gold/silver color versions, coin-ready and readable at small sizes.",
+ "inputs": [
+  {
+   "name": "logo_concept_primary.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A flat, slightly pixelated client mock-up of a premium automotive-industrial brand logo: a bold heraldic shield containing a stylized piston-and-gear motif with the wordmark 'IRONLINE FORGE' in a serious condensed sans-serif beneath it. Rendered as a low-resolution raster concept on a cluttered dark workshop photo background (not transparent), uneven lighting, slight JPEG-style artifacts, the kind of reference a client emails before hiring a vector designer. Crisp enough that the silhouette is legible but clearly raster, not vector.",
+   "realism_notes": "Must read as a real client-supplied raster mock-up, NOT a finished vector: include a non-transparent busy background (so remove_background has real work), mild compression artifacts, and a clear symbolic silhouette. Text-bearing wordmark -> gemini-3-pro-image."
+  },
+  {
+   "name": "coin_ref_01_eagle.png",
+   "kind": "image",
+   "gen_prompt": "Flat raster concept for a challenge-coin face: a symbolic spread-winged eagle gripping a wrench and a lightning bolt, circular emblem composition, drawn as a single-color symbolic mark on a plain but slightly noisy off-white scanned-paper background. Low-res reference quality, visible pixel edges, the kind of hand-mocked symbol a client provides for vectorization.",
+   "gen_model": "gemini-3-pro-image",
+   "realism_notes": "Strong symbolic silhouette suitable for coin minting; non-transparent paper background so background removal is genuine; small embedded micro-text on a banner to stress 'readable at small sizes'."
+  },
+  {
+   "name": "coin_ref_02_gear_globe.png",
+   "kind": "image",
+   "gen_prompt": "Flat raster concept for a challenge-coin face: a globe wrapped by a mechanical gear ring with two crossed industrial hammers behind it, circular symbolic emblem, single-tone, on a flat mid-gray background that is NOT transparent. Deliberately low-resolution, soft pixelated edges, client-reference look.",
+   "gen_model": "gemini-3-pro-image",
+   "realism_notes": "Concentric circular composition tests crop-to-bounds and vectorize on fine internal detail (gear teeth)."
+  },
+  {
+   "name": "coin_ref_03_anvil.png",
+   "kind": "image",
+   "gen_prompt": "Flat raster concept for a challenge-coin face: a heavy anvil with a forging hammer crossed over it and a rope-border ring, bold symbolic emblem, single dark tone on a textured beige background (non-transparent). Low-res, slightly blurry, a reference mock-up to be turned into vector.",
+   "gen_model": "gemini-3-pro-image",
+   "realism_notes": "Rope-border ring is a classic coin edge motif and stresses the vectorizer on repeating fine geometry."
+  },
+  {
+   "name": "coin_ref_04_tractor.png",
+   "kind": "image",
+   "gen_prompt": "Flat raster concept for a challenge-coin face: a side-profile agricultural tractor silhouette inside a wheat-wreath circular border with a small star at the top, symbolic single-color emblem on a plain but faintly gradient blue background (non-transparent). Low-resolution client reference, visible aliasing.",
+   "gen_model": "gemini-3-pro-image",
+   "realism_notes": "Ties the agriculture vertical to the automotive/industrial set; wheat-wreath border is fine detail for the trace; gradient background makes background removal non-trivial."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "logo_vector_master.svg",
+   "kind": "vector",
+   "spec": "Clean scalable SVG traced from the cropped, background-free, straightened, 2000x2000-normalized primary logo; editable master vector (seeds EPS / vector-PDF on packaging); coin-ready, readable at <=15 mm."
+  },
+  {
+   "name": "logo_variant_black.png",
+   "kind": "image",
+   "spec": "Transparent PNG, 2000x2000 px, logo silhouette filled solid true-black #000000."
+  },
+  {
+   "name": "logo_variant_white.png",
+   "kind": "image",
+   "spec": "Transparent PNG, 2000x2000 px, logo silhouette filled solid white #FFFFFF (the on-light / reversed variant)."
+  },
+  {
+   "name": "logo_variant_gold.png",
+   "kind": "image",
+   "spec": "Transparent PNG, 2000x2000 px, logo flat gold #C8A24B color overlay."
+  },
+  {
+   "name": "logo_variant_silver.png",
+   "kind": "image",
+   "spec": "Transparent PNG, 2000x2000 px, logo silver/gray #AAAAAA monochromatic tint."
+  },
+  {
+   "name": "coin_vectors_x4.svg",
+   "kind": "vector",
+   "spec": "Four clean SVG coin-face vectors (eagle, gear-globe, anvil, tractor), each traced from its background-removed reference, coin-ready for mint review."
+  },
+  {
+   "name": "coin_review_board",
+   "kind": "url",
+   "spec": "Firefly Board deep-link assembling the logo master + four coin vectors + black/white/gold/silver variant proofs into one client-review moodboard."
+  },
+  {
+   "name": "ironline_coin_package.zip",
+   "kind": "data",
+   "spec": "Single ZIP bundling all SVG vector sources, transparent PNG exports, and the black/white/gold/silver variant set, organized per-mark for mint/manufacturer handoff."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "upload_session",
+   "note": "Initialize a CC-storage upload session for the five client-supplied concept rasters (logo + 4 coin refs)."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "stored_assets",
+   "note": "Finalize the upload; returns stored asset handles/URLs for all five rasters."
+  },
+  {
+   "n": 3,
+   "tool": "asset_preview_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "stored_assets",
+   "output": "logo_preview",
+   "note": "Preview the primary logo raster to confirm the mark and its busy background before processing (inspect only)."
+  },
+  {
+   "n": 4,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "stored_assets",
+   "output": "logo_nobg",
+   "note": "Strip the cluttered workshop background from the primary logo -> transparent PNG of the bare mark."
+  },
+  {
+   "n": 5,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_nobg",
+   "output": "logo_straight",
+   "note": "Auto-straighten the isolated mark so it sits on a true axis (coins mint on-axis)."
+  },
+  {
+   "n": 6,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_straight",
+   "output": "logo_cropped",
+   "note": "Crop tight to the mark's own bounds, removing dead transparent margin so the trace is clean."
+  },
+  {
+   "n": 7,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_cropped",
+   "output": "logo_master_2k",
+   "note": "Reframe/scale the cropped mark to a fixed 2000x2000 px square proof canvas (gen-free crop-and-scale to target aspect; no pixels invented). Establishes the exact resolution every variant export inherits."
+  },
+  {
+   "n": 8,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_master_2k",
+   "output": "logo_vector_master.svg",
+   "note": "Trace the clean, square, transparent logo master into a scalable SVG -> the editable master vector deliverable."
+  },
+  {
+   "n": 9,
+   "tool": "image_select_subject",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_master_2k",
+   "output": "logo_mask",
+   "note": "Select the logo silhouette on the 2000x2000 master to drive the solid-color minting of the black and white variants."
+  },
+  {
+   "n": 10,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_master_2k,logo_mask",
+   "output": "logo_variant_black.png",
+   "note": "Solid-fill the selected silhouette with true-black #000000 -> BLACK variant (image_fill_area = solid color only), 2000x2000 px."
+  },
+  {
+   "n": 11,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_master_2k,logo_mask",
+   "output": "logo_variant_white.png",
+   "note": "Solid-fill the same selected silhouette with white #FFFFFF -> WHITE / reversed variant (image_fill_area = solid color only), 2000x2000 px."
+  },
+  {
+   "n": 12,
+   "tool": "image_apply_color_overlay",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_master_2k",
+   "output": "logo_variant_gold.png",
+   "note": "Apply a flat gold #C8A24B color overlay to the master -> GOLD variant, 2000x2000 px."
+  },
+  {
+   "n": 13,
+   "tool": "image_apply_monochromatic_tint",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_master_2k",
+   "output": "logo_variant_silver.png",
+   "note": "Apply a silver/gray #AAAAAA monochromatic tint -> SILVER variant, 2000x2000 px."
+  },
+  {
+   "n": 14,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "stored_assets",
+   "output": "coins_nobg",
+   "note": "Run the four coin references through background removal (eagle / gear-globe / anvil / tractor), one call per image -> transparent coin faces."
+  },
+  {
+   "n": 15,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "coins_nobg",
+   "output": "coins_cropped",
+   "note": "Crop each coin face tight to bounds before tracing (one call per image)."
+  },
+  {
+   "n": 16,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "coins_cropped",
+   "output": "coin_vectors_x4.svg",
+   "note": "Trace the four cropped coin faces into clean coin-ready SVG vectors (one vectorize call per coin; four outputs collected under this handle)."
+  },
+  {
+   "n": 17,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_vector_master.svg,logo_variant_black.png,logo_variant_white.png,logo_variant_gold.png,logo_variant_silver.png,coin_vectors_x4.svg",
+   "output": "coin_review_board",
+   "note": "Assemble the logo master, four coin vectors, and black/white/gold/silver variant proofs (all CC assets) into one Firefly Board for client review."
+  },
+  {
+   "n": 18,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_vector_master.svg,coin_vectors_x4.svg,logo_variant_black.png,logo_variant_white.png,logo_variant_gold.png,logo_variant_silver.png",
+   "output": "organized_deliverables",
+   "note": "Copy all produced vectors + variant PNGs into a structured per-mark deliverables folder in CC storage."
+  },
+  {
+   "n": 19,
+   "tool": "local_zip",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "organized_deliverables",
+   "output": "ironline_coin_package.zip",
+   "note": "Single unavoidable local packaging step: zip the organized SVG/PNG/variant family into one mint-handoff archive."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "asset_preview_file",
+  "image_remove_background",
+  "image_auto_straighten",
+  "image_crop_to_bounds",
+  "image_crop_and_resize",
+  "image_vectorize",
+  "image_select_subject",
+  "image_fill_area",
+  "image_apply_color_overlay",
+  "image_apply_monochromatic_tint",
+  "create_firefly_board",
+  "asset_copy_assets"
+ ],
+ "tool_call_count": 19,
+ "distinct_adobe_tools": 14,
+ "chaining_note": "See connector_workflow inputs_from edges. The 2000x2000 proof canvas is fixed once at step 7 (image_crop_and_resize) and inherited by the SVG trace and all four color variants; black and white share one image_select_subject mask (steps 9-11).",
+ "difficulty_rationale": "Long-horizon (17 steps, 13 distinct Adobe tools) spanning asset I/O, raster cleanup, geometry, raster-to-vector, masked solid minting, and board assembly. Difficulty comes from the two parallel chained spines (logo + four coins) plus a three-way variant fan-out from a single cropped master, all of which must stay on-axis and crop-tight so the trace yields mint-grade vectors readable at small sizes. It is faithful to the brief (refine provided concepts into true vector art; black/white/gold/silver; SVG + transparent PNG; coin-ready) while respecting every capability limit: vectorize is the genuine raster->vector path, fill_area mints only solid color on an isolated mask, color_overlay/monochromatic_tint do the metallic tints, and no banned capability (gen-fill, object removal, compositing, text-to-image, upscaling, layout composition) appears. Only one unavoidable [L] step (final zip); all 16 core steps are headless-confirmed [C].",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned capability present. image_crop_and_resize (step 7) only crops-and-scales the existing cropped mark to a 2000x2000 square proof canvas — it never grows/outpaints/invents canvas or upscales beyond a reframe of the source. image_fill_area (steps 10-11) does solid black and solid white fills of an isolated image_select_subject mask only. image_vectorize is the genuine raster-to-vector path; every mark is traced from a client-supplied reference (no from-scratch art/logo/text-to-image). No image_crop_and_resize/reframe-crop, no object-removal-with-reconstruction, no super-resolution/upscale, no compositing. image_apply_lens_blur is not used. asset_preview_file is inspect-only and emits no new file. All 18 core steps are real Adobe-connector actions (13 distinct Adobe tools) plus one unavoidable local zip.",
+  "notes": "Fixed both flagged completeness nits: (1) added image_crop_and_resize (step 7) to establish the asserted 2000x2000 px canvas the variants inherit, resolving the undefined-dimension gap; (2) added a produced WHITE #FFFFFF variant via a second solid image_fill_area (step 11) plus its logo_variant_white.png output, so all four brief-listed color versions (black/white/gold/silver) are actually generated rather than documented-only. Reconciled full_brief, outputs, and chaining_note to describe the crop-and-resize reframe (not any generative sizing) and the real four-fill/tint family. Brand IRONLINE FORGE is an invented, non-colliding fictional name (no real company match); no real people depicted; kept as-is."
+ }
+}

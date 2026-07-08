@@ -1,0 +1,445 @@
+{
+ "id": "AO-57",
+ "slug": "phonk-reel-tiktok-edit-package",
+ "title": "Phonk-Energy 9:16 Reel/TikTok Edit Package — Sizzle Cut, Reframe, Cleaned VO, and Scroll-Stopping Thumbnail",
+ "vertical": "Music, Film, Publishing & Media",
+ "category": "video_edit",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/motion-graphics/Polished-Reels-TikTok-Video-Edits"
+ },
+ "grounding_note": "VERBATIM from the real brief: raw vertical footage in; deliver 1x final 9:16 MP4 ready for Instagram & TikTok; on-screen text/captions; an exported thumbnail frame; a polished/professional look with on-brand color work; phonk-style energy; 15-45s runtime; HD/Full HD; 24-48h turnaround on a lean budget. ENRICHED to make it a runnable Adobe-connector benchmark (and to stay inside the capability sheet's honest boundaries): (1) the brief's \"trimming + smooth transitions + motion graphics + tasteful text animations + music syncing\" is a Premiere-class timeline edit that NO Adobe connector tool performs — so the spec re-scopes those words to what the suite actually offers: video_create_quick_cut [A] is the AI sizzle/highlight assembly (visual-engagement, the connector's nearest analog to \"pick the best parts + tight pacing\"), video_resize [A] is the 9:16 platform reframe (same length, no trim), and media_enhance_speech [A] cleans the spoken VO so synced audio sits clean. The spec states plainly that frame-accurate cuts, hard transitions, animated motion graphics, and beat-level music sync are NOT connector-doable and are flagged as the one human-finish step. (2) The \"exported thumbnail frame\" is realized as a full headless [C] raster pipeline on a client-supplied hero still grabbed from the footage — straighten, auto-tone, phonk color grade (cool teal/magenta), subject pop, halftone-grain texture, crop to the exact 1080x1920 cover, then a vectorized logo lockup — which is where the bulk of the genuine output-to-input Adobe chain lives. (3) Captions are authored as an on-screen text/caption asset uploaded to CC for the editor; the connector cannot burn text onto video frames. Nothing in the A6 not-available list is used as a core deliverable.",
+ "one_line_ask": "Turn one batch of raw vertical clips plus a hero still, brand logo, and a voiceover scratch track into a post-ready 9:16 phonk-energy short: an AI sizzle cut reframed to 1080x1920, a cleaned VO track, an on-screen caption sheet, and a fully color-graded exported thumbnail with a vector logo lockup.",
+ "full_brief": "I run a fast-growing Instagram + TikTok presence and need a short-form edit shipped post-ready for both platforms. For this assignment I'm sending: (a) three raw vertical clips from a night drive / street shoot, (b) one hero still grabbed from the footage to become the cover/thumbnail, (c) my brand wordmark logo as a flat PNG, (d) a rough voiceover scratch take with room noise that needs cleaning, and (e) a captions script as data. The concept is phonk-style energy but with a professional, polished finish — clean, current, on-brand color (cool teal shadows, magenta highlight bite). Deliverables: 1x final ~30s 9:16 MP4 ready to post on Instagram and TikTok (HD/Full HD); a matching on-screen captions/text asset; a cleaned voiceover track; and an exported, fully color-graded 1080x1920 thumbnail frame with my logo locked up in the corner as a crisp vector so it scales. Source assets stay in my Creative Cloud folder so tweaks are easy. Turnaround 24-48h, lean budget — efficient workflow over flashy effects. NOTE up front: frame-accurate timeline cuts, animated motion graphics, hard transitions, and beat-synced music are a manual Premiere finish and are out of scope for the automated connector pass; the automated pass delivers the AI sizzle assembly, the 9:16 reframe, the VO cleanup, the captions asset, and the graded thumbnail — the human editor does the final timeline polish on top.",
+ "inputs": [
+  {
+   "name": "raw_clip_nightdrive_01.mp4",
+   "kind": "video",
+   "gen_model": "veo-3.1-generate-preview",
+   "gen_prompt": "Handheld vertical 9:16 phone footage, 1080x1920, ~12 seconds, night drive through a neon-lit city street, dashboard and windshield reflections, passing streetlights streaking, slight handheld shake, real motion blur, candid documentary look, native ambient car-interior audio with faint music bleed, no captions or text overlays, not glossy CGI",
+   "realism_notes": "Must look like genuine phone footage: rolling-shutter wobble, real headlight bloom, compression noise in shadows. Native audio track present so media_enhance_speech and music-bleed handling are exercised."
+  },
+  {
+   "name": "raw_clip_nightdrive_02.mp4",
+   "kind": "video",
+   "gen_model": "veo-3.1-generate-preview",
+   "gen_prompt": "Handheld vertical 9:16 phone footage, 1080x1920, ~10 seconds, subject in hoodie walking under an underpass at night, sodium and neon mixed lighting, breath visible, gritty urban texture, candid, real grain, native footsteps and ambient audio, no text overlays",
+   "realism_notes": "Mixed color-temperature lighting (sodium orange vs neon magenta) so the color-grade chain has something real to correct toward the teal/magenta phonk look."
+  },
+  {
+   "name": "raw_clip_nightdrive_03.mp4",
+   "kind": "video",
+   "gen_model": "veo-3.1-generate-preview",
+   "gen_prompt": "Vertical 9:16 phone footage, 1080x1920, ~9 seconds, slow push-in on rain-slick asphalt reflecting neon signage, shallow depth of field, droplets on lens, moody, candid, native rain ambience audio, no text",
+   "realism_notes": "Gives the quick_cut engine visually distinct high-engagement moments (reflections, droplets) to select among the three clips."
+  },
+  {
+   "name": "hero_cover_still.png",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal vertical still, 1080x1920 portrait, a person in a hoodie half-lit by neon under a city underpass at night, slightly off-level horizon (tilted ~3 degrees as if grabbed from handheld footage), real skin pores and individual hair flyaways, mixed warm-and-cool street lighting, slight motion blur in background, candid documentary night photography, no text, no logo",
+   "realism_notes": "Deliberately tilted and mixed-WB so image_auto_straighten, image_apply_auto_tone, and the color-temperature/grade chain all have real work to do. A clear human subject so image_select_subject / Subject-Pop preset are meaningful."
+  },
+  {
+   "name": "brand_wordmark_logo.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "Flat minimalist wordmark logo on transparent background, the single word 'NOCTURNE' in a tight geometric sans-serif, solid white glyphs, crisp clean edges, high contrast, centered, 2000x600 PNG with alpha, no photographic texture, no gradient",
+   "realism_notes": "Flat high-contrast solid-color art so image_vectorize produces a clean SVG; transparent alpha so it composites as a corner lockup on the thumbnail. Text-bearing → gemini-3-pro-image."
+  },
+  {
+   "name": "voiceover_scratch.wav",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "A short ~18-second moody spoken voiceover line for a phonk reel, confident low-energy delivery, e.g. 'After dark the city belongs to us — keep moving, keep it clean.' Single male voice. Render to WAV, then degrade for realism: add steady room-tone hiss, a little HVAC rumble and light reverb so it sounds recorded on a phone in a room",
+   "realism_notes": "Intentionally noisy/reverberant so media_enhance_speech has a genuine voice-cleanup job and splits speech vs background as the tool advertises."
+  },
+  {
+   "name": "captions_script.json",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a small JSON array of 6 caption cues for a ~30s vertical reel, each cue with fields {index, start_seconds, end_seconds, text}, short punchy on-screen lines matching a moody night-drive phonk voiceover, all-caps style text, under 24 characters per line",
+   "realism_notes": "Realistic caption-cue structure the editor uploads as the on-screen text asset; gives a concrete captions deliverable without claiming the connector can burn text into video."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "phonk_sizzle_9x16.mp4",
+   "kind": "video",
+   "spec": "Final AI sizzle/highlight assembly reframed to vertical 9:16, MP4 (H.264), 1080x1920, HD/Full HD, ~30s target runtime (best-effort — the sizzle assembly and reframe are [A] async product actions whose exact final duration/spec are entitlement/widget-polled and NOT fully headless-retrievable, so ~30s is a target rather than a hard-verifiable value). Produced by video_create_quick_cut (step 22) then video_resize (step 23), same length no trim. Ready to post on Instagram and TikTok. Frame-accurate cuts, hard transitions, animated motion graphics, and beat-synced music are the flagged manual Premiere finish and are NOT part of this automated deliverable."
+  },
+  {
+   "name": "voiceover_clean.wav",
+   "kind": "audio",
+   "spec": "Cleaned voiceover track, WAV, mono, speech isolated from room hiss / HVAC rumble / light reverb via media_enhance_speech (step 26). Voice-only enhancement (not music/loudness mastering). [A] async product action — retrieval is entitlement/widget-polled. Intended to be dropped under the reel during the manual timeline finish."
+  },
+  {
+   "name": "reel_captions.json",
+   "kind": "data",
+   "spec": "On-screen captions/text asset: a JSON cue sheet of 6 caption cues, each {index, start_seconds, end_seconds, text} in short all-caps night-drive phonk lines (<24 chars/line), finalized into the client's CC project folder (step 28). Delivered as an uploaded data asset for the editor to burn onto the video during the manual finish — the connector does not composite text onto video frames."
+  },
+  {
+   "name": "thumbnail_cover_1080x1920.png",
+   "kind": "image",
+   "spec": "Exported, fully color-graded vertical cover/thumbnail, PNG 1080x1920: straightened, auto-toned, phonk-graded (cool teal shadows + magenta highlight bite), subject-popped, halftone-grain texture, subject-aware cropped/reframed to exact 9:16 from the 1080x1920 hero still (a straight reframe of the existing frame — no canvas extension or padding). Designed to carry the brand wordmark as a crisp corner lockup; the actual logo placement/compositing is the flagged human-finish step (the connector chain produces this graded/cropped cover without the logo burned in)."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "uploaded_hero_still_ref",
+   "note": "Client supplies the hero still; initialize a block upload of hero_cover_still.png into the client's Creative Cloud cloud-content folder (media_type image/png) to start the project. Returns the transfer document + presigned block URL."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "uploaded_hero_still_ref"
+   ],
+   "output": "hero_still_asset",
+   "note": "Finalize the block upload from step 1 (pass back its filename + transfer_document) so the hero still is a real CC asset with a fetchable URL to drive the raster chain."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "hero_still_asset"
+   ],
+   "output": "straightened_still",
+   "note": "Level the ~3-degree tilt from the handheld grab. Consumes the finalized hero-still URL from step 2."
+  },
+  {
+   "n": 4,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "straightened_still"
+   ],
+   "output": "autotoned_still",
+   "note": "Neutralize the mixed-WB night exposure as a clean base. Consumes step 3's output URL."
+  },
+  {
+   "n": 5,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "autotoned_still"
+   ],
+   "output": "cooled_still",
+   "note": "Push shadows cool/teal for the phonk look. Consumes step 4's output URL."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_hsl",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "cooled_still"
+   ],
+   "output": "graded_still",
+   "note": "Targeted HSL: deepen teal shadows and bring magenta/pink bite into the highlights for the on-brand phonk grade. Consumes step 5's output URL."
+  },
+  {
+   "n": 7,
+   "tool": "image_select_subject",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "graded_still"
+   ],
+   "output": "subject_mask",
+   "note": "Auto-select the hoodie subject to drive a selective pop. Consumes step 6's graded image and returns a maskURI."
+  },
+  {
+   "n": 8,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "graded_still",
+    "subject_mask"
+   ],
+   "output": "subject_popped_still",
+   "note": "Apply vibrance/saturation lift only within the subject mask from step 7 (subject pop) on the graded image from step 6, so the figure separates from the neon background."
+  },
+  {
+   "n": 9,
+   "tool": "image_apply_halftone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "subject_popped_still"
+   ],
+   "output": "textured_still",
+   "note": "Add a tasteful halftone/print-screen texture for the gritty phonk feel. Consumes step 8's output URL."
+  },
+  {
+   "n": 10,
+   "tool": "image_add_grain",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "textured_still"
+   ],
+   "output": "final_graded_still",
+   "note": "Layer fine film grain over the halftone for the finished moody surface. Consumes step 9's output URL."
+  },
+  {
+   "n": 11,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "final_graded_still"
+   ],
+   "output": "thumbnail_1080x1920",
+   "note": "Subject-aware crop to the exact 1080x1920 (9:16) cover frame, keeping the figure on a rule-of-thirds line. Consumes step 10's output URL."
+  },
+  {
+   "n": 12,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "uploaded_logo_ref",
+   "note": "Bring the client's flat brand wordmark (brand_wordmark_logo.png) into CC via a block upload so it can be vectorized for the lockup."
+  },
+  {
+   "n": 13,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "uploaded_logo_ref"
+   ],
+   "output": "logo_asset",
+   "note": "Finalize the logo upload from step 12 into a real CC asset URL."
+  },
+  {
+   "n": 14,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "logo_asset"
+   ],
+   "output": "logo_svg",
+   "note": "Vectorize the flat wordmark PNG from step 13 into a clean scalable SVG (NOCTURNE_logo.svg) for the corner lockup. The thumbnail+logo composite lockup is the one human-finish placement step, since the connector does not composite."
+  },
+  {
+   "n": 15,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "thumbnail_1080x1920",
+    "logo_svg"
+   ],
+   "output": "thumbnail_qc",
+   "note": "Pull the graded thumbnail (step 11) and the vector logo (step 14) back as base64 to visually QC the grade, crop, and that the wordmark reads crisp before handoff."
+  },
+  {
+   "n": 16,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "uploaded_clip01_ref",
+   "note": "Upload raw_clip_nightdrive_01.mp4 (media_type video/mp4) into the project folder to feed the video chain."
+  },
+  {
+   "n": 17,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "uploaded_clip01_ref"
+   ],
+   "output": "clip01_asset",
+   "note": "Finalize clip 01 into a real CC video assetId."
+  },
+  {
+   "n": 18,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "uploaded_clip02_ref",
+   "note": "Upload raw_clip_nightdrive_02.mp4 into the project folder."
+  },
+  {
+   "n": 19,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "uploaded_clip02_ref"
+   ],
+   "output": "clip02_asset",
+   "note": "Finalize clip 02 into a real CC video assetId."
+  },
+  {
+   "n": 20,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "uploaded_clip03_ref",
+   "note": "Upload raw_clip_nightdrive_03.mp4 into the project folder."
+  },
+  {
+   "n": 21,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "uploaded_clip03_ref"
+   ],
+   "output": "clip03_asset",
+   "note": "Finalize clip 03 into a real CC video assetId. Steps 16-21 give the quick_cut tool its three assetIds."
+  },
+  {
+   "n": 22,
+   "tool": "video_create_quick_cut",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "clip01_asset",
+    "clip02_asset",
+    "clip03_asset"
+   ],
+   "output": "sizzle_cut",
+   "note": "AI sizzle/highlight assembly across the three finalized clip assetIds (steps 17/19/21), target_duration ~30s, user_prompt for tight-pacing phonk energy. [A] async — the product widget polls and notifies; this is the connector's analog to 'pick the best parts'. Frame-accurate cuts/transitions/motion-graphics/beat-sync remain the flagged manual finish."
+  },
+  {
+   "n": 23,
+   "tool": "video_resize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "sizzle_cut"
+   ],
+   "output": "reel_9x16",
+   "note": "Reframe/resize the sizzle cut from step 22 to a clean full-frame 1080x1920 (9:16), SAME length (no trim). [A] async. Produces phonk_sizzle_9x16.mp4."
+  },
+  {
+   "n": 24,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "uploaded_vo_ref",
+   "note": "Upload the noisy voiceover_scratch.wav (media_type audio/wav) into the project folder for cleanup."
+  },
+  {
+   "n": 25,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "uploaded_vo_ref"
+   ],
+   "output": "vo_asset",
+   "note": "Finalize the VO into a real CC audio assetId."
+  },
+  {
+   "n": 26,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "vo_asset"
+   ],
+   "output": "voiceover_clean",
+   "note": "Clean the voiceover from step 25 — isolate the speech stem from room hiss/HVAC rumble/reverb. [A] async (voice-only, not music/loudness). Produces voiceover_clean.wav."
+  },
+  {
+   "n": 27,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "uploaded_captions_ref",
+   "note": "Upload the captions_script.json cue sheet (media_type application/json) into the project folder as the on-screen text/captions asset for the editor."
+  },
+  {
+   "n": 28,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "uploaded_captions_ref"
+   ],
+   "output": "captions_asset",
+   "note": "Finalize the captions cue sheet (reel_captions.json) into the client's CC project folder so source/captions stay with the project."
+  },
+  {
+   "n": 29,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "thumbnail_1080x1920",
+    "logo_svg",
+    "reel_9x16"
+   ],
+   "output": "handoff_board",
+   "note": "Assemble the produced assets — graded thumbnail (step 11), vector logo (step 14), and reframed reel (step 23) — into a Firefly Boards deep-link so the client previews the whole package in one place."
+  },
+  {
+   "n": 30,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "thumbnail_1080x1920",
+    "logo_svg",
+    "voiceover_clean",
+    "captions_asset",
+    "reel_9x16"
+   ],
+   "output": "reel_package_folder",
+   "note": "Copy the final deliverables (thumbnail, logo SVG, cleaned VO, captions, reel) into a single dated handoff folder in the client's Creative Cloud so source + deliverables sit together for easy tweaks (the brief's 'source/project file' ask)."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_adjust_hsl",
+  "image_select_subject",
+  "image_adjust_vibrance_and_saturation",
+  "image_apply_halftone",
+  "image_add_grain",
+  "image_crop_and_resize",
+  "image_vectorize",
+  "asset_inline_preview",
+  "video_create_quick_cut",
+  "video_resize",
+  "media_enhance_speech",
+  "create_firefly_board",
+  "asset_copy_assets"
+ ],
+ "tool_call_count": 30,
+ "distinct_adobe_tools": 18,
+ "chaining_note": "One continuous output-to-input chain anchored on the client-supplied assets. The hero still is uploaded (1) then finalized (2); the finalized URL feeds straighten (3) -> auto_tone (4) -> color_temperature (5) -> hsl grade (6). The graded image (6) is consumed by select_subject (7) to make a mask, and both the graded image (6) and that mask (7) feed the masked vibrance/saturation subject-pop (8) -> halftone (9) -> grain (10) -> crop_and_resize to the 1080x1920 thumbnail (11). In parallel the logo is uploaded (12)/finalized (13) and vectorized (14); the thumbnail (11) plus logo SVG (14) are QC'd via inline_preview (15). The three clips are uploaded/finalized (16-21) and consumed by quick_cut (22), whose sizzle output feeds video_resize to the 9:16 reel (23). The VO is uploaded/finalized (24-25) and consumed by media_enhance_speech (26). Captions are uploaded/finalized (27-28). Finally the produced thumbnail (11), logo SVG (14), and reel (23) populate a Firefly board (29), and all finals (11/14/26/28/23) are copied into one handoff folder (30). Every post-load step sets inputs_from to the producing step's output name; the deliverable package emerges from the chain.",
+ "difficulty_rationale": "Long-horizon flagship: 30 connector calls, 18 distinct Adobe tools, across 3 groups (A1 raster/grade, A4 asset/board, A5 video/audio). The raster grade-and-thumbnail spine is a genuine 9-step headless [C] chain with a real masked selective edit (select_subject -> masked vibrance). It is honestly mode-tagged: the video sizzle/reframe and VO cleanup are [A] async (entitled, product-widget-polled, not headless-retrievable), and the spec states up front that frame-accurate cuts, transitions, motion graphics, and beat-sync are NOT connector-doable and are the flagged manual Premiere finish — so nothing from the A6 not-available list is claimed as a core deliverable. Difficulty comes from breadth, the strict output->input dependency, mixing [C] and [A] modes, and faithfully re-scoping a Premiere-class brief onto the real Adobe connector surface. The only non-connector composite (logo lockup placement) is named as the single human-finish step, consistent with the 'partial' grade for the timeline polish.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned capability used. The thumbnail is produced via image_crop_and_resize (gen-free crop/reframe, output <= source dims) — no generative-expand/outpaint, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction. image_apply_halftone/image_add_grain are texture filters; image_select_subject + masked image_adjust_vibrance_and_saturation is a real selective edit. image_vectorize traces a client-supplied flat PNG. asset_inline_preview is used only for QC, not to emit a subset file. Video/audio steps (video_create_quick_cut, video_resize same-length, media_enhance_speech) are honest [A] async product actions; captions delivered as an uploaded JSON data asset, not burned into video; logo compositing named as the single human-finish step.",
+  "notes": "All 30 steps are real Adobe-connector actions with a coherent output->input chain. Only stale over-claim wording (thumbnail 'carries' the lockup) was corrected to match the connector reality (placement is human-finish). No other field described a banned capability."
+ }
+}

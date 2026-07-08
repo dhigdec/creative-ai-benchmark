@@ -1,0 +1,322 @@
+{
+ "id": "AO-26",
+ "slug": "real-estate-hdr-listing-retouch-mls-ready",
+ "title": "High-Volume Real Estate Listing Retouch — HDR Tone-Map, Window Pull, Lawn Boost & Consistent-Style Delivery",
+ "vertical": "Real Estate, Construction & Property",
+ "category": "realestate_photo",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Real%20Estate%20Photo%20Editor%20Needed%20—%20High%20Volume,%20Bracket"
+ },
+ "grounding_note": "VERBATIM from the source brief: real-estate media agency, editor (not photographer) receives RAW/bracketed files; the named edit list is \"window pulls, sky replacement[s], color correction, vertical/horizontal alignment, lawn enhancement, lens distortion correction, and general cleanup\"; deliverable = \"high-quality, MLS-ready images with consistent style across each property\"; volume \"20-40 photos per listing\", \"24-48 hour turnaround\". ENRICHED to make it a single runnable benchmark: I scope ONE representative listing as three real frames — a wide-DR exterior hero, a bright-window interior, and a second interior — instead of the full 20-40, since the connector caps at ~20 files and the benchmark needs a finite chain. HONEST CAPABILITY SUBSTITUTIONS (forced by the capability sheet, called out so nothing is misrepresented): (1) true 3/5-frame HDR bracket MERGE has no connector tool — the client instead supplies one wide-dynamic-range base frame and I recover it via auto-tone + highlights/shadow tone-mapping, which is the standard single-file equivalent of a bracket blend; (2) literal \"sky replacement\" is background-replace-by-prompt = NOT AVAILABLE [X], so I deliver a masked SKY ENHANCEMENT (select the sky → recover highlights / boost blue saturation, or the masked \"Sky Drama\" Adaptive preset) rather than swapping in a new sky — this is the defensible MLS-safe version and I flag it as such; (3) \"general cleanup\" is interpreted as tonal/color cleanup + straighten/crop, NOT object removal (which is [X]); (4) \"lens distortion correction / vertical alignment\" is delivered as auto-straighten + crop-to-bounds. \"Consistent style across the property\" is delivered literally by applying the SAME locked Lightroom preset to all three frames. No from-scratch art, no compositing, no gen-fill — every generative-sounding ask was down-scoped to a real connector capability or flagged.",
+ "one_line_ask": "Edit one real-estate listing's frames into MLS-ready, consistently styled images: tone-map the wide-DR exterior (window pull), enhance the sky, pop the lawn, straighten and crop, then lock that look as a preset and push it across the interior frames for a uniform property set.",
+ "full_brief": "You're the agency's go-to editor. We shot a listing and are sending you the frames; you handle the editing and return MLS-ready images with one consistent style across the whole property. For this batch, work the three representative frames we've attached (exterior hero + two interiors) end-to-end, then hand back a uniform set.\n\nEXTERIOR HERO (wide dynamic range, blown-out windows and bright sky over a shaded facade and front lawn):\n1. Auto-straighten the frame — the verticals are leaning and the horizon is off.\n2. Crop to clean bounds after straightening to remove the skewed edges (this is our lens-distortion/alignment cleanup).\n3. Recover the overall tone so the shaded facade reads properly — apply auto-tone as the base.\n4. WINDOW PULL: select the bright windows and pull their highlights down so the glass shows interior/structure instead of blowing out; also tame the overall highlights.\n5. SKY: select the sky and enhance it — recover the blown highlights and deepen the blue (we are NOT swapping the sky, just making the existing one read well and MLS-safe).\n6. LAWN ENHANCEMENT: select the front lawn/grass and lift its green saturation and luminance so it looks healthy and inviting.\n7. Warm the white balance very slightly and add a touch of vibrance so the whole exterior feels bright and welcoming.\n\nSTYLE LOCK + CONSISTENCY:\n8. Pull the current Lightroom preset library so we can pick the house style.\n9. Apply our chosen consistent \"bright & airy real-estate\" preset to the finished exterior — this is the look every frame in the property must match.\n10-11. Apply that SAME preset to interior frame 1 and interior frame 2, then bright-window pull / highlight-tame each interior so the windows aren't blown and the rooms feel open — giving us one uniform style across the property.\n\nDELIVERY: return each finished frame as a high-quality PNG and show me previews of all three so I can confirm the set is consistent before you do the rest of the 20-40 on this listing. Turnaround 24-48h, bulk per-listing.",
+ "inputs": [
+  {
+   "name": "exterior_hero_wideDR.png",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal real-estate exterior real-estate-photography frame of a two-story suburban American home shot on a wide-angle lens, single wide-dynamic-range exposure: the front facade is in open shade and slightly underexposed while the sky is bright and near-blown and the large front windows are completely blown out white, a green-but-slightly-patchy front lawn, paved driveway, leaning vertical lines and a slightly tilted horizon as if shot handheld and not leveled. Documentary HDR-source look, real brick and siding texture, real window reflections, no people, no text, no watermark, midday overcast-bright light, slight lens barrel distortion at the edges.",
+   "realism_notes": "Must look like an UNEDITED bracket-source/RAW-ish frame: blown windows + bright sky + shaded underexposed facade (so highlight recovery and the window pull have something to recover), visible tilt and leaning verticals (so auto-straighten/crop have work to do), and a real-but-imperfect lawn (so the masked lawn boost is visible). No HDR tone-mapping already baked in."
+  },
+  {
+   "name": "interior_living_room_brightwindow.png",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal real-estate interior frame of a staged living room with large windows on one wall that are very bright and near-blown showing only white outside, warm-ish indoor lighting, neutral sofa, coffee table, hardwood floor, slightly cool/flat unedited white balance, no people, no text, no watermark, realistic shadows and real material texture, shot wide-angle.",
+   "realism_notes": "Windows must be near-blown so the interior highlight-tame/window-pull step is visibly needed; flat unedited color so applying the locked bright-and-airy preset produces an obvious before/after."
+  },
+  {
+   "name": "interior_kitchen.png",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal real-estate interior frame of a staged modern kitchen with a window over the sink that is bright and slightly blown, white cabinets, stone countertop, stainless appliances, slightly dim and cool unedited lighting, no people, no text, no watermark, realistic material texture and reflections, shot wide-angle.",
+   "realism_notes": "Same property's second interior; slightly dim/cool so the SAME locked preset + highlight tame demonstrably unifies the style with the other two frames."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "exterior_hero_MLS.png",
+   "kind": "image",
+   "spec": "Finished exterior hero: straightened, cropped, auto-toned, window-pulled (windows + global highlights recovered), sky enhanced (masked highlight recovery + blue boost), lawn green lifted (masked), warmed WB + vibrance, then the locked bright-and-airy preset applied. High-quality PNG, MLS-ready."
+  },
+  {
+   "name": "interior_living_room_MLS.png",
+   "kind": "image",
+   "spec": "Living-room interior with the SAME locked preset applied + window/highlight tame. High-quality PNG, style-matched to the exterior hero."
+  },
+  {
+   "name": "interior_kitchen_MLS.png",
+   "kind": "image",
+   "spec": "Kitchen interior with the SAME locked preset applied + window/highlight tame. High-quality PNG, style-matched to the set."
+  },
+  {
+   "name": "listing_consistency_previews",
+   "kind": "preview",
+   "spec": "asset_preview_file display of all three finished frames so the agency can confirm one consistent style across the property before the remaining 20-40 frames are run."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_add_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "exterior_src_url",
+   "note": "Client supplies RAW/bracket-source frames from their local machine; open the Adobe file picker to bring the wide-DR exterior hero in and get its presignedAssetUrl/assetId. Initial asset load (no prior input)."
+  },
+  {
+   "n": 2,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_src_url"
+   ],
+   "output": "exterior_straight_url",
+   "note": "Level the leaning verticals/tilted horizon — the 'vertical/horizontal alignment' ask."
+  },
+  {
+   "n": 3,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_straight_url"
+   ],
+   "output": "exterior_cropped_url",
+   "note": "Crop away the skewed edges left by straightening — the alignment/lens-cleanup deliverable. Geometric crop only."
+  },
+  {
+   "n": 4,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_cropped_url"
+   ],
+   "output": "exterior_autotone_url",
+   "note": "Base tonal recovery so the shaded facade reads — the single-file stand-in for HDR bracket blending."
+  },
+  {
+   "n": 5,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_autotone_url"
+   ],
+   "output": "windows_mask_url",
+   "note": "Mask the bright/blown windows for the window pull."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_autotone_url",
+    "windows_mask_url"
+   ],
+   "output": "exterior_windowpull_url",
+   "note": "WINDOW PULL: pull highlights down inside the window mask so glass shows structure instead of blowing out; same tool also tames overall highlights."
+  },
+  {
+   "n": 7,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_windowpull_url"
+   ],
+   "output": "sky_mask_url",
+   "note": "Mask the sky for the MLS-safe sky ENHANCEMENT (not a replacement — replacement is not available)."
+  },
+  {
+   "n": 8,
+   "tool": "image_adjust_single_color_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_windowpull_url",
+    "sky_mask_url"
+   ],
+   "output": "exterior_sky_url",
+   "note": "Deepen the blue and recover the sky within its mask so the existing sky reads cleanly."
+  },
+  {
+   "n": 9,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_sky_url"
+   ],
+   "output": "lawn_mask_url",
+   "note": "Mask the front lawn/grass for the lawn-enhancement ask."
+  },
+  {
+   "n": 10,
+   "tool": "image_adjust_hsl",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_sky_url",
+    "lawn_mask_url"
+   ],
+   "output": "exterior_lawn_url",
+   "note": "LAWN ENHANCEMENT: lift green saturation + luminance within the lawn mask so it looks healthy."
+  },
+  {
+   "n": 11,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_lawn_url"
+   ],
+   "output": "exterior_warm_url",
+   "note": "Slight global white-balance warm-up for a bright, welcoming exterior. (Vibrance handled in next adjust call / preset.)"
+  },
+  {
+   "n": 12,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_warm_url"
+   ],
+   "output": "exterior_vibrant_url",
+   "note": "Touch of global vibrance to finish the welcoming exterior tone before the style lock."
+  },
+  {
+   "n": 13,
+   "tool": "image_list_presets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "preset_catalog",
+   "note": "Pull the Lightroom preset library to pick the locked house style (bright & airy). Lookup step — consumed by the apply calls below."
+  },
+  {
+   "n": 14,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_vibrant_url",
+    "preset_catalog"
+   ],
+   "output": "exterior_hero_MLS",
+   "note": "Apply the chosen consistent bright-&-airy preset to finish the exterior hero — this output is the canonical look every other frame must match."
+  },
+  {
+   "n": 15,
+   "tool": "asset_add_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "interior1_src_url",
+   "note": "Bring in interior frame 1 (living room) from the picker. Secondary asset load for the consistency pass."
+  },
+  {
+   "n": 16,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "interior1_src_url",
+    "preset_catalog"
+   ],
+   "output": "interior1_styled_url",
+   "note": "Apply the SAME locked preset to the living room for one consistent property style."
+  },
+  {
+   "n": 17,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "interior1_styled_url"
+   ],
+   "output": "interior_living_room_MLS",
+   "note": "Tame the bright/blown living-room windows (interior window pull) to finish frame 1."
+  },
+  {
+   "n": 18,
+   "tool": "asset_add_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "interior2_src_url",
+   "note": "Bring in interior frame 2 (kitchen) from the picker. Secondary asset load."
+  },
+  {
+   "n": 19,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "interior2_src_url",
+    "preset_catalog"
+   ],
+   "output": "interior2_styled_url",
+   "note": "Apply the SAME locked preset to the kitchen — uniform style across all three frames."
+  },
+  {
+   "n": 20,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "interior2_styled_url"
+   ],
+   "output": "interior_kitchen_MLS",
+   "note": "Tame the bright kitchen window to finish frame 2."
+  },
+  {
+   "n": 21,
+   "tool": "asset_preview_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "exterior_hero_MLS",
+    "interior_living_room_MLS",
+    "interior_kitchen_MLS"
+   ],
+   "output": "listing_consistency_previews",
+   "note": "Show all three finished frames together so the agency confirms one consistent style before the rest of the 20-40 are run."
+  }
+ ],
+ "tools_used": [
+  "asset_add_file",
+  "image_auto_straighten",
+  "image_crop_to_bounds",
+  "image_apply_auto_tone",
+  "image_select_by_prompt",
+  "image_adjust_highlights",
+  "image_adjust_single_color_saturation",
+  "image_adjust_hsl",
+  "image_adjust_color_temperature",
+  "image_adjust_vibrance_and_saturation",
+  "image_list_presets",
+  "image_apply_preset",
+  "asset_preview_file"
+ ],
+ "tool_call_count": 21,
+ "distinct_adobe_tools": 13,
+ "chaining_note": "Strict output→input chain. The exterior hero is built as an unbroken pipeline: src(1)→straighten(2)→crop(3)→auto-tone(4); auto-tone feeds both the windows mask(5) and the highlight pull(6); the window-pulled frame feeds the sky mask(7) and the masked sky edit(8); that feeds the lawn mask(9) and masked lawn HSL(10); then warm WB(11)→vibrance(12)→apply locked preset(14)=exterior_hero_MLS. The preset CATALOG produced at step 13 is reused as input to all three apply_preset calls (14, 16, 19), which is what enforces 'consistent style across the property.' Each interior is its own short chain off a fresh load: load→apply SAME preset→tame highlights (15→16→17 and 18→19→20). Finally the three finished outputs (14,17,20) all feed the single preview(21). Every step after an asset load consumes a prior step's named output; masks are produced by a select step and consumed by the very next adjust step. The deliverable set (one uniform property look) emerges only from the full chain.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 21 connector calls, 13 distinct Adobe tools across loading, geometry, masking, tonal, color, preset, and preview groups — well past the ≥10 / ≥6 bar and into LONG-HORIZON FLAGSHIP territory (≥12 calls, multiple groups, heavy output→input reuse). Difficulty comes from (a) correct masked-edit sub-chains (select_by_prompt → adjust with mask) repeated for windows, sky, and lawn, each requiring the right adjustment tool; (b) reusing one preset catalog across three frames to enforce consistency; and (c) honestly down-scoping three generative-sounding asks (HDR bracket merge, sky replacement, general object cleanup) to real connector capabilities (single-file tone-map, masked sky enhancement, tonal/geometry cleanup) without crossing into the [X] not-available list. No Canva, no Express [W] widget track, no gen-fill/compositing/upscaling — every step is a headless-confirmed [C] Adobe tool.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "issues": [
+   "No hard-constraint violations. All 21 steps server=adobe; no Canva; no Express [W] widget tools (image_list_presets/image_apply_preset are A1 [C] photo tools, not the search_design/fill_text track).",
+   "Chaining = 85% (17/20 steps after the first consume a prior output). The 3 unchained steps are legitimate: n13 image_list_presets (lookup) and n15/n18 asset_add_file (fresh interior loads).",
+   "feasible_no_X clean: sky is correctly downscoped to a MASKED enhancement (select_by_prompt -> single_color_saturation) rather than bg-replace-by-prompt [X]; HDR bracket-merge downscoped to auto-tone + masked highlights; 'general cleanup' = tonal/geometry only (no AI object removal); masked tonal edits are explicitly sanctioned by capability sheet A1 (maskURI accepted by tonal/FX tools). No gen-fill, no image_fill_area, no render_* export, no upscaling.",
+   "MINOR (non-blocking) overstatement: step 6 note claims image_adjust_highlights 'same tool also tames overall highlights' while it is being applied inside the windows mask -- a single masked call cannot simultaneously do a masked pull AND a separate global highlight tame. The tool+mask usage is valid; only the prose conflates two effects in one call.",
+   "MINOR consistency: difficulty_rationale and chaining_note are accurate; counts (21 calls, 13 distinct) match the workflow array exactly."
+  ]
+ }
+}

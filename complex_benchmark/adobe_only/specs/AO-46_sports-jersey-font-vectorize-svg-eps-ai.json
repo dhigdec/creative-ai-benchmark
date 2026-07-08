@@ -1,0 +1,327 @@
+{
+ "category": "vectorize_logo",
+ "id": "AO-46",
+ "slug": "sports-jersey-font-vectorize-svg-eps-ai",
+ "title": "Recreate a Sports Jersey Font (A–Z, 0–9) as Clean Vector SVG / EPS / AI from a Reference Image",
+ "vertical": "Fashion & Apparel",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Recreate%20Sports%20Jersey%20Font%20from%20Reference%20Image%20(Vector"
+ },
+ "grounding_note": "VERBATIM from the Upwork brief (cand_46, db_i 823): deliverables are the full glyph set — uppercase A–Z and numbers 0–9 — recreated as clean vector artwork in SVG + EPS + AI for both letters and numbers; the intended use is football/soccer jersey printing via DTF/Flex/Flock; requirements are clean vector paths, consistent stroke widths and spacing, commercial usage rights, and original artwork (not derived from a proprietary font file). The optional OTF/TTF bonus is named verbatim and noted as out of connector scope. REASONABLY ENRICHED to make it a runnable Adobe-connector benchmark: I assume the client supplies the reference as two flat raster glyph sheets (a letter sheet and a number sheet, photographed/scanned off a jersey) rather than a single mixed image, so the chain has two real parallel branches and asset reuse; I add a licensed Adobe Stock jersey-collar swatch only as a color-fidelity reference (not a deliverable); and I make explicit that the .ai master is an AUTHORED vector handed back from the vectorize step's SVG and is EXPORTED (not composed) by the connector, because document_render_vector only exports a genuine .ai — the connector never draws type from scratch. No invented unrelated deliverable; the core remains raster-reference → clean vector glyph set.",
+ "one_line_ask": "Turn two photographed jersey-font reference sheets (letters A–Z and numbers 0–9) into clean, print-ready vector artwork and deliver SVG + EPS + AI for both sets.",
+ "full_brief": "We run a custom football/soccer kit shop and need our signature jersey numbering font rebuilt as proper vector artwork for DTF, Flex and Flock production. We are sending two reference images shot off one of our printed jerseys: one sheet showing the full uppercase alphabet A–Z, and a second sheet showing the digits 0–9. The phone shots are slightly tilted, unevenly lit, and have a faint fabric texture and color cast from the jersey weave, so they need cleanup before tracing. We also include a licensed close-up of the jersey collar so you can match the exact ink tone. Deliverables: clean vector recreations of the complete glyph set with consistent stroke widths and even spacing, exported as SVG + EPS + AI for the letter set AND separately for the number set. The vector paths must be tight enough to cut on a Flex/Flock plotter and to separate cleanly for DTF. We hold commercial rights to the original printed artwork; the recreation must be original vector geometry, not extracted from any proprietary font file. Please process the letters and the numbers as two parallel passes off the same cleanup recipe so the two sheets stay visually identical in weight and proportion, and hand back a single organized package.",
+ "inputs": [
+  {
+   "name": "jersey_letters_sheet.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A flat reference sheet photographed with a phone showing the complete uppercase alphabet A through Z in a bold collegiate/athletic block jersey font, white letters with a thin contrasting outline, laid out in even rows on a real polyester football jersey fabric. The shot is very slightly tilted (about 3 degrees), with uneven window lighting making one corner brighter, a faint visible knit-fabric texture, and a slight cool color cast. Documentary, true-to-life phone-camera look, real fabric weave and sheen, no CGI gloss. 2400x1600.",
+   "realism_notes": "Must read as an actual phone photo off a real jersey: visible polyester weave, subtle moire on the knit, mild keystone tilt and a warm-to-cool lighting gradient so that auto_straighten / auto_tone / temperature correction have something real to fix. Glyphs must be legible, evenly spaced, and consistent in weight so a clean trace is possible."
+  },
+  {
+   "name": "jersey_numbers_sheet.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A flat reference sheet photographed with a phone showing the digits 0 1 2 3 4 5 6 7 8 9 in the SAME bold athletic block jersey font as a matching alphabet sheet — white numerals with a thin contrasting outline — laid out in one even row on the same polyester football jersey fabric. Slight tilt, uneven lighting brighter on the left, faint knit texture, slight cool color cast. Documentary phone-camera realism, real fabric, no CGI. 2400x900.",
+   "realism_notes": "Stroke weight, outline thickness and proportions must match the letters sheet exactly so the two parallel passes produce a coherent family. Same fabric and lighting flaws as the letters sheet so the identical cleanup recipe applies to both."
+  },
+  {
+   "name": "collar_ink_reference.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Extreme close-up macro photo of the woven collar trim of a football jersey, showing the precise printed ink tone (a deep navy) against white polyester, sharp fabric fibers, natural soft daylight, real thread detail, documentary product-shot realism, no CGI. 1600x1600.",
+   "realism_notes": "Used only as a visual color-fidelity reference the operator eyeballs when choosing the manual white-balance/contrast targets; licensed via Adobe Stock in the workflow. It is a human QC reference, not a functional input sampled by any connector tool. Real fiber and thread detail, accurate flat ink color, no stylization."
+  },
+  {
+   "name": "letters_AZ_master.ai",
+   "kind": "vector",
+   "gen_model": "authored-asset",
+   "gen_prompt": "An authored Adobe Illustrator (.ai) master that wraps the traced letter geometry: a single artboard containing the exact vector paths carried over from letters_AZ_clean.svg (the connector's image_vectorize output), placed and grouped as the A–Z glyph set with no new/from-scratch type drawn. This is the authored .ai template document_render_vector consumes in step 20 to emit the SVG/PDF/PNG and EPS masters; geometry is 100% the traced SVG, only re-wrapped into .ai container format.",
+   "realism_notes": "Not from-scratch art: the paths are identical to the connector-produced letters_AZ_clean.svg, merely re-saved into an Illustrator document so document_render_vector has a genuine .ai to export. Declared as an input because render_vector requires an authored .ai and no connector converts SVG→.ai."
+  },
+  {
+   "name": "numbers_09_master.ai",
+   "kind": "vector",
+   "gen_model": "authored-asset",
+   "gen_prompt": "An authored Adobe Illustrator (.ai) master wrapping the traced digit geometry from numbers_09_clean.svg (the connector's image_vectorize output) on a single artboard as the 0–9 glyph set, weight- and proportion-matched to letters_AZ_master.ai, with no new type drawn from scratch. Consumed by document_render_vector in step 21 to emit the number-set SVG/PDF/PNG and EPS masters.",
+   "realism_notes": "Geometry is identical to the connector-produced numbers_09_clean.svg, only re-wrapped into .ai. Declared as an input so render_vector has a real authored .ai to export, matching the letters master exactly for family coherence."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "letters_AZ_clean.svg",
+   "kind": "vector",
+   "spec": "Clean traced SVG of the full uppercase A–Z glyph sheet, pure black geometry on transparent ground, tight continuous paths suitable for plotter cutting and DTF separation. Produced by image_vectorize."
+  },
+  {
+   "name": "numbers_09_clean.svg",
+   "kind": "vector",
+   "spec": "Clean traced SVG of the 0–9 digit sheet, matched stroke weight and proportion to the letters SVG, transparent ground. Produced by image_vectorize."
+  },
+  {
+   "name": "letters_AZ.ai",
+   "kind": "vector",
+   "spec": "Adobe Illustrator (.ai) master of the letter set, re-exported by document_render_vector from the authored input letters_AZ_master.ai (whose geometry was carried verbatim from letters_AZ_clean.svg). Single artboard, all glyphs; no type drawn from scratch."
+  },
+  {
+   "name": "numbers_09.ai",
+   "kind": "vector",
+   "spec": "Adobe Illustrator (.ai) master of the number set, re-exported by document_render_vector from the authored input numbers_09_master.ai (geometry from numbers_09_clean.svg)."
+  },
+  {
+   "name": "letters_AZ.eps / numbers_09.eps",
+   "kind": "vector",
+   "spec": "EPS exports of each set for legacy DTF/Flex/Flock RIP workflows. Emitted by document_render_vector, which lists application/eps as a supported output media type, from the two authored .ai masters."
+  },
+  {
+   "name": "jersey_font_vector_package.zip",
+   "kind": "archive",
+   "spec": "Single organized package: /letters and /numbers folders each containing the SVG + EPS + AI plus a contact-sheet preview PNG."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_license_and_download_stock",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "collar_ink_ref_licensed",
+   "note": "License + download the collar ink-tone close-up (collar_ink_reference) as a color-fidelity reference the operator eyeballs, per the license-before-edit rule. It is a human QC reference for choosing white-balance/contrast targets, not a value sampled by any connector tool."
+  },
+  {
+   "n": 2,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "upload_session",
+   "note": "Open an upload session to bring the two client reference sheets into Adobe storage."
+  },
+  {
+   "n": 3,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "uploaded_sheets",
+   "note": "Finalize upload of jersey_letters_sheet.png and jersey_numbers_sheet.png into the working folder; yields stored asset handles for both reference sheets."
+  },
+  {
+   "n": 4,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_sheets",
+   "output": "letters_straight",
+   "note": "LETTERS BRANCH: correct the ~3 degree phone tilt on the letters sheet so glyph baselines are level before tracing."
+  },
+  {
+   "n": 5,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "letters_straight",
+   "output": "letters_toned",
+   "note": "Auto-tone to even out the uneven window lighting across the letters sheet — establishes the shared cleanup recipe step 1."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "letters_toned",
+   "output": "letters_neutral",
+   "note": "Neutralize the cool color cast (cleanup recipe step 2) via a global white-balance shift so the white ground reads true white. The operator eyeballs collar_ink_ref_licensed as a visual target; no color is auto-sampled from the reference by the connector."
+  },
+  {
+   "n": 7,
+   "tool": "image_adjust_brightness_and_contrast",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "letters_neutral",
+   "output": "letters_highcontrast",
+   "note": "Push contrast to crush the faint knit-fabric texture and drive the glyphs toward a clean high-contrast silhouette (cleanup recipe step 3) — critical so vectorize traces glyph edges, not fabric weave."
+  },
+  {
+   "n": 8,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "letters_highcontrast",
+   "output": "letters_glyph_mask",
+   "note": "Select the letter glyphs (prompt: the white block letters) to isolate the shapes from the fabric ground for a uniform fill."
+  },
+  {
+   "n": 9,
+   "tool": "image_invert_selection",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "letters_glyph_mask",
+   "output": "letters_ground_mask",
+   "note": "Invert to target the background ground so it can be flattened to pure white, removing every last trace of weave/lighting around the glyphs."
+  },
+  {
+   "n": 10,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "letters_ground_mask, letters_highcontrast",
+   "output": "letters_flat",
+   "note": "Solid-fill the inverted (background) selection with pure white — a clean, traceable two-tone plate. Solid-color fill only, within the existing canvas; no generation and no canvas resize."
+  },
+  {
+   "n": 11,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "letters_flat",
+   "output": "letters_AZ_clean.svg",
+   "note": "CORE DELIVERABLE 1: raster→clean SVG trace of the A–Z plate, tight continuous paths ready for plotter/DTF."
+  },
+  {
+   "n": 12,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_sheets",
+   "output": "numbers_straight",
+   "note": "NUMBERS BRANCH (parallel pass, same recipe): straighten the digits sheet."
+  },
+  {
+   "n": 13,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "numbers_straight",
+   "output": "numbers_toned",
+   "note": "Auto-tone the numbers sheet — identical recipe step so the two sets stay matched in weight/value."
+  },
+  {
+   "n": 14,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "numbers_toned",
+   "output": "numbers_neutral",
+   "note": "Neutralize the same cool cast on the numbers sheet with the same global white-balance shift; operator again eyeballs collar_ink_ref_licensed as the visual target."
+  },
+  {
+   "n": 15,
+   "tool": "image_adjust_brightness_and_contrast",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "numbers_neutral",
+   "output": "numbers_highcontrast",
+   "note": "Match the letters' contrast push to crush fabric texture on the digits — keeps stroke weight identical across the family."
+  },
+  {
+   "n": 16,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "numbers_highcontrast",
+   "output": "numbers_glyph_mask",
+   "note": "Select the white digit glyphs to isolate them from the ground."
+  },
+  {
+   "n": 17,
+   "tool": "image_invert_selection",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "numbers_glyph_mask",
+   "output": "numbers_ground_mask",
+   "note": "Invert to the background ground for flattening."
+  },
+  {
+   "n": 18,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "numbers_ground_mask, numbers_highcontrast",
+   "output": "numbers_flat",
+   "note": "Solid white fill of the digit-sheet background within the existing canvas — clean two-tone plate matched to the letters plate. No generation, no resize."
+  },
+  {
+   "n": 19,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "numbers_flat",
+   "output": "numbers_09_clean.svg",
+   "note": "CORE DELIVERABLE 2: raster→clean SVG trace of the 0–9 plate, weight-matched to the letters SVG."
+  },
+  {
+   "n": 20,
+   "tool": "document_render_vector",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "letters_AZ_master.ai",
+   "output": "letters_AZ_exports",
+   "note": "Export the authored letters master letters_AZ_master.ai (a declared input whose geometry was carried verbatim from letters_AZ_clean.svg) to SVG/PDF/PNG and to the .ai and EPS masters. document_render_vector consumes a genuine authored .ai and lists application/eps among its supported output media types; it does not compose or draw type."
+  },
+  {
+   "n": 21,
+   "tool": "document_render_vector",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "numbers_09_master.ai",
+   "output": "numbers_09_exports",
+   "note": "Export the authored numbers master numbers_09_master.ai (declared input, geometry from numbers_09_clean.svg) to its .ai/EPS/SVG/PDF/PNG masters, matching the letters export settings."
+  },
+  {
+   "n": 22,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "letters_AZ_exports, numbers_09_exports",
+   "output": "package_folders",
+   "note": "Create the /letters and /numbers delivery folders in Adobe storage to organize the final SVG+EPS+AI package."
+  },
+  {
+   "n": 23,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "letters_AZ_clean.svg, numbers_09_clean.svg, letters_AZ_exports, numbers_09_exports, package_folders",
+   "output": "packaged_assets",
+   "note": "Copy both clean SVGs and both export sets into their respective delivery folders, assembling the final organized package."
+  },
+  {
+   "n": 24,
+   "tool": "zip_package",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "packaged_assets",
+   "output": "jersey_font_vector_package.zip",
+   "note": "Single unavoidable local step: zip the organized /letters and /numbers folders (SVG+EPS+AI + contact-sheet PNG) into one downloadable package for handoff."
+  }
+ ],
+ "tools_used": [
+  "asset_license_and_download_stock",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_adjust_brightness_and_contrast",
+  "image_select_by_prompt",
+  "image_invert_selection",
+  "image_fill_area",
+  "image_vectorize",
+  "document_render_vector",
+  "asset_create_folders",
+  "asset_copy_assets"
+ ],
+ "tool_call_count": 24,
+ "distinct_adobe_tools": 14,
+ "chaining_note": "Two parallel branches off one shared cleanup recipe, both feeding a single package. Setup: license the collar ink reference (1, an eyeballed QC reference only) and upload the two client sheets (2→3 uploaded_sheets). LETTERS BRANCH consumes uploaded_sheets and chains strictly output→input: auto_straighten(4)→auto_tone(5)→color_temperature(6, a global white-balance shift with the collar tone used as a visual target)→brightness_contrast(7)→select_by_prompt(8)→invert_selection(9)→fill_area(10, consuming both the inverted mask and the high-contrast raster, solid-fill within the canvas only)→vectorize(11)=letters_AZ_clean.svg. NUMBERS BRANCH (12–19) re-consumes the SAME uploaded_sheets handle and applies the identical recipe in the same order to produce numbers_09_clean.svg, guaranteeing weight/proportion parity. Each traced SVG's geometry is re-wrapped into an authored .ai master that is DECLARED in inputs[] (letters_AZ_master.ai, numbers_09_master.ai) — no type is drawn from scratch, the paths are identical to the connector-produced SVGs, they are only re-saved into Illustrator container format so document_render_vector has a genuine .ai to export. document_render_vector then EXPORTS each authored master to .ai/EPS/SVG/PDF/PNG (20, 21); EPS is a documented output media type of that tool. asset_create_folders(22) consumes both export sets; asset_copy_assets(23) consumes both clean SVGs + both export sets + the new folders to assemble the package; the lone local step zip_package(24) consumes packaged_assets to emit the final zip. Every step after the initial load consumes a named prior output; the deliverable (clean weight-matched vector glyph family in SVG+EPS+AI) emerges from the chain.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 24 steps, 14 distinct Adobe tools across 3 connector groups (image_* raster cleanup, document_* vector export, asset_* stock/upload/storage). It demands real planning — a shared deterministic cleanup recipe applied identically across two parallel branches for cross-set consistency, correct ordering (straighten before tone before select, license before edit), and honest handling of the connector's limits: vectorize is the only path to the SVG, fill_area is used strictly as a solid two-tone flattener (not generative), and the .ai/EPS masters are EXPORTED via document_render_vector from authored vectors rather than composed from scratch. Difficulty comes from glyph-edge fidelity (crushing fabric weave without eroding stroke weight) and keeping the letter and number sets a coherent family, not from any single hard step.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned capability used. image_vectorize is the only raster→vector path (allowed). image_fill_area is used strictly as a solid two-tone flattener within the existing canvas — no canvas grow/square/composite, no generation. No image_crop_and_resize/reframe-crop, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction. image_apply_lens_blur is not used. The two authored .ai masters carry geometry verbatim from the connector-traced SVGs (no type drawn from scratch) and are now DECLARED in inputs[], satisfying the render-vector authored-input rule; document_render_vector exports them to SVG/PDF/PNG and EPS, all documented output media types (EPS = application/eps is explicitly supported). Client brand is a generic fictional 'custom football/soccer kit shop'; no real company, institution, or person is named or depicted. Adobe Stock and the platforms named are permitted and unchanged.",
+  "notes": "All steps map to real Adobe connector tools plus one unavoidable local zip. The prior reverify's stale claim that EPS is not a render_vector capability was incorrect (application/eps IS a supported outputMediaType) and has been reconciled; the authored-.ai-input gap it flagged is now closed by declaring both masters in inputs[]. Chain is fully doable end to end."
+ }
+}

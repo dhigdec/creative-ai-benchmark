@@ -1,0 +1,220 @@
+{
+ "slot_id": "R03",
+ "category": "photo_restore",
+ "title": "Restore a Faded, Scratched Family Keepsake Photo to a Framed A4 Print",
+ "slug": "meadowlark-keepsake-photo-restoration-a4-print",
+ "vertical": "media_publishing",
+ "source": {
+  "platform": "Freelancer.com",
+  "reference": "Old Picture Restoration"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief (\"Old Picture Restoration\", $30-$250 USD): the client says \"I need a physical photo restored. This is a personal keepsake and means a lot to me.\" and lists the requirements \"Restore colors, details, and sharpness.\" and \"Must be able to work from a physical photo.\" plus \"Expertise in photo restoration\" and \"Experience with color correction and detail enhancement.\" REASONABLY ENRICHED to make it a runnable, gradeable, single-photo Adobe-connector benchmark: (a) the \"physical photo\" is modeled as a supplied high-resolution flatbed scan (a freelancer always works from a scan of the physical print, not the paper original) of one 1970s color family snapshot; (b) the vague \"restore colors, details, and sharpness\" is honestly scoped to what the connector can actually do -- color fading is corrected with the tonal/color adjust_* family + auto-tone; \"sharpness\"/\"details\" (there is NO sharpen or super-resolution tool) is delivered as recovered clarity via local-contrast/highlight/dark-portion shaping and a clarity-style preset, NOT an invented sharpen or upscale op; scratches are concealed ONLY where they cross a PLAIN uniform region (the seamless studio backdrop behind the family) via select-by-prompt + solid-color fill_area, since the connector has NO generative heal/clone/object-removal; (c) an exact A4 print target (2480x3508 px, 300 DPI) is set so the keepsake can be framed -- a genuine downscale/re-frame of the high-res scan, never an upscale. No deliverable was invented beyond the single restored, print-and-frame-ready keepsake the brief asks for, plus a before/after approval board (the client stresses the photo \"means a lot\", so a sign-off preview before printing is the natural hand-off).",
+ "one_line_ask": "Restore one treasured, faded and scratched 1970s family keepsake scan -- correct the color cast and faded contrast, recover clarity/detail, conceal scratches over the plain backdrop -- and deliver a framed-A4 print-ready file with a before/after approval board.",
+ "full_brief": "Hello -- I run a small family-history blog called Meadowlark Memory Lane and I have one very special photo I'd love professionally restored. It's a personal keepsake and means a lot to me: a color snapshot of my grandparents and my mother as a little girl, taken in a portrait studio in the mid-1970s. The physical print has aged badly and I've had it scanned at high resolution on a flatbed so you can work from the digital file.\n\nThe supplied scan (meadowlark_family_keepsake_1975.png) has these problems: the whole image has gone warm/orange and flat -- the color has faded and lost contrast; there are several fine white scratch lines and one short crease crossing the plain cream studio backdrop behind the family (they do NOT cross the faces); the scan sits very slightly crooked on the scanner bed with a thin ragged white border down one side; and overall the picture looks soft and washed out.\n\nWhat I need: (1) straighten the slight scanner tilt and crop off the ragged white scan border so only the photograph remains; (2) correct the faded warm/orange color cast and recover natural, believable skin tones and clothing colors; (3) recover the faded contrast and lift overall clarity and local detail so the picture reads crisply on a framed print -- this is the \"colors, details and sharpness\" I care most about; (4) conceal the scratches and the crease, but ONLY where they cross the plain cream backdrop -- please colour-match that uniform area and fill the marks so they disappear (leave the faces and figures untouched); (5) add a very light film grain over the restored areas so the cleaned-up backdrop patch doesn't look plastic or smoothed against the original photographic texture; (6) deliver a clean, true-A4 file at 2480x3508 px / 300 DPI so I can send it straight to the print lab and frame it.\n\nDeliverable: the single restored keepsake as a print-and-frame-ready A4 image, PLUS a before/after approval board (original scan next to the restored A4) so I can look it over and sign off before I print -- given how much this photo means, I'd like to approve it first. Please keep it looking like a genuine 1970s photograph, just healthy again -- no modern, over-processed, plastic look.",
+ "inputs": [
+  {
+   "name": "meadowlark_family_keepsake_1975.png",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "An authentic, heavily-aged HIGH-RESOLUTION flatbed scan of a mid-1970s color studio family snapshot: grandparents and a young girl (about six) posed together against a smooth, plain seamless CREAM/off-white studio backdrop. Strong overall warm yellow-orange color cast and faded, low-contrast tones typical of a decayed 1970s C-print dye; muted, washed-out skin tones and clothing colors. Period-correct 1970s hair, clothing and studio lighting. Several fine, bright white hairline SCRATCH lines of varying length and one short vertical crease run across the PLAIN cream backdrop area behind and beside the family (NOT across any face or figure). The whole frame is very slightly tilted (about 2-3 degrees) as if placed crooked on a scanner, with a thin ragged uneven white scan border down the left side and a faint dust speckle. Genuinely soft focus, low micro-contrast, real photographic film grain. Documentary realism, real pores and individual hair strands, no CGI gloss, no modern saturated color.",
+   "realism_notes": "Must read as a genuine decayed 1975 C-print scan: the warm/orange cast + flat faded contrast are the damage the chain must FIX, so do NOT pre-correct them. Render it at high pixel dimensions (a real flatbed print scan is large, e.g. >=2500x3600 px) so the final A4 crop_and_resize to 2480x3508 is a genuine downscale/re-frame, NEVER an upscale. The scratches and crease MUST sit over the PLAIN cream backdrop (a single near-uniform tone) and stay OFF the faces/figures, so select-by-prompt + a matched solid fill can honestly conceal them without any generative heal. Keep the slight tilt and ragged white scan border for the straighten+crop steps to act on. Keep it genuinely soft with native grain so the clarity steps have work to do and the later light-grain step blends the fill patch naturally. gpt-image-2 for photoreal aged-print realism."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "meadowlark_keepsake_restored_A4.png",
+   "kind": "image",
+   "spec": "The fully restored 1970s family keepsake: tilt-straightened, scan-border cropped, warm/orange color cast neutralized, faded contrast and clarity/local-detail recovered, backdrop scratches and crease concealed by matched solid cream fill, light film grain re-added so the fill patch blends. Final true-A4 print size 2480x3508 px at 300 DPI (a downscale/re-frame of the high-res scan, no upscaling), PNG, framed-print ready."
+  },
+  {
+   "name": "keepsake_before_after_board",
+   "kind": "firefly_board",
+   "spec": "A single Firefly Board deep-link placing the original aged scan next to the restored A4 output as a before/after approval contact-board, so the client can review and sign off on the restoration before sending it to the print lab."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "uploaded_scan",
+   "note": "The client supplies the keepsake scan (not Adobe Stock), so ingest the single provided file meadowlark_family_keepsake_1975.png into CC storage via the upload init -> finalize handshake. This is the initial asset load; every later step consumes a prior output."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_scan",
+   "output": "scan_asset_urn",
+   "note": "Finalize the upload to obtain a stable asset URN/URL for the scan that the editing steps will reference."
+  },
+  {
+   "n": 3,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "scan_asset_urn",
+   "output": "scan_preview",
+   "note": "Preview the ingested scan to confirm the damage the restoration must address (warm cast, flat contrast, tilt, ragged border, backdrop scratches/crease) before editing begins."
+  },
+  {
+   "n": 4,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "scan_asset_urn",
+   "output": "keepsake_straightened",
+   "note": "Correct the 2-3 degree scanner tilt so the crop in the next step is clean and square to the photograph."
+  },
+  {
+   "n": 5,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "keepsake_straightened",
+   "output": "keepsake_cropped",
+   "note": "Crop off the ragged uneven white scan border down the left side (levelled by straightening), leaving only the photographic image area."
+  },
+  {
+   "n": 6,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "keepsake_cropped",
+   "output": "keepsake_autotoned",
+   "note": "Auto-tone as the first global recovery pass on the flat, faded C-print to re-spread the crushed tonal range before targeted color work."
+  },
+  {
+   "n": 7,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "keepsake_autotoned",
+   "output": "keepsake_neutralized",
+   "note": "Cool the strong warm yellow-orange age cast (shift temperature toward blue) to neutralize the color so skin tones and clothing come back to natural. Consumes the auto-toned result."
+  },
+  {
+   "n": 8,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "keepsake_neutralized",
+   "output": "keepsake_colorrecovered",
+   "note": "Gently restore the faded color vibrance/saturation now that the cast is gone, so muted 1970s fabrics and skin regain life without oversaturating into a modern look."
+  },
+  {
+   "n": 9,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "keepsake_colorrecovered",
+   "output": "keepsake_highlights_shaped",
+   "note": "Recover blown/washed highlight detail on the cream backdrop and bright clothing that the fading flattened, restoring believable tonal separation."
+  },
+  {
+   "n": 10,
+   "tool": "image_adjust_dark_portions",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "keepsake_highlights_shaped",
+   "output": "keepsake_shadows_shaped",
+   "note": "Open up and re-anchor the muddy shadow tones so the picture has depth again -- part of the clarity/detail recovery the brief asks for."
+  },
+  {
+   "n": 11,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "keepsake_shadows_shaped",
+   "output": "backdrop_scratch_mask",
+   "note": "Select the plain cream studio backdrop region that carries the white scratch lines and the short crease -- a UNIFORM area -- so the marks over it can be concealed with a matched solid fill (the connector has no generative heal, so concealment is scoped to plain regions only, off the faces/figures)."
+  },
+  {
+   "n": 12,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "backdrop_scratch_mask",
+   "output": "scratches_concealed",
+   "note": "Solid-color fill the selected backdrop with the matched cream/off-white of the seamless, covering the white scratch lines and the crease so they vanish into the uniform backdrop. image_fill_area is solid-color only -- valid here because the target region is genuinely uniform and the marks never cross the family."
+  },
+  {
+   "n": 13,
+   "tool": "image_list_presets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "scratches_concealed",
+   "output": "available_presets",
+   "note": "List the available Lightroom-style presets so a clarity/local-contrast preset can be chosen to deliver the 'sharpness/details' the client cares about (there is no sharpen tool; clarity comes from a contrast preset)."
+  },
+  {
+   "n": 14,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "scratches_concealed, available_presets",
+   "output": "keepsake_clarity",
+   "note": "Apply the chosen clarity/local-contrast preset to lift perceived sharpness and micro-detail on the soft scan -- 'details and sharpness' delivered honestly via a contrast preset, not an invented sharpen or upscale op. Consumes the concealed image plus the presets list."
+  },
+  {
+   "n": 15,
+   "tool": "image_add_grain",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "keepsake_clarity",
+   "output": "keepsake_grained",
+   "note": "Add a very light, uniform film grain over the whole restored image so the solid-filled cream backdrop patch doesn't look plastic or smoothed against the original photographic texture -- keeps the genuine 1970s look the client asked for."
+  },
+  {
+   "n": 16,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "keepsake_grained",
+   "output": "meadowlark_keepsake_restored_A4.png",
+   "note": "Crop-and-resize the restored image to true A4 print dimensions 2480x3508 px at 300 DPI, yielding the framed-print-ready deliverable. A genuine downscale/re-frame of the high-res scan -- no upscaling claim, A4 fits well within the scan resolution."
+  },
+  {
+   "n": 17,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "scan_asset_urn, meadowlark_keepsake_restored_A4.png",
+   "output": "keepsake_before_after_board",
+   "note": "Assemble the original scan URN alongside the restored A4 output into a Firefly Board before/after approval contact-board (deep-link) for the client to sign off before printing. Honest use: presents assets already produced, generates no art."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "asset_inline_preview",
+  "image_auto_straighten",
+  "image_crop_to_bounds",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_adjust_vibrance_and_saturation",
+  "image_adjust_highlights",
+  "image_adjust_dark_portions",
+  "image_select_by_prompt",
+  "image_fill_area",
+  "image_list_presets",
+  "image_apply_preset",
+  "image_add_grain",
+  "image_crop_and_resize",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 17,
+ "distinct_adobe_tools": 17,
+ "chaining_note": "Single-photo, strictly linear restoration chain with one shared damage-inspection preview and a converging approval-board tail; every step after the load consumes the immediately prior named output. LOAD: step1 asset_initialize_file_upload -> uploaded_scan; step2 asset_finalize_file_upload(uploaded_scan) -> scan_asset_urn (the sole asset source). INSPECT: step3 asset_inline_preview(scan_asset_urn) -> scan_preview confirms the damage. RESTORE (linear): scan_asset_urn ->(4 auto_straighten) keepsake_straightened ->(5 crop_to_bounds) keepsake_cropped ->(6 auto_tone) keepsake_autotoned ->(7 color_temperature) keepsake_neutralized ->(8 vibrance_and_saturation) keepsake_colorrecovered ->(9 adjust_highlights) keepsake_highlights_shaped ->(10 adjust_dark_portions) keepsake_shadows_shaped ->(11 select_by_prompt) backdrop_scratch_mask ->(12 fill_area) scratches_concealed. CLARITY: step13 image_list_presets(scratches_concealed) -> available_presets; step14 image_apply_preset(scratches_concealed, available_presets) -> keepsake_clarity. FINISH: ->(15 add_grain) keepsake_grained ->(16 crop_and_resize) meadowlark_keepsake_restored_A4.png (the A4 deliverable). CONVERGE: step17 create_firefly_board consumes {scan_asset_urn, meadowlark_keepsake_restored_A4.png} -> before/after board. Every step after step1 is wired via inputs_from to a prior named output (step14 reuses scratches_concealed alongside the presets list, step17 reuses the original scan URN for the before-side -- both genuine reuse); the restored keepsake and the approval board emerge purely from the chain.",
+ "difficulty_rationale": "Long-horizon and tool-diverse for a single-image job: 17 connector calls and 17 distinct Adobe tools across 3 groups (asset ingest/preview, the image_* raster family, and the Firefly board) -- above the >=10 calls / >=6 distinct-tools bar. Difficulty comes from ordering the restoration correctly (straighten before crop; global auto-tone before targeted color; neutralize the warm cast before recovering saturation; shape highlights then shadows for depth; conceal the scratches BEFORE the clarity preset so the preset doesn't sharpen the fill seam; grain last so it overlays the solid-fill patch and re-graded areas) and from honest capability discipline: the agent must recognize the connector has NO generative heal/clone/object-removal and NO sharpen/super-resolution tool, so the brief's 'restore colors, details and sharpness' is delivered as (a) tonal/color correction for colors, (b) local-contrast/highlight/dark-portion shaping + a clarity preset for 'details and sharpness', and (c) scratch concealment scoped ONLY to the plain uniform backdrop via select-by-prompt + solid fill_area, never over the faces. A naive agent that reaches for generative fill, AI object-removal, upscaling, or a sharpen op would violate the capability sheet -- making correct, restrained tool selection the core challenge. Every step is [C] headless, so the whole workflow is autonomously runnable end to end.",
+ "workflow_nature": "edit",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "Confirmed NONE of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content (image_fill_area is used only as SOLID-COLOR fill of a genuinely uniform cream-backdrop selection, not content synthesis); no text-to-image / from-scratch art or logo; no upscaling / super-resolution (the input is modeled as a HIGH-RES flatbed scan and the A4 crop_and_resize to 2480x3508 is an explicit downscale/re-frame that fits within the scan, with a no-upscale note); no object-removal-with-reconstruction / inpainting of occluded pixels (scratches are concealed only where they cross a PLAIN uniform region and never over the faces/figures, so nothing behind a subject is reconstructed); no bespoke font/letterform design; no unreachable external account. image_remove_background is NOT used. No sharpen or heal tool is invoked -- 'sharpness/details' is delivered via local-contrast/highlight/dark-portion shaping and a clarity preset, explicitly disclaimed.",
+  "notes": "Risky steps stay in-bounds: (1) image_select_by_prompt + image_fill_area (steps 11-12) conceal scratches/crease strictly over the seamless cream backdrop, a single near-uniform tone, so a matched solid fill is an honest, non-generative concealment; the input gen_prompt guarantees the marks sit only on the plain backdrop and off every face/figure. (2) image_add_grain (step 15) is whole-image film grain to blend the fill patch, not synthesis. (3) image_crop_and_resize (step 16) is a genuine downscale/re-frame to true A4 2480x3508 @300DPI from a high-res scan -- no upscaling claim, and the input realism_notes require the source be rendered above A4 pixel dimensions so the resize can only downscale. (4) create_firefly_board (step 17) only assembles assets the chain already produced (original scan + restored A4) into a before/after approval board and generates no art. (5) asset_inline_preview (step 3) only inspects. All 17 steps are server=='adobe', all [C] headless; no Express-widget tools (search_design/fill_text/animate_design/change_background_color) and no Canva tools present. tool_call_count=17 equals the number of connector_workflow steps; distinct_adobe_tools=17 (all steps are distinct adobe-server tools); tools_used lists exactly those 17. Category=photo_restore, operation=O1, operation_family=Photo & Image, output_modality=image, workflow_nature=edit, vertical=media_publishing -- all match the R03 slot; grounded in the real 'Old Picture Restoration' candidate with verbatim phrases and a fictional IP-clean brand (Meadowlark Memory Lane)."
+ },
+ "id": "AO-111"
+}

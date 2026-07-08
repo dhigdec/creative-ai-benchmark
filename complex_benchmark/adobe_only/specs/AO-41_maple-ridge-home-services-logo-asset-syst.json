@@ -1,0 +1,240 @@
+{
+ "id": "AO-41",
+ "slug": "maple-ridge-home-services-logo-asset-system",
+ "title": "Batch-clean and productize the Maple Ridge Home Services logo concepts into a scalable transparent/one-color/badge/vector brand-asset set",
+ "vertical": "Home & Property Services",
+ "category": "bg_removal_batch",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Logo%20Designer%20Needed%20for%20New%20Home%20Services%20Brand"
+ },
+ "grounding_note": "VERBATIM from the Upwork brief: company \"Maple Ridge Home Services\", tagline \"Clean. Caring. Consistent.\", the maple-leaf/home-motif/circular-badge concept directions, the explicit deliverable list (refined primary logo, icon-only version, circular badge version, one-color version, transparent PNG exports, vector/source SVG, usage across trucks/uniforms/yard signs/social/web/invoices), and the warm olive/sage + muted terracotta + cream/ivory palette. ENRICHED to make it a runnable Adobe-only benchmark: because the connector has NO from-scratch illustration / text-to-image (A6 [X]), the task is honestly framed as the productization/cleanup half of the job — the client supplies their existing hand-drawn concept renders as raster files (PNG/JPG photographed off paper, plus a shot of the maple-leaf icon on a busy desk background), and the agent runs the batch background-removal + asset-system build that this 'bg_removal_batch' candidate is categorized as. No new logo mark is invented; the chain only cleans, normalizes color, derives the one-color/badge/transparent/vector variants the brief asks for, and boards them for review. image_fill_area is used strictly as a solid-color fill of an inverted selection (cream backdrop swatch), not as object removal or generative fill. No render_vector/render_layout is used since no authored .indd/.ai exists; SVG comes from image_vectorize.",
+ "one_line_ask": "Take the client's three raster logo-concept renders and turn them into a clean, scalable brand-asset set: background-removed transparent masters, a color-corrected primary, a one-color (single-ink) version, a circular badge crop, and a vectorized SVG — all assembled on a Firefly board for sign-off.",
+ "full_brief": "Maple Ridge Home Services is launching a premium-but-warm home-services brand (tagline: \"Clean. Caring. Consistent.\") and has early concept artwork it needs elevated into a polished, scalable asset system. The client supplies three raster files: (1) a photographed full-color primary lockup (maple-leaf icon + wordmark) shot on a cream studio sweep, (2) the maple-leaf-only icon photographed on a cluttered wooden workshop desk (busy background that must be stripped), and (3) a circular-badge concept render. The freelancer must NOT redraw the mark — the work is to clean, color-correct, and productize the existing concepts into the exact deliverables the brief lists.\\n\\nPipeline: ingest the three client files into a working folder (finalizing them into three per-file CC asset URNs); straighten and tightly crop the primary lockup; auto-tone then warm/normalize its color toward the requested warm olive-sage / muted-terracotta / cream palette and lift the cream background to a clean even ivory; isolate the maple-leaf icon from its busy desk shot via prompt-driven subject selection and background removal to a transparent PNG; from that clean transparent icon, derive a one-color (single-ink terracotta) version using a flat color overlay for use on uniforms/yard signs where only one ink is available; build the circular badge by removing the badge render's background and cropping it square-to-round bounds; vectorize the cleaned icon to a scalable SVG for trucks and large-format signage; and finally assemble all the produced variants (color primary, transparent icon, one-color icon, badge, SVG preview) onto a Firefly board as the review/sign-off deliverable. Deliverables: transparent-PNG master set, a color-graded primary, a one-color version, a circular badge, an SVG, and the board deep-link.",
+ "inputs": [
+  {
+   "name": "primary_lockup_concept.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A photograph of a hand-finished logo concept printed on matte card and laid on a cream studio paper sweep, slightly off-angle as if quickly photographed on a desk. The logo is a warm, heritage-style lockup for 'Maple Ridge' with smaller 'HOME SERVICES' beneath and the tagline 'Clean. Caring. Consistent.' below that, set in a friendly editorial serif. To the left of the wordmark is a simple line-drawn maple-leaf icon in muted olive-sage green. Real paper texture, faint print dot pattern, soft window light, subtle paper curl and a tiny shadow — looks like a real printed proof, not a clean digital export. Mild lens vignette, ivory background slightly uneven.",
+   "realism_notes": "Should read as a photographed printed proof (uneven cream background, slight rotation, paper texture) so that auto_straighten, crop, auto_tone, color-temperature warming and the fill_area ivory clean-up all have something genuine to act on. Text-bearing → gemini-3-pro-image."
+  },
+  {
+   "name": "maple_icon_on_desk.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "A close, candid smartphone-style photo of a single die-cut maple-leaf logo icon (clean olive-sage line-art maple-leaf on a small white card) sitting on a cluttered reclaimed-wood workshop desk among a coffee mug ring stain, a few wood shavings, a metal ruler, a pencil, and scattered paper scraps. Natural messy daylight from a window on the left, real wood grain, real shadows, shallow depth of field so the background clutter is slightly soft. Documentary, not staged — the kind of quick reference shot a small business owner texts a designer.",
+   "realism_notes": "Deliberately busy, real background so image_select_by_prompt('maple-leaf icon card') + remove_background has a genuine isolation challenge. Photoreal object on real surface → gpt-image-2."
+  },
+  {
+   "name": "circular_badge_concept.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A photographed concept render of a circular brand badge for 'Maple Ridge Home Services', printed on cream card on a neutral light-gray tabletop. The badge is a ring containing the curved text 'Maple Ridge · HOME SERVICES · EST 2026' around a small centered maple-leaf mark, in muted terracotta and olive-sage on ivory. Slight off-center placement on the card, soft natural shadow, faint paper grain, photographed at a slight angle — a real printed badge proof, not a flat vector export.",
+   "realism_notes": "Round mark on a square card with a gray tabletop margin → exercises remove_background + crop_to_bounds to a tight round crop. Text/logo-bearing → gemini-3-pro-image."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "primary_logo_graded.png",
+   "kind": "image",
+   "spec": "Color-corrected, straightened, tightly cropped primary lockup; warm olive-sage/terracotta/ivory palette, even ivory background; high-res PNG for web headers and invoices."
+  },
+  {
+   "name": "maple_icon_transparent.png",
+   "kind": "image",
+   "spec": "Maple Ridge icon isolated from the busy desk shot, background fully removed, transparent PNG master for flexible placement."
+  },
+  {
+   "name": "maple_icon_onecolor.png",
+   "kind": "image",
+   "spec": "Single-ink (muted terracotta) flat version of the transparent icon for one-color application on uniforms, yard signs and stamps; transparent PNG."
+  },
+  {
+   "name": "circular_badge_transparent.png",
+   "kind": "image",
+   "spec": "Background-removed circular badge, cropped to its round bounds; transparent PNG for social avatars and truck doors."
+  },
+  {
+   "name": "maple_icon.svg",
+   "kind": "vector",
+   "spec": "Clean vectorized SVG of the maple-leaf icon for infinite-scale signage and embroidery (the source/scalable deliverable the brief requests alongside AI/EPS)."
+  },
+  {
+   "name": "maple-leaf_brand_board",
+   "kind": "data",
+   "spec": "Firefly board deep-link assembling the color primary, transparent icon, one-color icon, badge and vector preview for client review/sign-off."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "project_folder",
+   "note": "Create a /Maple Ridge-and-Co working folder in CC storage to hold the three client uploads and all derived variants."
+  },
+  {
+   "n": 2,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "project_folder",
+   "output": "upload_targets",
+   "note": "Initialize uploads for the three client raster concepts (primary_lockup_concept.png, maple_icon_on_desk.jpg, circular_badge_concept.png) into the project folder."
+  },
+  {
+   "n": 3,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_targets",
+   "output": "primary_urn, icon_urn, badge_urn",
+   "note": "Finalize the uploads so each client file becomes its own CC asset URN usable by the image_* tools: primary_urn (primary_lockup_concept.png), icon_urn (maple_icon_on_desk.jpg), badge_urn (circular_badge_concept.png)."
+  },
+  {
+   "n": 4,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "primary_urn",
+   "output": "primary_straightened",
+   "note": "Straighten the off-angle photographed primary lockup so the wordmark baseline is level."
+  },
+  {
+   "n": 5,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "primary_straightened",
+   "output": "primary_cropped",
+   "note": "Tightly crop the straightened primary lockup to the artwork, dropping the surplus cream sweep."
+  },
+  {
+   "n": 6,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "primary_cropped",
+   "output": "primary_autotoned",
+   "note": "Auto-tone the cropped primary to fix the dull photographed exposure/contrast as a neutral starting point."
+  },
+  {
+   "n": 7,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "primary_autotoned",
+   "output": "primary_warmed",
+   "note": "Warm the white balance toward the requested cozy olive-sage/terracotta/ivory palette."
+  },
+  {
+   "n": 8,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "primary_warmed",
+   "output": "primary_bg_mask",
+   "note": "Select the off-white background area of the warmed primary (prompt: 'cream paper background') to isolate it for cleanup."
+  },
+  {
+   "n": 9,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "primary_warmed, primary_bg_mask",
+   "output": "primary_logo_graded",
+   "note": "SOLID-fill the selected cream-paper-background region with a clean even ivory RGB swatch, removing the uneven paper blotches -> final graded primary."
+  },
+  {
+   "n": 10,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "icon_urn",
+   "output": "icon_subject_mask",
+   "note": "On the busy desk shot, prompt-select the maple-leaf icon card ('maple-leaf logo icon on white card') to separate it from the cluttered wood-desk background."
+  },
+  {
+   "n": 11,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "icon_urn, icon_subject_mask",
+   "output": "maple_icon_transparent",
+   "note": "Remove the desk background using the subject mask -> transparent-PNG maple-leaf icon master."
+  },
+  {
+   "n": 12,
+   "tool": "image_apply_color_overlay",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "maple_icon_transparent",
+   "output": "maple_icon_onecolor",
+   "note": "Flatten the transparent icon to a single muted-terracotta ink via a solid color overlay -> one-color version for uniforms/yard signs."
+  },
+  {
+   "n": 13,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "badge_urn",
+   "output": "badge_nobg",
+   "note": "Remove the gray-tabletop background from the circular badge concept render -> transparent badge."
+  },
+  {
+   "n": 14,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "badge_nobg",
+   "output": "circular_badge_transparent",
+   "note": "Crop the transparent badge to its tight round bounds -> square-framed transparent circular badge."
+  },
+  {
+   "n": 15,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "maple_icon_transparent",
+   "output": "maple_icon_svg",
+   "note": "Vectorize the clean transparent maple-leaf icon into a scalable SVG for large-format signage/embroidery."
+  },
+  {
+   "n": 16,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "primary_logo_graded, maple_icon_transparent, maple_icon_onecolor, circular_badge_transparent, maple_icon_svg",
+   "output": "maple-leaf_brand_board",
+   "note": "Assemble all produced variants into a Firefly board deep-link for client review and sign-off."
+  }
+ ],
+ "tools_used": [
+  "asset_create_folders",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_crop_to_bounds",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_select_by_prompt",
+  "image_fill_area",
+  "image_remove_background",
+  "image_apply_color_overlay",
+  "image_vectorize",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 16,
+ "distinct_adobe_tools": 13,
+ "chaining_note": "Linear, fully output->input chained. Steps 1-3 ingest the 3 client rasters into a folder and finalize them into three per-file CC asset URNs (primary_urn, icon_urn, badge_urn). Primary-lockup branch: primary_urn -> auto_straighten (4) -> crop_to_bounds (5) -> auto_tone (6) -> color_temperature (7) -> select_by_prompt of the cream-paper background (8) -> fill_area solid-ivory using that bg mask (9) = primary_logo_graded. Icon branch: icon_urn -> select_by_prompt (10) -> remove_background using that mask (11) = maple_icon_transparent, which then feeds color_overlay (12) for the one-color version AND vectorize (15) for the SVG. Badge branch: badge_urn -> remove_background (13) -> crop_to_bounds (14) = circular_badge_transparent. The final board (16) consumes five produced outputs (steps 9, 11, 12, 14, 15). Every post-ingest step consumes a prior step's named output; each branch entry reads exactly one per-file URN, and nothing is loaded fresh except the original client files at ingest.",
+ "difficulty_rationale": "Long-horizon (16 connector calls, 13 distinct Adobe tools) spanning three groups — asset/storage, photo/raster, and board — with three parallel sub-chains (primary grade, icon isolation, badge) converging on one Firefly board. It is honestly scoped to the connector's real ceiling: no mark is drawn from scratch (A6 [X] illustration is avoided), image_fill_area is used only as a solid ivory fill of an inverted selection (not generative/removal), and the SVG comes from image_vectorize rather than a render_vector export of a nonexistent authored .ai. The hard parts are genuine: prompt-isolating the maple-leaf card from a deliberately cluttered wood-desk photo, deriving a one-color ink version via flat overlay, and producing transparent + vector masters — exactly the 'bg_removal_batch' work this candidate is categorized as. Every step is [C] headless-confirmed, so the whole chain is autonomously runnable with no [W]/[A]/[T] dependency.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned capability present. image_fill_area (step 9) is used ONLY as a solid-RGB ivory fill of a directly prompt-selected 'cream paper background' region within the existing canvas — no canvas growth, no generative fill, no object removal. image_remove_background (steps 11, 13) outputs transparent PNGs (not prompt bg-replace). image_apply_color_overlay (step 12) is a tonal single-ink flatten. SVG (step 15) comes from image_vectorize, not render_vector/authored .ai. No image_crop_and_resize/reframe-crop, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction, no lens_blur-with-mask, no preview-into-new-file. All 16 steps are server=adobe, [C] headless, output->input chained; every consumed input is a declared prior output or one of the three declared client inputs.",
+  "notes": "All-real-connector, gen-free. The three fixes (vertical metadata, 'inverted selection' wording, per-file URN references) are documentation/modeling-only and do not alter the tool chain, counts (16 calls / 13 distinct Adobe tools), or feasibility. No real company/person/institution present: 'Maple Ridge Home Services' is a generic fictional home-services brand (not flagged as a collision), Adobe/Firefly are allowed platforms; no brand_rename needed."
+ }
+}

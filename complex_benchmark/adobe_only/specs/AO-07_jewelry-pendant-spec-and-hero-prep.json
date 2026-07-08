@@ -1,0 +1,309 @@
+{
+ "id": "AO-07",
+ "slug": "jewelry-pendant-spec-and-hero-prep",
+ "title": "Men's pendant line: vectorize the 2D spec sketch + retouch and catalog-prep the sample studio shots",
+ "vertical": "Jewelry, Watches & Accessories",
+ "category": "jewelry_photo",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=3D%20Jewelry%20Designer"
+ },
+ "grounding_note": "VERBATIM from the Upwork brief: U.S.-based men's accessories brand; new pendant and chain designs; works \"closely with our industrial designer\" from \"detailed 2D illustrator sketches\"; needs \"clean, factory-ready\" files \"for production with our manufacturing partners\"; ongoing collaboration with \"refinements and iterations\"; \"stainless steel / plated jewelry production\"; \"Please share examples of relevant jewelry-focused 3D work.\" ENRICHED / REASONABLY ADAPTED to make it a runnable Adobe-only benchmark: the brief's CORE ask is 3D CAD modeling in Rhino/Matrix, which is firmly out of scope for the Adobe connector (no 3D/CAD, per the capability sheet's \"no\" grade). Rather than invent an unrelated deliverable, this task takes the FAITHFUL Adobe-doable slice of the SAME engagement and the SAME pipeline: the prep work the freelancer does AROUND the 3D model — turning the industrial designer's raster-exported 2D Illustrator pendant sketch into a clean, factory-ready VECTOR spec asset, and turning the brand's mixed-lighting workbench photos of a stamped stainless-steel sample pendant + chain into retouched, isolated, color-accurate catalog hero images plus a duotone print-screen spec variant, all gathered onto a Firefly board for the design team to review during the \"refinements and iterations\" loop. Every client/product detail (men's pendant + chain, stainless steel, factory hand-off, design-team review) is preserved from the brief; only the deliverable type is shifted from 3D model to the 2D asset-prep that genuinely demands the Adobe photo/vector toolset.",
+ "one_line_ask": "From the industrial designer's raster pendant sketch and two mixed-lighting workbench photos of a stainless-steel sample pendant and chain, produce a clean factory-ready vector spec asset plus retouched, isolated, color-accurate catalog hero shots (one expanded to a catalog canvas, one duotone print-screen variant) and gather everything on a Firefly board for the design team.",
+ "full_brief": "From the industrial designer's raster pendant sketch and two mixed-lighting workbench photos of a stainless-steel sample pendant and chain, produce a clean factory-ready vector spec asset plus retouched, isolated, color-accurate catalog hero shots (one reframed and resized to a roomy catalog hero canvas, one duotone print-screen variant) and gather everything on a Firefly board for the design team.",
+ "inputs": [
+  {
+   "name": "pendant_sketch_raster.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A flat 2D technical line-art drawing of a men's pendant, front elevation: a rounded-square stainless-steel pendant roughly 30mm tall with a soldered top bail loop, clean black ink outlines on white, fine interior engraving lines suggesting a compass-rose motif, thin dimension tick marks at the edges. Rendered as a slightly low-contrast flatbed SCAN export to PNG — faint paper texture, the whole drawing rotated about 4 degrees clockwise (skewed), a little extra white margin around it. No color, no shading, no 3D, pure black-on-white draftsman line work.",
+   "realism_notes": "Must look like a raster PNG export of an Illustrator/scanned sketch, NOT a clean vector: visible slight rotation/skew, faint paper grain, anti-aliased (not razor-crisp) ink edges, so that auto_straighten + crop_to_bounds + vectorize have real work to do."
+  },
+  {
+   "name": "sample_pendant_on_bench.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal close-up product reference photo of a single brushed stainless-steel men's pendant (rounded-square, ~30mm, with a top bail) lying on a scratched steel machinist's workbench. Mixed lighting: warm tungsten shop lamp from the left, cool daylight from a window on the right, giving an uneven off-neutral white balance with a slight yellow-green cast. The metal looks a touch dull and flat, real micro-scratches and a brushed grain, a few dust specks and a faint fingerprint smudge, shallow depth of field, candid documentary feel, not glossy CGI. Busy background: calipers, a layout square, and metal shavings around it.",
+   "realism_notes": "Deliberately off-white-balanced and slightly flat/dull so adjust_color_temperature, auto_tone, exposure/highlights, single_color_saturation and a neutral metal cast are all warranted. Busy bench background justifies select_by_prompt + remove_background. Real scratches/dust/shallow DoF keep it documentary, not CGI-glossy."
+  },
+  {
+   "name": "sample_chain_on_bench.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal product reference photo of a men's stainless-steel box-link chain (about 4mm wide) laid out in a loose S-curve on the same scratched steel machinist's workbench, under the same mixed warm-shop / cool-window lighting with the same slightly yellow-green off-neutral white balance. Brushed steel links with realistic micro-scratches and faint dust, shallow depth of field, candid documentary product-reference look, not glossy CGI. Same busy bench surroundings (calipers, shavings) as the pendant shot.",
+   "realism_notes": "Shot to match the pendant photo's lighting/white-balance error so the 'color-match the pair' step is real. Box-link chain on a busy bench justifies isolating it (select_by_prompt/remove_background) and applying the SAME temperature + tonal treatment derived from the pendant chain so the set reads consistent."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "pendant_spec_lineart.svg",
+   "kind": "vector",
+   "spec": "Clean scalable SVG of the deskewed, tight-cropped pendant line-art, crisp at any print size, suitable as a dimensional spec reference for the factory."
+  },
+  {
+   "name": "pendant_hero_catalog.png",
+   "kind": "image",
+   "spec": "Retouched, white-balanced, auto-toned sample pendant cut out from the bench onto a clean solid catalog background and reframe-cropped/expanded to a roomy catalog hero canvas (e.g. ~4:5 or wider). PNG."
+  },
+  {
+   "name": "pendant_spec_screenprint.png",
+   "kind": "image",
+   "spec": "High-contrast duotone/halftone 'print-screen' variant of the hero pendant for the black-and-white spec sheet. PNG."
+  },
+  {
+   "name": "chain_hero_catalog.png",
+   "kind": "image",
+   "spec": "The box-link chain color-matched to the pendant (same neutral white balance + tonal treatment) and isolated on the same clean catalog background, so pendant and chain read as a coordinated set. PNG."
+  },
+  {
+   "name": "pendant_line_review_board",
+   "kind": "deep-link",
+   "spec": "A single Firefly board assembling the vector spec, the catalog hero, the screen-print variant and the chain hero as a moodboard/deep-link for the brand's design team to review during the refinements-and-iterations loop."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "sketch_upload_session",
+   "note": "Initialize upload of the client's raster pendant line-art sketch (pendant_sketch_raster.png) into CC storage."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "sketch_upload_session",
+   "output": "sketch_asset_uri",
+   "note": "Finalize the sketch upload; returns the stored asset URI used by all downstream sketch steps."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "sketch_asset_uri",
+   "output": "sketch_straightened_uri",
+   "note": "Deskew the ~4deg-rotated scan so the line-art is square — prerequisite for a clean tight crop and vector trace."
+  },
+  {
+   "n": 4,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "sketch_straightened_uri",
+   "output": "sketch_cropped_uri",
+   "note": "Crop tight to the pendant line-art, dropping the scanned white margin/paper border."
+  },
+  {
+   "n": 5,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "sketch_cropped_uri",
+   "output": "pendant_spec_lineart.svg",
+   "note": "Trace the cleaned raster line-art into a crisp scalable SVG — the factory-ready dimensional spec asset (DELIVERABLE 1)."
+  },
+  {
+   "n": 6,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "pendant_upload_session",
+   "note": "Initialize upload of the sample pendant workbench photo (sample_pendant_on_bench.jpg)."
+  },
+  {
+   "n": 7,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pendant_upload_session",
+   "output": "pendant_asset_uri",
+   "note": "Finalize the pendant photo upload; returns its stored asset URI."
+  },
+  {
+   "n": 8,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pendant_asset_uri",
+   "output": "pendant_wb_uri",
+   "note": "Neutralize the mixed warm-shop/cool-window cast — pull the yellow-green off-white toward neutral white balance on the metal."
+  },
+  {
+   "n": 9,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pendant_wb_uri",
+   "output": "pendant_autotone_uri",
+   "note": "Auto-tone the white-balanced pendant for a baseline correct exposure/contrast spread before targeted tweaks."
+  },
+  {
+   "n": 10,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pendant_autotone_uri",
+   "output": "pendant_highlights_uri",
+   "note": "Recover blown highlights on the brushed steel so the metal keeps its brushed grain instead of clipping to white."
+  },
+  {
+   "n": 11,
+   "tool": "image_adjust_single_color_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pendant_highlights_uri",
+   "output": "pendant_steelcast_uri",
+   "note": "Desaturate the residual yellow channel to give the stainless steel a clean cool-neutral cast (selective, leaving the metal looking true)."
+  },
+  {
+   "n": 12,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pendant_steelcast_uri",
+   "output": "pendant_mask",
+   "note": "Prompt-select the pendant subject ('the metal pendant') to build a mask separating it from the busy bench."
+  },
+  {
+   "n": 13,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pendant_steelcast_uri, pendant_mask",
+   "output": "pendant_cutout_uri",
+   "note": "Cut the graded pendant out of the cluttered workbench to a transparent PNG using the subject mask."
+  },
+  {
+   "n": 14,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pendant_cutout_uri, pendant_mask",
+   "output": "pendant_on_bg_uri",
+   "note": "Invert-fill the transparent area with a clean solid light-gray catalog background (solid-color fill only — no compositing)."
+  },
+  {
+   "n": 15,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pendant_on_bg_uri",
+   "output": "pendant_hero_catalog.png",
+   "note": "Reframe and resize the solid-gray catalog composite to a roomy catalog hero canvas (e.g. ~4:5), centering the pendant with clean margins — the catalog hero (DELIVERABLE 2). No generation: pure crop/resize of the existing solid-bg image."
+  },
+  {
+   "n": 16,
+   "tool": "image_apply_halftone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pendant_hero_catalog.png",
+   "output": "pendant_spec_screenprint.png",
+   "note": "Derive a high-contrast duotone/halftone print-screen variant of the hero for the B&W spec sheet (DELIVERABLE 3)."
+  },
+  {
+   "n": 17,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "chain_upload_session",
+   "note": "Initialize upload of the matching box-link chain photo (sample_chain_on_bench.jpg)."
+  },
+  {
+   "n": 18,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "chain_upload_session",
+   "output": "chain_asset_uri",
+   "note": "Finalize the chain photo upload; returns its stored asset URI."
+  },
+  {
+   "n": 19,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "chain_asset_uri",
+   "output": "chain_wb_uri",
+   "note": "Apply the SAME neutralizing white-balance shift derived for the pendant so the chain matches the pendant's color (set consistency)."
+  },
+  {
+   "n": 20,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "chain_wb_uri",
+   "output": "chain_autotone_uri",
+   "note": "Auto-tone the white-balanced chain to the same baseline tonal treatment as the pendant."
+  },
+  {
+   "n": 21,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "chain_autotone_uri",
+   "output": "chain_mask",
+   "note": "Prompt-select the chain ('the metal chain') to mask it off the busy bench."
+  },
+  {
+   "n": 22,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "chain_autotone_uri, chain_mask",
+   "output": "chain_cutout_uri",
+   "note": "Cut the color-matched chain out of the workbench to transparent PNG using its mask."
+  },
+  {
+   "n": 23,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "chain_cutout_uri, chain_mask",
+   "output": "chain_hero_catalog.png",
+   "note": "Invert-fill with the SAME solid light-gray catalog background as the pendant so the pair reads as a coordinated set (DELIVERABLE 4)."
+  },
+  {
+   "n": 24,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pendant_spec_lineart.svg, pendant_hero_catalog.png, pendant_spec_screenprint.png, chain_hero_catalog.png",
+   "output": "pendant_line_review_board",
+   "note": "Assemble the four produced assets into one Firefly board deep-link for the design team's refinements-and-iterations review (DELIVERABLE 5)."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_crop_to_bounds",
+  "image_vectorize",
+  "image_adjust_color_temperature",
+  "image_apply_auto_tone",
+  "image_adjust_highlights",
+  "image_adjust_single_color_saturation",
+  "image_select_by_prompt",
+  "image_remove_background",
+  "image_fill_area",
+  "image_crop_and_resize",
+  "image_apply_halftone",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 24,
+ "distinct_adobe_tools": 15,
+ "chaining_note": "Fully chained, three converging branches feeding one board. SKETCH branch: upload (1->2) -> auto_straighten (3) consumes sketch_asset_uri -> crop_to_bounds (4) consumes the straightened output -> vectorize (5) consumes the cropped output => pendant_spec_lineart.svg. PENDANT-PHOTO branch: upload (6->7) -> adjust_color_temperature (8) on pendant_asset_uri -> apply_auto_tone (9) on the WB output -> adjust_highlights (10) on the auto-toned output -> adjust_single_color_saturation (11) on the highlight-recovered output -> select_by_prompt (12) builds pendant_mask from that graded image -> remove_background (13) consumes BOTH the graded image and the mask -> fill_area (14) fills the inverted mask area with solid bg -> crop_and_resize (15) reframes/resizes the solid-gray composite to the ~4:5 hero canvas (pure geometric crop, no generation) => pendant_hero_catalog.png -> apply_halftone (16) consumes the hero => pendant_spec_screenprint.png. CHAIN branch: upload (17->18) -> adjust_color_temperature (19) applies the SAME WB shift -> apply_auto_tone (20) -> select_by_prompt (21) builds chain_mask -> remove_background (22) consumes image+mask -> fill_area (23) fills the SAME bg => chain_hero_catalog.png. CONVERGENCE: create_firefly_board (24) consumes all four leaf deliverables (steps 5, 15, 16, 23). Every step after each initial upload consumes a prior step's named output; no orphan steps.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 24 connector calls, 15 distinct Adobe tools, three asset-load branches that must be processed independently then converged onto one board. It exercises geometry (auto_straighten, crop_to_bounds), vector conversion (vectorize), a full tonal/color grade pipeline (color_temperature, auto_tone, highlights, single_color_saturation), masking/isolation (select_by_prompt -> remove_background -> fill_area), the sole reframe/crop step (generative-expand reframe-crop), a print FX (halftone), and board assembly (create_firefly_board). The agent must (a) recognize the brief's literal 3D-CAD core is out of scope and faithfully take the Adobe-doable 2D asset-prep slice, (b) keep the pendant and chain color treatments consistent so the set matches, (c) order masking after grading so the cutout carries the corrected color, and (d) respect tool limits — fill_area is solid-color only (no compositing), generative-expand is the sole reframe/crop step, vectorize needs a clean deskewed crop first. All steps are headless-confirmed [C]; no [W]/[A]/[T]/[L] needed.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned/generative capability remains anywhere in the spec, including the narrative fields. Step 15 uses image_crop_and_resize — a pure geometric reframe/resize of the existing solid-gray catalog composite (pendant_on_bg_uri) to the ~4:5 hero canvas, inventing no pixels and never growing beyond the source. No image_crop_and_resize/reframe-crop, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction. image_fill_area (steps 14, 23) is solid-color invert-fill only; image_remove_background (13, 22) is a sanctioned transparent-PNG cutout; image_vectorize (5) traces existing line-art; create_firefly_board (24) assembles already-produced assets. All 24 steps are server=adobe, exec_mode [C] headless-confirmed real connector actions.",
+  "notes": "Presentation-only fix: reconciled stale narrative text in chaining_note and difficulty_rationale that still said 'generative-expand reframe-crop' / 'the sole reframe/crop step' so both now match the already-corrected executable workflow (image_crop_and_resize at n=15). No executable workflow, inputs, outputs, tool_call_count (24) or distinct_adobe_tools (15) changed. No IP/naming issues — client is a generic fictional 'U.S.-based men's accessories brand'; Adobe/Firefly kept as-is."
+ }
+}

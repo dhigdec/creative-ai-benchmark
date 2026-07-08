@@ -1,0 +1,273 @@
+{
+ "id": "AO-03",
+ "slug": "ecom-white-bg-product-shots-plus-logo-vectorize",
+ "title": "E-commerce white-background product retouch suite + vectorized brand mark",
+ "vertical": "E-commerce, Retail & Product",
+ "category": "product_ecom_whitebg",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/photography/Visual-Identity-Product-Photographer"
+ },
+ "grounding_note": "VERBATIM from the source brief: the client needs \"visual credibility\" for an e-commerce catalog, wants a \"professional product photographer to take 10-15 shots of the client's products,\" and \"also requires the freelancer to create a logo for the client.\" ENRICHED to make it a runnable Adobe-connector benchmark: the Adobe connector cannot operate a camera (live capture is [X] not-available) and cannot draw a logo from scratch (text-to-image / bespoke type drawing is [X]). So the brief is honestly re-framed as the POST-PRODUCTION half of that same job, which is exactly what a product photographer does at the desk: the client supplies RAW on-location product captures (shot on a cluttered makeshift table, not on a clean sweep) and a rough hand-inked logo sketch on paper, and the freelancer turns them into marketplace-ready pure-white-background catalog images plus a clean, scalable, brand-colored vector logo. No deliverable was invented that the brief did not ask for — both the product shots and the logo come straight from the brief; only the input form (raw files instead of a live shoot) is specified so the chain is executable. The \"10-15 shots\" is represented by one fully-worked hero pipeline that is explicitly a repeatable template for the rest of the set.",
+ "one_line_ask": "Turn a client's raw, messy-background product photo into a pure-white-background marketplace catalog image and convert their rough hand-drawn logo sketch into a clean, brand-colored, scalable vector logo — then package everything for delivery.",
+ "full_brief": "Our small skincare-and-homeware shop is scaling onto Amazon, Etsy and our own Shopify store and we badly need visual credibility — right now our listings use phone snaps shot on a kitchen table and they look amateur, which is killing conversion. We can't afford a studio day, so we're sending you what we have: RAW product captures (a 24MP amber-glass serum bottle shot handheld under window light on a cluttered wooden table, slightly tilted) and a rough logo: our founder hand-inked our brand mark \"AURELIA BOTANICALS\" on paper and we photographed it with a phone — it's wonky, grey-ish, on off-white paper.\n\nWe need you to do the full product-photographer post-production pass and the logo cleanup:\n\nPRODUCT IMAGE (do this as a repeatable recipe — we'll send 10-15 more bottles and jars that all must match):\n- Level the horizon (the table edge is tilted).\n- Cut the bottle off the messy table and put it on a PURE WHITE (#FFFFFF) seamless background, which is the hard requirement for Amazon's main-image policy.\n- Deliver it as a square 2000×2000 px marketplace canvas with the product centered.\n- Make it look professional: balanced exposure and color, true-to-life pop on the amber glass, and recover the blown-out highlights/hot spots from the window light so the glass reads cleanly.\n\nLOGO:\n- Take our phone photo of the inked sketch and turn it into a CLEAN, infinitely scalable vector (SVG) so it works on a 16px favicon and a 3-metre trade-show banner alike.\n- Recolor the mark to our brand green (deep botanical green ~#1E5E3A).\n- Recommend 2-3 fonts that pair with the hand-drawn mark for the \"AURELIA BOTANICALS\" wordmark so we can set the lockup ourselves.\n\nDELIVERY: put the final catalog image, the transparent-background product cut-out, the vector logo and the recolored logo into a clean, clearly-named delivery folder we can pull straight into our listings and brand kit. Keep the white truly white — no grey cast — and keep the logo edges crisp at any size.",
+ "inputs": [
+  {
+   "name": "raw_product_serum_bottle.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "A real amateur smartphone product photo, NOT studio quality: a single amber-glass cosmetic serum bottle with a black dropper cap, standing on a cluttered scratched wooden kitchen table, shot handheld under soft directional window light coming from the left. The shot is slightly tilted (~4 degrees off level so the table edge runs on a diagonal). Background is messy and distracting: a crumpled tea towel, a coffee mug, and a power cord are visible behind the bottle. There are blown-out specular hot spots and a bright reflection on the curved amber glass from the window. Visible dust on the table, real surface texture, true-to-life imperfect exposure, candid documentary phone-camera look, slight handheld softness. 24-megapixel, 4:3, no text overlays, no logo on the bottle label legible.",
+   "realism_notes": "Must look like a genuine bad-lighting phone snap on a real cluttered surface — tilted, messy background, real specular blowout on the glass — so that auto-straighten, background removal, white-fill, highlight recovery and tone correction all have something real to fix. No CGI gloss, real wood grain and dust."
+  },
+  {
+   "name": "logo_sketch_phone_photo.jpg",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A phone photograph of a rough hand-inked logo sketch on a piece of slightly off-white textured paper. The mark is a hand-drawn botanical emblem: a simple single sprig of laurel/olive leaves curving into a small circle, drawn in dark grey-black ballpoint/fineliner ink with visible imperfect line weight, a couple of stray pencil guide lines, and the hand-lettered words 'AURELIA BOTANICALS' beneath it in rough capitals. The paper is photographed at a slight angle under indoor lighting with a faint shadow in one corner and a subtly uneven grey-ish cast (not pure white paper). Visible paper grain and tiny smudges. No digital cleanup, looks like a real founder's napkin-style sketch.",
+   "realism_notes": "Grey-ish ink on off-white paper with stray guide lines and uneven lighting is what makes vectorize + color-overlay meaningful. The wordmark text must be legible enough to motivate the font_recommend pairing step. Use gemini-3-pro-image because the sketch carries hand-lettered text/logo."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "AURELIA_serum_2000x2000_white.png",
+   "kind": "image",
+   "spec": "Final marketplace catalog hero: square 2000×2000 px, PNG, sRGB, product centered on a pure-white #FFFFFF seamless background (Amazon main-image compliant). Straightened, background-removed, white-filled, cropped/resized to square, auto-toned, vibrance-corrected and highlight-recovered. This is the fully-worked hero and the repeatable recipe for the other 10-15 SKUs (step 10)."
+  },
+  {
+   "name": "AURELIA_serum_cutout_transparent.png",
+   "kind": "image",
+   "spec": "Transparent-background product cut-out: 24MP-native resolution PNG with alpha, sRGB, the amber-glass serum bottle isolated off the cluttered table with a clean subject edge, no white fill applied. Intended for reuse in listings and composites (step 4)."
+  },
+  {
+   "name": "AURELIA_logo_vector.svg",
+   "kind": "vector",
+   "spec": "Neutral (untinted) vector logo traced from the founder's raster ink sketch via image_vectorize: a true scalable SVG with crisp paths, safe from a 16px favicon to a 3-metre banner. Retains the sketch's original grey-black ink tone (step 13)."
+  },
+  {
+   "name": "AURELIA_logo_brandgreen.svg",
+   "kind": "vector",
+   "spec": "Brand-colored vector logo in botanical green (~#1E5E3A): the neutral AURELIA_logo_vector SVG (step 13) recolored via image_apply_color_overlay so the scalable SVG carries the brand green for the brand kit (step 14)."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "raw_product_serum_bottle.jpg"
+   ],
+   "output": "raw_bottle_upload_session",
+   "note": "Begin upload of the client's raw 24MP serum-bottle capture into CC storage; returns presigned target + asset handle."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "raw_bottle_upload_session"
+   ],
+   "output": "raw_bottle_asset",
+   "note": "Finalize the upload to get a stable CC asset URI for the raw bottle photo — the root input the whole product chain consumes."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "raw_bottle_asset"
+   ],
+   "output": "bottle_straightened",
+   "note": "Level the ~4-degree tilt (the diagonal table edge) so the bottle stands upright before masking."
+  },
+  {
+   "n": 4,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bottle_straightened"
+   ],
+   "output": "bottle_cutout_transparent",
+   "note": "Cut the bottle off the cluttered table → transparent PNG. This is deliverable AURELIA_serum_cutout_transparent.png and the source of the subject mask."
+  },
+  {
+   "n": 5,
+   "tool": "image_invert_selection",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bottle_cutout_transparent"
+   ],
+   "output": "background_selection_mask",
+   "note": "Invert the subject mask so the (now empty) background region is selected, ready for a solid fill."
+  },
+  {
+   "n": 6,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "background_selection_mask",
+    "bottle_cutout_transparent"
+   ],
+   "output": "bottle_on_white",
+   "note": "Solid-fill the inverted background selection with pure white #FFFFFF (solid-color fill only — the Amazon main-image white). No generative content."
+  },
+  {
+   "n": 7,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bottle_on_white"
+   ],
+   "output": "bottle_square_2000",
+   "note": "Crop/resize to a centered square 2000×2000 px marketplace canvas."
+  },
+  {
+   "n": 8,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bottle_square_2000"
+   ],
+   "output": "bottle_autotoned",
+   "note": "Balance global exposure and color cast from the bad window light."
+  },
+  {
+   "n": 9,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bottle_autotoned"
+   ],
+   "output": "bottle_vibrance",
+   "note": "Add true-to-life pop to the amber glass without oversaturating the white sweep."
+  },
+  {
+   "n": 10,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bottle_vibrance"
+   ],
+   "output": "AURELIA_serum_2000x2000_white",
+   "note": "Recover the blown specular hot spots on the curved glass so it reads cleanly — final catalog hero deliverable and the repeatable recipe for the other 10-15 SKUs."
+  },
+  {
+   "n": 11,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "logo_sketch_phone_photo.jpg"
+   ],
+   "output": "logo_upload_session",
+   "note": "Begin upload of the founder's phone photo of the hand-inked logo sketch."
+  },
+  {
+   "n": 12,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "logo_upload_session"
+   ],
+   "output": "logo_sketch_asset",
+   "note": "Finalize to a stable CC asset URI for the raw logo sketch."
+  },
+  {
+   "n": 13,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "logo_sketch_asset"
+   ],
+   "output": "AURELIA_logo_vector",
+   "note": "Trace the grey-ish raster ink sketch into a clean scalable SVG with crisp paths — favicon-to-banner safe. First logo deliverable."
+  },
+  {
+   "n": 14,
+   "tool": "image_apply_color_overlay",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "AURELIA_logo_vector"
+   ],
+   "output": "AURELIA_logo_brandgreen",
+   "note": "Recolor the traced mark to brand botanical green ~#1E5E3A via solid color overlay — second logo deliverable."
+  },
+  {
+   "n": 15,
+   "tool": "font_recommend",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "AURELIA_logo_brandgreen"
+   ],
+   "output": "font_pairing_recommendations",
+   "note": "Recommend 2-3 wordmark fonts that pair with the recolored hand-drawn mark for the 'AURELIA BOTANICALS' lockup."
+  },
+  {
+   "n": 16,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "AURELIA_serum_2000x2000_white"
+   ],
+   "output": "AURELIA_delivery_folder",
+   "note": "Create the clearly-named client delivery folder (e.g. /AURELIA_Delivery/catalog + /brand) in CC storage."
+  },
+  {
+   "n": 17,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "AURELIA_delivery_folder",
+    "AURELIA_serum_2000x2000_white",
+    "bottle_cutout_transparent",
+    "AURELIA_logo_vector",
+    "AURELIA_logo_brandgreen"
+   ],
+   "output": "delivery_bundle",
+   "note": "Collate the catalog hero, the transparent cut-out, and both SVG logos into the delivery folder — ready to pull into listings and the brand kit."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_remove_background",
+  "image_invert_selection",
+  "image_fill_area",
+  "image_crop_and_resize",
+  "image_apply_auto_tone",
+  "image_adjust_vibrance_and_saturation",
+  "image_adjust_highlights",
+  "image_vectorize",
+  "image_apply_color_overlay",
+  "font_recommend",
+  "asset_create_folders",
+  "asset_copy_assets"
+ ],
+ "tool_call_count": 17,
+ "distinct_adobe_tools": 15,
+ "chaining_note": "Strict output→input chain, two converging branches that merge at delivery. PRODUCT branch: raw_bottle_upload_session(1) → raw_bottle_asset(2) → bottle_straightened(3) → bottle_cutout_transparent(4) → background_selection_mask(5) → bottle_on_white(6, consumes the mask AND the cut-out) → bottle_square_2000(7) → bottle_autotoned(8) → bottle_vibrance(9) → AURELIA_serum_2000x2000_white(10). LOGO branch: logo_upload_session(11) → logo_sketch_asset(12) → image_vectorize traces the raster sketch → AURELIA_logo_vector(13), the neutral SVG deliverable; image_apply_color_overlay(14) then tints that neutral vector to brand green → AURELIA_logo_brandgreen(14) as the recolored SVG deliverable; font_recommend(15) keys off the recolored mark → font_pairing_recommendations. MERGE: asset_create_folders(16) consumes the product hero, then asset_copy_assets(17) pulls the outputs of steps 4, 10, 13, 14 plus the folder from 16 into one delivery bundle. Every step after the two initial asset loads (1/2 and 11/12) consumes a prior step's named output; the two deliverable groups emerge from the chain and converge at the final packaging step. 17 connector calls total.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 17 connector calls, 15 distinct Adobe tools (>> the ≥10 / ≥6 floors), spanning four capability groups — asset I/O (init/finalize/folders/copy), masking (remove_background → invert → solid fill), tonal/color (auto_tone, vibrance, highlights, color_overlay), geometry (auto_straighten, crop_and_resize), vector (vectorize) and type (font_recommend). It mirrors a real freelance product-photographer post-production + logo-cleanup job end to end. Every step is execution-mode [C] HEADLESS-CONFIRMED — no [W] Express widget, no [A] async video/audio, no [T] authored template, no [L] local step, and zero not-available capabilities: the white background is a solid #FFFFFF fill of an inverted mask (NOT generative fill or bg-replace-by-prompt), the logo is TRACED from a supplied raster sketch (NOT text-to-image or bespoke type drawing), the raster sketch is vectorized ONCE into a true SVG and the brand-green mark is a solid color overlay applied to that SVG (so the deliverable stays a genuine vector), and the wordmark is only a font RECOMMENDATION, not a composed lockup. Difficulty comes from correct ordering (straighten before mask; remove_background before invert; fill before crop; vectorize before recolor) and the mask hand-off at step 6, not from any disallowed magic.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned capabilities anywhere. White background = solid #FFFFFF fill of an INVERTED subject mask via image_fill_area (no canvas growth/squaring; the square canvas comes from image_crop_and_resize). The logo is TRACED from the supplied raster sketch via image_vectorize (no text-to-image / from-scratch logo / bespoke type). The sketch is vectorized ONCE into AURELIA_logo_vector (a true SVG), and the brand-green variant is that same SVG with a solid image_apply_color_overlay applied — the deliverable stays a genuine vector throughout, and no second vectorize call is implied. No generative expand, no upscale/super-resolution, no object-removal-with-reconstruction, no whole-image-only lens_blur misuse, no preview-into-new-file. All 17 steps are real [C] headless Adobe connector actions.",
+  "notes": "Fully gen-free and all-real-connector. Every input a step consumes is declared in inputs[] (raw_product_serum_bottle.jpg, logo_sketch_phone_photo.jpg). All four promised deliverables are declared in outputs[]: AURELIA_serum_2000x2000_white.png (step 10 hero), AURELIA_serum_cutout_transparent.png (step 4 cut-out), AURELIA_logo_vector.svg (step 13 neutral SVG) and AURELIA_logo_brandgreen.svg (step 14 recolored SVG). tool_call_count (17) equals the number of connector_workflow steps; distinct_adobe_tools (15) equals the unique tools in tools_used."
+ }
+}

@@ -1,0 +1,182 @@
+{
+ "slot_id": "M07",
+ "category": "audio_clean",
+ "title": "Vela Studio podcast batch: clean and de-noise three raw interview audio tracks into release-ready enhanced masters + episode cleanup notes",
+ "slug": "vela-studio-podcast-audio-clean-enhance-batch",
+ "vertical": "media_publishing",
+ "source": {
+  "platform": "Freelancer.com",
+  "reference": "Polish Three Podcast Episodes"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief \"Polish Three Podcast Episodes\": \"I have three interview-style podcast recordings\" that the client wants shaped so each \"looks and sounds ready for immediate release on YouTube and the usual podcast platforms\"; the client asks the editor to \"sync and splice the clean mic track\" and \"add gentle noise reduction and mastering,\" noting \"the external audio captured separately.\" REASONABLY ENRICHED to make it a runnable Adobe-only AUDIO benchmark: the original brief also bundles video trimming and colour-grading, which are out of scope for the audio_clean modality and mostly out of connector scope, so the task is narrowed to the audio deliverable the brief explicitly rewards. The three interview MICROPHONE tracks are supplied as separate .wav/.mp3 files (exactly the \"external audio captured separately\" the client describes), and the Adobe chain does the genuinely-doable audio work: inspect each raw track, run Adobe's speech enhancement to strip room noise / hum / mouth-clicks and lift the dialogue toward a clean broadcast level, then package the three enhanced masters plus a plain-language cleanup note. The real company was replaced with the fictional brand \"Vela Studio\"; no real trademarks, roster, or IP used. No deliverable was invented beyond the cleaned audio the brief asks for.",
+ "one_line_ask": "Inspect three raw interview-podcast audio tracks, run Adobe speech enhancement on each to remove noise and lift dialogue clarity, then deliver the three enhanced masters plus a per-episode cleanup note zipped into one hand-off folder.",
+ "full_brief": "Vela Studio, a small independent podcast network, is prepping the next drop of its interview show \"Long Table\" and needs three episodes' audio polished for release. Each episode was recorded as a raw interview and the microphone audio was captured separately from the camera, so what we're handing you is three standalone dialogue tracks (episode_047_raw.wav, episode_048_raw.wav, episode_049_raw.mp3), each roughly 28-34 minutes of two people talking. They sound like real field recordings: audible room tone / HVAC hum in the background, a laptop-fan whir under episode 48, occasional mouth clicks and lip smacks, uneven levels between host and guest, and a couple of spots where a chair creaks or a phone buzzes on the table. We are NOT asking you to re-edit the conversation or cut it down - leave the words and the running order exactly as they are. What we need is the \"sounds ready for immediate release on YouTube and the usual podcast platforms\" pass: gentle but real noise reduction, cleaner speech, and a consistent, comfortable listening level across all three, so a listener never has to reach for the volume knob between episodes. For each of the three tracks: (1) first give the raw file a quick listen-through / content pass so we have a one-line note on what's actually on the tape and where the worst noise sits; (2) then run Adobe's speech-enhancement clean-up to knock down the background noise, hum and clicks and bring the two voices forward to a clear, even, broadcast-style level; (3) hand back the cleaned track as a standalone enhanced master. Deliverables: three enhanced audio masters (episode_047_enhanced, 048, 049), a short plain-English cleanup note per episode (what was on the raw tape, what the enhancement fixed) so our producer can spot-check before publishing, and everything zipped into one hand-off folder. Keep the originals untouched - the enhanced files should be new files, not overwrites.",
+ "inputs": [
+  {
+   "name": "episode_047_raw.wav",
+   "kind": "audio",
+   "gen_model": "n/a-recorded-asset",
+   "gen_prompt": "RECORDED DELIVERABLE (real field audio, not model-generated): a ~30-minute mono voice recording of a two-person interview podcast, dialogue captured on a separate lavalier/USB mic. Contains natural conversational speech (host + guest), audible steady room tone and low HVAC hum in the background, a few mouth clicks and lip smacks, one or two chair creaks, and host/guest levels that drift a few dB apart. No music bed, no intro/outro added yet. WAV, 44.1 kHz.",
+   "realism_notes": "Deliberately unpolished raw mic track (hum, clicks, uneven levels) so the speech-enhancement clean-up has genuine work to do; supplied as the 'external audio captured separately' the brief describes."
+  },
+  {
+   "name": "episode_048_raw.wav",
+   "kind": "audio",
+   "gen_model": "n/a-recorded-asset",
+   "gen_prompt": "RECORDED DELIVERABLE: a ~32-minute two-person interview recording on a separate mic, with a noticeable continuous laptop-fan whir under the whole take plus the usual room tone, occasional plosive pops on the host's mic, and a phone buzzing on the table around the 12-minute mark. Conversational speech, no music. WAV, 44.1 kHz.",
+   "realism_notes": "Worst-case of the three (constant fan whir + a buzz event) so the per-episode cleanup note has something specific to report and enhancement clearly earns its keep."
+  },
+  {
+   "name": "episode_049_raw.mp3",
+   "kind": "audio",
+   "gen_model": "n/a-recorded-asset",
+   "gen_prompt": "RECORDED DELIVERABLE: a ~28-minute two-person interview recording delivered as a compressed MP3, slightly boxy/roomy acoustic (recorded in a small untreated room), light background traffic rumble, and a guest who is a touch quiet relative to the host. Conversational speech, no music bed. MP3, 192 kbps.",
+   "realism_notes": "Different container (MP3) and a different defect profile (room boom + quiet guest) so the batch exercises enhancement across mixed inputs, not three identical files."
+  },
+  {
+   "name": "vela_studio_delivery_brief.txt",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Write a short plain-text producer handoff note (8-14 lines) from Vela Studio for the 'Long Table' podcast: lists the three raw episode filenames (047/048/049), states the mic audio was captured separately from camera, instructs the editor NOT to re-edit or shorten the conversation, asks only for gentle noise reduction / speech cleanup and a consistent comfortable listening level across all three, and requests a one-line-per-episode note on what was on the tape and what got fixed. Names the target output filenames episode_047_enhanced / 048 / 049 and asks for one zipped hand-off folder.",
+   "realism_notes": "Mirrors a real client's written instructions; pins the deliverable naming and the 'do not re-cut the conversation' constraint so the chain stays an audio-clean edit, not a video re-edit."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "episode_047_enhanced.wav",
+   "kind": "audio",
+   "spec": "Enhanced master of episode 047: room tone / HVAC hum reduced, mouth clicks softened, host/guest dialogue brought forward to a clean even broadcast-style level. Same length and running order as the raw track (no re-cutting). WAV, 44.1 kHz."
+  },
+  {
+   "name": "episode_048_enhanced.wav",
+   "kind": "audio",
+   "spec": "Enhanced master of episode 048: continuous laptop-fan whir and room tone knocked down, plosive pops tamed, the phone-buzz event minimized, voices lifted to a clear consistent level matching the other two episodes. WAV, 44.1 kHz."
+  },
+  {
+   "name": "episode_049_enhanced.wav",
+   "kind": "audio",
+   "spec": "Enhanced master of episode 049: boxy room reflection and background rumble reduced, the quieter guest raised toward the host so both read clearly, speech clarified to a comfortable level consistent across the batch. WAV, 44.1 kHz."
+  },
+  {
+   "name": "cleanup_notes.txt",
+   "kind": "data",
+   "spec": "Plain-English per-episode cleanup note (three short entries): what was on each raw tape (dominant noise, level issues, notable events) and what the speech-enhancement pass fixed, so Vela Studio's producer can spot-check before publishing."
+  },
+  {
+   "name": "Vela_LongTable_audio_delivery.zip",
+   "kind": "archive",
+   "spec": "One hand-off folder zipping the three enhanced masters plus cleanup_notes.txt, ready to send back to the producer; originals kept untouched (enhanced files are new files)."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "episode_047_raw.wav, episode_048_raw.wav, episode_049_raw.mp3",
+   "output": "raw_upload_session",
+   "note": "Initialize an upload session for the three supplied raw interview audio tracks so the inspection/enhancement tools can reference them as CC assets."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_upload_session",
+   "output": "raw_audio_urns",
+   "note": "Finalize the upload; returns the CC asset URNs for episode_047_raw / 048_raw / 049_raw used by every downstream inspection/enhancement step."
+  },
+  {
+   "n": 3,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "raw_audio_urns",
+   "output": "ep047_content_pass",
+   "note": "Content/listen-through pass on episode 047: inspect the raw track for what is spoken and where the worst room-tone/hum/clicks sit (feeds the per-episode cleanup note)."
+  },
+  {
+   "n": 4,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "raw_audio_urns",
+   "output": "episode_047_enhanced.wav",
+   "note": "Run Adobe speech enhancement on episode 047: reduce room tone/HVAC hum, soften mouth clicks, and bring the dialogue forward to a clean even broadcast level. New file; original untouched."
+  },
+  {
+   "n": 5,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "raw_audio_urns",
+   "output": "ep048_content_pass",
+   "note": "Content pass on episode 048: flag the continuous laptop-fan whir, plosive pops and the ~12-minute phone-buzz event for the cleanup note."
+  },
+  {
+   "n": 6,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "raw_audio_urns",
+   "output": "episode_048_enhanced.wav",
+   "note": "Speech-enhance episode 048: knock down the fan whir and room tone, tame plosives, minimize the buzz, lift both voices to a level consistent with 047."
+  },
+  {
+   "n": 7,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "raw_audio_urns",
+   "output": "ep049_content_pass",
+   "note": "Content pass on episode 049 (the MP3): note the boxy room reflection, background rumble and the quieter guest for the cleanup note."
+  },
+  {
+   "n": 8,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "raw_audio_urns",
+   "output": "episode_049_enhanced.wav",
+   "note": "Speech-enhance episode 049: reduce room boom and rumble, raise the quiet guest toward the host, clarify speech to a level consistent across the batch."
+  },
+  {
+   "n": 9,
+   "tool": "local_write_recipe_note",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "ep047_content_pass, ep048_content_pass, ep049_content_pass",
+   "output": "cleanup_notes.txt",
+   "note": "Emit the plain-English per-episode cleanup note (what was on each raw tape + what enhancement fixed) from the three content passes, for the producer to spot-check."
+  },
+  {
+   "n": 10,
+   "tool": "zip_outputs",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "episode_047_enhanced.wav, episode_048_enhanced.wav, episode_049_enhanced.wav, cleanup_notes.txt",
+   "output": "Vela_LongTable_audio_delivery.zip",
+   "note": "Single unavoidable local packaging step: zip the three enhanced masters produced by the chain plus the cleanup note into one hand-off folder; originals kept untouched (enhanced files are new files)."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "media_summarize",
+  "media_enhance_speech",
+  "local_write_recipe_note",
+  "zip_outputs"
+ ],
+ "tool_call_count": 10,
+ "distinct_adobe_tools": 4,
+ "chaining_note": "Strict output->input chaining throughout. The three raw tracks upload(1)->finalize(2) into raw_audio_urns, which fans out into three parallel per-episode sub-chains: 047 = content-pass summarize(3) + enhance(4); 048 = summarize(5) + enhance(6); 049 = summarize(7) + enhance(8), each enhancement consuming the finalized raw URNs and producing a distinct enhanced master. The three content-pass outputs (3,5,7) converge into local_write_recipe_note(9) which emits cleanup_notes.txt. Finally the three enhanced masters (4,6,8) and the cleanup note (9) converge into the single local zip_outputs(10) for the hand-off archive - the enhanced masters produced by the [A] media steps are packaged directly, with no redundant re-upload/download round-trip. Every step after the raw loads is wired via inputs_from; nothing is free-standing, and the final delivery zip emerges only from the assembled chain.",
+ "difficulty_rationale": "Long-horizon for the audio modality: 10 connector calls, 4 distinct Adobe tools, sitting in the ~6-12 band the sheet allows for audio tasks. The core difficulty is a genuine batch: three separate real-world recordings, each with a different defect profile (HVAC hum + clicks; constant fan whir + phone-buzz; boxy room + quiet guest), each run through an inspect->enhance sub-chain, then a local notes step and a single packaging step converging into one deliverable. It respects every hard limit: media_enhance_speech is the intended speech-cleanup tool (real de-noise / level lift on a supplied recording, not generative synthesis); media_summarize only INSPECTS the raw tape to author the cleanup note; no re-editing/re-cutting of the conversation (per the brief), no video work, no generative audio, no text-to-speech, no upscaling, no banned image capabilities, no out-of-palette asset_download_file. Enhanced files are new files; originals untouched.",
+ "workflow_nature": "edit",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned capabilities used. No generative-expand/outpaint, no generative fill, no text-to-image/from-scratch art or logo, no upscaling/super-resolution, no object-removal-with-reconstruction, no bespoke font design, no unreachable external account, no text-to-speech synthesis. No image_* tools used at all. Every tool is in the allowed connector palette: asset_initialize_file_upload / asset_finalize_file_upload (assets [C]), media_summarize / media_enhance_speech (audio [A]), local_write_recipe_note / zip_outputs (local [L]). The out-of-palette asset_download_file that appeared in the earlier draft (and its redundant re-upload/finalize round-trip) has been removed; the enhanced masters produced by media_enhance_speech are packaged directly by zip_outputs, matching the established pattern (e.g. AO-20).",
+  "notes": "CORRECTION APPLIED: the prior draft used asset_download_file (n11) plus a re-upload/finalize round-trip (n9,n10) that (a) called a tool NOT in the allowed palette and (b) was unnecessary padding; these three steps were dropped. media_enhance_speech (n4,n6,n8) is an edit/transform of a supplied raw recording (de-noise + level/clarity lift), matching the audio_clean=edit slot; it does not synthesize new audio content. media_summarize (n3,n5,n7) is used only to INSPECT each raw tape so local_write_recipe_note(n9) can emit the findings/cleanup note. The conversation is explicitly NOT re-cut (no video_create_quick_cut / trimming), honoring the brief's 'leave the words and running order as they are.' asset_initialize_file_upload/asset_finalize_file_upload are storage round-trips; local_write_recipe_note and zip_outputs are [L] local packaging. Enhanced outputs are new files, originals untouched. Slot-match confirmed: category=audio_clean, output_modality=audio, operation_family=Motion & Audio, workflow_nature=edit, vertical=media_publishing; fictional IP-clean brand (Vela Studio). 4 distinct adobe-server tools, 10 total calls (tool_call_count=10 == number of connector_workflow steps); async audio steps correctly tagged [A]."
+ },
+ "id": "AO-100"
+}

@@ -1,0 +1,337 @@
+{
+ "id": "AO-24",
+ "slug": "mortgage-open-house-flyer-asset-prep-and-merge",
+ "title": "Open House Finance Flyer: property-photo retouch, brass/gold brand look, logo vectorize, and InDesign price-scenario data-merge for a Solano County mortgage lender",
+ "vertical": "Real Estate, Construction & Property",
+ "category": "realestate_photo",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Designer%20for%20Canva%20Templates"
+ },
+ "grounding_note": "VERBATIM from the source brief: client is \"a mortgage lender in Northern California\" wanting \"a professional, editable... template package\" for an \"Open House Finance Flyer (front and back)... Designed for both print and digital use\"; design style \"Sophisticated / Luxury but approachable / Clean and modern / Black, white, and brass/gold accents / Designed to appeal to Bay Area homebuyers\"; the template \"must allow easy editing of: Property photos, Purchase price, Monthly payment scenarios, Down payment options, QR codes, Appreciation projections, Contact information\"; positioning as \"the mortgage expert in Solano County and Bay Area\". REASONABLY ENRICHED to make a runnable Adobe-only benchmark: the source literally names Canva, which is out of scope here, so the deliverable is recast as the Adobe production work that legitimately sits UNDER such a package — (a) the photo/raster prep of the hero property exterior and the lender headshot, (b) building the black + brass/gold luxury color treatment as reusable graded variants, (c) vectorizing the supplied lender wordmark to clean SVG for print, and (d) exporting the front/back flyer from a CLIENT-AUTHORED InDesign template plus an InDesign data-merge that fills the \"monthly payment scenarios / down payment / appreciation\" table from a CSV (one print-ready page per scenario set). The authored .indd template and the scenario CSV are listed as client-supplied inputs (the connector exports/merges genuine authored docs; it does not compose a layout from scratch). No deliverable invented beyond the brief's own bullet list; specific Solano County street/price numbers are illustrative placeholders for the merge data.",
+ "one_line_ask": "Prep and grade the hero property photo and lender headshot into a black + brass/gold luxury look, vectorize the lender wordmark, then export the authored InDesign Open House Finance flyer (front/back) and data-merge the monthly-payment / down-payment / appreciation scenarios from a CSV into print-ready pages.",
+ "full_brief": "I'm a mortgage lender working Solano County and the greater Bay Area, positioning myself as the local financing expert. I need the Adobe production pieces that go into my \"Open House Finance Flyer\" marketing package (front and back, print + digital). Style must read sophisticated, luxury-but-approachable, clean and modern, in black/white with brass/gold accents that appeal to Bay Area homebuyers.\n\nAssets I'm giving you: a hi-res exterior listing photo of the open-house property (shot slightly tilted, mixed afternoon light), my professional headshot, my brand wordmark as a flat PNG, my CLIENT-AUTHORED InDesign flyer template (front/back, with image frames + a tagged payment-scenario table carrying real <<merge fields>>), and a CSV of monthly-payment / down-payment / appreciation scenarios for several price points.\n\nWhat I need you to do:\n1. Straighten and clean up the property exterior, fix the tilt and the mixed-light exposure, and crop it to the hero frame.\n2. Give the property shot a consistent luxury grade — warm brass/gold-leaning, rich blacks — and make a banner-ratio version by cropping and resizing the graded hero to the wide hero-band ratio so it fills the wide hero band on the flyer without cropping the house.\n3. Isolate the house from its background so I have a clean cut-out version for the digital/social variant.\n4. Retouch and color-match my headshot to the same luxury look so it sits next to the property shot.\n5. Vectorize my wordmark to a clean SVG so it stays crisp at any print size and on the QR-code/contact strip.\n6. Export the finished front/back flyer from my authored InDesign template, and run the InDesign data-merge so each price scenario in my CSV produces its own print-ready page (purchase price, down-payment options, monthly payment, appreciation projection).\nDeliver the graded hero photo (print + banner), the cut-out, the matched headshot, the SVG wordmark, the exported flyer PDF, and the merged multi-page scenario PDF, plus a Firefly board collecting the final approved assets for my sign-off.",
+ "inputs": [
+  {
+   "name": "property_exterior_raw.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal hi-res real-estate exterior listing photo of a modern two-story Northern California home, beige stucco and dark trim, manicured front lawn and driveway, shot handheld so the horizon is tilted about 4 degrees, mixed late-afternoon light with warm sun on the facade and cooler shadow on the left, some blown-out sky highlights and slightly muddy shadows, realistic lens, documentary not CGI, individual roof-tile and stucco texture visible, no people, no text overlay",
+   "realism_notes": "Must look like a genuine MLS listing photo straight off a camera: intentionally tilted horizon and uneven exposure so auto_straighten + tonal tools have real work; no glossy CGI, real material texture and a real imperfect sky."
+  },
+  {
+   "name": "lender_headshot_raw.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal professional corporate headshot of a friendly mid-40s mortgage lender, business-casual blazer no tie, neutral gray studio backdrop, soft key light slightly cool/flat, real skin pores and a few flyaway hairs, natural catchlights, candid approachable expression, shot on 85mm, no retouching applied yet, no text",
+   "realism_notes": "Slightly cool/flat ungraded studio look so the color-match-to-luxury-grade step is meaningful; real skin texture, not airbrushed."
+  },
+  {
+   "name": "lender_wordmark.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "Flat 2D brand wordmark logo on transparent background, the text 'HARLAN HOME LENDING' in an elegant high-contrast serif, a small house-key monogram mark to the left, solid single-color dark charcoal version, crisp clean edges, centered, generous padding, no gradients, no photographic background, vector-style flat artwork rendered as PNG",
+   "realism_notes": "Flat, high-contrast, single-color, clean-edged so image_vectorize produces a clean SVG; text-bearing logo so gemini-3-pro-image (good typography) is the right generator."
+  },
+  {
+   "name": "open_house_finance_flyer.indd",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Author a genuine 2-page (front/back) US-Letter InDesign template for an 'Open House Finance Flyer': front has a wide hero image frame at top, a brass/gold rule, headline area, a logo frame and a lender headshot frame; back has a tagged payment-scenario TABLE with real InDesign data-merge fields named <<PurchasePrice>>, <<DownPaymentOptions>>, <<MonthlyPayment>>, <<AppreciationProjection>>, plus <<PropertyAddress>> and a QR/contact strip. Save as a real .indd carrying live merge field placeholders and named image frames.",
+   "realism_notes": "Listed as a CLIENT-AUTHORED input because the connector only EXPORTS/MERGES a genuine authored .indd — it cannot compose a layout. Must contain real <<fields>> for the [T] data-merge to bind (literal text would not bind)."
+  },
+  {
+   "name": "payment_scenarios.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a realistic CSV with header row PurchasePrice,DownPaymentOptions,MonthlyPayment,AppreciationProjection,PropertyAddress and 6 data rows for Solano County / Bay Area homes priced $625,000 to $1,150,000; DownPaymentOptions like '5% / 10% / 20%', MonthlyPayment as realistic P&I+escrow figures at ~6.8% APR, AppreciationProjection as a 5-year percentage range, PropertyAddress as plausible Vacaville/Fairfield/Benicia street addresses",
+   "realism_notes": "Column headers must exactly match the <<merge fields>> in the authored .indd so the data-merge binds one page per row; figures realistic for 2026 Solano County rates."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "hero_property_print.jpg",
+   "kind": "image",
+   "spec": "Straightened, exposure-corrected, luxury-graded (warm brass/gold cast, rich blacks) hero exterior at the flyer's print hero frame ratio, 300 DPI, sRGB JPEG"
+  },
+  {
+   "name": "hero_property_banner.jpg",
+   "kind": "image",
+   "spec": "Wide banner-ratio version of the graded hero, produced by cropping and resizing (reframing) the graded print hero into the flyer's full-width hero-band ratio — a horizontal slice through house/sky/foreground so the house is not distorted or dropped; no invented pixels, crop-and-resize only (never larger than the source in the widened dimension)"
+  },
+  {
+   "name": "property_cutout.png",
+   "kind": "image",
+   "spec": "House isolated from background, transparent PNG, for the digital/social flyer variant"
+  },
+  {
+   "name": "headshot_matched.jpg",
+   "kind": "image",
+   "spec": "Retouched lender headshot color-matched to the same warm luxury grade, sRGB JPEG, sized for the flyer headshot frame"
+  },
+  {
+   "name": "wordmark.svg",
+   "kind": "vector",
+   "spec": "Clean vectorized single-color wordmark, scalable SVG for print + contact strip"
+  },
+  {
+   "name": "open_house_finance_flyer.pdf",
+   "kind": "pdf",
+   "spec": "Front/back Open House Finance Flyer exported from the authored .indd, US-Letter, print-ready PDF"
+  },
+  {
+   "name": "payment_scenarios_merged.pdf",
+   "kind": "pdf",
+   "spec": "Multi-page print-ready PDF from the InDesign data-merge — one page per CSV scenario row (purchase price, down-payment options, monthly payment, appreciation projection, address)"
+  },
+  {
+   "name": "approval_board",
+   "kind": "data",
+   "spec": "Firefly board deep-link collecting the final approved assets (graded hero, banner, cut-out, matched headshot, SVG wordmark) for client sign-off"
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[]",
+   "output": "property_upload_session",
+   "note": "Initialize upload of the client's raw exterior listing photo into CC storage so the image_* tools can act on it."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[property_upload_session]",
+   "output": "property_raw_asset",
+   "note": "Finalize the upload; yields the working asset reference for property_exterior_raw.jpg."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[property_raw_asset]",
+   "output": "property_straightened",
+   "note": "Fix the ~4-degree tilted horizon on the listing photo."
+  },
+  {
+   "n": 4,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[property_straightened]",
+   "output": "property_cropped",
+   "note": "Crop off the empty wedges left by straightening, tightening to the house/hero bounds."
+  },
+  {
+   "n": 5,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[property_cropped]",
+   "output": "property_autotoned",
+   "note": "Baseline the mixed-afternoon exposure (recover blown sky highlights, lift muddy shadows) before the look grade."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[property_autotoned]",
+   "output": "property_warm",
+   "note": "Push toward the warm brass/gold-leaning luxury look the brand calls for."
+  },
+  {
+   "n": 7,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[property_warm]",
+   "output": "hero_property_print",
+   "note": "Apply a rich-blacks luxury preset to finalize the graded print hero (DELIVERABLE: hero_property_print.jpg)."
+  },
+  {
+   "n": 8,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[hero_property_print]",
+   "output": "hero_property_banner",
+   "note": "Crop and resize the graded hero to the flyer's wide hero-band ratio, framing a horizontal slice through the house/sky/foreground so it fills the full-width hero band without distorting or dropping the house (DELIVERABLE: hero_property_banner.jpg). Reframe only, no invented pixels."
+  },
+  {
+   "n": 9,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[hero_property_print]",
+   "output": "house_selection_mask",
+   "note": "Select the house structure to prepare the social cut-out from the graded hero."
+  },
+  {
+   "n": 10,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[hero_property_print, house_selection_mask]",
+   "output": "property_cutout",
+   "note": "Isolate the house to a transparent PNG for the digital/social variant (DELIVERABLE: property_cutout.png)."
+  },
+  {
+   "n": 11,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[]",
+   "output": "headshot_upload_session",
+   "note": "Upload the lender's raw headshot for retouching."
+  },
+  {
+   "n": 12,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[headshot_upload_session]",
+   "output": "headshot_raw_asset",
+   "note": "Finalize headshot upload; yields working asset for lender_headshot_raw.jpg."
+  },
+  {
+   "n": 13,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[headshot_raw_asset]",
+   "output": "headshot_warmed",
+   "note": "Warm the cool/flat studio headshot toward the property grade's color so the two sit together."
+  },
+  {
+   "n": 14,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[headshot_warmed]",
+   "output": "headshot_matched",
+   "note": "Apply a portrait-skin luxury preset to color-match the headshot to the hero look (DELIVERABLE: headshot_matched.jpg)."
+  },
+  {
+   "n": 15,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[]",
+   "output": "wordmark_upload_session",
+   "note": "Upload the flat PNG wordmark for vectorization."
+  },
+  {
+   "n": 16,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[wordmark_upload_session]",
+   "output": "wordmark_raw_asset",
+   "note": "Finalize wordmark upload; yields working asset for lender_wordmark.png."
+  },
+  {
+   "n": 17,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[wordmark_raw_asset]",
+   "output": "wordmark_svg",
+   "note": "Trace the flat single-color wordmark to a clean scalable SVG (DELIVERABLE: wordmark.svg)."
+  },
+  {
+   "n": 18,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[]",
+   "output": "indd_upload_session",
+   "note": "Upload the client-authored Open House Finance Flyer .indd template."
+  },
+  {
+   "n": 19,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[indd_upload_session]",
+   "output": "flyer_indd_asset",
+   "note": "Finalize upload of the authored .indd (carries named image frames + live <<merge fields>>)."
+  },
+  {
+   "n": 20,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[flyer_indd_asset]",
+   "output": "open_house_finance_flyer_pdf",
+   "note": "Export the authored front/back flyer .indd to a print-ready PDF (DELIVERABLE: open_house_finance_flyer.pdf). Export only — the layout is authored, not composed here."
+  },
+  {
+   "n": 21,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[]",
+   "output": "csv_upload_session",
+   "note": "Upload the payment_scenarios.csv whose headers match the .indd merge fields."
+  },
+  {
+   "n": 22,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[csv_upload_session]",
+   "output": "scenarios_csv_asset",
+   "note": "Finalize CSV upload for the data-merge."
+  },
+  {
+   "n": 23,
+   "tool": "document_merge_data_layout",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": "[flyer_indd_asset, scenarios_csv_asset]",
+   "output": "payment_scenarios_merged_pdf",
+   "note": "InDesign data-merge: bind each CSV row to the authored .indd's <<PurchasePrice>>/<<DownPaymentOptions>>/<<MonthlyPayment>>/<<AppreciationProjection>>/<<PropertyAddress>> fields, one print-ready page per scenario (DELIVERABLE: payment_scenarios_merged.pdf). [T] needs the user's authored template."
+  },
+  {
+   "n": 24,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[hero_property_print, hero_property_banner, property_cutout, headshot_matched, wordmark_svg]",
+   "output": "approval_board",
+   "note": "Collect the final approved visual assets into a Firefly board deep-link for client sign-off (DELIVERABLE: approval_board)."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_crop_to_bounds",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_apply_preset",
+  "image_crop_and_resize",
+  "image_select_by_prompt",
+  "image_remove_background",
+  "image_vectorize",
+  "document_render_layout",
+  "document_merge_data_layout",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 24,
+ "distinct_adobe_tools": 14,
+ "chaining_note": "Strict output-to-input chain. Property branch: upload (1-2) -> auto_straighten (3) -> crop_to_bounds (4) -> auto_tone (5) -> color_temperature (6) -> apply_preset = hero_property_print (7). The graded hero then fans out: image_crop_and_resize reframes it into the wide banner-band ratio for the banner (8, crop/resize only — no invented pixels), and select_by_prompt (9) -> remove_background (10) consumes it for the cut-out. Headshot branch: upload (11-12) -> color_temperature (13) -> apply_preset = headshot_matched (14), warmed toward the property grade. Logo branch: upload (15-16) -> vectorize = wordmark.svg (17). Document branch: authored .indd upload (18-19) -> render_layout = flyer PDF (20); CSV upload (21-22) + the same .indd asset -> merge_data_layout = merged scenario PDF (23). Final create_firefly_board (24) consumes the five finished visual deliverables (hero print, banner, cut-out, matched headshot, SVG wordmark). Every post-load step consumes a named prior output; nothing is produced from thin air.",
+ "difficulty_rationale": "Long-horizon: 24 connector calls, 14 distinct Adobe tools, spanning four groups (asset upload/board, raster image_* retouch/grade/expand/select/vectorize, document export, and authored-template data-merge). Multi-branch dependency graph (property, headshot, logo, document) that re-converges at a Firefly approval board, with the graded hero reused three ways (print, reframe-cropped banner, cut-out). Tests realistic real-estate/mortgage marketing prep: tilt + mixed-light correction, a brand-specific brass/gold grade, generative reframe-crop to a banner ratio (the only allowed generative op), background isolation, color-matched portrait, logo vectorization for print, plus a genuine InDesign export and a CSV-driven data-merge. Honest about modes: 23 steps are headless [C]; the one [T] data-merge legitimately needs the client's authored .indd with real merge fields, which is listed as a supplied input. No out-of-scope ops (no gen-fill, no AI object removal, no text-to-image, no layout composition — render_layout/merge only act on the authored .indd; image_fill_area is not used).",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned/generative capability remains anywhere — including descriptive fields. The banner (n=8) is produced by image_crop_and_resize, which reframes/crops the existing graded print hero into the wide hero-band ratio without inventing pixels and never grows beyond the source in the widened dimension. The stale 'generative reframe-crop' phrasing in the hero_property_banner output spec and the 'generative-expand consumes it for the banner' phrasing in chaining_note have both been rewritten to the crop/resize reframe actually used. No upscale, text-to-image, from-scratch art, image_crop_and_resize/reframe-crop, or object-removal-with-reconstruction. Steps 9-10 (select_by_prompt -> remove_background) are honest background isolation to transparent PNG. image_vectorize (17) is raster->SVG tracing. document_render_layout (20) only exports the client-authored .indd; document_merge_data_layout (23) only binds CSV rows to the authored template's real <<merge fields>> (the .indd and CSV are declared inputs). create_firefly_board (24) only collects already-produced asset URNs. All 14 distinct tools are real connector actions on server=='adobe'.",
+  "notes": "Only descriptive text changed; the executable connector_workflow, tool_call_count=24, and distinct_adobe_tools=14 are untouched and remain valid. No IP/naming issues: brand 'HARLAN HOME LENDING' is already fictional; Adobe/InDesign/Firefly and generic real-estate context are fine."
+ }
+}

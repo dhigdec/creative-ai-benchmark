@@ -1,0 +1,348 @@
+{
+ "id": "AO-64",
+ "slug": "beauty-skincare-packaging-print-prep",
+ "title": "Premium skincare packaging: retouch hero shot, vectorize logo, render authored dieline + data-merge SKU labels, print-ready PDFs",
+ "vertical": "Beauty, Cosmetics & Personal Care",
+ "category": "print_prep_pdf",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Packaging%20Designer%20for%20Beauty%20Products"
+ },
+ "grounding_note": "VERBATIM from the Upwork brief (cand_64, db_i 271): \"create premium, visually appealing packaging for our beauty and skincare product line\"; design labels/panels (front, back, side); develop typography/color palette/visual hierarchy; \"Prepare print-ready production files\"; understanding of \"dielines, bleed, CMYK, and print production\"; deliverables = \"Final packaging design concepts, Editable source files (AI/PSD), Print-ready PDF files, High-resolution mockups (JPG/PNG)\". REASONABLY ENRICHED to make it a runnable connector benchmark: I named a concrete brand (\"Aurelia Botanics\"), a 3-SKU serum line, and concrete pixel/CMYK specs. Critically, because the Adobe connector CANNOT compose a layout from scratch (render_layout/render_vector only EXPORT a genuine authored .indd/.ai, and the Express compose track is [W]/not-headless), the client is modeled as supplying the AUTHORED dieline/label files (carton .ai dieline, label .indd with <<merge fields>>, and a brand-guide PDF). The connector chain does the legitimate, repeatable production work the brief actually rewards: retouch + CMYK-grade the hero product photo, knock out its background, vectorize the supplied logo to clean SVG, build a duotone botanical side-panel texture, license a marble backdrop for the mockup, EXPORT the authored carton dieline and label artwork, DATA-MERGE the 3 SKU variants onto the authored label, convert the brand PDF to an editable .indd, and collect everything on a Firefly board. No generative fill, no from-scratch art, no by-prompt compositing.",
+ "one_line_ask": "Take Aurelia Botanics' supplied hero serum photo, logo, authored carton dieline (.ai) + label (.indd) and SKU data, and produce retouched/CMYK-graded imagery, a clean vector logo, data-merged print-ready label PDFs for all 3 SKUs, and high-res mockup assets.",
+ "full_brief": "Aurelia Botanics is launching a premium 3-SKU facial-serum line (Rosehip Renewal, Niacinamide Clarity, Hyaluronic Hydra) and needs retail-ready packaging production. The client provides authored production files (they built the carton dieline in Illustrator and the label layout in InDesign with real merge fields) plus raw brand assets. Your job is the connector-doable production pipeline:\n\n1) Upload all 7 supplied assets (hero product photo, logo, leaf-motif art, carton dieline .ai, label .indd, brand-guide PDF, SKU CSV) into a working folder.\n2) Clean up the hero serum-bottle photograph: auto-straighten, auto-tone, then lift exposure and warm the color temperature so the amber glass reads premium and consistent under the studio lighting.\n3) Apply a Lightroom \"Subject Pop\" style preset to make the bottle separate cleanly from the seamless backdrop.\n4) Knock the retouched bottle out of its background to a transparent PNG so it can drop onto any mockup backdrop.\n5) License and download a marble-surface stock backdrop, and crop/resize it to the exact mockup canvas.\n6) Build the botanical side-panel texture: take the supplied leaf-motif art and convert it to a 2-color halftone/duotone in brand green so it prints clean as a spot-style panel.\n7) Vectorize the supplied raster logo into a clean SVG for the carton.\n8) Export the client's authored carton dieline (.ai) to print PDF + a preview PNG (this is the structural cutting layout — connector EXPORTS it, does not author it).\n9) Data-merge the 3 SKU rows from the CSV onto the client's authored label template (.indd with <<product_name>>, <<key_actives>>, <<volume>>, <<batch>> fields) to produce one print-ready label per SKU.\n10) Export the merged label document to a CMYK-ready, bleed-correct print PDF.\n11) Convert the supplied brand-guide PDF into an editable .indd so the studio can keep the spec sheet in InDesign.\n12) Assemble the produced hero PNG, marble backdrop, duotone panel, vector logo, dieline preview and label previews onto a Firefly board as the client-facing concept presentation.\n\nDeliverables: retouched + background-removed hero PNG, marble mockup backdrop, brand-green duotone side panel, vector logo SVG, exported carton dieline PDF/PNG, 3 data-merged label print PDFs, an editable brand-guide .indd, and a Firefly concept board link.",
+ "inputs": [
+  {
+   "name": "hero_serum_bottle.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal studio product photograph of a single premium amber-glass facial serum bottle with a matte-black dropper cap, standing on a seamless light-grey sweep, soft large-softbox lighting from upper left, subtle gradient reflection on the surface below, shot slightly off-axis so the bottle is a few degrees tilted, real glass refraction and tiny specular highlights, faint dust on the seamless, no label applied to the bottle, shallow depth of field, 4000x5000px, candid commercial-photography realism not CGI-glossy",
+   "realism_notes": "Bottle intentionally a few degrees tilted and the frame slightly off so auto_straighten and crop_to_bounds have real work to do; unlabeled glass so the pipeline is about packaging prep not editing an existing label; real dust/specular so retouch + Subject Pop preset are meaningful."
+  },
+  {
+   "name": "aurelia_logo_raster.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "Clean minimalist beauty brand wordmark logo reading 'AURELIA BOTANICS' in an elegant high-contrast serif, with a small single-line botanical leaf sprig mark centered above the text, solid deep forest-green on a transparent background, flat 2D vector-style but rendered as a 1600x1200 PNG raster with crisp anti-aliased edges, no gradients, no photographic texture",
+   "realism_notes": "Delivered as a raster PNG (as a client logo often is) so image_vectorize has a genuine raster-to-SVG job; flat solid color so it vectorizes to clean paths."
+  },
+  {
+   "name": "leaf_motif.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "Single continuous-line botanical illustration of overlapping eucalyptus and rosehip leaves and small berries, fine even line weight, deep green on white background, decorative repeating-friendly composition suitable for a packaging side panel, 2400x3600px flat illustration no shading",
+   "realism_notes": "Two-tone-friendly line art so the halftone/duotone conversion to a single brand-green spot panel is realistic and prints clean."
+  },
+  {
+   "name": "aurelia_carton_dieline.ai",
+   "kind": "vector",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate an Adobe Illustrator .ai (PDF-compatible) file describing a folding-carton dieline for a 40x40x120mm serum box: front, back, two side panels, top and bottom tuck flaps, dust flaps, with cut lines, fold/score lines on a separate layer, 3mm bleed and registration marks, CMYK document, plus placeholder rectangles labeled FRONT/BACK/SIDE for artwork placement. Authored structural file, not generated art.",
+   "realism_notes": "Modeled as a CLIENT-AUTHORED Illustrator file because the connector can only EXPORT a genuine .ai (document_render_vector), never compose a dieline from scratch. It carries real cut/fold/bleed structure so the export is a faithful print artifact."
+  },
+  {
+   "name": "aurelia_label_template.indd",
+   "kind": "vector",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate an Adobe InDesign .indd (or .idml) label template, 70x90mm + 3mm bleed, CMYK, containing real data-merge placeholders <<product_name>>, <<key_actives>>, <<volume>>, <<batch>> positioned with a defined typographic hierarchy (product name large serif, actives medium, volume + batch small), an image frame for the leaf side-panel texture, and brand-green/cream swatches. Authored template with genuine merge fields.",
+   "realism_notes": "Must be a USER-AUTHORED .indd carrying REAL <<fields>> — per the capability sheet a PDF-converted .indd with literal text does NOT bind for data-merge ([T] mode requirement)."
+  },
+  {
+   "name": "skus.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a 3-row CSV with header product_name,key_actives,volume,batch and rows: Rosehip Renewal Facial Serum / Rosehip Oil + Vitamin C / 30 ml / AB-RR-0426 ; Niacinamide Clarity Facial Serum / 10% Niacinamide + Zinc / 30 ml / AB-NC-0426 ; Hyaluronic Hydra Facial Serum / 2% Hyaluronic Acid + B5 / 30 ml / AB-HH-0426",
+   "realism_notes": "Column headers exactly match the <<merge fields>> in the authored .indd so the data-merge binds row-by-row to produce 3 distinct labels."
+  },
+  {
+   "name": "brand_guide.pdf",
+   "kind": "pdf",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a 4-page brand-guide PDF for 'Aurelia Botanics': page 1 logo + clear-space, page 2 deep-forest-green / cream / amber color palette with CMYK + Pantone values, page 3 serif/sans type pairing specimen, page 4 packaging tone-of-voice notes; clean editorial layout, CMYK",
+   "realism_notes": "A real multi-page brand PDF so document_convert_pdf (PDF->editable .indd) has a legitimate target; conversion is for keeping the spec editable, not for data-merge."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "hero_bottle_retouched_cutout.png",
+   "kind": "image",
+   "spec": "Background-removed transparent PNG of the straightened, auto-toned, exposure-/temperature-corrected, Subject-Pop-graded amber serum bottle; full hero resolution (~4000x5000 region), ready to drop onto any mockup."
+  },
+  {
+   "name": "marble_mockup_backdrop.jpg",
+   "kind": "image",
+   "spec": "Licensed marble-surface stock backdrop cropped/resized to the 3000x3000px mockup canvas."
+  },
+  {
+   "name": "leaf_duotone_panel.png",
+   "kind": "image",
+   "spec": "Brand-green 2-color halftone/duotone side-panel texture derived from the supplied leaf motif, print-clean."
+  },
+  {
+   "name": "aurelia_logo.svg",
+   "kind": "vector",
+   "spec": "Clean vectorized SVG of the AURELIA BOTANICS wordmark + leaf mark, single solid spot color, scalable for the carton."
+  },
+  {
+   "name": "carton_dieline_print.pdf",
+   "kind": "pdf",
+   "spec": "Print PDF exported from the authored carton dieline .ai with cut/fold lines, 3mm bleed, registration marks, CMYK."
+  },
+  {
+   "name": "carton_dieline_preview.png",
+   "kind": "image",
+   "spec": "Flat raster preview PNG of the same authored carton dieline .ai (rasterized export), used as the board thumbnail for the structural cutting layout."
+  },
+  {
+   "name": "labels_merged_print.pdf",
+   "kind": "pdf",
+   "spec": "One print-ready, 3mm-bleed, CMYK label page per SKU (3 pages) produced by data-merging skus.csv onto the authored label .indd."
+  },
+  {
+   "name": "brand_guide_editable.indd",
+   "kind": "indd",
+   "spec": "Editable InDesign document (.indd, delivered zipped) converted from the supplied 4-page brand-guide PDF."
+  },
+  {
+   "name": "aurelia_concept_board",
+   "kind": "board",
+   "spec": "Firefly Board deep-link assembling the hero cutout, marble backdrop, duotone panel, vector logo, dieline preview PNG and label previews as the client-facing concept presentation."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "uploaded_assets_session",
+   "note": "Initialize upload of the 7 client-supplied assets (hero_serum_bottle.jpg, aurelia_logo_raster.png, leaf_motif.png, aurelia_carton_dieline.ai, aurelia_label_template.indd, skus.csv, brand_guide.pdf) into the working session; obtain presigned upload targets."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "uploaded_assets_session"
+   ],
+   "output": "asset_urns",
+   "note": "Finalize the uploads from step 1 and get back stable asset URNs/URLs used by every downstream step."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "asset_urns"
+   ],
+   "output": "hero_straightened",
+   "note": "Straighten the slightly off-axis hero serum photo from the finalized asset URNs."
+  },
+  {
+   "n": 4,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "hero_straightened"
+   ],
+   "output": "hero_autotoned",
+   "note": "Auto-tone the straightened hero to fix the base exposure/white balance baseline."
+  },
+  {
+   "n": 5,
+   "tool": "image_adjust_exposure",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "hero_autotoned"
+   ],
+   "output": "hero_exposed",
+   "note": "Lift exposure on the auto-toned hero so the amber glass and dropper read premium."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "hero_exposed"
+   ],
+   "output": "hero_warmed",
+   "note": "Warm the color temperature of the exposure-corrected hero for a consistent premium amber tone."
+  },
+  {
+   "n": 7,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "hero_warmed"
+   ],
+   "output": "hero_subjectpop",
+   "note": "Apply the Lightroom 'Subject Pop' masked Adaptive preset to the warmed hero so the bottle separates from the seamless backdrop."
+  },
+  {
+   "n": 8,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "hero_subjectpop"
+   ],
+   "output": "hero_bottle_retouched_cutout",
+   "note": "Knock the graded bottle out of its background to a transparent PNG (final hero deliverable)."
+  },
+  {
+   "n": 9,
+   "tool": "asset_license_and_download_stock",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "marble_stock_fullres",
+   "note": "Search Adobe Stock for a marble-surface backdrop, license it, and download the full-res presigned file (license BEFORE editing)."
+  },
+  {
+   "n": 10,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "marble_stock_fullres"
+   ],
+   "output": "marble_mockup_backdrop",
+   "note": "Crop/resize the licensed marble backdrop to the exact 3000x3000px mockup canvas (mockup backdrop deliverable)."
+  },
+  {
+   "n": 11,
+   "tool": "image_apply_halftone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "asset_urns"
+   ],
+   "output": "leaf_duotone_panel",
+   "note": "Convert the supplied leaf_motif to a 2-color halftone/duotone in brand green for the print side panel (duotone panel deliverable)."
+  },
+  {
+   "n": 12,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "asset_urns"
+   ],
+   "output": "aurelia_logo_svg",
+   "note": "Vectorize the raster logo PNG into a clean single-color SVG for the carton (vector logo deliverable)."
+  },
+  {
+   "n": 13,
+   "tool": "document_render_vector",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "asset_urns"
+   ],
+   "output": "carton_dieline_print",
+   "note": "EXPORT the client-authored carton dieline .ai to a print PDF (cut/fold/bleed/registration preserved; connector exports, does not author)."
+  },
+  {
+   "n": 14,
+   "tool": "document_render_vector",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "asset_urns"
+   ],
+   "output": "carton_dieline_preview",
+   "note": "EXPORT the same client-authored carton dieline .ai a second time to a flat raster preview PNG (separate format = separate render_vector call) for use as the board thumbnail."
+  },
+  {
+   "n": 15,
+   "tool": "document_merge_data_layout",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": [
+    "asset_urns"
+   ],
+   "output": "labels_merged_indd",
+   "note": "InDesign data-merge: bind skus.csv rows to the authored label .indd <<product_name>>/<<key_actives>>/<<volume>>/<<batch>> fields → one label page per SKU. [T] needs the user-authored template with real fields."
+  },
+  {
+   "n": 16,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "labels_merged_indd"
+   ],
+   "output": "labels_merged_print",
+   "note": "Export the merged 3-page label document to a CMYK, 3mm-bleed print PDF (label print PDF deliverable)."
+  },
+  {
+   "n": 17,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "asset_urns"
+   ],
+   "output": "brand_guide_editable",
+   "note": "Convert the supplied 4-page brand_guide.pdf into an editable .indd (ZIP) so the studio keeps the spec in InDesign."
+  },
+  {
+   "n": 18,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "hero_bottle_retouched_cutout",
+    "marble_mockup_backdrop",
+    "leaf_duotone_panel",
+    "aurelia_logo_svg",
+    "carton_dieline_preview",
+    "labels_merged_print"
+   ],
+   "output": "aurelia_concept_board",
+   "note": "Assemble the produced hero cutout, marble backdrop, duotone panel, vector logo, dieline preview PNG and label previews into a Firefly concept board (client-facing presentation)."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_apply_auto_tone",
+  "image_adjust_exposure",
+  "image_adjust_color_temperature",
+  "image_apply_preset",
+  "image_remove_background",
+  "asset_license_and_download_stock",
+  "image_crop_and_resize",
+  "image_apply_halftone",
+  "image_vectorize",
+  "document_render_vector",
+  "document_merge_data_layout",
+  "document_render_layout",
+  "document_convert_pdf",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 18,
+ "distinct_adobe_tools": 17,
+ "chaining_note": "Strict output->input chain. Steps 1-2 load the 7 client assets and emit asset_urns (the only initial load). Hero photo pipeline is a linear chain: asset_urns -> auto_straighten(3) -> auto_tone(4) -> adjust_exposure(5) -> adjust_color_temperature(6) -> apply_preset/Subject Pop(7) -> remove_background(8)=hero cutout; each step consumes the immediately prior step's output. Backdrop branch: license_stock(9) -> crop_and_resize(10)=marble backdrop. Panel/logo/dieline branches each consume asset_urns: halftone(11)=duotone panel, vectorize(12)=logo SVG, render_vector(13)=dieline print PDF, render_vector(14)=dieline preview PNG (same authored .ai, second call for the PNG format), convert_pdf(17)=editable brand .indd. Label branch: merge_data_layout(15) consumes asset_urns (authored .indd + CSV) -> labels_merged_indd, then render_layout(16) consumes that merged doc -> label print PDF. The terminal create_firefly_board(18) consumes six prior outputs (steps 8,10,11,12,14,16) and is the converging deliverable. Nothing after step 2 starts from a raw client file without passing through asset_urns or an upstream product.",
+ "difficulty_rationale": "Long-horizon (18 connector calls, 17 distinct Adobe tools) spanning 4 capability groups: photo/raster retouch (A1), document/layout export + data-merge + PDF convert (A2), asset/stock/board (A4). The 7-step linear hero-retouch chain plus four parallel asset-prep branches that all reconverge on a Firefly board exercise genuine output->input dependency management. It stays strictly inside connector limits: NO from-scratch layout composition (render_vector/render_layout only EXPORT the client-authored .ai/.indd), NO generative fill or by-prompt compositing, image_fill_area not abused (not used at all), and the one [T] step (data-merge) correctly depends on a user-authored .indd carrying real <<fields>> per the v2.1 sheet. The only non-[C] step is the [T] data-merge; everything else is headless-confirmed [C], and there is no [L] local step. Difficulty comes from breadth of distinct tools, depth of the retouch chain, and the discipline of producing real print-prep artifacts (CMYK/bleed PDFs, vector SVG, editable .indd) without crossing into not-available territory.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "issues": [
+   "No hard-constraint violations. All 18 steps are server=='adobe', every tool exists in CONNECTOR_CAPABILITIES_v2.md, and none touch the A6 [X] not-available list (no gen-fill, no text-to-image, no object removal, no compositing, no bg-replace-by-prompt, no upscaling, no image->PDF, no per-artboard named export). image_fill_area is not used at all.",
+   "render_vector (steps 13 and 14) and render_layout (step 16) are correctly EXPORT-ONLY of genuine authored files: the .ai carton dieline (aurelia_carton_dieline.ai) and the merged .indd (from authored aurelia_label_template.indd) are both listed as authored inputs. No from-scratch layout composition. The dieline is exported twice (13=print PDF, 14=preview PNG) so each render_vector call emits a single format, matching the connector's one-format-per-call behavior.",
+   "The one non-[C] step, document_merge_data_layout (step 15, [T]), is correctly tagged and depends on a USER-authored .indd carrying REAL <<product_name>>/<<key_actives>>/<<volume>>/<<batch>> fields with matching CSV headers — exactly the sheet's [T] requirement. The input realism_note even repeats the 'PDF-converted .indd does NOT bind' caveat. In scope for the product-targeted benchmark.",
+   "Chaining = 16/17 steps after the first consume a prior output via inputs_from (94.1%); the only non-chained step (9, asset_license_and_download_stock) is a legitimate fresh stock load, and its product feeds step 10. create_firefly_board (18) honestly converges six produced CC-asset outputs as a moodboard, not as a compositor — matches sheet's honest-use note.",
+   "The carton dieline print PDF and its preview PNG are now two distinct outputs produced by two distinct render_vector calls (steps 13 and 14), so no single node claims to emit two formats; the board (step 18) consumes the explicit carton_dieline_preview PNG.",
+   "MINOR (non-blocking): the 'CMYK-ready / 3mm-bleed' fidelity of the exported PDFs is inherited from the authored .ai/.indd inputs (which carry bleed/registration/CMYK swatches), not guaranteed by render_vector/render_layout themselves. The spec correctly attributes this to the authored files, so it is consistent with the export-only model. Annotator note: verify the exported PDF/PNG carry over the source CMYK/bleed rather than expecting the export tool to add them."
+  ]
+ }
+}

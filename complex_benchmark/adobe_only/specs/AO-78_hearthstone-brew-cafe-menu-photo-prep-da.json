@@ -1,0 +1,392 @@
+{
+ "slot_id": "L05",
+ "category": "datamerge_print",
+ "title": "Hearthstone Brew Co. café menu: food-photo prep + logo vectorize + InDesign data-merge to print-ready PDF & high-res JPEG",
+ "slug": "hearthstone-brew-cafe-menu-photo-prep-datamerge",
+ "vertical": "Food, Restaurant & Beverage",
+ "source": {
+  "platform": "Upwork",
+  "reference": "Menu Design for a Brew cafe"
+ },
+ "grounding_note": "VERBATIM from the Upwork brief (\"Menu Design for a Brew cafe\"): the client wants a designer \"to create a menu for our cafe\", needs a \"Full café menu (food + drinks)\", \"Print-ready files\", and \"Editable InDesign source files upon completion\"; the requested style is \"Warm, cozy, and elevated. Clean layouts, intentional typography, nothing generic or template-heavy\"; requirements call for \"Proficiency in Adobe InDesign\" and \"Strong sense of typography, layout, and print design\". REASONABLY ENRICHED to make it a runnable Adobe-only benchmark: the raw brief implies from-scratch layout composition, which is NOT in connector scope (the connector cannot author a layout; document_merge_data_layout / document_render_layout only BIND/EXPORT a GENUINE authored .indd). So the client is modeled as supplying the authored InDesign café-menu template carrying real <<fields>> and photo frames (a normal second-round hand-off where the type/layout is set and the freelancer preps assets + binds the menu data), the raw food/drink photos, the flat wordmark PNG, a warm kraft-paper background texture choice, and the menu-content CSV. The Adobe chain then does the genuinely-doable work: color-grading + straightening + consistently cropping the food/drink photos so they look warm and appetizing, vectorizing the wordmark for crisp print, sourcing the kraft/linen texture from Adobe Stock, binding the item/description/price rows via a real InDesign data-merge, and exporting the print-ready PDF plus a high-res JPEG. Real company/persona replaced with the fictional \"Hearthstone Brew Co.\" No deliverable invented beyond the café menu the brief asks for.",
+ "one_line_ask": "Grade and consistently crop five raw café food/drink photos, vectorize the Hearthstone Brew Co. wordmark, license a warm kraft-paper texture, then run the client's authored InDesign café-menu template through a data-merge against the menu CSV to produce a print-ready PDF and a high-res JPEG.",
+ "full_brief": "Hearthstone Brew Co., a warm neighborhood café, needs its full food-and-drinks menu finished for print. The owner has handed off an authored InDesign menu template (hearthstone_menu_template.indd) laid out in a warm, cozy, elevated style — clean type, generous margins — with five photo frames and real data-merge fields (<<section>>, <<item>>, <<desc>>, <<price>>) arranged under four section headers (Breakfast, All-Day Plates, Pastries, Coffee & Tea). Alongside it come the brand wordmark as a flat PNG, five raw phone-shot photos (a flat white, a stack of buttermilk pancakes, an avocado toast plate, a butter croissant, a cortado in a glass), and a CSV holding every menu row (section, item name, one-line description, price). The photos are unappetizing as-shot: slightly tilted, dull and flat, shot under cool café-window light with busy table clutter behind them. The job: (1) make every food/drink photo look warm and appetizing — straighten, auto-tone, warm the white balance toward a cozy morning-light look, lift the shadows, push vibrance, apply a warm food-pop preset to lock a consistent look across all five, and throw the cluttered café background out of focus so each dish reads as hero; consistently crop all five to the 4:5 frame ratio the template's photo frames expect; (2) lift the flat-white hero cup cleanly onto a transparent background so it can sit on the kraft texture without a hard photographic edge; (3) vectorize the flat wordmark PNG into a clean SVG so it stays razor-sharp at large menu-board size; (4) license a warm kraft-paper / linen texture from Adobe Stock to back the layout and reinforce the cozy feel; (5) upload all the prepped assets, then run the client's authored .indd through an InDesign data-merge against the menu CSV so each section / item / description / price binds into the template and the prepped photos + wordmark + texture sit in their frames; (6) export the bound document to a print-ready A4-portrait PDF (~300 DPI) and a high-resolution JPEG for the café's social and delivery-app listings; (7) assemble the graded photos, vector wordmark, and final menu render onto a Firefly board so the owner can approve the photo treatment and finished menu from one deep-link. Deliver print-ready files plus the graded photos and vector wordmark as the editable source assets.",
+ "inputs": [
+  {
+   "name": "hearthstone_menu_template.indd",
+   "kind": "data",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine Adobe InDesign document (.indd/.idml) for a one-page A4 portrait Hearthstone Brew Co. café menu in a warm, cozy, elevated style — clean serif/humanist type, generous margins, nothing template-heavy. Must contain five image frames sized to a 4:5 ratio and REAL InDesign data-merge placeholder fields named <<section>>, <<item>>, <<desc>>, <<price>> arranged under four section headers (Breakfast, All-Day Plates, Pastries, Coffee & Tea), plus a placeholder area for the wordmark and a full-bleed background frame for the kraft-paper texture. Authored by hand in InDesign so the data-merge fields actually bind; a PDF-converted .indd with literal text would NOT bind.",
+   "realism_notes": "Modeled as the client's own draft template (a normal freelancer revision / second-round hand-off). document_merge_data_layout is [T] and REQUIRES a user-authored .indd carrying real merge fields — it cannot be connector-generated, so it is listed as a supplied input, not a chain output."
+  },
+  {
+   "name": "photo_coffee_flat_white.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of a flat white coffee in a ceramic cup with latte-art fern, on a marble café counter with a blurred pastry case and a stray napkin behind it. Slightly tilted horizon (about 3 degrees), flat dull lighting, slightly cool/blue café-window white balance, visible crema texture and cup glaze. Documentary candid look, no studio gloss.",
+   "realism_notes": "Deliberately imperfect (tilt, flat tone, cool WB, busy background) so the grade chain has real work to do; also the hero cutout candidate. gpt-image-2 for photoreal food/drink."
+  },
+  {
+   "name": "photo_breakfast_pancake_stack.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of a tall stack of buttermilk pancakes with a pat of butter and a drizzle of maple syrup, on a white plate on a wooden café table, cool overcast window light, dull underexposed shadows, cluttered background of salt shakers and a menu card. Real crumb, syrup sheen, no CGI gloss.",
+   "realism_notes": "Underexposed + busy background to justify auto-tone, shadow lift, warm-up, vibrance and background lens-blur steps."
+  },
+  {
+   "name": "photo_plates_avocado_toast.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of an avocado toast plate with chili flakes, radish and a poached egg on sourdough, slightly tilted, flat grey window light, cool cast, a busy café table edge with cutlery visible. Real bread char, egg-yolk sheen, candid documentary feel.",
+   "realism_notes": "Third hero crop; same imperfections so the five photos can be graded to a consistent warm, appetizing look."
+  },
+  {
+   "name": "photo_pastry_butter_croissant.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of a golden butter croissant on a small plate beside a folded linen napkin, dim warm café light but slightly muddy and flat, busy blurred shelf of jars behind. Real flaky lamination, crumb scatter, no CGI.",
+   "realism_notes": "Pastry hero; flat/muddy tone justifies the same grade and crop pipeline."
+  },
+  {
+   "name": "photo_coffee_cortado_glass.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of a cortado in a small clear glass on a saucer, on a marble counter, cool café-window light, flat and slightly underexposed, a busy blurred espresso machine behind. Real milk-layer separation, glass reflections, water ring on the saucer, no CGI.",
+   "realism_notes": "Second beverage hero; flat cool tone justifies the same grade and 4:5 crop pipeline so all five drinks/dishes match."
+  },
+  {
+   "name": "hearthstone_wordmark.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A flat warm café wordmark logo reading 'Hearthstone Brew Co.' in an elegant condensed serif, chunky warm-cream letters with a thin espresso-brown outline and a small coffee-bean glyph, on a transparent background, subtle vintage warmth. Crisp flat raster PNG, high contrast, no gradients, suitable for vectorizing.",
+   "realism_notes": "gemini-3-pro-image for clean legible text/logo; flat high-contrast so image_vectorize produces a clean SVG for large menu-board scaling."
+  },
+  {
+   "name": "hearthstone_menu_content.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a CSV with columns section,item,desc,price holding the café menu rows: 4 Breakfast, 4 All-Day Plates, 4 Pastries, 5 Coffee & Tea items, each with a short warm one-line description and US-dollar prices (e.g. $5.50). Column names must exactly match the InDesign merge fields <<section>>,<<item>>,<<desc>>,<<price>>.",
+   "realism_notes": "Supplies the real menu copy the brief calls for (full food + drinks menu); column headers match the authored .indd merge fields so the [T] data-merge binds cleanly."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "Hearthstone_Menu_print.pdf",
+   "kind": "pdf",
+   "spec": "Print-ready one-page A4 portrait PDF exported from the data-merged InDesign document; menu copy bound from CSV, graded food/drink photos + vectorized wordmark + kraft texture placed; ~300 DPI print quality with bleed."
+  },
+  {
+   "name": "Hearthstone_Menu_highres.jpg",
+   "kind": "image",
+   "spec": "High-resolution JPEG of the same bound one-page menu (A4 portrait, max-quality) for the café's social feeds and delivery-app listings."
+  },
+  {
+   "name": "graded_cafe_photos_x5",
+   "kind": "image",
+   "spec": "Five color-graded, straightened, consistently 4:5-cropped café photos (flat white / pancakes / avocado toast / croissant / cortado) matching the template frames; the flat-white hero also delivered as a transparent-background PNG. Provided as editable source assets."
+  },
+  {
+   "name": "hearthstone_wordmark.svg",
+   "kind": "vector",
+   "spec": "Clean vector SVG of the Hearthstone Brew Co. wordmark for crisp scaling at large menu-board / print size; provided as an editable source asset."
+  },
+  {
+   "name": "Hearthstone_Menu_review_board",
+   "kind": "data",
+   "spec": "Firefly board deep-link assembling the graded photos, vectorized wordmark, and final menu render for one-click owner sign-off."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_search",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "stock_kraft_candidates",
+   "note": "Search Adobe Stock for a warm kraft-paper / linen texture to back the menu and reinforce the cozy feel (low-res candidates)."
+  },
+  {
+   "n": 2,
+   "tool": "asset_license_and_download_stock",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "stock_kraft_candidates",
+   "output": "kraft_texture_fullres",
+   "note": "License and download the chosen kraft-paper texture at full-res (license BEFORE use); becomes the layout background asset."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photo_coffee_flat_white.jpg",
+   "output": "flatwhite_straightened",
+   "note": "Level the tilted horizon on the flat-white hero cup shot."
+  },
+  {
+   "n": 4,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatwhite_straightened",
+   "output": "flatwhite_toned",
+   "note": "Auto-tone the straightened hero to fix the flat/dull exposure."
+  },
+  {
+   "n": 5,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatwhite_toned",
+   "output": "flatwhite_warmed",
+   "note": "Warm the cool café-window white balance toward a cozy morning-light look."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_dark_portions",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatwhite_warmed",
+   "output": "flatwhite_shadowlift",
+   "note": "Lift the muddy shadows so the crema and cup detail read cleanly."
+  },
+  {
+   "n": 7,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatwhite_shadowlift",
+   "output": "flatwhite_vibrant",
+   "note": "Push vibrance so the coffee and latte-art fern read as appetizing."
+  },
+  {
+   "n": 8,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatwhite_vibrant",
+   "output": "flatwhite_popped",
+   "note": "Apply a warm food-pop Lightroom preset to lock a consistent cozy look (same preset reused for the other four)."
+  },
+  {
+   "n": 9,
+   "tool": "image_apply_lens_blur",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatwhite_popped",
+   "output": "flatwhite_bg_blurred",
+   "note": "Throw the cluttered pastry-case background out of focus so the cup reads as hero."
+  },
+  {
+   "n": 10,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatwhite_bg_blurred",
+   "output": "flatwhite_cropped_4x5",
+   "note": "Crop/resize to the 4:5 frame the template expects (same target applied to all five photos)."
+  },
+  {
+   "n": 11,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatwhite_cropped_4x5",
+   "output": "flatwhite_hero_transparent_png",
+   "note": "Lift the finished flat-white cup onto a transparent background so it can sit on the kraft texture without a hard photo edge."
+  },
+  {
+   "n": 12,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photo_breakfast_pancake_stack.jpg",
+   "output": "pancakes_toned",
+   "note": "Run the pancake-stack photo through the same grade pipeline starting with auto-tone (fixes underexposure)."
+  },
+  {
+   "n": 13,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pancakes_toned",
+   "output": "pancakes_warmed",
+   "note": "Warm the pancake shot to match the hero's cozy white balance."
+  },
+  {
+   "n": 14,
+   "tool": "image_apply_lens_blur",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pancakes_warmed",
+   "output": "pancakes_bg_blurred",
+   "note": "Blur the busy salt-shaker / menu-card background behind the pancakes."
+  },
+  {
+   "n": 15,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pancakes_bg_blurred",
+   "output": "pancakes_cropped_4x5",
+   "note": "Crop the pancake photo to the matching 4:5 template frame."
+  },
+  {
+   "n": 16,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photo_plates_avocado_toast.jpg",
+   "output": "toast_toned",
+   "note": "Auto-tone the avocado-toast plate to the consistent look."
+  },
+  {
+   "n": 17,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "toast_toned",
+   "output": "toast_warmed",
+   "note": "Warm the avocado-toast shot to match the other dishes."
+  },
+  {
+   "n": 18,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "toast_warmed",
+   "output": "toast_cropped_4x5",
+   "note": "Crop the avocado-toast photo to the 4:5 template frame."
+  },
+  {
+   "n": 19,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photo_pastry_butter_croissant.jpg",
+   "output": "croissant_toned",
+   "note": "Auto-tone the muddy/flat butter-croissant pastry shot."
+  },
+  {
+   "n": 20,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "croissant_toned",
+   "output": "croissant_cropped_4x5",
+   "note": "Crop the croissant photo to the 4:5 template frame."
+  },
+  {
+   "n": 21,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photo_coffee_cortado_glass.jpg",
+   "output": "cortado_toned",
+   "note": "Auto-tone the flat/cool cortado beverage shot."
+  },
+  {
+   "n": 22,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "cortado_toned",
+   "output": "cortado_cropped_4x5",
+   "note": "Crop the cortado photo to the 4:5 template frame so all five match."
+  },
+  {
+   "n": 23,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hearthstone_wordmark.png",
+   "output": "wordmark_svg",
+   "note": "Vectorize the flat wordmark PNG into a clean SVG for razor-sharp large-print / menu-board scaling."
+  },
+  {
+   "n": 24,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatwhite_hero_transparent_png, pancakes_cropped_4x5, toast_cropped_4x5, croissant_cropped_4x5, cortado_cropped_4x5, wordmark_svg, kraft_texture_fullres",
+   "output": "upload_session",
+   "note": "Initialize an upload session for all prepped menu assets (graded photos, vector wordmark, kraft texture)."
+  },
+  {
+   "n": 25,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "uploaded_asset_urns",
+   "note": "Finalize the upload; returns asset URNs the InDesign template / data-merge will reference."
+  },
+  {
+   "n": 26,
+   "tool": "document_merge_data_layout",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": "hearthstone_menu_template.indd, hearthstone_menu_content.csv, uploaded_asset_urns",
+   "output": "menu_merged_indd",
+   "note": "InDesign data-merge: bind the section/item/desc/price rows into the client's authored .indd (which carries real <<fields>>); prepped photos + texture + wordmark sit in their frames. [T] requires the user-authored template."
+  },
+  {
+   "n": 27,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "menu_merged_indd",
+   "output": "Hearthstone_Menu_print.pdf",
+   "note": "Export the merged InDesign document to a print-ready ~300 DPI A4 portrait PDF deliverable with bleed."
+  },
+  {
+   "n": 28,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "menu_merged_indd",
+   "output": "Hearthstone_Menu_highres.jpg",
+   "note": "Export the same merged document to a high-resolution JPEG deliverable for social / delivery-app listings."
+  },
+  {
+   "n": 29,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatwhite_hero_transparent_png, pancakes_cropped_4x5, wordmark_svg, Hearthstone_Menu_highres.jpg",
+   "output": "Hearthstone_Menu_review_board",
+   "note": "Assemble the graded photos, vector wordmark and final menu render onto a Firefly board deep-link for owner sign-off."
+  }
+ ],
+ "tools_used": [
+  "asset_search",
+  "asset_license_and_download_stock",
+  "image_auto_straighten",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_adjust_dark_portions",
+  "image_adjust_vibrance_and_saturation",
+  "image_apply_preset",
+  "image_apply_lens_blur",
+  "image_crop_and_resize",
+  "image_remove_background",
+  "image_vectorize",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "document_merge_data_layout",
+  "document_render_layout",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 29,
+ "distinct_adobe_tools": 17,
+ "chaining_note": "Strict output→input chaining throughout. The flat-white hero runs a 9-link grade pipeline: photo_coffee_flat_white.jpg → auto_straighten(3) → auto_tone(4) → color_temperature(5) → dark_portions(6) → vibrance(7) → preset(8) → lens_blur(9) → crop(10) → remove_background(11), each step consuming only the prior step's output. The pancakes/toast/croissant/cortado photos each feed their own shorter grade→crop sub-chains (12-15, 16-18, 19-20, 21-22). The kraft texture chains search(1)→license(2). The wordmark chains raw PNG→vectorize(23). All prepped outputs (flatwhite_hero_transparent_png, pancakes/toast/croissant/cortado_cropped_4x5, wordmark_svg, kraft_texture_fullres) converge into the upload session(24)→finalize(25)→data-merge(26), which also consumes the authored hearthstone_menu_template.indd + menu CSV. The merged .indd(26) is the single source for both exports — render PDF(27) and render JPEG(28) — and four upstream outputs plus the JPEG converge into the Firefly review board(29). Nothing after the search(1/2) and raw input loads originates outside the chain; the final menu emerges only from the assembled chain.",
+ "difficulty_rationale": "Long-horizon flagship: 29 connector calls across 4 tool groups (image_* raster grading, asset_* stock/storage, document_* InDesign, create_firefly_board), 17 distinct Adobe tools — far above the >=10 calls / >=6 distinct-tool floor. Difficulty comes from running five separate café photos through a consistent multi-step warm-grade pipeline, branching the flat-white hero into a transparent cutout, vectorizing a logo, sourcing + licensing stock, then converging everything into a genuine InDesign [T] data-merge and dual export. It respects every hard limit: no generative fill / object-removal / text-to-image / compositing / upscaling; image_fill_area is unused; the layout is NOT composed by the connector — document_render_layout / document_merge_data_layout only EXPORT/BIND the client's authored .indd, which is listed as a supplied input; lens_blur is whole-image (no fake masked-DOF claim); the full food+drinks menu copy is supplied via CSV per the brief's 'Full café menu (food + drinks)' requirement.",
+ "workflow_nature": "create",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "None of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image / from-scratch art or logo (the wordmark is a supplied PNG, only vectorized); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font design; no unreachable external account. The InDesign layout itself is NOT authored by the connector — the .indd template with real merge fields is a SUPPLIED input, and document_merge_data_layout [T] only binds it while document_render_layout [C] only exports it.",
+  "notes": "image_remove_background (n11) is used legitimately to produce a transparent PNG of the hero cup for placement over the kraft texture — not compositing/inpainting; no occluded pixels are reconstructed. image_apply_lens_blur (n9,n14) is applied whole-image with no masked-DOF or bokeh-selection claim, matching the reference task's usage. image_fill_area is NOT used anywhere. image_vectorize (n23) traces a supplied flat, high-contrast PNG into an SVG — no new artwork is generated. asset_license_and_download_stock (n2) licenses the kraft texture BEFORE any use. document_merge_data_layout (n26) is correctly tagged [T]; the authored .indd carrying real <<section>>/<<item>>/<<desc>>/<<price>> fields is a supplied input and the CSV headers exactly match those fields so binding is real (a PDF-converted .indd with literal text would not bind — explicitly noted in the template input). All 29 steps are server='adobe'; create_firefly_board (n29) — the same tool the reference AO-14 spec uses at n25 — only assembles CC assets the chain itself produced. Slot-match verified: operation O5 / family Layout & Data / modality document / nature create / vertical food_beverage all satisfied. 17 distinct Adobe tools (>=6), 29 calls (>=10) — qualifies as long-horizon flagship."
+ },
+ "id": "AO-78"
+}

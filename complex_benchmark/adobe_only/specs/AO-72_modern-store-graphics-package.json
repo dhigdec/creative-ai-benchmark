@@ -1,0 +1,348 @@
+{
+ "id": "AO-72",
+ "slug": "modern-store-graphics-package",
+ "title": "Modern Store Graphics Package — Hero Banner, PDP Assets & Store Decoration",
+ "vertical": "Party, Events & Promotion",
+ "category": "stock_hero_reframe",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/adobe-photoshop/Modern-Store-Graphics-Package"
+ },
+ "grounding_note": "VERBATIM from the brief: the three-part scope (Store Banner sized for desktop AND mobile; PDP image frames + iconography + typography treatments; Store Decoration backgrounds/section-dividers/accent graphics); the \"clean lines, bold but balanced color, plenty of negative space, nothing fussy\" art direction; the requirement for layered source files (PSD/AI) PLUS optimized JPG/PNG exports clearly labeled so the client team can swap text/images later; and the client supplying brand colors, product shots, and copy after lock. REASONABLY ENRICHED to make it a runnable Adobe-connector benchmark: (a) concrete pixel specs for the desktop (1920x720) and mobile (1080x1350) banner, derived from the brief's own \"sized for desktop and mobile\"; (b) the choice to drive the hero from one client product hero shot honestly reframed to both target ratios via image_crop_and_resize — cropping the existing 4000x3000 pixels down to the desktop and mobile frames (no invented or extended pixels), accepting that edges get cropped to hit each ratio — plus a licensed Adobe Stock backdrop for the secondary banner; (c) the decision to deliver the layered source files as EXPORTS of two client-authored desktop templates (one .indd banner layout, one .ai icon/divider sheet) since the connector can only EXPORT genuine authored files, not compose them — these are listed as authored client inputs; (d) specific tonal/color/vectorize operations chosen to realize the stated \"modern, balanced, negative-space\" look. Nothing unrelated to the storefront refresh was invented.",
+ "one_line_ask": "Turn the client's product hero shot, stock backdrop, brand palette, and two authored source templates into a cohesive modern-storefront graphics package: a desktop + mobile hero banner, clean PDP image frames and vector icon/divider assets, and tied-together decoration — delivered as layered source exports plus optimized JPG/PNG.",
+ "full_brief": "I'm refreshing my online shop and need a cohesive set of graphics that instantly tells shoppers they're in a sleek, modern space. Scope is three areas. (1) STORE BANNER — a hero that sets the tone the moment visitors land, sized for both desktop (1920x720) and mobile (1080x1350). I'll give you one clean product hero shot to build it from, framed with generous empty space so you can reframe it to both ratios by cropping (no invented pixels). (2) PDP ASSETS — template-ready image frames plus iconography and typography treatments that make features, specs and CTAs pop without clutter. (3) STORE DECORATION — background elements, section dividers and accent graphics that tie everything together page to page. Art direction: clean lines, bold but balanced color, plenty of negative space — nothing fussy or ornamental. I'm supplying brand colors (deep ink #14233B + warm sand #E7D3B1 accent), the product hero shot, a few supporting product crops, and two layered source templates my team authored in InDesign and Illustrator (the banner layout .indd with our logo + headline frames, and an .ai sheet of our icon/divider library) so you can produce the final layered source files and labeled exports we can tweak later. Please also pull one modern, negative-space lifestyle backdrop from stock for the secondary banner panel. Deliverables: layered PSD/AI/INDD source plus optimized JPG/PNG exports for immediate upload, clearly labeled, with desktop and mobile banner sizes, the PDP frame set, the vector icon + divider pack, and the decoration backgrounds. Lock the direction first, then banner, then PDP, then decoration.",
+ "inputs": [
+  {
+   "name": "product_hero_shot.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal studio product hero shot of a single premium matte-ceramic pour-over coffee dripper in deep ink-navy, centered on a seamless warm-sand backdrop with soft directional studio light and a gentle long shadow, generous empty negative space on the left third, shot on 50mm, real surface micro-texture and subtle dust, candid commercial-product photography, no text, no props clutter, 4000x3000px",
+   "realism_notes": "Must read as a real e-commerce hero capture: true matte-ceramic sheen, believable soft shadow, slightly imperfect backdrop seam, no CGI gloss. Wide empty left third is essential so the crop-only reframe has usable negative space to keep in-frame when cropping down to the wide desktop and tall mobile ratios."
+  },
+  {
+   "name": "product_crop_features.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Three tight macro product crops on warm-sand surface: the dripper's ribbed cone, its drip spout, and the cork-handle detail, even soft light, real ceramic micro-pitting and tiny highlights, commercial macro photography, no text, 2400x2400px each laid out as one sheet",
+   "realism_notes": "Supporting detail shots that will be cropped into the PDP image frames; needs genuine macro texture and consistent warm-sand surface to match the hero."
+  },
+  {
+   "name": "store_banner_layout.indd",
+   "kind": "vector",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "Authored InDesign banner layout source: a 1920x720 desktop hero artboard with a placed logo lockup top-left, a bold sans headline frame and a sand pill-shaped CTA button frame on the left negative space, plus an empty rectangular image frame on the right for the product; deep-ink #14233B and warm-sand #E7D3B1 brand colors; clean grid, generous margins. Represent as a layered InDesign .indd with named layers (logo, headline, cta, image-frame).",
+   "realism_notes": "This is a CLIENT-AUTHORED genuine .indd (the connector only EXPORTS it, never composes it). Carries real named layers + brand lockup so document_render_layout produces a faithful banner export."
+  },
+  {
+   "name": "icon_divider_sheet.ai",
+   "kind": "vector",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "Authored Illustrator source sheet: a tidy artboard of 8 thin-line modern e-commerce icons (truck/free-shipping, shield/secure, leaf/eco, return-arrow, gift, headset/support, ruler/specs, star/rating) plus 3 minimalist section-divider rules and 2 accent corner flourishes, all single-weight strokes in deep-ink #14233B on transparent ground, lots of negative space, clean geometric line work. Layered .ai with each icon on its own named layer.",
+   "realism_notes": "CLIENT-AUTHORED genuine .ai icon/divider library (connector EXPORTS it, never draws it). Thin uniform strokes so document_render_vector and any downstream raster handling stay crisp."
+  },
+  {
+   "name": "brand_palette_copy.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a small brand spec CSV with rows: hex_primary=#14233B, hex_accent=#E7D3B1, hex_paper=#FAF6EF; banner_headline='Brewed for the modern morning'; cta='Shop the collection'; pdp_badges list (Free shipping over $40, 2-year guarantee, Carbon-neutral, 30-day returns); divider_label='Why people choose us'.",
+   "realism_notes": "Plain reference data the agent reads for exact brand hex values, headline and badge copy used to drive solid-fill colors and asset labeling; not merged via a template here."
+  },
+  {
+   "name": "stock_backdrop_query",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "A one-line Adobe Stock search query string: 'minimal modern kitchen counter morning light negative space warm neutral lifestyle' for the secondary banner backdrop panel.",
+   "realism_notes": "Drives asset_search + asset_license_and_download_stock; the licensed full-res stock image becomes a real chained input, not a fabricated file."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "hero_banner_desktop.jpg",
+   "kind": "image",
+   "spec": "1920x720 JPEG, sRGB, optimized for web (<400KB), product on warm-sand reframed to the wide desktop ratio using the source's own empty left third as negative space (cropped from existing pixels, no generation), auto-toned and brand-graded; primary store landing hero."
+  },
+  {
+   "name": "hero_banner_mobile.jpg",
+   "kind": "image",
+   "spec": "1080x1350 JPEG, sRGB, tall-ratio crop of the same graded hero (vertically reframed from the existing frame, no generation) for mobile storefront, optimized <350KB."
+  },
+  {
+   "name": "secondary_banner_panel.jpg",
+   "kind": "image",
+   "spec": "1920x720 JPEG built on the licensed stock backdrop, brand-temperature-matched to the hero, negative-space right side for headline overlay."
+  },
+  {
+   "name": "pdp_frame_set.png",
+   "kind": "image",
+   "spec": "Set of 1:1 PDP image frames (1200x1200 PNG) cropped from the product detail macros, consistently toned to match the hero look, clean edges, transparent-safe margins."
+  },
+  {
+   "name": "icon_pack.svg",
+   "kind": "vector",
+   "spec": "Clean vectorized icon + divider pack exported from the authored .ai plus one raster-derived accent vectorized to SVG; single-weight deep-ink strokes, transparent, scalable for PDP and decoration."
+  },
+  {
+   "name": "store_banner_source.indd_export",
+   "kind": "pdf",
+   "spec": "Press/preview export (PDF + PNG) of the authored layered banner .indd source, delivered alongside the original layered .indd so the client team can swap text/images."
+  },
+  {
+   "name": "decoration_backgrounds.png",
+   "kind": "image",
+   "spec": "Two tileable/section decoration backgrounds (2000x1200 PNG) in brand paper + accent tones with subtle grain, plus the exported section-divider graphics; ties pages together."
+  },
+  {
+   "name": "store_graphics_package.zip",
+   "kind": "data",
+   "spec": "Single labeled ZIP bundling all layered source exports and optimized JPG/PNG/SVG deliverables in clearly named folders (01_banner, 02_pdp, 03_decoration, 00_source)."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_search",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "stock_backdrop_query",
+   "output": "stock_candidates",
+   "note": "Search Adobe Stock with the client's lifestyle-backdrop query for the secondary banner panel; returns low-res candidates + asset IDs."
+  },
+  {
+   "n": 2,
+   "tool": "asset_license_and_download_stock",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "stock_candidates",
+   "output": "stock_backdrop_fullres",
+   "note": "License the chosen candidate BEFORE editing and download the full-res presigned image; this becomes the secondary banner base."
+  },
+  {
+   "n": 3,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "product_hero_shot.jpg",
+   "output": "hero_upload_session",
+   "note": "Initialize upload of the client's product hero shot into CC storage so it can be edited headlessly."
+  },
+  {
+   "n": 4,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_upload_session",
+   "output": "hero_asset",
+   "note": "Finalize the hero upload; yields the stored hero asset URI used by the photo chain."
+  },
+  {
+   "n": 5,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_asset",
+   "output": "hero_straight",
+   "note": "Auto-straighten the hero so the backdrop seam and product sit level before any crop/reframe."
+  },
+  {
+   "n": 6,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_straight",
+   "output": "hero_autotoned",
+   "note": "Apply auto-tone to normalize exposure/contrast as the grading base for the whole package look."
+  },
+  {
+   "n": 7,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_autotoned",
+   "output": "hero_warmgraded",
+   "note": "Warm the temperature toward the warm-sand brand feel; this is the master look every other asset gets matched to."
+  },
+  {
+   "n": 8,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_warmgraded",
+   "output": "hero_desktop_reframed",
+   "note": "Reframe the graded 4000x3000 hero to the wide 1920x720 desktop ratio, using the source's generous empty left third as the negative space (crop existing pixels, no generation)."
+  },
+  {
+   "n": 9,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_desktop_reframed",
+   "output": "hero_banner_desktop_master",
+   "note": "Crop/resize the reframed hero to an exact 1920x720 desktop banner master."
+  },
+  {
+   "n": 10,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_warmgraded",
+   "output": "hero_mobile_reframed",
+   "note": "Reframe the same graded hero to the tall 1080x1350 mobile ratio by cropping the existing frame vertically (crop existing pixels, no generation), reusing the master look for consistency."
+  },
+  {
+   "n": 11,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_mobile_reframed",
+   "output": "hero_banner_mobile_master",
+   "note": "Crop/resize the vertically reframed hero to exact 1080x1350 mobile banner master."
+  },
+  {
+   "n": 12,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "stock_backdrop_fullres",
+   "output": "stock_temp_matched",
+   "note": "Match the licensed stock backdrop's temperature to the hero master look so the secondary panel feels cohesive."
+  },
+  {
+   "n": 13,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "stock_temp_matched",
+   "output": "stock_graded",
+   "note": "Pull vibrance/saturation toward the balanced, restrained brand palette (bold-but-balanced) for the secondary banner."
+  },
+  {
+   "n": 14,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "stock_graded",
+   "output": "secondary_banner_panel_master",
+   "note": "Crop the graded stock backdrop to the 1920x720 secondary banner panel with right-side negative space."
+  },
+  {
+   "n": 15,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "product_crop_features.jpg",
+   "output": "pdp_macros_graded",
+   "note": "Apply a Lightroom preset matching the hero grade to the supporting macro crops so PDP frames look shot together."
+  },
+  {
+   "n": 16,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pdp_macros_graded",
+   "output": "pdp_frame_set_master",
+   "note": "Crop each graded macro to clean 1:1 PDP image frames (1200x1200) with consistent margins."
+  },
+  {
+   "n": 17,
+   "tool": "document_render_vector",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "icon_divider_sheet.ai",
+   "output": "icon_sheet_export",
+   "note": "Export the client-authored .ai icon/divider library to PNG/SVG (export only — does not draw the icons)."
+  },
+  {
+   "n": 18,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pdp_frame_set_master",
+   "output": "accent_vector",
+   "note": "Vectorize one graded product-crop accent into a clean SVG decoration motif to extend the icon pack."
+  },
+  {
+   "n": 19,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "secondary_banner_panel_master",
+   "output": "decoration_bg_solid",
+   "note": "Select the negative-space region and solid-fill it with the brand paper hex (#FAF6EF) to produce a clean decoration background base (solid fill only)."
+  },
+  {
+   "n": 20,
+   "tool": "image_add_grain",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "decoration_bg_solid",
+   "output": "decoration_backgrounds_master",
+   "note": "Add subtle film grain to the solid decoration background for a tactile, modern non-flat finish tying sections together."
+  },
+  {
+   "n": 21,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "store_banner_layout.indd",
+   "output": "banner_source_export",
+   "note": "Export the client-authored layered banner .indd to PDF+PNG as the deliverable source preview (export only — the layout was authored by the client)."
+  },
+  {
+   "n": 22,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_banner_desktop_master, hero_banner_mobile_master, secondary_banner_panel_master, pdp_frame_set_master, icon_sheet_export, accent_vector, decoration_backgrounds_master, banner_source_export",
+   "output": "package_folders",
+   "note": "Create labeled CC folders (00_source, 01_banner, 02_pdp, 03_decoration)."
+  },
+  {
+   "n": 23,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "package_folders, hero_banner_desktop_master, hero_banner_mobile_master, secondary_banner_panel_master, pdp_frame_set_master, icon_sheet_export, accent_vector, decoration_backgrounds_master, banner_source_export",
+   "output": "organized_package",
+   "note": "Copy every produced deliverable into its labeled folder for clean handoff."
+  },
+  {
+   "n": 24,
+   "tool": "zip_package",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "organized_package",
+   "output": "store_graphics_package.zip",
+   "note": "Single unavoidable local step: zip the organized folders into one labeled deliverable archive."
+  }
+ ],
+ "tools_used": [
+  "asset_search",
+  "asset_license_and_download_stock",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_crop_and_resize",
+  "image_adjust_vibrance_and_saturation",
+  "image_apply_preset",
+  "image_crop_to_bounds",
+  "document_render_vector",
+  "image_vectorize",
+  "image_fill_area",
+  "image_add_grain",
+  "document_render_layout",
+  "asset_create_folders",
+  "asset_copy_assets"
+ ],
+ "tool_call_count": 24,
+ "distinct_adobe_tools": 18,
+ "chaining_note": "Strict output→input chaining. Stock path: asset_search(1)→license(2)→temp_match(12)→vibrance(13)→crop(14)→secondary panel; the panel also feeds the decoration base fill_area(19)→add_grain(20). Hero path: upload init(3)→finalize(4)→straighten(5)→auto_tone(6)→temperature(7) produces the MASTER look, which forks twice into crop-only reframes: desktop reframe(8)→crop(9) and mobile reframe(10)→crop(11), both cropping the existing 4000x3000 hero to the target ratios (no generation). PDP path: client macros→apply_preset matched to the hero grade(15)→crop_to_bounds(16)→frame set, and frame set 18 vectorizes an accent. Authored sources export via document_render_vector(17, icons) and document_render_layout(21, banner). Everything converges: create_folders(22) and copy_assets(23) consume all eight deliverable outputs, and the single local zip(24) consumes the organized package. No step after the initial loads stands alone — each consumes a named prior output.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 24 steps, 18 distinct Adobe tools spanning four groups (asset/stock, raster photo, vector/document export, organization) plus one allowed local zip. It exercises a realistic agency pipeline — establish a master grade on the hero, propagate it to a stock asset and PDP macros for visual cohesion, fork the same graded hero into two honest crop-only reframes (desktop and mobile ratios), export two genuinely client-authored InDesign/Illustrator sources, vectorize an accent, and build a grain-textured solid decoration background — all chained. Difficulty comes from sequencing dependencies (license-before-edit, straighten/tone before cropping, grade before propagate), reusing inputs across branches, and staying strictly inside real capabilities: the reframe steps are image_crop_and_resize crops of the existing hero (edges cropped away to hit each ratio, no invented pixels), fill_area is solid-color only, and both authored templates are EXPORTED not composed. No not-available capability (generative expand, gen-fill, object removal, text-to-image, compositing, layout composition, upscaling) is used.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned/generative capability remains in any field. no canvas-generation tool appears anywhere. Workflow steps n8/n10 are image_crop_and_resize crops of the 4000x3000 hero down to 1920x720 and 1080x1350 — never larger than the source in any dimension, edges cropped away to hit each ratio, no invented pixels. image_fill_area (n19) is solid-color only (#FAF6EF); document_render_layout/document_render_vector EXPORT genuine client-authored .indd/.ai inputs (both declared in inputs[]); image_vectorize/image_apply_preset/crop_to_bounds/add_grain are all real gen-free connector ops. No generative expand, gen-fill, text-to-image, upscale, object removal, or from-scratch composition. All stale 'extend/expand/outpaint' prose in category, grounding_note, product_hero_shot realism_notes, difficulty_rationale, and this reverify block has been rewritten to the crop-only reframe method actually used. Only trailing local step is the zip.",
+  "notes": "Findings were prose-only (residual generative-expand language): the connector_workflow was already crop-only, but category ('stock_hero_expand'), grounding_note ('extended to both ratios'), the hero realism_notes ('outpaint/expand step'), difficulty_rationale ('stock_hero_expand intent', 'before expand', wrong '19 distinct tools'), and this reverify block still carried expand/outpaint residue. Reconciled all of them to honest crop-only reframing and corrected the distinct-tool count to 18. No step count, tool set, chaining, or input declarations changed (24 steps, 18 distinct Adobe tools intact)."
+ }
+}

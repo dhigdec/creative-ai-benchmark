@@ -1,0 +1,307 @@
+{
+ "slot_id": "M10",
+ "category": "audio_clean",
+ "title": "Stillwell sleep-education course: clean up six raw lesson narration takes into broadcast-clean voiceover masters + transcript/chapter pack",
+ "slug": "stillwell-sleep-course-narration-cleanup",
+ "vertical": "education_edtech",
+ "source": {
+  "platform": "Freelancer.com",
+  "reference": "Relaxing Insomnia Video Production",
+  "url": "https://www.freelancer.com/projects/video-production/Relaxing-Insomnia-Video-Production"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief: the client has \"a finished script for a 10-minute YouTube video that explains how to ease insomnia\" and needs it to feel \"soothing, polished, and viewer-friendly\"; on audio: \"I will supply the raw voice track... Smooth fades and careful EQ are essential so music never competes with the voice\"; overall mood \"relaxing and calm\". REASONABLY ENRICHED to a runnable AUDIO-ONLY Adobe-connector benchmark (output_modality=audio, workflow_nature=edit): the original post bundles video production (nature B-roll, motion graphics, color grade) around the narration, but the slot is audio-only and the connector has NO video-picture editing / music-bed mixing / EQ / loudness-mastering capability. So the task is scoped to what the brief genuinely rewards and the connector can genuinely do: take the client's raw spoken narration and make the VOICE clean and clear. The single sleep video is modeled as a small self-paced sleep-education COURSE MODULE for a fictional edtech platform (Stillwell) recorded as six separate lesson takes in a noisy home office, so media_enhance_speech (voice-only denoise/de-hiss) has real per-take work. media_summarize INSPECTS each cleaned take and emits a transcript/chapter pack that seeds the course player's captions and chapter markers. The brief's 'careful EQ / smooth fades / music must never compete' is honestly flagged as the human-finishable mastering-and-music-bed step the connector does NOT perform. No deliverable invented beyond clean narration for the course the brief describes.",
+ "one_line_ask": "Denoise and de-hiss six raw sleep-lesson narration takes into clean voiceover masters, then inspect them to produce a transcript/chapter pack, and hand everything back as one organized, zipped course-audio package.",
+ "full_brief": "Stillwell is a small sleep-and-mindfulness education platform. We are building a self-paced course module titled 'Easing Insomnia: A Six-Lesson Wind-Down', and we recorded the narration ourselves at home. The problem is the audio: our host recorded the six lessons on a USB mic in a home office, so every take has steady room hiss, a faint HVAC hum, a bit of laptop-fan whine, and uneven levels where the voice drifts loud and soft. The script is finished and the delivery is warm and calm, which we love — we just need the VOICE cleaned up so it is clear, consistent, and soothing enough for people to fall asleep to without a hiss buzzing in their ears.\n\nWhat we need: (A) take the six raw lesson narration takes (lesson_01 through lesson_06, WAV) and clean each one so the room hiss, hum and fan noise are gone and the host's voice sits clear and balanced — this is voice cleanup only (denoise / de-hiss), NOT music mixing or a full master; we will lay the soft sleep-music bed under it and do the final fades and loudness pass ourselves on our side. (B) Because these become the course-player lessons, we also need a transcript-and-chapter pack: a short content summary of each cleaned lesson so our LMS team can drop in captions, chapter markers, and a one-line lesson blurb for the course syllabus. (C) Deliver everything back as one tidy, organized package — the six cleaned voiceover masters in a /clean folder, the per-lesson transcript/summary text, and a short read-me recipe note listing exactly what was done to each take (so our audio person can reproduce or extend it) — all zipped into a single download. Keep the running order lesson_01 -> lesson_06. The finished audio must sound like the same calm host, just clean.",
+ "inputs": [
+  {
+   "name": "lesson_01_intro_raw.wav",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "Warm, calm, slow-paced solo narration for a sleep-education course intro, ~75 seconds, gentle reassuring tone, first-person: welcoming the learner to a six-lesson wind-down course and explaining what insomnia is and why the body struggles to switch off at night. Single speaker, soothing bedtime-story cadence.",
+   "realism_notes": "After TTS capture, ROUGHEN per the audio-repair doctrine so media_enhance_speech has genuine voice-only work: overlay steady broadband room hiss, a faint 60Hz HVAC hum and a low laptop-fan whine, plus a slightly uneven level (voice drifts loud then soft). Voice-only, no music bed — the cleanup target is the noise floor, not a mix."
+  },
+  {
+   "name": "lesson_02_breathing_raw.wav",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "Calm solo narration, ~90 seconds, teaching a slow 4-7-8 breathing technique to down-regulate the nervous system before sleep; unhurried, warm, with gentle pauses between instructions. Single speaker, home-recorded feel.",
+   "realism_notes": "Same home-office noise signature (hiss + HVAC hum + fan whine) added after capture, with an occasional mouth-click and one slightly clipped loud breath so the denoise/de-hiss pass has real material. No music, voice-only."
+  },
+  {
+   "name": "lesson_03_bodyscan_raw.wav",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "Soothing solo narration, ~95 seconds, guiding a progressive body-scan relaxation from the feet upward, very slow and even, long soft pauses. Single warm host voice, informal home recording.",
+   "realism_notes": "Roughen with the same steady hiss/hum/fan floor plus a distant dog bark bleeding in once and slightly boomy room reflection, giving the enhancement a noisier-than-average take to clean; voice-only, no music."
+  },
+  {
+   "name": "lesson_04_thoughts_raw.wav",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "Calm solo narration, ~85 seconds, on quieting a racing mind at night: acknowledging worries and gently parking them until morning. Warm, patient, reassuring single speaker.",
+   "realism_notes": "Same noise signature; here the level is noticeably too quiet overall (recorded with the gain low) so the voice sounds distant under the hiss — realistic uneven-take variation across the six lessons. Voice-only, no music."
+  },
+  {
+   "name": "lesson_05_environment_raw.wav",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "Calm solo narration, ~80 seconds, on setting up a sleep-friendly environment: light, temperature, screens, and sound. Practical but gentle, warm host voice, home recording.",
+   "realism_notes": "Same hiss/hum/fan floor plus a brief keyboard-typing bleed and a chair creak, so noise-reduction has transient artifacts to handle alongside the steady floor. Voice-only, no music."
+  },
+  {
+   "name": "lesson_06_windown_raw.wav",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "Soothing closing narration, ~100 seconds, a guided wind-down routine tying the six lessons together and easing the listener toward sleep, trailing off very softly at the end. Single calm host voice.",
+   "realism_notes": "Same home-office noise floor; the tail is very quiet and buried in hiss (the host drops to near-whisper), giving media_enhance_speech a demanding low-SNR passage to recover. Voice-only, no music bed."
+  },
+  {
+   "name": "stillwell_course_brief.txt",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Write a short plain-text production note from the Stillwell course producer: the six lesson filenames in running order (lesson_01_intro through lesson_06_windown), the desired outcome ('clean, calm voice, no hiss or hum; we mix the music bed ourselves'), the folder structure they want back (/clean for masters, transcript pack, read-me note), and a reminder that this is voice cleanup only, not a music master.",
+   "realism_notes": "A realistic freelancer hand-off note that fixes running order and the requested folder/deliverable structure; used to seed the recipe note and package layout, and to make the 'we do the music/master ourselves' boundary explicit and IP-clean (fictional Stillwell brand, no real platform)."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "lesson_01_intro_clean.wav",
+   "kind": "audio",
+   "spec": "Denoised/de-hissed voiceover master of lesson 1: room hiss, HVAC hum and fan whine removed, voice clear and level-balanced; WAV, voice-only enhancement (no music bed, no loudness master)."
+  },
+  {
+   "name": "lesson_02_breathing_clean.wav",
+   "kind": "audio",
+   "spec": "Cleaned voiceover master of lesson 2 (4-7-8 breathing): noise floor removed, mouth-click/clipped-breath artifacts reduced, warm calm voice preserved; WAV, voice-only."
+  },
+  {
+   "name": "lesson_03_bodyscan_clean.wav",
+   "kind": "audio",
+   "spec": "Cleaned voiceover master of lesson 3 (body scan): steady noise floor and stray dog-bark/room-reflection reduced, voice clear; WAV, voice-only."
+  },
+  {
+   "name": "lesson_04_thoughts_clean.wav",
+   "kind": "audio",
+   "spec": "Cleaned voiceover master of lesson 4 (quieting the mind): distant/low-gain voice lifted clear of the hiss, balanced; WAV, voice-only."
+  },
+  {
+   "name": "lesson_05_environment_clean.wav",
+   "kind": "audio",
+   "spec": "Cleaned voiceover master of lesson 5 (sleep environment): keyboard/chair transients and steady floor reduced, voice clear; WAV, voice-only."
+  },
+  {
+   "name": "lesson_06_windown_clean.wav",
+   "kind": "audio",
+   "spec": "Cleaned voiceover master of lesson 6 (wind-down close): low-SNR near-whisper tail recovered and de-hissed, voice clear to the soft fade-out; WAV, voice-only."
+  },
+  {
+   "name": "stillwell_course_transcript_pack.txt",
+   "kind": "data",
+   "spec": "Per-lesson content summary/transcript pack (lesson_01 -> lesson_06) generated from the cleaned masters: a short summary and one-line syllabus blurb per lesson to seed the course-player captions, chapter markers and syllabus copy."
+  },
+  {
+   "name": "stillwell_audio_recipe_note.txt",
+   "kind": "data",
+   "spec": "Read-me recipe note listing exactly what was done to each take (voice-only denoise/de-hiss, running order preserved) and explicitly noting the music-bed mix, fades and final loudness master are left for the client to finish."
+  },
+  {
+   "name": "stillwell_course_audio_package.zip",
+   "kind": "data",
+   "spec": "Single downloadable package: /clean folder with the six cleaned voiceover masters in running order, the transcript/chapter pack, and the recipe read-me note."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "upload_session_raw_takes",
+   "note": "Initialize an upload session to bring the six raw lesson narration WAVs (lesson_01..lesson_06) into CC storage. Initial source load."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session_raw_takes",
+   "output": "raw_take_asset_urns",
+   "note": "Finalize the upload, yielding stable asset URNs for the six raw takes that the enhance/summarize steps reference."
+  },
+  {
+   "n": 3,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_take_asset_urns",
+   "output": "course_folder_tree",
+   "note": "Create the organized course folder tree (a /clean folder for finished masters plus a working folder) so the cleaned deliverables land in the structure the producer asked for."
+  },
+  {
+   "n": 4,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "raw_take_asset_urns",
+   "output": "lesson_01_intro_clean.wav",
+   "note": "Voice-only denoise/de-hiss on lesson 1: strip the room hiss, HVAC hum and fan whine so the intro voice is clear (no music, no loudness master). Async-widget; consumes the lesson_01 URN from step 2."
+  },
+  {
+   "n": 5,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "raw_take_asset_urns",
+   "output": "lesson_02_breathing_clean.wav",
+   "note": "Voice-only enhance lesson 2 (breathing): reduce the noise floor and the mouth-click/clipped-breath transients while keeping the calm cadence. Consumes the lesson_02 URN from step 2."
+  },
+  {
+   "n": 6,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "raw_take_asset_urns",
+   "output": "lesson_03_bodyscan_clean.wav",
+   "note": "Voice-only enhance lesson 3 (body scan): clean the steady floor and reduce the stray dog-bark/room-reflection bleed. Consumes the lesson_03 URN from step 2."
+  },
+  {
+   "n": 7,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "raw_take_asset_urns",
+   "output": "lesson_04_thoughts_clean.wav",
+   "note": "Voice-only enhance lesson 4 (quieting the mind): lift the low-gain, distant voice clear of the hiss and balance it. Consumes the lesson_04 URN from step 2."
+  },
+  {
+   "n": 8,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "raw_take_asset_urns",
+   "output": "lesson_05_environment_clean.wav",
+   "note": "Voice-only enhance lesson 5 (sleep environment): reduce the keyboard/chair transients and steady floor. Consumes the lesson_05 URN from step 2."
+  },
+  {
+   "n": 9,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "raw_take_asset_urns",
+   "output": "lesson_06_windown_clean.wav",
+   "note": "Voice-only enhance lesson 6 (wind-down close): recover and de-hiss the low-SNR near-whisper tail so the voice stays clear to the soft ending. Consumes the lesson_06 URN from step 2."
+  },
+  {
+   "n": 10,
+   "tool": "asset_add_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "course_folder_tree, lesson_01_intro_clean.wav, lesson_02_breathing_clean.wav, lesson_03_bodyscan_clean.wav, lesson_04_thoughts_clean.wav, lesson_05_environment_clean.wav, lesson_06_windown_clean.wav",
+   "output": "clean_masters_filed",
+   "note": "File the six cleaned voiceover masters into the /clean folder in running order (lesson_01 -> lesson_06) so they are organized for the LMS hand-off."
+  },
+  {
+   "n": 11,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "lesson_01_intro_clean.wav",
+   "output": "lesson_01_summary",
+   "note": "Inspect the cleaned lesson-1 master and produce a short content summary/transcript to seed the course-player captions and syllabus blurb. Consumes step-4 output."
+  },
+  {
+   "n": 12,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "lesson_02_breathing_clean.wav",
+   "output": "lesson_02_summary",
+   "note": "Summarize cleaned lesson 2 (breathing) for its chapter/caption blurb. Consumes step-5 output."
+  },
+  {
+   "n": 13,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "lesson_03_bodyscan_clean.wav",
+   "output": "lesson_03_summary",
+   "note": "Summarize cleaned lesson 3 (body scan) for its chapter/caption blurb. Consumes step-6 output."
+  },
+  {
+   "n": 14,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "lesson_04_thoughts_clean.wav",
+   "output": "lesson_04_summary",
+   "note": "Summarize cleaned lesson 4 (quieting the mind) for its chapter/caption blurb. Consumes step-7 output."
+  },
+  {
+   "n": 15,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "lesson_05_environment_clean.wav",
+   "output": "lesson_05_summary",
+   "note": "Summarize cleaned lesson 5 (sleep environment) for its chapter/caption blurb. Consumes step-8 output."
+  },
+  {
+   "n": 16,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "lesson_06_windown_clean.wav",
+   "output": "lesson_06_summary",
+   "note": "Summarize cleaned lesson 6 (wind-down close) for its chapter/caption blurb. Consumes step-9 output."
+  },
+  {
+   "n": 17,
+   "tool": "local_write_recipe_note",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "stillwell_course_brief.txt, lesson_01_summary, lesson_02_summary, lesson_03_summary, lesson_04_summary, lesson_05_summary, lesson_06_summary",
+   "output": "stillwell_course_transcript_pack.txt",
+   "note": "Assemble the six per-lesson summaries into one transcript/chapter pack (lesson_01 -> lesson_06) with a one-line syllabus blurb per lesson, ordered per the producer brief. Local write step."
+  },
+  {
+   "n": 18,
+   "tool": "local_write_recipe_note",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "stillwell_course_brief.txt, clean_masters_filed",
+   "output": "stillwell_audio_recipe_note.txt",
+   "note": "Write the read-me recipe note: what was done to each take (voice-only denoise/de-hiss, running order preserved) and an explicit note that the music-bed mix, smooth fades and final loudness master are left for the client to finish (not connector-doable). Local write step."
+  },
+  {
+   "n": 19,
+   "tool": "zip_package",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "clean_masters_filed, stillwell_course_transcript_pack.txt, stillwell_audio_recipe_note.txt",
+   "output": "stillwell_course_audio_package.zip",
+   "note": "Single unavoidable local step: zip the /clean folder of six cleaned masters plus the transcript pack and recipe note into one downloadable course-audio package for hand-off."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "asset_create_folders",
+  "media_enhance_speech",
+  "asset_add_file",
+  "media_summarize",
+  "local_write_recipe_note",
+  "zip_package"
+ ],
+ "tool_call_count": 19,
+ "distinct_adobe_tools": 6,
+ "chaining_note": "Strict output->input chaining. The six raw takes load once (asset_initialize_file_upload 1 -> asset_finalize_file_upload 2 -> raw_take_asset_urns), and asset_create_folders (3) consumes those URNs to build the /clean tree. The core edit is a six-way fan-out: each of media_enhance_speech (4-9) consumes a distinct lesson URN from step 2 and emits one cleaned master. asset_add_file (10) files all six step-4..9 outputs into the step-3 folder tree. Each media_summarize (11-16) consumes exactly one cleaned master (steps 4-9 respectively) to produce a per-lesson summary. The two local writes converge the branches: local_write_recipe_note (17) folds the six summaries (11-16) + producer brief into the transcript pack, and local_write_recipe_note (18) folds the filed masters (10) + brief into the recipe note. zip_package (19) consumes the filed masters (10), transcript pack (17) and recipe note (18) into the final download. Every non-load step sets inputs_from to a prior named output; the deliverables (six cleaned masters, transcript pack, recipe note, zip) emerge only from the chain.",
+ "difficulty_rationale": "Long-horizon audio-edit task: 19 connector calls, 6 distinct Adobe tools plus two local finishing tools, above the >=10-call floor for an audio task. Difficulty comes from an honest decomposition of a video-production brief down to the audio scope the connector can truly do: recognizing that 'clean audio + careful EQ + music must not compete' maps to media_enhance_speech VOICE-ONLY denoise/de-hiss (NOT a music mix, EQ or loudness master), running a consistent six-take enhancement fan-out where each take has a different noise problem (low gain, near-whisper tail, transient bleed), then INSPECTING each cleaned master with media_summarize to emit a transcript/chapter pack, and organizing + zipping the result in the exact folder structure the producer asked for. It respects every hard limit: no generative fill / text-to-image / upscaling / object-removal; no video-picture editing; no music processing or loudness mastering is claimed (explicitly flagged as the client's own finishing step); media_enhance_speech and media_summarize are [A] async-widget product steps and are tagged as such; the only non-Adobe steps are the two [L] local writes and the [L] zip, the standard local finishing tail.",
+ "workflow_nature": "edit",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned capabilities used. No image_crop_and_resize / generative fill / reframe-crop; no text-to-image or from-scratch art/logo; no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font design; no unreachable external account. The audio work is entirely media_enhance_speech (voice-only denoise/de-hiss, in scope) and media_summarize (inspection). No music mixing, EQ, or loudness mastering is claimed - those are explicitly left to the client as the human-finishable step, matching connector reality that media_enhance_speech is speech-only and not a music/loudness processor.",
+  "notes": "Corrected distinct_adobe_tools from 5 to 6: the distinct adobe-server tools are asset_initialize_file_upload, asset_finalize_file_upload, asset_create_folders, media_enhance_speech, asset_add_file, and media_summarize (the two local_write_recipe_note calls and zip_package are server=local and not counted). media_enhance_speech (steps 4-9) and media_summarize (steps 11-16) are correctly tagged [A] async-widget (Adobe x Claude product steps, not autonomous-headless), consistent with the connector exec-mode reality that these return status:working and poll in the product. asset_initialize/finalize/create_folders/add_file (1,2,3,10) are [C] headless CC-storage I/O. The three local steps - local_write_recipe_note (17,18) and zip_package (19) - are the standard [L] finishing tail (server=local). The brief's 'careful EQ / smooth fades / music bed' requirements are honored by explicitly scoping them OUT (client-finished), so no out-of-scope audio DSP is implied. output_modality=audio is satisfied: the primary deliverables are the six cleaned WAV voiceover masters; the transcript pack, recipe note and zip are supporting hand-off artifacts. Slot-match verified: category=audio_clean, operation O3 / family Motion & Audio, output_modality=audio, workflow_nature=edit, vertical=education_edtech all equal the slot. Grounding_note quotes the real Freelancer.com brief verbatim ('a finished script for a 10-minute YouTube video that explains how to ease insomnia', 'soothing, polished, and viewer-friendly', 'I will supply the raw voice track', 'Smooth fades and careful EQ are essential so music never competes with the voice', 'relaxing and calm'). Fictional IP-clean brand (Stillwell) replaces any real platform; no real trademarks or proprietary data. Counts verified: 19 connector_workflow steps = tool_call_count 19; distinct_adobe_tools 6."
+ },
+ "id": "AO-103"
+}

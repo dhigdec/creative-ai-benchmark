@@ -1,0 +1,230 @@
+{
+ "slot_id": "V06",
+ "category": "vectorize_logo",
+ "title": "Maison Valcere jewelry house: vector & print-readiness audit of the supplied luxury wordmark pack against the brand guideline and press spec (marked-up findings report)",
+ "slug": "maison-valcere-luxury-logo-vector-print-readiness-audit",
+ "vertical": "jewelry_luxury_goods",
+ "source": {
+  "platform": "Freelancer.com",
+  "reference": "Luxury E-commerce Brand Visuals"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief \"Luxury E-commerce Brand Visuals\": the identity \"must feel unmistakably premium: think a deep black canvas paired with crisp white typography, minimal ornamentation, and a confident, modern layout\"; \"The logo has to rely purely on typography—no symbols, icons or complex marks. Clean letterforms, balanced kerning and a subtle nod to luxury brands\"; and \"I'll need a monochrome palette, font recommendations and usage rules so every asset—from product packaging to video title cards—stays consistent.\" REASONABLY REFRAMED to an ANALYZE task (the slot's workflow_nature): designing a new logo from scratch is a generative/compositional deliverable that is explicitly OUT of Adobe-connector scope (no from-scratch art/letterform design, no text-to-image). The honest, fully-doable read of the brief's real concern — is the delivered mark actually production-clean, purely-typographic, monochrome-consistent and print-ready at every size the brand touches (packaging, embossed boxes, video title cards, web favicon)? — is a VECTOR & PRINT-READINESS AUDIT. The client (a fictional IP-clean luxury jewelry house) hands off the logo pack a previous vendor delivered: the master vector SVG, the flat raster export they have been using online, the brand guideline PDF stating the palette/usage rules, and the press/foil spec sheet. The freelancer INSPECTS the pack against those rules and returns a marked-up, region-referenced findings report: hairline strokes too thin to survive foil stamping and small-favicon reproduction, a stray non-typographic anchor point violating the \"purely typography, no symbols\" rule, off-palette near-black in the reverse variant, kerning drift between the raster and the vector master, and paths that are not print-ready (open contours, unexpanded strokes, RGB not converted for press). The connector chain only inspects (upload; summarize the guideline; render the master SVG and preview the guideline/press pages; re-vectorize the raster export purely to trace-compare it against the supplied master; use image_select_by_prompt as an inspection LOCATOR to isolate the thin serifs / hairline strokes / stray anchor for measurement; preview flagged regions at high detail) and then emits the report via local_write_recipe_note, rendered to a clean PDF via document_convert_pdf. Nothing new is composed, redrawn, or vectorized as a deliverable — image_vectorize is used only to produce a comparison trace for the audit. The brand, house and persona are fictional and carry no real trademark.",
+ "one_line_ask": "Audit the supplied Maison Valcere luxury wordmark pack (master SVG + raster export) against the brand guideline and the press/foil spec, and return a marked-up, region-referenced vector & print-readiness findings report listing every hairline-stroke, line-weight, palette, kerning and non-print-ready-path defect and the exact rule it breaks.",
+ "full_brief": "Maison Valcere is a fictional independent high-jewelry house (fine rings, pendants and bespoke pieces) that has just received its finished logo pack from an outside brand studio and, before it goes onto embossed presentation boxes, foil-stamped certificates, the e-commerce header and the video title cards, wants an independent set of eyes to confirm the mark is genuinely production-clean. The identity is meant to feel unmistakably premium — a deep-black canvas with crisp white typography, minimal ornamentation, purely typographic with no symbols or icons — and the house is strict that every asset stays consistent across packaging, print and screen. You are handed four things: (1) valcere_wordmark_master.svg, the \"production\" vector master the studio delivered; (2) valcere_wordmark_web.png, the flat raster export the house has been using online; (3) valcere_brand_guideline.pdf, the guideline stating the monochrome palette (Valcere Noir #0E0E10, Champagne #E8DCC2, Blanc #FAF8F3 — with the rule that the wordmark is \"purely typographic, no symbols or icons, never recoloured outside the monochrome palette, minimum print width 22mm, minimum hairline stroke 0.35pt / 1.5px at favicon size\"); and (4) valcere_press_spec.pdf, the printer/foil spec sheet (foil-stamp minimum stroke, CMYK/spot conversion requirement, \"all strokes must be expanded to filled paths, no open contours, no RGB-only fills\"). The job is an AUDIT, not a redraw — do NOT re-letter, re-trace, recolour or fix anything, and do NOT deliver a new logo. Go through the mark region by region and compare what the pack actually contains against the guideline and the press spec, then hand back a vector & print-readiness audit report that, for each issue, gives the mark region (which glyph / stroke / variant), a plain-language description of the defect, the specific guideline or press-spec clause it violates, the approved value vs. the observed value, and a severity (blocker / warning / nit). We expect you to catch things like: a hairline serif or connecting stroke thinner than the 0.35pt foil-stamp minimum that will drop out when stamped or shrunk to a favicon; a stray decorative anchor / tiny symbol that violates the \"purely typography, no symbols\" rule; the reverse (knockout) variant sitting on an off-palette near-black instead of Valcere Noir #0E0E10; kerning drift where the raster web export does not match the vector master's letter-spacing; and paths in the master SVG that are not print-ready (unexpanded strokes, open contours, RGB fills that were never converted for spot/foil). Deliver the report as a clean A4 portrait PDF plus the raw findings as a structured file, and include a one-page cover summary with the total count by severity and a go / no-go-for-press verdict. The report is for the house's creative director and the printer, not a redesign.",
+ "inputs": [
+  {
+   "name": "valcere_wordmark_master.svg",
+   "kind": "vector",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine vector SVG 'production master' of a purely-typographic luxury jewelry wordmark reading 'VALCERE' (with a small letter-spaced 'MAISON VALCERE - HAUTE JOAILLERIE' line beneath) in a high-contrast modern didone-style serif, white-on-transparent, plus a reverse/knockout variant. The file must be authored by hand so it carries REAL vector traits an audit can inspect: some strokes left as unexpanded 0.3pt hairline strokes (below the stated 0.35pt foil minimum) on the thin serifs and the crossbar of the 'A'; at least one open contour on the 'C'; a tiny stray decorative anchor / 4-point diamond glyph tucked beside the 'V' (violating the 'purely typographic, no symbols' rule); the reverse variant's background field set to an off-palette #121216 near-black instead of Valcere Noir #0E0E10; and one RGB-only fill that was never converted for spot/foil. Other glyphs are correctly built (expanded, closed, on-palette) so the audit must distinguish clean paths from defective ones. Supplied by the client, not connector-generated.",
+   "realism_notes": "Modeled as the outside studio's 'finished' vector master — a normal vendor hand-off. It is a real authored SVG, not connector-composed; the connector only INSPECTS it (render + preview + select-by-prompt to isolate strokes). The planted defects (sub-min hairlines, open contour, stray symbol, off-palette reverse, RGB fill) are the whole point of the vector/print audit; the mix of clean and defective paths makes the analyze task non-trivial."
+  },
+  {
+   "name": "valcere_wordmark_web.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A 2400x900 flat PNG raster export of the same 'VALCERE' luxury jewelry wordmark as the studio delivered it for web: high-contrast white didone-style serif letters on a transparent background, with the small letter-spaced 'MAISON VALCERE - HAUTE JOAILLERIE' tagline beneath. Render it with subtly WIDER letter-spacing / kerning than a tight master would have (a believable raster-vs-vector drift), crisp anti-aliased edges, no watermark, flat art, no 3D. Purely typographic, no icons.",
+   "realism_notes": "The flat raster the house has been using online. Its deliberately looser kerning vs. the vector master is a real defect the audit catches by trace-comparing the two (image_vectorize the PNG, compare against the master). gemini-3-pro-image for clean legible type. 8-bit sRGB PNG on transparent."
+  },
+  {
+   "name": "valcere_brand_guideline.pdf",
+   "kind": "pdf",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE: a genuine multi-page brand guideline PDF for the fictional high-jewelry house 'Maison Valcere'. Must state, in text the connector can read/summarize: the monochrome palette with exact values (Valcere Noir #0E0E10, Champagne #E8DCC2, Blanc #FAF8F3); the logo rules 'the wordmark is purely typographic, no symbols, icons or complex marks; never recoloured outside the monochrome palette; the reverse/knockout variant sits on Valcere Noir #0E0E10 only'; the size rules 'minimum print width 22mm; minimum hairline stroke 0.35pt; at favicon (16px) the mark must remain legible with no stroke below 1.5px'; and the consistency rule 'kerning and letter-spacing must be identical across the vector master and every raster export'. Authored by hand; supplied by the client.",
+   "realism_notes": "The audit's ground truth for palette / purely-typographic / size / kerning rules. media_summarize reads the stated rules out of this PDF so findings can cite the exact clause. Real supplied guideline, not generated by the chain."
+  },
+  {
+   "name": "valcere_press_spec.pdf",
+   "kind": "pdf",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE: a genuine one-to-two page printer/foil press specification sheet for the Maison Valcere logo pack. Must state, in readable text: 'foil-stamp minimum reproducible stroke = 0.35pt; any stroke thinner will not hold foil'; 'all strokes must be expanded to filled paths before output — no live/unexpanded strokes'; 'no open contours — all paths closed'; 'artwork must be delivered CMYK or spot (Pantone) — no RGB-only fills; convert before press'; and 'embossed box artwork requires minimum 0.5mm positive relief line'. Authored by hand; supplied by the client (the printer's spec).",
+   "realism_notes": "The production ground truth the vector master is audited against (distinct from the brand guideline). media_summarize extracts the foil-min-stroke, expand-strokes, closed-contours and CMYK/spot rules so the findings can cite the exact press clause each defective path breaks. Real supplied spec, not connector-generated."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "Valcere_Vector_PrintReadiness_Audit.pdf",
+   "kind": "pdf",
+   "spec": "The primary deliverable: a clean A4 portrait vector & print-readiness audit report PDF. Opens with a one-page cover summary (total findings by severity blocker / warning / nit and a go / no-go-for-press verdict), then one row per finding with the mark region (glyph / stroke / variant), a plain-language description of the defect, the exact guideline or press-spec clause it violates, the approved value vs. the observed value, and severity. This is a FINDINGS report, not a redraw of the logo."
+  },
+  {
+   "name": "valcere_audit_findings.json",
+   "kind": "data",
+   "spec": "The raw structured findings emitted by local_write_recipe_note: an ordered list of records {region, variant, defect, source_rule, approved_value, observed_value, severity} plus a summary block with counts by severity and the press verdict. Machine-readable companion to the PDF for the creative director's tracker and the printer."
+  },
+  {
+   "name": "valcere_inspection_rasters",
+   "kind": "image",
+   "spec": "The per-view raster images produced by rendering the master SVG and previewing the guideline/press PDFs and by tracing the web PNG — the inspection surface the audit reads and references (main wordmark view, reverse-variant view, isolated hairline-stroke / stray-anchor crops). Intermediate/working artifact retained alongside the report."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "audit_workspace",
+   "note": "Stand up the CC asset workspace (e.g. /V06/logo-pack, /specs, /findings) to hold the supplied wordmark pack, the guideline + press spec, and the emitted audit report."
+  },
+  {
+   "n": 2,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "audit_workspace",
+   "output": "upload_session",
+   "note": "Initialize an upload session for the four client-supplied audit inputs: valcere_wordmark_master.svg, valcere_wordmark_web.png, valcere_brand_guideline.pdf, valcere_press_spec.pdf."
+  },
+  {
+   "n": 3,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "uploaded_inputs",
+   "note": "Finalize the upload so the master SVG, web PNG, brand guideline and press spec are real CC assets with URNs the inspection steps can read. This is the single initial asset load."
+  },
+  {
+   "n": 4,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "uploaded_inputs",
+   "output": "guideline_rules_extract",
+   "note": "Summarize valcere_brand_guideline.pdf to pull the machine-usable ground-truth brand rules the audit checks against: the monochrome palette hex values, the 'purely typographic, no symbols / never recoloured' rule, the min-print-width 22mm / min-hairline 0.35pt / favicon-1.5px size rules, and the 'kerning identical across vector and raster' consistency rule."
+  },
+  {
+   "n": 5,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "uploaded_inputs",
+   "output": "press_spec_extract",
+   "note": "Summarize valcere_press_spec.pdf to extract the production ground truth: foil-stamp minimum reproducible stroke 0.35pt, 'expand all strokes to filled paths', 'no open contours', 'CMYK/spot only, no RGB fills', and the 0.5mm emboss-relief rule — the clauses each defective path is measured against."
+  },
+  {
+   "n": 6,
+   "tool": "asset_preview_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "master_svg_raster_views",
+   "note": "Render the uploaded valcere_wordmark_master.svg into per-view raster previews (main wordmark + reverse/knockout variant) so each glyph, stroke and variant can be visually inspected and referenced by region in the findings. Inspection surface only — the SVG is not edited or redrawn."
+  },
+  {
+   "n": 7,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "master_svg_raster_views",
+   "output": "master_views_preview",
+   "note": "Inline-preview the rendered master views to read the actual on-mark state (glyph construction, stroke thinness on the thin serifs and the 'A' crossbar, the stray diamond glyph beside the 'V', the reverse-variant background tone) as the primary inspection surface for the audit."
+  },
+  {
+   "n": 8,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "web_png_trace_svg",
+   "note": "Trace the valcere_wordmark_web.png raster export into an SVG PURELY as an audit comparison artifact — so its letter-spacing / kerning can be measured against the supplied vector master to catch the raster-vs-vector kerning drift. This is an inspection trace, NOT a delivered redraw; nothing traced is handed back as a logo."
+  },
+  {
+   "n": 9,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "web_png_trace_svg, master_svg_raster_views",
+   "output": "kerning_compare_preview",
+   "note": "Inline-preview the traced web export alongside the master views to visually confirm the kerning / letter-spacing drift between the raster export and the vector master before writing it into the report."
+  },
+  {
+   "n": 10,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "master_svg_raster_views",
+   "output": "hairline_stroke_select",
+   "note": "On the master raster views, select the 'thin serif strokes and the crossbar of the A' regions purely as an inspection LOCATOR so their stroke weight can be measured against the 0.35pt foil minimum (catches the sub-minimum hairlines). Selection only — no fill, mask edit or compositing follows."
+  },
+  {
+   "n": 11,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "master_svg_raster_views",
+   "output": "stray_symbol_select",
+   "note": "Select the 'small decorative diamond / non-letter mark beside the V' region so its presence can be confirmed and flagged against the 'purely typographic, no symbols or icons' rule. Inspection locator only."
+  },
+  {
+   "n": 12,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "master_svg_raster_views",
+   "output": "reverse_field_select",
+   "note": "Select the 'background field of the reverse / knockout variant' region so its tone can be sampled and checked against Valcere Noir #0E0E10 (catches the off-palette #121216 near-black). Inspection locator only."
+  },
+  {
+   "n": 13,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hairline_stroke_select, stray_symbol_select, reverse_field_select",
+   "output": "flagged_region_previews",
+   "note": "Inline-preview the isolated hairline-stroke / stray-symbol / reverse-field regions at high detail to confirm each suspected defect (sub-0.35pt stroke, stray diamond glyph, off-palette reverse background) before it is written into the findings."
+  },
+  {
+   "n": 14,
+   "tool": "asset_preview_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "spec_reference_previews",
+   "note": "Preview the brand guideline and press-spec source pages so the exact approved values (0.35pt min stroke, 22mm min width, palette hex, expand-strokes / closed-contours / CMYK rules) are available on-screen to cite each finding against the correct clause."
+  },
+  {
+   "n": 15,
+   "tool": "local_write_recipe_note",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "guideline_rules_extract, press_spec_extract, master_views_preview, kerning_compare_preview, flagged_region_previews, spec_reference_previews",
+   "output": "valcere_audit_findings.json",
+   "note": "Emit the structured vector & print-readiness findings: for each defect a record {region, variant, defect, source_rule, approved_value, observed_value, severity} cross-referencing the guideline + press-spec rules against the confirmed on-mark state (sub-min hairlines, open contour, unexpanded strokes, stray symbol, off-palette reverse, RGB fill, kerning drift), plus a summary block counting blockers / warnings / nits and a go / no-go-for-press verdict. This is the analyze deliverable's data core."
+  },
+  {
+   "n": 16,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "valcere_audit_findings.json",
+   "output": "Valcere_Vector_PrintReadiness_Audit.pdf",
+   "note": "Render the written audit findings (cover summary + press verdict + per-finding rows) into the clean A4 portrait Vector & Print-Readiness Audit report PDF for the creative director and the printer — the primary analyze deliverable."
+  }
+ ],
+ "tools_used": [
+  "asset_create_folders",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "media_summarize",
+  "asset_preview_file",
+  "asset_inline_preview",
+  "image_vectorize",
+  "image_select_by_prompt",
+  "document_convert_pdf",
+  "local_write_recipe_note"
+ ],
+ "tool_call_count": 16,
+ "distinct_adobe_tools": 9,
+ "chaining_note": "Strict output→input chaining. Steps 1-3 stand up the workspace and finalize the four client-supplied inputs into uploaded_inputs (the only initial load). Three inspection branches diverge from there. The rules branch runs uploaded_inputs → media_summarize twice, extracting the brand-guideline rules (4) and the press-spec rules (5) — the audit's dual ground truth. The master-mark branch runs uploaded_inputs → asset_preview_file(6) rendering the master SVG into master_svg_raster_views, which feeds asset_inline_preview(7) for whole-mark reading and three parallel image_select_by_prompt calls (10 hairline strokes, 11 stray symbol, 12 reverse field) that each consume master_svg_raster_views and converge into flagged_region_previews(13). The kerning branch runs uploaded_inputs → image_vectorize(8) to trace the web PNG purely for comparison, then asset_inline_preview(9) sets that trace beside the master views to confirm the kerning drift. The guideline / press-spec source pages are previewed at step 14 (from uploaded_inputs) so each finding can cite the exact clause. Everything converges at local_write_recipe_note(15), which consumes guideline_rules_extract + press_spec_extract + master_views_preview + kerning_compare_preview + flagged_region_previews + spec_reference_previews to produce valcere_audit_findings.json; that JSON is the sole input to document_convert_pdf(16), which renders the final audit report PDF. No inspection step reads a raw input that was not first routed through upload/summarize/render/trace; the report emerges only from the assembled inspect→compare→report chain, and image_vectorize's trace is consumed only for comparison, never handed back as a deliverable. 9 distinct Adobe tools across 16 calls.",
+ "difficulty_rationale": "Long-horizon analyze/audit: 16 connector calls, 9 distinct Adobe tools across three groups (asset workspace/upload/render/preview, media_summarize, image_vectorize + image_select_by_prompt + document_convert_pdf) plus the single [L] recipe-note emit — above the ≥10-call / ≥6-distinct-tool floor for an analyze task. Difficulty is in the analytic structure, not raster grunt-work: the agent must (a) extract two separate rule sets — the brand guideline AND the printer/foil press spec — via media_summarize rather than assuming them, and know which clause governs which defect, (b) render the vector master and inspect the main wordmark and the reverse/knockout variant view by view, (c) use image_vectorize NOT as a deliverable but as a comparison trace of the raster export to catch the kerning drift against the vector master, (d) use image_select_by_prompt purely as an inspection LOCATOR to isolate the sub-0.35pt hairline strokes, the stray non-typographic diamond glyph and the reverse-variant background field so weight, presence and tone can be measured against the ground truth, (e) distinguish clean paths from the planted defects (sub-min hairlines, open contour, unexpanded strokes, stray symbol, off-palette reverse near-black, RGB-only fill, kerning drift), and (f) emit a structured, region-referenced, severity-ranked findings report with a go / no-go-for-press verdict. It respects every hard limit: NOTHING is redrawn, recoloured or fixed — image_select_by_prompt only selects for inspection (no fill, mask edit or compositing), image_vectorize output is consumed only for comparison and never delivered as a logo, asset_preview_file/asset_inline_preview only render/read the master for inspection, document_convert_pdf is used only to render the written report, no image_* edit tool alters the mark, and no generative / text-to-image / from-scratch letterform / upscaling / object-removal is used. The output is a report / marked-up findings deliverable, exactly matching workflow_nature=analyze.",
+ "workflow_nature": "analyze",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "CONFIRMED none of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art / logo / letterform design (the wordmark master SVG, the raster export, the guideline and the press spec are ALL supplied authored inputs, not connector-composed); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design (the audit only judges the supplied mark, it does not draw type); no unreachable external account. image_fill_area is not used. document_merge_data_layout / _vector and document_render_layout / _vector are NOT used (this is an audit, not a merge or a composition). image_vectorize is present but its output is consumed ONLY as an audit comparison trace (steps 8→9→15) and is explicitly never handed back as a delivered logo, so no from-scratch vector deliverable is claimed. The only other image_* tool present is image_select_by_prompt, used strictly as an inspection locator (selection only — no fill, overlay, mask edit, background removal or compositing follows it). document_convert_pdf is used only once (n16) to render the agent-written findings note into the report PDF, never to compose or restyle the logo; the master SVG is rasterized for inspection via asset_preview_file, not by any generative or convert step.",
+  "notes": "Each potentially-risky step stays in-bounds: (1) image_vectorize (n8) is used as a raster→SVG TRACE purely to compare the web export's kerning against the supplied vector master; its output feeds only asset_inline_preview(9) and the recipe note(15), never a delivery path, and the spec/one_line_ask/outputs never present a traced logo as a deliverable — the sole vector deliverable-shaped item, the master SVG, is a SUPPLIED input. (2) image_select_by_prompt (n10-12) is confirmed INSPECTION-only — its outputs feed asset_inline_preview and the recipe note, never an edit / fill / composite step, so no mark pixels are altered. (3) media_summarize [A] (n4,n5) READS the two supplied spec PDFs (its documented summarize/inspect role), not generating content. (4) asset_preview_file [C] (n6) renders the supplied master SVG into inspectable raster views and (n14) previews the spec pages; asset_inline_preview [C] (n7,n9,n13) is pure inspection — none of these edit, recolour or compose the mark. (5) document_convert_pdf [C] (n16) renders the agent-written findings note into the report PDF; it never composes or restyles the logo. (6) local_write_recipe_note [L] emits the findings/report, the sanctioned analyze output path. The deliverable is a report + structured findings + working rasters — a review / audit output, matching workflow_nature=analyze; nothing new is authored beyond the report itself. Two [A] steps (media_summarize ×2) and one [L] step (recipe note) are the only non-[C] calls; all are legitimate and expected for an analyze task. Counts corrected from the draft: distinct_adobe_tools is 9 (not 8) — asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, media_summarize, asset_preview_file, asset_inline_preview, image_vectorize, image_select_by_prompt, document_convert_pdf; tool_call_count 16. 9 distinct Adobe tools (≥6), 16 calls (≥10) clear the long-horizon floor."
+ },
+ "id": "AO-91"
+}

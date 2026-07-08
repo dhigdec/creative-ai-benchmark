@@ -1,0 +1,405 @@
+{
+ "category": "food_bev_photo",
+ "id": "AO-14",
+ "slug": "brickyard-retro-menu-photo-prep-datamerge",
+ "title": "Brickyard retro one-page menu: food-photo grade + logo vectorize + InDesign data-merge to print PDF/JPEG",
+ "vertical": "Food, Restaurant & Beverage",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/menu-design/Restaurant-Menu-40480887"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief: a \"creative, vibrant, and appetizing one-page menu design for a fast-food burger restaurant named Brickyard\"; \"Retro, street-food style, or rustic chalkboard feel\"; sections \"Classic Burgers, Specialty Burgers, Sides, and Beverages (Just use placeholder text/prices for now)\"; \"Must include space for high-quality food photos\"; deliverables \"High-res JPEG and print-ready PDF.\" REASONABLY ENRICHED to make it a runnable Adobe-only benchmark: the original brief implies a from-scratch layout, which is NOT in connector scope (no layout composition; render_layout/merge_data_layout only EXPORT/bind a GENUINE authored .indd). So the client is modeled as supplying the authored InDesign menu template carrying real <<fields>> + photo frames (a normal freelancer hand-off / second-round revision scenario), the four raw food photos, the wordmark, the chalkboard texture choice, and the placeholder prices CSV. The Adobe chain then does the genuinely-doable heavy lifting the brief actually rewards: color-grading + cropping the food photos so they look appetizing, vectorizing the wordmark for crisp print, sourcing the rustic chalkboard texture, binding the placeholder copy via real InDesign data-merge, and exporting the print PDF + high-res JPEG. The \"placeholder text/prices\" instruction is honored literally via the CSV. No deliverable was invented beyond the menu the brief asks for.",
+ "one_line_ask": "Grade four raw burger photos, vectorize the Brickyard wordmark, source a chalkboard texture, and run the client's authored InDesign menu template through a data-merge to produce a print-ready PDF and high-res JPEG.",
+ "full_brief": "Brickyard, a retro street-food burger joint, needs its one-page menu finished for print. The owner has handed off an authored InDesign menu template (menu_template.indd) laid out in a rustic chalkboard style with four photo frames and real data-merge fields (<<section>>, <<item>>, <<desc>>, <<price>> across Classic Burgers, Specialty Burgers, Sides, Beverages), the brand wordmark as a flat PNG, four raw phone-shot food photos (a double Brickyard, a specialty bacon-jalapeño burger, a basket of fries, a craft cola), and a CSV of placeholder item names / descriptions / prices. The four food photos are unappetizing as-shot: slightly tilted, dull/flat, cool white-balance, busy backgrounds. The job: (1) make every food photo look vibrant and appetizing — give the hero double-smash shot the full grade (straighten, auto-tone, warm the white balance toward a hot street-food look, push vibrance, apply a food-pop preset, and throw the cluttered background out of focus so the burger reads as hero), and bring the other three to a matching appetizing look through their own lighter auto-tone / warm-up (plus a background lens-blur where the background is busy) sub-chains; consistently crop all four to the same frame ratio the template expects; (2) lift the hero double-smash shot cleanly onto a transparent background so it can sit over the chalkboard without a hard photographic edge; (3) vectorize the flat wordmark PNG into a clean SVG so it stays razor-sharp at large print size; (4) license a rustic chalkboard/blackboard texture from Adobe Stock to back the layout; (5) upload all the prepped assets, then run the client's authored .indd through InDesign data-merge against the placeholder-prices CSV so each section/item/price binds into the template, and export the bound document to a print-ready PDF and a high-resolution JPEG; (6) assemble the produced assets onto a Firefly board so the owner can sign off on the photo treatment and final menu in one deep-link. Every section/price stays placeholder per the brief.",
+ "inputs": [
+  {
+   "name": "menu_template.indd",
+   "kind": "data",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine Adobe InDesign document (.indd/.idml) for a one-page A4 portrait Brickyard menu in rustic chalkboard style. Must contain four image frames sized to a 4:5 ratio and REAL InDesign data-merge placeholder fields named <<section>>, <<item>>, <<desc>>, <<price>> arranged under four section headers (Classic Burgers, Specialty Burgers, Sides, Beverages), plus a placeholder area for the wordmark and a full-bleed background frame for the chalkboard texture. Authored by hand in InDesign so the data-merge fields actually bind; a PDF-converted .indd with literal text would NOT bind.",
+   "realism_notes": "Modeled as the client's own draft template (a normal freelancer revision/hand-off). document_merge_data_layout is [T] and REQUIRES a user-authored .indd carrying real merge fields — it cannot be connector-generated, so it is listed as a supplied input, not a chain output."
+  },
+  {
+   "name": "photo_classic_double_smash.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of a double Brickyard on a wax-paper-lined metal basket, sitting on a cluttered diner table with ketchup bottles and napkins blurred behind it. Slightly tilted horizon (about 4 degrees), flat dull lighting, slightly cool/blue white balance, visible sesame-seed bun texture, melted cheese drip, real grease sheen, no studio gloss. Documentary candid look, slight motion imperfection.",
+   "realism_notes": "Deliberately imperfect (tilt, flat tone, cool WB, busy background) so the grading chain has real work to do; gpt-image-2 for photoreal food."
+  },
+  {
+   "name": "photo_specialty_bacon_jalapeno.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of a tall specialty burger with bacon, jalapeños and a brioche bun on a slate board, harsh overhead cafeteria lighting, dull underexposed shadows, cool white balance, distracting background of a busy kitchen pass. Real food texture, grease, crumb, no CGI gloss.",
+   "realism_notes": "Underexposed + busy background to justify auto-tone, warm-up, vibrance and background lens-blur steps."
+  },
+  {
+   "name": "photo_sides_fries_basket.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of a basket of golden seasoned fries on a red diner tray, slightly tilted, flat grey lighting, cool cast, cluttered table edge visible. Real fried texture, salt flakes, slight grease, candid documentary feel.",
+   "realism_notes": "Third hero crop; same imperfections so the four photos can be graded to a consistent appetizing look."
+  },
+  {
+   "name": "photo_bev_craft_cola.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of a craft cola in a frosted glass bottle with condensation, on a wooden counter, dim warm bar light but slightly muddy/flat, busy shelf of bottles blurred behind. Real glass reflections, water droplets, no CGI.",
+   "realism_notes": "Beverage hero; flat/muddy tone justifies the same grade and crop pipeline."
+  },
+  {
+   "name": "brickyard_wordmark.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A flat retro street-food wordmark logo reading 'Brickyard' in a bold condensed vintage diner typeface, chunky cream-white letters with a thin red outline, on a transparent background, slight retro distress. Crisp flat raster PNG, high contrast, no gradients, suitable for vectorizing.",
+   "realism_notes": "gemini-3-pro-image for clean legible text/logo; flat high-contrast so image_vectorize produces a clean SVG."
+  },
+  {
+   "name": "menu_placeholder_prices.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a CSV with columns section,item,desc,price holding placeholder menu rows: 3 Classic Burgers, 3 Specialty Burgers, 4 Sides, 4 Beverages with short appetizing one-line descriptions and US-dollar placeholder prices (e.g. $7.50). Column names must exactly match the InDesign merge fields <<section>>,<<item>>,<<desc>>,<<price>>.",
+   "realism_notes": "Honors the brief's 'just use placeholder text/prices' instruction; column headers match the authored .indd merge fields so the [T] data-merge binds."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "Brickyard_Menu_print.pdf",
+   "kind": "pdf",
+   "spec": "Print-ready one-page A4 portrait PDF exported from the data-merged InDesign document; placeholder copy bound from CSV, graded food photos + vectorized wordmark + chalkboard texture placed; ~300 DPI print quality."
+  },
+  {
+   "name": "Brickyard_Menu_highres.jpg",
+   "kind": "image",
+   "spec": "High-resolution JPEG of the same bound one-page menu (A4 portrait, max-quality) for digital/social sharing."
+  },
+  {
+   "name": "graded_food_photos_x4",
+   "kind": "image",
+   "spec": "Four color-graded, straightened, consistently 4:5-cropped food photos (classic burger / specialty burger / fries / cola) matching the template frames; the classic hero also delivered as a transparent-background PNG."
+  },
+  {
+   "name": "brickyard_wordmark.svg",
+   "kind": "vector",
+   "spec": "Clean vector SVG of the Brickyard wordmark for crisp scaling at large print size."
+  },
+  {
+   "name": "Brickyard_Menu_review_board",
+   "kind": "data",
+   "spec": "Firefly board deep-link assembling the graded photos, vectorized wordmark, and final menu render for one-click owner sign-off."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_search",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "stock_chalkboard_candidates",
+   "note": "Search Adobe Stock for a rustic chalkboard/blackboard texture to back the menu (low-res candidates)."
+  },
+  {
+   "n": 2,
+   "tool": "asset_license_and_download_stock",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "stock_chalkboard_candidates"
+   ],
+   "output": "chalkboard_texture_fullres",
+   "note": "License and download the chosen chalkboard texture at full-res (license BEFORE use); becomes the layout background asset."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "photo_classic_double_smash.jpg"
+   ],
+   "output": "classic_straightened",
+   "note": "Level the tilted horizon on the hero double-smash shot."
+  },
+  {
+   "n": 4,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "classic_straightened"
+   ],
+   "output": "classic_toned",
+   "note": "Auto-tone the straightened hero to fix the flat/dull exposure."
+  },
+  {
+   "n": 5,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "classic_toned"
+   ],
+   "output": "classic_warmed",
+   "note": "Warm the cool white balance toward a hot street-food look."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "classic_warmed"
+   ],
+   "output": "classic_vibrant",
+   "note": "Push vibrance so the cheese/bun/sauce read as appetizing."
+  },
+  {
+   "n": 7,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "classic_vibrant"
+   ],
+   "output": "classic_popped",
+   "note": "Apply a food-pop Lightroom preset to lock a consistent appetizing look (same preset reused for the other three)."
+  },
+  {
+   "n": 8,
+   "tool": "image_apply_lens_blur",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "classic_popped"
+   ],
+   "output": "classic_bg_blurred",
+   "note": "Throw the cluttered diner background out of focus so the burger reads as hero."
+  },
+  {
+   "n": 9,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "classic_bg_blurred"
+   ],
+   "output": "classic_cropped_4x5",
+   "note": "Crop/resize to the 4:5 frame the template expects (same target applied to all four photos)."
+  },
+  {
+   "n": 10,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "classic_cropped_4x5"
+   ],
+   "output": "classic_hero_transparent_png",
+   "note": "Lift the finished hero burger onto a transparent background so it can sit over the chalkboard without a hard photo edge."
+  },
+  {
+   "n": 11,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "photo_specialty_bacon_jalapeno.jpg"
+   ],
+   "output": "specialty_toned",
+   "note": "Run the specialty-burger photo through the same grade pipeline starting with auto-tone (fixes underexposure)."
+  },
+  {
+   "n": 12,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "specialty_toned"
+   ],
+   "output": "specialty_warmed",
+   "note": "Warm the specialty shot to match the hero's white balance."
+  },
+  {
+   "n": 13,
+   "tool": "image_apply_lens_blur",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "specialty_warmed"
+   ],
+   "output": "specialty_bg_blurred",
+   "note": "Blur the busy kitchen-pass background behind the specialty burger."
+  },
+  {
+   "n": 14,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "specialty_bg_blurred"
+   ],
+   "output": "specialty_cropped_4x5",
+   "note": "Crop the specialty photo to the matching 4:5 template frame."
+  },
+  {
+   "n": 15,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "photo_sides_fries_basket.jpg"
+   ],
+   "output": "fries_toned",
+   "note": "Auto-tone the fries side shot to the consistent look."
+  },
+  {
+   "n": 16,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "fries_toned"
+   ],
+   "output": "fries_cropped_4x5",
+   "note": "Crop the fries photo to the 4:5 template frame."
+  },
+  {
+   "n": 17,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "photo_bev_craft_cola.jpg"
+   ],
+   "output": "cola_toned",
+   "note": "Auto-tone the muddy/flat cola beverage shot."
+  },
+  {
+   "n": 18,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "cola_toned"
+   ],
+   "output": "cola_cropped_4x5",
+   "note": "Crop the cola photo to the 4:5 template frame so all four match."
+  },
+  {
+   "n": 19,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "brickyard_wordmark.png"
+   ],
+   "output": "wordmark_svg",
+   "note": "Vectorize the flat wordmark PNG into a clean SVG for razor-sharp large-print scaling."
+  },
+  {
+   "n": 20,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "classic_hero_transparent_png",
+    "specialty_cropped_4x5",
+    "fries_cropped_4x5",
+    "cola_cropped_4x5",
+    "wordmark_svg",
+    "chalkboard_texture_fullres"
+   ],
+   "output": "upload_session",
+   "note": "Initialize an upload session for all prepped menu assets (graded photos, vector wordmark, texture)."
+  },
+  {
+   "n": 21,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "upload_session"
+   ],
+   "output": "uploaded_asset_urns",
+   "note": "Finalize the upload; returns asset URNs the InDesign template/data-merge will reference."
+  },
+  {
+   "n": 22,
+   "tool": "document_merge_data_layout",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": [
+    "menu_template.indd",
+    "menu_placeholder_prices.csv",
+    "uploaded_asset_urns"
+   ],
+   "output": "menu_merged_indd",
+   "note": "InDesign data-merge: bind the placeholder section/item/desc/price rows into the client's authored .indd (which carries real <<fields>>); prepped photos + texture + wordmark sit in their frames. [T] requires the user-authored template."
+  },
+  {
+   "n": 23,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "menu_merged_indd"
+   ],
+   "output": "Brickyard_Menu_print.pdf",
+   "note": "Export the merged InDesign document to a print-ready ~300 DPI A4 PDF deliverable."
+  },
+  {
+   "n": 24,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "menu_merged_indd"
+   ],
+   "output": "Brickyard_Menu_highres.jpg",
+   "note": "Export the same merged document to a high-resolution JPEG deliverable."
+  },
+  {
+   "n": 25,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "classic_hero_transparent_png",
+    "specialty_cropped_4x5",
+    "wordmark_svg",
+    "Brickyard_Menu_highres.jpg"
+   ],
+   "output": "Brickyard_Menu_review_board",
+   "note": "Assemble the graded photos, vector wordmark and final menu render onto a Firefly board deep-link for owner sign-off."
+  }
+ ],
+ "tools_used": [
+  "asset_search",
+  "asset_license_and_download_stock",
+  "image_auto_straighten",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_adjust_vibrance_and_saturation",
+  "image_apply_preset",
+  "image_apply_lens_blur",
+  "image_crop_and_resize",
+  "image_remove_background",
+  "image_vectorize",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "document_merge_data_layout",
+  "document_render_layout",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 25,
+ "distinct_adobe_tools": 16,
+ "chaining_note": "Strict output→input chaining throughout. The hero photo runs a 7-link grade pipeline: photo_classic_double_smash.jpg → auto_straighten(3) → auto_tone(4) → color_temperature(5) → vibrance(6) → preset(7) → lens_blur(8) → crop(9) → remove_background(10), each step consuming only the prior step's output. The specialty/fries/cola photos each feed their own shorter grade→crop sub-chains (11-14, 15-16, 17-18). The chalkboard texture chains search(1)→license(2). The wordmark chains raw PNG→vectorize(19). All prepped outputs (classic_hero_transparent_png, specialty/fries/cola_cropped_4x5, wordmark_svg, chalkboard_texture_fullres) converge into the upload session(20)→finalize(21)→data-merge(22), which also consumes the authored menu_template.indd + prices CSV. The merged .indd(22) is the single source for both exports — render PDF(23) and render JPEG(24) — and four upstream outputs plus the JPEG converge into the Firefly review board(25). Nothing after step 1/2 (search) and the raw input loads originates outside the chain; the final menu emerges only from the assembled chain.",
+ "difficulty_rationale": "Long-horizon flagship: 25 connector calls across 4 tool groups (image_* raster, asset_* stock/storage, document_* InDesign, create_firefly_board), 16 distinct Adobe tools — far above the ≥10 calls / ≥6 distinct-tool floor. Difficulty comes from running four separate photos through a consistent multi-step grade pipeline, branching the hero into a transparent cutout, vectorizing a logo, sourcing+licensing stock, then converging everything into a genuine InDesign [T] data-merge and dual export. It respects every hard limit: no generative fill / object-removal / text-to-image / compositing / upscaling; image_fill_area is unused; the layout is NOT composed by the connector — render_layout/merge_data_layout only EXPORT/bind the client's authored .indd, which is listed as a supplied input; lens_blur is whole-image (no fake masked DOF claim); placeholder copy honored literally via CSV per the brief.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned capabilities present. image_fill_area is not used. image_apply_lens_blur (n8, n13) is whole-image with no masked-DOF claim. image_remove_background (n10) produces a transparent PNG (not compositing/reconstruction). image_crop_and_resize handles all cropping (gen-free). document_merge_data_layout (n22) is [T] against a supplied user-authored .indd carrying real <<fields>>; document_render_layout (n23/n24) only exports. No generative-expand/outpaint, no upscale/super-resolution, no text-to-image/from-scratch art, no object-removal-with-reconstruction, no background-replace-by-prompt. asset_search is the Adobe stock/asset search (not the Express search_design widget). All 25 steps server=='adobe'. All step inputs are declared in inputs[] (authored .indd, CSV, four photos, wordmark PNG).",
+  "notes": "All actions map to real Adobe connector tools and are gen-free within scope. The only edits were textual reconciliation of an over-claiming note/brief; the executable workflow (tools, exec_modes, chaining) is unchanged and remains fully doable."
+ }
+}

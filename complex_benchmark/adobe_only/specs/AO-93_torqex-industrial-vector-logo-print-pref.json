@@ -1,0 +1,251 @@
+{
+ "slot_id": "V08",
+ "category": "vectorize_logo",
+ "title": "Torqex Industrial nameplate logo pack: print-readiness preflight audit of the supplied vector artwork (open paths, RGB, un-outlined text, stray points) into a marked-up findings report",
+ "slug": "torqex-industrial-vector-logo-print-preflight-audit",
+ "vertical": "manufacturing_industrial",
+ "source": {
+  "platform": "Freelancer.com",
+  "reference": "Modern Casual Dress Logo"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief 'Modern Casual Dress Logo': the client needs a mark delivered in \"fully editable vector format (.ai or .eps)\", that must remain \"instantly readable at small sizes (web favicons, garment labels, swing tags)\", stays \"print-ready CMYK output and scalable vector artwork\" (from the candidate's Photoshop/Illustrator tools line), and ships with \"One-colour and reverse variants\". REASONABLY REFRAMED to an ANALYZE task (the slot's workflow_nature) instead of a from-scratch logo-design job: designing a NEW logo is a compositional/creative deliverable that is NOT in Adobe-connector scope (no from-scratch art, no letterform design). The honest, fully-doable read of the brief's core concern — is the vector artwork actually production-ready, CMYK-safe, and clean enough to scale to tiny labels and large signage without breaking? — is a PRINT-READINESS PREFLIGHT AUDIT: the client hands off an already-drawn vector logo pack (the .ai/.eps master plus its exported SVG/PDF and the one-colour + reverse variants) that a prior contractor produced, and the freelancer INSPECTS every file against a print-shop preflight checklist and returns a marked-up findings report enumerating each defect (open/unclosed paths, RGB colours that must convert to CMYK, live/un-outlined text, stray anchor points, hairline strokes below the min printable width, non-transparent background, missing bleed) with the file, the region, and the exact rule it breaks plus a severity. The connector chain only INSPECTS (render each vector to a raster proof, preview it, summarize the supplied print-spec sheet to extract the manufacturer's rules, locate the mark/text/stroke regions to compare) and then emits the report via local_write_recipe_note. Nothing new is drawn or restyled; no deliverable is invented beyond the preflight report the brief's 'print-ready, scalable, one-colour + reverse' requirement implies. The vertical is reframed from casual-dress apparel to a fictional IP-clean industrial-equipment brand (Torqex) whose logo will be laser-etched and screen-printed onto machinery nameplates, matching the slot's manufacturing_industrial vertical; the 'small-size readability' and 'one-colour/reverse' clauses map cleanly onto nameplate etching. Fictional brand and persona; no real trademark or proprietary data.",
+ "one_line_ask": "Preflight-audit the supplied Torqex vector logo pack (.ai/.eps master, SVG, PDF, plus one-colour and reverse variants) against the manufacturer's nameplate print spec and return a marked-up, file-and-region-referenced findings report listing every open path, RGB colour, un-outlined text run, stray point, hairline stroke and background/bleed defect with the exact rule it breaks and a severity.",
+ "full_brief": "Torqex Industrial is a fictional maker of hydraulic torque tools and machinery, and we are about to send our brand mark out to a nameplate vendor to be laser-etched onto anodized-aluminium equipment plates and screen-printed onto tool cases. A previous contractor delivered our 'Torqex' logo as a vector pack, but before it goes to the etching/print house we need a fresh set of eyes to confirm the artwork is genuinely production-ready — the last vendor rejected a batch because a logo file had live text and an RGB blue that shifted on the plate, and we cannot afford another rejected run. This is an AUDIT, not a redesign: do NOT redraw, restyle, re-colour or re-letter anything. You will receive two things. (1) torqex_logo_pack: the delivered artwork — torqex_master.ai (the editable vector master), torqex_master.eps and torqex_master.pdf (the same mark exported), torqex_logo.svg (the web export), plus torqex_onecolour_black.ai (single-colour knockout) and torqex_reverse_white.ai (reverse/knockout-on-dark variant). (2) torqex_nameplate_print_spec.pdf, the vendor's print-spec sheet stating the rules the pack must satisfy: all colours must be CMYK (or spot) — no RGB; the approved brand colour is Torqex Blue at C100 M72 K18 (do NOT ship RGB #1B49E5); all text must be converted to outlines (no live fonts); paths must be closed with no stray/open anchor points; the minimum printable stroke weight for laser etching is 0.25 pt (0.09 mm) — anything thinner drops out; the mark must sit on a transparent background with a 3 mm bleed on the placed variants; the one-colour and reverse variants must be a single flat colour with no gradients or tints. Go through every file, compare what is actually in the artwork against the spec, and hand back a print-readiness preflight report that, for each issue found, gives the file name, the region / element on the mark, a plain-language description of the defect, the specific spec clause it violates, the observed value vs the approved value, and a severity (blocker / warning / nit). We expect you to catch things like: the SVG and the .pdf export carrying RGB colour instead of CMYK; the tagline text in the master left as live (un-outlined) fonts; a couple of stray/duplicate anchor points and one un-closed path on the icon; a hairline register line under 0.25 pt that will drop out on the plate; the reverse variant accidentally carrying a faint gradient instead of a flat white; and one variant exported on a solid white background instead of transparent with no bleed. Some files are clean and compliant so the audit has to distinguish good from bad, not just flag everything. Deliver the report as a clean A4 PDF plus the raw findings as a structured file, with a one-page cover summary giving the total count by severity. The report is for our production manager and the nameplate vendor, not a design revision.",
+ "inputs": [
+  {
+   "name": "torqex_master.ai",
+   "kind": "vector",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine Adobe Illustrator vector file (.ai/.pdf-compatible) of a fictional industrial brand mark 'TORQEX' — a bold condensed geometric wordmark next to a hex-bolt / torque-arrow icon, with a small tagline 'HYDRAULIC TORQUE SYSTEMS' beneath. It must contain DELIBERATE, plausible print-preflight defects planted so an audit has real findings: (a) the tagline text left as LIVE (un-outlined) fonts instead of converted to outlines; (b) two or three stray/duplicate anchor points near the torque-arrow icon and ONE un-closed path on the bolt outline; (c) a thin register/keyline stroke set to ~0.15 pt (below the 0.25 pt minimum); (d) the main wordmark fill defined in a CMYK Torqex Blue (C100 M72 K18) so it is COMPLIANT — the master itself is mostly correct except for the planted text/point/stroke issues. Authored by hand in Illustrator; supplied by the client, not connector-generated.",
+   "realism_notes": "The editable vector master — a real drawn .ai, not connector-composed; the connector only INSPECTS it (rendered to a raster proof). The planted live-text, open-path, stray-point and hairline-stroke defects are the core of the audit; keeping the master's colour CMYK-correct means the audit must distinguish which files are RGB vs CMYK, not blanket-flag."
+  },
+  {
+   "name": "torqex_master.eps",
+   "kind": "vector",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE: an EPS export of the same TORQEX mark from the master .ai — carried forward with the SAME un-outlined tagline text and the SAME un-closed bolt path, but colours flattened to CMYK. Supplied by the client as one of the delivered pack files.",
+   "realism_notes": "Second copy of the mark in a print interchange format; shares the master's live-text and open-path defects so the audit reports them per-file (a vendor checks every delivered file). CMYK-correct colour, so its only findings are the geometry/text ones — tests per-file granularity."
+  },
+  {
+   "name": "torqex_master.pdf",
+   "kind": "pdf",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE: a print PDF export of the TORQEX mark. Planted defect: exported with an RGB colour profile so the Torqex Blue is RGB #1B49E5 instead of the approved CMYK C100 M72 K18, AND the tagline still live text. No bleed set. Supplied by the client.",
+   "realism_notes": "The RGB-in-a-PDF defect is exactly what got the client's last batch rejected; media_summarize / render + preview lets the audit surface that this export is RGB while the .ai is CMYK. Real supplied export, inspected only."
+  },
+  {
+   "name": "torqex_logo.svg",
+   "kind": "vector",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE: the web/SVG export of the TORQEX mark. Planted defects: RGB colour (#1B49E5, inherent to SVG) which the spec forbids for the nameplate run; text left as live <text> elements (fonts not converted to paths/outlines); a solid white background rectangle behind the mark instead of transparent. Supplied by the client.",
+   "realism_notes": "SVG is inherently RGB and often ships with live text and an opaque background — realistic multi-defect file. The audit must note SVG is fine for web but NON-compliant for the CMYK nameplate spec, i.e. a context-sensitive finding, not a blanket 'SVG bad'."
+  },
+  {
+   "name": "torqex_onecolour_black.ai",
+   "kind": "vector",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE: the single-colour KNOCKOUT variant of the TORQEX mark — the whole mark as one flat 100% black (K100), text converted to outlines, paths closed, transparent background. This variant is intentionally CLEAN and compliant so the audit correctly passes it. Supplied by the client.",
+   "realism_notes": "The 'one-colour variant' from the brief, planted CLEAN so the audit must distinguish a compliant file from the defective ones (avoids a trivial flag-everything task)."
+  },
+  {
+   "name": "torqex_reverse_white.ai",
+   "kind": "vector",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE: the REVERSE variant of the TORQEX mark for dark plates — the mark in flat white on a transparent background. Planted defect: instead of a flat white (0% tint) the white fill was accidentally left as a very faint white-to-grey GRADIENT / tint, which will not knock out cleanly on the etched plate; the spec requires a single flat colour, no gradients/tints. Text is outlined and paths closed (those parts are fine). Supplied by the client.",
+   "realism_notes": "The 'reverse variant' from the brief, carrying one specific, plausible defect (a faint gradient where a flat colour is required) so the audit produces a targeted single finding on an otherwise-good file."
+  },
+  {
+   "name": "torqex_nameplate_print_spec.pdf",
+   "kind": "pdf",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE: the nameplate vendor's print-spec sheet PDF stating, in text the connector can read/summarize, the exact preflight rules: 'All colours must be CMYK or spot; no RGB. Approved brand colour: Torqex Blue = C100 M72 K18. All text must be converted to outlines; no live fonts. All paths must be closed; remove stray/open anchor points. Minimum printable stroke = 0.25 pt (0.09 mm) for laser etching; thinner lines drop out. Placed artwork must be on a transparent background with 3 mm bleed. One-colour and reverse variants must be a single flat colour — no gradients or tints.' Authored by hand; supplied by the client.",
+   "realism_notes": "The audit's ground truth. media_summarize reads the stated rules out of this PDF so each finding can cite the exact clause and the approved value. Real supplied spec, not generated by the chain."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "Torqex_Logo_PrintPreflight_Audit.pdf",
+   "kind": "pdf",
+   "spec": "The primary deliverable: a clean A4 portrait print-readiness preflight report PDF. Opens with a one-page cover summary (total findings by severity: blocker / warning / nit, plus a per-file pass/fail matrix), then one row per finding with the file name, the region/element on the mark, a plain-language description of the defect, the exact print-spec clause it violates, the observed value vs the approved value, and severity. This is a FINDINGS report, not a redesign of the logo."
+  },
+  {
+   "name": "torqex_preflight_findings.json",
+   "kind": "data",
+   "spec": "The raw structured findings emitted by local_write_recipe_note: an ordered list of records {file, region, defect, spec_clause, approved_value, observed_value, severity} plus a per-file pass/fail matrix and a summary block with counts by severity. Machine-readable companion to the PDF for the production manager's tracker."
+  },
+  {
+   "name": "torqex_logo_proof_rasters",
+   "kind": "image",
+   "spec": "The per-file raster proofs produced by rendering each supplied vector/PDF file (the .ai/.eps/.pdf/.svg master + the two variants) to an image, used as the visual inspection surface for the audit and referenced by file name in the findings. Intermediate/working artifact retained alongside the report."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "audit_workspace",
+   "note": "Stand up the CC asset workspace (e.g. /V08/logo_pack, /spec, /proofs, /findings) to hold the supplied vector pack, the print-spec sheet, the rendered proofs and the emitted report."
+  },
+  {
+   "n": 2,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "audit_workspace",
+   "output": "upload_session",
+   "note": "Initialize an upload session for the client-supplied audit inputs: torqex_master.ai/.eps/.pdf, torqex_logo.svg, torqex_onecolour_black.ai, torqex_reverse_white.ai and torqex_nameplate_print_spec.pdf."
+  },
+  {
+   "n": 3,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "uploaded_inputs",
+   "note": "Finalize the upload so the six vector/PDF logo files and the spec PDF are real CC assets with URNs the inspection steps can read. This is the single initial asset load."
+  },
+  {
+   "n": 4,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "uploaded_inputs",
+   "output": "spec_rules_extract",
+   "note": "Summarize torqex_nameplate_print_spec.pdf to pull out the machine-usable ground-truth preflight rules the audit checks against: CMYK-only + approved Torqex Blue C100 M72 K18, text-must-be-outlined, closed-paths/no-stray-points, 0.25 pt minimum stroke, transparent-background + 3 mm bleed, one-colour/reverse must be flat (no gradients/tints)."
+  },
+  {
+   "n": 5,
+   "tool": "document_render_vector",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "ai_proof_raster",
+   "note": "Render the torqex_master.ai to a high-res raster proof (EXPORT only — no editing/authoring) so the wordmark, icon, tagline, register line and colour can be visually inspected page-accurately."
+  },
+  {
+   "n": 6,
+   "tool": "document_render_vector",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "variants_proof_raster",
+   "note": "Render the two variants (torqex_onecolour_black.ai and torqex_reverse_white.ai) to raster proofs so the one-colour knockout can be verified clean and the reverse variant's fill (flat white vs the planted faint gradient) can be judged."
+  },
+  {
+   "n": 7,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "pdf_proof_raster",
+   "note": "Convert torqex_master.pdf to a per-page raster proof so the print-PDF export can be inspected for its colour profile (the planted RGB-instead-of-CMYK defect) and bleed/background state."
+  },
+  {
+   "n": 8,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ai_proof_raster, variants_proof_raster, pdf_proof_raster",
+   "output": "pack_inline_previews",
+   "note": "Inline-preview each rendered proof (torqex_logo_proof_rasters) to read the actual on-artwork state — wordmark colour, tagline text, icon geometry, stroke weights, variant fills, background — as the inspection surface for the audit."
+  },
+  {
+   "n": 9,
+   "tool": "asset_preview_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "svg_preview",
+   "note": "Preview torqex_logo.svg directly to expose its raw structure/colour so the RGB colour, the live <text> elements (un-outlined fonts) and the opaque white background rectangle can be identified against the transparent-CMYK spec."
+  },
+  {
+   "n": 10,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ai_proof_raster, pdf_proof_raster",
+   "output": "wordmark_color_region",
+   "note": "On the .ai and .pdf proofs, select the 'main TORQEX wordmark' region so its rendered colour can be sampled and compared against the approved Torqex Blue — catches that the .pdf export reads RGB #1B49E5 while the .ai reads the CMYK build. INSPECTION locator only."
+  },
+  {
+   "n": 11,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ai_proof_raster",
+   "output": "tagline_text_region",
+   "note": "Select the 'HYDRAULIC TORQUE SYSTEMS tagline text' region on the master proof so its edges can be checked for the live-vs-outlined-font tell (anti-aliased type rendering vs solid vector paths) against the text-must-be-outlined rule. Selection only, no edit follows."
+  },
+  {
+   "n": 12,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ai_proof_raster",
+   "output": "icon_geometry_region",
+   "note": "Select the 'hex-bolt / torque-arrow icon and the thin register keyline' region so the icon geometry can be zoomed for the stray-point / un-closed-path defects and the hairline register stroke can be judged against the 0.25 pt minimum. Selection only."
+  },
+  {
+   "n": 13,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "variants_proof_raster",
+   "output": "reverse_fill_region",
+   "note": "Select the 'reverse-variant mark fill' region so its white can be checked for the flat-vs-gradient defect against the single-flat-colour rule for variants. Selection only."
+  },
+  {
+   "n": 14,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "wordmark_color_region, tagline_text_region, icon_geometry_region, reverse_fill_region",
+   "output": "flagged_region_previews",
+   "note": "Inline-preview the isolated wordmark-colour / tagline-text / icon-geometry / reverse-fill regions at high detail to CONFIRM each suspected defect (RGB in the .pdf, live tagline, stray points + open bolt path + hairline register line, faint gradient on reverse) before it is written into the report."
+  },
+  {
+   "n": 15,
+   "tool": "local_write_recipe_note",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "spec_rules_extract, pack_inline_previews, svg_preview, flagged_region_previews",
+   "output": "torqex_preflight_findings.json",
+   "note": "Emit the structured preflight findings: for each defect a record {file, region, defect, spec_clause, approved_value, observed_value, severity} cross-referencing the print-spec rules against the confirmed on-artwork state, plus a per-file pass/fail matrix and a summary block counting blockers / warnings / nits. This is the analyze deliverable's data core."
+  },
+  {
+   "n": 16,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "torqex_preflight_findings.json",
+   "output": "Torqex_Logo_PrintPreflight_Audit.pdf",
+   "note": "Render the written preflight findings (cover summary + per-file pass/fail matrix + per-finding rows) into the clean A4 portrait Print-Readiness Preflight Audit report PDF for the production manager and the nameplate vendor — the primary analyze deliverable."
+  }
+ ],
+ "tools_used": [
+  "asset_create_folders",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "media_summarize",
+  "document_render_vector",
+  "document_convert_pdf",
+  "asset_inline_preview",
+  "asset_preview_file",
+  "image_select_by_prompt",
+  "local_write_recipe_note"
+ ],
+ "tool_call_count": 16,
+ "distinct_adobe_tools": 9,
+ "chaining_note": "Strict output→input chaining. Steps 1-3 stand up the workspace and finalize the seven client-supplied inputs (six vector/PDF logo files + the print-spec PDF) into uploaded_inputs — the only initial load. Two inspection tracks diverge from there: the ground-truth track runs uploaded_inputs → media_summarize(4) → spec_rules_extract (the preflight rules the audit checks against); the artwork track renders the pack for inspection via three parallel exports that each consume uploaded_inputs — document_render_vector(5) → ai_proof_raster (the .ai master), document_render_vector(6) → variants_proof_raster (the one-colour + reverse variants), and document_convert_pdf(7) → pdf_proof_raster (the print PDF). Those three proofs converge into asset_inline_preview(8) for whole-file reading, while the SVG is previewed separately at asset_preview_file(9) from uploaded_inputs to expose its RGB/live-text/opaque-bg structure. Four image_select_by_prompt calls act purely as INSPECTION locators over the proofs: wordmark colour(10) consumes the .ai + .pdf proofs, tagline text(11) and icon geometry(12) consume the .ai proof, reverse fill(13) consumes the variants proof; all four converge into flagged_region_previews(14). Everything then converges at local_write_recipe_note(15), which consumes spec_rules_extract + pack_inline_previews + svg_preview + flagged_region_previews to produce torqex_preflight_findings.json; that JSON is the sole input to document_convert_pdf(16), which renders the final preflight report PDF. No inspection step reads a raw input that was not first routed through upload/render/convert; the report emerges only from the assembled inspect→compare→report chain.",
+ "difficulty_rationale": "Long-horizon analyze/audit: 16 connector calls, 9 distinct Adobe tools across four groups (asset workspace/upload/preview, media_summarize, document_render_vector + document_convert_pdf export/rasterize, image_select_by_prompt inspection locator) plus the single [L] recipe-note emit — above the ≥10-call / ≥6-distinct-tool floor for an analyze task. Difficulty is in the analytic structure, not raster grunt-work: the agent must (a) extract the actual manufacturer preflight rules from the supplied spec PDF via media_summarize rather than assuming them, (b) render/convert six different vector/PDF/SVG files to proofs and inspect each one, (c) use image_select_by_prompt purely as an INSPECTION locator to isolate the wordmark-colour, tagline-text, icon-geometry and reverse-fill regions so on-artwork colour/text-state/geometry/fill can be compared against the ground truth, (d) distinguish compliant files from the planted defects (RGB in the .pdf and .svg, live tagline text, stray points + one open bolt path, a sub-0.25 pt hairline register line, a faint gradient on the reverse variant, an opaque background on the SVG) while correctly PASSING the clean one-colour variant and the CMYK master colour, and (e) emit a structured, per-file, severity-ranked findings report with a pass/fail matrix. It respects every hard limit: NOTHING is drawn, re-coloured, re-lettered or restyled — image_select_by_prompt only selects for inspection (no fill, no mask edit, no compositing, no vectorize), document_render_vector / document_convert_pdf are used only to rasterize the supplied files for reading and to render the written report, no image_* edit tool alters the logo, and no generative / text-to-image / from-scratch vector authoring / upscaling / object-removal is used. The output is a report / marked-up findings deliverable, exactly matching workflow_nature=analyze; output modality is vector (the subject inspected and the pack audited are vector artwork).",
+ "workflow_nature": "analyze",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "CONFIRMED none of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art/logo/letterform design (the logo pack and print spec are SUPPLIED authored inputs, not connector-composed); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area is not used. image_vectorize is NOT used (this is an audit of existing vectors, not a trace). document_merge_data_layout/_vector are not used (no merge). The only image_* tool present is image_select_by_prompt, used strictly as an inspection locator (selection only — no fill, overlay, mask edit, background removal, recolour or compositing follows it). document_render_vector and document_convert_pdf are used only in their EXPORT/rasterize role to turn supplied vector/PDF files into raster proofs for inspection and to render the agent-written findings note into the report PDF; they never compose, author or restyle artwork.",
+  "notes": "Each potentially-risky step stays in-bounds: (1) document_render_vector [C] (n5,n6) exports the SUPPLIED .ai master and the two variant .ai files to raster proofs per its real EXPORT-only semantics — it never composes or edits the vector artwork; the .ai files are declared as supplied authored inputs (kind:vector, gen_model:'n/a-authored-asset'). (2) document_convert_pdf [C] (n7,n16) is used first to rasterize the supplied print PDF for inspection and then to render the agent-written findings note into the report PDF — no layout is composed. (3) image_select_by_prompt (n10-n13) is confirmed INSPECTION-only — its outputs feed asset_inline_preview and the recipe note, never an edit/fill/composite/vectorize step, so no artwork pixels/paths are altered. (4) media_summarize [A] READS the print-spec PDF's stated rules (its documented summarize/inspect role), not generating content. (5) asset_inline_preview / asset_preview_file [C] are pure inspection. (6) local_write_recipe_note [L] emits the findings/report, the sanctioned analyze output path. The deliverable is a report + structured findings + working proof rasters — a review/audit output, matching workflow_nature=analyze; nothing new is authored beyond the report itself. One [A] step (media_summarize) and one [L] step (recipe note) are the only non-[C] calls; both are legitimate and expected for an analyze task. Count corrected: 9 distinct Adobe tools (≥6) and 16 calls (≥10) clear the long-horizon analyze floor (the authored draft mis-stated distinct_adobe_tools as 8; the true count is 9 — asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, media_summarize, document_render_vector, document_convert_pdf, asset_inline_preview, asset_preview_file, image_select_by_prompt)."
+ },
+ "id": "AO-93"
+}

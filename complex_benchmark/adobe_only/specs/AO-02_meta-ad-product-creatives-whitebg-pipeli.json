@@ -1,0 +1,289 @@
+{
+ "id": "AO-02",
+ "slug": "meta-ad-product-creatives-whitebg-pipeline",
+ "title": "Performance-ready Meta ad product creatives: white-bg clean-up, brand color grade, multi-ratio reframe set, and vectorized logo for paid-social testing",
+ "vertical": "E-commerce, Retail & Product",
+ "category": "product_ecom_whitebg",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Graphic%20designer%20-%20advertising%20creatives"
+ },
+ "grounding_note": "VERBATIM from the source brief (cand_02.json, db_i 394, Upwork \"Graphic designer - advertising creatives\"): the client (referred to in-brief as \"DONE\") wants \"high-performing Meta (Facebook & Instagram) ad creatives,\" specifically \"static ad creatives, promotional graphics, and multiple creative variations for testing across our paid social campaigns,\" working \"from existing brand guidelines,\" with \"clean, modern, and conversion-focused visuals,\" for an e-commerce brand and an ongoing/long-term collaboration. REASONABLY ENRICHED to make it a runnable Adobe-only benchmark: I fixed the product to a concrete SKU (a matte-ceramic pour-over coffee dripper) and named the brand \"DONE\" per the brief, supplied a specific brand-guideline palette (brand teal #0F6E64, warm off-white #F4EFE7) and a logo lockup as client inputs, and scoped the connector deliverable to what Adobe headless tools genuinely produce: a retouched pure-white-background hero, a brand-consistent color grade, a full set of platform-ratio frames produced by honest crop/resize of the graded hero (1:1 feed, 4:5 feed, 9:16 stories/Reels — subject centered, edges/background trimmed to hit the ratio, no canvas added), a clean vector logo for crisp overlay, and a Firefly moodboard of the variation set for client review. I deliberately did NOT include baking marketing copy/CTA text onto the images: per the capability sheet, text-on-template requires the [W] Express gallery pick or an authored .indd, neither of which is headless Adobe — so the typeset final-ad assembly is explicitly handed off (font_recommend gives the type direction). Every claim about what the chain delivers maps to a real [C] Adobe tool.",
+ "one_line_ask": "Turn the client's raw product shot and logo into a performance-ready Meta ad creative kit: a retouched pure-white-bg hero, a brand-graded variant, three platform-ratio frames (1:1 / 4:5 / 9:16) built by honestly cropping/reframing the graded hero to each ratio, a vectorized logo, and a Firefly review board.",
+ "full_brief": "DONE is a DTC homeware brand launching paid-social tests for its matte-ceramic pour-over coffee dripper and needs a freelancer to build the imagery layer of a Meta (Facebook + Instagram) ad-creative kit, faithful to the brand guidelines (brand teal #0F6E64 on warm off-white #F4EFE7). You are supplied three client assets: (1) a raw studio product photo of the dripper on a near-white sweep that still shows seamless-paper shadows and a faint gray cast; (2) the DONE wordmark logo as a flat PNG; and (3) the brand-guideline sheet as a PDF for reference. \n\nBuild the production chain entirely on Adobe connector tools: ingest the assets into a working folder; auto-correct the studio shot's geometry and tone; isolate the product and force a true, pure-white e-commerce background (catalog-clean, no gray cast, no stray shadow halo); push a brand-consistent color grade so the ceramic reads warm and premium and the teal accents stay on-palette; then generate the platform frames performance marketers actually test — a 1:1 feed square (1080x1080), a 4:5 portrait feed (1080x1350), and a 9:16 Stories/Reels vertical (1080x1920) — by honestly reframing/cropping the graded hero to each target ratio, keeping the product centered and accepting that the studio edges/background trim away to hit the ratio (no canvas is added, padded, or extended). Separately, vectorize the supplied wordmark to a clean SVG so it stays crisp at any ad size. Finally, assemble the full variation set into a Firefly board as a single review deep-link the client can sign off on in Slack. \n\nOut of scope for this connector pass (hand off to the typesetting/Express step): baking headline/offer/CTA copy and the logo lockup onto the frames, and choosing final on-image type — though you should return a font recommendation to steer that. Deliverables: the pure-white hero, the brand-graded hero, the three ratio frames (1:1 / 4:5 / 9:16), the vector logo, the font direction, and the Firefly review board link.",
+ "inputs": [
+  {
+   "name": "done_dripper_studio_raw.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal studio product shot of a matte-ceramic pour-over coffee dripper in soft teal-green glaze, shot on a near-white seamless paper sweep under a single large softbox. Deliberately imperfect SOURCE file: very slightly tilted horizon (about 2 degrees off level), a faint cool gray color cast across the white sweep, a soft seamless-paper gradient and a subtle contact shadow with a faint halo at the base, mild underexposure. Real ceramic micro-texture and tiny glaze speckle visible, accurate reflections, no text, no props, documentary commercial-photography realism, not CGI-glossy. 4000x3000px.",
+   "realism_notes": "Must look like an un-retouched raw studio capture: the off-level tilt, gray cast, paper gradient, and shadow halo are intentional so the auto_straighten / auto_tone / remove-bg / fill-white / grade chain has real defects to fix. Avoid a pre-cleaned pure-white background."
+  },
+  {
+   "name": "done_wordmark_logo.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "Flat clean brand wordmark logo reading 'DONE' in a confident geometric sans-serif, solid brand teal #0F6E64 letterforms on a fully transparent background, plus a small coffee-dripper line-mark glyph to the left of the word. Crisp anti-aliased edges, high contrast, centered, generous transparent padding, PNG with alpha. Flat 2D vector-style logo, no 3D, no gradient, no photographic texture.",
+   "realism_notes": "Flat high-contrast solid-color art on transparency so image_vectorize produces a clean SVG with minimal stray paths; the teal must match the brand palette exactly."
+  },
+  {
+   "name": "done_brand_guidelines.pdf",
+   "kind": "pdf",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A 1-page brand guideline sheet for homeware brand 'DONE': title 'DONE — Brand Basics', a color palette block showing brand teal #0F6E64 and warm off-white #F4EFE7 with hex labels, a logo clear-space diagram, and a short typography note 'Headlines: geometric sans; Body: humanist sans'. Clean minimal layout, print-quality, legible labels, off-white page background.",
+   "realism_notes": "Reference-only artifact giving the grader the exact target palette and type intent; not edited by the connector chain, used to justify the grade targets and font_recommend direction."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "done_hero_pure_white.png",
+   "kind": "image",
+   "spec": "Retouched product hero on a true pure-white (#FFFFFF) e-commerce background, product isolated with clean edge, no gray cast / no shadow halo, straightened and auto-toned, ~4000x3000px PNG."
+  },
+  {
+   "name": "done_hero_brand_graded.jpg",
+   "kind": "image",
+   "spec": "Brand-consistent color-graded hero: warm premium ceramic, on-palette teal accents (HSL nudged toward #0F6E64), exposure/contrast/temperature tuned for paid-social punch, high-quality JPEG."
+  },
+  {
+   "name": "done_creative_1x1.jpg",
+   "kind": "image",
+   "spec": "1:1 feed square (1080x1080): the graded hero honestly reframed/cropped to a centered 1:1 crop of the existing frame (subject centered; the near-white studio edges/background trim to hit the square ratio). No canvas added, no generation."
+  },
+  {
+   "name": "done_creative_4x5.jpg",
+   "kind": "image",
+   "spec": "4:5 portrait feed (1080x1350): the graded hero honestly reframed/cropped to a centered 4:5 crop of the existing frame (subject centered; edges/background trim to hit the portrait ratio). No canvas added, no generation."
+  },
+  {
+   "name": "done_creative_9x16.jpg",
+   "kind": "image",
+   "spec": "9:16 Stories/Reels vertical (1080x1920): the graded hero honestly reframed/cropped to a centered 9:16 crop of the existing frame (subject centered; the wider studio edges/background trim away to hit the tall vertical ratio). No canvas added, no generation — final on-image copy/CTA is applied in the handed-off typeset step."
+  },
+  {
+   "name": "done_logo_vector.svg",
+   "kind": "vector",
+   "spec": "Clean vectorized DONE wordmark + dripper glyph as SVG, scalable crisp for any ad size, solid brand-teal paths on transparent."
+  },
+  {
+   "name": "done_font_direction.json",
+   "kind": "data",
+   "spec": "font_recommend output: geometric-sans headline + humanist-sans body pairing matching the brand-guideline type note, to steer the handed-off on-image typesetting step."
+  },
+  {
+   "name": "done_review_board_link",
+   "kind": "data",
+   "spec": "Firefly Boards deep-link assembling the hero, graded hero, and three ratio canvases as one client-review moodboard for Slack sign-off."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[]",
+   "output": "done_project_folder",
+   "note": "Create the working CC folder 'DONE_MetaAds_Q3' to hold ingested client assets and all derived creatives."
+  },
+  {
+   "n": 2,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[done_project_folder]",
+   "output": "studio_upload_session",
+   "note": "Begin upload of the client's raw studio product photo (done_dripper_studio_raw.jpg) into the project folder; returns the upload target."
+  },
+  {
+   "n": 3,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[studio_upload_session]",
+   "output": "studio_asset",
+   "note": "Finalize the upload so the raw studio shot is a stored CC asset with a stable URI the editing tools can consume."
+  },
+  {
+   "n": 4,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[studio_asset]",
+   "output": "studio_straightened",
+   "note": "Correct the ~2-degree tilt in the raw capture so the sweep horizon is level before background work."
+  },
+  {
+   "n": 5,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[studio_straightened]",
+   "output": "studio_autotoned",
+   "note": "Auto-correct the mild underexposure / flat contrast of the raw file to a neutral, well-exposed starting point."
+  },
+  {
+   "n": 6,
+   "tool": "image_select_subject",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[studio_autotoned]",
+   "output": "subject_mask",
+   "note": "Auto-detect and mask the dripper product so the background can be isolated from it."
+  },
+  {
+   "n": 7,
+   "tool": "image_invert_selection",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[subject_mask]",
+   "output": "background_mask",
+   "note": "Invert the subject mask to select the background (the gray-cast sweep + shadow halo) for the white fill."
+  },
+  {
+   "n": 8,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[studio_autotoned, background_mask]",
+   "output": "studio_white_bg",
+   "note": "Solid-fill the inverted background selection with pure white #FFFFFF — catalog-clean e-com white, no gray cast, no shadow halo. (Solid fill only, exactly what this tool does.)"
+  },
+  {
+   "n": 9,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[studio_white_bg]",
+   "output": "done_hero_pure_white",
+   "note": "Crop tight to the product+whitespace bounds to produce the clean pure-white hero deliverable."
+  },
+  {
+   "n": 10,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[done_hero_pure_white]",
+   "output": "hero_warmed",
+   "note": "Warm the white-balance toward the brand's warm off-white so the ceramic reads premium, not clinical-cold."
+  },
+  {
+   "n": 11,
+   "tool": "image_adjust_hsl",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[hero_warmed]",
+   "output": "hero_teal_onpalette",
+   "note": "Nudge the glaze's teal-green hue/saturation/luminance toward the brand teal #0F6E64 so accents are on-palette."
+  },
+  {
+   "n": 12,
+   "tool": "image_adjust_brightness_and_contrast",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[hero_teal_onpalette]",
+   "output": "done_hero_brand_graded",
+   "note": "Add scroll-stopping contrast punch for paid social; this is the brand-graded hero deliverable and the base for all ratio canvases."
+  },
+  {
+   "n": 13,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[done_hero_brand_graded]",
+   "output": "done_creative_1x1",
+   "note": "Honestly reframe/crop the graded hero to a centered 1:1 crop at 1080x1080 for the feed square — subject stays centered while the near-white studio edges/background trim to hit the ratio. (Crop/resize of the existing frame only; no canvas added, no generation.)"
+  },
+  {
+   "n": 14,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[done_hero_brand_graded]",
+   "output": "done_creative_4x5",
+   "note": "Honestly reframe/crop the graded hero to a centered 4:5 crop at 1080x1350 for the portrait feed — subject centered while edges/background trim to hit the ratio. (Crop/resize of the existing frame only; no canvas added, no generation.)"
+  },
+  {
+   "n": 15,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[done_hero_brand_graded]",
+   "output": "done_creative_9x16",
+   "note": "Honestly reframe/crop the graded hero to a centered 9:16 crop at 1080x1920 for Stories/Reels — subject centered while the wider studio edges/background trim away to hit the tall vertical. (Crop/resize of the existing frame only; no canvas added, no generation.)"
+  },
+  {
+   "n": 16,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[done_project_folder]",
+   "output": "logo_upload_session",
+   "note": "Upload the supplied flat DONE wordmark PNG (done_wordmark_logo.png) into the project folder for vectorization."
+  },
+  {
+   "n": 17,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[logo_upload_session]",
+   "output": "logo_asset",
+   "note": "Finalize the logo upload to a stable CC asset URI."
+  },
+  {
+   "n": 18,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[logo_asset]",
+   "output": "done_logo_vector",
+   "note": "Vectorize the flat wordmark+glyph to a clean SVG so it stays crisp at every ad size."
+  },
+  {
+   "n": 19,
+   "tool": "font_recommend",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[]",
+   "output": "done_font_direction",
+   "note": "Return a geometric-sans headline + humanist-sans body pairing matching the brand-guideline type note, to steer the handed-off on-image typesetting."
+  },
+  {
+   "n": 20,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[done_hero_pure_white, done_hero_brand_graded, done_creative_1x1, done_creative_4x5, done_creative_9x16]",
+   "output": "done_review_board_link",
+   "note": "Assemble the hero, graded hero, and three ratio canvases into a single Firefly Boards deep-link for client Slack sign-off."
+  }
+ ],
+ "tools_used": [
+  "asset_create_folders",
+  "asset_finalize_file_upload",
+  "asset_initialize_file_upload",
+  "create_firefly_board",
+  "font_recommend",
+  "image_adjust_brightness_and_contrast",
+  "image_adjust_color_temperature",
+  "image_adjust_hsl",
+  "image_apply_auto_tone",
+  "image_auto_straighten",
+  "image_crop_and_resize",
+  "image_crop_to_bounds",
+  "image_fill_area",
+  "image_invert_selection",
+  "image_select_subject",
+  "image_vectorize"
+ ],
+ "tool_call_count": 20,
+ "distinct_adobe_tools": 16,
+ "chaining_note": "Strict output to input chain, deliverable emerges from it. Asset spine: create_folders -> done_project_folder feeds both upload sessions. STUDIO HERO: init/finalize upload -> studio_asset -> auto_straighten -> studio_straightened -> auto_tone -> studio_autotoned, which branches: (a) select_subject -> subject_mask -> invert -> background_mask, and (b) is re-consumed with that background_mask by fill_area -> studio_white_bg -> crop_to_bounds -> done_hero_pure_white. GRADE: that hero -> color_temperature -> hero_warmed -> hsl -> hero_teal_onpalette -> brightness_contrast -> done_hero_brand_graded. RATIOS (all gen-free honest crops of the existing frame, each consumes the graded hero independently): graded hero -> crop_and_resize (centered 1:1) -> done_creative_1x1 (1080x1080); graded hero -> crop_and_resize (centered 4:5) -> done_creative_4x5 (1080x1350); graded hero -> crop_and_resize (centered 9:16) -> done_creative_9x16 (1080x1920). Each ratio is a single crop/resize of the graded hero to the target ratio, subject centered, accepting that studio edges/background trim to hit the ratio — no canvas is added or filled. LOGO: separate upload -> logo_asset -> vectorize -> done_logo_vector. font_recommend is the one independent step (type direction, no image input). FINAL: create_firefly_board consumes the five image deliverables (hero + graded + three ratios) into the review-board link. Every post-ingest step sets inputs_from to a producing step's named output; no step invents an asset.",
+ "difficulty_rationale": "Long-horizon flagship: 20 connector calls, 16 distinct Adobe tools, spanning 4 tool groups (asset/storage, photo-raster masking, tonal/color, vector + board). It exercises a realistic e-com product pipeline (geometry fix -> auto-tone -> subject mask -> invert -> solid white fill -> tight crop -> warm/HSL/contrast grade -> three honest ratio crops -> logo vectorize -> font + board) with a deep dependency chain where the final review board only exists because every upstream frame was produced. Difficulty comes from sequencing the mask/invert/fill correctly (white-bg the catalog way, not generative), keeping the grade on a fixed brand palette, and honestly cropping/reframing the graded hero to each target ratio (accepting edge/background loss) rather than inventing canvas. It deliberately stays inside Adobe headless capability: no text baked on (typeset handoff acknowledged + font_recommend given), no compositing, no gen-fill/gen-expand/object-removal, fill_area used only as a solid-color fill of a selection within the existing canvas (the white-bg step), and each ratio produced by a plain crop/resize of the existing frame.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned capability remains, in the executable workflow OR the prose. The three ratio deliverables are now produced by HONEST crops of the existing frame: each is a single image_crop_and_resize of the graded hero to the target ratio (centered 1:1 -> 1080x1080, 4:5 -> 1080x1350, 9:16 -> 1080x1920), accepting that the studio edges/background trim away to hit the ratio. No canvas is added, padded, extended, or 'filled out to platform size' anywhere — the earlier image_fill_area 'place product on a larger solid brand canvas' steps (which are impossible headless) have been removed, and all 'product never cropped / preserved / generous brand negative space added / placed on a larger canvas' language has been deleted from the outputs[].spec, step notes, chaining_note and difficulty_rationale. No banned canvas-extension or generative tool appears anywhere in the workflow, tools_used, or prose. image_fill_area survives only as its documented behavior: a solid #FFFFFF fill of the inverted background selection WITHIN the existing canvas at the white-bg step (step 8). No text-to-image, no upscale, no generative fill/expand, no object-removal-with-reconstruction, no compositing, no from-scratch art. Every step chains a producing output to a consuming input.",
+  "notes": "Resolved the workflow-capability contradiction on the ratio canvases: replaced the six crop_and_resize + fill_area 'reframe then place on a larger solid brand canvas' steps (old n=13..18) with three single honest image_crop_and_resize crops (new n=13,14,15) that each reframe the graded hero to the target ratio and trim edges/background to hit it. Rewrote the three ratio outputs[].spec entries and step notes to say exactly that (centered crop, edges/background trim, no canvas added, no generation), removing the mutually-exclusive 'full product preserved AND generous negative space added on a 1080x1920 canvas' claim flagged in the findings. Renumbered the tail (logo upload/finalize/vectorize, font_recommend, create_firefly_board) to keep n=1..20 contiguous with every inputs_from resolving. Updated tool_call_count 23 -> 20; distinct_adobe_tools stays 16 (image_fill_area still used at step 8, image_crop_and_resize still used); tools_used unchanged. Fixed stale counts in difficulty_rationale (now 20 calls / 16 tools) and reconciled the chaining_note RATIOS section."
+ }
+}

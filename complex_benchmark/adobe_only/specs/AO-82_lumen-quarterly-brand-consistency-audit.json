@@ -1,0 +1,173 @@
+{
+ "slot_id": "L09",
+ "category": "datamerge_print",
+ "title": "Lumen Quarterly magazine issue: brand-guideline consistency audit of the laid-out pages against the supplied style guide (marked-up findings report)",
+ "slug": "lumen-quarterly-brand-consistency-audit",
+ "vertical": "media_publishing",
+ "source": {
+  "platform": "Freelancer.com",
+  "reference": "Graphic Design Aligned with Brand Standards"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief 'Graphic Design Aligned with Brand Standards': the client wants work that stays \"strictly inside my existing brand guidelines\"; they supply \"the full style guide—logo lock-ups, colour palette, typography rules, imagery tone, even sample layouts\" and require that \"each design feels cohesive with the rest of the brand\" and that \"every piece you produce must fit seamlessly within that framework.\" REASONABLY REFRAMED to an ANALYZE task (the slot's workflow_nature): producing new on-brand artwork is a compositional/creative deliverable NOT in Adobe-connector scope, so the honest fully-doable read of the brief's core concern — does the artwork stay inside the brand framework? — is a brand-consistency AUDIT. The client hands off an already-laid-out multi-page magazine issue proof PDF plus the full style guide, and the freelancer INSPECTS every page against the guideline (colour palette, logo lock-up usage, typography rules, imagery tone) and returns a marked-up findings report enumerating each drift with page/region references and the exact guideline it violates. The connector chain only INSPECTS (previews the style guide and each proof page, uses image_select_by_prompt on the supplied reference PNGs purely as an inspection locator) and then emits the findings via local_write_recipe_note. Nothing is composed, converted or edited; the deliverable is the marked-up findings report. Brand, magazine and persona are fictional and IP-clean.",
+ "one_line_ask": "Audit every page of the laid-out Lumen Quarterly issue proof against the supplied Lumen brand style guide and return a marked-up, page-referenced brand-consistency findings report listing each colour / logo / typography / imagery drift and the exact rule it breaks.",
+ "full_brief": "Lumen Quarterly is a fictional independent arts-and-culture magazine published by Lumen House Press. Our in-house junior designer has finished laying out the Autumn 2026 issue in InDesign and exported it as a print proof PDF, but before it goes to the printer we need a fresh set of eyes to check that the whole issue actually stays inside our brand framework — our board is strict about consistency and the last issue went out with an off-palette pull-quote and a stretched masthead lock-up that we only caught in print. You will receive: (1) lumen_autumn2026_proof.pdf, the full 16-page laid-out issue (cover, masthead, contents, editor's letter, three feature spreads, department pages, back-cover ad); (2) lumen_brand_styleguide.pdf, our complete brand style guide covering the approved colour palette (Lumen Ink #1B2A4A, Signal Coral #FF5A47, Paper #F4F1EA — with the exact hex values and the rule that body text is Lumen Ink only), the masthead / logo lock-up rules (clear-space, minimum size, never stretched or recoloured), the typography system (Freight Display for headlines, Untitled Sans for body, specified sizes and tracking), and the imagery tone rules (warm, editorial, consistent grade; no cold or oversaturated photos); and (3) two flat reference images — the approved palette swatch strip and the correct masthead lock-up — to compare on-page elements against. The job is an audit, not a redesign — do NOT re-lay-out, restyle, recolour or edit anything. Go through every page, compare what is on the page against the guideline, and hand back a brand-consistency audit report that, for each issue found, gives the page number, the on-page region, a plain-language description of the drift, the specific guideline clause it violates, the approved value versus the observed value, and a severity (blocker / warning / nit). We expect you to catch things like: a headline set in the wrong weight or the wrong face, a coral used at the wrong hex, the masthead placed with too little clear-space or subtly stretched, a feature photo that reads cold/blue against the warm-editorial imagery rule, and body copy set in a non-approved colour. Deliver the findings as a clean marked-up report file plus the raw findings as a structured data file, and open with a one-page cover summary giving the total count by severity. Page size is A4 portrait; the report is for the editor and the board, not the printer.",
+ "inputs": [
+  {
+   "name": "lumen_autumn2026_proof.pdf",
+   "kind": "pdf",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine 16-page A4 portrait print-proof PDF exported from an InDesign layout of a fictional arts-and-culture magazine 'Lumen Quarterly, Autumn 2026'. Pages: cover with masthead + cover line, contents, editor's letter, three double-page feature spreads with headlines/body/pull-quotes/photos, two department pages, a back-cover ad. The layout must contain DELIBERATE, plausible brand-consistency defects planted across pages so an audit has real findings: e.g. a pull-quote on the second feature set in Signal Coral at the wrong hex (#FF3B2E instead of #FF5A47); a headline on the department page set in the body face (Untitled Sans) instead of Freight Display; the masthead on the contents page subtly horizontally stretched (~104%) and placed with less than the required clear-space; one feature photo graded cold/blue against the warm-editorial imagery rule; body copy in the editor's letter set in Signal Coral instead of Lumen Ink. Other pages are correctly on-brand so the audit must distinguish compliant from non-compliant. Authored by hand in InDesign and exported to PDF; supplied by the client, not connector-generated.",
+   "realism_notes": "Modeled as the junior designer's finished proof — a normal pre-press hand-off. It is a real laid-out PDF, not connector-composed; the connector only INSPECTS it (page previews). The planted defects are the whole point of the audit; the mix of compliant and non-compliant pages makes the analyze task non-trivial."
+  },
+  {
+   "name": "lumen_brand_styleguide.pdf",
+   "kind": "pdf",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE: a genuine multi-page brand style guide PDF for the fictional 'Lumen Quarterly' magazine (Lumen House Press), with each rule stated in large legible on-page text so a page preview can read it. Must state: the colour palette with exact hex values (Lumen Ink #1B2A4A, Signal Coral #FF5A47, Paper #F4F1EA) and the rule 'body text is set in Lumen Ink only; Signal Coral is an accent for pull-quotes and rules, never body'; the masthead/logo lock-up rules (minimum clear-space = height of the 'L', minimum print width 40mm, 'never stretch, skew, recolour, or add effects to the lock-up'); the typography system ('Freight Display for all headlines and pull-quotes; Untitled Sans for body and captions'; size and tracking specs); and the imagery tone rule ('all photography is warm, editorial, consistently graded; no cold/blue casts, no oversaturation'). Authored by hand; supplied by the client.",
+   "realism_notes": "The audit's ground truth. asset_preview_file renders the guide's pages so the stated rules can be read out and cited by clause. Real supplied style guide, not generated by the chain."
+  },
+  {
+   "name": "lumen_palette_swatches.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A clean flat brand-swatch reference strip on a white background showing three solid colour chips labelled with their hex codes: 'Lumen Ink #1B2A4A' (deep navy), 'Signal Coral #FF5A47' (warm coral), 'Paper #F4F1EA' (warm off-white). Crisp flat blocks, no gradients, legible labels. 2000x600px PNG.",
+   "realism_notes": "A supplied visual swatch reference to cross-check on-page colours against the approved hex values during inspection; flat solid chips so a preview and image_select_by_prompt read the colour chips cleanly."
+  },
+  {
+   "name": "lumen_masthead_lockup.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "The approved 'Lumen Quarterly' masthead lock-up on a white background: the word 'LUMEN' in a high-contrast serif display face with 'QUARTERLY' set small and letter-spaced beneath it, all in deep navy (Lumen Ink). Correct proportions, no stretch, no effects. Crisp flat PNG, 2400x800px.",
+   "realism_notes": "The correct reference lock-up the audit compares the on-page masthead against (to catch the stretched/under-clearspace placement planted in the proof). Flat PNG so image_select_by_prompt can isolate the lockup shape and its proportions are unambiguous."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "Lumen_BrandConsistency_Audit.md",
+   "kind": "data",
+   "spec": "The primary marked-up deliverable emitted by local_write_recipe_note: a clean, human-readable brand-consistency audit report. Opens with a one-page cover summary (total findings by severity: blocker / warning / nit), then one section per finding with page number, on-page region, plain-language description of the drift, the exact style-guide clause it violates, the approved value versus the observed value, and severity. This is a FINDINGS/marked-up report, NOT a redesign of the issue and NOT a connector-composed layout."
+  },
+  {
+   "name": "lumen_audit_findings.json",
+   "kind": "data",
+   "spec": "The raw structured findings companion emitted by local_write_recipe_note: an ordered list of records {page, region, drift, guideline_clause, approved_value, observed_value, severity} plus a summary block with counts by severity. Machine-readable companion for the editor's tracker."
+  },
+  {
+   "name": "lumen_inspection_previews",
+   "kind": "image",
+   "spec": "The page-preview renders of the proof and the style guide (and the two reference PNGs) produced by the asset preview steps and used as the inspection surface for the audit, referenced by page number in the findings. Intermediate/working artifact retained alongside the report."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "audit_workspace",
+   "note": "Stand up the CC asset workspace (e.g. /L09/proof, /styleguide, /references, /findings) to hold the supplied proof, style guide, reference PNGs and the emitted report."
+  },
+  {
+   "n": 2,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "audit_workspace",
+   "output": "upload_session",
+   "note": "Initialize an upload session for the four client-supplied audit inputs: lumen_autumn2026_proof.pdf, lumen_brand_styleguide.pdf, lumen_palette_swatches.png, lumen_masthead_lockup.png."
+  },
+  {
+   "n": 3,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "uploaded_inputs",
+   "note": "Finalize the upload so the proof PDF, style guide PDF and the two reference PNGs are real CC assets with URNs the inspection steps can read."
+  },
+  {
+   "n": 4,
+   "tool": "asset_preview_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "styleguide_pages_preview",
+   "note": "Preview lumen_brand_styleguide.pdf page by page to READ the ground-truth rules the audit checks against: the palette hex values + 'body in Lumen Ink only' rule, the masthead clear-space / min-size / 'never stretch/recolour' rule, the Freight-Display-headline / Untitled-Sans-body typography rule, and the warm-editorial imagery-tone rule. Inspection only."
+  },
+  {
+   "n": 5,
+   "tool": "asset_preview_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "proof_pages_preview",
+   "note": "Preview the 16-page lumen_autumn2026_proof.pdf page by page so each spread's on-page state (headlines, pull-quotes, body copy colour, masthead placement, photo tone) can be visually inspected and referenced by page number in the findings. Inspection only — no page pixels altered."
+  },
+  {
+   "n": 6,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "proof_pages_preview",
+   "output": "proof_pages_inline",
+   "note": "Inline-preview the suspect proof pages (contents masthead, second feature pull-quote, editor's-letter body copy, department-page headline, feature photo) at higher detail to confirm each suspected drift before it is written into the report."
+  },
+  {
+   "n": 7,
+   "tool": "asset_preview_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "reference_previews",
+   "note": "Preview the palette-swatch strip and masthead-lock-up reference PNGs so the approved hex chips and the correct un-stretched lock-up proportions are available to compare the on-page elements against."
+  },
+  {
+   "n": 8,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "lockup_shape_select",
+   "note": "On the supplied masthead-lock-up reference PNG, select the 'LUMEN QUARTERLY lock-up wordmark' region as an INSPECTION locator so its correct proportions/clear-space envelope are isolated to compare against the on-page masthead (catches the stretched + under-clear-space contents masthead). Selection only — no fill / mask edit / recolour follows."
+  },
+  {
+   "n": 9,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "swatch_chip_select",
+   "note": "On the supplied palette-swatch reference PNG, select the individual 'Signal Coral' and 'Lumen Ink' colour chips as an INSPECTION locator so the approved hex values are isolated to compare on-page colours against (catches the wrong-hex coral pull-quote and the coral body copy). Selection only — nothing edits the image."
+  },
+  {
+   "n": 10,
+   "tool": "local_write_recipe_note",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "styleguide_pages_preview, proof_pages_preview, proof_pages_inline, reference_previews, lockup_shape_select, swatch_chip_select",
+   "output": "Lumen_BrandConsistency_Audit.md + lumen_audit_findings.json",
+   "note": "Emit the audit deliverables: cross-reference the style-guide rules (read from the guide previews) against the confirmed on-page state (from the proof previews) and the approved reference values (lock-up proportions + hex chips). For each drift write a record {page, region, drift, guideline_clause, approved_value, observed_value, severity} plus a cover summary counting blockers / warnings / nits — as a human-readable marked-up report (.md) and a structured .json companion. This is the analyze deliverable; nothing is composed or restyled."
+  }
+ ],
+ "tools_used": [
+  "asset_create_folders",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "asset_preview_file",
+  "asset_inline_preview",
+  "image_select_by_prompt",
+  "local_write_recipe_note"
+ ],
+ "tool_call_count": 10,
+ "distinct_adobe_tools": 6,
+ "chaining_note": "Strict output→input chaining. Steps 1-3 stand up the workspace and finalize the four client-supplied inputs into uploaded_inputs (the only initial load). Inspection then fans out from uploaded_inputs: the style-guide branch is uploaded_inputs → asset_preview_file(4) → styleguide_pages_preview (the audit's ground-truth rules); the proof branch is uploaded_inputs → asset_preview_file(5) → proof_pages_preview → asset_inline_preview(6) → proof_pages_inline (the confirmed on-page state); the reference branch is uploaded_inputs → asset_preview_file(7) → reference_previews, plus two image_select_by_prompt inspection locators on the supplied reference PNGs (8 lock-up shape, 9 colour chips) that each consume uploaded_inputs. Everything converges at local_write_recipe_note(10), which consumes styleguide_pages_preview + proof_pages_preview + proof_pages_inline + reference_previews + lockup_shape_select + swatch_chip_select to produce the marked-up report (.md) and structured findings (.json). No inspection step reads a raw input that was not first finalized into uploaded_inputs; the report emerges only from the assembled inspect→compare→report chain. No connector step composes, edits or renders a new document — the final artifact is written locally by the recipe note.",
+ "difficulty_rationale": "Long-horizon analyze/audit: 10 connector calls, 6 distinct Adobe tools across two groups (asset workspace/upload/preview and the image_select_by_prompt inspection locator) plus the single [L] recipe-note emit — at the ≥10-call / ≥6-distinct-tool floor for an analyze task and consistent with the analyze band (~6-12 calls). Difficulty is in the analytic structure, not raster grunt-work: the agent must (a) READ the actual brand rules out of a supplied style-guide PDF via page previews rather than assuming them, (b) preview a 16-page proof and inspect every page, drilling into the suspect pages at higher detail, (c) use image_select_by_prompt purely as an INSPECTION locator on the supplied reference PNGs to isolate the approved lock-up proportions and the approved hex chips so on-page colour/proportion can be compared against ground truth, (d) distinguish compliant pages from the planted defects (wrong-hex coral, body copy in coral, wrong-face headline, stretched/under-clear-space masthead, cold-graded photo), and (e) emit a structured, page-referenced, severity-ranked findings report. It respects every hard limit: NOTHING is composed, restyled, edited or rendered — image_select_by_prompt only selects for inspection (no fill, mask edit, recolour or compositing follows it), no image_* edit tool alters any pixels, no document_* tool is used to convert or compose (document_convert_pdf converts PDF→INDD and is deliberately NOT used, since the report is not a connector-composed layout), and no generative / text-to-image / object-removal / upscaling / from-scratch layout is used. media_summarize is NOT used because it is an A/V tool for dialogue/narration, not a reader of a text PDF's rules; the style guide is read via page previews instead. The output is a marked-up findings report + structured data + working previews, exactly matching workflow_nature=analyze.",
+ "workflow_nature": "analyze",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "CONFIRMED none of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art/logo/layout (the proof, style guide and reference PNGs are SUPPLIED authored/handoff inputs, not connector-composed); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area is not used. image_remove_background is not used. document_merge_data_layout / _vector are not used (this is an audit, not a merge). document_convert_pdf and document_render_* are NOT used — the audit report is written locally by local_write_recipe_note, not composed or rendered by any connector (document_convert_pdf only converts an existing PDF into an editable .indd and cannot author a report from findings, so claiming it would be infeasible; it is deliberately absent). media_summarize is NOT used (it is an async A/V tool requiring significant dialogue/narration; a text style-guide PDF is read via asset_preview_file page previews instead). The only image_* tool present is image_select_by_prompt, used strictly as an inspection locator on the SUPPLIED reference PNGs (selection only — no fill, overlay, mask edit, background removal or compositing follows it), so no pixels are altered anywhere.",
+  "notes": "Each potentially-risky step stays in-bounds: (1) asset_preview_file / asset_inline_preview (steps 4-7) are pure INSPECTION — they render the style-guide and proof PDF pages and the reference PNGs so their content can be read and compared; they never edit, convert or compose. (2) image_select_by_prompt (steps 8-9) is confirmed INSPECTION-only — it runs on the supplied reference PNGs to isolate the approved lock-up shape and the approved hex chips, and its outputs feed only the recipe note, never an edit/fill/composite step, so no page pixels are altered. (3) The earlier version's document_convert_pdf-to-report step was removed as infeasible (it converts PDF→INDD, it cannot author a report PDF from a findings file, and composing a report from scratch is banned), and the media_summarize-on-a-PDF step was removed as out-of-tool-semantics (A/V-only); both are corrected so no infeasible or out-of-bounds step remains. (4) local_write_recipe_note [L] emits the marked-up findings report (.md) plus the structured findings (.json) — the sanctioned analyze output path. The deliverable is a report + structured findings + working previews — a review/audit output, matching workflow_nature=analyze; nothing new is authored beyond the report itself. The only non-[C] call is the single [L] recipe-note emit; every other step is headless [C] inspection."
+ },
+ "id": "AO-82"
+}

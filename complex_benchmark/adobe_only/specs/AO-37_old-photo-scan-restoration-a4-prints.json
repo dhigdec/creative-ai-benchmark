@@ -1,0 +1,316 @@
+{
+ "id": "AO-37",
+ "slug": "old-photo-scan-restoration-a4-prints",
+ "title": "Restore Three Faded, Scratched Family Photo Scans for A4 Wall Prints",
+ "vertical": "Technology, SaaS & Startups",
+ "category": "photo_restore",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/image-processing/Photo-Restoration-for-Prints"
+ },
+ "grounding_note": "VERBATIM from the source brief (cand_37, db_i 3414): the client has \"several old photo scans\" that need restoring \"for A4 printing to mount on my wall\"; the named damage types are \"Color fading\", \"Scratches or tears\", and \"Blurriness\", and the client states \"The main focus should be on improving overall clarity.\" REASONABLY ENRICHED to make it a runnable, gradeable Adobe-connector benchmark: (a) \"several\" is fixed at three representative scans (a 1960s faded color portrait, a scratched B&W studio photo over a plain backdrop, and a tear-damaged outdoor snapshot) so the chain has concrete inputs; (b) A4 print target is made exact as 2480x3508 px at 300 DPI; (c) the damage-repair work is honestly scoped to what the connector can actually do — fading is fixed with the tonal/color adjust_* family + auto-tone, \"clarity\" is improved with local-contrast tonal tools and a clarity-style preset (NO sharpen tool exists, so clarity is delivered via contrast/highlights/dark-portion shaping, not an invented sharpen op), and \"scratches/tears\" are concealed only where they cross PLAIN uniform areas (studio backdrop / sky) using select-by-prompt + solid-color fill_area, since the connector has NO generative heal/clone/object-removal. The brief's open-ended \"variety of damage types\" is therefore narrowed to the subset the Adobe tools can genuinely deliver, and that scoping is stated openly rather than over-promised. No deliverable was invented beyond \"restored scans, A4 print-ready.\"",
+ "one_line_ask": "Restore three damaged old photo scans — correct color fading, conceal scratches/tears over plain areas, and maximize clarity — then output each as a print-ready A4 (2480x3508 px, 300 DPI) file.",
+ "full_brief": "I have several old family photo scans that I want to restore and print at A4 to mount on my wall. They suffer from three problems: color fading (the older color shots have gone yellow/orange and flat), scratches or tears (white scratch lines and a torn corner, mostly running across plain backdrops and sky), and blurriness — and the MAIN priority is improving overall clarity so they look crisp on a large print.\n\nPlease work from the three supplied scans:\n1. faded_color_portrait_1968.png — a colour studio portrait from the late 1960s, heavily yellowed, low contrast, slightly tilted on the scanner bed.\n2. scratched_bw_studio_1955.png — a black-and-white studio photo with several fine white scratch lines crossing the plain grey studio backdrop behind the subject.\n3. torn_outdoor_snapshot_1972.png — a colour outdoor snapshot with a torn top-left corner exposing white paper and a couple of scratches across the open sky.\n\nFor each photo I need you to: straighten any scanner tilt and crop off the ragged scan border; correct the colour cast and faded contrast so skin tones and colours look natural again; lift overall clarity and local contrast so detail reads on a big print; conceal the scratches and the torn corner ONLY where they cross plain, uniform regions (the studio backdrop and the open sky) by colour-matching and filling those marks so they disappear; add a very light film grain so the restored areas don't look plastic against the original photographic texture; and finally produce a clean, true-A4 file at 2480x3508 px / 300 DPI ready to send to the print lab.\n\nDeliverables: three restored, A4 print-ready image files (one per scan), plus a single before/after contact-board so I can approve the restoration at a glance before printing.",
+ "inputs": [
+  {
+   "name": "faded_color_portrait_1968.png",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "An authentic, heavily-aged scanned color studio portrait of a woman from the late 1960s, photographed straight-on as a flatbed scan. Strong overall yellow-orange color cast and faded, low-contrast tones typical of decayed C-print dye; muted, washed-out skin and fabric colors. Visible real photographic grain, soft focus, slight blur. The whole frame is very slightly tilted (about 2-3 degrees) as if placed crooked on a scanner, with a thin uneven white scan border and a faint dust speckle. Period-correct hair, makeup, clothing and studio lighting. Documentary realism, real pores and individual hair strands, no CGI gloss, no modern color.",
+   "realism_notes": "Must read as a genuine decayed 1968 C-print scan: yellow cast + flat faded contrast are the damage the chain must FIX, so do NOT pre-correct them. Keep the slight tilt and ragged white scan border for the straighten+crop steps to act on. Native grain so the later light-grain step blends naturally."
+  },
+  {
+   "name": "scratched_bw_studio_1955.png",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "An authentic black-and-white studio portrait from the mid-1950s, scanned from an old print. A single subject (man in suit) lit with classic studio lighting against a smooth, plain medium-grey seamless studio backdrop. Several fine, bright white hairline SCRATCH lines of varying length run diagonally across the plain grey backdrop area (not across the face), plus one short scratch on the backdrop near the shoulder. Slightly soft/blurry, low micro-contrast, mild silver-gelatin tonal fading. Real film grain, dust specks, thin uneven scan border. Documentary realism, true monochrome, no color, no CGI smoothness.",
+   "realism_notes": "The scratches MUST sit over the PLAIN grey backdrop (uniform region) so select-by-prompt + solid-fill can honestly conceal them; keep them off the face. Plain backdrop must be a single near-uniform grey so a matched solid fill is invisible. Keep it genuinely soft and slightly faded so the contrast/clarity steps have work to do."
+  },
+  {
+   "name": "torn_outdoor_snapshot_1972.png",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "An authentic faded color outdoor snapshot from 1972 of two people standing in a park with a large expanse of plain pale-blue summer SKY filling the top third of the frame. The TOP-LEFT CORNER is physically TORN OFF, exposing a triangular patch of bright white backing paper. Two thin white scratch lines run across the open sky area. Overall faded, slightly magenta/cyan-shifted color typical of an aged consumer C-print, flat contrast, soft focus. Real grain, slightly crooked scan with a thin white border. Documentary snapshot realism, candid amateur framing, no CGI gloss.",
+   "realism_notes": "The torn corner and the scratches MUST cross the PLAIN uniform SKY so the conceal step (select sky region -> solid-fill matched sky blue) is honest and the connector's lack of generative heal is never relied on. Keep the faded color shift and flat contrast as the damage to fix; keep the torn white triangle clearly within the sky zone, not over the people."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "portrait_1968_restored_A4.png",
+   "kind": "image",
+   "spec": "Restored late-1960s color portrait: tilt-straightened, border-cropped, color-cast neutralized, faded contrast and clarity recovered, light grain re-added. Final A4 print size 2480x3508 px at 300 DPI, PNG."
+  },
+  {
+   "name": "bw_studio_1955_restored_A4.png",
+   "kind": "image",
+   "spec": "Restored 1955 B&W studio photo: backdrop scratches concealed by matched solid-grey fill, tonal range and clarity recovered, light grain re-added. Final A4 print size 2480x3508 px at 300 DPI, PNG."
+  },
+  {
+   "name": "snapshot_1972_restored_A4.png",
+   "kind": "image",
+   "spec": "Restored 1972 outdoor snapshot: torn corner and sky scratches concealed by matched solid sky-blue fill, color cast corrected, contrast/clarity recovered, light grain re-added. Final A4 print size 2480x3508 px at 300 DPI, PNG."
+  },
+  {
+   "name": "restoration_before_after_board",
+   "kind": "firefly_board",
+   "spec": "A single Firefly Board deep-link assembling the three original scans next to their three restored A4 outputs as a before/after approval contact-board for the client to sign off before printing."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "uploaded_three_scans",
+   "note": "Client supplies the scans, not Adobe Stock, so ingest the three provided files (faded_color_portrait_1968.png, scratched_bw_studio_1955.png, torn_outdoor_snapshot_1972.png) into CC storage via the upload init -> finalize handshake. This is the initial asset load; every later step consumes a prior output."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "uploaded_three_scans"
+   ],
+   "output": "scan_asset_urns",
+   "note": "Finalize the upload to obtain stable asset URNs/URLs for the three scans that the editing steps will reference. PHOTO 1 (portrait) is processed in steps 3-8; PHOTO 2 (B&W) in steps 9-12; PHOTO 3 (snapshot) in steps 13-17; A4 sizing + board at 18-20."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "scan_asset_urns"
+   ],
+   "output": "portrait_straightened",
+   "note": "PHOTO 1: correct the 2-3 degree scanner tilt on the faded color portrait so the crop in the next step is clean."
+  },
+  {
+   "n": 4,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "portrait_straightened"
+   ],
+   "output": "portrait_cropped",
+   "note": "PHOTO 1: crop off the ragged uneven white scan border revealed/levelled by straightening, leaving only the photographic image area."
+  },
+  {
+   "n": 5,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "portrait_cropped"
+   ],
+   "output": "portrait_autotoned",
+   "note": "PHOTO 1: auto-tone as the first global recovery pass on the flat, faded C-print to re-spread the tonal range before targeted color work."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "portrait_autotoned"
+   ],
+   "output": "portrait_neutralized",
+   "note": "PHOTO 1: cool the strong yellow-orange age cast (shift temperature toward blue) to neutralize the color and bring skin tones back to natural. Consumes the auto-toned result."
+  },
+  {
+   "n": 7,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "portrait_neutralized"
+   ],
+   "output": "portrait_colorrecovered",
+   "note": "PHOTO 1: gently restore the faded color saturation/vibrance after the cast is gone, so muted fabrics and skin regain life without oversaturating."
+  },
+  {
+   "n": 8,
+   "tool": "image_adjust_brightness_and_contrast",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "portrait_colorrecovered"
+   ],
+   "output": "portrait_restored",
+   "note": "PHOTO 1: final clarity/contrast lift — raise local contrast to recover the perceived sharpness the brief calls the MAIN priority (no sharpen tool exists; clarity is delivered honestly via contrast shaping). Produces the fully restored portrait."
+  },
+  {
+   "n": 9,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "scan_asset_urns"
+   ],
+   "output": "bw_backdrop_scratch_mask",
+   "note": "PHOTO 2 (B&W): select the plain grey studio backdrop region that carries the white scratch lines, so the scratches over a UNIFORM area can be concealed with a matched solid fill (the connector has no generative heal, so concealment is scoped to plain regions only)."
+  },
+  {
+   "n": 10,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bw_backdrop_scratch_mask"
+   ],
+   "output": "bw_scratches_concealed",
+   "note": "PHOTO 2: solid-color fill the selected backdrop with the matched medium-grey of the seamless, covering the white scratch lines so they vanish into the uniform backdrop. fill_area is solid-color only — valid here because the target region is genuinely uniform."
+  },
+  {
+   "n": 11,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bw_scratches_concealed"
+   ],
+   "output": "bw_autotoned",
+   "note": "PHOTO 2: auto-tone the now-clean B&W to recover the silver-gelatin tonal range flattened by fading. Consumes the scratch-concealed image."
+  },
+  {
+   "n": 12,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bw_autotoned"
+   ],
+   "output": "bw_restored",
+   "note": "PHOTO 2: apply a B&W clarity/contrast Lightroom preset (from image_list_presets) to deliver the crisp, high-clarity monochrome look for the A4 print. Produces the fully restored B&W photo."
+  },
+  {
+   "n": 13,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "scan_asset_urns"
+   ],
+   "output": "snapshot_cropped",
+   "note": "PHOTO 3 (snapshot): crop off the crooked thin white scan border so only the image content remains before damage concealment and grading."
+  },
+  {
+   "n": 14,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "snapshot_cropped"
+   ],
+   "output": "snapshot_sky_mask",
+   "note": "PHOTO 3: select the plain pale-blue sky region that contains both the torn white corner triangle and the sky scratches — a uniform area where a matched solid fill is an honest concealment."
+  },
+  {
+   "n": 15,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "snapshot_sky_mask"
+   ],
+   "output": "snapshot_damage_concealed",
+   "note": "PHOTO 3: solid-fill the selected sky with the matched sky-blue, covering the torn-corner white triangle and the scratch lines so they disappear into the uniform sky. Solid-fill is valid because the region is uniform."
+  },
+  {
+   "n": 16,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "snapshot_damage_concealed"
+   ],
+   "output": "snapshot_neutralized",
+   "note": "PHOTO 3: correct the aged magenta/cyan color shift of the faded C-print toward neutral. Consumes the concealed image."
+  },
+  {
+   "n": 17,
+   "tool": "image_adjust_brightness_and_contrast",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "snapshot_neutralized"
+   ],
+   "output": "snapshot_restored",
+   "note": "PHOTO 3: recover faded contrast and lift clarity/local contrast for the print. Produces the fully restored snapshot."
+  },
+  {
+   "n": 18,
+   "tool": "image_add_grain",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "portrait_restored",
+    "bw_restored",
+    "snapshot_restored"
+   ],
+   "output": "three_grained",
+   "note": "Add a very light, uniform film grain to all three restored images so the solid-filled concealment patches and re-graded areas don't look plastic against the original photographic texture (run per image, same settings). Consumes the three restored outputs."
+  },
+  {
+   "n": 19,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "three_grained"
+   ],
+   "output": "three_A4_outputs",
+   "note": "Crop-and-resize each grained image to true A4 print dimensions 2480x3508 px at 300 DPI (run per image), yielding portrait_1968_restored_A4.png, bw_studio_1955_restored_A4.png, snapshot_1972_restored_A4.png. This is a real resize to a target size, within tool scope (no upscaling claim — A4 fits the scan resolution)."
+  },
+  {
+   "n": 20,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "scan_asset_urns",
+    "three_A4_outputs"
+   ],
+   "output": "restoration_before_after_board",
+   "note": "Assemble the three original scan URNs alongside the three restored A4 outputs into a Firefly Board before/after approval contact-board (deep-link) for client sign-off before printing. Honest use: presents assets already produced, generates no art."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_crop_to_bounds",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_adjust_vibrance_and_saturation",
+  "image_adjust_brightness_and_contrast",
+  "image_select_by_prompt",
+  "image_fill_area",
+  "image_apply_preset",
+  "image_crop_and_resize",
+  "image_add_grain",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 20,
+ "distinct_adobe_tools": 14,
+ "chaining_note": "Strict output-to-input chain, three parallel per-photo sub-chains converging into a shared finishing tail. LOAD: step1 asset_initialize_file_upload -> uploaded_three_scans; step2 asset_finalize_file_upload(uploaded_three_scans) -> scan_asset_urns (the only asset source every branch draws from). PHOTO 1 branch: scan_asset_urns ->(3 auto_straighten) portrait_straightened ->(4 crop_to_bounds) portrait_cropped ->(5 auto_tone) portrait_autotoned ->(6 color_temperature) portrait_neutralized ->(7 vibrance_and_saturation) portrait_colorrecovered ->(8 brightness_and_contrast) portrait_restored. PHOTO 2 branch: scan_asset_urns ->(9 select_by_prompt) bw_backdrop_scratch_mask ->(10 fill_area) bw_scratches_concealed ->(11 auto_tone) bw_autotoned ->(12 apply_preset) bw_restored. PHOTO 3 branch: scan_asset_urns ->(13 crop_to_bounds) snapshot_cropped ->(14 select_by_prompt) snapshot_sky_mask ->(15 fill_area) snapshot_damage_concealed ->(16 color_temperature) snapshot_neutralized ->(17 brightness_and_contrast) snapshot_restored. CONVERGE: step18 add_grain consumes {portrait_restored, bw_restored, snapshot_restored} -> three_grained; step19 crop_and_resize(three_grained) -> three_A4_outputs (the three A4 deliverables); step20 create_firefly_board consumes {scan_asset_urns, three_A4_outputs} -> before/after board. Every step after step1 consumes a prior step's named output; the three restored deliverables and the approval board emerge purely from the chain.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 20 connector calls and 14 distinct Adobe tools across 3 groups (asset ingest, the image_* raster family, and the Firefly board), with three independent per-photo restoration sub-chains that converge into a shared grain+A4+board tail — far above the >=10 calls / >=6 distinct tools bar. Difficulty comes from sequencing damage-type-specific fixes correctly (straighten before crop; conceal scratches before re-toning; neutralize cast before recovering saturation; grain last so it overlays the solid-fill patches) and from honest scoping: the agent must recognize that the connector has NO generative heal/clone/object-removal and NO sharpen, so 'scratches/tears' are concealed only where they cross uniform regions via select-by-prompt + solid fill_area, and 'clarity' is delivered through tonal/local-contrast shaping and a clarity preset rather than an invented sharpen op. Every step is [C] headless-confirmed, so the whole workflow is autonomously runnable, but a naive agent that reaches for gen-fill, object-removal, upscaling, or a sharpen tool would violate the capability sheet — making correct tool discipline the core challenge.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "issues": [
+   "No hard-constraint violations found. All 20 steps are server=='adobe' (pure_adobe); no Canva tools; no Express interactive widgets (search_design/fill_text/animate_design/change_background_color absent).",
+   "Chaining is 100%: all 19 steps after step 1 consume a prior named output via inputs_from (step 20 reuses scan_asset_urns from step 2 for the before-side, which is genuine reuse).",
+   "image_fill_area (steps 10 & 15) used correctly as SOLID-COLOR fill of uniform-region selections (grey studio backdrop, plain sky) — the spec explicitly scopes scratch/tear concealment to PLAIN uniform areas and disclaims any generative heal/clone/object-removal, matching the A1 constraint.",
+   "No [X] capabilities invoked: spec explicitly avoids gen-fill, AI object-removal, text-to-image, compositing, bg-replace-by-prompt, and upscaling. 'Blurriness/clarity' is honestly delivered via contrast/highlights/dark-portion shaping + a clarity preset rather than an invented sharpen tool (no sharpen tool exists in the sheet) — correctly disclaimed.",
+   "create_firefly_board (step 20, [C]) used honestly to assemble already-produced CC assets (3 originals + 3 restored A4 outputs) into a before/after board; it generates no art, matching the A4 honest-use note.",
+   "Counts verified: 14 distinct adobe tools and 20 calls, both well above the >=6 distinct / >=10 calls bar.",
+   "MINOR (non-blocking, not a violation): steps 18 (add_grain) and 19 (crop_and_resize) each act on three images but are counted as one call each ('run per image'); a literal run would be 3x each, so the true call count is conservatively under-stated — this under-claims rather than over-claims, so no severity impact.",
+   "MINOR (non-blocking): exec_mode tags are accurate — every step is [C] per the sheet (asset_* , image_* family, and create_firefly_board are all [C]); no [W]/[A]/[T]/[L] step is mislabeled as headless."
+  ]
+ }
+}

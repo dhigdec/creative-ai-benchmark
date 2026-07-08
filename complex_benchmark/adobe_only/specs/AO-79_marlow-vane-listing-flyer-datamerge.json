@@ -1,0 +1,386 @@
+{
+ "slot_id": "L06",
+ "category": "datamerge_print",
+ "title": "Marlow & Vane property flyer batch: grade listing photos, vectorize the agency crest, and InDesign data-merge a listings CSV into per-property print flyers (PDF + high-res JPEG)",
+ "slug": "marlow-vane-listing-flyer-datamerge",
+ "vertical": "real_estate_property",
+ "source": {
+  "platform": "Upwork",
+  "reference": "Real Estate Flyer Designer Needed"
+ },
+ "grounding_note": "VERBATIM from the Upwork brief: \"We are seeking a talented designer to create a real estate flyer for a new listing. The flyer should be visually appealing and effectively communicate the property's features and benefits.\" REASONABLY ENRICHED into a runnable Adobe-only data-merge benchmark: the raw brief implies a from-scratch flyer layout, which is NOT in connector scope (there is no layout composition; document_merge_data_layout / document_render_layout only BIND/EXPORT a GENUINE authored .indd). So the client (a fictional boutique agency, Marlow & Vane Realty) is modeled as supplying the authored InDesign flyer template carrying real <<fields>> plus photo frames, a listings roster CSV (one row per new listing), the raw agent-shot property photos, and the flat agency crest PNG — a normal freelancer hand-off / recurring listing-flyer engagement. The Adobe chain then does the genuinely-doable heavy lifting the brief rewards: grading and consistently cropping the dull/tilted property photos so each listing reads well, vectorizing the crest for crisp print, sourcing a subtle paper/linen texture, and running a REAL InDesign data-merge so each roster row binds into the template to batch-produce one flyer per property, exported as a print-ready PDF and high-res JPEGs. \"New listing\" is honored: the roster holds real per-listing fields (price, beds, baths, sqft, address, blurb).",
+ "one_line_ask": "Grade four raw property photos, vectorize the Marlow & Vane crest, source a subtle linen texture, then run the client's authored InDesign flyer template through a data-merge against a four-listing roster CSV to batch-produce a print-ready PDF and per-listing high-res JPEGs.",
+ "full_brief": "Marlow & Vane Realty, a boutique residential agency, needs its new-listing flyer sheet finished for print and email. Our marketing lead has handed off an authored InDesign flyer template (listing_flyer_template.indd) — a US Letter portrait one-listing-per-page layout in a clean editorial style with a hero photo frame, three thumbnail frames, a crest placement, a full-bleed background frame for a subtle paper/linen texture, and REAL data-merge fields (<<address>>, <<price>>, <<beds>>, <<baths>>, <<sqft>>, <<blurb>>, <<agent_name>>, <<agent_phone>>). We are also handing off a listings roster CSV (four current new listings, one row each with those exact field names), four raw agent-shot property photos (a curb-appeal exterior, a bright living room, a kitchen, a primary bedroom), and the agency crest as a flat PNG. The photos are unappetizing as-shot: slightly tilted, dull/flat, cool white-balance, and slightly under- or over-exposed by window light. The job: (1) make every property photo look bright, warm and inviting — straighten, auto-tone, warm the white balance toward a welcoming daylight look, gently lift shadows, push vibrance a touch (never garish — this is real estate, not a burger), and crop all four consistently to the frame ratios the template expects (a 3:2 hero and matching thumbnails); (2) vectorize the flat crest PNG into a clean SVG so the monogram stays razor-sharp at large print size; (3) license a subtle paper/linen texture from Adobe Stock to back the layout without competing with the photos; (4) upload all the prepped assets, then run the client's authored .indd through InDesign data-merge against the roster CSV so every listing's address / price / beds / baths / sqft / blurb / agent contact binds into its own flyer page, with the graded photos, crest and texture placed; (5) export the bound multi-page document to a print-ready PDF (all four flyers) and also emit a high-resolution JPEG per listing for email and MLS use; (6) write a short recipe note recording the grade settings and the CSV-to-field mapping so the same treatment can be re-run next week when new listings come in. Deliverable dimensions: US Letter portrait (8.5 x 11 in), ~300 DPI print. Brand constraints: keep the editorial/clean look, do not oversaturate, crest must be crisp vector, agent contact block bound from the CSV per row.",
+ "inputs": [
+  {
+   "name": "listing_flyer_template.indd",
+   "kind": "data",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine Adobe InDesign document (.indd/.idml) for a US Letter portrait (8.5x11in) one-listing-per-page real-estate flyer in a clean editorial style. Must contain a hero image frame sized 3:2, three matching thumbnail frames, a crest placement frame, a full-bleed background frame for a paper/linen texture, and REAL InDesign data-merge placeholder fields named <<address>>, <<price>>, <<beds>>, <<baths>>, <<sqft>>, <<blurb>>, <<agent_name>>, <<agent_phone>> laid out as a listing card (headline address, price band, feature row, descriptive blurb, agent contact footer). Authored by hand in InDesign so the data-merge fields actually bind and paginate one page per roster row; a PDF-converted .indd with literal text would NOT bind.",
+   "realism_notes": "Modeled as the agency's own draft template (a normal freelancer revision/recurring-engagement hand-off). document_merge_data_layout is [T] and REQUIRES a user-authored .indd carrying real merge fields — it cannot be connector-generated, so it is listed as a supplied input, not a chain output."
+  },
+  {
+   "name": "listings_roster.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a CSV with columns address,price,beds,baths,sqft,blurb,agent_name,agent_phone holding FOUR fictional current listings for a boutique agency (mix of a craftsman bungalow, a mid-century ranch, a downtown loft condo, and a suburban colonial). Realistic US addresses on fictional streets, list prices $415,000-$1,275,000, beds 1-4, baths 1-3.5, sqft 720-3,200, a one-line appetizing blurb per listing, and one of two fictional agents (Dana Marlow / Theo Vane) with fictional phone numbers. Column names must exactly match the InDesign merge fields <<address>>,<<price>>,<<beds>>,<<baths>>,<<sqft>>,<<blurb>>,<<agent_name>>,<<agent_phone>>.",
+   "realism_notes": "One row per new listing so the [T] data-merge paginates one flyer page per row; headers match the authored .indd merge fields exactly so binding succeeds."
+  },
+  {
+   "name": "photo_exterior_curb.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of a craftsman bungalow front exterior on an overcast afternoon, slightly tilted horizon (about 3 degrees), flat dull grey lighting, cool/blue white balance, a parked car and a trash bin partly in frame at the edge, lawn slightly washed out. Real siding texture, real shadows, candid real-estate-agent phone photo, no HDR gloss, no CGI.",
+   "realism_notes": "Deliberately imperfect (tilt, flat cool tone, overcast) so the grade+straighten+crop chain has real work; edge clutter justifies a crop, not object removal. gpt-image-2 for photoreal architecture."
+  },
+  {
+   "name": "photo_living_room.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of a bright living room interior with a large window, harsh window backlight blowing out the glass while the room interior sits underexposed and cool, slightly crooked framing, a stray power cable visible near the baseboard. Real furniture, real hardwood floor, candid listing photo, no virtual staging, no CGI.",
+   "realism_notes": "Backlit window + underexposed interior justifies auto-tone, shadow-lift, warm-up and exposure steps; crooked framing justifies straighten."
+  },
+  {
+   "name": "photo_kitchen.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of a mid-century kitchen, dull yellow-green fluorescent tube lighting giving an unpleasant cast, flat contrast, slightly tilted, cluttered countertop edge with a dish rack in frame. Real cabinets, real countertop texture, candid agent photo, no CGI gloss.",
+   "realism_notes": "Ugly fluorescent cast justifies color-temperature correction + single-color desaturation of the green cast; tilt justifies straighten."
+  },
+  {
+   "name": "photo_primary_bedroom.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of a primary bedroom, dim evening lighting, muddy underexposed shadows, cool white balance, slightly crooked, a laundry basket partly visible at the frame edge. Real bedding texture, real window blinds, candid listing photo, no CGI.",
+   "realism_notes": "Underexposed + cool justifies auto-tone/exposure/warm-up; crooked + edge clutter justifies straighten + consistent crop."
+  },
+  {
+   "name": "marlow_vane_crest.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A flat monogram crest logo reading 'M&V' with 'MARLOW & VANE REALTY' beneath it in a refined serif, a simple thin-line shield outline, solid dark-navy on a transparent background, no gradients, high contrast, crisp flat raster PNG suitable for vectorizing.",
+   "realism_notes": "gemini-3-pro-image for clean legible logo text; flat high-contrast solid navy so image_vectorize produces a clean SVG (no gradients to trip up the trace)."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "MarlowVane_Listing_Flyers_print.pdf",
+   "kind": "pdf",
+   "spec": "Print-ready multi-page US Letter portrait (8.5x11in) PDF exported from the data-merged InDesign document — one flyer page per roster listing; per-row copy (address/price/beds/baths/sqft/blurb/agent) bound from the CSV; graded photos + vectorized crest + linen texture placed; ~300 DPI print quality."
+  },
+  {
+   "name": "MarlowVane_Listing_JPEGs_x4",
+   "kind": "image",
+   "spec": "Four high-resolution JPEGs, one per listing flyer page (US Letter portrait, max quality), for email blasts and MLS upload."
+  },
+  {
+   "name": "graded_property_photos_x4",
+   "kind": "image",
+   "spec": "Four color-graded, straightened, consistently cropped property photos (exterior 3:2 hero + living room / kitchen / bedroom thumbnails) matching the template frames, with a shared warm/bright editorial look."
+  },
+  {
+   "name": "marlow_vane_crest.svg",
+   "kind": "vector",
+   "spec": "Clean vector SVG of the Marlow & Vane monogram crest for crisp scaling at large print size."
+  },
+  {
+   "name": "flyer_recipe_note.txt",
+   "kind": "data",
+   "spec": "A short recipe note recording the per-photo grade settings (straighten, auto-tone, temperature, shadow-lift, vibrance, crop ratios) and the CSV-column-to-InDesign-field mapping, so the same flyer batch can be re-run for next week's listings."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_search",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "stock_linen_candidates",
+   "note": "Search Adobe Stock for a subtle paper/linen background texture to back the flyer without competing with the photos (low-res candidates)."
+  },
+  {
+   "n": 2,
+   "tool": "asset_license_and_download_stock",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "stock_linen_candidates",
+   "output": "linen_texture_fullres",
+   "note": "License and download the chosen linen texture at full-res (license BEFORE use); becomes the layout background asset."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photo_exterior_curb.jpg",
+   "output": "exterior_straightened",
+   "note": "Level the tilted horizon on the curb-appeal exterior hero shot."
+  },
+  {
+   "n": 4,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "exterior_straightened",
+   "output": "exterior_toned",
+   "note": "Auto-tone the straightened exterior to fix the flat/dull overcast exposure."
+  },
+  {
+   "n": 5,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "exterior_toned",
+   "output": "exterior_warmed",
+   "note": "Warm the cool/blue overcast white balance toward an inviting daylight look."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_dark_portions",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "exterior_warmed",
+   "output": "exterior_shadows_lifted",
+   "note": "Gently lift the crushed shadows so the shaded siding and lawn read cleanly."
+  },
+  {
+   "n": 7,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "exterior_shadows_lifted",
+   "output": "exterior_vibrant",
+   "note": "Push vibrance a touch so the lawn/sky read fresh — restrained, not garish (real estate look)."
+  },
+  {
+   "n": 8,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "exterior_vibrant",
+   "output": "exterior_hero_3x2",
+   "note": "Crop/resize to the 3:2 hero frame the template expects, trimming the parked car / trash bin at the edge (crop, not object removal)."
+  },
+  {
+   "n": 9,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photo_living_room.jpg",
+   "output": "living_toned",
+   "note": "Auto-tone the backlit living room to recover the underexposed interior (same grade pipeline)."
+  },
+  {
+   "n": 10,
+   "tool": "image_adjust_exposure",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "living_toned",
+   "output": "living_exposed",
+   "note": "Nudge exposure up on the dim interior so the room is bright and welcoming."
+  },
+  {
+   "n": 11,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "living_exposed",
+   "output": "living_warmed",
+   "note": "Warm the cool interior to match the exterior hero's white balance for a consistent set."
+  },
+  {
+   "n": 12,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "living_warmed",
+   "output": "living_thumb_3x2",
+   "note": "Crop the living room to the matching 3:2 thumbnail frame, trimming the stray power cable at the baseboard edge."
+  },
+  {
+   "n": 13,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photo_kitchen.jpg",
+   "output": "kitchen_straightened",
+   "note": "Straighten the tilted kitchen shot."
+  },
+  {
+   "n": 14,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "kitchen_straightened",
+   "output": "kitchen_toned",
+   "note": "Auto-tone the flat fluorescent-lit kitchen."
+  },
+  {
+   "n": 15,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "kitchen_toned",
+   "output": "kitchen_neutralized",
+   "note": "Correct the ugly yellow-green fluorescent cast toward neutral daylight."
+  },
+  {
+   "n": 16,
+   "tool": "image_adjust_single_color_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "kitchen_neutralized",
+   "output": "kitchen_degreened",
+   "note": "Knock down the lingering green cast by desaturating just the green channel so cabinets read true."
+  },
+  {
+   "n": 17,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "kitchen_degreened",
+   "output": "kitchen_thumb_3x2",
+   "note": "Crop the kitchen to the 3:2 thumbnail frame, trimming the cluttered dish-rack countertop edge."
+  },
+  {
+   "n": 18,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photo_primary_bedroom.jpg",
+   "output": "bedroom_toned",
+   "note": "Auto-tone the dim underexposed primary bedroom."
+  },
+  {
+   "n": 19,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "bedroom_toned",
+   "output": "bedroom_warmed",
+   "note": "Warm the cool bedroom to the consistent inviting look."
+  },
+  {
+   "n": 20,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "bedroom_warmed",
+   "output": "bedroom_thumb_3x2",
+   "note": "Crop the bedroom to the matching 3:2 thumbnail frame, trimming the laundry basket at the edge so all four photos share the frame ratio."
+  },
+  {
+   "n": 21,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "marlow_vane_crest.png",
+   "output": "crest_svg",
+   "note": "Vectorize the flat crest PNG into a clean SVG for razor-sharp large-print scaling."
+  },
+  {
+   "n": 22,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "exterior_hero_3x2, living_thumb_3x2, kitchen_thumb_3x2, bedroom_thumb_3x2, crest_svg, linen_texture_fullres",
+   "output": "upload_session",
+   "note": "Initialize an upload session for all prepped flyer assets (graded photos, vector crest, texture)."
+  },
+  {
+   "n": 23,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "uploaded_asset_urns",
+   "note": "Finalize the upload; returns asset URNs the InDesign template/data-merge will reference."
+  },
+  {
+   "n": 24,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_asset_urns",
+   "output": "flyer_project_folder",
+   "note": "Create a Creative Cloud project folder to hold the flyer batch inputs and outputs for the recurring engagement."
+  },
+  {
+   "n": 25,
+   "tool": "document_merge_data_layout",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": "listing_flyer_template.indd, listings_roster.csv, uploaded_asset_urns",
+   "output": "flyers_merged_indd",
+   "note": "InDesign data-merge: bind the four roster listings (address/price/beds/baths/sqft/blurb/agent) into the client's authored .indd (which carries real <<fields>>), paginating one flyer page per row; graded photos + crest + texture sit in their frames. [T] requires the user-authored template."
+  },
+  {
+   "n": 26,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flyers_merged_indd",
+   "output": "MarlowVane_Listing_Flyers_print.pdf",
+   "note": "Export the merged multi-page InDesign document to a print-ready ~300 DPI US Letter PDF (all four flyers)."
+  },
+  {
+   "n": 27,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flyers_merged_indd",
+   "output": "MarlowVane_Listing_JPEGs_x4",
+   "note": "Export the same merged document to high-resolution per-page JPEGs (one per listing) for email/MLS use."
+  },
+  {
+   "n": 28,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "MarlowVane_Listing_Flyers_print.pdf, MarlowVane_Listing_JPEGs_x4, flyer_project_folder",
+   "output": "deliverables_in_folder",
+   "note": "Copy the exported PDF + JPEGs into the project folder so the whole flyer batch lives together for hand-off."
+  },
+  {
+   "n": 29,
+   "tool": "local_write_recipe_note",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "exterior_hero_3x2, living_thumb_3x2, kitchen_thumb_3x2, bedroom_thumb_3x2, flyers_merged_indd",
+   "output": "flyer_recipe_note.txt",
+   "note": "Write a recipe note recording each photo's grade settings and the CSV-column-to-InDesign-field mapping so the batch can be re-run for next week's listings."
+  }
+ ],
+ "tools_used": [
+  "asset_search",
+  "asset_license_and_download_stock",
+  "image_auto_straighten",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_adjust_dark_portions",
+  "image_adjust_vibrance_and_saturation",
+  "image_adjust_exposure",
+  "image_adjust_single_color_saturation",
+  "image_crop_and_resize",
+  "image_vectorize",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "asset_create_folders",
+  "document_merge_data_layout",
+  "document_render_layout",
+  "asset_copy_assets",
+  "local_write_recipe_note"
+ ],
+ "tool_call_count": 29,
+ "distinct_adobe_tools": 17,
+ "chaining_note": "Strict output-to-input chaining throughout. The exterior hero runs a 6-link grade pipeline: photo_exterior_curb.jpg -> auto_straighten(3) -> auto_tone(4) -> color_temperature(5) -> dark_portions/shadow-lift(6) -> vibrance(7) -> crop(8), each step consuming only the prior step's output. The living room / kitchen / bedroom photos each feed their own grade->crop sub-chains (9-12, 13-17, 18-20); the kitchen adds a temperature-then-single-color-desaturation branch to kill the fluorescent green (15->16). The linen texture chains search(1)->license(2). The crest chains raw PNG->vectorize(21). All six prepped outputs (exterior_hero_3x2, living/kitchen/bedroom_thumb_3x2, crest_svg, linen_texture_fullres) converge into the upload session(22)->finalize(23)->create project folder(24)->data-merge(25), which also consumes the authored listing_flyer_template.indd + roster CSV. The merged multi-page .indd(25) is the single source for both exports — render PDF(26) and render per-page JPEGs(27) — which then converge into asset_copy_assets(28) into the project folder, and the four graded photos + merged doc feed the local recipe note(29). Nothing after the step-1 search and the raw input loads originates outside the chain; the flyer batch emerges only from the assembled chain.",
+ "difficulty_rationale": "Long-horizon flagship: 29 connector calls across four tool groups (image_* raster grading, asset_* stock/storage/folders, document_* InDesign data-merge+render, local recipe note), 17 distinct Adobe tools — well above the >=10 calls / >=6 distinct-tool floor. Difficulty comes from running four separate property photos through consistent but photo-specific grade pipelines (the kitchen needs an extra fluorescent-cast neutralize + green-desaturate branch; the living room needs an exposure lift for the backlit window), vectorizing the crest, sourcing+licensing stock, then converging everything into a GENUINE InDesign [T] data-merge that paginates one flyer per roster row, dual-exporting a multi-page PDF and per-page JPEGs, filing them into a project folder, and emitting a re-run recipe. It respects every hard limit: no generative fill / expand / object-removal-with-reconstruction / text-to-image / from-scratch layout / upscaling; edge clutter (cars, cables, laundry) is handled by CROPPING, not inpainting; image_fill_area is unused; the layout is NOT composed by the connector — document_merge_data_layout / document_render_layout only BIND/EXPORT the client's authored .indd, which is a supplied input; vibrance is kept restrained per the real-estate brand constraint; real per-listing copy comes from the roster CSV.",
+ "workflow_nature": "create",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "None of the banned capabilities are used. No image_crop_and_resize / reframe-crop / generative-fill of new content; no text-to-image or from-scratch art/logo (the crest is a SUPPLIED PNG, only vectorized); no upscaling/super-resolution; no object-removal-with-reconstruction/inpainting (edge clutter — parked car, trash bin, power cable, dish rack, laundry basket — is removed by CROPPING to the template frame, never by reconstructing occluded pixels); no bespoke font/letterform design; no unreachable external account. image_fill_area is NOT used at all. The layout is not composed by the connector: document_merge_data_layout [T] BINDS the client's authored listing_flyer_template.indd (a supplied input carrying real <<fields>>), and document_render_layout [C] only EXPORTS the merged doc — neither composes a new layout. A PDF-converted .indd would not bind, and the spec/input notes state the template must be genuinely authored.",
+  "notes": "Risky-looking steps stay in-bounds: (1) image_vectorize (n21) traces a SUPPLIED flat high-contrast PNG crest into SVG — a legitimate raster->vector trace, not logo generation. (2) image_adjust_single_color_saturation (n16) desaturates the green channel to fight a fluorescent cast — a global HSL-style adjustment, no masking/compositing claim. (3) image_crop_and_resize (n8,12,17,20) removes frame-edge clutter by cropping to the template ratio, which is honest — no occluded content is reconstructed. (4) asset_license_and_download_stock (n2) licenses BEFORE use. (5) document_merge_data_layout is correctly [T] with the authored .indd + matching-header CSV as supplied inputs; per-listing copy is REAL roster data, honoring the 'new listing' brief. (6) local_write_recipe_note (n29) is [L], server='local', emitting a re-run note — an in-palette local step. Counts verified: 29 connector_workflow steps -> tool_call_count=29; 17 distinct adobe-server tools (local_write_recipe_note excluded) -> distinct_adobe_tools=17 (>=6); >=10 calls -> qualifies as long-horizon flagship. SLOT-MATCH confirmed: category=datamerge_print / operation-family Layout & Data (O5) / output_modality document / workflow_nature=create all equal slot L06; vertical real_estate_property matches; fictional IP-clean brand (Marlow & Vane Realty) replaces the anonymous real client. workflow_nature=create: a NEW deliverable (per-listing flyer batch) assembled from SUPPLIED parts (authored template, roster, photos, crest) via data-merge, not generative."
+ },
+ "id": "AO-79"
+}

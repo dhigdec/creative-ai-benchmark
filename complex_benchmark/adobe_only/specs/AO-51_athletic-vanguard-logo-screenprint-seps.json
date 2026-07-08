@@ -1,0 +1,383 @@
+{
+ "id": "AO-51",
+ "slug": "athletic-vanguard-logo-screenprint-seps",
+ "title": "Vanguard Athletic Logo — Spot-Color Separation, Vectorization & Multi-Format Screen-Print Package",
+ "vertical": "General / Cross-Industry Branding & Graphics",
+ "category": "screenprint_seps",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Athletic%20Logo%20Design"
+ },
+ "grounding_note": "VERBATIM from the source brief: client \"have graphics already created with Chat GPT\" and needs them \"refined\" into formats \"for screen printing, social media, creating my own print graphics, etc.\"; the named marks are \"VANGUARD UC\", \"Subdued American flag\", \"Star icon\", \"Chevrons\", \"Head UC\" and a \"Vanguard Badge\"; deliverables required \"both vector based with separate layers and rasterized\" in \"multiple file formats (.ai, .eps, JPEG, PDF, etc)\", with \"spot color info\"; client wants to \"edit colors of the artwork outline, stroke, fill, etc.\"; palette is verbatim \"olive drab, khaki, black, dark grey\" plus \"camo patterns, including digital camo\" and a \"military type font\". REASONABLY ENRICHED to make it a runnable Adobe-connector benchmark: I fixed the source ChatGPT raster (one combined athletic-badge PNG plus a separate digital-camo swatch) as the client-supplied inputs; I made the spot-color reduction concrete (each named element flattened to ONE solid ink so it screen-prints as a clean spot separation — done via select_by_prompt -> invert -> fill_area solid color, which is the ONLY honest non-generative way the connector enforces a flat spot ink); I specified the export as a GENUINE authored .ai (provided as an authored input, since render_vector only EXPORTS, never composes) and added font_recommend for the \"military type font\" line. No deliverable was invented beyond what the brief asks (refine -> spot-color -> vector + raster + multi-format).",
+ "one_line_ask": "Refine my ChatGPT-made \"Vanguard\" athletic badge into clean, separated spot-color screen-print artwork (olive drab / khaki / black / dark grey + digital camo), vectorize it, and deliver it in multiple file formats with spot-color info.",
+ "full_brief": "I run a youth/athletic \"Vanguard\" team and I already mocked up our logo set in ChatGPT, but the files are messy raster PNGs I can't actually use. I need them refined and turned into real production artwork I can hand to a screen printer and also post on social. The combined badge has several elements — the \"VANGUARD\" wordmark (UC), a subdued American flag, a star icon, chevrons, a soldier head mark, and the outer badge ring. For screen printing each of these has to print as a FLAT spot color, so I need every element reduced to a single clean ink from my military palette — olive drab, khaki, black, and dark grey — with the digital-camo swatch I made available as a fill/accent. Right now the ChatGPT export is dull, slightly crooked, has anti-aliased fuzzy color edges, and the colors aren't consistent enough to separate. So: straighten and tidy it, auto-tone/level it so the palette reads true, then go element-by-element and lock each named mark to one solid spot ink (so my printer gets clean separations), pull a true black plate and a knockout, vectorize the cleaned art into scalable vector, and give me a digital-camo accent swatch as a separate vector too. Final delivery: a genuine layered vector source (.ai) exported to PDF/PNG/SVG for the press and for social, plus a recommendation for a military-style font for the wordmark, plus a spot-color reference sheet so the printer knows exactly which inks to load. I want to be able to re-edit outline/stroke/fill colors later, so keep the elements separable.",
+ "inputs": [
+  {
+   "name": "vanguard_badge_chatgpt_raster.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A flat 2D athletic team emblem badge titled 'VANGUARD' in bold condensed uppercase military stencil lettering across the bottom, inside a circular outer ring badge. Inside the ring: a subdued/desaturated American flag motif, a single five-point star icon, three downward military chevrons, and a stylized soldier/minuteman head silhouette facing left. Color palette restricted to olive drab green, khaki tan, black, and dark grey. Rendered as a slightly dull, low-contrast PNG export with visible anti-aliased soft fuzzy color edges and a faint 2-degree clockwise tilt, on a plain off-white background, looking like an amateur AI-generated mockup rather than clean vector art. No gradients-as-intended, flat-ish fills, 2048x2048.",
+   "realism_notes": "Must look like a real messy ChatGPT/AI raster export: soft anti-aliased element edges, slightly muddy non-uniform fills (so spot-color reduction is genuinely needed), faint tilt (so auto_straighten has work to do), dull low contrast (so auto_tone has work to do). Text-bearing emblem -> Gemini NBP is the right model for legible 'VANGUARD' lettering."
+  },
+  {
+   "name": "digital_camo_swatch.png",
+   "kind": "image",
+   "gen_prompt": "A seamless digital (pixelated MARPAT-style) camouflage pattern swatch using olive drab green, khaki tan, dark grey and black blocky pixel clusters, flat even lighting, no logo, no text, square tile, 1024x1024, clean and high-contrast so it can be vectorized into a repeatable accent fill.",
+   "gen_model": "gemini-3-pro-image",
+   "realism_notes": "A texture swatch, no people or text. Blocky high-contrast pixel clusters keep it vectorizable into clean vector shapes for use as an accent fill."
+  },
+  {
+   "name": "vanguard_separations_source.ai",
+   "kind": "vector",
+   "gen_model": "authored",
+   "gen_prompt": "A genuine, hand-authored layered Adobe Illustrator (.ai) vector source of the Vanguard badge, rebuilt from the cleaned/spot-locked raster: each named mark (VANGUARD wordmark, subdued flag, star, chevrons, soldier head, outer badge ring) drawn as its own separable vector layer, each locked to a single spot ink from {olive drab, khaki, black, dark grey} so outline/stroke/fill stay re-editable. Multiple artboards (press + social). NOT connector-generated — supplied as an authored designer input; document_render_vector only EXPORTS it.",
+   "realism_notes": "This is an AUTHORED human-designer input, not an AI/connector-generated asset. render_vector can only EXPORT an .ai, never compose one, so a genuine layered .ai must be provided as an input. Layers/artboards mirror the spot-locked raster produced by the earlier separation chain so the export matches the cleaned badge."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "vanguard_separations_source.ai",
+   "kind": "vector",
+   "spec": "AUTHORED (human designer) input, NOT connector-generated — listed here because it is part of the client handoff package. Genuine layered Adobe Illustrator (.ai) vector source with each named mark (VANGUARD wordmark, subdued flag, star, chevrons, head, badge ring) as a separable element, each locked to a single spot ink from {olive drab, khaki, black, dark grey} so outline/stroke/fill stay re-editable. It is uploaded (steps 22-23) and is the export target for document_render_vector (step 24), which only EXPORTS it — no connector step composes it. Annotators: do not score this as agent-produced."
+  },
+  {
+   "name": "vanguard_badge_vector.svg",
+   "kind": "vector",
+   "spec": "Clean scalable SVG of the cleaned/spot-reduced badge (from image_vectorize), suitable for social and re-coloring."
+  },
+  {
+   "name": "vanguard_press_export.pdf",
+   "kind": "pdf",
+   "spec": "Press-ready PDF exported from the genuine .ai via document_render_vector (all artboards)."
+  },
+  {
+   "name": "vanguard_social.png",
+   "kind": "image",
+   "spec": "High-res transparent-or-flat PNG of the finished badge for social media."
+  },
+  {
+   "name": "vanguard_black_plate.png",
+   "kind": "image",
+   "spec": "Single-color black knockout/plate raster (badge filled flat black on transparent) for the press black separation."
+  },
+  {
+   "name": "digital_camo_accent.svg",
+   "kind": "vector",
+   "spec": "Vectorized digital-camo accent swatch (from image_vectorize) for use as a repeatable fill/accent."
+  },
+  {
+   "name": "spot_color_reference.txt",
+   "kind": "data",
+   "spec": "Spot-color reference note: which solid ink each named element is locked to + recommended military font, packaged with the deliverables."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "uploaded_badge_ref",
+   "note": "Initialize upload of the client's ChatGPT raster badge (vanguard_badge_chatgpt_raster.png) into CC storage to get a working asset handle."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "uploaded_badge_ref"
+   ],
+   "output": "badge_assetURI",
+   "note": "Finalize the upload; yields the badge asset URI used by all subsequent edits."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_assetURI"
+   ],
+   "output": "badge_straightened",
+   "note": "Correct the faint ~2deg tilt in the AI export so element edges are square before separation."
+  },
+  {
+   "n": 4,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_straightened"
+   ],
+   "output": "badge_toned",
+   "note": "Auto-tone/level the dull low-contrast export so the olive/khaki/black/grey palette reads true before color locking."
+  },
+  {
+   "n": 5,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_toned"
+   ],
+   "output": "badge_saturated",
+   "note": "Push saturation/vibrance so the muddy AI fills converge toward consistent, separable hues."
+  },
+  {
+   "n": 6,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_saturated"
+   ],
+   "output": "ring_mask",
+   "note": "Select the outer badge ring element by prompt to isolate it for spot-color locking."
+  },
+  {
+   "n": 7,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_saturated",
+    "ring_mask"
+   ],
+   "output": "badge_ring_olive",
+   "note": "Solid-fill the ring selection with olive drab RGB (flat spot ink) — no generative content, just a flat spot separation."
+  },
+  {
+   "n": 8,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_ring_olive"
+   ],
+   "output": "wordmark_mask",
+   "note": "Select the 'VANGUARD' wordmark lettering by prompt on the ring-locked art to isolate it next."
+  },
+  {
+   "n": 9,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_ring_olive",
+    "wordmark_mask"
+   ],
+   "output": "badge_wordmark_khaki",
+   "note": "Solid-fill the wordmark with khaki RGB — locks the lettering to one flat spot ink."
+  },
+  {
+   "n": 10,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_wordmark_khaki"
+   ],
+   "output": "chevrons_star_mask",
+   "note": "Select the chevrons + star icon by prompt on the progressively-locked art."
+  },
+  {
+   "n": 11,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_wordmark_khaki",
+    "chevrons_star_mask"
+   ],
+   "output": "badge_chevrons_grey",
+   "note": "Solid-fill the chevrons/star with dark grey RGB — another flat spot separation, fully chained on prior output."
+  },
+  {
+   "n": 12,
+   "tool": "image_select_subject",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_chevrons_grey"
+   ],
+   "output": "subject_mask",
+   "note": "Select the central soldier-head subject to produce a true black plate from the spot-locked art."
+  },
+  {
+   "n": 13,
+   "tool": "image_invert_selection",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "subject_mask"
+   ],
+   "output": "background_mask",
+   "note": "Invert to the background so we can knock it out and pull a clean single-color black plate."
+  },
+  {
+   "n": 14,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_chevrons_grey",
+    "background_mask"
+   ],
+   "output": "vanguard_black_plate.png",
+   "note": "Solid-fill the inverted background flat black to produce the black knockout/plate separation (deliverable)."
+  },
+  {
+   "n": 15,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_chevrons_grey"
+   ],
+   "output": "badge_transparent",
+   "note": "Remove the off-white background of the fully spot-locked badge -> transparent PNG for social + vectorization."
+  },
+  {
+   "n": 16,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "badge_transparent"
+   ],
+   "output": "vanguard_social.png",
+   "note": "Crop tight to the badge bounds to produce the clean high-res social PNG deliverable."
+  },
+  {
+   "n": 17,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "vanguard_social.png"
+   ],
+   "output": "vanguard_badge_vector.svg",
+   "note": "Vectorize the cleaned, spot-reduced, cropped badge into a clean scalable SVG (deliverable)."
+  },
+  {
+   "n": 18,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "camo_upload_ref",
+   "note": "Initialize upload of the client's digital-camo swatch (digital_camo_swatch.png)."
+  },
+  {
+   "n": 19,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "camo_upload_ref"
+   ],
+   "output": "camo_assetURI",
+   "note": "Finalize the camo swatch upload -> asset URI."
+  },
+  {
+   "n": 20,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "camo_assetURI"
+   ],
+   "output": "digital_camo_accent.svg",
+   "note": "Vectorize the digital-camo swatch into a repeatable vector accent fill (deliverable)."
+  },
+  {
+   "n": 21,
+   "tool": "font_recommend",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "military_font_rec",
+   "note": "Recommend a military/stencil-style font for the VANGUARD wordmark, per the brief's 'military type font' request."
+  },
+  {
+   "n": 22,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "ai_source_upload_ref",
+   "note": "Initialize upload of the AUTHORED layered .ai source (vanguard_separations_source.ai) — a genuine human-designer file supplied as an input, since render_vector can only EXPORT an .ai, never compose one."
+  },
+  {
+   "n": 23,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "ai_source_upload_ref"
+   ],
+   "output": "ai_source_assetURI",
+   "note": "Finalize the authored .ai upload -> asset URI for the render_vector export step."
+  },
+  {
+   "n": 24,
+   "tool": "document_render_vector",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "ai_source_assetURI"
+   ],
+   "output": "vanguard_press_export.pdf",
+   "note": "Export the GENUINE authored layered .ai source (uploaded in steps 22-23) to a press-ready PDF across all artboards. render_vector only EXPORTS the authored .ai; it does not compose it."
+  },
+  {
+   "n": 25,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "vanguard_badge_vector.svg",
+    "vanguard_press_export.pdf",
+    "vanguard_social.png",
+    "vanguard_black_plate.png",
+    "digital_camo_accent.svg",
+    "military_font_rec"
+   ],
+   "output": "delivery_folder",
+   "note": "Create a delivery folder and gather all deliverables (SVG, PDF, social PNG, black plate, camo SVG) plus the spot-color/font reference for handoff."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_apply_auto_tone",
+  "image_adjust_vibrance_and_saturation",
+  "image_select_by_prompt",
+  "image_fill_area",
+  "image_select_subject",
+  "image_invert_selection",
+  "image_remove_background",
+  "image_crop_to_bounds",
+  "image_vectorize",
+  "font_recommend",
+  "document_render_vector",
+  "asset_create_folders"
+ ],
+ "tool_call_count": 25,
+ "distinct_adobe_tools": 15,
+ "chaining_note": "Strict output->input chain. Steps 1-2 load the client raster (badge_assetURI). 3 straightens it (badge_straightened), 4 tones THAT (badge_toned), 5 saturates THAT (badge_saturated). Then a repeating select->fill spot-locking chain that always consumes the previous locked output: 6 selects the ring on badge_saturated -> 7 fills it olive (badge_ring_olive); 8 selects the wordmark on badge_ring_olive -> 9 fills khaki (badge_wordmark_khaki); 10 selects chevrons/star on that -> 11 fills grey (badge_chevrons_grey). 12 selects the head subject on badge_chevrons_grey, 13 inverts that mask, 14 fills the inverted background flat black -> black plate. 15 removes background of badge_chevrons_grey -> transparent, 16 crops it -> social PNG, 17 vectorizes the social PNG -> badge SVG. A parallel sub-chain (18-20) loads + vectorizes the camo swatch. 21 font_recommend (independent advisory). 22-23 upload the AUTHORED .ai source (ai_source_assetURI); 24 exports that uploaded .ai -> press PDF (all artboards). 25 gathers every produced deliverable into a delivery folder. Three post-first steps do not chain on a prior connector output — the second upload init (18) and the .ai upload init (22) each start a fresh asset load, and font_recommend (21) is an independent advisory — giving 21/24 = 88% of post-first steps chained, above the >=80% bar. Every other non-load step's inputs_from names a prior step's output.",
+ "difficulty_rationale": "Long-horizon (25 connector calls, 15 distinct Adobe tools) across three groups: raster cleanup/tonal (auto_straighten, auto_tone, vibrance), iterative masked spot-color separation (select_by_prompt/select_subject/invert + fill_area solid repeated per named element — the genuinely hard, error-prone part where each fill must target exactly one element and chain onto the last), and vector/document export + asset packaging. It exercises the honest non-generative path for screen-print seps: fill_area is solid-color ONLY (no gen-fill, no object removal), image_vectorize for raster->SVG, render_vector EXPORTS a genuine authored .ai (never composes one), and font_recommend for the type ask. Difficulty comes from maintaining the spot-lock chain element-by-element without bleeding fills, and from respecting that the .ai must be supplied as an authored input and uploaded rather than generated.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "issues": [
+   "RESOLVED: Step 24 (render_vector) now declares only vanguard_press_export.pdf and its note says it exports the .ai to a press-ready PDF across all artboards — the earlier '+ PNG' embellishment was removed. The social PNG comes from step 16; no note-vs-output mismatch remains.",
+   "PROVENANCE (not a violation): vanguard_separations_source.ai is an AUTHORED human-designer input. It is now listed in inputs[] (gen_model 'authored') AND in outputs[] (as part of the client handoff package), explicitly flagged 'NOT connector-generated' in both places. It is uploaded in steps 22-23 and only EXPORTED by render_vector in step 24 — no connector step composes it. The rule permits render_vector on a genuine authored .ai, so this is allowed; annotators should not score the .ai as agent-produced.",
+   "NOTE: three post-first steps do not chain on a prior connector output — the camo upload init (18), the .ai upload init (22), and the advisory font_recommend (21). Step 24 (render_vector) now chains on the uploaded .ai handle (ai_source_assetURI from step 23). Chaining = 21/24 = 88% of post-first steps, >=80%, so chained passes.",
+   "NOTE (verified clean): all four image_fill_area uses (7/9/11/14) are solid-color/flat-black fills only — no gen-fill, no object removal, no compositing, no canvas extension; image_remove_background is ->transparent (not prompt bg-replace); image_vectorize is raster->SVG. No generative canvas-expansion tool is used anywhere in the workflow. No [X]-list capability invoked. feasible_no_X holds."
+  ]
+ }
+}

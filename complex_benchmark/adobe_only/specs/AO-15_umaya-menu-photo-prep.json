@@ -1,0 +1,321 @@
+{
+ "id": "AO-15",
+ "slug": "umaya-menu-photo-prep",
+ "title": "Umaya Tri-Fold Menu Refresh — Food Photography Prep, Brand-Cohesive Color Grade, Logo Vectorization & Source Export",
+ "vertical": "Food, Restaurant & Beverage",
+ "category": "food_bev_photo",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Restaurant%20Menu%20Redesign"
+ },
+ "grounding_note": "VERBATIM from the real Upwork brief: client is \"Umaya,\" a ramen + sushi restaurant; existing tri-fold printed dine-in menu, 22.5\"x12\" unfolded; they are NOT doing a full redesign but an updated, cleaner version that adds new ramen items and a new Wagyu section without overcrowding (the stated \"biggest layout challenge\" is the ramen area); current brand style = dark background, food photography, red accent elements, Japanese ramen/sushi aesthetic; deliverables = print-ready CMYK 300 DPI PDF + editable Illustrator source. REASONABLY ENRICHED to make it a runnable Adobe-connector benchmark: the brief's deliverable (the actual page layout/typesetting of the tri-fold) is layout COMPOSITION, which is NOT an available Adobe connector capability (render_layout/render_vector only EXPORT an already-authored .indd/.ai — they do not compose). So this benchmark is scoped to the genuinely Adobe-doable production work that wraps that layout: (a) prepping and color-grading the new dish photography (the new ramen bowls + the new Wagyu hero) to match the existing dark/red brand look, (b) producing isolated/transparent cut-outs of two dishes for tight placement in the crowded ramen section, (c) cropping every shot to the exact print aspect ratios the menu cells need at 300 DPI, (d) vectorizing the restaurant's logo for crisp print, (e) prepping a dark textured background plate, and (f) exporting print-ready renders of the client's EXISTING authored Illustrator menu source (supplied as an input asset) so the photography and brand assets are delivered drop-in ready for the designer to place. No layout is composed by the connector; the designer's hand-typesetting step is explicitly out of connector scope. The Wagyu/ramen item names and the \"dark bg / red accent / food photography\" art direction are taken straight from the brief.",
+ "one_line_ask": "Prep, color-grade, cut out, crop, and print-export the new dish photography, the vectorized logo, the textured background, and the existing Illustrator menu source for Umaya's tri-fold menu refresh, all matched to the dark/red Japanese brand look and ready for the designer to place.",
+ "full_brief": "Umaya is a ramen + sushi restaurant refreshing its existing tri-fold dine-in menu (22.5\"x12\" unfolded, print-ready CMYK 300 DPI). They are adding several new ramen bowls and an entirely new Wagyu section, and the brand look is fixed: dark background, hero food photography, red accent elements, Japanese ramen/sushi aesthetic. The page layout itself is being hand-typeset by their designer in the existing Adobe Illustrator source; this engagement is the PHOTOGRAPHY + BRAND-ASSET production that feeds that layout. Deliver a clean, cohesive set of placement-ready assets, all chained off the client's supplied raws.\\n\\nWork to perform with Adobe connectors:\\n1. Ingest the client-supplied assets: two newly-shot dish photos (a tonkotsu ramen bowl and the new Wagyu donburi hero), the restaurant's flat logo PNG, and the client's existing authored Illustrator menu source (.ai).\\n2. The Wagyu hero was shot slightly off-level — auto-straighten it, then auto-tone it as a neutral starting point.\\n3. Pull the whole photo set to ONE cohesive brand look: warm the white balance toward the existing menu's amber/dark feel, deepen the dark portions (the dark-background brand requirement), lift the highlights on the broth/garnish so the food still pops, and push vibrance so the red chili oil / red accents read strong against the dark plate. Both dishes must end up matching.\\n4. For the crowded ramen section, the designer needs tight cut-outs: isolate the ramen bowl subject and remove its background to a transparent PNG so it can sit close to type without a hard photo edge; do the same selective treatment so the Wagyu marbling reads (boost just the warm/red tones on the Wagyu via a prompt selection).\\n5. Crop each finished shot to the exact aspect ratios the menu cells need at 300 DPI (a tall ramen cell and a wide Wagyu banner).\\n6. Vectorize the flat logo PNG to clean SVG for crisp red-accent printing.\\n7. Prep the dark textured background plate: take a licensed dark slate/wood stock texture, darken its light portions and add fine grain so it reads as a premium dark menu background and not a flat fill.\\n8. Export print-ready PNG renders of the client's existing authored Illustrator menu source so the team has a current proof to drop the new assets into.\\n9. Assemble the final delivered set into a Firefly board so the client can review all placement-ready assets in one deep-link, and package the files.\\n\\nEverything must chain: each step consumes the previous step's output. No layout is composed by the connector — the designer hand-places these assets into the existing .ai. Deliverables: color-graded + brand-matched dish photos, transparent ramen cut-out, print-cropped shots at 300 DPI, vectorized logo SVG, dark textured background plate, print-ready menu-source proof renders, and a review board.",
+ "inputs": [
+  {
+   "name": "tonkotsu_ramen_bowl_raw.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal overhead-three-quarter food photograph of a single steaming tonkotsu ramen bowl on a dark slate table, rich creamy pork broth, halved soft-boiled egg, chashu pork slices, nori, scallions, a swirl of bright red chili oil, real steam wisps, individual garnish detail, natural soft window light from the left, slight specular highlights on the broth, shot on a 50mm lens shallow depth of field, candid restaurant documentary realism, no text, no logo, slightly imperfect plating, real ceramic bowl with a tiny glaze imperfection.",
+   "realism_notes": "Must look like a real restaurant phone-to-DSLR shot, not CGI: real steam, broth surface tension and reflections, uneven scallion scatter, faint fingerprint on the bowl rim. White balance intentionally a touch cool/neutral so the grading chain has something to warm."
+  },
+  {
+   "name": "wagyu_donburi_hero_raw.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal hero food photograph of a Wagyu beef donburi rice bowl, seared A5 Wagyu slices with visible marbling fanned over steamed rice, a soft onsen egg, pickled ginger, sesame, a brushstroke of dark tare sauce, shot slightly off-level (horizon tilted about 4 degrees) on a dark walnut wood surface, warm restaurant ambient light, real meat fiber and fat marbling texture, genuine rice grain detail, shallow depth of field, documentary realism, no text, no logo, a few stray sesame seeds on the table.",
+   "realism_notes": "Deliberately shot 3-4 degrees off-level to justify the auto_straighten step. Marbling and red meat tones must be physically plausible so the prompt-selected red/warm saturation boost has real subject matter. Background dark wood, not pure black."
+  },
+  {
+   "name": "umaya_logo_flat.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "Flat 2D restaurant logo on transparent background for 'Umaya', a stylized red brushstroke ramen bowl with rising steam forming a subtle Japanese-style mark, plus the wordmark 'Umaya' in a clean modern serif, single red accent color (#C8302A) plus near-black, crisp vector-style edges, no photographic texture, centered, high contrast.",
+   "realism_notes": "Delivered as a flat raster PNG (the client only has a rasterized logo) so vectorization is a genuine need. Clean red + near-black so the vectorize -> SVG output is plausibly clean. Wordmark must be legible for the print proof."
+  },
+  {
+   "name": "umaya_menu_existing.ai",
+   "kind": "vector",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "Represents the client's EXISTING authored Adobe Illustrator tri-fold menu source (22.5x12 inch unfolded, 6 panels): dark near-black background, red accent rules and section headers, placeholder image frames for dish photos, section labels 'Small Plates / Sushi Bowls / Artisan Ramen / Donburi Rice Bowls / Sushi Rolls / Nigiri-Sashimi / Kids / Desserts', Japanese ramen/sushi aesthetic. This is a genuine authored .ai supplied by the client; the connector only EXPORTS it (render_vector), it does not compose it.",
+   "realism_notes": "This is an authored input asset, NOT connector-generated layout. It exists so document_render_vector has a real .ai to export to print-ready PNG/PDF. Generation here is only to mock a plausible authored source for the benchmark; in a real run the client uploads their actual .ai."
+  },
+  {
+   "name": "dark_slate_texture_stock.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal seamless dark slate stone surface texture, charcoal grey-black, subtle natural mineral veining and matte sheen, very even lighting, premium restaurant menu background plate, high resolution, no objects, no text, slight natural surface grain.",
+   "realism_notes": "Stands in for a licensed Adobe Stock texture (the workflow licenses it via asset_license_and_download_stock before editing). Must be dark but not pure black so darken-light-portions + grain produce a visible, premium result."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "ramen_brand_graded.png",
+   "kind": "image",
+   "spec": "Tonkotsu ramen bowl, brand-matched look: warmed WB, deepened darks, lifted broth/garnish highlights, vibrance pushed so red chili oil reads. Full-res PNG."
+  },
+  {
+   "name": "wagyu_brand_graded.png",
+   "kind": "image",
+   "spec": "Wagyu donburi hero, auto-straightened + auto-toned + same brand grade as the ramen, with red/warm marbling tones selectively boosted. Full-res PNG."
+  },
+  {
+   "name": "ramen_cutout_transparent.png",
+   "kind": "image",
+   "spec": "Ramen bowl isolated, background removed to full transparency (alpha PNG) for tight placement in the crowded ramen section."
+  },
+  {
+   "name": "ramen_cell_300dpi.png",
+   "kind": "image",
+   "spec": "Ramen shot cropped to the tall menu-cell aspect ratio, sized for 300 DPI print placement."
+  },
+  {
+   "name": "wagyu_banner_300dpi.png",
+   "kind": "image",
+   "spec": "Wagyu hero cropped to the wide banner aspect ratio for the new Wagyu section, sized for 300 DPI print placement."
+  },
+  {
+   "name": "umaya_logo.svg",
+   "kind": "vector",
+   "spec": "Vectorized logo as clean SVG, red (#C8302A) + near-black, crisp for print red-accent use."
+  },
+  {
+   "name": "dark_background_plate.png",
+   "kind": "image",
+   "spec": "Licensed dark slate texture darkened in its light portions + fine grain added = premium dark menu background plate. Full-res PNG."
+  },
+  {
+   "name": "menu_source_proof.png",
+   "kind": "image",
+   "spec": "Print-ready PNG render(s) of the client's existing authored Illustrator menu source, exported as a current proof to drop new assets into."
+  },
+  {
+   "name": "umaya_menu_assets_board",
+   "kind": "data",
+   "spec": "Firefly board deep-link assembling all placement-ready delivered assets for client review, plus a packaged asset folder/zip."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "uploaded_raws_handles",
+   "note": "Ingest the client-supplied raws into CC storage: tonkotsu_ramen_bowl_raw.jpg, wagyu_donburi_hero_raw.jpg, umaya_logo_flat.png, umaya_menu_existing.ai. Initial asset load (no inputs_from)."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_raws_handles",
+   "output": "ingested_assets",
+   "note": "Finalize the upload so the raws are addressable presigned assets for the editing chain."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ingested_assets",
+   "output": "wagyu_straightened",
+   "note": "The Wagyu hero was shot ~4deg off-level; level the horizon before any tonal work. Consumes the ingested Wagyu raw."
+  },
+  {
+   "n": 4,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "wagyu_straightened",
+   "output": "wagyu_autotoned",
+   "note": "Neutral auto-tone baseline on the straightened Wagyu before the deliberate brand grade."
+  },
+  {
+   "n": 5,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ingested_assets, wagyu_autotoned",
+   "output": "photos_warmed",
+   "note": "Warm white balance toward the menu's amber/dark feel on BOTH dishes (ramen raw + auto-toned Wagyu). Start of the cohesive brand grade applied to the photo set."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_dark_portions",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photos_warmed",
+   "output": "photos_darks_deep",
+   "note": "Deepen the dark portions to satisfy the dark-background brand requirement, on both warmed shots."
+  },
+  {
+   "n": 7,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photos_darks_deep",
+   "output": "photos_highlights_lifted",
+   "note": "Lift highlights so broth surface / onsen egg / garnish still pop against the deepened darks."
+  },
+  {
+   "n": 8,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photos_highlights_lifted",
+   "output": "photos_brand_graded",
+   "note": "Push vibrance so the red chili oil and red brand accents read strong on the dark plate. Both dishes now share one cohesive brand look (= ramen_brand_graded + base of wagyu_brand_graded)."
+  },
+  {
+   "n": 9,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photos_brand_graded",
+   "output": "wagyu_marbling_mask",
+   "note": "Prompt-select the seared Wagyu marbling/red meat on the graded Wagyu to drive a selective warm-tone boost."
+  },
+  {
+   "n": 10,
+   "tool": "image_adjust_single_color_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photos_brand_graded, wagyu_marbling_mask",
+   "output": "wagyu_brand_graded",
+   "note": "Selectively boost the red/warm tones on the masked Wagyu marbling so it reads rich = final wagyu_brand_graded."
+  },
+  {
+   "n": 11,
+   "tool": "image_select_subject",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photos_brand_graded",
+   "output": "ramen_subject_mask",
+   "note": "Select the ramen bowl subject on the graded ramen shot, prepping the transparent cut-out for the crowded ramen section."
+  },
+  {
+   "n": 12,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "photos_brand_graded, ramen_subject_mask",
+   "output": "ramen_cutout_transparent",
+   "note": "Remove the background to a transparent alpha PNG so the ramen bowl can sit tight to type without a hard photo edge."
+  },
+  {
+   "n": 13,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ramen_cutout_transparent",
+   "output": "ramen_cell_300dpi",
+   "note": "Crop the ramen cut-out to the tall menu-cell aspect ratio at 300 DPI print sizing."
+  },
+  {
+   "n": 14,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "wagyu_brand_graded",
+   "output": "wagyu_banner_300dpi",
+   "note": "Crop the finished Wagyu hero to the wide banner aspect ratio for the new Wagyu section at 300 DPI."
+  },
+  {
+   "n": 15,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ingested_assets",
+   "output": "umaya_logo_svg",
+   "note": "Vectorize the flat logo PNG to clean SVG for crisp red-accent print. Consumes the ingested logo raw."
+  },
+  {
+   "n": 16,
+   "tool": "asset_license_and_download_stock",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "slate_texture_licensed",
+   "note": "Search + license + download a dark slate stock texture (license BEFORE editing). Stands in for dark_slate_texture_stock; new asset load for the background-plate branch."
+  },
+  {
+   "n": 17,
+   "tool": "image_adjust_light_portions",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "slate_texture_licensed",
+   "output": "slate_darkened",
+   "note": "Darken the texture's light portions so it reads as a premium dark menu background, not a flat grey."
+  },
+  {
+   "n": 18,
+   "tool": "image_add_grain",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "slate_darkened",
+   "output": "dark_background_plate",
+   "note": "Add fine grain to the darkened slate so the background plate has tactile premium texture = dark_background_plate."
+  },
+  {
+   "n": 19,
+   "tool": "document_render_vector",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ingested_assets",
+   "output": "menu_source_proof",
+   "note": "Export the client's EXISTING authored Illustrator menu .ai to print-ready PNG as a current proof. render_vector only EXPORTS the authored source; it composes nothing."
+  },
+  {
+   "n": 20,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ramen_cell_300dpi, wagyu_banner_300dpi, ramen_cutout_transparent, umaya_logo_svg, dark_background_plate, menu_source_proof, wagyu_brand_graded, photos_brand_graded",
+   "output": "umaya_menu_assets_board",
+   "note": "Assemble every placement-ready delivered asset into a Firefly board deep-link for client review."
+  },
+  {
+   "n": 21,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ramen_cell_300dpi, wagyu_banner_300dpi, ramen_cutout_transparent, umaya_logo_svg, dark_background_plate, menu_source_proof, wagyu_brand_graded",
+   "output": "umaya_delivery_folder",
+   "note": "Collect all final deliverables into a single delivery folder in CC storage for hand-off / packaging."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_adjust_dark_portions",
+  "image_adjust_highlights",
+  "image_adjust_vibrance_and_saturation",
+  "image_select_by_prompt",
+  "image_adjust_single_color_saturation",
+  "image_select_subject",
+  "image_remove_background",
+  "image_crop_and_resize",
+  "image_vectorize",
+  "asset_license_and_download_stock",
+  "image_adjust_light_portions",
+  "image_add_grain",
+  "document_render_vector",
+  "create_firefly_board",
+  "asset_copy_assets"
+ ],
+ "tool_call_count": 21,
+ "distinct_adobe_tools": 20,
+ "chaining_note": "Strictly chained off the initial asset load. Steps 1-2 ingest the client raws (ingested_assets). The Wagyu branch: 3 straighten -> 4 auto-tone -> feeds the shared grade. Step 5 takes BOTH the ramen raw (from ingested_assets) and the auto-toned Wagyu, then 6 -> 7 -> 8 carry the whole set through one cohesive brand grade (photos_brand_graded). From that single graded set: 9->10 produce the selectively-boosted wagyu_brand_graded (10 consumes the graded photos + the step-9 mask); 11->12 produce the transparent ramen cut-out (12 consumes the graded photos + the step-11 subject mask); 13 crops the cut-out to the ramen cell; 14 crops wagyu_brand_graded to the banner. Step 15 vectorizes the ingested logo to umaya_logo_svg. A parallel background-plate branch: 16 licenses a stock texture -> 17 darkens -> 18 grains it. Step 19 exports the ingested authored .ai. Steps 20-21 fan-in EVERY downstream output into the review board and the delivery folder. Every step after step 1 sets inputs_from to a prior step's named output; the deliverable set emerges entirely from the chain — no step starts from a free-floating asset except the two legitimate new loads (the stock texture license at 16, which the workflow itself produces).",
+ "difficulty_rationale": "Long-horizon and wide-mix: 21 connector calls, 20 distinct Adobe tools, spanning four connector groups (asset/storage, raster photo edit, document export, Firefly board). It exercises a realistic multi-branch production graph — a shared color-grade trunk that splits into a masked selective-saturation branch, a subject-removal cut-out branch, two print-crop branches, a logo-vectorize branch, and a separate stock-license -> texture-prep branch — then fans everything back into a review board and a delivery folder. Difficulty comes from (a) keeping two dishes cohesive through a 4-step grade chain, (b) two different masking strategies (prompt-select for marbling vs subject-select for cut-out) feeding two different downstream edits, (c) honoring print-spec crops at 300 DPI, and (d) correctly using render_vector as an EXPORT of an authored .ai rather than as layout composition. The brief's actual page typesetting is correctly excluded as out-of-connector-scope (layout composition is [X]), which is itself the key feasibility judgment the task tests. All steps are [C] headless-confirmed except none — fully autonomous.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned capabilities anywhere. No image_crop_and_resize/reframe-crop, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction. image_fill_area is not used. image_apply_lens_blur is not used. All crops use image_crop_and_resize (gen-free reframe). image_remove_background -> transparent PNG, image_vectorize raster->SVG, image_add_grain, and the selective tonal edits (image_select_by_prompt + image_adjust_single_color_saturation) are all real [C] headless connector actions. document_render_vector only EXPORTS the authored .ai; no layout composition. asset_preview_file/asset_inline_preview are not used. Every input a step consumes (both raws, the logo PNG, the authored .ai, the licensed stock texture) is declared in inputs[] or produced by a prior workflow step.",
+  "notes": "Only fix required was the cosmetic internal brand-name inconsistency flagged by QA: the 'house_of_umami' filenames/outputs did not match the 'Umaya' brand used throughout title/brief/grounding. Both were already fictional and non-colliding; standardized the client brand to the single invented name 'Umaya'. No capability, chaining, or feasibility changes needed; all 21 steps remain server='adobe', [C] headless, fully gen-free and Adobe-connector-doable."
+ }
+}

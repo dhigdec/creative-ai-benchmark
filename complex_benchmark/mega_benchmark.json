@@ -1,0 +1,1417 @@
+{
+  "mega_tasks": [
+    {
+      "rank": 1,
+      "title": "Luxury Shopify hamper line — 13-hamper editorial retouch: per-frame geometry + masked tonal grade, selectively-enhanced embossed leather badge, warmed wicker, two-stage depth blur, shared quiet-luxury preset, cut-out onto a light-grey studio backdrop with a realistic contact shadow, Shopify exports",
+      "domain": "ecommerce_product_line",
+      "provenance": "db",
+      "source": "Upwork db-4478 'Luxury Product Photo Editor Needed – Consistent Premium Shopify Hamper Images (13 Photos)'",
+      "url": "https://www.upwork.com/nx/search/jobs/?q=Luxury%20Product%20Photo%20Editor%20Needed",
+      "one_line_ask": "Edit 13 luxury gifting-hamper photos to one quiet-luxury (Fortnum & Mason / Daylesford) look — geometry-correct each frame, build a masked tonal grade (warm wicker, opened shadows, restrained colour), selectively enhance the embossed leather front badge, add two-stage editorial depth blur, lock a single shared Lightroom preset across the set, then cut every hamper out onto a clean light-grey (#E8E8E8) website backdrop with a realistic contact shadow and export Shopify-ready squares.",
+      "deliverables": [
+        "13 high-resolution edited JPGs sharing ONE quiet-luxury recipe (matched exposure, white balance, opened shadows, restrained saturation, locked final preset)",
+        "Every hamper cut out cleanly and composited onto a light-grey (#E8E8E8) website backdrop with a realistic soft contact shadow",
+        "Embossed leather front-centre badge selectively enhanced via a prompt-mask (local exposure lift + local highlight shaping + local dark-portion deepening) so the emboss reads premium without looking AI-processed",
+        "Wicker selectively warmed and its yellow saturation lifted under a prompt-mask so only the basket warms, not the ribbons or food",
+        "One hero hamper with the fabric/material beneath it removed so the product sits clean on the backdrop",
+        "Two-stage editorial depth: whole-frame lens-blur softening on the un-cut lifestyle frames + subject-preserving gaussian background blur on the catalogue frames",
+        "Web-ready 2048×2048 Shopify square exports plus the saved, reusable edit recipe applied across the full set"
+      ],
+      "workflow": [
+        {
+          "step": 1,
+          "tool": "asset_initialize_file_upload",
+          "feasibility": "C",
+          "note": "Open an upload session for the raw 13-hamper set + the hero fabric-base frame.",
+          "consumes": "input: 13 raw hamper JPGs + 1 hero fabric-base frame"
+        },
+        {
+          "step": 2,
+          "tool": "asset_finalize_file_upload",
+          "feasibility": "C",
+          "note": "Commit the uploads; returns fetchable presigned asset URLs used as imageURI for the whole chain.",
+          "consumes": "step1 upload session"
+        },
+        {
+          "step": 3,
+          "tool": "asset_inline_preview",
+          "feasibility": "C",
+          "note": "Inline-preview each finalized upload to confirm the right frame/orientation before grading.",
+          "consumes": "step2 presigned asset URLs"
+        },
+        {
+          "step": 4,
+          "tool": "image_auto_straighten",
+          "feasibility": "C",
+          "note": "Level each handheld frame (basket lip / table edge horizon).",
+          "consumes": "step2 raw hamper URL (per frame)"
+        },
+        {
+          "step": 5,
+          "tool": "image_crop_to_bounds",
+          "feasibility": "C",
+          "note": "Trim the straightened frame tight to the hamper bounds, killing dead studio floor.",
+          "consumes": "step4 straightened output"
+        },
+        {
+          "step": 6,
+          "tool": "image_apply_auto_tone",
+          "feasibility": "C",
+          "note": "Establish a neutral tonal baseline so every frame starts from the same place before manual grading.",
+          "consumes": "step5 cropped output"
+        },
+        {
+          "step": 7,
+          "tool": "image_adjust_exposure",
+          "feasibility": "C",
+          "note": "Match global exposure to the agreed set key value (consistency across all 13).",
+          "consumes": "step6 auto-toned output"
+        },
+        {
+          "step": 8,
+          "tool": "image_adjust_color_temperature",
+          "feasibility": "C",
+          "note": "Pull white balance to the warm quiet-luxury target; neutralise the mixed shoot lighting.",
+          "consumes": "step7 exposure-matched output"
+        },
+        {
+          "step": 9,
+          "tool": "image_adjust_highlights",
+          "feasibility": "C",
+          "note": "Recover blown bright wicker / lid highlights so texture survives.",
+          "consumes": "step8 white-balanced output"
+        },
+        {
+          "step": 10,
+          "tool": "image_adjust_light_portions",
+          "feasibility": "C",
+          "note": "Tone down the broader bright areas (lid, pale tissue) without crushing highlights — separate control from step 9.",
+          "consumes": "step9 highlight-recovered output"
+        },
+        {
+          "step": 11,
+          "tool": "image_adjust_dark_portions",
+          "feasibility": "C",
+          "note": "Lift the shadows inside the basket weave to open editorial depth (positive=deepen / negative=lift; here lift).",
+          "consumes": "step10 light-portion output"
+        },
+        {
+          "step": 12,
+          "tool": "image_adjust_brightness_and_contrast",
+          "feasibility": "C",
+          "note": "Set the gentle quiet-luxury contrast curve over the corrected tonal range.",
+          "consumes": "step11 shadow-opened output"
+        },
+        {
+          "step": 13,
+          "tool": "image_adjust_vibrance_and_saturation",
+          "feasibility": "C",
+          "note": "Pull overall saturation back for restraint (vibrance protects skin/food, saturation overall down).",
+          "consumes": "step12 contrast output"
+        },
+        {
+          "step": 14,
+          "tool": "image_select_by_prompt",
+          "feasibility": "C",
+          "note": "Prompt-mask 'the woven wicker basket body of the hamper' — produces a wicker-only mask.",
+          "consumes": "step13 graded image (mask is computed on it)"
+        },
+        {
+          "step": 15,
+          "tool": "image_adjust_color_temperature",
+          "feasibility": "C",
+          "note": "MASKED warm-up: apply a local temperature push to the wicker ONLY via step14 maskURI, so ribbons/food stay neutral.",
+          "consumes": "step13 graded image + step14 wicker mask"
+        },
+        {
+          "step": 16,
+          "tool": "image_adjust_single_color_saturation",
+          "feasibility": "C",
+          "note": "MASKED yellow lift: boost 'yellow' saturation under the wicker mask so the basket glows honey-toned, nothing else.",
+          "consumes": "step15 wicker-warmed output + step14 wicker mask"
+        },
+        {
+          "step": 17,
+          "tool": "image_select_by_prompt",
+          "feasibility": "C",
+          "note": "Prompt-mask 'the embossed leather badge on the front centre of the hamper' — tight badge mask.",
+          "consumes": "step16 output (mask computed on it)"
+        },
+        {
+          "step": 18,
+          "tool": "image_adjust_exposure",
+          "feasibility": "C",
+          "note": "MASKED local lift on the badge only (step17 mask) so the emboss brightens without touching the rest.",
+          "consumes": "step16 output + step17 badge mask"
+        },
+        {
+          "step": 19,
+          "tool": "image_adjust_highlights",
+          "feasibility": "C",
+          "note": "MASKED highlight shaping on the badge (step17 mask) to catch the raised leather edges.",
+          "consumes": "step18 badge-lifted output + step17 badge mask"
+        },
+        {
+          "step": 20,
+          "tool": "image_adjust_dark_portions",
+          "feasibility": "C",
+          "note": "MASKED deepen of the badge's recessed channels (step17 mask, positive amount) to make the emboss read 3-D.",
+          "consumes": "step19 output + step17 badge mask"
+        },
+        {
+          "step": 21,
+          "tool": "image_adjust_hsl",
+          "feasibility": "C",
+          "note": "MASKED hue/lum nudge on the badge leather (step17 mask) to land the rich tan without an orange cast.",
+          "consumes": "step20 output + step17 badge mask"
+        },
+        {
+          "step": 22,
+          "tool": "image_list_presets",
+          "feasibility": "C",
+          "note": "List the 80+ Lightroom presets to pick the exact display name for the shared final look.",
+          "consumes": "(none — catalogue lookup)"
+        },
+        {
+          "step": 23,
+          "tool": "image_apply_preset",
+          "feasibility": "C",
+          "note": "Apply ONE shared preset (e.g. a Creative warm split-tone) as the single, non-stacked final colour pass that locks the set look.",
+          "consumes": "step21 fully-graded image + step22 chosen preset name"
+        },
+        {
+          "step": 24,
+          "tool": "image_apply_lens_blur",
+          "feasibility": "C",
+          "note": "LIFESTYLE FRAMES ONLY: whole-frame lens blur for soft editorial bokeh on the un-cut styled scenes (lens_blur has no mask = whole image).",
+          "consumes": "step23 preset-locked lifestyle frame"
+        },
+        {
+          "step": 25,
+          "tool": "image_select_subject",
+          "feasibility": "C",
+          "note": "CATALOGUE FRAMES: auto-detect the hamper as subject — subject mask for both the bg-blur and the cutout.",
+          "consumes": "step23 preset-locked catalogue frame"
+        },
+        {
+          "step": 26,
+          "tool": "image_apply_gaussian_blur",
+          "feasibility": "C",
+          "note": "Subject-preserving background blur (blurTarget:'background') to settle the catalogue backdrop before the clean cut — keeps the hamper crisp.",
+          "consumes": "step23 preset-locked frame (subject kept via blurTarget)"
+        },
+        {
+          "step": 27,
+          "tool": "image_select_by_prompt",
+          "feasibility": "C",
+          "note": "HERO FRAME: prompt-mask 'the draped fabric / material underneath the hamper' so it can be removed.",
+          "consumes": "step26 blurred hero frame"
+        },
+        {
+          "step": 28,
+          "tool": "image_fill_area",
+          "feasibility": "C",
+          "note": "Fill the fabric mask (step27) with the light-grey backdrop colour (custom RGB 232,232,232) so the hero product sits clean — removes the base material.",
+          "consumes": "step26 hero frame + step27 fabric mask"
+        },
+        {
+          "step": 29,
+          "tool": "image_invert_selection",
+          "feasibility": "C",
+          "note": "Flip the subject mask (step25) to a background mask for the studio backdrop fill.",
+          "consumes": "step25 subject mask"
+        },
+        {
+          "step": 30,
+          "tool": "image_fill_area",
+          "feasibility": "C",
+          "note": "Fill the inverted (background) mask with light-grey #E8E8E8 (RGB 232,232,232) — the clean Shopify studio backdrop behind the hamper.",
+          "consumes": "step28 cleaned frame + step29 background mask"
+        },
+        {
+          "step": 31,
+          "tool": "image_remove_background",
+          "feasibility": "C",
+          "note": "Produce a transparent cutout PNG of the hamper (clean edges) used to composite the realistic contact shadow locally.",
+          "consumes": "step30 grey-backdrop frame"
+        },
+        {
+          "step": 32,
+          "tool": "image_crop_and_resize",
+          "feasibility": "C",
+          "note": "Export each composited hamper to the Shopify 2048×2048 square at web resolution.",
+          "consumes": "step30 / step31 composited frame"
+        },
+        {
+          "step": 33,
+          "tool": "asset_preview_file",
+          "feasibility": "C",
+          "note": "Preview the final 2048 square exports to QA the set for consistency before delivery.",
+          "consumes": "step32 final export"
+        },
+        {
+          "step": 34,
+          "tool": "contact_shadow_composite",
+          "feasibility": "L",
+          "note": "LOCAL (PIL): drop the step31 transparent cutout onto the #E8E8E8 backdrop and paint a soft realistic contact shadow (Gaussian-feathered ellipse) under each hamper — the connector cuts/grades elements but can't headlessly composite a hand-painted shadow.",
+          "consumes": "step31 cutout PNG + #E8E8E8 backdrop"
+        }
+      ],
+      "connector_count": 26,
+      "total_steps": 34,
+      "iterative_chain": [
+        "asset_finalize_file_upload.out(raw hamper jpg) -> image_auto_straighten.in",
+        "image_auto_straighten.out -> image_crop_to_bounds.in",
+        "image_crop_to_bounds.out -> image_apply_auto_tone.in",
+        "image_apply_auto_tone.out -> image_adjust_exposure.in",
+        "image_adjust_exposure.out -> image_adjust_color_temperature.in",
+        "image_adjust_color_temperature.out -> image_adjust_highlights.in",
+        "image_adjust_highlights.out -> image_adjust_light_portions.in",
+        "image_adjust_light_portions.out -> image_adjust_dark_portions.in",
+        "image_adjust_dark_portions.out -> image_adjust_brightness_and_contrast.in",
+        "image_adjust_brightness_and_contrast.out -> image_adjust_vibrance_and_saturation.in",
+        "image_adjust_vibrance_and_saturation.out -> image_select_by_prompt.in (wicker mask)",
+        "image_select_by_prompt(wicker).out + graded img -> image_adjust_color_temperature.in (masked warm)",
+        "masked-warm.out + wicker mask -> image_adjust_single_color_saturation.in (masked yellow lift)",
+        "masked-yellow.out -> image_select_by_prompt.in (badge mask)",
+        "image_select_by_prompt(badge).out + img -> image_adjust_exposure.in (masked badge lift)",
+        "masked-badge-exposure.out + badge mask -> image_adjust_highlights.in (masked)",
+        "masked-badge-highlights.out + badge mask -> image_adjust_dark_portions.in (masked deepen)",
+        "masked-badge-dark.out + badge mask -> image_adjust_hsl.in (masked leather hue)",
+        "badge-final.out -> image_apply_preset.in (single shared look; name from image_list_presets)",
+        "image_apply_preset.out(lifestyle) -> image_apply_lens_blur.in (whole-frame bokeh)",
+        "image_apply_preset.out(catalogue) -> image_select_subject.in (subject mask)",
+        "image_apply_preset.out + subject -> image_apply_gaussian_blur.in (blurTarget:background)",
+        "gaussian-bg.out(hero) -> image_select_by_prompt.in (fabric-under mask)",
+        "fabric mask + hero -> image_fill_area.in (grey over fabric)",
+        "image_select_subject.out -> image_invert_selection.in (background mask)",
+        "image_invert_selection.out + cleaned hero -> image_fill_area.in (#E8E8E8 backdrop)",
+        "image_fill_area.out -> image_remove_background.in (transparent cutout PNG)",
+        "image_fill_area.out / cutout -> image_crop_and_resize.in (2048 Shopify square)",
+        "image_crop_and_resize.out -> asset_preview_file.in (QA)",
+        "image_remove_background.out(cutout) -> contact_shadow_composite (LOCAL PIL shadow comp)"
+      ],
+      "input_assets": [
+        {
+          "what": "Raw luxury hamper catalogue + lifestyle photos (mixed shoot lighting, wicker, embossed leather front badge) — the 13-image set",
+          "modality": "image",
+          "count": 13,
+          "generator": "gpt-image-2 (photoreal product, realism doctrine)"
+        },
+        {
+          "what": "Hero hamper frame with draped fabric/material underneath that must be removed before compositing",
+          "modality": "image",
+          "count": 1,
+          "generator": "gpt-image-2"
+        },
+        {
+          "what": "Brand reference look-board (Fortnum & Mason / Daylesford quiet-luxury aesthetic) anchoring the target grade",
+          "modality": "image",
+          "count": 2,
+          "generator": "gemini-3-pro-image (text-bearing moodboard)"
+        },
+        {
+          "what": "Light-grey website background swatch + #E8E8E8 hex spec the cutouts must sit on",
+          "modality": "image",
+          "count": 1,
+          "generator": "gemini-3.1-flash-image (flat swatch)"
+        },
+        {
+          "what": "Set-grade recipe sheet (target exposure key, WB, shadow-lift and preset name) as a small JSON the editor follows for consistency",
+          "modality": "data",
+          "count": 1,
+          "generator": "gemini-2.5-flash writer (JSON recipe)"
+        },
+        {
+          "what": "Shopify image-spec CSV (filename, SKU, target square px, max file weight) driving the export/QA pass",
+          "modality": "data",
+          "count": 1,
+          "generator": "gemini-2.5-flash writer (CSV)"
+        }
+      ],
+      "input_asset_count": 19,
+      "input_modalities": [
+        "image",
+        "data"
+      ],
+      "templates_to_author": [],
+      "tools_used": [
+        "asset_initialize_file_upload",
+        "asset_finalize_file_upload",
+        "asset_inline_preview",
+        "image_auto_straighten",
+        "image_crop_to_bounds",
+        "image_apply_auto_tone",
+        "image_adjust_exposure",
+        "image_adjust_color_temperature",
+        "image_adjust_highlights",
+        "image_adjust_light_portions",
+        "image_adjust_dark_portions",
+        "image_adjust_brightness_and_contrast",
+        "image_adjust_vibrance_and_saturation",
+        "image_select_by_prompt",
+        "image_adjust_single_color_saturation",
+        "image_adjust_hsl",
+        "image_list_presets",
+        "image_apply_preset",
+        "image_apply_lens_blur",
+        "image_select_subject",
+        "image_apply_gaussian_blur",
+        "image_invert_selection",
+        "image_fill_area",
+        "image_remove_background",
+        "image_crop_and_resize",
+        "asset_preview_file"
+      ],
+      "unused_tools_hit": [
+        "image_auto_straighten",
+        "image_crop_to_bounds",
+        "image_adjust_exposure",
+        "image_adjust_highlights",
+        "image_adjust_light_portions",
+        "image_adjust_dark_portions",
+        "image_adjust_brightness_and_contrast",
+        "image_adjust_color_temperature",
+        "image_adjust_vibrance_and_saturation",
+        "image_select_by_prompt",
+        "image_adjust_single_color_saturation",
+        "image_adjust_hsl",
+        "image_apply_lens_blur",
+        "image_apply_gaussian_blur",
+        "image_list_presets",
+        "image_apply_preset",
+        "image_select_subject",
+        "image_invert_selection",
+        "image_fill_area",
+        "asset_inline_preview",
+        "asset_preview_file"
+      ]
+    },
+    {
+      "rank": 2,
+      "title": "Real-estate weekly listing stills package — 6 scenes from 5-bracket RAW: HDR-style tonal blend, straightened verticals, window-pulls, one shared gallery preset, print + web JPEGs, plus Illustrator-merged 'just-listed' rider labels",
+      "domain": "realestate_listing_package",
+      "provenance": "db",
+      "source": "Upwork db-6004 'Real Estate Photo Editor Needed for Bracketed RAW Interior & Exterior Images' (anchored; bracket-blend tonal pipeline)",
+      "url": "https://www.upwork.com/nx/search/jobs/?q=Real%20Estate%20Photo%20Editor%20Needed%20for%20Bracketed%20RAW",
+      "one_line_ask": "Take 5 bracketed exposures per scene (6 scenes), blend to a natural HDR look via fine tonal grading, straighten verticals/correct perspective, do window pulls, open interiors while keeping clean whites, apply one consistent gallery look, deliver print + web JPEGs, and data-merge a small batch of Illustrator 'just-listed' rider labels from the listing sheet.",
+      "deliverables": [
+        "6 final natural-HDR scene stills with balanced exposure, recovered window highlights, opened shadows, clean whites and correct perspective",
+        "Straight verticals / corrected geometry on every interior and exterior frame",
+        "A single shared gallery 'look' (one preset) applied across all 6 so the set is cohesive",
+        "Print-ready high-resolution JPEG export of every scene",
+        "Web/portal-optimized JPEG export of every scene",
+        "A batch of Illustrator-merged 'just-listed' rider/yard-sign labels (address, beds/baths/sqft, agent) rendered from the listing CSV"
+      ],
+      "connector_workflow": [
+        "asset_initialize_file_upload",
+        "asset_finalize_file_upload",
+        "image_auto_straighten",
+        "image_crop_to_bounds",
+        "image_apply_auto_tone",
+        "image_adjust_exposure",
+        "image_adjust_highlights",
+        "image_adjust_light_portions",
+        "image_adjust_dark_portions",
+        "image_adjust_brightness_and_contrast",
+        "image_adjust_color_temperature",
+        "image_adjust_hsl",
+        "image_list_presets",
+        "image_apply_preset",
+        "image_crop_and_resize",
+        "font_recommend",
+        "document_merge_data_vector",
+        "document_render_vector"
+      ],
+      "connector_count": 18,
+      "iterative_chain": [
+        "asset_finalize_file_upload.out(brightest+darkest bracket pair, per scene) -> image_auto_straighten.in (level + vertical upright)",
+        "image_auto_straighten.out -> image_crop_to_bounds.in (trim crooked edges after upright)",
+        "image_crop_to_bounds.out -> image_apply_auto_tone.in (neutral baseline)",
+        "image_apply_auto_tone.out -> image_adjust_exposure.in (set mid exposure between brackets)",
+        "image_adjust_exposure.out -> image_adjust_highlights.in (window pull — recover blown windows)",
+        "image_adjust_highlights.out -> image_adjust_light_portions.in (tone down bright walls)",
+        "image_adjust_light_portions.out -> image_adjust_dark_portions.in (lift dark corners/interiors)",
+        "image_adjust_dark_portions.out -> image_adjust_brightness_and_contrast.in (final punch)",
+        "image_adjust_brightness_and_contrast.out -> image_adjust_color_temperature.in (clean neutral whites)",
+        "image_adjust_color_temperature.out -> image_adjust_hsl.in (calm down over-green lawns / over-blue skies)",
+        "image_adjust_hsl.out -> image_apply_preset.in (one shared gallery look; name from image_list_presets)",
+        "image_list_presets.out(name) -> image_apply_preset.in",
+        "image_apply_preset.out -> image_crop_and_resize.in (export print hi-res JPEG and web/portal JPEG)",
+        "font_recommend.out(label type) -> document_merge_data_vector.in (rider label .ai + listing CSV)",
+        "document_merge_data_vector.out(per-row .ai) -> document_render_vector.in (export rider label PNG/PDF set)"
+      ],
+      "input_assets": [
+        {
+          "what": "5-bracket RAW exposures per interior/exterior scene, 6 scenes (we generate the merged-base JPEG per bracket pair the connector grades) — 5x6 frames",
+          "modality": "image",
+          "count": 30
+        },
+        {
+          "what": "Listing fact-sheet CSV (address, beds, baths, sqft, price, agent name/phone) driving the Illustrator rider labels",
+          "modality": "data",
+          "count": 1
+        },
+        {
+          "what": "Illustrator (.ai) 'just-listed' rider / yard-sign label template with variable fields",
+          "modality": "data",
+          "count": 1
+        },
+        {
+          "what": "Agency look reference (target natural-HDR gallery style) to lock the shared preset",
+          "modality": "image",
+          "count": 1
+        }
+      ],
+      "input_asset_count": 33,
+      "input_modalities": [
+        "image",
+        "data"
+      ],
+      "unused_tools_hit": [
+        "image_auto_straighten",
+        "image_crop_to_bounds",
+        "image_adjust_exposure",
+        "image_adjust_highlights",
+        "image_adjust_light_portions",
+        "image_adjust_dark_portions",
+        "image_adjust_brightness_and_contrast",
+        "image_adjust_hsl",
+        "image_list_presets",
+        "image_apply_preset",
+        "font_recommend",
+        "document_merge_data_vector",
+        "document_render_vector"
+      ]
+    },
+    {
+      "rank": 3,
+      "title": "Reality-show key-art rebuild — replace AI areas of an approved poster with masked, licensed Adobe Stock photography, depth-graded and re-lit, expanded to 24x36 bleed, delivered print PDF + web JPG",
+      "domain": "stock_composite_poster",
+      "provenance": "db",
+      "source": "Freelancer db-1847 'PHOTOGRAPHY MASKING/BLENDING Realistic Movie Poster Recreation'",
+      "url": "https://www.freelancer.com/projects/adobe-photoshop/Realistic-Movie-Poster-Recreation",
+      "one_line_ask": "Rebuild an approved AI reality-show poster so it looks photographed: source matching real photos from Adobe Stock, mask/cut them in to replace every AI region, blend with believable depth, lighting and shadow, expand the canvas to 24x36 full-bleed, and deliver a print-ready PDF plus a flattened web JPG.",
+      "deliverables": [
+        "Licensed Adobe Stock photography that matches the approved poster's subjects (cast stand-in, sky, environment texture)",
+        "Each stock element masked/cut out and composited to replace the corresponding AI region",
+        "Depth and focus blended so foreground subjects pop and the background falls off naturally (lens/gaussian blur on background plate)",
+        "Lighting/colour matched across all merged layers so the scene reads as one lit set (no AI artifacts at 200% zoom)",
+        "Canvas expanded to full 24x36 inch bleed at print spec",
+        "Print-ready PDF + flattened web JPG, with a note on stock used"
+      ],
+      "connector_workflow": [
+        "asset_initialize_file_upload",
+        "asset_finalize_file_upload",
+        "asset_search",
+        "asset_license_and_download_stock",
+        "image_select_subject",
+        "image_remove_background",
+        "image_select_by_prompt",
+        "image_invert_selection",
+        "image_apply_gaussian_blur",
+        "image_apply_lens_blur",
+        "image_adjust_exposure",
+        "image_adjust_highlights",
+        "image_adjust_dark_portions",
+        "image_adjust_color_temperature",
+        "image_adjust_hsl",
+        "image_generative_expand",
+        "image_crop_and_resize"
+      ],
+      "connector_count": 17,
+      "iterative_chain": [
+        "asset_search.out(StockAsset id, cast stand-in) -> asset_license_and_download_stock.in",
+        "asset_license_and_download_stock.out(full-res stock) -> image_select_subject.in (mask the figure)",
+        "image_select_subject.out(mask) -> image_remove_background.in (clean cutout to drop over AI figure)",
+        "asset_license_and_download_stock.out(sky/environment plate) -> image_select_by_prompt.in (mask 'the sky')",
+        "image_select_by_prompt.out(sky mask) -> image_invert_selection.in (select the foreground plate)",
+        "image_invert_selection.out(mask) -> image_apply_gaussian_blur.in (soften background plate, background target)",
+        "image_apply_gaussian_blur.out -> image_apply_lens_blur.in (depth-of-field falloff behind subject)",
+        "image_apply_lens_blur.out -> image_adjust_exposure.in (match composite exposure to poster mood)",
+        "image_adjust_exposure.out -> image_adjust_highlights.in (match rim/key light)",
+        "image_adjust_highlights.out -> image_adjust_dark_portions.in (seat shadows under cutout)",
+        "image_adjust_dark_portions.out -> image_adjust_color_temperature.in (unify warm/cool across layers)",
+        "image_adjust_color_temperature.out -> image_adjust_hsl.in (final per-channel colour match)",
+        "image_adjust_hsl.out -> image_generative_expand.in (extend short axis to 24x36 bleed)",
+        "image_generative_expand.out -> image_crop_and_resize.in (lock 24x36 @300dpi + web JPG)"
+      ],
+      "input_assets": [
+        {
+          "what": "Approved AI key-art poster supplied as flattened JPG and layered PSD reference (composition/typography locked)",
+          "modality": "image",
+          "count": 2
+        },
+        {
+          "what": "Print spec sheet (24x36in, 300dpi, CMYK) + web-version size (text/data spec)",
+          "modality": "data",
+          "count": 1
+        },
+        {
+          "what": "Adobe Stock photo candidates searched+licensed to replace each AI region (cast stand-in, sky, environment/texture)",
+          "modality": "image",
+          "count": 4
+        },
+        {
+          "what": "Mood/lighting reference frame the client will check the final blend against",
+          "modality": "image",
+          "count": 1
+        }
+      ],
+      "input_asset_count": 8,
+      "input_modalities": [
+        "image",
+        "data"
+      ],
+      "unused_tools_hit": [
+        "asset_search",
+        "asset_license_and_download_stock",
+        "image_select_subject",
+        "image_select_by_prompt",
+        "image_invert_selection",
+        "image_apply_gaussian_blur",
+        "image_apply_lens_blur",
+        "image_adjust_exposure",
+        "image_adjust_highlights",
+        "image_adjust_dark_portions",
+        "image_adjust_hsl",
+        "image_generative_expand"
+      ]
+    },
+    {
+      "rank": 4,
+      "title": "Tech-house single release campaign — duotone/halftone+grain streaming cover, selective-colour graded artist promo photos, vectorized logo lockup, and Illustrator-merged tour-date merch cards",
+      "domain": "music_release_campaign",
+      "provenance": "composite",
+      "source": "Freelancer 'Tech House Single Cover' (verbatim brief, budget $30-250, skills Album Design/Illustrator/Photoshop) composed with Upwork album-art-package brief (id 1610320189970300928: album cover + social banner + promo image + promo video) per scraped pool — FX-heavy release-art bundle",
+      "url": "https://www.freelancer.com/projects/album-design/tech-house-single-cover.html",
+      "one_line_ask": "Build the full release-art package for a tech-house single: a 1600x1600 streaming cover with a duotone + halftone + film-grain creative treatment matched to the song, a set of artist promo photos graded to a moody club look with a single colour-splash accent, a vectorized monochrome logo lockup, and a batch of Illustrator-merged tour-date merch/sticker cards from a dates CSV.",
+      "deliverables": [
+        "1600x1600 streaming single cover (Apple Music/Spotify spec) with duotone + Ben-Day halftone + film grain creative FX matched to the track aesthetic",
+        "A set of artist promo photos graded to a consistent moody club look",
+        "A selective-colour / colour-splash treatment isolating one brand accent (e.g. magenta neon) on the promo photos",
+        "A vectorized monochrome logo lockup for cover + merch",
+        "A batch of tour-date merch / sticker cards data-merged from the dates CSV (Illustrator)",
+        "Square + story social crops of the cover for the release announce"
+      ],
+      "connector_workflow": [
+        "asset_initialize_file_upload",
+        "asset_finalize_file_upload",
+        "image_select_subject",
+        "image_apply_lens_blur",
+        "image_adjust_exposure",
+        "image_adjust_dark_portions",
+        "image_adjust_hsl",
+        "image_select_by_prompt",
+        "image_adjust_single_color_saturation",
+        "image_invert_selection",
+        "image_apply_monochromatic_tint",
+        "image_apply_halftone",
+        "image_apply_color_overlay",
+        "image_add_grain",
+        "image_vectorize",
+        "font_recommend",
+        "document_merge_data_vector",
+        "document_render_vector",
+        "image_crop_and_resize"
+      ],
+      "connector_count": 19,
+      "iterative_chain": [
+        "asset_finalize_file_upload.out(artist press photo) -> image_select_subject.in (mask the artist)",
+        "image_select_subject.out(mask) -> image_apply_lens_blur.in (bokeh club-depth behind artist)",
+        "image_apply_lens_blur.out -> image_adjust_exposure.in (drop to moody key)",
+        "image_adjust_exposure.out -> image_adjust_dark_portions.in (crush blacks for club mood)",
+        "image_adjust_dark_portions.out -> image_adjust_hsl.in (push cyan/magenta neon)",
+        "image_adjust_hsl.out -> image_select_by_prompt.in (mask 'the magenta neon sign')",
+        "image_select_by_prompt.out(accent mask) -> image_adjust_single_color_saturation.in (boost just magenta inside mask)",
+        "image_adjust_single_color_saturation.out -> image_invert_selection.in (everything except accent)",
+        "image_invert_selection.out(mask) -> image_apply_monochromatic_tint.in (duotone everything but the accent = colour splash)",
+        "image_apply_monochromatic_tint.out -> image_apply_halftone.in (Ben-Day dot cover treatment)",
+        "image_apply_halftone.out -> image_apply_color_overlay.in (brand wash, multiply)",
+        "image_apply_color_overlay.out -> image_add_grain.in (film-grain finish on cover)",
+        "asset_finalize_file_upload.out(logo PNG) -> image_vectorize.in (scalable monochrome logo)",
+        "font_recommend.out(merch type) -> document_merge_data_vector.in (sticker .ai + tour-dates CSV)",
+        "document_merge_data_vector.out(per-row .ai) -> document_render_vector.in (export merch card set)",
+        "image_add_grain.out(final cover) -> image_crop_and_resize.in (1600 cover + square/story crops)"
+      ],
+      "input_assets": [
+        {
+          "what": "Raw artist press / live performance photos to grade, splash and treat",
+          "modality": "image",
+          "count": 10
+        },
+        {
+          "what": "Artist logo bitmap to vectorize into a monochrome lockup",
+          "modality": "image",
+          "count": 1
+        },
+        {
+          "what": "Reference Catch&Release-style cover supplied by client (aesthetic anchor)",
+          "modality": "image",
+          "count": 1
+        },
+        {
+          "what": "Tour/club dates + merch line CSV driving the data-merged merch/sticker cards",
+          "modality": "data",
+          "count": 1
+        },
+        {
+          "what": "Illustrator (.ai) merch/sticker card template with variable date/venue fields",
+          "modality": "data",
+          "count": 1
+        }
+      ],
+      "input_asset_count": 14,
+      "input_modalities": [
+        "image",
+        "data"
+      ],
+      "unused_tools_hit": [
+        "image_select_subject",
+        "image_apply_lens_blur",
+        "image_adjust_exposure",
+        "image_adjust_dark_portions",
+        "image_adjust_hsl",
+        "image_select_by_prompt",
+        "image_adjust_single_color_saturation",
+        "image_invert_selection",
+        "image_apply_monochromatic_tint",
+        "image_apply_halftone",
+        "image_apply_color_overlay",
+        "image_add_grain",
+        "image_vectorize",
+        "font_recommend",
+        "document_merge_data_vector",
+        "document_render_vector"
+      ]
+    },
+    {
+      "rank": 5,
+      "title": "4-colour screen-print separation pack — split approved cloud-and-lettering tee artwork into a white underbase + lavender/cobalt/deep-purple spot plates with masked halftone dot fields, a dot-gain choke, a licensed grunge distress pass, a VHS-glitch alt colourway, a vectorized lettering plate, and a real Illustrator-rendered separation/registration sheet driven by a spot-colour CSV",
+      "domain": "apparel_screenprint",
+      "provenance": "db",
+      "source": "Upwork db-2919 'Halftone Conversion for Screen Printing' (4 colours on a black tee — white underbase, lavender, cobalt blue, deep purple; halftone the cloud gradients, keep hard edges on the lettering). Upgraded to the smoke-tested 2026-06-15 connector reality: per-spot plates built with masked image_apply_halftone (blackAndWhite per channel) + custom-RGB image_fill_area / image_apply_color_overlay; a genuine .ai produced by document_merge_data_vector then exported with document_render_vector; final proof pack composed locally (PIL).",
+      "url": "https://www.upwork.com/nx/search/jobs/?q=Halftone%20Conversion%20for%20Screen%20Printing",
+      "one_line_ask": "Take the approved tee artwork (airbrushed cloud gradient + hard-edge slogan lettering on a black ground) and produce a print-ready 4-colour screen-print separation pack for a black tee — a white underbase plate, three masked-halftone spot plates (lavender, cobalt blue, deep purple) with a dot-gain choke, a licensed grunge distress pass and a VHS chromatic-aberration alt colourway for the merch drop, a vectorized lettering plate, and an Illustrator-rendered separation sheet plus a per-colour registration/swatch card set merged from the shop's spot-colour CSV.",
+      "deliverables": [
+        "White underbase separation — the artwork selected off the black ground, inverted, and filled solid white (the plate the shop flashes first)",
+        "Three spot-colour halftone plates (lavender, cobalt blue, deep purple) — cloud gradients converted to black-and-white Ben-Day dot fields inside the cloud mask, lettering held out so it stays a hard-edge solid",
+        "A dot-gain choke pass (slight gaussian on the dot field) so the press doesn't plug the shadows on the black tee",
+        "Per-spot colour proofs — each plate tinted to its target Pantone build via custom-RGB monochromatic tint / colour overlay (multiply) so the client sees the colourway on black",
+        "A vectorized hard-edge lettering plate (clean SVG/AI) for a crisp top print",
+        "A distressed merch alt colourway — licensed grunge texture from Adobe Stock multiplied in, film grain + noise, and a VHS chromatic-aberration glitch",
+        "An Illustrator-rendered separation sheet (all four plates + registration marks) exported to print PDF, generated from a genuine merged .ai",
+        "A per-colour registration/swatch card set data-merged from the shop's spot-colour CSV (one card per ink: name, Pantone, mesh count, squeegee, flash temp)",
+        "A composed proof contact sheet (all plates + the two colourways) for client sign-off"
+      ],
+      "input_assets": [
+        {
+          "what": "Approved tee artwork — airbrushed cloud-gradient illustration with hard-edge slogan lettering, on a flat black ground, ~4500px (gemini-3-pro-image NBP for the text-bearing lockup; gemini-3.1-flash-image for the cloud-gradient base)",
+          "modality": "image",
+          "count": 1,
+          "generator": "gemini-3-pro-image (Nano Banana Pro) + gemini-3.1-flash-image"
+        },
+        {
+          "what": "Lettering-only and clouds-only source layers (two PNGs) so the lettering hold-out and cloud halftone can be verified independently",
+          "modality": "image",
+          "count": 2,
+          "generator": "gemini-3.1-flash-image"
+        },
+        {
+          "what": "Three alt-drop layout frames / colourway reference plates for the merch run (sleeve hit, back print, pocket lockup)",
+          "modality": "image",
+          "count": 3,
+          "generator": "gemini-3.1-flash-image"
+        },
+        {
+          "what": "Spot-colour CSV — one row per ink (ink_name, pantone, rgb_hex, mesh_count, squeegee_durometer, flash_temp_F, print_order) feeding the registration/swatch-card data merge",
+          "modality": "data",
+          "count": 1,
+          "generator": "gemini-2.5-flash writer (CSV, 4 rows: white underbase, lavender, cobalt, deep purple)"
+        },
+        {
+          "what": "Print-spec / dot-gain note (JSON) — mesh, LPI target, dot-gain %, underbase strategy, max screen budget — to ground the halftone radius and choke",
+          "modality": "data",
+          "count": 1,
+          "generator": "gemini-2.5-flash writer (JSON)"
+        },
+        {
+          "what": "Authored Illustrator separation-sheet template (.ai) with named Variables for the per-colour registration/swatch cards (CLIENT-SUPPLIED, authored once in desktop Illustrator Variables panel)",
+          "modality": "template",
+          "count": 1,
+          "generator": "user-authored desktop .ai (Variables panel)"
+        }
+      ],
+      "input_asset_count": 9,
+      "input_modalities": [
+        "image",
+        "data",
+        "template"
+      ],
+      "workflow": [
+        {
+          "step": 1,
+          "tool": "asset_initialize_file_upload",
+          "feasibility": "C",
+          "note": "Initialize upload of the approved tee artwork (cloud gradient + hard-edge lettering on black) into Adobe storage.",
+          "consumes": "input asset: approved tee artwork PNG (~4500px)"
+        },
+        {
+          "step": 2,
+          "tool": "asset_finalize_file_upload",
+          "feasibility": "C",
+          "note": "Finalize the upload; returns the working presigned URL that seeds the whole separation pipeline.",
+          "consumes": "step 1 (initialized upload)"
+        },
+        {
+          "step": 3,
+          "tool": "image_crop_to_bounds",
+          "feasibility": "C",
+          "note": "Trim the artwork to the live print area (remove black margin) so screen budget and registration are computed on the true image extent.",
+          "consumes": "step 2 (uploaded artwork)"
+        },
+        {
+          "step": 4,
+          "tool": "image_select_subject",
+          "feasibility": "C",
+          "note": "Select the whole artwork off the flat black ground — produces the subject mask used to build the white underbase.",
+          "consumes": "step 3 (cropped artwork)"
+        },
+        {
+          "step": 5,
+          "tool": "image_invert_selection",
+          "feasibility": "C",
+          "note": "Invert so the artwork (not the black ground) is the fill target; this is the correct polarity for an underbase plate.",
+          "consumes": "step 4 (subject mask)"
+        },
+        {
+          "step": 6,
+          "tool": "image_fill_area",
+          "feasibility": "C",
+          "note": "Fill the artwork region solid white (preset:white) to produce the WHITE UNDERBASE separation — the plate flashed first under the spot colours.",
+          "consumes": "step 5 (inverted mask) + step 3 (cropped artwork)"
+        },
+        {
+          "step": 7,
+          "tool": "image_select_by_prompt",
+          "feasibility": "C",
+          "note": "Mask 'the cloud gradient area' on the cropped artwork — isolates the soft tones that must become a halftone dot field.",
+          "consumes": "step 3 (cropped artwork)"
+        },
+        {
+          "step": 8,
+          "tool": "image_invert_selection",
+          "feasibility": "C",
+          "note": "Invert the cloud mask to derive the LETTERING hold-out region (everything that must stay a hard-edge solid, never dotted).",
+          "consumes": "step 7 (cloud mask)"
+        },
+        {
+          "step": 9,
+          "tool": "image_apply_halftone",
+          "feasibility": "C",
+          "note": "Apply a black-and-white Ben-Day halftone (blackAndWhite:true, radius from the dot-gain JSON) INSIDE the cloud mask only — lettering held out. This dot field is the shared geometry of the three spot plates.",
+          "consumes": "step 7 (cloud mask) + step 3 (cropped artwork)"
+        },
+        {
+          "step": 10,
+          "tool": "image_apply_gaussian_blur",
+          "feasibility": "C",
+          "note": "Dot-gain CHOKE — a slight gaussian on the dot field (blurTarget:currentLayer) so dots don't plug/bridge in the press shadows on a black tee.",
+          "consumes": "step 9 (halftoned cloud field)"
+        },
+        {
+          "step": 11,
+          "tool": "image_apply_monochromatic_tint",
+          "feasibility": "C",
+          "note": "LAVENDER plate proof — tint the choked dot field to the lavender Pantone build (custom hue/saturation) so the client sees plate 1 on black.",
+          "consumes": "step 10 (choked dot field)"
+        },
+        {
+          "step": 12,
+          "tool": "image_adjust_single_color_saturation",
+          "feasibility": "C",
+          "note": "Tune the COBALT-BLUE separation strength — push the blue band's saturation so the cobalt plate density reads correctly against lavender.",
+          "consumes": "step 10 (choked dot field)"
+        },
+        {
+          "step": 13,
+          "tool": "image_adjust_hsl",
+          "feasibility": "C",
+          "note": "Shift the cobalt band hue precisely onto the target cobalt Pantone (HSL on the blue channel) — the press needs the exact ink, not 'a blue'.",
+          "consumes": "step 12 (cobalt-tuned plate)"
+        },
+        {
+          "step": 14,
+          "tool": "image_apply_color_overlay",
+          "feasibility": "C",
+          "note": "DEEP-PURPLE plate proof — custom-RGB colour overlay in multiply over the dot field for the third spot plate.",
+          "consumes": "step 10 (choked dot field)"
+        },
+        {
+          "step": 15,
+          "tool": "image_vectorize",
+          "feasibility": "C",
+          "note": "Vectorize the held-out LETTERING region into a clean hard-edge vector plate (SVG/AI) — a crisp top-print plate with no dots.",
+          "consumes": "step 8 (lettering hold-out region of the artwork)"
+        },
+        {
+          "step": 16,
+          "tool": "asset_search",
+          "feasibility": "C",
+          "note": "Search Adobe Stock for a high-contrast grunge / distressed-paper texture (contentType photo, orientation square) for the alt-drop distress pass.",
+          "consumes": "brief: merch alt colourway needs real grit"
+        },
+        {
+          "step": 17,
+          "tool": "asset_license_and_download_stock",
+          "feasibility": "C",
+          "note": "License + download the chosen grunge texture (full-res) before any edit — license-before-edit rule.",
+          "consumes": "step 16 (chosen stock result)"
+        },
+        {
+          "step": 18,
+          "tool": "image_apply_color_overlay",
+          "feasibility": "C",
+          "note": "Multiply the licensed grunge texture over the deep-purple proof to knock the artwork back into a worn, on-garment look (start of the alt colourway).",
+          "consumes": "step 14 (deep-purple proof) + step 17 (licensed grunge)"
+        },
+        {
+          "step": 19,
+          "tool": "image_add_grain",
+          "feasibility": "C",
+          "note": "Add film grain to the distressed base for a tactile, screened-on-fabric texture.",
+          "consumes": "step 18 (grunged base)"
+        },
+        {
+          "step": 20,
+          "tool": "image_add_noise",
+          "feasibility": "C",
+          "note": "Add noise on top of the grain to break up flat ink areas — reads as a heavily-printed vintage tee.",
+          "consumes": "step 19 (grained base)"
+        },
+        {
+          "step": 21,
+          "tool": "image_apply_glitch_effect",
+          "feasibility": "C",
+          "note": "VHS chromatic-aberration glitch — the signature distressed alt-colourway look for the merch drop.",
+          "consumes": "step 20 (noised base)"
+        },
+        {
+          "step": 22,
+          "tool": "image_crop_and_resize",
+          "feasibility": "C",
+          "note": "Crop/resize the finished VHS alt colourway to the merch-mockup export size (e.g. 3600px print-on-demand front).",
+          "consumes": "step 21 (VHS alt colourway)"
+        },
+        {
+          "step": 23,
+          "tool": "font_recommend",
+          "feasibility": "C",
+          "note": "Recommend a heavy display face for the slogan / the separation-sheet headers — informs the lettering plate and the .ai sheet typography.",
+          "consumes": "brief: slogan tee display type"
+        },
+        {
+          "step": 24,
+          "tool": "document_merge_data_vector",
+          "feasibility": "T",
+          "note": "Merge the spot-colour CSV into the authored .ai (Variables) — one registration/swatch card per ink (name, Pantone, mesh, squeegee, flash temp). Produces a GENUINE multi-artboard .ai that doubles as the separation sheet.",
+          "consumes": "input: authored .ai template + spot-colour CSV (informed by step 23 font)"
+        },
+        {
+          "step": 25,
+          "tool": "document_render_vector",
+          "feasibility": "C",
+          "note": "Export the genuine merged .ai to a print PDF (all artboards) — the registration/swatch-card set AND the master separation sheet. Real .ai in, real PDF out.",
+          "consumes": "step 24 (merged .ai)"
+        },
+        {
+          "step": 26,
+          "tool": "[local PIL] separation proof contact sheet",
+          "feasibility": "L",
+          "note": "Compose the final client proof: white underbase + 3 spot plates (steps 6/11/13/14) + vectorized lettering (15) + VHS alt colourway (22) + the rendered sep sheet (25) into one labelled contact sheet. The connector edits ELEMENTS; arbitrary multi-element layout is local.",
+          "consumes": "steps 6, 11, 13, 14, 15, 22, 25 (all plates + colourways + sheet)"
+        }
+      ],
+      "connector_workflow": [
+        "asset_initialize_file_upload",
+        "asset_finalize_file_upload",
+        "image_crop_to_bounds",
+        "image_select_subject",
+        "image_invert_selection",
+        "image_fill_area",
+        "image_select_by_prompt",
+        "image_apply_halftone",
+        "image_apply_gaussian_blur",
+        "image_apply_monochromatic_tint",
+        "image_adjust_single_color_saturation",
+        "image_adjust_hsl",
+        "image_apply_color_overlay",
+        "image_vectorize",
+        "asset_search",
+        "asset_license_and_download_stock",
+        "image_add_grain",
+        "image_add_noise",
+        "image_apply_glitch_effect",
+        "image_crop_and_resize",
+        "font_recommend",
+        "document_merge_data_vector",
+        "document_render_vector"
+      ],
+      "connector_count": 23,
+      "total_steps": 26,
+      "iterative_chain": [
+        "asset_finalize_file_upload.out(approved artwork) -> image_crop_to_bounds.in",
+        "image_crop_to_bounds.out -> image_select_subject.in (artwork off black ground)",
+        "image_select_subject.out(subject mask) -> image_invert_selection.in",
+        "image_invert_selection.out(inverted mask) + image_crop_to_bounds.out -> image_fill_area.in (white underbase)",
+        "image_crop_to_bounds.out -> image_select_by_prompt.in (cloud gradient mask)",
+        "image_select_by_prompt.out(cloud mask) -> image_invert_selection.in (lettering hold-out)",
+        "image_select_by_prompt.out(cloud mask) + image_crop_to_bounds.out -> image_apply_halftone.in (B&W dots, clouds only)",
+        "image_apply_halftone.out -> image_apply_gaussian_blur.in (dot-gain choke)",
+        "image_apply_gaussian_blur.out -> image_apply_monochromatic_tint.in (lavender plate)",
+        "image_apply_gaussian_blur.out -> image_adjust_single_color_saturation.in (cobalt strength)",
+        "image_adjust_single_color_saturation.out -> image_adjust_hsl.in (cobalt hue lock)",
+        "image_apply_gaussian_blur.out -> image_apply_color_overlay.in (deep-purple plate)",
+        "image_invert_selection.out(lettering hold-out) -> image_vectorize.in (vector lettering plate)",
+        "asset_search.out -> asset_license_and_download_stock.in (grunge texture)",
+        "image_apply_color_overlay.out(deep-purple proof) + asset_license_and_download_stock.out(grunge) -> image_apply_color_overlay.in (distress multiply)",
+        "image_apply_color_overlay.out(distress) -> image_add_grain.in",
+        "image_add_grain.out -> image_add_noise.in",
+        "image_add_noise.out -> image_apply_glitch_effect.in (VHS)",
+        "image_apply_glitch_effect.out -> image_crop_and_resize.in (merch export size)",
+        "font_recommend.out + authored .ai + spot CSV -> document_merge_data_vector.in",
+        "document_merge_data_vector.out(merged .ai) -> document_render_vector.in (print PDF)",
+        "image_fill_area.out + image_apply_monochromatic_tint.out + image_adjust_hsl.out + image_apply_color_overlay.out + image_vectorize.out + image_crop_and_resize.out + document_render_vector.out -> [local PIL] contact sheet"
+      ],
+      "templates_to_author": [
+        "Illustrator separation-sheet template 'screenprint_sep_sheet.ai' (authored once in desktop Illustrator, Variables panel bound). Two artboard families: (A) MASTER SEPARATION SHEET artboard 1 — four labelled plate-placeholder frames (UNDERBASE / LAVENDER / COBALT / DEEP PURPLE) arranged 2x2, plus crop/registration target marks at all four corners and a centre bullseye; a title block bound to Variables {job_name}, {tee_colour}, {total_screens}, {date}. (B) PER-INK REGISTRATION/SWATCH CARDS artboards 2..N (one per CSV row) — a 3.5x2in card whose swatch rectangle fill is driven by Variable {rgb_hex} and text frames bound to Variables {ink_name}, {pantone}, {mesh_count}, {squeegee_durometer}, {flash_temp_F}, {print_order}. CSV column headers must match the Variable names EXACTLY: ink_name, pantone, rgb_hex, mesh_count, squeegee_durometer, flash_temp_F, print_order. 4 rows: 'White Underbase'/no Pantone/FFFFFF, 'Lavender'/2635C/.., 'Cobalt Blue'/2945C/.., 'Deep Purple'/2685C/.. ."
+      ],
+      "unused_tools_hit": [
+        "image_crop_to_bounds",
+        "image_select_by_prompt",
+        "image_invert_selection",
+        "image_apply_halftone",
+        "image_apply_gaussian_blur",
+        "image_apply_monochromatic_tint",
+        "image_adjust_single_color_saturation",
+        "image_adjust_hsl",
+        "image_apply_color_overlay",
+        "image_select_subject",
+        "image_fill_area",
+        "image_add_grain",
+        "image_add_noise",
+        "image_apply_glitch_effect",
+        "image_vectorize",
+        "asset_search",
+        "asset_license_and_download_stock",
+        "font_recommend",
+        "document_merge_data_vector",
+        "document_render_vector"
+      ]
+    },
+    {
+      "rank": 6,
+      "title": "Conference attendee badge + certificate suite — 510 personalized A6 badges from a roster CSV + headshot folder, uniformly cropped/retouched faces on a shared backdrop, plus InDesign-merged completion certificates exported as print PDFs",
+      "domain": "event_conference_kit",
+      "provenance": "scraped",
+      "source": "Freelancer 'event-badge-name-photo-placement' (510 badges, CMYK/300dpi/A6, supplied PSD+PDF master, headshot folder, name list) — scraped pool event_conference_kit",
+      "url": "https://www.freelancer.com/projects/adobe-photoshop/event-badge-name-photo-placement.html",
+      "one_line_ask": "From a 510-row attendee roster CSV and a folder of mixed headshots, produce 510 print-ready A6 (CMYK, 300dpi) name badges via InDesign data-merge — every headshot first cropped/centred/retouched to a uniform look on a shared badge backdrop — then data-merge matching completion certificates from the same roster and export everything to print PDF.",
+      "deliverables": [
+        "510 print-ready A6 (CMYK, 300dpi) name badges, one per attendee, merged from the roster CSV with name + headshot",
+        "Every headshot cropped/centred/scaled uniformly and tonally matched (consistent exposure/contrast)",
+        "A uniform solid badge-backdrop colour behind each subject + one shared look preset",
+        "Matching completion/attendance certificates merged one-per-attendee from the same roster",
+        "InDesign layouts rendered and exported as print-ready PDFs (badges + certificates)",
+        "Recommended badge/certificate typography that reads cleanly at A6"
+      ],
+      "connector_workflow": [
+        "asset_initialize_file_upload",
+        "asset_finalize_file_upload",
+        "image_auto_straighten",
+        "image_crop_and_resize",
+        "image_apply_auto_tone",
+        "image_adjust_exposure",
+        "image_adjust_brightness_and_contrast",
+        "image_select_subject",
+        "image_invert_selection",
+        "image_fill_area",
+        "image_list_presets",
+        "image_apply_preset",
+        "font_recommend",
+        "document_merge_data_layout",
+        "document_render_layout",
+        "document_convert_pdf"
+      ],
+      "connector_count": 16,
+      "iterative_chain": [
+        "asset_finalize_file_upload.out(raw headshot) -> image_auto_straighten.in (level tilted phone shots)",
+        "image_auto_straighten.out -> image_crop_and_resize.in (fit:extract on face -> uniform centred crop)",
+        "image_crop_and_resize.out -> image_apply_auto_tone.in (baseline)",
+        "image_apply_auto_tone.out -> image_adjust_exposure.in (match brightness across all 510)",
+        "image_adjust_exposure.out -> image_adjust_brightness_and_contrast.in (consistent contrast)",
+        "image_adjust_brightness_and_contrast.out -> image_select_subject.in (detect the person)",
+        "image_select_subject.out(mask) -> image_invert_selection.in (flip to background)",
+        "image_invert_selection.out(bg mask) -> image_fill_area.in (shared solid badge-backdrop colour)",
+        "image_fill_area.out -> image_apply_preset.in (one shared look; name from image_list_presets)",
+        "image_list_presets.out(name) -> image_apply_preset.in",
+        "image_apply_preset.out(retouched headshots) -> document_merge_data_layout.in (as additionalImageFiles for badge .indd + roster CSV)",
+        "font_recommend.out(badge type) -> document_merge_data_layout.in (font choice for the merge)",
+        "document_merge_data_layout.out(per-row badge) -> document_render_layout.in (render badge + certificate PDFs)",
+        "document_render_layout.out -> document_convert_pdf.in (round-trip a flattened proof PDF back to INDD for last-minute tweaks)"
+      ],
+      "input_assets": [
+        {
+          "what": "Attendee headshots (one per badge, mixed framing/lighting) needing uniform crop + retouch — representative batch of the 510-photo set",
+          "modality": "image",
+          "count": 16
+        },
+        {
+          "what": "Attendee roster CSV (name, organization, title, certificate number, photo filename) driving both merges",
+          "modality": "data",
+          "count": 1
+        },
+        {
+          "what": "Branded badge master layout supplied by client (front + back) as InDesign .indd template",
+          "modality": "data",
+          "count": 1
+        },
+        {
+          "what": "Completion-certificate .indd template",
+          "modality": "data",
+          "count": 1
+        },
+        {
+          "what": "Backdrop colour swatch / brand hex behind each subject",
+          "modality": "image",
+          "count": 1
+        }
+      ],
+      "input_asset_count": 20,
+      "input_modalities": [
+        "image",
+        "data"
+      ],
+      "unused_tools_hit": [
+        "image_auto_straighten",
+        "image_adjust_exposure",
+        "image_adjust_brightness_and_contrast",
+        "image_select_subject",
+        "image_invert_selection",
+        "image_fill_area",
+        "image_list_presets",
+        "image_apply_preset",
+        "font_recommend",
+        "document_merge_data_layout",
+        "document_render_layout",
+        "document_convert_pdf"
+      ]
+    },
+    {
+      "rank": 7,
+      "title": "Real-estate lead-gen tour video + reels package — narrated property walkthrough cut from room clips, cleaned voiceover, key-segment summary, graded hero thumbnail, and 9:16/1:1 social resizes for Facebook Feed/Stories/Reels",
+      "domain": "realestate_listing_package",
+      "provenance": "composite",
+      "source": "Freelancer db-366 'Lead-Generating Real Estate Video Reels' composited with db-1885 'Vibrant Social Media Reels Creation' and db-641 'Fun YouTube Podcast Editing' (VO cleanup) — full Premiere video/audio coverage",
+      "url": "https://www.freelancer.com/projects/voice-over/Lead-Generating-Real-Estate-Video",
+      "one_line_ask": "Turn room-by-room property clips + a rough agent voiceover into a lead-gen Facebook tour: summarize the footage to find the key spaces, build a tight quick-cut walkthrough, clean and isolate the VO from music/reverb, grade a hero thumbnail still, and export the tour in Facebook Feed (1:1), Stories and Reels (9:16) sizes.",
+      "deliverables": [
+        "A narrated, tour-guide-style property walkthrough video cut from the room clips with hooks in the first 3 seconds",
+        "A cleaned voiceover track separated from background music/ambient and reverb",
+        "A key-segment summary/transcript of the footage used to choose which rooms lead",
+        "A graded hero thumbnail/cover still pulled and tonally finished for the listing",
+        "Facebook Feed (1:1), Stories (9:16) and Reels (9:16) resized exports, MP4/H.264",
+        "Consistent aesthetic across the cut for the lead-gen campaign"
+      ],
+      "connector_workflow": [
+        "asset_initialize_file_upload",
+        "asset_finalize_file_upload",
+        "media_summarize",
+        "media_enhance_speech",
+        "video_create_quick_cut",
+        "video_resize",
+        "image_auto_straighten",
+        "image_apply_auto_tone",
+        "image_adjust_exposure",
+        "image_adjust_highlights",
+        "image_adjust_vibrance_and_saturation",
+        "image_apply_preset",
+        "image_crop_and_resize"
+      ],
+      "connector_count": 13,
+      "iterative_chain": [
+        "asset_finalize_file_upload.out(room walkthrough clips) -> media_summarize.in (find key spaces / spoken beats)",
+        "asset_finalize_file_upload.out(agent VO+music clip) -> media_enhance_speech.in (split clean speech vs music vs reverb)",
+        "media_summarize.out(key-segment guidance) -> video_create_quick_cut.in (assemble tight tour from the strongest rooms)",
+        "media_enhance_speech.out(clean speech track) -> video_create_quick_cut.in (lay cleaned VO under the cut)",
+        "video_create_quick_cut.out(tour master) -> video_resize.in (1:1 Feed, then 9:16 Stories/Reels)",
+        "asset_finalize_file_upload.out(listing hero still) -> image_auto_straighten.in (level the frame)",
+        "image_auto_straighten.out -> image_apply_auto_tone.in (baseline)",
+        "image_apply_auto_tone.out -> image_adjust_exposure.in (brighten interior)",
+        "image_adjust_exposure.out -> image_adjust_highlights.in (recover window)",
+        "image_adjust_highlights.out -> image_adjust_vibrance_and_saturation.in (pop for the feed)",
+        "image_adjust_vibrance_and_saturation.out -> image_apply_preset.in (match campaign look)",
+        "image_apply_preset.out -> image_crop_and_resize.in (thumbnail + per-platform cover sizes)"
+      ],
+      "input_assets": [
+        {
+          "what": "Room-by-room property walkthrough clips to summarize and cut into the tour",
+          "modality": "video",
+          "count": 6
+        },
+        {
+          "what": "Agent voiceover narration recorded over a rough music bed (deliberately noisy/reverberant so media_enhance_speech has real audio to separate)",
+          "modality": "audio",
+          "count": 1
+        },
+        {
+          "what": "Royalty-free music bed for the final mix",
+          "modality": "audio",
+          "count": 1
+        },
+        {
+          "what": "Listing hero/exterior + twilight stills used for the graded thumbnail and covers",
+          "modality": "image",
+          "count": 4
+        }
+      ],
+      "input_asset_count": 12,
+      "input_modalities": [
+        "video",
+        "audio",
+        "image"
+      ],
+      "unused_tools_hit": [
+        "media_summarize",
+        "media_enhance_speech",
+        "video_create_quick_cut",
+        "video_resize",
+        "image_auto_straighten",
+        "image_adjust_exposure",
+        "image_adjust_highlights",
+        "image_apply_preset"
+      ]
+    }
+  ],
+  "suite_coverage": {
+    "image_remove_background": [
+      1,
+      3
+    ],
+    "image_apply_auto_tone": [
+      1,
+      2,
+      6,
+      7
+    ],
+    "image_adjust_exposure": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7
+    ],
+    "image_adjust_brightness_and_contrast": [
+      2,
+      6
+    ],
+    "image_adjust_highlights": [
+      1,
+      2,
+      3,
+      7
+    ],
+    "image_adjust_dark_portions": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "image_adjust_light_portions": [
+      2
+    ],
+    "image_adjust_color_temperature": [
+      1,
+      2,
+      3
+    ],
+    "image_adjust_hsl": [
+      2,
+      3,
+      4
+    ],
+    "image_adjust_vibrance_and_saturation": [
+      1,
+      7
+    ],
+    "image_adjust_single_color_saturation": [
+      4,
+      5
+    ],
+    "image_apply_preset": [
+      1,
+      2,
+      6,
+      7
+    ],
+    "image_list_presets": [
+      1,
+      2,
+      6
+    ],
+    "image_crop_and_resize": [
+      1,
+      2,
+      4,
+      5,
+      6,
+      7
+    ],
+    "image_crop_to_bounds": [
+      1,
+      2
+    ],
+    "image_auto_straighten": [
+      1,
+      2,
+      6,
+      7
+    ],
+    "image_vectorize": [
+      4,
+      5
+    ],
+    "image_generative_expand": [
+      3
+    ],
+    "image_select_subject": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "image_select_by_prompt": [
+      1,
+      3,
+      4,
+      5
+    ],
+    "image_invert_selection": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "image_apply_lens_blur": [
+      1,
+      3,
+      4
+    ],
+    "image_apply_gaussian_blur": [
+      3
+    ],
+    "image_apply_color_overlay": [
+      4,
+      5
+    ],
+    "image_apply_monochromatic_tint": [
+      4,
+      5
+    ],
+    "image_apply_halftone": [
+      4,
+      5
+    ],
+    "image_apply_glitch_effect": [
+      5
+    ],
+    "image_add_grain": [
+      4
+    ],
+    "image_add_noise": [
+      5
+    ],
+    "image_fill_area": [
+      1,
+      5,
+      6
+    ],
+    "asset_search": [
+      3
+    ],
+    "asset_license_and_download_stock": [
+      3
+    ],
+    "document_render_vector": [
+      2,
+      4,
+      5
+    ],
+    "document_merge_data_vector": [
+      2,
+      4
+    ],
+    "document_convert_pdf": [
+      6
+    ],
+    "document_render_layout": [
+      6
+    ],
+    "document_merge_data_layout": [
+      6
+    ],
+    "font_recommend": [
+      2,
+      4,
+      5,
+      6
+    ],
+    "video_create_quick_cut": [
+      7
+    ],
+    "video_resize": [
+      7
+    ],
+    "media_summarize": [
+      7
+    ],
+    "media_enhance_speech": [
+      7
+    ],
+    "asset_initialize_file_upload": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "asset_finalize_file_upload": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "tools_uncovered_headless": [],
+  "tools_human_or_unavailable": [
+    "change_background_color (Express-only: requires a templateOrDocumentURN on an Adobe Express design — not headless; the solid-backdrop need is met instead by image_select_subject -> image_invert_selection -> image_fill_area, used in T1/T5/T6)",
+    "search_design (Express gallery — needs_human click)",
+    "fill_text (Express — needs_human)",
+    "animate_design (Express — needs_human)",
+    "generative fill / inpainting (unavailable — no AI object add/remove)",
+    "text-to-image generation (unavailable)",
+    "background replacement by prompt (unavailable — only solid-color fill)",
+    "image upscaling (unavailable)",
+    "video trim-to-timestamp / format conversion (unavailable — only quick_cut highlight + resize)",
+    "PDF text editing (unavailable)"
+  ],
+  "notes": "7 mega-tasks, each 13-19 distinct connectors with heavy output->input chaining and 6-33 inputs across image/data/video/audio. COLLECTIVE COVERAGE of every headless-usable connector in the ~50-tool suite is COMPLETE (tools_uncovered_headless is empty).\n\nProvenance: T1/T2/T3/T5 = db (verbatim DB anchors db-4478, db-6004, db-1847, db-2919, read in full from pipeline/data/adobe.db). T6 = scraped (Freelancer 510-badge brief from input pool 1). T4 = composite (real Freelancer Tech-House cover brief + real Upwork album-art-package brief, both cited). T7 = composite (db-366 real-estate reels + db-1885 vibrant reels + db-641 podcast VO cleanup, all real DB anchors).\n\nKEY HONESTY CORRECTION verified against the live tool schema: change_background_color is NOT the product-on-grey/solid-backdrop tool — its schema requires `templateOrDocumentURN` and 'Only works on Express designs', so it is Express-bound/needs_human. The scraped pool's implied_connector_workflow used it as a backdrop tool, which is wrong. Every task that needs a clean solid background instead uses the correct 3-step recipe image_select_subject -> image_invert_selection -> image_fill_area (the image_fill_area schema explicitly documents this recipe). This is why image_fill_area appears in T1/T5/T6 and change_background_color appears nowhere.\n\nEvery tool call in each workflow is genuinely load-bearing: selection tools always precede the masked tonal/FX/fill tool that consumes their mask (correct mask polarity respected — subject mask then invert before background fill/blur); image_list_presets always precedes image_apply_preset (names must be fetched, not guessed); asset_search precedes asset_license_and_download_stock precedes any edit on stock (license-before-edit rule); font_recommend precedes the data-merge it informs; media_summarize/media_enhance_speech feed video_create_quick_cut which feeds video_resize. document_merge_data_* outputs feed document_render_* / document_convert_pdf.\n\nBoth data-merge variants are exercised with both render tools: VECTOR (Illustrator) merge+render in T2/T4 (and render_vector again in T5), LAYOUT (InDesign) merge+render+convert_pdf in T6. All four Premiere video/audio tools land in T7. All fine tonal adjusts including single_color_saturation (T4/T5), light_portions (T2), all six creative-FX tools (halftone/monochromatic_tint/color_overlay in T4+T5, glitch+noise in T5, grain in T4), masking pipeline, both blurs (lens T1/T3/T4, gaussian T3), auto_straighten, crop_to_bounds, generative_expand, vectorize, and stock search+license are all represented.\n\nRelevant files (all absolute): briefs read from /Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/pipeline/data/adobe.db (items table, ids 4478/6004/1847/2919/1885/366/641); grounding at /Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/complex_benchmark/GROUNDING.md.\"}"
+}

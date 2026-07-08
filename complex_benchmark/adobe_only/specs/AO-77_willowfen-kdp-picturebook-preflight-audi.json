@@ -1,0 +1,219 @@
+{
+ "slot_id": "L04",
+ "category": "datamerge_print",
+ "title": "Willowfen Press KDP picture-book preflight: audit supplied interior + cover .indd/PDF against KDP print specs and emit a marked-up preflight report",
+ "slug": "willowfen-kdp-picturebook-preflight-audit-report",
+ "vertical": "professional_services",
+ "source": {
+  "platform": "Upwork",
+  "reference": "KDP Formatter Needed for 32-Page Children's Picture Book — Paperback"
+ },
+ "grounding_note": "VERBATIM from the Upwork brief: \"I have a completed manuscript and illustrations for a 32-page children's picture book and need a professional formatter to prepare paperback print-ready files for Amazon KDP\", requiring \"Interior layout formatted to 8.5x11 trim size\", \"Bleed, margins, and resolution set to KDP specifications\", \"Full wraparound cover file with correct spine width\", and someone who knows \"How to export files that pass KDP's preflight check first time\". Provided by the client: \"KDP Cover Template\", \"32 Interior Pages PDF\". REASONABLY ENRICHED into a runnable, connector-doable ANALYZE task while keeping the brief's real intent (a KDP print-readiness / preflight check). The brief's from-scratch layout composition is NOT in connector scope, so the freelancer is modeled as a print-QA specialist doing the second-round preflight AUDIT the brief actually rewards (\"pass preflight the first time\"): the client hands off the authored interior template (.indd with real per-page caption merge fields), the exported 32-page interior PDF, the wraparound cover template PDF, a filled-caption CSV, and a KDP spec sheet, and asks whether the files are print-ready. The Adobe chain INSPECTS the supplied files (render proofs of the interior .indd and the cover/interior PDFs, inline-preview a spread and the cover to eyeball bleed/margin/spine, summarize the spec sheet, run a caption merge to catch overset/clipped text against the real fields) and emits a marked-up preflight findings report plus proof renders. Fictional brand: Willowfen Press, book \"Pip & the Paper Moon\". No new deliverable was invented beyond the print-readiness verdict the brief asks for; nothing generative, no from-scratch layout.",
+ "one_line_ask": "Audit Willowfen Press's supplied 32-page KDP picture-book interior .indd, its exported interior PDF, and the wraparound cover PDF against the KDP spec sheet — checking trim, bleed, margins, spine width, image resolution and caption overset — and emit a marked-up preflight report plus proof renders that says whether the files will pass KDP preflight.",
+ "full_brief": "Willowfen Press is a small independent children's-book publisher about to upload its next paperback, \"Pip & the Paper Moon\", to Amazon KDP. Our illustrator and layout designer have already built the files, but our last title bounced twice in KDP's preflight (spine width off, one illustration under-resolution, a caption clipped), so before we upload again we want an independent print-QA pass. We are handing off four things: (1) the authored InDesign interior template (pip_interior_template.indd) — a 32-page 8.5x11 in trim book with real InDesign data-merge caption fields (<<page_no>>, <<caption>>, <<alt_note>>) placed on each illustrated spread; (2) the exported interior PDF our designer produced from it (pip_interior_export.pdf, 32 pages); (3) the wraparound paperback cover our designer built to the KDP cover template (pip_cover_wrap.pdf — front + spine + back on one sheet); and (4) the KDP spec sheet we were given (kdp_spec_sheet.pdf) that states the required trim (8.5x11 in), bleed (0.125 in on outside edges), interior safe margin (0.375 in), minimum image resolution (300 DPI), and the spine-width formula for a 32-page white-paper paperback (~0.0725 in). We also include the filled caption data (pip_captions.csv) that maps to the interior template's merge fields. What we need from you: go through the files and tell us, in writing, whether they will pass KDP preflight the first time. Specifically: pull a proof render of the interior template and of the exported interior PDF so we can compare them page for page; inline-preview a representative illustrated spread and the full cover sheet so bleed, safe-margin and spine placement can be eyeballed; read the KDP spec sheet and pull out the exact required numbers; and re-run the caption data-merge into the authored interior template so any long caption that would overset or clip in a text frame is caught (that was one of last time's failures). Then write up a clean, itemized preflight report — one line per check (trim, bleed, margins, spine width, image resolution, caption overset, font embedding, page count) with a PASS / FLAG verdict and a short note, ending with an overall go / no-go and a punch-list of what to fix before upload. Deliver the written report plus the proof renders you pulled. Do NOT redesign or re-lay-out anything — this is a review, not a rebuild; every caption and price stays as supplied.",
+ "inputs": [
+  {
+   "name": "pip_interior_template.indd",
+   "kind": "data",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine Adobe InDesign document (.indd/.idml) for a 32-page 8.5x11 in (US Letter) children's picture-book interior, 'Pip & the Paper Moon'. Facing-pages spread layout with a full-bleed illustration frame per page and REAL InDesign data-merge caption fields named <<page_no>>, <<caption>>, <<alt_note>> placed in a caption text frame on each illustrated page. Deliberately built with a couple of realistic print defects for the audit to catch: one caption text frame is slightly too small so a long merged caption oversets, and one illustration is placed below KDP's 300 DPI minimum. Authored by hand in InDesign so the merge fields actually bind; a PDF-converted .indd with literal text would NOT bind.",
+   "realism_notes": "Modeled as the client's designer's real working file (a normal second-round QA hand-off). document_merge_data_layout is [T] and REQUIRES a user-authored .indd carrying real merge fields — it cannot be connector-generated, so it is a supplied input, not a chain output. The embedded defects give the analyze pass genuine findings to surface."
+  },
+  {
+   "name": "pip_interior_export.pdf",
+   "kind": "pdf",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE: the 32-page interior PDF the client's designer exported from pip_interior_template.indd — single pages (not spreads), 8.5x11 in trim plus 0.125 in bleed on outer edges, illustrations to the bleed, captions burned in. Represents the actual file the client intends to upload; the audit compares it page-for-page against the template proof and flags where export settings drifted (e.g. a page where bleed did not carry, or an image downsampled below 300 DPI).",
+   "realism_notes": "The already-exported PDF is what KDP actually preflights, so it must be inspected as its own artifact alongside the source .indd. Supplied, not generated by the chain."
+  },
+  {
+   "name": "pip_cover_wrap.pdf",
+   "kind": "pdf",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE: a single-sheet wraparound paperback cover PDF built to KDP's cover template for a 32-page white-paper 8.5x11 in book — back panel, spine, and front panel laid out left-to-right on one flattened sheet, with 0.125 in bleed all around and the title 'Pip & the Paper Moon' + Willowfen Press wordmark on the front. Built with a subtle realistic defect: the spine text sits a hair outside the narrow ~0.0725 in spine safe zone, the kind of thing KDP preflight rejects. Supplied by the client.",
+   "realism_notes": "The wraparound cover with a tight spine is the classic KDP failure point named in the brief ('correct spine width'); a genuine flattened cover PDF is the honest input for a bleed/spine eyeball via inline preview."
+  },
+  {
+   "name": "pip_captions.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a CSV with columns page_no,caption,alt_note holding 32 rows (one per interior page) of short children's-book captions for 'Pip & the Paper Moon' plus a brief alt-text note per page. Include a deliberate mix of short captions and ONE deliberately long caption (~90+ characters) so the caption-overset check is actually exercised when merged into the tight caption frame. Column names must exactly match the InDesign merge fields <<page_no>>, <<caption>>, <<alt_note>>.",
+   "realism_notes": "Honors the brief's supplied-content nature; column headers match the authored .indd merge fields so the [T] data-merge binds and the overset defect surfaces. The long caption is what triggers the clip the client got burned by last time."
+  },
+  {
+   "name": "kdp_spec_sheet.pdf",
+   "kind": "pdf",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a one-page reference PDF titled 'KDP Paperback Print Spec Sheet — Pip & the Paper Moon' listing the required print parameters as a labeled table: Trim size 8.5 x 11 in; Bleed 0.125 in on all outside edges; Interior safe margin 0.375 in from trim; Gutter/inside margin 0.5 in for 24-150 pages; Minimum image resolution 300 DPI; Paper White; Page count 32; Spine width formula white paper = page_count x 0.002252 in => ~0.0725 in for 32 pages; Embed all fonts; Flatten transparency; PDF/X compatible. Plain, business-document formatting.",
+   "realism_notes": "The spec sheet is the ground truth the audit measures against; modeled as a real client hand-off document so media_summarize can extract the exact target numbers the report checks each file against."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "Pip_Preflight_Report.md",
+   "kind": "data",
+   "spec": "The primary deliverable: an itemized KDP preflight findings report (recipe note) — one row per check (trim size, bleed, interior/gutter margins, spine width, image resolution, caption overset/clipping, font embedding, page count) each with a PASS/FLAG verdict, the required value pulled from the spec sheet vs. the observed value, and a short note. Ends with an overall go/no-go verdict and a prioritized punch-list of fixes needed before KDP upload. No layout is changed — findings only."
+  },
+  {
+   "name": "interior_template_proof.pdf",
+   "kind": "pdf",
+   "spec": "Proof render exported from the authored interior .indd, used as visual evidence in the audit (page-for-page reference against the designer's export)."
+  },
+  {
+   "name": "interior_export_proof.pdf",
+   "kind": "pdf",
+   "spec": "Proof render/normalized copy of the designer's exported interior PDF, annotated in the report where it drifts from the template proof (e.g. missing bleed, downsampled image)."
+  },
+  {
+   "name": "spread_and_cover_preview_frames",
+   "kind": "image",
+   "spec": "Inline-preview frames of a representative illustrated interior spread and of the full wraparound cover sheet, captured as the visual basis for the bleed / safe-margin / spine-placement findings."
+  },
+  {
+   "name": "caption_merge_check.pdf",
+   "kind": "pdf",
+   "spec": "Proof of the caption CSV merged into the authored interior template, rendered so any overset/clipped caption is visible — the evidence for the caption-overset line in the report. Diagnostic only; not a redesign."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "audit_workspace",
+   "note": "Stand up a CC asset workspace (e.g. /L04/handoff, /L04/proofs, /L04/report) to hold the client-supplied files and the proof renders the audit produces."
+  },
+  {
+   "n": 2,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "audit_workspace",
+   "output": "upload_session",
+   "note": "Initialize an upload session for the five client-supplied files (pip_interior_template.indd, pip_interior_export.pdf, pip_cover_wrap.pdf, pip_captions.csv, kdp_spec_sheet.pdf)."
+  },
+  {
+   "n": 3,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "handoff_assets",
+   "note": "Finalize the uploads so all five hand-off files are real CC assets with URNs the inspection steps can reference."
+  },
+  {
+   "n": 4,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "handoff_assets",
+   "output": "spec_targets",
+   "note": "Read/summarize kdp_spec_sheet.pdf to extract the exact required numbers the audit measures against: trim 8.5x11 in, bleed 0.125 in, safe margin 0.375 in, gutter 0.5 in, 300 DPI min, 32 pages, spine ~0.0725 in, fonts embedded / PDF-X. INSPECT only."
+  },
+  {
+   "n": 5,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "handoff_assets",
+   "output": "interior_template_proof.pdf",
+   "note": "Render the authored interior .indd to a proof PDF (EXPORT-only) so the audit has a page-for-page reference of what the template is supposed to produce."
+  },
+  {
+   "n": 6,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "handoff_assets",
+   "output": "interior_export_proof.pdf",
+   "note": "Normalize/re-render the designer's exported interior PDF into a comparable proof so it can be inspected as the artifact KDP will actually preflight (page count, per-page bleed)."
+  },
+  {
+   "n": 7,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "interior_template_proof.pdf",
+   "output": "spread_preview_frame",
+   "note": "Inline-preview a representative illustrated interior spread from the template proof to eyeball full-bleed illustration coverage and the 0.375 in caption/text safe margin. INSPECT only."
+  },
+  {
+   "n": 8,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "handoff_assets",
+   "output": "cover_preview_frame",
+   "note": "Inline-preview the full wraparound cover sheet (pip_cover_wrap.pdf) to eyeball bleed on all edges and, critically, whether the spine text sits inside the narrow ~0.0725 in spine safe zone. INSPECT only — this is the brief's named spine-width check."
+  },
+  {
+   "n": 9,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "interior_export_proof.pdf",
+   "output": "export_page_frame",
+   "note": "Inline-preview the same page from the designer's exported interior PDF to compare it against the template proof and catch export drift (bleed that did not carry, an image downsampled below 300 DPI). INSPECT only."
+  },
+  {
+   "n": 10,
+   "tool": "document_merge_data_layout",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": "handoff_assets, spec_targets",
+   "output": "caption_merge_indd",
+   "note": "[T] Re-run the caption data-merge: bind pip_captions.csv into the client-authored interior .indd (real <<page_no>>/<<caption>>/<<alt_note>> fields) so any long caption that oversets/clips its frame is reproduced. Uses the supplied authored template; diagnostic re-merge, not a redesign."
+  },
+  {
+   "n": 11,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "caption_merge_indd",
+   "output": "caption_merge_check.pdf",
+   "note": "Render the re-merged interior to a proof PDF so the overset/clipped caption is visible on the page — the evidence for the caption-overset finding. EXPORT-only."
+  },
+  {
+   "n": 12,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "caption_merge_check.pdf",
+   "output": "overset_evidence_frame",
+   "note": "Inline-preview the page carrying the deliberately long caption to confirm and capture the overset/clip visually. INSPECT only."
+  },
+  {
+   "n": 13,
+   "tool": "local_write_recipe_note",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "spec_targets, interior_template_proof.pdf, interior_export_proof.pdf, spread_preview_frame, cover_preview_frame, export_page_frame, overset_evidence_frame",
+   "output": "Pip_Preflight_Report.md",
+   "note": "Emit the itemized KDP preflight report: one line per check (trim, bleed, margins, spine width, image resolution, caption overset, font embedding, page count) with PASS/FLAG, required-vs-observed values, and notes, then an overall go/no-go and a fix punch-list. The single [L] step; findings deliverable only — no asset is altered."
+  }
+ ],
+ "tools_used": [
+  "asset_create_folders",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "media_summarize",
+  "document_render_layout",
+  "document_convert_pdf",
+  "asset_inline_preview",
+  "document_merge_data_layout",
+  "local_write_recipe_note"
+ ],
+ "tool_call_count": 13,
+ "distinct_adobe_tools": 8,
+ "chaining_note": "Strict output-to-input chaining. Steps 1-3 stand up the workspace and finalize the five client-supplied files into handoff_assets (the only initial load). The audit then fans out into inspection branches that each consume a prior output: media_summarize(4) reads the spec sheet from handoff_assets to produce spec_targets; document_render_layout(5) renders the authored .indd from handoff_assets to interior_template_proof.pdf; document_convert_pdf(6) normalizes the designer's export from handoff_assets to interior_export_proof.pdf. The three inline previews then consume those proofs, not raw inputs: spread_preview_frame(7) from the template proof(5), export_page_frame(9) from the export proof(6); cover_preview_frame(8) previews the cover directly from handoff_assets (its first and only inspection). The caption sub-chain converges the authored .indd + CSV + spec_targets into a [T] re-merge(10) -> render_layout(11) -> inline_preview(12), each step consuming only the prior step's output. Finally local_write_recipe_note(13) consumes spec_targets plus all four proof/preview evidence outputs (5,6,7,8,9,12) to emit the report — nothing after step 3 originates outside the chain, and the report emerges only from the assembled inspection evidence.",
+ "difficulty_rationale": "Long-horizon analyze/QA task: 13 connector calls, 8 distinct Adobe tools across three groups (asset_* workspace/upload/preview, document_* render/convert/merge, media_summarize), above the >=6 calls / >=6 distinct-tool analyze floor. Difficulty comes from the review being genuinely multi-artifact: the freelancer must inspect THREE different representations of the same book (authored .indd, designer's exported PDF, wraparound cover) and cross-check each against numeric targets extracted from a fourth file (the spec sheet), then re-run a real [T] data-merge purely as a diagnostic to reproduce an overset caption. It respects every hard limit: nothing is composed or redesigned — document_render_layout/document_convert_pdf only EXPORT/normalize supplied artifacts, document_merge_data_layout is correctly [T] against the client's authored .indd (a supplied input carrying real merge fields), and all preview/summarize steps are read-only inspection. No generative fill / expand, no object-removal, no text-to-image, no upscaling, no from-scratch layout. The deliverable is a findings report plus proof renders (the analyze output form), emitted via the single tolerated trailing [L] local_write_recipe_note.",
+ "workflow_nature": "analyze",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "Confirmed NONE of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art/logo; no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area is not used. No from-scratch layout composition — the connector never builds the book.",
+  "notes": "This is an analyze/preflight-audit task, so all substantive steps INSPECT rather than transform. media_summarize(4) reads the spec sheet (read-only extraction). document_render_layout(5,11) only EXPORTS the client's authored .indd to a proof PDF — it does not compose a layout. document_convert_pdf(6) only normalizes the already-exported interior PDF. asset_inline_preview(7,8,9,12) are pure read-only visual inspection used to eyeball bleed/margin/spine/overset. document_merge_data_layout(10) is correctly tagged [T] and binds the supplied pip_captions.csv into the client-AUTHORED pip_interior_template.indd (a supplied input, kind:data, gen_model:'n/a-authored-asset', carrying real <<page_no>>/<<caption>>/<<alt_note>> merge fields whose names match the CSV headers) purely to reproduce/diagnose the overset caption — no new layout is authored and a PDF-converted .indd would not bind, which is honored by declaring the .indd as authored. The three authored/supplied artifacts under audit (.indd, exported PDF, cover PDF) and the spec sheet are all declared as supplied inputs, not chain outputs. The output is a findings report (Pip_Preflight_Report.md) plus proof/evidence renders — the correct analyze deliverable form. Exactly one trailing [L] step (local_write_recipe_note) emits the report; every other step is server=='adobe'. CORRECTED COUNT: 8 distinct Adobe server tools (asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, media_summarize, document_render_layout, document_convert_pdf, asset_inline_preview, document_merge_data_layout) — the prior draft's distinct_adobe_tools=7 undercounted; local_write_recipe_note is server=local and excluded. 8 distinct (>=6), 13 calls (>=6 analyze floor). Slot match confirmed: operation_family Layout & Data, output_modality document, workflow_nature analyze, vertical professional_services. IP-clean fictional brand Willowfen Press / 'Pip & the Paper Moon' replaces any real publisher. No Canva tools, no Express-widget tools (no search_design/fill_text/animate_design/change_background_color), no video/audio A-mode steps beyond the allowed media_summarize inspection."
+ },
+ "id": "AO-77"
+}

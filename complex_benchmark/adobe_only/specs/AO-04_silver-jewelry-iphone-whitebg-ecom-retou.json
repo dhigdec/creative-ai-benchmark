@@ -1,0 +1,219 @@
+{
+ "id": "AO-04",
+ "slug": "silver-jewelry-iphone-whitebg-ecom-retouch",
+ "title": "Silver Jewelry iPhone Shots to White-Background E-commerce Set (JPEG + transparent PNG)",
+ "vertical": "Fashion & Apparel",
+ "category": "product_ecom_whitebg",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/photography/iPhone-Silver-Jewelry-Photoshoot-Editing"
+ },
+ "grounding_note": "Verbatim from the real Freelancer.com brief (db_i 858): the deliverable spec — 20 finished JPEGs at 3000x3000 px sRGB under 2 MB each, matching PNGs with transparent backgrounds, and original iPhone files plus layered working files; the acceptance criteria — uniform pure/near-white background with no colour cast, accurate metal tone and gemstone colour, pin-sharp focus on hero angles; the input medium — frames captured on a recent-generation iPhone under simple tabletop lighting; and the minimalist clean look slotting straight into the online store. Reasonably enriched to make it a runnable connector benchmark: the client's listed editing tools (Lightroom Mobile, Photoshop Generative Fill, Luminar AI) are mapped onto the REAL Adobe connector equivalents, and Generative Fill is deliberately NOT used because it is not an available connector capability — the uniform white backdrop is instead produced by a faithful, non-generative path (select the piece by prompt, invert, solid-white fill of the background, then background removal for the PNG). The square 1:1 export is reached by an honest reframe-crop of the existing uniform-white frame to square bounds around the centred piece (image_crop_to_bounds), then a deterministic crop_and_resize to exactly 3000x3000, rather than by stretching or by any generative canvas extension. The in-person Nagpur shoot itself is human work outside the connector; this spec covers the AI-powered post-production half the brief explicitly calls out, demonstrated end-to-end on one representative hero frame as the master recipe that the freelancer batches across all 20 pieces.",
+ "one_line_ask": "Turn a handheld iPhone shot of a silver jewellery piece into a clean, colour-accurate, uniform-white e-commerce set: a 3000x3000 sRGB JPEG plus a matching transparent PNG, ready to slot straight into the online store.",
+ "full_brief": "I run a silver jewellery line and need my iPhone-captured product frames turned into a polished, store-ready e-commerce set through AI-powered post-production. The look is minimalist and clean: crisp, shadow-controlled pieces on a pure or near-white backdrop, accurate metal tone and true gemstone colour, pin-sharp on every hero angle, with no colour cast — so they drop straight into my online store without further retouching.\n\nWork this one representative hero frame end-to-end as the master recipe, then I will reuse the exact same chain on the rest of the line (the full order is 20 pieces). Start from the original iPhone HEIC/RAW file I supply. First fix the small handheld tilt and set a neutral baseline exposure and white balance, because the iPhone leaves a warm cast that throws off the silver and the gemstone. Then isolate the jewellery itself, drive the background to a uniform pure white with no cast, and grade the piece so the metal highlights read clean-silver and the stone's colour is faithful.\n\nDeliverables for this frame: one finished JPEG at exactly 3000 x 3000 px, sRGB, on uniform white; and one matching PNG of the same piece on a fully transparent background for layering on coloured store sections. Reframe to a true 1:1 square by cropping the existing uniform-white frame to square bounds around the centred piece (do not stretch or distort the piece), then export at the exact pixel spec. Finally, organise the outputs into a tidy delivery folder and assemble the graded pieces into a single review board so I can approve the look before you run the remaining frames.\n\nAcceptance: uniform white background, no colour cast; accurate metal tone and gemstone colour; pin-sharp focus on the hero angle; exact 3000 x 3000 sRGB JPEG plus matching transparent PNG.",
+ "inputs": [
+  {
+   "name": "iphone_silver_ring_hero.heic",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal handheld iPhone product photo of a single ornate sterling silver ring set with a faceted deep-blue sapphire, resting on a plain off-white seamless tabletop sweep under simple two-softbox tabletop lighting. Documentary realism: slightly warm white balance (typical iPhone cast), faint soft shadow under the ring, very subtle handheld tilt of about 2-3 degrees so the horizon is not perfectly level, real micro-scratches and fingerprints on the polished silver, individual dust specks on the sweep, true metal micro-reflections, shallow tabletop depth of field with the band tack-sharp. Not perfectly centered, slight headroom imbalance. No text, no props, no retouching, no CGI gloss. 4032x3024, 4:3, natural raw-ish look straight off the phone.",
+   "realism_notes": "Must look like a genuine straight-off-the-iPhone HEIC, NOT a finished product shot: keep the warm cast, the slight tilt, the off-white (not pure-white) sweep, soft real shadow, and visible micro-scratches/fingerprints/dust — these are precisely the imperfections the connector chain has to correct (neutralize cast, straighten, drive background to pure white, clean highlights). A CGI-glossy or already-on-white render would defeat the benchmark."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "silver_ring_hero_3000.jpg",
+   "kind": "image",
+   "spec": "3000x3000 px, 1:1 square, sRGB, JPEG under 2 MB, uniform pure-white background, neutral colour (no cast), accurate silver metal tone and faithful sapphire colour, pin-sharp on the band. Web-ready e-commerce hero."
+  },
+  {
+   "name": "silver_ring_hero_transparent.png",
+   "kind": "image",
+   "spec": "Matching PNG of the same graded piece on a fully transparent background (alpha), same grade as the JPEG, for layering on coloured store sections."
+  },
+  {
+   "name": "delivery_folder",
+   "kind": "data",
+   "spec": "Asset folder structure containing the finished JPEG, the transparent PNG, and the original supplied iPhone file, named for client download."
+  },
+  {
+   "name": "review_board_deeplink",
+   "kind": "data",
+   "spec": "Firefly Board deep-link assembling the graded master frame(s) for one-click client approval of the look before the remaining 20 pieces are run."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "iphone_silver_ring_hero.heic",
+   "output": "upload_session",
+   "note": "Begin upload of the client-supplied original iPhone HEIC/RAW hero frame; returns a presigned target so the original is in CC storage."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "original_asset",
+   "note": "Finalize the upload to a stored, addressable working asset (presigned URL) that the edit chain operates on; also becomes the 'original file' deliverable."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "original_asset",
+   "output": "straightened",
+   "note": "Correct the 2-3 degree handheld tilt so the piece and sweep are level before any selection/crop."
+  },
+  {
+   "n": 4,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "straightened",
+   "output": "autotoned",
+   "note": "Set a neutral baseline exposure/contrast for the frame before targeted colour work."
+  },
+  {
+   "n": 5,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "autotoned",
+   "output": "neutralized",
+   "note": "Cool/neutralize the warm iPhone white-balance cast so silver reads neutral and the sapphire colour is accurate (acceptance: no colour cast, accurate metal/gem)."
+  },
+  {
+   "n": 6,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "neutralized",
+   "output": "piece_mask",
+   "note": "Select 'the silver ring and sapphire' to get a precise subject mask on the colour-corrected frame."
+  },
+  {
+   "n": 7,
+   "tool": "image_invert_selection",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "piece_mask",
+   "output": "background_mask",
+   "note": "Invert the subject selection to a background-only mask (everything except the jewellery)."
+  },
+  {
+   "n": 8,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "neutralized, background_mask",
+   "output": "whitebg_master",
+   "note": "Solid-fill the background mask with pure white (RGB 255/255/255) to drive the off-white tabletop to a uniform, cast-free white backdrop — non-generative, exactly the allowed fill_area behaviour."
+  },
+  {
+   "n": 9,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "whitebg_master",
+   "output": "highlights_clean",
+   "note": "Recover/clean the bright metal highlights on the silver so the band reads as crisp clean-silver without blown spots."
+  },
+  {
+   "n": 10,
+   "tool": "image_adjust_single_color_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "highlights_clean",
+   "output": "graded_master",
+   "note": "Lift the blue channel saturation just on the sapphire for faithful gemstone colour, leaving the neutral silver/white untouched — the fully graded master."
+  },
+  {
+   "n": 11,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "graded_master",
+   "output": "square_canvas",
+   "note": "Reframe the 4:3 graded master to a true 1:1 square by cropping to square bounds around the centred piece — the ring sits with ample uniform-white sweep on all sides, so a square crop reaches 1:1 with no stretch and no invented pixels (non-generative)."
+  },
+  {
+   "n": 12,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "square_canvas",
+   "output": "silver_ring_hero_3000.jpg",
+   "note": "Deterministically crop/resize to exactly 3000x3000 px sRGB and export the JPEG e-commerce hero deliverable."
+  },
+  {
+   "n": 13,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "graded_master",
+   "output": "silver_ring_hero_transparent.png",
+   "note": "Branch off the same graded master to strip the white backdrop to full transparency, producing the matching transparent PNG deliverable with the identical grade."
+  },
+  {
+   "n": 14,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "silver_ring_hero_3000.jpg, silver_ring_hero_transparent.png, original_asset",
+   "output": "delivery_folder",
+   "note": "Create the named client-download delivery folder structure to hold the JPEG, the transparent PNG, and the original supplied file."
+  },
+  {
+   "n": 15,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "delivery_folder, silver_ring_hero_3000.jpg, silver_ring_hero_transparent.png, original_asset",
+   "output": "delivery_folder_populated",
+   "note": "Collect the finished JPEG, transparent PNG, and original into the delivery folder for the download-link handoff."
+  },
+  {
+   "n": 16,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "graded_master, silver_ring_hero_3000.jpg",
+   "output": "review_board_deeplink",
+   "note": "Assemble the graded master and finished hero onto a Firefly Board deep-link so the client approves the look before the remaining pieces are batched through the same recipe."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_select_by_prompt",
+  "image_invert_selection",
+  "image_fill_area",
+  "image_adjust_highlights",
+  "image_adjust_single_color_saturation",
+  "image_crop_to_bounds",
+  "image_crop_and_resize",
+  "image_remove_background",
+  "asset_create_folders",
+  "asset_copy_assets",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 16,
+ "distinct_adobe_tools": 16,
+ "chaining_note": "Strictly output-to-input chained off one supplied asset. asset_initialize_file_upload(client HEIC) -> upload_session -> asset_finalize_file_upload -> original_asset. The edit chain threads through original_asset -> auto_straighten(straightened) -> auto_tone(autotoned) -> color_temperature(neutralized). The white backdrop is built non-generatively: select_by_prompt(neutralized -> piece_mask) -> invert_selection(piece_mask -> background_mask) -> fill_area(neutralized + background_mask -> whitebg_master). Grading continues whitebg_master -> adjust_highlights(highlights_clean) -> single_color_saturation(graded_master). graded_master is the fork point: one path -> crop_to_bounds(square_canvas, cropping the uniform-white frame to a true 1:1 square around the centred piece, inventing no pixels) -> crop_and_resize(silver_ring_hero_3000.jpg, the JPEG); the other path -> remove_background(silver_ring_hero_transparent.png, the matching PNG). Both deliverables plus original_asset feed asset_create_folders(delivery_folder) -> asset_copy_assets(delivery_folder_populated). Finally graded_master + the finished JPEG feed create_firefly_board(review_board_deeplink). Every step after the initial load consumes a prior step's named output; the two deliverables emerge from a shared graded master so the JPEG and PNG carry an identical grade.",
+ "difficulty_rationale": "Long-horizon (16 connector calls, all server=adobe, 16 distinct Adobe tools) spanning three groups: asset/storage (init/finalize upload, create_folders, copy_assets, firefly board), raster geometry/tone/colour (auto_straighten, auto_tone, color_temperature, highlights, single_color_saturation), and masked compositing-by-fill (select_by_prompt -> invert -> fill_area -> remove_background -> crop_to_bounds -> crop_and_resize). It is genuinely hard because the honest path must hit a strict pixel/colour acceptance bar (exact 3000x3000 sRGB, no cast, accurate metal+gem) while deliberately AVOIDING the unavailable capabilities the brief naively names: no Generative Fill — the uniform white backdrop is produced by select+invert+solid white fill_area, the 1:1 square is reached by an honest crop of the existing frame (crop_to_bounds then a deterministic crop_and_resize to 3000x3000, no generative canvas extension), and the transparent PNG comes from remove_background, not a prompt-based bg replace. The fork producing two grade-matched deliverables from one master and the select/invert/fill mask interplay reward correct tool semantics; a model that reaches for gen-fill, bg-replace-by-prompt, or stretch-to-square fails the constraints.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned generative capability anywhere. Step 11 is image_crop_to_bounds (crops the existing uniform-white frame to a true 1:1 square around the centred piece — invents no pixels), not image_crop_and_resize. Full sweep of the 16 steps: no generative-expand/outpaint, no upscale/super-resolution, no text-to-image, no from-scratch art, no object-removal-with-reconstruction, no background-replace-by-prompt. image_fill_area (step 8) is a solid pure-white fill of an inverted subject mask WITHIN the canvas (allowed non-generative fill); image_remove_background (step 13) is the headless transparent-PNG path; image_crop_and_resize (step 12) is a deterministic crop/resize to 3000x3000 sRGB; create_firefly_board (step 16) only assembles already-produced CC assets. All actions are real Adobe-connector operations. Zero generative steps overall. The narrative fields (chaining_note, difficulty_rationale) now match the executable workflow — no residual reference to a banned capability.",
+  "notes": "Doc-only reconciliation: chaining_note and difficulty_rationale previously described 'graded_master -> generative-expand(square_canvas)' and called image_crop_and_resize 'the only allowed generative op', contradicting the corrected connector_workflow (step 11 = image_crop_to_bounds) and the reverify block. Both narrative fields rewritten to describe the crop-to-square path. connector_workflow, inputs, outputs, counts (16 calls / 16 distinct tools) unchanged and were already correct."
+ }
+}

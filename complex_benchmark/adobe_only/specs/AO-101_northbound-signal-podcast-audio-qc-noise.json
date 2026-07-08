@@ -1,0 +1,192 @@
+{
+ "slot_id": "M08",
+ "category": "audio_clean",
+ "title": "Northbound Signal podcast: pre-release audio QC pass on three raw episode recordings — noise/hiss/clipping/level audit with a cleaned reference track and marked-up findings report",
+ "slug": "northbound-signal-podcast-audio-qc-noise-clipping-audit",
+ "vertical": "Music, Film, Publishing & Media",
+ "source": {
+  "platform": "Freelancer.com",
+  "reference": "Polish Three Podcast Episodes"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief 'Polish Three Podcast Episodes': the client has \"three interview-style podcast recordings that now sit as 30-minute raw video files with the external audio captured separately\" and wants each \"shaped into a tight 15-20 minute episode that looks and sounds ready for immediate release on YouTube and the usual podcast platforms,\" including to \"sync and splice the clean mic track, remove any obvious stumbles or long pauses, add gentle noise reduction and mastering.\" REASONABLY REFRAMED to an ANALYZE task (the slot's workflow_nature=analyze, output_modality=audio): full frame-accurate episode editing (splicing, stumble/pause removal, colour-grading the footage, music-bed mastering) is compositional multi-track work that is NOT in Adobe-connector scope — the connector has no timeline splice, no loudness-master, no music mix. The honest, fully-doable read of the brief's core \"sounds ready for immediate release\" concern is a pre-release AUDIO QC pass: the client hands off the three separately-captured raw mic tracks plus a short delivery-spec sheet, and the freelancer INSPECTS every recording for the exact problems the brief names — hiss/room noise, obvious clipping, uneven levels between speakers, long dead-air pauses — and returns a marked-up, timestamped audio QC findings report per episode, along with one denoised/de-hissed reference track (media_enhance_speech, voice-only) that demonstrates the achievable clean baseline the human editor should master toward. The connector chain only inspects (upload, summarize each recording's spoken content + timeline, separate the noise track from the voice for direct hiss/hum evidence, produce one enhanced reference for A/B comparison) and then emits the findings via local_write_recipe_note. Nothing is spliced, mastered, or re-mixed; no deliverable is invented beyond the QC audit the brief's \"add gentle noise reduction\" and \"sounds ready for immediate release\" requirements imply. The brand, show and persona are fictional and IP-clean.",
+ "one_line_ask": "Run a pre-release audio QC pass on the three raw Northbound Signal mic recordings — audit each for hiss, clipping, uneven levels and dead-air against the delivery spec, produce one denoised reference track for A/B comparison, and return a timestamped, per-episode audio QC findings report ranking each defect by severity.",
+ "full_brief": "Northbound Signal is a fictional independent interview podcast produced by Meridian Audio Collective — long-form conversations with founders and makers, released weekly on YouTube and the usual podcast platforms. We recorded three new episodes back-to-back and the raw mic tracks are captured separately from the cameras (a single mixed-down mono/stereo voice file per episode, roughly 28-32 minutes each). Before these go to our editor for the final cut, we need a fresh set of ears to tell us exactly what's wrong with the audio so nothing embarrassing ships. Our last drop had a whole segment where the guest's lav was clipping on every laugh and we only caught it after publish, plus one episode had an HVAC hum under the whole intro. We are NOT asking you to edit or master the episodes — that is our editor's job on the timeline. We want an audit. You will receive: (1) three raw voice recordings — ep01_raw_mix.wav (host + guest, guest mic runs hot with intermittent clipping on peaks), ep02_raw_mix.wav (steady room hiss / HVAC hum under the whole thing, low broadband noise floor), ep03_raw_mix.wav (badly unbalanced — host is loud, guest is quiet, plus two long dead-air gaps where someone stepped away); and (2) northbound_delivery_spec.pdf, our one-page delivery standard stating the targets our editor masters to (integrated loudness target -16 LUFS for the podcast feed, true-peak ceiling -1.0 dBTP, no audible hiss/hum floor above roughly -60 dB, no clipping, speaker levels within ~3 dB of each other, no dead-air gap longer than ~2 seconds in the final cut). Go through each recording end to end and hand back a Northbound Signal audio QC report that, for every issue found, gives the episode, an approximate timestamp or time-range, a plain-language description of the defect (clipping / hiss / hum / level imbalance / dead air / plosive / sibilance), which delivery-spec target it fails, and a severity (blocker / warning / nit). We also want one thing to listen to: take the worst-affected recording (ep02, the hissy one) and run a voice-only clean-up pass on it so we have a reference track that shows how clean the dialogue CAN get once the floor is removed — clearly labelled as a reference/benchmark, NOT the final master. Deliver the QC findings as a clean PDF report plus the raw findings as a structured file, with a cover summary counting issues by severity across all three episodes, and the single cleaned reference WAV alongside. Everything is voice-only; there is no music bed to consider at this stage.",
+ "inputs": [
+  {
+   "name": "ep01_raw_mix.wav",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "Two-person interview podcast, ~3 minutes rendered (stands in for a 30-minute episode), a host and a guest discussing how the guest bootstrapped a small hardware company; natural conversational back-and-forth with occasional laughter and enthusiasm. Render as a single mixed voice recording, host and guest on the same track.",
+   "realism_notes": "After TTS capture, deliberately ROUGHEN per the audio-repair doctrine: push the GUEST's mic hot so peaks CLIP/distort on laughs and emphatic words (intermittent hard clipping on a handful of peaks), add a mild low-level room tone. The planted clipping is the whole point of this episode's audit; media_summarize time-anchors the segments and asset_preview_file confirms the distorted peaks so the report can timestamp them. Not connector-generated — supplied by the client."
+  },
+  {
+   "name": "ep02_raw_mix.wav",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "Two-person interview podcast, ~3 minutes rendered, host and guest talking about remote-team culture; calm, measured delivery, a few natural um/uh moments. Render as a single mixed voice recording.",
+   "realism_notes": "ROUGHEN: bed the ENTIRE recording under steady HVAC hum + broadband room hiss and a low continuous noise floor (well above -60 dB), so there is genuine denoise/de-hiss work. This is the episode chosen for the media_enhance_speech reference-clean pass (worst hiss); media_enhance_speech's isolated background/reverb track is direct evidence of the hiss/hum floor for the report, and enhancement is voice-only, no music, no loudness mastering. Supplied by the client, not chain-generated."
+  },
+  {
+   "name": "ep03_raw_mix.wav",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "Two-person interview podcast, ~3 minutes rendered, host and guest discussing a product launch; friendly but with the host clearly more animated than the guest. Render as a single mixed voice recording.",
+   "realism_notes": "ROUGHEN: make the HOST noticeably LOUDER than the guest (level imbalance well beyond 3 dB) and insert TWO long DEAD-AIR gaps (several seconds of near-silence) where a speaker steps away. The imbalance + dead-air are the planted defects the audit must catch and timestamp; media_summarize surfaces the silent gaps and speaker turns against the timeline, asset_preview_file confirms them. No clean-up pass is run on this one (report-only). Supplied by the client."
+  },
+  {
+   "name": "northbound_delivery_spec.pdf",
+   "kind": "pdf",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine one-page A4 PDF delivery standard for the fictional 'Northbound Signal' podcast (Meridian Audio Collective), in text the connector can read/summarize, stating the master targets the editor must hit: integrated loudness target -16 LUFS (podcast feed) with a note that YouTube uploads normalize separately; true-peak ceiling -1.0 dBTP; noise/hiss/hum floor must sit below approximately -60 dB with no audible continuous hum; zero clipping / no inter-sample overs; speaker-to-speaker level balance within approximately 3 dB; no dead-air gap longer than approximately 2 seconds in the final cut; voice-only at this stage (no music bed). Authored by hand and supplied by the client — the audit's ground-truth spec.",
+   "realism_notes": "The QC audit's ground truth. media_summarize reads the stated numeric targets out of this PDF (the same read-the-supplied-spec-sheet pattern the accepted L09 audit uses on its style guide) so each finding can cite the exact spec clause it fails (e.g. 'hum floor ~-48 dB vs spec <-60 dB'). Real supplied spec sheet, not generated by the chain."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "NorthboundSignal_AudioQC_Report.pdf",
+   "kind": "pdf",
+   "spec": "The primary deliverable: a clean A4 audio QC report PDF. Opens with a one-page cover summary (total findings by severity: blocker / warning / nit, counted across all three episodes), then one section per episode with one row per finding giving episode, approximate timestamp / time-range, plain-language defect description (clipping / hiss / hum / level imbalance / dead air / plosive / sibilance), the exact delivery-spec target it fails, and severity. A FINDINGS report, not a re-edit or master of the episodes."
+  },
+  {
+   "name": "northbound_audio_qc_findings.json",
+   "kind": "data",
+   "spec": "The raw structured findings emitted by local_write_recipe_note: an ordered list of records {episode, timecode, defect_type, description, spec_clause, target_value, observed_value, severity} plus a summary block with counts by severity and per-episode totals. Machine-readable companion to the PDF for the producer's release tracker."
+  },
+  {
+   "name": "ep02_reference_cleaned.wav",
+   "kind": "audio",
+   "spec": "The single audio deliverable: a voice-only denoised / de-hissed reference version of ep02 (the worst-affected, hissy recording), produced via media_enhance_speech (its cleaned-speech track) to demonstrate the achievable clean dialogue baseline once the floor is removed. Clearly labelled reference/benchmark for A/B comparison — NOT a final master (no loudness mastering, no music, no splicing)."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "qc_workspace",
+   "note": "Stand up the CC asset workspace (e.g. /M08/raw, /spec, /findings) to hold the three supplied raw recordings, the delivery-spec PDF, the reference clean track and the emitted QC report."
+  },
+  {
+   "n": 2,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "qc_workspace",
+   "output": "upload_session",
+   "note": "Initialize an upload session for the client-supplied QC inputs: ep01_raw_mix.wav, ep02_raw_mix.wav, ep03_raw_mix.wav and northbound_delivery_spec.pdf."
+  },
+  {
+   "n": 3,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "uploaded_inputs",
+   "note": "Finalize the upload so the three raw voice recordings and the delivery-spec PDF are real CC assets with stable URNs the inspection steps can read."
+  },
+  {
+   "n": 4,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "uploaded_inputs",
+   "output": "delivery_spec_targets",
+   "note": "Summarize northbound_delivery_spec.pdf to read out the machine-usable ground-truth targets the audit checks against: -16 LUFS integrated loudness, -1.0 dBTP true-peak ceiling, noise floor below ~-60 dB / no audible hum, zero clipping, speaker balance within ~3 dB, no dead-air gap longer than ~2 s, voice-only at this stage. Same read-the-supplied-spec pattern the accepted L09 audit uses on its style guide."
+  },
+  {
+   "n": 5,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "uploaded_inputs",
+   "output": "ep01_content_timeline",
+   "note": "Summarize ep01_raw_mix.wav to read its spoken content and timeline — mapping the conversational turns, laughs and emphatic peaks against runtime so the guest-mic clipping segments can be time-anchored for episode 1's findings (the acoustic confirmation comes from the preview step 8)."
+  },
+  {
+   "n": 6,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "uploaded_inputs",
+   "output": "ep02_content_timeline",
+   "note": "Summarize ep02_raw_mix.wav to read its spoken content and timeline as the anchor for episode 2's findings; the steady HVAC hum / broadband hiss floor itself is evidenced by the media_enhance_speech track-separation at step 9, not asserted from the summary alone."
+  },
+  {
+   "n": 7,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "uploaded_inputs",
+   "output": "ep03_content_timeline",
+   "note": "Summarize ep03_raw_mix.wav to read its spoken content and timeline, surfacing the speaker turns and the two long near-silent stretches so the host-vs-guest level imbalance and the dead-air gaps can be time-anchored for episode 3's findings."
+  },
+  {
+   "n": 8,
+   "tool": "asset_preview_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_inputs",
+   "output": "raw_recording_previews",
+   "note": "Preview each raw recording asset to confirm duration and channel layout, verify the correct three files are under audit, and audibly/visually confirm the suspected defects (clipped peaks on ep01, the continuous floor on ep02, the loud-vs-quiet imbalance and dead-air on ep03) against the summarized timelines before they are written into the report."
+  },
+  {
+   "n": 9,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "uploaded_inputs, ep02_content_timeline",
+   "output": "ep02_reference_cleaned.wav",
+   "note": "Run media_enhance_speech on ep02 (the worst-affected, hissy recording) — it separates the audio into an isolated cleaned-speech track, a background (hiss/hum) track and a reverb track. The cleaned-speech track is delivered as the voice-only reference/benchmark showing how clean the dialogue can get once the floor is removed, and the isolated background track is direct acoustic evidence of the hiss/hum floor for the report. Voice-only — no music, no loudness mastering, no splicing. Async media widget [A]."
+  },
+  {
+   "n": 10,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "ep02_reference_cleaned.wav",
+   "output": "ep02_cleaned_read",
+   "note": "Summarize the cleaned reference track to confirm the dialogue is fully intelligible and unimpaired once the floor is removed, supporting the A/B comparison note in the report (the achievable-clean baseline versus the hiss-bedded original). Inspection only."
+  },
+  {
+   "n": 11,
+   "tool": "local_write_recipe_note",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "delivery_spec_targets, ep01_content_timeline, ep02_content_timeline, ep03_content_timeline, raw_recording_previews, ep02_reference_cleaned.wav, ep02_cleaned_read",
+   "output": "northbound_audio_qc_findings.json",
+   "note": "Emit the structured audio QC findings: for each defect, a record {episode, timecode, defect_type, description, spec_clause, target_value, observed_value, severity} cross-referencing the delivery-spec targets against the confirmed per-episode observations (ep01 clipping time-anchored + preview-confirmed, ep02 hiss/hum evidenced by the isolated background track with the achievable-clean delta from the reference, ep03 imbalance + dead air), plus a summary block counting blockers / warnings / nits and per-episode totals. The analyze deliverable's data core."
+  },
+  {
+   "n": 12,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "northbound_audio_qc_findings.json",
+   "output": "NorthboundSignal_AudioQC_Report.pdf",
+   "note": "Render the written QC findings (cover summary + per-episode, per-finding rows) into the clean A4 Northbound Signal Audio QC report PDF for the producer and editor — the primary analyze deliverable (same render-the-findings-note-to-PDF step the accepted L09 audit uses)."
+  }
+ ],
+ "tools_used": [
+  "asset_create_folders",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "media_summarize",
+  "asset_preview_file",
+  "media_enhance_speech",
+  "local_write_recipe_note",
+  "document_convert_pdf"
+ ],
+ "tool_call_count": 12,
+ "distinct_adobe_tools": 7,
+ "chaining_note": "Strict output→input chaining. Steps 1-3 stand up the workspace and finalize the four client-supplied inputs (three raw WAVs + delivery-spec PDF) into uploaded_inputs — the only initial load. Inspection then fans out from uploaded_inputs: the spec branch runs media_summarize(4) → delivery_spec_targets (the audit's ground-truth numeric targets), and three parallel content/timeline branches summarize each recording — media_summarize(5) → ep01_content_timeline, (6) → ep02_content_timeline, (7) → ep03_content_timeline — to time-anchor each episode's suspected defects. asset_preview_file(8) consumes uploaded_inputs to confirm the raw assets and audibly verify the defects against those timelines. The ep02 timeline read (6) drives the single clean-up: media_enhance_speech(9) consumes uploaded_inputs + ep02_content_timeline → ep02_reference_cleaned.wav (its cleaned-speech track), whose isolated background track supplies the hiss/hum evidence; media_summarize(10) then reads that cleaned track → ep02_cleaned_read to confirm intelligibility for the A/B note. Everything converges at local_write_recipe_note(11), which consumes delivery_spec_targets + the three per-episode timeline reads + raw_recording_previews + the cleaned reference + ep02_cleaned_read to produce northbound_audio_qc_findings.json; that JSON is the sole input to document_convert_pdf(12), which renders the final QC report PDF. No inspection step reads a raw input that was not first routed through upload/finalize; the report and the reference track emerge only from the assembled inspect→compare→report chain.",
+ "difficulty_rationale": "Long-horizon analyze/audit: 12 connector calls, 7 distinct Adobe tools across three groups (asset workspace/upload/preview, the [A] media pair media_summarize + media_enhance_speech, and document_convert_pdf) plus the single [L] recipe-note emit — at/above the >=10-call / >=6-distinct-tool floor for an analyze task. Difficulty is in the analytic structure, not editing grunt-work: the agent must (a) read the actual numeric delivery targets out of a supplied spec sheet via media_summarize rather than assuming them, (b) inspect three separate ~30-minute recordings and correctly attribute a DIFFERENT dominant defect class to each (clipping on ep01, continuous hiss/hum floor on ep02, level imbalance + long dead-air on ep03) by time-anchoring each on the summarized timeline and confirming it in preview / via the enhance-speech track separation, (c) run exactly one voice-only reference clean-up on the worst-affected episode — where the isolated background track is itself the hiss/hum evidence — and re-read the cleaned track to substantiate an honest A/B claim, (d) distinguish the planted defects from clean passages and rank each by severity against the spec, and (e) emit a structured, episode-and-timestamp-referenced findings report. It respects every hard limit: NOTHING is spliced, mastered, level-matched, or re-mixed — media_enhance_speech is used only for a voice-only denoise reference (its documented track-separation role, no loudness mastering / no music / no timeline edit), media_summarize is READ-only inspection (content/timeline and the supplied spec's stated targets, not fabricated dB meters), asset_preview_file is pure inspection, document_convert_pdf only renders the agent-written findings into the report PDF, and no generative / text-to-image / object-removal / upscaling / from-scratch authoring is used. The output is an audio QC report + structured findings + one clearly-labelled reference track — a review/audit deliverable centered on audio, exactly matching workflow_nature=analyze and output_modality=audio.",
+ "workflow_nature": "analyze",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "CONFIRMED none of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill; no text-to-image or from-scratch art/logo/layout/music (the three recordings and the delivery-spec PDF are SUPPLIED authored inputs, not connector-generated); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. No image_* tool is used at all. document_merge_data_layout/_vector, video tools, and image_fill_area are not used (this is an audio QC audit, not a merge, edit, or fill). media_enhance_speech is used once, strictly as a voice-only track-separation/denoise pass to produce a clearly-labelled reference/benchmark track (its cleaned-speech output) — NOT a final master, no loudness mastering, no music mix, no timeline splicing (the brief's frame-accurate editing/mastering is explicitly left to the human editor and not attempted).",
+  "notes": "Each potentially-risky step stays in-bounds and tool-honest: (1) media_summarize [A] (steps 4-7, 10) is used only to READ — the stated delivery-spec targets out of the supplied PDF (the same read-the-supplied-spec pattern the accepted L09 analyze task uses on its style guide) and the spoken content/timeline of each recording to time-anchor defects — never to generate content or to fabricate dB meter readings; the acoustic defect evidence itself comes from asset_preview_file inspection and, for the hiss/hum floor, from media_enhance_speech's isolated background track. (2) media_enhance_speech [A] (step 9) is the sanctioned voice-only clean-up capability: it separates the audio into cleaned-speech / background / reverb tracks; the cleaned-speech track is delivered as the reference/benchmark and the background track is the direct hiss/hum evidence; the spec states no mastering/music/splice is performed, so it does not overreach into full episode production. (3) asset_create_folders / init / finalize / asset_preview_file [C] are pure workspace + inspection. (4) local_write_recipe_note [L] emits the structured findings — the sanctioned analyze output path. (5) document_convert_pdf [C] renders the agent-written findings note into the report PDF, mirroring the accepted L09 audit's final render step; it never composes or edits the recordings. distinct_adobe_tools corrected to 7 (asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, media_summarize, asset_preview_file, media_enhance_speech, document_convert_pdf); local_write_recipe_note is server='local' and excluded. The deliverable is a QC report + structured findings + one labelled reference WAV — a review/audit output centered on audio, matching workflow_nature=analyze and output_modality=audio; nothing new is authored beyond the report and the single reference clean. The only non-[C] calls are the five [A] media steps and one [L] recipe note, all legitimate and expected for an audio analyze task."
+ },
+ "id": "AO-101"
+}

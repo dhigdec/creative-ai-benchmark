@@ -1,0 +1,371 @@
+{
+ "slot_id": "L07",
+ "category": "datamerge_print",
+ "title": "Lanternwood Folk Fest 2026 program booklet: sponsor-logo prep + performer-photo grade + InDesign data-merge to press-ready PDF",
+ "slug": "lanternwood-folk-fest-program-booklet-datamerge",
+ "vertical": "events_entertainment",
+ "source": {
+  "platform": "Freelancer.com",
+  "reference": "Event Program Booklet / Brochure Design"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief \"Event Program Booklet / Brochure Design\": the client is \"producing a booklet-style brochure that will double as the official program guide for our upcoming event\"; \"All copy, sponsor logos and a rough page sequence will be in your hands as soon as we start\"; the ask is \"layout of the full multi-page booklet, including front/back covers\", \"careful proofreading, alignment and image optimisation for print\", and \"delivery of a press-ready PD[F]\"; \"Every logo must appear crisp, proportionate and consistently placed, with plenty of white space so partners look their best.\" REASONABLY ENRICHED to make it a runnable Adobe-only benchmark: the original brief implies a from-scratch multi-page layout AND defining a fresh colour/type identity, which is NOT in connector scope (no from-scratch layout composition or type-system design; document_merge_data_layout / document_render_layout only BIND/EXPORT a GENUINE user-authored .indd carrying real merge fields). So the client is modeled as supplying the authored InDesign program-booklet template (with the colour scheme and type hierarchy already established, per a normal second-round freelancer hand-off), a CSV of the performance schedule + performer bios (one row per set), a CSV of sponsor tiers, the raw sponsor logo files, and raw performer press photos. The Adobe chain then does the genuinely-doable heavy lifting the brief actually rewards: making every sponsor logo crisp and print-safe (vectorize the flat raster ones, lift the busy-background ones onto transparent PNGs), grading the dull/tilted performer press photos so they look their best, sourcing a subtle paper/kraft texture for the covers, uploading all prepped assets, then running the client's authored .indd through a genuine InDesign data-merge against the schedule and sponsor CSVs so each set/bio/sponsor binds into the template, and exporting a press-ready PDF plus a screen-quality PDF for the event app. The \"sponsor logos... crisp, proportionate and consistently placed\" instruction is honored literally via vectorize + background-lift + the merged sponsor grid. No deliverable was invented beyond the program booklet the brief asks for.",
+ "one_line_ask": "Prep the Lanternwood Folk Fest sponsor logos (vectorize / transparent-cut) and grade the performer press photos, source a kraft cover texture, then run the client's authored multi-page InDesign booklet template through two data-merge passes against the schedule and sponsor CSVs to produce a press-ready PDF and a screen-quality PDF program guide.",
+ "full_brief": "Lanternwood Folk Fest, a fictional two-day roots-and-Americana music festival, needs its official program booklet finished for print and for the event app. The organizer has handed off an authored multi-page InDesign booklet template (folkfest_program_template.indd) that already carries the festival's established warm-cream / lantern-amber colour scheme and type hierarchy, with real InDesign data-merge fields laid out across the interior spreads (<<day>>, <<stage>>, <<set_time>>, <<artist>>, <<bio>>, <<artist_photo>> for the schedule pages, and <<sponsor_name>>, <<sponsor_tier>>, <<sponsor_logo>> for the sponsor grid on the back-cover spread), plus front/back covers with a full-bleed frame for a kraft-paper texture and a placeholder for the festival wordmark. Along with the template the organizer supplies: a schedule CSV (one row per performance set: day, stage, set time, artist, one-line bio, and the filename of that artist's press photo), a sponsor CSV (sponsor name, tier — Presenting / Stage / Community — and the filename of that sponsor's logo), a folder of raw sponsor logo files (some are clean flat rasters, some are photos of the logo on a busy background, some are already reasonable PNGs), and a folder of raw performer press photos that are unappetizing as-shot: slightly tilted, dull and flat, mixed white-balance because they came from different photographers. The job: (1) make every sponsor logo crisp and print-safe per the brief — vectorize the flat raster logos into clean SVGs so they stay sharp at any size, and lift the busy-background logos onto clean transparent PNGs so they sit consistently on the cream page; (2) grade the performer press photos so the artists look their best — straighten the tilted ones, auto-tone the flat exposure, normalize the mixed white balance toward the festival's warm look, push vibrance, and crop each to the uniform portrait ratio the schedule frames expect; (3) license a subtle kraft/recycled-paper texture from Adobe Stock to back the front and back covers; (4) upload all the prepped assets, then run the client's authored .indd through the InDesign data-merge against the schedule CSV (interior schedule/bio pages) and then against the sponsor CSV (back-cover sponsor grid) so every set, bio, artist photo, sponsor name, tier and logo binds into the correct frame; (5) export the merged booklet to a press-ready CMYK PDF with bleed/crop marks for the printer and a lighter RGB screen-quality PDF for the event app; (6) assemble the graded photos, prepped logos and final booklet render onto a Firefly board so the organizer can sign off on the whole program in one deep-link. All copy stays exactly as supplied in the CSVs — the design work is the layout binding, image optimization and logo prep the brief asks for, nothing rewritten.",
+ "inputs": [
+  {
+   "name": "folkfest_program_template.indd",
+   "kind": "data",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine multi-page Adobe InDesign document (.indd/.idml) for a saddle-stitched A5 portrait Lanternwood Folk Fest program booklet in the festival's established warm-cream / lantern-amber identity. Interior schedule spreads must contain REAL InDesign data-merge placeholder fields named <<day>>, <<stage>>, <<set_time>>, <<artist>>, <<bio>> and an image-merge frame <<artist_photo>> (sized to a 4:5 portrait ratio), repeated per set. A back-cover sponsor grid must contain <<sponsor_name>>, <<sponsor_tier>> and an image-merge frame <<sponsor_logo>>. Front and back covers must include a full-bleed background frame for the kraft texture and a placeholder frame for the festival wordmark. Authored by hand in InDesign so the data-merge fields actually bind; a PDF-converted .indd with literal baked text would NOT bind.",
+   "realism_notes": "Modeled as the client's own draft template with the colour scheme and type hierarchy already defined (a normal second-round freelancer hand-off). document_merge_data_layout is [T] and REQUIRES a user-authored .indd carrying real merge fields — it cannot be connector-generated, so it is a supplied input, not a chain output. Because the tool accepts a single dataSourceUrl per call, the template is bound in two passes (schedule fields, then sponsor-grid fields)."
+  },
+  {
+   "name": "folkfest_schedule.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a CSV with columns day,stage,set_time,artist,bio,artist_photo holding ~14 performance-set rows across a two-day roots/Americana festival: day is 'Saturday' or 'Sunday'; stage is 'Lantern Stage','Willow Stage' or 'Barn Stage'; set_time like '2:30 PM'; artist is a fictional folk/Americana act (e.g. 'The Copper Kettle Trio','Marigold & the Wandering Sons'); bio is one appetizing sentence; artist_photo is the filename of that act's press photo (e.g. 'press_copper_kettle.jpg'). Column names must exactly match the InDesign merge fields <<day>>,<<stage>>,<<set_time>>,<<artist>>,<<bio>>,<<artist_photo>>.",
+   "realism_notes": "Honors the brief's 'all copy... will be in your hands'; column headers match the authored .indd schedule merge fields so the [T] data-merge binds; artist_photo column references the graded press photos by filename via additionalImageFiles."
+  },
+  {
+   "name": "folkfest_sponsors.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a CSV with columns sponsor_name,sponsor_tier,sponsor_logo holding ~9 fictional sponsor rows: sponsor_name like 'Harbormill Coffee Roasters','Cedarline Outfitters','Riverbend Credit Union'; sponsor_tier is 'Presenting','Stage' or 'Community'; sponsor_logo is the filename of that sponsor's logo file (e.g. 'logo_harbormill.svg'). Column names must exactly match the InDesign merge fields <<sponsor_name>>,<<sponsor_tier>>,<<sponsor_logo>>.",
+   "realism_notes": "Drives the back-cover sponsor grid; headers match the authored .indd sponsor merge fields; sponsor_logo column references the prepped logo files by filename so 'every logo appears crisp, proportionate and consistently placed'. Bound in a separate merge pass because the tool takes one CSV per call."
+  },
+  {
+   "name": "logo_harbormill_flat.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A flat two-color sponsor wordmark logo reading 'Harbormill Coffee Roasters' with a small coffee-bean-and-anchor emblem, solid dark-teal and cream, on a transparent background, crisp flat high-contrast raster PNG, no gradients, clean edges — suitable for vectorizing.",
+   "realism_notes": "gemini-3-pro-image for clean legible logo text; flat and high-contrast so image_vectorize produces a clean print-safe SVG — represents the 'clean flat raster' subset of the supplied logos."
+  },
+  {
+   "name": "logo_cedarline_flat.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A flat single-color sponsor logo reading 'Cedarline Outfitters' with a simple pine-tree mark, solid forest green on transparent background, crisp flat high-contrast raster PNG, no gradients, clean vector-ready edges.",
+   "realism_notes": "Second flat-raster logo for the vectorize sub-chain; single-color line art vectorizes cleanly to a scalable SVG."
+  },
+  {
+   "name": "logo_riverbend_on_signage.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal phone snapshot of the 'Riverbend Credit Union' logo printed on a glass storefront window, shot at a slight angle with reflections and a blurred street visible through the glass behind it. The logo itself (a blue river-wave mark and navy wordmark) is fully readable and unoccluded, but sits on a busy real-world background. Natural daylight, candid documentary look.",
+   "realism_notes": "Photographed-on-background logo so the pipeline must LIFT it onto a clean transparent PNG (image_select_by_prompt + remove_background) rather than vectorize; logo is fully visible/unoccluded so no reconstruction/inpainting is needed."
+  },
+  {
+   "name": "press_copper_kettle.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal press photo of a three-piece folk/Americana band 'The Copper Kettle Trio' — banjo, upright bass and acoustic guitar — standing outside a weathered barn. Slightly tilted horizon (about 3 degrees), flat overcast lighting, slightly cool/greyish white balance, real skin texture and clothing detail, candid documentary feel, no studio gloss.",
+   "realism_notes": "Deliberately imperfect (tilt, flat tone, cool WB) so the grade chain has real work; gpt-image-2 for photoreal people."
+  },
+  {
+   "name": "press_marigold_sons.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal press photo of a folk duo 'Marigold & the Wandering Sons' seated on porch steps with a fiddle and a guitar. Underexposed dull shadows, warm-but-muddy indoor tungsten cast, slightly soft, candid look. Real texture, no CGI gloss.",
+   "realism_notes": "Different photographer's mixed/muddy white balance justifies auto-tone + temperature normalization so both press photos match the festival warm look."
+  },
+  {
+   "name": "press_hollow_pines.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal press photo of a solo singer-songwriter 'Hollow Pines' holding an acoustic guitar in a field at golden hour, but the shot is flat and slightly overexposed with a washed sky and a tilted horizon. Real detail, candid, no studio polish.",
+   "realism_notes": "Third performer portrait; flat/overexposed + tilt so the same straighten→tone→temperature→vibrance→crop pipeline applies consistently across all press photos."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "Lanternwood_Program_press.pdf",
+   "kind": "pdf",
+   "spec": "Press-ready CMYK PDF of the full multi-page A5 booklet exported from the twice-merged InDesign document, with bleed and crop marks; schedule/bio/sponsor copy bound from the CSVs, graded performer photos + prepped sponsor logos + kraft cover texture placed; ~300 DPI print quality for the saddle-stitch printer."
+  },
+  {
+   "name": "Lanternwood_Program_screen.pdf",
+   "kind": "pdf",
+   "spec": "Lighter RGB screen-quality PDF of the same bound booklet (no crop marks, downsampled images) for the festival event app and email distribution."
+  },
+  {
+   "name": "graded_performer_photos",
+   "kind": "image",
+   "spec": "Three straightened, auto-toned, white-balance-normalized, vibrance-boosted performer press photos, each cropped to the uniform 4:5 portrait ratio the schedule frames expect."
+  },
+  {
+   "name": "sponsor_logos_prepped",
+   "kind": "vector",
+   "spec": "Sponsor logos made print-safe: the two flat-raster logos delivered as clean scalable SVGs (vectorized), and the on-signage logo lifted onto a clean transparent-background PNG so all sit consistently in the back-cover sponsor grid."
+  },
+  {
+   "name": "Lanternwood_Program_review_board",
+   "kind": "data",
+   "spec": "Firefly board deep-link assembling the graded performer photos, prepped sponsor logos and final booklet render for one-click organizer sign-off."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_search",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "stock_kraft_candidates",
+   "note": "Search Adobe Stock for a subtle kraft/recycled-paper texture to back the front and back covers (low-res candidates)."
+  },
+  {
+   "n": 2,
+   "tool": "asset_license_and_download_stock",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "stock_kraft_candidates",
+   "output": "kraft_texture_fullres",
+   "note": "License and download the chosen kraft-paper texture at full-res (license BEFORE use); becomes the cover background asset."
+  },
+  {
+   "n": 3,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_harbormill_flat.png",
+   "output": "harbormill_svg",
+   "note": "Vectorize the flat Harbormill raster logo into a clean SVG so it stays razor-sharp at any print size."
+  },
+  {
+   "n": 4,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_cedarline_flat.png",
+   "output": "cedarline_svg",
+   "note": "Vectorize the flat single-color Cedarline logo into a clean scalable SVG."
+  },
+  {
+   "n": 5,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_riverbend_on_signage.jpg",
+   "output": "riverbend_logo_selection",
+   "note": "Select just the Riverbend logo mark+wordmark off the busy storefront-glass background (logo is fully visible/unoccluded)."
+  },
+  {
+   "n": 6,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "riverbend_logo_selection",
+   "output": "riverbend_logo_transparent_png",
+   "note": "Lift the selected Riverbend logo onto a clean transparent PNG so it sits consistently on the cream sponsor grid (no reconstruction — the logo is unoccluded)."
+  },
+  {
+   "n": 7,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "press_copper_kettle.jpg",
+   "output": "copper_straightened",
+   "note": "Level the tilted horizon on the Copper Kettle Trio press photo."
+  },
+  {
+   "n": 8,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "copper_straightened",
+   "output": "copper_toned",
+   "note": "Auto-tone the straightened photo to fix the flat/dull overcast exposure."
+  },
+  {
+   "n": 9,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "copper_toned",
+   "output": "copper_warmed",
+   "note": "Warm the cool/greyish white balance toward the festival's warm look."
+  },
+  {
+   "n": 10,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "copper_warmed",
+   "output": "copper_vibrant",
+   "note": "Push vibrance so the band and instruments read well on the printed page."
+  },
+  {
+   "n": 11,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "copper_vibrant",
+   "output": "copper_cropped_4x5",
+   "note": "Crop/resize to the 4:5 portrait frame the schedule template expects (same target for all press photos)."
+  },
+  {
+   "n": 12,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "press_marigold_sons.jpg",
+   "output": "marigold_toned",
+   "note": "Run the Marigold duo photo through the same grade pipeline starting with auto-tone (fixes the underexposed shadows)."
+  },
+  {
+   "n": 13,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "marigold_toned",
+   "output": "marigold_warmed",
+   "note": "Normalize the muddy tungsten cast to match the festival warm white balance."
+  },
+  {
+   "n": 14,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "marigold_warmed",
+   "output": "marigold_vibrant",
+   "note": "Lift vibrance so the duo photo matches the graded look of the others."
+  },
+  {
+   "n": 15,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "marigold_vibrant",
+   "output": "marigold_cropped_4x5",
+   "note": "Crop the Marigold photo to the matching 4:5 schedule frame."
+  },
+  {
+   "n": 16,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "press_hollow_pines.jpg",
+   "output": "hollow_straightened",
+   "note": "Level the tilted horizon on the Hollow Pines golden-hour photo."
+  },
+  {
+   "n": 17,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hollow_straightened",
+   "output": "hollow_toned",
+   "note": "Auto-tone to pull back the washed/overexposed sky and flat contrast."
+  },
+  {
+   "n": 18,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hollow_toned",
+   "output": "hollow_cropped_4x5",
+   "note": "Crop the Hollow Pines photo to the 4:5 frame so all three performer portraits match."
+  },
+  {
+   "n": 19,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "folkfest_asset_folder",
+   "note": "Create a Creative Cloud folder to hold all prepped booklet assets before upload/merge."
+  },
+  {
+   "n": 20,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "folkfest_asset_folder, harbormill_svg, cedarline_svg, riverbend_logo_transparent_png, copper_cropped_4x5, marigold_cropped_4x5, hollow_cropped_4x5, kraft_texture_fullres",
+   "output": "upload_session",
+   "note": "Initialize an upload session for all prepped assets (vector logos, transparent logo, graded photos, cover texture) into the folder."
+  },
+  {
+   "n": 21,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "uploaded_asset_urns",
+   "note": "Finalize the upload; returns asset URNs (and presigned URLs) the InDesign data-merge references by filename via additionalImageFiles."
+  },
+  {
+   "n": 22,
+   "tool": "document_merge_data_layout",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": "folkfest_program_template.indd, folkfest_schedule.csv, uploaded_asset_urns",
+   "output": "program_schedule_merged_indd",
+   "note": "First data-merge pass: bind the schedule rows (day/stage/set_time/artist/bio + the graded artist_photo images) into the interior schedule frames of the client's authored .indd (which carries real <<fields>>). Single dataSourceUrl per call, so schedule and sponsors are two passes. [T] requires the user-authored template."
+  },
+  {
+   "n": 23,
+   "tool": "document_merge_data_layout",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": "program_schedule_merged_indd, folkfest_sponsors.csv, uploaded_asset_urns",
+   "output": "program_full_merged_indd",
+   "note": "Second data-merge pass over the schedule-merged .indd: bind the sponsor rows (sponsor_name/sponsor_tier + prepped sponsor_logo SVGs/PNG) into the back-cover sponsor grid so every logo sits crisp and consistently placed. Output is the fully-bound booklet .indd."
+  },
+  {
+   "n": 24,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "program_full_merged_indd",
+   "output": "Lanternwood_Program_press.pdf",
+   "note": "Export the fully-merged booklet to a press-ready ~300 DPI CMYK PDF with bleed/crop marks for the saddle-stitch printer."
+  },
+  {
+   "n": 25,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "program_full_merged_indd",
+   "output": "Lanternwood_Program_screen.pdf",
+   "note": "Export the same fully-merged booklet to a lighter RGB screen-quality PDF for the event app and email distribution."
+  },
+  {
+   "n": 26,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "copper_cropped_4x5, marigold_cropped_4x5, harbormill_svg, riverbend_logo_transparent_png, Lanternwood_Program_screen.pdf",
+   "output": "Lanternwood_Program_review_board",
+   "note": "Assemble the graded performer photos, prepped sponsor logos and final booklet render onto a Firefly board deep-link for organizer sign-off."
+  }
+ ],
+ "tools_used": [
+  "asset_search",
+  "asset_license_and_download_stock",
+  "image_vectorize",
+  "image_select_by_prompt",
+  "image_remove_background",
+  "image_auto_straighten",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_adjust_vibrance_and_saturation",
+  "image_crop_and_resize",
+  "asset_create_folders",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "document_merge_data_layout",
+  "document_render_layout",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 26,
+ "distinct_adobe_tools": 16,
+ "chaining_note": "Strict output→input chaining throughout. Two logo sub-chains: the flat-raster logos vectorize directly (logo_harbormill_flat.png→vectorize(3); logo_cedarline_flat.png→vectorize(4)), while the on-signage logo runs a two-link lift (logo_riverbend_on_signage.jpg→select_by_prompt(5)→remove_background(6)). Three performer photos each run their own grade→crop sub-chain: press_copper_kettle.jpg→straighten(7)→auto_tone(8)→temperature(9)→vibrance(10)→crop(11); press_marigold_sons.jpg→auto_tone(12)→temperature(13)→vibrance(14)→crop(15); press_hollow_pines.jpg→straighten(16)→auto_tone(17)→crop(18). The kraft texture chains search(1)→license(2). A CC folder is created(19), then all prepped outputs (the two SVGs, the transparent logo PNG, the three 4:5 photos, the kraft texture) converge into the upload session(20)→finalize(21). The finalized URNs plus the authored folkfest_program_template.indd and the schedule CSV feed the first data-merge pass(22); its output .indd plus the sponsor CSV and the same URNs feed the second data-merge pass(23), giving one fully-bound booklet .indd. That single .indd is the source for both exports — press PDF(24) and screen PDF(25) — and four upstream outputs plus the screen PDF converge into the Firefly review board(26). Two merge passes are used because document_merge_data_layout binds a single dataSourceUrl CSV per call; nothing after step 1/2 (search) and the raw input loads originates outside the chain — the final booklet emerges only from the assembled chain.",
+ "difficulty_rationale": "Long-horizon flagship: 26 connector calls across 4 tool groups (image_* raster, asset_* stock/storage/folders, document_* InDesign, create_firefly_board), 16 distinct Adobe tools — far above the >=10 calls / >=6 distinct-tool floor. Difficulty comes from prepping a mixed bag of sponsor logos two different correct ways (vectorize the flat rasters vs. select+lift the photographed one), running three separate performer photos through a consistent multi-step grade pipeline to a uniform crop, sourcing+licensing a cover texture, organizing everything into a CC folder, then converging it all into a genuine TWO-pass InDesign [T] data-merge (schedule CSV then sponsor CSV, because the tool binds one dataSourceUrl per call) and dual PDF export (press CMYK + screen RGB). It respects every hard limit: no generative fill / object-removal-with-reconstruction / text-to-image / from-scratch layout composition / upscaling; image_fill_area is unused; the layout is NOT composed by the connector — merge_data_layout/render_layout only BIND/EXPORT the client's authored .indd, which is listed as a supplied input; the on-signage logo is fully visible so remove_background is a clean lift, not inpainting; all copy stays verbatim from the supplied CSVs.",
+ "workflow_nature": "create",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "None of the banned capabilities are used. No generative-expand/outpaint, no generative fill of new content, no text-to-image / from-scratch art or logo, no upscaling/super-resolution, no object-removal-with-reconstruction (inpainting), no bespoke font design, no unreachable external account. image_crop_and_resize and image_fill_area are NOT used.",
+  "notes": "CORRECTED from the authored draft: the original single document_merge_data_layout call passed TWO CSVs (schedule + sponsors), but the tool binds a single dataSourceUrl per call — split into two sequential [T] merge passes (n22 schedule pages, n23 sponsor grid over the schedule-merged .indd), raising the count 25→26. Both passes are correctly tagged [T]: the multi-page booklet layout, colour scheme and type hierarchy are all supplied in the user-authored folkfest_program_template.indd (kind:data, gen_model:'n/a-authored-asset') carrying real <<fields>>; the connector only BINDS data and EXPORTS — it does not compose the layout or invent a design identity, so the brief's from-scratch/identity-design portion is deliberately supplied, not generated. Each CSV's headers exactly match its template merge fields so the merge binds, and the graded/prepped images are referenced by filename via the tool's additionalImageFiles map; the spec notes a PDF-converted .indd with baked text would not bind. image_vectorize (n3,n4) runs only on flat high-contrast raster logos (legitimate vectorize, not logo design). image_select_by_prompt(n5)+image_remove_background(n6) lift the Riverbend logo, which is fully visible and unoccluded on the signage, so this is a clean cutout to transparent PNG — no reconstruction/inpainting of hidden pixels. The performer grade steps (straighten/auto_tone/temperature/vibrance/crop) are standard raster adjustments. asset_search here is the Adobe asset/stock search (distinct from the Express-widget search_design), and asset_license_and_download_stock licenses before use. create_firefly_board feeds CC asset URNs the chain itself produced (honest moodboard use). All copy is bound verbatim from the supplied CSVs — nothing is rewritten. All 26 steps server=='adobe'; 16 distinct Adobe tools (>=6), 26 calls (>=10) — qualifies as long-horizon flagship."
+ },
+ "id": "AO-80"
+}

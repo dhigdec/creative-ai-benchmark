@@ -1,0 +1,340 @@
+{
+ "id": "AO-48",
+ "slug": "ai-logo-to-multiplatform-vector",
+ "title": "Convert an AI-Generated Logo into a Clean, Multi-Platform Vector Kit",
+ "vertical": "Technology, SaaS & Startups",
+ "category": "vectorize_logo",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Convert%20AI%20Logo%20to%20Vector"
+ },
+ "grounding_note": "VERBATIM from the source brief: the client has a logo \"created on AI\" (an AI image generator) and needs it turned into a \"vector file so that it can be used in multiple platforms,\" with the explicit requirement that \"the logo remains high-quality across different formats.\" REASONABLY ENRICHED to make it a runnable long-horizon Adobe benchmark: I specify the supplied raster as a 1024x1024 PNG with the typical AI artifacts (soft anti-aliased edges, a faint off-white textured background, slight JPEG-like noise, and a slightly crooked baseline) because those are exactly the defects a real freelancer must clean BEFORE vectorizing, and I name the concrete multi-platform deliverables (transparent full-color SVG, a one-color/knockout SVG for single-color print and favicons, a halftone print-screen variant, and platform-sized PNG exports plus a presentation board). The brand name \"Northwind Analytics\" and its teal/charcoal palette are invented stand-ins so the asset is generatable; nothing in the deliverable contradicts the brief. No capability outside the sheet is used: vector creation is image_vectorize (raster→SVG), which is the honest Adobe path for \"make it into a vector file.\" document_render_vector is NOT used to compose a vector from scratch (it only exports a genuine authored .ai), so the from-scratch vector comes solely from image_vectorize.",
+ "one_line_ask": "Take the client's AI-generated raster logo, clean and de-skew it, isolate the mark on transparency, trace it into a crisp scalable SVG, and derive a full multi-platform vector + raster export kit that stays high-quality at every size and format.",
+ "full_brief": "Northwind Analytics generated their logo in AI and only has a flat 1024x1024 PNG of it — a teal-and-charcoal wordmark-plus-icon (a stylized wind/data-flow glyph) sitting on a faint off-white textured card, with the soft anti-aliased edges, slight noise, and a baseline that tips a couple of degrees off level that AI image tools typically produce. They cannot use this raster on their website header, app icon, pitch deck, sign vinyl, or one-color merch because it does not scale and has no transparency. The freelancer must deliver a production vector kit: (1) auto-straighten and tonally clean the raster so edges are sharp and the background is even; (2) tighten the crop to the artwork; (3) isolate just the logo mark from its background card and flatten the background to pure white so the trace is clean; (4) produce a transparent cut-out of the mark; (5) VECTORIZE the cleaned mark into a crisp full-color SVG that scales to any size; (6) derive a single-color / knockout vector (logo silhouette filled solid for one-color print, vinyl, embroidery and small favicons) by selecting the mark, inverting, solid-filling the field, and re-vectorizing; (7) produce a halftone \"print-screen\" treatment of the mark for merch/poster use; (8) recommend a brand-safe font pairing that matches the wordmark so the client can extend the identity in decks and docs; and (9) export platform-sized PNG rasters (a 1024 app icon, a web header bug, a 512 social avatar) from the cleaned mark and assemble all generated deliverables into a single shareable presentation board with an organized asset folder. Everything must remain high-quality across formats — vectors stay editable/scalable, rasters are crisp at their target sizes.",
+ "inputs": [
+  {
+   "name": "northwind_ai_logo_raw.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A 1024x1024 PNG of an AI-generated tech startup logo as it would look straight out of an image generator: a teal (#178C8C) and charcoal (#2B2F33) brand mark for 'Northwind Analytics' — a clean geometric icon of three stacked curved wind/data-flow lines to the LEFT of the wordmark text 'Northwind Analytics' in a modern semibold sans-serif. The logo sits centered on a faint off-white (#F4F2EE) softly textured paper-like card that fills the frame. Render it with the tell-tale traits of an AI raster export: very slightly soft anti-aliased edges, a faint amount of luminance noise across the background, mild uneven lighting, and the whole logo rotated about 2.5 degrees clockwise so the baseline is not perfectly level. Crisp readable text, accurate kerning, no extra glyphs, no watermark, sharp enough that the letterforms are legible. Photographic-flat, not glossy 3D.",
+   "realism_notes": "Must be a believable AI export, not a pre-cleaned vector: keep the off-white textured background (no transparency), the soft edges, the faint noise, and the ~2.5deg tilt — these are the exact defects the Adobe chain has to fix (auto_straighten, tonal cleanup, background flatten, isolate) before vectorizing. Text must be legible so the trace and the font_recommend step are meaningful. 8-bit RGB PNG, sRGB."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "northwind_logo_fullcolor.svg",
+   "kind": "vector",
+   "spec": "Transparent full-color vector trace of the cleaned logo mark, teal+charcoal, clean paths, scalable to any size; primary multi-platform deliverable."
+  },
+  {
+   "name": "northwind_logo_onecolor_knockout.svg",
+   "kind": "vector",
+   "spec": "Single-color knockout/silhouette vector of the mark (solid fill on flattened field) for one-color print, vinyl, embroidery and small-size favicons."
+  },
+  {
+   "name": "northwind_mark_transparent.png",
+   "kind": "image",
+   "spec": "PNG, transparent background, isolated logo mark with edges trimmed to bounds; source for raster exports."
+  },
+  {
+   "name": "northwind_mark_halftone.png",
+   "kind": "image",
+   "spec": "Halftone / print-screen duotone treatment of the mark for merch and poster use."
+  },
+  {
+   "name": "northwind_icon_1024.png",
+   "kind": "image",
+   "spec": "1024x1024 square app-icon PNG, transparent background, crisp at target size; reframed from the cleaned transparent mark via crop/resize (edges cropped to hit the 1:1 icon ratio, centered on the mark)."
+  },
+  {
+   "name": "northwind_header_bug.png",
+   "kind": "image",
+   "spec": "480x120 (4:1 landscape) web header 'bug' PNG, transparent background, crisp at target size; honestly reframed from the cleaned transparent mark via crop/resize to the wide header ratio (top/bottom of the frame cropped away to hit 4:1, centered on the mark) — not a canvas extension."
+  },
+  {
+   "name": "northwind_avatar_512.png",
+   "kind": "image",
+   "spec": "512x512 square social-avatar PNG, transparent background, crisp at target size; reframed from the cleaned transparent mark via crop/resize (edges cropped to hit the 1:1 avatar ratio, centered on the mark)."
+  },
+  {
+   "name": "font_pairing_recommendation",
+   "kind": "data",
+   "spec": "Recommended brand-safe font pairing matching the wordmark for extending the identity in decks/docs."
+  },
+  {
+   "name": "Northwind_brand_kit_board + asset folder",
+   "kind": "data",
+   "spec": "Firefly Board presentation deep-link assembling all generated deliverables, plus an organized CC asset folder containing every output for client hand-off."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "upload_session",
+   "note": "Begin uploading the client-supplied raster northwind_ai_logo_raw.png into Creative Cloud storage to start the pipeline."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "upload_session"
+   ],
+   "output": "raw_logo_asset",
+   "note": "Finalize the upload to get a stored CC asset/URI for the raw AI PNG. This is the single initial asset load; every later step consumes a prior output."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "raw_logo_asset"
+   ],
+   "output": "straightened_logo",
+   "note": "Correct the ~2.5deg tilt baked into the AI export so the wordmark baseline is level — essential before any clean trace."
+  },
+  {
+   "n": 4,
+   "tool": "image_adjust_brightness_and_contrast",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "straightened_logo"
+   ],
+   "output": "contrast_logo",
+   "note": "Boost contrast and even out the mild AI lighting so the teal/charcoal artwork separates cleanly from the off-white card — sharper edges for the vectorizer."
+  },
+  {
+   "n": 5,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "contrast_logo"
+   ],
+   "output": "cropped_logo",
+   "note": "Trim the surrounding card so the canvas hugs the artwork, removing wasted background area before isolating the mark."
+  },
+  {
+   "n": 6,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "cropped_logo"
+   ],
+   "output": "mark_mask",
+   "note": "Select just the logo mark (the teal/charcoal icon + wordmark) via prompt, producing a maskURI separating artwork from the textured background."
+  },
+  {
+   "n": 7,
+   "tool": "image_invert_selection",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "mark_mask"
+   ],
+   "output": "background_mask",
+   "note": "Invert the selection so the background card (everything but the mark) is now selected — sets up a clean solid-white flatten of the field."
+  },
+  {
+   "n": 8,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "cropped_logo",
+    "background_mask"
+   ],
+   "output": "flat_white_logo",
+   "note": "Solid-fill the inverted (background) selection with pure white, removing the faint texture/noise so the field behind the mark is perfectly even for tracing. Solid-color fill only — no generative work."
+  },
+  {
+   "n": 9,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "flat_white_logo"
+   ],
+   "output": "mark_transparent_png",
+   "note": "Knock out the now-uniform white field to produce northwind_mark_transparent.png — the isolated mark on transparency (a named deliverable and the source for raster exports)."
+  },
+  {
+   "n": 10,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "mark_transparent_png"
+   ],
+   "output": "fullcolor_svg",
+   "note": "Trace the cleaned transparent mark into northwind_logo_fullcolor.svg — the primary full-color, infinitely scalable vector deliverable."
+  },
+  {
+   "n": 11,
+   "tool": "image_apply_color_overlay",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "mark_transparent_png"
+   ],
+   "output": "mark_solid_charcoal",
+   "note": "Flatten the isolated mark to a single solid charcoal color (color overlay over the transparent cut-out) to build the one-color/knockout source."
+  },
+  {
+   "n": 12,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "mark_solid_charcoal"
+   ],
+   "output": "onecolor_svg",
+   "note": "Vectorize the solid-color mark into northwind_logo_onecolor_knockout.svg for one-color print, vinyl, embroidery and tiny favicons."
+  },
+  {
+   "n": 13,
+   "tool": "image_apply_halftone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "mark_transparent_png"
+   ],
+   "output": "mark_halftone_png",
+   "note": "Apply a halftone/print-screen treatment to the isolated mark for merch and poster use — northwind_mark_halftone.png."
+  },
+  {
+   "n": 14,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "mark_transparent_png"
+   ],
+   "output": "icon_1024_png",
+   "note": "Crop/resize the transparent mark to a 1024x1024 (1:1) app-icon PNG — first of the platform-sized raster exports; edges cropped to hit the square icon ratio, centered on the mark."
+  },
+  {
+   "n": 15,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "mark_transparent_png"
+   ],
+   "output": "header_bug_png",
+   "note": "Reframe the same transparent mark to a 480x120 (4:1 landscape) web header 'bug' PNG — second platform raster export. Honest crop/resize to the wide header ratio: top/bottom of the frame are cropped away to hit 4:1, centered on the mark. No canvas is extended or padded."
+  },
+  {
+   "n": 16,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "mark_transparent_png"
+   ],
+   "output": "avatar_512_png",
+   "note": "Crop/resize the same transparent mark to a 512x512 (1:1) social-avatar PNG — third platform raster export, derived from the cleaned mark for crispness; edges cropped to hit the square avatar ratio, centered on the mark."
+  },
+  {
+   "n": 17,
+   "tool": "font_recommend",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "mark_transparent_png"
+   ],
+   "output": "font_pairing",
+   "note": "Recommend a brand-safe font pairing matching the cleaned wordmark so the client can extend the identity into decks and documents."
+  },
+  {
+   "n": 18,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "fullcolor_svg"
+   ],
+   "output": "deliverables_folder",
+   "note": "Create an organized CC asset folder (Northwind_Vector_Kit) to collect all hand-off deliverables."
+  },
+  {
+   "n": 19,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "deliverables_folder",
+    "fullcolor_svg",
+    "onecolor_svg",
+    "mark_transparent_png",
+    "mark_halftone_png",
+    "icon_1024_png",
+    "header_bug_png",
+    "avatar_512_png"
+   ],
+   "output": "collected_deliverables",
+   "note": "Copy every generated vector + raster deliverable into the hand-off folder so the client receives one tidy package."
+  },
+  {
+   "n": 20,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "collected_deliverables",
+    "fullcolor_svg",
+    "onecolor_svg",
+    "mark_transparent_png",
+    "mark_halftone_png",
+    "icon_1024_png",
+    "header_bug_png",
+    "avatar_512_png"
+   ],
+   "output": "brand_kit_board",
+   "note": "Assemble all produced asset URNs into a single Firefly Board presentation deep-link — the shareable multi-platform vector kit overview for client review."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_adjust_brightness_and_contrast",
+  "image_crop_to_bounds",
+  "image_select_by_prompt",
+  "image_invert_selection",
+  "image_fill_area",
+  "image_remove_background",
+  "image_vectorize",
+  "image_apply_color_overlay",
+  "image_apply_halftone",
+  "image_crop_and_resize",
+  "font_recommend",
+  "asset_create_folders",
+  "asset_copy_assets",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 20,
+ "distinct_adobe_tools": 17,
+ "chaining_note": "Single initial asset load at steps 1-2 (upload raw AI PNG -> raw_logo_asset); every subsequent step consumes a prior output. The spine: raw_logo_asset -> auto_straighten (straightened_logo) -> brightness/contrast (contrast_logo) -> crop_to_bounds (cropped_logo). From cropped_logo: select_by_prompt (mark_mask) -> invert_selection (background_mask), then fill_area consumes BOTH cropped_logo + background_mask to flatten the field (flat_white_logo) -> remove_background (mark_transparent_png), the central reusable cleaned asset. mark_transparent_png then feeds seven branches that all chain off it: vectorize -> fullcolor_svg; color_overlay -> mark_solid_charcoal -> vectorize -> onecolor_svg; halftone -> mark_halftone_png; crop_and_resize -> icon_1024_png; crop_and_resize -> header_bug_png; crop_and_resize -> avatar_512_png; and font_recommend -> font_pairing. The three crop_and_resize exports are honest reframes of the cleaned transparent mark (each crops the frame to its target ratio centered on the mark — 1:1 icon, 4:1 header bug, 1:1 avatar; no canvas extension). The deliverables then converge: asset_create_folders (deliverables_folder) -> asset_copy_assets pulls in all seven rendered outputs -> create_firefly_board assembles every output URN into the final board. Nothing is loaded fresh after step 2; the deliverable kit emerges entirely from the chain.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 20 connector calls, 17 distinct Adobe tools, spanning 3 groups (A1 photo/raster, A2 document/font, A4 asset/board). It is genuinely hard because the order matters — you must straighten, contrast-clean, crop, isolate via select->invert->solid-fill->remove-background, and only THEN vectorize, or the trace inherits the AI noise/tilt; a naive agent that vectorizes the raw PNG fails the 'high-quality across formats' bar. It also tests honest tool boundaries: image_fill_area is used correctly as a solid-color flatten (not generative), the platform PNGs are honest crop/resize reframes to their target ratios (not canvas extensions), the from-scratch vector comes only from image_vectorize (not document_render_vector, which can't author a vector), and the one-color variant is correctly built via color_overlay->re-vectorize rather than any unavailable gen step. The branch-and-converge topology (one cleaned mark fanning into seven deliverables, then collected into a folder and a board) exercises multi-output reuse end to end.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "issues": [
+   "No hard-constraint violations. All 20 steps are server=='adobe' (pure_adobe holds); no Canva tools; no Express-widget tools (search_design/fill_text/animate_design/change_background_color absent).",
+   "Chaining is 100% (19/19 steps after the first consume a prior output via inputs_from), well above the 80% bar.",
+   "feasible_no_X holds: image_fill_area is used correctly as a SOLID-COLOR white fill of the inverted background selection (note explicitly says 'Solid-color fill only - no generative work'), not as gen-fill/object-removal/compositor. The three image_crop_and_resize exports (icon 1:1, header bug 4:1, avatar 1:1) are honest reframes/crops of the existing transparent-mark frame — none extends or pads the canvas. The from-scratch vector comes ONLY from image_vectorize (raster->SVG); document_render_vector is correctly NOT used to author a vector. No upscaling, text-to-image, bg-replace-by-prompt, OCR, canvas-extension, or video_resize-as-trim anywhere. image_remove_background, image_apply_color_overlay, image_apply_halftone, image_crop_and_resize all match their A1 [C] sheet entries.",
+   "Counts verified: 17 distinct Adobe tools (image_vectorize appears twice and image_crop_and_resize appears three times but each counts once) and 20 calls; both exceed the >=6 distinct / >=10 calls thresholds. Spec's self-reported distinct_adobe_tools=17 and tool_call_count=20 are accurate.",
+   "MINOR/non-blocking plausibility nuances (not violations): (a) image_auto_straighten is a photo-horizon auto-detect tool; on a logo card with a ~2.5deg tilted baseline its skew detection is less certain than on a landscape, but it is the listed [C] tool and the sheet places no restriction on it. (b) font_recommend (A2 [C]) is fed the transparent-mark image to match the wordmark; the sheet does not specify its input contract, so this is plausible but unconfirmed. Neither affects feasibility grading.",
+   "All steps are [C] headless-confirmed per the sheet, so this is a fully headless-doable long-horizon chain (20 calls across groups A1/A2/A4) with genuine branch-and-converge reuse of mark_transparent_png."
+  ]
+ }
+}

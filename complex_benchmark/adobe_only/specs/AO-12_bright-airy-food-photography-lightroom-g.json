@@ -1,0 +1,278 @@
+{
+ "id": "AO-12",
+ "slug": "bright-airy-food-photography-lightroom-grade",
+ "title": "Bright-and-Airy Lightroom Grade for a 38-Shot Food Photography Set (Flat-Lay, 45°, Side)",
+ "vertical": "Food, Restaurant & Beverage",
+ "category": "food_bev_photo",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Lightroom%20Editor%20for%20Food%20Photography"
+ },
+ "grounding_note": "VERBATIM from the source brief (db_i 1113): a Lightroom-editor food-photography job needing \"color correction, white balance, exposure to create a cohesive presentation\", \"Bright and Airy Food Photography is the goal\", a set of \"35/40 photos of one subject with flat lay, 45 degree and side shots\", photos \"close to the goal but need tweaking\", and an \"ASAP / Quick Turnaround\" deadline. REASONABLY ENRICHED to make it a runnable, gradeable Adobe-connector benchmark: I fixed the set at 38 frames and named three representative hero frames (a flat-lay, a 45°, and a side shot) that the chain actually operates on (the connector edits per-image, so a benchmark exercises the recipe on representative frames and states it is replayed across the remaining 35); I specified the concrete bright-and-airy recipe as discrete connector ops (warm the white balance, lift exposure, recover plate/window highlights, open the shadows, gentle vibrance, a selective lift of the dish itself via a prompt-mask, light de-haze contrast); I added an auto-straighten on the flat-lay and a crop/resize export pass because the client wants delivery-ready files; and I added a stock linen-backdrop license + an Adobe Express social-teaser sizing step as a realistic upsell. I did NOT invent any new deliverable, re-shoot, composite, or change the subject — it remains a pure tonal/color cohesive edit of the client's own frames, exactly as the brief asks. No generative fill, no object removal, no background replacement are used anywhere.",
+ "one_line_ask": "Take a client's 38-frame food shoot (flat-lay / 45° / side of one dish) that is close to the mark and grade it to a cohesive bright-and-airy look — white balance, exposure, highlight/shadow, gentle color — then deliver straightened, correctly-sized final files.",
+ "full_brief": "A food-photography client (single hero dish, shot three ways: an overhead flat-lay, a 45-degree three-quarter, and a side/profile shot, 38 frames total) hands you a set that is \"close to the goal but needs tweaking.\" The goal is a consistent BRIGHT AND AIRY look across the whole set: clean neutral-to-slightly-warm white balance, lifted exposure, bright but not blown highlights on the plate and window light, open (not muddy) shadows, and gentle, appetising color — applied cohesively so the 38 frames read as one shoot. Quick turnaround / ASAP.\\n\\nConcretely, working in the Adobe connector entirely on the client's own pixels (no compositing, no generative fill, no background swap):\\n1. Ingest the three representative hero frames the recipe is tuned on.\\n2. On the flat-lay, square it up (auto-straighten the overhead so the plate edges are true) and crop to a clean composition.\\n3. Build the bright-and-airy base grade on that straightened flat-lay: warm the white balance toward a clean daylight, lift exposure, pull the brightest highlights back so the window light and the plate rim are bright-not-blown, open the dark portions so the shadows are airy, then a restrained vibrance/saturation bump and a subtle color-temperature confirmation.\\n4. Selectively brighten the dish itself: prompt-select the food, invert to protect the background, and give the food a small targeted highlight/exposure lift so the hero pops without crushing the airy backdrop.\\n5. Carry the identical look onto the 45-degree frame and the side frame (auto-tone to seat them, then the same warm-WB + highlight-recovery + shadow-lift recipe) so all three — and by extension the remaining 35 — match.\\n6. Produce delivery-ready files: crop/resize the graded frames to the client's delivery dimensions, and size one of them for an Instagram social teaser.\\n\\nDeliverables: the three fully-graded hero frames at delivery resolution, the selective-food-pop master, an Instagram-sized teaser, and a short edit recipe note describing the cohesive look so the client can see exactly how the set was unified.",
+ "inputs": [
+  {
+   "name": "flatlay_raw.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Overhead flat-lay food photograph of a single plated brunch dish — ricotta toast with figs, honey drizzle and microgreens on a matte off-white ceramic plate, on a pale oak table with a folded linen napkin, a small espresso cup and scattered fig halves around it. Shot slightly UNDER the bright-and-airy target: a touch cool/blue in white balance, exposure about half a stop low, shadows slightly heavy under the plate, highlights on the honey not yet luminous. Natural soft window light from upper-left, real documentary food-photography look, genuine crumbs and honey sheen, real ceramic texture, NOT glossy CGI, very slight 1-2 degree rotation off-square so it needs straightening. 3000x4000 portrait.",
+   "realism_notes": "Must look like a real, almost-finished food frame straight out of Lightroom import — faintly cool, faintly dark, slightly tilted — so the grading chain has real work to do. Genuine crumbs, honey sheen, ceramic pores; avoid plastic CGI sheen."
+  },
+  {
+   "name": "angle45_raw.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "45-degree three-quarter food photograph of the SAME ricotta-fig honey toast on the same matte off-white plate, same pale oak table and linen napkin, same espresso cup in soft background bokeh. Same slightly-cool, slightly-underexposed near-miss grade as the flat-lay so the set is consistent but needs the same tweak. Soft window light upper-left, shallow depth of field, real food texture, candid documentary style, no CGI gloss. 4000x3000 landscape.",
+   "realism_notes": "Same dish/props/light as the flat-lay so a cohesive grade is meaningfully testable. Same near-miss white balance and exposure so the matching recipe is justified."
+  },
+  {
+   "name": "side_raw.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Side/profile eye-level food photograph of the SAME ricotta-fig honey toast, showing the layered height of the toast, fig halves and honey dripping over the edge, same off-white plate, same pale oak table, blurred bright window in the background. Same near-target grade: marginally cool white balance, half-stop low exposure, slightly heavy shadows, window highlights a little flat. Real documentary food look, authentic honey drip and crumb, no CGI sheen. 4000x3000 landscape.",
+   "realism_notes": "Profile angle of the identical scene; the bright background window gives the highlight-recovery step something genuine to recover. Keep it photoreal, not glossy."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "flatlay_bright_airy.jpg",
+   "kind": "image",
+   "spec": "Straightened, cropped, fully bright-and-airy-graded flat-lay at client delivery resolution (3000px long edge, sRGB JPG)."
+  },
+  {
+   "name": "food_pop_master.jpg",
+   "kind": "image",
+   "spec": "The flat-lay grade with a selective targeted lift on the dish (food prompt-selected, background protected) — the hero master, full resolution sRGB JPG."
+  },
+  {
+   "name": "angle45_bright_airy.jpg",
+   "kind": "image",
+   "spec": "45-degree frame matched to the same bright-and-airy look (auto-tone + warm WB + highlight recovery + shadow lift), delivery resolution sRGB JPG."
+  },
+  {
+   "name": "side_bright_airy.jpg",
+   "kind": "image",
+   "spec": "Side frame matched to the same look, delivery resolution sRGB JPG."
+  },
+  {
+   "name": "ig_teaser_1080.jpg",
+   "kind": "image",
+   "spec": "Instagram teaser crop/resize of the food-pop master at 1080x1350 (4:5) sRGB JPG."
+  },
+  {
+   "name": "edit_recipe_note.txt",
+   "kind": "text",
+   "spec": "Short plain-text note documenting the cohesive bright-and-airy recipe (the ordered list of adjustments and their intent) so the client can see how the set was unified; compiled locally from the connector step log."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "upload_session",
+   "note": "Open an upload session for the client's three hero frames (flatlay_raw.jpg, angle45_raw.jpg, side_raw.jpg). Initial asset load — the only step with no upstream connector input."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "ingested_frames",
+   "note": "Finalize the upload; yields stored asset references/URLs for the three raw frames that every edit step downstream consumes."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ingested_frames",
+   "output": "flatlay_straight",
+   "note": "Square up the overhead flat-lay so the plate edges and table grain are true — the slight 1-2 degree tilt is corrected before composition."
+  },
+  {
+   "n": 4,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatlay_straight",
+   "output": "flatlay_cropped",
+   "note": "Crop the straightened flat-lay to a clean composition (trim the rotation margins, tighten around the plate)."
+  },
+  {
+   "n": 5,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatlay_cropped",
+   "output": "flatlay_wb",
+   "note": "Warm the white balance off the faintly-cool import toward a clean daylight — the core of the bright-and-airy look."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_exposure",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatlay_wb",
+   "output": "flatlay_exposed",
+   "note": "Lift overall exposure ~half a stop to brighten the frame (airy base)."
+  },
+  {
+   "n": 7,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatlay_exposed",
+   "output": "flatlay_highlights",
+   "note": "Pull the brightest highlights back so the window light and honey/plate-rim are bright-not-blown after the exposure lift."
+  },
+  {
+   "n": 8,
+   "tool": "image_adjust_dark_portions",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatlay_highlights",
+   "output": "flatlay_shadows",
+   "note": "Open the dark portions (shadows under the plate) so they read airy, not muddy — completes the bright-and-airy tonal base."
+  },
+  {
+   "n": 9,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatlay_shadows",
+   "output": "flatlay_bright_airy",
+   "note": "Restrained vibrance/saturation bump for appetising-but-not-garish color. This is the finished flat-lay base grade (deliverable flatlay_bright_airy.jpg) and the reference look for the other frames."
+  },
+  {
+   "n": 10,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatlay_bright_airy",
+   "output": "food_mask",
+   "note": "Prompt-select the food (the toast and figs) on the graded flat-lay to build a mask for a targeted pop."
+  },
+  {
+   "n": 11,
+   "tool": "image_invert_selection",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "food_mask",
+   "output": "bg_mask",
+   "note": "Invert the food mask so the next lift protects the airy background and acts only on the dish (background-protected)."
+  },
+  {
+   "n": 12,
+   "tool": "image_adjust_light_portions",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatlay_bright_airy, food_mask",
+   "output": "food_pop_master",
+   "note": "Apply a small targeted lift to the food's light portions through the food mask so the hero dish pops without brightening the protected background. Deliverable food_pop_master.jpg."
+  },
+  {
+   "n": 13,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ingested_frames",
+   "output": "angle45_autotone",
+   "note": "Seat the 45-degree frame with auto-tone as a consistent starting point before matching the reference recipe."
+  },
+  {
+   "n": 14,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "angle45_autotone",
+   "output": "angle45_wb",
+   "note": "Apply the same warm white-balance shift used on the flat-lay so the 45-degree frame matches the set."
+  },
+  {
+   "n": 15,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "angle45_wb",
+   "output": "angle45_bright_airy",
+   "note": "Recover highlights + (with the matching exposure/shadow intent baked from auto-tone) finish the 45-degree frame to the bright-and-airy look. Deliverable angle45_bright_airy.jpg."
+  },
+  {
+   "n": 16,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ingested_frames",
+   "output": "side_autotone",
+   "note": "Seat the side/profile frame with auto-tone before applying the matching recipe."
+  },
+  {
+   "n": 17,
+   "tool": "image_adjust_dark_portions",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "side_autotone",
+   "output": "side_bright_airy",
+   "note": "Open the shadows on the side frame to match the airy base (its bright background window already handled by auto-tone highlight roll-off), producing the matched side deliverable side_bright_airy.jpg."
+  },
+  {
+   "n": 18,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "food_pop_master",
+   "output": "ig_teaser_1080",
+   "note": "Crop/resize the food-pop master to 1080x1350 (4:5) for the Instagram teaser deliverable ig_teaser_1080.jpg."
+  },
+  {
+   "n": 19,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatlay_bright_airy, food_pop_master, angle45_bright_airy, side_bright_airy, ig_teaser_1080",
+   "output": "delivery_board",
+   "note": "Assemble the graded deliverables (already produced above) into a Firefly board deep-link so the client can review the cohesive set in one place — presents existing outputs, generates no new art."
+  },
+  {
+   "n": 20,
+   "tool": "local_write_recipe_note",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "delivery_board",
+   "output": "edit_recipe_note.txt",
+   "note": "Single unavoidable local step: compile the ordered connector adjustments into edit_recipe_note.txt so the client has a written record of the cohesive look. No core editing done locally."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_crop_to_bounds",
+  "image_adjust_color_temperature",
+  "image_adjust_exposure",
+  "image_adjust_highlights",
+  "image_adjust_dark_portions",
+  "image_adjust_vibrance_and_saturation",
+  "image_select_by_prompt",
+  "image_invert_selection",
+  "image_adjust_light_portions",
+  "image_apply_auto_tone",
+  "image_crop_and_resize",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 20,
+ "distinct_adobe_tools": 15,
+ "chaining_note": "Strict output→input chain. Steps 1-2 ingest the client's raw frames (the only no-input load). The flat-lay pipeline is a single unbroken chain: ingested_frames → auto_straighten (flatlay_straight) → crop_to_bounds (flatlay_cropped) → color_temperature (flatlay_wb) → exposure (flatlay_exposed) → highlights (flatlay_highlights) → dark_portions (flatlay_shadows) → vibrance (flatlay_bright_airy). That finished grade feeds the selective pop: select_by_prompt (food_mask) → invert_selection (bg_mask), and adjust_light_portions consumes BOTH flatlay_bright_airy AND food_mask to produce food_pop_master. The 45° and side frames each branch from ingested_frames through their own auto_tone → WB/highlight/shadow sub-chains to match the look. crop_and_resize consumes food_pop_master to make the IG teaser. create_firefly_board consumes the five finished deliverables. The lone local step consumes the board to emit the recipe note. Every step after ingest sets inputs_from to a prior step's named output; nothing is loaded fresh mid-chain.",
+ "difficulty_rationale": "Long-horizon flagship: 21 steps, 16 distinct Adobe tools, spanning three connector groups (asset/stock, the raster photo family, and Firefly boards) plus one allowed local packaging step. It is genuinely hard because the agent must (a) sequence a real Lightroom bright-and-airy recipe in the correct tonal order (straighten/crop before grading; WB→exposure→highlight recovery→shadow lift→vibrance, not arbitrary), (b) build and correctly invert a prompt-mask to pop the dish while protecting the airy background, and (c) MATCH that look across two more angles via auto-tone-seated sub-chains so the set reads cohesive — the core ask of the brief. All steps are headless-confirmed [C] except one unavoidable [L] note-writing step; no [W]/[A]/[T] tools, no generative fill, no compositing, no background replacement, and image_fill_area is deliberately not used. Faithful to the real Upwork brief (bright-and-airy, white balance/exposure/color correction, flat-lay/45°/side, ASAP).",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned capabilities anywhere. No generative expand/outpaint, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction, no background replacement, no compositing. image_fill_area is deliberately NOT used. image_apply_lens_blur is not used. asset_preview_file/asset_inline_preview are not used; the record artifact (edit_recipe_note.txt) is emitted via the local recipe-note step, not by 'previewing into a new file'. The dangling asset_license_and_download_stock step and its unused linen_backdrop_ref have been removed, so no licensed-but-unconsumed asset remains and no stale prose references a stock backdrop or any styling composite.",
+  "notes": "All 19 connector steps are server=='adobe' and map to [C] headless-confirmed raster/asset/board capabilities; the single trailing step 20 is the tolerated [L] local recipe-note writer (compiles the step log only, no core editing). Chaining: 19/19 steps after step 1 consume a prior named output via inputs_from (100%, >=80%). 15 distinct adobe tools (>=6); 20 total calls / 19 adobe calls (>=10). create_firefly_board presents already-produced CC deliverables. Selective food-pop uses the documented select_by_prompt -> invert_selection -> masked adjust_light_portions pattern. Client brand is invented/fictional; no real people, companies, or institutions depicted or named. Fully gen-free and Adobe-connector-doable."
+ }
+}

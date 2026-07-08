@@ -1,0 +1,350 @@
+{
+ "slot_id": "V01",
+ "category": "vectorize_logo",
+ "title": "Amberleaf Tea Studio: vectorize two AI-generated tea-brand wordmarks + one ornamental crest into production-ready SVGs and derive a matching stand-up-pouch front-label base panel",
+ "slug": "amberleaf-tea-brand-logo-vectorize-pouch-labels",
+ "vertical": "professional_services",
+ "source": {
+  "platform": "Freelancer.com",
+  "reference": "Vectorize Logos & Packaging"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief \"Vectorize Logos & Packaging\": the client already has \"AI-generated artwork for my \\\"two\\\" tea brands and one ornamental style logo but it is still in raster form and not ready for production\" and needs \"everything redrawn as clean, fully-editable vectors so I can scale them for any application without loss of quality\"; scope = \"Convert the existing logos, standup pouch mock-up into precise vector artwork\", \"Preserve every colour, gradient, and detail exactly as in the original concept while improving line sharpness and overall balance\", \"Create a matching front-facing product label that fits naturally with the new vector style\"; delivery = \"deliver the final artwork in AI, SVG, and PDF formats\" with each file \"neatly organised in layers, include outlined and editable text versions, and be ready for immediate print or digital use.\" REASONABLY ENRICHED to make it a runnable Adobe-connector benchmark: the real company/person is replaced by a fictional IP-clean brand identity studio (Amberleaf Tea Studio) and two invented tea sub-brands (Golden Chai Co. and Silverleaf Green) plus one ornamental crest, so every raster input is model-generatable and carries no real trademark. The vector masters are produced by image_vectorize (raster->SVG, the honest connector path for \"redrawn as clean vectors\"); a one-color knockout and a halftone print variant are derived from the crest for single-color print/screen use; and the \"matching front-facing product label\" is honestly modeled as cropping the supplied stand-up-pouch mockup to its flat front panel and laying a solid kraft-tone base band on it (image_fill_area is SOLID-fill only) to produce the print-ready front-label BASE PANEL — the cleaned wordmark + crest are dropped in by the studio in the layered vector hand-off (per the brief's \"neatly organised in layers\"), because no connector tool composites one image onto another. AI/EPS/PDF are honestly described as export formats of the same vector master; no from-scratch layout composition and no generative capability is used.",
+ "one_line_ask": "Clean and de-skew the client's three AI-generated tea-brand raster logos, trace them into crisp scalable SVG masters, derive one-color and halftone print variants of the crest, and produce a matching front-facing stand-up-pouch label base panel from the supplied pouch mockup.",
+ "full_brief": "Amberleaf Tea Studio, a small independent tea-branding consultancy, is prepping two of its house tea brands for a production run and needs the artwork made print-ready. The studio has already generated the concept artwork with an AI image tool but only has flat raster PNGs: a wordmark lockup for 'Golden Chai Co.' (warm amber-and-cream with a subtle gold gradient), a wordmark lockup for 'Silverleaf Green' (cool sage-green with a fine leaf glyph), and one ornamental 'crest' mark (a symmetrical scrollwork badge with a small tea-leaf motif meant to sit on both brands' packaging). All three rasters have the usual AI-export problems: soft anti-aliased edges, a faint off-white textured card behind the art, mild luminance noise, and each is tilted a couple of degrees off level. None of these can go to a printer as-is because they do not scale and have no transparency. The studio also supplies a flat mockup image of a blank stand-up coffee/tea pouch it wants to use as the packaging shape. The job: (1) ingest all three raster logos and get clean working copies; auto-straighten each tilted mark and tonally clean it so edges are true and the near-white card is even; (2) crop each mark tight to its true artwork bounds and knock the background to transparent so the trace has no halo; (3) VECTORIZE each cleaned mark into a crisp, fully-scalable SVG master while preserving every colour and the gold gradient exactly as in the concept — these three SVGs are the primary editable/print-ready vector deliverables (AI/EPS/PDF are the same master exported to those formats); (4) from the ornamental crest, derive a single-color / knockout vector (crest silhouette solid-filled) for one-colour foil, embossing and small favicon use, and a halftone 'print-screen' treatment for merch and kraft-paper packaging; (5) produce the 'matching front-facing product label' the brief asks for: crop the supplied stand-up-pouch mockup to just its flat front panel and lay a clean solid kraft-tone base band on that panel, delivering the print-ready front-label base panel that fits the new vector style — the cleaned Golden Chai wordmark + crest are dropped onto it by the studio in the layered vector files; (6) recommend a brand-safe font pairing that matches the wordmark style so the studio can extend the identity across both brands; (7) upload every produced deliverable into a tidy Creative Cloud hand-off folder and assemble them onto a single Firefly board deep-link so the studio can approve the vectors and the pouch label in one place. Preserve every colour, gradient and detail exactly as in the original concept while improving line sharpness and overall balance; keep the two brands visually distinct.",
+ "inputs": [
+  {
+   "name": "golden_chai_wordmark_raw.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A 1600x1200 flat PNG of an AI-generated tea-brand wordmark logo as it would look straight out of an image generator: the words 'Golden Chai Co.' set in a warm, slightly ornate serif with a subtle gold-to-amber vertical gradient on the letterforms and a thin cream keyline, above a small tagline 'MASALA CHAI - EST. BLEND'. The whole lockup sits centered on a faint off-white (#F4F1EA) softly textured paper card that fills the frame. Give it the tell-tale AI-export traits: very slightly soft anti-aliased edges, faint luminance noise across the card, mildly uneven lighting, and the whole logo rotated about 2.5 degrees clockwise so the baseline is not level. Crisp readable type, accurate kerning, no watermark, no 3D gloss, flat art.",
+   "realism_notes": "Must read as a believable AI export, not a pre-cleaned vector: keep the textured off-white card (no transparency), soft edges, faint noise and ~2.5deg tilt — the exact defects the chain must fix (auto_straighten, tonal cleanup, crop, background knock) before vectorizing. The gold gradient tests the 'preserve every colour and gradient exactly' clause. Text must stay legible so the trace and font_recommend are meaningful. 8-bit sRGB PNG."
+  },
+  {
+   "name": "silverleaf_green_wordmark_raw.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A 1600x1200 flat PNG of an AI-generated tea-brand wordmark logo: the words 'Silverleaf Green' in a clean cool-sage (#7C9A78) modern serif with a fine single tea-leaf glyph to the left of the text, above a thin tagline 'STEAMED GREEN TEA'. Centered on a faint cool off-white (#EEF1EC) softly textured card filling the frame. Same AI-export tells: slightly soft anti-aliased edges, faint noise, mildly uneven light, and the lockup rotated about 3 degrees COUNTER-clockwise so the baseline tips the other way. Crisp legible type, no watermark, flat art, no 3D.",
+   "realism_notes": "Second brand, deliberately a different tilt direction and a cooler palette so the two brands stay visually distinct and each needs its own straighten/clean/trace pass. Sage green single-color makes the trace clean and the palette obviously different from Golden Chai. 8-bit sRGB PNG."
+  },
+  {
+   "name": "amberleaf_crest_raw.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A 1400x1400 flat PNG of an AI-generated ornamental brand crest: a symmetrical scrollwork badge / laurel-wreath shape enclosing a small centered tea-leaf-and-steam motif, rendered in a single deep amber (#B4741F) line-art style with fine filigree detail. Sits centered on a faint off-white (#F5F2EC) softly textured card filling the frame. AI-export tells: slightly soft edges, faint noise, mild uneven lighting, and the badge rotated about 2 degrees off-level. High-contrast flat line art, crisp filigree, no gradients, no watermark, no 3D.",
+   "realism_notes": "The 'one ornamental style logo' from the brief. Single-color high-contrast filigree is ideal for a clean vectorize AND for deriving a solid-fill one-color knockout + a halftone variant. The fine detail tests 'improving line sharpness' after the trace. 8-bit sRGB PNG."
+  },
+  {
+   "name": "standup_pouch_mockup.png",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "A photoreal flat product mockup of a blank matte-kraft stand-up coffee/tea pouch photographed straight-on against a neutral light-grey studio background, front panel facing camera, gusseted bottom, a resealable zip top and a small round degassing valve. The pouch front is empty (no printing) so a label can be placed. Even soft studio light, minimal shadow, slight natural wrinkle on the kraft material, realistic material texture, no logo, no text.",
+   "realism_notes": "The 'standup pouch mock-up' the brief names. Modeled as a supplied blank product shape so the chain can crop to its flat front panel and lay a solid kraft-tone base band as the 'matching front-facing product label' base — no compositing of new content, just crop + solid fill; the studio drops its own cleaned marks in via the layered vector files. gpt-image-2 for photoreal packaging."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "golden_chai_wordmark.svg",
+   "kind": "vector",
+   "spec": "Clean full-colour vector trace of the Golden Chai Co. wordmark lockup, gold/amber gradient and cream keyline preserved, transparent background, crisp scalable paths; the primary editable master (AI/EPS/PDF are this master exported to those formats)."
+  },
+  {
+   "name": "silverleaf_green_wordmark.svg",
+   "kind": "vector",
+   "spec": "Clean full-colour vector trace of the Silverleaf Green wordmark lockup, sage palette + leaf glyph preserved, transparent background, scalable paths; second brand master (AI/EPS/PDF derive from it)."
+  },
+  {
+   "name": "amberleaf_crest.svg",
+   "kind": "vector",
+   "spec": "Clean vector trace of the ornamental scrollwork crest, filigree sharpened, transparent background, scalable paths; the shared ornamental mark master."
+  },
+  {
+   "name": "amberleaf_crest_onecolor_knockout.svg",
+   "kind": "vector",
+   "spec": "Single-colour knockout/silhouette vector of the crest (solid fill on flattened field) for one-colour foil, embossing, small favicon and single-colour print use."
+  },
+  {
+   "name": "amberleaf_crest_halftone.png",
+   "kind": "image",
+   "spec": "Halftone / print-screen treatment of the crest, hi-res PNG for merch and kraft-paper packaging where a dot-screen reads better than solid line art."
+  },
+  {
+   "name": "golden_chai_pouch_front_label_base.png",
+   "kind": "image",
+   "spec": "The 'matching front-facing product label' base panel: the supplied stand-up-pouch mockup cropped to its flat front panel with a clean solid kraft-tone base band laid on it (image_fill_area solid fill only), print-ready hi-res PNG that fits the new vector style; the cleaned Golden Chai wordmark + crest are dropped onto it in the layered vector hand-off."
+  },
+  {
+   "name": "amberleaf_font_pairing.json",
+   "kind": "data",
+   "spec": "Recommended brand-safe font family + heading/body pairing matching the wordmark style, from font_recommend, so the studio can extend the identity across both brands."
+  },
+  {
+   "name": "Amberleaf_vector_kit_folder + review_board",
+   "kind": "data",
+   "spec": "Organized Creative Cloud hand-off folder containing every produced deliverable, plus a Firefly board deep-link assembling the three SVG masters, the knockout + halftone crest variants and the pouch front-label base panel for one-click studio sign-off."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "golden_chai_wordmark_raw.png, silverleaf_green_wordmark_raw.png, amberleaf_crest_raw.png, standup_pouch_mockup.png",
+   "output": "upload_session",
+   "note": "Begin uploading the studio's four supplied rasters (two wordmarks, the crest, the pouch mockup) into Creative Cloud storage to start the pipeline."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "raw_asset_uris",
+   "note": "Finalize the upload to stable CC asset URIs for the four rasters; every later step consumes a prior output. This is the single initial asset load."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_asset_uris",
+   "output": "golden_straightened",
+   "note": "Correct the ~2.5deg clockwise tilt on the Golden Chai wordmark so the baseline is level — straight art traces cleaner."
+  },
+  {
+   "n": 4,
+   "tool": "image_adjust_brightness_and_contrast",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "golden_straightened",
+   "output": "golden_contrast",
+   "note": "Boost contrast and even the mild AI lighting so the amber letterforms separate cleanly from the off-white card — sharper edges for the vectorizer, gradient preserved."
+  },
+  {
+   "n": 5,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "golden_contrast",
+   "output": "golden_cropped",
+   "note": "Trim the surrounding card so the canvas hugs the Golden Chai artwork, removing wasted background before knocking it out."
+  },
+  {
+   "n": 6,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "golden_cropped",
+   "output": "golden_clean_transparent",
+   "note": "Knock the faint textured card to true transparency so the trace has no halo/fringe around the letterforms."
+  },
+  {
+   "n": 7,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "golden_clean_transparent",
+   "output": "golden_chai_wordmark.svg",
+   "note": "Vectorize the cleaned Golden Chai wordmark into a crisp full-colour SVG master, preserving the gold/amber gradient and cream keyline (deliverable; AI/EPS/PDF derive from it)."
+  },
+  {
+   "n": 8,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_asset_uris",
+   "output": "silverleaf_straightened",
+   "note": "Straighten the Silverleaf Green wordmark, which is tilted ~3deg the OTHER way, so its baseline is level for a clean trace."
+  },
+  {
+   "n": 9,
+   "tool": "image_adjust_brightness_and_contrast",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "silverleaf_straightened",
+   "output": "silverleaf_contrast",
+   "note": "Contrast-clean the Silverleaf wordmark so the sage green separates crisply from its cool off-white card."
+  },
+  {
+   "n": 10,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "silverleaf_contrast",
+   "output": "silverleaf_cropped",
+   "note": "Crop the Silverleaf lockup tight to its true artwork bounds."
+  },
+  {
+   "n": 11,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "silverleaf_cropped",
+   "output": "silverleaf_clean_transparent",
+   "note": "Knock the Silverleaf card to transparency for a halo-free trace."
+  },
+  {
+   "n": 12,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "silverleaf_clean_transparent",
+   "output": "silverleaf_green_wordmark.svg",
+   "note": "Vectorize the cleaned Silverleaf Green wordmark into a scalable SVG master, sage palette + leaf glyph preserved (deliverable)."
+  },
+  {
+   "n": 13,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_asset_uris",
+   "output": "crest_straightened",
+   "note": "Level the ornamental crest (~2deg off) so the symmetrical scrollwork traces true."
+  },
+  {
+   "n": 14,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "crest_straightened",
+   "output": "crest_toned",
+   "note": "Auto-tone the crest to maximize the black/amber line-art contrast against the card so the fine filigree traces sharply."
+  },
+  {
+   "n": 15,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "crest_toned",
+   "output": "crest_cropped",
+   "note": "Crop the badge tight to its bounds."
+  },
+  {
+   "n": 16,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "crest_cropped",
+   "output": "crest_clean_transparent",
+   "note": "Knock the crest card to transparency; this cleaned crest is the reusable hub for the master trace + the knockout + halftone variants."
+  },
+  {
+   "n": 17,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "crest_clean_transparent",
+   "output": "amberleaf_crest.svg",
+   "note": "Vectorize the cleaned crest into a scalable SVG master with the filigree sharpened (deliverable)."
+  },
+  {
+   "n": 18,
+   "tool": "image_apply_color_overlay",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "crest_clean_transparent",
+   "output": "crest_solid_onecolor",
+   "note": "Flatten the isolated crest to a single solid colour (color overlay over the transparent cut-out) to build the one-colour knockout source — a recolor/flatten, not generative."
+  },
+  {
+   "n": 19,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "crest_solid_onecolor",
+   "output": "amberleaf_crest_onecolor_knockout.svg",
+   "note": "Vectorize the solid-colour crest into the one-colour knockout SVG for foil, embossing, single-colour print and small favicons (deliverable)."
+  },
+  {
+   "n": 20,
+   "tool": "image_apply_halftone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "crest_clean_transparent",
+   "output": "amberleaf_crest_halftone.png",
+   "note": "Apply a whole-image halftone / print-screen treatment to the isolated crest for merch and kraft-paper packaging (deliverable)."
+  },
+  {
+   "n": 21,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "raw_asset_uris",
+   "output": "pouch_front_panel",
+   "note": "Crop the supplied stand-up-pouch mockup down to just its flat front panel — the printable label area for the front-facing product label base."
+  },
+  {
+   "n": 22,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "pouch_front_panel",
+   "output": "golden_chai_pouch_front_label_base.png",
+   "note": "Lay a clean SOLID kraft-tone base band on the cropped pouch front panel to produce the print-ready front-label base panel that fits the new vector style. Solid-colour fill ONLY (no generative content, no compositing); the studio drops the cleaned Golden Chai wordmark + crest onto this base in the layered vector hand-off (deliverable)."
+  },
+  {
+   "n": 23,
+   "tool": "font_recommend",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "golden_clean_transparent",
+   "output": "amberleaf_font_pairing.json",
+   "note": "Recommend a brand-safe font family + heading/body pairing matching the wordmark style so the studio can extend the identity across both brands (deliverable)."
+  },
+  {
+   "n": 24,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "golden_chai_wordmark.svg",
+   "output": "handoff_folder",
+   "note": "Create an organized CC hand-off folder (Amberleaf_Vector_Kit) to collect all deliverables neatly for the studio."
+  },
+  {
+   "n": 25,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "handoff_folder, golden_chai_wordmark.svg, silverleaf_green_wordmark.svg, amberleaf_crest.svg, amberleaf_crest_onecolor_knockout.svg, amberleaf_crest_halftone.png, golden_chai_pouch_front_label_base.png",
+   "output": "collected_deliverables",
+   "note": "Copy every produced vector + raster deliverable into the hand-off folder so the studio receives one tidy, layered, print-ready package."
+  },
+  {
+   "n": 26,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "collected_deliverables, golden_chai_wordmark.svg, silverleaf_green_wordmark.svg, amberleaf_crest.svg, amberleaf_crest_onecolor_knockout.svg, amberleaf_crest_halftone.png, golden_chai_pouch_front_label_base.png",
+   "output": "Amberleaf_vector_kit_folder + review_board",
+   "note": "Assemble all produced deliverables onto a single Firefly board deep-link for one-click studio sign-off on the vectors and the pouch label."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_auto_straighten",
+  "image_adjust_brightness_and_contrast",
+  "image_crop_to_bounds",
+  "image_remove_background",
+  "image_vectorize",
+  "image_apply_auto_tone",
+  "image_apply_color_overlay",
+  "image_apply_halftone",
+  "image_fill_area",
+  "font_recommend",
+  "asset_create_folders",
+  "asset_copy_assets",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 26,
+ "distinct_adobe_tools": 15,
+ "chaining_note": "Single initial asset load at steps 1-2 (upload the four supplied rasters -> raw_asset_uris); every subsequent step consumes a prior output. Three parallel clean->trace sub-chains seed from raw_asset_uris (the legitimate first link of each brand pipeline): Golden Chai = straighten(3)->contrast(4)->crop_to_bounds(5)->remove_background(6)->vectorize(7); Silverleaf = straighten(8)->contrast(9)->crop(10)->remove_background(11)->vectorize(12); crest = straighten(13)->auto_tone(14)->crop(15)->remove_background(16)->vectorize(17). The cleaned crest (crest_clean_transparent) is a reuse hub feeding two more branches: color_overlay(18)->vectorize(19) = one-colour knockout SVG; and halftone(20) = crest_halftone. The pouch front-label base is a two-step branch off the mockup: crop_to_bounds(21) -> pouch_front_panel -> image_fill_area(22) lays a solid kraft-tone base band (solid fill only, no compositing). font_recommend(23) reads the cleaned Golden Chai wordmark. Deliverables then converge: asset_create_folders(24) -> asset_copy_assets(25) pulls in all six visual deliverables -> create_firefly_board(26) assembles every output URN into the final board. Nothing is loaded fresh after step 2; the kit emerges entirely from the chain.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 26 connector calls, 15 distinct Adobe tools across three groups (asset ingest/storage, the image_* raster/vector family, and font/board). Ordering matters — each mark must be straightened, tonally cleaned, cropped and background-knocked BEFORE vectorizing or the trace inherits the AI noise/tilt/halo and fails the 'clean, fully-editable, scale without loss' bar; a naive agent that vectorizes the raw PNGs fails. It runs three separate marks through their own consistent clean->trace pipelines (two wordmarks with opposite tilts + one filigree crest), then reuses the cleaned crest as a hub to spawn the one-colour knockout (color_overlay -> re-vectorize) and the halftone variant, and produces the front-facing label base from a crop + solid-fill branch. It respects every hard limit: no generative fill / object-removal / text-to-image / reframe-crop / upscaling / from-scratch layout / image-onto-image compositing; image_fill_area is used solid-colour ONLY (kraft base band, no generated content, no placement of other marks); the vector masters come solely from image_vectorize (raster->SVG), and AI/EPS/PDF are honestly described as export formats of that same master rather than authored by a from-scratch vector tool. The branch-and-converge topology (three cleaned marks fanning into five vector/raster deliverables plus a label base, then collected into a folder and a board) exercises multi-output reuse end to end.",
+ "workflow_nature": "edit",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "CONFIRMED none of the banned capabilities are used: no image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art/logo (the three logos and the pouch are SUPPLIED rasters, the vectors come only from image_vectorize tracing them); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting of occluded pixels; no bespoke font/letterform design (font_recommend only RECOMMENDS an existing family); no image-onto-image compositing (the prior draft's image_fill_area 'place the wordmark + crest' step was OUT-OF-BOUNDS and has been rewritten to a solid-fill-only base band, with mark placement moved to the studio's layered vector hand-off); no unreachable external account. No document_render_vector / document_merge_data_* is used, so no false 'authored vector composed by connector' claim — the vector deliverable is genuinely the image_vectorize SVG output, and AI/EPS/PDF are described as export formats of that master.",
+  "notes": "Each potentially-risky step stays in-bounds: image_vectorize (n7,n12,n17,n19) is the sanctioned raster->SVG trace, the honest path for 'redraw as clean editable vectors'; image_remove_background (n6,n11,n16) outputs transparent PNG only, used to de-halo before tracing, not compositing; image_apply_color_overlay (n18) recolors the isolated crest to a single solid colour for the knockout source (a flatten/recolor, not generative); image_apply_halftone (n20) is a whole-image screen treatment; image_fill_area (n22) is SOLID-COLOUR ONLY — it lays a kraft-tone base band on the cropped pouch front panel and does NOT place or composite any other image, so nothing new is generated and no occluded pixels are reconstructed (the pouch mockup is supplied with a blank front panel by design, and the cleaned wordmark + crest are added by the studio in the layered vector files per the brief's 'neatly organised in layers'); auto_straighten / auto_tone / brightness_and_contrast / crop_to_bounds are standard headless raster edits; font_recommend, asset_* and create_firefly_board only search/store/present. All 26 steps are server=='adobe' [C] headless; 15 distinct tools (>=6) and 26 calls (>=10) clear the long-horizon floor. Slot-match confirmed: category vectorize_logo, operation O7 / family Vector & Print, output_modality vector (primary deliverables are three image_vectorize SVG masters + a knockout SVG), workflow_nature=edit (transforms supplied raster assets into vector + print deliverables), vertical professional_services; brand is fictional and IP-clean (Amberleaf Tea Studio / Golden Chai Co. / Silverleaf Green)."
+ },
+ "id": "AO-86"
+}

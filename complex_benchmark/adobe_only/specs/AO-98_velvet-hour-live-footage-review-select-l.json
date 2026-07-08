@@ -1,0 +1,196 @@
+{
+ "slot_id": "M05",
+ "category": "video_edit",
+ "title": "Velvet Hour Sessions live-set footage review: multi-clip raw-concert audit, best-take selection + unusable-clip cull, delivered as a shot-selection log with a flagged-frame contact-sheet PDF",
+ "slug": "velvet-hour-live-footage-review-select-log",
+ "vertical": "Arts, Culture & Music",
+ "source": {
+  "platform": "Upwork",
+  "reference": "Davinci Resolve Editor"
+ },
+ "grounding_note": "VERBATIM from the Upwork brief 'Davinci Resolve Editor': the editor must \"Review raw footage and remove unusable content\", \"Select clips that contribute to narrative progression and visual variety\", and work with \"strong editorial judgment ... The emphasis is on clean storytelling, pacing, and visual coherence rather than overuse of effects\", with content that \"focuses on businesses, events, and venues, with distribution across Instagram, Facebook, and YouTube.\" REASONABLY REFRAMED to an ANALYZE task (the slot's workflow_nature): producing the final cut is a compositional/timeline deliverable that is NOT in Adobe-connector scope (no NLE timeline authoring, no timestamp trimming — video_create_quick_cut is prompt-driven visual-engagement only, not frame-accurate cutting). The honest, fully-doable read of the brief's FIRST two responsibilities — 'review raw footage, remove unusable content, and select the clips that carry the story' — is a FOOTAGE-REVIEW / BEST-TAKE-SELECTION pass that any real editor does before the timeline: watch every raw clip, judge which takes are keepers vs unusable (shaky, out-of-focus, dead-air, redundant), and hand the director a structured selection log the timeline is then built from. The venue (a fictional live-music room) hands off a folder of raw multi-cam concert clips; the freelancer INSPECTS each clip (scene/transcript summary, eyeball previews, representative stills) and returns a marked-up shot-selection LOG plus a contact-sheet PDF of the flagged best-take frames. The connector chain only inspects and reports; no timeline is cut and no new footage is produced. The brand, venue, artist and persona are fictional and IP-clean.",
+ "one_line_ask": "Review every raw concert clip from the Velvet Hour Sessions multi-cam shoot, judge keepers vs unusable takes, and deliver a structured shot-selection log (per-clip verdict, reason, best usable stretch, usability rating, coverage tag) plus a contact-sheet PDF of the flagged best-take frames.",
+ "full_brief": "Velvet Hour Sessions is a fictional intimate live-music night run by the Velvet Hour Room, a small arts-and-culture venue that films one acoustic set a month for its social channels (Instagram, Facebook, YouTube). Last Thursday we filmed the singer-songwriter 'Marlowe Fenn' doing a four-song stripped-back set on three cameras — a locked wide, a roaming handheld, and a close-up on the guitar/hands — and the card dump gave us a folder of a dozen-ish raw clips of very mixed quality. Before our editor builds the actual cut we need a fresh, disciplined pair of eyes to do the footage-review pass first: watch every raw clip end to end, decide which takes are genuinely usable and which are junk, and hand us back a selection log we can build the timeline from. Do NOT cut, grade, add music, or produce a finished video — this is a review-and-select job, exactly the first stage of the edit. You will receive: (1) velvet_hour_raw_clips (the folder of raw concert clips — some are clean keepers, several are unusable: one badly out of focus during the second song, one with a big camera bump / lens smack, one that's mostly dead air and tuning chatter before the song starts, one near-duplicate of a better wide take, and one where the handheld drifts off the performer for half the clip), (2) shoot_notes.csv (the runner's rough log: camera, rough song, and a one-line note per clip like 'wide, song 2, soft?' or 'handheld, song 4, drifts'), and (3) velvet_hour_brand_note.pdf (a short one-pager on what the venue's social edits are for and the 'clean, coherent, story-first, no gimmicks' house style so your keep/cut calls match how the footage will actually be used). Go through each clip against the notes and against what you actually see and hear, and return a shot-selection log that, for every clip, gives: the clip name, which camera/song it is, a KEEP / MAYBE / REJECT verdict, a plain-language reason (what's good or what's wrong — soft focus, camera bump, dead air, drift, redundant, clean), a usability rating (1-5), a note on the strongest usable stretch of the clip described in words (e.g. 'best from the first chorus onward, once focus settles'), and a coverage tag (wide / handheld / close-up) so we can see we have each angle for each song. Finish with a short summary: total clips, how many KEEP vs MAYBE vs REJECT, any song or angle where we're now short on usable coverage, and a one-line recommendation on whether we have enough to build the cut or need a re-shoot of anything. Deliver the log as a clean readable PDF plus the raw findings as a structured data file, and include a contact-sheet PDF showing one representative frame from each KEEP/MAYBE clip (with the clip name under each) so the director can eyeball the selects at a glance. A4 / letter is fine; this is for the director, not for broadcast.",
+ "inputs": [
+  {
+   "name": "velvet_hour_raw_clips",
+   "kind": "video",
+   "gen_model": "veo-3.1-generate-preview",
+   "gen_prompt": "A folder of ~12 raw, ungraded multi-camera concert clips of a fictional singer-songwriter 'Marlowe Fenn' playing a four-song stripped-back acoustic set in a small dim warm-lit music room, filmed on three cameras (locked wide of the small stage, roaming handheld, and a close-up on the guitar and hands). Each clip is a representative 20-40s stand-in for a longer take, native camera audio (guitar, vocals, faint room ambience, between-song tuning and chatter). The set must be DELIBERATELY MIXED in quality so a review pass has real keep/cut decisions: several clean, well-exposed, steady keepers across all three angles; ONE clip badly OUT OF FOCUS through the second song (soft, hunting focus); ONE with a hard CAMERA BUMP / lens smack mid-clip (sudden jolt + reframe); ONE that is mostly DEAD AIR and tuning chatter with the song only starting in the last few seconds; ONE near-DUPLICATE of a better locked-wide take (same angle, nothing new); ONE handheld clip where the operator DRIFTS off the performer onto the crowd/floor for half the clip. Flat, un-color-graded camera-original look, real handheld micro-shake on the roaming cam, no on-screen text or graphics, no music bed added.",
+   "realism_notes": "This is the material the whole task reviews; the planted defects (soft focus, camera bump, dead air, redundant take, drift) are the point — they give the KEEP/MAYBE/REJECT judgement real teeth. Veo for genuine motion + native concert audio so media_summarize has real scene/spoken content to inspect. Delivered as camera-original clips (no grade, no cut), i.e. a real card-dump folder."
+  },
+  {
+   "name": "shoot_notes.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a CSV with columns clip_name,camera,rough_song,runner_note holding one row per raw clip (~12 rows) matching the velvet_hour_raw_clips folder. camera is one of wide/handheld/closeup; rough_song is song1..song4 (or 'pre-set'); runner_note is a terse, lowercase, slightly inconsistent on-set note like 'wide, song2, soft?', 'handheld, song4, drifts to crowd', 'closeup, song1, clean', 'wide, song3, dupe of prev', 'handheld, pre-set, tuning + chatter', 'wide, song2, lens bump ~0:15'. A couple of notes should be uncertain or wrong so the reviewer must trust what they actually see over the note.",
+   "realism_notes": "A real runner's rough shot log — terse, human, occasionally unreliable. The reviewer cross-checks the note against the actual clip; deliberate soft/uncertain notes ('soft?') force real inspection rather than transcribing the CSV. Column names are clean so the log can key each finding back to the clip."
+  },
+  {
+   "name": "velvet_hour_brand_note.pdf",
+   "kind": "pdf",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE (supplied by the client): a short one-to-two-page PDF one-pager for the fictional 'Velvet Hour Sessions' / Velvet Hour Room. In readable text the connector can summarize, it states: what the monthly social edits are for (short, intimate live-session pieces for Instagram, Facebook and YouTube); the house style ('clean, coherent, story-first; performance and emotion over effects; no gimmicks, no heavy graphics or rapid-fire cutting'); the coverage expectation (every song should have a usable wide, a handheld, and a close-up angle); and the quality bar ('reject anything out of focus, jolted, or that drifts off the performer; trim dead air and tuning before the song'). Authored by hand and exported to PDF; supplied by the client, not connector-generated.",
+   "realism_notes": "This is the judgement ground-truth: it tells the reviewer what 'usable' means for THIS venue so KEEP/REJECT calls are grounded in the house style, not arbitrary. media_summarize reads the stated style + quality bar out of it. Real supplied one-pager, not composed by the chain."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "VelvetHour_ShotSelection_Log.pdf",
+   "kind": "pdf",
+   "spec": "The primary deliverable: a clean, readable A4/letter shot-selection log PDF. One row per raw clip with clip name, camera + song, KEEP / MAYBE / REJECT verdict, plain-language reason (soft focus / camera bump / dead air / drift / redundant / clean), usability rating 1-5, a words-only note on the strongest usable stretch of the clip, and a coverage tag (wide / handheld / close-up). Ends with a summary block: total clips, counts by verdict, any song/angle now short on usable coverage, and a one-line build-vs-reshoot recommendation. This is a review/selection FINDINGS report, NOT a cut of the footage."
+  },
+  {
+   "name": "velvet_hour_selects.json",
+   "kind": "data",
+   "spec": "The raw structured findings emitted by local_write_recipe_note: an ordered list of records {clip_name, camera, song, verdict, reason, usability_rating, best_usable_stretch, coverage_tag} plus a summary block with counts by verdict and a coverage matrix (song x angle -> usable?) and the build-vs-reshoot recommendation. Machine-readable companion to the PDF that the editor imports to seed the timeline's clip list."
+  },
+  {
+   "name": "VelvetHour_Selects_ContactSheet.pdf",
+   "kind": "pdf",
+   "spec": "A contact-sheet PDF showing one representative still frame from each KEEP/MAYBE clip, with the clip name captioned per frame, so the director can eyeball the selects at a glance. Built by converting the pulled representative frames of the retained (KEEP/MAYBE) clips into a single multi-image PDF; rejected clips are omitted."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "review_workspace",
+   "note": "Stand up the CC asset workspace (e.g. /M05/raw_clips, /brand, /frames, /findings) to hold the supplied raw clips, notes, brand one-pager, the pulled inspection frames and the emitted log."
+  },
+  {
+   "n": 2,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "review_workspace",
+   "output": "upload_session",
+   "note": "Initialize an upload session for the client-supplied review inputs: the velvet_hour_raw_clips folder, shoot_notes.csv, and velvet_hour_brand_note.pdf."
+  },
+  {
+   "n": 3,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session",
+   "output": "ingested_inputs",
+   "note": "Finalize the upload so every raw clip, the shoot-notes CSV and the brand-note PDF are real CC assets with URNs the inspection steps can read. The chain's root inputs now live in the workspace."
+  },
+  {
+   "n": 4,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "ingested_inputs",
+   "output": "brandnote_rules_extract",
+   "note": "Summarize velvet_hour_brand_note.pdf to pull out the venue's judgement ground truth: the 'clean/coherent/story-first, no gimmicks' house style, the reject-if-soft/jolted/drifting quality bar, and the per-song wide+handheld+close-up coverage expectation the selection calls are graded against."
+  },
+  {
+   "n": 5,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": "ingested_inputs",
+   "output": "clip_scene_summaries",
+   "note": "Run a scene/transcript-style content summary over each raw concert clip to inspect what is actually on it end to end (which song, spoken/tuning chatter vs performance, whether the take reaches a usable performance stretch, obvious dead-air-before-song). Consumes the ingested clip set; produces the per-clip content read the verdict is based on. Async-widget."
+  },
+  {
+   "n": 6,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "ingested_inputs",
+   "output": "clip_inline_previews",
+   "note": "Inline-preview each raw clip (poster/representative frame + scrub) to VISUALLY inspect the picture the summary can't fully convey: focus sharpness, exposure/steadiness, the camera bump, the handheld drift off the performer. This is the visual half of the review surface."
+  },
+  {
+   "n": 7,
+   "tool": "asset_preview_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "clip_inline_previews",
+   "output": "review_frames",
+   "note": "Pull one representative still frame per clip (and an extra frame at the strongest usable stretch) via file preview, giving concrete per-clip inspection frames that (a) evidence each verdict and (b) become the contact-sheet tiles for the KEEP/MAYBE clips."
+  },
+  {
+   "n": 8,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "review_frames",
+   "output": "performer_region_check",
+   "note": "On each pulled frame, select the 'main performer / musician on stage' region as an INSPECTION locator — used to judge whether the performer is actually in frame and sharp (catches the out-of-focus song-2 clip and the handheld clip that drifts off the performer onto the crowd). Selection only; no pixels are edited."
+  },
+  {
+   "n": 9,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "performer_region_check",
+   "output": "flagged_region_previews",
+   "note": "Inline-preview the isolated performer regions at higher detail to confirm each suspected defect (soft focus, drift, bump reframe) before it is written as a REJECT/MAYBE reason — separating genuine problems from merely-uncertain runner notes ('soft?')."
+  },
+  {
+   "n": 10,
+   "tool": "local_write_recipe_note",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": "brandnote_rules_extract, clip_scene_summaries, clip_inline_previews, flagged_region_previews, shoot_notes.csv",
+   "output": "velvet_hour_selects.json",
+   "note": "Emit the structured shot-selection findings: for each clip a record {clip_name, camera, song, verdict(KEEP/MAYBE/REJECT), reason, usability_rating, best_usable_stretch, coverage_tag}, cross-referencing the brand-note quality bar + content summaries + visual/region confirmations against the runner's CSV notes, plus a summary block (counts by verdict, song x angle coverage matrix, build-vs-reshoot recommendation). This is the analyze deliverable's data core."
+  },
+  {
+   "n": 11,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "velvet_hour_selects.json, review_frames",
+   "output": "selects_frame_set",
+   "note": "Copy just the representative frames of the KEEP/MAYBE clips (per the verdicts in velvet_hour_selects.json) into a /frames/selects set, dropping the REJECT frames, so the contact sheet is assembled from only the selects the director should look at."
+  },
+  {
+   "n": 12,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "selects_frame_set",
+   "output": "VelvetHour_Selects_ContactSheet.pdf",
+   "note": "Convert the retained KEEP/MAYBE representative frames (each named by its clip) into a single multi-image contact-sheet PDF so the director can eyeball the selects at a glance — the visual companion deliverable. Convert/export only; no footage is composed, cut or restyled."
+  },
+  {
+   "n": 13,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "velvet_hour_selects.json",
+   "output": "VelvetHour_ShotSelection_Log.pdf",
+   "note": "Convert the written shot-selection findings (per-clip rows + coverage summary + build-vs-reshoot recommendation) emitted at step 10 into the clean readable A4/letter Shot-Selection Log PDF for the director — the primary analyze deliverable. Convert/export only."
+  }
+ ],
+ "tools_used": [
+  "asset_create_folders",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "media_summarize",
+  "asset_inline_preview",
+  "asset_preview_file",
+  "image_select_by_prompt",
+  "local_write_recipe_note",
+  "asset_copy_assets",
+  "document_convert_pdf"
+ ],
+ "tool_call_count": 13,
+ "distinct_adobe_tools": 9,
+ "chaining_note": "Strict output->input chaining. Steps 1-3 stand up the workspace and finalize the three client-supplied inputs (raw clips folder, shoot_notes.csv, brand-note PDF) into ingested_inputs — the only initial load. Two inspection branches diverge: the JUDGEMENT-GROUND-TRUTH branch runs ingested_inputs -> media_summarize(4) -> brandnote_rules_extract (the house style + quality bar + coverage expectation the verdicts are graded against); the CONTENT branch runs ingested_inputs -> media_summarize(5) -> clip_scene_summaries (per-clip end-to-end content read). The VISUAL branch runs ingested_inputs -> asset_inline_preview(6) -> clip_inline_previews, which feeds asset_preview_file(7) -> review_frames (representative + best-stretch stills); those frames feed image_select_by_prompt(8) -> performer_region_check (inspection locator for focus/drift), whose selections feed asset_inline_preview(9) -> flagged_region_previews for defect confirmation. Everything converges at local_write_recipe_note(10), which consumes brandnote_rules_extract + clip_scene_summaries + clip_inline_previews + flagged_region_previews + the shoot_notes.csv to produce velvet_hour_selects.json. That JSON then drives BOTH final artifacts: asset_copy_assets(11) consumes the verdicts + review_frames to keep only KEEP/MAYBE frames into selects_frame_set, which document_convert_pdf(12) converts into the contact-sheet PDF; and document_convert_pdf(13) converts the same JSON findings into the shot-selection log PDF. Every step after the initial load consumes a prior step's named output; no inspection step reads a raw input that was not first routed through upload, and the deliverables emerge only from the assembled inspect->judge->report chain.",
+ "difficulty_rationale": "Long-horizon analyze/audit: 13 connector calls, 8 distinct Adobe tools across four groups (asset workspace/upload/preview/copy, media_summarize [A], image_select_by_prompt as inspection locator, document_convert_pdf export) plus the single [L] recipe-note emit — above the >=10-call / >=6-distinct-tool floor for an analyze task. Difficulty is analytic, not grunt-work: the agent must (a) extract the venue's actual judgement rules from the supplied brand-note via media_summarize rather than assuming them, (b) run a content/scene summary over each raw clip AND visually preview each one (some defects are audible/temporal — dead air, tuning chatter — others are purely visual — soft focus, camera bump, drift), (c) use image_select_by_prompt purely as an INSPECTION locator on the pulled frames to judge whether the performer is actually in frame and sharp, (d) cross-check every clip against a deliberately unreliable runner CSV so it trusts what it sees over the note, (e) render a disciplined KEEP/MAYBE/REJECT verdict with reason, usability rating, best-usable-stretch note and coverage tag for each clip, and (f) roll up a song x angle coverage matrix and a build-vs-reshoot recommendation. It respects every hard limit: NOTHING is cut, graded or composed — no NLE timeline, no video_create_quick_cut / video_resize (this is a review pass, not an edit), no timestamp-accurate trimming; media_summarize only READS clip content (its documented summarize/transcript role), image_select_by_prompt only selects for inspection (no fill, mask edit or compositing follows it), asset_preview/inline_preview/copy are pure inspection/organization, and document_convert_pdf only converts/exports the pulled frames and the written findings into PDFs — no generative / text-to-image / object-removal / upscaling / from-scratch layout. The output is a selection log + structured findings + a selects contact sheet — a review/analyze deliverable, exactly matching workflow_nature=analyze.",
+ "workflow_nature": "analyze",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "CONFIRMED none of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art/logo/layout (the raw clips, CSV and brand-note PDF are SUPPLIED inputs, not connector-generated; the two PDFs are produced by document_convert_pdf converting existing pulled frames and the agent-written findings, not by composing new artwork); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area is not used. No video edit tool is used at all — video_create_quick_cut, video_resize and media_enhance_speech are deliberately absent because this is a review-and-select pass, not an edit or a cut, so no timeline authoring or timestamp trimming is claimed. document_merge_data_layout/_vector and document_render_* are not used. The only image_* tool present is image_select_by_prompt, used strictly as an inspection locator (selection only — no fill, overlay, mask edit, background removal or compositing follows it).",
+  "notes": "Each potentially-risky step stays in-bounds: (1) media_summarize [A] (steps 4-5) is used only to READ content — the brand-note's stated rules and each clip's scene/spoken/transcript content — which is its documented summarize/inspect semantics; no beat/tempo/BPM profiling and no editing is inferred from it, and it is correctly tagged [A] async-widget. (2) asset_inline_preview / asset_preview_file [C] (steps 6,7,9) are pure inspection — previewing clips and pulling representative still frames for the reviewer to eyeball and for the contact sheet; no clip is altered. (3) image_select_by_prompt (step 8) is confirmed INSPECTION-only — its output feeds asset_inline_preview and the recipe note, never an edit/fill/composite step, so no pixels are changed. (4) asset_copy_assets (step 11) only organizes existing frames (drops REJECT frames) — no new content. (5) document_convert_pdf (steps 12,13) is used per its real CONVERT/EXPORT semantics only: step 12 converts the already-pulled KEEP/MAYBE frames into a multi-image contact-sheet PDF and step 13 converts the agent-written findings note into the log PDF — it never composes, restyles or edits the footage and never authors a from-scratch layout. (6) local_write_recipe_note [L] emits the structured findings/log, the sanctioned analyze output path. The deliverable is a shot-selection log + structured selects data + a selects contact-sheet PDF — a review/selection output over the video footage, matching output_modality=video (the reviewed subject) and workflow_nature=analyze; nothing new is authored beyond the report itself. Two [A] steps (both media_summarize) and one [L] step (recipe note) are the only non-[C] calls; all are legitimate and expected for a video-analyze task."
+ },
+ "id": "AO-98"
+}

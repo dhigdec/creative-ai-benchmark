@@ -1,0 +1,282 @@
+{
+ "id": "AO-39",
+ "slug": "apparel-shirt-isolation-bg-cleanup-ecommerce-set",
+ "title": "Apparel Shirt Isolation, Background Cleanup and Marketplace-Ready E-commerce Set",
+ "vertical": "Fashion & Apparel",
+ "category": "bg_removal_batch",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/background-removal/Background-Cleanup-Shirt-Addition"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief (db_i 697, \"Background Cleanup and Shirt Addition\"): the client wants an image edited to \"add a shirt based on a provided photo of a similar shirt\" and to \"remove background mess, such as clutter or distractions,\" citing Photoshop-grade background removal and clothing work with strong attention to detail. ENRICHED / RE-FRAMED for an Adobe-only runnable benchmark: the brief's literal \"add a shirt\" = photo compositing (combine two images / add an element) and its literal \"remove the clutter\" = AI object removal — both are in the connector's NOT-AVAILABLE [X] list, so they are NOT performed. Instead the task is honestly re-cast to the faithful, in-scope apparel intent that the bg_removal_batch category and \"background removal + clothing\" skills point at: the client supplies a hero shot of the shirt worn against a messy room and a separate flat-lay packshot of \"the similar shirt.\" The deliverable is a cohesive, marketplace-ready product set — the messy background is cleaned by hard-isolating the garment/subject and replacing the backdrop with a clean solid studio canvas (select_subject -> invert -> solid white fill), the packshot shirt is isolated to a transparent PNG so it can be dropped into the store, color/tone is corrected so the shirt colour reads true, the brand logo is vectorized for print/label use, and everything is exported at Instagram-square and standard catalog ratios. This keeps every requirement the connector CAN honor (background cleanup, garment isolation, attention-to-detail retouch, listing-ready output) and drops only the two literally-impossible generative/compositing asks, which a human compositor would otherwise finish.",
+ "one_line_ask": "Turn a messy worn-shirt hero photo plus a flat-lay reference shirt into a clean, colour-true, marketplace-ready apparel product set (cleaned studio backdrop, isolated transparent packshot, vectorized logo, square + catalog crops).",
+ "full_brief": "We sell a small line of cotton shirts and our marketplace listings look amateur. I'm sending you three things: (1) HERO_WORN.jpg — a model wearing our flagship olive-green button-down in a cluttered home studio (laundry, cables and a coat rack are visible behind her, and the shot is slightly tilted and a touch under-exposed); (2) SHIRT_FLATLAY.jpg — a clean-ish flat-lay of \"the similar shirt\" (the same garment laid flat on a light table) that we want isolated as a drop-in packshot for the listing thumbnail; (3) BRAND_LOGO.png — our small wordmark logo we want as crisp vector for the woven label and the listing banner. Please: straighten and tone-correct the hero so it looks professionally lit; cut the model cleanly off the messy background and put her on a clean solid-white studio backdrop (the clutter must be gone); make sure the olive-green of the shirt reads true and rich, not muddy; reframe the cleaned hero to a wide catalog banner shape centered on the model (a horizontal crop of the same cleaned frame — I understand the top and bottom of the shot get trimmed to hit the wide ratio); isolate the flat-lay shirt to a transparent PNG packshot; vectorize the logo to SVG; and hand back the hero as both a 1:1 Instagram square and a clean catalog frame, plus the transparent packshot and the SVG logo. Attention to detail on the edge of the collar and sleeves is essential.",
+ "inputs": [
+  {
+   "name": "HERO_WORN.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal documentary-style photo of a woman in her late 20s wearing an olive-green cotton button-down shirt, standing in a cluttered amateur home photo studio. Background is messy and distracting: a metal coat rack with hanging clothes, a tangle of black cables on the floor, a laundry basket and a half-open closet. The frame is slightly tilted about 4 degrees and the overall exposure is a touch dark and flat, mixed warm tungsten and cool window light. Real skin pores and individual hair flyaways, natural fabric wrinkles on the shirt, candid, no retouching, shot on a 50mm lens, not CGI-glossy.",
+   "realism_notes": "Deliberately imperfect source: tilted ~4deg, under-exposed, mixed white balance, genuinely cluttered backdrop so straighten + auto-tone + subject-isolation + solid-fill cleanup all have real work to do. Olive-green must be slightly muddy in-camera so the color-correction step is meaningful."
+  },
+  {
+   "name": "SHIRT_FLATLAY.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal top-down flat-lay of a single olive-green cotton button-down shirt laid flat and neatly arranged on a softly-lit pale grey light-table surface, sleeves folded across the body, collar buttoned. Subtle soft shadow under the fabric, visible weave texture and stitching, a couple of natural fabric creases, even product-photography lighting with a faint grey background gradient that still needs to be removed for a clean transparent packshot. Not CGI, real cotton texture.",
+   "realism_notes": "Same garment as the hero so the set is cohesive. Pale grey (not pure white) background so remove_background has a real edge to cut against; soft shadow tests edge cleanliness on the isolated PNG."
+  },
+  {
+   "name": "BRAND_LOGO.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A clean minimalist apparel-brand wordmark logo reading 'NORTHGROVE' in a modern condensed sans-serif, deep charcoal letters on a transparent background, with a small simple olive-green leaf glyph to the left of the word. Flat 2-color mark, crisp edges, centered, generous padding, high resolution, suitable for vectorizing to SVG.",
+   "realism_notes": "Flat 2-color text-bearing logo is exactly the clean-edged raster that image_vectorize converts well to SVG; gemini-3-pro-image chosen because the mark carries legible type."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "hero_square_1x1.jpg",
+   "kind": "image",
+   "spec": "1:1 Instagram square, 2048x2048 px, JPEG, sRGB. The master cleaned/graded hero (straightened, toned, white-balanced, subject isolated on solid-white studio backdrop, olive shirt colour corrected) center-cropped to a square. DELIVERABLE 1 (step 12)."
+  },
+  {
+   "name": "hero_catalog_banner.jpg",
+   "kind": "image",
+   "spec": "Wide catalog/banner crop, 2400x1200 px (~2:1), JPEG, sRGB. An HONEST horizontal reframe of the same master cleaned hero via crop_and_resize — the existing frame is cropped to the wide ratio centered on the model, so the top/bottom of the original shot are trimmed to hit 2:1. No canvas is invented, padded, widened, or solid-filled; the solid-white backdrop already present behind the isolated subject simply carries through the crop. DELIVERABLE 2 (step 13)."
+  },
+  {
+   "name": "shirt_packshot.png",
+   "kind": "image",
+   "spec": "Transparent-background PNG packshot of the isolated olive flat-lay shirt (RGBA, alpha channel), pale-grey light-table background removed with clean collar/sleeve edges, native flat-lay resolution (~2048x2048 px). DELIVERABLE 3 (step 16)."
+  },
+  {
+   "name": "northgrove_logo.svg",
+   "kind": "vector",
+   "spec": "Vector SVG of the NORTHGROVE 2-color wordmark (charcoal type + olive leaf glyph) traced from the raster logo, scalable crisp paths for woven-label and banner use. DELIVERABLE 4 (step 19)."
+  },
+  {
+   "name": "apparel_set.zip",
+   "kind": "archive",
+   "spec": "Single CC folder / ZIP bundle gathering the four leaf deliverables (hero_square_1x1.jpg, hero_catalog_banner.jpg, shirt_packshot.png, northgrove_logo.svg) for marketplace handoff. DELIVERABLE 5 (step 21)."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[]",
+   "output": "hero_upload_session",
+   "note": "Initialize the upload of the client's HERO_WORN.jpg into CC storage so the connector can operate on it. (Initial asset load — the only step with no upstream chain input.)"
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_upload_session",
+   "output": "hero_asset_uri",
+   "note": "Finalize the upload begun in step 1; yields the stored hero asset URI that every hero step downstream consumes."
+  },
+  {
+   "n": 3,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_asset_uri",
+   "output": "hero_straightened",
+   "note": "Fix the ~4deg tilt on the uploaded hero. Consumes the asset URI from step 2."
+  },
+  {
+   "n": 4,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_straightened",
+   "output": "hero_toned",
+   "note": "Auto-tone the straightened hero to fix the flat under-exposure. Consumes step 3 output."
+  },
+  {
+   "n": 5,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_toned",
+   "output": "hero_wb_fixed",
+   "note": "Neutralize the mixed tungsten/window white balance so colours read true. Consumes step 4 output."
+  },
+  {
+   "n": 6,
+   "tool": "image_select_subject",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_wb_fixed",
+   "output": "hero_subject_mask",
+   "note": "Auto-select the model (subject) on the colour-corrected hero, producing a maskURI. Consumes step 5 output. Sets up the background cleanup."
+  },
+  {
+   "n": 7,
+   "tool": "image_invert_selection",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_subject_mask, hero_wb_fixed",
+   "output": "hero_bg_mask",
+   "note": "Invert the subject mask to target everything BEHIND the model (the messy coat-rack/cables/laundry). Consumes the mask from step 6 against the step-5 image."
+  },
+  {
+   "n": 8,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_bg_mask, hero_wb_fixed",
+   "output": "hero_clean_white",
+   "note": "Solid-fill the inverted background region with preset white — this is the honest, in-scope 'remove background mess': clutter is covered by a clean studio-white backdrop (NOT generative removal). Consumes the inverted mask from step 7 over the step-5 image."
+  },
+  {
+   "n": 9,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_clean_white",
+   "output": "shirt_region_mask",
+   "note": "Prompt-select just the olive shirt region on the cleaned hero so the next step can correct only the garment colour. Consumes step 8 output."
+  },
+  {
+   "n": 10,
+   "tool": "image_adjust_single_color_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "shirt_region_mask, hero_clean_white",
+   "output": "hero_color_true",
+   "note": "Boost the green channel saturation on the masked shirt so the muddy olive reads rich and true (selective, mask-driven). Consumes the shirt mask from step 9 over the step-8 image. This is the master cleaned hero."
+  },
+  {
+   "n": 11,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_color_true",
+   "output": "hero_wide_reframe",
+   "note": "Honestly reframe the master cleaned hero to the wide ~2:1 banner shape by CROPPING the existing frame horizontally, centered on the model (gen-free: a crop of the existing pixels — no canvas is invented, padded, widened, or solid-filled). The top and bottom of the original frame are trimmed to reach the wide ratio; the solid-white studio backdrop already behind the isolated subject carries through the crop. Consumes step 10 (master) output."
+  },
+  {
+   "n": 12,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_color_true",
+   "output": "hero_square_1x1",
+   "note": "Crop/resize the master cleaned hero to a 1:1 2048x2048 Instagram square. DELIVERABLE 1. Consumes step 10 output."
+  },
+  {
+   "n": 13,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_wide_reframe",
+   "output": "hero_catalog_banner",
+   "note": "Resize the wide-reframed hero to the ~2:1 2400x1200 catalog banner deliverable size (JPEG). No canvas extension — this exports the honest horizontal crop from step 11. DELIVERABLE 2. Consumes step 11 output."
+  },
+  {
+   "n": 14,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[]",
+   "output": "flatlay_upload_session",
+   "note": "Initialize upload of the client's SHIRT_FLATLAY.jpg packshot reference."
+  },
+  {
+   "n": 15,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatlay_upload_session",
+   "output": "flatlay_asset_uri",
+   "note": "Finalize the flat-lay upload; yields its stored asset URI."
+  },
+  {
+   "n": 16,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "flatlay_asset_uri",
+   "output": "shirt_packshot",
+   "note": "Cut the olive shirt off the pale-grey light-table background -> transparent PNG packshot with clean collar/sleeve edges. DELIVERABLE 3. Consumes step 15 output."
+  },
+  {
+   "n": 17,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "[]",
+   "output": "logo_upload_session",
+   "note": "Initialize upload of the client's BRAND_LOGO.png wordmark."
+  },
+  {
+   "n": 18,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_upload_session",
+   "output": "logo_asset_uri",
+   "note": "Finalize the logo upload; yields its stored asset URI."
+  },
+  {
+   "n": 19,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "logo_asset_uri",
+   "output": "northgrove_logo",
+   "note": "Vectorize the flat 2-color NORTHGROVE wordmark raster to a clean SVG for label + banner. DELIVERABLE 4. Consumes step 18 output."
+  },
+  {
+   "n": 20,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_square_1x1, hero_catalog_banner, shirt_packshot, northgrove_logo",
+   "output": "apparel_board",
+   "note": "Assemble the four produced deliverables into a Firefly Boards moodboard/contact-sheet for client review (honest use: presenting assets already produced). Consumes the outputs of steps 12, 13, 16, 19."
+  },
+  {
+   "n": 21,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "hero_square_1x1, hero_catalog_banner, shirt_packshot, northgrove_logo",
+   "output": "apparel_set",
+   "note": "Gather the four deliverables into a single CC folder for ZIP handoff (apparel_set.zip). DELIVERABLE 5. Consumes steps 12, 13, 16, 19."
+  }
+ ],
+ "tools_used": [
+  "asset_copy_assets",
+  "asset_finalize_file_upload",
+  "asset_initialize_file_upload",
+  "create_firefly_board",
+  "image_adjust_color_temperature",
+  "image_adjust_single_color_saturation",
+  "image_apply_auto_tone",
+  "image_auto_straighten",
+  "image_crop_and_resize",
+  "image_fill_area",
+  "image_invert_selection",
+  "image_remove_background",
+  "image_select_by_prompt",
+  "image_select_subject",
+  "image_vectorize"
+ ],
+ "tool_call_count": 21,
+ "distinct_adobe_tools": 15,
+ "chaining_note": "Strict output->input chain, three input branches converging on a bundle. HERO branch: upload(1)->finalize(2: hero_asset_uri)->auto_straighten(3)->auto_tone(4)->color_temperature(5: hero_wb_fixed)->select_subject(6: mask)->invert_selection(7: bg mask, uses step-6 mask + step-5 image)->fill_area white(8: hero_clean_white)->select_by_prompt shirt(9)->single_color_saturation(10: hero_color_true MASTER, uses step-9 mask + step-8 image). From the master: crop_and_resize wide-reframe(11: hero_wide_reframe, honest horizontal crop to ~2:1)->crop_and_resize(13: catalog banner export); and crop_and_resize(12: square) straight off the master. FLATLAY branch: upload(14)->finalize(15)->remove_background(16: transparent packshot). LOGO branch: upload(17)->finalize(18)->vectorize(19: SVG). CONVERGENCE: create_firefly_board(20) and asset_copy_assets(21) each consume the four leaf deliverables from steps 12,13,16,19. Every step after each branch's initial finalize consumes a named prior output; nothing is free-floating.",
+ "difficulty_rationale": "Long-horizon flagship: 21 connector calls, 15 distinct Adobe tools, spanning 3 capability groups (A1 raster/photo, A4 asset/board/storage, plus the upload/copy asset plumbing) with three converging input branches. It exercises the full headless photo pipeline (geometry -> tone -> white balance -> mask-driven selective edits -> solid-fill background cleanup -> honest multi-ratio crop/reframe export), plus isolation (remove_background), vectorization, and asset assembly. Difficulty comes from the masking discipline (select_subject -> invert -> fill, then a second select_by_prompt -> selective saturation on the SAME image) and from honestly re-casting a brief whose literal asks (compositing a shirt in, AI-erasing clutter) are both out of scope — the agent must recognize the [X] capabilities and deliver the in-scope equivalent. All steps are [C] headless-confirmed; no [W]/[A]/[T] dependencies, so it runs end-to-end autonomously. There is no generative step: the wide catalog banner is an honest horizontal crop of the master frame (image_crop_and_resize), which trims the top/bottom to hit the ~2:1 ratio rather than inventing canvas; the only solid-color fill is the in-scope background cleanup (step 8), and no gen-fill, canvas extension, object-removal, text-to-image, compositing, or layout-composition is used.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "PASS — no banned/generative capability remains in either the executable workflow or the narrative text. The wide catalog banner is produced by an HONEST crop: step 11 (image_crop_and_resize) reframes the master hero to the ~2:1 banner shape by trimming the top/bottom of the existing frame centered on the model, and step 13 (image_crop_and_resize) exports it at 2400x1200. No canvas is invented, padded, widened, or solid-filled to build the banner; the output->input chain (hero_color_true -> hero_wide_reframe -> hero_catalog_banner) is intact. image_fill_area appears ONLY at step 8, strictly as a solid-color fill of the inverted background region inside the existing frame (the in-scope background cleanup) — it never extends the canvas. No generative canvas extension, upscale, text-to-image, from-scratch art, object-removal-with-reconstruction, gen-fill, or bg-replace-by-prompt anywhere. All 21 steps are server=='adobe' [C] headless.",
+  "notes": "Resolved the QA findings: (1) outputs[] now enumerates all FIVE deliverables (hero_square_1x1.jpg, hero_catalog_banner.jpg, shirt_packshot.png, northgrove_logo.svg, apparel_set.zip) each with a concrete spec; (2) the canvas-extension contradiction is removed — step 11 changed from an impossible image_fill_area 'widen to a wider white canvas' to an honest image_crop_and_resize horizontal reframe, and the full_brief, output spec, step notes, chaining_note, difficulty_rationale were rewritten to say the banner is a crop that trims top/bottom (no padded/added/solid-filled canvas). tool_call_count (21) and distinct_adobe_tools (15) unchanged — image_fill_area is still used at step 8, image_crop_and_resize at steps 11/12/13. Step 20 (create_firefly_board) is presentational only and is not counted as a deliverable."
+ }
+}

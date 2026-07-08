@@ -1,0 +1,415 @@
+{
+ "id": "AO-32",
+ "slug": "modern-house-listing-photo-grade",
+ "title": "Modern House Listing Photography — Post-Production Color Grade & Listing Export",
+ "vertical": "Photo Editing, Retouching & Restoration",
+ "category": "color_grade_lr",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/lighting/Modern-House-Listing-Photography"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief: this is a modern-style rental listing for Airbnb/Zillow covering the living room, kitchen, and bedrooms; the client explicitly asks for \"Basic color correction, straight verticals, and distortion-free perspectives\", a \"Modern, clean, simple, ample of lighting, natural\" look shot 0700-1200 in natural light, \"quick retouching (dust removal, wall scuffs, etc.) without making the images look over-processed\", and final delivery \"in both web-optimized JPEG (under 2 MB each) and full-resolution TIFF\". REASONABLY ENRICHED to make it a runnable Adobe-connector benchmark: the original brief hires a photographer to BOTH shoot and edit — live capture/staging is out of scope (A6 [X]: no live filming) and is therefore dropped, so this benchmark is scoped strictly to the POST-PRODUCTION editing half the client demands. The client is treated as supplying the already-captured room frames (one representative frame per room area, standing in for the 30-45 photo batch the brief lists) for editing. The specific numeric corrections (vertical-tilt degrees, exposure stops, Kelvin shift, crop ratios, JPEG/TIFF specs) are reasonable freelancer choices consistent with \"straight verticals, distortion-free, natural, not over-processed\". No deliverable was invented beyond what the brief lists (corrected, straightened, color-balanced listing photos in web JPEG + full-res TIFF).",
+ "one_line_ask": "Edit the client's three supplied room frames (living room, kitchen, bedroom) into clean, modern, naturally-lit real-estate listing photos with straight verticals and corrected color, then export each in web-optimized JPEG (<2 MB) and full-resolution TIFF for Airbnb/Zillow.",
+ "full_brief": "A landlord listing a freshly renovated rental on Airbnb and Zillow has captured interior frames of the three key areas — living room, kitchen, and bedroom — during a 0700-1200 natural-light window, but the RAW-style frames are tilted, slightly under-exposed in the shadows, mixed-white-balance (warm tungsten vs cool window daylight), and carry minor wall scuffs and dust marks. They want the post-production handled to a \"modern, clean, simple, ample lighting, natural\" standard: straight verticals and distortion-free perspective, basic color correction, gentle shadow lift and highlight recovery so the rooms read bright and spacious, quick blemish spotting on wall scuffs/dust WITHOUT an over-processed look, and final files delivered in two formats per the brief — web-optimized JPEG under 2 MB each AND full-resolution TIFF — within three days.\n\nThe freelancer must run an Adobe photo-editing chain per room: license/load the supplied frame, auto-straighten the verticals, crop out the resulting wedge to a clean distortion-free frame, apply auto-tone as a neutral baseline, neutralize the mixed white balance with a color-temperature correction, lift the dark portions and recover the blown window highlights, selectively brighten the room interior via a prompt-based mask so the space feels open without flattening the windows, spot-correct wall scuffs/dust by selecting the blemish and filling it with the matched neutral wall color (solid fill only — not generative), apply a final gentle vibrance/saturation lift for the \"modern clean\" feel, then crop-and-resize to the two delivery specs. Each room's edit is then assembled onto a Firefly Board so the client can review all three corrected listing shots in one deep-link before download. Across the three rooms the chain reuses the straighten→crop→tone→temperature→shadow/highlight→selective-brighten→spot-fix→vibrance→resize pattern, every step consuming the previous step's output.",
+ "inputs": [
+  {
+   "name": "living_room_raw.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal wide-angle interior photo of a modern rental living room shot handheld at 7am in natural light, slightly tilted horizon (about 2.5 degrees off level) with converging vertical wall lines, mixed white balance — warm tungsten lamp glow on the left wall and cool blue daylight flooding through a large window on the right, mild shadow underexposure in the corners, a faint grey scuff mark and small dust speck on the pale matte wall near the sofa, light grey sectional sofa, blonde-wood floor, minimalist decor, real documentary look with natural sensor grain, no CGI gloss.",
+   "realism_notes": "Must look like an un-edited estate-agent phone/mirrorless frame: real tilt, real converging verticals, genuine mixed-temperature lighting and a real wall scuff/dust mark so the straighten, temperature, shadow-lift and spot-fix steps have something authentic to correct. Keep candid, slightly imperfect, not staged-perfect."
+  },
+  {
+   "name": "kitchen_raw.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal wide-angle interior photo of a modern rental kitchen shot handheld at morning, slightly tilted (about 2 degrees) with leaning vertical cabinet edges, stainless-steel appliances and a quartz countertop, warm overhead can-lights mixing with cool daylight from a side window causing a yellow-vs-blue colour cast, mild underexposed shadows under the upper cabinets, a small dust smudge and a faint scuff on the white cabinet door, blonde-wood floor, clean minimalist styling, real photographic grain, documentary realism, no CGI sheen.",
+   "realism_notes": "Stainless appliances and quartz make white-balance error very visible, justifying the colour-temperature + highlight-recovery steps; the cabinet scuff/dust gives the select+solid-fill spot-fix a real target. Keep verticals genuinely leaning so auto-straighten + crop matter."
+  },
+  {
+   "name": "bedroom_raw.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal wide-angle interior photo of a modern rental bedroom shot handheld in early-morning natural light, slightly tilted (about 3 degrees) with converging vertical window-frame lines, a large window on one wall blowing out to bright white (clipped highlights) while the interior sits a bit dark and shadowy, warm bedside lamp vs cool window daylight mixed white balance, neutral grey bedding, pale walls with a faint scuff near the headboard and a small dust speck, blonde-wood floor, minimalist modern styling, authentic sensor grain and documentary feel, no CGI polish.",
+   "realism_notes": "The blown window plus dark interior is the classic real-estate exposure problem the brief's window/light shots describe — exercises highlight-recovery, dark-portion lift and selective interior brightening. Tilt + converging window verticals justify straighten/crop; the headboard scuff feeds the spot-fix."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "living_room_web.jpg",
+   "kind": "image",
+   "spec": "Web-optimized JPEG, longest edge ~2048px, sRGB, quality tuned to keep file under 2 MB; straight verticals, color-corrected, shadow-lifted, scuff/dust spotted, gentle modern grade."
+  },
+  {
+   "name": "living_room_full.tif",
+   "kind": "image",
+   "spec": "Full-resolution TIFF (native capture resolution), same corrected/graded pixels as the web version, for print/archive delivery."
+  },
+  {
+   "name": "kitchen_web.jpg",
+   "kind": "image",
+   "spec": "Web-optimized JPEG under 2 MB, ~2048px long edge, sRGB; straightened, white-balanced, highlight-recovered, scuff-spotted kitchen frame."
+  },
+  {
+   "name": "kitchen_full.tif",
+   "kind": "image",
+   "spec": "Full-resolution TIFF of the corrected kitchen frame for full-quality listing/print use."
+  },
+  {
+   "name": "bedroom_web.jpg",
+   "kind": "image",
+   "spec": "Web-optimized JPEG under 2 MB, ~2048px long edge, sRGB; straightened, exposure-balanced (window highlights recovered, interior brightened), spotted bedroom frame."
+  },
+  {
+   "name": "bedroom_full.tif",
+   "kind": "image",
+   "spec": "Full-resolution TIFF of the corrected bedroom frame."
+  },
+  {
+   "name": "listing_review_board",
+   "kind": "data",
+   "spec": "Firefly Board deep-link assembling the three corrected listing shots (living room, kitchen, bedroom) for one-glance client review before download."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "living_room_uploaded",
+   "note": "Ingest the client-supplied living_room_raw.jpg into Adobe storage to begin the living-room edit chain (initialize → the upload session that subsequent edit steps reference)."
+  },
+  {
+   "n": 2,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "living_room_uploaded"
+   ],
+   "output": "lr_straightened",
+   "note": "Auto-straighten the ~2.5-degree tilt to deliver the 'straight verticals' the brief demands. Consumes the uploaded frame."
+  },
+  {
+   "n": 3,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "lr_straightened"
+   ],
+   "output": "lr_cropped",
+   "note": "Crop away the wedge/empty corners introduced by straightening to a clean distortion-free rectangle. Consumes the straightened frame."
+  },
+  {
+   "n": 4,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "lr_cropped"
+   ],
+   "output": "lr_autotone",
+   "note": "Neutral one-shot tonal baseline (the 'basic color correction' starting point) before targeted fixes. Consumes the cropped frame."
+  },
+  {
+   "n": 5,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "lr_autotone"
+   ],
+   "output": "lr_wb",
+   "note": "Neutralize the warm-tungsten vs cool-daylight mixed white balance toward a natural neutral. Consumes the auto-toned frame."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_dark_portions",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "lr_wb"
+   ],
+   "output": "lr_shadows",
+   "note": "Lift the underexposed shadow corners so the room reads bright and spacious without crushing detail. Consumes the white-balanced frame."
+  },
+  {
+   "n": 7,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "lr_shadows"
+   ],
+   "output": "lr_scuff_mask",
+   "note": "Prompt-select the wall scuff/dust speck region to set up a localized spot-fix. Consumes the shadow-lifted frame, returns a maskURI."
+  },
+  {
+   "n": 8,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "lr_shadows",
+    "lr_scuff_mask"
+   ],
+   "output": "lr_spotfixed",
+   "note": "Solid-fill the selected scuff/dust with the matched neutral wall RGB — the 'quick retouching, not over-processed' the brief asks for (solid fill only, NOT generative). Consumes the frame + scuff mask."
+  },
+  {
+   "n": 9,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "lr_spotfixed"
+   ],
+   "output": "lr_graded",
+   "note": "Gentle vibrance lift for the 'modern, clean' finish without over-saturating. Consumes the spot-fixed frame — this is the master corrected living-room image, exported to both TIFF and JPEG in the next two steps."
+  },
+  {
+   "n": 10,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "lr_graded"
+   ],
+   "output": "living_room_full.tif",
+   "note": "Export the corrected living-room master at native capture resolution as the full-resolution TIFF deliverable (no downscale; resize call used purely to write the TIFF-format, native-res file). Consumes the graded master."
+  },
+  {
+   "n": 11,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "lr_graded"
+   ],
+   "output": "living_room_web.jpg",
+   "note": "Resize the same graded master down to ~2048px long edge and export the web-optimized JPEG (<2 MB) delivery. Consumes the graded master."
+  },
+  {
+   "n": 12,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "kitchen_uploaded",
+   "note": "Ingest the client-supplied kitchen_raw.jpg to begin the kitchen edit chain."
+  },
+  {
+   "n": 13,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "kitchen_uploaded"
+   ],
+   "output": "kt_straightened",
+   "note": "Straighten the ~2-degree tilt / leaning cabinet verticals. Consumes the uploaded kitchen frame."
+  },
+  {
+   "n": 14,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "kt_straightened"
+   ],
+   "output": "kt_wb",
+   "note": "Correct the strong yellow-vs-blue cast on the stainless/quartz so whites read neutral. Consumes the straightened kitchen frame."
+  },
+  {
+   "n": 15,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "kt_wb"
+   ],
+   "output": "kt_highlights",
+   "note": "Recover blown window/can-light highlights to hold appliance and countertop detail the brief wants emphasized. Consumes the white-balanced kitchen frame."
+  },
+  {
+   "n": 16,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "kt_highlights"
+   ],
+   "output": "kt_scuff_mask",
+   "note": "Prompt-select the cabinet-door scuff/dust smudge for spot-fixing. Consumes the highlight-recovered frame, returns a maskURI."
+  },
+  {
+   "n": 17,
+   "tool": "image_fill_area",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "kt_highlights",
+    "kt_scuff_mask"
+   ],
+   "output": "kt_spotfixed",
+   "note": "Solid-fill the cabinet scuff with the matched white cabinet RGB — the 'quick retouching, not over-processed' the brief asks for (solid fill only, NOT generative). Consumes the frame + scuff mask — this is the corrected kitchen master."
+  },
+  {
+   "n": 18,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "kt_spotfixed"
+   ],
+   "output": "kitchen_full.tif",
+   "note": "Export the corrected kitchen master at native capture resolution as the full-resolution TIFF deliverable (no downscale). Consumes the kitchen master."
+  },
+  {
+   "n": 19,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "kt_spotfixed"
+   ],
+   "output": "kitchen_web.jpg",
+   "note": "Resize the corrected kitchen master to ~2048px long edge and export the <2 MB web JPEG. Consumes the kitchen master."
+  },
+  {
+   "n": 20,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "bedroom_uploaded",
+   "note": "Ingest the client-supplied bedroom_raw.jpg to begin the bedroom edit chain."
+  },
+  {
+   "n": 21,
+   "tool": "image_auto_straighten",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bedroom_uploaded"
+   ],
+   "output": "bd_straightened",
+   "note": "Straighten the ~3-degree tilt / converging window verticals. Consumes the uploaded bedroom frame."
+  },
+  {
+   "n": 22,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bd_straightened"
+   ],
+   "output": "bd_highlights",
+   "note": "Pull back the blown-out window highlights (the classic real-estate window/light-shot problem). Consumes the straightened bedroom frame."
+  },
+  {
+   "n": 23,
+   "tool": "image_adjust_dark_portions",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bd_highlights"
+   ],
+   "output": "bd_shadows",
+   "note": "Lift the dark interior so the room balances against the recovered window. Consumes the highlight-recovered frame."
+  },
+  {
+   "n": 24,
+   "tool": "image_select_by_prompt",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bd_shadows"
+   ],
+   "output": "bd_interior_mask",
+   "note": "Prompt-select the room interior (excluding the bright window) to set up a selective brightening that opens the space without re-blowing the window. Consumes the shadow-lifted frame, returns a maskURI."
+  },
+  {
+   "n": 25,
+   "tool": "image_adjust_light_portions",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bd_shadows",
+    "bd_interior_mask"
+   ],
+   "output": "bd_brightened",
+   "note": "Brighten only the masked interior for the 'bright, spacious, move-in-ready' feel the brief wants, leaving the window untouched. Consumes the frame + interior mask — corrected bedroom master."
+  },
+  {
+   "n": 26,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bd_brightened"
+   ],
+   "output": "bedroom_full.tif",
+   "note": "Export the corrected bedroom master at native capture resolution as the full-resolution TIFF deliverable (no downscale). Consumes the bedroom master."
+  },
+  {
+   "n": 27,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "bd_brightened"
+   ],
+   "output": "bedroom_web.jpg",
+   "note": "Resize the corrected bedroom master to ~2048px long edge and export the <2 MB web JPEG. Consumes the bedroom master."
+  },
+  {
+   "n": 28,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "lr_graded",
+    "kt_spotfixed",
+    "bd_brightened"
+   ],
+   "output": "listing_review_board",
+   "note": "Assemble the three corrected room masters into one Firefly Board deep-link for the client to review all listing shots before downloading the JPEG/TIFF set. Consumes the three room masters."
+  }
+ ],
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "image_auto_straighten",
+  "image_crop_to_bounds",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_adjust_dark_portions",
+  "image_select_by_prompt",
+  "image_fill_area",
+  "image_adjust_vibrance_and_saturation",
+  "image_crop_and_resize",
+  "image_adjust_highlights",
+  "image_adjust_light_portions",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 28,
+ "distinct_adobe_tools": 13,
+ "chaining_note": "Three parallel single-image edit chains (one per room), each fully output→input chained, then converged on a Firefly Board. Each room's corrected master is exported twice — once at native resolution as the full-res TIFF and once downscaled to the ~2048px web JPEG — via two separate image_crop_and_resize calls off the same master. LIVING ROOM: upload(1) → auto_straighten(2) → crop_to_bounds(3) → auto_tone(4) → color_temperature(5) → dark_portions(6) → select_by_prompt scuff(7) → fill_area using #6's image + #7's mask(8) → vibrance(9 = master) → crop_and_resize native-res TIFF(10) + crop_and_resize web JPEG(11). KITCHEN: upload(12) → auto_straighten(13) → color_temperature(14) → highlights(15) → select_by_prompt scuff(16) → fill_area using #15 + #16 mask(17 = master) → crop_and_resize native-res TIFF(18) + crop_and_resize web JPEG(19). BEDROOM: upload(20) → auto_straighten(21) → highlights(22) → dark_portions(23) → select_by_prompt interior(24) → light_portions using #23 + #24 mask(25 = master) → crop_and_resize native-res TIFF(26) + crop_and_resize web JPEG(27). Finally create_firefly_board(28) consumes the three masters (lr_graded, kt_spotfixed, bd_brightened). Every non-upload step's inputs_from points at a prior step's output; the two-input steps (8, 17, 25) feed an image plus the mask produced one step earlier — exactly how select→fill / select→adjust localized edits chain.",
+ "difficulty_rationale": "Long-horizon flagship: 28 connector calls, 13 distinct Adobe tools, spanning three groups (A4 asset ingest, A1 photo raster, A4 board assembly) with strict output→input chaining and three converging sub-chains. It is hard because the agent must (a) recognize that live capture is out of scope and re-scope to post-production only, (b) order operations correctly (straighten BEFORE crop, white-balance and tone BEFORE selective edits, mask BEFORE fill/adjust), (c) respect connector limits — image_fill_area is SOLID-color only so scuff removal is a select→matched-RGB-fill, not generative healing or AI object removal, and selective brightening must use a prompt mask + adjust rather than any compositing, (d) satisfy the brief's dual-format delivery by exporting each corrected master twice — a native-resolution TIFF and a downscaled <2 MB web JPEG, both via discrete image_crop_and_resize calls — under the 'natural, not over-processed' constraint via gentle, bounded adjustments. Every step is [C] headless-confirmed, so the whole chain is autonomously runnable with no [W]/[A]/[T]/[X] dependencies, yet it exercises masking, localized tonal control, white-balance, geometry, and multi-output export end-to-end.",
+ "_severity": "pass",
+ "reverify": {
+  "severity": "pass",
+  "issues": [
+   "All 28 steps are server=='adobe' with no local packaging step; pure_adobe holds.",
+   "No Canva tools and no Express-widget tools (search_design/fill_text/animate_design/change_background_color) anywhere.",
+   "Chaining: 25 of 27 post-first steps consume a prior output via inputs_from (92.6%, >=80%). The two non-chained steps (12, 20) are legitimate new-image upload chain-starters, plus step 1; the three room sub-chains and the two-input mask steps (8,17,25 = frame + select_by_prompt mask) are all genuine output->input.",
+   "feasible_no_X holds: image_fill_area used strictly as SOLID matched-RGB fill for scuff/dust (steps 8,17 explicitly 'solid fill only, NOT generative'); selective interior brightening via select_by_prompt->adjust_light_portions (steps 24-25) is the sheet's explicitly-allowed masked tonal edit; no gen-fill, AI object-removal, text-to-image, compositing, bg-replace, or upscaling; create_firefly_board (28) used honestly to assemble already-produced CC asset masters; no render_layout/render_vector used.",
+   "13 distinct Adobe tools (>=6) and 28 calls (>=10); every tool maps to a [C] headless-confirmed capability in A1/A4.",
+   "TIFF delivery now has an explicit producing step per room: each corrected master is exported at native resolution via a discrete image_crop_and_resize call (living_room_full.tif #10, kitchen_full.tif #18, bedroom_full.tif #26), and the <2 MB web JPEG is a separate downscaling image_crop_and_resize off the same master (#11, #19, #27). Master vs delivered-format is no longer conflated — the fill_area outputs are named masters (lr_graded, kt_spotfixed, bd_brightened) and only the crop_and_resize steps emit the .tif/.jpg files.",
+   "MINOR: living-room chain runs auto_tone+color_temperature+dark_portions+vibrance while kitchen/bedroom chains use a leaner, room-appropriate subset (e.g. kitchen has no shadow-lift, bedroom has no auto_tone/color_temperature/vibrance). Asymmetric but each is internally consistent and justified by per-room briefs; not a constraint issue."
+  ]
+ }
+}
