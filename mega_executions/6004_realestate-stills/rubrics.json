@@ -1,0 +1,417 @@
+{
+  "task_id": 6004,
+  "input_assets": [
+    {
+      "key": "listing_factsheet",
+      "display": "Listing fact-sheet (CSV + JSON)",
+      "files": [
+        "input_assets/listing_factsheet.csv",
+        "input_assets/listing_factsheet.json"
+      ],
+      "what_it_is": "The 6-row data-merge source that drives the rider labels: status, address, beds, baths, sqft, price, agent_name, agent_phone, brokerage, logo \u2014 one row per just-listed property.",
+      "items": [
+        {
+          "id": "csv_schema_order",
+          "type": "yesno",
+          "question": "Does the CSV header row contain exactly the 10 columns in the exact order status,address,beds,baths,sqft,price,agent_name,agent_phone,brokerage,logo so they map 1:1 to the Illustrator Variables?",
+          "guidance": "YES = header is precisely those 10 keys in that order. NO = any column missing, renamed, reordered, or extra columns present.",
+          "reference": "Header is exactly: status,address,beds,baths,sqft,price,agent_name,agent_phone,brokerage,logo (10 columns, correct order). The JSON has the same keys in the same order under a single top-level 'rows' array. Correct."
+        },
+        {
+          "id": "csv_six_rows_consistency",
+          "type": "likert5",
+          "question": "Are there exactly 6 listing rows whose beds/baths/sqft/price scale consistently together (bigger sqft -> more beds and higher price)?",
+          "guidance": "5 = exactly 6 rows AND each step up in sqft pairs with equal-or-more beds and a higher price with no inversions. 1 = wrong row count or values that contradict each other (e.g. biggest sqft priced lowest).",
+          "reference": "6 rows, monotonic: 1,450sf/2bd/$385k -> 2,100/3/$520k -> 2,480/3/$615k -> 2,950/4/$740k -> 3,500/4/$925k -> 4,200/5/$1,280,000. Consistent, no inversions."
+        },
+        {
+          "id": "csv_constant_fields",
+          "type": "yesno",
+          "question": "Are status, agent_name, agent_phone, brokerage and logo identical on all 6 rows with the required literal values?",
+          "guidance": "YES = every row has status='JUST LISTED', agent_name='Eleanor Vance', agent_phone='(555) 789-1234', brokerage='Northern Bloom Properties', logo='brokerage_logo.png'. NO = any row deviates (different agent, real-area code, brokerage spelled differently).",
+          "reference": "All 6 rows: status 'JUST LISTED', agent 'Eleanor Vance', phone '(555) 789-1234', brokerage 'Northern Bloom Properties', logo 'brokerage_logo.png'. Phone uses the safe (555) area. Correct."
+        }
+      ]
+    },
+    {
+      "key": "brokerage_logo",
+      "display": "NBP brokerage logo (transparent PNG)",
+      "files": [
+        "input_assets/brokerage_logo.png"
+      ],
+      "what_it_is": "Flat real-estate brokerage logo lockup (NBP monogram + roofline-keyhole mark + 'Northern Bloom Properties' wordmark) on a transparent background, used as the linked-image Variable on every rider label and vectorized for sign-shop print.",
+      "items": [
+        {
+          "id": "logo_spelling_lockup",
+          "type": "yesno",
+          "question": "Does the logo read exactly 'NBP' as a monogram with 'Northern Bloom Properties' spelled correctly beneath, plus a small roofline/keyhole house mark?",
+          "guidance": "YES = 'N','B','P' caps + correctly spelled 'Northern Bloom Properties' + the house/keyhole symbol, no garbled or extra letters. NO = any misspelling, missing word, or stray characters.",
+          "reference": "Reads 'NBP' (N and P in signage red, B in ink black) beside a red roofline with a keyhole, 'Northern Bloom Properties' spelled correctly below. No stray text. Correct."
+        },
+        {
+          "id": "logo_palette_flat",
+          "type": "likert5",
+          "question": "Is the logo flat 2-colour (signage red + ink black) with hard clean edges and no gradients/shadows, suitable for vectorization?",
+          "guidance": "5 = only red (~#C8102E) and near-black, flat fills, crisp edges. 3 = mostly flat but slight softness/anti-alias. 1 = gradients, drop shadows, extra colours, or photographic shading.",
+          "reference": "Two flat colours (red #C8102E, ink black #1A1A1A), hard edges, no gradients/shadows. QC noted only subtle anti-aliasing. Clean enough to vectorize (it was, into NBP_logo_vector.svg). Score 4-5."
+        },
+        {
+          "id": "logo_transparent_bg",
+          "type": "yesno",
+          "question": "Is the logo delivered on a genuinely transparent background (checkerboard, no white card behind the mark)?",
+          "guidance": "YES = transparent alpha, mark floats with no backdrop. NO = solid white/coloured card baked behind the logo.",
+          "reference": "Displayed PNG shows the transparent checkerboard. (Note: sips reports hasAlpha=no / the outputs README says the supplied PNG was actually solid-white RGB and had to be keyed to transparency locally \u2014 so a strict checker may answer NO on the raw file. The visual intent is a transparent lockup.)"
+        }
+      ]
+    },
+    {
+      "key": "house_look_reference",
+      "display": "Agency 'house look' reference still",
+      "files": [
+        "input_assets/house_look_reference.jpg"
+      ],
+      "what_it_is": "A correctly-edited natural-HDR living-room still that defines the target gallery look (recovered window, neutral whites, straight verticals) which the editor matches the whole set to.",
+      "items": [
+        {
+          "id": "ref_window_recovered",
+          "type": "yesno",
+          "question": "In the reference, is the large picture window already correctly recovered \u2014 exterior greenery readable through it rather than blown to pure white?",
+          "guidance": "YES = soft, readable green hedge/foliage visible through the window, no HDR halo. NO = window is clipped white or has obvious halo fringing.",
+          "reference": "The picture window clearly shows a green hedge/garden outside; whites are neutral, verticals plumb, no halos. This is the 'already correct' target, as intended."
+        },
+        {
+          "id": "ref_no_text_clean",
+          "type": "yesno",
+          "question": "Is the reference free of any text/watermark/logo and shot as a believable documentary interior (not CGI-glossy or over-saturated)?",
+          "guidance": "YES = no letters/marks anywhere and a natural lived-in look. NO = any text/watermark, or an over-glossy/over-saturated render.",
+          "reference": "No text, watermark or logo; natural neutral interior with fireplace, mirror, linen sofa. QC vision_score 10. Correct as a look target."
+        }
+      ]
+    },
+    {
+      "key": "bracketed_base_interiors",
+      "display": "Interior merged-base scenes (living / kitchen / bedroom)",
+      "files": [
+        "input_assets/scene01_living_base.jpg",
+        "input_assets/scene02_kitchen_base.jpg",
+        "input_assets/scene03_primary-bed_base.jpg"
+      ],
+      "what_it_is": "Three interior merged-base RAW-style captures, each deliberately containing a fully blown daylight window and slightly leaning verticals so the masked window-pull and straighten steps are load-bearing.",
+      "items": [
+        {
+          "id": "interiors_window_blown",
+          "type": "yesno",
+          "question": "Does each interior have at least one daylight window genuinely clipped to pure white with no exterior detail (so window-recovery is a real problem to solve)?",
+          "guidance": "YES = the picture window (living), over-sink window (kitchen) and the two tall windows (bedroom) are all pure clipped white. NO = exterior detail already visible, making the window-pull redundant.",
+          "reference": "Living: large picture window fully blown white. Kitchen: wide over-sink window blown white. Bedroom: both tall windows blown white. All present \u2014 window-pull is genuinely load-bearing."
+        },
+        {
+          "id": "interiors_crooked_verticals",
+          "type": "likert5",
+          "question": "Do the interiors show a believable handheld feel with verticals leaning ~2-3 degrees off-plumb (real perspective correction to do)?",
+          "guidance": "5 = clear, natural ~2-3 degree lean on door/wall/window edges across the set. 3 = barely perceptible tilt. 1 = perfectly plumb already (nothing to correct) or absurdly tilted.",
+          "reference": "All three interiors lean slightly off-plumb (e.g. the living-room window/wall edges and bedroom window frames are subtly tilted), consistent with the brief's handheld brief. Score 4."
+        },
+        {
+          "id": "interiors_documentary_realism",
+          "type": "likert5",
+          "question": "Do the interiors read as believable real-estate captures (lived-in, natural light, not CGI-glossy or over-saturated)?",
+          "guidance": "5 = convincingly photographic, natural materials and light. 1 = plasticky CGI, over-saturated, or HDR-haloed already.",
+          "reference": "Living room (linen sofa, oak table, monstera), kitchen (white shaker cabinets, quartz island, stainless range), bedroom (linen bedding, oak nightstand) all read as natural documentary captures. QC scores 6-10 (kitchen dinged only for visible appliance branding)."
+        }
+      ]
+    },
+    {
+      "key": "bracketed_base_exteriors",
+      "display": "Exterior merged-base scenes (front / twilight / backyard)",
+      "files": [
+        "input_assets/scene04_front-exterior_base.jpg",
+        "input_assets/scene05_twilight_base.jpg",
+        "input_assets/scene06_backyard_base.jpg"
+      ],
+      "what_it_is": "Three exterior merged-base captures: a daytime front facade and a backyard with deliberately over-green lawn / over-saturated blue sky to be calmed, plus a blue-hour twilight with warm window glow.",
+      "items": [
+        {
+          "id": "exteriors_oversaturated",
+          "type": "yesno",
+          "question": "Do the daytime exteriors (front + backyard) show a deliberately over-saturated deep-blue sky and/or over-green lawn that an editor would need to calm down?",
+          "guidance": "YES = punchy near-electric blue sky and vivid green grass beyond natural. NO = colours already restrained/neutral.",
+          "reference": "Front exterior has a deep saturated blue sky and very green lawn; backyard has an intense blue sky and vivid green lawn. Both are over-cooked on purpose, giving the HSL calm-down step real work."
+        },
+        {
+          "id": "exteriors_twilight_glow",
+          "type": "likert5",
+          "question": "Is the twilight scene a believable blue-hour exterior with warm interior window glow and a deep dusk sky (not a flat daytime shot)?",
+          "guidance": "5 = convincing dusk sky gradient with warm glowing windows and porch light. 1 = looks like daytime or has an unnatural neon cast.",
+          "reference": "Twilight shows a deep blue dusk sky with warm amber-lit windows and a lit covered patio \u2014 a convincing blue-hour real-estate hero. Score 5."
+        },
+        {
+          "id": "exteriors_no_text",
+          "type": "yesno",
+          "question": "Are the exterior bases free of any text, watermark, logo, brand or recognizable trademark?",
+          "guidance": "YES = no letters/marks/brands anywhere. NO = any visible signage, plate, or brand.",
+          "reference": "No text/watermark/brand visible on front, twilight or backyard frames. Correct (QC pass on all three)."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "graded_interior_prints",
+      "display": "Graded interior scene stills \u2014 living / kitchen / bedroom (print + web JPEG)",
+      "files": [
+        "outputs/print_jpeg/NBP_01_living_print.jpg",
+        "outputs/print_jpeg/NBP_02_kitchen_print.jpg",
+        "outputs/print_jpeg/NBP_03_primary-bed_print.jpg",
+        "outputs/web_jpeg/NBP_01_living_web.jpg",
+        "outputs/web_jpeg/NBP_03_primary-bed_web.jpg"
+      ],
+      "what_it_is": "The three graded interior masters exported as 1444x962 print JPEGs and 1200x799 web JPEGs, with straightened verticals, masked window-pull, opened shadows and clean neutral whites.",
+      "items": [
+        {
+          "id": "int_window_pull_attempted",
+          "type": "likert5",
+          "question": "Has a masked window-pull visibly tamed the blown windows (highlights pulled, frame/edge detail returning) rather than leaving them identical to the base?",
+          "guidance": "5 = windows clearly recovered with readable exterior/gradient and intact frames, matching the reference. 3 = highlights softened and frame edges return but the glazing is still mostly bright. 1 = windows untouched / still pure clipped white exactly as the base.",
+          "reference": "Window highlights were pulled and frame edges recovered (e.g. bedroom window mullions/sashes now read), but per the README the masked pull is tonal-only and cannot invent detail that was never captured \u2014 the living and bedroom glazing remains largely bright/white. Honest partial recovery: score ~3, NOT a full reference-grade greenery recovery."
+        },
+        {
+          "id": "int_brighter_clean_whites",
+          "type": "likert5",
+          "question": "Are the interiors brighter-but-realistic with opened shadows and clean neutral whites (no heavy colour cast, no over-edited HDR look)?",
+          "guidance": "5 = bright, even, neutral whites, shadow corners opened, no halos, no muddy cast. 1 = still dark/flat, or pushed into glowing over-HDR with colour cast.",
+          "reference": "Graded interiors are noticeably brighter than the bases with opened shadows and neutral whites (auto-tone + exposure +0.35 + masked dark-portions +32 + colour-temp neutralize). No HDR halos introduced. Score 4."
+        },
+        {
+          "id": "int_dims_format",
+          "type": "yesno",
+          "question": "Are the print JPEGs 1444x962 sRGB and the web JPEGs 1200x799 sRGB (resize-only, no upscaling)?",
+          "guidance": "YES = print files measure 1444x962 and web files 1200x799, JPEG/sRGB. NO = wrong dimensions, wrong format, or visibly upscaled/soft.",
+          "reference": "All print JPEGs measure 1444x962; all web JPEGs 1200x799. Native master res (resize-only, upscale_factor 1) per README. Correct, though note the README's honesty that these are not a true ~3600px/300dpi 12in print master."
+        }
+      ]
+    },
+    {
+      "key": "graded_exterior_prints",
+      "display": "Graded exterior scene stills \u2014 front / twilight / backyard (print + web JPEG)",
+      "files": [
+        "outputs/print_jpeg/NBP_04_front-exterior_print.jpg",
+        "outputs/print_jpeg/NBP_05_twilight_print.jpg",
+        "outputs/print_jpeg/NBP_06_backyard_print.jpg",
+        "outputs/web_jpeg/NBP_04_front-exterior_web.jpg",
+        "outputs/web_jpeg/NBP_06_backyard_web.jpg"
+      ],
+      "what_it_is": "The three graded exterior masters exported as 1444x962 print JPEGs and 1200x799 web JPEGs, with calmed greens/skies, straightened verticals and the same shared gallery preset.",
+      "items": [
+        {
+          "id": "ext_greens_skies_calmed",
+          "type": "likert5",
+          "question": "Have the over-saturated blue skies and over-green lawns been visibly calmed toward natural while staying lively (not washed-out grey)?",
+          "guidance": "5 = sky and grass clearly less neon than the base yet still attractive and natural. 3 = partly calmed but still punchy. 1 = unchanged electric sky/grass, or over-corrected to dull grey.",
+          "reference": "Front exterior: the deep electric-blue sky is calmed to a softer graduated blue and the lawn green is restrained vs the base, verticals corrected. Backyard: sky/grass toned down (still fairly contrasty). HSL green -28 / blue -22 applied. Front scores ~4; backyard a touch more aggressive."
+        },
+        {
+          "id": "ext_verticals_straight",
+          "type": "yesno",
+          "question": "Are the building/fence verticals on the exteriors plumb (the ~2-3 degree lean in the bases corrected) with the frame cleanly cropped (no straighten wedge)?",
+          "guidance": "YES = house edges, porch posts and fence read vertical with no empty corner wedge from the rotation. NO = still leaning, or a transparent/black triangle left from the upright correction.",
+          "reference": "Front facade edges and porch columns read vertical, backyard fence is upright, and the crop_to_bounds step trimmed the rotation wedge. Auto-straighten + crop_to_bounds applied to all 6. Correct."
+        },
+        {
+          "id": "ext_twilight_preserved",
+          "type": "likert5",
+          "question": "Does the twilight scene keep its warm window glow and dusk mood after grading (the shared preset did not flatten it into a daytime look)?",
+          "guidance": "5 = warm glowing windows and deep dusk sky retained, contrast clean. 1 = glow killed, sky turned daytime-blue, or windows blown out by the brightening pass.",
+          "reference": "Twilight master retains the amber window glow and deep blue dusk sky with the lit patio, only cleaned/balanced \u2014 the brightening chain did not wash out the blue hour. Score 4-5."
+        }
+      ]
+    },
+    {
+      "key": "shared_gallery_look",
+      "display": "Cohesive shared gallery look across all 6 scenes",
+      "files": [
+        "outputs/print_jpeg/NBP_01_living_print.jpg",
+        "outputs/print_jpeg/NBP_02_kitchen_print.jpg",
+        "outputs/print_jpeg/NBP_03_primary-bed_print.jpg",
+        "outputs/print_jpeg/NBP_04_front-exterior_print.jpg",
+        "outputs/print_jpeg/NBP_05_twilight_print.jpg",
+        "outputs/print_jpeg/NBP_06_backyard_print.jpg"
+      ],
+      "what_it_is": "All 6 graded scenes viewed as a set, which must share one cohesive gallery 'look' (the single applied preset) so the listing reads as one consistent body of work.",
+      "items": [
+        {
+          "id": "set_cohesive_look",
+          "type": "likert5",
+          "question": "Do all 6 graded scenes look like one cohesive gallery \u2014 consistent brightness, contrast, white balance and saturation character across interiors and exteriors?",
+          "guidance": "5 = the 6 feel unmistakably from the same edit/preset; tonality and colour are harmonious. 3 = mostly consistent but one or two frames drift. 1 = each scene clearly graded differently (mismatched warmth/contrast).",
+          "reference": "One shared preset ('Color - Natural') was applied once per scene, on top of an identical grade chain; the gallery proof shows a harmonious natural set. Score 4-5."
+        },
+        {
+          "id": "set_one_preset_not_per_scene",
+          "type": "yesno",
+          "question": "Was a single shared preset applied across the whole set (not a different look per image)?",
+          "guidance": "YES = the same one preset is used for all 6. NO = visibly different stylistic looks per scene, or an obviously different preset on some frames.",
+          "reference": "README + trajectory: image_apply_preset('Color - Natural') called 6 times (same preset). One shared look. Correct."
+        }
+      ]
+    },
+    {
+      "key": "rider_labels",
+      "display": "Just-listed rider / yard-sign labels (6 PNGs + print PDF)",
+      "files": [
+        "outputs/rider_labels_png/rider_0001.png",
+        "outputs/rider_labels_png/rider_0006.png",
+        "outputs/rider_labels_png/rider_0003.png",
+        "outputs/NBP_rider_labels_print.pdf"
+      ],
+      "what_it_is": "Six data-merged rider/yard-sign labels (one per CSV row) at 3070x1865 with 3mm bleed, rendered to PNG and a 6-page print PDF, following the authored rider_label.ai layout.",
+      "items": [
+        {
+          "id": "rider_data_fidelity",
+          "type": "yesno",
+          "question": "On each rider, do the address, beds, baths, sqft and price exactly match the corresponding CSV row (read from data, never retyped or transposed)?",
+          "guidance": "YES = every field matches its row verbatim (e.g. rider_0001 = 1405 Willow Creek Rd, 2/1.5/1,450/$385,000; rider_0006 = 88 Goldenrod Path, 5/4/4,200/$1,280,000). NO = any wrong/transposed/garbled value.",
+          "reference": "rider_0001: '1405 Willow Creek Rd, Northbrook', 2 BEDS / 1.5 BATHS / 1,450 SQ FT, $385,000. rider_0006: '88 Goldenrod Path, Winnetka', 5 / 4 / 4,200, $1,280,000. Both match the CSV exactly. Correct."
+        },
+        {
+          "id": "rider_layout_spec",
+          "type": "likert5",
+          "question": "Does each rider follow the authored template layout: red 'JUST LISTED' banner top, bold address headline, centered 3-up beds/baths/sqft, price bottom-left, agent block bottom-right, NBP logo top-right?",
+          "guidance": "5 = all six zones present in the specified positions with correct hierarchy. 3 = present but one element mis-placed or weak. 1 = layout substantially wrong or elements missing.",
+          "reference": "Each rider: red 'JUST LISTED' banner across the top, bold black address line, 3-up 'BEDS | BATHS | SQ FT' stat row with divider rules, 'LIST PRICE' + red price bottom-left, 'Eleanor Vance / (555) 789-1234 / Northern Bloom Properties' bottom-right, NBP logo top-right. Matches the authored spec. Score 5."
+        },
+        {
+          "id": "rider_agent_brand_correct",
+          "type": "yesno",
+          "question": "Do all 6 riders show the correct agent 'Eleanor Vance', phone '(555) 789-1234', brokerage 'Northern Bloom Properties' and the NBP logo, with 'Northern Bloom Properties' spelled correctly?",
+          "guidance": "YES = agent/phone/brokerage and logo identical and correctly spelled on all 6. NO = any misspelling, wrong phone, or missing/incorrect logo.",
+          "reference": "All 6 riders carry Eleanor Vance, (555) 789-1234, Northern Bloom Properties, and the NBP roofline logo top-right, spelling correct. Correct."
+        },
+        {
+          "id": "rider_dims_bleed",
+          "type": "yesno",
+          "question": "Are the rider PNGs 3070x1865 px (254x152mm + 3mm bleed at 300dpi) and is the print PDF a 6-page document?",
+          "guidance": "YES = each PNG measures 3070x1865 and the PDF has one page per listing (6). NO = wrong pixel size or wrong page count.",
+          "reference": "All six rider PNGs measure 3070x1865 (254x152mm + 3mm bleed @300dpi); NBP_rider_labels_print.pdf is the 6-page print PDF (~2.1MB). Correct. Note: produced via local data-merge, not the headless Illustrator connector (which needs the human-authored .ai)."
+        }
+      ]
+    },
+    {
+      "key": "rider_proof_sheet",
+      "display": "Rider labels proof contact sheet",
+      "files": [
+        "outputs/NBP_rider_labels_proof.png"
+      ],
+      "what_it_is": "A single 2000x1650 branded contact sheet laying out all 6 rider labels 3x2 for client sign-off.",
+      "items": [
+        {
+          "id": "proof_all_six_present",
+          "type": "yesno",
+          "question": "Does the rider proof show all 6 rider labels with all 6 distinct addresses legible?",
+          "guidance": "YES = six riders, six different addresses readable (Willow Creek, Evergreen Way, Arbor Lane, Meadowlark Drive, Stonegate Circle, Goldenrod Path). NO = fewer than 6, duplicates, or unreadable.",
+          "reference": "Proof header 'NBP RIDER / YARD-SIGN LABELS \u00b7 6 listings \u00b7 data-merged \u00b7 print PDF + PNG'; 3x2 grid showing all six addresses with their stats and prices. Correct."
+        },
+        {
+          "id": "proof_branding",
+          "type": "likert5",
+          "question": "Is the proof on-brand (Northern Bloom red header, clean layout) and clearly presented as a client-facing proof?",
+          "guidance": "5 = signage-red header, tidy grid, clear 'rider/yard-sign labels' title. 1 = off-brand, cluttered, or no proof framing.",
+          "reference": "Red NBP header bar with the metadata strip and a clean 3x2 grid of riders. On-brand and clearly a proof sheet. Score 4-5."
+        }
+      ]
+    },
+    {
+      "key": "gallery_proof_pdf",
+      "display": "Client gallery proof PDF (6 graded scenes)",
+      "files": [
+        "outputs/NBP_gallery_proof.pdf"
+      ],
+      "what_it_is": "A branded 3x2 contact-sheet PDF of all 6 graded scenes (labelled Living Room, Kitchen, Primary Bedroom, Front Exterior, Twilight, Backyard) for client sign-off.",
+      "items": [
+        {
+          "id": "gallery_six_labelled",
+          "type": "yesno",
+          "question": "Does the gallery proof lay out all 6 graded scenes, each numbered and labelled with its room/scene name?",
+          "guidance": "YES = six images, numbered 1-6, with correct labels (Living Room, Kitchen, Primary Bedroom, Front Exterior, Twilight, Backyard). NO = missing scenes, wrong labels, or ungraded versions.",
+          "reference": "Proof shows the 6 graded scenes in a 3x2 grid, numbered 1-6 with labels Living Room / Kitchen / Primary Bedroom / Front Exterior / Twilight / Backyard. Correct."
+        },
+        {
+          "id": "gallery_branding_tagline",
+          "type": "likert5",
+          "question": "Is the gallery proof on-brand (Northern Bloom red header, 'WEEKLY JUST-LISTED GALLERY PROOF', tagline 'Your Trusted Partner in Property.', agent contact footer)?",
+          "guidance": "5 = red header with the gallery-proof title, brand tagline and agent contact, clean footer noting print/web sizes. 1 = generic/unbranded or missing the brand elements.",
+          "reference": "Header 'NORTHERN BLOOM PROPERTIES \u2014 WEEKLY JUST-LISTED GALLERY PROOF', subtitle naming the grade + shared preset, footer '6 scenes graded \u00b7 6 active listings', tagline 'Your Trusted Partner in Property.', Eleanor Vance contact and Print/Web size note. Score 5."
+        }
+      ]
+    },
+    {
+      "key": "delivery_index_and_logo_vector",
+      "display": "Delivery bundle index PDF + vectorized logo (bonus)",
+      "files": [
+        "outputs/NBP_delivery_index.pdf",
+        "outputs/NBP_logo_vector.svg"
+      ],
+      "what_it_is": "A branded delivery cover/index PDF listing deliverables, the grade summary and the 6 listings, plus the brokerage logo vectorized to SVG via the connector.",
+      "items": [
+        {
+          "id": "index_listings_match_csv",
+          "type": "yesno",
+          "question": "Does the delivery index list all 6 listings with addresses, beds/baths/sqft and prices matching the CSV?",
+          "guidance": "YES = all six rows present and matching (e.g. 305 Stonegate Circle, Glencoe \u2014 4bd/3ba/3,500 \u2014 $925,000). NO = missing rows or mismatched figures.",
+          "reference": "Index LISTINGS block enumerates all 6 (Willow Creek $385k \u2026 Goldenrod Path $1,280,000), matching the CSV; DELIVERABLES section lists print/web JPEGs, gallery proof, rider PDF/PNG and the logo SVG. Correct."
+        },
+        {
+          "id": "logo_vector_clean",
+          "type": "likert5",
+          "question": "Is NBP_logo_vector.svg a clean true-vector SVG (path geometry, not an embedded raster) suitable as a sign-shop source?",
+          "guidance": "5 = real SVG paths, scalable, no embedded bitmap. 3 = vector but messy/over-noded. 1 = just a <image> raster wrapped in SVG, or broken.",
+          "reference": "SVG is 1024x1024 with ~69 <path> elements and 0 <text>/embedded raster \u2014 a genuine connector image_vectorize output of the NBP mark. Score 4-5."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "tl_all_deliverables_present",
+      "type": "yesno",
+      "question": "Are all 8 asked deliverables present: 6 graded stills, corrected geometry on every frame, masked window-pull on interiors, one shared preset, print JPEGs, web JPEGs, the rider-label batch (PDF+PNG), and a gallery proof PDF?",
+      "guidance": "YES = every deliverable exists as a real file. NO = any one missing.",
+      "reference": "Present: 6 print + 6 web JPEGs, 6 rider PNGs + 6-page rider print PDF + rider proof, gallery proof PDF, plus bonus delivery index PDF and vector SVG. All 8 deliverables covered."
+    },
+    {
+      "id": "tl_window_pull_honesty",
+      "type": "likert5",
+      "question": "Across the window-bearing interiors, was the masked window-pull genuinely attempted and the recovery limitation handled honestly (tonal recovery, no faked HDR halos)?",
+      "guidance": "5 = visible masked highlight recovery on all interiors with no halos AND the README honestly states tonal pull cannot invent never-captured detail. 3 = attempted but glazing still mostly white with honest disclosure. 1 = claims full window recovery it did not deliver, or introduces HDR halos.",
+      "reference": "Window mask + adjust_highlights(-82) applied to interiors; frame/edge detail returns but the fully-clipped living/bedroom glazing stays largely bright. README is explicit that this is tonal-only and cannot invent missing detail and that no halos were added. Honest, partial \u2014 score ~3-4."
+    },
+    {
+      "id": "tl_copy_data_fidelity",
+      "type": "yesno",
+      "question": "Is every piece of listing copy on the riders, proof and index read programmatically from the CSV and reproduced verbatim (no typos, no transposed beds/baths/price across the 6 listings)?",
+      "guidance": "YES = all addresses, beds/baths/sqft, prices, agent, phone, brokerage match the CSV across riders + proof + index. NO = any mismatch or retyped error anywhere.",
+      "reference": "Spot-checked riders 1/3/6, the rider proof and the index against the CSV \u2014 all addresses, stats, prices and the constant agent/phone/brokerage match exactly. README confirms copy was read from listing_factsheet.csv, never retyped."
+    },
+    {
+      "id": "tl_connector_workflow_used",
+      "type": "likert5",
+      "question": "Did the workflow actually run the Adobe connector to consume the inputs and produce the graded stills (uploads finalized, per-scene grade chain executed) rather than only local processing?",
+      "guidance": "5 = trajectory shows real connector ops (upload finalize of 7 files, straighten, masks, highlights, presets, vectorize) with adobe_request_ids. 3 = some connector use plus heavy local work. 1 = no genuine connector usage.",
+      "reference": "trajectory.json records 21 adobe_connector actions with real adobe_request_ids (asset_finalize 7 files, image_auto_straighten, select_by_prompt/invert masks, adjust_highlights, apply_preset x6, image_vectorize, etc.). Data-merge/PDF assembly were honestly done locally because the headless connector cannot bind a human-authored .ai. Score 4-5."
+    },
+    {
+      "id": "tl_brand_voice_consistency",
+      "type": "likert5",
+      "question": "Across every branded deliverable, is the Northern Bloom identity applied consistently and correctly (Signage Red #C8102E accent, ink black/white, 'Northern Bloom Properties' spelled right, 'Your Trusted Partner in Property.' tone)?",
+      "guidance": "5 = consistent red/black/white palette, correct brokerage spelling and tagline, restrained non-hype tone throughout riders, proofs and index. 1 = off-palette, misspelled brand, or hype-y copy.",
+      "reference": "Riders, rider proof, gallery proof and delivery index all use signage red headers/prices with ink-black/white, the NBP logo, correct 'Northern Bloom Properties' spelling and the 'Your Trusted Partner in Property.' tagline. Consistent and on-voice. Score 4-5."
+    },
+    {
+      "id": "tl_print_resolution_disclosure",
+      "type": "yesno",
+      "question": "Are the print/output specs delivered as claimed and any resolution shortfall disclosed honestly (i.e. print JPEGs are native 1444x962 resize-only, not silently upscaled to a fake 300dpi 12in master)?",
+      "guidance": "YES = print JPEGs are 1444x962 sRGB, web 1200x799, riders 3070x1865 with bleed, AND the README openly states the photo prints are native-res (~4.8in at 300dpi) not upscaled. NO = dimensions wrong, or upscaled/soft files passed off as full print-res without disclosure.",
+      "reference": "Print 1444x962, web 1200x799, riders 3070x1865 (with 3mm bleed) all verified; the README explicitly discloses the photo masters are native resolution (resize-only, upscale_factor 1) and not a true 3600px/300dpi 12in print, recommending RAW for large prints. Honest. YES."
+    }
+  ]
+}

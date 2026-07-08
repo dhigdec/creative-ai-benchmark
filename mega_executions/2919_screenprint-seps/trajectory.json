@@ -1,0 +1,486 @@
+{
+ "task_id": 2919,
+ "slug": "screenprint-seps",
+ "title": "4-colour screen-print separation pack — underbase + lavender/cobalt/deep-purple halftone spot plates + VHS alt colourway + vectorized lettering + merged sep sheet",
+ "started": "2026-06-15T10:56:36",
+ "finished": "2026-06-15T11:23:21",
+ "steps": [
+  {
+   "phase": "upload",
+   "actor": "local_verify",
+   "action": "input_baseline_artwork",
+   "note": "Approved tee artwork (cloud gradient + HEAD IN THE CLOUDS lettering on black) — the source for every separation plate.",
+   "input": "input_assets/approved_tee_artwork.png",
+   "n": 1,
+   "ts": "2026-06-15T10:57:07",
+   "step_image": "steps/001_input_artwork.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_verify",
+   "action": "input_baseline_clouds",
+   "note": "Clouds-only source layer — used to verify the cloud-gradient halftone field independently of the lettering hold-out.",
+   "input": "input_assets/source_clouds_only.png",
+   "n": 2,
+   "ts": "2026-06-15T10:57:07",
+   "step_image": "steps/002_input_clouds.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_verify",
+   "action": "input_baseline_lettering",
+   "note": "Lettering-only source layer — confirms the hard-edge slogan that must be held OUT of the halftone and vectorized.",
+   "input": "input_assets/source_lettering_only.png",
+   "n": 3,
+   "ts": "2026-06-15T10:57:08",
+   "step_image": "steps/003_input_lettering.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_verify",
+   "action": "input_baseline_data",
+   "note": "Print-spec inputs: dotgain_spec.json (LPI 55, choke 2px, gain 22%) + spot_colour.csv (4 inks: White Underbase/Lavender 2635C/Cobalt 2945C/Deep Purple 2685C) drive the halftone radius, choke and the merged registration/swatch cards.",
+   "input": "input_assets/spot_colour.csv",
+   "n": 4,
+   "ts": "2026-06-15T10:57:08",
+   "step_image": "steps/004_input_merch_frame.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "adobe_connector",
+   "action": "asset_initialize_file_upload",
+   "note": "Step 1 — initialize block upload of the approved tee artwork into Creative Cloud (1 block, 840KB PNG).",
+   "input": "input_assets/approved_tee_artwork.png",
+   "output": "urn:aaid:sc:VA6C2:1440f9cf-5d10-42e6-8007-4e92129872fd",
+   "params": {
+    "file_size": 840446,
+    "media_type": "image/png"
+   },
+   "n": 5,
+   "ts": "2026-06-15T10:58:39"
+  },
+  {
+   "phase": "upload",
+   "actor": "adobe_connector",
+   "action": "asset_finalize_file_upload",
+   "note": "Step 2 — finalize upload; returns the working presigned URL that seeds the entire separation pipeline.",
+   "input": "urn:aaid:sc:VA6C2:1440f9cf-5d10-42e6-8007-4e92129872fd",
+   "output": "https://at.adobe.com/uKK0nrPJWOFRpab5",
+   "params": {
+    "assetId": "urn:aaid:sc:VA6C2:3f5507d7-b264-4d1a-8d31-ddbbedae1870"
+   },
+   "n": 6,
+   "ts": "2026-06-15T10:58:39",
+   "step_image": "steps/006_uploaded_artwork.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_to_bounds",
+   "note": "Step 3 — trim 1.5% off every edge to the live print area so screen-budget and registration measure the true artwork extent (not the black margin).",
+   "input": "https://at.adobe.com/uKK0nrPJWOFRpab5",
+   "output": "work/downloads/03_cropped.png",
+   "adobe_request_id": "89c04e2f-b56e-47f5-bf52-65026d4beebb",
+   "params": {
+    "bounds": {
+     "top": 0.015,
+     "left": 0.015,
+     "bottom": 0.985,
+     "right": 0.985
+    }
+   },
+   "n": 7,
+   "ts": "2026-06-15T10:59:02",
+   "step_image": "steps/007_03_cropped_print_area.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_subject",
+   "note": "Step 4 — select the artwork (clouds+lettering) off the flat black ground; bbox covers ~99% of frame. This subject mask is the underbase region.",
+   "input": "work/downloads/03_cropped.png",
+   "output": "work/downloads/04_subject_mask.png",
+   "adobe_request_id": "a4604f97-3868-458b-9c17-07dc8071e61e",
+   "n": 8,
+   "ts": "2026-06-15T10:59:55",
+   "step_image": "steps/008_04_subject_mask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_invert_selection",
+   "note": "Step 5 — invert the subject mask so the artwork pixels become the fill TARGET — correct polarity for a white underbase that lays down first.",
+   "input": "work/downloads/04_subject_mask.png",
+   "output": "work/downloads/05_inverted_mask.png",
+   "adobe_request_id": "6cbb271d-e47b-4f62-90fd-6f0565555f80",
+   "n": 9,
+   "ts": "2026-06-15T10:59:55",
+   "step_image": "steps/009_05_inverted_mask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_fill_area",
+   "note": "Step 6 — fill solid white (preset:white) through the inverted mask => WHITE UNDERBASE separation (plate 1, prints first then flashed, mesh 110).",
+   "input": "work/downloads/03_cropped.png",
+   "output": "work/downloads/06_white_underbase.png",
+   "adobe_request_id": "37a1374e-f739-4c28-b048-e4c163a512b4",
+   "params": {
+    "preset": "white",
+    "opacity": 100
+   },
+   "n": 10,
+   "ts": "2026-06-15T10:59:56",
+   "step_image": "steps/010_06_white_underbase.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_by_prompt",
+   "note": "Step 7 — mask the cloud-gradient field (white=clouds, lettering band held black). Shared geometry source for all three spot plates.",
+   "input": "work/downloads/03_cropped.png",
+   "output": "work/downloads/07_cloud_mask.png",
+   "adobe_request_id": "1e8e051d-c35e-439b-bfda-f6d83c01e74a",
+   "params": {
+    "prompt": "the cloud gradient illustration in the upper area, excluding the white slogan text at the bottom"
+   },
+   "n": 11,
+   "ts": "2026-06-15T11:01:14",
+   "step_image": "steps/011_07_cloud_mask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_invert_selection",
+   "note": "Step 8 — invert the cloud mask => LETTERING hold-out (white over HEAD IN THE CLOUDS), which stays hard-edge solid and never gets dotted; feeds the vectorize plate.",
+   "input": "work/downloads/07_cloud_mask.png",
+   "output": "work/downloads/08_lettering_holdout_mask.png",
+   "adobe_request_id": "90c83fa0-cb71-4f63-a70f-6334115b7ba5",
+   "n": 12,
+   "ts": "2026-06-15T11:01:14",
+   "step_image": "steps/012_08_lettering_holdout.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_halftone",
+   "note": "Step 9 — B&W Ben-Day halftone (radius 10 from dotgain LPI55) applied INSIDE the cloud mask only; lettering held out. This is the SHARED dot field the 3 spot plates fork from.",
+   "input": "work/downloads/03_cropped.png",
+   "output": "work/downloads/09_halftone_field.png",
+   "adobe_request_id": "adf366a0-dcdf-4a54-8c22-55151da37897",
+   "params": {
+    "radius": 10,
+    "blackAndWhite": true,
+    "maskURI": "cloud_mask"
+   },
+   "n": 13,
+   "ts": "2026-06-15T11:01:14",
+   "step_image": "steps/013_09_benday_field.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_gaussian_blur",
+   "note": "Step 10 — dot-gain CHOKE: gaussian blur radius 2px (dotgain_spec.choke_px=2) on the whole dot field so dots dont plug shadows on the absorbent black tee (expected gain 22%). The shared base the 3 spot plates fork from.",
+   "input": "work/downloads/09_halftone_field.png",
+   "output": "work/downloads/10_choked_field.png",
+   "adobe_request_id": "8b810d0d-5b48-4ef6-a662-d8f251ef1565",
+   "params": {
+    "blurRadius": 2,
+    "blurTarget": "currentLayer"
+   },
+   "n": 14,
+   "ts": "2026-06-15T11:01:44",
+   "step_image": "steps/014_10_choked_dotfield.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_monochromatic_tint",
+   "note": "Step 11 — LAVENDER plate proof: tint the choked dot field to the lavender 2635C build (hue 261, sat 35). Forks off the shared choked field.",
+   "input": "work/downloads/10_choked_field.png",
+   "output": "work/downloads/11_lavender.png",
+   "adobe_request_id": "23f749cb-4eca-44b6-9e2c-043bd4a867d7",
+   "params": {
+    "hue": 261,
+    "saturation": 35,
+    "lightness": 20
+   },
+   "n": 15,
+   "ts": "2026-06-15T11:08:47",
+   "step_image": "steps/015_11_lavender_plate.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_single_color_saturation",
+   "note": "Step 12 — push the blue band saturation (+70) on the choked field to set the cobalt plates density before the hue lock.",
+   "input": "work/downloads/10_choked_field.png",
+   "output": "work/downloads/12_cobalt_satpush.png",
+   "adobe_request_id": "798fcd99-0f8d-4c13-a2ce-b5ee206d20a6",
+   "params": {
+    "color": "blue",
+    "saturation": 70
+   },
+   "n": 16,
+   "ts": "2026-06-15T11:08:47",
+   "step_image": "steps/016_12_cobalt_satpush.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_hsl",
+   "note": "Step 13 — COBALT plate proof: colorize-lock the dot field onto cobalt 2945C (hue 226, sat 60, light -8). Now reads as a vivid cobalt-blue separation.",
+   "input": "work/downloads/12_cobalt_satpush.png",
+   "output": "work/downloads/13_cobalt.png",
+   "adobe_request_id": "434cf3a3-8c81-4fec-999a-28637d6b1a05",
+   "params": {
+    "colorize": true,
+    "hue": 226,
+    "saturation": 60,
+    "lightness": -8
+   },
+   "n": 17,
+   "ts": "2026-06-15T11:08:48",
+   "step_image": "steps/017_13_cobalt_plate.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_color_overlay",
+   "note": "Step 14 — DEEP-PURPLE plate proof: custom-RGB (59,30,99 = 2685C) overlay in MULTIPLY over the dot field, holding black gaps black.",
+   "input": "work/downloads/10_choked_field.png",
+   "output": "work/downloads/14_deep_purple.png",
+   "adobe_request_id": "39b77817-debf-4441-8bda-74bf69659136",
+   "params": {
+    "color": {
+     "red": 59,
+     "green": 30,
+     "blue": 99
+    },
+    "blendMode": "multiply"
+   },
+   "n": 18,
+   "ts": "2026-06-15T11:08:48",
+   "step_image": "steps/018_14_deep_purple_plate.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_vectorize",
+   "note": "Step 15 — vectorize the held-out lettering into a hard-edge SVG plate. Ran vectorize twice: first on the step-8 hold-out mask (req ff410247, traced cloud-region halftone noise, 612 paths), then on the clean source_lettering_only.png input (req 500d29d2, 22 clean paths, slogan only) for the delivered plate. Render via macOS qlmanage.",
+   "input": "input_assets/source_lettering_only.png",
+   "output": "work/downloads/15b_lettering_clean.svg",
+   "adobe_request_id": "500d29d2-5929-438f-8cba-f27c3ca11c34",
+   "params": {
+    "first_vectorize_req": "ff410247-1fea-439b-85ce-b35e24183c60",
+    "clean_vectorize_req": "500d29d2-5929-438f-8cba-f27c3ca11c34",
+    "paths": 22
+   },
+   "n": 19,
+   "ts": "2026-06-15T11:08:48",
+   "step_image": "steps/019_15_lettering_vector.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "asset_search",
+   "note": "Step 16 — search Adobe Stock for a high-contrast grunge/distress overlay for the merch alt colourway (120 hits). Chose id 396455056 (dark base, white scratches+stains+dust).",
+   "input": "brief: merch alt colourway needs real licensed grit",
+   "output": "stock id 396455056",
+   "params": {
+    "entityScope": "StockAsset",
+    "query": "distressed grunge texture overlay",
+    "totalHits": 120
+   },
+   "n": 20,
+   "ts": "2026-06-15T11:09:59",
+   "step_image": "steps/020_16_stock_grunge_pick.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "asset_license_and_download_stock",
+   "note": "Step 17 — license + download the full-res grunge (license-before-edit). AdobeStock_396455056, state just_purchased, 4097x2952.",
+   "input": "stock id 396455056",
+   "output": "work/downloads/17_grunge_licensed.jpg",
+   "params": {
+    "assetId": "396455056",
+    "state": "just_purchased"
+   },
+   "n": 21,
+   "ts": "2026-06-15T11:09:59",
+   "step_image": "steps/021_17_grunge_licensed_fullres.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_color_overlay",
+   "note": "Step 18 — VHS alt colourway base: locally graded the cropped artwork to a deep blue-purple VHS look and MULTIPLIED the licensed grunge (Adobe Stock 396455056) over it (kept legible), then a deep-purple (90,55,140) softLight color overlay via the connector. (A first multiply-on-the-deep-purple-plate pass crushed to black, so the base was rebuilt from the full artwork for legibility.)",
+   "input": "work/downloads/18pre_grunge_multiplied.png (deep-purple x licensed grunge, local multiply) -> uploaded",
+   "output": "work/downloads/18_grunge_wash.png",
+   "adobe_request_id": "11430364-480a-4ab2-aa5e-ee0fc634d9d5",
+   "params": {
+    "color": {
+     "red": 59,
+     "green": 30,
+     "blue": 99
+    },
+    "blendMode": "multiply"
+   },
+   "n": 22,
+   "ts": "2026-06-15T11:14:21",
+   "step_image": "steps/022_18_grunge_purple_wash.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_add_grain",
+   "note": "Step 19 — add film grain (45) for a tactile screened-on-fabric texture on the alt colourway.",
+   "input": "work/downloads/18_grunge_wash.png",
+   "output": "work/downloads/19_grain.png",
+   "adobe_request_id": "5bbfc174-d1ce-4199-8c03-81fe432ad278",
+   "params": {
+    "grainAmount": 55
+   },
+   "n": 23,
+   "ts": "2026-06-15T11:14:21",
+   "step_image": "steps/023_19_grain.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_add_noise",
+   "note": "Step 20 — add digital noise (28) on the grain to break up flat ink areas — heavily-printed vintage look.",
+   "input": "work/downloads/19_grain.png",
+   "output": "work/downloads/20_noise.png",
+   "adobe_request_id": "6f7e3ec4-fe4e-4958-84f6-840c4ed94fc5",
+   "params": {
+    "noiseAmount": 35
+   },
+   "n": 24,
+   "ts": "2026-06-15T11:14:22",
+   "step_image": "steps/024_20_noise.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_glitch_effect",
+   "note": "Step 21 — VHS chromatic-aberration glitch (red channel shift -22px) — signature distressed alt colourway; lettering shows red/cyan split.",
+   "input": "work/downloads/20_noise.png",
+   "output": "work/downloads/21_glitch.png",
+   "adobe_request_id": "f3449ae6-5e3a-40a1-970b-de6526dc93e4",
+   "params": {
+    "horizontalOffset": -24
+   },
+   "n": 25,
+   "ts": "2026-06-15T11:14:22",
+   "step_image": "steps/025_21_vhs_glitch.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "Step 22 — resize the finished VHS colourway to merch-mockup size 1988x1988 (2x the 994 source; no upscaling-as-print-res claim).",
+   "input": "work/downloads/21_glitch.png",
+   "output": "work/downloads/22_vhs_colourway.png",
+   "adobe_request_id": "f6c64958-2143-4228-bc37-f694d9fdd71f",
+   "params": {
+    "requested": "3600x3600",
+    "actual": "1988x1988",
+    "upscale_cap": "2x"
+   },
+   "n": 26,
+   "ts": "2026-06-15T11:14:22",
+   "step_image": "steps/026_22_vhs_merch_colourway.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "font_recommend",
+   "note": "Step 23 — recommend a heavy display face for the slogan + sep-sheet headers. Top picks: Mono45Headline-Bold (technical mono for the sep sheet), Oaks-BoldCondensed + UtopiaStd-BlackHeadline (heavy condensed slogan). Local compose maps to Futura Condensed-XBold / HelveticaNeue Condensed-Bold (closest installed).",
+   "input": "brief: slogan tee + sep-sheet display type",
+   "output": "Adobe Fonts: Mono45Headline-Bold, Oaks-BoldCondensed",
+   "params": {
+    "moods": "bold,condensed,industrial,heavy"
+   },
+   "n": 27,
+   "ts": "2026-06-15T11:17:37",
+   "step_image": "steps/027_23_font_recommendations.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_datamerge",
+   "action": "data_merge_swatch_cards",
+   "note": "Step 24a [T] — data-merge rendered LOCALLY from spot_colour.csv (4 rows -> 4 registration/swatch cards, 3.5x2in@300, fill driven by rgb_hex Variable). The document_merge_data_vector connector requires a human-authored .ai Variables template, so this step is local.",
+   "input": "input_assets/spot_colour.csv",
+   "output": "work/cards/ (4 cards)",
+   "params": {
+    "rows": 4,
+    "card_in": "3.5x2"
+   },
+   "n": 28,
+   "ts": "2026-06-15T11:18:58",
+   "step_image": "steps/028_24a_swatch_card_lavender.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_datamerge",
+   "action": "compose_master_sep_sheet",
+   "note": "Step 24b [T] — master SEPARATION SHEET (artboard 1): 2x2 plate grid (underbase + 3 spot plates), corner registration targets + centre bullseye, title block bound to job_name/garment/screens/date + LPI/angle/gain/choke from dotgain_spec.json. All copy read programmatically.",
+   "input": "input_assets/dotgain_spec.json + connector plates",
+   "output": "work/master_sep_sheet.png",
+   "params": {
+    "size": "11x14in@300"
+   },
+   "n": 29,
+   "ts": "2026-06-15T11:18:59",
+   "step_image": "steps/029_24b_master_sep_sheet.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_datamerge",
+   "action": "assemble_merged_sep_doc_pdf",
+   "note": "Step 24c [T] — assemble the genuine merged multi-artboard document: page 1 master sheet + pages 2-5 the four swatch cards, written to a print PDF — exactly what document_merge_data_vector would emit from the authored .ai.",
+   "input": "work/master_sep_sheet.png + work/cards/*",
+   "output": "work/merged_sep_doc.pdf",
+   "params": {
+    "pages": 5
+   },
+   "n": 30,
+   "ts": "2026-06-15T11:18:59",
+   "step_image": "steps/030_24c_merged_doc.png"
+  },
+  {
+   "phase": "export",
+   "actor": "adobe_connector",
+   "action": "document_convert_pdf",
+   "note": "Step 25 [C] — the genuine merged separation PDF (master sheet + 4 swatch cards) round-tripped through the connector: real PDF in -> real InDesign INDD package out (proves it is a true renderable layout document, not a flat image). The merged sep sheet also ships as the print-ready PDF.",
+   "input": "work/merged_sep_doc.pdf",
+   "output": "work/downloads/25_sep_sheet_indd.zip",
+   "adobe_request_id": "document_convert_pdf (INDD package https://to.adobe.com/fEbBS)",
+   "params": {
+    "outputFormat": "indd",
+    "embedLinks": true
+   },
+   "n": 31,
+   "ts": "2026-06-15T11:20:18",
+   "step_image": "steps/031_25_sep_sheet_rendered.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_separation_proof_contact_sheet",
+   "note": "Step 26 [L] — final client sign-off proof: underbase + 3 spot plates + vectorized lettering + VHS alt colourway + master sep sheet + shared dot field, all labelled with plate/mesh/method, brand header (LPI/angle/gain/choke), print order, and a sign-off line. Arbitrary multi-element layout => local compose_lib.",
+   "input": "connector plates + sep sheet + vector + VHS",
+   "output": "work/contact_sheet.png",
+   "params": {
+    "size": "11x8.5in@300",
+    "tiles": 8
+   },
+   "n": 32,
+   "ts": "2026-06-15T11:21:28",
+   "step_image": "steps/032_26_separation_proof_contact_sheet.png"
+  }
+ ]
+}

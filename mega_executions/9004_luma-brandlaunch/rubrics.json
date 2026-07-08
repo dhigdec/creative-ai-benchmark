@@ -1,0 +1,567 @@
+{
+  "task_id": 9004,
+  "input_assets": [
+    {
+      "key": "logo_scan",
+      "display": "Hand-inked LUMA logo scan",
+      "files": [
+        "input_assets/luma_logo_inked_scan.png"
+      ],
+      "what_it_is": "A 1024x1024 flatbed-scan of a hand-inked LUMA wordmark plus a small sun glyph in one flat forest-green ink on warm off-white art paper, supplied for background-removal + vectorization.",
+      "items": [
+        {
+          "id": "logo_scan_wordmark_spelling",
+          "type": "yesno",
+          "question": "Does the scan show the wordmark spelled exactly 'LUMA' in four hand-lettered capital letters, with a single small sun/rays glyph above it?",
+          "guidance": "YES = the four caps L-U-M-A in order, brush-lettered, with one minimal sun glyph above the word and no stray marks resembling extra letters. NO = misspelling, mixed case, missing/extra letters, or no glyph.",
+          "reference": "Correct: 'LUMA' in all caps with organic brush strokes, and a half-sun-with-rays glyph centered above the word. Spelling is flawless.",
+          "type_ref": "yesno"
+        },
+        {
+          "id": "logo_scan_single_flat_ink",
+          "type": "likert5",
+          "question": "How cleanly is the mark rendered as a single flat dark-forest ink on bare off-white paper, suitable for clean background removal and tracing?",
+          "guidance": "5 = one solid forest-green ink (~#14322A), crisp unbroken strokes, near-uniform cream paper with negligible texture/shadow; trivially separable from background. 1 = gradients/second colour, broken strokes, busy or shadowed paper that would foul a tracer.",
+          "reference": "A near-flat dark forest-green ink on warm cream paper; QC noted ink very close to #14322A (slightly darker) and very crisp. Edges are clean and high-contrast — good for remove_background -> vectorize.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "logo_scan_handinked_character",
+          "type": "likert5",
+          "question": "Does the wordmark read as genuinely hand-inked (organic, slightly uneven brush character) rather than a digital font?",
+          "guidance": "5 = visible brush character, slightly uneven stroke weights, tiny natural terminals — clearly inked by hand. 1 = perfectly uniform vector/font-like strokes with no organic variation.",
+          "reference": "Strokes show hand-brush character with mild weight variation; QC flagged it as almost 'too crisp' but still organic. Acceptable as a hand-inked source.",
+          "type_ref": "likert5"
+        }
+      ]
+    },
+    {
+      "key": "product_raw_shots",
+      "display": "8 raw product shots (cluttered tungsten table)",
+      "files": [
+        "input_assets/product_raw_01_bottle.jpg",
+        "input_assets/product_raw_02_jar.jpg",
+        "input_assets/product_raw_03_bottle.jpg",
+        "input_assets/product_raw_04_tube.jpg",
+        "input_assets/product_raw_05_jar.jpg",
+        "input_assets/product_raw_06_bottle.jpg",
+        "input_assets/product_raw_07_bottle.jpg",
+        "input_assets/product_raw_08_jar.jpg"
+      ],
+      "what_it_is": "Eight 1024x1536 photoreal 'founder's camera' product photos — frosted/amber/cloud/sand vessels (bottle, jar, tube, etc.) on a cluttered warm tungsten-lit wooden table, each carrying a real embossed mark (LUMA or No.x) on the vessel front.",
+      "items": [
+        {
+          "id": "prod_raw_emboss_marks",
+          "type": "likert5",
+          "question": "Across the 8 shots, do the vessels carry real physical embossed/debossed marks (LUMA or No.x) pressed into the glass/metal, catching the lamp glint — not printed stickers?",
+          "guidance": "5 = clearly raised/recessed 3-D lettering catching light on the front of each vessel (e.g. 'No.1' on the amber jar, 'LUMA' on the frosted dropper). 1 = blank fronts or flat printed labels.",
+          "reference": "product_raw_02_jar shows 'No.1' debossed into the amber jar; product_raw_01_bottle shows 'LUMA' etched on the frosted glass. Emboss words should match the copy deck (LUMA on shots 1,3,5,7; No.1/No.4/No.6/No.8 on the others).",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "prod_raw_warm_clutter_realism",
+          "type": "likert5",
+          "question": "Do the shots read as candid, lived-in raw photography — strong warm tungsten cast, real clutter (tape measure, sample vessels, cloth, power-strip cable), shallow depth of field?",
+          "guidance": "5 = believable handheld documentary look: orange/amber cast, genuine glass refraction/specular hotspots, working mess around the hero vessel, soft DOF. 1 = clean white-sweep studio shot, CGI-glossy, staged or sterile.",
+          "reference": "Each frame has the amber tungsten cast, a coiled tape measure, out-of-focus sample bottles, a crumpled cloth and a power-strip cable, with a real shadow pooled under the vessel — exactly the 'raw drop' the retouch pipeline must clean up.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "prod_raw_eight_distinct_vessels",
+          "type": "yesno",
+          "question": "Do the 8 shots depict 8 distinct vessel types consistent with the SKU line (dropper bottle, amber jar, pump/lotion bottle, tube, wide mask jar, roller, airless pump, balm jar)?",
+          "guidance": "YES = eight visually different containers matching the product_line categories. NO = duplicate/identical vessels or types that don't map to the 8 SKUs.",
+          "reference": "Files name them bottle/jar/bottle/tube/jar/bottle/bottle/jar; viewed shots confirm a frosted dropper serum (01) and a squat amber cream jar (02), distinct vessel forms per SKU.",
+          "type_ref": "yesno"
+        }
+      ]
+    },
+    {
+      "key": "brand_copy_deck",
+      "display": "Brand copy deck (positioning, palette, SKUs, guideline body)",
+      "files": [
+        "input_assets/brand_copy_deck.json",
+        "input_assets/brand_copy_deck.md"
+      ],
+      "what_it_is": "The founder's brand copy deck: tagline, manifesto, 6 adjectives, the exact 4-colour palette with hex/cmyk/rgb, 8 product SKUs (name/category/size/active/emboss word), guideline body copy and 4 launch captions.",
+      "items": [
+        {
+          "id": "copy_palette_exact_hexes",
+          "type": "yesno",
+          "question": "Does the palette list exactly the four required colours with the non-negotiable hexes Forest #14322A, Sand #C8B79A, Cloud #F4F1EA, Ink #1A1A1A?",
+          "guidance": "YES = all four names present with exactly those hex values and plausible cmyk/rgb. NO = any hex altered, missing colour, or extra colour.",
+          "reference": "JSON palette = Forest #14322A, Sand #C8B79A, Cloud #F4F1EA, Ink #1A1A1A with roles + cmyk/rgb — all four exact.",
+          "type_ref": "yesno"
+        },
+        {
+          "id": "copy_eight_skus_structure",
+          "type": "likert5",
+          "question": "Does product_line contain exactly 8 well-formed SKUs (name, category, size, hero_active, emboss_word) that the downstream product/guideline plates can rely on?",
+          "guidance": "5 = 8 distinct elegant product names with sensible category/size/active and an emboss_word per SKU. 1 = wrong count, duplicated names, or missing fields.",
+          "reference": "8 SKUs incl. 'Luminous Dew Cleanser' (emboss LUMA), 'Balancing Botanical Serum' (emboss No.1), ... 'Refine & Glow Serum' (emboss No.8); emboss words alternate LUMA / No.x as in the raw shots.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "copy_voice_on_brand",
+          "type": "likert5",
+          "question": "Is the written copy (tagline, manifesto, do/don'ts, captions) on-brand for the stated calm, quietly-confident, never-hyped clean-beauty voice?",
+          "guidance": "5 = serene, ingredient-literate, no exaggerated claims; do/don'ts and captions consistent. 1 = hyped, clinical-jargon-heavy, or off-voice.",
+          "reference": "Tagline 'Serene efficacy, naturally luminous skin.'; manifesto in exactly 3 calm sentences; do/don'ts include 'Don't overpromise or hype results'; captions calm with at most one emoji.",
+          "type_ref": "likert5"
+        }
+      ]
+    },
+    {
+      "key": "team_roster",
+      "display": "Team roster CSV (6 teammates)",
+      "files": [
+        "input_assets/team_roster.csv",
+        "input_assets/team_roster.json"
+      ],
+      "what_it_is": "A 6-row roster with columns full_name,title,email,phone,pronouns — the data-merge source for one business card per teammate.",
+      "items": [
+        {
+          "id": "roster_columns_exact",
+          "type": "yesno",
+          "question": "Are the columns exactly full_name, title, email, phone, pronouns with 6 rows, so the business-card data-merge binds cleanly?",
+          "guidance": "YES = those five header names exactly and six teammate rows. NO = renamed/extra columns or wrong row count.",
+          "reference": "Header: full_name,title,email,phone,pronouns; 6 rows (Anya Sharma … Chloe Dubois).",
+          "type_ref": "yesno"
+        },
+        {
+          "id": "roster_consistency",
+          "type": "likert5",
+          "question": "Is the roster internally consistent and diverse (firstname@luma.co emails, 555-prefixed phones, varied pronouns, non-duplicated titles)?",
+          "guidance": "5 = every email is firstname@luma.co lowercase, phones use the 555 prefix, pronouns vary (she/he/they), titles all distinct. 1 = mismatched domains, duplicate titles, or implausible data.",
+          "reference": "anya@luma.co / +1 (415) 555-0101 / she-her; jordan@luma.co they/them; six distinct titles (Founder & CEO, Head of Product, Brand & Creative Director, Operations Lead, CX Lead, Growth Marketing Lead).",
+          "type_ref": "likert5"
+        }
+      ]
+    },
+    {
+      "key": "company_info",
+      "display": "Company-info CSV (single row, letterhead)",
+      "files": [
+        "input_assets/company_info.csv",
+        "input_assets/company_info.json"
+      ],
+      "what_it_is": "A single-row company record with columns company_name,tagline,street,city_state_zip,website,phone,social_handle — the data-merge source for the letterhead.",
+      "items": [
+        {
+          "id": "company_columns_exact",
+          "type": "yesno",
+          "question": "Is there exactly one row with columns company_name, tagline, street, city_state_zip, website, phone, social_handle?",
+          "guidance": "YES = all seven columns present and exactly one data row. NO = missing column, renamed field, or multiple/zero rows.",
+          "reference": "One row: LUMA Skincare, Inc. / Serene Skincare, Radiant Living. / Suite 200, 1450 Serenity Way / San Francisco, CA 94105 / www.luma.co / (888) 555-0123 / @luma.skin.",
+          "type_ref": "yesno"
+        },
+        {
+          "id": "company_brand_consistency",
+          "type": "likert5",
+          "question": "Is the company record consistent with the rest of the kit (luma.co domain, calm tagline, plausible US address and 555 phone)?",
+          "guidance": "5 = website www.luma.co matches team emails, tagline on-brand, address/phone/handle plausible and consistent. 1 = different domain, off-voice tagline, or implausible data.",
+          "reference": "website www.luma.co matches the @luma.co team emails; handle @luma.skin; San Francisco, CA 94105; phone (888) 555-0123.",
+          "type_ref": "likert5"
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "logo_delivery_set",
+      "display": "Vectorized logo master + delivery set",
+      "files": [
+        "outputs/01_logo/luma_logo_fullcolour.png",
+        "outputs/01_logo/luma_logo_reversed_knockout.png",
+        "outputs/01_logo/luma_logo_1colour_forest.png",
+        "outputs/01_logo/luma_logo_1colour_black.png",
+        "outputs/01_logo/luma_logo_traced_master.svg",
+        "outputs/01_logo/luma_logo_master.pdf"
+      ],
+      "what_it_is": "The cleaned, vectorized LUMA mark delivered as full-colour, reversed-knockout, and 1-colour (forest + black) variants in PNG/SVG/PDF, traced from the hand-inked scan.",
+      "items": [
+        {
+          "id": "logo_out_vector_fidelity",
+          "type": "likert5",
+          "question": "Does the vectorized logo faithfully reproduce the hand-inked wordmark + sun glyph with smooth, clean traced edges (no paper noise, no jaggies)?",
+          "guidance": "5 = crisp closed vector paths preserving the brush character and the sun glyph, transparent background, no scanner artefacts. 1 = ragged/incomplete trace, lost glyph, leftover paper texture, or broken letters.",
+          "reference": "luma_logo_fullcolour.png shows a clean forest 'LUMA' + half-sun-rays glyph on transparency; the traced master is ~12 glyph paths derived from image_vectorize req fc9d6c31. Edges are smooth and the glyph is intact.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "logo_out_variant_set_complete",
+          "type": "yesno",
+          "question": "Are all four required logo variants present and visually correct: full-colour, reversed knockout, 1-colour forest, and 1-colour black?",
+          "guidance": "YES = full-colour forest mark; reversed = cream/cloud mark knocked out of a forest field; 1-colour forest; 1-colour black — each spelled LUMA with the glyph. NO = any variant missing or wrong (e.g. knockout not actually reversed).",
+          "reference": "luma_logo_reversed_knockout.png is cream 'LUMA' on a solid forest field; full-colour is forest on transparent; 1-colour forest and 1-colour black both present. All four delivered as PNG/SVG (+ PDF masters).",
+          "type_ref": "yesno"
+        },
+        {
+          "id": "logo_out_colour_accuracy",
+          "type": "likert5",
+          "question": "Do the logo colours match the brand system (forest ~#14322A ink, cream/cloud ~#F4F1EA for the reversed field/knockout)?",
+          "guidance": "5 = forest and cloud read as the brand hexes across variants. 1 = off-hue green, grey instead of cream, or inconsistent colour between variants.",
+          "reference": "Full-colour mark is dark forest matching #14322A; reversed field is deep forest with a warm-cream knockout (Cloud #F4F1EA). Colours are consistent with the palette.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "logo_out_print_res",
+          "type": "yesno",
+          "question": "Are the delivery files at usable print resolution (raster variants >=1000px on the long edge plus vector SVG/PDF masters)?",
+          "guidance": "YES = PNGs around 1218x703 and scalable SVG/PDF masters provided. NO = tiny low-res rasters only, no vector master.",
+          "reference": "luma_logo_fullcolour.png = 1218x703; traced_master.svg and luma_logo_master.pdf provided as scalable masters (README notes 300dpi raster set rendered from the vector master).",
+          "type_ref": "yesno"
+        }
+      ]
+    },
+    {
+      "key": "products_white_sweep",
+      "display": "8 white-sweep retouched product images",
+      "files": [
+        "outputs/02_products/prod01_Luminous_Dew_Cleanser.png",
+        "outputs/02_products/prod02_Balancing_Botanical_Serum.png",
+        "outputs/02_products/prod05_Vitality_Eye_Elixir.png",
+        "outputs/02_products/prod08_Refine_and_Glow_Serum.png"
+      ],
+      "what_it_is": "Eight 1500x1500 e-commerce tiles: each raw vessel straightened, cut out, dropped on pure catalogue-white, emboss popped, tonally graded, sharing one 'LUMA Catalogue' look.",
+      "items": [
+        {
+          "id": "prod_out_pure_white_cutout",
+          "type": "likert5",
+          "question": "Is each product cleanly cut out and sitting on a pure white (255,255,255) sweep with tidy edges and no leftover table/clutter?",
+          "guidance": "5 = crisp subject mask, pure-white corners, no halo or stray background, vessel fully intact. 1 = ragged edges, grey/coloured background, clipped vessel, or visible original clutter.",
+          "reference": "All 8 tiles are 1500x1500 with the vessel isolated on white; README verifies pure 255,255,255 corners on all 8. prod02 (amber No.1 jar) and prod08 (kraft balm jar) show clean cutout edges.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "prod_out_cohesive_preset",
+          "type": "likert5",
+          "question": "Do all 8 share one cohesive tonal look (the 'LUMA Catalogue' preset) so they read as a single editorial set?",
+          "guidance": "5 = consistent exposure key, contrast and colour grade across all 8. 1 = wildly mismatched brightness/colour from tile to tile.",
+          "reference": "All 8 were run through image_apply_preset ('Color - Natural' = LUMA Catalogue); README notes a deliberate shared warm key for cohesion. The set is consistent even though warm.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "prod_out_warm_neutralisation",
+          "type": "likert5",
+          "question": "How well was the raw tungsten/amber cast neutralised toward a clean catalogue white balance (as the brief's white-balance step asked)?",
+          "guidance": "5 = vessels read close to neutral catalogue tone with true material colour. 1 = heavy orange/amber cast retained, vessels look dim and golden rather than clean.",
+          "reference": "Partial: the products retain a deliberate warm/amber key (prod01 frosted bottle and prod08 kraft jar are notably golden/dim). README discloses this as an intentional warm catalogue tone rather than a fully neutral daylight balance.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "prod_out_emboss_legible",
+          "type": "yesno",
+          "question": "Is the embossed mark on each vessel still visible after retouch (e.g. 'No.1' on the amber jar, 'LUMA' on the frosted bottle, 'No.8' on the kraft jar)?",
+          "guidance": "YES = the debossed lettering survives and is readable on the finished tile. NO = the emboss was flattened away or blown out by the highlight pop.",
+          "reference": "prod02 retains 'No.1', prod01 retains 'LUMA', prod08 retains 'No.8'. README notes select_by_prompt for the etched label failed (low-contrast frosted emboss) so the subject mask was used for the pop — emboss remains visible but subtle.",
+          "type_ref": "yesno"
+        }
+      ]
+    },
+    {
+      "key": "lifestyle_scenes",
+      "display": "3 graded Adobe Stock lifestyle scenes",
+      "files": [
+        "outputs/03_lifestyle/scene1.jpg",
+        "outputs/03_lifestyle/scene2.jpg",
+        "outputs/03_lifestyle/scene3.jpg"
+      ],
+      "what_it_is": "Three real Adobe-Stock lifestyle frames (sunlit shelf with botanical vine, hands applying cream, linen/botanical flatlay) licensed via the connector and graded to the LUMA look with HSL + shallow lens blur.",
+      "items": [
+        {
+          "id": "life_out_on_brand_scenes",
+          "type": "likert5",
+          "question": "Are the three scenes on-brand clean-beauty lifestyle frames (sunlit shelf, hands applying balm/cream, linen flatlay) and photoreal?",
+          "guidance": "5 = three distinct, authentic, serene clean-beauty scenes matching the brief moodboard. 1 = off-topic, low-quality, or duplicate stock.",
+          "reference": "scene1 = sunlit concrete shelf with a botanical vine and dappled light; scene2 = woman in a towel applying cream at a mirror; scene3 = linen/botanical flatlay. All photoreal Adobe Stock (ids 637559896 / 460123590 / 497427017, just_purchased).",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "life_out_grade_match",
+          "type": "likert5",
+          "question": "Have the scenes been graded to match the product set (LUMA Catalogue preset, forest/sand HSL pull, shallow lens blur) so lifestyle and product feel like one system?",
+          "guidance": "5 = warm, muted, cohesive tone with greens pulled toward forest and a soft depth-of-field. 1 = raw stock look, mismatched colour, no grade.",
+          "reference": "README: image_apply_preset + image_adjust_hsl (green->forest, req f6b55a49) + image_apply_lens_blur applied; the greenery in scene1/scene3 reads forest-leaning and consistent with the kit.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "life_out_resolution",
+          "type": "yesno",
+          "question": "Are the lifestyle frames delivered at a usable web/print size (~2400px) rather than thumbnails?",
+          "guidance": "YES = large graded JPGs suitable for the guideline photography plates and web. NO = tiny low-res crops.",
+          "reference": "README states 2400px graded frames; files are full lifestyle JPGs used on the guideline photography pages and contact sheet.",
+          "type_ref": "yesno"
+        }
+      ]
+    },
+    {
+      "key": "hero_banner",
+      "display": "Forest duotone 21:9 web-banner hero",
+      "files": [
+        "outputs/04_hero/luma_hero_banner_21x9.png",
+        "outputs/04_hero/luma_hero_banner_21x9_clean.png"
+      ],
+      "what_it_is": "A forest duotone, film-grained hero built from the strongest lifestyle scene, generatively expanded to 21:9 with the LUMA wordmark + tagline composed over a soft scrim.",
+      "items": [
+        {
+          "id": "hero_out_ratio_dims",
+          "type": "yesno",
+          "question": "Is the hero banner a true 21:9 web ratio at the stated 3208x1375 px?",
+          "guidance": "YES = 3208x1375 (2.33:1, i.e. 21:9). NO = wrong aspect ratio or much smaller.",
+          "reference": "luma_hero_banner_21x9.png measures 3208x1375 = 2.33:1 (21:9), produced via image_generative_expand (req dbddd67c).",
+          "type_ref": "yesno"
+        },
+        {
+          "id": "hero_out_duotone_grain",
+          "type": "likert5",
+          "question": "Does the hero read as a cohesive forest-toned duotone with fine film grain and a clean generative-expand seam?",
+          "guidance": "5 = unified forest duotone, subtle grain, no visible expansion seam or warped artefacts. 1 = flat/untreated image, harsh seam, or obvious AI distortion at the extended edges.",
+          "reference": "Forest monochromatic tint (hue 158, req 0365f52f) + image_add_grain; the expanded canvas is seamless and the vine/shelf scene reads as a forest duotone. Note: it leans green more than a clear forest->sand gradient.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "hero_out_wordmark_tagline",
+          "type": "yesno",
+          "question": "Are the LUMA wordmark (with sun glyph) and the correct tagline composed legibly over the hero with left space for the headline?",
+          "guidance": "YES = reversed LUMA mark + tagline 'Serene efficacy, naturally luminous skin.' readable over a soft scrim. NO = missing mark, wrong/misspelled tagline, or illegible text.",
+          "reference": "Hero shows the cream LUMA wordmark + sun glyph centered and the tagline 'Serene efficacy, naturally luminous skin.' (matches brand_copy_deck) in a serif over a soft scrim.",
+          "type_ref": "yesno"
+        }
+      ]
+    },
+    {
+      "key": "business_cards",
+      "display": "Data-merged business cards (6 teammates)",
+      "files": [
+        "outputs/05_collateral/card_FRONT_shared.png",
+        "outputs/05_collateral/card_Anya_Sharma.png",
+        "outputs/05_collateral/card_Jordan_Lee.png",
+        "outputs/05_collateral/LUMA_Business_Cards_print.pdf"
+      ],
+      "what_it_is": "A shared forest-field front plus six personalized backs data-merged from the roster CSV, assembled into a 12-page print PDF at 90x55mm + 3mm bleed with crop marks.",
+      "items": [
+        {
+          "id": "cards_out_data_fidelity",
+          "type": "likert5",
+          "question": "Does each card back reproduce that teammate's roster data exactly (name, title, pronouns, email, phone, website) with no typos or swapped fields?",
+          "guidance": "5 = name/title/pronouns/email/phone match the CSV row character-for-character on every card. 1 = wrong data, misspelled names, swapped emails/phones, or pronouns missing.",
+          "reference": "card_Anya_Sharma: 'Anya Sharma' / 'Founder & CEO · she/her' / anya@luma.co / +1 (415) 555-0101 / www.luma.co — exactly matches team_roster row 1. One card per teammate (6).",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "cards_out_front_brand",
+          "type": "yesno",
+          "question": "Is the shared front a forest #14322A field with the reversed cream LUMA logo and the www.luma.co line?",
+          "guidance": "YES = solid forest field, centered reversed LUMA mark + sun glyph, 'www.luma.co' at the foot, crop marks visible. NO = wrong colour field, missing/mis-coloured logo, or missing URL.",
+          "reference": "card_FRONT_shared.png = deep forest field, cream LUMA wordmark + glyph centered, 'www.luma.co' in sand at the bottom, crop marks at the corners.",
+          "type_ref": "yesno"
+        },
+        {
+          "id": "cards_out_print_specs",
+          "type": "yesno",
+          "question": "Is the print PDF 12 pages (6 fronts + 6 backs) at 90x55mm plus 3mm bleed (~96x61mm) with crop marks?",
+          "guidance": "YES = 12 pages, ~96x61mm media box, crop marks present. NO = wrong page count, wrong size, or no bleed/crop marks.",
+          "reference": "LUMA_Business_Cards_print.pdf has 12 pages at 95.9x61.0mm (= 90x55 + 3mm bleed); crop marks visible on the card art.",
+          "type_ref": "yesno"
+        },
+        {
+          "id": "cards_out_typography",
+          "type": "likert5",
+          "question": "Does the card back use the brand type pairing correctly (serif display name, sand-coloured sans title/pronouns, forest/ink contacts)?",
+          "guidance": "5 = elegant serif name, sand secondary line, clean sans contacts, the small LUMA mark above the name. 1 = wrong fonts, no hierarchy, or off-palette colours.",
+          "reference": "card_Anya_Sharma shows a Lora-style serif 'Anya Sharma', sand 'Founder & CEO · she/her', and clean sans contact lines under a small forest LUMA mark.",
+          "type_ref": "likert5"
+        }
+      ]
+    },
+    {
+      "key": "letterhead",
+      "display": "Company letterhead (data-merged)",
+      "files": [
+        "outputs/05_collateral/LUMA_Letterhead.png",
+        "outputs/05_collateral/LUMA_Letterhead_print.pdf",
+        "outputs/05_collateral/LUMA_Letterhead_web.pdf"
+      ],
+      "what_it_is": "An A4 letterhead data-merged from the single-row company CSV: header with logo + company name + tagline, forest footer band with the full contact line, rendered to print (CMYK-intent, bleed) and web PDFs.",
+      "items": [
+        {
+          "id": "letter_out_data_fidelity",
+          "type": "yesno",
+          "question": "Does the letterhead show the exact company record from the CSV (LUMA Skincare, Inc.; tagline; full address; website; phone; social handle)?",
+          "guidance": "YES = company_name, tagline and every footer field match the CSV string exactly. NO = any field wrong, abbreviated, or missing.",
+          "reference": "Header 'LUMA Skincare, Inc.' + 'Serene Skincare, Radiant Living.'; forest footer 'Suite 200, 1450 Serenity Way · San Francisco, CA 94105 · www.luma.co · (888) 555-0123 · @luma.skin' — matches company_info exactly.",
+          "type_ref": "yesno"
+        },
+        {
+          "id": "letter_out_layout_brand",
+          "type": "likert5",
+          "question": "Is the letterhead a clean A4 layout with the LUMA logo top-left, a forest footer band, and a large empty live body area on Cloud background?",
+          "guidance": "5 = balanced header/footer, forest band footer, generous empty body, on-palette. 1 = cluttered, off-colour, logo missing, or no usable body space.",
+          "reference": "LUMA_Letterhead.png = forest LUMA mark top-left, serif company name top-right, hairline rule, large empty Cloud body, deep forest footer band with reversed contact line.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "letter_out_print_specs",
+          "type": "yesno",
+          "question": "Is the print letterhead A4 (210x297mm) with 3mm bleed (~216x303mm) and both print + web PDFs delivered?",
+          "guidance": "YES = ~216x303mm media box and both _print and _web PDFs present. NO = wrong size, no bleed, or only one variant.",
+          "reference": "LUMA_Letterhead_print.pdf = 215.9x302.9mm (A4 + 3mm bleed); both LUMA_Letterhead_print.pdf and LUMA_Letterhead_web.pdf delivered.",
+          "type_ref": "yesno"
+        }
+      ]
+    },
+    {
+      "key": "brand_guidelines",
+      "display": "Multi-page Brand Guidelines booklet",
+      "files": [
+        "outputs/05_collateral/LUMA_Brand_Guidelines.pdf",
+        "outputs/05_collateral/guidelines_indd_render/fig_image_4_16.jpeg",
+        "outputs/05_collateral/guidelines_indd_render/fig_image_1_1.jpeg"
+      ],
+      "what_it_is": "A 12-page A5-landscape print Brand Guidelines booklet (cover, logo usage, palette, type, photography, do/don't, collateral, contact) plus 12 INDD page renditions proving the layout converts faithfully.",
+      "items": [
+        {
+          "id": "guide_out_page_count_size",
+          "type": "yesno",
+          "question": "Is the booklet 12 pages at A5 landscape (210x148mm)?",
+          "guidance": "YES = 12 pages, 210x148mm. NO = wrong page count or page size/orientation.",
+          "reference": "LUMA_Brand_Guidelines.pdf = 12 pages at 210x148mm (A5 landscape); 12 matching INDD page renditions in guidelines_indd_render/.",
+          "type_ref": "yesno"
+        },
+        {
+          "id": "guide_out_system_coverage",
+          "type": "likert5",
+          "question": "Does the booklet cover the full visual system (logo usage, palette with hex/cmyk/rgb, type spec, photography plates, do/don't, collateral/social, contact) using the kit's own plates?",
+          "guidance": "5 = every required section present and populated with the real logo set, palette swatches, type spec, product-on-white + lifestyle plates and duotone hero. 1 = missing sections or placeholder/empty pages.",
+          "reference": "Type page (fig_image_4_16) shows 'Serene efficacy.' in Lora display + 'Naturally luminous skin.' in humanist sans with the spec paragraph; cover uses the duotone hero; palette/photography/collateral pages drop in the kit plates.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "guide_out_indd_roundtrip",
+          "type": "yesno",
+          "question": "Was the composed booklet round-tripped through the document_convert_pdf connector to produce faithful per-page INDD renditions?",
+          "guidance": "YES = 12 INDD page renditions present and matching the PDF pages. NO = no INDD renditions or mismatched/garbled pages.",
+          "reference": "README: genuine document_convert_pdf (PDF->InDesign package) produced 12 page renditions saved in guidelines_indd_render/ as proof of faithful layout.",
+          "type_ref": "yesno"
+        }
+      ]
+    },
+    {
+      "key": "social_set",
+      "display": "Platform-ready social launch set",
+      "files": [
+        "outputs/06_social/og_1200x630_hero.jpg",
+        "outputs/06_social/post_1080x1080_product.jpg",
+        "outputs/06_social/post_1080x1350_product.jpg",
+        "outputs/06_social/story_1080x1920_product.jpg",
+        "outputs/06_social/avatar_1080x1080.jpg",
+        "outputs/06_social/cover_820x312.jpg"
+      ],
+      "what_it_is": "Six exact-dimension social tiles (1080x1080, 1080x1350, 1080x1920, 1200x630 OG, square avatar, 820x312 cover) cropped from the hero/product and branded with wordmark + captions.",
+      "items": [
+        {
+          "id": "social_out_exact_dims",
+          "type": "yesno",
+          "question": "Are all six tiles at exactly the required platform dimensions (1080x1080, 1080x1350, 1080x1920, 1200x630, avatar 1080x1080, cover 820x312)?",
+          "guidance": "YES = every file measures exactly its target size. NO = any tile off by even a few px or wrong ratio.",
+          "reference": "Verified: post 1080x1080, post 1080x1350, story 1080x1920, og 1200x630, avatar 1080x1080, cover 820x312 — all exact.",
+          "type_ref": "yesno"
+        },
+        {
+          "id": "social_out_branding_captions",
+          "type": "likert5",
+          "question": "Are the tiles on-brand with the LUMA mark and captions drawn from the copy deck's social_captions / tagline?",
+          "guidance": "5 = LUMA wordmark present, captions match the deck verbatim, on-palette type. 1 = no branding, invented/misspelled captions, or off-brand styling.",
+          "reference": "og_1200x630 = forest duotone hero with LUMA mark + 'Serene efficacy, naturally luminous skin.'; story uses caption 'Unveiling LUMA: skincare that feels as good as it looks.' — both lifted from the copy deck.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "social_out_crop_quality",
+          "type": "likert5",
+          "question": "Are the subject-aware crops well-composed (product/hero correctly framed, nothing important cut off, headline space preserved)?",
+          "guidance": "5 = balanced crops with the vessel or hero properly placed and room for text. 1 = awkward crops chopping the product or text, or stretched/distorted imagery.",
+          "reference": "Crops produced via image_crop_and_resize; story_1080x1350 frames the sand pump bottle with the LUMA mark top-left and caption below — composed, not stretched.",
+          "type_ref": "likert5"
+        }
+      ]
+    },
+    {
+      "key": "delivery_tree_contact_sheet",
+      "display": "CC delivery tree + sign-off contact sheet",
+      "files": [
+        "outputs/luma_kit_contact_sheet.jpg",
+        "outputs/README.md"
+      ],
+      "what_it_is": "The structured Creative Cloud delivery tree (00_raw … 99_deliverables) plus an inline contact-sheet preview summarizing the whole kit for client sign-off.",
+      "items": [
+        {
+          "id": "tree_out_contact_sheet_coverage",
+          "type": "likert5",
+          "question": "Does the contact sheet present the full kit (logo variants, hero, 8 products, 3 lifestyle, collateral, social) on one coherent sign-off sheet?",
+          "guidance": "5 = every deliverable group thumbnailed and labelled with the palette footer. 1 = missing groups, mislabeled, or visually incoherent.",
+          "reference": "luma_kit_contact_sheet.jpg shows full-colour + reversed logo, 21:9 hero, all 8 white-sweep products, 3 lifestyle scenes, business card/letterhead/guidelines/social, footer 'Forest #14322A · Sand #C8B79A · Cloud #F4F1EA · Ink #1A1A1A — one system…'.",
+          "type_ref": "likert5"
+        },
+        {
+          "id": "tree_out_structured_tree",
+          "type": "yesno",
+          "question": "Is the delivery organized into the labelled folder tree (00_raw/01_logo/02_products/03_lifestyle/04_hero/05_collateral/06_social/99_deliverables)?",
+          "guidance": "YES = the eight numbered folders exist with the right deliverables in each. NO = flat dump or mis-foldered assets.",
+          "reference": "outputs/ contains 01_logo, 02_products, 03_lifestyle, 04_hero, 05_collateral, 06_social; README documents the CC tree 00_raw…99_deliverables created via asset_create_folders + asset_copy_assets.",
+          "type_ref": "yesno"
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "task_coherent_visual_system",
+      "type": "likert5",
+      "question": "Does the entire kit hold ONE coherent visual system — Forest/Sand/Cloud/Ink palette, one shared product preset, one duotone, one Lora/Inter-style type pairing — across logo, products, lifestyle, hero, collateral and social?",
+      "guidance": "5 = palette, grade, duotone and type read as a single brand across every deliverable. 1 = mismatched colours, inconsistent grade, or different type/treatment between pieces.",
+      "reference": "Forest #14322A / Sand #C8B79A / Cloud #F4F1EA / Ink #1A1A1A recur throughout; one warm 'LUMA Catalogue' grade on products + lifestyle, one forest duotone hero, one serif-display/sans-text pairing — confirmed on the contact sheet and guidelines.",
+      "type_ref": "likert5"
+    },
+    {
+      "id": "task_deliverables_complete",
+      "type": "yesno",
+      "question": "Are all eight asked deliverable groups present (logo set, 8 products, 3 lifestyle, 21:9 hero, cards+letterhead, guidelines booklet, social set, structured tree + contact sheet)?",
+      "guidance": "YES = every deliverable group exists and is non-trivial. NO = any group missing or empty.",
+      "reference": "All present: 01_logo (4 variants), 02_products (8 tiles), 03_lifestyle (3), 04_hero (21:9), 05_collateral (cards + letterhead + 12pp guidelines), 06_social (6 tiles), contact sheet + CC tree.",
+      "type_ref": "yesno"
+    },
+    {
+      "id": "task_copy_data_fidelity",
+      "type": "likert5",
+      "question": "Is all client copy/data reproduced verbatim from the input files (no retyping errors) across cards, letterhead, hero, social and guidelines?",
+      "guidance": "5 = every name/title/email/phone/address/tagline/caption matches the source CSV/JSON exactly. 1 = multiple typos, swapped fields, or invented copy.",
+      "reference": "Cards match team_roster rows exactly; letterhead matches company_info exactly; hero/social use copy-deck tagline + captions verbatim; README states all copy was read programmatically, never retyped.",
+      "type_ref": "likert5"
+    },
+    {
+      "id": "task_connector_workflow_real",
+      "type": "likert5",
+      "question": "Was the kit produced by genuinely exercising the Adobe connector workflow (remove_background, vectorize, subject-mask cutout chain, apply_preset, stock license, monochromatic_tint, generative_expand, crop_and_resize, convert_pdf), with honest disclosure of fallbacks?",
+      "guidance": "5 = real connector requestIds for the core ops and limitations logged honestly. 1 = no connector use or undisclosed local fabrication of the 'connector' steps.",
+      "reference": "~95 connector calls with requestIds in trajectory.json (e.g. image_vectorize fc9d6c31, image_remove_background 79f4a9f8, monochromatic_tint 0365f52f, generative_expand dbddd67c); README honestly logs that document_render_vector and document_merge_data_layout needed authored .ai/.indd and were substituted locally.",
+      "type_ref": "likert5"
+    },
+    {
+      "id": "task_print_production_ready",
+      "type": "yesno",
+      "question": "Are the print deliverables production-spec correct (cards 90x55mm + 3mm bleed + crop marks, letterhead A4 + bleed, guidelines A5 landscape 12pp), with CMYK handled as a disclosed prepress step?",
+      "guidance": "YES = sizes/bleed/crop marks correct and CMYK noted as a print-house step. NO = wrong sizes, no bleed/crop marks, or false CMYK claims.",
+      "reference": "Cards 95.9x61.0mm (90x55+3mm) 12pp with crop marks; letterhead 215.9x302.9mm (A4+3mm); guidelines 210x148mm 12pp; README discloses RGB->CMYK + PDF/X as a print-house prepress step rather than overclaiming.",
+      "type_ref": "yesno"
+    },
+    {
+      "id": "task_label_naming_integrity",
+      "type": "likert5",
+      "question": "Are the finished product tiles correctly mapped to their SKU names, or are there mismatches between the vessel shown and the product filename?",
+      "guidance": "5 = every product tile shows the vessel whose emboss/category matches its SKU filename. 1 = several tiles show the wrong vessel for the named SKU.",
+      "reference": "Partial: prod01_Luminous_Dew_Cleanser shows the frosted 'LUMA' dropper bottle and prod02_Balancing_Botanical_Serum shows the amber 'No.1' jar — the No.1 emboss matches the Balancing Botanical Serum SKU, but the dropper/jar vessel-to-category mapping should be checked against the copy deck (cleanser vs serum vessels) for full naming integrity.",
+      "type_ref": "likert5"
+    }
+  ]
+}

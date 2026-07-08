@@ -1,0 +1,464 @@
+{
+  "task_id": 2919,
+  "input_assets": [
+    {
+      "key": "approved_tee_artwork",
+      "display": "Approved tee artwork (cloud gradient + slogan on black)",
+      "files": [
+        "input_assets/approved_tee_artwork.png"
+      ],
+      "what_it_is": "The single client-approved separation source: an airbrushed cumulus cloud gradient over the upper two-thirds and the hard-edge white slogan over the lower third, on flat black, 1024x1024.",
+      "items": [
+        {
+          "id": "art_slogan_spelling",
+          "type": "yesno",
+          "question": "Does the slogan in the lower third read EXACTLY 'HEAD IN THE CLOUDS' with correct spelling and no duplicated, missing, or invented glyphs?",
+          "guidance": "YES = all four words present and correctly spelled in a bold condensed varsity/block sans, one line. NO = any misspelling, dropped/extra letter, or second line of text.",
+          "reference": "Correct: the artwork reads 'HEAD IN THE CLOUDS' in a tall condensed white slab face, single line across the lower third. This is the canonical spelling that all downstream plates must preserve."
+        },
+        {
+          "id": "art_gradient_palette",
+          "type": "likert5",
+          "question": "How well does the cloud gradient run smoothly from pale lavender highlights through cobalt-blue midtones into deep-purple shadow as specified?",
+          "guidance": "5 = clear three-stop lavender->cobalt->deep-purple airbrushed blend, smooth continuous tone ready to halftone, clouds fill the upper two-thirds. 1 = wrong colours, hard banding, or clouds barely present.",
+          "reference": "Correct: clouds show pale lilac/lavender highlights, blue-violet mids and dark purple shadows in a soft airbrushed blend. Per manifest QC, deep-purple is slightly muted and some black gaps show around cloud edges (minor), so a 4 is defensible; cobalt is the least dominant of the three stops."
+        },
+        {
+          "id": "art_type_vs_clouds_separation",
+          "type": "yesno",
+          "question": "Is the slogan rendered flat pure white with crisp hard edges (no gradient/halftone/glow on the type) while the clouds are smooth continuous tone, so the two are separable for hold-out vs halftone?",
+          "guidance": "YES = type is dead-flat hard-edge white over black, clouds are soft continuous tone. NO = type carries gradient/texture, or clouds already show a dot screen.",
+          "reference": "Correct: the white lettering is flat hard-edge (ready to be held out and vectorized); the clouds are smooth continuous tone with no dot screen (ready to be halftoned). This separability is the whole premise of the job."
+        }
+      ]
+    },
+    {
+      "key": "source_layers",
+      "display": "Registration-locked source layers (lettering-only + clouds-only)",
+      "files": [
+        "input_assets/source_lettering_only.png",
+        "input_assets/source_clouds_only.png"
+      ],
+      "what_it_is": "Two split source PNGs on flat black — the white slogan alone (the hold-out plate) and the cloud gradient alone (the halftone source) — meant to register pin-perfect to the composite.",
+      "items": [
+        {
+          "id": "src_lettering_clean_holdout",
+          "type": "yesno",
+          "question": "In source_lettering_only.png, is ONLY the white slogan present on flat black (no clouds, no halftone, no other marks) and spelled 'HEAD IN THE CLOUDS'?",
+          "guidance": "YES = isolated hard-edge white slogan in the lower third, empty black elsewhere, correct spelling. NO = any cloud tone, dot screen, stray text, or misspelling.",
+          "reference": "Correct: the lettering-only layer shows just 'HEAD IN THE CLOUDS' in flat white in the lower third on pure black; this is the clean hold-out plate the separator masks the type out of the halftone with."
+        },
+        {
+          "id": "src_clouds_no_text",
+          "type": "yesno",
+          "question": "In source_clouds_only.png, are the clouds the same gradient/shapes as the composite with ABSOLUTELY NO lettering, words, numbers, or watermarks anywhere?",
+          "guidance": "YES = clean cloud gradient, lower-third slogan area is empty flat black, zero text. NO = any letter/word/logo present, or clouds are a different shape than the composite.",
+          "reference": "Correct: the clouds-only layer shows the lavender->cobalt->deep-purple cumulus mass with the lower third left empty black and no text — the continuous-tone source for the halftone."
+        },
+        {
+          "id": "src_registration_lock",
+          "type": "likert5",
+          "question": "How well do the two source layers register to each other and to the composite (clouds in the upper area, slogan in the same lower-third position as the approved artwork)?",
+          "guidance": "5 = cloud placement and slogan position match the composite exactly, so overlaying them reproduces the approved artwork. 1 = layers are shifted/rescaled relative to the composite and would not register.",
+          "reference": "Correct: clouds occupy the upper region and the slogan sits in the lower third at the same placement as approved_tee_artwork.png; overlaying the two layers reconstructs the approved composite for pin-perfect registration."
+        }
+      ]
+    },
+    {
+      "key": "alt_drop_frames",
+      "display": "Alt-drop layout frames (sleeve hit / back print / pocket lockup)",
+      "files": [
+        "input_assets/altdrop_sleeve_hit.png",
+        "input_assets/altdrop_back_print.png",
+        "input_assets/altdrop_pocket_lockup.png"
+      ],
+      "what_it_is": "Three placement layout frames showing the approved cloud-and-slogan design re-scaled/re-positioned for a sleeve hit (tall narrow column), a back print, and a small left-chest pocket lockup.",
+      "items": [
+        {
+          "id": "altdrop_three_placements_distinct",
+          "type": "likert5",
+          "question": "Do the three frames clearly read as three DIFFERENT placements (narrow tall sleeve column, large back print, tiny compact pocket lockup) using the same cloud gradient and 'HEAD IN THE CLOUDS' slogan?",
+          "guidance": "5 = three visibly distinct scales/crops/positions, palette and slogan consistent across all three. 1 = frames are near-identical or the design differs between them.",
+          "reference": "Correct intent: sleeve = a tall slim vertical column with slogan stacked small ('HEAD / IN / THE / CLOUDS'); back = wide spread with the slogan large across centre; pocket = a single small cloud cluster with tiny slogan beneath. The three delivered frames do read as three distinct scales."
+        },
+        {
+          "id": "altdrop_no_label_caption",
+          "type": "yesno",
+          "question": "Are the frames clean client-delivery artwork with NO descriptive label text baked in (e.g. no 'ALT-DROP LAYOUT FRAME #1 — SLEEVE HIT' caption)?",
+          "guidance": "YES = only the design and slogan appear. NO = any frame carries a descriptive header/caption that is not part of the artwork.",
+          "reference": "DEFECT present: every frame has a baked-in caption — 'ALT-DROP LAYOUT FRAME #1 — SLEEVE HIT', '#2 — BACK PRINT', '#3 — POCKET LOCKUP' — which the prompt forbade. Correct answer is NO; this is a real flaw flagged in the manifest QC issues."
+        },
+        {
+          "id": "altdrop_flat_black_no_garment",
+          "type": "yesno",
+          "question": "Is each frame flat artwork on a SOLID FLAT BLACK background with NO garment/tee mockup rendered?",
+          "guidance": "YES = all three are flat black layout frames, no shirt. NO = any frame shows a garment, mockup, or non-black ground.",
+          "reference": "DEFECT present: altdrop_back_print.png renders an actual purple/charcoal tee mockup rather than flat black artwork, contradicting 'no garment, flat black'. Sleeve and pocket frames are flat black. Correct answer is NO."
+        }
+      ]
+    },
+    {
+      "key": "print_spec_data",
+      "display": "Print-spec dot-gain JSON/MD",
+      "files": [
+        "input_assets/dotgain_spec.json",
+        "input_assets/dotgain_spec.md"
+      ],
+      "what_it_is": "The pre-press spec that grounds the halftone radius and choke: LPI, dot shape, screen angle, min/max dot %, expected dot gain, choke px, underbase strategy, mesh budget, and 4-colour print order.",
+      "items": [
+        {
+          "id": "spec_internally_consistent",
+          "type": "yesno",
+          "question": "Are the spec values realistic and internally consistent for a 4-screen spot print on a black tee (LPI 45-65, single registration-safe angle, gain 18-25%, choke 1-3px, exactly 4 screens, print order starting with White Underbase)?",
+          "guidance": "YES = all fields in range and consistent. NO = an out-of-range or contradictory value (e.g. >4 screens, angle not 22/45, gain outside 18-25).",
+          "reference": "Correct: LPI 55, round dot, 22 degree angle, min dot 10% / max-on-underbase 75%, expected gain 22%, choke 2px / underbase 1.5px, max 4 screens, mesh [110,200,200,200], reg tolerance 0.3mm, print order White Underbase->Lavender->Cobalt->Deep Purple. All in range and consistent."
+        },
+        {
+          "id": "spec_grounds_downstream",
+          "type": "yesno",
+          "question": "Do the choke and LPI values in this spec actually match what the outputs claim to have used (choke 2px gaussian, LPI 55)?",
+          "guidance": "YES = outputs/README and the choked-dotfield deliverable cite the same numbers as this spec. NO = a mismatch between spec and what was applied.",
+          "reference": "Correct: README states 'LPI 55 ... 22% expected dot gain, 2px choke' and the choke step applied gaussian radius 2 (= dotgain_spec.choke_px), so the spec genuinely grounds the chain. Match expected."
+        }
+      ]
+    },
+    {
+      "key": "spot_colour_table",
+      "display": "Spot-colour CSV / JSON (merge source)",
+      "files": [
+        "input_assets/spot_colour.csv",
+        "input_assets/spot_colour.json"
+      ],
+      "what_it_is": "The 4-row ink table whose columns equal the Illustrator Variable names; it data-merges one registration/swatch card per row.",
+      "items": [
+        {
+          "id": "csv_header_matches_variables",
+          "type": "yesno",
+          "question": "Does the CSV header row contain EXACTLY the merge field names in order: ink_name,pantone,rgb_hex,mesh_count,squeegee_durometer,flash_temp_F,print_order?",
+          "guidance": "YES = header is exactly those 7 columns spelled correctly. NO = any renamed/missing/extra/misordered column (a literal mismatch would break the data-merge bind).",
+          "reference": "Correct: the CSV header is 'ink_name,pantone,rgb_hex,mesh_count,squeegee_durometer,flash_temp_F,print_order' — exactly the Variable names the .ai template binds."
+        },
+        {
+          "id": "csv_ink_values_correct",
+          "type": "yesno",
+          "question": "Are the four ink rows correct: White Underbase (—, FFFFFF, 110, dur70, ~300, #1), Lavender (2635C, C9B6E4, #2), Cobalt Blue (2945C, 1E3FAE, #3), Deep Purple (2685C, 3B1E63, dur75, 320, #4)?",
+          "guidance": "YES = all four ink names, Pantones, hex (no leading #), mesh, durometer, flash and order match. NO = any wrong Pantone, hex, or order.",
+          "reference": "Correct (verbatim from spot_colour.csv): White Underbase/—/FFFFFF/110/70/300/1; Lavender/2635C/C9B6E4/180/70/300/2; Cobalt Blue/2945C/1E3FAE/180/70/300/3; Deep Purple/2685C/3B1E63/180/75/320/4."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "white_underbase_plate",
+      "display": "White underbase separation",
+      "files": [
+        "outputs/plates/01_white_underbase.png",
+        "outputs/plates/01b_underbase_connector_fill.png"
+      ],
+      "what_it_is": "The first-down white underbase plate produced by select-subject -> invert -> fill white, shipped both as a clean B/W screen positive and the raw connector masked-fill.",
+      "items": [
+        {
+          "id": "underbase_covers_artwork",
+          "type": "likert5",
+          "question": "Does 01_white_underbase.png show a solid white plate covering the cloud-and-slogan artwork footprint (so it can be printed first and flashed under the spot colours)?",
+          "guidance": "5 = white fills the full artwork area including clouds and slogan, clean edges, black where there is no art. 1 = white missing over large parts of the art, or fills the wrong (background) region.",
+          "reference": "Correct: 01 is a B/W positive where the cloud mass and the 'HEAD IN THE CLOUDS' slogan are solid white on black — a true screen positive of the printable artwork extent."
+        },
+        {
+          "id": "underbase_polarity_documented",
+          "type": "yesno",
+          "question": "Are two underbase polarities shipped (clean B/W screen positive recommended for film, plus the raw connector masked-fill for reference) and is the recommended one identified?",
+          "guidance": "YES = both 01 and 01b present and the README names 01 as the film-recommended positive. NO = only one shipped or the recommended polarity is unstated.",
+          "reference": "Correct: README ships 01_white_underbase.png (clean B/W positive, recommended for film) and 01b_underbase_connector_fill.png (raw masked-fill) and explains the polarity choice."
+        },
+        {
+          "id": "underbase_from_connector",
+          "type": "yesno",
+          "question": "Was the underbase produced by the real connector chain image_select_subject -> image_invert_selection -> image_fill_area(preset:white)?",
+          "guidance": "YES = trajectory shows those three connector ops feeding the underbase. NO = it was only composed locally.",
+          "reference": "Correct: trajectory steps 4-6 are image_select_subject, image_invert_selection, image_fill_area on the live connector; the B/W positive is then derived from the subject mask."
+        }
+      ]
+    },
+    {
+      "key": "spot_halftone_plates",
+      "display": "Three spot-colour halftone plates (lavender / cobalt / deep purple)",
+      "files": [
+        "outputs/plates/02_lavender_2635C.png",
+        "outputs/plates/03_cobalt_2945C.png",
+        "outputs/plates/04_deep_purple_2685C.png",
+        "outputs/plates/00_shared_dotfield_choked.png"
+      ],
+      "what_it_is": "The three Ben-Day halftone spot plates built from a shared choked dot field, tinted to lavender 2635C, cobalt 2945C and deep purple 2685C.",
+      "items": [
+        {
+          "id": "plates_real_halftone_dots",
+          "type": "likert5",
+          "question": "Do all three spot plates show a genuine Ben-Day round-dot halftone screen across the cloud field (dots grow/shrink with tone), not a flat or blurred fill?",
+          "guidance": "5 = clear regular dot grid in the clouds on every plate, denser in shadows. 1 = no visible dot screen / just smooth tone.",
+          "reference": "Correct: 00_shared_dotfield_choked.png and all three tinted plates show a clear round Ben-Day dot screen across the clouds (radius-10 halftone from LPI 55, choked 2px). Strong on this criterion."
+        },
+        {
+          "id": "plates_pantone_colours",
+          "type": "likert5",
+          "question": "Are the three plates tinted to recognisably distinct lavender, cobalt-blue and deep-purple builds matching their Pantone labels (2635C / 2945C / 2685C)?",
+          "guidance": "5 = plate 02 reads pale lavender, 03 reads strong cobalt blue, 04 reads dark purple, all clearly different. 1 = plates are the same colour or the wrong hues.",
+          "reference": "Correct: 02 is pale lavender on a dark-purple ground, 03 is a strong cobalt blue on black, 04 is a dark deep-purple — three distinct, on-brief builds matching 2635C/2945C/2685C."
+        },
+        {
+          "id": "plates_lettering_held_out",
+          "type": "yesno",
+          "question": "Is the slogan HELD OUT of the halftone on the spot plates (i.e. the lettering is NOT itself rendered as dotted halftone) as the brief requires?",
+          "guidance": "YES = the type sits clean/solid and the halftone dots stop at the letters. NO = the slogan is filled with the same dot screen as the clouds (hold-out failed).",
+          "reference": "DEFECT present: on 02/03/04 the 'HEAD IN THE CLOUDS' slogan is rendered INSIDE the halftone dot field (the letters are dotted, not a clean held-out hard edge). The brief explicitly wanted the lettering held out of the halftone. Correct answer is NO — a real, scorable failure of the hold-out."
+        },
+        {
+          "id": "plates_slogan_legible_in_halftone",
+          "type": "yesno",
+          "question": "Within the halftoned plates, does the slogan still read as 'HEAD IN THE CLOUDS' without the halftone corrupting any letters?",
+          "guidance": "YES = all letters survive the dot screen. NO = halftoning/registration garbles a letter so a word misreads.",
+          "reference": "DEFECT present: because the type was halftoned rather than held out, the dot artifacting turns the 'C' of CLOUDS into a 'G' — the plates read 'HEAD IN THE GLOUDS'. Correct answer is NO; this is a direct consequence of the failed hold-out."
+        }
+      ]
+    },
+    {
+      "key": "dot_gain_choke",
+      "display": "Dot-gain choke pass (shared choked dot field)",
+      "files": [
+        "outputs/plates/00_shared_dotfield_choked.png"
+      ],
+      "what_it_is": "The shared B&W dot field after the gaussian dot-gain choke that the three spot plates are built from, so shadows don't plug on a black tee.",
+      "items": [
+        {
+          "id": "choke_applied_per_spec",
+          "type": "yesno",
+          "question": "Was a gaussian choke applied to the dot field at the spec value (choke_px = 2) via the connector, and is the choked field shipped as the shared reference?",
+          "guidance": "YES = image_apply_gaussian_blur(radius 2) ran on the dot field and 00_shared_dotfield_choked.png exists. NO = no choke applied or value differs from the spec.",
+          "reference": "Correct: trajectory step 10 is image_apply_gaussian_blur radius 2 (= dotgain_spec.choke_px=2) on the shared dot field; 00_shared_dotfield_choked.png is the delivered reference."
+        },
+        {
+          "id": "choke_shadows_not_plugged",
+          "type": "likert5",
+          "question": "In the choked dot field, do the darkest cloud-shadow areas still retain open (non-touching) dots rather than plugging into solid ink?",
+          "guidance": "5 = even in the deepest shadows individual dots stay separated (won't plug on a black tee). 1 = shadow areas have collapsed to a solid black mass with no dot structure.",
+          "reference": "Correct intent: the choke exists so shadows don't plug. In 00_shared_dotfield_choked.png the dot grid remains visible into the darker cloud regions; some of the very darkest passages crowd but largely keep dot separation."
+        }
+      ]
+    },
+    {
+      "key": "vector_lettering_plate",
+      "display": "Vectorized hard-edge lettering plate",
+      "files": [
+        "outputs/plates/05_lettering_plate.svg",
+        "outputs/plates/05_lettering_plate_render.png"
+      ],
+      "what_it_is": "The hard-edge slogan vectorized to a clean SVG (22 paths) plus a raster render, the held-out lettering plate.",
+      "items": [
+        {
+          "id": "vector_clean_slogan",
+          "type": "yesno",
+          "question": "Does the vectorized lettering plate read EXACTLY 'HEAD IN THE CLOUDS' with crisp hard vector edges and no halftone dots or cloud artifacts?",
+          "guidance": "YES = clean solid white letterforms, correct spelling, no dot texture. NO = misspelling, dotted/traced-noise edges, or stray paths.",
+          "reference": "Correct: 05_lettering_plate_render.png shows clean solid 'HEAD IN THE CLOUDS' in the condensed slab face on black — correctly spelled (the 'C' in CLOUDS is intact here, unlike the halftoned plates)."
+        },
+        {
+          "id": "vector_path_efficiency",
+          "type": "likert5",
+          "question": "Is the SVG an efficient hard-edge trace of the slogan only (low, clean path count) rather than a noisy trace of halftone texture?",
+          "guidance": "5 = compact path set tracing just the letterforms. 1 = hundreds of paths from tracing dot noise.",
+          "reference": "Correct: vectorize was run twice — the first pass on the halftone hold-out traced noise (612 paths) and was rejected; the delivered plate is the clean trace of source_lettering_only.png at 22 paths, slogan only."
+        },
+        {
+          "id": "vector_format_delivered",
+          "type": "yesno",
+          "question": "Is the lettering plate delivered in a true vector format (SVG/AI) suitable for film output, not only as a raster?",
+          "guidance": "YES = a real .svg with editable paths is shipped. NO = only a PNG/raster provided.",
+          "reference": "Correct: outputs/plates/05_lettering_plate.svg (vector, 22 paths) is shipped alongside the PNG render; image_vectorize produced it on the connector."
+        }
+      ]
+    },
+    {
+      "key": "vhs_alt_colourway",
+      "display": "Distressed VHS alt colourway (merch)",
+      "files": [
+        "outputs/vhs_alt_colourway.png",
+        "outputs/licensed_grunge_AdobeStock_396455056.png"
+      ],
+      "what_it_is": "The merch-mockup alt colourway: licensed Adobe Stock grunge multiplied over a VHS-graded artwork base, plus grain + noise + chromatic-aberration glitch, resized to 1988x1988.",
+      "items": [
+        {
+          "id": "vhs_glitch_grain_noise",
+          "type": "likert5",
+          "question": "Does the VHS colourway show all of: chromatic-aberration glitch (red/cyan channel offset), film grain, and digital noise over the cloud-and-slogan artwork?",
+          "guidance": "5 = visible red/blue channel split at edges plus a gritty grain/noise field, distressed but still legible. 1 = none of these effects present / clean image.",
+          "reference": "Correct: vhs_alt_colourway.png shows a clear red-shifted chromatic aberration (red ghost left of edges), heavy grain and noise over a blue/magenta cloud field — README confirms image_add_grain + image_add_noise + image_apply_glitch_effect(red -22px)."
+        },
+        {
+          "id": "vhs_licensed_stock_used",
+          "type": "yesno",
+          "question": "Is the grunge a genuinely LICENSED Adobe Stock asset (license-before-edit), with the asset id recorded?",
+          "guidance": "YES = a real Stock id is licensed/downloaded and noted in delivery. NO = synthesised grit with no licence.",
+          "reference": "Correct: Adobe Stock 396455056 was searched, licensed and downloaded (trajectory steps 16-17, state just_purchased, 4097x2952) and shipped as licensed_grunge_AdobeStock_396455056.png."
+        },
+        {
+          "id": "vhs_merch_size",
+          "type": "yesno",
+          "question": "Was the finished colourway resized to a merch-mockup size (the connector's 2x cap, 1988x1988) via image_crop_and_resize?",
+          "guidance": "YES = final file is ~1988x1988. NO = wrong/odd dimensions or not resized.",
+          "reference": "Correct: README and trajectory step 22 resize the colourway to 1988x1988 (2x of the 994px source, the connector cap); vhs_alt_colourway.png is 1988x1988."
+        },
+        {
+          "id": "vhs_slogan_legible",
+          "type": "likert5",
+          "question": "Does the slogan remain readable as 'HEAD IN THE CLOUDS' through the distress, and is the artwork legible (not crushed to near-black)?",
+          "guidance": "5 = clouds and slogan clearly visible under the grit. 1 = colourway crushed to near-black or slogan unreadable.",
+          "reference": "Correct: README notes the first pass that multiplied grunge onto the deep-purple plate crushed to near-black and was rebuilt on the full graded artwork; the delivered file keeps the clouds and slogan legible (though, like the plates, the dot/glitch artifacting makes CLOUDS tend toward 'GLOUDS')."
+        }
+      ]
+    },
+    {
+      "key": "master_separation_sheet",
+      "display": "Master separation sheet + merged PDF/INDD",
+      "files": [
+        "outputs/sep_sheet/master_separation_sheet.png",
+        "outputs/sep_sheet/separation_sheet_with_swatch_cards.pdf",
+        "outputs/sep_sheet/separation_sheet_INDD_package.zip"
+      ],
+      "what_it_is": "The Illustrator-style master separation sheet (2x2 plate grid, corner registration targets, centre bullseye, title block) assembled into a merged PDF and round-tripped to an InDesign INDD package.",
+      "items": [
+        {
+          "id": "sepsheet_four_plates_grid",
+          "type": "likert5",
+          "question": "Does the master sheet present the four plates in a labelled 2x2 grid (WHITE UNDERBASE, LAVENDER 2635C, COBALT 2945C, DEEP PURPLE 2685C) each with its plate image?",
+          "guidance": "5 = all four cells present, correctly labelled with Pantone and plate thumbnail, in print order. 1 = missing cells, wrong labels, or empty placeholders.",
+          "reference": "Correct: master_separation_sheet.png shows a 2x2 grid — #1 WHITE UNDERBASE, #2 LAVENDER 2635C, #3 COBALT 2945C, #4 DEEP PURPLE 2685C — each with its halftoned/positive plate thumbnail and a per-plate footer (mesh/duro/flash)."
+        },
+        {
+          "id": "sepsheet_registration_marks",
+          "type": "yesno",
+          "question": "Does the sheet include registration/crop targets at the corners plus a centre bullseye and a title block bound to job/garment/screens/date and LPI/angle/gain/choke?",
+          "guidance": "YES = corner reg marks + centre target + populated title block all present. NO = registration marks or the title block missing.",
+          "reference": "Correct: the sheet has corner crop/registration targets and a centre bullseye, with a 'MASTER SEPARATION SHEET' title block showing job 'Head In The Clouds Tee', black tee, 4 screens, date, and LPI 55 / 22 deg / 22% gain / 2px choke."
+        },
+        {
+          "id": "sepsheet_genuine_document",
+          "type": "yesno",
+          "question": "Was the sheet assembled into a genuine renderable merged document and round-tripped through the connector to an INDD package (not just a flat PNG)?",
+          "guidance": "YES = a multi-page merged PDF exists and document_convert_pdf produced an INDD package zip. NO = only a PNG screenshot.",
+          "reference": "Correct: separation_sheet_with_swatch_cards.pdf (5-page merged doc) plus separation_sheet_INDD_package.zip via connector document_convert_pdf (trajectory step 25)."
+        }
+      ]
+    },
+    {
+      "key": "swatch_cards",
+      "display": "Per-ink registration/swatch cards (data-merged from CSV)",
+      "files": [
+        "outputs/sep_sheet/swatch_cards/swatch_card_0001.png",
+        "outputs/sep_sheet/swatch_cards/swatch_card_0002.png",
+        "outputs/sep_sheet/swatch_cards/swatch_card_0003.png",
+        "outputs/sep_sheet/swatch_cards/swatch_card_0004.png"
+      ],
+      "what_it_is": "Four 3.5x2in cards, one per CSV row, with the swatch rectangle filled by rgb_hex and all text bound to the CSV ink fields.",
+      "items": [
+        {
+          "id": "swatch_one_per_row",
+          "type": "yesno",
+          "question": "Is there exactly one card per CSV row (4 cards: White Underbase, Lavender, Cobalt Blue, Deep Purple), matching the data-merge one-card-per-row model?",
+          "guidance": "YES = four cards, one ink each, in print order. NO = wrong count or duplicated/missing inks.",
+          "reference": "Correct: swatch_card_0001..0004 = White Underbase, Lavender, Cobalt Blue, Deep Purple — exactly the 4 CSV rows in print order."
+        },
+        {
+          "id": "swatch_fill_matches_hex",
+          "type": "yesno",
+          "question": "Is each card's swatch rectangle filled with the exact rgb_hex from the CSV, with that hex printed on the card (FFFFFF / C9B6E4 / 1E3FAE / 3B1E63)?",
+          "guidance": "YES = swatch colour and the 'fill #...' label match the CSV hex on all four. NO = any wrong fill colour or hex.",
+          "reference": "Correct: card 1 swatch white 'fill #FFFFFF', card 2 lavender 'fill #C9B6E4', card 3 cobalt 'fill #1E3FAE', card 4 deep purple 'fill #3B1E63' — all match spot_colour.csv exactly."
+        },
+        {
+          "id": "swatch_text_fields_bound",
+          "type": "likert5",
+          "question": "Are all text fields correctly bound from the CSV on every card (ink_name, PANTONE, MESH tpi, SQUEEGEE duro, FLASH F, PRINT ORDER #)?",
+          "guidance": "5 = every field on all four cards matches the CSV (e.g. Deep Purple = 2685C / 180 tpi / 75 duro / 320 F / #4). 1 = fields wrong, swapped, or missing.",
+          "reference": "Correct: e.g. Lavender 2635C/180tpi/70duro/300F/#2; Cobalt Blue 2945C/180/70/300/#3; Deep Purple 2685C/180/75/320/#4; White Underbase —/110/70/300/#1 — all bound from spot_colour.csv."
+        }
+      ]
+    },
+    {
+      "key": "separation_proof_contact_sheet",
+      "display": "Client sign-off proof contact sheet",
+      "files": [
+        "outputs/separation_proof_contact_sheet.png",
+        "outputs/separation_proof_contact_sheet.pdf"
+      ],
+      "what_it_is": "The 3300x2550 composed sign-off proof: 8 labelled tiles (underbase, 3 spot plates, vector lettering, VHS colourway, master sep sheet, shared dot field) with a brand header, print order, and a sign-off line.",
+      "items": [
+        {
+          "id": "proof_eight_tiles_labelled",
+          "type": "likert5",
+          "question": "Does the contact sheet show all 8 deliverable tiles, each correctly labelled (with Pantone where applicable), under a Spectrum Prints header with print order and a sign-off/date line?",
+          "guidance": "5 = all 8 tiles present, labelled, plus header, print order and sign-off line. 1 = tiles missing/mislabelled or no sign-off block.",
+          "reference": "Correct: separation_proof_contact_sheet.png is an 8-tile grid (White Underbase / Lavender 2635C / Cobalt 2945C / Deep Purple 2685C / Lettering Plate / VHS Colourway / Master Sep Sheet / Shared Dot Field) with 'SEPARATION PROOF — CLIENT SIGN-OFF' header, print order, LPI/gain/choke strip and a SIGN-OFF / DATE line."
+        },
+        {
+          "id": "proof_header_data_correct",
+          "type": "yesno",
+          "question": "Does the proof header carry the correct job/brand/spec metadata (Spectrum Prints, Head In The Clouds Tee, 4-screen spot on black tee, LPI 55 / gain 22% / choke 2px, print order white->lavender->cobalt->deep purple)?",
+          "guidance": "YES = all metadata matches the spec and CSV. NO = a wrong brand/job/spec value.",
+          "reference": "Correct: header reads 'Spectrum Prints · Head In The Clouds Tee · 4-screen spot on black tee' with LPI 55 / 22 deg / gain 22% / choke 2px and print order White Underbase -> Lavender -> Cobalt -> Deep Purple."
+        },
+        {
+          "id": "proof_carries_plate_defect",
+          "type": "yesno",
+          "question": "On the proof tiles, do the spot-plate and VHS tiles inherit the slogan defect (lettering halftoned-in / reading 'GLOUDS') visible in the underlying plates?",
+          "guidance": "YES = the proof faithfully shows the same dotted-slogan / 'GLOUDS' artifact present in the plates. NO = the proof tiles are clean (would mean inconsistency with the plates).",
+          "reference": "The proof is faithful to the plates: the lavender/cobalt/deep-purple/VHS tiles carry the same halftoned-in slogan reading 'HEAD IN THE GLOUDS' (only the dedicated Lettering Plate tile is clean). YES expected — the proof did not hide the plate-level defect."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "task_all_nine_deliverables",
+      "type": "likert5",
+      "question": "Are all nine brief deliverables present and identifiable in outputs/ (white underbase, 3 halftone spot plates, dot-gain choke, vector lettering plate, VHS alt colourway, separation sheet, swatch cards, sign-off proof)?",
+      "guidance": "5 = every deliverable shipped and recognisable. 3 = one or two missing or only partially delivered. 1 = several deliverables absent.",
+      "reference": "All nine are present: plates/01 underbase, plates/02-04 spot plates, plates/00 choked dot field, plates/05 vector lettering, vhs_alt_colourway.png, sep_sheet/master + PDF + INDD, sep_sheet/swatch_cards 0001-0004, separation_proof_contact_sheet.png/.pdf."
+    },
+    {
+      "id": "task_slogan_fidelity_end_to_end",
+      "type": "likert5",
+      "question": "Across the whole pack, is the slogan 'HEAD IN THE CLOUDS' preserved correctly and the lettering kept hard-edge / held out of the halftone as the brief demands?",
+      "guidance": "5 = slogan correct and held out everywhere. 3 = correct on the vector/underbase but corrupted on the halftone outputs. 1 = slogan wrong throughout.",
+      "reference": "Mixed: the vector lettering plate, underbase positive and swatch/sheet text are correct ('HEAD IN THE CLOUDS'). But the three halftone spot plates, the VHS colourway and their proof tiles render the type INSIDE the halftone so the hold-out failed and the dot artifacting reads 'HEAD IN THE GLOUDS' — a substantive, brief-level defect. Score around 3."
+    },
+    {
+      "id": "task_print_data_fidelity",
+      "type": "yesno",
+      "question": "Was all print spec and ink data consumed programmatically (nothing retyped) so the choke, LPI, Pantones, hex and per-card fields trace back to dotgain_spec.json and spot_colour.csv?",
+      "guidance": "YES = choke=2px/LPI=55 from the spec and every swatch/Pantone/hex from the CSV with no transcription drift. NO = any value diverges from the source data.",
+      "reference": "Correct: README states 'Nothing was retyped'; choke 2px / LPI 55 come from dotgain_spec.json and all four swatch cards' fills, Pantones, mesh, duro, flash and order match spot_colour.csv exactly."
+    },
+    {
+      "id": "task_connector_workflow_genuine",
+      "type": "likert5",
+      "question": "Was the core pipeline genuinely executed on the live Adobe connector (upload, crop, select/invert/fill, cloud mask, halftone, choke, three spot proofs, vectorize, stock license, grain/noise/glitch, resize, PDF->INDD) with real request ids?",
+      "guidance": "5 = ~22 connector ops with adobe_request_ids in trajectory.json covering the chain. 3 = partial connector use, key steps faked. 1 = mostly local with little real connector work.",
+      "reference": "Correct: trajectory.json logs 22 adobe_connector ops with adobe_request_ids (upload x4, crop, select/invert/fill, cloud mask+invert, halftone, gaussian choke, mono-tint/sat/HSL/overlay, vectorize x2, asset_search + license stock 396455056, color-overlay, grain, noise, glitch, crop_and_resize, document_convert_pdf). High confidence the workflow consumed and produced assets correctly."
+    },
+    {
+      "id": "task_local_vs_connector_honesty",
+      "type": "yesno",
+      "question": "Are the local-vs-connector boundaries and resolution limits disclosed honestly (data-merge done locally because the .ai Variables template is desktop-authored; 994px proof-res not film-res; VHS base rebuilt off the deep-purple plate)?",
+      "guidance": "YES = README's 'Honest limitations' explains the local data-merge, the proof-resolution caveat and the VHS base rebuild. NO = these are hidden or misrepresented as full connector/print-res output.",
+      "reference": "Correct: outputs/README.md 'Honest limitations' discloses the local PIL data-merge (no headless .ai), 994px/1988px proof resolution (not final film output), the VHS rebuild after the first pass crushed to black, and the two underbase polarities."
+    },
+    {
+      "id": "task_client_ready_overall",
+      "type": "likert5",
+      "question": "Overall, would Spectrum Prints accept this pack as a print-ready separation set for the black-tee job, accounting for the halftone-slogan defect and proof resolution?",
+      "guidance": "5 = production-ready as-is. 3 = strong, correctly structured pack but the failed lettering hold-out ('GLOUDS' on the halftone plates) must be fixed before films, plus a re-run at full film resolution. 1 = not usable.",
+      "reference": "The pack is well-structured, on-brand and data-faithful (correct Pantones, choke, registration sheet, licensed grit, genuine connector chain), but two real issues block sign-off: the slogan was halftoned in rather than held out (reads 'HEAD IN THE GLOUDS' on the three spot plates + VHS), and outputs are 994/1988px proof-res, not film-res. A realistic score is ~3 — accept the structure, require a hold-out fix and a full-res re-run before output."
+    }
+  ]
+}

@@ -1,0 +1,371 @@
+{
+ "spec": {
+  "connector_workflow": [
+   {
+    "n": 1,
+    "tool": "asset_initialize_file_upload",
+    "server": "adobe",
+    "inputs_from": [
+     "couple_portrait_engagement.png",
+     "guest_rsvp_data.csv",
+     "listing_demo_vo_raw.wav",
+     "couple_monogram_sketch.png"
+    ],
+    "output": "upload sessions + presigned PUT URLs for the 4 provided source assets",
+    "note": "Initialize headless upload of every provided input (portrait, data CSV, raw VO, monogram art) into CC storage so later connector steps can reference them by URN. State to track: one upload session per asset."
+   },
+   {
+    "n": 2,
+    "tool": "asset_finalize_file_upload",
+    "server": "adobe",
+    "inputs_from": [
+     "step 1"
+    ],
+    "output": "4 stored CC asset URNs (portrait_urn, data_urn, vo_urn, monogram_urn)",
+    "note": "Finalize the uploads opened in step 1; capture each returned URN. These URNs are the canonical handles reused across the entire workflow."
+   },
+   {
+    "n": 3,
+    "tool": "image_remove_background",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2"
+    ],
+    "output": "monogram_cutout.png (transparent-background gold monogram crest)",
+    "note": "Cut the hand-drawn monogram crest off its paper background → transparent PNG so it can be placed cleanly on burgundy hero pages and the buyer's guide. Consumes monogram_urn from step 2."
+   },
+   {
+    "n": 4,
+    "tool": "image_apply_color_overlay",
+    "server": "adobe",
+    "inputs_from": [
+     "step 3"
+    ],
+    "output": "monogram_gold.png (uniform metallic-gold #C5A572 monogram)",
+    "note": "Normalize the cutout monogram to the brand gold so it matches across all 7 template pages and the mockups. Consumes step 3 output."
+   },
+   {
+    "n": 5,
+    "tool": "image_apply_preset",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2"
+    ],
+    "output": "couple_portrait_oldmoney.png (warm, muted, editorial-toned engagement photo)",
+    "note": "Apply a film/editorial preset to the engagement portrait so the 'Our Story' page (Page 5) photo reads luxury/old-money, not phone-snapshot. Consumes portrait_urn from step 2; list presets implicitly via the connector's named-preset set."
+   },
+   {
+    "n": 6,
+    "tool": "search_design",
+    "server": "adobe",
+    "inputs_from": [
+     "full_brief"
+    ],
+    "output": "candidate Express templates for: wedding invite/Save-the-Date, RSVP card, wedding-details/menu card",
+    "note": "EXPRESS TEMPLATE TRACK. Search the Express library for the 'old money' invite + RSVP + details/menu set that maps to template Pages 3/4/6. Returns template design IDs reused in steps 7-9 and 11."
+   },
+   {
+    "n": 7,
+    "tool": "fill_text",
+    "server": "adobe",
+    "inputs_from": [
+     "step 6",
+     "full_brief"
+    ],
+    "output": "savethedate_filled (Save-the-Date with couple names + wedding date)",
+    "note": "Populate the 'old money' couple-name + date placeholders in the chosen Save-the-Date template (template Page 3). TEXT-ONLY fill; layout preserved. Consumes the invite template ID from step 6."
+   },
+   {
+    "n": 8,
+    "tool": "fill_text",
+    "server": "adobe",
+    "inputs_from": [
+     "step 6",
+     "full_brief"
+    ],
+    "output": "details_filled (Wedding Details card: venue, time, dress code)",
+    "note": "Fill the venue/time/dress-code placeholders in the details/menu template (template Page 4). Reuses the second template ID from step 6; same couple identity strings as step 7 for cross-page consistency."
+   },
+   {
+    "n": 9,
+    "tool": "fill_text",
+    "server": "adobe",
+    "inputs_from": [
+     "step 6",
+     "step 4"
+    ],
+    "output": "rsvp_master_filled (RSVP master card with monogram + couple names)",
+    "note": "Fill the RSVP card master (template Page 6) with the couple names and place the gold monogram from step 4. This filled master becomes the data-merge template spec for step 10."
+   },
+   {
+    "n": 10,
+    "tool": "document_merge_data_vector",
+    "server": "adobe",
+    "inputs_from": [
+     "step 9",
+     "step 2"
+    ],
+    "output": "rsvp_guest_variants.pdf (one personalized RSVP card per guest row, multi-page)",
+    "note": "DATA-MERGE. Take the filled RSVP master from step 9 as the vector template and merge guest_rsvp_data.csv (data_urn from step 2) → one personalized RSVP/guest card per row (Guest Name, party size, meal). Core templates→filled→merged-variants chain."
+   },
+   {
+    "n": 11,
+    "tool": "document_render_layout",
+    "server": "adobe",
+    "inputs_from": [
+     "step 7",
+     "step 8",
+     "step 5",
+     "step 4"
+    ],
+    "output": "buyers_guide.pdf source pages (2pp luxury PDF buyer's guide layout)",
+    "note": "Render the 1-2pp PDF Buyer's Guide layout (how to access/edit/share the Canva template) reusing the filled card art (steps 7,8), the toned portrait (step 5) and the gold monogram (step 4) so the guide matches the kit aesthetic."
+   },
+   {
+    "n": 12,
+    "tool": "document_convert_pdf",
+    "server": "adobe",
+    "inputs_from": [
+     "step 11"
+    ],
+    "output": "Buyers_Guide_final.pdf (flattened, print/share-ready PDF)",
+    "note": "Convert the rendered buyer's-guide layout into the delivered PDF deliverable. Consumes step 11."
+   },
+   {
+    "n": 13,
+    "tool": "media_enhance_speech",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2"
+    ],
+    "output": "listing_demo_vo_clean.wav (denoised, broadcast-clean voiceover)",
+    "note": "VIDEO/AUDIO group. Clean/denoise the short raw listing-demo voiceover (vo_urn from step 2) so the optional narrated cut of the demo video sounds premium. Even though the brief allows no-VO, the enriched listing wants a narrated alternate."
+   },
+   {
+    "n": 14,
+    "tool": "document_render_vector",
+    "server": "adobe",
+    "inputs_from": [
+     "step 4",
+     "step 7",
+     "step 8",
+     "step 9"
+    ],
+    "output": "mockup_frames[] (8 burgundy phone-frame mockup composition specs, 2700x2025)",
+    "note": "Render the 8-10 Etsy listing mockup frames: phone-frame mockups on dark-burgundy background with feature badges (RSVP / Countdown / Demo Link), reusing the monogram (step 4) and the filled card art (steps 7,8,9). Produces the mockup image set at listing spec."
+   },
+   {
+    "n": 15,
+    "tool": "video_create_quick_cut",
+    "server": "adobe",
+    "inputs_from": [
+     "template_scroll_screencap.mp4",
+     "step 14"
+    ],
+    "output": "demo_sizzle_silent.mp4 (~24s scrolling template preview, smooth transitions)",
+    "note": "Build the 20-30s premium demo video from the provided screen-recording of the template scrolling all 7 pages, intercut with the mockup frames from step 14. Silent premium-preview cut per the brief."
+   },
+   {
+    "n": 16,
+    "tool": "video_resize",
+    "server": "adobe",
+    "inputs_from": [
+     "step 15"
+    ],
+    "output": "demo_sizzle_etsy_1x1.mp4 (1080x1080 square Etsy-listing demo)",
+    "note": "Reframe the demo to the square ratio Etsy listing video wants (subject-aware, same length). Consumes step 15."
+   },
+   {
+    "n": 17,
+    "tool": "media_summarize",
+    "server": "adobe",
+    "inputs_from": [
+     "step 16"
+    ],
+    "output": "demo_caption.txt (scene/feature summary → Etsy listing description copy)",
+    "note": "Summarize the finished demo video into a feature list / caption to seed the Etsy listing description, closing the loop on the listing package. Consumes step 16."
+   },
+   {
+    "n": 18,
+    "tool": "local",
+    "server": "local",
+    "inputs_from": [
+     "step 16",
+     "step 13"
+    ],
+    "output": "demo_sizzle_narrated_1x1.mp4 (square demo with cleaned VO muxed)",
+    "note": "GLUE ONLY: ffmpeg-mux the cleaned voiceover (step 13) onto the square demo (step 16) to deliver the optional narrated alternate alongside the silent cut. Unavoidable A/V mux; everything upstream is connector-native."
+   }
+  ],
+  "difficulty_rationale": "Hard on every long-horizon axis. Horizon and state: 18 ordered calls across 5 groups (asset plumbing, photo, express-template, document/data-merge, video/audio) with strict ordering — the data-merge in step 10 is only valid if the RSVP master was correctly filled in step 9, which depends on the right template chosen in step 6 and the gold monogram from step 4, which depends on the cutout in step 3 and the upload in steps 1-2; one mis-tracked URN or template ID poisons the whole downstream chain. Asset reuse: four uploaded URNs and several intermediates (gold monogram, toned portrait, three filled cards) are each consumed by 2-4 later steps, so the agent must hold a growing dependency graph. Exact-spec pressure: mockups exactly 2700x2025 px, demo 20-30s and square, guide 1-2pp PDF, data-merge emits exactly one card per CSV row with correct field mapping — all gradable and easy to get subtly wrong. Cross-asset consistency: couple names, wedding date, and the burgundy/cream/gold palette must stay identical across Save-the-Date, details card, RSVP master, merged variants, mockups, and buyer's guide. Tool-discipline traps: fill_text is text-only (restyling in it fails), data-merge needs a connector-renderable template not a desktop file, and the only legitimate 'local' step is the final A/V mux. The must-exercise quartet sits at four different depths of the chain, so the agent cannot shortcut to them.",
+  "full_brief": "A solo Etsy seller is launching a digital-products shop selling 'Save the Date' wedding-website template kits, and needs a complete, sellable listing package for the first SKU in an 'Old Money / Luxury Wedding' style. The fixed palette is dark burgundy, cream/ivory, and gold accents with lace-detail textures; the overall feel must read high-end and editorial, never basic or generic. The kit centers on a 7-page wedding-website template (Hero/Monogram with couple names + wedding date; Envelope Reveal; Save the Date; Wedding Details with venue/time/dress code; Our Story with photo + timeline; RSVP form; live Countdown Timer) that buyers receive as an editable share link and that must work on mobile. The seller has nine more listings ready to assign if the first is strong, so consistency and a reusable, personalizable system matter more than one-off art.\\n\\nThe agent is given the seller's raw source assets — a couple engagement portrait, a hand-drawn gold monogram crest, a guest/RSVP data file, a screen recording of the template scrolling through all pages, and a short raw voiceover clip — and must produce the full listing package faithful to the real brief: (a) the personalized stationery set that fronts the kit (Save-the-Date, Wedding Details, and an RSVP card), built by searching the matching Express templates and filling the 'old money' couple-name/date placeholders, plus a data-merged batch of one personalized RSVP/guest card per row of the provided guest list; (b) 8-10 Etsy listing mockup images at exactly 2700 x 2025 px (JPG/PNG) showing phone-frame mockups of the template pages on a dark-burgundy background with feature badges (RSVP, Countdown Timer, Demo Link) and close-up detail shots; (c) a 20-30s premium MP4 demo video of the template scrolling through all pages with smooth transitions (silent per the brief, plus an enriched narrated alternate using the cleaned voiceover); and (d) a 1-2 page luxury PDF Buyer's Guide explaining how to access, edit, and share the Canva template, designed to match the kit aesthetic.\\n\\nHard constraints: keep the burgundy/cream/gold palette and the couple's names + wedding date identical across every artifact; mockups exactly 2700 x 2025 px; demo video 20-30 seconds, MP4, premium product-preview quality with no required voiceover; buyer's guide 1-2 pages PDF in the matching luxury aesthetic; the merged RSVP set must contain exactly one personalized card per guest row. All text personalization must be done through the template-fill path (text-only, layout preserved), and only the final audio/video mux may fall back to local glue.",
+  "grounding_note": "REAL (verbatim from the client's full description in db_all.json, line 921): the seller is launching an Etsy shop selling Canva 'Save the Date Wedding Website Templates'; needs a complete first-listing package with 9 more listings to follow; style = Old Money / Luxury Wedding; palette = dark burgundy, cream/ivory, gold accents, lace details; the 7-page template spec (Hero/Monogram with couple names+date, Envelope Reveal, Save the Date, Wedding Details with venue/time/dress code, Our Story photo+timeline, RSVP Form, live Countdown Timer); deliverables 1-4 verbatim: Canva editable template link, 8-10 Etsy mockup images at exactly 2700x2025 px (JPG/PNG) with phone-frame mockups, dark-burgundy background, feature badges (RSVP/Countdown/Demo Link) and close-up detail shots; a 20-30s MP4 demo video that is a screen recording scrolling all pages with smooth transitions and NO required voiceover, premium product-preview feel; and a 1-2 page PDF buyer's guide (how to access/edit/share the template) matching the luxury aesthetic; constraints 'mobile view' and 'clean luxury high-end'. ENRICHED (added to make it a long-horizon connector task, genuinely implied by the brief): the specific provided source assets (engagement portrait, hand-drawn monogram crest, guest/RSVP CSV, template-scroll screen recording, raw VO clip) — the brief references sharing references privately and a screen recording, so these inputs are plausible; the data-merge of one RSVP card per guest row (the brief's RSVP Form implies guest personalization, and a sellable kit demos with sample guests); rendering the stationery set as Express templates + data-merge rather than literally in the Canva Website editor (the connector cannot build a live Canva Website with a countdown timer headless — so the kit's print/stationery front-end is produced via the Adobe connector while the live-website + share-link delivery remains the human's Canva step); and the optional NARRATED alternate of the demo video using media_enhance_speech (the brief says no VO is required, so the cleaned-VO cut is explicitly an enrichment, not a replacement for the silent deliverable). The Canva-native editable share link and the live countdown-timer page are acknowledged as out-of-scope for headless connector execution and left as the human handoff.",
+  "groups_covered": [
+   "express_template_track",
+   "document_layout",
+   "video_audio"
+  ],
+  "id": "F2-10",
+  "inputs": [
+   {
+    "name": "couple_portrait_engagement.png",
+    "kind": "image",
+    "gen_model": "gpt-image-2",
+    "gen_prompt": "Candid documentary-style engagement portrait of a real young couple standing close together outdoors at golden hour in front of a soft out-of-focus old-money estate garden (boxwood hedges, stone urn). Natural editorial photography, NOT glossy CGI. Show real skin pores, fine facial hair and individual flyaway hair strands catching the backlight, slightly asymmetric genuine soft smiles, natural skin texture with a faint blush, correct anatomically accurate hands (the woman's hand resting on the man's lapel, all five fingers visible and correct). She wears a cream silk slip dress, he wears a muted burgundy knit; subtle gold jewelry. Soft 85mm f/1.8 shallow depth of field, warm muted color, gentle film grain, slight lens vignette. Realistic mixed natural light with catchlights in the eyes. Frame with headroom and side space so it can be cropped to portrait and landscape.",
+    "realism_notes": "Must survive a luxury-editorial preset and a close-up crop on the 'Our Story' page; the failure modes to avoid are plastic skin, fused/extra fingers, and over-saturated HDR look. Real pores, flyaways, correct hands, and a candid (not posed-studio) feel are load-bearing because the rubric scores whether the portrait reads premium-editorial.",
+    "used_in_steps": [
+     1,
+     2,
+     5,
+     11
+    ]
+   },
+   {
+    "name": "couple_monogram_sketch.png",
+    "kind": "image",
+    "gen_prompt": "A single elegant interlocking two-letter wedding monogram crest ('E & T') hand-drawn in fine gold ink on warm cream textured paper, old-money heraldic style with a thin laurel/lace border and a small ampersand at center. Slightly imperfect hand-inked line weight, faint paper grain and a soft natural shadow where the paper isn't perfectly flat. Centered, generous margin, photographed flat top-down under soft window light so the background is a clean but real cream paper (not pure white), enabling clean background removal.",
+    "gen_model": "gemini-3-pro-image",
+    "realism_notes": "This is text-bearing line art, so use the text/logo model. The cream paper (not pure white) and a real soft shadow make background removal a genuine step rather than trivial; the thin gold line work must stay crisp after cutout and color-overlay so it reads as a luxury crest at small mockup sizes.",
+    "used_in_steps": [
+     1,
+     2,
+     3,
+     4,
+     9,
+     11,
+     14
+    ]
+   },
+   {
+    "name": "guest_rsvp_data.csv",
+    "kind": "data",
+    "gen_model": "gemini-2.5-flash",
+    "gen_prompt": "Generate a realistic 14-row CSV of sample wedding guests for an RSVP/save-the-date data merge. Columns: guest_full_name, salutation, party_size, table_or_group, meal_choice, rsvp_by_date, personal_note. Use varied realistic names across cultures, party_size 1-4, meal_choice in {Beef, Halibut, Wild Mushroom Risotto (V)}, all rsvp_by_date = 'September 12, 2026', short warm personal_note per guest. Keep one consistent couple/wedding context (couple 'Eleanor & Theodore', wedding date 'October 18, 2026') referenced in a header comment so merged cards stay consistent with the filled templates.",
+    "realism_notes": "Field names and value domains must be clean enough to map deterministically in document_merge_data_vector; exactly 14 rows so the grader can check the merge emits exactly 14 personalized cards. Couple names/date must match the strings used in fill_text steps for cross-artifact consistency.",
+    "used_in_steps": [
+     1,
+     2,
+     10
+    ]
+   },
+   {
+    "name": "template_scroll_screencap.mp4",
+    "kind": "video",
+    "gen_model": "veo-3.1-generate-preview",
+    "gen_prompt": "A clean 1080p screen-recording-style clip of a finger smoothly scrolling top-to-bottom through a luxury 'old money' wedding website on a phone: dark burgundy and cream pages with gold serif monogram, a Save-the-Date page, wedding details, an Our Story timeline with a couple photo, an RSVP form, and a live countdown timer ticking. Smooth, steady scroll, soft UI motion, premium and elegant, realistic phone screen with subtle reflections, no harsh cuts. Native 1080p, slow deliberate pacing, ~12 seconds of usable scroll.",
+    "realism_notes": "Use full veo-3.1 at native 1080p (never veo-fast/720p) so the source survives a square reframe and quick-cut without looking soft. It is the raw footage the demo video is built from; smooth continuous scroll matters because the brief demands 'smooth transitions, premium product preview'.",
+    "used_in_steps": [
+     15
+    ]
+   },
+   {
+    "name": "listing_demo_vo_raw.wav",
+    "kind": "audio",
+    "gen_model": "gpt-4o-mini-tts",
+    "gen_prompt": "A warm, unhurried female voiceover, ~18 seconds, reading: 'Meet the Eleanor suite — a luxury, old-money wedding website template you can personalize in minutes. Seven elegant pages, a live countdown, and a built-in RSVP — all yours to edit in Canva, free.' Natural, premium, boutique-brand tone. Render clean at 48 kHz; include a faint amount of real room ambience and a couple of natural breaths so the speech-enhancement step has something genuine to clean up.",
+    "realism_notes": "Per section D this is NOT an audio-repair task, so generate a clean 48 kHz voice — the light room tone/breaths are just enough for media_enhance_speech to demonstrably improve, not a deliberately roughened clip. Script names the couple ('Eleanor') to stay consistent with the templates and CSV.",
+    "used_in_steps": [
+     1,
+     2,
+     13
+    ]
+   }
+  ],
+  "iterative_chaining_note": "The workflow is a genuine output→input dependency graph. Steps 1-2 upload the four provided assets and mint URNs that seed everything downstream. The monogram chain is deepest: step-2 URN → step 3 background removal (cutout) → step 4 gold color-overlay (brand-normalized crest), and that single step-4 artifact is consumed four more times (step 9 RSVP master, step 11 buyer's guide, step 14 mockups, and indirectly the merged cards via step 10). The stationery chain: step 6 search_design returns the template IDs that feed three separate fill_text calls (steps 7, 8, 9); step 9's filled RSVP master becomes the literal template argument to the step 10 data-merge, which also pulls the step-2 CSV URN to emit one card per guest row. The document chain: filled cards (7,8), toned portrait (step 5, derived from step 2), and gold monogram (step 4) feed step 11's buyer's-guide layout, which step 12 converts to the delivered PDF. The A/V chain: step-2 VO URN → step 13 enhance-speech → muxed in step 18; the step-2 screencap → step 15 quick-cut (intercut with step 14 mockups) → step 16 square resize → both step 17 (summary→listing copy) and step 18 (narrated alternate). Every must-exercise tool sits on a real chain: search_design (6)→fill_text (7-9)→document_merge_data_vector (10); media_enhance_speech (13)→final mux (18).",
+  "one_line_ask": "Deliver a complete, on-brand 'Old Money' Etsy listing package for a Canva wedding-website template kit: a personalized Save-the-Date / Wedding-Details / RSVP stationery set with a data-merged one-card-per-guest RSVP batch, 8-10 mockup images at exactly 2700x2025 px, a 20-30s premium MP4 demo video (silent plus a cleaned-VO narrated alternate), and a 1-2 page luxury PDF buyer's guide — all sharing one burgundy/cream/gold identity.",
+  "outputs": [
+   {
+    "name": "stationery_set_filled",
+    "kind": "vector",
+    "spec": "Three Express-template cards (Save-the-Date, Wedding Details, RSVP master) with couple names 'Eleanor & Theodore' and date 'October 18, 2026' filled in; old-money burgundy/cream/gold palette; layout preserved from the chosen templates; exported as high-res PNG/PDF per card.",
+    "rubric_hook": "Are all three cards populated with the correct, identical couple name + date, with the template layout intact (text-only fill, no broken styling), and do they read as a coherent old-money set?"
+   },
+   {
+    "name": "rsvp_guest_variants.pdf",
+    "kind": "pdf",
+    "spec": "Multi-page PDF, exactly one personalized RSVP/guest card per row of the 14-row guest CSV (14 cards), each showing guest_full_name, party_size and meal_choice merged into the step-9 RSVP master, gold monogram present, consistent burgundy/cream background.",
+    "rubric_hook": "Exactly 14 cards (one per CSV row), correct per-guest field mapping, and visual identity matching the master template — penalize missing/duplicated rows or mis-mapped fields."
+   },
+   {
+    "name": "etsy_mockups[]",
+    "kind": "image",
+    "spec": "8-10 images, each EXACTLY 2700 x 2025 px, JPG or PNG, dark-burgundy background, phone-frame mockups of the template pages, feature badges (RSVP, Countdown Timer, Demo Link) and at least one close-up detail shot; gold monogram present.",
+    "rubric_hook": "Count in 8-10 range; every image exactly 2700x2025; burgundy background + phone frames + required badges present; close-up detail shot included; palette consistent with the stationery set."
+   },
+   {
+    "name": "Buyers_Guide_final.pdf",
+    "kind": "pdf",
+    "spec": "1-2 page PDF, luxury aesthetic matching the kit (burgundy/cream/gold, gold monogram, editorial portrait), content = how to access the template, how to edit in Canva, how to share the link with guests.",
+    "rubric_hook": "1-2 pages, on-brand visual match to the kit, and contains the three required how-to sections (access / edit / share) — penalize generic or off-palette design."
+   },
+   {
+    "name": "demo_sizzle_etsy_1x1.mp4",
+    "kind": "video",
+    "spec": "MP4, 1080x1080 square, 20-30 seconds, premium product-preview cut of the template scrolling all pages with smooth transitions, NO voiceover (silent deliverable per the brief).",
+    "rubric_hook": "Duration 20-30s, square 1080x1080, smooth transitions through the page set, premium feel, and genuinely silent (the required cut has no VO)."
+   },
+   {
+    "name": "demo_sizzle_narrated_1x1.mp4",
+    "kind": "video",
+    "spec": "MP4, 1080x1080 square, 20-30s, same visual cut as the silent demo with the CLEANED voiceover muxed in; VO must be the denoised media_enhance_speech output, in sync with the visuals.",
+    "rubric_hook": "Narrated alternate present, audio is the cleaned (not raw) VO, in sync, and clearly improved over the raw clip — scored as the enrichment, separate from the required silent cut."
+   },
+   {
+    "name": "listing_description_seed.txt",
+    "kind": "data",
+    "spec": "Short Etsy listing description / feature-bullet text derived from the media_summarize output of the finished demo video, naming the 7 pages, RSVP, and countdown features.",
+    "rubric_hook": "Accurately summarizes the demo's features (7 pages, RSVP, countdown) and is usable as listing copy — penalize hallucinated features not in the kit."
+   }
+  ],
+  "slug": "oldmoney-wedding-etsy-kit",
+  "source": {
+   "platform": "Upwork",
+   "url": "https://www.upwork.com/nx/search/jobs/?q=Canva%20Wedding%20Website%20Template%20Designer%20—%20Full%20Etsy%20Li"
+  },
+  "title": "Canva Wedding Website Template Designer — Full Etsy Listing Package (Old Money Style)",
+  "tool_call_count": 18,
+  "tools_used": [
+   "asset_initialize_file_upload",
+   "asset_finalize_file_upload",
+   "image_remove_background",
+   "image_apply_color_overlay",
+   "image_apply_preset",
+   "search_design",
+   "fill_text",
+   "document_merge_data_vector",
+   "document_render_layout",
+   "document_convert_pdf",
+   "media_enhance_speech",
+   "document_render_vector",
+   "video_create_quick_cut",
+   "video_resize",
+   "media_summarize",
+   "local"
+  ],
+  "vertical": "Wedding & Stationery"
+ },
+ "verdict": {
+  "severity": "major",
+  "real_tools_only": true,
+  "calls_genuine": true,
+  "grounded": true,
+  "io_clear": true,
+  "hq_media": true,
+  "issues": [
+   "TOOL-DISCIPLINE VIOLATION (step 9, major): the step routes the step-4 gold monogram image INTO fill_text ('Fill the RSVP card master... and place the gold monogram from step 4'). Capability sheet line 48 is explicit that fill_text is 'TEXT ONLY - no font/size/color/align change; preserves layout' - it fills placeholder TEXT, it cannot insert/place an image element. This is exactly the trap the spec's own difficulty_rationale brags about ('restyling in it fails'), yet the spec commits it. The step-4 -> step-9 image dependency is not consumable by fill_text.",
+   "CROSS-TRACK HANDOFF UNPROVEN (step 9 -> step 10, major): step 9 produces a filled EXPRESS design (search_design + fill_text track, section A3), but step 10 feeds it as the 'vector template' to document_merge_data_vector (section A2). The sheet's data-merge note (lines 42-43) says merge 'needs a connector-renderable template spec (NOT a desktop .indd)' and is 'Headless-proven via document_render_layout/vector loops' - it ties data-merge to the render-vector/layout path, NOT to an Express fill_text design ID. An Express design handle is not an established document_merge_data_vector template input, so the 14-card merge (the core graded deliverable) sits on an unproven cross-track bridge.",
+   "DURATION MATH IMPOSSIBLE (step 15, major): the source screencap gen_prompt yields '~12 seconds of usable scroll', but step 15 demands a '~24s' output (20-30s window) via video_create_quick_cut. quick_cut is a highlight/SHORTENING tool (line 66: 'AI highlight/sizzle reel', takes target_duration to cut a longer clip DOWN) - it cannot lengthen 12s of source to 24s. The step-14 mockups are STILL images (document_render_vector specs), and quick_cut takes video assetIds, so intercutting stills cannot pad runtime either. The 20-30s deliverable is unreachable from the declared inputs.",
+   "WRONG/UNDER-SPECIFIED TOOL FOR PIXEL-EXACT RASTER (step 14, minor): the 2700x2025 mockup set (the most heavily graded, exact-pixel deliverable) is produced by document_render_vector, which the sheet describes as 'render a vector/spec -> print artwork' (line 37). A vector-render tool's native output is a spec/vector with no guaranteed exact-pixel raster export; the pixel-exact tool on the sheet is image_crop_and_resize. As written the step does not lock the exact 2700x2025 JPG/PNG dimension.",
+   "MINOR INCONSISTENCY (step 14): the step output label hardcodes '8 burgundy phone-frame mockup composition specs' while the note body and the etsy_mockups[] deliverable spec require 8-10 images. Within range but the fixed '8' label is sloppy.",
+   "MINOR (grounding_note wording): claims 'verbatim from the client's full description in db_all.json, line 921'. db_all.json is single-line JSON (0 newlines); the record is actually at array index 3795. The brief content IS genuinely real and verbatim, but the 'line 921' citation is inaccurate and unverifiable as written."
+  ],
+  "fixes": [
+   "Step 9: remove the image-placement responsibility from fill_text. Keep step 9 as a TEXT-ONLY fill of the couple-name placeholders on the RSVP master. Move the gold-monogram placement to a render step (document_render_vector/layout) that composites the step-4 monogram onto the filled card, OR have search_design pick a template whose monogram slot is itself a fillable image asset placed during the render, not during fill_text.",
+   "Step 9->10: make the merge template a connector-renderable vector/layout spec, not a raw Express design ID. Insert (or repurpose step 14's) document_render_vector to emit the RSVP master as a renderable vector template with <<field>> placeholders, then feed THAT to document_merge_data_vector. This matches the sheet's 'document_render_layout/vector loops' headless-proven path and keeps the 14-card merge valid.",
+   "Step 15: fix the duration source. Either (a) regenerate template_scroll_screencap.mp4 with >=30s of usable scroll so quick_cut can trim to a 20-30s cut, or (b) keep ~12s scroll but build the 20-30s demo by concatenating/animating multiple scroll passes + mockup b-roll via a path that can LENGTHEN (e.g., animate_design on the Express deck, or a local concat in the already-allowed final step), since quick_cut alone cannot upscale 12s to 24s.",
+   "Step 14: add an explicit pixel-lock. After document_render_vector composes each mockup, route through image_crop_and_resize to force EXACT 2700x2025 px JPG/PNG output, so the most-graded dimension constraint is guaranteed rather than left to a vector renderer.",
+   "Step 14: change the output label from '8 ... specs' to '8-10 ...' to match the deliverable's 8-10 range and the close-up-detail-shot requirement.",
+   "grounding_note: correct the citation to reference the real location (db_all.json array index 3795, title 'Canva Wedding Website Template Designer - Full Etsy Listing Package (Old Money Style)') instead of the nonexistent 'line 921', since the file is single-line JSON."
+  ]
+ }
+}

@@ -1,0 +1,667 @@
+{
+ "task_id": 9005,
+ "slug": "magazine-spread",
+ "title": "Editorial magazine feature spread — THE MAKERS 6-page duotone portrait feature",
+ "started": "2026-06-15T10:56:47",
+ "finished": "2026-06-15T11:25:46",
+ "steps": [
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline",
+   "note": "Hero portrait 01 — ceramicist in vivid red jacket; primary HERO_DUOTONE source AND the colour-splash garment source (page 1 + page 2).",
+   "input": "input_assets/hero_01_ceramicist_red-jacket.jpg",
+   "params": {
+    "px": "1024x1536"
+   },
+   "n": 1,
+   "ts": "2026-06-15T10:57:55",
+   "step_image": "steps/001_baseline_hero01_ceramicist.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline",
+   "note": "Hero portrait 02 — woodworker (red shirt); PORTRAIT_2 body-spread duotone.",
+   "input": "input_assets/hero_02_woodworker.jpg",
+   "params": {
+    "px": "1024x1536"
+   },
+   "n": 2,
+   "ts": "2026-06-15T10:57:55",
+   "step_image": "steps/002_baseline_hero02_woodworker.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline",
+   "note": "Hero portrait 03 — weaver (red kurta); PORTRAIT_3 body-spread duotone.",
+   "input": "input_assets/hero_03_weaver.jpg",
+   "params": {
+    "px": "1024x1536"
+   },
+   "n": 3,
+   "ts": "2026-06-15T10:57:55",
+   "step_image": "steps/003_baseline_hero03_weaver.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline",
+   "note": "Hero portrait 04 — metalsmith (red sweater); PORTRAIT_4 ink-wash-page duotone.",
+   "input": "input_assets/hero_04_metalsmith.jpg",
+   "params": {
+    "px": "1024x1536"
+   },
+   "n": 4,
+   "ts": "2026-06-15T10:57:56",
+   "step_image": "steps/004_baseline_hero04_metalsmith.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline",
+   "note": "Hand-drawn masthead glyph THE MAKERS inked on white — vectorized into the MASTHEAD lockup for page 1.",
+   "input": "input_assets/masthead_makers.png",
+   "params": {
+    "px": "1024x1024"
+   },
+   "n": 5,
+   "ts": "2026-06-15T10:57:56",
+   "step_image": "steps/005_baseline_masthead.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline",
+   "note": "Brand swatch sheet — the two duotone inks (#1A2A33 shadow, #EDE4D3 paper) + #B5331F red accent; sets colour targets for grade/tint/splash. Texture brief for the Stock search.",
+   "input": "input_assets/inks_swatch.png",
+   "params": {
+    "px": "1024x1024"
+   },
+   "n": 6,
+   "ts": "2026-06-15T10:57:56",
+   "step_image": "steps/006_baseline_inks_swatch.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline",
+   "note": "Five contributor headshots + roster CSV (name/role/city/instagram/headshot_filename) drive the page-6 data-merged contributors strip.",
+   "input": "input_assets/contributors_roster.csv",
+   "params": {
+    "rows": 5,
+    "headshots": 5
+   },
+   "n": 7,
+   "ts": "2026-06-15T10:57:56",
+   "step_image": "steps/007_baseline_contrib_headshots.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_auto_straighten",
+   "note": "Step 3 — level all four tilted phone/DSLR hero frames (uprightMode auto, constrainCrop) so verticals are true before cropping; batched 4-up.",
+   "adobe_request_id": "da977be1-25d0-48c3-ac2d-e223ec0e301e",
+   "input": "4 uploaded hero portraits",
+   "output": "4 straightened PNGs",
+   "params": {
+    "uprightMode": "auto",
+    "batch": 4
+   },
+   "n": 8,
+   "ts": "2026-06-15T11:00:10",
+   "step_image": "steps/008_s03_straighten_hero01.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_to_bounds",
+   "note": "Step 4 — trim each straightened portrait to the editorial 4:5 frame (top0 bottom0.833), dropping the dead margins straighten introduced; batched 4-up. h01 crop also seeds the colour-splash SPLASH.",
+   "adobe_request_id": "80c690f0-9ff1-4d34-b232-8828413b904f",
+   "input": "4 straightened heroes",
+   "output": "4 cropped 4:5 heroes",
+   "params": {
+    "bounds": "0,0,0.833,1",
+    "ratio": "4:5"
+   },
+   "n": 9,
+   "ts": "2026-06-15T11:00:43",
+   "step_image": "steps/009_s04_crop_hero01_4x5.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_subject",
+   "note": "Step 5 — auto-select the person in each cropped hero (4 masks) to isolate the subject for the depth-blur and to confine the duotone to figure vs ground.",
+   "adobe_request_id": "31a501a6-0d33-4dd7-aee3-1ba9f6902ca9",
+   "input": "4 cropped heroes",
+   "output": "4 subject masks (1024x1280)",
+   "params": {
+    "req_h02": "f240a262",
+    "req_h03": "84be43fe",
+    "req_h04": "d0033ee1"
+   },
+   "n": 10,
+   "ts": "2026-06-15T11:02:58",
+   "step_image": "steps/010_s05_subject_mask_hero01.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_gaussian_blur",
+   "note": "Step 6 — blur ONLY the background (blurTarget background, r14) behind each masked subject for the editorial shallow-depth look; subject stays crisp. 4 separate masked calls.",
+   "adobe_request_id": "e3d62f54-7fc4-498a-9871-5ba7970100bf",
+   "input": "4 cropped heroes + 4 subject masks",
+   "output": "4 subject-on-blurred-bg frames",
+   "params": {
+    "blurRadius": 14,
+    "req_h02": "b5c1623d",
+    "req_h03": "d84e8050",
+    "req_h04": "422980b6"
+   },
+   "n": 11,
+   "ts": "2026-06-15T11:02:58",
+   "step_image": "steps/011_s06_bgblur_hero01.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_auto_tone",
+   "note": "Step 7 — baseline auto-tone all four blurred frames (batched) so every hero starts from a normalized exposure before identical manual grading — key to a consistent duotone across the spread.",
+   "adobe_request_id": "0c2fdd69-52c2-4eb7-9e93-c6287f8a90f2",
+   "input": "4 bg-blurred heroes",
+   "output": "4 auto-toned frames",
+   "params": {
+    "batch": 4
+   },
+   "n": 12,
+   "ts": "2026-06-15T11:02:59",
+   "step_image": "steps/012_s07_autotone_hero01.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_exposure",
+   "note": "Step 8 — push exposure to the editorial key (exp +0.35, gamma 1.12) so all four portraits read at the same brightness across the spread; batched 4-up.",
+   "adobe_request_id": "64707437-3bab-4888-bc21-e14807c2eb73",
+   "output": "4 exposure-graded frames",
+   "params": {
+    "exposure": 0.35,
+    "gamma": 1.12
+   },
+   "n": 13,
+   "ts": "2026-06-15T11:05:33",
+   "step_image": "steps/013_s08_exposure_hero01.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_highlights",
+   "note": "Step 9 — pull highlights down (-32) to hold detail in skin and bright cloth and protect the warm paper-tone end of the coming duotone; batched 4-up.",
+   "adobe_request_id": "3deb6c8c-ab03-40c5-97e2-ee1986df80bd",
+   "params": {
+    "amount": -32
+   },
+   "n": 14,
+   "ts": "2026-06-15T11:05:33",
+   "step_image": "steps/014_s09_highlights_hero01.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_dark_portions",
+   "note": "Step 10 — open the shadows (-22, lift) so the dark ink of the duotone does not crush facial detail; batched 4-up.",
+   "adobe_request_id": "44422d2a-0d4d-42de-9722-594e4f59a76d",
+   "params": {
+    "amount": -22
+   },
+   "n": 15,
+   "ts": "2026-06-15T11:05:33",
+   "step_image": "steps/015_s10_darkportions_hero01.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_brightness_and_contrast",
+   "note": "Step 11 — set the final editorial contrast curve (b+6 c+28), the punchy mono contrast a duotone needs to read on press; batched 4-up.",
+   "adobe_request_id": "39e67d97-054a-4803-8a87-9ae279736650",
+   "params": {
+    "brightness": 6,
+    "contrast": 28
+   },
+   "n": 16,
+   "ts": "2026-06-15T11:05:34",
+   "step_image": "steps/016_s11_contrast_hero01.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_monochromatic_tint",
+   "note": "Step 12 — apply the two-ink editorial DUOTONE (hue 202 = shadow ink #1A2A33, sat 30): deep ink in shadows, warm paper-tone reads in highlights. The signature treatment, identical across all four heroes for consistency.",
+   "adobe_request_id": "c79a1a1e-b688-4644-beaf-7692a4f7ad37",
+   "params": {
+    "hue": 202,
+    "saturation": 30,
+    "lightness": 0,
+    "shadow_ink": "#1A2A33"
+   },
+   "n": 17,
+   "ts": "2026-06-15T11:05:34",
+   "step_image": "steps/017_s12_duotone_hero01.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_add_grain",
+   "note": "Step 13 — add fine film grain (32) over the duotone so it sits like printed editorial photography, not clean digital. Finishes HERO_DUOTONE (h01) + PORTRAIT_2/3/4 (h02/03/04). Batched 4-up.",
+   "adobe_request_id": "591d7a5e-8f05-4af5-b9a2-0cebf17a5822",
+   "output": "4 finished duotone heroes",
+   "params": {
+    "grainAmount": 32
+   },
+   "n": 18,
+   "ts": "2026-06-15T11:05:34",
+   "step_image": "steps/018_s13_grain_HERO_DUOTONE.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_by_prompt",
+   "note": "Step 14 — on a full-colour copy of cropped hero01, prompt-select the single garment colour (the red jacket) to set up the pull-quote colour-splash SPLASH frame.",
+   "adobe_request_id": "3a8f994b-2150-4c90-85fa-cc0c5f0fbe57",
+   "output": "red-garment mask",
+   "params": {
+    "prompt": "red denim jacket clothing"
+   },
+   "n": 19,
+   "ts": "2026-06-15T11:08:52",
+   "step_image": "steps/019_s14_garment_select.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_invert_selection",
+   "note": "Step 15 — invert the garment selection so everything EXCEPT the red garment is targeted for desaturation.",
+   "adobe_request_id": "d199da69-207b-455d-85ff-fc831ca89245",
+   "output": "inverted (everything-else) mask",
+   "n": 20,
+   "ts": "2026-06-15T11:08:52",
+   "step_image": "steps/020_s15_invert_selection.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_single_color_saturation",
+   "note": "Step 16 — drive the saturation of the inverted (everything-else) region to mono (yellow -100, masked to background) so only the garment colour stays vivid — the colour-splash SPLASH frame.",
+   "adobe_request_id": "288a5efc-7863-4db3-ab42-2ecc024dba54",
+   "params": {
+    "color": "yellow",
+    "saturation": -100,
+    "masked": "background"
+   },
+   "n": 21,
+   "ts": "2026-06-15T11:08:52",
+   "step_image": "steps/021_s16_bg_to_mono.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_hsl",
+   "note": "Step 17 — finish the colour-splash: HSL passes pull green/blue/cyan/magenta to mono so only the red garment carries chroma, then nudge the retained red (hue -4, sat +18) to match the feature accent #B5331F. 5 chained HSL calls.",
+   "adobe_request_id": "22653b99-b82d-4440-943a-26182dba5b76",
+   "params": {
+    "mono_families": [
+     "green",
+     "blue",
+     "cyan",
+     "magenta"
+    ],
+    "red_tune": {
+     "hue": -4,
+     "saturation": 18,
+     "lightness": -2
+    },
+    "chain_reqs": [
+     "dd1b013d",
+     "cae261d1",
+     "fe7f17cd",
+     "c1886e2c"
+    ]
+   },
+   "n": 22,
+   "ts": "2026-06-15T11:08:52",
+   "step_image": "steps/022_s17_SPLASH_colorsplash.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "asset_search",
+   "note": "Step 18 — search Adobe Stock for two editorial textures: an uncoated/grainy paper ground and an ink-bleed/roller wash, per the brand swatch texture brief.",
+   "input": "brand swatch sheet (texture brief)",
+   "output": "Stock results: 8756 paper hits, 2638 ink hits",
+   "params": {
+    "paper_query": "uncoated paper grain texture",
+    "ink_query": "ink bleed wash texture monochrome",
+    "chosen": [
+     "640682633 Beige paper grainy",
+     "363606168 Black rolled ink on white"
+    ]
+   },
+   "n": 23,
+   "ts": "2026-06-15T11:09:50",
+   "step_image": "steps/023_s18_stock_search_paper.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "asset_license_and_download_stock",
+   "note": "Step 19 — license + download both textures at full print resolution (license-before-edit). Paper 640682633 (6720x4480), ink 363606168.",
+   "output": "2 licensed full-res textures",
+   "params": {
+    "paper_id": "640682633",
+    "ink_id": "363606168",
+    "state": "just_purchased"
+   },
+   "n": 24,
+   "ts": "2026-06-15T11:09:51",
+   "step_image": "steps/024_s19_stock_license_ink.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_light_portions",
+   "note": "Step 20 — lift the light portions (+45) of the licensed paper-grain texture so it reads as a subtle page ground, not a heavy overlay (GROUND_PAPER for the body spread).",
+   "adobe_request_id": "2bf69cab-eab2-4fd6-a62a-3b736c9ff2bd",
+   "input": "licensed paper texture 640682633",
+   "output": "GROUND_PAPER",
+   "params": {
+    "amount": 45
+   },
+   "n": 25,
+   "ts": "2026-06-15T11:11:25",
+   "step_image": "steps/025_s20_GROUND_PAPER.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_color_overlay",
+   "note": "Step 21 — tint the ink-bleed wash toward the duotone shadow ink #1A2A33 (multiply blend) so the ground harmonizes with the hero treatment (GROUND_INK for page 5).",
+   "adobe_request_id": "9b5726b5-ffc9-4b39-ba37-dc60626980c3",
+   "input": "licensed ink-wash texture 363606168",
+   "output": "GROUND_INK",
+   "params": {
+    "color": "#1A2A33",
+    "blendMode": "multiply"
+   },
+   "n": 26,
+   "ts": "2026-06-15T11:11:26",
+   "step_image": "steps/026_s21_GROUND_INK.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_halftone",
+   "note": "Step 22 — coarse monochrome halftone (r12, B&W) on a duplicate of the finished hero01 duotone for the decorative halftone accent block that bridges the body spread — a print-editorial flourish.",
+   "adobe_request_id": "fe94e341-93ce-4774-854c-8e57cd78ebb4",
+   "input": "finished duotone hero01",
+   "output": "halftone_accent",
+   "params": {
+    "radius": 12,
+    "blackAndWhite": true
+   },
+   "n": 27,
+   "ts": "2026-06-15T11:11:26",
+   "step_image": "steps/027_s22_halftone_accent.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_vectorize",
+   "note": "Step 23 — vectorize the hand-drawn THE MAKERS masthead scan to clean scalable line art (218 vector paths -> SVG) for the masthead lockup.",
+   "adobe_request_id": "54b4cae7-f209-4ab9-a867-b6a70be4795a",
+   "input": "uploaded masthead scan",
+   "output": "work/masthead/masthead_vectorized.svg",
+   "params": {
+    "paths": 218,
+    "format": "image/svg+xml"
+   },
+   "n": 28,
+   "ts": "2026-06-15T11:14:29",
+   "step_image": "steps/028_s23_masthead_vectorized.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_compositor",
+   "action": "document_render_vector",
+   "note": "Step 24 — render the vectorized masthead to a print PDF + transparent PNG (MASTHEAD asset). The document_render_vector CONNECTOR rejected the SVG (requires a PDF/PostScript-based .ai: 400 Input file is not a valid Adobe Illustrator file), so the vector PDF was re-containered locally from the genuine 218-path connector SVG via reportlab, and the transparent placement PNG keyed from the scan. Vector geometry is the real connector vectorize output.",
+   "input": "work/masthead/masthead_vectorized.svg",
+   "output": "work/masthead/MASTHEAD_vector.pdf + MASTHEAD_glyph.png",
+   "params": {
+    "connector_attempt": "document_render_vector returned 400 (SVG not AI)",
+    "fallback": "local reportlab vector PDF + PIL alpha-key PNG"
+   },
+   "n": 29,
+   "ts": "2026-06-15T11:14:29",
+   "step_image": "steps/029_s24_MASTHEAD_render.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "font_recommend",
+   "note": "Step 25 — recommend a display+body pairing for the feature. Connector returned editorial/print-intent families: heading candidates BodoniURW-Reg, Bogart-Regular, CicloDisplay (high-contrast editorial display serifs aligned with the persona Source Serif Pro); body candidates ArnoPro-Regular, SofiaPro-Light, AkagiPro-Book (humanist text faces aligned with the persona Inter). Local compose maps these to the nearest installed faces: display=Didot, body=AvenirNext.",
+   "adobe_request_id": "font_recommend_heading+body",
+   "output": "display+body pairing",
+   "params": {
+    "heading_recs": [
+     "BodoniURW-Reg",
+     "Bogart-Regular",
+     "CicloDisplay-Regular"
+    ],
+    "body_recs": [
+     "ArnoPro-Regular",
+     "SofiaPro-Light",
+     "AkagiPro-Book"
+    ],
+    "local_map": {
+     "display": "Didot",
+     "body": "AvenirNext"
+    },
+    "persona": {
+     "heading": "Source Serif Pro",
+     "body": "Inter"
+    }
+   },
+   "n": 30,
+   "ts": "2026-06-15T11:15:04",
+   "step_image": "steps/030_s25_font_recommend.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_datamerge",
+   "action": "document_merge_data_layout",
+   "note": "Step 26 [T] — data-merge rendered locally from contributors_roster.csv (5 rows); the document_merge_data_layout connector requires a human-authored template. One row-card per CSV record binding name/role/city/instagram/headshot_filename, then assembled into the 5-across contributors strip for page 6.",
+   "input": "input_assets/contributors_roster.csv + 5 contributor headshots",
+   "output": "work/contrib_strip/contributors_strip.png (5 cards)",
+   "params": {
+    "rows": 5,
+    "binds": [
+     "name",
+     "role",
+     "city",
+     "instagram",
+     "headshot_filename"
+    ],
+    "layout": "5-across multiple-records"
+   },
+   "n": 31,
+   "ts": "2026-06-15T11:16:21",
+   "step_image": "steps/031_s26_contrib_card1_datamerge.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_datamerge",
+   "action": "compose_contributors_strip",
+   "note": "Step 26b [T] — assemble the five data-merged record cards into the single horizontal contributors strip (warm paper ground) that lands in the page-6 frame.",
+   "input": "5 record cards",
+   "output": "work/contrib_strip/contributors_strip.png",
+   "params": {
+    "strip_px": "2649x783"
+   },
+   "n": 32,
+   "ts": "2026-06-15T11:16:21",
+   "step_image": "steps/032_s26b_contributors_strip.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_page1_opening",
+   "note": "Step 27a — compose page 1 opening: full-bleed HERO_DUOTONE + warm-tinted vectorized MASTHEAD lockup + Didot headline + standfirst + caption. Copy read from copy_deck.json.",
+   "input": "h01 duotone + masthead glyph + copy_deck.json",
+   "output": "work/pages/page1.png",
+   "params": {
+    "page_px": "2550x3578",
+    "trim": "A4+3mm bleed"
+   },
+   "n": 33,
+   "ts": "2026-06-15T11:20:30",
+   "step_image": "steps/033_s27a_page1_opening.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_page2_splash",
+   "note": "Step 27b — compose page 2 colour-splash pull-quote: SPLASH frame bleeding into ink field + Didot-italic pull_quote + attribution.",
+   "input": "SPLASH + copy_deck pull_quote",
+   "output": "work/pages/page2.png",
+   "params": {
+    "page_px": "2550x3578"
+   },
+   "n": 34,
+   "ts": "2026-06-15T11:20:31",
+   "step_image": "steps/034_s27b_page2_splash.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_pages3-5_profiles",
+   "note": "Step 27c — compose body profile pages 3-5: PORTRAIT_2/3 over GROUND_PAPER (woodworker, weaver) + halftone accent block on p3; PORTRAIT_4 over GROUND_INK (metalsmith) on p5. Drop caps, captions, per-maker body copy + pull-detail bands. All copy from copy_deck.json.",
+   "input": "h02/h03/h04 duotones + grounds + halftone + copy_deck body",
+   "output": "work/pages/page3-5.png",
+   "params": {
+    "page_px": "2550x3578"
+   },
+   "n": 35,
+   "ts": "2026-06-15T11:20:31",
+   "step_image": "steps/035_s27c_page3_profile.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_page6_contributors",
+   "note": "Step 27d — compose page 6 closing: masthead lockup + CONTRIBUTORS title + intro + the page-6 data-merged contributors strip + colophon.",
+   "input": "contributors_strip + masthead",
+   "output": "work/pages/page6.png",
+   "params": {
+    "page_px": "2550x3578"
+   },
+   "n": 36,
+   "ts": "2026-06-15T11:20:32",
+   "step_image": "steps/036_s27d_page6_contributors.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "document_render_layout",
+   "note": "Step 27e — render the 6-page feature to print-ready PDF (A4 trim 210x297mm + 3mm bleed, crop marks, CMYK-intent palette, 300 dpi). Local layout assembly stands in for document_render_layout over the authored FeatureSpread_6pp.indd (the connector requires a desktop-authored .indd).",
+   "input": "6 composed pages",
+   "output": "outputs/THE_MAKERS_feature_PRINT_A4-bleed.pdf + READER_A4.pdf",
+   "params": {
+    "pages": 6,
+    "dpi": 300,
+    "bleed_mm": 3
+   },
+   "n": 37,
+   "ts": "2026-06-15T11:20:32",
+   "step_image": "steps/037_s27e_render_layout_PDF.png"
+  },
+  {
+   "phase": "export",
+   "actor": "adobe_connector",
+   "action": "document_convert_pdf",
+   "note": "Step 28 — round-trip the rendered proof PDF back to a genuine editable .indd package (ZIP) so the editor can make last-minute caption/credit tweaks in desktop InDesign.",
+   "adobe_request_id": "document_convert_pdf",
+   "input": "uploaded THE_MAKERS_feature_READER_A4.pdf",
+   "output": "outputs/THE_MAKERS_feature_editable_INDD.zip",
+   "params": {
+    "outputFormat": "indd",
+    "embedLinks": true,
+    "presigned": "https://to.adobe.com/lQwzy"
+   },
+   "n": 38,
+   "ts": "2026-06-15T11:22:18",
+   "step_image": "steps/038_s28_pdf_to_indd_roundtrip.png"
+  },
+  {
+   "phase": "export",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "Step 29 — generate the web/social teaser crops of the finished duotone HERO_DUOTONE: 1080x1350 (4:5 portrait, upper-body) and 1080x1080 (1:1 square, face-detected 0.99 conf) for the issue announcement.",
+   "adobe_request_id": "3eabe90e-13e5-4a9b-b991-5ae0c98cb5bf",
+   "input": "finished duotone hero01",
+   "output": "outputs/web_teaser_hero_1080x1350.png + 1080x1080.png",
+   "params": {
+    "portrait": "1080x1350",
+    "square": "1080x1080",
+    "square_req": "eb15900f"
+   },
+   "n": 39,
+   "ts": "2026-06-15T11:23:05",
+   "step_image": "steps/039_s29_web_teaser_crops.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "adobe_connector",
+   "action": "asset_inline_preview",
+   "note": "Step 30 — inline-preview the final web crops (square teaser shown) to confirm the deliverable before handoff. The multi-page print PDF could not be image-encoded by the preview service (expected for PDF); raster crops verified instead.",
+   "adobe_request_id": "asset_inline_preview",
+   "input": "web crops",
+   "output": "visual confirmation OK",
+   "params": {
+    "pdf_preview": "not encodable (multi-page PDF)",
+    "raster_preview": "OK"
+   },
+   "n": 40,
+   "ts": "2026-06-15T11:23:05",
+   "step_image": "steps/040_s30_inline_preview.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "self_verify",
+   "note": "Self-verify: all output dims asserted (PDF A4+bleed 2550x3578, web crops 1080x1350 + 1080x1080, duotones 1024x1280); close-read of page1 headline/standfirst (no clip), page2 colour-splash, page6 data-merge (5 records bound, city/instagram legible). No clipped text, collisions, or garbles.",
+   "output": "all deliverables verified",
+   "params": {
+    "dim_assertions": "PASS",
+    "close_reads": [
+     "page1",
+     "page2",
+     "page6",
+     "contrib_strip"
+    ]
+   },
+   "n": 41,
+   "ts": "2026-06-15T11:25:46",
+   "step_image": "steps/041_s_verify_final.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "fix_page2_header",
+   "note": "Adversarial verify caught a leaked placeholder PULL-QUOTE in the page-2 running header; fixed to FEATURE, re-composed all 6 pages, rebuilt outputs/pages_png + both PDFs.",
+   "n": 42,
+   "ts": "2026-06-15T12:10:31",
+   "step_image": "steps/042_fixed_page2_header.png"
+  }
+ ]
+}

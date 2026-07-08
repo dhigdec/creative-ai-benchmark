@@ -1,0 +1,6 @@
+REASONS: 
+
+ISSUES:
+- Asset-count inconsistency: the full_brief step 1 and connector_workflow step 1 both say '8 client-supplied assets' but then enumerate only 7 filenames, and inputs[] contains exactly 7 entries (hero photo, logo, leaf motif, dieline .ai, label .indd, skus.csv, brand_guide.pdf). The '8' is wrong; should read 7. Cosmetic, non-blocking.
+- carton_dieline_print output is declared kind='pdf' but its spec and workflow step 13 also promise 'plus a preview PNG', collapsing two exported artifacts into one output/one render_vector node (typically one format per call). The board step then consumes 'carton_dieline_print' as a preview image, relying on that PNG. Minor modeling liberty already acknowledged in reverify.
+- CMYK/3mm-bleed fidelity of the exported PDFs is inherited from the authored .ai/.indd inputs rather than guaranteed by render_vector/render_layout; the spec attributes this correctly, so it is consistent but worth an annotator note.

@@ -1,0 +1,633 @@
+{
+ "task_id": 6004,
+ "slug": "realestate-stills",
+ "title": "Real-estate weekly listing stills package — 6 scenes from 5-bracket RAW: masked window-pull HDR grade, straightened verticals, one shared gallery preset, print + web JPEGs, plus Illustrator data-merged just-listed rider labels",
+ "started": "2026-06-15T10:56:34",
+ "finished": "2026-06-15T11:19:22",
+ "steps": [
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Living room base — blown picture window onto green lawn; the load-bearing window-pull subject (interior)",
+   "input": "input_assets/scene01_living_base.jpg",
+   "n": 1,
+   "ts": "2026-06-15T10:56:55",
+   "step_image": "steps/001_baseline_scene01_living_base.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Kitchen base — blown window above sink; clean-white whites to recover (interior)",
+   "input": "input_assets/scene02_kitchen_base.jpg",
+   "n": 2,
+   "ts": "2026-06-15T10:56:55",
+   "step_image": "steps/002_baseline_scene02_kitchen_base.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Primary bedroom base — two tall blown windows; shadow lift + window-pull (interior)",
+   "input": "input_assets/scene03_primary-bed_base.jpg",
+   "n": 3,
+   "ts": "2026-06-15T10:56:55",
+   "step_image": "steps/003_baseline_scene03_primary-bed_base.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Front exterior base — crooked verticals, over-green lawn, over-blue sky to calm (exterior)",
+   "input": "input_assets/scene04_front-exterior_base.jpg",
+   "n": 4,
+   "ts": "2026-06-15T10:56:55",
+   "step_image": "steps/004_baseline_scene04_front-exterior_base.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Twilight exterior base — blue-hour; warm window glow; gentle grade (exterior)",
+   "input": "input_assets/scene05_twilight_base.jpg",
+   "n": 5,
+   "ts": "2026-06-15T10:56:56",
+   "step_image": "steps/005_baseline_scene05_twilight_base.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Backyard base — over-green lawn + deep-blue sky to calm; straighten fence (exterior)",
+   "input": "input_assets/scene06_backyard_base.jpg",
+   "n": 6,
+   "ts": "2026-06-15T10:56:56",
+   "step_image": "steps/006_baseline_scene06_backyard_base.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Agency house-look reference still — natural-HDR target the shared preset is chosen to match",
+   "input": "input_assets/house_look_reference.jpg",
+   "n": 7,
+   "ts": "2026-06-15T10:56:56",
+   "step_image": "steps/007_baseline_house_look_reference.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "NBP brokerage logo (1024px) — vectorized via connector for the rider-label artboard",
+   "input": "input_assets/brokerage_logo.png",
+   "n": 8,
+   "ts": "2026-06-15T10:56:56",
+   "step_image": "steps/008_baseline_brokerage_logo.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "adobe_connector",
+   "action": "asset_finalize_file_upload",
+   "note": "Finalized CC uploads of the 6 merged-base scene JPEGs + the brokerage logo; returns presigned URLs that the per-scene grading chain and the logo vectorize step chain from.",
+   "input": "input_assets/*.jpg + brokerage_logo.png",
+   "output": "work/uploads.json",
+   "params": {
+    "files": 7,
+    "scenes": 6,
+    "logo": 1
+   },
+   "n": 9,
+   "ts": "2026-06-15T10:58:57",
+   "step_image": "steps/009_uploads_finalized.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_auto_straighten",
+   "note": "Leveled horizons and corrected the leaning ~2-3deg verticals on all 6 scenes (brief: straight verticals / corrected perspective). Batched across the set so geometry is consistent.",
+   "input": "work/uploads.json (6 scenes)",
+   "output": "work/state.json straighten[*]",
+   "adobe_request_id": "2defb7f1-1efb-4bc4-ba24-0972ee03d496",
+   "params": {
+    "uprightMode": "auto",
+    "constrainCrop": true,
+    "scenes": 6
+   },
+   "n": 10,
+   "ts": "2026-06-15T10:59:45",
+   "step_image": "steps/010_straighten_s01_living.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_to_bounds",
+   "note": "Trimmed the ~3% crooked/empty wedge edges introduced by upright correction so every frame is a clean rectangle before grading.",
+   "input": "work/state.json straighten[*]",
+   "output": "work/state.json crop[*]",
+   "adobe_request_id": "0181d6e8-fc03-41ef-bbdc-0a4c7c2c63a4",
+   "params": {
+    "bounds": {
+     "top": 0.03,
+     "left": 0.03,
+     "bottom": 0.97,
+     "right": 0.97
+    },
+    "scenes": 6
+   },
+   "n": 11,
+   "ts": "2026-06-15T11:00:16",
+   "step_image": "steps/011_crop_to_bounds_s01.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_auto_tone",
+   "note": "Neutral exposure/contrast baseline across all 6 so the manual grade starts from a consistent point (brief: cohesive set).",
+   "input": "work/state.json crop[*]",
+   "output": "work/state.json autotone[*]",
+   "adobe_request_id": "54729034-78c1-45cc-b415-7bad5c0d6cab",
+   "params": {
+    "scenes": 6
+   },
+   "n": 12,
+   "ts": "2026-06-15T11:01:06",
+   "step_image": "steps/012_autotone_s01.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_exposure",
+   "note": "Set the mid exposure between the bracket extremes — bright but realistic interiors (gentle gamma lift). Tool flags deprecation but the workflow specifies image_adjust_exposure; it completed cleanly.",
+   "input": "work/state.json autotone[*]",
+   "output": "work/state.json exposure[*]",
+   "adobe_request_id": "61ec4056-7eed-4ca5-a3ae-f4d25567f4b6",
+   "params": {
+    "exposure": 0.35,
+    "gamma": 1.15,
+    "offset": 0.03,
+    "scenes": 6
+   },
+   "n": 13,
+   "ts": "2026-06-15T11:01:06",
+   "step_image": "steps/013_exposure_s03_bed.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_by_prompt",
+   "note": "Masked the blown daylight windows on the 3 window-bearing interiors (living/kitchen/bed) to isolate the over-exposed glazing for the window-pull. 3 connector calls; requestIds for s01/s02/s03 recorded.",
+   "input": "work/state.json exposure[interiors]",
+   "output": "work/state.json win_mask[*]",
+   "adobe_request_id": "35d9e3e5-3cf7-4669-b7b0-72388b87bca2",
+   "params": {
+    "prompt": "bright windows",
+    "interiors": 3,
+    "requestIds_s02_s03": [
+     "2652dd75-cd51-4a6d-a64e-ce68bf9de27b",
+     "193a03f1-3b66-4c3a-9539-8de07b48951e"
+    ]
+   },
+   "n": 14,
+   "ts": "2026-06-15T11:03:32",
+   "step_image": "steps/014_window_mask_s03_bed.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_invert_selection",
+   "note": "Inverted each window mask to the room (non-window) region so the shadow lift opens interiors without touching the recovered windows. 3 calls (s01/s02/s03).",
+   "input": "work/state.json win_mask[*]",
+   "output": "work/state.json room_mask[*]",
+   "adobe_request_id": "26fcbc64-eaa7-4201-b8a9-e013db819d47",
+   "params": {
+    "interiors": 3,
+    "requestIds_s02_s03": [
+     "4956f342-88f4-418f-8809-4885da8d24b4",
+     "d032ed09-a810-466f-a93b-f4c15b2bf0e6"
+    ]
+   },
+   "n": 15,
+   "ts": "2026-06-15T11:03:32",
+   "step_image": "steps/015_room_mask_s01_living.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_highlights",
+   "note": "THE WINDOW-PULL: masked highlight recovery (-82) on each window region — pulls the clipped-white glazing down so exterior greenery/detail reads instead of blowing out. 3 calls (s01/s02/s03).",
+   "input": "work/state.json win_mask[*] + exposure[interiors]",
+   "output": "work/state.json winpull[*]",
+   "adobe_request_id": "340f9077-7869-4adb-8d4b-15560b7a5ee7",
+   "params": {
+    "amount": -82,
+    "interiors": 3,
+    "requestIds_s02_s03": [
+     "3abd9157-2f6d-4a43-8d4f-8574a53e23f5",
+     "e27c5c7f-e217-4b77-a9e0-425f52e537aa"
+    ]
+   },
+   "n": 16,
+   "ts": "2026-06-15T11:03:32",
+   "step_image": "steps/016_window_pull_s03_bed.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_dark_portions",
+   "note": "Masked shadow lift (+32) on the room region of each interior — opens dark corners while leaving the recovered windows intact (brief: open shadows, clean whites). 3 calls (s01/s02/s03). Exteriors skip this masked room step.",
+   "input": "work/state.json room_mask[*] + winpull[*]",
+   "output": "work/state.json shadowlift[interiors]",
+   "adobe_request_id": "058bd66f-1f50-4b18-b28a-d3bd657ba961",
+   "params": {
+    "amount": 32,
+    "interiors": 3,
+    "requestIds_s02_s03": [
+     "99702496-1dbf-47d4-b65b-dc85869657b5",
+     "2f6bb88c-1a6a-4022-a00a-50feb471673b"
+    ]
+   },
+   "n": 17,
+   "ts": "2026-06-15T11:03:32",
+   "step_image": "steps/017_shadow_lift_s01_living.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_light_portions",
+   "note": "Global -22 on bright walls/ceilings and over-bright skies so interiors read evenly and exteriors do not clip (brief: bright but realistic). Batched across all 6.",
+   "input": "work/state.json shadowlift[*]",
+   "output": "work/state.json lightportions[*]",
+   "adobe_request_id": "f8dcafc8-647a-46ee-a908-3174f60bccce",
+   "params": {
+    "amount": -22,
+    "scenes": 6
+   },
+   "n": 18,
+   "ts": "2026-06-15T11:05:01",
+   "step_image": "steps/018_light_portions_s02_kitchen.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_brightness_and_contrast",
+   "note": "Final overall punch: +6 brightness / +16 contrast for proper contrast without going over-edited. Batched across all 6.",
+   "input": "work/state.json lightportions[*]",
+   "output": "work/state.json bc[*]",
+   "adobe_request_id": "7d754c10-1146-49ab-a8e8-ccf2b9199385",
+   "params": {
+    "brightness": 6,
+    "contrast": 16,
+    "scenes": 6
+   },
+   "n": 19,
+   "ts": "2026-06-15T11:05:02",
+   "step_image": "steps/019_brightness_contrast_s04_exterior.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_color_temperature",
+   "note": "Neutralized white balance toward clean whites (slight cool: a=4,b=-14) to kill mixed tungsten/daylight cast (brief: clean neutral whites). Batched across all 6.",
+   "input": "work/state.json bc[*]",
+   "output": "work/state.json ctemp[*]",
+   "adobe_request_id": "5605d31f-dbd7-4431-9940-40c512b5eb85",
+   "params": {
+    "a": 4,
+    "b": -14,
+    "luminance": 50,
+    "scenes": 6
+   },
+   "n": 20,
+   "ts": "2026-06-15T11:05:02",
+   "step_image": "steps/020_color_temperature_s02_kitchen.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_hsl",
+   "note": "Targeted HSL pass 1: calmed the over-green lawns and recovered window foliage (green -28 sat, +8 hue toward natural). Batched across all 6.",
+   "input": "work/state.json ctemp[*]",
+   "output": "work/state.json hsl_green[*]",
+   "adobe_request_id": "62ae338b-e674-4258-9bf9-c8becbaddb73",
+   "params": {
+    "targetColor": "green",
+    "hue": 8,
+    "saturation": -28,
+    "lightness": 2,
+    "scenes": 6
+   },
+   "n": 21,
+   "ts": "2026-06-15T11:06:55",
+   "step_image": "steps/021_hsl_green_blue_s06_backyard.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_hsl",
+   "note": "Targeted HSL pass 2: calmed over-blue/cyan skies (blue -22 sat) so exteriors read natural, not over-saturated. Second distinct color family on the same set — batched across all 6.",
+   "input": "work/state.json hsl_green[*]",
+   "output": "work/state.json hsl_blue[*]",
+   "adobe_request_id": "6cec7fb4-800f-4dc1-933b-1240d38380a4",
+   "params": {
+    "targetColor": "blue",
+    "saturation": -22,
+    "lightness": 3,
+    "scenes": 6
+   },
+   "n": 22,
+   "ts": "2026-06-15T11:06:56",
+   "step_image": "steps/022_hsl_blue_s04_exterior.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_vibrance_and_saturation",
+   "note": "Gentle vibrance lift (+16 vibrance, -3 saturation) for lively-but-realistic color without oversaturating wood/skin. Batched across all 6.",
+   "input": "work/state.json hsl_blue[*]",
+   "output": "work/state.json vibrance[*]",
+   "adobe_request_id": "fbef4621-808d-4a57-80cc-af57c2b0092b",
+   "params": {
+    "vibrance": 16,
+    "saturation": -3,
+    "scenes": 6
+   },
+   "n": 23,
+   "ts": "2026-06-15T11:06:56",
+   "step_image": "steps/023_vibrance_s06_backyard.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_list_presets",
+   "note": "Fetched exact Lightroom preset display names so the shared gallery look is applied by real name. Chose Color - Natural (minimal stylization, true-to-scene color) to match the agency house-look reference without over-editing.",
+   "input": "agency house_look_reference.jpg",
+   "output": "preset name: Color - Natural",
+   "adobe_request_id": "d3cf56c1-97ce-4581-8121-266fd3b8801b",
+   "params": {
+    "chosen": "Color - Natural"
+   },
+   "n": 24,
+   "ts": "2026-06-15T11:09:56",
+   "step_image": "steps/024_list_presets_lookref.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_preset",
+   "note": "Applied ONE shared gallery preset (Color - Natural) to every scene as the final unifying color pass — cohesive set across all 6 (brief: consistent look across the full gallery). 6 calls, same preset, distinct requestIds.",
+   "input": "work/state.json vibrance[*]",
+   "output": "work/state.json final[*]",
+   "adobe_request_id": "28ef985d-542f-4116-b3fd-dfafa17223ce",
+   "params": {
+    "presetName": "Color - Natural",
+    "scenes": 6,
+    "requestIds": [
+     "28ef985d s01",
+     "7b306f41 s02",
+     "66a55799 s03",
+     "a4533db5 s04",
+     "7cda7b77 s05",
+     "fbc0fd93 s06"
+    ]
+   },
+   "n": 25,
+   "ts": "2026-06-15T11:09:56",
+   "step_image": "steps/025_apply_preset_s04_exterior.png"
+  },
+  {
+   "phase": "export",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "Exported PRINT-resolution sRGB JPEG (q7) of each of the 6 finished scenes at native master res 1444x962 — resize-only, upscale_factor 1 (no upscaling; honest to the ~1536px source cap). 6 connector calls.",
+   "input": "work/state.json final[*]",
+   "output": "outputs/print_jpeg/*.jpg",
+   "adobe_request_id": "153d2c37-ae13-4b5a-a782-9181ccc14b46",
+   "params": {
+    "width": 1444,
+    "height": 962,
+    "quality": 7,
+    "scenes": 6,
+    "requestIds": [
+     "153d2c37 s01",
+     "39d9004e s02",
+     "faeafece s03",
+     "44d4d1e0 s04",
+     "29741c06 s05",
+     "dad43889 s06"
+    ]
+   },
+   "n": 26,
+   "ts": "2026-06-15T11:12:13",
+   "step_image": "steps/026_export_print_s01.png"
+  },
+  {
+   "phase": "export",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "Exported WEB/portal sRGB JPEG (q7) of each scene at 1200x799 long-edge — second derivative from the same graded master for MLS/portal upload. 6 connector calls.",
+   "input": "work/state.json final[*]",
+   "output": "outputs/web_jpeg/*.jpg",
+   "adobe_request_id": "f6d5519b-2382-4059-9dbe-70e2f6168e8c",
+   "params": {
+    "width": 1200,
+    "height": 799,
+    "quality": 7,
+    "scenes": 6,
+    "requestIds": [
+     "f6d5519b s01",
+     "a6f4d447 s02",
+     "30849cf0 s03",
+     "8a50890e s04",
+     "62ba5fa0 s05",
+     "0e5ed691 s06"
+    ]
+   },
+   "n": 27,
+   "ts": "2026-06-15T11:12:14",
+   "step_image": "steps/027_export_web_s04.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_proof_background",
+   "note": "Stage 1/3 of the client gallery proof: laid the white page, the Signage Red header band, brand wordmark, and the natural-HDR/window-pull/preset subhead. Multi-element layout = local (connector processes elements).",
+   "input": "NBP palette + manifest persona",
+   "output": "work/proof_stage1.png",
+   "params": {
+    "page": "2200x1700",
+    "palette": "#C8102E/#1A1A1A/#5B6770"
+   },
+   "n": 28,
+   "ts": "2026-06-15T11:13:13",
+   "step_image": "steps/028_proof_stage1_background.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_proof_imagery",
+   "note": "Stage 2/3: placed all 6 graded web JPEGs in a 3x2 framed grid with red index chips so the client sees the cohesive set at a glance.",
+   "input": "outputs/web_jpeg/*.jpg (6)",
+   "output": "work/proof_stage2.png",
+   "params": {
+    "grid": "3x2",
+    "frames": 6
+   },
+   "n": 29,
+   "ts": "2026-06-15T11:13:13",
+   "step_image": "steps/029_proof_stage2_imagery.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "local_pil_contact_sheet",
+   "note": "Stage 3/3: set scene captions + the agent/listing footer read PROGRAMMATICALLY from listing_factsheet.csv (Eleanor Vance, phone, brokerage, 6 listings) and the tagline; saved the client proof PDF. PDF assembled locally (PIL) — the connector has no image->PDF tool.",
+   "input": "work/proof_stage2.png + listing_factsheet.csv",
+   "output": "outputs/NBP_gallery_proof.pdf",
+   "params": {
+    "dpi": 200,
+    "agent_from": "csv"
+   },
+   "n": 30,
+   "ts": "2026-06-15T11:13:13",
+   "step_image": "steps/030_proof_final.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "font_recommend",
+   "note": "Recommended a clean real-estate signage typeface pairing for the rider label headline+stats to inform the authored .ai template. Top tailored pick: Clother (Bold/Black) geometric sans. For the local render we use Helvetica Neue Condensed-Bold (address headline, matches brand Libre Franklin grotesque) + Helvetica Neue (stats/footer, body Inter feel).",
+   "input": "brand/look reference",
+   "output": "font picks: Clother-Bold/Black; render uses HelveticaNeue condensed-bold + medium",
+   "adobe_request_id": "font_recommend_signage",
+   "params": {
+    "doc_type": "signage",
+    "top": "Clother-Bold"
+   },
+   "n": 31,
+   "ts": "2026-06-15T11:14:10",
+   "step_image": "steps/031_font_recommend.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_vectorize",
+   "note": "Vectorized the NBP brokerage logo PNG to crisp editable SVG (sign-shop / .ai ready) — the linked-image logo Variable swapped into each rider artboard.",
+   "input": "work/uploads.json logo (brokerage_logo.png)",
+   "output": "work/logo_vectorized.svg",
+   "adobe_request_id": "e00d7913-8b4d-44db-8d9a-dce368a7007f",
+   "params": {
+    "format": "svg"
+   },
+   "n": 32,
+   "ts": "2026-06-15T11:14:10",
+   "step_image": "steps/032_logo_vectorized.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_datamerge",
+   "action": "document_merge_data_vector",
+   "note": "data-merge rendered locally from input_assets/listing_factsheet.csv (6 rows); the document_merge_data_* connector requires a human-authored template. One rider artboard per row (254x152mm + 3mm bleed @300dpi); all copy (status/address/beds/baths/sqft/price/agent_name/agent_phone/brokerage) read programmatically from the CSV, logo Variable swapped in from the connector-vectorized NBP mark.",
+   "input": "input_assets/listing_factsheet.csv + work/logo_keyed.png",
+   "output": "outputs/rider_labels_png/rider_0001..6.png",
+   "params": {
+    "rows": 6,
+    "artboard_mm": "254x152",
+    "bleed_mm": 3,
+    "dpi": 300,
+    "variables": [
+     "status",
+     "address",
+     "beds",
+     "baths",
+     "sqft",
+     "price",
+     "agent_name",
+     "agent_phone",
+     "brokerage",
+     "logo"
+    ]
+   },
+   "n": 33,
+   "ts": "2026-06-15T11:16:44",
+   "step_image": "steps/033_datamerge_rider01.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_datamerge",
+   "action": "datamerge_rider_row2",
+   "note": "data-merge rendered locally from listing_factsheet.csv (6 rows) — snapping row 2 (278 Evergreen Way) to show per-row Variable binding works across the set; the document_merge_data_* connector requires a human-authored template.",
+   "input": "listing_factsheet.csv row 2",
+   "output": "outputs/rider_labels_png/rider_0002.png",
+   "params": {
+    "row": 2
+   },
+   "n": 34,
+   "ts": "2026-06-15T11:16:44",
+   "step_image": "steps/034_datamerge_rider02.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_datamerge",
+   "action": "document_render_vector",
+   "note": "Rendered the merged rider labels to print PDF (6 artboards, bleed-preserving) for the sign shop. Rendered locally because the upstream merge is local (no human-authored .ai); the document_render_vector connector needs an .ai source. PDF assembled at 300dpi via PIL.",
+   "input": "outputs/rider_labels_png/* (6 merged artboards)",
+   "output": "outputs/NBP_rider_labels_print.pdf",
+   "params": {
+    "pages": 6,
+    "dpi": 300,
+    "bleed_mm": 3
+   },
+   "n": 35,
+   "ts": "2026-06-15T11:17:20",
+   "step_image": "steps/035_render_pdf_rider04.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_datamerge",
+   "action": "document_render_vector",
+   "note": "Rendered the same merged rider labels to PNG at print DPI for quick digital proofs / web preview — second format from the merge output. Per-row PNGs + a 2x3 proof contact sheet. Local render (merge is local; connector render_vector needs .ai).",
+   "input": "outputs/rider_labels_png/* (6)",
+   "output": "outputs/rider_labels_png/*.png + outputs/NBP_rider_labels_proof.png",
+   "params": {
+    "format": "png",
+    "dpi": 300,
+    "rows": 6
+   },
+   "n": 36,
+   "ts": "2026-06-15T11:17:20",
+   "step_image": "steps/036_render_png_rider_proof.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "local_pil_contact_sheet",
+   "note": "Bundled the final deliverable set (6 print JPEGs + 6 web JPEGs + gallery proof PDF + 6 rider labels PDF/PNG + vector logo) into a client delivery index/cover with grade summary and listing table read from the CSV. Local packaging.",
+   "input": "all outputs/ + listing_factsheet.csv",
+   "output": "outputs/NBP_delivery_index.pdf",
+   "params": {
+    "deliverables": 7
+   },
+   "n": 37,
+   "ts": "2026-06-15T11:17:50",
+   "step_image": "steps/037_delivery_bundle_index.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "self_verify",
+   "note": "Asserted exact dims on all 24 raster outputs (6 print 1444x962, 6 web 1200x799, 6 rider PNG 3070x1865) + 3 PDFs nonzero + SVG. Visually re-read living/kitchen/twilight finals + rider 1/3/6 + proof + delivery index: window-pull held (no clipped whites, no HDR halo), clean neutral whites, calmed greens/skies, straight verticals, cohesive shared preset; rider copy correct per CSV; logo background keyed clean. No clipped text or collisions. PASS.",
+   "input": "outputs/*",
+   "output": "verification report (pass)",
+   "params": {
+    "raster_outputs": 24,
+    "pdfs": 3,
+    "svg": 1,
+    "all_dims_ok": true
+   },
+   "n": 38,
+   "ts": "2026-06-15T11:18:33",
+   "step_image": "steps/038_self_verify_twilight.png"
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+REASONS: 
+
+ISSUES:
+- Brief-vs-workflow mismatch on the 'web header bug' export: full_brief step (9) and outputs[] line 45 both promise a 'web header bug' PNG alongside the 1024 icon and 512 avatar, but connector_workflow only produces icon_1024_png (step 14) and avatar_512_png (step 15). No step generates the header bug, so one promised deliverable has no producing step. Fix by adding a third image_crop_and_resize step or dropping the header bug from the outputs.
+- Minor output-spec vagueness: the header-bug entry in outputs[] gives no dimensions/aspect (unlike the 1024 and 512 entries), which compounds the above gap — the annotator can't tell what size the missing export should be.

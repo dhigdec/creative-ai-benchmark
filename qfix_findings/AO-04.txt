@@ -1,0 +1,6 @@
+REASONS: CANVAS-extension
+
+ISSUES:
+- Stale internal contradiction in grounding_note (line 11): it states 'The square 1:1 export is reached by AI canvas outpaint (image_generative_expand, the one allowed generative step)', but the actual connector_workflow reaches 1:1 via image_crop_to_bounds (step 11) with NO generative_expand anywhere. The reverify block's own notes claim this narrative was corrected, but the grounding_note text was missed.
+- difficulty_rationale (line 212) still lists 'generative_expand' in the tool-group chain ('...remove_background -> generative_expand -> crop_and_resize'), referencing a step that does not exist in the 16-step workflow. Same residual contradiction with the corrected crop-to-square path.
+- Both are documentation-only nits — the executable connector_workflow, inputs, outputs and tool counts are clean and contain no banned capability — but they should be scrubbed before annotator handoff so reviewers don't see a generative step that isn't actually performed.

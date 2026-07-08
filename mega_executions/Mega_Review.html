@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adobe Full-Suite Executions — Expert Review</title>
+<style>
+  :root{
+    --ink:#1c2430; --muted:#5d6675; --faint:#8b93a3;
+    --bg:#f4f5f7; --card:#ffffff; --line:#e4e7ec; --soft:#f0f2f5;
+    --navy:#1d2840; --navy2:#27345a; --accent:#3b5bdb; --accent-soft:#e8edfb;
+    --good:#1e7a4f; --warn:#a96a14; --adobe:#c5283d;
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html,body{height:100%}
+  body{font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       color:var(--ink); background:var(--bg); display:flex}
+
+  /* ---------- sidebar ---------- */
+  aside{width:304px; min-width:304px; background:var(--navy); color:#eef1f8;
+        height:100vh; position:sticky; top:0; display:flex; flex-direction:column}
+  .brand{padding:22px 20px 16px; border-bottom:1px solid rgba(255,255,255,.09)}
+  .brand h1{font-size:17px; font-weight:700; letter-spacing:.2px}
+  .brand p{font-size:12.5px; color:#aab3c9; margin-top:3px}
+  .annot{padding:14px 20px; border-bottom:1px solid rgba(255,255,255,.09)}
+  .annot label{font-size:11px; text-transform:uppercase; letter-spacing:.8px; color:#aab3c9}
+  .annot input{width:100%; margin-top:6px; padding:8px 10px; border-radius:7px; border:1px solid rgba(255,255,255,.18);
+               background:rgba(255,255,255,.07); color:#fff; font-size:14px; outline:none}
+  .annot input:focus{border-color:#7d96e8}
+  nav{flex:1; overflow-y:auto; padding:10px 12px}
+  .tnav{display:block; width:100%; text-align:left; background:transparent; border:1px solid transparent; color:#dfe4f0;
+        padding:11px 12px; border-radius:9px; cursor:pointer; margin-bottom:6px; font:inherit}
+  .tnav:hover{background:rgba(255,255,255,.06)}
+  .tnav.active{background:var(--navy2); border-color:rgba(255,255,255,.14)}
+  .tnav .tt{font-size:13.5px; font-weight:600; line-height:1.35}
+  .tnav .tc{font-size:11.5px; color:#9aa6c4; margin-top:2px}
+  .tnav .bar{height:4px; background:rgba(255,255,255,.12); border-radius:3px; margin-top:8px; overflow:hidden}
+  .tnav .bar i{display:block; height:100%; background:#6c8cff; width:0%}
+  .tnav .pct{font-size:11px; color:#9aa6c4; margin-top:4px}
+  .sfoot{padding:14px 20px 18px; border-top:1px solid rgba(255,255,255,.09)}
+  .sfoot .ov{font-size:12px; color:#aab3c9; margin-bottom:8px}
+  .sfoot button{width:100%; padding:10px; border:none; border-radius:8px; background:var(--accent); color:#fff;
+                font-size:13.5px; font-weight:600; cursor:pointer}
+  .sfoot button:hover{filter:brightness(1.08)}
+
+  /* ---------- main ---------- */
+  main{flex:1; min-width:0; padding:28px 36px 80px; max-width:1180px; margin:0 auto}
+  .crumb{font-size:12px; color:var(--faint); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px}
+  h2.title{font-size:24px; font-weight:750; letter-spacing:-.2px}
+  .chips{display:flex; flex-wrap:wrap; gap:7px; margin:12px 0 4px}
+  .chip{font-size:12px; padding:4px 11px; border-radius:999px; background:var(--soft); color:var(--muted);
+        border:1px solid var(--line); white-space:nowrap}
+  .chip.link{background:var(--accent-soft); color:var(--accent); border-color:#cfd9f6; text-decoration:none}
+  .chip.ops{background:#fdeef0; color:var(--adobe); border-color:#f3cdd3}
+  section{margin-top:26px}
+  .sec-h{display:flex; align-items:baseline; gap:10px; margin-bottom:12px}
+  .sec-h h3{font-size:16.5px; font-weight:700}
+  .sec-h .n{font-size:12.5px; color:var(--faint)}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:11px; padding:18px 20px;
+        box-shadow:0 1px 2px rgba(20,30,55,.04)}
+  .card + .card{margin-top:14px}
+
+  .glance{display:grid; grid-template-columns:1fr; gap:0}
+  .glance .row{display:grid; grid-template-columns:230px 1fr; gap:16px; padding:10px 0; border-bottom:1px dashed var(--line)}
+  .glance .row:last-child{border-bottom:none}
+  .glance .k{font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.7px; color:var(--faint); padding-top:2px}
+  .glance .v{font-size:14.5px}
+  .glance .v a{color:var(--accent)}
+
+  .brief{white-space:pre-wrap; font-size:13.8px; color:#333c4b; background:var(--soft); border:1px solid var(--line);
+         border-radius:9px; padding:14px 16px; max-height:240px; overflow:hidden; position:relative}
+  .brief.open{max-height:none}
+  .brief-fade{position:absolute; left:0; right:0; bottom:0; height:60px;
+              background:linear-gradient(transparent,var(--soft))}
+  .brief-toggle{margin-top:8px; background:none; border:none; color:var(--accent); font-size:13px; font-weight:600; cursor:pointer}
+
+  .wf{display:flex; flex-wrap:wrap; gap:6px; align-items:center}
+  .wf .st{font-size:12.5px; background:var(--soft); border:1px solid var(--line); padding:5px 10px; border-radius:7px;
+          font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+  .wf .ar{color:var(--faint); font-size:12px}
+  .wf-note{margin-top:10px; font-size:13px; color:var(--muted)}
+
+  /* asset / output groups */
+  .grp{margin-top:14px}
+  .grp-head{display:flex; gap:14px; align-items:flex-start}
+  .thumbs{display:flex; gap:8px; flex-wrap:wrap; max-width:46%}
+  .thumb{width:120px; height:120px; object-fit:cover; border-radius:8px; border:1px solid var(--line);
+         cursor:zoom-in; background:#fff}
+  .thumb.wide{width:184px}
+  .fchip{display:inline-flex; align-items:center; gap:6px; font-size:12px; background:var(--soft); padding:6px 10px;
+         border-radius:7px; border:1px solid var(--line); color:var(--muted); text-decoration:none; margin:2px 4px 2px 0}
+  .fchip:hover{border-color:var(--accent)}
+  .thumbwrap{position:relative; display:inline-block; line-height:0}
+  .thumbwrap .thumb{cursor:pointer}
+  .filethumb{display:inline-flex; align-items:center; justify-content:center; font-size:38px; background:#0e1726; color:#9fb2e6}
+  .playbadge{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:34px; height:34px; border-radius:50%;
+             background:rgba(0,0,0,.55); color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; pointer-events:none}
+  .pdfbadge{position:absolute; right:5px; bottom:5px; background:#b3282d; color:#fff; font-size:9px; font-weight:800; letter-spacing:.5px;
+            padding:2px 5px; border-radius:4px; pointer-events:none}
+  .audiochip{display:inline-flex; align-items:center; gap:6px; font-size:12px; background:var(--soft); padding:6px 10px;
+             border-radius:7px; border:1px solid var(--line); color:var(--muted); margin:2px 4px 2px 0}
+  .audiochip a{color:var(--accent); text-decoration:none}
+  .grp-meta{flex:1; min-width:0}
+  .grp-meta h4{font-size:15px; font-weight:700}
+  .grp-meta .what{font-size:13.5px; color:var(--muted); margin-top:3px}
+  .meta-line{display:flex; flex-wrap:wrap; gap:6px; margin-top:8px}
+  .meta-line .chip{font-size:11px; padding:3px 9px}
+  .qc-good{background:#e7f5ee; color:var(--good); border-color:#cdebdb}
+  .qc-mid{background:#fcf3e3; color:var(--warn); border-color:#f3e2bb}
+
+  .items{margin-top:14px; border-top:1px solid var(--line)}
+  .item{padding:13px 2px 13px; border-bottom:1px solid var(--line); display:grid; grid-template-columns:1fr 230px; gap:18px}
+  .item:last-child{border-bottom:none}
+  .item .q{font-size:14px; font-weight:600}
+  .item .g{font-size:12.8px; color:var(--muted); margin-top:4px}
+  .item details{margin-top:6px}
+  .item summary{font-size:12px; color:var(--accent); cursor:pointer; user-select:none}
+  .item .ref{font-size:12.6px; color:#44506b; background:var(--accent-soft); border-radius:7px; padding:8px 10px; margin-top:6px}
+  .ctrl{display:flex; flex-direction:column; gap:6px; align-items:flex-end; justify-content:flex-start}
+  .pills{display:flex; gap:5px}
+  .pill{min-width:36px; height:34px; border-radius:8px; border:1px solid var(--line); background:#fff; color:var(--ink);
+        font-size:13.5px; font-weight:600; cursor:pointer}
+  .pill:hover{border-color:var(--accent)}
+  .pill.sel{background:var(--accent); border-color:var(--accent); color:#fff}
+  .pill.yn{min-width:52px}
+  .scale-cap{font-size:10.5px; color:var(--faint); display:flex; justify-content:space-between; width:100%}
+  textarea.ans{width:230px; min-height:64px; border:1px solid var(--line); border-radius:8px; padding:8px 10px;
+               font:13px/1.45 inherit; resize:vertical; outline:none}
+  textarea.ans:focus{border-color:var(--accent)}
+  .clear{background:none; border:none; color:var(--faint); font-size:11.5px; cursor:pointer; text-align:right}
+  .clear:hover{color:var(--adobe)}
+
+  .asked{font-size:13px; color:#37507e; background:var(--accent-soft); border-radius:7px; padding:7px 11px; margin-top:8px; display:inline-block}
+
+  /* trajectory */
+  .traj{display:grid; grid-template-columns:repeat(auto-fill,minmax(225px,1fr)); gap:12px; margin-top:12px}
+  .step{background:var(--card); border:1px solid var(--line); border-radius:9px; overflow:hidden}
+  .step img{width:100%; height:140px; object-fit:cover; display:block; cursor:zoom-in; background:#fafafa}
+  .step .sb{padding:9px 11px}
+  .step .sa{font-size:12.5px; font-weight:700; font-family:ui-monospace,Menlo,monospace}
+  .step .sn{font-size:11.8px; color:var(--muted); margin-top:3px; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden}
+  .step .sm{font-size:10.5px; color:var(--faint); margin-top:5px; font-family:ui-monospace,Menlo,monospace; word-break:break-all}
+  .tag{display:inline-block; font-size:10px; font-weight:700; letter-spacing:.5px; text-transform:uppercase;
+       border-radius:5px; padding:2px 7px; margin-bottom:5px}
+  .tag.adobe{background:#fdeef0; color:var(--adobe)}
+  .tag.local{background:#eef3fd; color:#3556b8}
+  .tag.verify{background:#e7f5ee; color:var(--good)}
+  .tag.datamerge{background:#f3edfb; color:#6b3fb0}
+  .tag.video{background:#fff2e2; color:#b5731a}
+  details.fold{border:1px solid var(--line); border-radius:11px; background:var(--card); padding:0}
+  details.fold>summary{padding:15px 20px; cursor:pointer; font-weight:700; font-size:15.5px; list-style:none; display:flex; justify-content:space-between}
+  details.fold>summary::after{content:"▾"; color:var(--faint)}
+  details.fold[open]>summary::after{content:"▴"}
+  details.fold>.fold-body{padding:4px 20px 20px}
+
+  /* lightbox */
+  #lb{position:fixed; inset:0; background:rgba(12,16,28,.88); display:none; z-index:50;
+      align-items:center; justify-content:center; flex-direction:column; gap:12px; padding:30px}
+  #lb.show{display:flex}
+  #lb img{max-width:92vw; max-height:84vh; border-radius:6px; background:#fff}
+  #lb .cap{color:#cfd6e8; font-size:13px; display:flex; gap:16px; align-items:center}
+  #lb .cap a{color:#8fb0ff}
+  .footer-note{margin-top:34px; font-size:12px; color:var(--faint); text-align:center}
+</style>
+</head>
+<body>
+<aside>
+  <div class="brand">
+    <h1>Adobe Full-Suite Executions</h1>
+    <p>10 long-horizon tasks · 280+ connector ops · expert review</p>
+  </div>
+  <div class="annot">
+    <label for="annotator">Annotator</label>
+    <input id="annotator" placeholder="Your name" autocomplete="off">
+  </div>
+  <nav id="tasknav"></nav>
+  <div class="sfoot">
+    <div class="ov" id="overall"></div>
+    <button id="exportBtn">Export scores (JSON)</button>
+  </div>
+</aside>
+<main id="main"></main>
+<div id="lb"><img alt=""><div class="cap"><span id="lbname"></span><a id="lborig" target="_blank">open original ↗</a></div></div>
+
+<script src="presentation_data.js"></script>
+<script>
+'use strict';
+const DATA = window.MEGA_DATA;
+const LS_KEY = 'mega_scores_v1';
+const state = { scores: {}, annotator: '' };
+try { Object.assign(state, JSON.parse(localStorage.getItem(LS_KEY) || '{}')); } catch (e) {}
+const save = () => localStorage.setItem(LS_KEY, JSON.stringify(state));
+
+const esc = s => (s == null ? '' : String(s))
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+/* ------- rubric item helpers ------- */
+function allItems(t) {
+  const r = t.rubrics || {};
+  const out = [];
+  (r.input_assets || []).forEach(g => (g.items || []).forEach(i => out.push(i)));
+  (r.outputs || []).forEach(g => (g.items || []).forEach(i => out.push(i)));
+  (r.task_level || []).forEach(i => out.push(i));
+  return out;
+}
+function answered(id) {
+  const v = state.scores[id];
+  return v !== undefined && v !== null && String(v.value).trim() !== '';
+}
+function progressOf(t) {
+  const items = allItems(t);
+  const done = items.filter(i => answered(i.id)).length;
+  return { done, total: items.length };
+}
+
+/* ------- controls ------- */
+function ctrlHtml(item) {
+  const cur = state.scores[item.id] ? state.scores[item.id].value : null;
+  if (item.type === 'likert5') {
+    let pills = '';
+    for (let v = 1; v <= 5; v++)
+      pills += `<button class="pill ${cur == v ? 'sel' : ''}" data-id="${esc(item.id)}" data-v="${v}" data-t="likert5">${v}</button>`;
+    return `<div class="ctrl"><div class="pills">${pills}</div>
+      <div class="scale-cap" style="width:218px"><span>poor</span><span>excellent</span></div>
+      <button class="clear" data-id="${esc(item.id)}">clear</button></div>`;
+  }
+  if (item.type === 'yesno') {
+    return `<div class="ctrl"><div class="pills">
+      <button class="pill yn ${cur === 'yes' ? 'sel' : ''}" data-id="${esc(item.id)}" data-v="yes" data-t="yesno">Yes</button>
+      <button class="pill yn ${cur === 'no' ? 'sel' : ''}" data-id="${esc(item.id)}" data-v="no" data-t="yesno">No</button></div>
+      <button class="clear" data-id="${esc(item.id)}">clear</button></div>`;
+  }
+  return `<div class="ctrl"><textarea class="ans" data-id="${esc(item.id)}" data-t="text"
+    placeholder="Type your answer…">${esc(cur || '')}</textarea></div>`;
+}
+function itemHtml(item) {
+  return `<div class="item">
+    <div>
+      <div class="q">${esc(item.question)}</div>
+      ${item.guidance ? `<div class="g">${esc(item.guidance)}</div>` : ''}
+      ${item.reference ? `<details><summary>Expected (answer key)</summary><div class="ref">${esc(item.reference)}</div></details>` : ''}
+    </div>
+    ${ctrlHtml(item)}
+  </div>`;
+}
+
+/* ------- asset groups ------- */
+function fileMeta(t, relFile) {
+  // rubric file paths look like "input_assets/x.png" or "outputs/cover/x.png";
+  // match against entry.file (full rel path) by suffix, then fall back to basename.
+  const clean = relFile.replace(/^\.?\//, '');
+  const base = clean.split('/').pop();
+  const all = (t.inputs || []).concat(t.outputs || []);
+  return all.find(e => e.file && (e.file.endsWith('/' + clean) || e.file.endsWith('/' + base)))
+      || all.find(e => e.name === base || e.name === clean || (e.name && e.name.split('/').pop() === base));
+}
+function thumbsHtml(t, files) {
+  let h = '';
+  files.forEach(f => {
+    const m = fileMeta(t, f);
+    const full = m ? m.file : (t.dir + '/' + f.replace(/^\.?\//, ''));
+    const label = (m ? m.name : f).split('/').pop();
+    if (m && m.is_image) {
+      const src = m.web || full;
+      h += `<img class="thumb" loading="lazy" src="${esc(src)}" data-full="${esc(m.web || full)}"
+             data-orig="${esc(full)}" data-name="${esc(m.name)}" alt="${esc(m.name)}" title="${esc(m.name)}${m.px ? ' · ' + m.px : ''}">`;
+    } else if (m && m.is_video) {
+      h += `<a class="thumbwrap" href="${esc(full)}" target="_blank" title="${esc(m.name)}${m.dur ? ' · ' + m.dur : ''} — click to play">
+        ${m.web ? `<img class="thumb" loading="lazy" src="${esc(m.web)}" alt="${esc(m.name)}">` : `<span class="thumb filethumb">🎬</span>`}
+        <span class="playbadge">▶</span></a>`;
+    } else if (m && m.is_audio) {
+      h += `<span class="audiochip">🔊 <a href="${esc(full)}" target="_blank">${esc(label)}</a>${m.dur ? ' · ' + esc(m.dur) : ''}</span>`;
+    } else if (m && m.is_pdf && m.web) {
+      h += `<a class="thumbwrap" href="${esc(full)}" target="_blank" title="${esc(label)} — open PDF">
+        <img class="thumb" loading="lazy" src="${esc(m.web)}" alt="${esc(label)}"><span class="pdfbadge">PDF</span></a>`;
+    } else if (!m && /\.(png|jpe?g|webp)$/i.test(label)) {
+      // unresolved image ref (e.g. a trajectory steps/ snapshot) — render the original directly
+      h += `<img class="thumb" loading="lazy" src="${esc(full)}" data-full="${esc(full)}"
+             data-orig="${esc(full)}" data-name="${esc(label)}" alt="${esc(label)}" title="${esc(label)}">`;
+    } else {
+      const icon = /\.pdf$/i.test(label) ? '📄' : /\.svg$/i.test(label) ? '▧' : /\.(csv|json|md|txt)$/i.test(label) ? '🗒' : '📄';
+      h += `<a class="fchip" href="${esc(full)}" target="_blank">${icon} ${esc(label)}</a>`;
+    }
+  });
+  return h;
+}
+function groupHtml(t, g, isOutput) {
+  const metas = (g.files || []).map(f => fileMeta(t, f)).filter(Boolean);
+  let chips = '';
+  metas.forEach(m => {
+    if (m.generator && m.generator !== '—') chips += `<span class="chip">gen: ${esc(m.generator)}</span>`;
+  });
+  const qc = metas.map(m => m.qc_score).filter(v => v != null);
+  if (qc.length) {
+    const mn = Math.min(...qc), mx = Math.max(...qc);
+    chips += `<span class="chip ${mn >= 7 ? 'qc-good' : 'qc-mid'}">pipeline QC ${mn === mx ? mn : mn + '–' + mx}/10</span>`;
+  }
+  const px = [...new Set(metas.map(m => m.px).filter(Boolean))];
+  px.slice(0, 3).forEach(p => chips += `<span class="chip">${esc(p)} px</span>`);
+  return `<div class="card grp">
+    <div class="grp-head">
+      <div class="thumbs">${thumbsHtml(t, g.files || [])}</div>
+      <div class="grp-meta">
+        <h4>${esc(g.display || g.key)}</h4>
+        ${g.what_it_is ? `<div class="what">${esc(g.what_it_is)}</div>` : ''}
+        ${isOutput && g.asked ? `<div class="asked">Fulfils: ${esc(g.asked)}</div>` : ''}
+        <div class="meta-line">${chips}</div>
+      </div>
+    </div>
+    <div class="items">${(g.items || []).map(itemHtml).join('')}</div>
+  </div>`;
+}
+
+/* ------- trajectory ------- */
+const ACTOR_LBL = {
+  adobe_connector: ['adobe', 'Adobe connector'], local_verify: ['verify', 'verify'],
+  local_compositor: ['local', 'local compositor'], local_datamerge: ['datamerge', 'local data-merge'],
+  local_video: ['video', 'local video (ffmpeg)'], local_audio: ['video', 'local audio'],
+};
+function stepHtml(s) {
+  const a = ACTOR_LBL[s.actor] || ['local', String(s.actor || 'local').replace('local_', 'local ')];
+  const cls = a[0], lbl = a[1];
+  return `<div class="step">
+    ${s.img ? `<img loading="lazy" src="${esc(s.img)}" data-full="${esc(s.img)}" data-orig="${esc(s.img)}" data-name="step ${s.n} — ${esc(s.action)}">` : ''}
+    <div class="sb">
+      <span class="tag ${cls}">${lbl}</span>
+      <div class="sa">${s.n}. ${esc(s.action)}</div>
+      <div class="sn">${esc(s.note || '')}</div>
+      ${s.request_id ? `<div class="sm">requestId ${esc(s.request_id)}</div>` : ''}
+    </div>
+  </div>`;
+}
+
+/* ------- task page ------- */
+function renderTask(t) {
+  const r = t.rubrics || {};
+  const wf = (t.mcp_workflow || '').split('->').map(s => s.trim()).filter(Boolean);
+  const opsByTool = {};
+  t.trajectory.filter(s => s.actor === 'adobe_connector').forEach(s => {
+    opsByTool[s.action] = (opsByTool[s.action] || 0) + 1;
+  });
+  const opsLine = Object.entries(opsByTool).map(([k, v]) => `${k} ×${v}`).join(' · ');
+  const inGroups = r.input_assets || [];
+  const outGroups = r.outputs || [];
+  const nIn = inGroups.reduce((a, g) => a + (g.items || []).length, 0);
+  const nOut = outGroups.reduce((a, g) => a + (g.items || []).length, 0);
+
+  return `
+  <div class="crumb">Task ${t.id} · ${esc(t.category)} · ${esc(t.vertical || '')}</div>
+  <h2 class="title">${esc(t.title)}</h2>
+  <div class="chips">
+    <a class="chip link" href="${esc(t.url)}" target="_blank">${esc(t.source)} listing ↗</a>
+    <span class="chip">feasibility: ${esc(t.feasibility)}</span>
+    ${t.persona && t.persona.brand_name ? `<span class="chip">client: ${esc(t.persona.brand_name)}</span>` : ''}
+    <span class="chip ops">${t.connector_ops} Adobe connector ops</span>
+    <span class="chip">${t.local_steps} local steps</span>
+    ${t.datamerge_rows ? `<span class="chip">data-merge: ${t.datamerge_rows} rows</span>` : ''}
+    <span class="chip">${t.steps_total} trajectory steps</span>
+  </div>
+
+  <section>
+    <div class="card glance">
+      <div class="row"><div class="k">What the freelancer is asked to do</div><div class="v">${esc(t.one_line_task)}</div></div>
+      <div class="row"><div class="k">Deliverables the business wanted</div><div class="v">${esc(t.one_line_outputs)}</div></div>
+      <div class="row"><div class="k">Source of listing</div><div class="v">${esc(t.source)} — <a href="${esc(t.url)}" target="_blank">${esc(t.url)}</a></div></div>
+      <div class="row"><div class="k">Task type</div><div class="v">${esc(t.task_type || '')}</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h3>Full original brief (verbatim)</h3></div>
+    <div class="card">
+      <div class="brief" id="brief">${esc(t.brief)}<div class="brief-fade"></div></div>
+      <button class="brief-toggle" id="briefToggle">Show full brief ▾</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h3>Adobe workflow</h3><span class="n">planned chain + ops actually executed</span></div>
+    <div class="card">
+      <div class="wf">${wf.map((s, i) => `<span class="st">${esc(s)}</span>${i < wf.length - 1 ? '<span class="ar">→</span>' : ''}`).join('')}</div>
+      <div class="wf-note"><b>Executed:</b> ${t.connector_ops} real connector calls — ${esc(opsLine)}.
+      Every call's requestId and before/after snapshot is in the execution trajectory below. Final layout assembly, variable-data merge${t.datamerge_rows ? ` (${t.datamerge_rows} rows)` : ''} and any video editing ran locally — the connector processes elements; Adobe's data-merge needs a desktop-authored template, and its video tools aren't retrievable headlessly (both honestly labeled in the trajectory).</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><h3>Input assets — score each</h3><span class="n">${inGroups.length} asset groups · ${nIn} questions</span></div>
+    ${inGroups.map(g => groupHtml(t, g, false)).join('') || '<div class="card">Rubrics pending.</div>'}
+  </section>
+
+  <section>
+    <div class="sec-h"><h3>Final outputs — score each</h3><span class="n">${outGroups.length} deliverable groups · ${nOut} questions</span></div>
+    ${outGroups.map(g => groupHtml(t, g, true)).join('') || '<div class="card">Rubrics pending.</div>'}
+  </section>
+
+  <section>
+    <div class="sec-h"><h3>Overall task assessment</h3><span class="n">${(r.task_level || []).length} questions</span></div>
+    <div class="card"><div class="items">${(r.task_level || []).map(itemHtml).join('')}</div></div>
+  </section>
+
+  <section>
+    <details class="fold">
+      <summary>Execution trajectory — ${t.steps_total} logged steps (${t.connector_ops} Adobe ops · step-by-step snapshots)</summary>
+      <div class="fold-body"><div class="traj">${t.trajectory.map(stepHtml).join('')}</div></div>
+    </details>
+  </section>
+
+  <div class="footer-note">Task ${t.id} · generated ${esc(DATA.generated)} · scores autosave locally · use “Export scores” when finished</div>`;
+}
+
+/* ------- nav + overall ------- */
+function renderNav() {
+  const nav = document.getElementById('tasknav');
+  nav.innerHTML = DATA.tasks.map(t => {
+    const p = progressOf(t);
+    const pct = p.total ? Math.round(100 * p.done / p.total) : 0;
+    return `<button class="tnav ${t.id === activeId ? 'active' : ''}" data-task="${t.id}">
+      <div class="tt">${esc(t.title)}</div>
+      <div class="tc">Task ${t.id} · ${esc(t.category)}</div>
+      <div class="bar"><i style="width:${pct}%"></i></div>
+      <div class="pct">${p.done}/${p.total} scored</div>
+    </button>`;
+  }).join('');
+  const tot = DATA.tasks.reduce((a, t) => { const p = progressOf(t); a.d += p.done; a.t += p.total; return a; }, { d: 0, t: 0 });
+  document.getElementById('overall').textContent = `Overall progress: ${tot.d} / ${tot.t} items scored`;
+}
+
+let activeId = DATA.tasks[0].id;
+function show(id) {
+  activeId = id;
+  const t = DATA.tasks.find(x => x.id === id);
+  document.getElementById('main').innerHTML = renderTask(t);
+  renderNav();
+  window.scrollTo(0, 0);
+  const b = document.getElementById('brief');
+  const bt = document.getElementById('briefToggle');
+  if (b.scrollHeight <= 250) { bt.style.display = 'none'; b.querySelector('.brief-fade').style.display = 'none'; }
+  bt.onclick = () => {
+    const open = b.classList.toggle('open');
+    b.querySelector('.brief-fade').style.display = open ? 'none' : '';
+    bt.textContent = open ? 'Collapse brief ▴' : 'Show full brief ▾';
+  };
+}
+
+/* ------- events ------- */
+document.addEventListener('click', e => {
+  const nav = e.target.closest('.tnav');
+  if (nav) { show(+nav.dataset.task); return; }
+  const pill = e.target.closest('.pill');
+  if (pill) {
+    state.scores[pill.dataset.id] = { value: pill.dataset.t === 'likert5' ? +pill.dataset.v : pill.dataset.v, type: pill.dataset.t };
+    save();
+    const wrap = pill.closest('.pills');
+    wrap.querySelectorAll('.pill').forEach(p => p.classList.toggle('sel', p === pill));
+    renderNav();
+    return;
+  }
+  const clr = e.target.closest('.clear');
+  if (clr) {
+    delete state.scores[clr.dataset.id]; save();
+    const ctrl = clr.closest('.ctrl');
+    ctrl.querySelectorAll('.pill').forEach(p => p.classList.remove('sel'));
+    renderNav();
+    return;
+  }
+  const img = e.target.closest('img[data-full]');
+  if (img) {
+    const lb = document.getElementById('lb');
+    lb.querySelector('img').src = img.dataset.full;
+    document.getElementById('lbname').textContent = img.dataset.name || '';
+    const orig = document.getElementById('lborig');
+    orig.href = img.dataset.orig || img.dataset.full;
+    lb.classList.add('show');
+    return;
+  }
+  if (e.target.closest('#lb')) document.getElementById('lb').classList.remove('show');
+});
+document.addEventListener('input', e => {
+  if (e.target.matches('textarea.ans')) {
+    const v = e.target.value;
+    if (v.trim()) state.scores[e.target.dataset.id] = { value: v, type: 'text' };
+    else delete state.scores[e.target.dataset.id];
+    save(); renderNav();
+  }
+  if (e.target.id === 'annotator') { state.annotator = e.target.value; save(); }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lb').classList.remove('show'); });
+
+document.getElementById('exportBtn').addEventListener('click', () => {
+  const byTask = {};
+  DATA.tasks.forEach(t => {
+    const p = progressOf(t);
+    byTask[t.id] = { title: t.title, scored: p.done, total: p.total };
+    allItems(t).forEach(i => {
+      if (answered(i.id)) {
+        const s = state.scores[i.id];
+        (byTask[t.id].answers = byTask[t.id].answers || {})[i.id] = { question: i.question, type: i.type, value: s.value };
+      }
+    });
+  });
+  const blob = new Blob([JSON.stringify({
+    annotator: state.annotator || '(unnamed)',
+    exported_at: new Date().toISOString(),
+    tasks: byTask,
+  }, null, 1)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'mega_scores_' + (state.annotator || 'annotator').replace(/\W+/g, '_') + '.json';
+  a.click();
+});
+
+document.getElementById('annotator').value = state.annotator || '';
+show(activeId);
+</script>
+</body>
+</html>

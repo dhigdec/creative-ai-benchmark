@@ -1,0 +1,547 @@
+{
+  "task_id": 9006,
+  "input_assets": [
+    {
+      "key": "hero_cover_art",
+      "display": "Approved inked hero cover illustration",
+      "files": [
+        "input_assets/voidrunner1_hero_inked.png"
+      ],
+      "what_it_is": "The single approved full-bleed inked hero illustration (armored runner on a neon night-city rooftop) that every one of the six variants is forked from.",
+      "items": [
+        {
+          "id": "hero_subject_composition",
+          "type": "likert5",
+          "question": "Does the illustration show a single central armored runner figure mid-stride/leap across a neon night-city rooftop, in clean comic ink line-art with flat cel colour, full-bleed vertical proportions?",
+          "guidance": "5 = one dynamic central armored runner with cyan energy-conduit glow and faceted visor helmet, leaping/sprinting on a rain-slick rooftop against a cyberpunk skyline; clean black ink contours over flat fills. 1 = wrong subject, multiple figures, photographic/painterly rendering, or no rooftop city.",
+          "reference": "Correct: a single charcoal exo-suited runner with glowing cyan limb/spine conduits and a visored helmet, captured mid-run with a trailing cape, on a dark rooftop edge against indigo-to-magenta skyline towers with magenta/cyan neon billboards. Note the QC flagged it as running rather than a true leap (vision_score 6) and the figure sits low/near the rooftop edge."
+        },
+        {
+          "id": "hero_no_lettering",
+          "type": "yesno",
+          "question": "Is the art free of ANY title, logo, issue number, price, credits or readable text (a clean illustration with room at top for the masthead and a calmer lower-left for the barcode)?",
+          "guidance": "Yes = no wordmark, no readable signage text, top sky and lower-left left open for trade dress. No = a logo/issue number/price/credits or readable neon words are baked in.",
+          "reference": "Should be lettering-free per the generator prompt. The billboards should carry abstract glyphs only; QC noted faint neon shapes on buildings but no readable title/credits. The masthead and barcode are added later in layout, not baked into this raster."
+        },
+        {
+          "id": "hero_palette_fidelity",
+          "type": "likert5",
+          "question": "Does the colour stay within the VOIDRUNNER limited palette (ink black, deep night indigo, signal cyan, hot magenta, warm amber) rather than drifting into off-brand hues?",
+          "guidance": "5 = ink-black line/shadow, indigo night sky, cyan suit glow/rim light, magenta neon accents, amber practical pops, with flat hard-edged fills. 3 = mostly on-palette but some soft gradients or extra hues. 1 = washed-out or off-palette (e.g. dominant purples/oranges) with heavy painterly shading.",
+          "reference": "Largely on-palette (cyan suit glow, magenta/indigo skyline). QC flagged some purples and warm orange window lights outside the strict 6-colour palette and some soft shading/gradients not strictly 'flat cel'."
+        },
+        {
+          "id": "hero_vectorizable_inks",
+          "type": "yesno",
+          "question": "Are the black inks and colour holds crisp/solid enough to support clean halftone, duotone, glitch and vectorize-to-line-art treatments downstream?",
+          "guidance": "Yes = bold confident black contours and hard-edged colour fills that read as finished ink-and-flats. No = lines are soft/blurry or fills are gradient-heavy so the FX forks would mush.",
+          "reference": "Inks are mostly bold and hold up (the Sketch vectorize and Noir duotone read cleanly), though QC noted some lines are thin/soft in places. The downstream Sketch line-art and Noir duotone confirm the inks vectorized acceptably."
+        }
+      ]
+    },
+    {
+      "key": "logo_lockup",
+      "display": "VOIDRUNNER distressed masthead lockup (raster)",
+      "files": [
+        "input_assets/voidrunner_logo_lockup.png"
+      ],
+      "what_it_is": "The gritty distressed VOIDRUNNER wordmark on a transparent ground, the masthead reused on every variant and vectorized to a reusable SVG.",
+      "items": [
+        {
+          "id": "logo_spelling_style",
+          "type": "yesno",
+          "question": "Does the lockup read EXACTLY 'VOIDRUNNER' as one word, all-caps, in a heavy condensed angular forward-italic techno display face, with no extra/missing/garbled letters?",
+          "guidance": "Yes = single clean 'VOIDRUNNER' wordmark, italic lean, tight lockup, correct spelling. No = misspelled, doubled letters, a tagline/issue number added, or a soft/glowing/3D non-conforming style.",
+          "reference": "Reads 'VOIDRUNNER' correctly in one word, all-caps, forward-italic condensed face with chiseled bevels — vision_score 9. No tagline or extra glyphs."
+        },
+        {
+          "id": "logo_fill_keyline_distress",
+          "type": "likert5",
+          "question": "Is the wordmark a flat signal-cyan fill with a clean ink-black keyline and subtle hard-edged chipped/scratched distress notches (no glow, gradient, drop shadow or 3D extrude)?",
+          "guidance": "5 = flat cyan fill + crisp black outline + a few flat chipped notches knocked out of the letters. 3 = right idea but distress weak or keyline a bit thick. 1 = soft glow/gradient/3D or no distress at all.",
+          "reference": "Flat cyan fill (slightly brighter than exact #16E0E0 per QC) with a clean black keyline and a few chipped distress notches; no glow/gradient/extrude. QC: keyline slightly thick, notches could be sharper."
+        },
+        {
+          "id": "logo_transparent_ground",
+          "type": "yesno",
+          "question": "Is the wordmark on a fully transparent background (alpha around the letters, no card/box/panel) so it composites onto every cover?",
+          "guidance": "Yes = checkerboard/alpha transparency around the wordmark, ready to place. No = baked onto a solid card, box or backdrop.",
+          "reference": "Transparent PNG (1536x1024) with alpha around the wordmark; there is a faint watermark-like smudge in the lower-centre but no solid card/box. Composites cleanly onto all six covers."
+        }
+      ]
+    },
+    {
+      "key": "cover_spec",
+      "display": "Cover-spec / copy deck (JSON + MD)",
+      "files": [
+        "input_assets/cover_spec.json",
+        "input_assets/cover_spec.md"
+      ],
+      "what_it_is": "The authoritative copy deck holding issue metadata, invented credits, per-variant price/ratio/barcode flags, the 4 spot inks, and the solicitation — the source the CSVs and trade dress derive from.",
+      "items": [
+        {
+          "id": "spec_variant_table_correct",
+          "type": "yesno",
+          "question": "Do the 6 variants A-F carry the EXACT colourway/ratio/price/barcode values the brief specifies?",
+          "guidance": "Yes = A Standard/1:1/$4.99/on; B Retro/1:1/$4.99/on; C Noir/1:1/$4.99/on; D Cyber/1:10/$9.99/off; E Battle-Damage/1:25/$19.99/off; F Sketch/Retailer-Exclusive/$14.99/off. No = any value wrong or out of order.",
+          "reference": "All six rows match exactly: codes A-F, colourways Standard/Retro/Noir/Cyber/Battle-Damage/Sketch, ratios 1:1/1:1/1:1/1:10/1:25/Retailer-Exclusive, prices $4.99/$4.99/$4.99/$9.99/$19.99/$14.99, barcode on/on/on/off/off/off."
+        },
+        {
+          "id": "spec_spot_inks_correct",
+          "type": "yesno",
+          "question": "Does spot_inks list exactly 4 inks in print order with correct Pantone/hex/LPI: White Underbase/None/FFFFFF/1/0, Ben-Day Red/185 C/ED1C24/2/55, Ben-Day Cyan/2995 C/00AEEF/3/55, Ink Black/Black 6 C/231F20/4/65?",
+          "guidance": "Yes = all four rows match name, Pantone, hex, print_order and LPI exactly. No = any ink name, Pantone, hex or LPI value wrong or missing.",
+          "reference": "Matches exactly: White Underbase/None/FFFFFF/1/0; Ben-Day Red/185 C/ED1C24/2/55; Ben-Day Cyan/2995 C/00AEEF/3/55; Ink Black/Black 6 C/231F20/4/65."
+        },
+        {
+          "id": "spec_invented_credits_voice",
+          "type": "likert5",
+          "question": "Are the credits invented (no real comics professionals), and is the solicitation a 50-90 word pulpy sci-fi blurb in the punchy-noir VOIDRUNNER voice with no real brands?",
+          "guidance": "5 = diverse invented creator names, an invented imprint, and a kinetic pulp-noir solicitation about Kai the voidrunner with no real publishers/brands. 3 = on-brief but flat or slightly off length. 1 = real names/brands or off-voice corporate copy.",
+          "reference": "Credits are invented (writer Anya Sharma, artist Kaelen Blackwood, colourist Zara Vance, cover_artist Elias Thorne; imprint 'Cosmic Drift Press', diamond_code VOID0001). Solicitation is a pulpy ~80-word blurb about KAI navigating the Void. Note credit_line is 'Cover by Elias Thorne  -  Colours by Zara Vance' — this is the value that should appear on every cover."
+        }
+      ]
+    },
+    {
+      "key": "trade_dress_csv",
+      "display": "Trade-dress data-merge CSV (+ JSON)",
+      "files": [
+        "input_assets/trade_dress_merge.csv",
+        "input_assets/trade_dress_merge.json"
+      ],
+      "what_it_is": "The 6-row merge table (one per cover A-F) whose column headers bind to the Illustrator trade-dress Variables and stamp issue line / colourway / ratio / price / credit / barcode per variant.",
+      "items": [
+        {
+          "id": "csv_headers_match_variables",
+          "type": "yesno",
+          "question": "Are the 8 column headers EXACTLY cover_art, issue_no, colourway_name, variant_ratio, cover_price, credit_line, variant_code, barcode_zone (the Illustrator Variable names), with 6 rows A-F?",
+          "guidance": "Yes = all eight headers spelled exactly, no extra/missing columns, 6 data rows. No = a header renamed/missing or wrong row count.",
+          "reference": "Header row is exactly cover_art,issue_no,colourway_name,variant_ratio,cover_price,credit_line,variant_code,barcode_zone with 6 rows; cover_art links coverA_standard.png..coverF_sketch.png; issue_no='VOIDRUNNER #1' on every row."
+        },
+        {
+          "id": "csv_per_row_values",
+          "type": "yesno",
+          "question": "Do the per-row values match the spec (colourway, ratio, price, variant_code, barcode_zone) for all six rows?",
+          "guidance": "Yes = ratios 1:1/1:1/1:1/1:10/1:25/Retailer-Exclusive, prices $4.99/$4.99/$4.99/$9.99/$19.99/$14.99, barcode on/on/on/off/off/off, codes A-F. No = any mismatch vs the copy deck.",
+          "reference": "All ratios, prices, codes and barcode flags match the cover_spec variant table exactly."
+        },
+        {
+          "id": "csv_credit_line_placeholder_bug",
+          "type": "yesno",
+          "question": "Does the CSV credit_line carry the REAL credit string from the copy deck on every row (not a generic placeholder)?",
+          "guidance": "Yes = every row reads 'Cover by Elias Thorne  -  Colours by Zara Vance' identical to cover_spec.json. No = a placeholder like 'Cover by Artist A - Colours by Colorist B'.",
+          "reference": "BUG: the CSV credit_line is the placeholder 'Cover by Artist A - Colours by Colorist B' on all six rows, which does NOT match cover_spec.json's 'Cover by Elias Thorne  -  Colours by Zara Vance'. (The rendered covers nonetheless used the correct spec credit line, so the layout read the JSON, not this CSV column — flag the data inconsistency.)"
+        }
+      ]
+    },
+    {
+      "key": "spot_sep_csv",
+      "display": "Spot-colour separation CSV (+ JSON)",
+      "files": [
+        "input_assets/spot_separation.csv",
+        "input_assets/spot_separation.json"
+      ],
+      "what_it_is": "The 4-row ink table (White Underbase + 3 Ben-Day spots) feeding the Retro spot-separation sheet's swatch cards and plate labels.",
+      "items": [
+        {
+          "id": "sep_csv_headers_rows",
+          "type": "yesno",
+          "question": "Are the headers EXACTLY ink_name, pantone, rgb_hex, print_order, lpi with exactly 4 rows in print order?",
+          "guidance": "Yes = five headers spelled exactly, 4 rows ordered 1-4. No = renamed header, extra/missing column, or wrong row count/order.",
+          "reference": "Header is ink_name,pantone,rgb_hex,print_order,lpi with 4 rows in print order 1-4."
+        },
+        {
+          "id": "sep_csv_values_fidelity",
+          "type": "yesno",
+          "question": "Do the four rows carry the exact ink/Pantone/hex/order/LPI values (uppercase hex, no leading hash)?",
+          "guidance": "Yes = White Underbase/None/FFFFFF/1/0, Ben-Day Red/185 C/ED1C24/2/55, Ben-Day Cyan/2995 C/00AEEF/3/55, Ink Black/Black 6 C/231F20/4/65. No = any value wrong or hash present.",
+          "reference": "Exact match: FFFFFF/ED1C24/00AEEF/231F20 hexes (no hash, uppercase), Pantones None/185 C/2995 C/Black 6 C, LPI 0/55/55/65 — these drive the separation-sheet swatch cards."
+        }
+      ]
+    },
+    {
+      "key": "stock_grunge_texture",
+      "display": "Licensed Adobe Stock grunge distress texture",
+      "files": [
+        "steps/020_17_licensed_grunge.png"
+      ],
+      "what_it_is": "The high-res monochrome scratched/abraded distress texture (Adobe Stock id 353984581) searched and licensed live, used as the Battle-Damage overlay.",
+      "items": [
+        {
+          "id": "grunge_monochrome_distress",
+          "type": "likert5",
+          "question": "Is the licensed texture a high-res monochrome scratched/abraded grunge field suitable as a battle-damage distress overlay?",
+          "guidance": "5 = clean monochrome (black scratches/specks on white) with varied scratch density that reads as worn/abraded ink when multiplied over the cover. 1 = a colour photo, low-res, or a texture unrelated to grunge/distress.",
+          "reference": "A white field with black vertical scratches, scuffs and speckle — a genuine monochrome grunge/scratched-metal distress overlay, correctly sourced via asset_search + asset_license_and_download_stock (Stock id 353984581)."
+        },
+        {
+          "id": "grunge_used_on_coverE",
+          "type": "yesno",
+          "question": "Was this licensed texture actually composited into the Cover E Battle-Damage variant (not just downloaded)?",
+          "guidance": "Yes = the abraded/scratched character is visibly present in cover_E_battle_damage, layered over the colour-overlaid base. No = Cover E shows no distress overlay.",
+          "reference": "Yes — Cover E carries a scorched amber/oxblood colour wash plus noise and this scratched grunge texture, giving the muddied, abraded battle-damage read; the texture was licensed before edit (license-before-edit)."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "cover_A_standard",
+      "display": "Cover A — Standard (full-colour)",
+      "files": [
+        "outputs/cover_A_standard_web2048.jpg",
+        "outputs/cover_A_standard_print.pdf"
+      ],
+      "what_it_is": "The full-colour inked hero cover with masthead + full trade dress, delivered as a print-ready PDF and a 2048px web JPG.",
+      "items": [
+        {
+          "id": "covA_full_colour_grade",
+          "type": "likert5",
+          "question": "Does Cover A present the graded full-colour hero (figure popped, night-city cooled to cyan/indigo, deep inked blacks) reading as the polished 'standard' edition?",
+          "guidance": "5 = clean full-colour cover, runner crisp and saturated, cool cyan/magenta city, rich blacks, no FX treatment. 1 = flat/muddy grade, washed colour, or an FX look bleeding in.",
+          "reference": "The figure is vibrant against a cooled cyan/indigo/magenta skyline with deep blacks — the auto-tone + masked vibrance + background-cool + dark-portion-crush master. No halftone/glitch/duotone present."
+        },
+        {
+          "id": "covA_trade_dress_complete",
+          "type": "yesno",
+          "question": "Is the full trade dress present and correct: VOIDRUNNER masthead, 'ISSUE #1', 'EDGE OF THE VOID', 'ON SALE 14 OCT 2026', a 'STANDARD' tag, '$4.99', credit line, and a visible UPC barcode in the lower-left?",
+          "guidance": "Yes = all elements present, correctly spelled, no clipping/collisions, barcode shown (zone on). No = any element missing, garbled, overlapping the figure badly, or barcode wrongly absent.",
+          "reference": "Cover A shows the cyan masthead, ISSUE #1, 'EDGE OF THE VOID | ON SALE 14 OCT 2026', a 'STANDARD / STANDARD EDITION · COVER A' tag, '$4.99', 'Cover by Elias Thorne - Colours by Zara Vance', imprint line 'COSMIC DRIFT PRESS · TEEN+ · VOID0001', and a UPC barcode bottom-left (barcode_zone on)."
+        },
+        {
+          "id": "covA_print_dims",
+          "type": "yesno",
+          "question": "Is the print PDF at full-bleed comic trim (6.875x10.5 in = 494.88x756 pt MediaBox, i.e. 6.625x10.25 trim + 0.125 bleed) and the web JPG long-edge 2048px?",
+          "guidance": "Yes = PDF MediaBox 494.88x756 pt and web JPG 1341x2048. No = wrong page size/aspect or JPG not 2048 on the long edge.",
+          "reference": "Print PDF MediaBox is 0 0 494.88 756 pt (6.873x10.5 in full-bleed); web JPG is 1341x2048 px (55:84 aspect). Crop marks sit at the trim box per the README."
+        },
+        {
+          "id": "covA_credit_correct_not_csv_placeholder",
+          "type": "yesno",
+          "question": "Does the printed credit line show the real names 'Cover by Elias Thorne - Colours by Zara Vance' (not the CSV placeholder 'Artist A / Colorist B')?",
+          "guidance": "Yes = real creator names from the copy deck appear. No = placeholder 'Artist A'/'Colorist B' leaked onto the cover.",
+          "reference": "Correct — the cover shows 'Cover by Elias Thorne - Colours by Zara Vance', i.e. the layout pulled the copy-deck credit, NOT the placeholder credit_line that is (incorrectly) in trade_dress_merge.csv."
+        }
+      ]
+    },
+    {
+      "key": "cover_B_retro",
+      "display": "Cover B — Retro (Ben-Day halftone)",
+      "files": [
+        "outputs/cover_B_retro_web2048.jpg",
+        "outputs/cover_B_retro_print.pdf"
+      ],
+      "what_it_is": "The Retro variant: a Ben-Day-style halftone dot screen over the master, flattened toward a limited palette, with trade dress.",
+      "items": [
+        {
+          "id": "covB_halftone_present",
+          "type": "yesno",
+          "question": "Is a visible Ben-Day/halftone dot screen applied across the artwork (retro-print texture), distinct from the smooth Cover A?",
+          "guidance": "Yes = an all-over dot-screen pattern is clearly visible over the figure and city. No = the art is smooth like Cover A with no dot treatment.",
+          "reference": "Yes — a dense magenta/cyan/black halftone dot field covers the whole image (radius-7 Color-Halftone screen)."
+        },
+        {
+          "id": "covB_figure_legibility",
+          "type": "likert5",
+          "question": "How legible does the runner figure remain under the halftone, and does the variant still read as a recognizable VOIDRUNNER cover?",
+          "guidance": "5 = clean 3-tone Ben-Day where the figure still reads clearly. 3 = textured but the figure is partly lost yet the masthead/trade dress anchor it. 1 = the dot screen turns the art into illegible noise.",
+          "reference": "Known limitation (README): the dense halftone over the full-colour night scene reads as a busy textured retro print and the figure is substantially obscured; the masthead and trade dress still anchor it as a recognizable cover. Score the trade-off honestly."
+        },
+        {
+          "id": "covB_trade_dress_barcode_on",
+          "type": "yesno",
+          "question": "Does Cover B carry the 'RETRO' tag, $4.99, full credits, and a visible UPC barcode (barcode_zone on)?",
+          "guidance": "Yes = RETRO tag, $4.99, credit line present and barcode shown bottom-left. No = wrong price, missing tag, or barcode wrongly off.",
+          "reference": "Cover B shows a red 'RETRO' tag, '$4.99', the Elias Thorne/Zara Vance credit, and a UPC barcode bottom-left (barcode_zone on, as a $4.99 standard-price cover)."
+        }
+      ]
+    },
+    {
+      "key": "cover_C_noir",
+      "display": "Cover C — Noir (cyan duotone)",
+      "files": [
+        "outputs/cover_C_noir_web2048.jpg",
+        "outputs/cover_C_noir_print.pdf"
+      ],
+      "what_it_is": "The Noir variant: an ink-black to signal-cyan duotone tint with hardened contrast, plus trade dress.",
+      "items": [
+        {
+          "id": "covC_duotone_look",
+          "type": "likert5",
+          "question": "Is Cover C a clean ink-black -> signal-cyan duotone with hardened noir contrast (a single-hue monochrome cover)?",
+          "guidance": "5 = the whole image is a black/cyan duotone with crisp light/shadow separation and no stray full-colour areas. 3 = mostly duotone but flat or with leftover colour. 1 = still full-colour or muddy/low-contrast.",
+          "reference": "Yes — the cover is a black-to-cyan duotone (monochromatic tint + brightness/contrast hardening); the figure and city read cleanly in cyan tones. Note the spec fx_note says 'grayscale with selective spot red', but the brief and delivery are a cyan duotone — the cyan duotone matches the brief's Cover C definition."
+        },
+        {
+          "id": "covC_figure_still_reads",
+          "type": "yesno",
+          "question": "Does the runner figure remain crisply legible in the duotone (better preserved than the Retro variant)?",
+          "guidance": "Yes = the inked figure and rooftop read clearly in cyan/black. No = the figure is lost or muddied.",
+          "reference": "Yes — the duotone keeps the line-art crisp; the runner, cape and rooftop read clearly. This is one of the cleaner variants."
+        },
+        {
+          "id": "covC_trade_dress",
+          "type": "yesno",
+          "question": "Does Cover C show the 'NOIR' tag, $4.99, full credits and a visible UPC barcode (barcode_zone on)?",
+          "guidance": "Yes = NOIR tag, $4.99, credits and barcode all present. No = any missing or barcode wrongly off.",
+          "reference": "Cover C shows a 'NOIR' tag, '$4.99', the Elias Thorne/Zara Vance credit and a bottom-left UPC barcode (barcode_zone on)."
+        }
+      ]
+    },
+    {
+      "key": "cover_D_cyber",
+      "display": "Cover D — Cyber 1:10 (glitch + grain)",
+      "files": [
+        "outputs/cover_D_cyber_web2048.jpg",
+        "outputs/cover_D_cyber_print.pdf"
+      ],
+      "what_it_is": "The 1:10 Cyber incentive: RGB-split VHS glitch plus film grain over the master, $9.99, barcode off (direct-market).",
+      "items": [
+        {
+          "id": "covD_glitch_grain",
+          "type": "likert5",
+          "question": "Does Cover D show a clear RGB-split VHS glitch plus film grain (degraded-broadcast cyberpunk look)?",
+          "guidance": "5 = visible channel-split/chromatic-aberration glitch with overlaid grain that sells a VHS/cyber aesthetic while the figure stays readable. 1 = no glitch or just a colour shift with no grain.",
+          "reference": "Yes — red/cyan RGB channel-split fringing around the figure and skyline plus a grain layer; the runner stays legible. Distinct from the smooth Cover A."
+        },
+        {
+          "id": "covD_incentive_metadata",
+          "type": "yesno",
+          "question": "Does Cover D carry the incentive metadata: 'CYBER' tag, 'RATIO 1:10', '$9.99', and NO UPC barcode (Direct-Market, barcode_zone off)?",
+          "guidance": "Yes = CYBER + RATIO 1:10 + $9.99 + a 'DIRECT MARKET' tag with the barcode suppressed. No = wrong price/ratio, or a barcode wrongly shown.",
+          "reference": "Cover D shows 'CYBER', 'RATIO 1:10 · COVER D', '$9.99', a 'DIRECT MARKET' label and no UPC barcode (barcode_zone off, correct for the 1:10 incentive)."
+        },
+        {
+          "id": "covD_masthead_intact",
+          "type": "yesno",
+          "question": "Does the VOIDRUNNER masthead and issue line stay clean/legible despite the glitch (the trade dress is not itself glitched into garbling)?",
+          "guidance": "Yes = masthead and copy are crisp and correctly spelled, sitting above the glitched art. No = the type is broken up/garbled by the glitch.",
+          "reference": "Yes — the masthead, 'ISSUE #1' and 'EDGE OF THE VOID | ON SALE 14 OCT 2026' remain crisp; the glitch is confined to the placed artwork, not the trade-dress layer."
+        }
+      ]
+    },
+    {
+      "key": "cover_E_battle_damage",
+      "display": "Cover E — Battle-Damage 1:25 (licensed grunge)",
+      "files": [
+        "outputs/cover_E_battle_damage_web2048.jpg",
+        "outputs/cover_E_battle_damage_print.pdf"
+      ],
+      "what_it_is": "The 1:25 Battle-Damage incentive: a scorched amber/oxblood colour overlay + noise + the licensed Adobe Stock grunge texture, $19.99, barcode off.",
+      "items": [
+        {
+          "id": "covE_grunge_composite",
+          "type": "likert5",
+          "question": "Does Cover E read as a battle-damaged variant: a scorched/oxblood colour wash with coarse noise and the licensed scratched-grunge distress overlay over the hero?",
+          "guidance": "5 = clearly distressed — abraded scratches, scorched amber/oxblood tone and grain that sell 'battle damage' while the figure is still discernible. 3 = distressed but muddy/dark, figure hard to read. 1 = no distress overlay or just a colour shift.",
+          "reference": "The cover carries a dark amber/oxblood multiply wash, coarse noise and the Stock grunge scratches (id 353984581). It is distinctly the most distressed variant; note it reads quite dark/muddy, so the figure is somewhat lost — judge whether that's acceptable for a 'battle-damage' look."
+        },
+        {
+          "id": "covE_incentive_metadata",
+          "type": "yesno",
+          "question": "Does Cover E carry 'BATTLE-DAMAGE', 'RATIO 1:25', '$19.99', and NO UPC barcode (Direct-Market, barcode_zone off)?",
+          "guidance": "Yes = BATTLE-DAMAGE + RATIO 1:25 + $19.99 + 'DIRECT MARKET' with no barcode. No = wrong price/ratio or a barcode wrongly shown.",
+          "reference": "Cover E shows an amber 'BATTLE-DAMAGE' tag, 'RATIO 1:25 · COVER E', '$19.99', 'DIRECT MARKET' and no UPC barcode (barcode_zone off, correct for the 1:25 incentive)."
+        },
+        {
+          "id": "covE_trade_dress_legible_over_distress",
+          "type": "yesno",
+          "question": "Does the masthead/trade dress stay legible on top of the distress treatment (text not swallowed by the grunge)?",
+          "guidance": "Yes = masthead, price and credits are still readable against the distressed art. No = the grunge/noise renders the type unreadable.",
+          "reference": "Yes — the cyan masthead, '$19.99' and the credit strip remain readable above/around the dark distressed art; the trade-dress layer sits over the grunge."
+        }
+      ]
+    },
+    {
+      "key": "cover_F_sketch",
+      "display": "Cover F — Sketch (B&W line-art) + SVG",
+      "files": [
+        "outputs/cover_F_sketch_web2048.jpg",
+        "outputs/cover_F_sketch_print.pdf",
+        "outputs/cover_F_sketch_lineart.svg"
+      ],
+      "what_it_is": "The retailer-exclusive Sketch variant: clean black-and-white inked line-art (no fills) on uncoated-paper stock, delivered as print PDF, web JPG and a vectorized SVG.",
+      "items": [
+        {
+          "id": "covF_lineart_no_fills",
+          "type": "likert5",
+          "question": "Is Cover F clean black-and-white inked line-art with no colour fills (the raw 'sketch' linework on a warm paper stock), with the figure and city still recognizable?",
+          "guidance": "5 = crisp black linework on near-white/warm paper, no colour fills, runner + rooftop + skyline clearly drawn. 3 = line-art but noisy/broken in places. 1 = still has colour fills or the linework is mush.",
+          "reference": "Cover F is black inked line-art (figure, cape, rooftop, towers) on a warm uncoated-paper tone with no colour fills — the locally edge-extracted/threshold line-art used for the 'raw linework' retailer read."
+        },
+        {
+          "id": "covF_svg_delivered",
+          "type": "yesno",
+          "question": "Is a valid vector SVG also delivered for the Sketch variant (cover_F_sketch_lineart.svg with an <svg> root)?",
+          "guidance": "Yes = a parseable SVG file with a real <svg> root and vector paths. No = SVG missing or not valid vector.",
+          "reference": "cover_F_sketch_lineart.svg is present and valid — root '<svg xmlns=... width=\"1024\" height=\"1536\">' with path/gradient defs (the connector image_vectorize trace of the art)."
+        },
+        {
+          "id": "covF_incentive_metadata",
+          "type": "yesno",
+          "question": "Does Cover F show the 'SKETCH' tag, '$14.99', Retailer-Exclusive treatment and NO UPC barcode (barcode_zone off)?",
+          "guidance": "Yes = SKETCH tag + $14.99 + 'DIRECT MARKET'/retailer tag + no barcode. No = wrong price, missing tag or a barcode wrongly shown.",
+          "reference": "Cover F shows a 'SKETCH' tag, '$14.99', 'DIRECT MARKET' and no UPC barcode (barcode_zone off, retailer-exclusive). Minor: there is a faint ghosted/doubled 'ISSUE #1' artifact at the top-left where the masthead overlaps the busy line-art — note if it bothers legibility."
+        }
+      ]
+    },
+    {
+      "key": "logo_masthead_svg",
+      "display": "Vectorized VOIDRUNNER masthead (SVG)",
+      "files": [
+        "outputs/voidrunner_logo_masthead.svg",
+        "steps/022_23_logo_masthead.png"
+      ],
+      "what_it_is": "The vectorized reusable VOIDRUNNER wordmark SVG placed identically on every variant's masthead.",
+      "items": [
+        {
+          "id": "masthead_svg_valid_vector",
+          "type": "yesno",
+          "question": "Is the masthead a valid SVG (vector <svg> root with paths) reading 'VOIDRUNNER' correctly, reusable across covers?",
+          "guidance": "Yes = parseable SVG, correct wordmark spelling, scalable vector paths. No = raster-only, broken file, or garbled wordmark.",
+          "reference": "voidrunner_logo_masthead.svg is valid — root '<svg xmlns=... width=\"1536\" height=\"1024\">' with vector path data; spells 'VOIDRUNNER' in the cyan distressed wordmark."
+        },
+        {
+          "id": "masthead_fidelity_to_lockup",
+          "type": "likert5",
+          "question": "Does the vectorized masthead faithfully reproduce the source lockup (signal-cyan fill, black keyline, italic condensed letterforms, distress notches)?",
+          "guidance": "5 = clean trace preserving the cyan fill, black keyline and chipped distress, edges crisp. 3 = recognizable but some trace artifacts/loss of distress. 1 = colour or letterforms badly off.",
+          "reference": "The trace preserves the bright-cyan fill, black keyline and forward-italic condensed letterforms with the chipped notches; the rendered masthead PNG confirms a clean, crisp wordmark."
+        }
+      ]
+    },
+    {
+      "key": "trade_dress_merge_sheet",
+      "display": "Illustrator trade-dress data-merge sheet",
+      "files": [
+        "outputs/trade_dress_merge_sheet.pdf",
+        "steps/025_26_trade_dress_merge.png"
+      ],
+      "what_it_is": "The data-merged sheet rendering one composed cover per CSV row (A-F), each stamping issue line / colourway / ratio / price / credit / variant code and toggling the barcode zone.",
+      "items": [
+        {
+          "id": "merge_six_artboards",
+          "type": "yesno",
+          "question": "Does the merge sheet present all six covers A-F, each correctly labelled (COVER A - STANDARD ... COVER F - SKETCH) with its variant raster placed and masthead applied?",
+          "guidance": "Yes = 6 distinct composed covers, each with the right artwork, label and trade dress, one per CSV row. No = missing covers, duplicated artwork, or wrong labels.",
+          "reference": "The sheet shows six composed artboards labelled COVER A STANDARD, COVER B RETRO, COVER C NOIR, COVER D CYBER, COVER E BATTLE-DAMAGE, COVER F SKETCH, each with its own treated raster and the masthead placed."
+        },
+        {
+          "id": "merge_per_row_fields_stamped",
+          "type": "likert5",
+          "question": "Are the per-row trade-dress fields correctly stamped and differentiated (price $4.99/$4.99/$4.99/$9.99/$19.99/$14.99, ratio, variant code, and barcode on for A-C vs off for D-F)?",
+          "guidance": "5 = every row's price/ratio/code is right and the barcode is shown only on A-C (off on D-F). 3 = mostly right with a stray error. 1 = fields not differentiated or wrong values.",
+          "reference": "Each artboard stamps the correct colourway/ratio/price/code; A-C carry the UPC barcode and D-F show 'DIRECT MARKET' with the barcode suppressed, matching barcode_zone on/on/on/off/off/off."
+        },
+        {
+          "id": "merge_local_but_faithful",
+          "type": "yesno",
+          "question": "Per the README, was the merge produced as an honest local reproduction of the Illustrator data-merge (because document_merge_data_vector needs a human-authored Variables .ai unusable headless), and does it faithfully reproduce that output?",
+          "guidance": "Yes = the README discloses the local compose_lib data-merge substitution and the sheet reproduces exactly what the Illustrator Variables merge would (per-row raster swap + stamped fields). No = the limitation is hidden or the result diverges from the intended merge.",
+          "reference": "README is explicit: the data-merge ran locally via compose_lib.data_merge from trade_dress_merge.csv because document_merge_data_vector requires a human-authored .ai with bound Variables (unusable headless); the sheet reproduces the per-row raster swap + field stamping faithfully."
+        }
+      ]
+    },
+    {
+      "key": "retro_spot_separation_sheet",
+      "display": "Retro 4-colour spot-separation / registration sheet",
+      "files": [
+        "outputs/retro_spot_separation_sheet.pdf",
+        "steps/027_28_spot_separation.png"
+      ],
+      "what_it_is": "The press-ready 4-colour separation sheet for the Retro variant: four labelled plates carrying the isolated halftone dot field, registration marks, and per-ink swatch cards.",
+      "items": [
+        {
+          "id": "sep_four_plates",
+          "type": "yesno",
+          "question": "Does the sheet show four labelled plates in print order (White Underbase / Ben-Day Red / Ben-Day Cyan / Ink Black), each carrying the Retro variant's isolated halftone dot field?",
+          "guidance": "Yes = four distinct plate panels, correctly labelled, each showing the halftone dot screen. No = wrong plate count, mislabeled, or no dot field.",
+          "reference": "The sheet header reads 'RETRO 4-COLOUR SPOT SEPARATION / REGISTRATION' and shows four plates labelled White Underbase, Ben-Day Red, Ben-Day Cyan, Ink Black, each carrying the isolated B&W halftone dot field (from image_apply_halftone on the Retro variant)."
+        },
+        {
+          "id": "sep_swatch_cards_correct",
+          "type": "likert5",
+          "question": "Are the four per-ink swatch cards correct: each filled with its rgb_hex colour and labelled with ink name, Pantone, print order and LPI from the CSV?",
+          "guidance": "5 = a white, a red (185 C/ED1C24), a cyan (2995 C/00AEEF) and a near-black (Black 6 C/231F20) card, each labelled with correct Pantone/order/LPI (0/55/55/65). 3 = cards present with a minor label error. 1 = wrong fills/labels or missing cards.",
+          "reference": "Four swatch cards sit below the plates with fills FFFFFF / ED1C24 (185 C) / 00AEEF (2995 C) / 231F20 (Black 6 C) and labels carrying ink_name, pantone, print_order 1-4 and lpi 0/55/55/65 from spot_separation.csv."
+        },
+        {
+          "id": "sep_registration_marks",
+          "type": "yesno",
+          "question": "Does the separation sheet include corner crop/registration target marks at all four corners plus a centre bullseye (press registration)?",
+          "guidance": "Yes = registration targets in the corners and a centre bullseye are visible. No = no registration marks.",
+          "reference": "Yes — corner registration target marks at all four corners and a centre bullseye are present, per the authored separation template and confirmed in the rendered sheet."
+        }
+      ]
+    },
+    {
+      "key": "variant_pack_contact_proof",
+      "display": "Contact-sheet proof of all six variants",
+      "files": [
+        "outputs/variant_pack_contact_proof.pdf",
+        "steps/028_29_contact_proof.png"
+      ],
+      "what_it_is": "A single proof sheet laying out all six trade-dressed variant covers side-by-side for review.",
+      "items": [
+        {
+          "id": "proof_all_six_present",
+          "type": "yesno",
+          "question": "Does the contact proof lay out all six finished variant covers A-F side-by-side, each visibly distinct (Standard / Retro / Noir / Cyber / Battle-Damage / Sketch)?",
+          "guidance": "Yes = six covers in a row, each its own treatment, all with masthead + trade dress. No = fewer than six, duplicates, or covers missing trade dress.",
+          "reference": "The proof header 'VOIDRUNNER #1 - VARIANT-COVER PACK - PROOF SHEET' sits above all six covers in sequence: full-colour Standard, halftone Retro, cyan Noir, glitch Cyber, dark Battle-Damage, and the B&W Sketch — each distinct."
+        },
+        {
+          "id": "proof_distinctness",
+          "type": "likert5",
+          "question": "Across the proof, do the six variants read as commercially distinct treatments while sharing identical registration, masthead and trade-dress layout?",
+          "guidance": "5 = six clearly different FX treatments, all sharing the same crop/masthead/trade-dress framing. 3 = distinct but two variants look too similar. 1 = variants barely differ or registration/masthead drifts between them.",
+          "reference": "The six are clearly differentiated (colour vs halftone vs duotone vs glitch vs grunge vs line-art) and share the same crop, masthead position and trade-dress framing — the intended variant-pack consistency."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "tl_all_deliverables_present",
+      "type": "yesno",
+      "question": "Are all 10 deliverables present: 6 trade-dressed covers (print PDF + 2048px web JPG each), the Sketch SVG, the vectorized logo SVG, the data-merge sheet PDF, the Retro spot-separation sheet PDF, and the contact-proof PDF?",
+      "guidance": "Yes = every deliverable in the asked->produced table exists (9 PDFs + 6 web JPGs + 2 SVGs). No = any cover, format or sheet missing.",
+      "reference": "All present in outputs/: cover_A..F print PDFs + web2048 JPGs, cover_F_sketch_lineart.svg, voidrunner_logo_masthead.svg, trade_dress_merge_sheet.pdf, retro_spot_separation_sheet.pdf, variant_pack_contact_proof.pdf (9 PDFs + 6 JPGs + 2 SVGs)."
+    },
+    {
+      "id": "tl_six_distinct_treatments",
+      "type": "likert5",
+      "question": "Did the pipeline genuinely fork ONE approved hero illustration into six commercially distinct print treatments (full-colour, Ben-Day halftone, cyan duotone, glitch+grain, licensed grunge battle-damage, B&W line-art) that still share registration and masthead?",
+      "guidance": "5 = six clearly different, on-brief treatments all derived from the same master with shared framing/masthead. 3 = distinct but one or two treatments weak (e.g. Retro illegible, Battle-Damage too muddy). 1 = treatments not meaningfully different or off-brief.",
+      "reference": "Six distinct treatments delivered from the single Cover A master (A standard, B halftone, C cyan duotone, D RGB-glitch+grain, E grunge battle-damage, F vectorized line-art). Caveat the two known soft spots: the Retro halftone obscures the figure and Battle-Damage reads quite dark."
+    },
+    {
+      "id": "tl_data_merge_fidelity",
+      "type": "yesno",
+      "question": "Did the per-variant trade dress correctly stamp issue line, colourway, ratio, price and barcode zone from the data, with the barcode shown on the three $4.99 covers (A-C) and suppressed/Direct-Market on the three incentives (D-F)?",
+      "guidance": "Yes = every cover carries the right colourway/ratio/price and barcode on for A-C, off for D-F, matching the merge table. No = any price/ratio/code wrong or a barcode toggled the wrong way.",
+      "reference": "Correct across all six: A/B/C = $4.99 with UPC barcode on; D Cyber 1:10 $9.99, E Battle-Damage 1:25 $19.99, F Sketch Retailer-Exclusive $14.99 — all three Direct-Market with the barcode suppressed."
+    },
+    {
+      "id": "tl_copy_fidelity_no_retype",
+      "type": "likert5",
+      "question": "Was all client copy (issue title, on-sale date, credits, prices, ratios, ink names/Pantones/LPI) consumed programmatically from the spec/CSVs and rendered correctly, with no garbles or retyping errors?",
+      "guidance": "5 = every stamped value traces to the source data and is correctly spelled (e.g. 'EDGE OF THE VOID', 'ON SALE 14 OCT 2026', Pantones 185 C/2995 C/Black 6 C). 3 = correct but with a minor inconsistency. 1 = visible garbles or fabricated values.",
+      "reference": "Copy reads correctly on every cover and the separation sheet (title 'EDGE OF THE VOID', on-sale date, $-prices, Pantone/LPI swatches). One data-layer flaw to note: trade_dress_merge.csv carries a placeholder credit_line ('Artist A / Colorist B') inconsistent with the copy deck — but the rendered covers correctly show the real 'Cover by Elias Thorne - Colours by Zara Vance', so the visible output is faithful."
+    },
+    {
+      "id": "tl_print_specs_met",
+      "type": "yesno",
+      "question": "Are the covers print-true to comic spec: full-bleed 6.875x10.5 in (6.625x10.25 trim + 0.125 bleed) print PDFs with crop marks, web JPGs at long-edge 2048px, and valid SVGs?",
+      "guidance": "Yes = cover print PDFs at 494.88x756 pt with trim crop marks, all six web JPGs 1341x2048, both SVGs valid. No = wrong page size/aspect, JPGs not 2048, or invalid SVG.",
+      "reference": "Cover print PDF MediaBox 494.88x756 pt (6.873x10.5 in full-bleed) with crop marks at the trim box; all six web JPGs 1341x2048; both SVGs have valid <svg> roots. Sheets (merge/sep/proof) are landscape 1224x792 pt presentation layouts."
+    },
+    {
+      "id": "tl_limitations_disclosed",
+      "type": "likert5",
+      "question": "Does the README honestly disclose the real execution constraints (source ~1536px art scaled to print canvas with no fake upscaling; data-merge + vector renders done locally because document_merge_data_vector/document_render_vector need a human-authored Variables .ai and rejected SVG input; Retro halftone reads as textured rather than clean 3-tone) without overclaiming?",
+      "guidance": "5 = all four limitations stated plainly with the workaround rationale and no detail passed off as more than it is. 3 = limitations mentioned but vaguely. 1 = limitations hidden or results overclaimed as native-resolution Illustrator output.",
+      "reference": "README 'Honest limitations' covers all four: 1024x1536 source scaled to the 2062x3150 print canvas (no upscale claimed), local data-merge/vector renders because the connectors need an authored .ai (and document_render_vector rejected SVG: 'File must be PDF-based or PostScript'), and the Retro halftone reading as textured retro print rather than a clean Ben-Day 3-tone. Disclosure is candid and specific."
+    }
+  ]
+}

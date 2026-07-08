@@ -1,0 +1,341 @@
+{
+  "task_id": 1847,
+  "input_assets": [
+    {
+      "key": "approved_keyart",
+      "display": "Approved AI key-art (locked blend target)",
+      "files": [
+        "input_assets/approved_keyart_flat.jpg"
+      ],
+      "what_it_is": "The network-approved AI-generated LAST ONE STANDING poster (1024x1536) whose composition, colour and typography are LOCKED and which the rebuild must match.",
+      "items": [
+        {
+          "id": "keyart_composition_two_figures_dusk_arena",
+          "type": "likert5",
+          "question": "Does the comp show the locked composition: a confident HERO figure on the LEFT (slightly forward) and a FOIL/rival on the RIGHT, both as rim-lit silhouettes at a dusk stadium arena with an amber-to-blue dusk sky?",
+          "guidance": "5 = two opposed silhouetted figures (left hero in tactical vest/cap, right rival in plain tee) face off on an arena floor under a warm dusk sky with the empty stadium bowl receding behind. 1 = only one figure, no arena, or daylight/non-dusk scene.",
+          "reference": "Two dark silhouetted male figures face each other on a stadium floor; left figure (vest + ball-cap) slightly forward, right figure (plain tee) slightly back; amber-orange sunset band low on the horizon graduating to deep blue sky; empty stadium seating bowl behind. Matches the locked composition."
+        },
+        {
+          "id": "keyart_locked_typography_present",
+          "type": "yesno",
+          "question": "Are all four locked copy elements present and legibly spelled on the comp: title 'LAST ONE STANDING', tagline 'ONE ARENA. ONE WINNER.', premiere line 'SERIES PREMIERE THURSDAY 9/8c', and a network bug top-left?",
+          "guidance": "Yes = the heavy condensed cream title 'LAST ONE STANDING' spans the lower third, 'ONE ARENA. ONE WINNER.' sits beneath it, 'SERIES PREMIERE THURSDAY 9/8c' runs along the very bottom, and a network bug sits top-left. No = any of these strings is missing or misspelled.",
+          "reference": "Title 'LAST ONE STANDING' (cream, heavy condensed) across lower third; 'ONE ARENA. ONE WINNER.' directly beneath; 'SERIES PREMIERE THURSDAY 9/8c' at the very bottom (THURSDAY 9/8c in amber). All four present and correctly spelled."
+        },
+        {
+          "id": "keyart_network_bug_v_dropout",
+          "type": "yesno",
+          "question": "Does the top-left network bug in this approved comp read 'ANTAGE NETWORK' (the leading 'V' of VANTAGE is cut off / dropped) rather than the full 'VANTAGE NETWORK'?",
+          "guidance": "Yes = the wordmark visibly starts with 'ANTAGE' because the V is clipped at the left edge / missing, with a small beetle-style bug icon above it. No = the full 'VANTAGE NETWORK' is rendered. (This is a known defect in the AI comp the rebuild is expected to correct to the full word.)",
+          "reference": "The bug reads 'ANTAGE NETWORK' with the leading V dropped (confirmed in manifest QC issues), accompanied by a small beetle/bug glyph top-left. This is the AI defect the rebuilt poster should fix to 'VANTAGE NETWORK'."
+        },
+        {
+          "id": "keyart_synthetic_ai_look",
+          "type": "likert5",
+          "question": "Does the comp read as a slightly synthetic / AI-generated image (the 'AI look' the retoucher is being hired to rebuild with real photography)?",
+          "guidance": "5 = silhouettes and floor look a touch plasticky/CG-rendered and the warm key is uneven (cooler floor/right figure), i.e. clearly a comp needing a photographic rebuild. 1 = already indistinguishable from a real photograph, defeating the task premise.",
+          "reference": "Figures are clean CG-style silhouettes, the arena floor is darker/cooler than the warm-key figures, and the overall finish is glossy-synthetic — exactly the AI look the brief says the retoucher must rebuild with licensed Stock."
+        }
+      ]
+    },
+    {
+      "key": "mood_reference",
+      "display": "Dusk-arena mood / lighting reference",
+      "files": [
+        "input_assets/mood_lighting_ref.jpg"
+      ],
+      "what_it_is": "A photographic mood/lighting reference frame (1024x1536) of one warmly-lit athlete in a dusk arena that the final blend's lighting must be checked against.",
+      "items": [
+        {
+          "id": "mood_single_warm_key_dusk",
+          "type": "likert5",
+          "question": "Does the reference establish the target lighting: a single warm key from camera-left on one real-looking athlete at a blue-hour dusk arena, with an ember band on the horizon?",
+          "guidance": "5 = one believable person lit by a single warm amber key from the left, cool falloff on the far side, a glowing ember/orange band low on the horizon and an out-of-focus stadium bowl behind. 1 = flat/multi-source studio light, daylight, or no arena.",
+          "reference": "A woman in a grey athletic tank stands at a dusk stadium; a warm amber key rakes her from camera-left, the horizon glows ember-orange under a darkening sky, and the empty stadium seating recedes softly out of focus behind her."
+        },
+        {
+          "id": "mood_photographic_realism",
+          "type": "likert5",
+          "question": "Does the reference read as a genuine candid photograph (natural skin texture, real hair with flyaways, believable sweat sheen) rather than CGI-glossy or over-retouched?",
+          "guidance": "5 = visible skin pores, individual hair strands and flyaways, slight sweat sheen and fabric wrinkles, shallow real depth of field. 1 = plastic/painted skin, helmet hair, CGI gloss or heavy beauty retouching.",
+          "reference": "Realistic 85mm-style frame: natural skin texture with sweat sheen on the shoulder/chest, loose hair strands escaping the bun, soft real bokeh on the stadium behind — reads as a real photo, not CGI (manifest vision_score 8)."
+        },
+        {
+          "id": "mood_no_text_watermarks",
+          "type": "yesno",
+          "question": "Is the mood reference free of any text, letters, numbers, logos or watermarks (as the brief requires for a pure lighting reference)?",
+          "guidance": "Yes = the frame contains no typography or marks of any kind. No = any letter, number, logo or watermark appears anywhere.",
+          "reference": "The frame is purely photographic with zero text, numbers, logos or watermarks anywhere — it is a clean lighting reference only."
+        }
+      ]
+    },
+    {
+      "key": "typography_sample",
+      "display": "Title + billing-block typography specimen",
+      "files": [
+        "input_assets/typography_sample.png"
+      ],
+      "what_it_is": "A flat charcoal-on-white typography specimen (1024x1536) of the title lockup, tagline and full billing block, used to drive font_recommend and the re-vectorized logo.",
+      "items": [
+        {
+          "id": "typo_title_tagline_billing_present",
+          "type": "yesno",
+          "question": "Does the specimen contain, vertically stacked: the title 'LAST ONE STANDING', the tagline 'ONE ARENA. ONE WINNER.', and a small-caps billing block including 'VANTAGE NETWORK PRESENTS', 'HOSTED BY DELIA VANCE' and 'CREATED BY THE MERIDIAN COLLECTIVE'?",
+          "guidance": "Yes = title lockup at top (with a small standing-figure silhouette mark), tagline beneath, then the multi-line billing block with the studio, host and credits. No = any of these blocks missing.",
+          "reference": "Top: heavy condensed title 'LAST ONE STANDING' with an amber standing-figure silhouette mark to the right; tagline 'ONE ARENA. ONE WINNER.'; billing block: 'VANTAGE NETWORK PRESENTS / A MERIDIAN UNSCRIPTED PRODUCTION / “LAST ONE STANDING” / HOSTED BY DELIA VANCE / EXECUTIVE PRODUCERS RAY OKONKWO PRIYA NAIR / CREATED BY THE MERIDIAN COLLECTIVE'."
+        },
+        {
+          "id": "typo_first_L_renders_as_dot",
+          "type": "yesno",
+          "question": "On the title line, does the first letter of 'LAST' render as a degraded glyph (a dot/period, reading '.AST ONE') rather than a clean capital 'L'?",
+          "guidance": "Yes = the L of LAST is reduced to a small dot/stub so the line reads '.AST ONE STANDING'. No = a clean full-height capital L. (This specimen defect is what later propagates into the vectorized logo proof.)",
+          "reference": "The leading 'L' of LAST is rendered as a small dot/period, so the title reads '.AST ONE STANDING' on the first line — a specimen flaw that carries through to the vectorized lockup proof."
+        },
+        {
+          "id": "typo_clean_vectorizable_specimen",
+          "type": "likert5",
+          "question": "Is the specimen a clean, high-contrast, vectorizable reference (solid charcoal type on a plain white background, no photo scene, no gradients/glow)?",
+          "guidance": "5 = flat charcoal-black letterforms isolated on pure white, one amber accent allowed on the title mark, crisp edges ready for image_vectorize. 1 = photographic background, gradients, glow or low contrast that would vectorize poorly.",
+          "reference": "Flat charcoal type on plain white with a single amber silhouette mark on the title; no photographic background, no gradients or glow — a crisp specimen suitable for font_recommend + image_vectorize (manifest vision_score 10)."
+        }
+      ]
+    },
+    {
+      "key": "print_spec",
+      "display": "Print specification sheet (JSON + CSV)",
+      "files": [
+        "input_assets/print_spec.json",
+        "input_assets/print_spec.csv"
+      ],
+      "what_it_is": "The fixed 12-row print spec (24x36 in, 300dpi, CMYK SWOP, bleed/safe margins, web JPG size) supplied as a JSON object and a rendered CSV.",
+      "items": [
+        {
+          "id": "spec_core_print_numbers",
+          "type": "yesno",
+          "question": "Does the spec list the correct fixed print numbers: trim 24x36 in, 300 dpi, trim 7200x10800 px, 0.125 in bleed, full-bleed 7275x10875 px, CMYK U.S. Web Coated (SWOP) v2, and web JPG 1200x1800?",
+          "guidance": "Yes = all of those param/value pairs appear and are internally consistent (e.g. 24in x 300dpi = 7200px; 7200+2*37.5 = 7275). No = any value wrong, missing, or inconsistent.",
+          "reference": "trim_width 24in, trim_height 36in, resolution 300dpi, trim_px 7200x10800, bleed 0.125in (37.5px/edge), full_bleed_px 7275x10875, color_mode CMYK SWOP v2, web_jpg_size 1200x1800 — all 12 rows present and arithmetically consistent."
+        },
+        {
+          "id": "spec_json_csv_parity",
+          "type": "yesno",
+          "question": "Do the JSON and CSV carry the same 12 rows with identical param/value/unit/note columns?",
+          "guidance": "Yes = the CSV header is exactly param,value,unit,note and every JSON spec row appears as a matching CSV line. No = rows differ, are missing, or columns are renamed.",
+          "reference": "Both files hold the same 12 rows; CSV header is 'param,value,unit,note' and each row (trim_width...file_outputs) matches the JSON spec objects one-to-one."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "web_jpg",
+      "display": "Flattened web JPG (1200x1800)",
+      "files": [
+        "outputs/LAST_ONE_STANDING_web_1200x1800.jpg"
+      ],
+      "what_it_is": "The flattened sRGB web deliverable: the rebuilt LAST ONE STANDING poster downscaled to 1200x1800 (2:3).",
+      "items": [
+        {
+          "id": "web_dims_2x3",
+          "type": "yesno",
+          "question": "Is the web JPG exactly 1200x1800 px (2:3) as specified in print_spec web_jpg_size?",
+          "guidance": "Yes = pixel dimensions are 1200 wide x 1800 tall. No = any other size or aspect ratio.",
+          "reference": "File is exactly 1200x1800 px, matching print_spec row web_jpg_size (1200 x 1800, flattened sRGB web JPG)."
+        },
+        {
+          "id": "web_all_copy_present_correct",
+          "type": "yesno",
+          "question": "Does the web poster carry all locked copy correctly: title 'LAST ONE STANDING', tagline 'ONE ARENA. ONE WINNER.', 'SERIES PREMIERE THURSDAY 9/8c', a top-left 'VANTAGE NETWORK' bug, and the 6-line billing block at the bottom?",
+          "guidance": "Yes = every string is present and correctly spelled, including the full 'VANTAGE NETWORK' (V restored) and the billing block (VANTAGE NETWORK PRESENTS ... CREATED BY THE MERIDIAN COLLECTIVE). No = any string missing or misspelled.",
+          "reference": "Title 'LAST ONE STANDING' (two cream lines over the floor), tagline 'ONE ARENA. ONE WINNER.' in amber, 'SERIES PREMIERE THURSDAY 9/8c' below, 'VANTAGE NETWORK' bug top-left with the V restored, and the full 6-line billing block at the bottom — all present and matching work/copy.json."
+        },
+        {
+          "id": "web_photographic_rebuild_look",
+          "type": "likert5",
+          "question": "Has the AI comp been rebuilt to read as a photographic composite: a real licensed dusk sky with clouds, a real (blurred) stadium environment behind the figures, and one cohesive warm-key cinematic grade?",
+          "guidance": "5 = the sky is a believable photographed twilight cloudscape, the stadium bowl behind reads as a real depth-blurred photo, and all elements share one warm-amber/cool-blue dusk grade. 1 = still the flat CG comp, mismatched grades, or obviously fake sky/environment.",
+          "reference": "Real Adobe Stock sky plate (id 654020866, orange-gold twilight clouds) and stadium plate (id 239375308, lit empty stadium) composited behind the two figures with a shared warm-highlight/cool-shadow grade — a clear photographic rebuild of the AI comp."
+        },
+        {
+          "id": "web_cast_silhouettes_intentional",
+          "type": "likert5",
+          "question": "Are the two cast figures rendered as deliberate rim-lit silhouettes (hero left/larger, rival right/smaller) consistent with the locked comp, rather than as broken cut-outs with halos or hard matte edges?",
+          "guidance": "5 = two clean dark silhouettes with subtle warm/steel rim light, left figure larger and forward, right smaller and back, edges clean against the sky/stadium. 1 = visible cut-out halos, hard jagged mattes, or wrong figure positions.",
+          "reference": "Two solid dark silhouettes: a larger hero on the left (slightly forward, hands at hips) and a smaller rival on the right (back), each with a faint warm/steel rim — matching the locked comp's silhouette treatment (per README, intentional)."
+        }
+      ]
+    },
+    {
+      "key": "print_master_bleed",
+      "display": "Print master + prepress bleed/crop-marks JPG",
+      "files": [
+        "outputs/LAST_ONE_STANDING_24x36_print_master.jpg",
+        "outputs/LAST_ONE_STANDING_24x36_bleed_cropmarks.jpg"
+      ],
+      "what_it_is": "The high-res trim master (4800x7200) and a prepress version (4850x7250) with added bleed and crop marks.",
+      "items": [
+        {
+          "id": "print_master_dims_ratio",
+          "type": "yesno",
+          "question": "Is the trim master 4800x7200 px (exact 2:3, the 24x36 proportion) and the bleed version larger by a consistent bleed margin (4850x7250) with crop marks?",
+          "guidance": "Yes = master is 4800x7200 (2:3) and the bleed file is 4850x7250 with visible crop/registration marks at the corners. No = wrong dimensions, non-2:3 ratio, or no crop marks on the bleed file.",
+          "reference": "print_master is 4800x7200 (2:3 = 24x36); bleed_cropmarks is 4850x7250 (+25px each edge) with corner crop marks. README discloses this master is built at 24x36/200dpi, not native 300dpi."
+        },
+        {
+          "id": "print_master_matches_web",
+          "type": "likert5",
+          "question": "Does the print master reproduce the same composition and copy as the web JPG at higher resolution (same sky, figures, title, tagline, premiere line and billing block)?",
+          "guidance": "5 = identical layout and copy to the web version, just larger and with the billing block legible. 1 = different composition, missing elements, or copy that disagrees with the web JPG.",
+          "reference": "The 4800x7200 master shows the same dusk-sky + stadium + two silhouettes + 'LAST ONE STANDING' title, 'ONE ARENA. ONE WINNER.' tagline, 'SERIES PREMIERE THURSDAY 9/8c' and billing block as the web JPG, at higher resolution."
+        },
+        {
+          "id": "print_master_bleed_safe_handling",
+          "type": "likert5",
+          "question": "Does the prepress bleed version correctly extend imagery into the bleed (no white edges) while keeping title and billing block inside the safe area?",
+          "guidance": "5 = the sky/stadium imagery bleeds fully to the trimmed edge with crop marks outside the trim, and the title + billing block sit comfortably inside the 0.25in safe margin. 1 = white/empty bleed, type clipped by the trim, or marks placed inside the live area.",
+          "reference": "Imagery fills to the bleed edge with corner crop marks beyond the trim; title and 6-line billing block remain inset from the edges within the safe area per print_spec (safe_margin 0.25in)."
+        }
+      ]
+    },
+    {
+      "key": "indesign_pdf",
+      "display": "Print-ready InDesign PDF",
+      "files": [
+        "outputs/LAST_ONE_STANDING_24x36_InDesign_print.pdf"
+      ],
+      "what_it_is": "The primary print deliverable: a genuine InDesign-produced PDF carrying the full LAST ONE STANDING poster.",
+      "items": [
+        {
+          "id": "pdf_genuine_indesign_producer",
+          "type": "yesno",
+          "question": "Is the PDF a genuine Adobe InDesign render (Creator = Adobe InDesign, Producer = Adobe PDF Library) rather than a generic PIL/print-to-PDF export?",
+          "guidance": "Yes = PDF metadata shows Creator 'Adobe InDesign' and Producer 'Adobe PDF Library'. No = generic producer (e.g. PIL, Cairo, browser print).",
+          "reference": "PDF metadata: Creator 'Adobe InDesign 21.3 (Windows)', Producer 'Adobe PDF Library 18.0' — a genuine InDesign render via document_convert_pdf -> document_render_layout, as the brief demands."
+        },
+        {
+          "id": "pdf_carries_full_poster",
+          "type": "yesno",
+          "question": "Is it a single-page PDF that embeds the full poster image (the rebuilt LAST ONE STANDING composition)?",
+          "guidance": "Yes = one page containing the embedded poster raster with the figures, sky, title and billing block. No = blank page, multiple unrelated pages, or no embedded image.",
+          "reference": "Single-page PDF with an embedded /Image XObject carrying the full rebuilt poster (figures, dusk sky, title, tagline, premiere line, billing block)."
+        },
+        {
+          "id": "pdf_page_geometry_2x3_disclosed",
+          "type": "likert5",
+          "question": "Is the page geometry a clean 2:3 portrait matching the 24x36 proportion, with the README honestly disclosing that the literal 24x36 trim box + SWOP CMYK conversion is set by the print house?",
+          "guidance": "5 = MediaBox is a clean 2:3 portrait (e.g. 1152x1728 pt) AND the README transparently states the exact 24x36 trim box and CMYK SWOP conversion happen at prepress. 1 = wrong/landscape geometry or an undisclosed claim that the PDF is already final 24x36 CMYK.",
+          "reference": "MediaBox 1152x1728 pt (= 16x24in, a clean 2:3 = 24x36 proportion); README 'Honest limitations' discloses the exact 24x36 trim box and SWOP CMYK conversion are applied by the prepress operator. Honest, not overclaimed."
+        }
+      ]
+    },
+    {
+      "key": "logo_lockup",
+      "display": "Re-vectorized title + billing lockup (SVG + proof PNG)",
+      "files": [
+        "outputs/LAST_ONE_STANDING_logo_lockup_vector.svg",
+        "outputs/LAST_ONE_STANDING_logo_lockup_proof.png"
+      ],
+      "what_it_is": "The title/billing-block lockup re-vectorized from the locked specimen as an SVG plus a 2048x2048 rasterized print proof.",
+      "items": [
+        {
+          "id": "logo_is_real_vector",
+          "type": "yesno",
+          "question": "Is the SVG a genuine multi-path vector (produced by image_vectorize) rather than just an embedded bitmap wrapped in SVG?",
+          "guidance": "Yes = the SVG contains many independent <path> elements describing the letterforms. No = a single <image> tag embedding a raster.",
+          "reference": "SVG is 1024x1536 with ~310 distinct <path> elements describing the letterforms and silhouette mark — a real vectorization from image_vectorize, not an embedded bitmap."
+        },
+        {
+          "id": "logo_propagates_L_dropout",
+          "type": "yesno",
+          "question": "Does the vectorized proof reproduce the source specimen's defect where the first 'L' of LAST renders as a dot, reading '.AST ONE STANDING'?",
+          "guidance": "Yes = the proof title reads '.AST ONE STANDING' (leading L is a dot) inherited from the specimen. No = the proof shows a clean 'LAST ONE STANDING'. (Flag this as a defect carried through the pipeline that the rebuild should have corrected.)",
+          "reference": "The proof PNG title reads '.AST ONE STANDING' with the leading L as a dot, an artifact inherited from the typography_sample input ('.AST ONE'). The rebuilt poster's own title is correct, but the vectorized lockup proof carries the flaw."
+        },
+        {
+          "id": "logo_proof_resolution_and_mark",
+          "type": "likert5",
+          "question": "Is the proof a clean high-res raster (2048x2048) that includes the title lockup, the amber standing-figure silhouette mark and the start of the billing block?",
+          "guidance": "5 = crisp 2048x2048 proof showing the heavy condensed title, the amber figure mark beside 'ONE', the tagline and the top billing lines, all sharp. 1 = low-res/blurry, missing the figure mark, or missing the billing block.",
+          "reference": "2048x2048 proof: heavy condensed title with the amber standing-figure silhouette mark to the right of 'ONE', tagline 'ONE ARENA. ONE WINNER.', and billing lines beginning 'VANTAGE NETWORK PRESENTS / A MERIDIAN UNSCRIPTED PRODUCTION'."
+        }
+      ]
+    },
+    {
+      "key": "stock_usage_note",
+      "display": "Adobe Stock usage note",
+      "files": [
+        "outputs/STOCK_USAGE_NOTE.md",
+        "outputs/README.md"
+      ],
+      "what_it_is": "The required stock-usage note listing every licensed Adobe Stock asset id, title, resolution and license type used to rebuild each AI region, plus the build README.",
+      "items": [
+        {
+          "id": "stock_four_plates_documented",
+          "type": "yesno",
+          "question": "Does the usage note list exactly four licensed Adobe Stock plates with asset ids, mapped one-to-one to the four AI regions (hero, foil, dusk sky, stadium-floor/environment)?",
+          "guidance": "Yes = four rows: hero stand-in, foil stand-in, dusk-gradient sky, stadium-floor/environment, each with a distinct asset id and title. No = fewer than four, missing ids, or wrong region mapping.",
+          "reference": "Four plates: HERO 115155591 (sportsman, 3604x5406), FOIL 473425796 (young man in white tee, 3333x5000), SKY 654020866 (orange-gold twilight, 6000x4000), ENVIRONMENT 239375308 (lights on empty football stadium, 5791x3866), all 'Adobe Stock Standard', state just_purchased."
+        },
+        {
+          "id": "stock_license_type_and_res",
+          "type": "yesno",
+          "question": "Does each listed plate record its full-resolution dimensions and license type (Adobe Stock Standard), establishing the assets were genuinely licensed, not scraped?",
+          "guidance": "Yes = every plate row has a full-res WxH and 'Adobe Stock Standard' license. No = missing resolutions or license type, or vague 'downloaded' wording.",
+          "reference": "Each plate row lists full-res dimensions (e.g. 3604x5406) and 'Adobe Stock Standard' license; the note states all four returned license state 'just_purchased' via asset_license_and_download_stock."
+        },
+        {
+          "id": "stock_note_honesty_on_limits",
+          "type": "likert5",
+          "question": "Does the README honestly disclose the build's real limitations (photographic plate scaled to fit not native 300dpi, PDF trim box set at prepress, cast rendered as silhouettes, contact shadows composited locally)?",
+          "guidance": "5 = the README clearly enumerates each limitation without overclaiming native 300dpi print-res or final CMYK. 1 = limitations hidden or the deliverable is overclaimed as fully native 24x36/300dpi CMYK.",
+          "reference": "README 'Honest limitations' transparently states: photographic plate is ~2.6k px scaled into a 4800x7200/200dpi master (not native 300dpi), 24x36 trim box + SWOP CMYK set at the print house, cast intentionally rendered as silhouettes, contact shadows + multi-element layout composited locally."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "task_every_ai_region_rebuilt_with_stock",
+      "type": "likert5",
+      "question": "Across the deliverables, has EVERY AI region of the approved comp (hero, foil, dusk sky, stadium environment) been rebuilt from real licensed Adobe Stock rather than left as the original AI render?",
+      "guidance": "5 = all four regions are demonstrably sourced from the four licensed Stock plates (documented in the usage note) and visible in the final poster as photographic sky + stadium with cut/graded figures. 1 = any region is still the original AI pixels or undocumented.",
+      "reference": "Four plates licensed and consumed (hero 115155591, foil 473425796, sky 654020866, env 239375308); the final poster shows the real twilight sky and lit stadium with the figures cut and re-rendered as graded silhouettes — every AI region rebuilt with Stock per the brief."
+    },
+    {
+      "id": "task_one_cohesive_cinematic_grade",
+      "type": "likert5",
+      "question": "Do all composited elements share ONE cohesive warm-key cinematic dusk grade (matching the mood reference) rather than reading as separately-lit cut-outs?",
+      "guidance": "5 = sky, stadium and figures all carry the same warm-highlight/cool-shadow amber-dusk look, consistent with the mood_lighting_ref. 1 = mismatched colour temperatures, one element obviously a different grade, or no unifying look.",
+      "reference": "All four plates carry one shared Lightroom preset ('Creative - Cool Shadows & Warm Highlights') plus a matched 9-step relight; the final composite reads as a single warmly-lit dusk set echoing the mood reference's warm key + cool rim."
+    },
+    {
+      "id": "task_copy_fidelity_end_to_end",
+      "type": "yesno",
+      "question": "Is every piece of on-poster copy faithful to the locked source (title, tagline, premiere line, network bug, full billing block) and read programmatically rather than retyped by hand?",
+      "guidance": "Yes = all strings match work/copy.json verbatim, including the full 6-line billing block and the V-restored 'VANTAGE NETWORK', with no typos introduced. No = any string retyped wrong, missing, or the input's 'ANTAGE' defect left uncorrected in the final poster.",
+      "reference": "work/copy.json holds the verbatim locked copy (title, tagline 'ONE ARENA. ONE WINNER.', premiere 'SERIES PREMIERE THURSDAY 9/8c', bug 'VANTAGE NETWORK', 6-line billing block); the final poster reproduces these correctly and restores the dropped 'V'. (Caveat: the separate logo proof still shows '.AST'.)"
+    },
+    {
+      "id": "task_deliverable_completeness",
+      "type": "yesno",
+      "question": "Were both required final deliverables produced — a genuine print-ready InDesign PDF (24x36 proportion / 300dpi target) AND a flattened web JPG — plus the stock-usage note and re-vectorized lockup?",
+      "guidance": "Yes = the InDesign PDF, the 1200x1800 web JPG, the STOCK_USAGE_NOTE and the vectorized lockup (SVG + proof) are all present. No = any required deliverable missing.",
+      "reference": "Present: LAST_ONE_STANDING_24x36_InDesign_print.pdf (genuine InDesign), LAST_ONE_STANDING_web_1200x1800.jpg, STOCK_USAGE_NOTE.md, and the logo lockup SVG + proof PNG — all required deliverables shipped."
+    },
+    {
+      "id": "task_connector_workflow_executed",
+      "type": "likert5",
+      "question": "Does the evidence show the prescribed Adobe connector workflow was genuinely executed (Stock search/license, per-plate auto-tone/straighten/crop, subject-cut, sky select + depth blur, multi-step relight + shared preset, vectorize, generative-expand, convert/render PDF)?",
+      "guidance": "5 = README + manifest document ~25 distinct connector tools across the full chain matching the prescribed mcp_workflow, with intermediates in work/. 1 = the chain was faked, skipped, or only local PIL was used.",
+      "reference": "README lists 25 distinct connector tools / ~37 calls (asset_search x5, asset_license_and_download_stock x4, auto_tone, auto_straighten, crop_to_bounds, select_subject x2, remove_background x2, select_by_prompt x3, gaussian/lens blur, 9 adjust ops, apply_preset x4, color_overlay, fill_area, font_recommend, image_vectorize, generative_expand, crop_and_resize, document_convert_pdf, document_render_layout) matching the prescribed mcp_workflow."
+    },
+    {
+      "id": "task_print_specs_honored",
+      "type": "likert5",
+      "question": "Do the final files honor the print spec (24x36 2:3 proportion, web JPG 1200x1800, bleed + crop marks present) with any shortfalls in native 300dpi/CMYK honestly disclosed rather than overclaimed?",
+      "guidance": "5 = master is true 2:3, web JPG is exactly 1200x1800, a bleed/crop-mark prepress file exists, and the README openly flags that native 300dpi and SWOP CMYK are completed at the print house. 1 = wrong sizes, no bleed handling, or a false claim of finished native 300dpi CMYK output.",
+      "reference": "Master 4800x7200 (2:3), bleed file 4850x7250 with crop marks, web JPG exactly 1200x1800 per print_spec; README discloses the photographic plate is ~2.6k px scaled into a 200dpi master and that 24x36 trim box + SWOP CMYK are set at prepress — specs honored with honest disclosure."
+    }
+  ]
+}

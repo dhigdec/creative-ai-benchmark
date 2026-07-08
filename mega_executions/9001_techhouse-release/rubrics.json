@@ -1,0 +1,421 @@
+{
+  "task_id": 9001,
+  "input_assets": [
+    {
+      "key": "press_photos",
+      "display": "Raw artist press / live frames (10 club photos)",
+      "files": [
+        "input_assets/press_01_cover-hero-frame.jpg",
+        "input_assets/press_06_portrait-neon.jpg",
+        "input_assets/press_08_smoke-lights.jpg",
+        "input_assets/press_09_backstage-candid.jpg",
+        "input_assets/press_10_merch-table-detail.jpg"
+      ],
+      "what_it_is": "Ten 1024x1024 photoreal club press/live frames of an invented tech-house DJ, one (press_01) intended as the cover hero frame and several to be depth-graded into the promo set.",
+      "items": [
+        {
+          "id": "press_hero_magenta_neon_present",
+          "type": "yesno",
+          "question": "In press_01_cover-hero-frame.jpg, is there a single dominant magenta neon sign directly behind the DJ's shoulder that could anchor the cover duotone and the colour-splash accent?",
+          "guidance": "YES = an unmistakable large buzzing magenta/pink neon shape fills the upper-right behind the performer. NO = neon is absent, weak, off-colour, or not the dominant element.",
+          "reference": "YES — press_01 shows a large magenta/pink neon diamond-with-cut-corner outline filling the upper-right behind the DJ's right shoulder, plus a cyan LED strip raking across the booth; it is the unmistakable dominant magenta source the brief requires."
+        },
+        {
+          "id": "press_photoreal_documentary",
+          "type": "likert5",
+          "question": "Across the press frames, do they read as candid documentary club photography (natural skin texture, real hair flyaways, anatomically plausible hands, genuine stage lighting) rather than CGI-glossy stock?",
+          "guidance": "5 = visible pores/sweat sheen, individual backlit hair strands, believable hands on the decks, real magenta/cyan neon spill and haze, asymmetric crowd-eye composition. 1 = airbrushed plastic skin, helmet hair, distorted hands, flat studio look.",
+          "reference": "Largely 5. press_01/06/10 are strongly photoreal (vision_score 10) with sweat sheen, flyaway hair, tattoos, anatomically correct hands. Two frames (press_05 booth-wide, press_07 backlit-haze) were accepted_with_warnings (vision_score 6) for slightly airbrushed skin/less strand detail — acceptable but not flawless."
+        },
+        {
+          "id": "press_no_text_or_brands",
+          "type": "yesno",
+          "question": "Are the press frames free of any text, letters, numbers, watermarks, logos, or recognizable real-world brands/celebrity likenesses?",
+          "guidance": "YES = no legible text or trademarks anywhere; the performer is an invented, non-identifiable person. NO = any readable signage text, brand mark, or real-person likeness appears.",
+          "reference": "YES — generated under an explicit no-text/no-brand/no-real-likeness constraint; the neon signage is an abstract geometric shape with no letters, and the DJ is an invented diverse performer."
+        }
+      ]
+    },
+    {
+      "key": "logo_bitmap",
+      "display": "NIGHTSHIFT logo bitmap (to vectorize)",
+      "files": [
+        "input_assets/nightshift_logo.png"
+      ],
+      "what_it_is": "A 1024x1024 flat monochrome 'NIGHTSHIFT' wordmark in a heavy condensed sans on a transparent background, supplied to be vectorized into a print-clean lockup.",
+      "items": [
+        {
+          "id": "logo_spelling_exact",
+          "type": "yesno",
+          "question": "Does the logo bitmap spell exactly 'NIGHTSHIFT' (all caps, one word, no tagline, no icon)?",
+          "guidance": "YES = the single solid wordmark reads NIGHTSHIFT with correct letter order and no extra glyphs. NO = any misspelling, extra word, or stray mark.",
+          "reference": "YES — the bitmap reads NIGHTSHIFT in solid black all-caps condensed sans, one word, no tagline or icon."
+        },
+        {
+          "id": "logo_flat_vectorizable",
+          "type": "likert5",
+          "question": "Is the wordmark flat enough to vectorize razor-clean (one solid colour, hard edges, no gradient/glow/shadow/3D, transparent background)?",
+          "guidance": "5 = perfectly flat solid black on transparency with crisp edges. 3 = mostly flat but slight anti-alias softness/pixelation. 1 = gradients, glow, textured fill, or opaque card behind it.",
+          "reference": "Around 4 — solid black on a true transparent (checkerboard) background, flat and hard-edged, but QC noted slight edge pixelation/anti-alias artifacts (vision_score 8), which later produced ~830 stray anti-alias paths on vectorize."
+        }
+      ]
+    },
+    {
+      "key": "cover_reference",
+      "display": "Client cover reference mood plate",
+      "files": [
+        "input_assets/cover_reference_plate.jpg"
+      ],
+      "what_it_is": "A 1024x1024 Catch&Release-style lo-fi club snapshot (blown-out flash figure, magenta/cyan neon bleed, heavy grain + coarse halftone) supplied as the aesthetic anchor for the cover treatment.",
+      "items": [
+        {
+          "id": "ref_aesthetic_anchor",
+          "type": "likert5",
+          "question": "Does the reference plate clearly communicate the intended cover aesthetic (high-contrast flash, crushed blacks, magenta/cyan neon bleed, coarse halftone-dot zine texture)?",
+          "guidance": "5 = harsh blown-out figure on crushed black, obvious halftone dot texture, magenta+cyan edge bleed, gritty photocopy feel. 1 = clean, smooth, or off-palette image that gives no usable direction.",
+          "reference": "4-5 — the plate shows a flash-blown faceless figure crushed to black with magenta/cyan neon bleeding at the edges and a coarse halftone-dot/grain texture; QC noted the neon bleed is slightly smooth for a true zine feel (vision_score 8) but the direction is clear."
+        },
+        {
+          "id": "ref_no_text",
+          "type": "yesno",
+          "question": "Is the reference plate free of any text, letters, numbers, watermarks, or real brand/logo marks?",
+          "guidance": "YES = purely a photographic mood plate with no legible text. NO = any readable text or trademark.",
+          "reference": "YES — no text or brand marks; it is a clean faceless mood plate."
+        }
+      ]
+    },
+    {
+      "key": "tour_dates",
+      "display": "12-row tour-dates CSV/JSON",
+      "files": [
+        "input_assets/tour_dates.csv",
+        "input_assets/tour_dates.json"
+      ],
+      "what_it_is": "A 12-row tour roster (city, venue, date, doors_time, ticket_url, support_act) that drives the data-merged merch/sticker cards; CSV column headers must match the Illustrator Variable names exactly.",
+      "items": [
+        {
+          "id": "csv_headers_exact",
+          "type": "yesno",
+          "question": "Does the CSV header row read exactly 'city,venue,date,doors_time,ticket_url,support_act' and contain exactly 12 distinct data rows?",
+          "guidance": "YES = those six headers in that order plus 12 unique city rows. NO = renamed/missing/extra columns or wrong row count.",
+          "reference": "YES — header is 'city,venue,date,doors_time,ticket_url,support_act' followed by 12 rows London→Budapest (no repeats)."
+        },
+        {
+          "id": "csv_format_fidelity",
+          "type": "likert5",
+          "question": "Do the field formats follow the brief (date 'SAT 05 SEP 2026' style, doors 'DOORS 22:00' 21:00-23:30, support 'w/ <name>', ticket_url on tix.nightshift-music.live/<slug>, invented venues/DJs, chronological order)?",
+          "guidance": "5 = every row matches all format rules, dates strictly chronological and distinct, all venues/DJs invented and plausible. 1 = real brands/venues, malformed dates/times, or out-of-order dates.",
+          "reference": "5 — e.g. row1 'London,The Subterranean Vault,SAT 05 SEP 2026,DOORS 22:00,https://tix.nightshift-music.live/london,w/ DJ Lumina'; dates run chronologically SEP 2026 → FEB 2027, all doors 21:30-23:00, all venues/DJs invented."
+        },
+        {
+          "id": "csv_json_consistency",
+          "type": "yesno",
+          "question": "Do tour_dates.csv and tour_dates.json carry the same 12 rows with identical values?",
+          "guidance": "YES = the JSON 'dates' list mirrors the CSV row-for-row. NO = divergent rows, missing fields, or mismatched values.",
+          "reference": "YES — both encode the same 12-row roster; the JSON is the generator output and the CSV is its rendered twin (same six keys/values per row)."
+        }
+      ]
+    },
+    {
+      "key": "ticket_qrs",
+      "display": "Per-city ticket QR PNGs (12)",
+      "files": [
+        "input_assets/ticket_qr_01_london.png",
+        "input_assets/ticket_qr_02_berlin.png",
+        "input_assets/ticket_qr_12_budapest.png"
+      ],
+      "what_it_is": "Twelve deterministically-rendered scannable QR PNGs (~396-444px), one per tour row, each encoding that city's tix.nightshift-music.live ticket URL, used as the Linked-File {ticket_qr} variable in the merch card.",
+      "items": [
+        {
+          "id": "qr_one_per_row",
+          "type": "yesno",
+          "question": "Is there exactly one QR PNG per tour row (12 total), named by city in row order (london…budapest)?",
+          "guidance": "YES = 12 city-named QR files matching the 12 CSV rows. NO = missing, duplicated, or mis-named files.",
+          "reference": "YES — ticket_qr_01_london.png through ticket_qr_12_budapest.png, exactly 12, one per CSV row in order."
+        },
+        {
+          "id": "qr_encodes_ticket_url",
+          "type": "yesno",
+          "question": "Does each QR encode that city's correct ticket URL (e.g. london QR → https://tix.nightshift-music.live/london)?",
+          "guidance": "YES = scanning each QR resolves to the matching per-row ticket_url slug. NO = wrong/placeholder URL or unscannable.",
+          "reference": "YES — generator input maps each file to its row's ticket_url by city slug; QRs are clean black-on-white at 396-444px, scannable, matching the CSV ticket_url column."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "streaming_cover",
+      "display": "1600x1600 streaming single cover (duotone + Ben-Day halftone + brand wash + grain)",
+      "files": [
+        "outputs/cover/nightshift_cover_streaming_1600.png",
+        "outputs/cover/nightshift_cover_square_1600.png"
+      ],
+      "what_it_is": "The flagship streaming cover: the press_01 hero frame rendered as a magenta/black duotone with a Ben-Day halftone screen, magenta multiply wash and film grain, carrying the NIGHTSHIFT lockup and a 'NEW SINGLE · OUT NOW' tagline; square master is the clean announce version.",
+      "items": [
+        {
+          "id": "cover_fx_stack_present",
+          "type": "likert5",
+          "question": "Does the streaming cover show the full intended FX stack — magenta/black duotone, a visible Ben-Day halftone dot screen, a magenta brand wash, and film grain?",
+          "guidance": "5 = obvious regular halftone dot grid across the whole frame, magenta-on-black duotone reading from the hero figure, magenta wash unifying the palette, fine grain texture. 1 = a flat photo with none of these, or only one effect.",
+          "reference": "5 — the cover is a dense magenta-and-black Ben-Day dot halftone; the hero DJ figure and the magenta neon diamond read through the dot screen; palette is unified magenta/black with grain. All four treatments are clearly present."
+        },
+        {
+          "id": "cover_dims_1600",
+          "type": "yesno",
+          "question": "Is the streaming cover exactly 1600x1600 px (Apple Music/Spotify single spec)?",
+          "guidance": "YES = file is 1600x1600. NO = any other dimension or aspect ratio.",
+          "reference": "YES — nightshift_cover_streaming_1600.png and nightshift_cover_square_1600.png are both 1600x1600."
+        },
+        {
+          "id": "cover_wordmark_correct",
+          "type": "yesno",
+          "question": "On the streaming cover, is the NIGHTSHIFT wordmark spelled correctly and is the tagline 'NEW SINGLE · OUT NOW' legible against the busy halftone?",
+          "guidance": "YES = wordmark reads NIGHTSHIFT cleanly and the small-caps tagline is readable. NO = misspelling, garbled type, or tagline lost in the texture.",
+          "reference": "YES — large white 'NIGHTSHIFT' lockup bottom-left with 'NEW SINGLE · OUT NOW' in magenta small-caps beneath it, both legible."
+        },
+        {
+          "id": "cover_matches_reference_aesthetic",
+          "type": "likert5",
+          "question": "Does the finished cover honour the supplied lo-fi club reference (high-contrast, crushed black, magenta/cyan zine-halftone feel) rather than a clean glossy treatment?",
+          "guidance": "5 = gritty zine/halftone energy on crushed black matching the reference plate's intent. 1 = clean, smooth, off-palette cover that ignores the anchor.",
+          "reference": "5 — the coarse dot halftone on near-black ground with magenta dominance directly echoes cover_reference_plate.jpg's gritty zine aesthetic."
+        }
+      ]
+    },
+    {
+      "key": "glitch_alt",
+      "display": "VHS-glitch alt colourway",
+      "files": [
+        "outputs/cover/nightshift_cover_glitch_alt_1600.png"
+      ],
+      "what_it_is": "A VHS/glitch alternate colourway of the finished cover (chromatic-aberration offset + analog noise) for the visualiser / announce loop.",
+      "items": [
+        {
+          "id": "glitch_effect_visible",
+          "type": "likert5",
+          "question": "Does the alt colourway show clear chromatic-aberration glitch plus added analog noise distinguishing it from the clean cover?",
+          "guidance": "5 = visible RGB channel split/offset along edges and a layer of VHS noise/static over the halftone. 1 = identical to the clean cover with no glitch or noise.",
+          "reference": "5 — the alt shows red/cyan channel offset (chromatic aberration, offset -24) on the neon and figure plus heavy analog noise (28%), clearly a derivative glitch variant of the streaming cover."
+        },
+        {
+          "id": "glitch_derived_from_cover",
+          "type": "yesno",
+          "question": "Is the glitch alt recognisably derived from the same hero cover (same neon shape + figure + halftone), not a different image?",
+          "guidance": "YES = the magenta neon and DJ silhouette from the cover are still discernible under the glitch. NO = unrelated content.",
+          "reference": "YES — the magenta neon diamond and crouched DJ figure from the streaming cover remain visible under the glitch/noise treatment."
+        }
+      ]
+    },
+    {
+      "key": "colorsplash_promo",
+      "display": "Colour-splash hero promo + depth-graded promo set",
+      "files": [
+        "outputs/promos/nightshift_promo_colorsplash_HERO.png",
+        "outputs/promos/promo_portrait_neon_graded.png",
+        "outputs/promos/promo_backlit_haze_graded.png",
+        "outputs/promos/promo_smoke_lights_graded.png"
+      ],
+      "what_it_is": "The flagship selective-colour promo (magenta neon kept vivid, everything else duotoned) plus three set members depth-graded to the same moody club look (subject popped off bokeh background, crushed blacks, neon push).",
+      "items": [
+        {
+          "id": "splash_magenta_isolated",
+          "type": "likert5",
+          "question": "On the colour-splash hero, is the magenta neon accent kept vividly in colour while everything else is duotoned/monochrome?",
+          "guidance": "5 = the magenta diamond neon glows in saturated pink and the DJ, decks and background are rendered mono/duotone. 1 = whole image still colour, or the magenta is also desaturated.",
+          "reference": "5 — the magenta diamond-with-cut-corner neon stays vivid pink while the DJ, mixer and club background are duotoned to muted mono; the select-by-prompt → single-colour → invert → tint colour-splash recipe is clearly executed."
+        },
+        {
+          "id": "promo_set_cohesive_grade",
+          "type": "likert5",
+          "question": "Do the three graded set members share one consistent moody-club look (low-key exposure, crushed blacks, cyan/magenta neon push, subject readable)?",
+          "guidance": "5 = all three look like one edited set — same darkness, same neon push, same contrast. 1 = mismatched brightness/colour, one looks raw and another heavily graded.",
+          "reference": "5 — portrait_neon, backlit_haze and smoke_lights are all pulled down to a dark low-key grade with crushed shadows and pushed magenta/cyan neon; comparing promo_portrait_neon_graded.png to its raw input press_06 confirms a consistent darkening/neon-push recipe was applied."
+        },
+        {
+          "id": "promo_depth_separation",
+          "type": "yesno",
+          "question": "On the hero promo, is the DJ subject visibly separated from a softened/bokeh background (depth effect), not flat?",
+          "guidance": "YES = subject reads sharp/forward against a blurred neon background. NO = whole frame equally sharp or equally blurred.",
+          "reference": "YES — the hero promo shows the DJ popped against a softened club background with the magenta neon as a bokeh-style accent, consistent with the select-subject → lens-blur depth step."
+        }
+      ]
+    },
+    {
+      "key": "logo_lockup",
+      "display": "Vectorized monochrome logo lockup (PNG/SVG/PDF)",
+      "files": [
+        "outputs/logo/nightshift_logo.svg",
+        "outputs/logo/nightshift_logo_black.png",
+        "outputs/logo/nightshift_logo_magenta.png",
+        "outputs/logo/nightshift_logo_white.png",
+        "outputs/logo/nightshift_logo_print.pdf"
+      ],
+      "what_it_is": "The NIGHTSHIFT wordmark vectorized from the bitmap and re-rendered print-clean as a scalable SVG plus transparent black/magenta/white PNG lockups and a 300dpi print PDF.",
+      "items": [
+        {
+          "id": "logo_clean_spelling",
+          "type": "yesno",
+          "question": "Do the vectorized lockups spell 'NIGHTSHIFT' correctly with clean solid edges and a transparent background (no anti-alias halo or stray specks)?",
+          "guidance": "YES = crisp solid letterforms reading NIGHTSHIFT on transparency, no fuzzy edge or leftover dots. NO = misspelling, ragged/haloed edges, or visible vectorize artifacts.",
+          "reference": "YES — nightshift_logo_magenta/black/white.png are crisp solid 'NIGHTSHIFT' lockups on transparency at 2714x966; the 830 stray light anti-alias paths from vectorize were dropped, keeping the 10 solid wordmark paths."
+        },
+        {
+          "id": "logo_three_colourways",
+          "type": "yesno",
+          "question": "Are all three brand colourways delivered (solid black, brand magenta #FF1E8C, white) plus a scalable SVG and a print PDF?",
+          "guidance": "YES = black, magenta and white PNGs + .svg + .pdf all present and on-brand. NO = a colourway, the SVG, or the PDF missing.",
+          "reference": "YES — black, magenta and white transparent PNGs (all 2714x966) plus nightshift_logo.svg and a single-page nightshift_logo_print.pdf are all present; the magenta uses the brand pink."
+        },
+        {
+          "id": "logo_print_clean_quality",
+          "type": "likert5",
+          "question": "Is the lockup genuinely print-clean and scalable (vector SVG/PDF rather than a soft upscaled bitmap)?",
+          "guidance": "5 = SVG/PDF are true vector paths, edges stay crisp at any scale. 1 = blurry raster scaled up, jagged edges.",
+          "reference": "4-5 — nightshift_logo.svg is genuine vector path data (path d='M…' geometry) from image_vectorize; PNGs are clean solids. Per the README the final cleanup/PNG/PDF were finished locally because document_render_vector rejected raw SVG — output is print-clean but the PDF route was a local fallback."
+        }
+      ]
+    },
+    {
+      "key": "merch_cards",
+      "display": "Tour-date merch / sticker cards (12, data-merged) + print PDF + proof sheet",
+      "files": [
+        "outputs/merch_cards/nightshift_card_01_london.png",
+        "outputs/merch_cards/nightshift_card_12_budapest.png",
+        "outputs/merch_cards/nightshift_merch_cards_PRINT.pdf",
+        "outputs/merch_cards/nightshift_merch_cards_PROOFSHEET.png"
+      ],
+      "what_it_is": "A print-ready batch of 12 A6-landscape tour-date merch/sticker cards, one per CSV row, data-merged with each city's text fields and per-row ticket QR, plus a 12-page print PDF and a 3x4 proof contact sheet.",
+      "items": [
+        {
+          "id": "merch_data_fidelity",
+          "type": "likert5",
+          "question": "On each card, do the merged fields (city, venue, date, doors_time, support_act, ticket URL/QR) match that city's CSV row exactly with no garbles or swaps?",
+          "guidance": "5 = every field on every card is the correct value for its city, correctly formatted. 1 = wrong venue/date on a card, swapped rows, or garbled text.",
+          "reference": "5 — London card reads LONDON / The Subterranean Vault / SAT 05 SEP 2026 / DOORS 22:00 / w/ DJ Lumina / tix.nightshift-music.live/london; Budapest card reads BUDAPEST / Danube Deep House / FRI 12 FEB 2027 / DOORS 23:00 / w/ Lunar Flow / .../budapest — both match their CSV rows exactly."
+        },
+        {
+          "id": "merch_count_and_order",
+          "type": "yesno",
+          "question": "Are all 12 cards present (one per tour date) and does the print PDF have exactly 12 pages in chronological city order London→Budapest?",
+          "guidance": "YES = 12 card PNGs + a 12-page PDF + proof sheet, all in CSV row order. NO = missing/extra cards, wrong page count, or wrong order.",
+          "reference": "YES — 12 card PNGs (nightshift_card_01_london…12_budapest), a 12-page PRINT PDF, and a 3x4 proof sheet showing London, Berlin, Amsterdam … Budapest in chronological order."
+        },
+        {
+          "id": "merch_print_spec",
+          "type": "yesno",
+          "question": "Are the cards rendered at the A6+bleed @300dpi print spec (≈1819x1311 px per card) carrying the lockup, duotone band, QR box and crop/cut marks?",
+          "guidance": "YES = each card is ~1819x1311, includes the NIGHTSHIFT lockup, a magenta/black bokeh duotone band, a scannable QR and hairline crop marks. NO = wrong size, missing static art, or no crop marks.",
+          "reference": "YES — cards are 1819x1311 (A6 148x105mm +3mm bleed @300dpi); each carries the NIGHTSHIFT lockup with 'WORLD TOUR · 2026/2027', a magenta-on-black bokeh duotone band on the right, the per-row QR with 'SCAN FOR TICKETS' + URL, a cyan keyline and hairline crop/cut marks."
+        },
+        {
+          "id": "merch_brand_palette",
+          "type": "likert5",
+          "question": "Do the cards hold the NIGHTSHIFT brand palette (club-black ground, magenta primary, cyan secondary, white type) cohesively?",
+          "guidance": "5 = black background, magenta band/headers, cyan venue/accent type, clean white display type, on-brand throughout. 1 = off-palette colours or muddy/clashing treatment.",
+          "reference": "5 — black ground, magenta 'DOORS'/band accents and tour line, cyan venue name and small accents, white city display type; matches the #0A0A0F / #FF1E8C / #16E0E0 / #F2F2F0 brand palette."
+        }
+      ]
+    },
+    {
+      "key": "sticker_diecut",
+      "display": "Die-cut sticker variant",
+      "files": [
+        "outputs/sticker/nightshift_sticker_diecut_1600.png"
+      ],
+      "what_it_is": "A 1600x1600 die-cut sticker built from the colour-splash promo via select-subject → invert → fill, placing the DJ on a solid club-black backdrop.",
+      "items": [
+        {
+          "id": "sticker_subject_on_black",
+          "type": "yesno",
+          "question": "Does the sticker isolate the DJ subject on a clean solid club-black backdrop (select→invert→fill executed), at 1600x1600?",
+          "guidance": "YES = the figure sits on a flat near-black field with no leftover club background, file is 1600x1600. NO = original background still present or wrong size.",
+          "reference": "YES — the sticker shows the duotoned magenta/violet DJ figure on a flat club-black field (background filled out via image_fill_area after select-subject + invert); file is 1600x1600."
+        },
+        {
+          "id": "sticker_brand_consistency",
+          "type": "likert5",
+          "question": "Does the sticker read as part of the same NIGHTSHIFT campaign (magenta/violet duotone subject, dark moody treatment)?",
+          "guidance": "5 = on-brand magenta-tinted moody figure consistent with the cover/promo look. 1 = off-palette or visually disconnected from the campaign.",
+          "reference": "4-5 — the figure is duotoned in brand magenta/violet on club-black, visually consistent with the colour-splash promo it was derived from; faint ghost of the neon shape remains top-right but the treatment is on-brand."
+        }
+      ]
+    },
+    {
+      "key": "social_crops",
+      "display": "1:1 + 9:16 social announce crops",
+      "files": [
+        "outputs/cover/nightshift_cover_square_1600.png",
+        "outputs/cover/nightshift_cover_story_1080x1920.png"
+      ],
+      "what_it_is": "Social-announce crops of the finished cover: a 1600x1600 square and a 1080x1920 story layout (full cover + centered lockup, tagline and magenta-banded CTA).",
+      "items": [
+        {
+          "id": "social_dims_correct",
+          "type": "yesno",
+          "question": "Are the social crops the correct sizes — square at 1600x1600 and story at 1080x1920?",
+          "guidance": "YES = both files match those exact dimensions. NO = wrong size or aspect ratio.",
+          "reference": "YES — nightshift_cover_square_1600.png is 1600x1600 and nightshift_cover_story_1080x1920.png is 1080x1920."
+        },
+        {
+          "id": "story_layout_quality",
+          "type": "likert5",
+          "question": "On the 9:16 story, is the layout clean and on-brand (cover artwork + NIGHTSHIFT lockup, tagline, CTA) with no clipped type or collisions?",
+          "guidance": "5 = wordmark, tagline 'RHYTHMS OF THE DEEP URBAN PULSE', cover art and 'NEW SINGLE · OUT NOW' CTA all sit cleanly with safe margins. 1 = clipped lockup, overlapping/garbled text, awkward crop.",
+          "reference": "5 — the story shows the NIGHTSHIFT wordmark + tagline 'RHYTHMS OF THE DEEP URBAN PULSE' top, the halftone cover art centred, and a magenta-ruled 'NEW SINGLE · OUT NOW / STREAM EVERYWHERE · WORLD TOUR 2026/2027' CTA at the base; the README notes a centred-lockup clip was found and fixed before export."
+        },
+        {
+          "id": "story_no_content_clipped",
+          "type": "yesno",
+          "question": "Was the 9:16 reframe produced without clipping the cover's key content (figure/neon/wordmark)?",
+          "guidance": "YES = the hero figure, neon and lockup all remain fully in frame in the story version. NO = the cover was hard-cropped and lost content.",
+          "reference": "YES — rather than a lossy crop, the story is a branded local layout that places the full cover art plus type, so no key cover content is clipped (README limitation 3)."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "task_all_deliverables_present",
+      "type": "yesno",
+      "question": "Are all seven briefed deliverable groups present — 1600x1600 streaming cover, VHS-glitch alt, moody depth-graded promo set, magenta colour-splash treatment, vectorized logo lockup (PNG/SVG/PDF), 12 data-merged merch/sticker cards (PDF+PNG), and 1:1 + 9:16 social crops?",
+      "guidance": "YES = every deliverable group has at least one finished file. NO = any one of the seven is missing.",
+      "reference": "YES — cover/ has streaming + square + glitch alt + 1080x1920 story; promos/ has colour-splash hero + 3 graded members; logo/ has black/magenta/white PNG + SVG + print PDF; merch_cards/ has 12 cards + 12-page PDF + proof sheet; sticker/ has the die-cut. All seven groups delivered."
+    },
+    {
+      "id": "task_brand_palette_consistency",
+      "type": "likert5",
+      "question": "Across the whole bundle, is the NIGHTSHIFT brand identity held consistently (magenta #FF1E8C primary, cyan #16E0E0 secondary, club-black #0A0A0F ground, white type, condensed wordmark)?",
+      "guidance": "5 = cover, promos, logo, merch and social all share the magenta/black/cyan/white palette and the same NIGHTSHIFT wordmark. 1 = palette drifts, wrong pinks, or inconsistent logo treatment between pieces.",
+      "reference": "5 — every deliverable centres on brand magenta on club-black with cyan accents and white condensed NIGHTSHIFT type; the magenta neon diamond motif recurs across cover, colour-splash promo and story."
+    },
+    {
+      "id": "task_data_pipeline_correct",
+      "type": "likert5",
+      "question": "Was the tour-data pipeline executed correctly end-to-end — 12 CSV rows → 12 cards each bound to the right city's text fields and per-row ticket QR, in chronological order?",
+      "guidance": "5 = all 12 cards carry the exact CSV values for their city plus the matching QR, in order, with no row swaps or garbles. 1 = wrong/duplicated rows, mismatched QRs, or fewer than 12 cards.",
+      "reference": "5 — London and Budapest cards (spot-checked) and the proof sheet confirm one card per CSV row with correct city/venue/date/doors/support and the matching per-city ticket QR + URL, in chronological order London→Budapest."
+    },
+    {
+      "id": "task_fx_craft_quality",
+      "type": "likert5",
+      "question": "Is the creative-FX craft on the cover line convincing (duotone + Ben-Day halftone + brand wash + grain on the cover; chromatic-aberration + noise on the glitch alt; depth + colour-splash on the promos)?",
+      "guidance": "5 = each FX treatment is distinct, intentional and well-executed, not a single generic filter. 1 = effects missing, overdone to mush, or indistinguishable between deliverables.",
+      "reference": "5 — the cover shows a genuine Ben-Day halftone duotone with magenta wash + grain; the alt adds clear chromatic-aberration glitch + analog noise; the promos show subject-pop depth and a clean single-accent magenta colour-splash. Each treatment is visibly distinct."
+    },
+    {
+      "id": "task_technical_specs_met",
+      "type": "yesno",
+      "question": "Are all stated technical specs met — covers 1600x1600, story 1080x1920, sticker 1600x1600, merch cards ~1819x1311 (A6+bleed @300dpi), merch print PDF = 12 pages?",
+      "guidance": "YES = every output matches its required dimension/format. NO = any spec off.",
+      "reference": "YES — verified: streaming/square covers and sticker are 1600x1600, story is 1080x1920, the 12 cards are 1819x1311, and the merch print PDF has 12 pages."
+    },
+    {
+      "id": "task_connector_workflow_honesty",
+      "type": "likert5",
+      "question": "Does the bundle honestly reflect the intended Adobe connector workflow, with local fallbacks clearly disclosed where connectors couldn't run headless (logo .ai render, Illustrator data-merge, generative story expand)?",
+      "guidance": "5 = connector ops used for the FX/vectorize/Stock steps and every local substitution is documented as a limitation with the reason. 1 = local work passed off as connector output with no disclosure.",
+      "reference": "5 — README documents 24 real connector calls (Photoshop/Illustrator/Stock FX, vectorize, Stock licensing of AdobeStock 327625971 + 490427956) and transparently labels the three local fallbacks (logo PNG/PDF cleanup after document_render_vector rejected raw SVG, local data-merge because document_merge_data_vector needs a human-authored .ai, and a local 9:16 layout because image_generative_expand was unavailable), each with its reason."
+    }
+  ]
+}

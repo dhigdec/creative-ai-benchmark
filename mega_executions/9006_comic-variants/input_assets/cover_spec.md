@@ -1,0 +1,115 @@
+```json
+{
+  "issue": {
+    "series": "VOIDRUNNER",
+    "issue_no": "#1",
+    "title": "Edge of the Void",
+    "on_sale_date": "ON SALE 14 OCT 2026",
+    "format": "32-page full-colour single issue",
+    "trim": "6.625 x 10.25 in",
+    "page_count": 32,
+    "rating": "TEEN+"
+  },
+  "imprint": {
+    "name": "Cosmic Drift Press",
+    "website": "https://cosmicdriftpress.com",
+    "diamond_code": "VOID0001"
+  },
+  "credits": {
+    "writer": "Anya Sharma",
+    "artist": "Kaelen Blackwood",
+    "colourist": "Zara Vance",
+    "letterer": "Jax Orion",
+    "cover_artist": "Elias Thorne",
+    "editor": "Dr. Aris Thorne"
+  },
+  "credit_line": "Cover by Elias Thorne  -  Colours by Zara Vance",
+  "variants": [
+    {
+      "variant_code": "A",
+      "colourway_name": "Standard",
+      "variant_ratio": "1:1",
+      "cover_price": "$4.99",
+      "barcode_zone": "on",
+      "fx_note": "High-gloss full-colour offset print",
+      "exclusive_note": ""
+    },
+    {
+      "variant_code": "B",
+      "colourway_name": "Retro",
+      "variant_ratio": "1:1",
+      "cover_price": "$4.99",
+      "barcode_zone": "on",
+      "fx_note": "Ben-Day halftone over a flat 3-colour palette",
+      "exclusive_note": ""
+    },
+    {
+      "variant_code": "C",
+      "colourway_name": "Noir",
+      "variant_ratio": "1:1",
+      "cover_price": "$4.99",
+      "barcode_zone": "on",
+      "fx_note": "Monochromatic grayscale with selective spot red",
+      "exclusive_note": ""
+    },
+    {
+      "variant_code": "D",
+      "colourway_name": "Cyber",
+      "variant_ratio": "1:10",
+      "cover_price": "$9.99",
+      "barcode_zone": "off",
+      "fx_note": "Fluorescent neon inks on matte stock",
+      "exclusive_note": "1-in-10 retailer incentive"
+    },
+    {
+      "variant_code": "E",
+      "colourway_name": "Battle-Damage",
+      "variant_ratio": "1:25",
+      "cover_price": "$19.99",
+      "barcode_zone": "off",
+      "fx_note": "Textured metallic inks with debossed elements",
+      "exclusive_note": "1-in-25 retailer incentive"
+    },
+    {
+      "variant_code": "F",
+      "colourway_name": "Sketch",
+      "variant_ratio": "Retailer-Exclusive",
+      "cover_price": "$14.99",
+      "barcode_zone": "off",
+      "fx_note": "Raw linework on uncoated paper stock",
+      "exclusive_note": "Retailer-exclusive variant"
+    }
+  ],
+  "spot_inks": [
+    {
+      "ink_name": "White Underbase",
+      "pantone": "None",
+      "rgb_hex": "FFFFFF",
+      "print_order": 1,
+      "lpi": 0
+    },
+    {
+      "ink_name": "Ben-Day Red",
+      "pantone": "185 C",
+      "rgb_hex": "ED1C24",
+      "print_order": 2,
+      "lpi": 55
+    },
+    {
+      "ink_name": "Ben-Day Cyan",
+      "pantone": "2995 C",
+      "rgb_hex": "00AEEF",
+      "print_order": 3,
+      "lpi": 55
+    },
+    {
+      "ink_name": "Ink Black",
+      "pantone": "Black 6 C",
+      "rgb_hex": "231F20",
+      "print_order": 4,
+      "lpi": 65
+    }
+  ],
+  "solicitation": "Beyond the edge of known space lies the Void, a cosmic maelstrom where reality frays. KAI, a solitary voidrunner, navigates these treacherous currents, delivering illicit cargo and seeking answers to a past she can\u2019t outrun. But a ghost from her shattered memory emerges, holding a secret that could unravel the very fabric of her universe. Now, Kai must race against a galactic conspiracy to uncover the truth before the Void consumes everything. Strap in for a high-octane thrill ride through the darkest corners of the cosmos!"
+}
+```

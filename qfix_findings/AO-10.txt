@@ -1,0 +1,6 @@
+REASONS: CANVAS-extension
+
+ISSUES:
+- grounding_note final sentence still asserts 'image_generative_expand only for honest outpaint of the canvas' — a banned capability named as in-use. The authoritative connector_workflow, tools_used[], outputs[0].spec and chaining_note are all correctly gen-free (4:5 achieved via image_crop_and_resize), so this is a stale narrative-drift line the reverify block claims to have already scrubbed but did not fully remove. Fix: delete/rewrite that clause to reference the crop/resize reframe.
+- brand_logo.png is declared in inputs[] and referenced in the brief (spec-sheet/board lockup) but is never consumed by any connector_workflow step (the .indd template carries its own wordmark area, and the board assembly at step 17 does not ingest it). Minor unused-input dangling reference.
+- Step 11 applies a whole-image image_apply_lens_blur for a 'shallow-depth background look,' but by that point the background is already a flat solid-grey sweep (from step 9 fill) and the subject was isolated — a whole-image blur has no distinct background to blur and would soften the subject too. Plausible-but-imperfect finishing step; not workflow-breaking.

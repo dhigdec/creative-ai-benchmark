@@ -1,0 +1,447 @@
+{
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "raw_app_walkthrough_capture.mp4",
+    "avatar_intro_clip.mp4",
+    "website_homepage_capture.mp4",
+    "rough_scratch_vo.wav",
+    "music_bed_stem.wav",
+    "disputedesk_brand_kit.json"
+   ],
+   "output": "6 upload sessions + presigned PUT URLs for all source assets into CC storage",
+   "note": "[C] Headless ingest init for every provided source asset (now including the website capture and the externally-generated music stem) so later tools can reference them by CC URN. Consumes the raw input files as named."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 1"
+   ],
+   "output": "6 finalized CC asset URNs (raw_capture_urn, avatar_urn, website_urn, scratch_vo_urn, music_urn, brandkit_urn)",
+   "note": "[C] Finalize the uploads opened in step 1 (paired init->finalize). Returned URNs are the canonical handles reused downstream. Fixes the orphaned-website issue by ingesting website_homepage_capture.mp4 for real consumption later."
+  },
+  {
+   "n": 3,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "walkthrough_summary.json — timestamped transcript + ordered scene/section summary of the ~11-min raw app capture (which UI screen, in what order, with start/end times)",
+   "note": "[A] Async-widget summarize of raw_capture_urn to recover on-screen sections and timing. This summary is the spine: it drives the highlight ordering (quick_cut is NOT speech-aware) and the callout copy. Headless-autonomous it is not retrievable; in the product the progress widget returns it."
+  },
+  {
+   "n": 4,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "website_summary.json — ordered section summary of the ~40s homepage capture (hero / 3-up features / stats band / logo strip with in/out times)",
+   "note": "[A] Summarize website_urn so the website transition beat is built from real section knowledge. Directly consumes the previously-orphaned website asset and seeds the website trim and any overlay copy. Resolves the missing-beat issue."
+  },
+  {
+   "n": 5,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "avatar_intro_summary.json — transcript of the spoken avatar intro + its in/out spoken segments",
+   "note": "[A] Summarize avatar_urn so the agent knows what the avatar already says (avoid duplicating copy in the walkthrough VO) and can pick the cleanest spoken segment for the opening beat."
+  },
+  {
+   "n": 6,
+   "tool": "video_create_quick_cut",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 2",
+    "step 3"
+   ],
+   "output": "walkthrough_highlight.mp4 — ~60s tight highlight cut of the ~11-min app capture (high-engagement UI moments, ordered per the summary)",
+   "note": "[A] Compress raw_capture_urn into a guided highlight; prompt seeded from walkthrough_summary.json (target_duration~60s, ordered key screens: dispute inbox, evidence builder, one-click submit, win-rate dashboard). Picture only — speech-unaware, so the summary supplies ordering. Re-budgeted to 60s to make room for the 15s website beat."
+  },
+  {
+   "n": 7,
+   "tool": "video_create_quick_cut",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 2",
+    "step 5"
+   ],
+   "output": "avatar_intro_cut.mp4 — ~15s trimmed avatar opening (cleanest credible take, dead air removed)",
+   "note": "[A] Quick-cut avatar_urn to a punchy ~15s intro using avatar_intro_summary.json to pick the cleanest spoken segment. quick_cut (not video_resize) is the correct length-changing tool. This is the film's opening beat."
+  },
+  {
+   "n": 8,
+   "tool": "video_create_quick_cut",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 2",
+    "step 4"
+   ],
+   "output": "website_transition.mp4 — ~15s tightened website/homepage beat (hero -> 3-up features -> stats band), the structural beat #2 the brief requires",
+   "note": "[A] Quick-cut website_urn down to a ~15s on-message transition using website_summary.json ordering. This produces the website section the master spec promises (previously claimed but never built). quick_cut (length-changing) is the right tool, not video_resize (same-length)."
+  },
+  {
+   "n": 9,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 7 (extracted avatar audio, local pre-step)"
+   ],
+   "output": "upload session + presigned PUT URL for avatar_audio.wav",
+   "note": "[C] Init the upload for the avatar audio track extracted locally (see L step 10a is folded into local glue). Pairs with the finalize in step 10 so media_enhance_speech receives an AUDIO asset, not a video container. Fixes the video-URN-into-enhance_speech issue."
+  },
+  {
+   "n": 10,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 9"
+   ],
+   "output": "avatar_audio_urn — extracted avatar voice track registered as a CC audio asset",
+   "note": "[C] Finalize the avatar-audio upload (paired init->finalize). The audio was demuxed locally from avatar_intro_clip.mp4 (ffmpeg) because the connector has no audio-extract tool; only this clean audio asset is fed to enhance_speech."
+  },
+  {
+   "n": 11,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 2",
+    "step 3"
+   ],
+   "output": "clean_walkthrough_vo.wav — denoised, de-reverbed, level-balanced narrator track for the website+app walkthrough",
+   "note": "[A] Enhance the scratch VO (scratch_vo_urn) recorded against the script implied by walkthrough_summary.json: remove room reverb/HVAC hum/awkward pauses so audio is 'clean and balanced' per brief. Speech-only tool used on speech — correct."
+  },
+  {
+   "n": 12,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 10"
+   ],
+   "output": "clean_avatar_vo.wav — enhanced avatar-section narration matched in loudness to clean_walkthrough_vo.wav",
+   "note": "[A] Enhance the EXTRACTED avatar voice asset (avatar_audio_urn from step 10), not the video container. Shares one denoise profile + loudness target with the walkthrough VO so intro and walkthrough sound like one continuous narrator. NOTE: the music stem never touches enhance_speech (it is not a music processor)."
+  },
+  {
+   "n": 13,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 11",
+    "step 12"
+   ],
+   "output": "2 upload sessions + presigned PUT URLs for clean_walkthrough_vo.wav and clean_avatar_vo.wav",
+   "note": "[C] Init the re-ingest of the two enhanced VO tracks (paired with finalize in step 14). Adds the missing initialize half the verdict flagged for the old step 7."
+  },
+  {
+   "n": 14,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 13"
+   ],
+   "output": "CC URNs for clean_walkthrough_vo and clean_avatar_vo (clean_vo_urn, clean_avatar_audio_urn)",
+   "note": "[C] Finalize the two enhanced audio uploads so they are addressable for the local mux. Output->input: enhanced audio becomes registered assets."
+  },
+  {
+   "n": 15,
+   "tool": "search_design",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 3",
+    "disputedesk_brand_kit.json"
+   ],
+   "output": "motion_lower_third_candidates — Express motion/callout templates (brand-colored lower thirds, zoom-highlight cards) + templateURNs",
+   "note": "[C-ish headless return] Find on-brand Express templates for the clean callouts/UI highlights the brief demands; copy slots driven by section labels in walkthrough_summary.json. search_design returns templates headless but renders a gallery widget; the next two tools need the user's picked templateURN."
+  },
+  {
+   "n": 16,
+   "tool": "fill_text",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 15",
+    "disputedesk_brand_kit.json"
+   ],
+   "output": "filled_callout_overlays — the user-picked template populated with the 4 brand-kit callout strings",
+   "note": "[W] Interactive: text-only fill of the user-selected template with the four callout strings from the brand kit ('Never miss a dispute deadline' etc.). fill_text does TEXT only — no image placement, no layout change. Needs a gallery selection, so not headless-auto."
+  },
+  {
+   "n": 17,
+   "tool": "animate_design",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 16"
+   ],
+   "output": "callout_overlays.mov — animated lower-third/callout overlay clips with alpha (fade/slide motion)",
+   "note": "[W] Interactive: animate the filled callout template into motion overlays with transparency, ready to composite onto the picture cut. Output->input: filled text -> animated motion asset. Needs the user-picked design, so not headless-auto."
+  },
+  {
+   "n": 18,
+   "tool": "local",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 7",
+    "step 8",
+    "step 6",
+    "step 17",
+    "step 14",
+    "music_bed_stem.wav"
+   ],
+   "output": "disputedesk_demo_master_1600x900.mp4 — assembled master: avatar_intro_cut (~15s) -> website_transition (~15s) -> walkthrough_highlight (~60s); callout_overlays.mov composited; clean_avatar_vo + clean_walkthrough_vo + low music stem muxed; scaled to exactly 1600x900 (16:9), no crop of important UI",
+   "note": "[L] Local ffmpeg glue: concat (avatar->website->app) + overlay alpha callouts + audio mux (two clean VO tracks via URNs + licensed music stem laid in low, as-is) + scale-to-fit-no-crop to 1600x900. Also performs the upstream avatar-audio demux feeding step 9. Music is delivered as-is (no enhance_speech on music). Produces the exact-spec 16:9 master."
+  },
+  {
+   "n": 19,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 18"
+   ],
+   "output": "upload session + presigned PUT URL for the 1600x900 master",
+   "note": "[C] Init the re-ingest of the assembled master (paired with finalize in step 20). Adds the missing initialize half the verdict flagged for the old step 15."
+  },
+  {
+   "n": 20,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 19"
+   ],
+   "output": "master_demo_urn — the 1600x900 master registered in CC storage",
+   "note": "[C] Finalize the master upload so the connector resize tool can operate on it by URN."
+  },
+  {
+   "n": 21,
+   "tool": "video_resize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 20"
+   ],
+   "output": "disputedesk_demo_promo_1080x1920.mp4 — subject-aware 9:16 vertical promo reframe of the master (SAME length, same audio)",
+   "note": "[A] Subject-aware reframe of master_demo_urn to 9:16 vertical promo, keeping UI + avatar in frame, no important-UI crop. video_resize changes DIMENSIONS only (same length) — correct usage; no trimming claimed."
+  },
+  {
+   "n": 22,
+   "tool": "video_resize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 20"
+   ],
+   "output": "disputedesk_demo_squarepreview_1080x1080.mp4 — 1:1 silent-autoplay preview reframe (same length, same audio)",
+   "note": "[A] Reframe the same master to a 1:1 square preview for marketplace/social thumbnail autoplay — multiple delivery masters from one source URN, none cropping key UI. Same-length reframe — correct video_resize usage."
+  },
+  {
+   "n": 23,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 18",
+    "step 21",
+    "step 22"
+   ],
+   "output": "contact-sheet previews of the 16:9 master + 9:16 + 1:1 deliverables for sign-off",
+   "note": "[C] Render inline previews of all three delivery videos so the annotator/client can verify framing (no cropped UI), readable text, and clean audio before acceptance."
+  }
+ ],
+ "corrections_applied": [
+  "FIXED ORPHANED WEBSITE ASSET / MISSING BEAT: website_homepage_capture.mp4 is now genuinely consumed — media_summarize on website_urn (new step 4) + video_create_quick_cut to a ~15s website_transition.mp4 (new step 8), which is added to the local mux inputs (step 18). Re-budgeted the master to ~15s avatar + ~15s website + ~60s app highlight = ~90s, so the website transition gets real screen time (was 0s).",
+  "FIXED UNPAIRED FINALIZE: every asset_finalize_file_upload is now preceded by a matching asset_initialize_file_upload. Added init steps before re-registering the enhanced VO tracks (step 13 init -> step 14 finalize) and before re-registering the master (step 19 init -> step 20 finalize). Also added an init/finalize pair (steps 9-10) for the extracted avatar audio.",
+  "FIXED media_enhance_speech ON A VIDEO CONTAINER: avatar audio is now demuxed LOCALLY (folded into the ffmpeg glue) and registered as avatar_audio_urn via init/finalize (steps 9-10); media_enhance_speech at step 12 now receives an AUDIO asset, not the avatar video URN.",
+  "FIXED MUSIC-BED SOURCING (unverified Stock-audio path): dropped asset_license_and_download_stock for music. The music bed is now an externally-generated licensed stem (music_bed_stem.wav, input asset per section D) ingested at step 1 and laid in low during the local mux as-is. Music never passes through media_enhance_speech (which is speech-only, not a music processor / loudness tool).",
+  "TAGGED EVERY STEP WITH AN EXECUTION MODE per v2.1: asset plumbing + asset_inline_preview + search_design return = C; media_summarize / media_enhance_speech / video_create_quick_cut / video_resize = A (async-widget); fill_text + animate_design = W (interactive Express, needs user gallery pick); local ffmpeg glue = L.",
+  "Set headless_doable = false: the honest chain contains [A] async-widget video/audio steps and [W] interactive Express steps, so it is product-doable, not autonomous-headless. exec_mode_summary added.",
+  "Removed video_resize-as-trimmer risk: all length changes use video_create_quick_cut [A]; both video_resize calls are same-length dimension reframes only, as the sheet scopes them.",
+  "No A6 [X] capability is used anywhere: no gen-fill, no object/element removal, no compositing-by-prompt, no text-to-image, no upscaling, no format-convert, no timestamp-trim. image_fill_area / document_render_layout / document_convert_pdf / fill_text are NOT used as compositors or page-mergers — text overlays come from the Express W track and final compositing is the single local [L] mux.",
+  "Fixed input used_in_steps so every input references a step that truly consumes it: website asset now points at the summarize+quick-cut+mux steps; music stem points at the local mux; brand kit points at the two summarize-adjacent search/fill steps; added the music stem as a real input.",
+  "Kept long-horizon: 23 connector/local steps (>=12), output->input at every hop, inputs reused many times, INPUT->TASK->OUTPUT preserved.",
+  "Vertical confirmed correct (E-commerce / Shopify chargeback app) — no mislabel; no bleed/spec contradiction remains since the master spec's website beat now matches what the chain builds."
+ ],
+ "difficulty_rationale": "Long-horizon flagship: 23 steps spanning video/audio (A5 async), Express motion (A3 interactive), and asset plumbing (A4) groups, with a strict output->input dependency chain. Difficulty comes from (1) the speech-unaware quick_cut requiring a summary-driven ordering before it can build a narration-faithful highlight; (2) a two-pass loudness-matched VO enhance that must produce a single continuous-narrator profile across an extracted-audio avatar track and a roughened scratch take; (3) a three-beat picture cut (avatar -> website -> app) whose 15+15+60=90s budget must be honored with no important UI cropped; (4) a single local ffmpeg mux consuming six prior connector outputs at once; and (5) two same-length reframes spawning multi-surface deliverables from one master URN. Breaking any early link (wrong summary, unmatched VO loudness, orphaned website beat, lost URN) corrupts every downstream artifact. Mixed execution modes (C/A/W/L) make it product-doable but not autonomous-headless, raising orchestration difficulty.",
+ "exec_mode_summary": "C×10 W×2 A×10 L×1",
+ "full_brief": "DisputeDesk is a Shopify app that helps ecommerce merchants manage chargebacks and assemble structured dispute evidence. The client is preparing their Shopify App Store listing and wants to replace a rough, amateur screen recording with a polished product-introduction film. They have provided a long raw screen-capture walkthrough of the app, a separately recorded male business-avatar intro clip, a capture of the marketing homepage, a scratch voiceover take recorded in a non-treated room, a brand kit (logo, colors, fonts), and a licensed corporate music stem. The film must open with the professional, calm, trustworthy avatar presenter introducing the chargeback problem and the product in a B2B-SaaS register, then transition smoothly into the website/homepage section, then into a guided app walkthrough with professional zooms, callouts, UI highlights, clean text overlays, and smooth transitions — guided by the voiceover, never feeling like someone randomly clicking around.\\n\\nThe exact, gradeable constraints from the client: the final master must be 1600 × 900 pixels, 16:9, exported as MP4; it must NOT crop important parts of the website or app UI; on-screen text must be readable; and the audio must be clean and balanced throughout (no room noise, no awkward pauses, consistent loudness between the avatar intro and the walkthrough narration). The visual style is clean, modern, professional and trustworthy — polished but not flashy, no distracting effects — on par with professional B2B software demo videos. The walkthrough must be tightened from the long raw capture into a focused highlight that tracks the narration. The film carries three structural beats: a ~15s avatar intro, a ~15s website/homepage transition, and a ~60s narration-guided app highlight (~90s total).\\n\\nProduction reality per the corrected capability sheet: the video/audio steps (media_summarize, media_enhance_speech, video_create_quick_cut, video_resize) are async-widget [A] tools that run in the Adobe×Claude product and notify via a progress widget — they are not retrievable in an autonomous headless harness. The on-brand text callouts use the Adobe Express interactive [W] track (search_design returns templates headless; fill_text and animate_design need the user to pick a template in the gallery). Final compositing — concatenating the three beats, overlaying the animated alpha callouts, demuxing the avatar audio for enhancement, muxing the two loudness-matched VO tracks and the music stem laid in low, and scaling to exactly 1600×900 with no crop — is a single local ffmpeg [L] step, because the connector has no compositor/mux/audio-extract tool. The music stem is delivered as-is and never passes through media_enhance_speech (a speech-only denoiser, not a music processor). Length changes use video_create_quick_cut; video_resize is used only for same-length subject-aware reframes.\\n\\nThe deliverable set is the 1600×900 MP4 master plus a 9:16 (1080×1920) vertical promo and a 1:1 (1080×1080) square autoplay preview, both reframed subject-aware from the same master so no important UI is cropped, plus inline previews for sign-off. All copy stays consistent with the brand kit; the music bed is subtle and credible, sitting low under the voiceover.",
+ "grounding_note": "REAL (verbatim from the freelancer.com brief in db_all.json, project 40479621): product is DisputeDesk, a Shopify chargeback/dispute-evidence app; client wants a polished App Store demo (NOT a raw screen recording); required structure = (1) professional male business avatar intro speaking to camera in calm/trustworthy B2B-SaaS tone, (2) smooth transition into website/homepage section with clean text overlays + subtle motion, (3) app walkthrough built from the existing screen recording with zooms/pans/callouts/highlights/transitions, (4) clear voiceover throughout with smooth pacing and awkward pauses removed, (5) clean modern not-too-flashy style; technical reqs = final size exactly 1600×900 px, 16:9, MP4 export, must NOT crop important website/app UI, text readable, audio clean and balanced, editable project file if possible, 1–2 revision rounds; client can provide rough YouTube demo, original screen recording, website URL, app screenshots/recordings, logo/branding, draft script, avatar/voice direction. ENRICHED (added because the brief implies it but does not spell it out): the explicit 9:16 (1080×1920) vertical promo and 1:1 (1080×1080) square preview are additions — justified by the brief's own line that the result must suit 'Shopify App Store listing, YouTube, and potential customers/investors', implying multi-surface distribution; the licensed music STEM (now a provided input rather than connector-licensed, since Stock-audio via asset_license_and_download_stock is unverified per the capability sheet), the two-pass loudness-matched VO enhance, the ~60s app-highlight + ~15s website + ~15s avatar duration budget, and the four named callout strings are reasonable productions of the stated requirements (clean balanced audio, tightened walkthrough, callouts/highlights, website beat) rather than facts stated in the brief. The four app screens named in the quick-cut prompt (dispute inbox, evidence builder, one-click submit, win-rate dashboard) are illustrative of a chargeback-dispute app and would in reality come from the client's actual capture. EXECUTION-MODE HONESTY: the video/audio steps are async-widget [A] and the Express callout steps are interactive [W], so the task is product-doable, not autonomous-headless — flagged faithfully rather than overclaimed as full-headless.",
+ "groups_covered": [
+  "video_audio",
+  "express_motion",
+  "asset_plumbing",
+  "local_compose"
+ ],
+ "headless_doable": false,
+ "id": "F2-03",
+ "inputs": [
+  {
+   "name": "raw_app_walkthrough_capture.mp4",
+   "kind": "video",
+   "gen_model": "veo-3.1-generate-preview",
+   "gen_prompt": "Screen recording, 1920x1080, of a fictional Shopify merchant admin app called 'DisputeDesk' for managing payment chargebacks. An unhurried mouse cursor moves through four screens in order, ~2.5 minutes each so the clip runs ~11 minutes total: (1) a 'Dispute Inbox' table listing chargeback cases with status pills (New / Evidence Due / Submitted / Won / Lost), order IDs, amounts in USD, and due-date countdowns; (2) an 'Evidence Builder' wizard where the user toggles checkboxes for proof items (order confirmation, tracking, AVS match, customer comms) and a live evidence-completeness meter fills toward 100%; (3) a 'One-Click Submit' confirmation modal that posts the evidence packet to the processor; (4) a 'Win-Rate Dashboard' with a line chart of recovered revenue and a donut of won-vs-lost. Clean modern SaaS UI, white background, indigo accent color, Inter font, real readable English UI labels and numbers. Include realistic hesitation, a little scrolling, an occasional mis-click corrected — authentic captured-software feel, NOT a glossy promo render. No human, no voiceover baked in (silent or ambient room tone only).",
+   "realism_notes": "Must look like genuine captured software, not a motion-graphics mockup: real cursor latency, scrollbars, a stray hover tooltip, slightly imperfect pacing. UI text must be legibly rendered so media_summarize can transcribe the on-screen sections. Long and partly redundant on purpose so the quick-cut has fat to trim. veo-3.1 @ 1080p per section D.",
+   "used_in_steps": [
+    1,
+    2,
+    3,
+    6
+   ]
+  },
+  {
+   "name": "avatar_intro_clip.mp4",
+   "kind": "video",
+   "gen_model": "veo-3.1-generate-preview",
+   "gen_prompt": "1080p, native audio, 48kHz. A professional male business presenter, late 30s, mid-brown skin, short neat hair with a few individual flyaway strands, light stubble with visible skin pores and natural texture (not airbrushed), wearing a charcoal blazer over a plain shirt, seated mid-shot in a softly-lit modern office with a blurred bookshelf behind. He speaks directly to camera in a calm, credible B2B-SaaS tone for ~28 seconds: 'If you sell on Shopify, chargebacks are quietly costing you revenue — and fighting them is a mess of screenshots and deadlines. DisputeDesk fixes that. It pulls your order evidence together automatically and helps you submit a clean, structured dispute in minutes. Let me show you how it works.' Natural blinking, small natural hand gestures, correct five-fingered hands, realistic lip-sync, documentary realism — believable real person, not CGI-glossy, not an obvious AI avatar. Clean spoken audio with faint natural room presence.",
+   "realism_notes": "Skin must show pores and real texture; hair should have individual strands and a flyaway or two; hands must be anatomically correct on any gesture. Audio is clean-ish but has faint room presence so media_enhance_speech has something to improve and loudness-match against the walkthrough VO. The avatar audio is demuxed locally before enhancement (the connector has no audio-extract tool).",
+   "used_in_steps": [
+    1,
+    2,
+    5,
+    7,
+    9,
+    10,
+    12
+   ]
+  },
+  {
+   "name": "website_homepage_capture.mp4",
+   "kind": "video",
+   "gen_model": "veo-3.1-generate-preview",
+   "gen_prompt": "Screen recording, 1920x1080, ~40 seconds, of the marketing homepage of 'DisputeDesk' (getdisputedesk.com) in a desktop browser. Smooth scroll from a hero section ('Win more chargeback disputes on Shopify — automatically') with a product screenshot, down through a 3-up feature row (Auto-collect evidence / One-click submit / Track your win rate), a short stats band ('Merchants recover an average of 38% more disputes'), and a customer-logo strip. Clean modern SaaS marketing site, white + indigo, Inter font, readable English copy, real cursor scroll with natural easing. No baked-in voiceover.",
+   "realism_notes": "Looks like a real browser capture (visible address bar, scrollbar, cursor). Copy must be legible for summarize. Used as the website-transition section (~15s) between the avatar intro and the app walkthrough — now genuinely summarized (step 4), quick-cut (step 8), and muxed (step 18), not orphaned.",
+   "used_in_steps": [
+    1,
+    2,
+    4,
+    8
+   ]
+  },
+  {
+   "name": "rough_scratch_vo.wav",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "48kHz mono voiceover, same calm credible male B2B-SaaS voice as the avatar, ~80 seconds, narrating the website + app walkthrough: 'Here's the DisputeDesk homepage — it shows merchants exactly how the app recovers more chargebacks. Inside the app, the Dispute Inbox lists every open case with its deadline, so nothing slips. Open a case and the Evidence Builder pulls your order confirmation, tracking, and customer messages together — the completeness meter shows when your packet is strong. One click submits the structured evidence straight to the processor. And the Win-Rate Dashboard tracks exactly how much revenue you're recovering over time.' Capture clean at 48kHz, then the realism layer adds light room reverb, faint HVAC hum, and two or three short awkward pauses/breaths, because the TASK is literally audio-repair (cleaning this is the point).",
+   "realism_notes": "The one input deliberately roughened — the brief's spine is VO cleanup, so the scratch take carries light room reverb, a faint hum, and a couple of awkward pauses for media_enhance_speech to remove. Per section D, roughen ONLY this audio-repair input. Script wording is keyed to the on-screen sections so it matches walkthrough_summary.json.",
+   "used_in_steps": [
+    1,
+    2,
+    11
+   ]
+  },
+  {
+   "name": "music_bed_stem.wav",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "A subtle, calm, credible corporate underscore, low energy, no drums-forward, sits under voiceover — generated as a clean licensed-style instrumental stem, ~95 seconds to cover the full ~90s master with a short tail. Soft sustained pads, gentle plucked motif, restrained, professional B2B SaaS tone, no vocals, no sudden dynamics. Render/capture at 48kHz, EBU-R128 loudnorm clean (NOT roughened — this is a finished deliverable stem, not an audio-repair input).",
+   "realism_notes": "Provided as a finished licensed music stem because asset_license_and_download_stock is unverified for Stock AUDIO (only photo/vector/video are confirmed per sheet A4). Delivered as-is into the local mux and laid low under the VO; it NEVER passes through media_enhance_speech (speech-only). 48kHz clean per section D.",
+   "used_in_steps": [
+    1,
+    2,
+    18
+   ]
+  },
+  {
+   "name": "disputedesk_brand_kit.json",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a JSON brand kit for the Shopify app 'DisputeDesk': fields for logo_wordmark_svg_ref, primary_color (indigo hex e.g. #4F46E5), secondary_color, accent, font_family ('Inter'), tone_keywords (['calm','credible','professional','trustworthy','B2B SaaS']), four ready callout strings keyed to app sections ('Never miss a dispute deadline','Build evidence in one click','Submit structured proof instantly','See exactly what you recover'), and a music_brief string ('subtle, calm, credible corporate underscore, low energy, no drums-forward, sits under voiceover').",
+   "realism_notes": "Plausible real brand kit a client would hand over. The four callout strings and tone keywords are consumed verbatim by the Express overlay fill (step 16) and inform the music stem brief; they must be present and clean.",
+   "used_in_steps": [
+    1,
+    2,
+    15,
+    16
+   ]
+  }
+ ],
+ "iterative_chaining_note": "The chain is genuinely output->input at every hop. Steps 1-2 upload the six source assets once (now including the website capture and the music stem) and mint URNs reused 12+ times downstream (no re-uploads). Three media_summarize passes feed three different beats: walkthrough_summary.json (step 3) seeds the app quick-cut ordering (step 6, critical because quick_cut is NOT speech-aware) and the Express callout copy (step 16); website_summary.json (step 4) seeds the website quick-cut (step 8) — the previously-orphaned beat now genuinely built; avatar_intro_summary.json (step 5) drives the avatar quick-cut (step 7). The avatar audio is demuxed locally and registered as avatar_audio_urn (init step 9 -> finalize step 10) so media_enhance_speech (step 12) cleans an AUDIO asset, not a video container; the scratch VO is enhanced in parallel (step 11). Both clean VO tracks are re-registered (init 13 -> finalize 14) and muxed in step 18. The Express subchain cascades: search_design (15) -> fill_text (16) -> animate_design (17) -> callout_overlays.mov. The single local mux (step 18) consumes SIX prior outputs at once (avatar cut, website transition, app highlight, animated overlays, both clean VO tracks via URNs, and the music stem laid in low as-is) and produces the exact 1600x900 master. That master is re-registered (init 19 -> finalize 20) and fed to TWO same-length video_resize calls (21, 22) producing the 9:16 and 1:1 deliverables from one source URN; all three are previewed together (step 23). Break any early link (wrong summary, unmatched VO loudness, orphaned website beat, lost URN) and every downstream artifact is wrong.",
+ "one_line_ask": "Turn a long raw DisputeDesk app screen-capture, an avatar intro clip, a homepage capture, a noisy scratch voiceover, and a licensed music stem into a polished Shopify App Store demo film — a 1600×900 16:9 MP4 master with a three-beat cut (avatar intro -> website transition -> narration-guided app highlight), a clean loudness-matched voiceover, on-brand animated callout overlays, plus 9:16 and 1:1 reframed promos — with no important UI cropped.",
+ "outputs": [
+  {
+   "name": "disputedesk_demo_master_1600x900.mp4",
+   "kind": "video",
+   "spec": "Exactly 1600×900 px, 16:9, MP4 (H.264), ~90s: avatar intro (~15s) -> website transition (~15s) -> narration-guided app highlight (~60s); animated on-brand callout overlays composited; muxed clean avatar VO + clean walkthrough VO + low music stem (as-is); no important website/app UI cropped; on-screen text readable; audio clean and loudness-balanced. Assembled by the single local ffmpeg [L] step.",
+   "rubric_hook": "Annotator verifies exact 1600×900/16:9/MP4; confirms ALL THREE beats are present (avatar, website, app) and the website section is non-zero (the corrected beat); checks NO important UI is cropped; confirms avatar-intro VO and walkthrough VO share consistent loudness with no room noise/awkward pauses; checks callout overlay copy matches the four brand-kit strings and the on-screen section it labels; confirms the highlight follows narration order, not random clicking; music sits under the VO and is not run through speech enhancement."
+  },
+  {
+   "name": "disputedesk_demo_promo_1080x1920.mp4",
+   "kind": "video",
+   "spec": "1080×1920 px, 9:16 vertical, MP4, subject-aware SAME-LENGTH reframe of the master, same audio, key UI/avatar kept in frame.",
+   "rubric_hook": "Annotator confirms exact 1080×1920/9:16; checks subject-aware reframe keeps the avatar and the active UI element in frame (no critical UI sliced off); runtime equals the master (video_resize is same-length); audio preserved and clean."
+  },
+  {
+   "name": "disputedesk_demo_squarepreview_1080x1080.mp4",
+   "kind": "video",
+   "spec": "1080×1080 px, 1:1 square, MP4, subject-aware SAME-LENGTH reframe of the master for autoplay preview.",
+   "rubric_hook": "Annotator confirms exact 1080×1080/1:1; checks the reframe still shows the labeled UI element for each callout and that text stays readable at square crop; runtime equals the master."
+  },
+  {
+   "name": "walkthrough_summary.json + website_summary.json + avatar_intro_summary.json",
+   "kind": "data",
+   "spec": "Three timestamped section summaries: the ~11-min app capture (screen names + in/out times), the ~40s homepage (hero/features/stats/logos + times), and the avatar intro transcript.",
+   "rubric_hook": "Annotator checks each summary correctly identifies and orders its sections with plausible timestamps — these artifacts prove the three quick-cuts and the overlay copy were summary-driven, not guessed, and that the website beat was actually planned."
+  },
+  {
+   "name": "clean_walkthrough_vo.wav + clean_avatar_vo.wav",
+   "kind": "audio",
+   "spec": "Two 48kHz enhanced VO tracks, denoised/de-reverbed, loudness-matched to a single target; the avatar track derived from locally-demuxed avatar audio.",
+   "rubric_hook": "Annotator A/Bs scratch vs enhanced: room reverb/hum/awkward pauses removed, and the two tracks measure to the same loudness target so the intro and walkthrough sound like one continuous narrator. Confirms the avatar VO came from an extracted audio asset, not the raw video container."
+  }
+ ],
+ "slug": "disputedesk-shopify-demo-video",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/after-effects/Create-Professional-Shopify-App-Store-40479621"
+ },
+ "title": "Create Professional Shopify App Store Demo Video — Avatar Intro + Website/App Walkthrough",
+ "tool_call_count": 23,
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "media_summarize",
+  "media_enhance_speech",
+  "video_create_quick_cut",
+  "search_design",
+  "fill_text",
+  "animate_design",
+  "video_resize",
+  "asset_inline_preview",
+  "local"
+ ],
+ "vertical": "E-commerce, Retail & Product",
+ "reverify": {
+  "severity": "major",
+  "residual_issues": [
+   "MAJOR: Loudness-matching is attributed to media_enhance_speech (steps 11/12 + clean-VO output spec say 'level-balanced'/'loudness-matched to a single target'/'matched in loudness'). The sheet (A5) states media_enhance_speech is explicitly 'NOT a loudness normalizer' — it only denoises/de-reverbs speech. The brief's loudness-consistency requirement could be satisfied by EBU-R128 loudnorm in the local [L] ffmpeg mux (step 18), which is capable of it, but the spec assigns the loudness-match to the wrong tool and step 18 never explicitly claims it. Capability over-attribution.",
+   "MINOR: video_create_quick_cut used as a controlled short-beat trimmer in steps 7 (~15s avatar 'dead air removed') and 8 (~15s website beat). The sheet scopes it as a visual-engagement highlight/sizzle tool, 'NOT timestamp trimming.' Spec avoids claiming timestamp-trim so it is not an X-misuse, but it is an optimistic read of the tool's stated purpose.",
+   "MINOR: Step 17 claims animate_design outputs an alpha-channel transparent .mov overlay. Sheet A3 only states animate_design '[W] add motion to the user-picked Express design' — transparent-alpha video export is an unverified capability assumption.",
+   "MINOR (cosmetic): Step 18 (local ffmpeg [L]) says it muxes 'two clean VO tracks via URNs.' A local ffmpeg step operates on local files, not CC URNs; the phrasing is incoherent though not a feasibility break (the enhanced wavs exist locally).",
+   "TRIVIA: corrections-note justifies dropping asset_license_and_download_stock by claiming 'only photo/vector/video are confirmed per sheet A4,' but A4 does not scope that tool by media type. The conservative decision (use a provided music stem) is fine; the cited justification slightly misquotes the sheet."
+  ]
+ }
+}

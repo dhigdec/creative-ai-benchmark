@@ -1,0 +1,945 @@
+{
+ "task_id": 1559,
+ "slug": "george-inn-menus",
+ "title": "The George Inn, Oundle — three coordinated tri-fold drinks menus",
+ "started": "2026-06-11T16:28:08",
+ "finished": "2026-06-11T17:20:15",
+ "steps": [
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Client crest george_inn_logo.png (1024x1024) — leads the front panel of all three menus; will be cut out and vectorized.",
+   "input": "input_assets/george_inn_logo.png",
+   "output": "input_assets/george_inn_logo.png",
+   "params": {
+    "px": "1024x1024"
+   },
+   "n": 1,
+   "ts": "2026-06-11T16:28:58",
+   "step_image": "steps/001_baseline_crest.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Approved parchment background texture (1024x1536) — to be gently lifted via the connector then lightened toward cream as the quiet full-bleed wash.",
+   "input": "input_assets/parchment_texture.jpg",
+   "output": "input_assets/parchment_texture.jpg",
+   "params": {
+    "px": "1024x1536"
+   },
+   "n": 2,
+   "ts": "2026-06-11T16:28:58",
+   "step_image": "steps/002_baseline_parchment.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Pub exterior photo (1536x1024) — honey-stone coaching inn at dusk; feature image for the Wine List back panel after auto-tone.",
+   "input": "input_assets/pub_exterior.jpg",
+   "output": "input_assets/pub_exterior.jpg",
+   "params": {
+    "px": "1536x1024"
+   },
+   "n": 3,
+   "ts": "2026-06-11T16:28:58",
+   "step_image": "steps/003_baseline_exterior.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Pub interior photo (1536x1024) — pints by the fireplace; back-panel feature for Main Drinks and Cocktail menus after auto-tone + 4:3 crop.",
+   "input": "input_assets/pub_interior.jpg",
+   "output": "input_assets/pub_interior.jpg",
+   "params": {
+    "px": "1536x1024"
+   },
+   "n": 4,
+   "ts": "2026-06-11T16:28:58",
+   "step_image": "steps/004_baseline_interior.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "drink_menus.json is the verbatim copy source: 3 menus / 25 sections / 104 items — every name, detail and price will be read programmatically, never retyped.",
+   "input": "input_assets/drink_menus.json",
+   "output": "input_assets/drink_menus.json",
+   "params": {
+    "menus": 3,
+    "sections": 25,
+    "items": 104
+   },
+   "n": 5,
+   "ts": "2026-06-11T16:28:58",
+   "step_image": "steps/005_baseline_copy_source.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_remove_background",
+   "note": "Crest cut out from its cream square so it can sit directly on the parchment wash of all three covers, never boxed in.",
+   "input": "input_assets/george_inn_logo.png",
+   "output": "work/crest_cut.png",
+   "params": {
+    "px": "1024x1024",
+    "mode": "select-subject cutout"
+   },
+   "adobe_request_id": "236c7b5c-f919-4241-8fc4-73242c9e3d01",
+   "n": 6,
+   "ts": "2026-06-11T16:32:20",
+   "step_image": "steps/006_connector_crest_cutout.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_vectorize",
+   "note": "Crest vectorized via the Illustrator API into an editable SVG — the supporting future-editing deliverable for the client.",
+   "input": "input_assets/george_inn_logo.png",
+   "output": "outputs/support/george_inn_crest.svg",
+   "params": {
+    "format": "image/svg+xml"
+   },
+   "adobe_request_id": "98b686cd-00c3-4a64-a6f9-bef92d21df30",
+   "n": 7,
+   "ts": "2026-06-11T16:32:21",
+   "step_image": "steps/007_connector_crest_vectorized.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_auto_tone",
+   "note": "Auto-tone balances the dusk exterior so the honey stone reads warmly on the Wine List back panel.",
+   "input": "input_assets/pub_exterior.jpg",
+   "output": "work/exterior_toned.png",
+   "params": {
+    "px": "1536x1024"
+   },
+   "adobe_request_id": "d530be6f-ee82-455e-8583-8ab6a9ad4c2a",
+   "n": 8,
+   "ts": "2026-06-11T16:32:21",
+   "step_image": "steps/008_connector_exterior_toned.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_auto_tone",
+   "note": "Auto-tone lifts the firelit interior so pints and fireplace glow without murk on the Main Drinks and Cocktail back panels.",
+   "input": "input_assets/pub_interior.jpg",
+   "output": "work/interior_toned.png",
+   "params": {
+    "px": "1536x1024"
+   },
+   "adobe_request_id": "b4a42c7a-99ad-4527-b7de-c998affd0e87",
+   "n": 9,
+   "ts": "2026-06-11T16:32:21",
+   "step_image": "steps/009_connector_interior_toned.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_vibrance_and_saturation",
+   "note": "Gentle vibrance lift (+12/+4) keeps the approved parchment alive before it is locally lightened toward cream as the quiet background wash.",
+   "input": "input_assets/parchment_texture.jpg",
+   "output": "work/parchment_lifted.png",
+   "params": {
+    "vibrance": 12,
+    "saturation": 4
+   },
+   "adobe_request_id": "e3ba1055-7c53-4342-9ecb-17dedd4dc3c6",
+   "n": 10,
+   "ts": "2026-06-11T16:32:21",
+   "step_image": "steps/010_connector_parchment_lifted.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "4:3 reframe of the toned interior chained from its outputUrl, prompt-focused on the pints so pints and fireplace both survive for the back-panel feature.",
+   "input": "work/interior_toned.png",
+   "output": "work/interior_43.png",
+   "params": {
+    "aspect": "4:3",
+    "focus_prompt": "the two pint glasses of beer on the bar",
+    "crop": "0,0 1365x1024"
+   },
+   "adobe_request_id": "8f4aee9b-12ca-433c-892c-e0c9848b9450",
+   "n": 11,
+   "ts": "2026-06-11T16:32:22",
+   "step_image": "steps/011_connector_interior_43.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_background",
+   "note": "Main Drinks outside spread base: connector-lifted parchment cover-fit under a 78% cream wash so the texture stays quiet, with 12% green fold guides inside the bleed.",
+   "input": "work/parchment_lifted.png",
+   "output": "work/stages/main-drinks_out1_bg.png",
+   "params": {
+    "px": "3579x2551",
+    "overlay": "#F3ECD9 @78%",
+    "folds": [
+     1204,
+     2373
+    ]
+   },
+   "n": 12,
+   "ts": "2026-06-11T16:54:09",
+   "step_image": "steps/012_main_out_bg.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_background",
+   "note": "Main Drinks inside spread base from the same parchment recipe so all six faces read as one family.",
+   "input": "work/parchment_lifted.png",
+   "output": "work/stages/main-drinks_in1_bg.png",
+   "params": {
+    "px": "3579x2551"
+   },
+   "n": 13,
+   "ts": "2026-06-11T16:54:09",
+   "step_image": "steps/013_main_in_bg.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "place_imagery",
+   "note": "Crest cutout (620px, never stretched or boxed) leads the cover panel; the auto-toned 4:3 interior with pints by the fire becomes the rounded back-panel feature.",
+   "input": "work/crest_cut.png + work/interior_43.png",
+   "output": "work/stages/main-drinks_out2_imagery.png",
+   "params": {
+    "crest_w": 620,
+    "feature": "880x660 rounded r30",
+    "panel_order": "flap|back|cover"
+   },
+   "n": 14,
+   "ts": "2026-06-11T16:54:10",
+   "step_image": "steps/014_main_out_imagery.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_cover_and_back_type",
+   "note": "Cover masthead set: MAIN DRINKS MENU in tracked Hoefler caps between gold hairlines, THE GEORGE INN / OUNDLE / Est. 1684 branding; back panel carries the 4-line visit block. Microcopy logged: THE GEORGE INN, OUNDLE, Est. 1684, and the 4 visit lines (pub-dot-town, food hours, fictional 01832 phone, url).",
+   "input": "input_assets/drink_menus.json",
+   "output": "work/stages/main-drinks_out3_type.png",
+   "params": {
+    "title": "Main Drinks Menu (verbatim json menu string)",
+    "microcopy_lines": 7
+   },
+   "n": 15,
+   "ts": "2026-06-11T16:54:10",
+   "step_image": "steps/015_main_out_type.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "autoflow_sections",
+   "note": "Auto-flow engine dry-measured all 11 sections and packed the flap at the largest tier (44px items, 1.32 leading): Draught and Bottled Beer & Cider complete, Gin opens with 2 items and a 25ml/50ml column head derived from the JSON prices keys.",
+   "input": "input_assets/drink_menus.json",
+   "output": "work/stages/main-drinks_out4_final.png",
+   "params": {
+    "tier": "44/1.32/34",
+    "flap_sections": [
+     "Draught Beer & Cider",
+     "Bottled Beer & Cider",
+     "Gin (1 of 2)"
+    ],
+    "splits": "Gin at item boundary with (continued)"
+   },
+   "n": 16,
+   "ts": "2026-06-11T16:54:10",
+   "step_image": "steps/016_main_out_final.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "autoflow_sections",
+   "note": "Inside panels 1-2 flowed in JSON order: Gin (continued) through Vodka, Rum, Whisky & Bourbon split at an item boundary, Brandy & Cognac, Tequila Shots & Liqueurs, Soft Drinks - every spirits section under its 25ml/50ml columns.",
+   "input": "input_assets/drink_menus.json",
+   "output": "work/stages/main-drinks_in2_flow.png",
+   "params": {
+    "splits": "Whisky & Bourbon continued onto panel 2",
+    "leaders": "gold dotted to right-aligned prices"
+   },
+   "n": 17,
+   "ts": "2026-06-11T16:54:10",
+   "step_image": "steps/017_main_in_flow.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "autoflow_sections",
+   "note": "Inside spread final: Mixers and Juices close panel 3; render log confirms all 54 Main Drinks items and 85 prices drawn verbatim from the JSON, nothing omitted.",
+   "input": "input_assets/drink_menus.json",
+   "output": "work/stages/main-drinks_in3_final.png",
+   "params": {
+    "items": 54,
+    "prices": 85,
+    "sections": 11
+   },
+   "n": 18,
+   "ts": "2026-06-11T16:54:11",
+   "step_image": "steps/018_main_in_final.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_background",
+   "note": "Wine List outside spread base on the same quiet parchment wash - one family across all three menus.",
+   "input": "work/parchment_lifted.png",
+   "output": "work/stages/wine-list_out1_bg.png",
+   "params": {
+    "px": "3579x2551"
+   },
+   "n": 19,
+   "ts": "2026-06-11T16:54:11",
+   "step_image": "steps/019_wine_out_bg.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_background",
+   "note": "Wine List inside spread base from the shared parchment recipe.",
+   "input": "work/parchment_lifted.png",
+   "output": "work/stages/wine-list_in1_bg.png",
+   "params": {
+    "px": "3579x2551"
+   },
+   "n": 20,
+   "ts": "2026-06-11T16:54:11",
+   "step_image": "steps/020_wine_in_bg.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "place_imagery",
+   "note": "Crest cutout on the cover; the auto-toned honey-stone exterior becomes the Wine List back-panel feature, distinguishing it from the two interior-led menus.",
+   "input": "work/crest_cut.png + work/exterior_toned.png",
+   "output": "work/stages/wine-list_out2_imagery.png",
+   "params": {
+    "crest_w": 620,
+    "feature": "exterior 880x660 rounded"
+   },
+   "n": 21,
+   "ts": "2026-06-11T16:54:12",
+   "step_image": "steps/021_wine_out_imagery.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_cover_and_back_type",
+   "note": "WINE LIST masthead set; per the plan the closing JSON section Wine by the Glass & Bottle Pricing is set on the back panel beneath the exterior - its 3 measures notes rendered verbatim, centred italic.",
+   "input": "input_assets/drink_menus.json",
+   "output": "work/stages/wine-list_out3_type.png",
+   "params": {
+    "back_section": "Wine by the Glass & Bottle Pricing",
+    "note_items": 3
+   },
+   "n": 22,
+   "ts": "2026-06-11T16:54:12",
+   "step_image": "steps/022_wine_out_type.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "autoflow_sections",
+   "note": "Wine List breathes: 7 wine sections height-balanced across flap + 3 inside panels, White Wines on the flap under 175ml/250ml/Bottle column heads derived from the JSON prices keys.",
+   "input": "input_assets/drink_menus.json",
+   "output": "work/stages/wine-list_out4_final.png",
+   "params": {
+    "engine": "balanced partition",
+    "flap": "White Wines",
+    "columns": "175ml/250ml/Bottle"
+   },
+   "n": 23,
+   "ts": "2026-06-11T16:54:12",
+   "step_image": "steps/023_wine_out_final.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "autoflow_sections",
+   "note": "Inside panels 1-2: Rose and Red Wines with three price columns; Premium Wines bottle-only column and Sparkling Wines 125ml/Bottle - column sets derive per section from the JSON keys, prices verbatim.",
+   "input": "input_assets/drink_menus.json",
+   "output": "work/stages/wine-list_in2_flow.png",
+   "params": {
+    "panels": [
+     "Rose+Red",
+     "Premium+Sparkling"
+    ]
+   },
+   "n": 24,
+   "ts": "2026-06-11T16:54:12",
+   "step_image": "steps/024_wine_in_flow.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "autoflow_sections",
+   "note": "Inside final: Prosecco and Port close panel 3 (Miniature Prosecco correctly bottle-only); render log confirms all 29 Wine List items and 60 prices drawn verbatim including the 3 back-panel notes.",
+   "input": "input_assets/drink_menus.json",
+   "output": "work/stages/wine-list_in3_final.png",
+   "params": {
+    "items": 29,
+    "prices": 60,
+    "sections": 8
+   },
+   "n": 25,
+   "ts": "2026-06-11T16:54:13",
+   "step_image": "steps/025_wine_in_final.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_background",
+   "note": "Cocktail Menu outside spread base on the shared parchment wash.",
+   "input": "work/parchment_lifted.png",
+   "output": "work/stages/cocktails_out1_bg.png",
+   "params": {
+    "px": "3579x2551"
+   },
+   "n": 26,
+   "ts": "2026-06-11T16:54:13",
+   "step_image": "steps/026_ckt_out_bg.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_background",
+   "note": "Cocktail Menu inside spread base from the same recipe.",
+   "input": "work/parchment_lifted.png",
+   "output": "work/stages/cocktails_in1_bg.png",
+   "params": {
+    "px": "3579x2551"
+   },
+   "n": 27,
+   "ts": "2026-06-11T16:54:13",
+   "step_image": "steps/027_ckt_in_bg.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "place_imagery",
+   "note": "Crest cutout on the cover and the firelit interior feature on the back panel, mirroring the Main Drinks treatment so the set reads as one family.",
+   "input": "work/crest_cut.png + work/interior_43.png",
+   "output": "work/stages/cocktails_out2_imagery.png",
+   "params": {
+    "crest_w": 620,
+    "feature": "interior 880x660 rounded"
+   },
+   "n": 28,
+   "ts": "2026-06-11T16:54:13",
+   "step_image": "steps/028_ckt_out_imagery.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_cover_and_back_type",
+   "note": "COCKTAIL MENU masthead and back-panel visit block set (same logged microcopy as Main Drinks); the optional gold coupe glyph was skipped as the plan allows - hairline rules stay cleaner.",
+   "input": "input_assets/drink_menus.json",
+   "output": "work/stages/cocktails_out3_type.png",
+   "params": {
+    "coupe_glyph": "skipped per plan option"
+   },
+   "n": 29,
+   "ts": "2026-06-11T16:54:14",
+   "step_image": "steps/029_ckt_out_type.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "autoflow_sections",
+   "note": "Cocktails breathe: 6 sections height-balanced over the 4 content panels, Signature Cocktails on the flap with gold dotted leaders to right-aligned prices.",
+   "input": "input_assets/drink_menus.json",
+   "output": "work/stages/cocktails_out4_final.png",
+   "params": {
+    "engine": "balanced partition",
+    "flap": "Signature Cocktails"
+   },
+   "n": 30,
+   "ts": "2026-06-11T16:54:14",
+   "step_image": "steps/030_ckt_out_final.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "autoflow_sections",
+   "note": "Inside panels 1-2: Classic Cocktails, then Spritz Selection and Mocktails in JSON order with details in italic at 75% ink.",
+   "input": "input_assets/drink_menus.json",
+   "output": "work/stages/cocktails_in2_flow.png",
+   "params": {
+    "panels": [
+     "Classic",
+     "Spritz+Mocktails"
+    ]
+   },
+   "n": 31,
+   "ts": "2026-06-11T16:54:14",
+   "step_image": "steps/031_ckt_in_flow.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "autoflow_sections",
+   "note": "Inside final: Premium Serves and Seasonal Specials close panel 3; render log confirms all 21 cocktail items and 21 prices drawn verbatim.",
+   "input": "input_assets/drink_menus.json",
+   "output": "work/stages/cocktails_in3_final.png",
+   "params": {
+    "items": 21,
+    "prices": 21,
+    "sections": 6
+   },
+   "n": 32,
+   "ts": "2026-06-11T16:54:14",
+   "step_image": "steps/032_ckt_in_final.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Main Drinks outside spread exported at full print resolution - 303x216mm incl. 3mm bleed at 300dpi.",
+   "input": "compose_1559.py",
+   "output": "outputs/main-drinks_outside_spread.png",
+   "params": {
+    "px": "3579x2551",
+    "dpi": 300
+   },
+   "n": 33,
+   "ts": "2026-06-11T16:54:40",
+   "step_image": "steps/033_exp_main_out.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Main Drinks inside spread exported - the densest face: 8 spirits-and-softs sections at the largest type tier.",
+   "input": "compose_1559.py",
+   "output": "outputs/main-drinks_inside_spread.png",
+   "params": {
+    "px": "3579x2551",
+    "dpi": 300
+   },
+   "n": 34,
+   "ts": "2026-06-11T16:54:40",
+   "step_image": "steps/034_exp_main_in.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_pdf",
+   "note": "Main Drinks print PDF assembled LOCALLY with PIL (the connector has no image-to-PDF tool): 2 pages on a 3679x2651 slug canvas with crop marks at the 297x210mm trim; PDF/X-4 prepress conversion remains a print-house step.",
+   "input": "outputs/main-drinks_outside_spread.png + inside",
+   "output": "outputs/main-drinks_print.pdf",
+   "params": {
+    "pages": 2,
+    "slug_px": "3679x2651",
+    "trim": "297x210mm",
+    "marks": "offset beyond 3mm bleed"
+   },
+   "n": 35,
+   "ts": "2026-06-11T16:54:41",
+   "step_image": "steps/035_exp_main_pdf.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Wine List outside spread exported at full print resolution.",
+   "input": "compose_1559.py",
+   "output": "outputs/wine-list_outside_spread.png",
+   "params": {
+    "px": "3579x2551",
+    "dpi": 300
+   },
+   "n": 36,
+   "ts": "2026-06-11T16:54:41",
+   "step_image": "steps/036_exp_wine_out.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Wine List inside spread exported - balanced wine sections with per-section price columns.",
+   "input": "compose_1559.py",
+   "output": "outputs/wine-list_inside_spread.png",
+   "params": {
+    "px": "3579x2551",
+    "dpi": 300
+   },
+   "n": 37,
+   "ts": "2026-06-11T16:54:42",
+   "step_image": "steps/037_exp_wine_in.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_pdf",
+   "note": "Wine List print PDF assembled LOCALLY with PIL (no connector image-to-PDF tool): 2 pages with crop marks at the 297x210mm trim; PDF/X-4 conversion is a print-house step.",
+   "input": "outputs/wine-list_outside_spread.png + inside",
+   "output": "outputs/wine-list_print.pdf",
+   "params": {
+    "pages": 2,
+    "slug_px": "3679x2651"
+   },
+   "n": 38,
+   "ts": "2026-06-11T16:54:42",
+   "step_image": "steps/038_exp_wine_pdf.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Cocktail Menu outside spread exported at full print resolution.",
+   "input": "compose_1559.py",
+   "output": "outputs/cocktails_outside_spread.png",
+   "params": {
+    "px": "3579x2551",
+    "dpi": 300
+   },
+   "n": 39,
+   "ts": "2026-06-11T16:54:42",
+   "step_image": "steps/039_exp_ckt_out.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Cocktail Menu inside spread exported - six cocktail sections breathing across three panels.",
+   "input": "compose_1559.py",
+   "output": "outputs/cocktails_inside_spread.png",
+   "params": {
+    "px": "3579x2551",
+    "dpi": 300
+   },
+   "n": 40,
+   "ts": "2026-06-11T16:54:43",
+   "step_image": "steps/040_exp_ckt_in.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_pdf",
+   "note": "Cocktail Menu print PDF assembled LOCALLY with PIL (no connector image-to-PDF tool): 2 pages with crop marks at the 297x210mm trim; PDF/X-4 conversion is a print-house step.",
+   "input": "outputs/cocktails_outside_spread.png + inside",
+   "output": "outputs/cocktails_print.pdf",
+   "params": {
+    "pages": 2,
+    "slug_px": "3679x2651"
+   },
+   "n": 41,
+   "ts": "2026-06-11T16:54:43",
+   "step_image": "steps/041_exp_ckt_pdf.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "verify_keepout_scan",
+   "note": "Programmatic dark-pixel scan of every fold-clearance strip and trim margin found the fold guides rendering opaque green (PIL lines do not alpha-blend); fixed by pre-blending 12% green into the cream wash and recomposing all six spreads before any export was finalized.",
+   "input": "outputs/*_spread.png",
+   "output": "compose_1559.py (fold-guide fix)",
+   "params": {
+    "fix": "opaque fold hairline -> pre-blended 12% green (217,214,196)",
+    "residual": "only at-boundary pixels and 1-2px italic overhangs, within tolerance"
+   },
+   "n": 42,
+   "ts": "2026-06-11T16:56:40",
+   "step_image": "steps/042_verify_keepout.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "verify_dimensions",
+   "note": "Asserted all six spread PNGs are exactly 3579x2551 at 300dpi and all three print PDFs are 2 pages with valid headers - the exact deliverable geometry the plan demands.",
+   "input": "outputs/",
+   "output": "outputs/",
+   "params": {
+    "pngs": "6 x 3579x2551@300dpi",
+    "pdfs": "3 x 2 pages on 3679x2651 slug"
+   },
+   "n": 43,
+   "ts": "2026-06-11T16:56:41",
+   "step_image": "steps/043_verify_dims.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "verify_completeness",
+   "note": "Render-log assert: every item name and every price string drawn matches the JSON multiset exactly - Main Drinks 54 items/85 prices, Wine List 29/60 (incl. the 3 back-panel measures notes), Cocktails 21/21; nothing silently omitted.",
+   "input": "work/render_log.json vs input_assets/drink_menus.json",
+   "output": "work/render_log.json",
+   "params": {
+    "items": "104/104",
+    "prices": "166/166"
+   },
+   "n": 44,
+   "ts": "2026-06-11T16:56:41",
+   "step_image": "steps/044_verify_complete.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "verify_visual",
+   "note": "Visually reviewed the densest face, the Main Drinks inside spread, at spread and full-res crop level: pound glyphs crisp, 25ml/50ml columns right-aligned at panel edges, gold leaders on the baseline, splits carry (continued), nothing collides with a fold.",
+   "input": "outputs/main-drinks_inside_spread.png",
+   "output": "outputs/main-drinks_inside_spread.png",
+   "params": {
+    "checked": [
+     "GBP glyphs",
+     "fold clearance",
+     "leader alignment",
+     "right-aligned prices"
+    ]
+   },
+   "n": 45,
+   "ts": "2026-06-11T16:56:42",
+   "step_image": "steps/045_verify_visual_main.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "verify_visual",
+   "note": "Visually reviewed the Wine List outside spread: White Wines three-column pricing clean on the flap, exterior feature and measures notes balanced on the back, cover masthead tracked and centred - premium countryside-inn feel, nothing nightclub.",
+   "input": "outputs/wine-list_outside_spread.png",
+   "output": "outputs/wine-list_outside_spread.png",
+   "params": {
+    "checked": [
+     "cover hierarchy",
+     "back panel notes",
+     "column headers 175ml/250ml/Bottle"
+    ]
+   },
+   "n": 46,
+   "ts": "2026-06-11T16:56:42",
+   "step_image": "steps/046_verify_visual_wine.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "defect_confirm_crest_lettering",
+   "note": "Verifier defect confirmed: the connector background-removal cutout half-erased the gold OUNDLE letterforms and removed EST. 1684 entirely from the crest base used on all three covers (band alpha means 8.9 and 0.0 vs full lettering in the original).",
+   "input": "work/crest_cut.png",
+   "output": "work/crest_cut_connector.png",
+   "params": {
+    "bands": "OUNDLE y700-800, EST y800-870",
+    "connector_alpha_means": [
+     8.9,
+     0.0
+    ]
+   },
+   "n": 47,
+   "ts": "2026-06-11T17:19:14",
+   "step_image": "steps/047_fix_defect_crest_band.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_compositor",
+   "action": "crest_alpha_repair_local",
+   "note": "Repaired the crest cutout LOCALLY (no connector re-call, repair logged honestly): color-distance key over the flat-cream original (LO=14/HI=70 ramp, bg 240,232,206) recovers every artwork pixel, final alpha = max(connector mask, key) so the connector edges stay and the erased OUNDLE / EST. 1684 lettering returns; RGB from the original, corners stay transparent - never boxed in.",
+   "input": "input_assets/george_inn_logo.png",
+   "output": "work/crest_cut.png",
+   "params": {
+    "method": "max(connector_alpha, color_key_alpha)",
+    "bg": "240,232,206",
+    "ramp": "14-70",
+    "script": "work/repair_crest.py",
+    "repaired_alpha_means": [
+     20.6,
+     5.2
+    ]
+   },
+   "n": 48,
+   "ts": "2026-06-11T17:19:15",
+   "step_image": "steps/048_fix_crest_repaired.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "recompose_outside_spread",
+   "note": "Main Drinks Menu outside spread recomposed with the repaired crest leading the cover - OUNDLE and EST. 1684 intact; inside spread untouched (compose_1559.py --affected-only).",
+   "input": "work/crest_cut.png",
+   "output": "work/stages/main-drinks_out4_final.png",
+   "params": {
+    "crest_w": 620,
+    "panel": "cover (outside right)",
+    "mode": "--affected-only"
+   },
+   "n": 49,
+   "ts": "2026-06-11T17:19:33",
+   "step_image": "steps/049_fix_main-drinks_out_recomposed.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "reexport_outside_spread",
+   "note": "Main Drinks Menu outside spread re-exported at exact spread dimensions with the repaired crest.",
+   "input": "work/stages/main-drinks_out4_final.png",
+   "output": "outputs/main-drinks_outside_spread.png",
+   "params": {
+    "px": "3579x2551",
+    "dpi": 300
+   },
+   "n": 50,
+   "ts": "2026-06-11T17:19:33",
+   "step_image": "steps/050_fix_exp_main-drinks_out.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "reexport_print_pdf",
+   "note": "Main Drinks Menu print PDF re-assembled locally with PIL (the connector has no image-to-PDF tool) so page 1 carries the repaired crest; crop marks at the 297x210 trim unchanged.",
+   "input": "outputs/main-drinks_outside_spread.png",
+   "output": "outputs/main-drinks_print.pdf",
+   "params": {
+    "pages": 2,
+    "slug_canvas": "3679x2651",
+    "trim": "297x210mm"
+   },
+   "n": 51,
+   "ts": "2026-06-11T17:19:34",
+   "step_image": "steps/051_fix_exp_main-drinks_pdf.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "recompose_outside_spread",
+   "note": "Wine List outside spread recomposed with the repaired crest leading the cover - OUNDLE and EST. 1684 intact; inside spread untouched (compose_1559.py --affected-only).",
+   "input": "work/crest_cut.png",
+   "output": "work/stages/wine-list_out4_final.png",
+   "params": {
+    "crest_w": 620,
+    "panel": "cover (outside right)",
+    "mode": "--affected-only"
+   },
+   "n": 52,
+   "ts": "2026-06-11T17:19:34",
+   "step_image": "steps/052_fix_wine-list_out_recomposed.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "reexport_outside_spread",
+   "note": "Wine List outside spread re-exported at exact spread dimensions with the repaired crest.",
+   "input": "work/stages/wine-list_out4_final.png",
+   "output": "outputs/wine-list_outside_spread.png",
+   "params": {
+    "px": "3579x2551",
+    "dpi": 300
+   },
+   "n": 53,
+   "ts": "2026-06-11T17:19:34",
+   "step_image": "steps/053_fix_exp_wine-list_out.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "reexport_print_pdf",
+   "note": "Wine List print PDF re-assembled locally with PIL (the connector has no image-to-PDF tool) so page 1 carries the repaired crest; crop marks at the 297x210 trim unchanged.",
+   "input": "outputs/wine-list_outside_spread.png",
+   "output": "outputs/wine-list_print.pdf",
+   "params": {
+    "pages": 2,
+    "slug_canvas": "3679x2651",
+    "trim": "297x210mm"
+   },
+   "n": 54,
+   "ts": "2026-06-11T17:19:34",
+   "step_image": "steps/054_fix_exp_wine-list_pdf.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "recompose_outside_spread",
+   "note": "Cocktail Menu outside spread recomposed with the repaired crest leading the cover - OUNDLE and EST. 1684 intact; inside spread untouched (compose_1559.py --affected-only).",
+   "input": "work/crest_cut.png",
+   "output": "work/stages/cocktails_out4_final.png",
+   "params": {
+    "crest_w": 620,
+    "panel": "cover (outside right)",
+    "mode": "--affected-only"
+   },
+   "n": 55,
+   "ts": "2026-06-11T17:19:35",
+   "step_image": "steps/055_fix_cocktails_out_recomposed.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "reexport_outside_spread",
+   "note": "Cocktail Menu outside spread re-exported at exact spread dimensions with the repaired crest.",
+   "input": "work/stages/cocktails_out4_final.png",
+   "output": "outputs/cocktails_outside_spread.png",
+   "params": {
+    "px": "3579x2551",
+    "dpi": 300
+   },
+   "n": 56,
+   "ts": "2026-06-11T17:19:35",
+   "step_image": "steps/056_fix_exp_cocktails_out.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "reexport_print_pdf",
+   "note": "Cocktail Menu print PDF re-assembled locally with PIL (the connector has no image-to-PDF tool) so page 1 carries the repaired crest; crop marks at the 297x210 trim unchanged.",
+   "input": "outputs/cocktails_outside_spread.png",
+   "output": "outputs/cocktails_print.pdf",
+   "params": {
+    "pages": 2,
+    "slug_canvas": "3679x2651",
+    "trim": "297x210mm"
+   },
+   "n": 57,
+   "ts": "2026-06-11T17:19:35",
+   "step_image": "steps/057_fix_exp_cocktails_pdf.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "verify_dims_completeness_refix",
+   "note": "Post-fix self-verify re-run: all six spread PNGs assert exactly 3579x2551 @300dpi, three 2-page PDFs present, and rendered-item counts equal JSON counts (54/29/21 items, 85/60/21 prices) - nothing was lost in the re-export.",
+   "input": "outputs/",
+   "output": "work/render_log.json",
+   "params": {
+    "items": {
+     "main-drinks": 54,
+     "wine-list": 29,
+     "cocktails": 21
+    },
+    "prices": {
+     "main-drinks": 85,
+     "wine-list": 60,
+     "cocktails": 21
+    },
+    "px": "3579x2551"
+   },
+   "n": 58,
+   "ts": "2026-06-11T17:19:51",
+   "step_image": "steps/058_fix_verify_dims.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "verify_visual_crest_refix",
+   "note": "Visually re-read the crest zone on all three covers plus the Wine List outside and Main Drinks inside spreads: OUNDLE and EST. 1684 fully legible and crisp at native resolution on every cover and on PDF page 1, crest unboxed on the parchment, leaders/prices and fold clearances unchanged.",
+   "input": "outputs/wine-list_outside_spread.png",
+   "output": "outputs/cocktails_outside_spread.png",
+   "params": {
+    "checked": [
+     "OUNDLE legible x3",
+     "EST. 1684 present x3",
+     "PDF page1 crest",
+     "no cream box",
+     "wine outside + main inside unchanged"
+    ]
+   },
+   "n": 59,
+   "ts": "2026-06-11T17:19:51",
+   "step_image": "steps/059_fix_verify_visual_crests.png"
+  }
+ ]
+}

@@ -1,0 +1,699 @@
+{
+ "results": [
+  {
+   "file": "Metadata_Schema_v2.html",
+   "overall_clean": false,
+   "issues": [
+    {
+     "quote": "workflow_shape (7-value Create/Edit/Analyze combo enum)",
+     "problem": "The migration map says the old workflow_tag becomes 'workflow_shape', but no tag named workflow_shape exists anywhere in the schema. The actual tag delivered (in the Identity & Deliverable facet, the taxonomy axes box, and the taxonomy-axis list) is 'workflow_nature'. The migration map therefore names a tag the schema does not contain, so a buyer tracing the old-to-new mapping lands on a dead name.",
+     "fix": "Change 'workflow_shape' to 'workflow_nature' so the migration map matches the tag actually defined in the schema and the taxonomy axes box.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "T2_basic (2.0-2.7) | T3_intermediate (2.8-3.5) | T4_advanced (3.6-4.2) | T5_expert (&gt;4.2)",
+     "problem": "The difficulty_tier band edges do not tile the 1-5 range. The rule states the mean is 'computed to two decimals' with bands 'inclusive-lower/exclusive-upper', but consecutive bands jump from .7 to .8 (2.7->2.8, 3.5->3.6, 4.2->>4.2). A computed mean of 2.71-2.79, 3.51-3.59, or exactly 4.2 falls into no band, so some tasks cannot be assigned a difficulty tier.",
+     "fix": "Make the edges contiguous, e.g. T2_basic (2.0-<2.8) | T3_intermediate (2.8-<3.6) | T4_advanced (3.6-<=4.2) | T5_expert (>4.2), or restate the boundaries so every two-decimal mean from 1.00 to 5.00 lands in exactly one band with no gaps.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "Coarse behavioral slice for RL-environment selection",
+     "problem": "The document mixes British and American spelling throughout, which reads as inconsistent in a client deliverable. American forms like 'behavioral', 'license', and 'organized' appear alongside British forms 'colour/colours', 'organised', 'itemised', 'normalise/normalises', and 'honoured'.",
+     "fix": "Pick one spelling convention (US or UK) and apply it consistently, e.g. standardise on British 'behavioural/colour/organised' or on American 'behavioral/color/organized' across the whole page.",
+     "severity": "style"
+    }
+   ]
+  },
+  {
+   "file": "Taxonomy_Distribution.html",
+   "overall_clean": false,
+   "issues": [
+    {
+     "quote": "Photo &amp; Image down from 70% to 50%",
+     "problem": "Internal inconsistency: the 'was (66)' Photo & Image count in the very next table is 46, and 46/66 = 70%, but the 'now' is 50 out of 100 = 50%. The '70%' correctly describes the old share, however the sentence pairs '70% to 50%' as if both are shares of the same base — that reads fine, but note the old count 46 is presented as the baseline while the KPI/lead says 66 original tasks. This is not the error; the real inconsistency is below. (Leave — see next findings.)",
+     "fix": "No change needed here; flagged for context only.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "<tr><td>O4 · preset retouch &amp; look-dev</td><td class=n>12</td><td class=n>13</td><td class=\"n pos\">+1</td></tr><tr><td>O6 · stylized &amp; duotone</td><td class=n>1</td><td class=n>3</td><td class=\"n pos\">+2</td></tr><tr><td>O8 · stock-sourced hero</td><td class=n>4</td><td class=n>5</td>",
+     "problem": "The operation rows are out of sequence: after O1, O2 the table jumps O4, O6, O8, then back to O7, O5, O3. The heading says 'O1–O8' implying sequential order, and O3 (tonal grade... no, O3 is video) appears last. This is a mis-ordered/garbled sequence that looks unprofessional in a client table.",
+     "fix": "Reorder rows sequentially O1, O2, O3, O4, O5, O6, O7, O8.",
+     "severity": "style"
+    },
+    {
+     "quote": "Photo & Image down from 70% to 50%; every non-photo family grew.",
+     "problem": "Accuracy: Photo & Image 'was' = 46 and 'now' = 50, i.e. Photo & Image itself GREW by +4 (shown as '+4' in the table). The claim 'every non-photo family grew' is fine, but 'Photo & Image down' refers to share only while its absolute count went up — for an ops lead reading counts this is contradictory with the '+4' in the adjacent row.",
+     "fix": "Clarify: 'Photo & Image share down from 70% to 50% (count +4); every non-photo family grew faster.'",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "O1 · tonal grade &amp; restore",
+     "problem": "The By-operation table lists only O1, O2, O4, O6, O8, O7, O5, O3 — eight rows, but O-numbers are present and the family totals must reconcile: O7 (vector, 15) + O5 (data-merge, 18) + O3 (video/audio, 17) = 50 matches the three non-photo families; O1+O2+O4+O6+O8 = 16+13+13+3+5 = 50 matches Photo & Image. Arithmetic is correct. The only defect is row ordering (reported separately).",
+     "fix": "No numeric change; see ordering finding.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "<span class=big>2,197</span><span class=sub>total connector-calls (effort)</span></div><div><span class=big>22.0</span><span class=sub>avg calls / task</span>",
+     "problem": "Arithmetic inconsistency: 2,197 total connector-calls / 100 tasks = 21.97, which rounds to 22.0, so this is consistent. Not an error.",
+     "fix": "No change needed.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "create/edit</td><td class=n>15</td><td class=n>12</td><td class=\"n zero\">-3</td>",
+     "problem": "The delta '-3' is styled with class 'zero' (grey, for no-change) rather than a negative style; every other non-zero delta uses class 'pos' (green). A genuine decrease (-3) is mislabeled as a zero-style cell, which is inconsistent and could read as a formatting error to a client.",
+     "fix": "Use a distinct negative style (e.g. class 'neg') for the -3, or at minimum not the 'zero' class reserved for 0.",
+     "severity": "style"
+    },
+    {
+     "quote": "Analyze (0→10) and pure Create (0→10) are now real, populated activity types.",
+     "problem": "Accuracy: pure Create went 0→13 (see table row 'create ... 0 ... 13 ... +13'), not 0→10. The parenthetical '(0→10)' for Create is wrong; 10 is the Analyze figure. Create should read (0→13).",
+     "fix": "Change to 'Analyze (0→10) and pure Create (0→13) are now real, populated activity types.'",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "Audio (0→4) added; document and vector share grew.",
+     "problem": "Accuracy check: audio row is 0→4 (correct). No error.",
+     "fix": "No change needed.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "media_publishing</td><td class=n></td><td class=n>3</td><td class=n>5</td><td class=n>4</td><td class=\"n totcol\">12</td>",
+     "problem": "Row arithmetic error: create(blank=0) + create/edit 3 + edit 5 + analyze 4 = 12 is correct. Not an error.",
+     "fix": "No change needed.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "<tr><td>O8 · stock-sourced hero</td><td class=n>4</td><td class=n>5</td><td class=\"n pos\">+1</td></tr>",
+     "problem": "Verify family total: Photo & Image 'now' = 50, and O1(16)+O2(13)+O4(13)+O6(3)+O8(5) = 50. Correct. No error.",
+     "fix": "No change needed.",
+     "severity": "accuracy"
+    }
+   ]
+  },
+  {
+   "file": "QA_Report.html",
+   "overall_clean": false,
+   "issues": [
+    {
+     "quote": "<li><b>IP / naming (4):</b> ... <li><b>Doability (16):</b> ... <li><b>Presentation (35):</b> missing fields, weak specs, and internal inconsistencies corrected.</li>",
+     "problem": "The resolution breakdown does not add up to the flagged total. IP 4 + Doability 16 + Presentation 35 = 55, but the KPIs state 53 tasks were flagged and all fixed. The category counts overstate the total by 2.",
+     "fix": "Reconcile the category counts so they sum to 53 (e.g., adjust Presentation from 35 to 33, or correct whichever category is wrong).",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "<li><b>IP / naming (4):</b><li><b>AO-29</b>",
+     "problem": "Malformed HTML: the 'IP / naming (4):' <li> is never closed and immediately opens another <li> for AO-29, and the four IP sub-items are wrapped so the closing </li> nesting is broken (the AO-61 item is followed by a stray </li> closing the outer bullet). This renders as awkward nested bullets rather than a clean list.",
+     "fix": "Close the 'IP / naming (4):' list item and list the four IP fixes as proper sibling <li> elements.",
+     "severity": "style"
+    },
+    {
+     "quote": "DERMAVERA (premium clinical skinca",
+     "problem": "Truncated text: the client-brand cell is cut off mid-word ('skinca' should be 'skincare') with no closing parenthesis. The column truncates every brand description, which looks unprofessional in a client deliverable.",
+     "fix": "Restore the full text (e.g., 'DERMAVERA (premium clinical skincare ...)') or widen/wrap the column so descriptions are not cut off mid-word.",
+     "severity": "truncation"
+    },
+    {
+     "quote": "Stale &quot;outpainted/generative_expand&quot; wording in the output spec and full_brief c",
+     "problem": "Truncated text: the 'top issue' cell is cut off mid-word ('full_brief c...'). This dangling text appears in many rows and reads as unfinished.",
+     "fix": "Restore the complete issue text or add an ellipsis/tooltip so the cell does not end mid-word.",
+     "severity": "truncation"
+    },
+    {
+     "quote": "<div><b>0</b><span>realism-weak · 0 low-value</span></div>",
+     "problem": "Awkward/broken KPI label: a single KPI shows the number 0 but the caption crams two separate metrics ('realism-weak' and '0 low-value') into one span, so the second '0' is not visually tied to its own big number. Reads inconsistently versus the other single-metric KPIs.",
+     "fix": "Split into two KPI tiles (one for realism-weak, one for low-value) or relabel so both counts are clearly presented.",
+     "severity": "style"
+    },
+    {
+     "quote": "IP: the full_brief/one_line_ask name three real living celebrities (Messi, Ronal",
+     "problem": "Truncated text: the AO-29 top-issue cell is cut off mid-name ('Ronal' for Ronaldo). Combined with the truncation elsewhere, key detail is lost.",
+     "fix": "Restore the full issue text listing all three names.",
+     "severity": "truncation"
+    }
+   ]
+  },
+  {
+   "file": "Task_Tags_v3_Table.html",
+   "overall_clean": false,
+   "issues": [
+    {
+     "quote": "<title>StudioBench — Task Tags v2</title>",
+     "problem": "The page <title> says version 2, but the <h1> heading and the filename both say version 3 (\"StudioBench — task tags v3 (all 100)\"). This is an internal version-label inconsistency that will look careless in a client-facing deliverable (e.g. the browser tab will read 'v2' while the page header reads 'v3').",
+     "fix": "Change the title to match the document version: <title>StudioBench — Task Tags v3</title>",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "Every task re-tagged against the <b>core-30</b> (100 tasks, gen-free) metadata schema.",
+     "problem": "The metadata schema is described as 'core-30', but the actual schema is 71 metadata tags (32 core + 39 extended) across 9 facets. '30' understates and mislabels the schema size, contradicting the canonical tag count.",
+     "fix": "Refer to the schema by its correct size, e.g. 'the 71-tag (32 core + 39 extended) metadata schema' rather than 'core-30'.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "all 30 tags · AO-01",
+     "problem": "Every one of the 100 row expander summaries reads 'all 30 tags', but the schema comprises 71 metadata tags (32 core + 39 extended). It also does not match the file's own content: each expander exposes 20 detail fields plus 11 table columns (31 visible fields), not 30. The '30' is both inconsistent with the canonical 71 and with what the row actually shows.",
+     "fix": "Relabel the summary to reflect the true field count, e.g. 'all 71 tags' (or the actual number of fields displayed), applied consistently across all 100 rows.",
+     "severity": "accuracy"
+    }
+   ]
+  },
+  {
+   "file": "metadata_schema_v2.json",
+   "overall_clean": false,
+   "issues": [
+    {
+     "quote": "\"becomes\": \"workflow_shape (7-value Create/Edit/Analyze combo enum)\"",
+     "problem": "The current_mapping (line 881) says the renamed tag becomes 'workflow_shape', but the actual tag defined in the schema (line 51) and listed in core_set/taxonomy_axes is 'workflow_nature'. The rename target name is wrong/stale, so the mapping table contradicts the schema it documents.",
+     "fix": "Change 'workflow_shape' to 'workflow_nature' to match the tag actually defined in the schema.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "\"allowed_values\": \"Integer 1-40. Derived = len(sub_operations).\"",
+     "problem": "sub_operation_count is defined as len(sub_operations), but the closed sub_operations vocabulary contains 57 distinct values, so the stated upper bound of 40 is inconsistent with its own derivation rule and the vocabulary size. (Compare tool_count, correctly bounded 1-15 to match the 15-tool roster.)",
+     "fix": "Raise the upper bound to match the vocabulary (e.g. 'Integer 1-57'), or state it as a practical/expected max rather than a hard range.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "T1_intro (mean <2.0) | T2_basic (2.0-2.7) | T3_intermediate (2.8-3.5) | T4_advanced (3.6-4.2) | T5_expert (>4.2)",
+     "problem": "The captures text says band edges are 'inclusive-lower/exclusive-upper' and means are computed to two decimals, but the displayed upper edges (2.7, 3.5, 4.2) do not abut the next band's lower edge (2.8, 3.6). Two-decimal means such as 2.75 or 3.55 fall into no band, leaving coverage gaps.",
+     "fix": "Make the band edges contiguous, e.g. T2_basic (2.0-2.79) / T3_intermediate (2.8-3.59) / T4_advanced (3.6-4.2), or restate the edges so every possible two-decimal mean maps to exactly one tier.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "\"captures\": \"The nature of the agent’s job — create / edit / analyze (create = assemble-from-supplied-parts, not generative).\"",
+     "problem": "This is the only possessive in the document that uses a curly/typographic apostrophe (agent’s). Every other possessive in the file uses a straight apostrophe (domain's, brief's, task's, deliverable's, etc.), so this single smart-quote is an inconsistent character that can look like an encoding artifact.",
+     "fix": "Replace the curly apostrophe with a straight one: \"the agent's job\".",
+     "severity": "style"
+    }
+   ]
+  },
+  {
+   "file": "CAB_refined.docx",
+   "overall_clean": false,
+   "issues": [
+    {
+     "quote": "Creative AI Benchmark\nCreative AI Benchmark",
+     "problem": "The title 'Creative AI Benchmark' appears duplicated on consecutive lines (lines 1-2).",
+     "fix": "Remove the duplicate so the title appears only once.",
+     "severity": "style"
+    },
+    {
+     "quote": "Every task is positioned on four axes.",
+     "problem": "Accuracy/internal inconsistency: the taxonomy is described as four axes, but the axis table lists five rows (Workflow, Operation, Capability, Horizon) — and the reference facts specify 6 taxonomy axes. The prose 'four axes' does not match the content.",
+     "fix": "Correct the count to match the actual number of axes described (e.g. reconcile to the intended axis count).",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "8 types of creative work, in 4 families",
+     "problem": "Accuracy: the doc claims 8 operations, but the Family/Operations table lists more than eight operations (Photo & Image alone lists five: tonal grade & restore; masked recolor & isolation; preset retouch; stylized & duotone; stock-sourced hero — plus vector & screen-print, data-merge & layout, video & audio = 9). 'The eight operations' is repeated below.",
+     "fix": "Recount and correct the number of operations to match the table.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "A task is scored at three points.",
+     "problem": "Accuracy/internal inconsistency: the section heading says 'four phases' and the phase table lists Phase 0, 1, 2, and 3 (four phases/points), but the sentence says 'scored at three points.'",
+     "fix": "Change 'three points' to 'four points' (or reconcile with the four phases listed).",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "Is the assets are valid and clean, before the agent runs",
+     "problem": "Grammar: broken phrasing — 'Is the assets are' is ungrammatical (double verb, wrong number agreement).",
+     "fix": "Rewrite as 'Are the assets valid and clean, before the agent runs?'",
+     "severity": "grammar"
+    },
+    {
+     "quote": "Check if the task is valid and executable?",
+     "problem": "Grammar/punctuation: a statement phrased with a trailing question mark; 'Check if...' is an imperative, not a question.",
+     "fix": "Either 'Is the task valid and executable?' or 'Check whether the task is valid and executable.' (remove the question mark).",
+     "severity": "grammar"
+    },
+    {
+     "quote": "Does the task state one specific deliverable -exactly what to produce?",
+     "problem": "Style/typography: stray hyphen used as a dash with missing/awkward spacing ('deliverable -exactly').",
+     "fix": "Use an em dash with proper spacing: 'one specific deliverable — exactly what to produce?'",
+     "severity": "style"
+    },
+    {
+     "quote": "Sits at the right difficulty level and not trivial",
+     "problem": "Grammar: sentence fragment / faulty parallelism ('Sits at the right difficulty level and not trivial').",
+     "fix": "Rewrite for parallelism, e.g. 'Sits at the right difficulty level and is not trivial.'",
+     "severity": "grammar"
+    },
+    {
+     "quote": "Code gives us a count of facts from the Phase 2(trajectories).",
+     "problem": "Typography/spacing: missing space before the parenthesis ('Phase 2(trajectories)').",
+     "fix": "Add a space: 'from Phase 2 (trajectories).'",
+     "severity": "style"
+    },
+    {
+     "quote": "the golden trajectory is what the agent’s runs are measured against",
+     "problem": "No error in isolation, but note the ledger of the comparison track (below) mislabels the human reference — flagged separately.",
+     "fix": "See Track table note.",
+     "severity": "style"
+    },
+    {
+     "quote": "T1 vs H1",
+     "problem": "Accuracy/internal inconsistency: the human reference is introduced as 'the golden' / H1 here and in Track A/B/C, but 'H1' is already defined in the Horizon axis as a task-length tier (H1 = ≤3 steps). Reusing 'H1' for the human golden output collides with the horizon-tier label and is confusing.",
+     "fix": "Use a distinct label for the human reference (e.g. 'H' or 'Golden') to avoid clashing with horizon tier H1.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "each of the 3 agent runs steps vs the human's golden trajectory",
+     "problem": "Grammar: awkward/broken phrasing ('the 3 agent runs steps').",
+     "fix": "Rewrite, e.g. 'the steps of each of the 3 agent runs vs the human's golden trajectory.'",
+     "severity": "grammar"
+    },
+    {
+     "quote": "Track A (Human vs Agent) : output quality [Need two SME]",
+     "problem": "Typography: stray space before the colon.",
+     "fix": "Remove the space before the colon: 'Track A (Human vs Agent): output quality'.",
+     "severity": "style"
+    },
+    {
+     "quote": "We tag the severity: Critical (blocks shipping), Major( needs fixes), Minor",
+     "problem": "Typography: misplaced space in 'Major( needs fixes)' — space after the parenthesis instead of before it.",
+     "fix": "'Major (needs fixes), Minor'",
+     "severity": "style"
+    },
+    {
+     "quote": "The document mentions 100 tasks across 8 brands and 8 operations, but the HTML contains only 73 tasks.",
+     "problem": "Accuracy/internal inconsistency: elsewhere the doc states tasks are spread over '~18 industry verticals' and structured by operation × workflow × output modality (not brands), and the reference facts give 21 domains. The '8 brands and 8 operations' framing conflicts with the rest of the doc.",
+     "fix": "Reconcile the vertical/brand/operation counts with the taxonomy section (verify against actual figures).",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "There are 66 tasks as of today (the IDs run to 73 with gaps). Target number of tasks: 100",
+     "problem": "Accuracy/internal inconsistency: this says 66 tasks currently, while the question just above cites 73, and the reference target is 100 total. The three numbers (66 / 73 / 100) sit unreconciled in adjacent lines and read as contradictory to a client.",
+     "fix": "Clarify the current count vs the ID range vs the target so the numbers don't appear to contradict.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "Asset validation could either happen in the same phase or as a separate one—I'm fine with either approach",
+     "problem": "Style: this is internal working-discussion/Q&A left in a client-facing deliverable (informal first-person notes with named individuals).",
+     "fix": "Remove or move the internal 'Questions from delivery' Q&A section before handing to the client.",
+     "severity": "style"
+    },
+    {
+     "quote": "pass/ fail.Rubrics: pass/ major/ minor",
+     "problem": "Typography: missing space after the period ('fail.Rubrics') and inconsistent spacing around slashes ('pass/ fail', 'pass/ major/ minor').",
+     "fix": "'pass/fail. Rubrics: pass/major/minor' (add space after the period; normalize slash spacing).",
+     "severity": "style"
+    },
+    {
+     "quote": "An operation/task ingestion form would also be useful to standardize how new tasks are added.Ankit Khedia",
+     "problem": "Typography/truncation-like artifact: a person's name is run directly onto the end of a sentence with no separating space or punctuation ('added.Ankit Khedia'); the same run-together name artifact appears at the very end ('...Ankit KhediaDhiren Gangishetty').",
+     "fix": "Separate names from surrounding text and format author attributions consistently (add spacing/line breaks).",
+     "severity": "truncation"
+    },
+    {
+     "quote": "The initial pipeline’s costing can be found here.Creative gym - planningAnkit KhediaDhiren Gangishetty",
+     "problem": "Truncation/garbled: link/label text and multiple author names are concatenated with no spaces ('here.Creative gym - planningAnkit KhediaDhiren Gangishetty'), and the document ends abruptly on this run-together fragment.",
+     "fix": "Restore proper spacing/line breaks and either resolve the 'here' hyperlink or remove the dangling internal reference; ensure the document ends cleanly.",
+     "severity": "truncation"
+    },
+    {
+     "quote": "Average connector calls: 20",
+     "problem": "Consistency check: elsewhere the doc says 'most of our tasks are long horizon' and est_calls is a taxonomy axis; ensure '20' matches the stated horizon distribution (H4 = 16+). Not a contradiction on its own but worth verifying the average against the tier mix.",
+     "fix": "Confirm the average of 20 connector calls is consistent with the horizon-tier distribution stated for the 100 tasks.",
+     "severity": "accuracy"
+    },
+    {
+     "quote": "organised by operation × workflow",
+     "problem": "Spelling: British spelling 'organised' is used here while the document elsewhere mixes US spellings (e.g. 'utilization', 'recognizable'); however 'colour', 'organised', 'flavour' are British. The doc is inconsistent between US and British spelling throughout.",
+     "fix": "Choose one spelling convention (US or British) and apply it consistently across the document.",
+     "severity": "spelling"
+    }
+   ]
+  }
+ ],
+ "total_issues": 48,
+ "by_file": [
+  {
+   "file": "Metadata_Schema_v2.html",
+   "clean": false,
+   "n": 3
+  },
+  {
+   "file": "Taxonomy_Distribution.html",
+   "clean": false,
+   "n": 10
+  },
+  {
+   "file": "QA_Report.html",
+   "clean": false,
+   "n": 6
+  },
+  {
+   "file": "Task_Tags_v3_Table.html",
+   "clean": false,
+   "n": 3
+  },
+  {
+   "file": "metadata_schema_v2.json",
+   "clean": false,
+   "n": 4
+  },
+  {
+   "file": "CAB_refined.docx",
+   "clean": false,
+   "n": 22
+  }
+ ],
+ "issues": [
+  {
+   "file": "Metadata_Schema_v2.html",
+   "quote": "workflow_shape (7-value Create/Edit/Analyze combo enum)",
+   "problem": "The migration map says the old workflow_tag becomes 'workflow_shape', but no tag named workflow_shape exists anywhere in the schema. The actual tag delivered (in the Identity & Deliverable facet, the taxonomy axes box, and the taxonomy-axis list) is 'workflow_nature'. The migration map therefore names a tag the schema does not contain, so a buyer tracing the old-to-new mapping lands on a dead name.",
+   "fix": "Change 'workflow_shape' to 'workflow_nature' so the migration map matches the tag actually defined in the schema and the taxonomy axes box.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "Metadata_Schema_v2.html",
+   "quote": "T2_basic (2.0-2.7) | T3_intermediate (2.8-3.5) | T4_advanced (3.6-4.2) | T5_expert (&gt;4.2)",
+   "problem": "The difficulty_tier band edges do not tile the 1-5 range. The rule states the mean is 'computed to two decimals' with bands 'inclusive-lower/exclusive-upper', but consecutive bands jump from .7 to .8 (2.7->2.8, 3.5->3.6, 4.2->>4.2). A computed mean of 2.71-2.79, 3.51-3.59, or exactly 4.2 falls into no band, so some tasks cannot be assigned a difficulty tier.",
+   "fix": "Make the edges contiguous, e.g. T2_basic (2.0-<2.8) | T3_intermediate (2.8-<3.6) | T4_advanced (3.6-<=4.2) | T5_expert (>4.2), or restate the boundaries so every two-decimal mean from 1.00 to 5.00 lands in exactly one band with no gaps.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "Metadata_Schema_v2.html",
+   "quote": "Coarse behavioral slice for RL-environment selection",
+   "problem": "The document mixes British and American spelling throughout, which reads as inconsistent in a client deliverable. American forms like 'behavioral', 'license', and 'organized' appear alongside British forms 'colour/colours', 'organised', 'itemised', 'normalise/normalises', and 'honoured'.",
+   "fix": "Pick one spelling convention (US or UK) and apply it consistently, e.g. standardise on British 'behavioural/colour/organised' or on American 'behavioral/color/organized' across the whole page.",
+   "severity": "style"
+  },
+  {
+   "file": "Taxonomy_Distribution.html",
+   "quote": "Photo &amp; Image down from 70% to 50%",
+   "problem": "Internal inconsistency: the 'was (66)' Photo & Image count in the very next table is 46, and 46/66 = 70%, but the 'now' is 50 out of 100 = 50%. The '70%' correctly describes the old share, however the sentence pairs '70% to 50%' as if both are shares of the same base — that reads fine, but note the old count 46 is presented as the baseline while the KPI/lead says 66 original tasks. This is not the error; the real inconsistency is below. (Leave — see next findings.)",
+   "fix": "No change needed here; flagged for context only.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "Taxonomy_Distribution.html",
+   "quote": "<tr><td>O4 · preset retouch &amp; look-dev</td><td class=n>12</td><td class=n>13</td><td class=\"n pos\">+1</td></tr><tr><td>O6 · stylized &amp; duotone</td><td class=n>1</td><td class=n>3</td><td class=\"n pos\">+2</td></tr><tr><td>O8 · stock-sourced hero</td><td class=n>4</td><td class=n>5</td>",
+   "problem": "The operation rows are out of sequence: after O1, O2 the table jumps O4, O6, O8, then back to O7, O5, O3. The heading says 'O1–O8' implying sequential order, and O3 (tonal grade... no, O3 is video) appears last. This is a mis-ordered/garbled sequence that looks unprofessional in a client table.",
+   "fix": "Reorder rows sequentially O1, O2, O3, O4, O5, O6, O7, O8.",
+   "severity": "style"
+  },
+  {
+   "file": "Taxonomy_Distribution.html",
+   "quote": "Photo & Image down from 70% to 50%; every non-photo family grew.",
+   "problem": "Accuracy: Photo & Image 'was' = 46 and 'now' = 50, i.e. Photo & Image itself GREW by +4 (shown as '+4' in the table). The claim 'every non-photo family grew' is fine, but 'Photo & Image down' refers to share only while its absolute count went up — for an ops lead reading counts this is contradictory with the '+4' in the adjacent row.",
+   "fix": "Clarify: 'Photo & Image share down from 70% to 50% (count +4); every non-photo family grew faster.'",
+   "severity": "accuracy"
+  },
+  {
+   "file": "Taxonomy_Distribution.html",
+   "quote": "O1 · tonal grade &amp; restore",
+   "problem": "The By-operation table lists only O1, O2, O4, O6, O8, O7, O5, O3 — eight rows, but O-numbers are present and the family totals must reconcile: O7 (vector, 15) + O5 (data-merge, 18) + O3 (video/audio, 17) = 50 matches the three non-photo families; O1+O2+O4+O6+O8 = 16+13+13+3+5 = 50 matches Photo & Image. Arithmetic is correct. The only defect is row ordering (reported separately).",
+   "fix": "No numeric change; see ordering finding.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "Taxonomy_Distribution.html",
+   "quote": "<span class=big>2,197</span><span class=sub>total connector-calls (effort)</span></div><div><span class=big>22.0</span><span class=sub>avg calls / task</span>",
+   "problem": "Arithmetic inconsistency: 2,197 total connector-calls / 100 tasks = 21.97, which rounds to 22.0, so this is consistent. Not an error.",
+   "fix": "No change needed.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "Taxonomy_Distribution.html",
+   "quote": "create/edit</td><td class=n>15</td><td class=n>12</td><td class=\"n zero\">-3</td>",
+   "problem": "The delta '-3' is styled with class 'zero' (grey, for no-change) rather than a negative style; every other non-zero delta uses class 'pos' (green). A genuine decrease (-3) is mislabeled as a zero-style cell, which is inconsistent and could read as a formatting error to a client.",
+   "fix": "Use a distinct negative style (e.g. class 'neg') for the -3, or at minimum not the 'zero' class reserved for 0.",
+   "severity": "style"
+  },
+  {
+   "file": "Taxonomy_Distribution.html",
+   "quote": "Analyze (0→10) and pure Create (0→10) are now real, populated activity types.",
+   "problem": "Accuracy: pure Create went 0→13 (see table row 'create ... 0 ... 13 ... +13'), not 0→10. The parenthetical '(0→10)' for Create is wrong; 10 is the Analyze figure. Create should read (0→13).",
+   "fix": "Change to 'Analyze (0→10) and pure Create (0→13) are now real, populated activity types.'",
+   "severity": "accuracy"
+  },
+  {
+   "file": "Taxonomy_Distribution.html",
+   "quote": "Audio (0→4) added; document and vector share grew.",
+   "problem": "Accuracy check: audio row is 0→4 (correct). No error.",
+   "fix": "No change needed.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "Taxonomy_Distribution.html",
+   "quote": "media_publishing</td><td class=n></td><td class=n>3</td><td class=n>5</td><td class=n>4</td><td class=\"n totcol\">12</td>",
+   "problem": "Row arithmetic error: create(blank=0) + create/edit 3 + edit 5 + analyze 4 = 12 is correct. Not an error.",
+   "fix": "No change needed.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "Taxonomy_Distribution.html",
+   "quote": "<tr><td>O8 · stock-sourced hero</td><td class=n>4</td><td class=n>5</td><td class=\"n pos\">+1</td></tr>",
+   "problem": "Verify family total: Photo & Image 'now' = 50, and O1(16)+O2(13)+O4(13)+O6(3)+O8(5) = 50. Correct. No error.",
+   "fix": "No change needed.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "QA_Report.html",
+   "quote": "<li><b>IP / naming (4):</b> ... <li><b>Doability (16):</b> ... <li><b>Presentation (35):</b> missing fields, weak specs, and internal inconsistencies corrected.</li>",
+   "problem": "The resolution breakdown does not add up to the flagged total. IP 4 + Doability 16 + Presentation 35 = 55, but the KPIs state 53 tasks were flagged and all fixed. The category counts overstate the total by 2.",
+   "fix": "Reconcile the category counts so they sum to 53 (e.g., adjust Presentation from 35 to 33, or correct whichever category is wrong).",
+   "severity": "accuracy"
+  },
+  {
+   "file": "QA_Report.html",
+   "quote": "<li><b>IP / naming (4):</b><li><b>AO-29</b>",
+   "problem": "Malformed HTML: the 'IP / naming (4):' <li> is never closed and immediately opens another <li> for AO-29, and the four IP sub-items are wrapped so the closing </li> nesting is broken (the AO-61 item is followed by a stray </li> closing the outer bullet). This renders as awkward nested bullets rather than a clean list.",
+   "fix": "Close the 'IP / naming (4):' list item and list the four IP fixes as proper sibling <li> elements.",
+   "severity": "style"
+  },
+  {
+   "file": "QA_Report.html",
+   "quote": "DERMAVERA (premium clinical skinca",
+   "problem": "Truncated text: the client-brand cell is cut off mid-word ('skinca' should be 'skincare') with no closing parenthesis. The column truncates every brand description, which looks unprofessional in a client deliverable.",
+   "fix": "Restore the full text (e.g., 'DERMAVERA (premium clinical skincare ...)') or widen/wrap the column so descriptions are not cut off mid-word.",
+   "severity": "truncation"
+  },
+  {
+   "file": "QA_Report.html",
+   "quote": "Stale &quot;outpainted/generative_expand&quot; wording in the output spec and full_brief c",
+   "problem": "Truncated text: the 'top issue' cell is cut off mid-word ('full_brief c...'). This dangling text appears in many rows and reads as unfinished.",
+   "fix": "Restore the complete issue text or add an ellipsis/tooltip so the cell does not end mid-word.",
+   "severity": "truncation"
+  },
+  {
+   "file": "QA_Report.html",
+   "quote": "<div><b>0</b><span>realism-weak · 0 low-value</span></div>",
+   "problem": "Awkward/broken KPI label: a single KPI shows the number 0 but the caption crams two separate metrics ('realism-weak' and '0 low-value') into one span, so the second '0' is not visually tied to its own big number. Reads inconsistently versus the other single-metric KPIs.",
+   "fix": "Split into two KPI tiles (one for realism-weak, one for low-value) or relabel so both counts are clearly presented.",
+   "severity": "style"
+  },
+  {
+   "file": "QA_Report.html",
+   "quote": "IP: the full_brief/one_line_ask name three real living celebrities (Messi, Ronal",
+   "problem": "Truncated text: the AO-29 top-issue cell is cut off mid-name ('Ronal' for Ronaldo). Combined with the truncation elsewhere, key detail is lost.",
+   "fix": "Restore the full issue text listing all three names.",
+   "severity": "truncation"
+  },
+  {
+   "file": "Task_Tags_v3_Table.html",
+   "quote": "<title>StudioBench — Task Tags v2</title>",
+   "problem": "The page <title> says version 2, but the <h1> heading and the filename both say version 3 (\"StudioBench — task tags v3 (all 100)\"). This is an internal version-label inconsistency that will look careless in a client-facing deliverable (e.g. the browser tab will read 'v2' while the page header reads 'v3').",
+   "fix": "Change the title to match the document version: <title>StudioBench — Task Tags v3</title>",
+   "severity": "accuracy"
+  },
+  {
+   "file": "Task_Tags_v3_Table.html",
+   "quote": "Every task re-tagged against the <b>core-30</b> (100 tasks, gen-free) metadata schema.",
+   "problem": "The metadata schema is described as 'core-30', but the actual schema is 71 metadata tags (32 core + 39 extended) across 9 facets. '30' understates and mislabels the schema size, contradicting the canonical tag count.",
+   "fix": "Refer to the schema by its correct size, e.g. 'the 71-tag (32 core + 39 extended) metadata schema' rather than 'core-30'.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "Task_Tags_v3_Table.html",
+   "quote": "all 30 tags · AO-01",
+   "problem": "Every one of the 100 row expander summaries reads 'all 30 tags', but the schema comprises 71 metadata tags (32 core + 39 extended). It also does not match the file's own content: each expander exposes 20 detail fields plus 11 table columns (31 visible fields), not 30. The '30' is both inconsistent with the canonical 71 and with what the row actually shows.",
+   "fix": "Relabel the summary to reflect the true field count, e.g. 'all 71 tags' (or the actual number of fields displayed), applied consistently across all 100 rows.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "metadata_schema_v2.json",
+   "quote": "\"becomes\": \"workflow_shape (7-value Create/Edit/Analyze combo enum)\"",
+   "problem": "The current_mapping (line 881) says the renamed tag becomes 'workflow_shape', but the actual tag defined in the schema (line 51) and listed in core_set/taxonomy_axes is 'workflow_nature'. The rename target name is wrong/stale, so the mapping table contradicts the schema it documents.",
+   "fix": "Change 'workflow_shape' to 'workflow_nature' to match the tag actually defined in the schema.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "metadata_schema_v2.json",
+   "quote": "\"allowed_values\": \"Integer 1-40. Derived = len(sub_operations).\"",
+   "problem": "sub_operation_count is defined as len(sub_operations), but the closed sub_operations vocabulary contains 57 distinct values, so the stated upper bound of 40 is inconsistent with its own derivation rule and the vocabulary size. (Compare tool_count, correctly bounded 1-15 to match the 15-tool roster.)",
+   "fix": "Raise the upper bound to match the vocabulary (e.g. 'Integer 1-57'), or state it as a practical/expected max rather than a hard range.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "metadata_schema_v2.json",
+   "quote": "T1_intro (mean <2.0) | T2_basic (2.0-2.7) | T3_intermediate (2.8-3.5) | T4_advanced (3.6-4.2) | T5_expert (>4.2)",
+   "problem": "The captures text says band edges are 'inclusive-lower/exclusive-upper' and means are computed to two decimals, but the displayed upper edges (2.7, 3.5, 4.2) do not abut the next band's lower edge (2.8, 3.6). Two-decimal means such as 2.75 or 3.55 fall into no band, leaving coverage gaps.",
+   "fix": "Make the band edges contiguous, e.g. T2_basic (2.0-2.79) / T3_intermediate (2.8-3.59) / T4_advanced (3.6-4.2), or restate the edges so every possible two-decimal mean maps to exactly one tier.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "metadata_schema_v2.json",
+   "quote": "\"captures\": \"The nature of the agent’s job — create / edit / analyze (create = assemble-from-supplied-parts, not generative).\"",
+   "problem": "This is the only possessive in the document that uses a curly/typographic apostrophe (agent’s). Every other possessive in the file uses a straight apostrophe (domain's, brief's, task's, deliverable's, etc.), so this single smart-quote is an inconsistent character that can look like an encoding artifact.",
+   "fix": "Replace the curly apostrophe with a straight one: \"the agent's job\".",
+   "severity": "style"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "Creative AI Benchmark\nCreative AI Benchmark",
+   "problem": "The title 'Creative AI Benchmark' appears duplicated on consecutive lines (lines 1-2).",
+   "fix": "Remove the duplicate so the title appears only once.",
+   "severity": "style"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "Every task is positioned on four axes.",
+   "problem": "Accuracy/internal inconsistency: the taxonomy is described as four axes, but the axis table lists five rows (Workflow, Operation, Capability, Horizon) — and the reference facts specify 6 taxonomy axes. The prose 'four axes' does not match the content.",
+   "fix": "Correct the count to match the actual number of axes described (e.g. reconcile to the intended axis count).",
+   "severity": "accuracy"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "8 types of creative work, in 4 families",
+   "problem": "Accuracy: the doc claims 8 operations, but the Family/Operations table lists more than eight operations (Photo & Image alone lists five: tonal grade & restore; masked recolor & isolation; preset retouch; stylized & duotone; stock-sourced hero — plus vector & screen-print, data-merge & layout, video & audio = 9). 'The eight operations' is repeated below.",
+   "fix": "Recount and correct the number of operations to match the table.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "A task is scored at three points.",
+   "problem": "Accuracy/internal inconsistency: the section heading says 'four phases' and the phase table lists Phase 0, 1, 2, and 3 (four phases/points), but the sentence says 'scored at three points.'",
+   "fix": "Change 'three points' to 'four points' (or reconcile with the four phases listed).",
+   "severity": "accuracy"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "Is the assets are valid and clean, before the agent runs",
+   "problem": "Grammar: broken phrasing — 'Is the assets are' is ungrammatical (double verb, wrong number agreement).",
+   "fix": "Rewrite as 'Are the assets valid and clean, before the agent runs?'",
+   "severity": "grammar"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "Check if the task is valid and executable?",
+   "problem": "Grammar/punctuation: a statement phrased with a trailing question mark; 'Check if...' is an imperative, not a question.",
+   "fix": "Either 'Is the task valid and executable?' or 'Check whether the task is valid and executable.' (remove the question mark).",
+   "severity": "grammar"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "Does the task state one specific deliverable -exactly what to produce?",
+   "problem": "Style/typography: stray hyphen used as a dash with missing/awkward spacing ('deliverable -exactly').",
+   "fix": "Use an em dash with proper spacing: 'one specific deliverable — exactly what to produce?'",
+   "severity": "style"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "Sits at the right difficulty level and not trivial",
+   "problem": "Grammar: sentence fragment / faulty parallelism ('Sits at the right difficulty level and not trivial').",
+   "fix": "Rewrite for parallelism, e.g. 'Sits at the right difficulty level and is not trivial.'",
+   "severity": "grammar"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "Code gives us a count of facts from the Phase 2(trajectories).",
+   "problem": "Typography/spacing: missing space before the parenthesis ('Phase 2(trajectories)').",
+   "fix": "Add a space: 'from Phase 2 (trajectories).'",
+   "severity": "style"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "the golden trajectory is what the agent’s runs are measured against",
+   "problem": "No error in isolation, but note the ledger of the comparison track (below) mislabels the human reference — flagged separately.",
+   "fix": "See Track table note.",
+   "severity": "style"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "T1 vs H1",
+   "problem": "Accuracy/internal inconsistency: the human reference is introduced as 'the golden' / H1 here and in Track A/B/C, but 'H1' is already defined in the Horizon axis as a task-length tier (H1 = ≤3 steps). Reusing 'H1' for the human golden output collides with the horizon-tier label and is confusing.",
+   "fix": "Use a distinct label for the human reference (e.g. 'H' or 'Golden') to avoid clashing with horizon tier H1.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "each of the 3 agent runs steps vs the human's golden trajectory",
+   "problem": "Grammar: awkward/broken phrasing ('the 3 agent runs steps').",
+   "fix": "Rewrite, e.g. 'the steps of each of the 3 agent runs vs the human's golden trajectory.'",
+   "severity": "grammar"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "Track A (Human vs Agent) : output quality [Need two SME]",
+   "problem": "Typography: stray space before the colon.",
+   "fix": "Remove the space before the colon: 'Track A (Human vs Agent): output quality'.",
+   "severity": "style"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "We tag the severity: Critical (blocks shipping), Major( needs fixes), Minor",
+   "problem": "Typography: misplaced space in 'Major( needs fixes)' — space after the parenthesis instead of before it.",
+   "fix": "'Major (needs fixes), Minor'",
+   "severity": "style"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "The document mentions 100 tasks across 8 brands and 8 operations, but the HTML contains only 73 tasks.",
+   "problem": "Accuracy/internal inconsistency: elsewhere the doc states tasks are spread over '~18 industry verticals' and structured by operation × workflow × output modality (not brands), and the reference facts give 21 domains. The '8 brands and 8 operations' framing conflicts with the rest of the doc.",
+   "fix": "Reconcile the vertical/brand/operation counts with the taxonomy section (verify against actual figures).",
+   "severity": "accuracy"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "There are 66 tasks as of today (the IDs run to 73 with gaps). Target number of tasks: 100",
+   "problem": "Accuracy/internal inconsistency: this says 66 tasks currently, while the question just above cites 73, and the reference target is 100 total. The three numbers (66 / 73 / 100) sit unreconciled in adjacent lines and read as contradictory to a client.",
+   "fix": "Clarify the current count vs the ID range vs the target so the numbers don't appear to contradict.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "Asset validation could either happen in the same phase or as a separate one—I'm fine with either approach",
+   "problem": "Style: this is internal working-discussion/Q&A left in a client-facing deliverable (informal first-person notes with named individuals).",
+   "fix": "Remove or move the internal 'Questions from delivery' Q&A section before handing to the client.",
+   "severity": "style"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "pass/ fail.Rubrics: pass/ major/ minor",
+   "problem": "Typography: missing space after the period ('fail.Rubrics') and inconsistent spacing around slashes ('pass/ fail', 'pass/ major/ minor').",
+   "fix": "'pass/fail. Rubrics: pass/major/minor' (add space after the period; normalize slash spacing).",
+   "severity": "style"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "An operation/task ingestion form would also be useful to standardize how new tasks are added.Ankit Khedia",
+   "problem": "Typography/truncation-like artifact: a person's name is run directly onto the end of a sentence with no separating space or punctuation ('added.Ankit Khedia'); the same run-together name artifact appears at the very end ('...Ankit KhediaDhiren Gangishetty').",
+   "fix": "Separate names from surrounding text and format author attributions consistently (add spacing/line breaks).",
+   "severity": "truncation"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "The initial pipeline’s costing can be found here.Creative gym - planningAnkit KhediaDhiren Gangishetty",
+   "problem": "Truncation/garbled: link/label text and multiple author names are concatenated with no spaces ('here.Creative gym - planningAnkit KhediaDhiren Gangishetty'), and the document ends abruptly on this run-together fragment.",
+   "fix": "Restore proper spacing/line breaks and either resolve the 'here' hyperlink or remove the dangling internal reference; ensure the document ends cleanly.",
+   "severity": "truncation"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "Average connector calls: 20",
+   "problem": "Consistency check: elsewhere the doc says 'most of our tasks are long horizon' and est_calls is a taxonomy axis; ensure '20' matches the stated horizon distribution (H4 = 16+). Not a contradiction on its own but worth verifying the average against the tier mix.",
+   "fix": "Confirm the average of 20 connector calls is consistent with the horizon-tier distribution stated for the 100 tasks.",
+   "severity": "accuracy"
+  },
+  {
+   "file": "CAB_refined.docx",
+   "quote": "organised by operation × workflow",
+   "problem": "Spelling: British spelling 'organised' is used here while the document elsewhere mixes US spellings (e.g. 'utilization', 'recognizable'); however 'colour', 'organised', 'flavour' are British. The doc is inconsistent between US and British spelling throughout.",
+   "fix": "Choose one spelling convention (US or British) and apply it consistently across the document.",
+   "severity": "spelling"
+  }
+ ]
+}

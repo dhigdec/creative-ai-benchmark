@@ -1,0 +1,6 @@
+REASONS: CANVAS-extension
+
+ISSUES:
+- Icon/avatar step mismatch: the deliverable (steps 6 note + OVERDRIVE_icon_avatar_transparent.png spec) calls for a cap-mark icon 'derived from the cap mark', but image_crop_to_bounds on the primary horizontal lockup crops to the content bounds of the WHOLE wordmark+cap lockup, not the cap alone. The connector step cannot isolate just the graduation cap from a horizontal wordmark lockup, so the produced icon will be the full lockup tight-cropped, not a cap-only avatar as promised.
+- Palette-build sub-chain (steps 13-18) is contrived: image_select_by_prompt selects semantic content, but the cropped icon canvas has no pre-existing 'first/second/third swatch block' to select. Prompt-selecting three non-existent 'blocks' to then solid-fill is a fragile way to fabricate a swatch reference; a real freelancer would author the palette tile differently. Functional intent is honestly documented but the mechanism is the weakest link in the chain.
+- Minor internal count inconsistency: difficulty_rationale text says '14 steps, 11 distinct Adobe tools', but the structured fields are tool_call_count=21 and distinct_adobe_tools=12. The prose numbers are stale (likely from an earlier draft) and should be reconciled.

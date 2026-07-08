@@ -1,0 +1,354 @@
+{
+ "spec": {
+  "connector_workflow": [
+   {
+    "n": 1,
+    "tool": "asset_initialize_file_upload",
+    "server": "adobe",
+    "inputs_from": [
+     "raw_app_walkthrough_capture.mp4",
+     "avatar_intro_clip.mp4",
+     "website_homepage_capture.mp4",
+     "rough_scratch_vo.wav",
+     "disputedesk_brand_kit.json"
+    ],
+    "output": "upload sessions + presigned PUT URLs for all 5 source assets into CC storage",
+    "note": "Initialize headless ingest of every provided source asset so later video/audio tools can reference them by CC URN. Consumes the raw input files as named."
+   },
+   {
+    "n": 2,
+    "tool": "asset_finalize_file_upload",
+    "server": "adobe",
+    "inputs_from": [
+     "step 1"
+    ],
+    "output": "5 finalized CC asset URNs (raw_capture_urn, avatar_urn, website_urn, scratch_vo_urn, brandkit_urn)",
+    "note": "Finalize the uploads opened in step 1; the returned URNs are the canonical handles reused by nearly every downstream step."
+   },
+   {
+    "n": 3,
+    "tool": "media_summarize",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2"
+    ],
+    "output": "walkthrough_summary.json — timestamped transcript + scene/section summary of the 11-min raw app capture (which UI screens appear, in what order, with start/end times)",
+    "note": "MUST-EXERCISE. Summarize the long raw capture (raw_capture_urn) to recover what is on screen and when. This summary is the spine: it drives the VO script, the highlight selection, and the callout copy."
+   },
+   {
+    "n": 4,
+    "tool": "media_summarize",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2"
+    ],
+    "output": "avatar_intro_summary.json — transcript of the spoken avatar intro clip + its in/out spoken segments",
+    "note": "Summarize the avatar_urn so the agent knows exactly what the avatar already says, avoids duplicating that copy in the walkthrough VO, and can butt-join the intro audio to the cleaned walkthrough VO seamlessly."
+   },
+   {
+    "n": 5,
+    "tool": "media_enhance_speech",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2",
+     "step 3"
+    ],
+    "output": "clean_walkthrough_vo.wav — denoised, de-essed, level-balanced narrator track for the website+app walkthrough",
+    "note": "MUST-EXERCISE (the audio spine). Enhance the scratch VO (scratch_vo_urn) recorded against the script implied by walkthrough_summary.json, removing room noise/awkward gaps so audio is 'clean and balanced' per brief."
+   },
+   {
+    "n": 6,
+    "tool": "media_enhance_speech",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2",
+     "step 4"
+    ],
+    "output": "clean_avatar_vo.wav — enhanced avatar-section narration matched in loudness to clean_walkthrough_vo.wav",
+    "note": "MUST-EXERCISE (second pass). Enhance the avatar clip's audio so the intro VO and walkthrough VO share one consistent denoise profile and loudness target — single coherent voice across the whole film."
+   },
+   {
+    "n": 7,
+    "tool": "asset_finalize_file_upload",
+    "server": "adobe",
+    "inputs_from": [
+     "step 5",
+     "step 6"
+    ],
+    "output": "CC URNs for clean_walkthrough_vo and clean_avatar_vo (clean_vo_urn, clean_avatar_audio_urn)",
+    "note": "Register the two enhanced audio tracks back into CC storage (re-using the upload-init/finalize plumbing) so they can be muxed onto the picture-cut later. Output→input: enhanced audio becomes addressable assets."
+   },
+   {
+    "n": 8,
+    "tool": "video_create_quick_cut",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2",
+     "step 3"
+    ],
+    "output": "walkthrough_highlight.mp4 — ~75s tight highlight cut of the 11-min app capture (the high-engagement UI moments)",
+    "note": "MUST-EXERCISE. Compress raw_capture_urn into a guided highlight using a prompt seeded from walkthrough_summary.json (target_duration≈75s, prompt = the ordered key screens: dispute inbox, evidence builder, auto-submit, win-rate dashboard). Picture only — speech-unaware, so the summary supplies the ordering."
+   },
+   {
+    "n": 9,
+    "tool": "video_create_quick_cut",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2",
+     "step 4"
+    ],
+    "output": "avatar_intro_cut.mp4 — ~15s trimmed avatar opening (tightest credible take, dead air removed)",
+    "note": "MUST-EXERCISE. Quick-cut the avatar_urn down to a punchy intro using avatar_intro_summary.json to pick the cleanest spoken segment; this becomes the film's opening beat before the walkthrough highlight."
+   },
+   {
+    "n": 10,
+    "tool": "search_design",
+    "server": "adobe",
+    "inputs_from": [
+     "walkthrough_summary.json (step 3)",
+     "disputedesk_brand_kit.json"
+    ],
+    "output": "motion_lower_third_template — an Express motion/callout template for UI callouts + text overlays (brand-colored lower thirds, zoom-highlight cards)",
+    "note": "Find an on-brand Express template for the 'clean text overlays / callouts / UI highlights' the brief demands; copy slots are driven by the section labels in walkthrough_summary.json (e.g. 'Build evidence in 1 click')."
+   },
+   {
+    "n": 11,
+    "tool": "fill_text",
+    "server": "adobe",
+    "inputs_from": [
+     "step 10",
+     "step 3"
+    ],
+    "output": "filled_callout_overlays — the template populated with the 4 walkthrough callout strings",
+    "note": "Text-only fill of the chosen template with callout copy derived from the section summaries (no layout change), producing the overlay graphics that ride over the highlight cut."
+   },
+   {
+    "n": 12,
+    "tool": "animate_design",
+    "server": "adobe",
+    "inputs_from": [
+     "step 11"
+    ],
+    "output": "callout_overlays.mov — animated lower-third/callout overlay clips with alpha (fade/slide motion)",
+    "note": "Animate the filled callout template into motion overlays with transparency, ready to composite onto the picture cut. Output→input: filled text → animated motion asset."
+   },
+   {
+    "n": 13,
+    "tool": "asset_license_and_download_stock",
+    "server": "adobe",
+    "inputs_from": [
+     "disputedesk_brand_kit.json"
+    ],
+    "output": "music_bed.wav — a licensed calm/credible corporate underscore matched to the B2B SaaS tone",
+    "note": "License a subtle music bed (brief: 'polished, not flashy'); will sit low under the VO. Keeps audio-bed sourcing inside the connector rather than local generation."
+   },
+   {
+    "n": 14,
+    "tool": "local",
+    "server": "local",
+    "inputs_from": [
+     "step 9",
+     "step 8",
+     "step 12",
+     "step 7",
+     "step 13"
+    ],
+    "output": "disputedesk_demo_master_1600x900.mp4 — assembled master: avatar_intro_cut → walkthrough_highlight, callout_overlays.mov composited, clean_avatar_vo + clean_walkthrough_vo + music_bed muxed, scaled to 1600×900",
+    "note": "Minimal unavoidable glue: ffmpeg concat + overlay + audio mux + scale-to-fit-no-crop. This is the only local step; everything feeding it is a connector output. Produces the exact-spec 16:9 master."
+   },
+   {
+    "n": 15,
+    "tool": "asset_finalize_file_upload",
+    "server": "adobe",
+    "inputs_from": [
+     "step 14"
+    ],
+    "output": "master_demo_urn — the 1600×900 master registered in CC storage",
+    "note": "Push the assembled master back into CC storage (init/finalize plumbing) so the connector resize tool can operate on it by URN."
+   },
+   {
+    "n": 16,
+    "tool": "video_resize",
+    "server": "adobe",
+    "inputs_from": [
+     "step 15"
+    ],
+    "output": "disputedesk_demo_promo_1080x1920.mp4 — subject-aware 9:16 vertical promo reframe of the master",
+    "note": "MUST-EXERCISE. Subject-aware reframe of master_demo_urn to a 9:16 vertical promo (for YouTube Shorts / social teaser the brief implies via 'YouTube and potential customers'), keeping UI + avatar in frame, no important-UI crop."
+   },
+   {
+    "n": 17,
+    "tool": "video_resize",
+    "server": "adobe",
+    "inputs_from": [
+     "step 15"
+    ],
+    "output": "disputedesk_demo_squarepreview_1080x1080.mp4 — 1:1 silent-autoplay preview reframe",
+    "note": "MUST-EXERCISE (second target). Reframe the same master to a 1:1 square preview for marketplace/social thumbnail autoplay — proving the resize chain produces multiple delivery masters from one source URN, none cropping key UI."
+   },
+   {
+    "n": 18,
+    "tool": "asset_inline_preview",
+    "server": "adobe",
+    "inputs_from": [
+     "step 14",
+     "step 16",
+     "step 17"
+    ],
+    "output": "contact-sheet previews of the 16:9 master + 9:16 + 1:1 deliverables for sign-off",
+    "note": "Render inline previews of all three delivery videos so the annotator/client can verify framing, readable text, and clean audio before acceptance."
+   }
+  ],
+  "difficulty_rationale": "See difficulty_rationale field.",
+  "full_brief": "DisputeDesk is a Shopify app that helps ecommerce merchants manage chargebacks and assemble structured dispute evidence. The client is preparing their Shopify App Store listing and wants to replace a rough, amateur screen recording with a polished product-introduction film. They have provided a long raw screen-capture walkthrough of the app, a separately recorded male business-avatar intro clip, a capture of the marketing homepage, a scratch voiceover take recorded in a non-treated room, and a brand kit (logo, colors, fonts). The film must open with the professional, calm, trustworthy avatar presenter introducing the chargeback problem and the product in a B2B-SaaS register, then transition smoothly into the website/homepage section, then into a guided app walkthrough with professional zooms, callouts, UI highlights, clean text overlays, and smooth transitions — guided by the voiceover, never feeling like someone randomly clicking around.\\n\\nThe exact, gradeable constraints from the client: the final master must be 1600 × 900 pixels, 16:9, exported as MP4; it must NOT crop important parts of the website or app UI; on-screen text must be readable; and the audio must be clean and balanced throughout (no room noise, no awkward pauses, consistent loudness between the avatar intro and the walkthrough narration). The visual style is clean, modern, professional and trustworthy — polished but not flashy, no distracting effects — on par with professional B2B software demo videos. The walkthrough must be tightened from the long raw capture into a focused highlight that tracks the narration. The deliverable set is the 1600×900 MP4 master plus inline previews for sign-off.\\n\\nEnrichment (genuinely implied by the brief, which states the video must suit 'Shopify App Store listing, YouTube, and potential customers/investors'): in addition to the 16:9 master, deliver a 9:16 vertical promo (1080×1920) and a 1:1 square autoplay preview (1080×1080), both reframed subject-aware from the same master so no important UI is cropped. All discount/brand copy and the avatar's spoken content must stay consistent with the brand kit; the music bed must be subtle and credible, sitting low under the voiceover.",
+  "grounding_note": "REAL (verbatim from the freelancer.com brief in db_all.json, project 40479621): product is DisputeDesk, a Shopify chargeback/dispute-evidence app; client wants a polished App Store demo (NOT a raw screen recording); required structure = (1) professional male business avatar intro speaking to camera in calm/trustworthy B2B-SaaS tone, (2) smooth transition into website/homepage section with clean text overlays + subtle motion, (3) app walkthrough built from the existing screen recording with zooms/pans/callouts/highlights/transitions, (4) clear voiceover throughout with smooth pacing and awkward pauses removed, (5) clean modern not-too-flashy style; technical reqs = final size exactly 1600×900 px, 16:9, MP4 export, must NOT crop important website/app UI, text readable, audio clean and balanced, editable project file if possible, 1–2 revision rounds; client can provide rough YouTube demo, original screen recording, website URL, app screenshots/recordings, logo/branding, draft script, avatar/voice direction. ENRICHED (added because the brief implies it but does not spell it out): the explicit 9:16 (1080×1920) vertical promo and 1:1 (1080×1080) square preview are my additions — justified by the brief's own line that the result must suit 'Shopify App Store listing, YouTube, and potential customers/investors', which implies multi-surface distribution; the specific licensed music bed, the two-pass loudness-matched VO enhance, the ~75s highlight target duration, and the four named callout strings are reasonable productions of the stated requirements (clean balanced audio, tightened walkthrough, callouts/highlights) rather than facts stated in the brief. The four app screens named in the quick-cut prompt (dispute inbox, evidence builder, auto-submit, win-rate dashboard) are illustrative of a chargeback-dispute app and would in reality come from the client's actual capture.",
+  "id": "F2-03",
+  "slug": "disputedesk-shopify-demo-video",
+  "title": "Create Professional Shopify App Store Demo Video — Avatar Intro + Website/App Walkthrough",
+  "vertical": "E-commerce, Retail & Product",
+  "source": {
+   "platform": "Freelancer.com",
+   "url": "https://www.freelancer.com/projects/after-effects/Create-Professional-Shopify-App-Store-40479621"
+  },
+  "one_line_ask": "Turn a long raw DisputeDesk app screen-capture, an avatar intro clip, a homepage capture, and a noisy scratch voiceover into a polished Shopify App Store demo film — a 1600×900 16:9 MP4 master with a clean, loudness-matched voiceover, a tightened narration-guided highlight walkthrough, on-brand callout overlays, plus 9:16 and 1:1 reframed promos — with no important UI cropped.",
+  "inputs": [
+   {
+    "name": "raw_app_walkthrough_capture.mp4",
+    "kind": "video",
+    "gen_model": "veo-3.1-generate-preview",
+    "gen_prompt": "Screen recording, 1920x1080, of a fictional Shopify merchant admin app called 'DisputeDesk' for managing payment chargebacks. An unhurried mouse cursor moves through four screens in order, ~2.5 minutes each so the clip runs ~11 minutes total: (1) a 'Dispute Inbox' table listing chargeback cases with status pills (New / Evidence Due / Submitted / Won / Lost), order IDs, amounts in USD, and due-date countdowns; (2) an 'Evidence Builder' wizard where the user toggles checkboxes for proof items (order confirmation, tracking, AVS match, customer comms) and a live evidence-completeness meter fills toward 100%; (3) a 'One-Click Submit' confirmation modal that posts the evidence packet to the processor; (4) a 'Win-Rate Dashboard' with a line chart of recovered revenue and a donut of won-vs-lost. Clean modern SaaS UI, white background, indigo accent color, Inter font, real readable English UI labels and numbers. Include realistic hesitation, a little scrolling, an occasional mis-click corrected — authentic captured-software feel, NOT a glossy promo render. No human, no voiceover baked in (silent or ambient room tone only).",
+    "realism_notes": "Must look like genuine captured software, not a motion-graphics mockup: real cursor latency, scrollbars, a stray hover tooltip, slightly imperfect pacing. UI text must be legibly rendered so media_summarize can transcribe the on-screen sections. Long and partly redundant on purpose so the quick-cut has fat to trim.",
+    "used_in_steps": [
+     1,
+     2,
+     3,
+     8
+    ]
+   },
+   {
+    "name": "avatar_intro_clip.mp4",
+    "kind": "video",
+    "gen_model": "veo-3.1-generate-preview",
+    "gen_prompt": "1080p, native audio. A professional male business presenter, late 30s, mid-brown skin, short neat hair with a few individual flyaway strands, light stubble with visible skin pores and natural texture (not airbrushed), wearing a charcoal blazer over a plain shirt, seated mid-shot in a softly-lit modern office with a blurred bookshelf behind. He speaks directly to camera in a calm, credible B2B-SaaS tone for ~28 seconds: 'If you sell on Shopify, chargebacks are quietly costing you revenue — and fighting them is a mess of screenshots and deadlines. DisputeDesk fixes that. It pulls your order evidence together automatically and helps you submit a clean, structured dispute in minutes. Let me show you how it works.' Natural blinking, small natural hand gestures, correct five-fingered hands, realistic lip-sync, documentary realism — believable real person, not CGI-glossy, not an obvious AI avatar. Clean spoken audio with faint natural room presence.",
+    "realism_notes": "Skin must show pores and real texture; hair should have individual strands and a flyaway or two; hands must be anatomically correct on any gesture. Audio is clean-ish but has faint room presence so media_enhance_speech has something to improve and loudness-match against the walkthrough VO.",
+    "used_in_steps": [
+     1,
+     2,
+     4,
+     6,
+     9
+    ]
+   },
+   {
+    "name": "website_homepage_capture.mp4",
+    "kind": "video",
+    "gen_model": "veo-3.1-generate-preview",
+    "gen_prompt": "Screen recording, 1920x1080, ~40 seconds, of the marketing homepage of 'DisputeDesk' (getdisputedesk.com) in a desktop browser. Smooth scroll from a hero section ('Win more chargeback disputes on Shopify — automatically') with a product screenshot, down through a 3-up feature row (Auto-collect evidence / One-click submit / Track your win rate), a short stats band ('Merchants recover an average of 38% more disputes'), and a customer-logo strip. Clean modern SaaS marketing site, white + indigo, Inter font, readable English copy, real cursor scroll with natural easing. No baked-in voiceover.",
+    "realism_notes": "Looks like a real browser capture (visible address bar, scrollbar, cursor). Copy must be legible for summarize. Used as the website-transition section between the avatar intro and the app walkthrough.",
+    "used_in_steps": [
+     1,
+     2
+    ]
+   },
+   {
+    "name": "rough_scratch_vo.wav",
+    "kind": "audio",
+    "gen_model": "gpt-4o-mini-tts",
+    "gen_prompt": "48kHz mono voiceover, same calm credible male B2B-SaaS voice as the avatar, ~80 seconds, narrating the website + app walkthrough: 'Here's the DisputeDesk homepage — it shows merchants exactly how the app recovers more chargebacks. Inside the app, the Dispute Inbox lists every open case with its deadline, so nothing slips. Open a case and the Evidence Builder pulls your order confirmation, tracking, and customer messages together — the completeness meter shows when your packet is strong. One click submits the structured evidence straight to the processor. And the Win-Rate Dashboard tracks exactly how much revenue you're recovering over time.' Deliver this clean at 48kHz, then describe it as a 'scratch take recorded in an untreated room' — i.e. the realism layer should add light room reverb, faint HVAC hum, and two or three short awkward pauses/breaths, because the TASK is literally audio-repair (cleaning this is the point).",
+    "realism_notes": "This is the one input that is deliberately roughened — the brief's spine is VO cleanup, so the scratch take must carry light room reverb, a faint hum, and a couple of awkward pauses for media_enhance_speech to remove. Script wording is keyed to the on-screen sections so it matches the walkthrough_summary.",
+    "used_in_steps": [
+     1,
+     2,
+     5
+    ]
+   },
+   {
+    "name": "disputedesk_brand_kit.json",
+    "kind": "data",
+    "gen_model": "gemini-2.5-flash",
+    "gen_prompt": "Generate a JSON brand kit for the Shopify app 'DisputeDesk': fields for logo_wordmark_svg_ref, primary_color (indigo hex e.g. #4F46E5), secondary_color, accent, font_family ('Inter'), tone_keywords (['calm','credible','professional','trustworthy','B2B SaaS']), four ready callout strings keyed to app sections ('Never miss a dispute deadline','Build evidence in one click','Submit structured proof instantly','See exactly what you recover'), and a music_brief string ('subtle, calm, credible corporate underscore, low energy, no drums-forward, sits under voiceover').",
+    "realism_notes": "Plausible real brand kit a client would hand over. The four callout strings and tone keywords are consumed verbatim by the Express overlay fill and the music-bed license query, so they must be present and clean.",
+    "used_in_steps": [
+     1,
+     2,
+     10,
+     11,
+     13
+    ]
+   }
+  ],
+  "outputs": [
+   {
+    "name": "disputedesk_demo_master_1600x900.mp4",
+    "kind": "video",
+    "spec": "Exactly 1600×900 px, 16:9, MP4 (H.264), ~90s: avatar intro (~15s) → website transition → narration-guided app highlight (~75s); animated on-brand callout overlays; muxed clean avatar VO + clean walkthrough VO + low music bed; no important website/app UI cropped; on-screen text readable; audio clean and loudness-balanced.",
+    "rubric_hook": "Annotator verifies exact 1600×900/16:9/MP4; checks NO important UI is cropped; confirms avatar-intro VO and walkthrough VO share consistent loudness with no room noise/awkward pauses; checks callout overlay copy matches the four brand-kit strings and the on-screen section it labels; confirms the highlight follows the narration order rather than random clicking; music sits under the VO."
+   },
+   {
+    "name": "disputedesk_demo_promo_1080x1920.mp4",
+    "kind": "video",
+    "spec": "1080×1920 px, 9:16 vertical, MP4, subject-aware reframe of the master, same audio, key UI/avatar kept in frame.",
+    "rubric_hook": "Annotator confirms exact 1080×1920/9:16; checks subject-aware reframe keeps the avatar and the active UI element in frame (no critical UI sliced off); audio preserved and clean."
+   },
+   {
+    "name": "disputedesk_demo_squarepreview_1080x1080.mp4",
+    "kind": "video",
+    "spec": "1080×1080 px, 1:1 square, MP4, subject-aware reframe of the master for autoplay preview.",
+    "rubric_hook": "Annotator confirms exact 1080×1080/1:1; checks the reframe still shows the labeled UI element for each callout and that text stays readable at square crop."
+   },
+   {
+    "name": "walkthrough_summary.json",
+    "kind": "data",
+    "spec": "Timestamped transcript + ordered section summary of the 11-min raw capture (screen names + in/out times).",
+    "rubric_hook": "Annotator checks the summary correctly identifies and orders the four app screens with plausible timestamps — this is the artifact that proves the highlight cut and overlay copy were summary-driven, not guessed."
+   },
+   {
+    "name": "clean_walkthrough_vo.wav + clean_avatar_vo.wav",
+    "kind": "audio",
+    "spec": "Two 48kHz enhanced VO tracks, denoised/de-reverbed, loudness-matched to a single target.",
+    "rubric_hook": "Annotator A/Bs scratch vs enhanced: room reverb/hum/awkward pauses removed, and the two tracks measure to the same loudness target so the intro and walkthrough sound like one continuous narrator."
+   }
+  ],
+  "tools_used": [
+   "asset_initialize_file_upload",
+   "asset_finalize_file_upload",
+   "media_summarize",
+   "media_enhance_speech",
+   "video_create_quick_cut",
+   "search_design",
+   "fill_text",
+   "animate_design",
+   "asset_license_and_download_stock",
+   "video_resize",
+   "asset_inline_preview"
+  ],
+  "tool_call_count": 18,
+  "groups_covered": [
+   "video_audio",
+   "express_motion",
+   "stock",
+   "asset_plumbing"
+  ],
+  "iterative_chaining_note": "The chain is genuinely output→input at every hop. Steps 1–2 upload the five source assets once and mint URNs that are reused 12+ times downstream (no re-uploads). media_summarize on the raw capture (step 3) produces walkthrough_summary.json, which is then consumed three different ways: (a) it seeds the video_create_quick_cut prompt and target ordering in step 8 so the picture cut follows the narrated sequence (critical because quick_cut is explicitly NOT speech-aware), (b) it provides the section labels that the Express template is filled with in step 11, and (c) it implicitly defines the script the scratch VO was recorded against, which media_enhance_speech cleans in step 5. The two media_enhance_speech passes (steps 5 and 6) feed the two clean VO tracks that are re-registered as URNs in step 7 and muxed in step 14. The avatar summary (step 4) drives the avatar quick-cut (step 9). The Express subchain is a clean cascade: search_design (10) → fill_text (11) → animate_design (12) → callout_overlays.mov. The single local mux (step 14) consumes FIVE prior connector outputs at once (avatar cut, walkthrough highlight, animated overlays, both clean VO tracks via their URNs, and the licensed music bed) to build the 1600×900 master. That master is re-registered (step 15) and then fed to TWO independent video_resize calls (16, 17) producing the 9:16 and 1:1 deliverables from the same source URN, and finally all three videos are previewed together (step 18). Break any early link (wrong summary, unmatched VO loudness, lost URN) and every downstream artifact is wrong."
+ },
+ "verdict": {
+  "severity": "minor",
+  "real_tools_only": true,
+  "calls_genuine": true,
+  "grounded": true,
+  "io_clear": false,
+  "hq_media": true,
+  "issues": [
+   "ORPHANED WEBSITE ASSET / MISSING REQUIRED BEAT (most serious): website_homepage_capture.mp4 is uploaded+finalized (steps 1-2, used_in_steps:[1,2]) then never consumed again. No step summarizes, quick-cuts, or composites it, and it is NOT among the step-14 local-mux inputs (which are step9 avatar cut, step8 app highlight, step12 overlays, step7 VO URNs, step13 music). Yet the disputedesk_demo_master_1600x900.mp4 output spec explicitly claims 'avatar intro (~15s) -> website transition -> narration-guided app highlight (~75s)', the verbatim brief lists the DisputeDesk website/homepage section as required structural beat #2 (clean text overlays + subtle motion), and the duration budget 15+75=90s allots the website section 0 seconds. The chain asserts a deliverable section it never actually produces — a genuine INPUT->OUTPUT contract break.",
+   "asset_finalize_file_upload is called WITHOUT a paired asset_initialize_file_upload at step 7 (registering the two enhanced VO tracks as new CC assets) and step 15 (registering the assembled 1600x900 master). finalize cannot mint a URN for a brand-new file without a preceding initialize + presigned PUT. Steps 1-2 correctly pair init+finalize; steps 7 and 15 invoke only the finalize half, so the upload sequence is under-specified/incomplete.",
+   "media_enhance_speech at step 6 is fed avatar_urn, which is a VIDEO container (avatar_intro_clip.mp4), not an extracted audio track. The capability sheet scopes media_enhance_speech to 'clean/denoise/enhance a voice recording (podcast/VO cleanup)'. Whether it accepts a video URN and extracts/returns enhanced audio is unverified; no separate avatar-audio asset is extracted first.",
+   "asset_license_and_download_stock at step 13 is used to license a music bed (music_bed.wav). The tool description on the sheet (A4) scopes it to 'license a Stock photo/vector/video and download it' — it does not list Stock audio/music. Stock-audio existence is only implied by the model-notes section D ('Music bed: licensed Stock audio or generated'), so returning an audio asset from this specific tool is unverified."
+  ],
+  "fixes": [
+   "Add the website section to the actual chain: insert a media_summarize on website_urn and a video_create_quick_cut (or trim) on website_urn to produce a ~10-15s website transition clip, then ADD that clip to the step-14 mux inputs and re-budget the master (~e.g. 15s avatar + 15s website + 60-75s app highlight). Alternatively, if the website beat is intentionally cut, REMOVE website_homepage_capture.mp4 from the inputs and delete 'website transition' from the master output spec and one_line_ask so the deliverable matches what is produced. Do not leave an uploaded asset orphaned while claiming its output.",
+   "Make the asset-registration steps complete: at steps 7 and 15 prepend an asset_initialize_file_upload (and, if the connector requires it, asset_get_presigned_urls + the PUT) before asset_finalize_file_upload, mirroring the correct init->finalize pairing used in steps 1-2. Update inputs_from accordingly so the finalize consumes the matching initialize.",
+   "Disambiguate the audio source for step 6: either (a) note that media_enhance_speech is given the avatar video URN and extracts its audio track (and confirm the connector supports video input), or (b) add an explicit step that extracts/derives the avatar audio asset (e.g. via the local glue or a separate audio URN) and feed THAT to media_enhance_speech.",
+   "Confirm asset_license_and_download_stock returns Stock AUDIO; if it only returns photo/vector/video, switch the music-bed sourcing to the sanctioned alternative in sheet section D (generated music bed) or use asset_search to confirm a licensable Stock audio result, and update step 13's note/output to match the verified path."
+  ]
+ }
+}

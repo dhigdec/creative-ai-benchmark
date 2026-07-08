@@ -1,0 +1,7 @@
+REASONS: CANVAS-extension
+
+ISSUES:
+- Step 7 contradicts the reverify note and its own output spec. The reverify block explicitly claims step 7 was changed from image_fill_area to image_crop_and_resize (a gen-free 3:1 crop), but connector_workflow step 7 STILL uses image_fill_area with a note about placing the logo on a solid brand-blue canvas. The fix was documented as applied but never actually applied to the workflow array.
+- Output/tool semantic mismatch: titanseal_horizontal_lockup.png is specced as 'a horizontal band of the source, cropped/reframed, no invented pixels,' but step 7's image_fill_area composites the logo onto a solid-color fill canvas — a different operation that does not crop a band from the source. As written, executing step 7 would not produce the output the spec promises.
+- Count inconsistency: distinct_adobe_tools=15, but the tools_used array lists 14 entries and the reverify note itself says the count should be 14. Also image_fill_area is actually used at step 7 yet is absent from tools_used, while nothing in tools_used is wrong — the array reflects the intended (post-fix) workflow, not the shipped one.
+- Minor design concern: cropping a 3:1 band out of a centered square logo composition would slice off the top and bottom of the mark; if step 7 is corrected to a crop, the resulting 'lockup' may clip the icon/wordmark rather than reframe it cleanly.

@@ -1,0 +1,456 @@
+{
+ "task_id": 3437,
+ "slug": "blausweta-insert",
+ "title": "Blausweta-Rasur two-sided DIN A5 package insert",
+ "started": "2026-06-11T16:26:34",
+ "finished": "2026-06-11T16:50:06",
+ "steps": [
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Original warehouse header photo — supplied clean without baked-in logo; will become the front photo band.",
+   "input": "input_assets/warehouse_header.jpg",
+   "output": "input_assets/warehouse_header.jpg",
+   "n": 1,
+   "ts": "2026-06-11T16:27:27",
+   "step_image": "steps/001_baseline_warehouse.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Official Blausweta-Rasur logo — used as-is per brief (never traced); cut + vectorized.",
+   "input": "input_assets/logo_blausweta.png",
+   "output": "input_assets/logo_blausweta.png",
+   "n": 2,
+   "ts": "2026-06-11T16:27:27",
+   "step_image": "steps/002_baseline_logo.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Shipping icon original (truck) — for the fast-shipping benefit row.",
+   "input": "input_assets/icon_shipping.png",
+   "output": "input_assets/icon_shipping.png",
+   "n": 3,
+   "ts": "2026-06-11T16:27:27",
+   "step_image": "steps/003_baseline_icon_shipping.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Discount icon original (percent) — for the attractive-shop-prices benefit row.",
+   "input": "input_assets/icon_discount.png",
+   "output": "input_assets/icon_discount.png",
+   "n": 4,
+   "ts": "2026-06-11T16:27:28",
+   "step_image": "steps/004_baseline_icon_discount.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Loyalty icon original (star) — for the exclusive-bonus-programs benefit row.",
+   "input": "input_assets/icon_loyalty.png",
+   "output": "input_assets/icon_loyalty.png",
+   "n": 5,
+   "ts": "2026-06-11T16:27:28",
+   "step_image": "steps/005_baseline_icon_loyalty.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Referral icon original (people) — for the friends-refer-friends benefit row.",
+   "input": "input_assets/icon_referral.png",
+   "output": "input_assets/icon_referral.png",
+   "n": 6,
+   "ts": "2026-06-11T16:27:28",
+   "step_image": "steps/006_baseline_icon_referral.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_auto_tone",
+   "note": "Auto-tone the warehouse header so exposure/contrast read crisp and professional for the front photo band.",
+   "input": "input_assets/warehouse_header.jpg",
+   "output": "work/warehouse_toned.png",
+   "params": {
+    "imageURIs": 1
+   },
+   "adobe_request_id": "4b3e29f5-63fe-481e-914b-985bec4df8b0",
+   "n": 7,
+   "ts": "2026-06-11T16:30:56",
+   "step_image": "steps/007_op1_warehouse_toned.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_color_temperature",
+   "note": "Gently cool the toned header (a=6,b=-18) to a businesslike neutral cast — kills any warm wedding feel per the brief.",
+   "input": "work/warehouse_toned.png",
+   "output": "work/warehouse_cool.png",
+   "params": {
+    "a": 6,
+    "b": -18,
+    "luminance": 55
+   },
+   "adobe_request_id": "b6bc9d5b-a684-4c3e-af81-6c25892e0cbe",
+   "n": 8,
+   "ts": "2026-06-11T16:30:56",
+   "step_image": "steps/008_op2_warehouse_cool.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "Reframe the cooled header to a wide 2:1 band centred on the packing bench/box for the front photo strip.",
+   "input": "work/warehouse_cool.png",
+   "output": "work/warehouse_header_wide.png",
+   "params": {
+    "output": "2:1",
+    "fit": "reframe",
+    "focus_prompt": "cardboard packing box on bench"
+   },
+   "adobe_request_id": "197541b7-0cd5-4621-9aea-d2ba05917400",
+   "n": 9,
+   "ts": "2026-06-11T16:30:56",
+   "step_image": "steps/009_op3_warehouse_wide.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_remove_background",
+   "note": "Cut out the shipping (truck) icon to a transparent PNG for clean compositing on the white back page.",
+   "input": "input_assets/icon_shipping.png",
+   "output": "work/icon_shipping_cut.png",
+   "adobe_request_id": "80c2f7e5-5623-4fc6-b8e0-cff64c1d08f6",
+   "n": 10,
+   "ts": "2026-06-11T16:32:29",
+   "step_image": "steps/010_op4_icon_shipping_cut.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_remove_background",
+   "note": "Cut out the discount (percent) icon to transparent for the shop-prices benefit row.",
+   "input": "input_assets/icon_discount.png",
+   "output": "work/icon_discount_cut.png",
+   "adobe_request_id": "32a157a5-28ff-4a84-8563-2b6478080151",
+   "n": 11,
+   "ts": "2026-06-11T16:32:29",
+   "step_image": "steps/011_op5_icon_discount_cut.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_remove_background",
+   "note": "Cut out the loyalty (star) icon to transparent for the bonus-programs benefit row.",
+   "input": "input_assets/icon_loyalty.png",
+   "output": "work/icon_loyalty_cut.png",
+   "adobe_request_id": "fd562543-2d09-4730-b09b-69ed789e50c1",
+   "n": 12,
+   "ts": "2026-06-11T16:32:29",
+   "step_image": "steps/012_op6_icon_loyalty_cut.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_remove_background",
+   "note": "Cut out the referral (people) icon to transparent for the friends-refer-friends benefit row.",
+   "input": "input_assets/icon_referral.png",
+   "output": "work/icon_referral_cut.png",
+   "adobe_request_id": "1086f9ed-d38b-44fb-945b-2315a9c96474",
+   "n": 13,
+   "ts": "2026-06-11T16:32:29",
+   "step_image": "steps/013_op7_icon_referral_cut.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_remove_background",
+   "note": "Cut out the logo; select-subject mode kept the razor + dark glyphs but dropped white interior letters, so for placement fidelity the ORIGINAL logo-on-white is used on the front white band (brief: place logo as-is). Cutout retained as supporting asset.",
+   "input": "input_assets/logo_blausweta.png",
+   "output": "work/logo_cut.png",
+   "adobe_request_id": "2e552603-a427-4c90-9650-21eb821c13e2",
+   "n": 14,
+   "ts": "2026-06-11T16:32:29",
+   "step_image": "steps/014_op8_logo_cut.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_vectorize",
+   "note": "Vectorize the official logo to a real scalable SVG (Illustrator API) — supporting vector-logo deliverable for the print source handoff.",
+   "input": "input_assets/logo_blausweta.png",
+   "output": "outputs/support/logo_blausweta.svg",
+   "adobe_request_id": "68d82b98-2e8c-46fb-bca0-c3c9a184617f",
+   "n": 15,
+   "ts": "2026-06-11T16:32:29",
+   "step_image": "steps/015_op9_logo_vectorized.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_front_stage1_logo_band",
+   "note": "Front stage 1: white field with the official logo placed as-is (tight optical crop, 760px wide) above a thin purple hairline — warm but businesslike opening, logo never traced.",
+   "input": "input_assets/logo_blausweta.png",
+   "output": "work/stage_front_1_bg_logo.png",
+   "params": {
+    "logo_w_px": 760,
+    "hairline": "purple 3px"
+   },
+   "n": 16,
+   "ts": "2026-06-11T16:48:03",
+   "step_image": "steps/016_front_stage1_logo_band.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_front_stage2_type",
+   "note": "Front stage 2: headline_de (bold navy), subline_de (medium purple) and the two-sentence intro_de set centered — all three read verbatim from insert_copy.json.",
+   "input": "input_assets/insert_copy.json",
+   "output": "work/stage_front_2_type.png",
+   "params": {
+    "headline_px": 100,
+    "subline_px": 62,
+    "intro_px": 50,
+    "intro_measure": 1430
+   },
+   "n": 17,
+   "ts": "2026-06-11T16:48:04",
+   "step_image": "steps/017_front_stage2_type.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_front_stage3_photo_band",
+   "note": "Front stage 3: the connector-graded 2:1 warehouse band cover-fitted to 1495x760, 24px rounded corners, crisp navy keyline — inset within margins so it never bleeds.",
+   "input": "work/warehouse_header_wide.png",
+   "output": "work/stage_front_3_photo.png",
+   "params": {
+    "band_px": "1495x760",
+    "radius": 24
+   },
+   "n": 18,
+   "ts": "2026-06-11T16:48:04",
+   "step_image": "steps/018_front_stage3_photo.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_front_stage4_chips_cta",
+   "note": "Front stage 4: two code chips built ONLY from codes[].code + discount_pct (SHOP7 navy, DANKE5 purple) plus the cta_de caption; per plan the front stays inviting and carries no legal text.",
+   "input": "input_assets/insert_copy.json",
+   "output": "work/stage_front_4_chips_cta.png",
+   "params": {
+    "chips": [
+     "SHOP7 7 %",
+     "DANKE5 5 %"
+    ],
+    "chip_px": "600x176"
+   },
+   "n": 19,
+   "ts": "2026-06-11T16:48:04",
+   "step_image": "steps/019_front_stage4_chips_cta.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_back_stage1_navy_band",
+   "note": "Back stage 1: full-bleed navy header band with the composed German microcopy section header (Ihre Vorteile im offiziellen Online-Shop) — 1 of the 4 declared microcopy strings this task adds.",
+   "input": "input_assets/insert_copy.json",
+   "output": "work/stage_back_1_header.png",
+   "params": {
+    "band_h": 270,
+    "microcopy": "Ihre Vorteile im offiziellen Online-Shop"
+   },
+   "n": 20,
+   "ts": "2026-06-11T16:48:23",
+   "step_image": "steps/020_back_stage1_navy_band.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_back_stage2_benefit_grid",
+   "note": "Back stage 2: six back_benefits rows in a 2x3 grid, icon cutouts matched by icon_hint (truck/percent/star/people); shield + package have no supplied icon so those two rows use navy numbered circles (4, 5) as the documented fallback; titles wrap at one fixed size for consistency.",
+   "input": "input_assets/insert_copy.json",
+   "output": "work/stage_back_2_benefits.png",
+   "params": {
+    "title_px": 46,
+    "desc_px": 37,
+    "icon_px": 104,
+    "fallback_rows": [
+     "Kompetente Fachberatung (shield)",
+     "Umfassendes Sortiment (package)"
+    ]
+   },
+   "n": 21,
+   "ts": "2026-06-11T16:48:23",
+   "step_image": "steps/021_back_stage2_benefit_grid.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_back_stage3_coupons_lines",
+   "note": "Back stage 3: two navy-outline coupon boxes — code bold + percent purple + applies_to_de wrapped, purple einmalig chip (microcopy) only where one_time is true — then loyalty_de and referral_de lines with their inline icons.",
+   "input": "input_assets/insert_copy.json",
+   "output": "work/stage_back_3_coupons.png",
+   "params": {
+    "box_px": "719x344",
+    "codes": [
+     "SHOP7 7 %",
+     "DANKE5 5 %"
+    ],
+    "microcopy": "einmalig"
+   },
+   "n": 22,
+   "ts": "2026-06-11T16:48:23",
+   "step_image": "steps/022_back_stage3_coupons_lines.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_back_stage4_footer",
+   "note": "Back stage 4: footer placed by measured flow (no fixed Y) — purple hairline, cta_de repeated bold-centered, legal_footer_de in light 30px on a 900px measure so the two lines break balanced; end Y asserted inside the 5mm safe zone (2419 <= 2445).",
+   "input": "input_assets/insert_copy.json",
+   "output": "work/stage_back_4_footer.png",
+   "params": {
+    "cta_px": 52,
+    "legal_px": 30,
+    "legal_measure": 900,
+    "content_end": 2419,
+    "safe_limit": 2445
+   },
+   "n": 23,
+   "ts": "2026-06-11T16:48:23",
+   "step_image": "steps/023_back_stage4_footer.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_front_png",
+   "note": "Front exported at exact artwork size 1795x2528 px (152x214mm @300dpi = 148x210 trim + 2mm bleed) — the hi-res front preview deliverable.",
+   "input": "compose_3437.py",
+   "output": "outputs/front_152x214mm.png",
+   "params": {
+    "px": "1795x2528",
+    "dpi": 300
+   },
+   "n": 24,
+   "ts": "2026-06-11T16:48:39",
+   "step_image": "steps/024_export_front.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_back_png",
+   "note": "Back exported at exact artwork size 1795x2528 px @300dpi — the hi-res back preview deliverable.",
+   "input": "compose_3437.py",
+   "output": "outputs/back_152x214mm.png",
+   "params": {
+    "px": "1795x2528",
+    "dpi": 300
+   },
+   "n": 25,
+   "ts": "2026-06-11T16:48:40",
+   "step_image": "steps/025_export_back.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_print_pdf",
+   "note": "Two-page print PDF on a 1895x2628 slug with crop marks at the 148x210mm trim box — assembled LOCALLY with PIL because the connector has no image-to-PDF tool; CMYK/PDF-X-4 prepress conversion is a print-house step (stated in README).",
+   "input": "outputs/front_152x214mm.png",
+   "output": "outputs/insert_print_A5.pdf",
+   "params": {
+    "slug_px": "1895x2628",
+    "pages": 2,
+    "trim": "148x210mm",
+    "dpi": 300
+   },
+   "n": 26,
+   "ts": "2026-06-11T16:48:40",
+   "step_image": "steps/026_export_print_pdf_p1.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "verify_visual_fix_back_footer",
+   "note": "Visual read of the first composed back found the loyalty/referral lines colliding with the fixed-Y footer (lines ended y=2503 vs hairline 2255) and the legal text overflowing the safe zone (2469 > 2445); back rebuilt with a measured vertical budget, titles wrapping instead of shrinking, and a flow-placed footer — re-read clean.",
+   "input": "outputs/back_152x214mm.png",
+   "output": "outputs/back_152x214mm.png",
+   "params": {
+    "before": "lines_end 2503 vs footer 2255",
+    "after": "content_end 2419 <= 2445"
+   },
+   "n": 27,
+   "ts": "2026-06-11T16:49:04",
+   "step_image": "steps/027_verify_back_fixed.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "verify_dimensions",
+   "note": "verify_3437.py asserts front/back exactly 1795x2528 @300dpi, the PDF has 2 pages at the 454.80x630.72pt slug (1895x2628 px @300dpi), and the vector logo SVG is real — all checks passed.",
+   "input": "verify_3437.py",
+   "output": "outputs/insert_print_A5.pdf",
+   "params": {
+    "front": "1795x2528",
+    "back": "1795x2528",
+    "pdf_pages": 2,
+    "pdf_page_pt": "454.80x630.72"
+   },
+   "n": 28,
+   "ts": "2026-06-11T16:49:04",
+   "step_image": "steps/028_verify_dimensions.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "verify_copy_fidelity",
+   "note": "Audit of all 34 rendered strings: every one is a verbatim _de value, a code/percent derived from codes[], or one of the 4 declared microcopy strings; all 21 _de fields appear in the layout, zero _en strings leaked and no euro symbol anywhere (percent-only rule).",
+   "input": "work/rendered_strings.json",
+   "output": "outputs/back_152x214mm.png",
+   "params": {
+    "rendered": 34,
+    "de_fields_present": 21,
+    "en_leaked": 0,
+    "microcopy": [
+     "Ihre Vorteile im offiziellen Online-Shop",
+     "einmalig",
+     "4",
+     "5"
+    ]
+   },
+   "n": 29,
+   "ts": "2026-06-11T16:49:05",
+   "step_image": "steps/029_verify_copy_fidelity.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "verify_visual_final",
+   "note": "Final visual read of both sides: umlauts and sharp-s render correctly in Helvetica Neue, codes read exactly SHOP7 and DANKE5 with 7 % / 5 %, palette is strictly navy/purple/white (no gold or green design elements), no clipped or colliding text on either side.",
+   "input": "outputs/front_152x214mm.png",
+   "output": "outputs/back_152x214mm.png",
+   "params": {
+    "codes": [
+     "SHOP7",
+     "DANKE5"
+    ],
+    "palette": [
+     "#1E2D5C",
+     "#5B4A9E",
+     "#FFFFFF"
+    ]
+   },
+   "n": 30,
+   "ts": "2026-06-11T16:49:05",
+   "step_image": "steps/030_verify_visual_final.png"
+  }
+ ]
+}

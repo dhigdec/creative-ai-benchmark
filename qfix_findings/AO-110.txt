@@ -1,0 +1,4 @@
+REASONS: 
+
+ISSUES:
+- Output-spec vs workflow mismatch on the two variants: variant_strap_gunmetal.jpg (step 22) and variant_label_forest_green.jpg (step 24) both specify 'long edge 2000px, sRGB' in outputs[], but the workflow never runs image_crop_and_resize on them. They are produced directly from the graded full-res heroes (~2400x3000) and fed to the Firefly board at that size, while the six catalog images DO get resized (steps 25-30). To fully satisfy the stated variant specs, two crop_and_resize steps (or a note that the recolor branch inherits the web frame) are needed. Small, easily fixed.

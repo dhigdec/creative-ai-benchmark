@@ -1,0 +1,220 @@
+{
+  "task_id": 1097,
+  "input_rubrics": {
+    "photo01_degraded.jpg": [
+      {
+        "id": "p01in_realistic",
+        "q": "Does the image read as a realistic, natural photograph (an older woman watering potted plants by a window in a cozy living room) rather than an obviously synthetic or distorted render?",
+        "type": "likert5",
+        "guidance": "Look for plausible anatomy (hands holding the copper watering can), coherent room geometry (window, armchair with throw, rug, plant shelf) and no melted/garbled artifacts.",
+        "ideal": "5"
+      },
+      {
+        "id": "p01in_underexposed",
+        "q": "Is the photo clearly degraded by a single, recoverable tone flaw (underexposed / too dark with crushed shadows)?",
+        "type": "yesno",
+        "guidance": "The frame should look noticeably dim and muddy in the shadows (woman's dark trousers, room corners) yet still hold detail that auto-tone could lift. Answer Yes if the dominant flaw is darkness/low brightness.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "p01in_colorcast",
+        "q": "Does the image carry an obvious warm brown/amber colour cast and flat, low contrast (a believable white-balance + contrast flaw to correct)?",
+        "type": "yesno",
+        "guidance": "Whites (the woman's t-shirt) look beige/brown rather than white and the whole frame skews muddy-warm with weak blacks. Answer Yes if a warm cast plus low contrast is clearly present.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "p01in_single_recoverable",
+        "q": "Is the flaw limited to tone/exposure/colour (NOT blur, heavy noise, low resolution, or content damage that auto-tone cannot fix)?",
+        "type": "yesno",
+        "guidance": "The subject and scene should be sharp and intact; only brightness/contrast/colour are wrong. Answer Yes if the degradation is purely tonal/colour and therefore recoverable by auto-tone.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "p01in_subject_clear",
+        "q": "Is the main subject (the woman and the plants) clearly visible and well-composed despite the degradation?",
+        "type": "likert5",
+        "guidance": "Even though dark, the woman, her blue cardigan, the watering can and the foreground plants should be recognizable and centrally framed. Score 5 if the subject is unmistakable.",
+        "ideal": "4"
+      },
+      {
+        "id": "p01in_notes",
+        "q": "Free note: describe the specific degradation visible in this input.",
+        "type": "text",
+        "guidance": "One line, e.g. 'dark, warm-brown cast, low contrast, slight corner vignette; otherwise sharp and natural'.",
+        "ideal": "underexposed + warm cast + low contrast, content intact"
+      }
+    ],
+    "photo08_degraded.jpg": [
+      {
+        "id": "p08in_realistic",
+        "q": "Does the image read as a realistic still-life photograph (a steaming ceramic mug of coffee, a bowl of granola with dried fruit, a spoon and linen napkin on a wooden table) rather than a synthetic/distorted render?",
+        "type": "likert5",
+        "guidance": "Look for believable materials and lighting: stoneware mug, oat/cranberry/almond granola, wood grain, soft window light behind. No warped shapes or impossible reflections.",
+        "ideal": "5"
+      },
+      {
+        "id": "p08in_underexposed",
+        "q": "Is the photo clearly degraded by a single, recoverable tone flaw (dark / underexposed with dull, hazy low contrast)?",
+        "type": "yesno",
+        "guidance": "The frame should look dim, flat and slightly hazy/washed in the midtones, with weak blacks, yet detail is recoverable. Answer Yes if darkness + low contrast is the dominant flaw.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "p08in_dull_desaturated",
+        "q": "Does the image look dull and slightly desaturated / greyish-warm (a believable colour + contrast flaw to correct) rather than already vivid?",
+        "type": "yesno",
+        "guidance": "Wood, mug and granola should read muted/muddy with little pop. Answer Yes if colours look flat/under-saturated and a correction is plainly warranted.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "p08in_single_recoverable",
+        "q": "Is the flaw limited to tone/exposure/colour (NOT blur, heavy noise, low resolution, or content damage)?",
+        "type": "yesno",
+        "guidance": "The mug, bowl, spoon and table should be in focus and intact; only brightness/contrast/saturation are off. Answer Yes if the degradation is purely tonal/colour.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "p08in_subject_clear",
+        "q": "Are the main subjects (mug and granola bowl) clearly visible and well-composed despite the degradation?",
+        "type": "likert5",
+        "guidance": "Even though dim, the mug, steam, granola, spoon and napkin should be easily recognizable and nicely arranged. Score 5 if the subject is unmistakable.",
+        "ideal": "5"
+      },
+      {
+        "id": "p08in_notes",
+        "q": "Free note: describe the specific degradation visible in this input.",
+        "type": "text",
+        "guidance": "One line, e.g. 'dark, dull, low-contrast, slightly desaturated/hazy; content sharp and natural'.",
+        "ideal": "underexposed + dull/low-contrast, content intact"
+      }
+    ]
+  },
+  "output_rubrics": {
+    "photo01_corrected.jpg": [
+      {
+        "id": "p01out_improved",
+        "q": "Is exposure/brightness and contrast clearly improved versus the degraded input (shadows opened, blacks restored, image no longer dark/muddy)?",
+        "type": "likert5",
+        "guidance": "Compare against photo01_degraded.jpg: the corrected frame should be visibly brighter with punchier contrast and recovered shadow/highlight detail. Score 5 for a clear, clean improvement.",
+        "ideal": "5"
+      },
+      {
+        "id": "p01out_cast_removed",
+        "q": "Is the warm brown/amber colour cast meaningfully neutralized (whites read white/cream, the cardigan reads true blue, greens look natural)?",
+        "type": "likert5",
+        "guidance": "The woman's t-shirt should look near-white instead of brown and the blue cardigan should read clearly blue. Score 5 if white balance is corrected and the muddy warmth is gone.",
+        "ideal": "4"
+      },
+      {
+        "id": "p01out_closer_to_gt",
+        "q": "Is the corrected output meaningfully CLOSER to the ground-truth (photo01_groundtruth.jpg) than the degraded input was, in brightness, contrast and colour?",
+        "type": "likert5",
+        "guidance": "Hold all three side by side: corrected should clearly land between degraded and the bright, neutral GT and resemble GT far more than the dark input did. Score 5 if it closely approaches GT.",
+        "ideal": "4"
+      },
+      {
+        "id": "p01out_skin_natural",
+        "q": "Do the woman's skin tones look natural (not orange/sunburned, not grey/washed, not blotchy from over-correction)?",
+        "type": "yesno",
+        "guidance": "Face and hands should read as believable, healthy skin. Answer Yes only if skin is natural with no obvious colour shift or posterization. ",
+        "ideal": "Yes"
+      },
+      {
+        "id": "p01out_no_overcorrect",
+        "q": "Did auto-tone avoid over-correcting (no blown-out highlights in the window, no crushed/clipped blacks, no halos, no garish over-saturation)?",
+        "type": "yesno",
+        "guidance": "Check the bright window and the dark trousers for clipping, and overall for unnatural saturation or HDR halos. Answer Yes if the result is balanced and natural.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "p01out_notes",
+        "q": "Free note: any residual issue versus ground-truth?",
+        "type": "text",
+        "guidance": "One line, e.g. 'good lift and cast removal; slightly warmer/softer than GT but natural'.",
+        "ideal": "minor residual warmth, otherwise close to GT"
+      }
+    ],
+    "photo08_corrected.jpg": [
+      {
+        "id": "p08out_improved",
+        "q": "Is exposure/brightness and contrast clearly improved versus the degraded input (brighter, crisper, haze removed, blacks restored)?",
+        "type": "likert5",
+        "guidance": "Compare against photo08_degraded.jpg: the corrected frame should be noticeably brighter and punchier, the coffee a richer black, the dull haze gone. Score 5 for a clear, clean improvement.",
+        "ideal": "5"
+      },
+      {
+        "id": "p08out_color_restored",
+        "q": "Are colours restored to a natural, appetizing warmth (wood reads warm honey tone, granola/cranberries pop) without looking grey or flat?",
+        "type": "likert5",
+        "guidance": "Wood table and granola should look warm and richer than the muted input. Score 5 if colour and saturation are convincingly recovered and natural.",
+        "ideal": "4"
+      },
+      {
+        "id": "p08out_closer_to_gt",
+        "q": "Is the corrected output meaningfully CLOSER to the ground-truth (photo08_groundtruth.jpg) than the degraded input was, in brightness, warmth and contrast?",
+        "type": "likert5",
+        "guidance": "Compare all three: corrected should sit clearly between the dim degraded shot and the warm, rich GT and resemble GT much more. (GT is a touch warmer/more saturated, with a more terracotta mug.) Score 5 if it closely approaches GT.",
+        "ideal": "4"
+      },
+      {
+        "id": "p08out_no_overcorrect",
+        "q": "Did auto-tone avoid over-correcting (no blown highlights on mug rim/window, no clipped blacks in the coffee, no oversaturated or HDR-halo look)?",
+        "type": "yesno",
+        "guidance": "Check the bright background window and the white mug rim for clipping and the coffee for crushed black. Answer Yes if tones are balanced and natural.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "p08out_no_castshift",
+        "q": "Is the white balance natural (warm but not pushed into an orange/yellow cast that misrepresents the scene)?",
+        "type": "yesno",
+        "guidance": "Warmth should feel like natural window light, not an artificial orange tint. Answer Yes if the colour temperature looks believable.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "p08out_notes",
+        "q": "Free note: any residual issue versus ground-truth?",
+        "type": "text",
+        "guidance": "One line, e.g. 'strong brightness/contrast recovery; slightly cooler/less saturated than GT, mug more taupe than terracotta'.",
+        "ideal": "slightly less warm than GT, otherwise close"
+      }
+    ]
+  },
+  "task_rubric": [
+    {
+      "id": "task_brief_met",
+      "q": "Across both pairs, would these auto-tone outputs satisfy the client's brief (basic retouch: brightness/contrast + colour correction for lifestyle-blog photos)?",
+      "type": "likert5",
+      "guidance": "Brief asks for brightness/contrast and colour correction in a warm, inviting home/family aesthetic (Willow Creek Living). Score 5 if both outputs deliver clean, natural corrections fit to publish.",
+      "ideal": "4"
+    },
+    {
+      "id": "task_pairing_coherent",
+      "q": "Is each input -> output pairing coherent and clearly on-task (same scene, only tone/exposure/colour changed, nothing re-composed or content-altered)?",
+      "type": "likert5",
+      "guidance": "Output must be the identical photo as its input with only tonal/colour adjustments; no added/removed objects, crops or warps. Score 5 if both pairs are faithful one-click tone corrections.",
+      "ideal": "5"
+    },
+    {
+      "id": "task_consistency",
+      "q": "Are the two corrections consistent in style (similar treatment of brightness/contrast/warmth) as expected for a batch processed together?",
+      "type": "likert5",
+      "guidance": "The brief is a 20+ photo batch; the two samples should feel like one coherent edit, not divergent looks. Score 5 if the look is consistent across both.",
+      "ideal": "4"
+    },
+    {
+      "id": "task_accept",
+      "q": "Would you accept and deliver both corrected images to the client?",
+      "type": "likert5",
+      "guidance": "Holistic call factoring improvement over degraded, closeness to ground-truth, natural tones and absence of over-correction. Score 5 only if you'd ship both without rework.",
+      "ideal": "4"
+    },
+    {
+      "id": "task_notes",
+      "q": "Notes / what's missing or what would you tweak before delivery?",
+      "type": "text",
+      "guidance": "One line, e.g. 'both well-corrected; photo08 could use a touch more warmth/saturation to match GT'.",
+      "ideal": "minor warmth tweak on photo08; otherwise deliverable"
+    }
+  ]
+}

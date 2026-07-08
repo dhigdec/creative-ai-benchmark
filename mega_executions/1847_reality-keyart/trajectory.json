@@ -1,0 +1,536 @@
+{
+ "task_id": 1847,
+ "slug": "reality-keyart",
+ "title": "Reality-show key-art rebuild — masked licensed Adobe Stock plates, one cinematic grade, 24x36 full-bleed, InDesign PDF + web JPG",
+ "started": "2026-06-15T10:05:44",
+ "finished": "2026-06-15T10:41:03",
+ "steps": [
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Network-approved AI key-art (LOCKED comp + typography) — the blend/match target the rebuilt photographic plates must hit.",
+   "input": "input_assets/approved_keyart_flat.jpg",
+   "output": "input_assets/approved_keyart_flat.jpg",
+   "params": {
+    "dims": "1024x1536"
+   },
+   "n": 1,
+   "ts": "2026-06-15T10:06:06",
+   "step_image": "steps/001_approved_keyart_target.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Dusk-arena mood/lighting reference — single warm key the final blend is checked against (drives exposure/temperature targets).",
+   "input": "input_assets/mood_lighting_ref.jpg",
+   "output": "input_assets/mood_lighting_ref.jpg",
+   "params": {
+    "dims": "1024x1536"
+   },
+   "n": 2,
+   "ts": "2026-06-15T10:06:06",
+   "step_image": "steps/002_mood_lighting_ref.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Locked typography specimen — title + tagline + billing block re-vectorized for the print lockup; source of all on-poster copy.",
+   "input": "input_assets/typography_sample.png",
+   "output": "input_assets/typography_sample.png",
+   "params": {
+    "dims": "1024x1536"
+   },
+   "n": 3,
+   "ts": "2026-06-15T10:06:06",
+   "step_image": "steps/003_typography_sample.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "adobe_connector",
+   "action": "asset_initialize_file_upload+asset_finalize_file_upload",
+   "note": "Pushed the 3 client inputs (approved key-art, mood ref, typography specimen) into Adobe storage; presigned URLs feed the whole chain.",
+   "input": "input_assets/{approved_keyart_flat.jpg,mood_lighting_ref.jpg,typography_sample.png}",
+   "output": "3 presignedAssetUrls",
+   "params": {
+    "files": 3,
+    "keyart_assetId": "urn:aaid:sc:VA6C2:c421f434-688f-406e-bccf-a145088f0601"
+   },
+   "n": 4,
+   "ts": "2026-06-15T10:07:30",
+   "step_image": "steps/004_uploaded_keyart.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "asset_search+asset_license_and_download_stock (hero)",
+   "note": "Searched Adobe Stock against the approved comp and licensed the HERO stand-in (full-body sportsman, clean bg) to replace the lead AI figure.",
+   "input": "approved key-art as matching brief",
+   "output": "work/stock_hero_115155591.jpg",
+   "params": {
+    "entityScope": "StockAsset",
+    "assetId": "115155591",
+    "full_res": "3604x5406",
+    "license": "just_purchased"
+   },
+   "n": 5,
+   "ts": "2026-06-15T10:10:58",
+   "step_image": "steps/005_stock_hero.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "asset_search+asset_license_and_download_stock (foil+sky+environment)",
+   "note": "Searched + licensed the 3 remaining plates — FOIL stand-in, dusk-gradient SKY, empty stadium ENVIRONMENT — matching the AI background regions.",
+   "input": "approved key-art regions as briefs",
+   "output": "work/stock_{foil_473425796,sky_654020866,env_239375308}.jpg",
+   "params": {
+    "assetIds": [
+     "473425796",
+     "654020866",
+     "239375308"
+    ],
+    "licenses": "3x just_purchased"
+   },
+   "n": 6,
+   "ts": "2026-06-15T10:10:59",
+   "step_image": "steps/006_stock_environment.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_auto_tone (4 plates)",
+   "note": "Normalized all 4 licensed plates to a neutral tonal baseline so the shared grade math starts from one consistent point.",
+   "input": "4 uploaded plates",
+   "output": "4 auto-toned PNGs",
+   "params": {
+    "batch": true
+   },
+   "adobe_request_id": "b1855ab0-2b66-4741-a57c-1b9b7fe54647",
+   "n": 7,
+   "ts": "2026-06-15T10:12:46",
+   "step_image": "steps/007_plates_autotoned.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_auto_straighten (environment)",
+   "note": "Leveled the empty-stadium plate so the floor/horizon are true before it is cut and composited under the cast.",
+   "input": "work/p_env_autotone.png",
+   "output": "work/p_env_straight.png",
+   "params": {
+    "uprightMode": "level"
+   },
+   "adobe_request_id": "45b964b5-1327-437c-a15f-13eec48ffaf0",
+   "n": 8,
+   "ts": "2026-06-15T10:13:51",
+   "step_image": "steps/008_env_straightened.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_to_bounds (environment)",
+   "note": "Trimmed 3% rotation slack off every edge of the straightened arena plate, locking clean edges for the composite.",
+   "input": "work/p_env_straight.png",
+   "output": "work/p_env_cropped.png",
+   "params": {
+    "bounds": "0.03 inset all sides"
+   },
+   "adobe_request_id": "dabaae5d-7833-43c3-9a0e-f81a41f25e9c",
+   "n": 9,
+   "ts": "2026-06-15T10:13:52",
+   "step_image": "steps/009_env_cropped.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_subject (hero) + image_remove_background (hero)",
+   "note": "Auto-selected the HERO stand-in and stripped its background to a clean alpha cut-out that drops over the AI hero region.",
+   "input": "hero auto-toned plate",
+   "output": "work/cut_hero.png",
+   "params": {
+    "bbox": "full figure"
+   },
+   "adobe_request_id": "44ef872b-129c-4eae-a6d7-a451031474b4",
+   "n": 10,
+   "ts": "2026-06-15T10:15:31",
+   "step_image": "steps/010_hero_cutout.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_subject (foil) + image_remove_background (foil)",
+   "note": "Auto-selected the FOIL stand-in and stripped its background to a second clean alpha cut-out for the rival region.",
+   "input": "foil auto-toned plate",
+   "output": "work/cut_foil.png",
+   "params": {
+    "full_res": "3333x5000"
+   },
+   "adobe_request_id": "3d6d368e-9e38-4235-bb0d-d047fdf73337",
+   "n": 11,
+   "ts": "2026-06-15T10:15:31",
+   "step_image": "steps/011_foil_cutout.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_by_prompt (sky region) + image_invert_selection",
+   "note": "Isolated the upper stands/sky region of the arena plate, then inverted it to a foreground floor-region mask so depth can be applied separately.",
+   "input": "work/p_env_cropped_sm.jpg",
+   "output": "env sky+floor masks",
+   "params": {
+    "prompt": "upper stands and sky"
+   },
+   "adobe_request_id": "1ef9b0d0-d358-4f37-a502-d93acf3e5660",
+   "n": 12,
+   "ts": "2026-06-15T10:19:16",
+   "step_image": "steps/012_env_sky_mask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_gaussian_blur (background)",
+   "note": "Background-target gaussian blur on the arena plate so the deep stadium recedes while the floor under the cast stays readable.",
+   "input": "work/p_env_cropped_sm.jpg",
+   "output": "work/p_env_depthblur.png",
+   "params": {
+    "blurRadius": 14,
+    "blurTarget": "background"
+   },
+   "adobe_request_id": "c6f20bb2-80ce-4c51-bfd5-42baee632b7c",
+   "n": 13,
+   "ts": "2026-06-15T10:19:16",
+   "step_image": "steps/013_env_depthblur.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_lens_blur (sky)",
+   "note": "Whole-plate lens blur on the standalone dusk sky for an optically believable far-distance bokeh fall-off behind everything.",
+   "input": "sky auto-toned plate",
+   "output": "work/p_sky_lensblur.png",
+   "params": {
+    "whole_plate": true
+   },
+   "adobe_request_id": "dce7dd34-37d5-40c8-a025-dd6e6d0a3e72",
+   "n": 14,
+   "ts": "2026-06-15T10:19:16",
+   "step_image": "steps/014_sky_lensblur.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_exposure+highlights+light_portions+dark_portions (env relight 1/3)",
+   "note": "First four of the matched relight on the background plate: lift exposure to the dusk mood, pull floodlight highlights, knock down bright stands, deepen the floor shadows where the cast will sit.",
+   "input": "work/p_env_depthblur.png",
+   "output": "intermediate graded env",
+   "params": {
+    "exposure": 0.45,
+    "highlights": -28,
+    "light_portions": -14,
+    "dark_portions": 18
+   },
+   "adobe_request_id": "9f82c27d-9c0b-48f1-9b59-fb5514ce07d6",
+   "n": 15,
+   "ts": "2026-06-15T10:22:13",
+   "step_image": "steps/015_env_relight_stage1.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_brightness_and_contrast + image_adjust_color_temperature (env relight 2/3)",
+   "note": "Set the punchy key-art contrast, then the big warm-key temperature push toward the single amber light the poster is lit with.",
+   "input": "intermediate graded env",
+   "output": "work/p_env_warm.png",
+   "params": {
+    "brightness": 6,
+    "contrast": 22,
+    "temp_a": 24,
+    "temp_b": 64
+   },
+   "adobe_request_id": "6b59e0bb-b3c2-4a2d-94c3-54fdb59bce0b",
+   "n": 16,
+   "ts": "2026-06-15T10:22:14",
+   "step_image": "steps/016_env_relight_stage2.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_vibrance/saturation + single_color_saturation(blue) + image_adjust_hsl (env relight 3/3)",
+   "note": "Calmed overall saturation, reined in the over-blue floodlight channel, and shifted the residual blue hue warm so the arena reads under one warm key, not stadium cyan.",
+   "input": "work/p_env_warm.png",
+   "output": "work/p_env_graded.png",
+   "params": {
+    "saturation": -34,
+    "blue_sat": -55,
+    "blue_hue": -28
+   },
+   "adobe_request_id": "c5b660e9-3cfc-475f-9897-b2e3c0765f83",
+   "n": 17,
+   "ts": "2026-06-15T10:22:14",
+   "step_image": "steps/017_env_graded_final.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_list_presets",
+   "note": "Listed the 110+ Lightroom presets to choose one shared cinematic look applied identically across all four plates.",
+   "input": "(catalogue lookup)",
+   "output": "preset list",
+   "params": {
+    "chosen": "Creative - Cool Shadows & Warm Highlights"
+   },
+   "adobe_request_id": "da7805fb-f5ce-43dd-a7b2-fb8ececcf790",
+   "n": 18,
+   "ts": "2026-06-15T10:24:01",
+   "step_image": "steps/018_preset_lookup.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_preset (all 4 plates)",
+   "note": "Applied ONE shared cinematic split-tone (teal shadows / warm highlights) to env, sky, hero and foil so every layer carries identical tonal DNA — one lit set, no AI-look mismatch.",
+   "input": "4 graded/cut plates",
+   "output": "work/g_{env_preset,sky,hero,foil}.png",
+   "params": {
+    "preset": "Creative - Cool Shadows & Warm Highlights",
+    "applied_to": 4
+   },
+   "adobe_request_id": "a5b41a68-f363-4c34-99b1-b4c232cfa4f5",
+   "n": 19,
+   "ts": "2026-06-15T10:24:01",
+   "step_image": "steps/019_preset_applied_hero.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_color_overlay (warm key wash)",
+   "note": "Washed the amber key colour (#E8A24A) across the background on softLight to marry the plates under one lighting colour, selling the single warm-key dusk read.",
+   "input": "work/g_env_preset.png",
+   "output": "work/g_env.png",
+   "params": {
+    "color": "232,162,74",
+    "blend": "softLight"
+   },
+   "adobe_request_id": "781d2998-2ef5-4551-b292-df47ee364a0b",
+   "n": 20,
+   "ts": "2026-06-15T10:24:01",
+   "step_image": "steps/020_env_key_wash.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_compositor",
+   "action": "alpha_transplant",
+   "note": "image_apply_preset flattened the cast cut-out transparency; transplanted each original cut-out alpha back onto its graded RGB (grade is non-spatial, geometry identical) to restore clean RGBA cast plates for compositing.",
+   "input": "work/g_{hero,foil}.png + work/cut_{hero,foil}.png",
+   "output": "work/g_{hero,foil}_rgba.png",
+   "params": {
+    "reason": "preset/overlay tools return flattened RGB"
+   },
+   "n": 21,
+   "ts": "2026-06-15T10:24:43",
+   "step_image": "steps/021_graded_hero_rgba.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "font_recommend",
+   "note": "Confirmed a bold condensed display + high-visibility poster typeface pairing for the title + billing-block lockup, matched to the locked Archivo-style comp.",
+   "input": "locked typography reference",
+   "output": "work/font_recommend.json",
+   "params": {
+    "doc_type": "poster",
+    "moods": "bold,cinematic,dramatic,condensed"
+   },
+   "n": 22,
+   "ts": "2026-06-15T10:25:37",
+   "step_image": "steps/022_font_recommend.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_vectorize (logo lockup)",
+   "note": "Vectorized the title + billing-block lockup from the locked typography specimen into a crisp scalable SVG for print, replacing the soft AI raster logo.",
+   "input": "input_assets/typography_sample.png",
+   "output": "work/logo_lockup.svg",
+   "params": {
+    "format": "svg+xml"
+   },
+   "adobe_request_id": "eec8b67d-d516-4f65-92a7-04df0de84ffb",
+   "n": 23,
+   "ts": "2026-06-15T10:27:21",
+   "step_image": "steps/023_logo_vectorized.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_compositor",
+   "action": "render vector proof (qlmanage)",
+   "note": "document_render_vector rejects SVG (needs PDF/PostScript .ai); rendered the genuine connector-produced vector SVG to a 2048px print proof locally via macOS Quick Look so it can be placed in the layout.",
+   "input": "work/logo_lockup.svg",
+   "output": "work/logo_proof.png",
+   "params": {
+    "note": "render_vector requires .ai; SVG rasterized locally"
+   },
+   "n": 24,
+   "ts": "2026-06-15T10:27:21",
+   "step_image": "steps/024_logo_print_proof.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_by_prompt (floor) + image_fill_area (contact shadow)",
+   "note": "Selected the foreground floor strip and multiply-filled it with deep arena-shadow tone (#1C2230, 38%) to seat believable contact-shadow density under where the cast cut-outs anchor.",
+   "input": "work/g_env.png",
+   "output": "work/g_env_shadowed.png",
+   "params": {
+    "color": "28,34,48",
+    "blend": "multiply",
+    "opacity": 38
+   },
+   "adobe_request_id": "c3339ae6-c319-4608-95ba-671cb0729e69",
+   "n": 25,
+   "ts": "2026-06-15T10:28:06",
+   "step_image": "steps/025_env_contact_shadow_fill.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_scene_background",
+   "note": "Stage 1: laid the graded dusk-sky plate over the graded+contact-shadowed stadium and added the warm ember horizon glow, matching the approved comp geometry.",
+   "input": "work/g_{sky,env_shadowed}.png",
+   "output": "work/scene_stage1_bg.png",
+   "params": {
+    "canvas": "2400x3600 2:3"
+   },
+   "n": 26,
+   "ts": "2026-06-15T10:31:51",
+   "step_image": "steps/026_scene_stage1_bg.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_contact_shadows",
+   "note": "Stage 2: dropped soft elliptical contact shadows on the field where the two cast cut-outs anchor, so the figures sit on the ground not float.",
+   "input": "work/scene_stage1_bg.png",
+   "output": "work/scene_stage2_shadows.png",
+   "params": {
+    "shadows": 2
+   },
+   "n": 27,
+   "ts": "2026-06-15T10:31:51",
+   "step_image": "steps/027_scene_stage2_shadows.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_cast_silhouettes",
+   "note": "Stage 3: placed the hero (left, forward) and foil (right, back) as rim-lit dark silhouettes with warm key-left / cool steel-right rims, then a global warm wash + vignette to marry them as one lit set.",
+   "input": "work/g_{hero,foil}_rgba.png + stage2",
+   "output": "work/scene_composited.jpg",
+   "params": {
+    "hero_cx": 0.345,
+    "foil_cx": 0.655,
+    "ground_y": 0.86
+   },
+   "n": 28,
+   "ts": "2026-06-15T10:31:52",
+   "step_image": "steps/028_scene_composited.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "adobe_connector",
+   "action": "image_generative_expand (24x36 bleed)",
+   "note": "Generative-expanded the composed 2:3 key-art outward on all sides so there is real outpainted arena/sky image data into the trim/bleed margin for the 24x36 full-bleed print.",
+   "input": "work/scene_composited.jpg",
+   "output": "work/scene_expanded.png",
+   "params": {
+    "expand_px": 130,
+    "from": "2400x3600",
+    "to": "2660x3860",
+    "seed": 1847
+   },
+   "adobe_request_id": "007bc733-f758-414c-8bc5-373be6e8ae9e",
+   "n": 29,
+   "ts": "2026-06-15T10:33:17",
+   "step_image": "steps/029_scene_generative_expanded.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize (lock 24x36 / 2:3)",
+   "note": "Locked the generative-expanded canvas to the exact 24x36 (2:3) print aspect; this connector-trimmed master feeds the local print/web assembly.",
+   "input": "work/scene_expanded.png",
+   "output": "work/scene_master_2x3.png",
+   "params": {
+    "output": "2:3",
+    "from": "2660x3860",
+    "to": "2573x3860"
+   },
+   "adobe_request_id": "acf41127-16ba-44f7-9ec4-85fd3e1ad07a",
+   "n": 30,
+   "ts": "2026-06-15T10:34:18",
+   "step_image": "steps/030_master_2x3_locked.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "build_poster.py (final 24x36 layout)",
+   "note": "Stage 3 layout: assembled the connector scene master + locked title lockup, amber tagline, premiere line, network bug and billing block into the final 24x36 poster (4800x7200 trim); all copy read from copy.json.",
+   "input": "work/scene_master_2x3.png + work/copy.json",
+   "output": "work/poster_stage3_type.png",
+   "params": {
+    "trim": "4800x7200",
+    "dpi": 200
+   },
+   "n": 31,
+   "ts": "2026-06-15T10:39:16",
+   "step_image": "steps/031_poster_final_layout.png"
+  },
+  {
+   "phase": "export",
+   "actor": "adobe_connector",
+   "action": "document_convert_pdf (PDF -> genuine .indd)",
+   "note": "Converted the flattened 24x36 composite PDF into a genuine InDesign document (.indd, returned as a package ZIP) as the print-layout container.",
+   "input": "work/poster_for_indd.pdf",
+   "output": "work/indd_pkg/.../poster_for_indd.indd",
+   "params": {
+    "outputFormat": "indd",
+    "embedLinks": true
+   },
+   "n": 32,
+   "ts": "2026-06-15T10:39:17",
+   "step_image": "steps/032_indd_converted.png"
+  },
+  {
+   "phase": "export",
+   "actor": "adobe_connector",
+   "action": "document_render_layout (.indd -> print PDF)",
+   "note": "Rendered the InDesign layout to the final print-ready PDF at 300dpi — the primary print deliverable alongside the flattened web JPG.",
+   "input": "work/last_one_standing.indd",
+   "output": "outputs/LAST_ONE_STANDING_24x36_InDesign_print.pdf",
+   "params": {
+    "resolution": 300,
+    "quality": "high"
+   },
+   "n": 33,
+   "ts": "2026-06-15T10:39:17",
+   "step_image": "steps/033_final_print_pdf.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "self_verify_outputs",
+   "note": "Asserted all output dimensions (print master 4800x7200, bleed 4850x7250, web 1200x1800, trim aspect exactly 1.5), confirmed the InDesign PDF is a valid %PDF with MediaBox + the vector SVG, and visually read the title band + InDesign PDF + bleed corner — copy crisp, correctly spelled, no clipping/collisions, palette correct.",
+   "input": "outputs/*",
+   "output": "outputs/README.md + STOCK_USAGE_NOTE.md",
+   "params": {
+    "checks": "5 PASS"
+   },
+   "n": 34,
+   "ts": "2026-06-15T10:41:03",
+   "step_image": "steps/034_self_verify.png"
+  }
+ ]
+}

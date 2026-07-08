@@ -1,0 +1,448 @@
+{
+  "task_id": 9003,
+  "input_assets": [
+    {
+      "key": "campaign_brief",
+      "display": "Campaign brief / spec sheet (JSON + Markdown)",
+      "files": [
+        "input_assets/campaign_brief.json",
+        "input_assets/campaign_brief.md"
+      ],
+      "what_it_is": "The machine-readable brief that drives every downstream string: property/address/price, agent + lower-third copy, look notes, the three platform sizes, room order and the narration script.",
+      "items": [
+        {
+          "id": "brief_property_data_complete",
+          "type": "likert5",
+          "question": "Does the brief supply a complete, internally consistent property + agent dataset (address, city area, price, beds/baths/sqft, agent name, title, phone, email, license) that the lower-third and covers can typeset verbatim?",
+          "guidance": "5 = every field present, plausible and consistent (price as a USD string, 555 phone, fictional brokerage email domain, RE-style license). 1 = missing or contradictory fields, or values that can't be typeset directly.",
+          "reference": "campaign_brief.json has property.address '1234 Serene Haven Way', city_area 'Willow Creek Estates', price '$975,000', beds 4, baths 3, sqft 2850; agent Eleanor Vance / Senior Sales Associate, phone (555) 201-9876, email eleanor.vance@solsticeproperties.com, license RE-0192834. All present and consistent."
+        },
+        {
+          "id": "brief_lowerthird_strings_match",
+          "type": "yesno",
+          "question": "Are the exact lower-third strings the covers must typeset present as dedicated keys (agent_name_line and price_strip)?",
+          "guidance": "Yes = lower_third.agent_name_line and lower_third.price_strip both present as ready-to-typeset strings. No = lower-third copy must be reconstructed from scattered fields.",
+          "reference": "lower_third.agent_name_line = 'Eleanor Vance, Senior Sales Associate' and lower_third.price_strip = 'Just Listed - $975,000'. Both present verbatim."
+        },
+        {
+          "id": "brief_platforms_and_order",
+          "type": "likert5",
+          "question": "Does the brief define exactly the three required platform sizes (Feed 1:1 1080x1080, Stories 9:16 1080x1920, Reels 9:16 1080x1920) AND a 6-room cut order and a 90-130 word narration script?",
+          "guidance": "5 = all three platforms with correct size/aspect, a 6-entry room_order, and a single warm benefit-led narration string with a hook opener and a soft CTA. 3 = present but one size/aspect wrong or room_order != 6. 1 = platforms or script missing.",
+          "reference": "platforms = Facebook Feed 1080x1080 1:1, Story 1080x1920 9:16, Reel 1080x1920 9:16. room_order has 6 slugs. narration_script opens 'Discover an oasis where every detail elevates your daily life!' and closes 'Contact us today to schedule your private showing...'. NOTE: room_order slugs (kitchen, living-room, exterior-patio, primary-suite, primary-bath, dining-room) name an 'exterior-patio' and 'dining-room' that do not exist among the 6 supplied clips, so the order is not directly usable as a clip playlist."
+        }
+      ]
+    },
+    {
+      "key": "walkthrough_clips",
+      "display": "Six room-by-room walkthrough clips",
+      "files": [
+        "input_assets/walkthrough_01_exterior-approach.mp4",
+        "input_assets/walkthrough_02_kitchen.mp4",
+        "input_assets/walkthrough_03_living-room.mp4",
+        "input_assets/walkthrough_04_primary-suite.mp4",
+        "input_assets/walkthrough_05_hallway.mp4",
+        "input_assets/walkthrough_06_primary-bath_vertical.mp4"
+      ],
+      "what_it_is": "Six 8-second raw room clips (golden-hour exterior approach, kitchen, living room, primary suite, hallway, vertical spa bath) with native ambient audio, to summarize, order and cut into the narrated tour.",
+      "items": [
+        {
+          "id": "clips_room_coverage_distinct",
+          "type": "likert5",
+          "question": "Do the six clips actually depict the six distinct rooms named in their filenames (exterior approach, kitchen, living room, primary suite, hallway, primary bath), each clearly a different space with believable real-estate b-roll camera motion and no on-screen text/people?",
+          "guidance": "5 = all six are visually distinct, on-brief rooms with smooth documentary motion, native ambient audio, no captions/watermarks/people. 3 = one or two rooms ambiguous or duplicated. 1 = rooms missing, mislabeled, or clips show text/people.",
+          "reference": "Six clips per filenames: exterior-approach (golden-hour pan), kitchen (white shaker + island), living-room (sectional + tall windows), primary-suite (made bed), hallway (runner toward bright window), primary-bath (vertical, soaking tub). All 8s, no on-screen text by spec."
+        },
+        {
+          "id": "clips_exterior_is_hook_grade",
+          "type": "yesno",
+          "question": "Is the exterior-approach clip a strong golden-hour establishing shot suitable as the 3-second opening hook (warm low sun, smooth push-in to the facade)?",
+          "guidance": "Yes = warm golden-hour establishing pan/push-in on the two-storey facade that clearly reads as an opener. No = flat/dull, mid-room, or otherwise unusable as a hook.",
+          "reference": "walkthrough_01_exterior-approach.mp4 is the Sora-2 golden-hour gimbal push-in to a contemporary two-storey facade; footage_summary tags it 'HOOK / establishing'."
+        },
+        {
+          "id": "clips_specs_orientation",
+          "type": "likert5",
+          "question": "Do the clips carry the expected technical shape: five landscape 1280x720 H.264 clips plus one vertical 720x1280 spa-bath clip, all ~8s with audio?",
+          "guidance": "5 = dimensions/orientation/duration as manifested, the bath clip genuinely vertical. 3 = minor deviation. 1 = wrong codec, wrong durations, or the vertical clip is actually landscape.",
+          "reference": "manifest dims: clips 01-05 = 1280x720, clip 06 = 720x1280 vertical, all duration_s 8.0, has_audio true, mp4/H.264."
+        }
+      ]
+    },
+    {
+      "key": "agent_vo_rough",
+      "display": "Rough reverberant agent voiceover",
+      "files": [
+        "input_assets/agent_vo_rough.mp3",
+        "input_assets/agent_vo_rough.txt"
+      ],
+      "what_it_is": "A deliberately noisy agent narration recorded over a rough music/ambient bed with roomy reverb, supplied so the speech-cleanup leg has real audio to isolate and de-reverb into a broadcast dialogue stem.",
+      "items": [
+        {
+          "id": "vo_is_genuinely_rough",
+          "type": "yesno",
+          "question": "Is the supplied VO genuinely degraded (audible music/ambient bed and reverb tail) so that the de-reverb / speech-isolation step has something real to fix?",
+          "guidance": "Yes = clearly hears a bed and/or reverb under the speech, i.e. a real cleanup target. No = already clean/dry studio VO with nothing to isolate.",
+          "reference": "agent_vo_rough.mp3 (~40.18s) is gpt-4o-mini-tts then roughened with added noise + convolution reverb per manifest; intended as a real isolate/de-reverb target."
+        },
+        {
+          "id": "vo_transcript_matches_script",
+          "type": "yesno",
+          "question": "Does the spoken narration match the brief's narration_script word-for-word (and the supplied transcript .txt)?",
+          "guidance": "Yes = audio narration and agent_vo_rough.txt match campaign_brief.json narration_script verbatim. No = paraphrased, truncated, or different copy.",
+          "reference": "agent_vo_rough.txt and the narration_script are identical: 'Discover an oasis where every detail elevates your daily life! ... uncover your new beginning.' No prices read aloud."
+        }
+      ]
+    },
+    {
+      "key": "listing_stills_to_grade",
+      "display": "Listing stills to recover/composite (hero interior + overcast exterior)",
+      "files": [
+        "input_assets/hero-interior-living-room.jpg",
+        "input_assets/exterior-front-overcast.jpg"
+      ],
+      "what_it_is": "The two photoreal stills the editor must rescue: a hero living room with genuinely blown-out windows and slightly off-plumb verticals, and a front exterior under a flat overcast sky with a clean top region to swap for twilight.",
+      "items": [
+        {
+          "id": "hero_windows_genuinely_blown",
+          "type": "likert5",
+          "question": "On the hero interior, are the tall windows genuinely blown out to near-pure white (outdoor view lost / highlights clipped) with the room sitting a touch dark and visibly mixed warm-lamp/cool-window white balance?",
+          "guidance": "5 = a true rescue target: windows clipped to white with no view, interior slightly underexposed, mixed WB obvious, verticals slightly crooked. 1 = windows already balanced with visible exterior, even WB — nothing to recover.",
+          "reference": "hero-interior-living-room.jpg (1536x1024): a five-pane window wall blown to near-white with no outdoor view, warm tungsten lamp at left vs cool window light, throw blanket bunched on the grey sectional, open book on the round coffee table — exactly the raw frame to rescue (vision_score 10)."
+        },
+        {
+          "id": "exterior_flat_sky_maskable",
+          "type": "likert5",
+          "question": "On the exterior, is the sky a flat featureless overcast grey-white with a clean uninterrupted region along the top third (roofline meeting blank sky) that is an obvious candidate to mask and replace with a twilight plate?",
+          "guidance": "5 = dull cloudless grey-white sky, clean roofline/sky boundary, easy to mask. 3 = sky has some texture/clouds complicating the mask. 1 = sky already coloured/dramatic, no clean mask region.",
+          "reference": "exterior-front-overcast.jpg (1536x1024): pale stucco-and-cedar two-storey home under a flat washed-out grey-white sky, clean sky band across the top — ideal twilight-swap target (accepted_with_warnings)."
+        },
+        {
+          "id": "exterior_house_number_present",
+          "type": "yesno",
+          "question": "Does the exterior still contain a legible house number on the entry pillar (a known 'no text' QC warning the editor may need to retouch out)?",
+          "guidance": "Yes = a readable house number is visible on the pillar by the front door. No = no readable text anywhere on the facade.",
+          "reference": "The number '209' is clearly visible on the pillar beside the front door of exterior-front-overcast.jpg — the manifest flags this as the residual QC issue."
+        }
+      ]
+    },
+    {
+      "key": "twilight_reference_and_badge",
+      "display": "Twilight colour-reference frame + brokerage badge detail",
+      "files": [
+        "input_assets/twilight-reference-frame.jpg",
+        "input_assets/brokerage-badge-detail.jpg"
+      ],
+      "what_it_is": "Two supporting stills: a deep blue-hour street frame that sets the dusk colour target for the composite, and a brushed-metal brokerage badge plaque carrying the doorway/keyhole emblem as a detail plate.",
+      "items": [
+        {
+          "id": "twilight_ref_sets_dusk_target",
+          "type": "likert5",
+          "question": "Does the twilight reference frame read as a usable dusk/blue-hour colour target (warm amber horizon graduating up through magenta to deep indigo, warm glowing windows, cool shadows)?",
+          "guidance": "5 = rich believable blue-hour gradient that clearly sets a grading target. 3 = dusk but flat or off-palette. 1 = not twilight at all (daylight/overcast).",
+          "reference": "twilight-reference-frame.jpg (1536x1024): a residential street at deep twilight with an amber-to-magenta-to-indigo sky, backlit clouds, warm-lit windows on the right-hand house — a strong dusk colour reference (manifest notes it as mood/colour reference, low vision_score because it diverged from a mis-stated overcast prompt, but it is on-target for twilight)."
+        },
+        {
+          "id": "badge_emblem_geometric_no_text",
+          "type": "yesno",
+          "question": "Is the brokerage badge a brushed-metal plaque engraved with a simple abstract open-doorway/keyhole mark and NO readable lettering or brand words?",
+          "guidance": "Yes = clean geometric doorway/keyhole emblem, no legible words, with realistic brushed grain/scratches/screws and a soft contact shadow. No = readable text, real-brand lookalike, or CGI-glossy.",
+          "reference": "brokerage-badge-detail.jpg (1536x1024): a brushed-metal plaque with four corner screws, fine scratches/fingerprints and a cut-out open-doorway-with-keyhole emblem, no lettering — matches the abstract-mark spec (vision_score 9)."
+        }
+      ]
+    },
+    {
+      "key": "brokerage_logo_artwork",
+      "display": "Brokerage logo lockup (vectorize source)",
+      "files": [
+        "input_assets/brokerage_logo.png"
+      ],
+      "what_it_is": "The flat brokerage logo lockup on solid white — navy open-doorway framing a sage keyhole above the 'Solstice Properties / BOUTIQUE RESIDENTIAL' wordmark — supplied to background-remove and vectorize for the lower-third / logo bug.",
+      "items": [
+        {
+          "id": "logo_mark_and_palette_correct",
+          "type": "likert5",
+          "question": "Is the logo a clean flat lockup with the correct brand palette (deep ink navy mark/wordmark, single fresh-sage accent inside the doorway) on a solid white background suitable for background-removal and vectorizing?",
+          "guidance": "5 = crisp flat doorway/keyhole mark in navy with a sage keyhole, navy wordmark, solid white field, no gradients/shadows/photo elements. 3 = colours slightly off or minor extra detail. 1 = wrong colours, gradients, or busy background.",
+          "reference": "brokerage_logo.png (1024x1024): navy (#1F2A3C-ish) open-door mark framing a sage (#7E9C7A-ish) keyhole on white, with 'Solstice Properties' wordmark and 'BOUTIQUE RESIDENTIAL' tagline; manifest notes the navy/sage are slightly off and a small door-handle detail is added (vision_score 9)."
+        },
+        {
+          "id": "logo_wordmark_spelling",
+          "type": "yesno",
+          "question": "Is the wordmark spelled exactly 'Solstice Properties' with the tagline 'BOUTIQUE RESIDENTIAL'?",
+          "guidance": "Yes = both strings spelled correctly with no typos or extra words. No = misspelling, wrong words, or garbled lettering.",
+          "reference": "brokerage_logo.png reads 'Solstice Properties' over 'BOUTIQUE RESIDENTIAL', both correct."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "narrated_tour_videos",
+      "display": "Narrated tour MP4s (16:9 master + Feed 1:1 + Reels/Stories 9:16)",
+      "files": [
+        "outputs/tour_master_16x9.mp4",
+        "outputs/tour_feed_1x1.mp4",
+        "outputs/tour_reels_stories_9x16.mp4"
+      ],
+      "what_it_is": "The story-ordered property tour cut from the six room clips with a 3-second exterior hook, cleaned VO over a ducked music bed and an animated lower-third, exported H.264 in 1280x720, 1080x1080 and 1080x1920.",
+      "items": [
+        {
+          "id": "tour_specs_three_sizes_h264",
+          "type": "likert5",
+          "question": "Are all three required deliverable sizes present and technically correct — a 16:9 master plus Feed 1:1 (1080x1080) and a vertical 9:16 (1080x1920), all H.264 video with an AAC audio track?",
+          "guidance": "5 = all three exist, dimensions exact, every file plays with both video (avc1) and audio (mp4a). 3 = one size missing or one aspect wrong. 1 = wrong codecs, no audio, or only one export.",
+          "reference": "tour_master_16x9.mp4 (1280x720), tour_feed_1x1.mp4 (1080x1080), tour_reels_stories_9x16.mp4 (1080x1920); all contain avc1 (H.264) + mp4a (AAC) atoms (verified). Note: brief lists Feed 1:1, Stories 9:16, Reels 9:16; the two 9:16 sizes are delivered as one shared 9:16 file."
+        },
+        {
+          "id": "tour_hook_and_room_order",
+          "type": "likert5",
+          "question": "Does the cut lead with a 3-second exterior golden-hour hook and then walk the rooms in a sensible tour order, with clean crossfades and no on-screen captions baked into the room footage?",
+          "guidance": "5 = exterior establishing hook in the first ~3s, then kitchen/living/hallway/primary-suite/spa-bath in a logical order, smooth transitions, no stray captions. 3 = hook present but order awkward or one hard cut. 1 = no hook or jumbled order.",
+          "reference": "README + footage_summary chosen_tour_order: exterior-approach (HOOK) -> kitchen -> living-room -> hallway -> primary-suite -> primary-bath, hook_seconds 3.0, 0.4s crossfades."
+        },
+        {
+          "id": "tour_audio_mix_vo_over_bed",
+          "type": "likert5",
+          "question": "Is the audio bed a cleaned, intelligible agent VO sitting clearly on top of a ducked music/ambient bed (not buried, not clipping), consistent across all three exports?",
+          "guidance": "5 = VO clean and forward, music ducked under it, levels consistent across sizes. 3 = VO present but bed too loud or levels inconsistent. 1 = VO buried/distorted or no music bed.",
+          "reference": "README: cleaned VO muxed over a ducked warm ambient bed. KNOWN LIMITATION: the music bed is a local warm-ambient placeholder, not the final licensed Stock track (Adobe Stock audio returned no warm acoustic bed) — to be swapped for delivery. Score the mix as built; note the placeholder."
+        },
+        {
+          "id": "tour_lowerthird_animated",
+          "type": "yesno",
+          "question": "Does the tour carry a branded lower-third (logo bug + agent name/title + price strip) consistent with the brief's copy?",
+          "guidance": "Yes = an on-brand lower-third with the keyhole bug, 'Eleanor Vance / Senior Sales Associate' and the just-listed price strip is visible over the footage. No = no lower-third or wrong/missing copy.",
+          "reference": "README deliverable 1 + thumbnail show the animated lower-third: keyhole logo bug, 'Eleanor Vance · Senior Sales Associate', 'Just Listed - $975,000'."
+        }
+      ]
+    },
+    {
+      "key": "cleaned_vo_stem",
+      "display": "Cleaned, de-reverbed VO dialogue stem",
+      "files": [
+        "outputs/agent_vo_cleaned_stem.wav",
+        "outputs/agent_vo_cleaned_stem.mp3"
+      ],
+      "what_it_is": "The broadcast-ready dialogue stem isolated from the rough VO's music/ambient bed and de-reverbed, loudness-normalized for the mix.",
+      "items": [
+        {
+          "id": "vo_clean_bed_removed",
+          "type": "likert5",
+          "question": "Compared to the rough input, is the music/ambient bed substantially removed and the reverb tail suppressed, leaving a clear dialogue stem at broadcast loudness?",
+          "guidance": "5 = noticeably drier, isolated speech with the bed gone and a controlled loudness; few artefacts. 3 = improved but residual bed/reverb or pumping artefacts. 1 = no audible improvement over the rough input.",
+          "reference": "README deliverable 2: band-limit + 2-pass FFT denoise (strips the bed) + anlmdn/compand (de-reverb) + loudnorm to -16 LUFS."
+        },
+        {
+          "id": "vo_stem_specs",
+          "type": "yesno",
+          "question": "Is the stem delivered as a clean WAV (plus MP3) at a broadcast-sane format and matching the source duration?",
+          "guidance": "Yes = a 48kHz/16-bit mono WAV ~40s plus an MP3, matching the ~40s rough VO. No = wrong duration, truncated, or only a lossy file.",
+          "reference": "agent_vo_cleaned_stem.wav = 48000 Hz / 16-bit / mono / 40.11s (matches the 40.18s rough VO); agent_vo_cleaned_stem.mp3 also present."
+        }
+      ]
+    },
+    {
+      "key": "footage_summary",
+      "display": "Footage key-segment summary + rough transcript",
+      "files": [
+        "outputs/footage_summary_and_transcript.json",
+        "outputs/footage_summary_and_transcript.txt"
+      ],
+      "what_it_is": "The per-clip key-segment summary, chosen cut order, hook length and rough VO transcript that justify how the rooms were ordered.",
+      "items": [
+        {
+          "id": "summary_justifies_order",
+          "type": "likert5",
+          "question": "Does the summary give a per-clip key segment and a defensible rationale for the chosen room order and the 3-second hook?",
+          "guidance": "5 = each of the 6 clips has a room + key_segment + tour_role, an explicit chosen_tour_order, hook_seconds, and prose explaining why the exterior leads. 3 = order present but thinly justified. 1 = no per-clip detail or no chosen order.",
+          "reference": "footage_summary_and_transcript.json: 6 clips each with room/key_segment/tour_role, chosen_tour_order leading with exterior-approach, hook_seconds 3.0, and a footage_summary paragraph explaining the exterior leads as the only strong establishing beat."
+        },
+        {
+          "id": "summary_transcript_matches",
+          "type": "yesno",
+          "question": "Does the included rough transcript match the agent narration verbatim?",
+          "guidance": "Yes = vo_rough_transcript equals the brief narration_script. No = paraphrased or different.",
+          "reference": "vo_rough_transcript in the JSON matches the narration_script word-for-word."
+        }
+      ]
+    },
+    {
+      "key": "hero_interior_graded",
+      "display": "Fully graded hero interior still",
+      "files": [
+        "outputs/hero_interior_graded.png"
+      ],
+      "what_it_is": "The hero living room straightened, cropped, exposure/white-balance corrected, with the blown windows recovered via masked highlight/exposure edits and finished to the campaign 'listing look' preset.",
+      "items": [
+        {
+          "id": "hero_windows_recovered",
+          "type": "likert5",
+          "question": "Have the genuinely blown windows been recovered from near-pure white into legible, textured panels while the rest of the room stays naturally bright and airy?",
+          "guidance": "5 = windows pulled back to soft daylight-grey textured panes (no longer clipped white), room brighter/balanced, no obvious halo around the window frames. 3 = partial recovery or visible masking halo. 1 = windows still blown or recovery looks fake/dirty.",
+          "reference": "hero_interior_graded.png (1506x1004): the five window panes that were pure-white in the source now read as soft textured daylight-grey blinds/panels; README flags this as the honest recovered tone (not a fabricated exterior view)."
+        },
+        {
+          "id": "hero_levelled_and_wb",
+          "type": "likert5",
+          "question": "Is the image levelled (verticals plumb after straighten/crop) and white-balanced to a single warm bright-airy listing look, fixing the source's mixed warm-lamp/cool-window cast?",
+          "guidance": "5 = window mullions and wall edges read vertical, even warm-neutral WB, bright airy tone. 3 = slightly off-level or residual colour cast. 1 = still crooked or mixed WB.",
+          "reference": "README deliverable 4: straighten -> crop -> auto-tone -> warm WB -> exposure -> masked recovery -> HSL -> vibrance -> Color-Bright preset (a real Adobe connector chain)."
+        },
+        {
+          "id": "hero_is_consistent_look_source",
+          "type": "yesno",
+          "question": "Does the graded hero serve as the single 'listing look' source whose grade is shared by every cover and the thumbnail?",
+          "guidance": "Yes = the same warm-WB + Color-Bright grade visibly carries into the covers and thumbnail. No = covers/thumbnail show a different, inconsistent grade.",
+          "reference": "README deliverable 9: the single graded hero (warm WB + Color-Bright) is the source for every cover and the thumbnail."
+        }
+      ]
+    },
+    {
+      "key": "twilight_exterior",
+      "display": "Twilight-sky exterior composite + sized covers",
+      "files": [
+        "outputs/twilight_exterior_composite.png",
+        "outputs/twilight_cover_feed_1x1.png",
+        "outputs/twilight_cover_stories_9x16.png",
+        "outputs/twilight_cover_16x9.png"
+      ],
+      "what_it_is": "The exterior with its flat overcast sky masked out and a licensed Adobe Stock twilight plate composited behind it, the house dusk-graded, plus 1:1 / 9:16 / 16:9 cover crops.",
+      "items": [
+        {
+          "id": "twilight_sky_swap_believable",
+          "type": "likert5",
+          "question": "Is the overcast sky cleanly replaced with a twilight plate and the house dusk-graded so the composite reads as one believable dusk photograph (consistent light direction, clean roofline mask, no fringing)?",
+          "guidance": "5 = convincing dusk: warm/indigo sky behind a correctly dusk-toned house, tight roofline mask, warm window glow, no halo or sky bleeding through trees. 3 = believable but with a visible mask edge or a tonal mismatch between sky and house. 1 = obvious paste-in, harsh fringe, or daylight house under a night sky.",
+          "reference": "twilight_exterior_composite.png (1536x1024): the flat grey sky is replaced with a pink/orange-and-blue dusk sky and the house is warm-graded with lit windows; README credits licensed AdobeStock_227883293 as the sky plate. Inspect tree edges and the roofline for masking artefacts."
+        },
+        {
+          "id": "twilight_covers_sizes",
+          "type": "likert5",
+          "question": "Are the twilight cover crops delivered at the campaign sizes (1:1 1080x1080, 9:16 1080x1920) sharing the same dusk composite without awkwardly cropping the house?",
+          "guidance": "5 = Feed 1:1 and Stories 9:16 covers both present at exact pixel sizes, house well-framed in each. 3 = one size off or house badly cropped. 1 = missing a required size.",
+          "reference": "twilight_cover_feed_1x1.png = 1080x1080, twilight_cover_stories_9x16.png = 1080x1920, twilight_cover_16x9.png = 1200x675 (a 16:9 web crop, off the 1080-grid)."
+        },
+        {
+          "id": "twilight_residual_house_number",
+          "type": "yesno",
+          "question": "Was the source house number ('209') handled in the twilight composite (either retouched out or at least not newly distracting)?",
+          "guidance": "Yes = no distracting legible house number remains, or it has been cleanly removed. No = the '209' is still plainly legible on the pillar.",
+          "reference": "The input exterior carries a legible '209' on the entry pillar; the twilight_exterior_composite still shows it. Flag if a 'no-text' delivery requires it removed."
+        }
+      ]
+    },
+    {
+      "key": "branded_lower_third_logo",
+      "display": "Vectorized logo bug + lower-third overlays",
+      "files": [
+        "outputs/brokerage_logo_vector.svg",
+        "outputs/brokerage_logo_mark.png",
+        "outputs/lower_third_9x16.png",
+        "outputs/lower_third_1x1.png"
+      ],
+      "what_it_is": "The brokerage logo background-removed and vectorized to a clean SVG/cutout, plus transparent lower-third overlays (logo bug + agent strip + price pill) sized for 9:16 and 1:1.",
+      "items": [
+        {
+          "id": "logo_vectorized_clean",
+          "type": "likert5",
+          "question": "Is the logo mark cleanly background-removed and vectorized to an SVG with smooth paths in the correct navy + sage palette (no white box, no jaggies)?",
+          "guidance": "5 = crisp vector doorway/keyhole on transparency, navy door + sage keyhole, smooth curves. 3 = usable but rough edges or slightly off colour. 1 = raster halo, white box, or broken shape.",
+          "reference": "brokerage_logo_vector.svg contains real vector paths filled rgb(27,43,65) navy (~#1B2B41) and rgb(125,154,118) sage (~#7D9A76); brokerage_logo_mark.png (244x285) is the navy-door + sage-keyhole cutout on transparency. KNOWN LIMITATION: vectorization kept only the icon mark and dropped the 'Solstice Properties' wordmark text — the name is re-set in brand type in the lockups."
+        },
+        {
+          "id": "lowerthird_copy_fidelity",
+          "type": "likert5",
+          "question": "Do the lower-third overlays typeset the exact brief copy — agent 'Eleanor Vance', title 'SENIOR SALES ASSOCIATE' and price '$975,000' — with the logo bug and brand-coloured pill, on a transparent background?",
+          "guidance": "5 = all strings spelled exactly right, navy pill + oak/sage accents + keyhole bug, transparent PNG ready to overlay. 3 = correct copy but off-palette or opaque background. 1 = wrong copy, typos, or wrong price.",
+          "reference": "lower_third_9x16.png (1080x1920) and lower_third_1x1.png (1080x1080): transparent PNGs with a navy pill, oak/sage accent bar, keyhole bug, 'Eleanor Vance' / 'SENIOR SALES ASSOCIATE' and a '$975,000' oak price pill."
+        },
+        {
+          "id": "lowerthird_type_recommended",
+          "type": "yesno",
+          "question": "Is the lower-third type set to the font_recommend output (brand grotesque or its closest installed substitute) rather than a default system serif?",
+          "guidance": "Yes = clean geometric grotesque consistent with Libre Franklin/Inter (or the documented Avenir Next/Helvetica Neue substitute). No = mismatched/default serif or inconsistent fonts.",
+          "reference": "README: font_recommend drove the type; brand fonts (Libre Franklin/Inter) not installed, so set in closest grotesques (Avenir Next/Helvetica Neue) — substitute brand fonts for final delivery."
+        }
+      ]
+    },
+    {
+      "key": "platform_covers_thumbnail",
+      "display": "Generative-expanded covers + video thumbnail",
+      "files": [
+        "outputs/cover_feed_1x1.png",
+        "outputs/cover_stories_9x16.png",
+        "outputs/cover_reels_9x16.png",
+        "outputs/video_thumbnail_1280x720.png"
+      ],
+      "what_it_is": "The graded hero generative-expanded and reframed to fill 1:1 and 9:16 covers without cropping the room, branded with the lower-third/headline, plus a 1280x720 video thumbnail with a play button.",
+      "items": [
+        {
+          "id": "covers_reframe_no_room_crop",
+          "type": "likert5",
+          "question": "Are the covers reframed to 1:1 and 9:16 by generative-expanding the ceiling/floor (not by cropping into the room), at exact pixel sizes, sharing the hero grade?",
+          "guidance": "5 = Feed 1:1 (1080x1080) and Stories/Reels 9:16 (1080x1920) covers with the full room intact and seamless expanded ceiling/floor, same warm grade. 3 = sizes right but a visible expand seam or tight crop. 1 = room cropped off or wrong sizes.",
+          "reference": "cover_feed_1x1.png = 1080x1080, cover_stories_9x16.png and cover_reels_9x16.png = 1080x1920 (identical bytes, the shared 9:16 cover); README deliverable 7: generative-expand (ceiling+floor) then 9:16 crop. The 9:16 covers show expanded ceiling/floor above and below the recovered windows."
+        },
+        {
+          "id": "covers_branding_and_copy",
+          "type": "likert5",
+          "question": "Do the covers carry the correct campaign copy and branding — 'SOLSTICE PROPERTIES' + 'Your Home, Elevated.', '1234 Serene Haven Way', the 'WILLOW CREEK ESTATES · 4 BD · 3 BA · 2,850 SQFT' subline, agent strip and '$975,000' pill — legibly placed over the hero?",
+          "guidance": "5 = all strings present, correctly spelled, brand-coloured, legible against the image. 3 = present but one string wrong/clipped or low contrast. 1 = missing branding or wrong data (e.g. wrong price/sqft).",
+          "reference": "cover_feed_1x1 and cover_stories_9x16 show the SOLSTICE PROPERTIES bug + 'YOUR HOME, ELEVATED.', headline '1234 Serene Haven Way', subline 'WILLOW CREEK ESTATES · 4 BD · 3 BA · 2,850 SQFT', 'Eleanor Vance / SENIOR SALES ASSOCIATE' strip and '$975,000' pill — all matching campaign_brief.json. (On the 1:1 the navy headline crosses the bright window and is slightly hard to read — note legibility.)"
+        },
+        {
+          "id": "thumbnail_spec_and_play",
+          "type": "likert5",
+          "question": "Is the video thumbnail delivered at 1280x720 with the same grade/branding and a clear play affordance and 'JUST LISTED' / price marker?",
+          "guidance": "5 = 1280x720, shares the hero grade, has a centered play button, logo, headline, 'JUST LISTED' pill and 'Just Listed - $975,000'. 3 = right size but missing play button or a copy element. 1 = wrong size or no branding.",
+          "reference": "video_thumbnail_1280x720.png = 1280x720 with logo top-left, 'JUST LISTED' pill top-right, headline '1234 Serene Haven Way', subline, centered play button, and 'Eleanor Vance / SENIOR SALES ASSOCIATE · SOLSTICE PROPERTIES' + 'JUST LISTED - $975,000' lower strip."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "task_all_deliverables_present",
+      "type": "likert5",
+      "question": "Across the whole package, are all nine asked deliverables present — narrated tour MP4 (Feed/Stories/Reels), cleaned VO stem, footage summary, graded hero, twilight composite cover, vectorized logo + lower-third, generative-expanded 1:1/9:16 covers + thumbnail, and a consistent grade?",
+      "guidance": "5 = every deliverable group present and on-brief. 3 = one deliverable missing or only partially met. 1 = multiple deliverables missing.",
+      "reference": "outputs/ contains 3 tour MP4s, cleaned VO wav+mp3, footage_summary json+txt, hero_interior_graded.png, twilight_exterior_composite + 3 twilight covers, brokerage_logo_vector.svg + mark + 2 lower-thirds, 3 graded covers + 1280x720 thumbnail — all 9 README deliverables produced."
+    },
+    {
+      "id": "task_consistent_listing_look",
+      "type": "likert5",
+      "question": "Do the video thumbnail and every still share one consistent aesthetic (white balance, tone, the Color-Bright preset) so the campaign reads as a single visual system?",
+      "guidance": "5 = thumbnail and all covers visibly share the warm bright-airy hero grade. 3 = mostly consistent with one off-grade asset. 1 = grades clearly differ across assets.",
+      "reference": "README deliverable 9: the single graded hero (warm WB + Color-Bright) is the source for every cover and the thumbnail; verify the feed/stories covers and thumbnail match the hero tone."
+    },
+    {
+      "id": "task_copy_data_fidelity",
+      "type": "likert5",
+      "question": "Is every piece of typeset copy across covers, thumbnail and lower-thirds faithful to campaign_brief.json (address '1234 Serene Haven Way', '$975,000', 4 BD / 3 BA / 2,850 SQFT, 'Eleanor Vance', 'Senior Sales Associate', 'Solstice Properties', 'Your Home, Elevated.') with no typos or mismatched numbers?",
+      "guidance": "5 = all strings/numbers match the brief everywhere. 3 = one minor inconsistency (e.g. casing). 1 = a wrong price, sqft, or agent detail anywhere.",
+      "reference": "campaign_brief.json: address '1234 Serene Haven Way', price '$975,000', beds 4 / baths 3 / sqft 2850, agent 'Eleanor Vance, Senior Sales Associate'. Covers, thumbnail and lower-thirds all reproduce these."
+    },
+    {
+      "id": "task_connector_chain_genuine",
+      "type": "yesno",
+      "question": "Was the still + branding leg actually produced through the Adobe connector image chain (straighten/crop/auto-tone/WB/exposure/masked recovery/HSL/vibrance/preset/generative-expand/resize/select/fill/remove-background/vectorize + stock license + font_recommend), per the trajectory?",
+      "guidance": "Yes = the trajectory shows the real connector ops driving the hero grade, twilight sky license, logo vectorize and font_recommend. No = the image leg was faked locally with no connector calls.",
+      "reference": "trajectory.json: 42 steps, 25 adobe_connector ops covering the full image grade chain, asset_search + asset_license_and_download_stock (AdobeStock_227883293 twilight sky), remove_background, vectorize and font_recommend; 9 local_video + 7 local_compositor + 1 verify."
+    },
+    {
+      "id": "task_honest_limitations_disclosed",
+      "type": "likert5",
+      "question": "Are the package's honest limitations clearly disclosed and bounded (video/audio done locally via ffmpeg because connector video tools aren't retrievable headless; music bed is a placeholder; brand fonts substituted; wordmark dropped from the vector; windows recovered to a grey panel not a fabricated view)?",
+      "guidance": "5 = every limitation is documented with a clear 'swap for delivery' path and none silently overclaim Adobe where it was local. 3 = limitations noted but vague. 1 = limitations hidden or the README overclaims.",
+      "reference": "outputs/README.md 'Honest limitations' lists: video is local ffmpeg (connector video tools unretrievable headless), music bed is a warm-ambient placeholder (sky plate IS real licensed Stock), brand fonts substituted, logo vector kept the mark and dropped the wordmark, stills cap at 1536px, windows recovered to honest grey panels."
+    },
+    {
+      "id": "task_campaign_ready_for_lead_gen",
+      "type": "likert5",
+      "question": "Taken as a whole, would this package work as a real lead-gen listing drop — a hooky narrated tour plus matched branded covers/thumbnail across Feed/Stories/Reels — that a boutique brokerage could post with only the documented final swaps (licensed music, brand fonts)?",
+      "guidance": "5 = cohesive, on-brand, platform-correct set ready to post after the two documented swaps. 3 = usable but needs noticeable cleanup (e.g. cover legibility, residual house number). 1 = not deliverable without redoing core work.",
+      "reference": "Package delivers a 3-size narrated tour with a 3s hook + cleaned VO, a recovered/graded hero, a believable twilight cover, branded lower-thirds/thumbnail and exact-size covers sharing one grade; residual nits to weigh: placeholder music, substitute fonts, dropped wordmark text, the '$975,000' headline contrast on the 1:1 feed cover, and the still-legible '209' on the twilight exterior."
+    }
+  ]
+}

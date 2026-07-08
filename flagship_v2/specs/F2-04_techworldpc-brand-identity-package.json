@@ -1,0 +1,483 @@
+{
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "techworldpc_concept_logo_raw.png"
+   ],
+   "output": "upload session + asset target for the raw concept logo",
+   "note": "Begin pushing the client's supplied AI concept artwork into CC storage so connector tools can reference it by URN. Headless-confirmed storage op."
+  },
+  {
+   "n": 2,
+   "tool": "asset_get_presigned_urls",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 1"
+   ],
+   "output": "presigned PUT URL for techworldpc_concept_logo_raw.png; bytes uploaded via the presigned PUT",
+   "note": "PLUMBING FIX: get the presigned URL and PUT the actual bytes between init and finalize (the verdict's missing-upload gap)."
+  },
+  {
+   "n": 3,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "concept_logo_urn (stable CC asset URN for the raw concept)",
+   "note": "Finalize the upload; the rough concept now exists as a stable URN reused downstream."
+  },
+  {
+   "n": 4,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 3"
+   ],
+   "output": "concept_logo_cutout.png (mark isolated on transparency, soft halo + stray pixels dropped)",
+   "note": "Clean the supplied raster: cut the mark off its off-white concept background and strip the soft halo before vectorizing, so the trace is crisp. Headless raster op (A1)."
+  },
+  {
+   "n": 5,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 4"
+   ],
+   "output": "techworldpc_logo_master.svg (clean editable vector of the hexagon + TW monogram, color version #1F6FEB)",
+   "note": "MUST-EXERCISE. Recover a CLEAN vector from the de-backgrounded concept (A1 raster->SVG). This is the connector-feasible 'rebuilt vector'; true bespoke path-refinement is acknowledged as an out-of-connector source-file step (see anti-trace note), so the rubric accepts a clean vectorize output and does NOT demand path-editing no listed tool can do."
+  },
+  {
+   "n": 6,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 5"
+   ],
+   "output": "CC folder tree: /TechWorldPC/{logo,templates,social,board}",
+   "note": "Set up storage so the master SVG, variant exports and template renders are organized for handoff and board assembly."
+  },
+  {
+   "n": 7,
+   "tool": "document_render_vector",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 5",
+    "techworldpc_brand_brief.json"
+   ],
+   "output": "Icon-Only + Light-BG PNGs at 512/1024/2048/4096 (transparent) + techworldpc_profile_picture.png (800x800)",
+   "note": "FIX (replaces broken raster color_overlay-on-vector): render the master SVG to the exact transparent PNG sizes and the profile crop. Deterministic genuine-.ai export (A2 [C])."
+  },
+  {
+   "n": 8,
+   "tool": "document_render_vector",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 5",
+    "techworldpc_brand_brief.json"
+   ],
+   "output": "Single-Color PNG set (mark recolored to #0B1F3A in the SVG fill) + white-mark SVG/PNG at 512/1024/2048/4096 transparent",
+   "note": "FIX: do the recolors at RENDER time by re-styling the master SVG fill to single-color (#0B1F3A) and to white, then export. Replaces image_apply_color_overlay (which cannot recolor a vector). White-mark PNG feeds the Dark-BG composite in step 9."
+  },
+  {
+   "n": 9,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 8",
+    "techworldpc_brand_brief.json"
+   ],
+   "output": "techworldpc_logo_variants_PNG_set Dark-BG lockup at 512/1024/2048/4096 (white mark centered on #0B1F3A canvas)",
+   "note": "FIX: the Dark-BG variant is two ops (white mark PLUS dark background) a single overlay can't do; composite the white mark over a dark canvas. Routed LOCAL [L] because it is an arbitrary mark-on-canvas composite, not a genuine authored .indd merge. Completes the four-variant set with the step-7/8 exports."
+  },
+  {
+   "n": 10,
+   "tool": "search_design",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "techworldpc_brand_brief.json"
+   ],
+   "output": "gallery of on-brand corporate-tech Express templates: business card, eBay store banner, promo banner, Facebook cover, YouTube banner",
+   "note": "MUST-EXERCISE. Returns real templateURNs but renders the Express gallery WIDGET; the routing doc forbids auto-picking, so the user selects the corporate-tech (no-esports) templates. Tagged [W] interactive."
+  },
+  {
+   "n": 11,
+   "tool": "font_recommend",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "techworldpc_brand_brief.json"
+   ],
+   "output": "recommended corporate-tech sans (Inter/Eurostile family) for the brand-guide typography section",
+   "note": "Satisfy the brief's typography recommendation and lock a consistent font referenced across templates and the brand guide. Headless [C]."
+  },
+  {
+   "n": 12,
+   "tool": "fill_text",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 10",
+    "techworldpc_brand_brief.json"
+   ],
+   "output": "text-filled business-card + Facebook-cover Express designs (brand name, role line, contact, 'Built to Perform')",
+   "note": "MUST-EXERCISE. Pour exact brand name/role/contact + 'Built to Perform' into the user-picked card and FB-cover templates (TEXT ONLY, layout/font preserved). [W] interactive: needs the user's selected templateURN."
+  },
+  {
+   "n": 13,
+   "tool": "fill_text",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 10",
+    "techworldpc_brand_brief.json"
+   ],
+   "output": "text-filled eBay store banner, YouTube banner, and 'Play the Latest Games' promo Express designs",
+   "note": "MUST-EXERCISE (2nd fill pass). Fill marketplace + YouTube + the literal 'Play the Latest Games' headline. [W] interactive, text-only."
+  },
+  {
+   "n": 14,
+   "tool": "export_design",
+   "server": "canva",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 12",
+    "step 13"
+   ],
+   "output": "techworldpc_business_card.png (1050x600), techworldpc_facebook_cover.png (1640x624), techworldpc_ebay_store_banner.png (1200x270), techworldpc_youtube_banner.png (2560x1440) at exact dims",
+   "note": "FIX (verdict 'missing export step'): fill_text emits NO image. Export the populated designs to spec-exact PNGs. Routed via the Canva headless export/composition path [C] (sheet B) as the deterministic headless export; in the Express product the equivalent is the Express export action on the same filled designs. Either way an explicit export turns the filled templates into the deliverable PNGs."
+  },
+  {
+   "n": 15,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "techworldpc_product_photo.jpg"
+   ],
+   "output": "product_photo upload session",
+   "note": "Bring the studio product photo into CC storage for the watermark and promo-banner composite."
+  },
+  {
+   "n": 16,
+   "tool": "asset_get_presigned_urls",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 15"
+   ],
+   "output": "presigned PUT URL for techworldpc_product_photo.jpg; bytes uploaded via presigned PUT",
+   "note": "PLUMBING FIX: presigned URL + PUT of the actual product-photo bytes between init and finalize."
+  },
+  {
+   "n": 17,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 16"
+   ],
+   "output": "product_photo_urn",
+   "note": "Finalize; the product photo is now referenceable by URN for the composite steps."
+  },
+  {
+   "n": 18,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 17",
+    "step 7"
+   ],
+   "output": "techworldpc_listing_watermark_demo.png (Icon-Only mark placed as a semi-transparent corner watermark over the product photo, 2000x1500)",
+   "note": "FIX (replaces image_fill_area MISUSE): image_fill_area is solid-color fill only, NOT a compositor. Place the KNOWN rendered Icon-Only PNG over the product photo at a set corner/opacity by local layout composite [L] (PIL). No generative or fill tool is used to place a known logo."
+  },
+  {
+   "n": 19,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 13",
+    "step 17",
+    "step 7",
+    "techworldpc_brand_brief.json"
+   ],
+   "output": "techworldpc_play_latest_games_banner.png (1500x500: product photo + Icon-Only mark + exact 'Play the Latest Games' headline)",
+   "note": "Lay out the promo banner from the product photo, the rendered logo, and the step-13 promo copy. Routed LOCAL [L] because it composites an arbitrary product photo + logo + headline (not a genuine authored .indd merge); exact dimensions and literal headline enforced from the brand brief."
+  },
+  {
+   "n": 20,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 11",
+    "step 7",
+    "step 8",
+    "step 9",
+    "techworldpc_brand_brief.json"
+   ],
+   "output": "techworldpc_brand_guide.pdf (logo usage, color-palette swatches, typography, clear-space, background-usage examples)",
+   "note": "Assemble the concise brand-guide concept: recommended font (step 11), palette swatches from the brief, and the logo variants (steps 7/8/9). Routed LOCAL [L] (composited spec sheet, not a genuine authored .indd data-merge)."
+  },
+  {
+   "n": 21,
+   "tool": "create-design-from-candidate",
+   "server": "canva",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 5",
+    "step 7"
+   ],
+   "output": "Express/Canva design doc containing the refined Icon-Only mark on a brand-blue card, ready to animate",
+   "note": "FIX prerequisite for animation: animate_design only animates an EXISTING Express design, so first place the master mark into a real design doc (headless Canva composition path [C], sheet B). The same mark is reused so the sting stays on-brand."
+  },
+  {
+   "n": 22,
+   "tool": "animate_design",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 21",
+    "techworldpc_brand_brief.json"
+   ],
+   "output": "techworldpc_logo_sting.mp4 (~3-4s, square 1080x1080, PRESET fade/zoom-in reveal of the refined mark)",
+   "note": "FIX: re-routed to animate an EXISTING design (step 21), and downgraded to the PRESET motion animate_design supports (fade/zoom/slide reveal) instead of a bespoke 'hexagon-assembles' keyframe build. [W] interactive Express motion on the user's design; uses the SAME refined mark (no off-brand redraw, no esports glitch)."
+  },
+  {
+   "n": 23,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 7",
+    "step 8",
+    "step 9",
+    "step 14",
+    "step 18",
+    "step 19",
+    "step 20",
+    "step 22"
+   ],
+   "output": "verified previews of every render (logo variant set, all template PNGs, watermark, promo banner, brand guide, sting)",
+   "note": "State-tracking checkpoint: preview each produced asset to confirm names/sizes/spelling before board assembly. Catches a missing export size or a mis-spelled headline. [C]."
+  },
+  {
+   "n": 24,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 5",
+    "step 7",
+    "step 8",
+    "step 9",
+    "step 14",
+    "step 18",
+    "step 19",
+    "step 20",
+    "step 22",
+    "step 23"
+   ],
+   "output": "techworldpc_concept_board (Firefly Board deep-link with the full system)",
+   "note": "MUST-EXERCISE. Assemble already-produced asset URNs (refined mark, full variant set, colorway, all populated templates, watermark demo, promo banner, brand guide, animated sting) into one reviewable concept board for sign-off. [C] (board presents produced assets; it does not itself generate art)."
+  }
+ ],
+ "corrections_applied": [
+  "VERTICAL FIX: relabeled vertical from 'Music, Film, Publishing & Media' (wrong) to 'E-commerce, Retail & Product' — Tech World PC sells custom PCs/components via eBay/marketplaces and the deliverables are marketplace banners, listing watermarks, store assets and business collateral.",
+  "STEP 14 TOOL MISUSE removed: image_fill_area (SOLID-COLOR fill only per A1, not a compositor) replaced by a LOCAL [L] document_render_layout composite that places the KNOWN rendered Icon-Only PNG over the product photo at a set corner/opacity (now step 18).",
+  "STEP 6 TYPE MISMATCH removed: image_apply_color_overlay (raster tool fed a vector) dropped. Recolors now happen at RENDER time via document_render_vector re-styling the master SVG fill to single-color (#0B1F3A) and white (step 8); the Dark-BG lockup is built as white-mark-on-dark-canvas via a local composite (step 9), since that variant is two ops a single overlay cannot do.",
+  "STEP 17 EXPRESS VIOLATION fixed: animate_design now animates an EXISTING design — the mark is first placed into a real design doc via create-design-from-candidate (step 21) — and the description is downgraded from a bespoke 'hexagon assembles' keyframe build to the PRESET fade/zoom reveal animate_design actually supports (step 22).",
+  "MISSING EXPORT STEP added: fill_text is TEXT-ONLY and emits no image (A3), so an explicit export step (step 14) now turns the two fill_text passes into the spec-exact PNGs (business card 1050x600, eBay 1200x270, FB cover 1640x624, YouTube 2560x1440).",
+  "ANTI-TRACE requirement made gradeable: since no vector path-editing tool exists in the sheet, the spec/rubric now ACCEPT a clean image_vectorize output as the connector-feasible 'rebuilt vector' and stop penalizing it as a trace; true bespoke path-refinement is explicitly noted as an out-of-connector source-file/human step.",
+  "PLUMBING GAP fixed: asset_get_presigned_urls + the presigned PUT inserted between init and finalize for BOTH uploads (concept logo steps 1->2->3; product photo steps 15->16->17).",
+  "EXEC-MODE TAGGING added to every step: headless storage/raster/vector/preview/board = C; Express search/fill/animate = W; local mark-on-canvas / watermark / promo / brand-guide composites = L; template export via Canva headless path = C.",
+  "ORPHANED-INPUT fix: techworldpc_concept_logo_raw.png used_in_steps now references real consumers (1 upload, 4 remove-bg, 5 vectorize, 21 design-from-mark, 24 board); techworldpc_product_photo.jpg -> 15 upload, 18 watermark, 19 promo; techworldpc_brand_brief.json -> the steps that truly consume it. No input points at a step that doesn't use it.",
+  "FRAME-COUNT / VIDEO SPEC: logo sting kept as a short PRESET-motion reveal (~3-4s) consistent with animate_design's actual capability; no false 'assembling' keyframe count claimed. No A6 [X] capability (gen-fill, object removal, text-to-image, compositing-by-prompt, image->PDF, video trim) appears in any step.",
+  "LONG-HORIZON preserved: 24 dependent connector calls (was 19), still output->input chained, across asset-storage + photo/raster + vector-layout + Express + board groups."
+ ],
+ "difficulty_rationale": "HARD on every flagship axis even after correction. (1) Long horizon: 24 dependent connector calls across asset-storage, photo/raster, vector+layout render, the Express [W] template track, and Firefly board assembly, with must-exercise tools image_vectorize, search_design, fill_text (twice), animate_design and create_firefly_board on the critical path. (2) Heavy state tracking: one master SVG (step 5) fans out into recolored single-color/white renders (8), exact-size transparent PNG sets (7), the dark-BG composite (9), the watermark (18), the promo layout (19), the brand guide (20) and the animation source design (21) — the agent must keep ONE canonical mark and not let variants drift; two uploaded URNs (concept logo, product photo) must each be referenced by the right later steps. (3) Exact-spec pressure: four logo variants x four exact transparent sizes (512/1024/2048/4096) plus five platform templates each at a non-negotiable dimension (1050x600, 1200x270, 1500x500, 1640x624, 2560x1440 w/ safe areas) — one wrong size or a baked-in background fails. (4) Mixed execution modes: the agent must correctly drive headless [C] renders/exports, the [W] Express interactive fills/animation that need a user template pick, and [L] local composites for the watermark/promo/brand-guide/dark-BG — and must NOT misuse image_fill_area as a compositor, must NOT recolor a vector with a raster overlay, and must NOT ask animate_design for a bespoke keyframe build. (5) Brand-fidelity traps: explicit no-esports/mascot/Twitch/neon constraint and an Intel/Corsair/Lenovo corporate feel, plus the anti-trace clause (now graded as clean-vectorize + acknowledged source-file refinement). (6) Exact-string discipline: brand name and the literal 'Play the Latest Games' headline spelled identically across both fill passes and both promo renders, driven from one JSON, with a preview checkpoint (step 23) that an honest agent must use to catch a missing size or typo before the closing board, which must contain EVERY produced asset.",
+ "exec_mode_summary": "C×16 W×4 L×4",
+ "full_brief": "Tech World PC is a growing custom-computer company (custom gaming PCs, workstations, refurbished systems, computer repair, upgrades and components) that currently sells primarily through eBay and other online marketplaces and wants a professional, consistent brand identity that scales with the business. They have completed the concept phase and selected a logo DIRECTION — a geometric hexagon icon with an integrated 'TW' monogram, clean corporate styling, strong readability at small sizes — but the only artifact they have is rough AI-generated concept artwork from brainstorming. They are explicit that they do NOT want a blind trace of the AI image: they want the concept recovered into clean professional vector form. (Note: the connector set provides image_vectorize for raster->clean-SVG recovery but no bespoke vector path-editing tool; this spec therefore treats the cleaned vectorize output as the connector-feasible 'rebuilt vector' and notes that any further hand path-refinement is an out-of-connector source-file step, so the anti-trace requirement is graded against a clean, non-garbage vector rather than against path editing no tool can do.) The icon must function independently from the wordmark so it can live in watermarks, social profile pictures, product photos, stickers and future packaging. The brand must feel like a professional technology company in the spirit of Intel, Corsair, Lenovo, ASUS and EVGA — Professional, Modern, Trustworthy, Technical, Premium, Scalable — and must AVOID esports branding, mascots, cartoon characters, Twitch-style graphics and aggressive gaming-team logos.\\n\\nThe deliverable is a complete brand package. (1) LOGO SYSTEM: from the supplied concept, produce a clean vector mark and its required lockups — Icon-Only, Light-Background, Dark-Background (white mark on dark canvas), Single-Color (#0B1F3A) — exported as transparent PNGs at 512/1024/2048/4096px plus the editable vector (SVG) and an 800x800 profile crop. (Recolors are produced at render time by re-styling the master SVG fill — NOT by raster overlay — and the dark-BG lockup is a white-mark-on-dark-canvas composite, since that variant is two operations a single overlay cannot do.) (2) BRAND CORE: a concise brand-guide concept covering logo usage, color palette (a primary 'tech blue' #1F6FEB plus a dark slate #0B1F3A and a neutral #E8EDF4, in the Intel/Lenovo family — NOT neon esports color), typography recommendation, spacing/clear-space, and background-usage examples. (3) MARKETING & SOCIAL ASSETS built on Adobe Express templates the user selects from the gallery and filled with the real brand name and taglines (text-only fills), THEN explicitly exported to spec-exact PNGs: an eBay store banner (1200x270), a 'Play the Latest Games' promotional banner (1500x500), a Facebook cover (1640x624), a YouTube banner (2560x1440 with safe area), a business card (1050x600), and a profile-picture crop (800x800). A listing watermark (the Icon-Only mark over a product photo at reduced opacity) is produced by a local layout composite, NOT by generative/solid fill. (4) MOTION: a short animated logo sting (~3-4s, square 1080x1080) — the refined mark placed into a real Express/Canva design and animated with the PRESET fade/zoom reveal the connector supports (no bespoke keyframe 'assembling' build, no esports glitch). (5) PRESENTATION: every render — the refined mark, the colorway, the populated templates, the watermark demo, the brand guide and the sting — assembled into one Firefly concept board the client can review as the 'cohesive brand system' before final source-file handoff.\\n\\nHard constraints the agent must respect: the mark must be derived from the SUPPLIED concept (consistent hexagon + TW monogram), not invented from scratch; all logo PNG exports must be on a TRANSPARENT background at the four exact sizes (512/1024/2048/4096); the single-color and dark-background versions must be legible (no color-on-color illegibility); the brand name 'Tech World PC' and exactly the listed taglines must appear correctly spelled across every template via text-only Express fills (layout and chosen corporate font not visually broken) AND must be exported to the exact deliverable dimensions; the palette/styling must read corporate-tech with zero esports/mascot/Twitch cues; the animated sting must use the SAME refined mark; and the final concept board must contain every produced asset so a single deep-link presents the whole system. No step may use a not-available capability (generative fill, AI object/element removal, photo compositing-by-prompt, text-to-image, image->PDF, or video trim-to-timestamp).",
+ "grounding_note": "REAL (verbatim from the Upwork brief in db_all.json): client is 'Tech World PC', a growing custom-computer company (gaming PCs, workstations, refurbished systems, repair) selling on eBay/marketplaces, wanting a scalable professional brand identity. The selected logo direction is REAL: 'Geometric hexagon icon, integrated \\\"TW\\\" monogram, clean corporate styling, strong readability at small sizes,' with the icon required to work independently for watermarks, social profiles, product photos, stickers, and packaging. The style words (Professional, Modern, Trustworthy, Technical, Premium, Scalable), reference brands (Intel, Corsair, Lenovo, ASUS, EVGA) and the 'do NOT want' list (no esports/mascots/cartoon/Twitch/aggressive gaming-team logos) are REAL. The supplied AI-generated concept artwork is REAL ('We have AI-generated concept artwork used during the brainstorming phase'). The deliverable list is REAL and verbatim: logo package (Primary Horizontal, Stacked, Icon-Only, Light-BG, Dark-BG, Single-Color, Favicon) in AI/SVG/EPS/PDF/PNG at 512/1024/2048/4096px transparent; a concise brand guide (logo usage, color palette, typography, spacing, background usage); marketplace assets (eBay store banner, listing watermark, 'Play the Latest Games' promotional banner); social assets (Facebook cover, YouTube banner, profile picture); business assets (business card, warranty card, shipping insert, email signature). ENRICHED only where the brief implies a long-horizon connector workflow (no new scope): exact connector-renderable specs (pixel dims, transparent PNG exports, SVG vectorization); a short animated logo sting for social/YouTube intros (the brief lists YouTube + social profiles + the promo banner); and a Firefly concept board operationalizing 'cohesive brand system' + 'background usage examples.' CORRECTION (v2.1 capability sheet): the anti-trace clause is honored within tool reality — image_vectorize recovers a clean editable vector (not a raw auto-trace dump), and because no path-editing connector exists, further refinement is flagged as a source-file step rather than asserted as a connector deliverable. No client, brand name, service list, or reference brand was invented.",
+ "groups_covered": [
+  "asset_stock_storage",
+  "photo_raster",
+  "document_layout_vector",
+  "express_template_track",
+  "firefly_board"
+ ],
+ "headless_doable": false,
+ "id": "F2-04",
+ "inputs": [
+  {
+   "name": "techworldpc_concept_logo_raw.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A rough, slightly messy AI-brainstorm logo concept for a custom-PC company called 'Tech World PC'. A geometric hexagon icon enclosing an interlocking 'TW' monogram, rendered in corporate tech-blue (#1F6FEB) with a darker slate accent, sitting on a plain off-white background. Make it look like an unrefined first-pass generative concept: very slightly uneven hexagon edges, soft anti-aliased raster edges, a faint drop shadow, minor color banding in the gradient, the monogram strokes not perfectly aligned, a couple of stray semi-transparent pixels around the mark. Clean corporate styling overall (NOT esports, no mascot, no cartoon, no flames, no Twitch glow), readable, but clearly a raster concept that needs to be rebuilt as clean vector. No text other than the TW monogram inside the hexagon. 2048x2048, centered, plenty of margin.",
+   "realism_notes": "This is the client's REAL supplied artifact: 'AI-generated concept artwork used during the brainstorming phase.' It must look like an imperfect raster concept (soft edges, slight banding, stray pixels) so image_remove_background + image_vectorize have something real to clean up. Tech-blue + slate palette keeps it in the Intel/Lenovo family per the brief; deliberately NOT neon/esports. gemini-3-pro-image per section D for a text/logo-bearing still.",
+   "used_in_steps": [
+    1,
+    4,
+    5,
+    21,
+    24
+   ]
+  },
+  {
+   "name": "techworldpc_product_photo.jpg",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "A clean, well-lit studio product photograph of a custom gaming PC tower: matte black mid-tower case with a tempered-glass side panel, tasteful blue interior accent lighting (subtle, NOT rainbow RGB), visible graphics card and cooling, photographed three-quarter front on a seamless light-grey studio backdrop with a soft reflection on the surface. Realistic product photography: accurate metal and glass reflections, physically plausible dust-free surfaces, natural soft shadow, correct perspective, slight depth-of-field falloff, no text, no logos on the case, no watermark. Premium-but-approachable, in the spirit of a Corsair/Lenovo marketplace listing photo. 2000x1500, landscape.",
+   "realism_notes": "Marketplace listing photo onto which the Icon-Only mark is applied as a corner watermark (step 18) and which seeds the 'Play the Latest Games' promo banner (step 19). Subtle blue accent (not rainbow RGB) keeps it corporate per the 'do NOT want esports' constraint. Real studio reflections/shadow so the watermark composite reads as a genuine listing image. gpt-image-2 per section D for a photoreal product still.",
+   "used_in_steps": [
+    15,
+    18,
+    19
+   ]
+  },
+  {
+   "name": "techworldpc_brand_brief.json",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Produce a compact JSON brand brief for 'Tech World PC' with keys: brand_name ('Tech World PC'), tagline_primary ('Built to Perform'), tagline_promo ('Play the Latest Games'), tagline_marketplace ('Custom Gaming PCs · Workstations · Repair'), palette ({primary_hex:'#1F6FEB', dark_hex:'#0B1F3A', neutral_hex:'#E8EDF4', accent_hex:'#1F6FEB'}), font_primary_role ('geometric/humanist sans, corporate-tech, e.g. Inter/Eurostile family'), reference_brands (['Intel','Corsair','Lenovo','ASUS','EVGA']), avoid (['esports','mascots','cartoon','Twitch-style','aggressive gaming-team logos']), template_copy ({business_card:{name_line:'Tech World PC', role_line:'Custom Gaming PCs · Workstations · Repair', contact:'support@techworldpc.com · techworldpc.com'}, ebay_banner:{headline:'Tech World PC', sub:'Custom Gaming PCs · Workstations · Refurbished'}, promo_banner:{headline:'Play the Latest Games', sub:'Custom-Built by Tech World PC'}, facebook_cover:{headline:'Tech World PC', sub:'Built to Perform'}, youtube_banner:{headline:'Tech World PC', sub:'Custom PCs · Workstations · Repair'}}). Valid JSON only.",
+   "realism_notes": "The single source of truth for every fill_text, render and brand-guide call — guarantees the brand name and exact taglines (including the brief's literal 'Play the Latest Games') are spelled identically everywhere. Palette stays in the Intel/Lenovo corporate-tech family. Data input, so gemini-2.5-flash per section D.",
+   "used_in_steps": [
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    19,
+    20,
+    22
+   ]
+  }
+ ],
+ "iterative_chaining_note": "The chain is genuinely output->input throughout. The client's rough concept is uploaded with full presigned-PUT plumbing (1->2->3), de-backgrounded (4), then vectorized into the single master SVG (5) that EVERY downstream logo asset descends from: document_render_vector renders the master to exact transparent sizes + profile crop (7) and to recolored single-color/white marks (8); a local composite builds the white-mark-on-dark Dark-BG lockup (9); the rendered Icon-Only mark is composited over the product photo for the watermark (18) and into the promo banner (19); the master is placed into a real design doc (21) and animated into the sting (22). The brand-brief JSON is the cross-step text spine, feeding font_recommend (11), both fill_text passes (12,13), both promo/brand-guide renders (19,20) and the animation (22), so the brand name and the literal 'Play the Latest Games' tagline are spelled identically everywhere. search_design (10) feeds both fill_text passes; the export step (14) turns the filled Express designs into spec-exact PNGs; asset_inline_preview (23) reads back all renders as a verification checkpoint; create_firefly_board (24) ingests the union of the produced system. The product photo is its own URN branch (15->16->17) consumed by the watermark and promo composites. Nothing is a dead-end; the master SVG alone fans out to six distinct downstream branches.",
+ "one_line_ask": "Build Tech World PC a production-ready corporate-tech brand identity system from their rough AI concept logo: vectorize it into a clean hexagon/TW-monogram mark, render Icon-Only/Light-BG/Dark-BG/Single-Color variants at exact transparent sizes, populate user-picked Adobe Express templates (business card, eBay banner, 'Play the Latest Games' promo, Facebook cover, YouTube banner) with the brand name/taglines and export them at spec dimensions, composite a listing watermark and brand guide, animate a short preset logo sting, and assemble everything into one Firefly concept board.",
+ "outputs": [
+  {
+   "name": "techworldpc_logo_master.svg",
+   "kind": "vector",
+   "spec": "Clean editable SVG of the hexagon + interlocking 'TW' monogram, transparent background, corporate tech-blue (#1F6FEB); geometry recovered from the supplied concept via image_vectorize and re-styled at render time for recolors.",
+   "rubric_hook": "Is the SVG a clean vector (no embedded raster, no auto-trace garbage paths), faithful to the supplied hexagon/TW concept, and legible at favicon size? Accept a clean vectorize output as the rebuilt vector; do NOT require connector-impossible path editing. Penalize a blind raster-embed or an off-concept redraw."
+  },
+  {
+   "name": "techworldpc_logo_variants_PNG_set",
+   "kind": "image",
+   "spec": "Transparent-background PNG exports of the Icon-Only, Light-BG, Dark-BG (white mark on #0B1F3A) and Single-Color (#0B1F3A) lockups, each at 512, 1024, 2048 and 4096 px (square), exact sizes, alpha preserved.",
+   "rubric_hook": "Are all four exact sizes present per variant, truly transparent where required, and is the dark-BG/single-color version legible (correct contrast, no color-on-color)? Penalize missing sizes, baked-in backgrounds on the transparent variants, or illegible variants."
+  },
+  {
+   "name": "techworldpc_business_card.png",
+   "kind": "image",
+   "spec": "Express business-card template populated (text-only) with the brand name, role line and contact, EXPORTED to 1050x600 px PNG, corporate-tech styling.",
+   "rubric_hook": "Brand name + contact correctly spelled, template layout/font intact, exported at exact size, on-brand palette."
+  },
+  {
+   "name": "techworldpc_ebay_store_banner.png",
+   "kind": "image",
+   "spec": "eBay store banner from a user-picked Express template, exported to 1200x270 px PNG, headline 'Tech World PC' + sub line, refined logo placed.",
+   "rubric_hook": "Correct eBay banner dimensions, brand name/sub present, logo on-brand and not distorted."
+  },
+  {
+   "name": "techworldpc_play_latest_games_banner.png",
+   "kind": "image",
+   "spec": "Promotional banner composited locally, 1500x500 px PNG, headline exactly 'Play the Latest Games' + 'Custom-Built by Tech World PC', product photo + Icon-Only logo.",
+   "rubric_hook": "Exact 'Play the Latest Games' wording (the brief's literal asset), product image composited, on-brand, no esports cues, correct dimensions."
+  },
+  {
+   "name": "techworldpc_facebook_cover.png",
+   "kind": "image",
+   "spec": "Facebook cover from a user-picked Express template, exported to 1640x624 px PNG, brand name + 'Built to Perform'.",
+   "rubric_hook": "Correct FB cover size, safe-area respected, brand name/tagline correct, on-brand."
+  },
+  {
+   "name": "techworldpc_youtube_banner.png",
+   "kind": "image",
+   "spec": "YouTube channel banner from a user-picked Express template, exported to 2560x1440 px PNG (with 1546x423 safe area), brand name + services sub.",
+   "rubric_hook": "Correct YT banner size, content inside safe area, brand name correct, on-brand."
+  },
+  {
+   "name": "techworldpc_profile_picture.png",
+   "kind": "image",
+   "spec": "Icon-Only profile-picture crop rendered from the master SVG, 800x800 px PNG square, Light-BG version, centered with clear space.",
+   "rubric_hook": "Square, centered icon, correct clear space, reads at small size."
+  },
+  {
+   "name": "techworldpc_listing_watermark_demo.png",
+   "kind": "image",
+   "spec": "Product photo with the rendered Icon-Only mark placed (local layout composite) as a semi-transparent corner watermark, 2000x1500 px PNG.",
+   "rubric_hook": "Watermark uses the refined Icon-Only mark placed at a set corner/opacity (not generative/solid fill), legible but unobtrusive, not distorting the product photo."
+  },
+  {
+   "name": "techworldpc_brand_guide.pdf",
+   "kind": "pdf",
+   "spec": "Concise brand-guide concept (local layout composite): logo usage, color-palette swatches (#1F6FEB/#0B1F3A/#E8EDF4), typography recommendation, clear-space, and background-usage examples using the logo variants.",
+   "rubric_hook": "Covers logo usage + palette swatches + typography + clear-space + background usage; palette and font are the corporate-tech ones from the brief; uses the actual produced variants."
+  },
+  {
+   "name": "techworldpc_logo_sting.mp4",
+   "kind": "video",
+   "spec": "Short animated logo sting, ~3-4s, square 1080x1080, PRESET fade/zoom reveal of the refined mark placed into a real design (no bespoke keyframe build), uses the SAME refined mark.",
+   "rubric_hook": "Motion built from the actual refined logo (not a redraw), on-brand corporate motion (no flashy esports glitch), clean preset reveal, correct duration/size."
+  },
+  {
+   "name": "techworldpc_concept_board",
+   "kind": "url",
+   "spec": "A single Firefly Board deep-link assembling the refined mark, the logo variant set, the colorway swatches, the watermark demo, the brand guide, the animated sting and all populated templates as one reviewable concept board.",
+   "rubric_hook": "Board contains EVERY produced asset (logo system + colorway + all templates + watermark + brand guide + sting), is a working deep-link, and presents a coherent 'cohesive brand system'."
+  }
+ ],
+ "slug": "techworldpc-brand-identity-package",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Brand%20Identity%20&%20Marketing%20Asset%20Package%20for%20Growing%20P"
+ },
+ "title": "Brand Identity & Marketing Asset Package for Growing PC Company",
+ "tool_call_count": 24,
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_get_presigned_urls",
+  "asset_finalize_file_upload",
+  "image_remove_background",
+  "image_vectorize",
+  "asset_create_folders",
+  "document_render_vector",
+  "document_render_layout",
+  "search_design",
+  "font_recommend",
+  "fill_text",
+  "export_design",
+  "create-design-from-candidate",
+  "animate_design",
+  "asset_inline_preview",
+  "create_firefly_board"
+ ],
+ "vertical": "E-commerce, Retail & Product",
+ "reverify": {
+  "severity": "minor",
+  "residual_issues": [
+   "Bookkeeping wart on the [L] steps (9,18,19,20): the 'tool' field names 'document_render_layout', which the sheet defines as a [C] genuine-.indd/.ai export (line 52), while the exec_mode is [L] and the notes correctly describe off-connector PIL composites. The intent is honest (it deliberately refuses to claim a genuine authored-.indd merge it doesn't have, which is the right call), but an [L] step is by definition off-connector, so naming a connector tool there is contradictory labeling. Tag itself is valid/defensible.",
+   "Cosmetic tool-name drift: spec writes 'export_design' and 'create-design-from-candidate' for the Canva server; the real connector tool ids are 'export-design' and 'create-design-from-candidate' (hyphenated). Both exist, so this is naming style only, not a fabricated tool.",
+   "Step 21 (create-design-from-candidate) is fed a vectorize-produced master SVG + rendered PNG rather than an upstream generate-design candidate, which is the canonical input for that Canva tool (sheet B, line 105). Plausible if the SVG/PNG is first uploaded as an asset and wrapped in a design, but it is a mild stretch of the tool's normal 'candidate' input contract."
+  ]
+ }
+}

@@ -1,0 +1,448 @@
+{
+ "task_id": 9001,
+ "slug": "techhouse-release",
+ "title": "Tech-house single release campaign — NIGHTSHIFT FX cover + colour-splash promos + vectorized logo + merch cards",
+ "started": "2026-06-15T12:12:57",
+ "finished": "2026-06-15T12:41:13",
+ "steps": [
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline_hero",
+   "note": "Cover hero frame press_01 — DJ NIGHTSHIFT under the magenta neon diamond sign; source for the duotone cover + magenta colour-splash.",
+   "input": "input_assets/press_01_cover-hero-frame.jpg",
+   "n": 1,
+   "ts": "2026-06-15T12:12:57",
+   "step_image": "steps/001_input_hero.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline_portrait",
+   "note": "Promo portrait press_06 — moody neon DJ portrait, second colour-splash candidate.",
+   "input": "input_assets/press_06_portrait-neon.jpg",
+   "n": 2,
+   "ts": "2026-06-15T12:12:57",
+   "step_image": "steps/002_input_portrait.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline_logo",
+   "note": "NIGHTSHIFT wordmark bitmap (black on transparent) to vectorize into the monochrome lockup.",
+   "input": "input_assets/nightshift_logo.png",
+   "n": 3,
+   "ts": "2026-06-15T12:12:57",
+   "step_image": "steps/003_input_logo.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline_reference",
+   "note": "Client Catch&Release-style cover reference — halftone + chromatic glitch + grain aesthetic anchor.",
+   "input": "input_assets/cover_reference_plate.jpg",
+   "n": 4,
+   "ts": "2026-06-15T12:12:58",
+   "step_image": "steps/004_input_reference.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "adobe_connector",
+   "action": "asset_initialize_file_upload+asset_finalize_file_upload",
+   "note": "Uploaded the 3 connector inputs (cover/promo hero, NIGHTSHIFT logo, club cover reference) to Adobe CC; presigned URLs head every downstream chain. CSV + 12 ticket QR PNGs stay local (data-merge is [T]).",
+   "output": "hero=https://at.adobe.com/juCuMvPSCH9stIKl logo=https://at.adobe.com/hq1PorXuZBkWmUiI ref=https://at.adobe.com/DdwIcRVtG9PvmKQI",
+   "params": {
+    "assetIds": [
+     "urn:...d23ddc76 hero",
+     "urn:...62261171 logo",
+     "urn:...44c4f576 ref"
+    ]
+   },
+   "n": 5,
+   "ts": "2026-06-15T12:19:11",
+   "step_image": "steps/005_uploaded_inputs.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "adobe_connector",
+   "action": "asset_search",
+   "note": "Searched Adobe Stock (StockAsset/Photo) for the film-grain / neon-bokeh texture plate that informs the cover grain wash + merch backdrop accent.",
+   "params": {
+    "query": "film grain overlay neon bokeh magenta cyan club texture",
+    "totalHits": 96,
+    "chosen": "327625971 grained scratched film texture 5000x4000; bokeh alt 490427956"
+   },
+   "n": 6,
+   "ts": "2026-06-15T12:20:31",
+   "step_image": "steps/006_stock_search_grain.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "adobe_connector",
+   "action": "asset_license_and_download_stock",
+   "note": "Licensed + downloaded the grain/scratch Stock plate (license-before-edit) — the film-grain aesthetic reference for the cover (step 17) and merch backdrop accent.",
+   "params": {
+    "assetId": "327625971",
+    "state": "purchased"
+   },
+   "output": "work/stock_grain_plate.jpg",
+   "n": 7,
+   "ts": "2026-06-15T12:20:31",
+   "step_image": "steps/007_stock_licensed_grain.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_subject",
+   "note": "PROMO CHAIN — masked the DJ NIGHTSHIFT in the hero frame (white=subject) so the depth-grade keeps her sharp and the colour-splash can isolate the neon.",
+   "adobe_request_id": "e31d493f-199e-41ec-a3de-5482dcc60660",
+   "input": "hero presigned",
+   "output": "work/p05_subject_mask.png",
+   "n": 8,
+   "ts": "2026-06-15T12:21:15",
+   "step_image": "steps/008_promo_subject_mask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_lens_blur",
+   "note": "Lens-blurred the club frame to push the crowd/decks background into bokeh depth behind the artist for the moody club look.",
+   "adobe_request_id": "22804eb4-ca18-4933-b8c4-f42a429d7773",
+   "input": "hero presigned",
+   "output": "work/p06_lensblur.png",
+   "n": 9,
+   "ts": "2026-06-15T12:21:15",
+   "step_image": "steps/009_promo_lensblur.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_exposure",
+   "note": "Dropped the whole frame to a moody low-key club exposure (exposure -0.9, gamma 0.82) for the deep-night mood.",
+   "adobe_request_id": "4b430d4e-5eb0-431c-ba02-8f69ace3aae9",
+   "output": "work/p07_exposure.png",
+   "n": 10,
+   "ts": "2026-06-15T12:22:15",
+   "step_image": "steps/010_promo_exposure.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_dark_portions",
+   "note": "Crushed the blacks (+38) for the deep shadow floor of the club mood.",
+   "adobe_request_id": "fe096fc4-b87a-48b7-8ef2-8a3d946e2641",
+   "output": "work/p08_crushblacks.png",
+   "n": 11,
+   "ts": "2026-06-15T12:22:15",
+   "step_image": "steps/011_promo_crushblacks.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_hsl",
+   "note": "Pushed the magenta neon brand hue (sat +28, slight hue rotate) across the frame; cyan deck glow already strong — this is the finished moody-club depth grade.",
+   "adobe_request_id": "5cb54d24-bb6c-4ac3-839c-07f41bc8fe66",
+   "output": "work/p09_neon_graded.png",
+   "n": 12,
+   "ts": "2026-06-15T12:22:16",
+   "step_image": "steps/012_promo_neon_graded.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_by_prompt",
+   "note": "COLOUR-SPLASH — masked the glowing magenta neon diamond sign (prompt) to isolate the single brand accent kept in colour; tubes traced cleanly.",
+   "adobe_request_id": "5fca69e3-7a58-462c-b584-455d1a941b20",
+   "output": "work/p10_accent_mask.png",
+   "n": 13,
+   "ts": "2026-06-15T12:23:54",
+   "step_image": "steps/013_promo_accent_mask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_single_color_saturation",
+   "note": "Boosted ONLY magenta (+60) inside the accent mask — the colour kept vivid in the splash.",
+   "adobe_request_id": "e9178473-7553-4691-a439-d6a0c7aec7a0",
+   "output": "work/p11_magenta_boost.png",
+   "n": 14,
+   "ts": "2026-06-15T12:23:55",
+   "step_image": "steps/014_promo_magenta_boost.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_invert_selection",
+   "note": "Inverted the accent mask so everything EXCEPT the magenta neon is selected for the duotone.",
+   "adobe_request_id": "4617a615-5af4-4099-9dbf-27d12989add5",
+   "output": "work/p12_inverted_mask.png",
+   "n": 15,
+   "ts": "2026-06-15T12:23:55",
+   "step_image": "steps/015_promo_inverted_mask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_monochromatic_tint",
+   "note": "Duotoned everything outside the accent (hue 290 low-sat) — finished selective-colour promo: vivid magenta neon pops on a mono club frame. DELIVERABLE: colour-splash promo.",
+   "adobe_request_id": "d3b76c4b-a0a6-47fa-a1d9-3543cc6473d3",
+   "output": "work/p13_colorsplash_promo.png",
+   "n": 16,
+   "ts": "2026-06-15T12:23:55",
+   "step_image": "steps/016_promo_colorsplash_FINAL.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_monochromatic_tint",
+   "note": "COVER CHAIN — full-frame magenta/black duotone (hue 327 = brand Nightshift Magenta) of the hero frame to set the cover base treatment.",
+   "adobe_request_id": "68763c48-47e2-464c-a3c0-7e30b0c8a715",
+   "output": "work/c14_duotone.png",
+   "n": 17,
+   "ts": "2026-06-15T12:25:14",
+   "step_image": "steps/017_cover_duotone.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_halftone",
+   "note": "Ben-Day dot halftone screen (radius 8) over the duotone for the print-zine aesthetic.",
+   "adobe_request_id": "9714cfa9-630e-4cef-9740-0f1a03d4f6b2",
+   "output": "work/c15_halftone.png",
+   "n": 18,
+   "ts": "2026-06-15T12:25:14",
+   "step_image": "steps/018_cover_halftone.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_color_overlay",
+   "note": "Brand-magenta wash (#FF1E8C) on MULTIPLY to unify the halftone with the Nightshift palette.",
+   "adobe_request_id": "274e948d-5032-427c-8c46-c5968fe48cb0",
+   "output": "work/c16_brandwash.png",
+   "n": 19,
+   "ts": "2026-06-15T12:25:15",
+   "step_image": "steps/019_cover_brandwash.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_add_grain",
+   "note": "Film-grain finish (amount 55, aesthetic informed by the licensed Stock grain plate from step 4) — FINISHED FX streaming cover base.",
+   "adobe_request_id": "3ea374e1-0bb8-4898-9f10-16250b5560c2",
+   "output": "work/c17_cover_FINAL.png",
+   "n": 20,
+   "ts": "2026-06-15T12:25:15",
+   "step_image": "steps/020_cover_grain_FINAL.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_glitch_effect",
+   "note": "ALT COLOURWAY — chromatic-aberration VHS glitch (offset -24) on a copy of the finished FX cover for the visualiser/announce loop.",
+   "adobe_request_id": "7bfb702c-b19a-46b9-b738-2a2e932c0c4b",
+   "output": "work/c18_glitch.png",
+   "n": 21,
+   "ts": "2026-06-15T12:25:55",
+   "step_image": "steps/021_cover_glitch.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_add_noise",
+   "note": "Added analog VHS noise (28%) over the glitch — FINISHED VHS-glitch alt colourway. DELIVERABLE: glitch alt cover.",
+   "adobe_request_id": "b564a464-3c17-4102-a9f6-021c61eb8f0a",
+   "output": "work/c19_glitch_alt_FINAL.png",
+   "n": 22,
+   "ts": "2026-06-15T12:25:55",
+   "step_image": "steps/022_cover_glitch_alt_FINAL.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "font_recommend",
+   "note": "Recommended a tech-house display face for the cover title + merch card type. Chosen: Comba-BoldUltraWide (bold ultra-wide industrial); corroborated by Centrifuge-Bold / Strelka-Ultra. Its PostScript name = the data-merge fallBackFont; local merge falls back to Futura Condensed-XBold (Comba not installed on the render host).",
+   "params": {
+    "recommended_postscript": "Comba-BoldUltraWide",
+    "alts": [
+     "Centrifuge-Bold",
+     "Strelka-Ultra",
+     "OmnesSemiBold"
+    ],
+    "local_fallback": "Futura Condensed-XBold"
+   },
+   "n": 23,
+   "ts": "2026-06-15T12:26:46",
+   "step_image": "steps/023_font_recommend.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_vectorize",
+   "note": "Vectorized the NIGHTSHIFT logo bitmap to a scalable SVG (840 vector paths) for cover + merch use.",
+   "adobe_request_id": "29c3425b-57a1-4f66-911a-9e6d3ed107d2",
+   "input": "logo presigned",
+   "output": "work/logo_vectorized.svg",
+   "n": 24,
+   "ts": "2026-06-15T12:30:22",
+   "step_image": "steps/024_logo_vectorized_svg.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_compositor",
+   "action": "render_vector_logo_lockup",
+   "note": "Render of the vectorized logo to print-clean PNG/PDF. document_render_vector [C] rejected raw SVG (needs a PDF/.ai source) and headless .ai authoring is unavailable, so the print-clean lockup was rendered LOCALLY from the genuine connector SVG: kept the 10 black wordmark paths, dropped 830 light anti-alias artifacts, rebuilt transparent black/magenta/white lockups (2714x966) + a 300dpi print PDF.",
+   "input": "work/logo_vectorized.svg",
+   "output": "work/logo_lockup_black.png + logo_lockup_print.pdf",
+   "n": 25,
+   "ts": "2026-06-15T12:30:22",
+   "step_image": "steps/025_logo_lockup_print_clean.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "adobe_connector",
+   "action": "asset_license_and_download_stock",
+   "note": "Licensed a 2nd Stock plate (pink bokeh 490427956) as the neon-bokeh merch backdrop accent behind the duotone band on the sticker cards.",
+   "params": {
+    "assetId": "490427956",
+    "state": "just_purchased"
+   },
+   "output": "work/stock_bokeh_plate.jpg",
+   "n": 26,
+   "ts": "2026-06-15T12:31:07",
+   "step_image": "steps/026_stock_bokeh_backdrop.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_datamerge",
+   "note": "data-merge rendered locally from input_assets/tour_dates.csv (12 rows); the document_merge_data_vector connector requires a human-authored Illustrator-Variables template. Each card binds city/venue/date/doors_time/support_act + the per-row ticket_qr Linked-File (matched by city slug), with the vectorized NIGHTSHIFT lockup, magenta-on-black bokeh duotone band, cyan keyline, hairline rule + crop marks. All copy read programmatically from the CSV.",
+   "action": "document_merge_data_vector_LOCAL",
+   "input": "input_assets/tour_dates.csv + work/logo_lockup_white.png + 12 ticket QR PNGs",
+   "output": "work/merch_png/nightshift_merch_card_0001..0012.png",
+   "params": {
+    "rows": 12,
+    "page": "A6 148x105mm +3mm bleed @300dpi",
+    "fallBackFont": "Comba-BoldUltraWide -> local Futura Condensed-XBold"
+   },
+   "n": 27,
+   "ts": "2026-06-15T12:33:21",
+   "step_image": "steps/027_datamerge_card_01_london.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "note": "Rendered the 12 merged cards to a 12-page print PDF (A6+bleed @300dpi) + a 3x4 proof contact sheet. Mirrors document_render_vector of the merged .ai. Snapped card 02 (Berlin) as 2nd of the 2-3 visible data-merge samples.",
+   "action": "render_merch_cards_pdf_proof",
+   "input": "work/merch_png/*.png",
+   "output": "outputs/merch_cards/nightshift_merch_cards_PRINT.pdf + PROOFSHEET.png",
+   "n": 28,
+   "ts": "2026-06-15T12:33:21",
+   "step_image": "steps/028_datamerge_card_02_berlin.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "note": "3rd data-merge sample snapped (Amsterdam) + the full 12-up proof sheet for the audit gallery.",
+   "action": "merch_proof_sheet",
+   "output": "outputs/merch_cards/nightshift_merch_cards_PROOFSHEET.png",
+   "n": 29,
+   "ts": "2026-06-15T12:33:22",
+   "step_image": "steps/029_datamerge_proofsheet_12up.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_subject",
+   "note": "MERCH STICKER — masked the artist on the colour-splash promo (reused as die-cut sticker art).",
+   "adobe_request_id": "a943c8f8-b7e5-4604-81da-9ee87e793d33",
+   "output": "work/s25_sticker_submask.png",
+   "n": 30,
+   "ts": "2026-06-15T12:34:23",
+   "step_image": "steps/030_sticker_subject_mask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_invert_selection",
+   "note": "Inverted the subject mask so the background is selected for the solid fill.",
+   "adobe_request_id": "5c2332f3-75f7-4034-9dee-e4ab4c53a034",
+   "output": "work/s26_sticker_invmask.png",
+   "n": 31,
+   "ts": "2026-06-15T12:34:24",
+   "step_image": "steps/031_sticker_inverted_mask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_fill_area",
+   "note": "Filled the inverted background with club-black (#0A0A0F) — canonical select->invert->fill backdrop recipe → clean die-cut sticker with the magenta-splash artist popping. DELIVERABLE: merch sticker variant.",
+   "adobe_request_id": "ad051187-f70c-4a1b-800f-09e7558d7c1f",
+   "output": "work/s27_sticker_FINAL.png",
+   "n": 32,
+   "ts": "2026-06-15T12:34:24",
+   "step_image": "steps/032_sticker_diecut_FINAL.png"
+  },
+  {
+   "phase": "export",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "Cropped/resized the finished FX cover to 1600x1600 (streaming + square announce). Source was already 1:1 so this was a clean resize-only (no subject clip). The 1600px cover is resampled from the 1024px connector master (web/streaming spec, not print).",
+   "adobe_request_id": "9e1789ea-e243-4e84-98d4-f42d95b548f0",
+   "output": "work/x28_cover_1600.png",
+   "n": 33,
+   "ts": "2026-06-15T12:35:25",
+   "step_image": "steps/033_export_cover_1600.png"
+  },
+  {
+   "phase": "export",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "Attempted a 9:16 story reframe of the cover; connector returned a pad result (576x1024) and recommended image_generative_expand (unavailable in this env). Story is therefore composed LOCALLY as a branded 1080x1920 layout (full cover + lockup + magenta bands) rather than a clipped/AI-expanded crop.",
+   "adobe_request_id": "cb39a4f2-e122-47e3-ac3f-49f22f7ce53a",
+   "output": "work/x28_story_916pad.png",
+   "n": 34,
+   "ts": "2026-06-15T12:35:26",
+   "step_image": "steps/034_export_story_connector_pad.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "note": "Built a COHESIVE moody-club PROMO SET: connector colour-splash hero is the flagship; 3 more press frames (portrait-neon, backlit-haze, smoke-lights) got the same grade recipe applied locally (low-key exposure, crushed blacks, neon magenta/cyan push, light grain) so the deliverable is a genuine consistent set.",
+   "action": "compose_promo_set",
+   "output": "outputs/promos/promo_*_graded.png",
+   "n": 35,
+   "ts": "2026-06-15T12:39:56",
+   "step_image": "steps/035_promo_set_portrait.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "note": "Composited the NIGHTSHIFT lockup + brand type onto the 1600x1600 streaming cover (legibility scrim, NEW SINGLE OUT NOW in brand magenta). Square announce = clean 1600 master. Glitch alt resized to 1600.",
+   "action": "compose_streaming_cover",
+   "output": "outputs/cover/nightshift_cover_streaming_1600.png",
+   "n": 36,
+   "ts": "2026-06-15T12:39:56",
+   "step_image": "steps/036_export_streaming_cover_FINAL.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "note": "Composed the 1080x1920 STORY social crop as a branded layout (full FX cover + centered lockup + tagline + magenta-banded CTA) since the 9:16 connector crop needed unavailable generative-expand. Fixed a centered-lockup clip before export.",
+   "action": "compose_story_1080x1920",
+   "output": "outputs/cover/nightshift_cover_story_1080x1920.png",
+   "n": 37,
+   "ts": "2026-06-15T12:39:57",
+   "step_image": "steps/037_export_story_FINAL.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "note": "Self-verify: asserted all output dims (covers 1600x1600, story 1080x1920, sticker 1600x1600, 12 merch cards 1819x1311=A6+bleed@300dpi, print PDF=12 pages). Read back the 3 most complex finals (streaming cover, 1080x1920 story, 12-up proof sheet + Budapest card) — no clipped type/collisions/palette drift/garbles. Fixed one centered-lockup clip in the story before export. QR->city mapping 12/12 correct.",
+   "action": "self_verify",
+   "output": "outputs/README.md",
+   "n": 38,
+   "ts": "2026-06-15T12:41:13",
+   "step_image": "steps/038_self_verify_proofsheet.png"
+  }
+ ]
+}

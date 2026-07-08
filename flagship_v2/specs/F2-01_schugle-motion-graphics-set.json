@@ -1,0 +1,378 @@
+{
+ "id": "F2-01",
+ "slug": "schugle-motion-graphics-set",
+ "title": "Engaging Motion Graphics for Schugle",
+ "vertical": "Education & Children",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/motion-graphics/Engaging-Motion-Graphics-for-Schugle"
+ },
+ "grounding_note": "REAL (verbatim from the Freelancer.com brief in db_all.json): Schugle is a German AI web product for teachers that helps create/formulate/structure/revise Foerderplaene (individual support plans) while protecting sensitive pupil data via anonymised placeholders (real pupil names never go to the AI). The client wants THREE related promotional/explanatory videos with one coherent look: (1) a 10-second clip also usable as a SILENT website hero/background loop that works without voiceover, (2) a 30-second promotional/social/reel version, (3) a 2-minute explainer that may reuse material from the 10s and 30s. German on-screen text is REQUIRED; the client may supply/change German voiceover later, so German text must stay EDITABLE (text layers, not flattened). The narrative direction is given verbatim: \"Messy notes -> structured thoughts -> protected placeholders -> AI-assisted formulation -> clear Foerderplan,\" plus the Schugle tilted \"g\" icon as a recurring motif and tone that is calm/credible/professional/modern — explicitly NOT generic education stock (no happy teachers, smiling children, chalkboards, graduation caps, cartoon kids). The client also asks for: clean no-text versions, separate audio tracks for music/SFX/VO placeholders, subtitle SRT/VTT if subtitles are used, and a full list of fonts/stock/icons/templates/music WITH license terms. Budget up to $1,500 USD; tools the client expects include After Effects/Premiere Pro/Canva/Figma. The reference tone sites foerder-fokus.de and schugle.de/einstieg are named in the brief.\nENRICHED (added only where the brief implies it, to make it a runnable connector benchmark, NOT to change the deliverable): (a) The narrative-beat extraction is operationalised by running media_summarize over a supplied reference tutorial clip (the brief explicitly points to existing schugle.de/einstieg tutorial videos as reference) so the storyboard is GROUNDED in the real product flow rather than invented. (b) The Express template-track (search_design -> fill_text -> animate_design) is chosen as the in-connector motion path because the capability sheet routes motion-graphics output through it; the brief's \"templates, AI tools, stock assets, custom animation, or a mix\" line explicitly permits templates. NOTE (v2.1 correction): per the corrected capability sheet, fill_text / animate_design / change_background_color are [W] INTERACTIVE-WIDGET steps — real product tools that need the user to pick a template in the Express gallery — so this task is product-doable, NOT autonomous-headless. (c) Specific aspect ratios 16:9 / 9:16 / 1:1 are enriched from the brief's stated channels (website hero = 16:9, LinkedIn/social/reel = 9:16 and 1:1) — the brief names the channels, the exact ratios are the standard mapping. (d) A licensed Stock music bed is enriched from the brief's explicit requirement to deliver \"separate audio files/tracks for music\" WITH license terms. (e) The exact German on-screen copy strings and the SRT lines are enriched to concrete sample text, faithful to the brief's described content (Foerderplaene, anonymisation, less paperwork). No deliverable is invented beyond the three videos + editable text + clean versions + audio + license list the client asked for.",
+ "one_line_ask": "Deliver a coherent German motion-graphics campaign for the ed-tech product Schugle — a 10s silent website-hero loop, a 30s promo/reel, and a 2-minute explainer — built from a branded Express motion template with editable German on-screen text, reframed to 16:9 / 9:16 / 1:1 with per-ratio text placement, accompanied by a clean no-text hero, a separately delivered licensed Stock music bed, a German SRT, and a font/stock/template/music license manifest.",
+ "full_brief": "Schugle (pronounced \"shoe\" + the \"gle\" from \"Google\") is a German web product that helps teachers create, formulate, structure and revise Foerderplaene (individual pupil support plans) with AI — while protecting sensitive pupil data by replacing real names with anonymised placeholders before anything reaches the AI. The current website is factual and dry; the client wants a coherent visual campaign that makes the idea attractive, memorable and emotionally clear while staying calm, credible, professional and suitable for schools. The mandated narrative arc is \"Messy notes -> structured thoughts -> protected placeholders -> AI-assisted formulation -> clear Foerderplan,\" with the tilted Schugle \"g\" icon as a recurring motif. The client explicitly forbids generic education clichés (happy teachers, smiling children, chalkboards, graduation caps, cartoon kids, generic \"school app\" imagery).\n\nProduce THREE related videos that read as one campaign: (1) a 10-second clip that also works as a SILENT website hero/background loop (must read with no voiceover and be visually calm), (2) a 30-second promotional/social/reel version, and (3) a 2-minute explainer that reuses material from the first two. German on-screen text is required and MUST remain editable — the client may swap German copy or add German voiceover later, so text must live as editable layers, never flattened into the only final file. Required German on-screen strings (faithful to the product): \"Verstreute Notizen\" (scattered notes), \"Struktur statt Stapel\" (structure instead of piles), \"Echte Namen bleiben geschützt\" (real names stay protected) with an anonymised placeholder like \"[Schüler:in A]\", \"KI-gestützte Formulierung\" (AI-assisted formulation), and \"Klarer Förderplan. Weniger Schreibarbeit.\" (clear support plan, less paperwork).\n\nConstraints and deliverables: master the campaign at 1080p, 30fps, H.264 MP4. Deliver each of the three videos in three aspect ratios — 16:9 (1920×1080, website hero), 9:16 (1080×1920, reel/Stories) and 1:1 (1080×1080, feed). Because the in-connector reframe tool (video_resize) is SUBJECT-AWARE, not text-aware, the German on-screen text is NOT baked into a single master before reframing; instead the brand motion is reframed first and the German text is placed PER-RATIO afterward (as an editable text overlay) so it stays legible and in-frame in every ratio. Provide a clean NO-TEXT version of the 10s hero loop (silent, for the website background) — generated from a separate text-free brand animation, not by stripping text off the text version. Deliver the licensed Stock music bed as a separate WAV stem (the brief: \"separate audio files/tracks for music\"); loudness normalization to roughly -16 LUFS is performed as an out-of-band local audio step (ffmpeg loudnorm) because no connector tool normalizes loudness — the 30s and 2-min carry the music, the 10s hero stays silent. If captions are shown, supply a German SRT (authored locally from the campaign copy, then uploaded). Finally deliver a license manifest (CSV/MD) listing every font, Stock asset (with license id), Express template id and music track used, with license terms. The visual style must echo the calm, trustworthy German-school tone of the named reference (foerder-fokus.de) without copying it, and must be grounded in how the real product actually flows (see the supplied reference tutorial clip).",
+ "inputs": [
+  {
+   "name": "schugle_g_icon.svg",
+   "kind": "vector",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A minimal, modern logo mark: a single lowercase letter 'g' tilted ~12 degrees to the right, geometric sans-serif, rounded terminals, solid deep-teal (#0E7C86) on transparent background. Clean vector-ready line art, no gradient, no drop shadow, no extra text, centered with even margin. Flat 2D, crisp edges suitable for tracing to SVG. Single colour, high contrast.",
+   "realism_notes": "Brand mark, not a photo — must be flat, single-colour, perfectly clean so image_vectorize produces a tidy SVG. No photoreal texture. Tilted 'g' is the brief's named visual motif.",
+   "used_in_steps": [
+    1,
+    2,
+    6,
+    7
+   ]
+  },
+  {
+   "name": "schugle_wordmark.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A horizontal logotype reading 'Schugle' in a calm modern geometric sans-serif, lowercase except the capital S, deep-teal (#0E7C86) on transparent background, the lowercase 'g' tilted ~12 degrees to echo the icon. Tight even kerning, no tagline, no shadow, flat single colour, high resolution, sharp anti-aliased edges. Centered with generous transparent margin.",
+   "realism_notes": "Text-bearing brand asset — gemini-3-pro-image (Nano-Banana-Pro) handles crisp legible logotype better than a photoreal model. Transparent PNG so it composites cleanly over template scenes and into the per-ratio text overlays.",
+   "used_in_steps": [
+    2,
+    6,
+    7,
+    11
+   ]
+  },
+  {
+   "name": "schugle_reference_tutorial.mp4",
+   "kind": "video",
+   "gen_model": "veo-3.1-generate-preview",
+   "gen_prompt": "A 45-second calm screen-recording-style explainer of a German ed-tech web app for teachers, 1080p, native German voiceover (clear neutral female voice, unhurried). Shows: a teacher's cluttered handwritten notes on a desk, then a clean web interface where scattered notes are organised into a structured support-plan (Förderplan) form, a step where a real pupil name field is replaced by a protected placeholder badge reading '[Schüler:in A]', then an AI-assist panel suggesting a polished German sentence, ending on a tidy finished plan. Muted professional palette (teal, warm grey, off-white), soft even lighting, real UI typography. Documentary product-demo feel, NOT flashy sci-fi, no cartoon elements, no stock-footage teachers smiling at camera.",
+   "realism_notes": "This is the brief's referenced 'existing basic tutorial' the agent must SUMMARISE to lift narrative beats. veo-3.1-generate-preview @ 1080p with native audio (NOT veo-fast/720p) so media_summarize has real speech + scenes. German VO is essential because the beats must map to the German product flow. Per section D this is the HQ video tier.",
+   "used_in_steps": [
+    3
+   ]
+  },
+  {
+   "name": "foerderplan_sample_data.json",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Produce a small JSON object of German on-screen copy for a Schugle motion-graphics campaign, with keys: scene1_messy='Verstreute Notizen', scene2_structure='Struktur statt Stapel', scene3_privacy='Echte Namen bleiben geschützt', placeholder='[Schüler:in A]', scene4_ai='KI-gestützte Formulierung', scene5_payoff='Klarer Förderplan. Weniger Schreibarbeit.', cta='Schugle — Förderpläne, klar und geschützt.' Also include an array 'srt_lines' of 6 short German caption strings matching these scenes, each with a suggested in/out timecode against a 30s timeline. Valid UTF-8 JSON, correct German umlauts and the colon-form 'Schüler:in'.",
+   "realism_notes": "Drives the fill_text step, the per-ratio text overlays, and the locally-authored SRT. gemini-2.5-flash for clean structured German data. Umlauts and the gender-colon form must be correct — a real German ed product would use 'Schüler:in'.",
+   "used_in_steps": [
+    5,
+    11,
+    14,
+    16
+   ]
+  },
+  {
+   "name": "brand_palette_and_type.json",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Produce a JSON brand sheet for Schugle: primary='#0E7C86' (deep teal), secondary='#F2EFE9' (warm off-white), ink='#23323A' (slate), accent='#E8A23D' (muted amber, used sparingly), font_primary preference='geometric humanist sans (e.g. Source Sans 3 / Inter)', tone keywords=['calm','credible','professional','modern','trustworthy'], forbidden=['chalkboard','graduation cap','cartoon child','smiling teacher stock']. Valid JSON.",
+   "realism_notes": "Feeds font_recommend and the template-search query so the chosen Express template and font stay on-brand. Encodes the brief's explicit do-not-use list so the agent self-checks.",
+   "used_in_steps": [
+    2,
+    4,
+    11
+   ]
+  }
+ ],
+ "outputs": [
+  {
+   "name": "schugle_hero_10s_16x9_clean.mp4",
+   "kind": "video",
+   "spec": "1920×1080, 30fps, H.264 MP4, ~10s, SILENT (no audio track), seamless loop, NO on-screen text — generated from a separate text-free brand animation (clean hero-background version)",
+   "rubric_hook": "Loops seamlessly; truly silent; no text baked in; calm enough for a website hero; tilted-g motif present; reads as same campaign as the others; clearly a distinct text-free render, not the text version with text hidden."
+  },
+  {
+   "name": "schugle_hero_10s_16x9_text.mp4",
+   "kind": "video",
+   "spec": "1920×1080, 30fps, H.264 MP4, ~10s, silent, WITH German on-screen text ('Verstreute Notizen' -> payoff) from an editable text layer",
+   "rubric_hook": "German strings correct incl. umlauts and 'Schüler:in' colon-form; text legible and well-placed; same brand motion as the clean version plus the text overlay; still silent."
+  },
+  {
+   "name": "schugle_promo_30s_set.mp4",
+   "kind": "video",
+   "spec": "Three files: ~30s at 16:9 (1920×1080), 9:16 (1080×1920), 1:1 (1080×1080); 30fps H.264; carries the licensed music bed; German on-screen text placed PER-RATIO (not baked before reframe) so it is legible in every ratio",
+   "rubric_hook": "Brand motion reframed subject-aware; German text added per-ratio and therefore legible/in-frame in 16:9/9:16/1:1; music present; narrative beats match the summarized reference; consistent look across ratios."
+  },
+  {
+   "name": "schugle_explainer_2min_set.mp4",
+   "kind": "video",
+   "spec": "Three files: ~120s at 16:9 / 9:16 / 1:1; 30fps H.264; carries the music bed; deterministically assembled (local ffmpeg) from the reused 10s + 30s brand segments in 5-beat order; per-ratio German text",
+   "rubric_hook": "Demonstrably reuses earlier segments (continuity); all five German beats present and ordered per the storyboard; assembled to length deterministically (not a best-effort highlight cut); pacing reads as a 2-min explainer not a stretched promo."
+  },
+  {
+   "name": "schugle_music_bed.wav",
+   "kind": "audio",
+   "spec": "Stereo WAV, 48kHz, ~120s — the licensed Stock music track delivered AS A SEPARATE STEM. Loudness brought to ~-16 LUFS via an out-of-band local ffmpeg loudnorm pass (no connector tool normalizes loudness); license id recorded in the manifest",
+   "rubric_hook": "Delivered separately (editable); correct format (48kHz stereo WAV); matches the licensed Stock asset id in the manifest; tone fits 'calm/credible'; loudness target met via the declared local step (not asserted as a connector capability)."
+  },
+  {
+   "name": "schugle_captions_de.srt",
+   "kind": "data",
+   "spec": "Valid SRT, German, ~6 cues timed to the 30s promo, UTF-8 with correct umlauts and 'Schüler:in' colon-form — authored locally from foerderplan_sample_data.json srt_lines, then uploaded",
+   "rubric_hook": "Valid SRT timecodes; German text matches on-screen copy; umlauts/colon-form correct; cue timing lands on the right scenes; clearly authored as an explicit step, not assumed."
+  },
+  {
+   "name": "schugle_license_manifest.csv",
+   "kind": "data",
+   "spec": "CSV/MD listing every font, Adobe Stock asset (with license id), Express template id, and music track used, each with license terms and source — assembled locally from the step-4 template id, step-6 Stock license id, and step-2 font choice, then uploaded",
+   "rubric_hook": "Every consumed asset accounted for; Stock license id present and matches the licensed download; font + template id listed; rights line for Schugle reuse included; authored as an explicit step."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "schugle_g_icon.svg"
+   ],
+   "output": "schugle_g_icon_clean.svg (tidy vector trace of the tilted-g motif)",
+   "note": "[C] Trace the supplied tilted-g mark into a clean SVG so the motif scales losslessly across every scene and ratio. First node of the brand-identity chain. Headless-confirmed raster→SVG."
+  },
+  {
+   "n": 2,
+   "tool": "font_recommend",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "brand_palette_and_type.json",
+    "schugle_wordmark.png",
+    "step 1"
+   ],
+   "output": "font_choice (a calm geometric-humanist sans matching the wordmark + brand sheet)",
+   "note": "[C] Lock a brand-appropriate typeface for the German on-screen text, constrained by brand_palette_and_type.json tone keywords and the wordmark look. Feeds the template fill and the per-ratio text overlays; the chosen family is also recorded in the license manifest."
+  },
+  {
+   "n": 3,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "schugle_reference_tutorial.mp4"
+   ],
+   "output": "reference_beats.json (transcript + scene summary of the real product flow)",
+   "note": "[A] ASYNC-WIDGET. Summarise the supplied German tutorial clip to lift the genuine narrative beats (notes -> structure -> placeholder -> AI -> finished plan) so the storyboard is grounded in the actual product, not invented. In the product the progress widget polls + notifies; for an autonomous run this is best-effort."
+  },
+  {
+   "n": 4,
+   "tool": "search_design",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 3",
+    "brand_palette_and_type.json"
+   ],
+   "output": "express_motion_template_candidates (calm modern explainer/title-card motion-graphics Express templates + templateURNs)",
+   "note": "[C] search_design returns real Express templates + templateURNs headless. Query shaped by reference_beats.json and the brand palette (and the brief's do-not-use list). NOTE: this renders a gallery widget; the USER picks the templateURN consumed by steps 5/6/7 (read_widget_context) — search itself is headless, the pick is not."
+  },
+  {
+   "n": 5,
+   "tool": "fill_text",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 4",
+    "foerderplan_sample_data.json"
+   ],
+   "output": "filled_text_design (user-picked template with the 5 German strings filled, text kept as EDITABLE layers)",
+   "note": "[W] INTERACTIVE-WIDGET. Fill the user-picked template's placeholder TEXT with the German strings from foerderplan_sample_data.json (umlauts + 'Schüler:in' intact). fill_text does TEXT ONLY — no image placement here; the wordmark/icon are placed in the animate/overlay steps. Needs the user's gallery selection, so this is product-doable not headless-auto."
+  },
+  {
+   "n": 6,
+   "tool": "animate_design",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 4",
+    "step 1",
+    "schugle_wordmark.png"
+   ],
+   "output": "brand_motion_clean (text-free animated brand master on the user-picked template: tilted-g + wordmark motion, the seed for the CLEAN no-text hero)",
+   "note": "[W] INTERACTIVE-WIDGET. Animate the user-picked template WITHOUT the German copy — the traced g-icon and wordmark only — producing the text-FREE brand motion. This is the dedicated generator for schugle_hero_10s_16x9_clean.mp4 (fixes the verdict's 'clean version has no generator'). animate_design has no documented exact duration/fps parameters, so length/fps are best-effort and finalized in the local mux (step 13)."
+  },
+  {
+   "n": 7,
+   "tool": "animate_design",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 5",
+    "step 1",
+    "schugle_wordmark.png"
+   ],
+   "output": "brand_motion_text (animated master of the text-filled design: same brand motion WITH the editable German text layers)",
+   "note": "[W] INTERACTIVE-WIDGET. Animate the text-filled design (step 5) into the 16:9 text master — the same brand motion as step 6 plus the German text layers. Two separate animate_design calls (6 + 7) give the two distinct branches (clean vs text) the verdict required, instead of one path asserting both. Duration/fps are best-effort, finalized locally."
+  },
+  {
+   "n": 8,
+   "tool": "asset_license_and_download_stock",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 3",
+    "brand_palette_and_type.json"
+   ],
+   "output": "music_bed_licensed (calm modern Stock music track + license id, presigned full-res URL)",
+   "note": "[C] License a calm, non-corporate Stock music bed sized to the 2-min explainer, guided by the reference tone. License BEFORE use; capture the license id for the manifest. Delivered AS-IS as the separate stem — the -16 LUFS normalization is done in a local step (no connector tool normalizes loudness). The hero loop stays silent; this scores the 30s + 2min."
+  },
+  {
+   "n": 9,
+   "tool": "video_resize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 6"
+   ],
+   "output": "clean_brand_reframed (the text-free brand motion reframed to 9:16 1080×1920 and 1:1 1080×1080, subject-aware)",
+   "note": "[A] ASYNC-WIDGET. Reframe the TEXT-FREE brand motion (step 6) to portrait and square. Safe to do subject-aware here precisely BECAUSE there is no baked-in text to crop — German text is added per-ratio AFTER reframe (step 11). video_resize is same-length and subject-aware, not text-aware; results poll via the product widget."
+  },
+  {
+   "n": 10,
+   "tool": "video_resize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 7"
+   ],
+   "output": "text_master_reframed_base (the 16:9 text master reframed to 9:16 and 1:1 as a positioning REFERENCE only)",
+   "note": "[A] ASYNC-WIDGET. Reframe the 16:9 text master to 9:16/1:1 to establish the safe text-zone reference for each ratio. The reframed text here is treated as a guide; the legible, final German text is (re)placed per-ratio in step 11 so it never relies on subject-aware autoreframe keeping a lower-third in frame. Same-length, subject-aware."
+  },
+  {
+   "n": 11,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "foerderplan_sample_data.json",
+    "brand_palette_and_type.json",
+    "schugle_wordmark.png",
+    "step 2"
+   ],
+   "output": "text_overlays_per_ratio (transparent PNG/SVG German title-card + lower-third overlays sized for 16:9, 9:16 and 1:1)",
+   "note": "[C] Render per-ratio German text overlays (title cards + lower-thirds) from a genuine layout, using the locked font (step 2), wordmark, and the exact German copy. Producing the text as a PER-RATIO overlay — instead of baking it into one master before subject-aware resize — is the fix for the verdict's 'text legibility after reframe not guaranteed' issue. These overlays are composited per-ratio in the local mux."
+  },
+  {
+   "n": 12,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 6",
+    "step 7",
+    "step 9",
+    "step 10"
+   ],
+   "output": "cc_delivery_folder_structure (Hero/, Promo/, Explainer/, Audio/, Editable/, Captions/, License/)",
+   "note": "[C] Create the CC-storage delivery folder tree so the multi-ratio video matrix, clean no-text hero, audio stem, SRT and manifest land in an organised, client-ready handoff. Headless-confirmed."
+  },
+  {
+   "n": 13,
+   "tool": "video_create_quick_cut",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 6",
+    "step 9"
+   ],
+   "output": "promo_highlight_optional (best-effort engaging highlight reel from the brand-motion segments, as an OPTIONAL alternate promo cut)",
+   "note": "[A] ASYNC-WIDGET — used honestly. quick_cut is a visual-engagement highlight tool, NOT a timeline sequencer; it cannot guarantee exact length or beat order. So it is used ONLY to offer an optional alternate highlight cut, NOT to deterministically assemble the 2-min explainer. The exact-length, beat-ordered 30s and 120s assembly is done deterministically in the local step below."
+  },
+  {
+   "n": 14,
+   "tool": "asset_add_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 12",
+    "L1",
+    "L2",
+    "L3",
+    "schugle_captions_de.srt",
+    "schugle_license_manifest.csv"
+   ],
+   "output": "uploaded_deliverables (all final MP4s, clean no-text 10s hero, the music WAV stem, German SRT, license manifest CSV → URNs in the CC folder tree)",
+   "note": "[C] Upload every final deliverable produced by the local mux/assembly (L1–L3) plus the locally-authored SRT and license CSV into the CC folder tree from step 12: 3 videos × 3 ratios, clean no-text 10s hero, schugle_music_bed.wav, schugle_captions_de.srt, schugle_license_manifest.csv. Headless-confirmed upload."
+  },
+  {
+   "n": 15,
+   "tool": "local_ffmpeg_compose",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 6",
+    "step 7",
+    "step 9",
+    "step 10",
+    "step 11",
+    "step 8"
+   ],
+   "output": "L1=schugle_hero_10s_16x9_clean.mp4 + L2=text/promo set (10s text 16:9, 30s ×3 ratios) + L3=explainer set (120s ×3 ratios); all 1080p 30fps H.264; per-ratio German overlays composited; music muxed on 30s/2min; hero silent; 2-min deterministically assembled in 5-beat order from reused 10s+30s segments; music loudnormed to ~-16 LUFS",
+   "note": "[L] LOCAL glue (ffmpeg). Finalizes exact durations/fps/codec that animate_design/video_resize do not parameterize: trims/loops the brand motion to ~10.0s for the silent clean hero (L1); composites the per-ratio German text overlays (step 11) onto the reframed clean motion to produce the legible text versions (L2); deterministically concatenates reused 10s+30s segments into the ~120s explainer in beat order (L3) — replacing the misused quick-cut-as-sequencer; muxes the licensed music (step 8) onto the 30s/2min and applies an ffmpeg loudnorm pass toward ~-16 LUFS; leaves the 10s hero silent. This is the honest length/trim/mux/loudnorm path (no connector tool does exact-length trim or loudness normalization)."
+  },
+  {
+   "n": 16,
+   "tool": "local_author_text_artifacts",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "foerderplan_sample_data.json",
+    "step 4",
+    "step 8",
+    "step 2"
+   ],
+   "output": "schugle_captions_de.srt + schugle_license_manifest.csv",
+   "note": "[L] LOCAL authoring. Write the German SRT from foerderplan_sample_data.json srt_lines (valid timecodes, UTF-8 umlauts, 'Schüler:in' colon-form) and assemble the license manifest CSV from the step-4 Express template id, the step-8 Stock license id, the step-2 font choice, and the music track terms. document_render_layout cannot emit SRT/timecode and document_convert_pdf cannot merge — so these text artifacts are authored locally, then uploaded in step 14. Closes the verdict's 'SRT/CSV have no generator' io gap."
+  }
+ ],
+ "tools_used": [
+  "image_vectorize",
+  "font_recommend",
+  "media_summarize",
+  "search_design",
+  "fill_text",
+  "animate_design",
+  "asset_license_and_download_stock",
+  "video_resize",
+  "document_render_layout",
+  "asset_create_folders",
+  "video_create_quick_cut",
+  "asset_add_file",
+  "local_ffmpeg_compose",
+  "local_author_text_artifacts"
+ ],
+ "tool_call_count": 16,
+ "groups_covered": [
+  "brand_identity_raster_vector",
+  "express_template_track",
+  "video_audio",
+  "asset_stock_storage",
+  "document_layout",
+  "local_glue"
+ ],
+ "exec_mode_summary": "C×7 W×3 A×4 L×2",
+ "headless_doable": false,
+ "corrections_applied": [
+  "Step 11 misuse REMOVED: media_enhance_speech was running speech-denoise on an instrumental Stock MUSIC bed. Dropped entirely. The licensed Stock track is now delivered AS-IS as the separate WAV stem (step 8 + local mux), and the ~-16 LUFS target is achieved via an explicit out-of-band ffmpeg loudnorm pass (step 15, [L]) — not asserted as a connector capability. media_enhance_speech now appears nowhere (it is speech-only).",
+  "Clean no-text hero now HAS a generator: added a second, separate animate_design (step 6) that animates the template WITHOUT the German copy (g-icon + wordmark only), producing the text-free brand motion. The text branch is a distinct animate_design (step 7). Two real branches instead of one path asserting both clean and text outputs.",
+  "Over-claimed duration/fps/codec control on animate_design softened: notes now state animate_design has no documented duration/fps params (best-effort); exact 10.0/30/120s, 30fps, H.264 are finalized in the local ffmpeg step (15). The old single call that claimed to emit BOTH 30s and 120s is gone.",
+  "Text-legibility-after-reframe fixed structurally: German text is no longer baked into a master before subject-aware resize. video_resize (steps 9/10, tagged [A], subject-aware not text-aware) reframes the TEXT-FREE brand motion; per-ratio German text overlays are rendered with document_render_layout (step 11, [C]) and composited per-ratio in the local mux. Rubric hooks updated to 'text placed per-ratio'.",
+  "SRT + license CSV now have explicit authoring steps: added local_author_text_artifacts (step 16, [L]) that writes the SRT from foerderplan_sample_data.json srt_lines and assembles the manifest from the step-4 template id + step-8 Stock license id + step-2 font. Noted that document_render_layout cannot emit SRT/timecode and document_convert_pdf cannot merge — so these are local. Closes the io-completeness gap.",
+  "video_create_quick_cut de-misused: no longer the deterministic 2-min assembler. Retagged [A] and demoted to producing only an OPTIONAL best-effort highlight cut (step 13). The exact-length, beat-ordered 30s/120s assembly (and 2-min reuse of 10s+30s segments) moved to deterministic local ffmpeg concat (step 15, [L]).",
+  "video_resize retagged from an implied parameterized step to [A] ASYNC-WIDGET (same-length, subject-aware) per the sheet; it is used only on text-free motion.",
+  "Every step now carries exec_mode ∈ {C,W,A,T,L}: image/vector/stock/folder/upload/document_render = C; fill_text/animate_design = W; media_summarize/video_resize/quick_cut = A; ffmpeg compose + text authoring = L. No A6 [X] capability (gen-fill, object removal, compositing-by-prompt, image→PDF, video trim-to-timestamp, OCR, page-merge) appears anywhere.",
+  "headless_doable set to false: the honest motion path runs through Express [W] (fill_text, 2× animate_design) and video [A] (media_summarize, 2× video_resize, quick_cut), which are not retrievable in an autonomous headless harness — so not all-C/L.",
+  "Orphaned-input fix: every input.used_in_steps now points only at steps that truly consume it — schugle_g_icon→1/2/6/7; schugle_wordmark→2/6/7/11; reference_tutorial→3; foerderplan_sample_data→5/11/14/16; brand_palette_and_type→2/4/11. fill_text no longer claims to place the icon/wordmark (it is text-only); image placement moved to animate (6/7) and the render overlay (11).",
+  "Frame-count / exact-duration gap addressed: the ~10.0/30/120s exact lengths and 30fps/H.264 are explicitly finalized by the local ffmpeg trim/loop/concat/mux step (15) rather than implied from animate_design; the clean hero is trimmed/looped to ~10s and kept silent.",
+  "Vertical confirmed (Education & Children) — accurate for a German ed-tech teacher tool; no mislabel. No bleed/spec contradiction remains: the only audio is the licensed music on 30s/2min, the hero is silent and text-free, and no voiceover is added (client supplies German VO later)."
+ ],
+ "iterative_chaining_note": "Genuinely sequential, not parallel. (1) The supplied reference tutorial is summarised (step 3, [A]) and that beat list shapes the template search (4), the storyboard, and the Stock-music sizing (8) — one content output feeding several downstream decisions. (2) Brand-identity outputs feed forward: the traced g-icon (1) and recommended font (2) flow into both animate branches (6/7) and the per-ratio text render (11). (3) The core pivot is the Express pipeline split into TWO honest branches: search_design (4) → animate_design TEXT-FREE (6) = the clean brand motion, and search_design (4) → fill_text (5) → animate_design TEXT (7) = the text master. The clean motion (6) is the only input to the subject-aware reframe (9) — safe because it has no text — while the German copy is (re)placed per-ratio via document_render_layout (11) and composited locally (15), so text never depends on autoreframe keeping a lower-third in frame. (4) The licensed music (8) is delivered as a separate stem and loudnormed only in the local mux (15). (5) The 2-min explainer is built deterministically in the local concat (15) by re-sequencing reused 10s+30s segments in beat order — quick_cut (13) is kept only as an optional best-effort highlight, never the sequencer. (6) The SRT and manifest are authored locally (16) from the same German data (foerderplan_sample_data.json), the step-4 template id, the step-8 Stock license id and the step-2 font, then everything is uploaded together into the step-12 folder tree (14). Inputs are heavily reused: the g-icon spans 1/2/6/7, the German copy data spans 5/11/14/16, the reference summary spans 3/4/8, the wordmark spans 2/6/7/11.",
+ "difficulty_rationale": "HARD on every axis a long-horizon agent struggles with, now grounded in the corrected capability reality. (a) Long horizon: 16 dependent steps (14 connector calls across 4 connector groups + 2 local glue steps) with no shortcut — skipping the summarize de-grounds the storyboard, skipping the icon trace breaks brand continuity, and the clean vs text branches must be kept distinct. (b) Heavy state tracking: the agent must carry the 5-beat order, the exact German strings (umlauts + 'Schüler:in' colon-form), the chosen font, the template id, and the Stock license id all the way to the final manifest — while keeping the clean no-text hero (step 6 → silent trim) and the text version (step 7 + per-ratio overlays) as two separate branches. (c) Exact-spec pressure: nine video files at three precise resolutions (1920×1080 / 1080×1920 / 1080×1080), 30fps, ~10/30/120s durations, a SILENT loop vs scored versions, music near -16 LUFS — and crucially the agent must KNOW these exact-length/codec/loudness guarantees come from the local ffmpeg step, not from animate_design or a non-existent loudness connector. (d) Capability discipline: the agent must NOT misuse media_enhance_speech on music, must NOT rely on subject-aware video_resize to preserve baked text (text goes on per-ratio after reframe), must NOT treat quick_cut as a deterministic sequencer, and must author the SRT/CSV locally — every one a trap the original spec fell into. (e) Faithfulness traps: the brief forbids generic-school clichés, demands editable text + a complete license manifest, and the agent must correctly NOT add voiceover (client supplies German VO later). (f) Execution-mode awareness: the honest path mixes [C] headless steps, [W] Express widget steps that need a user template pick, [A] async video/summarize widgets, and [L] local glue — so the task is product-doable but explicitly NOT autonomous-headless, and a grader who assumed full headless execution would be wrong.",
+ "reverify": {
+  "severity": "minor",
+  "residual_issues": [
+   "Step 11 document_render_layout is used outside its documented contract. Per the sheet (A2) and the live schema, document_render_layout EXPORTS an existing .indd/.idml to PDF/JPEG/PNG and REQUIRES a documentSourceUrl pointing at a genuine InDesign/IDML file. It does NOT author/compose a transparent text overlay from raw JSON copy + a font choice + a wordmark PNG. No .indd input is listed for step 11 (inputs are foerderplan_sample_data.json, brand_palette_and_type.json, schugle_wordmark.png, step-2 font). The per-ratio German overlays should be produced by the local glue (PIL/ffmpeg drawtext in step 15), which the spec already owns. As written, this step is not faithfully feasible. Not an A6 [X] misuse, but an input/contract gap.",
+   "search_design tagged exec_mode 'C'; the sheet calls it '[C-ish]' (template list returns headless, but the templateURN pick needs read_widget_context and is NOT headless). The spec notes this honestly in the step note and routes the pick via read_widget_context, so the substance is fine, but the bare 'C' tag slightly over-states autonomy vs the sheet's '[C-ish]'.",
+   "tool_call_count/calls=16 counts all workflow entries including the 2 server:'local' steps (15,16) which are not connector calls. Connector-only call count is 14. Both the FLAGSHIP '≥12 connector calls' bar (14) and a literal step count (16) are satisfied; just noting the 16 includes 2 local glue steps."
+  ]
+ }
+}

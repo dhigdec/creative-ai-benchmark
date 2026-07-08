@@ -1,0 +1,464 @@
+{
+  "task_id": 5366,
+  "input_assets": [
+    {
+      "key": "wedding_copy",
+      "display": "Master copy deck (wedding_copy.json + .md render)",
+      "files": ["input_assets/wedding_copy.json", "input_assets/wedding_copy.md"],
+      "what_it_is": "The verbatim wording source for every piece: welcome wordings, 3-course menu, thank-you message, 8 program moments, both signature drinks and the hashtag.",
+      "items": [
+        {
+          "id": "5366-in-wedding_copy-1",
+          "type": "yesno",
+          "question": "Do the two signature-drink entries in wedding_copy.json match the client's untouchable sign exactly — 'The Barnaby' with Bourbon, Sweet Vermouth, Angostura Bitters, Cherry Garnish, and 'The Clementine' with Gin, Fresh Grapefruit Juice, Elderflower Liqueur, Sparkling Wine?",
+          "guidance": "Open signature_drinks_sign.png and read its two ingredient lists, then compare word-for-word against signature_drinks[].name and ingredients in the JSON. Any added, dropped or reworded ingredient is a fail — the copy deck must be internally consistent with the anchor sign the new family coordinates with.",
+          "reference": "Yes — both drink names and all eight ingredient strings are identical between the JSON and the painted sign."
+        },
+        {
+          "id": "5366-in-wedding_copy-2",
+          "type": "likert5",
+          "question": "How faithfully does the copy deck embody Maren's persona — 'warm, gracious, and quietly precise' — while locking every mandated fact (Saturday, September 19, 2026; Willowmere Estate; Cedar Hollow; ceremony 4:30 PM on the south lawn; #HappilyEverHartwell; 8 program moments running The Processional through Last Dance)?",
+          "guidance": "5 = every fact present and exactly spelled, tone reads like a gracious bride (e.g. 'Our hearts are overflowing with gratitude...'), program runs in believable chronological order processional-to-last-dance. 3 = facts correct but tone generic or program order odd. 1 = a hard fact is wrong or missing (wrong date, missing hashtag, fewer than 6 program moments).",
+          "reference": "5 — date/venue/town/times all present, hashtag exact, 8 ordered moments from 'The Processional' to 'Last Dance', and the thank-you and pet-story lines carry the warm-precise voice."
+        },
+        {
+          "id": "5366-in-wedding_copy-3",
+          "type": "text",
+          "question": "Transcribe the two menu dish names that carry accented characters, exactly as written in wedding_copy.json.",
+          "guidance": "Look in menu.courses: First Course choice 2 and Dessert choice 1. Copy the names character-for-character including every accent — these are the strings the menu card must reproduce.",
+          "reference": "'Butternut Squash Velouté' and 'Classic Crème Brûlée'."
+        }
+      ]
+    },
+    {
+      "key": "seating_chart",
+      "display": "Final guest list (seating_chart.json + .csv)",
+      "files": ["input_assets/seating_chart.json", "input_assets/seating_chart.csv"],
+      "what_it_is": "The final 120-guest name list — 15 tables of 8, alphabetized by surname within each table — that the 47.2x35.4 in seating chart and the six table signs are built from.",
+      "items": [
+        {
+          "id": "5366-in-seating_chart-1",
+          "type": "text",
+          "question": "How many tables and guests does seating_chart.json contain, and which two guests carry a 'Jr.' suffix (give name and table number)?",
+          "guidance": "Count tables[] and the guests in each; scan for suffixes. The suffixed names are the canary strings for verbatim rendering downstream.",
+          "reference": "15 tables x 8 guests = 120. 'Martinez, Michael Jr.' at table 13 and 'Perez, Robert Jr.' at table 14."
+        },
+        {
+          "id": "5366-in-seating_chart-2",
+          "type": "likert5",
+          "question": "How realistic and production-ready is the guest list itself — believable diverse names, married couples sharing surnames at the same table (Anderson, Baker, Chen at table 1; Quinn, Patel, Rodriguez at table 6), all 120 unique, and correctly alphabetized by surname within every table?",
+          "guidance": "5 = no placeholder or celebrity names, alphabetization holds in all 15 tables (e.g. table 1 runs Adams-Anderson-Anderson-Baker-Baker-Bennett-Chen-Chen), plausible cultural mix (Ito, Kim, Nguyen, Patel, Xiong, Washington). 3 = one or two ordering slips. 1 = duplicate names or 'Guest One'-style filler.",
+          "reference": "5 — list is clean, unique, alphabetized in every table, with natural couples and a believable mix; head_table_note correctly says Maren & Elliot sit at an unnumbered sweetheart table and tables 1-6 get printed signs."
+        },
+        {
+          "id": "5366-in-seating_chart-3",
+          "type": "yesno",
+          "question": "Is the CSV render (seating_chart.csv) ambiguous as a standalone source — i.e., does it flatten each table's eight 'Surname, First' names into one comma-joined string where name boundaries can no longer be parsed reliably?",
+          "guidance": "Open the CSV: row 1 reads table 1's guests as \"Adams, Jennifer, Anderson, Laura, ...\" — sixteen comma-separated tokens for eight people. Decide whether a designer working only from the CSV could mis-split names, making the JSON the only safe source.",
+          "reference": "Yes — the CSV is ambiguous (commas serve both as name-internal separators and list separators); the JSON must be treated as canonical, which the execution did."
+        }
+      ]
+    },
+    {
+      "key": "print_spec",
+      "display": "Print production spec (print_spec.json)",
+      "files": ["input_assets/print_spec.json"],
+      "what_it_is": "The transcription of all six deliverables' trim sizes, pixel targets, DPI, bleed and safe margins — the contract the suite must be built to exactly.",
+      "items": [
+        {
+          "id": "5366-in-print_spec-1",
+          "type": "yesno",
+          "question": "Do the six px targets in print_spec.json match the client brief exactly: 6000x9000, 10620x7080, min 1200x2700 at final trim, 14160x10620, 3000x2100 flat, and 1500x2100 each?",
+          "guidance": "Compare each deliverables[].px_target against the numbered list in TASK.md. The brief says 'Every number above is also transcribed in print_spec.json — please build to it exactly', so any transcription drift would poison every downstream export.",
+          "reference": "Yes — all six pixel targets, trim sizes and 300 DPI figures match the brief's numbers exactly."
+        },
+        {
+          "id": "5366-in-print_spec-2",
+          "type": "likert5",
+          "question": "How usable is print_spec.json as an unambiguous build contract, given its internal tensions — bleed_in 0.125 and safe_margin_in 0.25 are stated for ALL six pieces (including the large boards the brief never required bleed on), the Wedding Program px_target is '3000 x 2100 px flat' with bleed listed separately, and the program's orientation is 'portrait folded' for a landscape 10x7 flat sheet?",
+          "guidance": "5 = a print designer could build all six pieces without asking a question. 3 = the bleed-vs-px-target arithmetic (does 3000x2100 include the 0.125 in bleed or not?) forces an assumption that must be disclosed. 1 = contradictory numbers that would produce a wrong-size file.",
+          "reference": "3-4 — numbers are faithful to the brief but the spec leaves bleed-inclusive vs trim-exact ambiguous for pieces 1, 2, 4, 6; the execution resolved it by exporting boards trim-exact and adding bleed only to pieces 3 and 5, and disclosed that choice in outputs/README.md."
+        }
+      ]
+    },
+    {
+      "key": "signature_drinks_sign",
+      "display": "Client's signature drinks sign (the untouchable anchor)",
+      "files": ["input_assets/signature_drinks_sign.png"],
+      "what_it_is": "The client-made playful bar sign — watercolor pet portraits with 'The Barnaby' and 'The Clementine' — that must remain byte-identical while the new family coordinates with its palette and warmth.",
+      "items": [
+        {
+          "id": "5366-in-signature_drinks_sign-1",
+          "type": "likert5",
+          "question": "Does this sign read as a finished, lovable client-made piece worth anchoring a family to — 'Signature Sips' in hand-script, a loose watercolor dog above 'The Barnaby' with its bourbon build, a watercolor cat above 'The Clementine' with its gin-spritz build, blush and sage washes on ivory, all lettering charcoal?",
+          "guidance": "5 = every word crisply legible, charming portraits, palette clearly ivory #FBF7EF / blush #EAC9C1 / sage #9CAF88 / charcoal #3B3B38, no stray text or mockup environment. 3 = legible but with soft/pixelated serif passages (the pipeline QC flagged slight pixelation in the ingredient lines). 1 = garbled text or off-palette.",
+          "reference": "4-5 — all wording exact and legible, flat front-on artwork, palette on-brief; minor softness in the small serif ingredient lines is the only blemish (QC vision score 9/10)."
+        },
+        {
+          "id": "5366-in-signature_drinks_sign-2",
+          "type": "yesno",
+          "question": "Do the two pet portraits actually match the persona's stated animals — Barnaby a GOLDEN RETRIEVER and Clementine an ORANGE TABBY — as painted?",
+          "guidance": "Look at the pixels, not the labels: the dog has long feathered russet ears and a domed head that reads closer to a cocker spaniel than a golden retriever, and the cat is a grey-brown tabby with a white chest, not orange. Answer No if either animal visibly contradicts its stated breed/coloring.",
+          "reference": "No — the dog is spaniel-like rather than clearly a golden retriever and the cat is not an orange tabby; a fair client-simulation flaw to note, though it binds the AI freelancer to nothing since the sign must stay untouched."
+        },
+        {
+          "id": "5366-in-signature_drinks_sign-3",
+          "type": "likert5",
+          "question": "As the anchor the new family must coordinate with 'in palette and warmth', how strong and extractable is the sign's palette signal — ivory ground, loose blush and sage washes, charcoal lettering — for a designer who must echo it without copying its watercolor style?",
+          "guidance": "Squint test: do the blush #EAC9C1 and sage #9CAF88 zones read as the two accent hues a coordinated family would pick up, with charcoal #3B3B38 as the obvious ink color? 5 = palette is unambiguous and the warmth is easy to translate into a more refined system. 3 = accents so muted (the QC noted they could be more vibrant) that a family built from them might drift. 1 = palette unreadable.",
+          "reference": "4 — the blush/sage/charcoal-on-ivory recipe is clearly extractable (and the delivered suite demonstrably extracted it); the washes are on the muted side, as the pipeline's own QC observed."
+        }
+      ]
+    },
+    {
+      "key": "current_drafts",
+      "display": "Client's failed AI drafts (welcome sign + seating chart)",
+      "files": ["input_assets/draft_welcome_sign.png", "input_assets/draft_seating_chart.png"],
+      "what_it_is": "The two AI-generated drafts the client wants rescued — they show the sign types needed while exhibiting exactly the low-res, generic, off-palette problems described in the brief.",
+      "items": [
+        {
+          "id": "5366-in-current_drafts-1",
+          "type": "likert5",
+          "question": "Do these drafts convincingly motivate the job — waxy over-smooth AI florals, visible softness from low-resolution generation (both were degraded to ~479 px wide before upscaling), the welcome sign trapped inside a gold-frame easel mockup rather than flat artwork, and a seating chart filled with placeholder guests?",
+          "guidance": "5 = a print professional would immediately agree these cannot go to large format: mushy detail, airbrushed gradients, mockup environment baked in. 3 = generic but technically usable. 1 = the drafts look fine, undermining the brief's premise.",
+          "reference": "5 — the welcome sign reads 'Welcome / Maren & Elliot / Saturday, September 19, 2026' in gold script but is soft, framed and pastel-generic; the seating chart's small text is illegible mush. The premise holds."
+        },
+        {
+          "id": "5366-in-current_drafts-2",
+          "type": "text",
+          "question": "List the defects you can spot in draft_seating_chart.png's table-number cards (numbering and guest names).",
+          "guidance": "Read the 36 cards row by row. Note any non-sequential jumps, duplicated numbers, and placeholder/garbled guest names. This is the strongest evidence the drafts are unusable.",
+          "reference": "Numbers run 1-12 then jump (13, 20, 23-26, 27-30, 35-36, 37-42) and DUPLICATE: 41 and 42 each appear twice in the bottom rows (last row reads 41, 42, 43, 44, 45, 48); guest names are placeholders like 'Guest One', 'Guest Two', 'Guest Ten' and lorem-style gibberish; 36 cards shown though the real wedding has 15 tables."
+        },
+        {
+          "id": "5366-in-current_drafts-3",
+          "type": "yesno",
+          "question": "Do the drafts violate the client's stated palette — i.e., do they contain prominent pastel BLUE and lilac florals that appear nowhere in the ivory #FBF7EF / blush #EAC9C1 / sage #9CAF88 / charcoal #3B3B38 scheme?",
+          "guidance": "Check the watercolor flowers on both drafts for blue and purple blooms, and the gold/tan script ink versus the mandated charcoal lettering.",
+          "reference": "Yes — both drafts feature pastel blue and lilac flowers and the welcome sign's lettering is gold, confirming they 'do not coordinate' with the anchor sign's palette."
+        }
+      ]
+    },
+    {
+      "key": "floral_reference",
+      "display": "Floral arch reference photo (Option 1 source)",
+      "files": ["input_assets/floral_reference.jpg"],
+      "what_it_is": "The documentary-style photo of a ceremony-arch arrangement — blush garden roses, cream ranunculus, sage eucalyptus, white delphinium on a wooden arch — that seeds every floral element in the soft-floral direction.",
+      "items": [
+        {
+          "id": "5366-in-floral_reference-1",
+          "type": "likert5",
+          "question": "How believable is this as a real florist's photo — asymmetric crescent of blush roses, cream ranunculus, eucalyptus and white delphinium climbing a simple wooden arch, estate manor softly blurred behind, two or three fallen petals on the lawn, natural daylight with gentle grain?",
+          "guidance": "5 = passes as an actual 35mm-style documentary shot: believable foliage overlap, uneven stem spacing, realistic depth of field, no CGI gloss or text/watermark anywhere. 3 = pretty but with telltale AI tells (impossible stems, repeated blooms). 1 = obviously synthetic or contains lettering.",
+          "reference": "5 — the named flowers are all identifiable, the manor and lawn bokeh is consistent, fallen petals sit lower-right, and there is no text or watermark (pipeline QC scored it 10/10)."
+        },
+        {
+          "id": "5366-in-floral_reference-2",
+          "type": "yesno",
+          "question": "Is the arrangement practically reusable for the Adobe cutout workflow — a dense, well-lit bloom mass separable from the plain lawn background — while noting that the bare wooden arch post runs through it and would need cropping out of any cutout?",
+          "guidance": "Judge edge separability (flowers vs grass), whether the densest rose cluster could be smart-cropped square as a garnish, and whether the dark wooden stand would contaminate a remove-background result if not trimmed.",
+          "reference": "Yes — cleanly separable and crop-friendly; the visible wooden stand is the one hazard, and the execution's verify step records cropping it ('arch stand crop 0.82h') after spotting it in review."
+        }
+      ]
+    },
+    {
+      "key": "script_style_example",
+      "display": "Elevated black-script style example (Option 2 reference)",
+      "files": ["input_assets/script_style_example.png"],
+      "what_it_is": "The client's reference for creative direction Option 2: an ultra-minimal welcome sign for a different couple in fine near-black calligraphy on ivory.",
+      "items": [
+        {
+          "id": "5366-in-script_style_example-1",
+          "type": "likert5",
+          "question": "Does this reference cleanly communicate the 'elevated black script' option — exactly three centered lines ('WELCOME TO THE WEDDING OF' in letterspaced serif caps, 'Olivia & James' in large flowing calligraphy, 'June 20, 2026' in slender script), generous negative space, zero florals or ornament?",
+          "guidance": "5 = confident thick-and-thin calligraphic strokes, perfectly legible, nothing on the board but the three lines — a designer could infer the entire direction from it. 3 = right idea but extra ornament or wobbly letterforms. 1 = garbled text or florals present.",
+          "reference": "5 — exactly the three specified lines for placeholder couple Olivia & James, crisp calligraphy, no ornament whatsoever."
+        },
+        {
+          "id": "5366-in-script_style_example-2",
+          "type": "yesno",
+          "question": "Is it unambiguous that this sign is a STYLE reference rather than content to reproduce — i.e., it names a different couple ('Olivia & James', June 20, 2026) and none of its wording belongs on the Hartwell pieces?",
+          "guidance": "Confirm the names and date differ from Maren & Elliot Hartwell / September 19, 2026, so any leakage of 'Olivia & James' into the deliverables would be a contamination error.",
+          "reference": "Yes — different couple and date; the delivered suite correctly contains no trace of Olivia, James, or June 20."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "welcome_gathering",
+      "display": "Deliverable 1 — Welcome Gathering Sign (20x30 in)",
+      "files": ["outputs/01_welcome_gathering_20x30.png"],
+      "asked": "Welcome Gathering Sign, 20 x 30 in, minimum 6000 x 9000 px at 300 DPI.",
+      "items": [
+        {
+          "id": "5366-out-welcome_gathering-1",
+          "type": "yesno",
+          "question": "Is the file exactly 6000 x 9000 px (20 x 30 in at 300 DPI), with no sign of upscaling from the low-res AI draft?",
+          "guidance": "Check pixel dimensions, then zoom to the script edges and floral photo detail: edges should be render-crisp, florals photographic from floral_reference.jpg — not the waxy pastel blooms of draft_welcome_sign.png.",
+          "reference": "Yes — 6000 x 9000 confirmed (verify_report.json dims_ok), florals are the photographic arch cutout, draft was not reused."
+        },
+        {
+          "id": "5366-out-welcome_gathering-2",
+          "type": "text",
+          "question": "Transcribe every line of text on the sign top-to-bottom and note any character that deviates from welcome_wordings.gathering in wedding_copy.json.",
+          "guidance": "Expected source lines: 'Welcome, dear friends and family.' / 'We're so deeply touched to share this special day.' / 'Maren & Elliot Hartwell' / 'Saturday, September 19, 2026', beneath a large script 'Welcome' header (disclosed microcopy). Two lines and the date are styled as letterspaced caps — capitalization treatment is allowed, character changes are not. Watch the old-style figures in '19, 2026'.",
+          "reference": "Welcome (script header) / WELCOME, DEAR FRIENDS AND FAMILY. / WE'RE SO DEEPLY TOUCHED TO SHARE THIS SPECIAL DAY. / Maren & Elliot Hartwell (script) / SATURDAY, SEPTEMBER 19, 2026 — all characters verbatim, zero deviations."
+        },
+        {
+          "id": "5366-out-welcome_gathering-3",
+          "type": "likert5",
+          "question": "Rate the composition: the entire type stack sits in the upper half, with the arch florals bleeding off the top-right corner and a ~55%-opacity mirrored copy at bottom-left, leaving a large empty ivory field through the lower-middle. Does this read as elegant negative space or as a top-heavy layout on a 30-inch board?",
+          "guidance": "5 = balanced and intentional — the bottom-left floral anchors the void and the eye line (top third) suits an easel sign read from a distance. 3 = noticeably top-heavy but acceptable. 1 = looks unfinished, as if a lower block is missing. The trajectory records a re-spacing fix ('01/02 stack re-spacing') — judge the result, not the intent.",
+          "reference": "4 = a fair score: generous but slightly bottom-empty; the mirrored corner floral keeps it from feeling unfinished."
+        },
+        {
+          "id": "5366-out-welcome_gathering-4",
+          "type": "likert5",
+          "question": "How well does this piece coordinate with the untouched signature drinks sign — ivory #FBF7EF field, blush-and-sage photographic florals, all lettering charcoal #3B3B38 — while being visibly more refined than the playful anchor?",
+          "guidance": "Hold the two side by side. 5 = same palette temperature and warmth, but the new piece is cleaner and more typographic — clearly the 'refined sibling'. 3 = related but the photographic florals vs watercolor washes feel like different families. 1 = clashes.",
+          "reference": "4-5 — palette and warmth carry over convincingly; the photo-floral vs watercolor contrast is a deliberate, disclosed choice."
+        }
+      ]
+    },
+    {
+      "key": "welcome_ceremony_reception",
+      "display": "Deliverable 2 — Welcome Ceremony & Reception Sign (35.4x23.6 in)",
+      "files": ["outputs/02_welcome_ceremony_reception_35.4x23.6.png"],
+      "asked": "Welcome Wedding Ceremony & Reception Sign, 35.4 x 23.6 in, minimum 10,620 x 7,080 px at 300 DPI.",
+      "items": [
+        {
+          "id": "5366-out-welcome_ceremony_reception-1",
+          "type": "yesno",
+          "question": "Is the file exactly 10620 x 7080 px AND is the three-line copy verbatim from welcome_wordings.ceremony_reception: 'Maren & Elliot Hartwell' / 'Saturday, September 19, 2026' / 'We welcome you to a joyful celebration of our marriage.'?",
+          "guidance": "Check dimensions, then read each line. Names in script, date in letterspaced caps, the welcome sentence in italic — capitalization styling allowed, characters must be unchanged including the final period.",
+          "reference": "Yes — 10620 x 7080, all three lines character-exact."
+        },
+        {
+          "id": "5366-out-welcome_ceremony_reception-2",
+          "type": "likert5",
+          "question": "Judge the decor: arch cutouts mirrored on the left and right edges with delphinium spikes pointing inward, and a blurred band along the base made by generative-expanding the reference photo's lawn. Does the soft band read as intentional depth-of-field grounding, or as a smeary AI artifact (this is the busiest piece — floral coverage 27.6%, just under the 28% type-wins ceiling)?",
+          "guidance": "5 = the band reads like a defocused garden foreground, edges of the cutouts are clean (no halo from background removal), and type remains dominant. 3 = band slightly muddy or cutout fringing visible at zoom. 1 = obvious smears or hard cut edges that would embarrass a printed 35-inch board.",
+          "reference": "4 = a fair score — band is believably soft and cutout edges clean at viewing distance; minor mushiness in the band's blobs is visible at 100% zoom."
+        },
+        {
+          "id": "5366-out-welcome_ceremony_reception-3",
+          "type": "likert5",
+          "question": "Rate the typographic hierarchy of the centered stack: script names at top scale, the PLAN's thin sage hairline under the names, tracked-caps date, then the italic welcome line — does the eye travel correctly at across-the-room distance?",
+          "guidance": "5 = names dominate, hairline is present and subtle (sage #9CAF88, easy to miss — zoom in to confirm it exists), each level steps down cleanly. 3 = hierarchy works but spacing uneven or hairline missing/too faint to matter. 1 = levels compete.",
+          "reference": "5 if you can find the sage hairline under 'Maren & Elliot Hartwell' and the three levels step down cleanly; deduct if the hairline is imperceptible even at zoom."
+        }
+      ]
+    },
+    {
+      "key": "menu_thankyou_card",
+      "display": "Deliverable 3 — Menu / Thank You long card, front + back (4x9 in + bleed)",
+      "files": ["outputs/03a_menu_thankyou_front_4x9.png", "outputs/03b_menu_thankyou_back_4x9.png"],
+      "asked": "Menu / Thank You Long Card, 4 x 9 in portrait with 0.125 in bleed on all sides, minimum 1200 x 2700 px at final trim; menu front, thank-you back.",
+      "items": [
+        {
+          "id": "5366-out-menu_thankyou_card-1",
+          "type": "text",
+          "question": "Transcribe the six dish names on the menu front and flag any accent or spelling deviation from wedding_copy.json.",
+          "guidance": "Expected: Heirloom Tomato Salad; Butternut Squash Velouté; Pan-Seared Halibut; Filet Mignon; Classic Crème Brûlée; Chocolate Lava Cake. Zoom on 'Velouté' and 'Crème Brûlée' — accents are where rasterized text fails first. Also spot-check the italic descriptions (e.g. Filet Mignon must end '...potato gratin, haricots verts.').",
+          "reference": "All six names exactly as listed with é, è, û accents intact; descriptions verbatim including 'haricots verts.'"
+        },
+        {
+          "id": "5366-out-menu_thankyou_card-2",
+          "type": "yesno",
+          "question": "Does the bleed math hold: files are 1275 x 2775 px = 4.25 x 9.25 in at 300 DPI (trim 1200 x 2700 centered, 0.125 in bleed all around), with all text at least 0.25 in inside trim and only florals crossing into the bleed zone?",
+          "guidance": "Verify pixel size; then check that no text sits within ~112 px of any edge (37.5 px bleed + 75 px safe margin). The corner florals on the front (top-right, bottom-left) and the back's top-right floral should be the only elements crossing the trim line.",
+          "reference": "Yes — 1275 x 2775 confirmed, type safely inside, florals bleed as intended."
+        },
+        {
+          "id": "5366-out-menu_thankyou_card-3",
+          "type": "likert5",
+          "question": "Rate the back of the card: rounded-corner rose-cluster garnish at top, the full three-sentence thank-you message ('Our hearts are overflowing with gratitude... cherished part of our special day.'), 'Maren & Elliot Hartwell' in script, and '#HAPPILYEVERHARTWELL' letterspaced at the base — noting the large empty ivory gap between the names and the hashtag.",
+          "guidance": "5 = message verbatim, hashtag characters unchanged under its letterspaced-caps treatment, and the empty middle reads as intentional breathing room on a 9-inch card. 3 = correct copy but the void feels unresolved or the garnish's visible lawn-green background looks like a sticker. 1 = copy errors.",
+          "reference": "4 = fair — copy is character-exact and the hashtag treatment is disclosed; the mid-card void and the photographic lawn behind the garnish blooms are legitimate taste deductions."
+        },
+        {
+          "id": "5366-out-menu_thankyou_card-4",
+          "type": "likert5",
+          "question": "Rate the menu front's typographic craft at true size: 'Dinner' script header, three course headers in tracked caps over sage hairlines (FIRST COURSE / MAIN COURSE / DESSERT), dish names in serif, descriptions in italic — will the smallest italic line print legibly on a 4-inch-wide card?",
+          "guidance": "The descriptions are ~44 px tall in a 1275-px-wide file, i.e. about 9 pt at print — small but bookish. 5 = comfortable hierarchy, no crowding where 'Butternut Squash Velouté's description wraps over three lines, even color down the column. 3 = legible but tight. 1 = descriptions would blur at print size or lines collide.",
+          "reference": "4-5 — hierarchy is clean and consistent; the three-line wrap under Heirloom Tomato Salad and Butternut Squash Velouté is snug but does not collide."
+        }
+      ]
+    },
+    {
+      "key": "seating_chart_board",
+      "display": "Deliverable 4 — Seating Chart board (47.2x35.4 in)",
+      "files": ["outputs/04_seating_chart_47.2x35.4.png"],
+      "asked": "Seating Chart, 47.2 x 35.4 in, minimum 14,160 x 10,620 px at 300 DPI, all 120 names from seating_chart.json.",
+      "items": [
+        {
+          "id": "5366-out-seating_chart_board-1",
+          "type": "yesno",
+          "question": "Spot-check name fidelity at full zoom: are 'Martinez, Michael Jr.' (table 13), 'Perez, Robert Jr.' (table 14), 'Kim, Joon-ho' (table 4) and 'Xiong, Pao' (table 10) rendered character-exact, with every table preserving the JSON's surname-first format and alphabetical order?",
+          "guidance": "Zoom into panels 13, 14, 4 and 10. The hyphen in 'Joon-ho', the periods in 'Jr.' and the comma-after-surname format are the failure-prone characters. Verify table 1 runs Adams / Anderson / Anderson / Baker / Baker / Bennett / Chen / Chen.",
+          "reference": "Yes — all four canary names exact, order preserved; automated pass counted all 120 names rendered."
+        },
+        {
+          "id": "5366-out-seating_chart_board-2",
+          "type": "text",
+          "question": "Transcribe the italic footer line at the base of the board and compare it to head_table_note in seating_chart.json.",
+          "guidance": "It sits over the blurred floral band at bottom-center. Note that the figures '1-6' are set in old-style numerals, which can read oddly — judge characters, not glyph style.",
+          "reference": "'Maren & Elliot sit at an unnumbered sweetheart table; tables 1-6 additionally receive printed table signs.' — verbatim."
+        },
+        {
+          "id": "5366-out-seating_chart_board-3",
+          "type": "likert5",
+          "question": "Rate find-your-name usability at event scale: 15 ivory panels in a 5x3 grid with sage hairline borders, 'TABLE n' tracked-caps headers, ~110 px guest names (about 0.37 in tall on the printed 47.2-inch board) — can a guest locate their name from 4-6 feet away, and do the old-style figures in the panel headers ('TABLE 13' reads almost like 'TABLE i3') help or hurt?",
+          "guidance": "5 = names comfortably legible at distance, table numbers instantly scannable, generous panel padding. 3 = names fine but the small old-style header numerals make table scanning slower than it should be on a wayfinding piece. 1 = names too small or panels crowded.",
+          "reference": "4 = fair — name size and grid spacing are genuinely usable; the dainty old-style 'TABLE' numerals are the one wayfinding quibble (compare the table signs, where the numeral is 880 px and unmissable)."
+        },
+        {
+          "id": "5366-out-seating_chart_board-4",
+          "type": "likert5",
+          "question": "Rate the decor discipline: arch florals at top-right and lower corners plus the blurred lawn band along the base, with measured floral coverage of only 11.5% — do all 15 name panels sit on clean ivory with zero decor collisions?",
+          "guidance": "Trace every panel edge: no petal, stem or band blur may intrude behind text. 5 = perfect separation, decor frames the grid. 3 = decor touches a panel border but not text. 1 = florals run under names.",
+          "reference": "5 — panels are fully clear; the footer note is the only text over the soft band, and it remains legible."
+        }
+      ]
+    },
+    {
+      "key": "wedding_program",
+      "display": "Deliverable 5 — Wedding Program, outside + inside spreads (10x7 flat)",
+      "files": ["outputs/05a_program_outside_10x7.png", "outputs/05b_program_inside_10x7.png"],
+      "asked": "Wedding Program, 5 x 7 in folded / 10 x 7 in flat, 0.125 in bleed, 0.25 in safe margin, 300 DPI minimum.",
+      "items": [
+        {
+          "id": "5366-out-wedding_program-1",
+          "type": "yesno",
+          "question": "Is the inside spread complete and verbatim: all EIGHT program moments (The Processional, The Ceremony, Cocktail Hour, Dinner Service, Toasts & Speeches, First Dance, Dancing & Merriment, Last Dance) each with its descriptive line, plus both drinks under 'Signature Sips' with pet stories and middle-dot-joined ingredient caps (BOURBON · SWEET VERMOUTH · ANGOSTURA BITTERS · CHERRY GARNISH / GIN · FRESH GRAPEFRUIT JUICE · ELDERFLOWER LIQUEUR · SPARKLING WINE)?",
+          "guidance": "Read 05b panel by panel against wedding_copy.json. Check the italic lines too (e.g. 'A heartfelt exchange of vows on the South Lawn.'). Ingredient caps-styling is allowed; characters and ingredient order are not negotiable.",
+          "reference": "Yes — all 8 moments with lines verbatim on the left panel, both drinks complete on the right."
+        },
+        {
+          "id": "5366-out-wedding_program-2",
+          "type": "likert5",
+          "question": "Rate fold-awareness on both spreads (3075 x 2175 px = 10.25 x 7.25 in with bleed; fold at the sheet's vertical center): does every element clear the fold zone, with the outside's back panel (hashtag + 'Thank you for being a cherished part of our special day.') and cover panel (garnish, 'Wedding Program', names, date + 'WILLOWMERE ESTATE, CEDAR HOLLOW') each composing as a self-contained 5x7 page?",
+          "guidance": "Draw a mental line down the center of each file — the PLAN promises nothing within 0.2 in of it. 5 = both spreads fold into four clean pages, each panel internally centered. 3 = a floral grazes the fold. 1 = text crosses the fold.",
+          "reference": "5 — generous central clearance on both spreads; each panel is independently composed."
+        },
+        {
+          "id": "5366-out-wedding_program-3",
+          "type": "likert5",
+          "question": "How well does the 'Signature Sips' page echo the client's anchor bar sign — same header wording, same drink names, ingredients now as elegant tracked caps instead of watercolor playfulness — fulfilling the 'coordinated family, anchor stays the playful piece' brief?",
+          "guidance": "Compare 05b's right panel to signature_drinks_sign.png. 5 = unmistakably the same bar offering restated in the refined family voice — a guest holding the program at the bar would connect them instantly. 3 = same content, no felt relationship. 1 = contradicts the sign.",
+          "reference": "5 — identical header words and drink builds, refined typographic restatement; this is the suite's best demonstration of family coordination."
+        },
+        {
+          "id": "5366-out-wedding_program-4",
+          "type": "text",
+          "question": "Transcribe the back panel (left half of 05a) exactly: the letterspaced hashtag line and the italic line beneath it. Where does that italic sentence come from?",
+          "guidance": "The README says the back carries 'one thank-you line taken programmatically from thank_you_message'. Verify it is a verbatim sentence from that JSON string, not a paraphrase.",
+          "reference": "'#HAPPILYEVERHARTWELL' over 'Thank you for being a cherished part of our special day.' — the final sentence of thank_you_message, verbatim."
+        }
+      ]
+    },
+    {
+      "key": "table_signs",
+      "display": "Deliverable 6 — Table signs 1-6 (5x7 in each)",
+      "files": ["outputs/06_table_sign_1.png", "outputs/06_table_sign_2.png", "outputs/06_table_sign_3.png", "outputs/06_table_sign_4.png", "outputs/06_table_sign_5.png", "outputs/06_table_sign_6.png"],
+      "asked": "Table signs for tables 1-6, 5 x 7 in each, 300 DPI minimum (the tables seating_chart.json says receive printed signs).",
+      "items": [
+        {
+          "id": "5366-out-table_signs-1",
+          "type": "yesno",
+          "question": "Are there exactly six files, each 1500 x 2100 px (5 x 7 in at 300 DPI), carrying the numerals 1 through 6 with no duplicates or gaps?",
+          "guidance": "Open all six and read each script numeral. Recall the client's draft seating chart duplicated numbers 41 and 42 — this suite must not repeat that class of error.",
+          "reference": "Yes — six files, numerals 1, 2, 3, 4, 5, 6 each exactly once, all 1500 x 2100."
+        },
+        {
+          "id": "5366-out-table_signs-2",
+          "type": "likert5",
+          "question": "Rate family consistency across the set: identical rounded-square rose-cluster garnish top-center, identical letterspaced 'TABLE' caps, thin sage rule near the base — with ONLY the giant (~880 px) Snell numeral changing. Are all shared elements pixel-stable from sign to sign, and is each numeral optically centered despite very different glyph shapes (the slash-like '1' and angular '4' vs the swashy '2', '5', '6')?",
+          "guidance": "Flip through all six like a deck — garnish, TABLE and rule must not shift. Then judge each numeral's balance in the void; script '1' carries far less visual mass than '6'. 5 = perfect template discipline and every numeral feels centered. 3 = one numeral sits noticeably off-balance. 1 = template elements drift between signs.",
+          "reference": "4-5 — template elements are identical across the set; the minimal '1' inevitably reads lighter than its swashed siblings, a defensible glyph trait rather than an alignment error."
+        },
+        {
+          "id": "5366-out-table_signs-3",
+          "type": "likert5",
+          "question": "Judge the single decorative element: the photographic rose-cluster square (connector smart-crop of floral_reference.jpg) shows lawn-green background around the blooms inside its rounded frame. On an otherwise flat-ivory typographic card, does it read as a charming photo vignette or as an unmasked sticker?",
+          "guidance": "The trajectory records zooming this crop tighter onto the bloom mass after review ('garnish zoom 0.70sq'). 5 = reads as a deliberate framed photo accent consistent across all family pieces (it also appears on the menu back and program cover). 3 = the green patch is noticeable but tolerable. 1 = looks like an un-cut-out rectangle slapped on.",
+          "reference": "3-4 = honest range — the bloom mass dominates after the zoom fix, but visible grass inside the frame remains the suite's most sticker-like moment."
+        }
+      ]
+    },
+    {
+      "key": "suite_pdf",
+      "display": "Print suite PDF (13 pages) + disclosed limitations",
+      "files": ["outputs/wedding_signage_suite.pdf"],
+      "asked": "Final files as print-ready PDFs, preferably vector text and artwork, plus editable source files.",
+      "items": [
+        {
+          "id": "5366-out-suite_pdf-1",
+          "type": "yesno",
+          "question": "Does the PDF contain exactly 13 pages — one per piece file (01, 02, 03a, 03b, 04, 05a, 05b, and six table signs) — with each page matching its PNG counterpart?",
+          "guidance": "Count pages and flip against the outputs folder. Note the PLAN said '(12 pages)' but listed 13 piece files; the README discloses and resolves this in favor of 13. Confirm no piece was dropped to make the count match the stale note.",
+          "reference": "Yes — 13 pages (verify_report.json pdf_pages: 13), one per piece, discrepancy disclosed in README."
+        },
+        {
+          "id": "5366-out-suite_pdf-2",
+          "type": "likert5",
+          "question": "The brief asked for 'print-ready PDFs, preferably with vector text and artwork where possible, plus editable source files'. Delivered: a PNG-based raster PDF assembled locally with PIL (the Adobe connector exposes no image-to-PDF tool), with compose_5366.py offered as the parametric editable source instead of native Adobe files. Given the disclosure in outputs/README.md, how acceptable is this package?",
+          "guidance": "5 = fully acceptable: every page hits its exact 300-DPI pixel target so raster text prints sharply at size, the limitation is plainly disclosed, and the script genuinely reproduces every piece. 3 = usable but the client must accept no vector text and no .indd/.psd — a real gap against 'preferably vector'. 1 = misrepresented as vector or print-risky.",
+          "reference": "3-4 = honest range — 'preferably' language plus exact-resolution rasters and candid disclosure keep it acceptable; vector type and native source files remain the unmet preference (a human-handoff item per the intake decision)."
+        },
+        {
+          "id": "5366-out-suite_pdf-3",
+          "type": "text",
+          "question": "List what a commercial print house would still flag as missing from this PDF before running the job.",
+          "guidance": "Think prepress: marks, color management, bleed on which pieces. Cross-check the README's own admissions (pieces 1, 2, 4, 6 exported trim-exact with no bleed; PDF/X-4 conversion 'remains a print-house step').",
+          "reference": "No crop/registration marks; no PDF/X-4 or ICC/CMYK profile (RGB rasters); no bleed on the three large boards and table signs (trim-exact, relies on oversize-print-and-trim); raster text rather than vector. All disclosed except marks, which are simply absent."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "5366-task-1",
+      "type": "likert5",
+      "question": "Completeness against the work order: the brief asked for six deliverables (two welcome signs, double-sided menu/thank-you card, seating chart, folded program, six table signs) plus print-ready PDFs. Were all delivered at the exact print_spec.json pixel targets — 6000x9000, 10620x7080, 1275x2775 front and back, 14160x10620, 3075x2175 both spreads, and six at 1500x2100?",
+      "guidance": "Count 13 piece files + 1 PDF in outputs/. Verify the bleed-bearing pieces (3 and 5) exceed their trim minimums by exactly 0.125 in per side and the rest are trim-exact. 5 = nothing missing, nothing under spec. 3 = all present, one ambiguity. 1 = a deliverable absent or undersized.",
+      "reference": "5 — all six deliverables present at or above every minimum; pieces 3/5 carry bleed (1275x2775 vs 1200x2700 min; 3075x2175 vs 3000x2100 flat), others trim-exact."
+    },
+    {
+      "id": "5366-task-2",
+      "type": "likert5",
+      "question": "Does the six-piece suite read as ONE coordinated family — shared ivory fields, the same arch-cutout corner pattern and rose-cluster garnish recurring across pieces, Snell script + Hoefler serif everywhere, sage hairlines — while the untouched signature drinks sign still sits comfortably beside it as 'the playful, personal piece'?",
+      "guidance": "Lay all pieces side by side with the anchor sign. 5 = instantly one wedding: identical palette, recurring floral signature, consistent type system; the watercolor sign reads as the family's charming cousin, not an outsider. 3 = pieces match each other but the anchor feels orphaned. 1 = pieces don't even match each other.",
+      "reference": "5 — the repeated cutout/garnish system and strict two-typeface discipline bind the six pieces; the anchor's shared palette and the program's 'Signature Sips' echo tie it in without touching it."
+    },
+    {
+      "id": "5366-task-3",
+      "type": "yesno",
+      "question": "Were the two hard constraints honored: (a) signature_drinks_sign.png never altered (README records md5 542032a80cf91381032a952126846c41, byte-identical), and (b) the low-res AI drafts never reused or upscaled — every floral element instead derived from floral_reference.jpg via connector operations (auto-tone, remove-background, smart crop, generative expand)?",
+      "guidance": "Compare the delivered input_assets copy of the drinks sign against the original pipeline asset (checksums should match), then inspect output florals: they must be the photographic arch blooms, with no trace of the drafts' pastel blue/lilac watercolor flowers or gold script anywhere.",
+      "reference": "Yes — anchor byte-identical, and no draft pixel or palette contamination appears in any output."
+    },
+    {
+      "id": "5366-task-4",
+      "type": "likert5",
+      "question": "Acting as Maren — a bride who is 'quietly precise', burned once by AI mush, and explicitly afraid of large-format printing risk — would you accept this suite and release payment?",
+      "guidance": "Weigh: zero copy errors across roughly 180 rendered strings including 120 names; exact resolutions; coordinated look; honest README. Against: raster-not-vector PDF, no native Adobe source files, no bleed/marks on the large boards, the lawn-green garnish square, and the top-heavy 20x30 welcome sign. 5 = pay in full, hang the signs. 4 = pay after small revisions (e.g. mask the garnish). 3 = request one revision round before paying. 2 = significant rework. 1 = reject.",
+      "reference": "4 — the precision bride gets exactly-spelled everything at exact sizes with honest disclosure; she most plausibly asks for the garnish mask and vector/source handoff before final sign-off."
+    },
+    {
+      "id": "5366-task-5",
+      "type": "yesno",
+      "question": "The brief said 'Pitch me one of two directions (or both)'. The execution committed fully to Option 1 soft floral (per the recorded intake decision) and delivered no Option 2 black-script variant. Is every one of the six pieces consistently in the soft-floral direction, with the choice and its basis disclosed in PLAN.md?",
+      "guidance": "Scan all outputs for direction purity — photographic blush/sage florals on ivory with charcoal lettering throughout, no piece drifting into the florals-free black-script minimalism of script_style_example.png. Then confirm PLAN.md states the direction was chosen 'per recorded decision'.",
+      "reference": "Yes — all six pieces are coherently soft-floral and PLAN.md records the Option 1 decision; a both-directions pitch was permitted but not required."
+    },
+    {
+      "id": "5366-task-6",
+      "type": "text",
+      "question": "Name the single biggest weakness of this delivery end-to-end, and the first revision you would request as the client.",
+      "guidance": "Consider the disclosed gaps (raster text in the PDF, no native source files, bleed only on pieces 3 and 5) and the visual nits (lawn visible in the rose-cluster garnish on table signs/menu back/program cover, top-heavy lower half on the 20x30 sign, dainty old-style 'TABLE' numerals on the seating chart panels). Pick the one that most threatens client acceptance and justify briefly.",
+      "reference": "Strongest answers: the vector-text/source-file gap (the only acceptance criterion explicitly unmet, even if 'preferably'-hedged), or the unmasked lawn-green garnish square as the most visible craft flaw; a clear runner-up is adding bleed + marks to the boards before print."
+    }
+  ]
+}

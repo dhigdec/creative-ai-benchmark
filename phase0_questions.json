@@ -1,0 +1,292 @@
+{
+ "theme_order": [
+  "Feasibility",
+  "Completeness",
+  "Verifiability",
+  "Scope",
+  "Consistency",
+  "Tags"
+ ],
+ "scoring_rule": "Apply all questions to the task (brief text + metadata tags only; do NOT open asset files — that is Phase 1). (1) If ANY dealbreaker question is answered NO => REJECT the task outright. (2) Else if ANY fixable question is answered NO (and no dealbreaker is NO) => FIX: send the task back for the small metadata or missing-parameter edits named by each fixable NO, then re-run the FULL checklist from the top. (3) If EVERY question is answered YES => VALIDATED (keep). Dealbreaker NOs are never repairable in Phase 0: they mean the task requires a banned capability, requests an artifact/structure no tool emits, depends on an input that is not present, has no objective success criterion, is self-contradictory, is unbounded, or bundles genuinely separate commissions. Fixable NOs are always small metadata corrections or single missing parameters that can be added and re-checked. Every question is phrased so YES is always the good answer; a NO always flags a problem.",
+ "list": [
+  {
+   "id": "Q1",
+   "question": "Is the brief free of any required step that names a banned operation from the closed list below?",
+   "objective_test": "Answer NO if the brief contains ANY of these as a required (non-optional) step: (a) generate/create/design/illustrate/draw an image or artwork with no named source asset; (b) upscale / increase resolution / make higher-res / '4K-ify' an existing asset; (c) remove a named person or object AND reconstruct/fill what was behind it; (d) design a typeface/font/handwriting/custom letterforms; (e) use a named live external account or system the agent cannot reach. YES otherwise. Do NOT infer feasibility from generic verbs like enhance/improve/fix/edit/clean-up — those are handled by other questions. This is a literal banned-verb match, not a capability judgment.",
+   "no_means": "The task needs a capability the agent does not have, so it can never be executed successfully.",
+   "theme": "Feasibility",
+   "severity": "dealbreaker",
+   "catches": "'Generate a brand-new mascot illustration from this description and put it on the poster' or 'Upscale the product photo to 4K and remove the person behind the subject' — text-to-image / from-scratch art / upscale / object-removal-with-fill, all banned."
+  },
+  {
+   "id": "Q2",
+   "question": "Does every pictorial or data element the brief EXPLICITLY names have a named source (an attachment, a stock-search/license step, or an authored template)?",
+   "objective_test": "List only the pictorial or data elements the brief explicitly names (e.g. 'our logo', 'the product photo', 'the price list', 'a hero image of a beach'). For each, YES if the brief names a source: an attached file, a described stock-search/license step, or an authored template it can come from. NO only if a brief-named element has no attached source and no stock/search path. Do not infer unnamed elements the deliverable might 'need'.",
+   "no_means": "A brief-named element has no source asset, forcing from-scratch creation the agent cannot do.",
+   "theme": "Feasibility",
+   "severity": "dealbreaker",
+   "catches": "'Make a poster featuring our mascot' with no mascot file attached and no stock-license step — the named mascot art would have to be invented."
+  },
+  {
+   "id": "Q3",
+   "question": "Does every restore/repair/remove instruction act only on pixels that still EXIST in the source (dust, scratches over intact detail, colour fade, straightening, masking), with NO instruction requiring the tool to invent image content that is missing, torn away, or occluded?",
+   "objective_test": "Scan for any restore/repair/remove instruction whose target is content that does not exist in the source: a crease/tear/stain/scratch crossing over a face or object (occluding it), a missing/torn corner or edge, a removed subject whose backdrop must be reconstructed, or any 'fill in what was behind/underneath'. YES if every such instruction operates on damage sitting over still-present detail or on a plain removable region. NO if any instruction requires reconstructing missing/occluded pixels.",
+   "no_means": "The task requires generative inpainting of content that does not exist in the source, which the agent cannot do.",
+   "theme": "Feasibility",
+   "severity": "dealbreaker",
+   "catches": "'Restore this photo — repair the torn top-right corner where the emulsion is completely missing and remove the deep crease running across the bride's face' — reconstruction of pixels that do not exist."
+  },
+  {
+   "id": "Q4",
+   "question": "Does every enlarge/expand/extend/fill-canvas instruction rely only on crop/resize/scaling or a solid fill (or a named/stock backdrop), with NO step requiring the tool to generatively invent new scene, texture, or background to fill added area or to composite the subject into a described scene?",
+   "objective_test": "Scan for any instruction that enlarges, expands, extends, or fills a canvas beyond the source image's existing pixels, OR places an isolated subject onto a NEW background. YES if the added area is filled by crop/resize/scaling, a single solid colour/value, a named supplied backdrop asset, or a stock-license step. NO if any step requires generatively inventing scene/texture/background (outpainting / generative-expand / 'fill the wider frame with matching scene' / 'blend and relight the subject into' a described scene).",
+   "no_means": "The task requires generative expansion or scene compositing of invented content, which the agent cannot do.",
+   "theme": "Feasibility",
+   "severity": "dealbreaker",
+   "catches": "'Produce the lifestyle banner at 1500x500 by expanding the canvas to fill the wider frame with matching scene around the product' — generative outpainting of invented content."
+  },
+  {
+   "id": "Q5",
+   "question": "For every piece of TEXT the deliverable must contain, is the typeface either a named/attached font file or resolvable by a font-search/recommend step, with NO instruction requiring bespoke hand-lettering or custom letterforms?",
+   "objective_test": "For each text element the deliverable must contain, YES if the typeface is a named/attached font, is left to a font-search/recommend step, or is an ordinary named/standard font. NO if any text is required in 'hand-lettered', 'hand-drawn', 'custom letterform', 'bespoke lettering', or a described-but-unnamed lettering style that no available font provides.",
+   "no_means": "The task requires producing bespoke lettering / custom letterforms, which the agent cannot do.",
+   "theme": "Feasibility",
+   "severity": "dealbreaker",
+   "catches": "'Add our band name FRACTURE across the top in a distressed hand-lettered brush script' — bespoke hand lettering, no font asset or font-search path."
+  },
+  {
+   "id": "Q6",
+   "question": "Does the requested deliverable ask only for the tool's actual emitted artifact (a rendered/flattened image, vector paths, a rendered PDF/document, video, audio, or data), with NO requirement for internally editable structure the tools do not author?",
+   "objective_test": "Read the requested output format and any structural requirements. YES if the deliverable maps to a producible flattened/rendered artifact. NO if the brief demands internally editable structure the tools do not emit: named separately-editable layers, live/editable text, smart objects, grouped editable components, or an authored layered PSD/AI hand-off.",
+   "no_means": "The deliverable's format or internal structure cannot be emitted by any available tool, so even a correct edit cannot be delivered.",
+   "theme": "Feasibility",
+   "severity": "dealbreaker",
+   "catches": "'Vectorize the logo and deliver a multi-layer .ai file with each colour on its own named editable layer and live editable text' — vectorize emits flattened paths, not an authored layered file with live type."
+  },
+  {
+   "id": "Q7",
+   "question": "Is the deliverable's core content a produced or transformed ASSET (edited image, vector, laid-out document, cut video, cleaned audio, merged data), rather than a written subjective assessment, quality-ranking, or creative-direction opinion whose value is the judgement itself?",
+   "objective_test": "Identify the deliverable's core content. YES if it is an operable/produced asset (an edit, layout, cut, clean, merge, vectorize, etc.). NO if the core deliverable is a written creative-direction essay, a 'why each works' narrative, a rank-by-quality opinion, or any output whose substance is aesthetic judgement rather than a produced asset.",
+   "no_means": "The deliverable's core value is a subjective opinion, which no connector emits as a gradeable asset and which belongs to later scorers, not Phase 0 output.",
+   "theme": "Feasibility",
+   "severity": "dealbreaker",
+   "catches": "'Analyze the 30-image folder and deliver a creative-direction report ranking the 10 strongest shots with a paragraph on why each works' — the core deliverable is a subjective essay, not a produced asset."
+  },
+  {
+   "id": "Q8",
+   "question": "Is the feasibility tag a value other than 'no'?",
+   "objective_test": "Read the feasibility tag. YES if it is full, template, or partial. NO if it is exactly 'no'. Pure tag read.",
+   "no_means": "The task has already been judged infeasible (needs a banned/unavailable capability) and must not proceed.",
+   "theme": "Feasibility",
+   "severity": "dealbreaker",
+   "catches": "A 'design a brand-new mascot illustration' task correctly carrying feasibility='no' still sitting in the keep pile."
+  },
+  {
+   "id": "Q9",
+   "question": "Does the brief name a concrete deliverable — a specific artifact noun (e.g. menu, flyer, headshot, sizzle-reel, PDF, product-shot, vector logo) — rather than only a vague verb or goal?",
+   "objective_test": "Point to a noun in the brief that names the thing to be produced. YES if a concrete deliverable artifact noun is present, REGARDLESS of whether its parameters/criteria are specified (parameter and criterion adequacy are judged by Q11/Q12). NO only if the brief states an action/goal with no named output artifact.",
+   "no_means": "There is no defined end product, so no output can be produced or checked — the task is not a real commission.",
+   "theme": "Completeness",
+   "severity": "dealbreaker",
+   "catches": "'Can you make my restaurant look more premium?' — a goal with no named deliverable; nothing concrete to hand back."
+  },
+  {
+   "id": "Q10",
+   "question": "Is every input asset the brief tells the agent to use named or attached within the brief (none merely alluded to)?",
+   "objective_test": "List every input the brief tells the agent to use. YES if each is named or attached in the brief. NO if any instruction uses a definite article for an asset ('the CSV', 'the template', 'the logo') that is never named or attached anywhere in the brief.",
+   "no_means": "A load-bearing input is referenced but never identified, so the agent cannot locate it and the task is non-self-contained.",
+   "theme": "Completeness",
+   "severity": "dealbreaker",
+   "catches": "'Merge the dishes and prices into the menu template' with no CSV named and no template named anywhere."
+  },
+  {
+   "id": "Q11",
+   "question": "Is the brief free of load-bearing back-references to off-page context ('as we discussed', 'the usual', 'like last time', 'same as before', 'the file I sent before', 'our house font' with no font named)?",
+   "objective_test": "Scan for any deictic back-reference to unattached context — 'as we discussed / as before / the usual / like last time / same as before / the file I sent / our house X' — where the referent (value, asset, or spec) is not also restated or attached in the brief. YES if no such unresolved back-reference exists. NO if any back-reference carries load-bearing spec left off-page.",
+   "no_means": "A load-bearing instruction lives outside the brief in context the agent cannot access, making the task non-self-contained.",
+   "theme": "Completeness",
+   "severity": "dealbreaker",
+   "catches": "'Apply the usual grade we use for the summer campaign and export the sizes you always do' — the actual spec is off-page."
+  },
+  {
+   "id": "Q12",
+   "question": "Is every input the brief tells the agent to USE actually present now — a named attachment, a stock-search, or a template — with NO required input described only as forthcoming, to-be-sent, or external?",
+   "objective_test": "For each input the brief requires, YES if it is attached, fetchable via a described stock-search, or an authored template present at task time. NO if any required input is described as forthcoming, to-be-sent, 'we will send', 'the licensed track we'll provide', or otherwise not present now.",
+   "no_means": "A required input does not exist at task time, so the task cannot be executed or verified.",
+   "theme": "Completeness",
+   "severity": "dealbreaker",
+   "catches": "'Cut the reel and sync the cuts to every beat drop in the licensed track we will send' — the sync-target input is not present."
+  },
+  {
+   "id": "Q13",
+   "question": "Are the output parameters needed to build and verify the deliverable — dimensions/aspect-ratio, file format, count where the ask is plural, and colour space where relevant — either STATED in the brief or pinned by a named platform/spec on the fixed inference table?",
+   "objective_test": "List the check-critical parameters (size/ratio, format, count if plural, colour-space if print). A parameter counts as inferable ONLY if the brief names a platform/spec on this fixed list that pins it: Instagram post 1080x1080; IG story/reel 1080x1920; YouTube thumbnail 1280x720; A4; US Letter; 'print-ready' -> CMYK/PDF-with-bleed. A named target NOT on that list ('billboard', 'our website', 'a poster') with no explicit dimensions is NOT inferable. YES if every check-critical parameter is stated or pinned by a listed platform. NO otherwise.",
+   "no_means": "A required output parameter is missing and cannot be defaulted, so the correct output is undefined and no verifier can be written.",
+   "theme": "Completeness",
+   "severity": "fixable",
+   "catches": "'Resize this for the billboard' with no dimensions and no listed standard, or 'produce banner variants' with no count, size, or format."
+  },
+  {
+   "id": "Q14",
+   "question": "When the brief contains more than one load-bearing instruction, is EACH such instruction anchored to a named asset, value, or element (i.e. NOT taste-only)?",
+   "objective_test": "Applies only when the brief has more than one load-bearing instruction. For each imperative sentence, mark it QUALITATIVE-ONLY if its verb+object specifies a change whose ONLY parameter is a taste adjective from {pop, premium, modern, clean, fresh, vibe, feel, aesthetic, cool, nice, striking, elevated, high-end, professional-looking} AND it names no number, hex, format, named element-to-add/remove, or named operation. A sentence is ANCHORED even with a taste adjective if it ALSO names a concrete operation or parameter ('convert the logo to a flat single-colour version'). YES if no sentence is QUALITATIVE-ONLY. NO if at least one is. (A brief whose SOLE instruction is taste-only is not covered here — it is caught by Q16.)",
+   "no_means": "One instruction is unactionable as written because nothing concrete tells the agent what to touch or change.",
+   "theme": "Completeness",
+   "severity": "fixable",
+   "catches": "'Crop the photo to 1080x1080 and just make it look premium' — the second instruction names no asset, value, or element to act on."
+  },
+  {
+   "id": "Q15",
+   "question": "Does every data field the brief says must appear in the merged/laid-out output have a correspondingly named source column or supplied value, and does every filter/selection/exclusion name a concrete field or value in the cited data to act on?",
+   "objective_test": "For a data-merge or data-driven layout: (a) confirm every field the brief says must appear ('names, descriptions and prices') has a named source column or value in the brief's cited data description; (b) confirm every filtering/selection/exclusion ('only full-time', 'exclude discontinued SKUs', 'featured only') names a concrete field, flag, or value in the cited data to filter on. YES if every named output field has a source AND every filter has an operable selector. NO if any output field has no stated data source OR any filter has no operable selector. Judge from brief text only; do not open the data file.",
+   "no_means": "The brief references data fields or a filter the cited data cannot furnish, so the merge/selection is unexecutable as specified.",
+   "theme": "Completeness",
+   "severity": "fixable",
+   "catches": "'Merge names, descriptions and prices from dishes.csv' when the brief describes only name and price columns; or 'a badge for every full-time employee' when no field distinguishes full-time from contractor."
+  },
+  {
+   "id": "Q16",
+   "question": "Does the brief supply at least one objectively checkable success anchor for the core deliverable (a count, dimension, file format/type, a named element that must be present/absent, a specific colour/value, or an explicit end-state operation), rather than success resting solely on an open-ended improvement verb or undefined taste words?",
+   "objective_test": "Attempt to draft one verifier of the form 'output has/matches X' decidable by observation, not opinion ('output is a PDF with 3 panels', 'background removed', 'cropped to 16:9', 'all CSV rows present', 'matches the attached palette'). YES if the brief supplies at least one such concrete anchor AND a comparable finished target exists. NO if the only stated goal is an open-ended improvement verb ('improve', 'enhance', 'clean up', 'optimise') or undefined taste words ('nicer', 'more premium', 'eye-catching') with no observable anchor anywhere.",
+   "no_means": "No objective scoring contract can be authored and no finish line exists, so the task can never be graded pass/fail and could never be declared complete.",
+   "theme": "Verifiability",
+   "severity": "dealbreaker",
+   "catches": "'Make our product photos look more premium and eye-catching' or 'enhance this headshot' — no size, format, count, element, value, or end-state; nothing to tick off and no defined 'done'."
+  },
+  {
+   "id": "Q17",
+   "question": "Is the task's PASS/FAIL decidable entirely from its objective anchors, such that any taste-only phrase in the brief ('balanced', 'on-brand', 'premium') is at most decorative and its removal would NOT change whether an output passes?",
+   "objective_test": "Identify the stated acceptance conditions. YES if every condition that determines pass/fail is an objective anchor (count, size, format, named element, value) and every taste-only phrase is decorative — deleting it would not change any pass/fail outcome. NO if a taste-only phrase is itself a stated acceptance gate ('each crop must look balanced and on-brand') whose removal would change whether an output passes.",
+   "no_means": "A taste-only phrase is load-bearing for acceptance, so pass/fail rests partly on opinion even though concrete anchors are also present.",
+   "theme": "Verifiability",
+   "severity": "fixable",
+   "catches": "'Resize into the 5 named sizes as JPG; each crop must keep the product in frame and looking balanced and on-brand' — 'balanced and on-brand' is a stated acceptance gate, not decoration."
+  },
+  {
+   "id": "Q18",
+   "question": "Is every reference the output must MATCH (a look, palette, style, prior deliverable, or 'our existing X') supplied as a named attachment or exact value, rather than only described or pointed to off-brief?",
+   "objective_test": "Find every 'match X' condition. YES if each match-target is an attached asset or an exact value in the brief. NO if any acceptance condition rests on matching an asset that is only described or pointed to off-brief ('match our existing catalogue look', 'same warmth as the shots on our site') with nothing attached to compare against.",
+   "no_means": "Acceptance depends on comparison to a reference the annotator cannot inspect, so success is unverifiable.",
+   "theme": "Verifiability",
+   "severity": "dealbreaker",
+   "catches": "'Colour-grade the 12 photos to match the look of our existing catalogue — same warmth, contrast and skin tones as the shots on our site' — the match-target is not attached."
+  },
+  {
+   "id": "Q19",
+   "question": "Can success be verified from the delivered file(s) alone, with NO stated acceptance condition depending on a performance metric, an A/B outcome, or iterate-until-satisfied language?",
+   "objective_test": "Answer NO only if a STATED success/acceptance condition depends on one of: a numeric performance metric (CTR, conversions, impressions, engagement, SEO rank, revenue), an A/B-test outcome, or explicit iteration-until-satisfied language ('until the client is happy', 'until approved', 'revise until signed off'). Routine delivery phrasing ('for the client', 'final version') is NOT a disqualifier. YES if no such condition is stated.",
+   "no_means": "Part of 'done' can never be checked at scoring time because the evidence lives outside the deliverable.",
+   "theme": "Verifiability",
+   "severity": "fixable",
+   "catches": "'Design a banner that increases our click-through rate by 10%' or 'edit these until the client is happy' — acceptance depends on metrics/reactions never visible in the file."
+  },
+  {
+   "id": "Q20",
+   "question": "Is the brief free of full solution leakage — it does NOT spell out every layout parameter (exact text content, exact position/ordering, exact colours, AND exact sizes for every element) such that the agent need only transcribe?",
+   "objective_test": "Scan the brief text (not asset files). Answer NO only if the brief specifies EVERY one of {exact text content, exact position/coordinates or ordering of every element, exact colours, exact sizes} leaving zero unspecified layout parameter. If ANY of {position, colour, size, content selection} is left unspecified for any element, answer YES. Do not judge 'amount' of creativity — judge only whether the finished output is fully pinned in words.",
+   "no_means": "The brief leaks its own answer, so the scored run is trivially passable and measures nothing.",
+   "theme": "Verifiability",
+   "severity": "fixable",
+   "catches": "'Produce the final poster exactly as: [every element's position, colour, size and text spelled out], just render it' — nothing left to decide."
+  },
+  {
+   "id": "Q21",
+   "question": "Do all end artifacts in the brief form ONE deliverable — the same deliverable type/modality, or N variations of one type from a shared source asset — rather than two-or-more separate-modality jobs merely sharing a brand, event, or theme?",
+   "objective_test": "List every end artifact the brief demands. YES if there is exactly one deliverable, OR every artifact is the same deliverable type/output modality operating on the same source asset(s) (a multi-step pipeline to one output, or N variations of one type). NO if two or more end artifacts are different deliverable types or output modalities AND do not operate on the same source asset. Merely sharing a brand, client, event, or campaign theme does NOT unify separate-modality deliverables.",
+   "no_means": "The brief bundles independent commissions, so no single deliverable defines success and it must be split.",
+   "theme": "Scope",
+   "severity": "fixable",
+   "catches": "'Restore this wedding photo, AND design a tri-fold menu, AND cut a 30-second highlight video from the ceremony footage' — three unrelated deliverables in three modalities joined only by the event."
+  },
+  {
+   "id": "Q22",
+   "question": "Is the task more than a single trivial one-tool one-liner — does completing it require at least two distinct operations, AND does the brief describe enough distinct required actions to plausibly reach its est_calls value?",
+   "objective_test": "Count the distinct action verbs / named outputs the brief requires (e.g. crop, recolor, export = 3). YES if that count is 2 or more AND is not drastically below the est_calls tag (no sign est_calls was padded above the work the brief specifies). NO if the entire task is one single connector action, OR if the brief's genuine action count is far below est_calls (an inflated tag masking a trivial task).",
+   "no_means": "The task is a trivial one-liner (or a trivial task hidden behind an inflated est_calls), too thin to test planning or execution.",
+   "theme": "Scope",
+   "severity": "fixable",
+   "catches": "'Convert this logo.png to a transparent-background PNG' tagged est_calls=4 — one real action padded to dodge the trivial-task check."
+  },
+  {
+   "id": "Q23",
+   "question": "Is the task's output volume bounded — every batch/quantity carries a stated finite number or is bound to a named/attached fixed input set, with no open-ended output?",
+   "objective_test": "YES if every requested quantity is EITHER a stated finite number in the brief OR explicitly bounded to a named/attached fixed input set ('each of the attached photos', 'every row in the CSV', 'the 28 rows'). NO if any quantity uses open-ended language ('as many as needed', 'keep iterating', 'ongoing', 'all future') OR refers to a batch with neither a stated number nor an explicit 'the attached/named set' bound. A text reference to 'the attached set' is sufficient to count as bounded (Phase 0 does not open the assets).",
+   "no_means": "The task's output volume is uncapped, so its size cannot be bounded — it is an open-ended engagement, not a discrete task.",
+   "theme": "Scope",
+   "severity": "dealbreaker",
+   "catches": "'Create social variations for all our products on an ongoing basis, as many as we need each week' — no fixed count and no fixed input set."
+  },
+  {
+   "id": "Q24",
+   "question": "Are all instructions in the brief mutually satisfiable at once, with no two directives that cannot both be obeyed by a single output?",
+   "objective_test": "Scan for instruction pairs that constrain the same property of the same deliverable in incompatible ways: aspect ('make it square' + 'keep the full 16:9 frame'), background ('transparent PNG cutout' + 'retain the white studio background' for one file), colour ('convert to grayscale' + 'preserve the brand teal' on one asset), or scope ('remove all text' + 'keep the tagline legible'). YES if no such pair exists. NO if obeying one instruction makes obeying another impossible for the same deliverable.",
+   "no_means": "No possible output can pass the brief because two requirements are mutually exclusive.",
+   "theme": "Consistency",
+   "severity": "dealbreaker",
+   "catches": "'A fully transparent-background PNG cutout of the bottle' and, for the same file, 'the pure white #FFFFFF studio background must be retained' — cannot both be true."
+  },
+  {
+   "id": "Q25",
+   "question": "Do all numeric values and internal references stated IN THE BRIEF TEXT agree with each other?",
+   "objective_test": "Compare only numbers and references that both appear in the brief text, bucketed by kind. NO if two same-kind stated facts conflict: a '1:1 square' given as '1080x1350'; a '3-panel brochure' later called 'the 4 panels'; two different stated dimensions/counts/prices for the same item. Do NOT cross-check against attached files (that is Phase 1). YES if no two brief-stated facts of the same kind conflict, or there are no repeated/derived facts.",
+   "no_means": "The brief contradicts itself numerically or referentially, so no single output can satisfy both readings.",
+   "theme": "Consistency",
+   "severity": "dealbreaker",
+   "catches": "'Deliver a 2048x2048 square hero' but later 'the 3000-pixel-wide master must be exactly square' — two conflicting stated dimensions for the same item."
+  },
+  {
+   "id": "Q26",
+   "question": "Does the family tag equal the value the operation tag deterministically implies (O1/O2/O4/O6/O8 -> Photo & Image; O3 -> Motion & Audio; O5 -> Layout & Data; O7 -> Vector & Print)?",
+   "objective_test": "Look up the operation value in the fixed operation->family map and compare to the family tag. YES if they match exactly. NO if they disagree. Pure table lookup, no judgment.",
+   "no_means": "Two structural tags contradict each other, so at least one is wrong and portfolio-balance counts are corrupted.",
+   "theme": "Tags",
+   "severity": "fixable",
+   "catches": "operation = O7 (screen-print) but family tagged 'Photo & Image' instead of 'Vector & Print'."
+  },
+  {
+   "id": "Q27",
+   "question": "Does the horizon_tier tag equal the band its est_calls value falls into (est_calls <=3 -> H1; 4-8 -> H2; 9-15 -> H3; 16+ -> H4)?",
+   "objective_test": "Compute the band from est_calls using the fixed thresholds and compare to horizon_tier. YES if they match. NO if the tier does not equal the computed band. Pure arithmetic, no judgment.",
+   "no_means": "The length label misrepresents the estimated effort, unbalancing the horizon distribution of the benchmark.",
+   "theme": "Tags",
+   "severity": "fixable",
+   "catches": "est_calls = 17 (band H4) but horizon_tier tagged 'H2'."
+  },
+  {
+   "id": "Q28",
+   "question": "Does the output_modality tag name the medium of the artifact the brief's FINAL deliverable is (via the fixed medium map)?",
+   "objective_test": "Read the brief's final deliverable noun and map it via the fixed medium map (vectorize->vector; quick-cut/resize video->video; data-merge PDF/document->document; speech-clean->audio; analysis-only->data; else image). YES if output_modality equals that medium. NO if it names a different medium. Do not judge which action is 'dominant'.",
+   "no_means": "The task is filed under the wrong medium, so it is mis-routed and mis-counted for coverage.",
+   "theme": "Tags",
+   "severity": "fixable",
+   "catches": "Brief asks for a 30-second highlight video but output_modality is tagged 'image'."
+  },
+  {
+   "id": "Q29",
+   "question": "Does the operation tag name an action the brief explicitly requires (not necessarily the largest)?",
+   "objective_test": "YES if the operation tag names ANY action the brief explicitly requests. NO only if the operation tag names an action the brief does not request at all. Do not judge which action is 'dominant'; feasibility of the action is Q1's job, not this one.",
+   "no_means": "The task is filed under an operation the brief never asks for, so it is mis-categorised for coverage accounting.",
+   "theme": "Tags",
+   "severity": "fixable",
+   "catches": "A crop-and-resize-only brief tagged O8 (stock-sourced hero) — the brief requests no stock-sourcing."
+  },
+  {
+   "id": "Q30",
+   "question": "Is the feasibility tag consistent with the execution_mode value already on the task (feasibility='full' never co-occurs with a [W]/[A]/[T] step, and non-headless deliverable types are not tagged headless-only)?",
+   "objective_test": "Using ONLY the execution_mode value already on the task: NO if feasibility='full' while execution_mode contains any of [W], [A], or [T]; OR if the brief's named deliverable type falls in the fixed always-non-headless list (any video, any audio, any Express template-fill, any InDesign/authored-template data-merge) but execution_mode is exactly [C]. YES otherwise. Do not re-derive the full per-step mode set from the brief.",
+   "no_means": "The task is falsely claimed runnable fully headless when it needs a human/async/authored step, breaking automated execution planning.",
+   "theme": "Tags",
+   "severity": "fixable",
+   "catches": "A data-merge menu task tagged feasibility='full' / execution_mode='[C]' when the merge requires an authored .indd [T] step."
+  },
+  {
+   "id": "Q31",
+   "question": "Are all ten mandatory metadata tags present, non-empty, and each controlled-vocabulary value an EXACT member of its allowed set?",
+   "objective_test": "Confirm each of the ten mandatory fields (operation, family, output_modality, horizon_tier, feasibility, execution_mode, workflow_tag, deliverable_type, est_calls, domain) is present and non-empty. Then confirm every controlled value is a case-insensitive EXACT member of its set: operation O1-O8; family in {Photo & Image, Vector & Print, Layout & Data, Motion & Audio}; output_modality in {image, vector, document, video, audio, data}; horizon_tier in {H1,H2,H3,H4}; feasibility in {full, template, partial, no}; execution_mode composed only of {[C],[W],[A],[T]}. Any value not exactly in its set (including near-aliases like 'gif', 'vid', 'O9') = NO. brand_persona is free text, exempt. YES only if all present, non-empty, and all controlled values exactly in-set.",
+   "no_means": "The task is not fully or legally described by its labels, breaking downstream routing, coverage accounting, and any code filtering on those fields.",
+   "theme": "Tags",
+   "severity": "fixable",
+   "catches": "output_modality left blank, operation tagged 'O9', or output_modality tagged 'gif' — none exactly in-set."
+  }
+ ]
+}

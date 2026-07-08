@@ -1,0 +1,424 @@
+{
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_add_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "box_render_master",
+    "open_box_render",
+    "reveal_clip",
+    "products_flatlay",
+    "vision_board_ref",
+    "brand_logos_vector",
+    "brand_palette_data"
+   ],
+   "output": "CC storage URNs for all 7 supplied input assets (urn:box_master, urn:open_box, urn:reveal, urn:flatlay, urn:visionref, urn:logos, urn:palette). Counts as 7 underlying asset_add_file calls (one per file).",
+   "note": "[C] Ingest every provided asset into CC storage first so later tools reference them by URN. asset_add_file wraps initialize/get_presigned_urls/finalize; ONE CALL PER FILE -> this node is 7 real calls displayed as n=1 for the named workflow. The supplied closed render ALREADY ships with a flush matte foil-free seal and the open render ALREADY ships with a breathable velvet divider (brand rules are baked into input generation, NOT fixed on-connector, because AI seal-removal / foam->velvet object-replacement is NOT an available connector capability)."
+  },
+  {
+   "n": 2,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 1"
+   ],
+   "output": "urn:box_master_toned - closed-box master render with normalized exposure/white balance",
+   "note": "[C] Consumes urn:box_master from step 1. Headless-confirmed tonal normalization: neutralizes the supplied render's slightly warm cast so all downstream closed-box derivatives share one tonal baseline."
+  },
+  {
+   "n": 3,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "urn:box_master_graded - closed-box master graded to the cool-champagne brand neutral",
+   "note": "[C] Takes the toned master from step 2 and nudges temperature toward the cool-champagne neutral. Locks the hero color so the wide hero, the crop and the board variants all read as the same physical box. (Palette is a constraint reference the agent reads, not a tool input parameter.)"
+  },
+  {
+   "n": 4,
+   "tool": "image_crop_to_bounds",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 3"
+   ],
+   "output": "urn:box_closed_clean - tightly bounded canonical closed-box base (trimmed studio margin), CLOSED HERO BASE",
+   "note": "[C] Crops the graded master from step 3 to the box bounds, removing dead studio sweep so the canonical closed-box base is centered for outpaint and crop derivatives. Replaces the former (invalid) select->fill 'seal cleaning' steps: the foil-free seal is already present in the supplied render, so the connector's legitimate job here is geometry, not object removal. This clean base is reused in steps 5 and 13."
+  },
+  {
+   "n": 5,
+   "tool": "image_generative_expand",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 4"
+   ],
+   "output": "urn:hero_wide_3000 - 3000x1250 wide hero outpaint of the cleaned closed box on a seamless studio sweep",
+   "note": "[C] image_generative_expand is the ONLY generative connector tool (AI outpaint/extend canvas). Outpaints the step-4 closed-box base into a wide cinematic 3000x1250 canvas, inventing studio floor/backdrop and soft gradient shadow. This wide closed-box hero feeds the highlight finish (step 6), the board (step 15) and the print sheet (step 18)."
+  },
+  {
+   "n": 6,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 5"
+   ],
+   "output": "urn:hero_wide_final - 3000x1250 wide closed hero with controlled specular highlights on the soft-touch lid",
+   "note": "[C] Tames blown speculars introduced by the outpaint in step 5 so the lid reads as soft-touch matte luxury, not plastic. Finalizes CLOSED HERO #1 (wide). Reused into the board (step 15), the crop (step 7), and the A4 print sheet (step 18)."
+  },
+  {
+   "n": 7,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 6"
+   ],
+   "output": "urn:closed_detail_1500 - 1500x1500 tighter detail crop of the closed hero (lid + ribbon-pull corner), CLOSED FRAME #3",
+   "note": "[C] FRAME-COUNT FIX: crops the step-6 wide hero down to a 1:1 detail frame on the lid seal + satin ribbon corner, producing the THIRD closed-box hyperrealistic frame. Closed set is now exactly 3: clean base (step 4), wide hero (step 6), detail crop (step 7) - matching the brief's 'exactly 3 closed' and the closed_box_frame_set spec."
+  },
+  {
+   "n": 8,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 1"
+   ],
+   "output": "urn:open_box_toned - open-box interior render with normalized tone",
+   "note": "[C] Branches off the supplied open-box render (urn:open_box from step 1), independent of the closed branch, to give the interior shots their own clean baseline. Two parallel image lineages now exist (closed vs open). The supplied open render ALREADY presents the breathable velvet divider, so no on-connector insert swap is needed or possible."
+  },
+  {
+   "n": 9,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 8"
+   ],
+   "output": "urn:open_box_graded - open-box interior matched to the same cool-champagne neutral as the closed branch",
+   "note": "[C] Matches the open-box interior white balance to the closed branch's cool-champagne neutral (consistency rule: identical box color across closed and open derivatives). Replaces the former (invalid) select->fill insert-swap step with a legitimate headless color match. OPEN-BOX base, reused in steps 10, 11, 12."
+  },
+  {
+   "n": 10,
+   "tool": "image_adjust_light_portions",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 9"
+   ],
+   "output": "urn:open_box_lit - open box with lifted interior shadows so each multi-brand product reads clearly, OPEN FRAME #1",
+   "note": "[C] Lifts the deep interior shadows of the step-9 graded open box so the products inside are legible ('presented like they matter'). Finalizes OPEN HERO (interior reveal #1)."
+  },
+  {
+   "n": 11,
+   "tool": "image_adjust_single_color_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 10"
+   ],
+   "output": "urn:open_box_refined - 2048x2048 open interior with the velvet divider's champagne tone gently enriched, OPEN FRAME #2",
+   "note": "[C] Selectively enriches the champagne velvet tone of the step-10 lit interior (single-color saturation, headless) so the divider reads as plush velvet without shifting overall white balance. Produces a distinct second open-box frame. OPEN FRAME #2."
+  },
+  {
+   "n": 12,
+   "tool": "image_generative_expand",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 11"
+   ],
+   "output": "urn:unboxing_wide_2400 - 2400x2400 square unboxing scene: open box on a marble vanity with soft props, OPEN FRAME #3",
+   "note": "[C] Outpaints the step-11 refined open box into a 2400x2400 lifestyle unboxing canvas (vanity surface, blurred florals), the 'premium opening / satisfying reveal' lifestyle variant. Open set is now exactly 3: lit (10), refined (11), lifestyle unboxing (12). Reused into the board (step 15) and the poster composite (step 17)."
+  },
+  {
+   "n": 13,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 4"
+   ],
+   "output": "vector:dieline.svg - clean structural dieline traced from the closed-box silhouette",
+   "note": "[C] Vectorizes the step-4 clean closed box into a structural outline that becomes the basis of the printable dieline/structure panel. Bridges the render world to the print/packaging deliverable. Feeds the rasterization step 14 and the print sheet composite (step 18)."
+  },
+  {
+   "n": 14,
+   "tool": "document_render_vector",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 13"
+   ],
+   "output": "dieline_preview.png - rasterized PNG preview of the dieline vector (for board ingestion)",
+   "note": "[C] FIREFLY-INPUT-TYPE FIX: document_render_vector exports the genuine dieline .ai/.svg to a PNG raster. create_firefly_board ingests image/video URNs, NOT a raw SVG, so the dieline is rasterized to a PNG preview here before the board. (Honest export of an existing vector, no authored merge fields needed.)"
+  },
+  {
+   "n": 15,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 6",
+    "step 10",
+    "step 12",
+    "step 14",
+    "vision_board_ref",
+    "brand_logos_vector"
+   ],
+   "output": "board:concept_directions - Firefly Board deep-link presenting wide closed hero, open interior, lifestyle unboxing, dieline preview + logo/vision refs",
+   "note": "[C] Assembles the closed hero (step 6), open interior (step 10), lifestyle unboxing (step 12), the RASTERIZED dieline preview (step 14), plus the vision_board_ref and brand_logos_vector URNs (from step 1) into ONE concept board - the Phase-1 concept-board gate. All inputs are now image URNs. Convergence node consuming five upstream outputs."
+  },
+  {
+   "n": 16,
+   "tool": "font_recommend",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "vision_board_ref"
+   ],
+   "output": "type_pairing.json - a restrained luxury serif + grotesque pairing for the box wordmark and teaser titles",
+   "note": "[C] Recommends brand-appropriate typography from the vision reference for the Gucci-restraint aesthetic. Output type style guides the local poster and print-sheet composites (steps 17, 18). Headless-confirmed."
+  },
+  {
+   "n": 17,
+   "tool": "local_composite_poster",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 12",
+    "step 16",
+    "brand_logos_vector"
+   ],
+   "output": "teaser_poster_4x5.png - 2400x3000 (4:5) social teaser poster: lifestyle unboxing render + wordmark + 'Unbox Luxury' line + placed logo",
+   "note": "[L] LOCAL composite (PIL): document_render_layout exports only a GENUINE authored .indd and cannot compose a novel poster from arbitrary rendered PNGs headless, so this bespoke 4:5 poster is assembled locally - places the lifestyle unboxing render (step 12), the recommended type (step 16), and the brand logo (step 1) into the 2400x3000 launch poster. (Canva [C] is the alternative headless path if a connector composite is required.)"
+  },
+  {
+   "n": 18,
+   "tool": "local_composite_print_sheet",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 6",
+    "step 10",
+    "step 14",
+    "step 16"
+   ],
+   "output": "structure_sheet.pdf - A4 portrait 300dpi print-ready PDF: dieline + closed hero + open interior + finish/material callouts under recommended type",
+   "note": "[L] LOCAL composite + PDF export (PIL/ReportLab): pairs the rasterized dieline preview (step 14) with the closed hero (step 6) and open interior (step 10) under the recommended type (step 16), then writes a true A4/300dpi print-ready PDF directly. Replaces BOTH the former document_render_vector 'print sheet' step AND the former document_convert_pdf 'finalize' step - document_convert_pdf only goes PDF->.indd and does NOT merge or finalize a composed PDF. No banned-finish callouts."
+  },
+  {
+   "n": 19,
+   "tool": "video_resize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 1"
+   ],
+   "output": "reveal_vertical_9x16.mp4 - 1080x1920, 12s vertical reframe of the supplied reveal clip, subject-aware on the box (SAME length)",
+   "note": "[A] ASYNC-WIDGET: video_resize reframes the supplied horizontal reveal_clip (urn:reveal from step 1) to 1080x1920 9:16, SAME 12s length (it does not trim). Returns status:'working' + progress widget in the product. The length change to ~8s is handled by the quick-cut in step 20 (a length-changing trim is NOT something video_resize can do)."
+  },
+  {
+   "n": 20,
+   "tool": "video_create_quick_cut",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 19"
+   ],
+   "output": "subscription_teaser_vertical.mp4 - 1080x1920, ~8s punchy vertical sizzle cut ending on the open box, native audio",
+   "note": "[A] ASYNC-WIDGET: video_create_quick_cut cuts the 12s vertical reveal from step 19 into a tight ~8s teaser (visual-engagement pacing). This is the correct tool for the LENGTH change (12s->8s); video_resize cannot trim. Consumes the step-19 video output directly - explicit video output->input chain. Audio is delivered as the clip's native veo audio as-is (no media_enhance_speech, which is voice-only and not a music/loudness processor)."
+  }
+ ],
+ "corrections_applied": [
+  "REMOVED both image_fill_area misuses (steps 5 and 10 in the raw spec). image_fill_area is SOLID-COLOR fill only (A1) and AI seal-removal / foam->velvet object-replacement is A6 [X] NOT-AVAILABLE. The brand-rule corrections (flush matte foil-free seal; breathable velvet divider) are now BAKED INTO the supplied input renders' generation prompts, and the connector does only legitimate work on them.",
+  "REPLACED the deleted closed-branch fill with a real geometry step (image_crop_to_bounds, step 4 [C]) to produce the canonical closed-box base; replaced the deleted open-branch select+fill with legitimate headless steps (image_adjust_color_temperature step 9, image_adjust_single_color_saturation step 11).",
+  "Tagged EVERY step with an exec_mode: C for all headless image/vector/board/font work (steps 1-16), A for the two video connector steps (19 video_resize, 20 video_create_quick_cut per A5), L for the two bespoke composites (17 poster, 18 print sheet+PDF).",
+  "FIXED FRAME-COUNT GAP: added image_crop_and_resize (step 7 [C]) producing a 1500x1500 detail crop as the THIRD closed-box frame. Closed set is now exactly 3 (clean base 4, wide hero 6, detail crop 7); open set is exactly 3 (lit 10, refined 11, lifestyle unboxing 12).",
+  "FIXED Firefly board input-type mismatch: inserted document_render_vector (step 14 [C]) to RASTERIZE the dieline.svg to a PNG before create_firefly_board (step 15), so the board ingests only image URNs, not a raw SVG.",
+  "REMOVED document_render_layout poster step and document_render_vector print-sheet step as connector composites: those tools export only a GENUINE user-authored .indd/.ai and cannot compose novel layouts from arbitrary PNGs headless. Poster (step 17) and print sheet (step 18) are now LOCAL [L] composites (PIL), with Canva [C] noted as the alternative headless path.",
+  "REMOVED document_convert_pdf 'finalize PDF' step: it only converts PDF->.indd and cannot merge/finalize a composed PDF. The A4/300dpi print-ready PDF is now written directly in the local print-sheet step (18 [L]).",
+  "DROPPED any media_enhance_speech consideration for the teaser audio: it is voice-only and not a music/loudness processor (A5). The teaser keeps the reveal clip's native veo audio as-is.",
+  "Removed orphaned input references: brand_palette_data is now consumed only at step 1 (it is a constraint sheet the agent reads, not a tool parameter); products_flatlay is a product-identity reference ingested at step 1; updated every input.used_in_steps to reference steps that truly consume the asset (vision_board_ref -> 1,15,16; brand_logos_vector -> 1,15,17; reveal_clip -> 1,19).",
+  "Kept the chain long-horizon at 20 named connector nodes (>=12), preserved the two parallel closed/open lineages, the Phase-1 board convergence gate, and all exact specs (3000x1250 hero, 1500x1500 crop, 2400x2400 unboxing, 2400x3000 poster, A4/300dpi PDF, 1080x1920 teaser)."
+ ],
+ "difficulty_rationale": "Long horizon (20 connector nodes across photo-raster, vector, asset/board, and video groups) with two parallel image lineages (closed vs open) the agent must keep distinct without cross-contaminating edits. State tracking is heavy: the cleaned closed base (step 4) is reused in steps 5 and 13; the wide hero (step 6) feeds the crop, board and print sheet; the open base (step 9) feeds steps 10-12; and the Firefly Board (step 15) converges FIVE separate upstream outputs - picking the wrong intermediate URN silently corrupts the deliverable. The genuinely hard reasoning is recognizing what the connector CANNOT do: the banned-finish corrections (no embossing/foil; breathable velvet insert) cannot be performed on-connector (no gen-fill, no AI object removal/replacement) and must instead be honored in the supplied renders, so the agent must restrain itself to legitimate tonal/geometry/expand/vectorize work and not hallucinate a 'fill the seal away' step. Exact-spec pressure is high (3000x1250 hero, 1500x1500 crop, 2400x2400 unboxing, 2400x3000 poster, A4/300dpi PDF, 1080x1920/~8s teaser) and the closed/open sets must each contain exactly 3 frames. The video deliverable requires correctly splitting the SAME-LENGTH reframe (video_resize) from the LENGTH-changing trim (video_create_quick_cut) - a common tool-confusion trap. Mixed execution modes (mostly headless [C], two async-widget [A] video steps, two local [L] composites) mean the task is product-doable but NOT fully autonomous-headless, which the agent must represent honestly.",
+ "exec_mode_summary": "C×16 A×2 L×2",
+ "full_brief": "A new multi-brand beauty subscription service is launching and needs the physical packaging for its flagship box - the box that ships in every delivery and showcases several partner brands at once. The client's North Star is Gucci: clean, confident, impeccably finished, luxurious without trying too hard. They want a refined premium exterior with beautiful proportions and an impeccable finish; elevated soft-touch modern materials (they explicitly dislike embossing and hot-foil stamping - lean away from that look); a thoughtful interior structure whose inserts and dividers hold each brand's product securely and present them with room to breathe rather than crowded; considered details (a satisfying closure, a ribbon pull, a branded seal, a thoughtful card); and a premium, satisfying opening reveal. Restraint over ornamentation throughout. The client supplies their vision/reference imagery and expects the designer to elevate that direction into something original and distinctly their own.\\n\\nThe engagement is a collaborative two-phase process. Phase 1 (Concepts): at least three distinct design directions presented as concept boards/mockups, each a different take on structure, materials, finishes, interior arrangement, closure and opening, with a short walkthrough of the thinking. The client reviews, gives feedback, and approves one direction. Phase 2 (Final renders): once aligned, produce finished hyperrealistic imagery that reads as real product photography (not flat mockups) - exactly 3 hyperrealistic images of the box CLOSED and exactly 3 hyperrealistic images of the box OPEN showing the interior structure and how the multi-brand products are presented inside.\\n\\nIMPORTANT CAPABILITY NOTE (v2.1 grounding): the supplied closed and open renders are generated ALREADY honoring the brand rules - the closed render ships with a flush matte foil-free seal medallion, and the open render ships with a breathable velvet divider cradling the multi-brand products. This is because the Adobe connector has NO generative-fill, NO AI object-removal, and NO AI object-replacement capability (only image_generative_expand outpaint is generative), so the banned-finish corrections cannot be done on-connector and are instead baked into the input generation. The connector's legitimate role is tonal normalization, color matching, geometry/crop, generative outpaint expansion, vectorization, board assembly, font recommendation, and video reframe/cut.\\n\\nFor this long-horizon engagement you are given a base hyperrealistic box render (closed, already clean), a base interior render (open, already breathable), a short horizontal reveal clip, a multi-brand product flat-lay, the client's vision-reference board, the partner-brand logos, and a brand palette spec. From these you must: normalize and color-lock the closed render and crop a canonical base; outpaint it into a wide closed-box hero (3000x1250) and produce a tighter detail crop so the closed set has exactly 3 frames; normalize/color-match/light the open render and outpaint it into a lifestyle unboxing scene (2400x2400) so the open set has exactly 3 frames; vectorize a structural dieline and rasterize a preview; assemble a single Firefly concept board for the Phase-1 review gate; recommend luxury typography; locally composite a 4:5 social teaser poster (2400x3000) and an A4/300dpi print-ready structure-and-finish PDF; and reframe the supplied reveal clip to vertical (1080x1920, same length) then quick-cut it into a ~8s vertical subscription teaser. Hard constraints: no embossing or hot-foil look anywhere; soft-touch matte finish; uncluttered, breathable interior; consistent box color across every closed-box and open-box derivative; deliver exactly 3 closed + 3 open hyperrealistic frames; wide hero 3000x1250, detail crop 1500x1500, lifestyle unboxing 2400x2400, poster 2400x3000 (4:5), print sheet A4 at 300dpi, teaser 1080x1920 ~8s.",
+ "grounding_note": "REAL (verbatim from the Upwork brief in db_all.json / flagship_candidates.json): multi-brand beauty subscription box; Gucci as the gold standard (clean, confident, impeccably finished, luxurious without trying too hard); explicit dislike of embossing and hot-foil stamping; refined premium exterior with beautiful proportions and impeccable finish; elevated soft-touch modern materials; thoughtful interior structure with inserts/dividers holding each brand's product securely with 'room to breathe rather than crowded'; considered details (satisfying closure, ribbon pull, branded seal, thoughtful card); a premium/satisfying opening reveal; restraint over ornamentation; client provides vision + reference imagery, designer elevates it; explicit two-phase process - Phase 1 = at least three distinct concept directions as storyboards/mockups/concept boards with a walkthrough, Phase 2 = finished hyperrealistic imagery reading as real product photography, specifically 3 closed and 3 open images; client's listed tools include Premiere Pro, InDesign, Illustrator; budget Fixed price ~$125 Intermediate. ENRICHED (implied, for a long-horizon connector workflow): the supplied input asset set (clean closed render, breathable open render, reveal clip, product flat-lay, vision-reference board, brand logos, palette JSON); exact output dimensions (3000x1250 hero, 1500x1500 detail crop, 2400x2400 unboxing, 2400x3000 poster, A4/300dpi PDF, 1080x1920 teaser); the social-teaser poster and the vertical subscription teaser VIDEO (implied by the Premiere listing and 'satisfying reveal' language); the Firefly Board as the Phase-1 concept-board vehicle; the dieline/structure print sheet (brief asks for structure/materials thinking and lists InDesign/Illustrator). CAPABILITY-GROUNDING (v2.1): brand-rule finish corrections are baked into the input renders because the connector lacks gen-fill / AI object-removal / object-replacement; poster and print sheet are LOCAL composites because document_render_layout/_vector export only authored .indd/.ai and cannot compose novel layouts headless; the print PDF is written locally because document_convert_pdf only converts PDF->.indd. No brand names beyond Gucci-as-reference were invented as real client identity.",
+ "groups_covered": [
+  "photo_raster",
+  "asset_stock_storage",
+  "document_layout_print",
+  "video_audio"
+ ],
+ "headless_doable": false,
+ "id": "F2-12",
+ "inputs": [
+  {
+   "name": "box_render_master",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Hyperrealistic studio product photograph of a closed luxury beauty subscription box, square form, soft-touch matte cool-champagne cardstock with a faint warm cast, clean minimal proportions in the spirit of restrained luxury fashion packaging, a slim satin ribbon pull at one edge and a small circular seal medallion on the lid that is FLUSH, MATTE and FOIL-FREE with NO embossing and NO hot-foil (a smooth printed mark, honoring the brand's no-foil rule), photographed on a seamless light-grey studio sweep with one large soft key light camera-left and a gentle fill, true product photography with realistic soft-touch surface microtexture, fine paper grain, a soft contact shadow, no people, shot on an 85mm lens at f8, 1:1 framing, slightly imperfect real-world lighting not CGI-glossy",
+   "realism_notes": "Must look like a real catalogue product shot: visible soft-touch matte microtexture and paper grain, a realistic soft contact shadow, no plastic CGI sheen. The seal is deliberately generated ALREADY CLEAN (flush matte, no foil/emboss) because the connector cannot remove a seal on-connector (no gen-fill / object removal). The faint warm cast is left for the headless auto_tone + color_temperature steps to neutralize. 2048x2048.",
+   "used_in_steps": [
+    1,
+    2
+   ]
+  },
+  {
+   "name": "open_box_render",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Hyperrealistic top-down-ish 3/4 studio photograph of the SAME luxury beauty subscription box now open, lid lifted, revealing an ELEGANT BREATHABLE champagne velvet divider (NOT crowded foam) that cradles several multi-brand beauty products with generous room to breathe (a serum dropper bottle, a compact, a lipstick, a small jar, a thank-you card), soft-touch matte cool-champagne walls, slim satin ribbon, soft interior shadows, photographed on a light-grey studio sweep with one soft key light, realistic product photography with fine material microtexture and accurate product reflections, no people, no readable text labels, 85mm lens, square framing, candid real-world lighting not CGI",
+   "realism_notes": "Interior is generated ALREADY breathable with a structured velvet divider (NOT a crowded foam insert) because the connector cannot swap an insert on-connector (no AI object-replacement). Products must look like real cosmetics with believable glass/metal reflections, not floating CGI props. Matches the products in products_flatlay. 2048x2048.",
+   "used_in_steps": [
+    1,
+    8
+   ]
+  },
+  {
+   "name": "reveal_clip",
+   "kind": "video",
+   "gen_model": "veo-3.1-generate-preview",
+   "gen_prompt": "Hyperrealistic 12-second horizontal product film, 1080p, native audio: a closed luxury beauty subscription box sits on a marble vanity in soft window light; two hands with neutral natural manicure (realistic skin, visible knuckle creases and fine hair, correct five fingers) gently pull the satin ribbon and lift the lid in one smooth motion, revealing the multi-brand products nestled in the breathable velvet divider; slow push-in, shallow depth of field, soft ambient room tone and a faint paper/ribbon rustle as native audio, candid documentary product-film feel, no on-screen text, no fast cuts",
+   "realism_notes": "Hands must be anatomically correct with real skin pores, fine hair and natural manicure - the classic failure mode. 1080p native audio, 16:9, ~12s. Horizontal on purpose so video_resize has real reframing work to do. Native audio is kept as-is (no media_enhance_speech: it is voice-only, not a music/loudness processor). NOT veo-fast, NOT 720p.",
+   "used_in_steps": [
+    1,
+    19
+   ]
+  },
+  {
+   "name": "products_flatlay",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Hyperrealistic overhead flat-lay product photograph of a curated set of multi-brand beauty products on a neutral linen surface - a frosted-glass serum dropper bottle, a brushed-metal compact, a matte lipstick bullet, a small ceramic cream jar, a folded thank-you card - arranged with generous negative space and elegant restraint, soft daylight, realistic glass/metal/ceramic reflections and tiny surface dust, true product photography, no readable brand text, no people, 50mm lens, square",
+   "realism_notes": "Reference for the product set that already appears cradled in the open render. Real reflective materials with micro-imperfections, no CGI gloss. Ingested for completeness of the asset set and as a product-identity reference. 2048x2048.",
+   "used_in_steps": [
+    1
+   ]
+  },
+  {
+   "name": "vision_board_ref",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A clean luxury brand mood/vision reference board image collage: restrained fashion-house packaging cues, soft-touch matte textures, champagne and warm-greige tones, a slim satin ribbon detail, elegant minimal serif wordmark samples, a marble surface, all arranged as a tasteful 3x3 reference grid with thin gutters and small handwritten-style notes like 'soft-touch, no foil', 'room to breathe', evoking quiet luxury",
+   "realism_notes": "Acts as the client-supplied direction and as a board/typography reference. Text in the collage should be crisp and legible (Gemini handles in-image text); intentionally communicates the no-foil, breathable-interior rules. 1536x1536.",
+   "used_in_steps": [
+    1,
+    15,
+    16
+   ]
+  },
+  {
+   "name": "brand_logos_vector",
+   "kind": "vector",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A clean set of four minimal monoline beauty sub-brand wordmark logos plus one parent subscription wordmark, each a simple elegant serif or grotesque lockup in solid charcoal on transparent/white, well-spaced on a grid, no gradients, crisp edges, restrained luxury aesthetic, no photographic elements",
+   "realism_notes": "Flat high-contrast monoline marks supplied as PNG, placed on the board and the local poster composite as logo art. 2048x1024.",
+   "used_in_steps": [
+    1,
+    15,
+    17
+   ]
+  },
+  {
+   "name": "brand_palette_data",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a compact JSON brand spec for a quiet-luxury beauty subscription box: a 'neutral' champagne hex, 3 supporting warm-greige/charcoal hex values with names, a 'temperature_target' note (cool-champagne neutral), allowed finishes ['soft-touch matte'] and banned finishes ['emboss','hot-foil','high-gloss'], and target output dimensions for hero (3000x1250), detail_crop (1500x1500), unboxing (2400x2400), poster (2400x3000), print_sheet ('A4 300dpi'), teaser ('1080x1920'). Valid minified JSON only.",
+   "realism_notes": "Machine-readable constraint sheet the agent READS (it pins the grading-relevant numbers and banned-finish rules) - it is a source of truth, not a tool parameter, so it is only ingested at step 1. Small JSON.",
+   "used_in_steps": [
+    1
+   ]
+  }
+ ],
+ "iterative_chaining_note": "The chain is genuinely output->input, not a flat fan-out. Closed-box lineage: step1 URN -> auto_tone(2) -> color_temp(3) -> crop_to_bounds(4, the clean closed base) -> generative EXPAND to wide hero(5) -> highlight finish(6) -> crop_and_resize to the third closed frame(7). Open-box lineage runs in parallel from the same step-1 ingest: auto_tone(8) -> color_temp match(9) -> light_portions(10, OPEN frame 1) -> single_color_saturation enrich(11, OPEN frame 2) -> generative EXPAND to lifestyle unboxing(12, OPEN frame 3). The step-4 clean closed pixels are independently vectorized into the dieline(13), which is rasterized to a PNG preview(14) so it can be ingested as an image. The Firefly Board(15) is the convergence node: closed hero(6) + open interior(10) + lifestyle unboxing(12) + dieline preview(14) + the original vision and logo URNs - five upstream outputs feeding one artifact, the Phase-1 concept-board gate. Type recommendation(16) flows into both the local poster composite(17, which also consumes the unboxing render 12 and the logo) and the local print-sheet PDF(18, which consumes hero 6 + interior 10 + dieline preview 14). On the motion side, the supplied horizontal reveal clip(step1 URN) is reframed to vertical 9:16 SAME-LENGTH(19, video_resize [A]) and that vertical output is the direct input to the length-changing quick-cut teaser(20, video_create_quick_cut [A]). Every later step names the specific prior step/URN it consumes; the two video steps are correctly split (reframe vs trim) and tagged async-widget.",
+ "one_line_ask": "Take the supplied (already brand-clean) hyperrealistic closed and open box renders, reveal clip, product flat-lay, vision board, logos and palette, and deliver a Gucci-restraint multi-brand beauty subscription box program: color-locked closed and open hero renders (3 each), a wide hero and lifestyle unboxing via generative expand, a structural dieline + rasterized preview, a single Firefly concept board for the Phase-1 review, a locally composited A4/300dpi structure PDF and 4:5 social poster, and a 1080x1920 ~8s vertical subscription teaser reframed then quick-cut from the reveal clip.",
+ "outputs": [
+  {
+   "name": "closed_box_hero_wide",
+   "kind": "image",
+   "spec": "3000x1250 PNG, sRGB, wide cinematic closed-box hero on seamless studio sweep, soft-touch matte finish, foil-free seal, soft contact shadow",
+   "rubric_hook": "Does it read as real product photography (not a flat mockup)? Is the seal flush matte and foil-free (no emboss/hot-foil)? Is the outpainted studio background seamless and shadow-consistent with the original box? Is the box color identical to the open-box derivatives? Exactly 3000x1250?"
+  },
+  {
+   "name": "closed_box_frame_set",
+   "kind": "image",
+   "spec": "3x PNG closed-box hyperrealistic frames: the cleaned base (step 4), the 3000x1250 wide hero (step 6), and a 1500x1500 tighter detail crop (step 7), at delivery resolution",
+   "rubric_hook": "Are there exactly 3 distinct closed-box hyperrealistic frames produced by connector steps? Do all three share one consistent color/finish and honor the no-emboss/no-foil rule? Is the third a genuine detail crop, not a duplicate?"
+  },
+  {
+   "name": "open_box_interior_set",
+   "kind": "image",
+   "spec": "3x PNG open-box hyperrealistic frames: lit interior (step 10), velvet-enriched interior (step 11), and 2400x2400 lifestyle unboxing (step 12), showing the multi-brand products",
+   "rubric_hook": "Exactly 3 open-box frames? Is the interior breathable with a velvet divider (not crowded foam)? Are the multi-brand products legible and elegantly cradled, matching the supplied flat-lay set? Is the unboxing frame 2400x2400 and the box color matched to the closed set?"
+  },
+  {
+   "name": "concept_board",
+   "kind": "url",
+   "spec": "Firefly Board deep-link assembling wide closed hero + open interior + lifestyle unboxing + rasterized dieline preview + vision/logo refs as the Phase-1 concept board",
+   "rubric_hook": "Does ONE board present all required concept elements (exterior, interior, lifestyle, structure/dieline, brand refs) coherently? Are all ingested items image URNs (dieline rasterized, not raw SVG)? Does it function as a credible Phase-1 review artifact with finished derivatives, not raw inputs?"
+  },
+  {
+   "name": "structure_sheet_pdf",
+   "kind": "pdf",
+   "spec": "A4 portrait, 300dpi, print-ready PDF (locally composited) pairing the structural dieline preview with the closed hero and open interior under recommended brand type, with finish/material callouts",
+   "rubric_hook": "Is it A4 at 300dpi and print-ready? Does the dieline correspond to the actual closed-box silhouette? Are closed + open renders and callouts laid out cleanly with restrained luxury type? No banned-finish callouts present?"
+  },
+  {
+   "name": "teaser_poster_4x5",
+   "kind": "image",
+   "spec": "2400x3000 PNG (4:5) social teaser poster (locally composited): lifestyle unboxing render + brand wordmark + short luxury tagline, recommended type",
+   "rubric_hook": "Is it exactly 2400x3000 (4:5)? Does the typography match the recommended luxury pairing and the vision-board direction? Is the unboxing image the finished derivative, logo placed cleanly, layout restrained?"
+  },
+  {
+   "name": "subscription_teaser_vertical",
+   "kind": "video",
+   "spec": "1080x1920 MP4, ~8s, vertical subscription teaser quick-cut from the reframed reveal clip, ending on the open box, native audio",
+   "rubric_hook": "Is it exactly 1080x1920 and ~8s? Is the box kept centered/subject-safe through the reframe (no cropped-off lid)? Does the cut land on the open-box reveal? Is it derived from the supplied reveal clip (same footage), not a new render? Was the reframe (same-length) correctly separated from the trim (length change)?"
+  }
+ ],
+ "slug": "luxury-beauty-box-renders",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Luxury%20Packaging%20Designer%20—%20Hyperrealistic%20Beauty%20Subscrip"
+ },
+ "title": "Luxury Packaging Designer — Hyperrealistic Beauty Subscription Box",
+ "tool_call_count": 20,
+ "tools_used": [
+  "asset_add_file",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "image_crop_to_bounds",
+  "image_generative_expand",
+  "image_adjust_highlights",
+  "image_crop_and_resize",
+  "image_adjust_light_portions",
+  "image_adjust_single_color_saturation",
+  "image_vectorize",
+  "document_render_vector",
+  "create_firefly_board",
+  "font_recommend",
+  "local_composite_poster",
+  "local_composite_print_sheet",
+  "video_resize",
+  "video_create_quick_cut"
+ ],
+ "vertical": "Beauty, Cosmetics & Personal Care",
+ "reverify": {
+  "severity": "minor",
+  "residual_issues": [
+   "Step 14 (document_render_vector) consumes the image_vectorize SVG output of step 13, but the capability sheet (A2) specifies document_render_vector exports a 'GENUINE .ai'. Whether it accepts a connector-produced SVG vs. requiring a user-authored .ai is left ambiguous; this rasterize-the-dieline hop rests on an unstated input-type assumption (the same skepticism the spec applies to document_render_layout/_convert_pdf is not applied to itself here).",
+   "Step 15 note asserts create_firefly_board 'ingests image/video URNs, NOT a raw SVG' — that restriction is not stated in the sheet (A4 only says it assembles 'GENERATED asset URNs / CC assets'). The added rasterization is harmless/conservative, not a violation, but the justification is an assumption.",
+   "Step 1 is presented as n=1 but is actually 7 underlying asset_add_file calls (one per file); the named-node count (20) understates true connector calls (~24 expanded). Honest in the note, but the headline call count is the node count, not the real call count."
+  ]
+ }
+}

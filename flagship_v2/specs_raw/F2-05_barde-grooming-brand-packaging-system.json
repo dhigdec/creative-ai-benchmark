@@ -1,0 +1,449 @@
+{
+ "spec": {
+  "connector_workflow": [
+   {
+    "n": 1,
+    "tool": "asset_initialize_file_upload",
+    "server": "adobe",
+    "inputs_from": [
+     "bottle_concept_A",
+     "bottle_concept_B",
+     "label_concept",
+     "hero_product_shot",
+     "sku_line_render",
+     "brand_brief_pdf",
+     "sku_data_csv",
+     "label_template_vector"
+    ],
+    "output": "Upload sessions + presigned PUT targets for all 8 provided input assets into CC storage",
+    "note": "Bring every supplied asset into CC storage so later tools can reference them by URN. Pairs with asset_get_presigned_urls / asset_finalize_file_upload."
+   },
+   {
+    "n": 2,
+    "tool": "asset_finalize_file_upload",
+    "server": "adobe",
+    "inputs_from": [
+     "step 1"
+    ],
+    "output": "8 CC asset URNs (urn:bottle_A, urn:bottle_B, urn:label, urn:hero, urn:sku_line, urn:brief, urn:csv, urn:template)",
+    "note": "Finalizes the uploads opened in step 1 and returns stable URNs reused across the whole workflow. State-tracking: the agent must keep this URN map and not re-upload."
+   },
+   {
+    "n": 3,
+    "tool": "asset_search",
+    "server": "adobe",
+    "inputs_from": [
+     "brand_brief_pdf"
+    ],
+    "output": "Stock results: matte-black slate texture + brushed-silver surface candidates for the brand world",
+    "note": "Pull two on-brand texture backgrounds (matte charcoal, brushed metal) that the moodboard and box mockup will sit on. Query terms taken from the brief's visual direction."
+   },
+   {
+    "n": 4,
+    "tool": "asset_license_and_download_stock",
+    "server": "adobe",
+    "inputs_from": [
+     "step 3"
+    ],
+    "output": "2 licensed Stock textures downloaded into CC storage → urn:tex_charcoal, urn:tex_metal",
+    "note": "Licenses the two chosen textures so they are legally usable in the deliverables. Feeds the moodboard (step 5) and the box composite (step 12)."
+   },
+   {
+    "n": 5,
+    "tool": "create_firefly_board",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2",
+     "step 4",
+     "bottle_concept_A",
+     "bottle_concept_B",
+     "label_concept"
+    ],
+    "output": "Firefly Board moodboard 'BARDE — Brand World v1' (deep-link) assembling both bottle concepts, the label concept, hero shot and 2 textures",
+    "note": "MUST-EXERCISE. Concept board that fixes the matte-black/deep-red direction. Consumes the URNs from step 2 + licensed textures from step 4. This is the identity anchor referenced by every downstream visual."
+   },
+   {
+    "n": 6,
+    "tool": "font_recommend",
+    "server": "adobe",
+    "inputs_from": [
+     "brand_brief_pdf",
+     "step 5"
+    ],
+    "output": "Type system: a bold condensed grotesque for the wordmark + a humanist sans for body, with rationale",
+    "note": "Derives the typography system from the brief ('strong wordmark', minimal/bold) and the locked moodboard mood. Font choices are reused in the label template (step 13) and routine card (step 17)."
+   },
+   {
+    "n": 7,
+    "tool": "image_vectorize",
+    "server": "adobe",
+    "inputs_from": [
+     "label_concept"
+    ],
+    "output": "Clean SVG wordmark/logomark vector → urn:logo_svg",
+    "note": "Turns the raster label/wordmark concept into a crisp print-ready vector logo (brief demands editable source + dielines). The SVG is placed into the label template and box."
+   },
+   {
+    "n": 8,
+    "tool": "image_select_by_prompt",
+    "server": "adobe",
+    "inputs_from": [
+     "hero_product_shot"
+    ],
+    "output": "Selection mask isolating the stray water droplets + a distracting reflected studio lamp on the hero bottle",
+    "note": "Marks the distracting elements the brief implicitly forbids ('should not look like a cheap private-label product'). Mask is handed to image_fill_area next."
+   },
+   {
+    "n": 9,
+    "tool": "image_fill_area",
+    "server": "adobe",
+    "inputs_from": [
+     "hero_product_shot",
+     "step 8"
+    ],
+    "output": "Retouched hero shot with droplets + lamp reflection generatively removed → hero_clean.png",
+    "note": "MUST-EXERCISE. Generative fill removes the masked distractions, leaving clean matte packaging. Output feeds the tone pass and the banner expand."
+   },
+   {
+    "n": 10,
+    "tool": "image_apply_auto_tone",
+    "server": "adobe",
+    "inputs_from": [
+     "step 9"
+    ],
+    "output": "Tone-balanced clean hero → hero_clean_toned.png",
+    "note": "Normalizes exposure/contrast on the retouched hero so the upcoming generative expand blends seamlessly and the banner reads premium."
+   },
+   {
+    "n": 11,
+    "tool": "image_generative_expand",
+    "server": "adobe",
+    "inputs_from": [
+     "step 10",
+     "step 5"
+    ],
+    "output": "Hero outpainted to a 2400×1000 DTC banner canvas with matte-charcoal negative space → hero_banner.png",
+    "note": "MUST-EXERCISE. Extends the single product shot into a wide ecommerce/social banner, matching the moodboard's charcoal world (step 5). Reused in the box-render context and final deck."
+   },
+   {
+    "n": 12,
+    "tool": "image_crop_and_resize",
+    "server": "adobe",
+    "inputs_from": [
+     "step 11"
+    ],
+    "output": "Two crops of the banner: 1080×1080 IG square + 1080×1920 story → hero_ig.png, hero_story.png",
+    "note": "Subject-aware crops of the expanded banner give the 'social-media friendly' assets the brief calls for, without re-shooting. Chains directly off step 11's wide canvas."
+   },
+   {
+    "n": 13,
+    "tool": "document_render_vector",
+    "server": "adobe",
+    "inputs_from": [
+     "step 7",
+     "step 6",
+     "label_template_vector"
+    ],
+    "output": "Master 50ml roll-on sleeve label artwork (with bleed + dieline) as a parametric vector template → label_master.svg",
+    "note": "Builds the spec-exact label master: places the vectorized logo (step 7) and chosen fonts (step 6) onto the supplied dieline template. This becomes the merge template for the SKU line."
+   },
+   {
+    "n": 14,
+    "tool": "document_merge_data_vector",
+    "server": "adobe",
+    "inputs_from": [
+     "step 13",
+     "sku_data_csv"
+    ],
+    "output": "6 per-SKU label variants (scent/strength/size fields swapped) as print-ready vector pages → labels_merged/*.svg",
+    "note": "MUST-EXERCISE. Rolls the master label across the full 6-SKU line using the CSV data rows — the data-merge core of the task. Each record reuses the same template (step 13) with swapped variant fields/accent colors."
+   },
+   {
+    "n": 15,
+    "tool": "document_convert_pdf",
+    "server": "adobe",
+    "inputs_from": [
+     "step 14"
+    ],
+    "output": "Single press-ready CMYK PDF/X-style booklet of all 6 merged labels with dielines → labels_print.pdf",
+    "note": "Collates the merged label set into one print-ready PDF deliverable (brief: 'print-ready files with dielines, editable source files')."
+   },
+   {
+    "n": 16,
+    "tool": "document_render_vector",
+    "server": "adobe",
+    "inputs_from": [
+     "step 7",
+     "step 6",
+     "step 4"
+    ],
+    "output": "Outer product box dieline artwork (front/back/sides) on the matte-charcoal texture → box_dieline.svg",
+    "note": "Generates the outer carton with the same logo+type system, sitting on the licensed charcoal texture (step 4). Mirrors the label system for brand consistency."
+   },
+   {
+    "n": 17,
+    "tool": "document_render_layout",
+    "server": "adobe",
+    "inputs_from": [
+     "step 6",
+     "step 7",
+     "step 5"
+    ],
+    "output": "Routine/instruction card (2-up A6) + 1-page brand style-guide sheet → routine_card.pdf, styleguide.pdf",
+    "note": "Lays out the routine/instruction card and the basic style guide (palette from moodboard step 5, type from step 6, logo from step 7) — both named deliverables in the brief."
+   },
+   {
+    "n": 18,
+    "tool": "asset_add_file",
+    "server": "adobe",
+    "inputs_from": [
+     "step 9",
+     "step 11",
+     "step 12",
+     "step 15",
+     "step 16",
+     "step 17"
+    ],
+    "output": "All final deliverables uploaded into a single 'BARDE_Handoff' CC folder",
+    "note": "Re-uploads every generated artifact (clean hero, banner, social crops, merged label PDF, box dieline, cards/guide) into one organized handoff folder for the client."
+   },
+   {
+    "n": 19,
+    "tool": "asset_inline_preview",
+    "server": "adobe",
+    "inputs_from": [
+     "step 18"
+    ],
+    "output": "Contact-sheet previews + shareable links for the full handoff package",
+    "note": "Renders previews of the packaged deliverables so the annotator/client can review the complete brand+packaging system at a glance. Closes the loop on the handoff."
+   }
+  ],
+  "difficulty_rationale": "This is hard because it is a true identity-to-packaging pipeline with 19 chained connector calls spanning four capability groups (asset/stock/storage, photo-raster, document/layout, plus moodboard) and demands heavy long-horizon state tracking. The agent must: (1) upload 8 assets and maintain a URN map it reuses across ~10 later steps without re-uploading; (2) build a moodboard that locks a visual direction every downstream step must honor (matte charcoal + deep red, derived from the brief, not invented); (3) run a three-stage raster chain where each output is the next input — select distractions → generative fill → auto-tone → generative expand → social crops — so any drift (wrong mask, mismatched canvas color) cascades; (4) construct a parametric vector label master and then execute a data-merge across a 6-row SKU CSV, keeping per-record fields and accent colors correct, then collate to a print-ready CMYK PDF with dielines; (5) hold exact-spec pressure throughout — 50ml sleeve with 3mm bleed/dieline, 2400×1000 banner, 1080×1080 and 1080×1920 crops, A6 card, CMYK PDF — while reusing the same logo SVG and font system across label, box, card, and guide for brand consistency. The big trap is firing the must-exercise generative tools out of order or on the wrong upstream artifact (e.g. expanding the un-retouched hero, or merging before the master template is rendered), which silently breaks the brand-consistency rubric the human annotator scores.",
+  "full_brief": "BARDE Grooming (working name, shared only with the awarded freelancer) is launching a premium men's grooming/skincare brand. The flagship is a 50ml post-shave / post-haircut roll-on serum aimed at men prone to razor bumps, ingrown hairs, irritation, and dark marks around the neck and beard line. The brand must read premium, masculine, modern, barber-led and performance-focused — built for both DTC ecommerce and barbershop retail — and must NOT look generic, overly clinical, feminine, or like a cheap private-label product. Visual direction: matte black / deep charcoal packaging with cream, white, silver, or deep-red accents; a minimal-but-bold layout; a strong wordmark; and a social-media-friendly, lifestyle-driven feel (reference point for boldness only, not to copy: 'Sleep or Die').\\n\\nYou are hired for the Full Brand Package. Deliver: a logo/wordmark, color palette, typography system, and a basic brand style guide; the 50ml roll-on sleeve/label design; an outer product box design; a routine/instruction card; product mockups and social assets; and print-ready files with dielines plus editable source files. Enriched for this benchmark into a long-horizon pipeline, the engagement also requires: (a) a Firefly moodboard that locks the brand world from the supplied bottle/label concepts and licensed textures; (b) a retouched, distraction-free hero product shot; (c) that hero outpainted into a wide ecommerce/social banner and cropped to platform sizes; and (d) the locked label master rolled across the brand's full six-SKU line via a vector data-merge, then collated to one press-ready PDF.\\n\\nConstraints and specs: 50ml roll-on shrink-sleeve/label must carry a 2mm bleed and the supplied dieline, keep critical content >=3mm inside trim, and export CMYK print-ready. SKU line = 6 records driven by the provided CSV (variant name, strength, size, accent color). Banner = 2400x1000 px; social crops = 1080x1080 (IG square) and 1080x1920 (story). Routine card = A6, 2-up. Style guide = single sheet with palette (hex + CMYK), type system, and logo lockups. The same vectorized logo and font system must appear consistently on the label, box, card, and guide — brand consistency is explicitly graded. Hand off all artifacts in one organized CC folder with previews.",
+  "grounding_note": "REAL (verbatim from the Upwork brief in db_all.json): launching a new men's grooming/skincare brand needing a full brand identity + packaging system; flagship is a 50ml post-shave/post-haircut roll-on serum for razor bumps, ingrown hairs, irritation and dark marks on neck/beard line; brand must feel premium, masculine, modern, barber-led, performance-focused, for DTC ecommerce + barbershop retail; must NOT look generic/clinical/feminine/cheap private-label; matte black / deep charcoal packaging with cream/white/silver/deep-red accents, minimal-but-bold layout, strong wordmark, social-media-friendly; 'Sleep or Die' cited only as a boldness reference (not to copy). REAL named deliverables: logo/wordmark, colour palette, typography system, basic brand style guide, 50ml roll-on sleeve/label design, outer product box design, patch pouch design, routine/instruction card design, product mockups, print-ready files with dielines, editable source files. Tools listed: InDesign, Illustrator. Budget: Fixed price, Intermediate. ENRICHED (implied by the brief, added to make it long-horizon and to exercise the required tools): the specific Firefly moodboard step; the hero-shot retouch via generative fill of named distractions (droplets + lamp reflection); the generative-expand into a 2400x1000 banner and the 1080x1080/1080x1920 social crops; the 6-SKU data-merge with a provided CSV (the brief asks for a brand 'system' and 'product mockups' and SKU-friendly identity, but does not literally enumerate six SKUs — the CSV-driven line rollout is an honest extension of 'full brand/packaging system'); the specific Adobe Stock charcoal/metal textures; exact pixel/A6 specs; and the working brand name 'BARDE' (the real client withholds the name until shortlisting, so a placeholder is used). The patch pouch deliverable from the real brief is acknowledged but not exercised in the connector chain to keep the workflow focused on the four must-exercise tools.",
+  "groups_covered": [
+   "asset_stock_storage",
+   "photo_raster",
+   "document_layout"
+  ],
+  "id": "F2-05",
+  "inputs": [
+   {
+    "name": "bottle_concept_A",
+    "kind": "image",
+    "gen_model": "gpt-image-2",
+    "gen_prompt": "Studio product render of a 50ml matte-black roll-on serum bottle for a premium men's grooming brand, deep charcoal soft-touch finish, brushed-silver roller cap, blank label area, shot on a dark charcoal seamless background with a single soft key light and subtle rim light, realistic micro-scratches and fingerprint-resistant matte texture on the plastic, true-to-life specular highlights, shallow depth of field, premium e-commerce product photography, no text on label, photorealistic not CGI-glossy",
+    "realism_notes": "Must look like a real photographed bottle: visible matte surface microtexture, believable soft shadow, no plastic-perfect CGI sheen, label area genuinely blank for later artwork.",
+    "used_in_steps": [
+     1,
+     2,
+     5
+    ]
+   },
+   {
+    "name": "bottle_concept_B",
+    "kind": "image",
+    "gen_model": "gpt-image-2",
+    "gen_prompt": "Alternate concept render of the same 50ml men's grooming roll-on serum, this time with a deep oxblood-red accent ring at the cap seam and cream-colored label zone, three-quarter angle on a brushed-metal surface, dramatic single-source barbershop lighting, realistic reflections in the metal, fine dust and a faint fingerprint smudge for authenticity, premium masculine product still life, photoreal",
+    "realism_notes": "Second direction so the moodboard has a real A/B choice; keep accent placement plausible for a shrink sleeve; authentic reflections and minor real-world imperfections.",
+    "used_in_steps": [
+     1,
+     2,
+     5
+    ]
+   },
+   {
+    "name": "label_concept",
+    "kind": "image",
+    "gen_model": "gemini-3-pro-image",
+    "gen_prompt": "Flat 2D wordmark/label concept for a bold premium men's grooming brand named 'BARDE', strong condensed grotesque all-caps wordmark in cream on matte black, a small geometric barber-blade monogram mark above it, deep-red underline accent, minimal layout, crisp high-contrast edges suitable for vectorization, centered, transparent-safe flat artwork, no photographic background",
+    "realism_notes": "Text-bearing/logo art so use the text-capable model; edges must be clean enough that image_vectorize produces a usable SVG; legible 'BARDE' wordmark and a simple mark.",
+    "used_in_steps": [
+     1,
+     2,
+     5,
+     7
+    ]
+   },
+   {
+    "name": "hero_product_shot",
+    "kind": "image",
+    "gen_model": "gpt-image-2",
+    "gen_prompt": "Hero e-commerce photograph of the finished 50ml matte-black BARDE roll-on serum standing on wet dark slate, single dramatic side light, premium masculine mood, BUT with a couple of realistic distractions present: two stray water droplets on the bottle shoulder and a small bright reflected studio softbox/lamp visible in the glossy cap — these are intentional imperfections to be retouched out later; otherwise photoreal, sharp, shallow depth of field",
+    "realism_notes": "Intentionally include the named distractions (droplets + lamp reflection) so image_select_by_prompt and image_fill_area have something real to remove; everything else should look like a genuine premium product photo.",
+    "used_in_steps": [
+     1,
+     2,
+     8,
+     9
+    ]
+   },
+   {
+    "name": "sku_line_render",
+    "kind": "image",
+    "gen_model": "gpt-image-2",
+    "gen_prompt": "Group product photograph of six matte-black men's grooming bottles of slightly different sizes/variants lined up on charcoal, consistent brand finish, varied accent-ring colors (red, silver, cream, steel-blue, olive, bronze), realistic studio lighting and soft shadows, premium catalog row shot, photoreal, blank labels",
+    "realism_notes": "Reference for the 6-SKU family so the data-merge output can be sanity-checked against a plausible line; blank labels so merged artwork is the star.",
+    "used_in_steps": [
+     1,
+     2
+    ]
+   },
+   {
+    "name": "brand_brief_pdf",
+    "kind": "pdf",
+    "gen_model": "gemini-2.5-flash",
+    "gen_prompt": "Generate a 1-page brand brief PDF for 'BARDE' premium men's grooming brand: positioning (premium, masculine, barber-led, performance-focused, DTC + barbershop), flagship 50ml post-shave roll-on serum for razor bumps/ingrowns/irritation/dark marks, visual direction (matte black/charcoal, cream/white/silver/deep-red accents, minimal-but-bold, strong wordmark, social-friendly), and a deliverables checklist",
+    "realism_notes": "Plausible client-facing brief; drives stock search terms (step 3) and font rationale (step 6).",
+    "used_in_steps": [
+     1,
+     2,
+     3,
+     6
+    ]
+   },
+   {
+    "name": "sku_data_csv",
+    "kind": "data",
+    "gen_model": "gemini-2.5-flash",
+    "gen_prompt": "Produce a 6-row CSV for a men's grooming line with columns: sku_code, variant_name, concern, size_ml, strength, accent_hex, accent_name. Rows like: BRD-01,Post-Shave Roll-On,Razor bumps,50,Daily,#8E1B1B,Oxblood; BRD-02,Beard-Line Serum,Ingrown hairs,30,Intensive,#C0C0C0,Silver; plus four more plausible variants with distinct accent_hex values",
+    "realism_notes": "Real-looking merge data; exactly six rows; each accent_hex must be a valid hex so per-SKU accent recoloring is checkable in the merge output.",
+    "used_in_steps": [
+     1,
+     2,
+     14
+    ]
+   },
+   {
+    "name": "label_template_vector",
+    "kind": "vector",
+    "gen_model": "gemini-3-pro-image",
+    "gen_prompt": "A clean 50ml roll-on shrink-sleeve label dieline template as flat vector artwork: rectangular sleeve panel with marked 2mm bleed border, a dashed dieline/trim edge, a 3mm interior safety margin, labeled placeholder zones for WORDMARK, VARIANT NAME, CONCERN, SIZE 50ml, BATCH/BARCODE, and an ACCENT BAR region; neutral gray placeholders, no real brand content, print-spec accurate",
+    "realism_notes": "Must encode real print structure (bleed/trim/safety + named fields) so document_render_vector and document_merge_data_vector have genuine placeholders to fill per CSV row.",
+    "used_in_steps": [
+     1,
+     2,
+     13
+    ]
+   }
+  ],
+  "iterative_chaining_note": "The workflow is a continuous output-to-input chain, not parallel one-offs. Storage: steps 1-2 turn the 8 supplied assets into a URN map that is reused in steps 5, 13, 14, 16, etc. Stock: step 3's search results feed step 4's licensing, whose two licensed textures feed the moodboard (5) and the box composite (16). Identity: step 5's Firefly moodboard locks the visual world consumed by font_recommend (6), the generative expand (11), and the layout deliverables (17). Logo: label_concept -> image_vectorize (7) -> placed into the label master (13), the box (16), the card/guide (17). Raster retouch chain: hero_product_shot -> image_select_by_prompt (8) -> image_fill_area removes the masked distractions (9) -> image_apply_auto_tone (10) -> image_generative_expand outpaints the cleaned, toned hero into a 2400x1000 banner (11) -> image_crop_and_resize produces the 1080 square/story crops (12). Each raster step strictly consumes the immediately prior pixel output. Data-merge core: step 6 fonts + step 7 logo + the supplied dieline -> document_render_vector builds the parametric label master (13) -> document_merge_data_vector rolls that master across the 6-row sku_data_csv (14) -> document_convert_pdf collates the 6 merged labels into one CMYK print PDF (15). Handoff: steps 9, 11, 12, 15, 16, 17 all feed asset_add_file into one folder (18), which feeds asset_inline_preview (19). The four must-exercise tools sit at load-bearing junctions: create_firefly_board (5) gates the brand world, image_fill_area (9) gates the clean hero everything visual depends on, image_generative_expand (11) gates the banner/social set, and document_merge_data_vector (14) gates the entire SKU-line packaging output.",
+  "one_line_ask": "Deliver a complete BARDE men's-grooming brand and packaging system — moodboard, logo/type, a retouched hero shot expanded into social banners, and a print-ready 50ml roll-on label rolled across the full 6-SKU line — as organized, editable, print-ready CC assets.",
+  "outputs": [
+   {
+    "name": "brand_moodboard",
+    "kind": "firefly_board",
+    "spec": "Firefly Board deep-link assembling 2 bottle concepts + label concept + hero + 2 licensed textures; locks matte-charcoal/deep-red direction",
+    "rubric_hook": "Does the board cohere to the brief's visual direction (matte black/charcoal, cream/silver/deep-red), include the supplied concepts, and read premium/masculine rather than generic?"
+   },
+   {
+    "name": "logo_vector",
+    "kind": "vector",
+    "spec": "Clean SVG wordmark + monogram derived from label_concept; print-ready, scalable, editable paths",
+    "rubric_hook": "Is the vector crisp (no raster fringing), is the 'BARDE' wordmark legible at small sizes, and does it match the moodboard mark?"
+   },
+   {
+    "name": "hero_clean",
+    "kind": "image",
+    "spec": "Hero product shot with the two water droplets and the reflected lamp generatively removed; auto-toned; same resolution as source",
+    "rubric_hook": "Are BOTH named distractions fully and cleanly removed with believable matte-surface fill, no smearing or halo, and is exposure balanced?"
+   },
+   {
+    "name": "hero_banner",
+    "kind": "image",
+    "spec": "2400x1000 px outpainted ecommerce/social banner, charcoal negative space consistent with the moodboard, bottle subject intact",
+    "rubric_hook": "Is the expand seamless (no seam line, consistent lighting/color), correct 2400x1000 dimensions, and does the added canvas match the brand world?"
+   },
+   {
+    "name": "social_crops",
+    "kind": "image",
+    "spec": "1080x1080 IG square + 1080x1920 story crops of the banner, subject-aware (bottle not cut off)",
+    "rubric_hook": "Exact dimensions; is the bottle well-composed in both ratios; consistent with the banner?"
+   },
+   {
+    "name": "label_master",
+    "kind": "vector",
+    "spec": "50ml roll-on sleeve master: logo + type placed on supplied dieline, 2mm bleed, 3mm safety, accent bar; parametric fields",
+    "rubric_hook": "Are bleed/trim/safety respected, fields correctly placed, and does it use the locked logo + recommended fonts?"
+   },
+   {
+    "name": "sku_labels_pdf",
+    "kind": "pdf",
+    "spec": "Single CMYK print-ready PDF, 6 pages (one per CSV SKU), variant name/concern/size/accent swapped per row, dielines retained",
+    "rubric_hook": "Do all 6 labels match their CSV rows (correct variant text + accent_hex), is it CMYK print-ready, and are dielines/bleed intact on every page?"
+   },
+   {
+    "name": "box_dieline",
+    "kind": "vector",
+    "spec": "Outer carton dieline (front/back/sides) on charcoal texture, same logo+type system",
+    "rubric_hook": "Is the box brand-consistent with the labels (same logo/fonts/palette) and is the dieline structurally valid?"
+   },
+   {
+    "name": "routine_card_and_guide",
+    "kind": "pdf",
+    "spec": "A6 2-up routine/instruction card + 1-page style guide (palette hex+CMYK, type system, logo lockups)",
+    "rubric_hook": "Does the style guide list accurate palette + type + lockups, and does the card match brand system?"
+   },
+   {
+    "name": "handoff_package",
+    "kind": "folder",
+    "spec": "One CC folder containing all deliverables with inline preview contact sheet + shareable links",
+    "rubric_hook": "Is every deliverable present, organized, and previewable in a single handoff?"
+   }
+  ],
+  "slug": "barde-grooming-brand-packaging-system",
+  "source": {
+   "platform": "Upwork",
+   "url": "https://www.upwork.com/nx/search/jobs/?q=Brand%20Identity%20+%20Packaging%20Designer%20for%20Premium%20Men's%20"
+  },
+  "title": "Brand Identity + Packaging Designer for Premium Men's Skincare/Grooming Brand",
+  "tool_call_count": 19,
+  "tools_used": [
+   "asset_initialize_file_upload",
+   "asset_finalize_file_upload",
+   "asset_search",
+   "asset_license_and_download_stock",
+   "create_firefly_board",
+   "font_recommend",
+   "image_vectorize",
+   "image_select_by_prompt",
+   "image_fill_area",
+   "image_apply_auto_tone",
+   "image_generative_expand",
+   "image_crop_and_resize",
+   "document_render_vector",
+   "document_merge_data_vector",
+   "document_convert_pdf",
+   "document_render_layout",
+   "asset_add_file",
+   "asset_inline_preview"
+  ],
+  "vertical": "Wedding & Stationery"
+ },
+ "verdict": {
+  "severity": "minor",
+  "real_tools_only": true,
+  "calls_genuine": true,
+  "grounded": true,
+  "io_clear": true,
+  "hq_media": true,
+  "issues": [
+   "BLEED SPEC CONTRADICTION: full_brief, the label_template_vector gen_prompt, step 13's note, and the label_master output all specify a 2mm bleed, but difficulty_rationale says '50ml sleeve with 3mm bleed/dieline'. 3mm is the SAFETY margin elsewhere, not the bleed. Internal contradiction a grader could fail the label on.",
+   "UPLOADED-BUT-UNUSED ASSET: sku_line_render is uploaded in steps 1-2 (used_in_steps:[1,2]) but never consumed by any downstream tool. It is purely a human sanity-check reference per its realism_notes, so 1 of the 8 uploaded assets is dead weight in the actual connector chain and inflates the upload count.",
+   "INPUTS_FROM BOOKKEEPING DRIFT: steps 7 (image_vectorize) and 8 (image_select_by_prompt) declare inputs_from raw asset names ('label_concept', 'hero_product_shot') rather than the step-2 URNs (urn:label, urn:hero). The assets ARE in-pipeline so chaining is genuine, but the inputs_from map is inconsistent with the steps 1-2 URN-map premise the difficulty_rationale leans on.",
+   "CMYK / PDF-X FEASIBILITY OVERREACH: steps 14-15 and the sku_labels_pdf rubric_hook grade 'CMYK print-ready' / 'PDF/X-style', but the capability sheet describes document_convert_pdf only as 'image/spec <-> PDF'. True CMYK conversion and PDF/X compliance are not backed by the sheet, so the rubric grades a property the connector may not actually deliver.",
+   "WRONG VERTICAL METADATA: vertical is set to 'Wedding & Stationery' on a premium men's-grooming brand-identity task. Copy-paste metadata error.",
+   "DROPPED REAL DELIVERABLE: the patch pouch design is a REAL named deliverable in the source Upwork brief (per grounding_note) but is not exercised. This is disclosed honestly, so grounding stays honest, but it is a genuine coverage gap vs the original brief.",
+   "STEP 17 PRODUCES TWO DELIVERABLES IN ONE CALL: document_render_layout is asked to output both routine_card.pdf and styleguide.pdf from a single call; these are two distinct deliverables and may realistically need two render calls."
+  ],
+  "fixes": [
+   "Change difficulty_rationale '3mm bleed' to '2mm bleed, 3mm safety margin' so the bleed value matches full_brief, the label_template_vector gen_prompt, and the label_master output everywhere.",
+   "Either (a) give sku_line_render a real downstream consumer (e.g. add it as a visual reference URN passed into create_firefly_board step 5 or as a QA comparison in step 19), or (b) drop it from the 8 uploaded assets and update step 1/2 to upload 7, so no asset is uploaded-but-unused.",
+   "Update steps 7 and 8 inputs_from to reference the step-2 URNs ('urn:label' from step 2, 'urn:hero' from step 2) instead of the raw asset names, to stay consistent with the 'reuse the URN map, do not re-upload' premise.",
+   "Soften the CMYK/PDF-X claims to match the sheet: state 'print-layout PDF with dielines/bleed retained' and have the rubric_hook grade dieline/bleed integrity and 6-page correctness rather than asserting verified CMYK/PDF-X compliance the connector cannot guarantee.",
+   "Fix the vertical field from 'Wedding & Stationery' to the correct category (e.g. 'Beauty & Grooming' or 'Brand Identity & Packaging').",
+   "Either add a patch-pouch render step (a second document_render_vector reusing the logo+type system) to fully cover the source brief, or keep the existing honest acknowledgment but note the gap explicitly in the deliverables list so the grader does not penalize its absence.",
+   "Split step 17 into two layout renders (one for routine_card.pdf, one for styleguide.pdf) or explicitly state both pages are produced in a single multi-page document_render_layout call."
+  ]
+ }
+}

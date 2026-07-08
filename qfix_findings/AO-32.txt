@@ -1,0 +1,6 @@
+REASONS: CANVAS-extension
+
+ISSUES:
+- TIFF deliverable has no producing step in connector_workflow: the two web JPEGs (living_room_web, bedroom_web) are emitted by explicit image_crop_and_resize steps, but the full-res TIFFs (living_room_full.tif, bedroom_full.tif) are merely ASSERTED to be 'the un-resized master at native resolution' (lr_graded #9, bd_brightened #23). No connector call actually converts to or exports a TIFF / sets TIFF format+color-space, yet full-resolution TIFF is an explicit client deliverable and one of the 7 outputs. Fix by adding explicit export steps (or a note that crop_and_resize/export produces both JPEG and TIFF).
+- Output naming conflates master with format: kitchen_full.tif is the literal output of step 16 (image_fill_area), i.e. the corrected raster master, not a TIFF export; step 25 (create_firefly_board) then consumes 'kitchen_full.tif' as an input, blurring master vs delivered-TIFF. Minor labeling inconsistency, not a functional break.
+- Cosmetic asymmetry: the living-room chain runs auto_tone + color_temperature + dark_portions + vibrance while kitchen omits shadow-lift and bedroom omits auto_tone/color_temperature/vibrance. Each is internally consistent and justified by its per-room brief, but a reviewer may expect a more uniform correction template across the three listing shots.

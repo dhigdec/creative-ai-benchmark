@@ -1,0 +1,7 @@
+REASONS: OUTPUTS incomplete
+
+ISSUES:
+- Outputs<->workflow count mismatch: banner_set_exports.zip and the brief promise print PDF + high-res PNG for ALL SIX authored masters (3x10x10, 2x10x20, 1x10x6), but connector_workflow contains only ONE document_render_vector call (n=17, the 10x20). The note 'Repeated per the six authored masters' is asserted, not chained; steps 20/21 reference only banner_10x20_print.pdf+.png, so the other five exports are never produced. The five remaining masters (banner_masters_remaining.ai) are uploaded conceptually but never rendered.
+- Internal contradiction in difficulty_rationale: it still says 'bleed must be real reframe-crop (image_generative_expand) not padding' and 'the only generative step permitted is the reframe-crop', but the actual workflow (n=10) and reverify replaced image_generative_expand with image_crop_and_resize (explicitly a non-generative reframe). The stale prose contradicts the shipped, gen-free workflow.
+- PNG described with CMYK intent: hero_graded_bleed.png is sRGB (fine), but banner PNG exports and the packaging spec attach 'CMYK intent' to PNG outputs; PNG is an RGB/indexed format and cannot carry CMYK. Only the PDF exports can be CMYK. Minor spec wording nit.
+- banner_set_exports.zip is labeled/kind='data' (.zip) but step 21 uses asset_copy_assets to populate a delivery FOLDER, not produce an actual zip archive; the note even says 'no separate [L] step needed'. Output name overstates the artifact as a zip. Minor labeling nit.

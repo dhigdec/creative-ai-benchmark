@@ -1,0 +1,404 @@
+{
+  "task_id": 9002,
+  "input_assets": [
+    {
+      "key": "attendee_roster",
+      "display": "Attendee roster — single source of truth (CSV + JSON)",
+      "files": [
+        "input_assets/roster.csv",
+        "input_assets/roster.json"
+      ],
+      "what_it_is": "The 510-row attendee roster (CSV mirror of the JSON) that drives BOTH the badge and certificate data merges, with columns first_name, last_name, organization, role, certificate_number, track, completion_date, photo.",
+      "items": [
+        {
+          "id": "roster_row_count_and_columns",
+          "type": "yesno",
+          "question": "Does roster.csv contain exactly 510 data rows and exactly the eight columns first_name, last_name, organization, role, certificate_number, track, completion_date, photo (in that order)?",
+          "guidance": "YES = exactly 510 rows and the eight named columns spelled and ordered exactly as the InDesign data-merge field names. NO = wrong count, missing/renamed/extra columns, or reordered headers.",
+          "reference": "Confirmed: 510 rows; header is first_name,last_name,organization,role,certificate_number,track,completion_date,photo. Row 1 = Aisha,Khan,Quantum Leap Analytics,Senior Data Scientist,NAIS26-0001,Applied ML,14 March 2026,attendee_0001.jpg."
+        },
+        {
+          "id": "roster_certno_unique_sequential",
+          "type": "yesno",
+          "question": "Are the certificate_number values a gap-free, zero-padded sequence NAIS26-0001 .. NAIS26-0510 (one per row, no duplicates), and does each photo value follow attendee_<NNNN>.jpg matching the cert index?",
+          "guidance": "YES = ascending NAIS26-0001 through NAIS26-0510 with no gaps/dupes, and row N's photo is attendee_<NNNN>.jpg. NO = any gap, duplicate, wrong padding, or photo filename not matching the row index.",
+          "reference": "Confirmed: last certificate_number is NAIS26-0510; row 1 photo = attendee_0001.jpg, row 510 photo = attendee_0510.jpg. Sequence is intended gap-free 0001..0510."
+        },
+        {
+          "id": "roster_track_date_distribution",
+          "type": "likert5",
+          "question": "How well are the five tracks and three completion dates distributed and constrained to the allowed values across the 510 rows?",
+          "guidance": "5 = track is always one of exactly {Foundations, Applied ML, Responsible AI, AI in Production, Leadership} and completion_date always one of {14/15/16 March 2026}, both evenly spread. 1 = invalid track/date values, or one value dominates / others missing.",
+          "reference": "Confirmed near-perfect balance: tracks Counter = 102 each of Applied ML / AI in Production / Leadership / Foundations / Responsible AI; dates = 170 each of 14, 15, 16 March 2026. All within allowed enums."
+        },
+        {
+          "id": "roster_name_diversity_realism",
+          "type": "likert5",
+          "question": "Do the names, organizations and roles read as a realistic, culturally diverse conference roster with no placeholders or real-world brands?",
+          "guidance": "5 = richly varied first/last names across many backgrounds, invented but believable organizations (e.g. Quantum Leap Analytics, Veridian Dynamics, Aetherium Innovations), plausible roles, hyphenations/suffixes present, no John Doe / no real companies. 1 = repetitive or single-ethnicity clustering, placeholder names, or real trademarks.",
+          "reference": "Sample rows: Aisha Khan / Quantum Leap Analytics / Senior Data Scientist; Liam O'Connell / Veridian Dynamics / ML Engineer; Sofia Chen / Aetherium Innovations / Product Manager, AI; Noah Ford / AI Ethical AI Standards / Standards Director. Diverse, invented orgs, realistic roles."
+        }
+      ]
+    },
+    {
+      "key": "brand_backdrop_swatch",
+      "display": "Brand backdrop + accent colour spec",
+      "files": [
+        "input_assets/brand_backdrop.json",
+        "input_assets/brand_backdrop.md"
+      ],
+      "what_it_is": "The colour specification that drives the solid badge-backdrop fill behind every isolated headshot (image_fill_area RGB) and the amber accent.",
+      "items": [
+        {
+          "id": "backdrop_hex_rgb_correct",
+          "type": "yesno",
+          "question": "Does the spec give the backdrop as Northwind Deep Teal-Navy #143C5A = RGB [20,60,90] and the accent as Northwind Amber #E0A43B = RGB [224,164,59]?",
+          "guidance": "YES = both hex values and both RGB triplets are present and exactly correct (the RGB must be the true conversion of the hex). NO = wrong hex, wrong/rounded RGB, or mismatched name.",
+          "reference": "Confirmed in brand_backdrop.json: backdrop #143C5A rgb [20,60,90]; accent #E0A43B rgb [224,164,59]. (Note #143C5A is literally RGB 20,60,90 — exact.)"
+        },
+        {
+          "id": "backdrop_swatches_and_usage",
+          "type": "yesno",
+          "question": "Does the spec include the two-swatch list (teal-navy=backdrop, amber=accent) with usage notes tying teal to the per-subject fill and amber to the role pill / brand band?",
+          "guidance": "YES = swatches array has both entries with role 'backdrop' and 'accent' and the usage strings describe solid fill behind every subject + amber role pill/brand highlight. NO = missing swatches or usage, or roles swapped.",
+          "reference": "Confirmed: swatches[0]=Deep Teal-Navy role backdrop, swatches[1]=Amber role accent; usage strings: teal 'solid fill behind every subject so all 510 badges share one identical backdrop', amber 'the role pill + brand band highlight'."
+        }
+      ]
+    },
+    {
+      "key": "raw_attendee_headshots",
+      "display": "Raw attendee headshots — 16-photo representative batch",
+      "files": [
+        "input_assets/attendee_01.jpg",
+        "input_assets/attendee_05.jpg",
+        "input_assets/attendee_09.jpg",
+        "input_assets/attendee_02.jpg",
+        "input_assets/attendee_08.jpg",
+        "input_assets/attendee_15.jpg"
+      ],
+      "what_it_is": "16 mixed-quality, deliberately imperfect candid conference headshots (1024x1536) spanning skin tones, ages, framing, tilt and lighting — the retoucher's raw input, one per badge in production.",
+      "items": [
+        {
+          "id": "raw_realistic_unretouched_candid",
+          "type": "likert5",
+          "question": "Do the raw headshots read as honest, unretouched candid phone snapshots (real skin texture, stray hairs, natural expression) rather than clean studio portraits or glossy CGI?",
+          "guidance": "5 = believable pores/shine, flyaway hairs, anatomically correct, genuine expressions, sensor noise — clearly needing retouch work. 1 = airbrushed, plastic hair, posed stock smile, CGI sheen.",
+          "reference": "attendee_01 (curly-haired woman, olive linen shirt, lanyard, expo-hall light), attendee_05 (bald bearded man, grey polo, harsh top-spot with deep shadow), attendee_09 (man in glasses, blue shirt, on-camera flash blow-out) all read as authentic candid grabs with visible texture; attendee_05's QC noted a mild AI-sheen (vision_score 7)."
+        },
+        {
+          "id": "raw_varied_lighting_tilt_framing",
+          "type": "likert5",
+          "question": "Across the batch, is there genuine variety in white-balance, exposure, tilt and framing (so the retouch chain has real work to homogenise)?",
+          "guidance": "5 = visibly mixed casts (cool/green expo, warm tungsten, flash, daylight), several degrees of tilt, off-centre/cropped framing across photos. 1 = all photos look the same / already uniform / already centred and level.",
+          "reference": "Confirmed range: attendee_01 cool greenish expo light + tilt; attendee_05 single harsh spotlight, deep left-side shadow, clockwise tilt; attendee_09 flat flash blow-out with too much headroom; backgrounds vary (expo hall, dark auditorium, light wall). Genuinely heterogeneous."
+        },
+        {
+          "id": "raw_no_text_brands_dims",
+          "type": "yesno",
+          "question": "Are the raw headshots free of any text/logos/watermarks and the correct 1024x1536 portrait JPEGs with one person each (no real-brand or celebrity likeness)?",
+          "guidance": "YES = each is a single attendee, portrait JPEG, no readable text/marks, no recognizable brand or celebrity. NO = visible text/logo/watermark, multiple subjects as the focus, or a real-world brand/face.",
+          "reference": "All 16 declared 1024x1536 jpg, one subject each; attendee_15 was regenerated specifically to remove text on a zipper pull (attempt 2). Spot-checked 01/05/09 — no text/marks on the subject."
+        }
+      ]
+    },
+    {
+      "key": "event_logo_raster",
+      "display": "Event logo (raster, to be vectorized)",
+      "files": [
+        "input_assets/event_logo.png"
+      ],
+      "what_it_is": "A 1024x1024 flat logo for the conference — compass-rose emblem plus 'NORTHWIND SUMMIT / Applied Intelligence 2026' wordmark — supplied to be vectorized for crisp placement.",
+      "items": [
+        {
+          "id": "logo_copy_correct",
+          "type": "yesno",
+          "question": "Does the logo read EXACTLY 'NORTHWIND SUMMIT' on the top line(s) with a smaller 'Applied Intelligence 2026' beneath, spelled correctly?",
+          "guidance": "YES = both lines present, correctly spelled, no typos or extra tagline. NO = misspelling, missing line, mangled glyphs, or extra stray text.",
+          "reference": "Confirmed by viewing: stacked teal wordmark 'NORTHWIND' over 'SUMMIT', with 'Applied Intelligence 2026' in teal beneath — spelling correct."
+        },
+        {
+          "id": "logo_palette_and_flatness",
+          "type": "likert5",
+          "question": "Is the logo on-brand (teal-navy #143C5A wordmark/emblem with a single amber #E0A43B accent) and flat enough to vectorize cleanly (solid shapes, white background, no photographic texture)?",
+          "guidance": "5 = teal-navy compass-rose + wordmark with one warm-amber accent, plain white field, crisp solid shapes. 1 = off-palette colours, gradients/shadows/photo texture making it un-vectorizable, or coloured background.",
+          "reference": "Confirmed: deep teal-navy compass-rose with an amber-filled north needle, teal wordmark on plain white. QC flagged a small amber gradient and an extra bottom circle (vision_score 9) but it is flat and clean overall."
+        }
+      ]
+    },
+    {
+      "key": "badge_master_pdf",
+      "display": "Client flattened badge PDF master",
+      "files": [
+        "input_assets/badge_master.pdf"
+      ],
+      "what_it_is": "The print-shop's existing A6 vector badge artwork as a flattened PDF master, supplied for document_convert_pdf layout recovery into an editable .indd reference.",
+      "items": [
+        {
+          "id": "badge_master_a6_vector",
+          "type": "yesno",
+          "question": "Is badge_master.pdf a genuine A6-sized (105x148mm trim + ~3mm bleed) vector PDF that can stand in for the print-shop's badge master?",
+          "guidance": "YES = single A6-format vector PDF with the badge trim/bleed footprint, recoverable to an editable layout. NO = wrong page size, raster-only, or corrupt.",
+          "reference": "Manifest declares reportlab A6 vector master, trim 105x148mm, 3mm bleed, CMYK-300dpi-print-master intent. The connector_indd_render_proof (rendered from the recovered .indd) shows the A6 badge layout with crop/bleed marks — confirming it converted to an editable reference."
+        },
+        {
+          "id": "badge_master_layout_template",
+          "type": "yesno",
+          "question": "Does the recovered master carry the expected badge layout skeleton (teal brand band + placed-logo header, a photo frame, name/org/role zones, amber role pill, footer ref) usable as the binding-template reference?",
+          "guidance": "YES = the recovered layout shows the header band, photo placeholder, name/org/role hierarchy and footer matching the authored-template spec. NO = blank or unrelated layout that does not match the badge spec.",
+          "reference": "connector_indd_render_proof.jpg shows exactly this skeleton: teal band with 'NORTHWIND SUMMIT / Applied Intelligence 2026', a '[ photo ]' frame, 'First Last' + 'Organization' + amber 'ROLE' pill, footer 'Northwind Applied Intelligence Summit 2026 | Ref NAIS26-0000', with crop marks."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "badge_print_pdf",
+      "display": "510-page A6 badge print PDF (+ per-attendee re-prints)",
+      "files": [
+        "outputs/badges_NAIS26_510_print.pdf",
+        "outputs/reprints_badges/badge_NAIS26-0001.pdf",
+        "outputs/proof_badge.jpg"
+      ],
+      "what_it_is": "The flagship badge deliverable: one A6 name badge per roster row, 510 pages, plus full-resolution per-attendee re-print PDFs, all data-merged from the roster.",
+      "items": [
+        {
+          "id": "badge_pagecount_510",
+          "type": "yesno",
+          "question": "Does badges_NAIS26_510_print.pdf contain exactly 510 pages (one per roster row)?",
+          "guidance": "YES = exactly 510 pages. NO = any other count.",
+          "reference": "Confirmed: 510 /Type/Page objects in badges_NAIS26_510_print.pdf — matches the 510-row roster."
+        },
+        {
+          "id": "badge_dims_a6_bleed",
+          "type": "yesno",
+          "question": "Is each badge page A6 portrait with bleed (≈111x154mm / 314.4x436.32pt trim+bleed) at 300dpi, as a print-ready page?",
+          "guidance": "YES = page MediaBox ≈ A6 105x148mm plus ~3mm bleed each side, portrait orientation. NO = wrong size, landscape, or no bleed allowance.",
+          "reference": "Confirmed reprint badge_NAIS26-0001.pdf MediaBox = 0 0 314.4 436.32 pt = 110.9 x 153.9 mm = A6 (105x148) + 3mm bleed per edge. Portrait."
+        },
+        {
+          "id": "badge_merge_fidelity_row1",
+          "type": "likert5",
+          "question": "On the page-1 badge (proof_badge.jpg), do the merged fields exactly match roster row 1 — name, organization, role pill, and footer ref — with the correct retouched headshot placed?",
+          "guidance": "5 = 'Aisha Khan', 'Quantum Leap Analytics', amber pill 'SENIOR DATA SCIENTIST', footer 'Ref NAIS26-0001', and Aisha's retouched portrait in the photo frame — all correct. 1 = wrong name/org/role/ref or wrong/missing photo.",
+          "reference": "Confirmed in proof_badge.jpg: 'Aisha Khan' (teal display), 'Quantum Leap Analytics' (grey body), amber pill 'SENIOR DATA SCIENTIST', footer 'Northwind Applied Intelligence Summit 2026 | Ref NAIS26-0001', and the retouched attendee_01 portrait placed. Matches roster row 1 exactly."
+        },
+        {
+          "id": "badge_brand_layout_quality",
+          "type": "likert5",
+          "question": "Does the badge match the authored-template brand spec (teal #143C5A header band with white vector logo, amber accent rule, centred photo frame, name/org hierarchy, amber role pill, footer) and look print-grade?",
+          "guidance": "5 = on-brand teal band + crisp white logo, amber accent, clean type hierarchy, role in amber pill, balanced A6 composition. 1 = off-brand colours, missing logo/pill, broken hierarchy, or amateur layout.",
+          "reference": "Confirmed in proof_badge.jpg: full-width teal-navy header band with white compass-rose logo, thin amber rule under it, white card body, centred photo, teal name, grey org, amber role pill, hairline footer. Matches the badge.indd spec."
+        }
+      ]
+    },
+    {
+      "key": "certificate_print_pdf",
+      "display": "510-page A4-landscape certificate print PDF (+ re-prints)",
+      "files": [
+        "outputs/certificates_NAIS26_510_print.pdf",
+        "outputs/reprints_certs/cert_NAIS26-0001.pdf",
+        "outputs/proof_cert.jpg"
+      ],
+      "what_it_is": "The second flagship deliverable: one A4-landscape completion certificate per roster row (510 pages) merged from the SAME roster, plus per-attendee re-print PDFs.",
+      "items": [
+        {
+          "id": "cert_pagecount_510",
+          "type": "yesno",
+          "question": "Does certificates_NAIS26_510_print.pdf contain exactly 510 pages (one per roster row, same source as the badges)?",
+          "guidance": "YES = exactly 510 pages. NO = any other count.",
+          "reference": "Confirmed: 510 /Type/Page objects in certificates_NAIS26_510_print.pdf."
+        },
+        {
+          "id": "cert_dims_a4land_bleed",
+          "type": "yesno",
+          "question": "Is each certificate page A4 landscape with bleed (≈303x216mm / 858.72x612pt trim+bleed) at 300dpi?",
+          "guidance": "YES = MediaBox ≈ A4 297x210mm + ~3mm bleed each side, landscape orientation. NO = portrait, wrong size, or no bleed.",
+          "reference": "Confirmed reprint cert_NAIS26-0001.pdf MediaBox = 0 0 858.72 612 pt = 302.9 x 215.9 mm = A4-land (297x210) + 3mm bleed per edge. Landscape."
+        },
+        {
+          "id": "cert_merge_fidelity_row1",
+          "type": "likert5",
+          "question": "On the page-1 certificate (proof_cert.jpg), do the merged fields exactly match roster row 1 — full name, track, certificate number, and issue date?",
+          "guidance": "5 = 'Aisha Khan' awardee line, track 'Applied ML', 'Certificate No. NAIS26-0001', 'Issued 14 March 2026' — all correct from the same roster. 1 = any field wrong or pulled from a different row.",
+          "reference": "Confirmed in proof_cert.jpg: 'Aisha Khan' (teal, amber underline), 'has successfully completed the program track', 'Applied ML', footer 'Certificate No. NAIS26-0001' and 'Issued 14 March 2026'. Matches roster row 1."
+        },
+        {
+          "id": "cert_layout_static_copy",
+          "type": "likert5",
+          "question": "Does the certificate carry the correct static structure and copy (centred logo, 'CERTIFICATE OF COMPLETION', 'has successfully completed...', signatory blocks, double border) at certificate quality?",
+          "guidance": "5 = centred logo, correct headline/body copy, two named signatory blocks with rules, teal/amber border, balanced A4-landscape composition. 1 = missing/garbled static copy, no signatures, off-brand or unbalanced.",
+          "reference": "Confirmed in proof_cert.jpg: centred logo, 'CERTIFICATE OF COMPLETION', 'at the Northwind Applied Intelligence Summit 2026.', signatories 'Dr. Elena Marsh — Program Chair' and 'Marcus Reyes — Director, Northwind Forum', teal border with amber corners. On-brand."
+        }
+      ]
+    },
+    {
+      "key": "retouched_headshot_set",
+      "display": "Retouched headshot set (16 uniform portraits)",
+      "files": [
+        "outputs/retouched_headshots/attendee_01.png",
+        "outputs/retouched_headshots/attendee_05.png",
+        "outputs/retouched_headshots/attendee_09.png",
+        "outputs/retouched_headshots/attendee_03.png",
+        "outputs/retouched_headshots/attendee_08.png",
+        "outputs/retouched_headshots/attendee_15.png"
+      ],
+      "what_it_is": "The 16 retouched portraits (600x800) produced by the straighten→face-crop→tone-match→subject-isolate→brand-backdrop→preset chain (3 via the live Adobe connector, 13 via a local mirror), fed into the badge merge.",
+      "items": [
+        {
+          "id": "retouch_uniform_crop_dims",
+          "type": "yesno",
+          "question": "Is every retouched portrait an identical 600x800 (3:4) face-centred, straightened crop?",
+          "guidance": "YES = all are 600x800 portrait with the face centred and level. NO = varying dimensions, tilted, or off-centre faces.",
+          "reference": "Confirmed via sips: attendee_01/05/09/03/08/15 all 600x800. Faces are centred and the originals' tilt is corrected in each."
+        },
+        {
+          "id": "retouch_identity_match_source",
+          "type": "yesno",
+          "question": "Does each retouched portrait depict the SAME person as its raw source (no identity swap from the retouch chain)?",
+          "guidance": "YES = retouched attendee_NN is recognizably the same individual as raw attendee_NN. NO = a different person, distorted face, or hallucinated features.",
+          "reference": "Confirmed: retouched attendee_01 = the curly-haired woman from raw attendee_01; retouched attendee_05 = the bald bearded man from raw attendee_05; retouched attendee_09 = the man in glasses/blue shirt from raw attendee_09. Identities preserved."
+        },
+        {
+          "id": "retouch_shared_brand_backdrop",
+          "type": "likert5",
+          "question": "Are ALL portraits subject-isolated onto the one shared solid teal-navy #143C5A backdrop, as the brief's 'subject-isolated and placed on one shared solid brand-backdrop' step requires?",
+          "guidance": "5 = every portrait sits on the same clean solid teal-navy field with no venue background remaining. 1 = most portraits still show their original venue backgrounds. 3 = only some are isolated; backdrop is inconsistent across the set.",
+          "reference": "Partial: the 3 connector-chain portraits (attendee_01, 05, 09) ARE on the solid teal-navy backdrop (clean isolation). But the 13 local-mirror portraits (e.g. attendee_03 = man with glasses still showing the room behind, attendee_08 = woman against a glass partition, attendee_15 = grey-haired woman against a corridor) STILL retain their venue backgrounds — only a teal tonal blend, not a hard cutout. The shared-backdrop requirement is only fully met on 3 of 16."
+        },
+        {
+          "id": "retouch_tonal_cohesion",
+          "type": "likert5",
+          "question": "Putting the 16 together as a set, do they read as one tonally cohesive batch (matched exposure/contrast/white-balance/skin) suitable for a uniform print run?",
+          "guidance": "5 = consistent luminance, neutral skin, and a shared look across all 16 despite different sources. 1 = wildly mismatched brightness/casts. Penalise for the backdrop split (some on teal, some on venue bg) as it breaks visual uniformity.",
+          "reference": "Tone/exposure are reasonably normalized and faces read at similar luminance; however cohesion is undercut because the 3 connector portraits are on solid teal while the 13 local ones keep venue backgrounds, so the set does not look like one cohesive backdrop-matched batch."
+        }
+      ]
+    },
+    {
+      "key": "vector_logo_svg",
+      "display": "Vectorized event logo (SVG)",
+      "files": [
+        "outputs/event_logo_vector.svg"
+      ],
+      "what_it_is": "The connector image_vectorize output — an SVG version of the raster event logo for crisp placement on badge and certificate at any size.",
+      "items": [
+        {
+          "id": "svg_is_real_vector",
+          "type": "yesno",
+          "question": "Is event_logo_vector.svg a genuine vector file (real <path> geometry, scalable viewBox) rather than an embedded raster wrapped in SVG?",
+          "guidance": "YES = SVG with vector <path> data and a defined width/height/viewBox, scales without pixelation. NO = a base64 <image> bitmap inside an SVG shell.",
+          "reference": "Confirmed: 53KB SVG, width=1024 height=1024, with multiple real <path d=\"M...C...Z\"> definitions (compass-rose + wordmark geometry). Genuine vectorization from the connector (req b3b69f96)."
+        },
+        {
+          "id": "svg_logo_fidelity",
+          "type": "likert5",
+          "question": "Does the vectorized logo faithfully reproduce the source mark (compass-rose emblem + 'NORTHWIND SUMMIT / Applied Intelligence 2026' wordmark) and render crisply when placed?",
+          "guidance": "5 = recognizable compass-rose and legible wordmark, on-brand teal/amber, sharp on both A6 badge and A4 certificate. 1 = unrecognizable, lost text, or wrong colours.",
+          "reference": "The placed logo renders crisply white-on-teal in proof_badge.jpg and full-colour on proof_cert.jpg, reproducing the compass-rose + two-line wordmark. Vector fidelity confirmed in the rendered proofs."
+        }
+      ]
+    },
+    {
+      "key": "qa_proofs_and_indd_render",
+      "display": "QA proofs + genuine InDesign render of recovered master",
+      "files": [
+        "outputs/proof_badge.jpg",
+        "outputs/proof_cert.jpg",
+        "outputs/connector_indd_render_proof.jpg",
+        "outputs/connector_indd_render_proof_cmyk.pdf"
+      ],
+      "what_it_is": "Sign-off proofs: local merged badge/cert proof JPEGs plus a genuine Adobe InDesign render (JPEG + CMYK PDF with bleed) of the recovered badge master, used as the proof-then-full-run gate.",
+      "items": [
+        {
+          "id": "proofs_represent_merged_output",
+          "type": "yesno",
+          "question": "Do proof_badge.jpg and proof_cert.jpg show fully merged representative pages (live name/org/role/track/date + placed photo and logo), not blank templates?",
+          "guidance": "YES = both proofs show a real attendee's merged badge and certificate. NO = empty placeholders or non-representative pages.",
+          "reference": "Confirmed: both proofs show the fully merged Aisha Khan / Quantum Leap Analytics / Senior Data Scientist / NAIS26-0001 / Applied ML / 14 March 2026 page with photo and logo placed."
+        },
+        {
+          "id": "indd_render_is_genuine_template",
+          "type": "yesno",
+          "question": "Does connector_indd_render_proof.jpg show the genuine recovered InDesign badge MASTER (unmerged placeholders [ photo ] / First Last / Organization / ROLE with crop+bleed marks), confirming the document_convert_pdf → document_render_layout pass?",
+          "guidance": "YES = it is the recovered template with literal placeholder text and registration/crop marks at A6+bleed. NO = it is just a merged page or a blank canvas.",
+          "reference": "Confirmed: connector_indd_render_proof.jpg shows the teal-band template with '[ photo ]' frame, 'First Last', 'Organization', amber 'ROLE' pill, footer 'Ref NAIS26-0000', and crop/bleed marks at 1311x1819 — the genuine recovered .indd render."
+        },
+        {
+          "id": "indd_cmyk_pdf_present",
+          "type": "yesno",
+          "question": "Is connector_indd_render_proof_cmyk.pdf a real CMYK print PDF (with bleed) demonstrating the prepress/CMYK pass on the recovered master?",
+          "guidance": "YES = a CMYK PDF with bleed exists and corresponds to the InDesign render. NO = missing, RGB-only with no CMYK demonstration, or not a PDF.",
+          "reference": "Present: connector_indd_render_proof_cmyk.pdf (51KB) — the genuine Adobe CMYK PDF render with bleeds of the recovered badge master, per the README's connector-CMYK demonstration."
+        }
+      ]
+    },
+    {
+      "key": "delivery_manifest",
+      "display": "Certificate-number → row → output-filename manifest",
+      "files": [
+        "outputs/delivery_manifest.csv"
+      ],
+      "what_it_is": "The delivery manifest mapping every certificate number to its roster row, attendee data, source/retouched photo, and the badge & certificate output page/file.",
+      "items": [
+        {
+          "id": "manifest_completeness_510",
+          "type": "yesno",
+          "question": "Does delivery_manifest.csv have 510 rows, one per certificate, with the mapping columns (roster_row, certificate_number, names, track, date, source_photo, retouched_photo, badge_file, certificate_file)?",
+          "guidance": "YES = 510 rows and the full mapping columns present. NO = wrong count or missing the cert#→row→file mapping fields.",
+          "reference": "Confirmed: 510 rows; columns roster_row, certificate_number, first_name, last_name, organization, role, track, completion_date, source_photo, retouched_photo, badge_file, certificate_file."
+        },
+        {
+          "id": "manifest_mapping_correct",
+          "type": "likert5",
+          "question": "Is the mapping accurate and traceable — each cert# points to the right roster row, the correct badge/cert PDF page, and the actual retouched photo used (including the documented 16-photo cycling)?",
+          "guidance": "5 = row N → NAIS26-<NNNN> → page N of both PDFs → the cycled retouched portrait, all consistent and honestly noting the cycle. 1 = broken/mismatched mapping or undocumented photo substitution.",
+          "reference": "Confirmed: row 1 → NAIS26-0001 → page 1 of both PDFs → retouched attendee_01.png (source attendee_0001.jpg); row 510 → NAIS26-0510 → page 510 → attendee_14.png (the 16-portrait cycle, ((510-1) mod 16)+1 = 14). Mapping is consistent and the cycling is disclosed."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "task_both_merges_510",
+      "type": "yesno",
+      "question": "Were BOTH flagship deliverables produced as one-per-row merges from the SINGLE roster — exactly 510 A6 badges AND 510 A4-landscape certificates?",
+      "guidance": "YES = a 510-page badge PDF and a 510-page certificate PDF, both driven from the same 510-row roster as the single source of truth. NO = either deliverable missing, wrong page count, or driven from different/duplicated data.",
+      "reference": "Confirmed: badges_NAIS26_510_print.pdf and certificates_NAIS26_510_print.pdf are each 510 pages; manifest and proofs confirm both merge the same roster.csv (row 1 = Aisha Khan across both)."
+    },
+    {
+      "id": "task_print_specs",
+      "type": "likert5",
+      "question": "Do the deliverables meet the print specs — A6 portrait badges and A4-landscape certificates, each at 300dpi with 3mm bleed, plus a demonstrated CMYK prepress pass?",
+      "guidance": "5 = badges ≈111x154mm and certs ≈303x216mm (trim+bleed) at 300dpi, with a genuine CMYK PDF render demonstrating separation. 1 = wrong sizes/orientation, no bleed, or no CMYK demonstration. 3 = sizes correct but CMYK only partially demonstrated.",
+      "reference": "Badge reprint MediaBox 314.4x436.32pt (A6+3mm bleed), cert reprint 858.72x612pt (A4-land+3mm bleed); README notes rasters are RGB at 300dpi print dims and the connector_indd_render_proof_cmyk.pdf demonstrates the CMYK pass (final CMYK separation left to the print house)."
+    },
+    {
+      "id": "task_data_fidelity_no_retyping",
+      "type": "likert5",
+      "question": "Is all client copy on the outputs faithful to the roster with nothing mistyped or invented (names, orgs, roles, cert numbers, tracks, dates)?",
+      "guidance": "5 = every checked field on badge and certificate matches the roster row verbatim, read programmatically. 1 = mismatches, typos, or hand-entered values. Spot-check at least row 1.",
+      "reference": "Row 1 verified end-to-end: badge shows Aisha Khan / Quantum Leap Analytics / SENIOR DATA SCIENTIST / Ref NAIS26-0001; cert shows Aisha Khan / Applied ML / NAIS26-0001 / Issued 14 March 2026 — all match roster.csv row 1. README states copy was read programmatically, not retyped."
+    },
+    {
+      "id": "task_retouch_pipeline_uniformity",
+      "type": "likert5",
+      "question": "Did the headshot retouch pipeline deliver the intended UNIFORM brand look across the whole set (straighten + identical face-crop + tone-match + subject-isolate onto the one shared teal-navy backdrop + one shared preset)?",
+      "guidance": "5 = all portraits straightened, identically cropped, tone-matched, isolated onto the same solid teal-navy backdrop, one shared look. 3 = crop/tone uniform but the shared-backdrop isolation only applied to a subset. 1 = no real uniformity.",
+      "reference": "Partial: 600x800 face-crop, straightening and tonal match are uniform across all 16, and the shared preset/backdrop colour and look are defined; BUT true subject-isolation onto the solid teal-navy backdrop only landed on the 3 connector-chain portraits (01/05/09) — the other 13 (e.g. 03/08/15) keep their venue backgrounds. The brief's shared-backdrop step is only partially achieved across the set."
+    },
+    {
+      "id": "task_supporting_deliverables",
+      "type": "yesno",
+      "question": "Were all the supporting deliverables produced — vector SVG logo, font-pairing recommendation, QA proofs (JPEG+PDF), per-attendee re-print PDFs, and the cert#→row→filename manifest?",
+      "guidance": "YES = SVG logo, documented font_recommend pairing, badge+cert proofs, re-print PDFs for both, and a complete 510-row manifest all present. NO = any of these missing.",
+      "reference": "All present: event_logo_vector.svg (real vector), font_recommend pairing documented (Acumin Pro display + body, with brand Libre Franklin/Inter intent), proof_badge.jpg + proof_cert.jpg + connector InDesign render JPEG/CMYK-PDF, reprints_badges/ + reprints_certs/ (8 samples each), and delivery_manifest.csv (510 rows)."
+    },
+    {
+      "id": "task_workflow_provenance_honesty",
+      "type": "likert5",
+      "question": "Does the workflow genuinely exercise the connector tools where it claims to, and does the README honestly disclose what was connector-run versus locally mirrored (no overclaiming)?",
+      "guidance": "5 = connector steps (image retouch chain on 3 portraits, image_vectorize, font_recommend, document_convert_pdf, document_render_layout) are real and evidenced (requestIds/trajectory), and limitations (local data-merge, 13 local retouches, 16-photo cycling, RGB-not-CMYK rasters) are clearly stated. 1 = claims connector work that didn't happen or hides the local substitutions.",
+      "reference": "README is candid: 3 portraits retouched end-to-end on the real connector (preset 'Adaptive: Subject - Balance Contrast', backdrop RGB 20,60,90) with requestIds in trajectory.json; 13 retouched via a local mirror; the 1,020-doc merge done locally because document_merge_data_layout needs a human-authored .indd; document_convert_pdf + document_render_layout x2 genuinely run (connector_indd_render_proof.*). The 16->510 photo cycling and RGB-master/print-house-CMYK boundary are disclosed. Strong provenance honesty; deduct only for the unmet full-set backdrop isolation."
+    }
+  ]
+}

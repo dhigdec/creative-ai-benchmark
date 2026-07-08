@@ -1,0 +1,113 @@
+// Upwork tasks harvested live via read-only browser DOM extraction (no OCR), 5 Jun 2026.
+// A measured sample of currently-open postings; per-job permalinks require login/API,
+// so each url points to the Upwork search it was captured from.
+module.exports = [
+{
+  title: "Social Media Video Editor (YouTube Long-Form + Shorts + Thumbnails)",
+  vertical: "Video Editing & Motion Graphics", platform: "Upwork", budget: "Hourly $10–$20",
+  posted: "Posted ~18 min ago", location: "Remote (UK hours)",
+  url: "https://www.upwork.com/nx/search/jobs/?q=adobe%20photoshop&sort=recency",
+  tools: ["Premiere Pro", "After Effects", "Photoshop"],
+  toolsWhy: "Long-form + short-form video editing with motion graphics (Premiere Pro / After Effects) and click-worthy thumbnail design (Photoshop).",
+  fulldesc: `Fast-growing YouTube channel in the construction and business space, publishing daily long-form content and 25-35 short-form clips per week across YouTube Shorts, Instagram Reels and Facebook. The role is the entire post-production department. LONG-FORM (YouTube): edit talking-head and B-roll to a high, watchable standard; add captions, lower thirds, text overlays and motion graphics; strong pacing (no dead air); colour correction and audio cleanup; publish-ready (titles, descriptions, tags, end screens, cards). SHORT-FORM (25-35/week): clip the best moments into punchy 30-90 second Shorts/Reels; hook in the first 1-2 seconds; dynamic animated captions; 9:16 vertical; repurpose across YouTube Shorts, Reels, TikTok and Facebook; own the publishing calendar. THUMBNAILS: design bold, click-worthy thumbnails for every long-form video (high contrast, expressive face shots, minimal text); A/B test styles and track CTR. Software (must know at least one editing suite well): Premiere Pro / DaVinci Resolve / Final Cut Pro; After Effects or CapCut Pro for motion graphics and captions; Photoshop / Canva for thumbnails. Fast turnaround 24-48h; high volume; must work UK time zone.`
+},
+{
+  title: "Informational Flyer for Therapy Practice",
+  vertical: "Health, Wellness & Medical", platform: "Upwork", budget: "Hourly (Intermediate)",
+  posted: "Posted ~12 min ago", location: "United States",
+  url: "https://www.upwork.com/nx/search/jobs/?q=adobe%20illustrator&sort=recency",
+  tools: ["Illustrator", "Photoshop"],
+  toolsWhy: "Brand-aligned print flyer layout using an existing logo and brand colours.",
+  fulldesc: `I have a brand logo and established brand colors, and I would like to create a simple, professional informational flyer for my therapy services. I may also include a QR code that families can scan to visit my website (the website will be completed within two weeks, so the QR code can be added later). The flyer should include: a brief overview of the therapy services offered; Frequently Asked Questions (FAQs) for parents; examples of goals that can be targeted through therapy; and clear steps for getting started with services. The overall design should be clean, easy to read, and visually aligned with my brand identity.`
+},
+{
+  title: "Marketing Collateral & Brand Assets (Legal / MVA Case Management)",
+  vertical: "Finance, Crypto & Professional Services", platform: "Upwork", budget: "Hourly $15–$100",
+  posted: "Posted ~2 hours ago", location: "United States",
+  url: "https://www.upwork.com/nx/search/jobs/?q=adobe%20indesign&sort=recency",
+  tools: ["InDesign", "Illustrator", "Photoshop"],
+  toolsWhy: "Print-ready (PDF/X-1a) presentation folder, one-page sell sheet and multi-page branded document — classic InDesign + Illustrator print work.",
+  fulldesc: `Project: Marketing Collateral & Brand Assets for a premium case-management firm focused on complex motor vehicle accident (MVA) cases; all deliverables must feel clean, modern, trustworthy and polished, referencing the website's palette/typography. DELIVERABLE 1 — Branded Two-Pocket Presentation Folder: standard 9"x12" with two interior pockets, right pocket with die-cut business-card slits; minimalist high-impact front cover with logo/brand colours/tagline; clean back cover with contact info; print-ready files (PDF/X-1a). DELIVERABLE 2 — One-Page Service Overview: single/double-sided 8.5"x11" sell sheet for Motor Vehicle Case Management Services; header with branding and compelling title; "company advantage" section; core-services bullets (medical-care coordination, attendant-care assessments, provider/legal/insurer communication, discharge planning); prominent CTA; clean grids, professional iconography, strong typographic hierarchy. DELIVERABLE 3 — Branded Sample Case Notes Template: multi-page 8.5"x11" template (editable PDF/Word); overhaul an existing clinical case-notes document into an executive-level branded asset — running header/footer with logo, page numbers and confidentiality notice; structured client-information grid; upgraded typography for section headings; subtle brand colours for dividers/callout boxes/table headers.`
+},
+{
+  title: "Video Editor & Motion Graphics for AI Cybersecurity SaaS Product Video",
+  vertical: "Technology, SaaS & Startups", platform: "Upwork", budget: "Fixed $900",
+  posted: "Posted ~1 min ago", location: "USA",
+  url: "https://www.upwork.com/nx/search/jobs/?q=adobe%20after%20effects&sort=recency",
+  tools: ["Premiere Pro", "After Effects"],
+  toolsWhy: "Modern B2B SaaS product/demo video combining product footage, motion graphics, animated callouts and captions.",
+  fulldesc: `We need an experienced video editor and motion graphics designer to create a polished marketing and product-demonstration video for our AI-powered cybersecurity platform, for use on our website, sales presentations, webinars, investor discussions and social media. We provide product access, screen recordings/product footage, brand assets/logos, website content, whitepapers and messaging guidance. DELIVERABLES: one polished 90-120 second marketing/product-demo video; a 30-second promotional cutdown; a 15-second teaser cutdown (cutdowns repurposed from the main video); final MP4 exports plus source project files and any editable assets. STYLE: modern B2B SaaS product video combining product footage, motion graphics, animated callouts, captions and visual storytelling (not a cartoon-style explainer) — similar to modern software launch/cybersecurity product videos. Preferred skills: Adobe Premiere Pro, After Effects, motion graphics, product-marketing/SaaS demo videos, storytelling. Timeline: initial concept 3-5 days, first draft ~1 week, final within 2 weeks.`
+},
+{
+  title: "Long-Form YouTube Editor (Retirement / Financial Education)",
+  vertical: "Finance, Crypto & Professional Services", platform: "Upwork", budget: "Fixed $150 (paid trial)",
+  posted: "Posted ~50 min ago", location: "United States",
+  url: "https://www.upwork.com/nx/search/jobs/?q=adobe%20premiere%20pro&sort=recency",
+  tools: ["Premiere Pro"],
+  toolsWhy: "Long-form educational talking-head editing — pacing, titles/section headers, callouts, simple motion graphics, charts and B-roll.",
+  fulldesc: `We help people retire with confidence and are building a content engine of high-quality educational videos for adults 55+. We need a long-form YouTube editor to turn raw talking-head footage into engaging, professional educational videos (typically 5-15 minutes). These are NOT flashy MrBeast-style videos — the goal is clarity, trust, retention and professionalism (clean graphics, strong pacing). CORE EDITING: remove mistakes, pauses and filler words; improve pacing and flow; add professional transitions; tighten while preserving authenticity. VISUAL ENHANCEMENTS: add titles and section headers; occasional callouts and key takeaways; simple motion graphics when helpful; B-roll; charts/graphics/visual examples. BRANDING: maintain a consistent visual style and follow brand guidelines. DELIVERABLES: final YouTube video; optional thumbnail recommendations; bonus short list of social clips. Begins with 1 paid trial video, with potential for an ongoing relationship of multiple videos per month.`
+},
+{
+  title: "Real-Estate Photo & Video Editing VA (Lightroom / AutoHDR)",
+  vertical: "Real Estate, Construction & Property", platform: "Upwork", budget: "Hourly $8–$9",
+  posted: "Posted ~5 hours ago", location: "Remote (overnight shift)",
+  url: "https://www.upwork.com/nx/search/jobs/?q=photo%20retouching%20photoshop&sort=recency",
+  tools: ["Lightroom", "Photoshop"],
+  toolsWhy: "Real-estate photo editing/retouching — straightening, exposure, white balance, lens correction, composition — in Lightroom.",
+  fulldesc: `A growing Canadian real-estate media company needs a reliable Media Editor & QC Virtual Assistant to work overnight so listings are ready for North American clients each morning. RESPONSIBILITIES: edit and enhance exterior real-estate photos (straightening slanted/horizontal lines, exposure, white balance, composition improvements, lens correction); perform quality control on interior photos for composition, lighting and appeal; use AutoHDR and/or Lightroom for photo editing and fixes; review video tours edited by the team (Final Cut Pro) and make minor fixes (colour, cuts, stabilization) or provide revision notes; deliver completed media packages through Aryeo; maintain brand standards and meet tight deadlines. REQUIREMENTS: proven real-estate photo editing with a strong eye for composition/lighting/fixing slanted images; experience delivering via Aryeo; comfortable with AutoHDR; proficient in Final Cut Pro for basic fixes/QC; portfolio of real-estate or interior/architecture photo editing (before/after a plus).`
+},
+{
+  title: "Complete Visual Identity for a Coaching Practice (Cothú Coaching)",
+  vertical: "General / Cross-Industry Branding & Graphics", platform: "Upwork", budget: "Fixed $500",
+  posted: "Posted ~57 min ago", location: "Ireland",
+  url: "https://www.upwork.com/nx/search/jobs/?q=packaging%20design&sort=recency",
+  tools: ["Illustrator", "Photoshop", "After Effects"],
+  toolsWhy: "Full vector brand identity, guidelines and social templates (Illustrator/Photoshop), plus an optional motion-graphics brand intro video (After Effects).",
+  fulldesc: `Freelance graphic designer to develop a complete visual identity for "Cothú Coaching" (Irish word for nurturing/cultivating sustainable growth). The brand should feel authentic, professional, calm, human and grounded — not corporate or "self-help". Values: growth, development, learning, reflection, authenticity, sustainability, wellbeing, trust, connection, empowerment; subtle Irish influence through form (no shamrocks/Celtic clichés). Visual style: clean minimalist design, organic shapes, soft textures, meaningful symbolism, elegant white space; palette around forest/sage/moss greens with warm stone/sand/cream neutrals and muted copper/terracotta/soft gold accents; elegant serif paired with clean sans-serif. DELIVERABLES — Brand identity: primary logo, secondary variations, icon/brand mark, favicon/social icon. Brand system: colour palette (HEX/RGB/CMYK), typography recommendations, brand guidelines document. Visual assets: graphic elements/patterns, icons, background textures, social media templates (quotes, reflections, educational, promotional, testimonials), website visual direction (home/about/services/contact). Must work across website, Instagram, LinkedIn, Facebook, presentation slides, workshop materials, PDFs/reports, business cards and pull-up banners. OPTIONAL ADD-ON: a 30-90 second elegant motion-graphics brand intro video (vertical/square/landscape formats, editable source files) communicating the brand ethos.`
+},
+{
+  title: "Adobe InDesign Textbook Formatting & Digitization (~100 pages)",
+  vertical: "Education & Children", platform: "Upwork", budget: "Fixed $500",
+  posted: "Posted ~3 hours ago", location: "United States",
+  url: "https://www.upwork.com/nx/search/jobs/?q=book%20cover%20design&sort=recency",
+  tools: ["InDesign"],
+  toolsWhy: "100-page textbook laid out for both a clickable ebook PDF and a print-ready file (Lulu), with styles, image optimization, hyperlinks and print prep — pure InDesign, with .indd/.idml source.",
+  fulldesc: `Experienced InDesign specialist to format and digitize a new ~100-page textbook for both digital ebook PDF and print-ready formats, transforming provided Google Doc content into polished professional InDesign files. DELIVERABLES: (1) Digital eBook PDF — high-quality PDF with all links (table of contents, internal references, external URLs) live and clickable, optimized for digital viewing. (2) Print-Ready File — black-and-white PDF suitable for upload to Lulu.com, adhering to print specs (bleed, margins, image resolution). (3) All source files — complete InDesign project (.indd, .idml), linked assets (images, fonts). SCOPE: import text from Google Docs; apply consistent styling/layout (headings, body, lists, tables); place and optimize all images for digital and print; create live hyperlinks; prepare files for Lulu (page sizes, bleeds, margins, embedded fonts, B&W-suitable images); QA both outputs for formatting errors, broken links and image quality. Software: Adobe InDesign essential. Timeline ~1 week initial delivery + 1 week revisions; finalized by June 12, 2026.`
+},
+{
+  title: "Luxury Stationery & Keepsake Product Designer (Brand, Packaging & Illustration)",
+  vertical: "Wedding & Stationery", platform: "Upwork", budget: "Hourly (Expert, 1–3 months)",
+  posted: "Posted ~4 days ago", location: "United Kingdom",
+  url: "https://www.upwork.com/nx/search/jobs/?q=wedding%20invitation%20design&sort=recency",
+  tools: ["Illustrator", "Photoshop", "InDesign"],
+  toolsWhy: "Original luxury stationery and illustration, premium packaging and print-production-ready layouts (foiling/embossing/letterpress) — Illustrator/Photoshop/InDesign.",
+  fulldesc: `Highly talented designer to help develop a premium stationery and keepsake product for the gifting market — timeless, elegant, meaningful, worthy of being treasured for years. Areas of interest: luxury stationery, wedding invitations and invitation suites, premium packaging, editorial/book design, luxury gifting/keepsake products, luxury brand and print design, illustration, art direction. A strong illustration background is highly desirable — original artwork created from scratch (not stock/templates/AI): decorative illustrations, original motifs, patterns, borders, visual themes, hand-drawn or digitally illustrated elements. SCOPE: creative direction, product visual identity, typography selection, layout design, packaging concepts, product presentation, print specifications, luxury finishing recommendations, illustration development, and design systems for future product expansion. Design style: timeless, elegant, minimal, sophisticated, refined, premium, emotionally meaningful (not trendy/childish/mass-market/template-based). Preferred experience: luxury wedding stationery, premium packaging, gift/luxury retail products, coffee-table books, fine paper goods, foiling, embossing, debossing, letterpress, premium print production. Potential long-term relationship across future products.`
+},
+{
+  title: "Teaser, Thumbnail & End-Card Editor for Luxury Real-Estate YouTube",
+  vertical: "Real Estate, Construction & Property", platform: "Upwork", budget: "Fixed $600",
+  posted: "Posted ~4 hours ago", location: "United States",
+  url: "https://www.upwork.com/nx/search/jobs/?q=youtube%20thumbnail%20design&sort=recency",
+  tools: ["Premiere Pro", "Photoshop", "After Effects"],
+  toolsWhy: "Cinematic teaser editing (Premiere/After Effects) plus high-contrast click-worthy thumbnails and a branded end card (Photoshop).",
+  fulldesc: `Content for a top-producing Manhattan luxury real-estate broker's YouTube channel (market insights, property walkthroughs, deal-level expertise) — 3-4 videos/month. Need the full content package around each video. PER VIDEO: (1) 30-90 second TEASER — podcast cold-open style: drop the most compelling 60-90 seconds, hook in the first 5 seconds, build intrigue, hard cut before the resolution to drive viewers to the full video; formatted for YouTube and cross-postable to LinkedIn; prestige tone, no cheap transitions. (2) Custom THUMBNAIL — high-contrast, click-worthy, on-brand for luxury real estate (not generic headshots with a text box). (3) END CARD (10-15s) — clean branded outro with subscribe prompt, suggested video and CTA, consistent across videos. Looking for teaser/trailer editing experience, proven thumbnail design (CTR/before-after a plus), luxury-brand sensibility and restraint, comfortable using AI tools where they add value, reliable 48-72h turnaround.`
+},
+{
+  title: "25 Original Patriotic PNG T-Shirt Designs (USA 250th Anniversary)",
+  vertical: "Fashion & Apparel", platform: "Upwork", budget: "Fixed $10 (batch of 25)",
+  posted: "Posted ~1 hour ago", location: "Remote",
+  url: "https://www.upwork.com/nx/search/jobs/?q=t-shirt%20design%20illustrator&sort=recency",
+  tools: ["Illustrator", "Photoshop"],
+  toolsWhy: "Original print-on-demand t-shirt artwork at 300 DPI, 4500x5400px transparent PNGs — Illustrator/Photoshop.",
+  fulldesc: `We need a talented designer to create 25 unique, high-quality patriotic t-shirt designs. We provide design inspiration; you also research trending styles to deliver 25 completely original, high-converting pieces. SPECS (every file must strictly meet): format high-resolution PNG; background 100% transparent (no background colour or bounding boxes); resolution 300 DPI minimum; dimensions 4500px x 5400px; niche USA 250th Independence Day / American Semiquincentennial. STRICT ORIGINALITY/LEGAL: 100% unique artwork (no copy-pasting elements, stolen vectors, or cloning best-sellers); no copyright/trademark infringement (no trademarked quotes, brand slogans or copyrighted characters; text phrases safe for commercial print-on-demand); full commercial usage rights and complete ownership transferred. Timeline 3-4 days. Top-performing designs lead to repeat bulk-collection work.`
+},
+{
+  title: "Podcast Cover Art Designer (Spotify / Apple Podcasts / YouTube)",
+  vertical: "Music, Film, Publishing & Media", platform: "Upwork", budget: "Fixed $30",
+  posted: "Posted ~5 hours ago", location: "Australia",
+  url: "https://www.upwork.com/nx/search/jobs/?q=album%20cover%20art%20design&sort=recency",
+  tools: ["Illustrator", "Photoshop"],
+  toolsWhy: "Podcast cover artwork that reads at small thumbnail sizes, delivered in all platform formats with Illustrator/Photoshop source files.",
+  fulldesc: `Talented graphic designer to create the cover artwork for "Fayl Tales", a podcast sharing honest stories from founders, creators and professionals about failures, pivots, setbacks and lessons learned. The artwork will be used across Spotify, Apple Podcasts, YouTube and other podcast platforms, so it must be professional, memorable, and stand out at small thumbnail sizes; tone is thoughtful, authentic and conversational rather than corporate. WHAT WE NEED: design of the main podcast cover artwork; multiple initial concepts to choose from; final artwork delivered in all required podcast-platform formats; source files included (Adobe Illustrator, Photoshop, Figma, etc.); ability to incorporate existing branding elements. Ideal designer has experience with podcast artwork / YouTube branding / digital-media covers, a bold modern portfolio, and understands how artwork performs as a small thumbnail.`
+}
+];

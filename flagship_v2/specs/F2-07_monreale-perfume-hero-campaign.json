@@ -1,0 +1,417 @@
+{
+ "id": "F2-07",
+ "slug": "monreale-perfume-hero-campaign",
+ "title": "Bold Monreale Perfume Photography",
+ "vertical": "Beauty, Cosmetics & Personal Care",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/adobe-lightroom/Bold-Monreale-Perfume-Photography"
+ },
+ "grounding_note": "REAL (verbatim from the client brief in db_all.json): the client is launching the \"Monreale\" fragrance line and wants visuals that feel \"bold, modern and instantly appealing to a younger, unisex crowd\"; an attached brief + small inspiration board with five flagged reference images (row 1 #2 & #5, row 2 #5, row 3 #1 & #3) that capture \"contrast-heavy lighting, saturated colour accents and confident product placement\"; the work explicitly \"splits into two parts: clean product imagery that shows every faceted edge of the bottle, and lifestyle frames that place the scent in an energetic, real-world context\"; a PDF carries \"Preferred palettes, lighting notes, and framing suggestions\" plus \"the file types I need for print and web\"; the client asks for \"a quick preview\" of the lighting set / first few frames before the full shoot to \"confirm you're moving in the right direction\"; tools named are Photoshop, Illustrator, Lightroom; budget $250-$750 USD. Deliverables verbatim: \"High-resolution product shots (number as per brief)\", \"Lifestyle images matching the mood board cues\", \"Fully retouched files supplied as RAW + layered PSD + web-ready JPEG/PNG\", \"Rights cleared for unlimited global use\".\nENRICHED (added by me, faithful to what the brief implies but not numerically stated in it): the exact frame count (8 hero/product + story crops), the exact pixel/format/dpi specs for each web + print deliverable, the named brand palette hexes and the \"Monreale\" hero color (deep ultramarine + brushed-gold accent), the specific wide-hero (16:9) and vertical-story (9:16) canvas sizes that \"print and web\" implies, the Firefly concept board as the \"quick preview\" artifact, and the Adobe-Stock-licensed studio backdrop/prop set standing in for a physical shoot set (the connector cannot light a physical studio, so a rights-cleared Stock backdrop + generative expand is the honest headless equivalent of \"set your lighting and shoot\"). Because the connector is headless and cannot run a camera, the \"RAW\" deliverable is honestly substituted with a high-bit-depth 16-bit master TIFF (documented as the RAW-equivalent master); the layered-PSD intent is honored via the master + per-region edit layers exported flat. The five flagged reference images become a single concatenated inspiration sheet used to drive the grade. Rights-cleared / unlimited-global-use is satisfied by licensing the backdrop through asset_license_and_download_stock (standard license).\nCAPABILITY CORRECTION (v2.1): The original spec misused image_fill_area as a generative retoucher (dust/reflection removal) and as a compositor (placing the bottle into a hand) - both are A6 [X] NOT-AVAILABLE (AI object-removal and photo-compositing are not connector capabilities). image_fill_area is SOLID-COLOR fill only. Per the v2.1 sheet the honest path is: (a) generate the bottle capture already clean so no AI object-removal is needed; (b) build the lifestyle frame by extracting the bottle via image_remove_background [C] then compositing onto the hand plate LOCALLY [L] with PIL; (c) only the single generative tool, image_generative_expand [C], is used for outpainting. The grade is now a real, fully-instantiated tonal chain (preset + auto_tone + exposure + brightness/contrast + highlights + color_temperature + HSL + vibrance) re-invoked on every frame group, matching monreale_grade_recipe.json exactly.",
+ "one_line_ask": "Deliver a consistently-graded Monreale fragrance campaign: license a Stock studio backdrop, generative-expand one clean hero bottle frame into a 16:9 wide hero and a 9:16 vertical-story canvas, cut the bottle out and locally composite it into the lifestyle hand plate, then run the whole 8-frame set through one explicitly-instantiated Lightroom-grade chain (preset + auto-tone + exposure/contrast/highlights/temperature/HSL/vibrance offsets) so product and lifestyle frames match exactly, exporting print-master TIFF + web-ready JPEG per frame plus a Firefly preview board.",
+ "full_brief": "Monreale is launching a new unisex fragrance line and needs a campaign image set that feels \"bold, modern and instantly appealing to a younger, unisex crowd,\" built around contrast-heavy lighting, saturated color accents, and confident product placement (per the attached inspiration board and the five flagged reference frames). The work splits into two parts exactly as the client states: (1) clean PRODUCT imagery that shows every faceted edge of the faceted-glass bottle, and (2) LIFESTYLE frames that place the scent in an energetic, real-world context. You are given a single clean studio capture of the Monreale bottle on a plain sweep, a concatenated inspiration/mood sheet (the five flagged references), a brand sheet PDF with the palette, lighting notes and required file types, and a hand model/lifestyle plate with an empty bottle-sized gap. You must license a rights-cleared studio backdrop/prop set from Adobe Stock (standard license, unlimited global use), use image_generative_expand to extend the single bottle capture into a wide 16:9 hero canvas and a vertical 9:16 story canvas (blending toward the licensed backdrop ground), and build the lifestyle frame by extracting the bottle with image_remove_background and compositing it into the empty hand gap with a local layout/compositing step (the connector has no AI compositor, so placement and contact-shadow are done locally with PIL, then the composite is graded by the same connector chain).\n\nThe campaign palette is deep ultramarine #1B2A6B as the hero ground, brushed-gold #C9A14A as the accent, and warm-neutral skin tones in the lifestyle frames; the look must read high-contrast with saturated blue/gold accents and crushed-but-clean shadows. The grade is DEFINED ONCE on the product base and then RE-INVOKED IDENTICALLY on every frame group: one preset, one auto-tone, and the exact same exposure / brightness-contrast / highlights / color-temperature / HSL / vibrance offsets, all recorded in monreale_grade_recipe.json and replayed call-for-call so the product and lifestyle images feel shot on one set. Deliver 8 frames total: 3 product-hero frames (the bottle on the licensed backdrop, differentiated by three distinct crops/framings off the graded base - full-bleed centered, tight facet-detail crop, and offset-with-negative-space), 2 wide 16:9 hero banners, 1 vertical 9:16 story frame, and 2 lifestyle frames (bottle composited into the hand plate, and a tighter surface crop of the same composite). Each of the 8 frames ships as BOTH a print-master TIFF and a web-ready JPEG (16 image files total). Before the full run, produce the client's requested \"quick preview\": a Firefly concept board that pulls the graded first frames together with the inspiration sheet so the client can confirm the lighting direction.\n\nConstraints: web-ready files are sRGB JPEG, long edge 2048 px (except the two fixed-size hero/story webs below), 72 dpi, quality ~85; print-masters are 16-bit TIFF, 300 dpi, color-managed (sRGB/Adobe RGB tagged). The 16:9 wide-hero web JPEGs are exactly 3840x2160 and their print-masters are the same 16:9 ratio scaled to a 3840 px long edge at 16-bit/300dpi (the single, consistent hero master target - there is NO 3508 px target; the earlier A4 figure is removed). The 9:16 story web JPEG is exactly 1080x1920 and its master is the same ratio scaled to a 1920 px long edge at 16-bit/300dpi. All eight frames must share one preset + one auto-tone + the same exposure/contrast/highlights/temperature/HSL/vibrance offsets, and each of those connector calls is made explicitly on each frame group (no \"conceptually applied\" hand-waving) - consistency is provable from the step list, not eyeballed. Brand accents must survive the grade - the gold accent must not skew green and the ultramarine must not crush to black. The backdrop must be the licensed Stock asset (provide license proof), and rights must be cleared for unlimited global use.",
+ "inputs": [
+  {
+   "name": "monreale_bottle_studio_capture.png",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Professional product studio photograph of a single luxury unisex perfume bottle, heavy faceted clear-glass body with sharp geometric beveled edges, deep ultramarine-blue tinted fragrance visible through the glass, brushed-gold rectangular cap and a thin gold collar, minimal embossed sans-serif wordmark reading 'MONREALE' on the front facet. Shot tight on a seamless mid-grey paper sweep, single hard key light from upper left producing crisp clean specular highlights on the facets, a soft shadow pooled under the bottle, and a perfectly clean sweep with no dust or lint. Razor-sharp focus on the glass edges, true-to-life refraction and caustics through the faceted glass, photographic micro-detail in the brushed-gold cap (fine machining lines), 8k, color-accurate, not glossy CGI, real studio capture, finished-clean (no blown reflections, no dust). Centered with generous negative space, plain background, no props.",
+   "realism_notes": "Generated already clean and finished (no deliberate dust/blown-reflection), because the connector has NO AI object-removal tool (A6 [X]) to retouch them out - the honest input is a clean capture. Faceted-glass refraction and gold machining lines are the believability anchors. Plain sweep + generous negative space is required so image_generative_expand has clean room to outpaint into the 16:9 and 9:16 canvases.",
+   "used_in_steps": [
+    4,
+    5,
+    6,
+    8,
+    10,
+    11
+   ]
+  },
+  {
+   "name": "monreale_inspiration_sheet.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A single contact-sheet / mood board image, 3 rows by 2 columns of small framed reference tiles on a clean light-grey background, each tile a different fragrance-campaign mood: (1) high-contrast dark editorial product shot with a hard blue rim light, (2) saturated gold-and-cobalt color-block backdrop, (3) energetic street-lifestyle frame with motion and warm skin tones, (4) crushed-shadow moody bottle on stone, (5) bold geometric color accents behind a perfume, (6) youthful unisex hand holding a bottle in raking sunlight. Thin neat borders, faint handwritten-style annotation 'contrast - saturated accents - confident placement' along the bottom margin, the tiles in row1#2, row2#1 and row3#1 subtly marked with a small gold corner tag. Editorial mood-board aesthetic, realistic photographic tiles, no text inside the photos.",
+   "realism_notes": "Stands in for the client's flagged five-reference inspiration board. Text-bearing/annotated layout => gemini-3-pro-image. The gold corner tags map to the client's 'five flagged reference images' and drive the target grade (contrast-heavy, saturated blue/gold). Used as a reference for the preset/grade decision and pulled into the preview Firefly board.",
+   "used_in_steps": [
+    2,
+    7,
+    22
+   ]
+  },
+  {
+   "name": "monreale_brand_sheet.pdf",
+   "kind": "pdf",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a one-page brand/spec sheet PDF for the 'Monreale' fragrance launch. Sections: (1) Palette - Hero Ultramarine #1B2A6B, Accent Brushed-Gold #C9A14A, Shadow Ink #0C1226, Warm Neutral Skin #E8C9A8, with hex swatches; (2) Lighting notes - 'hard key, high contrast, crushed but clean shadows, saturated blue/gold accents, no green skew on gold'; (3) Required file types & sizes - Web: sRGB JPEG, long edge 2048px, 72dpi, q85; Print master: 16-bit TIFF, 300dpi, color-managed; Wide hero 16:9 = 3840x2160 web and 3840-long-edge 16-bit master; Vertical story 9:16 = 1080x1920 web and 1920-long-edge 16-bit master; (4) Frame plan - 3 product hero, 2 wide 16:9 hero, 1 vertical 9:16 story, 2 lifestyle = 8 total; (5) Rights - unlimited global use, all stock standard-licensed. Clean minimal typographic layout, swatches as filled rectangles.",
+   "realism_notes": "This is the brief's referenced PDF carrying 'preferred palettes, lighting notes, framing suggestions ... and the file types I need for print and web.' It is the contract the agent must read to pick exact dimensions, dpi, palette hexes and frame counts - a state-tracking anchor. The hero master long-edge is stated once as 3840 (no contradictory 3508). Data/spec sheet => gemini-2.5-flash.",
+   "used_in_steps": [
+    1,
+    7,
+    19,
+    21
+   ]
+  },
+  {
+   "name": "monreale_lifestyle_hand_plate.png",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Candid documentary lifestyle photograph: a young adult of ambiguous unisex styling holding out an open hand as if about to receive a perfume bottle, photographed in warm raking late-afternoon sunlight against an out-of-focus urban concrete-and-glass backdrop. Real human skin with visible pores, fine vellus hair on the forearm, natural knuckle creases, short clean unpolished nails, a couple of faint freckles, slightly uneven warm skin tone - NOT airbrushed. The hand is empty and open, palm angled up, leaving a clear bottle-sized gap in the composition. Shallow depth of field, authentic motion-candid feel, true photographic grain, correct five-fingered anatomy with natural finger spacing, no rings. Color: warm neutrals with cool city shadows. Shot like a real campaign B-roll still, not glossy CGI.",
+   "realism_notes": "Real skin pores, forearm vellus hair, correct five-finger anatomy and an EMPTY open hand are mandatory so the cut-out bottle can be composited into the gap believably during the LOCAL [L] PIL composite step (the connector has no AI compositor - A6 [X]). The empty bottle-sized gap is the deliberate placement target. Warm skin + cool shadow makes the consistent-grade test meaningful (gold must not green-skew on skin).",
+   "used_in_steps": [
+    9
+   ]
+  }
+ ],
+ "outputs": [
+  {
+   "name": "monreale_product_hero_01-03_master.tif",
+   "kind": "image",
+   "spec": "3 product-hero frames derived as 3 DISTINCT crops/framings of the single graded product base (01 = full-bleed centered, 02 = tight facet-detail crop, 03 = offset-with-negative-space), bottle on the licensed Stock backdrop, 16-bit TIFF, 300 dpi, color-managed (sRGB/Adobe RGB tagged), long edge >=3000 px; the identical grade chain applied to all 3 before cropping.",
+   "rubric_hook": "Are all 3 product masters 16-bit/300dpi, three genuinely DISTINCT framings of the clean bottle on the licensed backdrop, and is the grade visually identical across the three (same contrast/blue-gold accent), traceable to the same recorded recipe?"
+  },
+  {
+   "name": "monreale_wide_hero_01-02.jpg",
+   "kind": "image",
+   "spec": "2 wide 16:9 hero banners from two generative-expand framings, web JPEG sRGB exactly 3840x2160, 72 dpi, q~85; each with a matching 16-bit/300dpi TIFF master at the same 16:9 ratio, 3840 px long edge.",
+   "rubric_hook": "Are both exactly 3840x2160, is the outpainted region seamless (no seam/repeat artifacts at the original-frame boundary), does the negative space carry brand ultramarine, and does the grade match the product frames via the same recipe?"
+  },
+  {
+   "name": "monreale_story_vertical.jpg",
+   "kind": "image",
+   "spec": "1 vertical 9:16 story frame, generative-expanded from the graded bottle base, web JPEG sRGB exactly 1080x1920, 72 dpi, q~85; matching 16-bit/300dpi TIFF master at the same 9:16 ratio, 1920 px long edge.",
+   "rubric_hook": "Is it exactly 1080x1920, does the vertical outpaint keep the bottle correctly placed/scaled with believable extended backdrop, and does it carry the identical recorded grade?"
+  },
+  {
+   "name": "monreale_lifestyle_01-02.jpg",
+   "kind": "image",
+   "spec": "2 lifestyle frames built from the LOCAL composite of the cut-out graded bottle into the empty hand gap (01 = full hand frame, 02 = tighter surface/grip crop of the same composite), web JPEG sRGB long edge 2048 px, 72 dpi, q~85; matching 16-bit TIFF masters at 300 dpi.",
+   "rubric_hook": "Is the bottle composited into the empty hand gap with correct scale, lighting direction and a plausible contact shadow, skin still photoreal (pores/hair intact), and the SAME grade as the product set (gold not green-skewed on warm skin, ultramarine not crushed)?"
+  },
+  {
+   "name": "monreale_grade_recipe.json",
+   "kind": "data",
+   "spec": "A JSON recording the single reusable grade and matching the executed steps EXACTLY: {preset_name, auto_tone:true, exposure, brightness, contrast, highlights, color_temperature, hsl:{...}, vibrance, saturation}. Every key corresponds to a connector call actually present in the workflow (image_apply_preset, image_apply_auto_tone, image_adjust_exposure, image_adjust_brightness_and_contrast, image_adjust_highlights, image_adjust_color_temperature, image_adjust_hsl, image_adjust_vibrance_and_saturation) and the same values are re-invoked on every frame group.",
+   "rubric_hook": "Does one explicit recipe exist, does every knob it lists correspond to a real step that is actually run, and is the same recipe applied to every one of the 8 frames (consistency provable from the step list, not eyeballed)?"
+  },
+  {
+   "name": "monreale_preview_moodboard",
+   "kind": "board",
+   "spec": "Firefly concept board (deep-link) assembling the graded first frames + the inspiration sheet as the client's requested 'quick preview' before the full run.",
+   "rubric_hook": "Does the preview board exist as a shareable Firefly board (deep-link) pulling the graded product frame(s) alongside the references, matching the client's explicit 'send me a quick preview' ask?"
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "monreale_brand_sheet.pdf"
+   ],
+   "output": "brand_sheet.indd + extracted spec text (palette hexes, sizes, dpi, frame plan)",
+   "note": "Read the contract first: convert the brand-sheet PDF to a genuine .indd and extract the exact palette hexes, the 3840x2160 / 1080x1920 / 2048px / 300dpi specs and the 8-frame plan that every later step must honor. Headless-confirmed PDF->.indd. Establishes the state the agent must track."
+  },
+  {
+   "n": 2,
+   "tool": "asset_search",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "monreale_inspiration_sheet.png",
+    "step 1"
+   ],
+   "output": "candidate Stock backdrop/prop results (URNs + thumbnails)",
+   "note": "Search Adobe Stock for a high-contrast saturated blue/gold studio backdrop/prop set that matches the inspiration sheet mood and the palette from the brand sheet. Headless."
+  },
+  {
+   "n": 3,
+   "tool": "asset_license_and_download_stock",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "licensed_backdrop.tif (standard license, rights-cleared) + license id",
+   "note": "MUST-EXERCISE. License + download the chosen backdrop so unlimited-global-use rights are cleared (license BEFORE editing). This licensed file becomes the ground the bottle is seated/expanded into."
+  },
+  {
+   "n": 4,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "monreale_bottle_studio_capture.png"
+   ],
+   "output": "upload session + presigned target for the bottle capture",
+   "note": "Begin moving the local clean bottle capture into CC storage so all edit/expand tools can act on it by URN. Headless."
+  },
+  {
+   "n": 5,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 4",
+    "monreale_bottle_studio_capture.png"
+   ],
+   "output": "bottle_capture URN (in CC storage)",
+   "note": "Finalize the upload -> stable URN for the clean bottle. This URN is the spine reused by the downstream grade + expand + cut-out steps. Headless."
+  },
+  {
+   "n": 6,
+   "tool": "image_generative_expand",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 5",
+    "step 3"
+   ],
+   "output": "wide_hero_raw_16x9 URN (bottle outpainted into a 16:9 canvas blended toward the licensed backdrop)",
+   "note": "MUST-EXERCISE. image_generative_expand is the ONLY generative tool available; outpaint the clean bottle into a wide 16:9 hero canvas, extending the licensed backdrop's saturated ground into the new negative space. First of two expand targets. (Replaces the original mis-step that used image_fill_area to 'retouch' - object-removal is A6 [X] and the input is now generated clean, so no retouch step is needed.)"
+  },
+  {
+   "n": 7,
+   "tool": "image_list_presets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 1",
+    "monreale_inspiration_sheet.png"
+   ],
+   "output": "available preset names",
+   "note": "List Lightroom-style presets so a single cinematic high-contrast preset matching the inspiration mood can be chosen and locked as the campaign grade seed. Headless."
+  },
+  {
+   "n": 8,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 5"
+   ],
+   "output": "bottle_cutout.png URN (transparent-background bottle, isolated from the grey sweep)",
+   "note": "MUST-EXERCISE. Isolate the bottle to a transparent PNG so it can be composited LOCALLY into the lifestyle hand plate (step 9). This is the honest replacement for the original image_fill_area 'composite the bottle into the hand' mis-step - photo-compositing is A6 [X] on the connector, so the cut-out is produced headless and placed locally."
+  },
+  {
+   "n": 9,
+   "tool": "local_composite_pil",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 8",
+    "monreale_lifestyle_hand_plate.png"
+   ],
+   "output": "lifestyle_composite_raw.png (cut-out bottle placed into the empty hand gap with a painted contact shadow, scale + lighting-direction matched)",
+   "note": "LOCAL [L] PIL/Pillow composite: place the transparent-bg bottle cut-out into the empty bottle-sized gap in the hand plate, scale to the grip, add a soft drop/contact shadow matching the raking key direction. The connector has NO AI compositor (A6 [X]), so placement is done off-connector; the result is re-uploaded and graded by the SAME connector chain so it still matches the campaign look."
+  },
+  {
+   "n": 10,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 7",
+    "step 5"
+   ],
+   "output": "bottle_graded_base URN + chosen preset name (the grade seed)",
+   "note": "Apply the chosen preset to the clean product base to DEFINE the look once. The preset name is recorded into monreale_grade_recipe.json (preset_name) and the SAME preset is re-applied on every other frame group below (steps 13/15/17). First link of the consistency chain."
+  },
+  {
+   "n": 11,
+   "tool": "image_generative_expand",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 10",
+    "step 3"
+   ],
+   "output": "story_raw_9x16 URN (graded bottle outpainted to a 1080x1920-ratio vertical canvas)",
+   "note": "MUST-EXERCISE. Second use of the only generative tool: outpaint to the 9:16 vertical story ratio pulled from the brand sheet, extending the licensed backdrop above/below the bottle. Feeds the story grade + export."
+  },
+  {
+   "n": 12,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 10"
+   ],
+   "output": "product_base_autotoned URN",
+   "note": "Apply auto_tone to the product base - recipe.auto_tone=true. Auto-tone is now an EXPLICIT call per frame group (this one for the product/base set), not 'conceptually applied'. Steps 14/16/18 re-invoke auto_tone on the hero / story / lifestyle frames with the same flag."
+  },
+  {
+   "n": 13,
+   "tool": "image_adjust_exposure",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 12"
+   ],
+   "output": "product_base_exposed URN",
+   "note": "Apply recipe.exposure to the product base. This + the next two steps instantiate the exposure/contrast/highlights/temperature/HSL/vibrance offsets that monreale_grade_recipe.json records, so the recorded recipe maps 1:1 to real calls (fixes the 'recipe references knobs the workflow never turns' issue)."
+  },
+  {
+   "n": 14,
+   "tool": "image_adjust_brightness_and_contrast",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 13"
+   ],
+   "output": "product_base_contrast URN",
+   "note": "Apply recipe.brightness + recipe.contrast to the product base (high-contrast, crushed-but-clean shadows). Same values reused on every frame group."
+  },
+  {
+   "n": 15,
+   "tool": "image_adjust_highlights",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 14"
+   ],
+   "output": "product_base_highlights URN",
+   "note": "Apply recipe.highlights to the product base to keep specular facet highlights clean without blowing. Same value reused downstream."
+  },
+  {
+   "n": 16,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 15"
+   ],
+   "output": "product_base_temp URN",
+   "note": "Apply recipe.color_temperature to the product base so the blue/gold accents read correctly. Same value reused downstream."
+  },
+  {
+   "n": 17,
+   "tool": "image_adjust_hsl",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 16"
+   ],
+   "output": "product_base_hsl URN",
+   "note": "Apply recipe.hsl offsets to the product base so the ultramarine stays saturated and the brushed-gold does NOT skew green - the explicit color-fidelity test. Same offsets reused on every frame group."
+  },
+  {
+   "n": 18,
+   "tool": "image_adjust_vibrance_and_saturation",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 17"
+   ],
+   "output": "monreale_graded_product_base URN (the COMPLETE recorded grade applied once)",
+   "note": "Apply recipe.vibrance + recipe.saturation, completing the full grade chain on the product base. monreale_grade_recipe.json is finalized here = {preset_name, auto_tone, exposure, brightness, contrast, highlights, color_temperature, hsl, vibrance, saturation} - every key now corresponds to a real step (10,12,13,14,15,16,17,18). This exact 8-call chain is re-invoked on the hero, story and lifestyle frames next."
+  },
+  {
+   "n": 19,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 6",
+    "step 11",
+    "step 9",
+    "step 18",
+    "step 21_recipe"
+   ],
+   "output": "wide_hero + story + lifestyle frames re-seeded with the SAME preset (preset re-applied per frame group)",
+   "note": "Re-invoke the recorded preset (same preset_name from step 10) on the wide-hero (step 6), story (step 11) and lifestyle composite (step 9) URNs. NOTE: in the executed run the agent loops the full recorded chain (preset -> auto_tone -> exposure -> brightness/contrast -> highlights -> color_temperature -> hsl -> vibrance) over each of the three non-base frame groups using the EXACT recipe values from step 18; this single workflow entry stands for that replayed chain so the same grade is provably re-applied (no 'conceptually applied' hand-wave). Reads recipe from step 18's finalized recipe object (labeled here step_21 recipe export)."
+  },
+  {
+   "n": 20,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 18",
+    "step 19",
+    "step 1"
+   ],
+   "output": "8 graded frames cropped to EXACT spec: product_hero_01 (full-bleed), product_hero_02 (tight facet crop), product_hero_03 (offset/neg-space) from the graded base; wide_hero_01-02 at 3840x2160; story_vertical at 1080x1920; lifestyle_01 (full) + lifestyle_02 (tight grip crop) at 2048px long edge",
+   "note": "Crop/resize each graded frame to the exact brand-sheet dimensions. CRITICAL: the 3 product-hero frames are produced HERE as 3 DISTINCT crops/framings of the single graded base (fixes 'how do 3 distinct product frames arise'), and the 2 lifestyle frames are two crops (full + tight) of the one composite. 3840x2160 and 1080x1920 must be pixel-exact (single consistent hero target = 3840 long edge; no 3508)."
+  },
+  {
+   "n": 21,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 20",
+    "step 1"
+   ],
+   "output": "rendered previews of all 8 finished graded frames + dual-format export manifest",
+   "note": "Render previews of the 8 cropped frames to verify the grade reads consistently and dimensions are pixel-exact. The DUAL-FORMAT export is explicit here: for EACH of the 8 frames emit BOTH a 16-bit/300dpi color-managed TIFF master AND an sRGB q85 web JPEG at the per-frame spec = 16 image files total (3 product masters + their webs, 2 hero 3840x2160 webs + 3840-edge masters, 1 story 1080x1920 web + 1920-edge master, 2 lifestyle 2048px webs + masters). Validate against the step-1 brand-sheet specs."
+  },
+  {
+   "n": 22,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 18",
+    "step 21",
+    "monreale_inspiration_sheet.png"
+   ],
+   "output": "monreale_preview_moodboard (Firefly board deep-link)",
+   "note": "Assemble the graded base frame + finished previews alongside the inspiration sheet into the Firefly concept board that satisfies the client's explicit 'send me a quick preview to confirm direction' ask. Honest use: it presents already-produced asset URNs (it does not generate art). Output kind corrected to 'board' (deep-link), not 'vector'."
+  }
+ ],
+ "tools_used": [
+  "document_convert_pdf",
+  "asset_search",
+  "asset_license_and_download_stock",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_generative_expand",
+  "image_list_presets",
+  "image_remove_background",
+  "local_composite_pil",
+  "image_apply_preset",
+  "image_apply_auto_tone",
+  "image_adjust_exposure",
+  "image_adjust_brightness_and_contrast",
+  "image_adjust_highlights",
+  "image_adjust_color_temperature",
+  "image_adjust_hsl",
+  "image_adjust_vibrance_and_saturation",
+  "image_crop_and_resize",
+  "asset_inline_preview",
+  "create_firefly_board"
+ ],
+ "tool_call_count": 22,
+ "groups_covered": [
+  "photo_raster",
+  "asset_stock_storage",
+  "document_layout",
+  "local_glue"
+ ],
+ "exec_mode_summary": "C×21 L×1",
+ "headless_doable": true,
+ "corrections_applied": [
+  "Removed image_fill_area MISUSE #1 (steps 6 retouch in original): dust/blown-reflection removal is A6 [X] AI object-removal, not a connector capability. Fixed by generating monreale_bottle_studio_capture.png already CLEAN (no dust/harsh reflection) and deleting the retouch step entirely.",
+  "Removed image_fill_area MISUSE #2 (original step 10 composite): placing the bottle into the hand is A6 [X] photo-compositing. Replaced with image_remove_background [C] (cut bottle to transparent PNG) -> local_composite_pil [L] (place into the empty hand gap with a painted contact shadow) -> graded by the same connector chain. Compositing now done off-connector and honestly tagged [L].",
+  "Instantiated the consistency contract: added the explicit tonal steps the recipe referenced but the workflow never ran - image_adjust_exposure, image_adjust_brightness_and_contrast, image_adjust_highlights, image_adjust_color_temperature, image_adjust_vibrance_and_saturation - so every key in monreale_grade_recipe.json now maps 1:1 to a real connector call (steps 10,12,13,14,15,16,17,18).",
+  "Removed the auto-tone hand-wave: image_apply_auto_tone is now an explicit call on the product base (step 12) and the recorded full chain is re-invoked on the hero/story/lifestyle frame groups (step 19), replacing the original 'conceptually applied to story_raw and lifestyle too' prose.",
+  "Corrected output kind for monreale_preview_moodboard from 'vector' to 'board' (Firefly Boards deep-link, not a vector artifact).",
+  "Resolved the 16:9 hero master size contradiction: removed the ~3508 A4 figure; the single consistent hero master target is the 16:9 ratio at 3840 px long edge (16-bit/300dpi). Stated once in constraints, brand-sheet input, and output spec.",
+  "Specified how the 3 product-hero frames are differentiated: step 20 produces them as 3 DISTINCT crops/framings of the single graded base (full-bleed / tight facet crop / offset-with-negative-space), so '3 product hero frames' is produced by the chain, not asserted. Same for the 2 lifestyle frames (full + tight grip crop of the one composite).",
+  "Made the dual-format export explicit: step 21 states the loop over all 8 graded frames emitting BOTH a 16-bit/300dpi TIFF master and an sRGB q85 web JPEG = 16 image files at the exact per-frame dimensions.",
+  "Tagged every step with exec_mode (21 C + 1 L). Added document_layout and local_glue to groups_covered to reflect document_convert_pdf and the local composite. headless_doable=true since every step is C or L.",
+  "Kept it long-horizon: grew from 16 to 22 dependent connector calls, output->input spine preserved (clean base -> expand x2 + cut-out + grade chain -> crops -> dual export -> preview board)."
+ ],
+ "iterative_chaining_note": "The chain is a true output->input spine, not parallel one-shots. The clean bottle capture is uploaded (step 4->5) to a URN consumed by the 16:9 generative expand (step 6), the background-removal cut-out (step 8), and the preset that seeds the grade (step 10). The transparent-bg cut-out from step 8 + the hand plate feed the LOCAL composite (step 9). The graded product base is built by an 8-call chain (preset 10, auto_tone 12, exposure 13, brightness/contrast 14, highlights 15, color_temperature 16, hsl 17, vibrance 18) that finalizes both monreale_graded_product_base and monreale_grade_recipe.json - every recipe key corresponds to a real call. The graded base (step 10) also feeds the 9:16 story expand (step 11). The SAME recorded recipe is then re-invoked on the wide-hero, story and lifestyle composite frame groups (step 19), so consistency is enforced by replaying one recorded chain, not by independently grading each frame. The licensed Stock backdrop (step 3) is fed into both expands (steps 6, 11) so the outpaint blends into real licensed ground. The 8 exact-spec frames are then cut from the graded URNs (step 20 - 3 distinct product crops, 2 hero, 1 story, 2 lifestyle crops), dual-format exported (step 21 = 16 files), and assembled with the inspiration sheet into the Firefly preview board (step 22). Every generative step (the two expands) consumes an earlier generated URN; the composite is the only off-connector [L] step and it too consumes connector-produced cut-out URNs; nothing downstream regenerates from scratch.",
+ "difficulty_rationale": "Hard for an agent on several axes. (1) Long horizon: 22 dependent connector calls where a mistake early (wrong preset, wrong recipe value) silently corrupts every downstream frame. (2) Heavy state tracking: the agent must read exact specs from the brand-sheet PDF (palette hexes, 3840x2160, 1080x1920, 2048px, 16-bit/300dpi, 8-frame plan) and hold them across the run; it must track which URN is the clean base vs cut-out vs graded base vs each expanded/composited frame. (3) Capability discipline: the agent must NOT reach for image_fill_area as a retoucher or compositor (both A6 [X]) and must instead know that image_generative_expand is the only generative tool, that background-removal + a local composite is the honest path for placement, and that the recorded grade recipe must map 1:1 to real adjustment calls. (4) Asset reuse + consistency: one grade recipe must be provably reused on all 8 frames via an explicit replayed chain, not eyeballed - independent re-grading is the obvious failure mode and is wrong. (5) Exact-spec pressure: the 16:9 and 9:16 outputs must be pixel-exact and dual-format (16 files), with a color-fidelity trap (gold must not green-skew, ultramarine must not crush) that only holds if the same recipe is honestly reused. (6) Frame branching: 3 distinct product-hero crops and 2 lifestyle crops must be produced by the chain. (7) It must also satisfy the soft deliverable - the client's explicit mid-run 'quick preview' Firefly board.",
+ "reverify": {
+  "severity": "minor",
+  "residual_issues": [
+   "Steps 6 and 11 (image_generative_expand) list step 3 (the licensed Stock backdrop) in inputs_from and the note says the expand 'blends toward the licensed backdrop ground' / 'extends the licensed backdrop'. image_generative_expand does NOT ingest a second image as a blend/composite target — it AI-outpaints from the source frame's own edges only. The actual tool call is a legitimate [C] outpaint, but the prose over-states it (the backdrop can only seed the campaign look conceptually, not be literally extended into the canvas). Borderline drift toward the A6 [X] photo-compositing framing, though no forbidden call is actually made.",
+   "Output spec demands 16-bit TIFF masters at 300 dpi, color-managed (sRGB/Adobe RGB tagged), dual-format with web JPEGs. The sheet does not name a connector tool that exports a 16-bit/300dpi color-managed TIFF; asset_inline_preview (step 21) is a previewer/render, not a guaranteed high-bit-depth TIFF exporter with dpi tagging. This is an output-format feasibility soft spot (the dual-format export may need a [L] step), not an A6 [X] capability misuse.",
+   "Asymmetric grade ordering: the 16:9 wide-hero expand (step 6) is taken from the UNGRADED raw bottle URN (step 5), while the 9:16 story expand (step 11) is taken from the PRESET-GRADED base (step 10). Step 19 re-grades the wide hero so the final look still lands, but the two expands start from different states — a minor consistency wrinkle, not a capability violation.",
+   "Step 1 note says document_convert_pdf yields the .indd PLUS 'extracted spec text (palette hexes, sizes, dpi)'. PDF→.indd is confirmed [C]; pulling the spec values relies on the brand sheet being a real text PDF (it is, generated by gemini-2.5-flash, so text is selectable, not OCR). OK as long as the agent reads the source text rather than OCR-ing a rasterized page (OCR is A6 [X])."
+  ]
+ }
+}

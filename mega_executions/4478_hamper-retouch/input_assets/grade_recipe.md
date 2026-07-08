@@ -1,0 +1,94 @@
+```json
+{
+  "look_name": "Wexford & Vale - Signature Hamper",
+  "global_grade": {
+    "exposure_ev": 0.3,
+    "white_balance_target": "warm 5600K, neutralise the cool mixed shoot light",
+    "highlight_recovery": -40,
+    "light_portions": -10,
+    "shadow_lift": -25,
+    "contrast": 5,
+    "vibrance": 8,
+    "saturation": -10
+  },
+  "wicker_mask": {
+    "prompt": "the woven wicker basket body of the hamper",
+    "temperature_push": 15,
+    "yellow_saturation_lift": 10
+  },
+  "badge_mask": {
+    "prompt": "the embossed leather badge on the front centre of the hamper",
+    "exposure_lift": 0.2,
+    "highlight_shaping": 15,
+    "dark_portions_deepen": 10,
+    "hsl_note": "land a rich tan, no orange cast"
+  },
+  "locked_preset": {
+    "intent": "a single non-stacked shared Creative warm split-tone that locks the set look",
+    "display_name": "Creative - Warm Shadow Lift"
+  },
+  "depth_blur": {
+    "lifestyle": "whole-frame lens blur on un-cut lifestyle frames",
+    "catalogue": "subject-preserving gaussian background blur on catalogue frames"
+  },
+  "backdrop": {
+    "hex": "#E8E8E8",
+    "rgb": "232,232,232",
+    "shadow_note": "soft realistic feathered contact shadow under each hamper"
+  },
+  "frame_classes": [
+    {
+      "file": "hamper_01_classic_wicker_front.jpg",
+      "class": "catalogue"
+    },
+    {
+      "file": "hamper_02_gourmet_selection_open.jpg",
+      "class": "lifestyle"
+    },
+    {
+      "file": "hamper_03_artisan_cheese_closeup.jpg",
+      "class": "catalogue"
+    },
+    {
+      "file": "hamper_04_dessert_trio_spread.jpg",
+      "class": "lifestyle"
+    },
+    {
+      "file": "hamper_05_wine_duo_presentation.jpg",
+      "class": "catalogue"
+    },
+    {
+      "file": "hamper_06_breakfast_in_bed_scene.jpg",
+      "class": "lifestyle"
+    },
+    {
+      "file": "hamper_07_tea_time_arrangement.jpg",
+      "class": "catalogue"
+    },
+    {
+      "file": "hamper_08_spa_retreat_contents.jpg",
+      "class": "lifestyle"
+    },
+    {
+      "file": "hamper_09_baby_gift_set_detail.jpg",
+      "class": "catalogue"
+    },
+    {
+      "file": "hamper_10_pet_luxury_basket.jpg",
+      "class": "catalogue"
+    },
+    {
+      "file": "hamper_11_garden_party_essentials.jpg",
+      "class": "lifestyle"
+    },
+    {
+      "file": "hamper_12_coffee_lovers_collection.jpg",
+      "class": "catalogue"
+    },
+    {
+      "file": "hamper_13_luxe_leather_corner.jpg",
+      "class": "catalogue"
+    }
+  ]
+}
+```

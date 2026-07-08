@@ -1,0 +1,361 @@
+{
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "reference_lecture_clip"
+   ],
+   "output": "lecture_summary.json — a structured transcript + scene/scene-order summary of the reference Arabic algebra lecture (the solving steps, the pedagogical order, the check-the-answer beat) AND a rough transcript with coarse segment timings.",
+   "note": "[A] async-widget. Spine step 1: summarize the supplied reference lecture so the agent can extract the exact 5-beat solve structure (problem → isolate variable → divide coefficient → state x → substitute-and-check) that the script and on-screen scenes must follow. The structured summary drives scene copy in steps 7–10; its transcript + rough timings are reused by the LOCAL SRT build in step 18 (NOT by any connector layout tool — see corrections). media_summarize is a legitimate content-summary use of a VIDEO asset."
+  },
+  {
+   "n": 2,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "arabic_vo_raw",
+    "reference_lecture_clip",
+    "liveaction_boy_clip",
+    "mathframe_bg"
+   ],
+   "output": "upload_session + presigned targets for the 4 supplied source assets",
+   "note": "[C] headless. Plumbing: open an upload session so the raw GCC-accent VO, the reference lecture, the live-action boy clip, and the background plate all live in CC storage as URNs that later steps can reference. Consumes the input filenames; emits a session handle used in step 3."
+  },
+  {
+   "n": 3,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "4 CC asset URNs (vo_raw_urn, lecture_urn, boy_urn, bg_urn)",
+   "note": "[C] headless. Finalize the uploads from step 2 → stable URNs. media_summarize (step 1) used the lecture directly; from here every media/template step references these URNs instead of local paths. boy_urn → editable bundle (17) + local weave (18); vo_raw_urn → media_enhance_speech (15); bg_urn → inline preview (6) + fill_text scenes (7–10)."
+  },
+  {
+   "n": 4,
+   "tool": "search_design",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 1"
+   ],
+   "output": "lesson_frame_template candidates + templateURNs — Express animated-explainer / lesson-frame templates (16:9, large central equation zone, side call-out lane, RTL-friendly)",
+   "note": "[C] headless: search_design itself returns real Express templates + URNs autonomously. It renders a GALLERY WIDGET; per the v2.1 sheet (A3) the routing doc forbids auto-picking, so the USER must pick the lesson_frame_template_id from the gallery before the [W] fill_text/animate_design steps can bind. The picked template_id is reused as the base for every scene fill in steps 7–10."
+  },
+  {
+   "n": 5,
+   "tool": "font_recommend",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 4"
+   ],
+   "output": "arabic_font_choice — a recommended Arabic-script display+body font pairing legible at 1080p for equations and call-outs",
+   "note": "[C] headless. Pick legibility-appropriate Arabic fonts for the lesson frame so equation glyphs and RTL call-out text render cleanly. Informs the fill_text scenes (7–10) and keeps typographic consistency across all animated scenes (acceptance criterion #2)."
+  },
+  {
+   "n": 6,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 3"
+   ],
+   "output": "bg_preview — an inline preview/confirmation render of the uploaded background plate (bg_urn) so the agent verifies the RTL clear-zone layout before binding scene copy",
+   "note": "[C] headless. Confirm the uploaded mathframe_bg (bg_urn from step 3) renders with the intended large central equation zone + right-hand call-out lane clear, so the four fill_text scenes place Arabic copy without colliding with decoration. Pure verification of an already-produced asset; no generation."
+  },
+  {
+   "n": 7,
+   "tool": "fill_text",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 4",
+    "step 5",
+    "step 1",
+    "step 3"
+   ],
+   "output": "scene1_filled — user-picked template populated with Scene 1 Arabic TEXT copy (problem statement ٢س + ٣ = ١١ and the title) over the bg plate",
+   "note": "[W] interactive-widget: needs the user's gallery-picked templateURN (step 4) — not headless-auto. fill_text is TEXT-ONLY (no image placement, no font/size/color), so it only fills the placeholder Arabic equation/step copy taken from the step-1 lecture structure in the step-5 font; the background identity comes from the template/bg_urn, not from fill_text. This filled design is the sole input to animate_design (11)."
+  },
+  {
+   "n": 8,
+   "tool": "fill_text",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 4",
+    "step 5",
+    "step 1",
+    "step 3"
+   ],
+   "output": "scene2_filled — Scene 2 TEXT copy (isolate the variable: subtract 3 from both sides → ٢س = ٨) with the move-the-constant call-out",
+   "note": "[W] interactive-widget. Second scene TEXT fill on the same user-picked base template, advancing the solve one beat. Reuses template_id (4) and font (5); copy sourced from the step-1 summary. TEXT-ONLY. Feeds animate_design (12)."
+  },
+  {
+   "n": 9,
+   "tool": "fill_text",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 4",
+    "step 5",
+    "step 1",
+    "step 3"
+   ],
+   "output": "scene3_filled — Scene 3 TEXT copy (divide by the coefficient: ٢س ÷ ٢ = ٨ ÷ ٢ → س = ٤)",
+   "note": "[W] interactive-widget. Third scene TEXT fill, the divide-coefficient beat. Same template/font reuse, copy from step 1. TEXT-ONLY. Feeds animate_design (13)."
+  },
+  {
+   "n": 10,
+   "tool": "fill_text",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 4",
+    "step 5",
+    "step 1",
+    "step 3"
+   ],
+   "output": "scene4_filled — Scene 4 TEXT copy (substitute & check: ٢(٤)+٣ = ١١ ✓ — the answer-verification beat)",
+   "note": "[W] interactive-widget. Fourth scene TEXT fill, the substitute-and-check beat satisfying acceptance criterion #3 (learner can solve AND check). Same template/font; copy from step 1. TEXT-ONLY. Feeds animate_design (14)."
+  },
+  {
+   "n": 11,
+   "tool": "animate_design",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 7"
+   ],
+   "output": "scene1_anim.mp4 — animated Scene 1 (title + problem fade/slide-in, equation zoom-in), 1080p, ~22s",
+   "note": "[W] interactive-widget: motion build for Scene 1 from the user-picked filled design (7). animate_design turns the static Express scene into a motion-graphics clip. ~22s so the four scenes (~88s) plus interleaved B-roll land the picture near 115–120s before mux (duration reconciliation). Output is a scene clip consumed by video_resize (16) then the LOCAL ordered weave in step 18."
+  },
+  {
+   "n": 12,
+   "tool": "animate_design",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 8"
+   ],
+   "output": "scene2_anim.mp4 — animated Scene 2 (the −3 call-out slides in, terms reflow), 1080p, ~22s",
+   "note": "[W] interactive-widget. Motion build for Scene 2 from filled design (8). Animation style/easing must match scene 1 (criterion #2: no style break). ~22s. Consumed by video_resize (16) then the LOCAL weave (18)."
+  },
+  {
+   "n": 13,
+   "tool": "animate_design",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 9"
+   ],
+   "output": "scene3_anim.mp4 — animated Scene 3 (÷2 call-out, coefficient cancels, x resolves), 1080p, ~22s",
+   "note": "[W] interactive-widget. Motion build for Scene 3 from filled design (9). Same animation grammar as 11/12. ~22s. Consumed by video_resize (16) then the LOCAL weave (18)."
+  },
+  {
+   "n": 14,
+   "tool": "animate_design",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 10"
+   ],
+   "output": "scene4_anim.mp4 — animated Scene 4 (substitute, checkmark beat, x=4 emphasized), 1080p, ~22s",
+   "note": "[W] interactive-widget. Motion build for the check-answer Scene 4 from filled design (10). Closes the lesson. ~22s. Consumed by video_resize (16) then the LOCAL weave (18)."
+  },
+  {
+   "n": 15,
+   "tool": "media_enhance_speech",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 3"
+   ],
+   "output": "vo_clean.wav — denoised, leveled, broadcast-clean version of the raw GCC-accent Arabic narration",
+   "note": "[A] async-widget. VO-polish spine step: clean/denoise/level the raw Arabic VOICE recording (vo_raw_urn from step 3) so the GCC accent reads clearly (criterion #1). This is a genuine speech-cleanup use (voice, not music). The enhancement must NOT alter pronunciation/accent. Output is the final narration track and the timing reference for the LOCAL SRT (18); muxed in step 18."
+  },
+  {
+   "n": 16,
+   "tool": "video_resize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 11",
+    "step 12",
+    "step 13",
+    "step 14"
+   ],
+   "output": "scene1-4_resized.mp4 — the four animated scene clips each conformed to an exact 1920×1080 16:9 frame, SAME LENGTH (no trimming), subject-aware",
+   "note": "[A] async-widget. video_resize reframes/resizes to new DIMENSIONS at the SAME LENGTH (no trim, no format convert) — used here only to lock every scene clip (11–14) to the exact 1920×1080 delivery frame BEFORE the local concat, so the master frame spec is guaranteed. NOT used to change length (length changes are handled by the local trim in step 18). Feeds the editable bundle (17) and the local weave (18)."
+  },
+  {
+   "n": 17,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 16",
+    "step 3"
+   ],
+   "output": "editable_source_bundle — the four filled Express designs + four frame-locked scene clips + the boy_urn copied into one CC 'editable project source' folder for the deliverable",
+   "note": "[C] headless. Collect the editable-source deliverable (brief requires editable project source files): copy the frame-locked scene clips (16) and the boy_urn (3) into a single CC project folder alongside the filled designs. Pure asset organization of already-produced artifacts — no generation, no editing. The actual ORDERED WEAVE of scenes + B-roll happens deterministically in the LOCAL step 18 (Quick Cut is NOT used as a sequencer)."
+  },
+  {
+   "n": 18,
+   "tool": "local",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 16",
+    "step 3",
+    "step 15",
+    "step 1"
+   ],
+   "output": "FINAL_arabic_algebra_explainer_2min.mp4 (1080p H.264, exactly 2:00 ±5s, VO muxed) + subtitles_ar.srt (RTL Arabic sidecar)",
+   "note": "[L] local glue (ffmpeg + whisper-style align). Does the work no connector tool can: (a) deterministic ORDERED weave — concat/interleave the four frame-locked scene clips (16) in fixed pedagogical order (problem→isolate→divide→check) with the boy B-roll (boy_urn, 3) as interstitials, no engagement-based reordering; (b) mux the cleaned VO (15); (c) trim/pad a few seconds to land EXACTLY 2:00 ±5s (picture pre-built to ~115–120s so only light trim is needed); (d) build the RTL Arabic .srt by aligning the step-1 transcript text to the cleaned-VO timing locally (the connector has NO timecode/SRT tool). Emits the final master + the separate SRT deliverable."
+  }
+ ],
+ "corrections_applied": [
+  "STEP 17 (was document_render_layout → SRT): REMOVED. document_render_layout is a print/page renderer with no audio input and no timecode capability — it cannot emit a time-aligned RTL .srt. SRT generation moved into the LOCAL step 18 (align step-1 transcript text to the cleaned-VO timing via ffmpeg/whisper locally). New step 17 is asset_copy_assets [C] to assemble the required editable-source bundle.",
+  "STEP 14 (was video_create_quick_cut as deterministic sequencer): REMOVED. Quick Cut is a non-deterministic AI engagement-based highlight selector that may drop/reorder scenes — wrong for an order-critical pedagogical weave. The ordered weave (problem→isolate→divide→check + interleaved boy B-roll, fixed order) now happens deterministically in LOCAL step 18 (ffmpeg concat/interleave). No Quick Cut anywhere.",
+  "RUNTIME MATH reconciled: raised the four animated scenes from 12/14/14/12s to ~22s each (~88s total). With the ~18–25s boy B-roll interleaved, the picture is built to ~115–120s BEFORE mux and the VO re-specced to ~112–118s, so step 18 needs only a few seconds of trim (not ~25s of freeze/pad) to hit exactly 2:00 ±5s. No degrading padding.",
+  "arabic_vo_raw gen_prompt: trimmed the down-roughening language. Removed 'slightly imperfect field recording / faint room ambience / one or two natural breaths' → now 'clean 48kHz studio capture, at most one natural breath' so media_enhance_speech has a light, accent-safe job and accent-preservation (criterion #1) is not jeopardized. Per sheet group D.",
+  "video_resize re-scoped (step 16): explicitly used only for SAME-LENGTH reframe to lock every scene clip to exact 1920×1080 before the local concat — NOT for any length change. Length changes are done by the local trim in step 18. Removed the old 'conform the assembled montage' framing that implied trimming.",
+  "EXEC-MODE tagged every step: media_summarize / media_enhance_speech / video_resize = [A] async-widget; search_design / font_recommend / asset_* / inline_preview / copy_assets = [C] headless; fill_text ×4 + animate_design ×4 = [W] interactive (need user gallery template pick); final mux+weave+SRT = [L] local. headless_doable = false (workflow contains [W] and [A] steps).",
+  "Frame-count / clip-count gap closed: four animate_design clips (11–14) now map 1:1 to four fill_text scenes (7–10) AND all four are explicitly frame-locked to 1920×1080 via video_resize (16) before the local weave, so the four-clip editable deliverable and the single-frame master spec are both satisfied with no missing clip.",
+  "Added asset_inline_preview (step 6) as a real headless verification of the bg plate's RTL clear-zone, and asset_copy_assets (step 17) to satisfy the brief's editable-source deliverable — keeping the workflow long-horizon (12 connector calls) after removing the two misused connector tools.",
+  "tools_used / tool_call_count updated: dropped video_create_quick_cut and document_render_layout; added asset_inline_preview and asset_copy_assets. Still 18 ordered calls, 12 of them connector calls across the express_template_track + video_audio + asset groups.",
+  "Confirmed no A6 [X] capability is used: no gen-fill, no object removal, no text-to-image, no video trim-to-timestamp on a connector, no image→PDF, no PDF merge, no per-artboard export. image_fill_area is not used at all (it was never in this spec)."
+ ],
+ "tools_used": [
+  "media_summarize",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "search_design",
+  "font_recommend",
+  "asset_inline_preview",
+  "fill_text",
+  "animate_design",
+  "media_enhance_speech",
+  "video_resize",
+  "asset_copy_assets",
+  "local"
+ ],
+ "tool_call_count": 18,
+ "exec_mode_summary": "C×6 W×8 A×3 L×1",
+ "headless_doable": false,
+ "groups_covered": [
+  "express_template_track",
+  "video_audio",
+  "asset_storage"
+ ],
+ "iterative_chaining_note": "The chain is genuinely output→input at every hop. Step 1 (media_summarize [A]) converts the reference lecture into a structured solve sequence + rough transcript timings; that single artifact is the source of truth flowing into the template search (4), all four scene fills (7,8,9,10 — each pulls a different solve beat), and the LOCAL SRT build (18). Steps 2→3 turn the four supplied assets into CC URNs that later steps reference: bg_urn → inline preview (6) and the four fill_text scenes (7–10); vo_raw_urn → media_enhance_speech (15); boy_urn → the editable bundle (17) and the LOCAL weave (18). The Express sub-chain is strictly serial: search_design (4) yields the user-picked template_id reused by every fill_text; font_recommend (5) yields a font reused by every fill_text; each fill_text output (7/8/9/10) is the sole input to its matching animate_design (11/12/13/14). The four animation clips are frame-locked together by video_resize (16, same-length reframe), then asset_copy_assets (17) bundles the editable source. The cleaned VO (15) plus the step-1 transcript drive the SRT, and the frame-locked clips (16) + boy_urn (3) + cleaned VO (15) all converge in the single LOCAL ffmpeg step (18) → the ordered 2:00 master + SRT. Nothing is invented mid-chain; every consumed item is the literal output of an earlier numbered step or a named input. No connector tool is asked to do something outside its real capability (no Quick-Cut sequencing, no layout-renderer SRT).",
+ "difficulty_rationale": "Long horizon: 18 ordered calls (12 connector calls across the Express-template, video/audio, and asset-storage groups) with the whole build pivoting on a single derived artifact (the step-1 lecture summary) that must stay coherent across the template search, four separate scene fills, and the local SRT. State tracking is heavy: one user-picked template_id and one font choice are reused across four fill_text calls; four filled designs map 1:1 onto four animate_design calls; four URNs from a two-step upload must be threaded to the right downstream consumers (boy_urn→weave, vo_raw_urn→enhance_speech, bg_urn→fills) — mis-binding any silently breaks the chain. Mixed execution modes raise the bar: the agent must recognize the [W] Express steps need a human gallery pick, the [A] media steps return async widgets, and that the order-critical weave + the timecode SRT are NOT connector-doable and must be done locally — a key correctness trap the original spec failed (it misused Quick Cut as a sequencer and a page-renderer as an SRT emitter). Exact-spec pressure is high and adversarially graded: runtime must land in 2:00 ±5s (picture pre-built to ~115–120s so only light trim is needed), frame must be exactly 1920×1080 (locked per-clip via same-length video_resize), the GCC accent must survive enhancement (an easy place to over-process — the VO is now a near-clean take), live-action and animation must interweave in a FIXED pedagogical order with no style break, and the on-screen math must be correct AND self-checking. The agent must make genuine content judgments (decompose the solve into four beats, write correct RTL Arabic equation copy, align the SRT) rather than just call tools — a wrong number on screen, a flattened accent, or an engagement-reordered weave fails acceptance even if every tool call 'succeeds'.",
+ "id": "F2-11",
+ "slug": "arabic-algebra-explainer",
+ "title": "2-Minute Arabic Algebra Explainer",
+ "vertical": "Education &amp; Children",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/Minute-Arabic-Algebra-Explainer-fix"
+ },
+ "grounding_note": "REAL (verbatim from the original Freelancer.com brief in db_all.json, fulldesc): a concise two-minute educational video teaching linear equations in age-appropriate Arabic with a genuine GCC accent; mixed format of short live-action segments featuring a boy aged 12–15 blended with animated graphics illustrating the algebra steps; client supplies curriculum references, freelancer handles scriptwriting, voice-over, casting/stock for the boy, animation, editing, mastering; vibrant-but-not-distracting style with dynamic call-outs and simple motion graphics; deliverables = final 1080p MP4 exactly 2:00 ±5s, separate Arabic SRT subtitles, and editable project source files; acceptance criteria = (1) spoken Arabic matches a modern GCC accent throughout, (2) live-action and animation interwoven with abrupt cuts/style inconsistencies rejected, (3) by the end a learner can solve a one-variable linear equation and check the answer. ENRICHED (added to make it an honest ≥12-call connector workflow, faithful to what the brief implies): the specific worked example (2x+3=11 → x=4) and the five-beat solve decomposition are invented illustrative content consistent with 'a basic linear equation' and the 'solve and check' criterion; binding the build to an Adobe Express animated lesson-frame template (search_design→fill_text→animate_design, tagged [W] because the gallery pick is a human step) is the connector-feasible realization of the brief's 'animated graphics / motion graphics' ask, not a client-named tool (the client only named After Effects/Premiere/Animate); using media_summarize on the supplied reference lecture to structure the script operationalizes the client's 'I will supply any curriculum references you need'; the four-scene split, ~22s scene durations, the Arabic font-recommend step, the bg inline-preview check, the editable-source copy step, and the final LOCAL ffmpeg weave+mux+SRT are workflow enrichments. CORRECTED per capability sheet v2.1: the ordered weave and the timecode SRT are done LOCALLY (no Quick-Cut sequencer, no layout-renderer SRT). The mixed live-action+animation requirement, GCC accent, exact 2:00 runtime, separate SRT, and editable-source deliverables are all REAL.",
+ "one_line_ask": "Deliver a 2:00 (±5s) 1080p Arabic algebra explainer that interweaves live-action footage of a 12–15-year-old boy with four animated Express lesson-frame scenes solving and checking 2x+3=11 in a fixed pedagogical order, narrated in a clean modern-GCC-accent Arabic VO, plus a separate RTL Arabic SRT and the editable scene/source artifacts.",
+ "full_brief": "Context: A client is commissioning a concise, two-minute educational video that teaches linear (one-variable) equations in clear, age-appropriate Arabic delivered with a genuine GCC (Gulf) accent. The piece is explicitly a MIXED format: short live-action segments featuring a boy aged 12–15, blended seamlessly with animated graphics that illustrate the algebra steps. The client will supply curriculum references; the freelancer handles scriptwriting, voice-over, casting/stock for the boy, animation, editing, and final mastering. The visual style must stay vibrant and engaging without distracting from the math — dynamic call-outs and simple motion graphics that walk a viewer through solving one basic linear equation and checking the answer.\\n\\nThe exact ask: deliver a finished explainer built on an Adobe Express animated lesson-frame template. Use the supplied reference lecture to derive the precise solving sequence (problem → isolate the variable → divide by the coefficient → state x → substitute and check). Produce four animated scenes (one per solve beat) carrying Arabic equation/step copy, interweave them IN A FIXED PEDAGOGICAL ORDER with the live-action boy footage into a single cut, lay the polished Arabic narration over the picture, and master to spec.\\n\\nHow the connector workflow realizes it (execution-mode honest): media_summarize [A] structures the reference lecture; the four scenes are TEXT-filled on a single user-picked Express template (search_design [C] returns the gallery, the user picks, fill_text [W] fills text only, animate_design [W] adds motion); media_enhance_speech [A] cleans the VOICE-only VO without altering the accent; video_resize [A] frame-locks every scene clip to 1920×1080 at the SAME length; and the ORDER-CRITICAL weave of the four scenes with the boy B-roll, the VO mux, the final exact-duration trim, AND the timecode RTL Arabic SRT are all done LOCALLY [L] with ffmpeg/alignment, because no connector tool sequences deterministically or emits time-aligned subtitles. The picture is pre-built to ~115–120s so only a light trim lands the exact 2:00.\\n\\nConstraints / deliverables: (1) Final 1080p MP4 (1920×1080, H.264), runtime exactly 2:00 ±5 sec. (2) A SEPARATE Arabic SRT subtitle file (RTL, timed to the VO, built locally). (3) Editable source / scene artifacts for future edits (the four filled Express designs and the four frame-locked per-scene animation clips, bundled via asset_copy_assets). Acceptance criteria, all enforced: spoken Arabic matches a modern GCC accent throughout (and is NOT flattened by cleanup); live-action and animation are interwoven in a fixed order with NO abrupt cuts or style inconsistencies (style breaks are a reject); and by the end a learner can solve a one-variable linear equation AND check the answer.",
+ "inputs": [
+  {
+   "name": "reference_lecture_clip",
+   "kind": "video",
+   "gen_model": "veo-3.0-generate-001",
+   "gen_prompt": "A real Gulf-Arab math teacher (man, late 30s, neatly trimmed beard, wearing a plain light-grey kandura or a simple buttoned shirt) standing at a whiteboard in a modest school classroom, explaining how to solve a one-variable linear equation in spoken Modern Standard Arabic with a genuine GCC/Khaleeji accent. He writes '2x + 3 = 11' on the whiteboard with a marker and talks through isolating x, dividing, and checking the answer. Documentary classroom realism: natural fluorescent-plus-window mixed lighting, slight whiteboard glare, real marker squeak, a few students' heads visible out of focus in the foreground, authentic skin texture with visible pores and stubble, natural hand movement holding the marker with a correct five-fingered grip, no glossy CGI sheen. Native 1080p, native audio with the teacher's real voice and faint room tone. 35–45 seconds.",
+   "realism_notes": "Used only as a STRUCTURE/script reference (fed to media_summarize) — never appears in the final cut, so its audio just needs intelligible Khaleeji Arabic and a correct on-board solve. Demand authentic classroom acoustics and a real teacher cadence, not a polished studio read; whiteboard handwriting must show the actual equation so the summary can recover the solve beats. Per sheet group D, native 1080p veo-3.0 with native audio.",
+   "used_in_steps": [
+    1,
+    2,
+    3
+   ]
+  },
+  {
+   "name": "arabic_vo_raw",
+   "kind": "audio",
+   "gen_model": "gpt-4o-mini-tts",
+   "gen_prompt": "A warm, friendly young-adult MALE narrator reading an Arabic explainer script for a kids' math video, in a modern GCC (Gulf/Khaleeji) accent — encouraging teacher-to-student tone, clear diction, moderate pace suitable for 12–15 year olds. Script walks through: the problem (٢س + ٣ = ١١), subtract 3 from both sides, divide both sides by 2, x = 4, then substitute back to check (٢×٤ + ٣ = ١١). Clean 48 kHz studio capture, at most one natural breath; do NOT distort, down-roughen, or alter the accent or pronunciation. ~112–118 seconds of speech to fit the 2:00 master.",
+   "realism_notes": "This is the narration SPINE. Per sheet group D it is a near-clean 48kHz studio take (no deliberate roughening) so media_enhance_speech (step 15) performs only light leveling/denoise, NOT literal audio-repair, keeping the GCC accent fully intact — accent integrity is acceptance criterion #1. Re-specced to ~112–118 seconds so it aligns with the ~115–120s picture and lands the 2:00 master with only a light trim.",
+   "used_in_steps": [
+    2,
+    3,
+    15
+   ]
+  },
+  {
+   "name": "liveaction_boy_clip",
+   "kind": "video",
+   "gen_model": "veo-3.1-generate-preview",
+   "gen_prompt": "Candid live-action footage of a real Gulf-Arab boy aged 12–15 sitting at a tidy home desk, a notebook and pencil in front of him, working through a math problem and reacting with a small 'aha' smile when he gets it. Several short usable beats: looking at the page thinking, writing, nodding, glancing up to camera. Documentary realism — natural window daylight, authentic child skin texture with fine flyaway hairs, real individual hair strands, correct hands holding the pencil with five fingers, natural blink and micro-expressions, slightly handheld framing. No CGI gloss, no uncanny smoothing. Native 1080p, native ambient audio (pencil on paper, faint room tone). 18–25 seconds of varied B-roll.",
+   "realism_notes": "This is the live-action half of the brief's mandatory mixed format. It must intercut with the animated scenes without a style break (acceptance criterion #2), so the grade and framing should feel like everyday classroom/home footage, not a stylized ad. Reused as the upload URN (3), in the editable-source bundle (17), and as the interleaved B-roll element in the LOCAL ordered weave (18). Per sheet group D, native 1080p veo-3.1.",
+   "used_in_steps": [
+    2,
+    3,
+    17,
+    18
+   ]
+  },
+  {
+   "name": "mathframe_bg",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A clean, vibrant but uncluttered background plate for a children's math explainer video, 1920×1080, designed for RTL Arabic on-screen text. Soft pastel gradient (teal-to-cream) with faint, subtle floating math glyphs (plus, minus, equals, a few Arabic-Indic numerals ٠١٢٣) at low opacity in the corners, leaving a large clear central zone for an equation and a clear right-hand lane for Arabic call-outs. Flat modern vector look, friendly, high legibility, no English text, no logos.",
+   "realism_notes": "Provides a consistent backing plate so the four animated scenes share one visual identity (supports the 'no style inconsistency' criterion). Text-bearing/Arabic-numeral art → gemini-3-pro-image per sheet group D. Large empty central + right lane is deliberate so fill_text copy and call-outs never collide with decoration; verified by the inline preview in step 6 and consumed by the four fill_text scenes (7–10).",
+   "used_in_steps": [
+    2,
+    3,
+    6,
+    7,
+    8,
+    9,
+    10
+   ]
+  }
+ ],
+ "outputs": [
+  {
+   "name": "FINAL_arabic_algebra_explainer_2min.mp4",
+   "kind": "video",
+   "spec": "1920×1080, H.264 MP4, ~24–30 fps, runtime EXACTLY 2:00 ±5s, cleaned GCC-accent Arabic VO muxed; live-action boy footage interwoven IN FIXED ORDER with 4 animated solve scenes. Picture pre-built to ~115–120s so only a light local trim is applied.",
+   "rubric_hook": "Annotator checks: runtime lands in 1:55–2:05; resolution is exactly 1920×1080; VO is intelligible modern-GCC Arabic with accent preserved (not flattened/robotic); live-action and animation interweave with no abrupt style break and in the correct pedagogical order (problem→isolate→divide→check); the on-screen math correctly solves AND checks 2x+3=11 → x=4."
+  },
+  {
+   "name": "subtitles_ar.srt",
+   "kind": "data",
+   "spec": "Separate sidecar .srt, UTF-8, RTL Arabic text, well-formed cue timing aligned to the cleaned VO, covers the full 2:00. Built LOCALLY in step 18 by aligning the step-1 transcript text to the VO (no connector layout/render tool is used).",
+   "rubric_hook": "Annotator checks: file is valid SRT, Arabic renders RTL correctly, cue timings track the spoken narration (no drift > ~0.5s), and the subtitle text matches the spoken solve steps including the check beat."
+  },
+  {
+   "name": "scene1-4_anim.mp4 (four per-scene animation clips)",
+   "kind": "video",
+   "spec": "Four 1080p MP4 clips, one per solve beat (problem / isolate / divide / substitute-and-check), each ~22s, frame-locked to 1920×1080 (via video_resize, same length), consistent animation grammar and shared background identity.",
+   "rubric_hook": "Annotator checks: four distinct clips exist, each shows the correct beat with correct Arabic equation copy in RTL, motion is consistent across all four (same easing/style), each is exactly 1920×1080, and together they form a coherent pedagogical progression."
+  },
+  {
+   "name": "scene1-4_filled (editable Express designs)",
+   "kind": "data",
+   "spec": "The four filled Express lesson-frame designs (TEXT-only fills on one shared user-picked template), retained — bundled via asset_copy_assets — as the editable source artifacts for future edits.",
+   "rubric_hook": "Annotator checks: all four are the SAME base template with only text varied; Arabic copy per scene is correct and editable; font is consistent; this satisfies the brief's 'editable project source files' deliverable."
+  }
+ ],
+ "reverify": {
+  "severity": "minor",
+  "residual_issues": [
+   "animate_design over-spec: v2.1 A3 only promises 'add motion to the user-picked Express design' — it does NOT guarantee a controllable ~22s duration or a 1080p MP4 export. The runtime math (4 scenes x ~22s = ~88s, picture pre-built to 115-120s) depends on per-scene duration control the sheet never grants. The duration target is an assumption, not a sheet-backed capability.",
+   "font_recommend -> fill_text linkage is loose: sheet A3 says fill_text is 'text only — no font/size/color/align', so the recommended Arabic font (step 5) cannot be applied via fill_text. Steps 7-10 notes still say copy renders 'in the step-5 font'. Font can only realize through the picked template, not the fill_text call; the spec half-acknowledges this but the wording overstates fill_text's reach.",
+   "Imprecise count claim: spec says '12 connector calls' but there are actually 17 connector calls (12 unique tools) plus 1 local = 18 ordered calls. The flagship >=12 bar is met either way, but the '12 connector calls' label conflates unique-tool-count with call-count.",
+   "[A]/[W] retrievability caveat is correct (headless_doable=false) but worth flagging: every load-bearing media step (media_summarize, media_enhance_speech, video_resize) and all 8 Express steps are [A]/[W], i.e. product-only and not retrievable in an autonomous headless harness — the deliverable is 'express'/product-doable, never 'full'. Spec states this correctly; no error, just the inherent dependency on a human gallery pick + product widgets for ~14 of 18 steps."
+  ]
+ }
+}

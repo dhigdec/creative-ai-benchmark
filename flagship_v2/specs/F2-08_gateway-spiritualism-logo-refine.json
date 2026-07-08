@@ -1,0 +1,379 @@
+{
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "original_artwork_concept"
+   ],
+   "output": "upload_session + presigned URL for the client's attached 'Gateway Spiritualism' cover-art PNG",
+   "note": "Begin pulling the client-attached source artwork into CC storage so downstream tools can reference it by URN. This is the 'use as inspiration/source material' asset the brief mandates (used as visual reference only, never traced)."
+  },
+  {
+   "n": 2,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 1",
+    "original_artwork_concept"
+   ],
+   "output": "asset_urn_original (CC-stored URN for the source cover art)",
+   "note": "Finalize the upload to a durable URN. Reused as the 'before' reference tile on the concept board (step 17). It is INSPIRATION only — no later step background-removes-and-traces it, satisfying the brief's 'do not reuse verbatim' rule."
+  },
+  {
+   "n": 3,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "distilled_mark_render"
+   ],
+   "output": "upload_session + presigned URL for the freshly distilled minimalist gateway mark PNG",
+   "note": "Upload the NEW distilled mark (generated as an input asset from the brand_voice_notes preserve/forbidden arrays, using the original only as visual reference). This is the genuine 'refinement' the brief requires — a re-drawn distillation, NOT a verbatim trace of the attached art. Resolves the phantom 'refined_mark_render' dangling reference by making the refined mark a real, defined asset."
+  },
+  {
+   "n": 4,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 3",
+    "distilled_mark_render"
+   ],
+   "output": "asset_urn_distilled (CC-stored URN for the distilled refined mark raster)",
+   "note": "Finalize the distilled mark to a durable URN. This refined raster is the input to vectorization (step 5) and the 'after' tile on the board (step 17)."
+  },
+  {
+   "n": 5,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 4"
+   ],
+   "output": "gateway_mark.svg (clean scalable vector of the refined gateway + abstract-eye icon)",
+   "note": "Convert the REFINED distilled raster (not the original cover art) into a clean SVG — delivers the 'fully scalable vector' icon the brief requires and is the master geometry reused for the layout lockups, the board tile, and the animation base downstream. image_vectorize returns SVG only."
+  },
+  {
+   "n": 6,
+   "tool": "font_recommend",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "brand_voice_notes"
+   ],
+   "output": "type_recommendation (2-3 elegant minimalist serif/humanist pairings for wordmark + tagline)",
+   "note": "Satisfies deliverable #3 'Typography recommendations for Gateway Spiritualism.' Reads the brand_voice_notes JSON for tone. The chosen pairing is carried as the brand type into the rendered layout lockups (steps 11/12) and the Express card fill (step 9)."
+  },
+  {
+   "n": 7,
+   "tool": "asset_search",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "brand_voice_notes"
+   ],
+   "output": "palette_reference assets (calm, restrained spiritual tones — deep indigo / warm stone / off-white)",
+   "note": "Pull restrained reference swatches to lock a 'calm, elegant, timeless' palette (no psychedelic/New-Age clichés). The palette tokens inform the rendered variation sheet (step 11) and appear on the board (step 17)."
+  },
+  {
+   "n": 8,
+   "tool": "search_design",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "brand_voice_notes"
+   ],
+   "output": "business_card_template gallery (Express templates, 3.5x2in card) for the user to pick",
+   "note": "MUST-EXERCISE (Express product track). Returns a gallery of elegant minimalist business-card Express templates. Per the corrected sheet this renders a gallery WIDGET; the user picks one templateURN before fill_text can run. Headless this returns templates but the pick is interactive — tagged [W]."
+  },
+  {
+   "n": 9,
+   "tool": "fill_text",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 8",
+    "step 6"
+   ],
+   "output": "business_card_filled (front: 'Gateway Spiritualism' wordmark + name/role; back: mantra line)",
+   "note": "MUST-EXERCISE (Express product track). Fills the user-picked card's placeholder TEXT with the wordmark and brand mantra ('Awakening through the inner passage'). fill_text is TEXT-ONLY — it does NOT place the gateway_mark.svg; the mark sits in the template art or in the rendered lockups (steps 11/12). Tagged [W]: needs the user's gallery selection."
+  },
+  {
+   "n": 10,
+   "tool": "change_background_color",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 9",
+    "step 7"
+   ],
+   "output": "business_card_filled_recolored (card background set to the restrained indigo/stone palette token)",
+   "note": "Recolor the picked Express card background to the locked palette so the applied card matches brand. Express recolor is an interactive product step on the user-picked design — tagged [W]."
+  },
+  {
+   "n": 11,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 5",
+    "step 6",
+    "step 7"
+   ],
+   "output": "logo_variations_sheet.pdf (one InDesign .indd → PDF: primary stacked, horizontal lockup, icon-only, B/W, each on light + dark)",
+   "note": "Deterministically lay out the full variation matrix from a GENUINE .indd, placing the step-5 vector mark + step-6 type + step-7 palette: 'refined primary,' 'simplified icon,' 'horizontal + stacked,' 'B/W,' on 'light and dark backgrounds.' This is where the vector mark is actually PLACED as art (fill_text can't do that). document_render_layout exports a single PDF directly — no separate convert/merge step needed."
+  },
+  {
+   "n": 12,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 5",
+    "step 6",
+    "step 7"
+   ],
+   "output": "letterhead_lockup.pdf + horizontal_lockup.png (A4 stationery .indd → PDF/PNG: icon + 'Gateway Spiritualism' wordmark + tagline)",
+   "note": "Render the A4 horizontal lockup stationery from a genuine .indd, placing the vector mark + type + palette. Produces the print-ready letterhead PDF AND a flat horizontal-lockup PNG that becomes the animation base in step 13. Mark placement happens here via real layout, not via fill_text."
+  },
+  {
+   "n": 13,
+   "tool": "animate_design",
+   "server": "adobe",
+   "exec_mode": "W",
+   "inputs_from": [
+    "step 12"
+   ],
+   "output": "brand_intro_anim (gentle gateway-opening reveal of the horizontal lockup, ~5s, 1920x1080)",
+   "note": "MUST-EXERCISE (Express product track). Adds a calm fade/zoom 'doorway opens' reveal to the horizontal lockup → the YouTube/podcast video intro. animate_design takes a SINGLE design/template URN (the step-12 lockup); it does not consume a second separate mark input. Tagged [W]: Express motion is an interactive product step."
+  },
+  {
+   "n": 14,
+   "tool": "video_resize",
+   "server": "adobe",
+   "exec_mode": "A",
+   "inputs_from": [
+    "step 13"
+   ],
+   "output": "brand_intro_anim_square (1:1 reframe of the 16:9 intro for Substack/podcast/social, SAME length)",
+   "note": "Subject-aware REFRAME of the 16:9 intro to 1:1 — same length (video_resize does not trim). Tagged [A] async-widget: the connector accepts the job and the product's progress widget polls + notifies; in an autonomous headless harness the result is not retrievable, so for my own execution I reframe/mux locally with ffmpeg (see local_reframe_mux step). No trimming is requested, so video_resize is the correct same-length tool here."
+  },
+  {
+   "n": 15,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 9",
+    "step 11",
+    "step 12"
+   ],
+   "output": "preview_thumbs for the filled card, the variation sheet, and the letterhead lockup",
+   "note": "Render previews of the applied card and the rendered logo/letterhead PDFs so they can be embedded as correctly-framed board tiles in the next step."
+  },
+  {
+   "n": 16,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 5",
+    "step 11",
+    "step 12"
+   ],
+   "output": "normalized copies of the vector master, variation sheet PDF, and letterhead PDF gathered for boarding + delivery",
+   "note": "Copy the key static deliverables into a working location so the board (step 17) and delivery folder (step 18) reference stable URNs. Pure headless asset management — [C]."
+  },
+  {
+   "n": 17,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2",
+    "step 4",
+    "step 5",
+    "step 7",
+    "step 15",
+    "step 16"
+   ],
+   "output": "GatewaySpiritualism_ConceptBoard (Firefly Board deep-link: original-vs-refined mark, palette, type, applied card + rendered lockups; animation shown as a thumbnail still)",
+   "note": "MUST-EXERCISE. Assemble ONE concept board presenting assets already produced: original URN (step 2, the 'before' inspiration) vs the distilled mark URN (step 4, 'after'), the vector master (step 5), palette (step 7), and the applied/rendered previews (step 15) via the copied URNs (step 16). Honest use = present produced assets; the board does not itself generate art, and the motion intro appears as a thumbnail still (not playing video)."
+  },
+  {
+   "n": 18,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 5",
+    "step 11",
+    "step 12",
+    "step 16"
+   ],
+   "output": "/GatewaySpiritualism delivery folder (vector master, variation-sheet PDF, letterhead PDF organized for handoff)",
+   "note": "Organize the final scalable vector + PDF deliverables into one CC folder for the 'editable source files + full ownership handoff' the brief requires. Closes the input→delivery loop."
+  },
+  {
+   "n": 19,
+   "tool": "local_reframe_mux",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 13"
+   ],
+   "output": "brand_intro_16x9.mp4 (1080p) + brand_intro_1x1.mp4 (1080x1080) — retrievable final motion files",
+   "note": "Local ffmpeg glue: take the animate_design reveal export and produce the retrievable 16:9 master plus a subject-aware 1:1 square reframe (centered lockup, same ~5s length, no trim). This is the [L] fallback the corrected sheet mandates because the connector video step (14) returns async results not retrievable in an autonomous harness."
+  }
+ ],
+ "corrections_applied": [
+  "RESOLVED phantom dangling input: removed undefined 'refined_mark_render' from the vectorize step; added a real, defined input asset 'distilled_mark_render' (a NEW minimalist mark generated from the brand_voice_notes preserve/forbidden arrays, original used only as visual reference) and a genuine upload→finalize→vectorize chain (steps 3-5). The vectorize input is now an actually-refined raster.",
+  "FIXED brief constraint conflict (verbatim-trace): the chain no longer background-removes-and-traces the original cover art. The original is uploaded as INSPIRATION only (steps 1-2, used on the board as 'before'); the vectorized master comes from the freshly distilled mark, satisfying 'treat as inspiration, do not reuse verbatim' and the rubric_hook.",
+  "REMOVED fill_text image-placement misuse: steps formerly claiming fill_text 'carries the gateway_mark.svg' / 'places the icon mark' are corrected — fill_text now sets TEXT only (wordmark + mantra). All vector-mark PLACEMENT moved to document_render_layout steps (11, 12) which place the SVG as real layout art.",
+  "REMOVED document_convert_pdf merge misuse: dropped the convert-PDF step entirely; document_render_layout already exports a single PDF from a genuine .indd, so no separate convert/merge is needed (document_convert_pdf cannot merge multipage anyway).",
+  "REPLACED removed letterhead/social Express fill+render pattern with genuine .indd layout renders for the logo variation sheet and the A4 letterhead lockup (where the mark must actually be placed), keeping the Express track only for the business card text fill, recolor, and the animated intro.",
+  "TAGGED every step with an exec_mode: headless-confirmed asset/vector/layout/board steps = C; Express search_design/fill_text/change_background_color/animate_design = W (needs a user gallery pick); video_resize = A (async-widget, not retrievable headless); added a local ffmpeg reframe/mux step = L for the retrievable final motion files.",
+  "video_resize kept ONLY as a same-length 1:1 REFRAME (no trimming requested), and explicitly annotated as [A] with the local ffmpeg [L] fallback (step 19) because async connector video results are not retrievable in an autonomous harness.",
+  "CORRECTED animate_design dependency: it now consumes a SINGLE design URN (the step-12 lockup); removed the false 'also consumes the step-4 mark as a separate input' claim.",
+  "FIXED create_firefly_board overclaims: tagged [C] as an honest 'present assets already produced' step, routed the uploaded source PNG via its CC URN (step 2), and noted the animation appears as a thumbnail still rather than playing motion. Removed reliance on it placing the mark into templates.",
+  "CORRECTED gateway_mark.svg output spec: it is the SVG vector master only; AI/EPS/PNG are downstream desktop exports, not connector outputs.",
+  "UPDATED inputs[]: every input.used_in_steps now references steps that truly consume it — original_artwork_concept used only as inspiration (steps 1,2,17); added distilled_mark_render (steps 3,4,5,17); brand_voice_notes drives font_recommend/asset_search/fill_text (steps 6,7,9).",
+  "KEPT long-horizon: 18 connector calls (+1 local) across asset_stock_storage, document_layout, express_template_track, and firefly_board groups with genuine output→input chaining; corrected groups_covered and tools_used to match the new chain."
+ ],
+ "difficulty_rationale": "This stays hard for an agent on every axis the flagship bar cares about, now without misrepresenting capabilities. (1) Long horizon: 18 ordered connector calls plus a local mux across four capability groups (asset/stock/storage, document/layout, Express template track, Firefly board) with real output→input dependencies — the vector master from step 5 must be threaded through the layout renders, the board, and the delivery folder, and the distilled-mark input must be uploaded, finalized, and vectorized in the right order. (2) Heavy state tracking and reuse: two separate uploaded URNs (original-as-inspiration in step 2, distilled-mark in step 4), one vector master (step 5), one type recommendation (step 6), and one palette (step 7) are each reused downstream; the agent must keep the original strictly as a 'before' reference and never feed it into vectorization. (3) Exact-spec pressure: a precise deliverable matrix (primary + simplified icon, horizontal + stacked, B/W, light + dark, 3.5x2in card, 1080x1080 social, A4 letterhead, 1920x1080 then 1:1 intro) mapped to the right tool and size without inventing capabilities. (4) Constraint adherence under taste: the client's long forbidden list (no literal/occult/psychedelic/all-seeing eye, not loud/flashy/corporate/life-coach) plus the 'refine, do not trace verbatim' rule means a naive agent fails — the corrected chain forces a genuinely distilled NEW mark prompted from the preserve/forbidden arrays rather than a background-removed trace. (5) Tool discipline under the corrected capability reality: fill_text is text-only (mark placement must go to document_render_layout), animate_design takes one URN, video_resize is same-length async (needs a local reframe for a retrievable file), and create_firefly_board only presents produced assets. The agent must also pick the right execution mode for each step (C vs W vs A vs L). The combination of a long chain, mandated reuse, a forbidden-aesthetic minefield, a strict deliverable matrix, and correct execution-mode discipline makes both autonomous/interactive execution and human scoring demanding.",
+ "exec_mode_summary": "C×13 W×4 A×1 L×1",
+ "full_brief": "Gateway Spiritualism is a spiritual/philosophical project (podcasting, writing, Substack articles, YouTube videos and public-facing content) centered on inner change, emotional honesty, and awakening from self-judgment and endless self-improvement. The client already has an existing logo/artwork concept (attached) but it reads as symbolic cover art, not a true brand identity. They explicitly do NOT want a new concept from scratch and do NOT want any piece of the original reused verbatim — instead, refine and distill the existing imagery into a professional, elegant, timeless logo and brand symbol that works cleanly across Substack, podcast profiles, YouTube, business cards, social media, and website branding. The core symbolism to PRESERVE is: gateway/doorway (must remain central), awakening, awareness/perception, transformation, and inner passage/transition. The eye-as-awareness idea may be used only if abstract, elegant, subtle and integrated into the gateway — never a literal/realistic eye, and never anything occult, psychedelic, conspiracy-oriented, fantasy/New-Age cliché, or 'all-seeing-eye.' The brand must feel thoughtful, emotionally intelligent, spiritually reflective, calm, elegant, minimalist, timeless, and quietly profound — and must NOT feel loud, flashy, corporate, 'life-coach,' mystical-fantasy, overly New Age, or visually busy. Visual style: clean lines, negative space, restrained elegance, symbolic simplicity, modern minimalist spirituality; the mark must stay recognizable and powerful at small sizes.\\n\\nDeliverables requested by the client: (1) a refined primary logo; (2) a simplified icon/symbol version; (3) typography recommendations for 'Gateway Spiritualism'; (4) versions for light and dark backgrounds. File deliverables: a fully scalable vector master (SVG), transparent PNG exports, horizontal and stacked logo variations, black-and-white versions, a social profile/icon version, a business-card-compatible version, typography/font recommendations, and logo files suitable for both web and print. Ownership: full commercial and proprietary rights to all final approved artwork plus editable source files. The client also asks: avoid stock icons and recycled logo templates; treat the attached artwork as inspiration/source rather than reusing it directly.\\n\\nThe long-horizon, execution-mode-aware version asks the freelancer to take this through one continuous chain. HONEST CAPABILITY POSTURE (per the corrected connector sheet): the original artwork is ingested only as INSPIRATION; a NEW distilled minimalist gateway mark is generated as an input asset (prompted from the brand_voice_notes preserve/forbidden arrays, using the original purely as visual reference), uploaded, and vectorized into a single scalable SVG master — this honors 'refine, do not trace verbatim.' Brand type is recommended and a restrained palette is locked. The refined identity is then APPLIED two ways: (a) on the Adobe Express PRODUCT track [W] — the user picks a business-card template from the search_design gallery, fill_text sets the wordmark + mantra TEXT (text only — it never places the mark), and change_background_color sets the brand palette; (b) via genuine InDesign .indd layout renders [C] — document_render_layout PLACES the vector mark + type + palette to produce the full light/dark + horizontal/stacked + B&W variation sheet PDF and the A4 letterhead lockup (this is where the mark is actually composited, because fill_text cannot place an image). A gentle 'doorway-opening' brand reveal is animated on the Express lockup [W]; a 1:1 reframe is requested via video_resize [A, async] with a local ffmpeg [L] reframe/mux as the retrievable fallback (same length, no trim). Finally everything already produced — original-vs-refined mark, palette, type, applied card, rendered lockups, and the motion intro (as a thumbnail still) — is assembled into one Firefly concept board [C] for client review, with all static finals organized in a CC delivery folder [C].",
+ "grounding_note": "REAL (verbatim from the client's fulldesc in db_all.json): the project name 'Gateway Spiritualism'; that it spans podcasting, writing, Substack, YouTube and public-facing content about inner change/emotional honesty/awakening; that an existing logo/artwork concept is attached and must be REFINED not replaced (and not reused piece-by-piece); the requirement that it work across Substack, podcast profiles, YouTube, business cards, social media, website branding; the core symbolism to preserve (gateway/doorway central, awakening, awareness/perception, transformation, inner passage); the eye guidance (abstract/elegant/subtle/integrated, NOT literal/occult/psychedelic/conspiracy/New-Age-cliché/all-seeing-eye); the overall feeling and the explicit 'do NOT feel' list; the visual style notes; small-size recognizability; the four numbered asks (refined primary logo, simplified icon, typography recommendations, light/dark versions); the file-deliverable list (scalable vector, transparent PNG, horizontal + stacked, B&W, social profile/icon, business-card, web+print); the ownership/editable-source requirement; and the 'avoid stock icons/recycled templates' note. The listed source tools are Premiere Pro + Illustrator (consistent with a logo + a video intro). ENRICHED (implied, not literally stated): the candidate brand mantra/tagline copy used in fill_text ('Awakening through the inner passage' is an illustrative placeholder the agent should confirm with the client); the exact animation spec (gentle doorway-opening reveal, ~5s, 1920x1080 plus a 1:1 reframe) — the brief implies YouTube/video use and lists Premiere Pro but does not specify a motion-logo, so the animated brand intro is an enrichment justified by the YouTube/podcast scope; applying the identity onto a specific Express card and InDesign letterhead/variation layout and presenting it on a Firefly concept board — the brief asks for a business-card-compatible and social-profile version and review-ready deliverables, so applied mockups and a single review board are a faithful long-horizon expansion. The restrained palette (indigo/stone/off-white) is an illustrative interpretation of the stated 'calm/elegant/timeless' direction. CAPABILITY-HONESTY (per corrected sheet): the distilled mark is generated as an INPUT asset (no text-to-image tool exists on the connector); image_vectorize outputs SVG only; fill_text is text-only; the vector mark is placed via document_render_layout; video_resize is same-length async with a local ffmpeg fallback; create_firefly_board only presents already-produced assets.",
+ "groups_covered": [
+  "asset_stock_storage",
+  "document_layout",
+  "express_template_track",
+  "firefly_board"
+ ],
+ "headless_doable": false,
+ "id": "F2-08",
+ "inputs": [
+  {
+   "name": "original_artwork_concept",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A symbolic spiritual 'cover-art' style illustration for a project called 'Gateway Spiritualism' — the kind of slightly busy, painterly concept art a client would have made first and now wants refined. Centered composition of an ancient stone doorway / archway opening onto a soft glowing dawn, with a very subtle abstract eye-like shape suggested in the negative space of the arch (NOT a literal realistic eye, NOT an all-seeing eye, no occult or conspiracy symbols). Muted contemplative palette of deep indigo, warm stone grey, and pale dawn light. Hand-illustrated texture, gentle gradients, a little visually busy and uneven on purpose so it reads as 'cover art that needs distilling into a real logo.' Square format, no text, no lettering anywhere in the image.",
+   "realism_notes": "This is the client's ATTACHED source artwork, so it should look like an authentic first-pass concept/cover illustration — slightly over-designed, textured, painterly, NOT a clean finished logo. Deliberately imperfect/busy so it reads as something needing distillation. Absolutely no embedded text and no literal eye, to respect the brief's prohibitions. Used ONLY as visual inspiration and as the 'before' tile on the board — never background-removed-and-traced.",
+   "used_in_steps": [
+    1,
+    2,
+    17
+   ]
+  },
+  {
+   "name": "distilled_mark_render",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A clean, minimalist, professional LOGO MARK distilled for 'Gateway Spiritualism', drawn fresh from a brand brief (using only the general motif of the attached cover art as loose inspiration, NOT copied). A single elegant gateway/doorway silhouette as the central form, with an abstract awareness/eye suggestion formed subtly by the negative space of the arch — minimal line weight, generous negative space, geometric restraint. Calm timeless feel; deep-indigo monochrome on a clean off-white field. NO literal/realistic eye, NO all-seeing-eye, NO occult/psychedelic/conspiracy/fantasy/New-Age clichés, nothing loud/flashy/corporate. Must read clearly at small (favicon) size. Flat, crisp, vector-ready edges, centered, transparent-friendly, no text, no lettering.",
+   "realism_notes": "This is the GENUINELY REFINED mark — a re-drawn distillation, not a trace of the original — generated from the brand_voice_notes preserve/forbidden arrays with the original used only as loose visual reference. Clean and vector-ready so image_vectorize produces a crisp SVG master. This asset is what makes the chain honor the brief's 'refine / inspiration only / no verbatim reuse' rule and resolves the spec's former phantom 'refined_mark_render' reference.",
+   "used_in_steps": [
+    3,
+    4,
+    5,
+    17
+   ]
+  },
+  {
+   "name": "brand_voice_notes",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Write a short JSON brand brief for 'Gateway Spiritualism' capturing the client's stated direction: an array of 'preserve' symbols (gateway/doorway central, awakening, awareness/perception, transformation, inner passage), a 'forbidden' array (literal realistic eye, occult, psychedelic, conspiracy, fantasy/New-Age cliché, all-seeing-eye, loud, flashy, corporate, life-coach, visually busy), a 'feeling' array (thoughtful, emotionally intelligent, spiritually reflective, calm, elegant, minimalist, timeless, quietly profound), a candidate tagline/mantra string, and a 'platforms' array (Substack, podcast, YouTube, business card, social, website). Keep it faithful to a calm minimalist spiritual brand; no marketing hype.",
+   "realism_notes": "A small structured brief that is the single source of truth for tone and forbidden directions. It drives the distilled-mark generation prompt, font_recommend, the palette asset_search, and the mantra copy in fill_text. Plain JSON, realistic field names, values lifted from the real client description.",
+   "used_in_steps": [
+    6,
+    7,
+    9
+   ]
+  }
+ ],
+ "iterative_chaining_note": "The chain is genuinely output→input with the original kept strictly as inspiration. The client's attached artwork is uploaded (1) and finalized to a URN (2) used ONLY as the 'before' reference on the board (17) — it is never vectorized, honoring 'inspiration not verbatim.' Separately, a NEW distilled mark (input asset, prompted from brand_voice_notes) is uploaded (3), finalized to a URN (4), and vectorized (5) into gateway_mark.svg — the single scalable master. font_recommend (6) and the palette asset_search (7) read brand_voice_notes and produce type + palette tokens. On the Express PRODUCT track, search_design (8) returns a card-template gallery; the user-picked template feeds fill_text (9, TEXT only — wordmark + mantra) then change_background_color (10, palette). The vector mark is actually PLACED by genuine InDesign layout: document_render_layout (11) consumes step-5 mark + step-6 type + step-7 palette to build the light/dark + horizontal/stacked + B&W variation-sheet PDF, and document_render_layout (12) renders the A4 letterhead lockup PDF plus a flat horizontal-lockup PNG. That lockup feeds animate_design (13) → the ~5s 16:9 brand intro; video_resize (14) requests the 1:1 reframe (async [A]); a local ffmpeg reframe/mux (19) produces the retrievable 16:9 + 1:1 final mp4s (same length, no trim). asset_inline_preview (15) renders board tiles from the filled card (9) and rendered PDFs (11,12); asset_copy_assets (16) normalizes the vector master + PDFs for stable URNs. create_firefly_board (17) pulls the original URN (2, 'before'), the distilled-mark URN (4, 'after'), the vector master (5), palette (7), and the applied previews (15) via the copied URNs (16) into ONE review board, with the animation shown as a thumbnail still. asset_create_folders (18) gathers the vector master (5), the two rendered PDFs (11,12) and the copied URNs (16) into the delivery folder. The vector master threaded from creation (5) to board (17) to folder (18) is the spine; the original is the parallel 'inspiration' branch that never contaminates the refined output.",
+ "one_line_ask": "Distill the client's attached 'Gateway Spiritualism' cover-art (inspiration only) into a freshly re-drawn, vector-clean minimalist logo system (primary, icon, horizontal/stacked, B&W, light/dark), apply it to a real Express business card and InDesign letterhead/variation lockups, animate a gentle doorway-opening brand intro (16:9 + a 1:1 reframe), and present the whole refined identity on a single Firefly concept board with an organized delivery folder — every step execution-mode tagged.",
+ "outputs": [
+  {
+   "name": "gateway_mark.svg",
+   "kind": "vector",
+   "spec": "Clean scalable SVG (vector master) of the refined gateway + abstract-eye icon, single-path-friendly, works mono and full-color, legible down to ~32px favicon size. AI/EPS/transparent-PNG are downstream DESKTOP exports of this master, not connector outputs (image_vectorize returns SVG only).",
+   "rubric_hook": "Is the mark a faithful REFINEMENT distilled from the attached artwork as INSPIRATION (gateway/doorway central, awareness implied subtly) — a freshly re-drawn mark, NOT a from-scratch unrelated concept and NOT a verbatim background-removed trace of the original? Does it avoid every forbidden direction (no literal/occult/psychedelic/all-seeing eye, not busy)? Is it truly vector-clean and legible at small size?"
+  },
+  {
+   "name": "logo_variation_guide.pdf",
+   "kind": "pdf",
+   "spec": "Single PDF rendered from a genuine InDesign .indd: primary stacked logo, horizontal lockup, icon-only, black-and-white version, each on light AND dark backgrounds, plus the recommended type pairing. The vector mark is PLACED as layout art (document_render_layout), not via fill_text. Web+print suitable, single PDF (no separate convert/merge step).",
+   "rubric_hook": "Does the sheet contain ALL required variations (primary, simplified icon, horizontal, stacked, B&W, light + dark) derived from the one vector master and PLACED via real layout, with typography matching the font_recommend output? Is spacing/alignment clean and print-usable?"
+  },
+  {
+   "name": "applied_card_and_letterhead",
+   "kind": "image",
+   "spec": "The applied business card (Express template, user-picked, 3.5x2in / 1050x600px @300dpi) with wordmark 'Gateway Spiritualism' + mantra TEXT filled via fill_text and the background recolored to palette, PLUS the A4 letterhead horizontal lockup (1050px-wide PNG and PDF) rendered via document_render_layout with the vector mark placed. Card text is fill_text (text-only); the mark on the card lives in the chosen template art, and the mark on the letterhead is placed by layout render.",
+   "rubric_hook": "On the card, is the filled text exactly the brand wordmark + mantra with no layout breakage (fill_text text-only)? On the letterhead, is the refined vector mark placed correctly via layout (not claimed through fill_text)? Do both still feel calm/minimalist/timeless rather than flashy/corporate?"
+  },
+  {
+   "name": "brand_intro_16x9.mp4",
+   "kind": "video",
+   "spec": "~5s 1920x1080 (16:9) gentle 'doorway-opening' reveal of the horizontal lockup — soft fade/zoom, calm pacing, ends on the static lockup. For YouTube/website. Produced via animate_design [W] on the Express lockup; the retrievable file is finalized by the local ffmpeg mux [L].",
+   "rubric_hook": "Is the motion gentle and on-brand (calm, quietly profound — not loud/flashy)? Does it reveal the actual refined horizontal lockup and resolve to a clean hold frame? Correct 1920x1080 / ~5s spec?"
+  },
+  {
+   "name": "brand_intro_1x1.mp4",
+   "kind": "video",
+   "spec": "~5s 1080x1080 (1:1) subject-aware reframe of the 16:9 intro for podcast apps / Substack / square social. SAME length and motion, lockup kept centered and uncropped. Requested via video_resize [A, async, same-length — no trim]; the retrievable square file is produced by the local ffmpeg reframe [L] because async connector video is not retrievable in an autonomous harness.",
+   "rubric_hook": "Is the square reframe subject-aware (mark/lockup not cut off), same duration as the 16:9 master (no trimming), and visually consistent with it?"
+  },
+  {
+   "name": "GatewaySpiritualism_concept_board",
+   "kind": "data",
+   "spec": "Firefly Boards deep-link presenting already-produced assets: original artwork (before, inspiration) vs the distilled refined mark (after), the palette, the type pairing, the applied card + rendered letterhead/variation lockups, and the animated intro shown as a thumbnail STILL — laid out as one client-review concept board. The board presents produced assets; it does not generate art.",
+   "rubric_hook": "Does the board tell the refine story (before→after, original-as-inspiration vs distilled mark) and assemble every key artifact (mark, palette, type, applied card+lockups, motion thumbnail) coherently in one deep-link for client review?"
+  },
+  {
+   "name": "delivery_folder",
+   "kind": "data",
+   "spec": "CC storage folder /GatewaySpiritualism containing the vector master (SVG), the logo-variation PDF, and the A4 letterhead PDF, organized for an editable-source + full-ownership handoff. (The final mp4 motion files are produced by the local ffmpeg step and added on handoff.)",
+   "rubric_hook": "Are the static final deliverables (scalable vector master, variation PDF, letterhead PDF) present and organized in one folder consistent with the brief's editable-source/ownership handoff requirement?"
+  }
+ ],
+ "slug": "gateway-spiritualism-logo-refine",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=Refine%20Existing%20Logo%20into%20Elegant%20Spiritual%20Brand%20Identi"
+ },
+ "title": "Refine Existing Logo into Elegant Spiritual Brand Identity",
+ "tool_call_count": 19,
+ "tools_used": [
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "image_vectorize",
+  "font_recommend",
+  "asset_search",
+  "search_design",
+  "fill_text",
+  "change_background_color",
+  "document_render_layout",
+  "animate_design",
+  "video_resize",
+  "asset_inline_preview",
+  "asset_copy_assets",
+  "create_firefly_board",
+  "asset_create_folders",
+  "local_reframe_mux"
+ ],
+ "vertical": "Music, Film, Publishing & Media",
+ "reverify": {
+  "severity": "minor",
+  "residual_issues": [
+   "Step 8 search_design is tagged [W], but the sheet labels it '[C-ish]' (it DOES return real templates+URNs headless; only the downstream pick is interactive). Tagging the whole step [W] is defensible since the gallery selection gates fill_text/animate, but it slightly overstates search_design's own dependency. Minor, not a capability violation.",
+   "Steps 11/12 assert a 'GENUINE .indd' exists for document_render_layout. Per sheet A2 that is the correct/required input, but the spec never specifies where this .indd originates (it is neither an offline-generated input asset like the PNGs nor a connector output). Provenance gap, not a misuse — render-from-genuine-.indd is valid and no convert-PDF shortcut is claimed.",
+   "tools_used array lists 16 distinct tools and omits local_reframe_mux's [L] nature is fine, but document_render_layout appears once though used twice (11,12) and asset_initialize/finalize_file_upload each appear once though used twice (1/3 and 2/4) — cosmetic dedup in the array, not an error.",
+   "Mantra copy 'Awakening through the inner passage' is flagged as an ENRICHED placeholder, which is honest, but it is fed into fill_text (step 9) as if confirmed; acceptable since grounding_note discloses it as illustrative."
+  ]
+ }
+}

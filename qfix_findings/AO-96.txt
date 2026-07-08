@@ -1,0 +1,5 @@
+REASONS: CANVAS-extension
+
+ISSUES:
+- Plate-transparency inconsistency: outputs lower_third_bar_plate.png and callout_badge_plate.png are specified as 'transparent-background' plates, but the workflow (steps 16-19) builds them by taking the graded end-card JPG as canvas, selecting a region with image_select_by_prompt, and solid-filling it with image_fill_area. Filling a region on an opaque photo yields an opaque photo with a colored region, not a transparent-background PNG plate. The stated output (transparent PNG) does not match what the described technique actually produces. Fix by either building the plates on a transparent/new canvas or dropping the 'transparent-background' claim.
+- Minor realism note (already acknowledged in the spec's reverify): media_summarize is oriented toward narration/dialogue, but the primary video inputs are silent UI screen captures; only the b-roll carries ambient audio. The summarize step is framed as flow/talking-point summarization steered by the messaging CSV, so it stays in-bounds, but it is a slight stretch of the tool's typical use.

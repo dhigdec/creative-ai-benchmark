@@ -1,0 +1,395 @@
+{
+ "spec": {
+  "connector_workflow": [
+   {
+    "n": 1,
+    "tool": "asset_create_folders",
+    "server": "adobe",
+    "inputs_from": [],
+    "output": "CC storage tree: /tsi-poultry/{photos_raw, photos_clean, brand, data, templates, renders, deliverables}",
+    "note": "Establish the working folder structure in CC storage so every later upload/render has a stable home and the agent can track state across a long run."
+   },
+   {
+    "n": 2,
+    "tool": "asset_add_file",
+    "server": "adobe",
+    "inputs_from": [
+     "price_list.csv",
+     "sku_copy.json",
+     "tsi_logo.png",
+     "brand_palette.json",
+     "client_rough_mockup.pdf",
+     "winch_photo_01..75 (75 raw product JPEGs)"
+    ],
+    "output": "CC URNs for the data files, brand assets, client mockup, and all 75 raw product photos",
+    "note": "Bulk-ingest every provided input into CC storage. The 75 raw photos plus the CSV/JSON spec are the spine of the whole job; their URNs are reused by nearly every downstream step."
+   },
+   {
+    "n": 3,
+    "tool": "document_convert_pdf",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2"
+    ],
+    "output": "Rasterized pages of client_rough_mockup.pdf (PNG per page) for layout reference",
+    "note": "Extract the client's rough mockup to images so the agent can read the implied grid/columns/hierarchy it must honor as 'a direction we like' before designing the template."
+   },
+   {
+    "n": 4,
+    "tool": "font_recommend",
+    "server": "adobe",
+    "inputs_from": [
+     "step 3",
+     "brand_palette.json"
+    ],
+    "output": "Brand-appropriate type pairing (technical sans for headers + tabular-figure body) with rationale",
+    "note": "Lock the 'industrial precision' typography for the whole catalog. The chosen families become a fixed parameter referenced by every template render in Phase 1 and the style guide."
+   },
+   {
+    "n": 5,
+    "tool": "image_vectorize",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2"
+    ],
+    "output": "tsi_logo.svg — clean vector TSI Poultry logo for print/repeat placement",
+    "note": "Vectorize the raster logo once so it can be dropped crisply into the master page header on all 12 pages and the cover at any scale (print CMYK safe)."
+   },
+   {
+    "n": 6,
+    "tool": "image_crop_and_resize",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2"
+    ],
+    "output": "75 product photos normalized to a uniform square frame (2000×2000 px, centered subject)",
+    "note": "First pass of the photo-prep loop: every raw shot is inconsistently framed; normalize all 75 to one canonical cell size so the data-merge grid stays perfectly aligned."
+   },
+   {
+    "n": 7,
+    "tool": "image_select_subject",
+    "server": "adobe",
+    "inputs_from": [
+     "step 6"
+    ],
+    "output": "Subject mask for each of the 75 equipment photos (the winch/hoist hardware isolated from the messy 'white' background)",
+    "note": "Select the hardware so the next step can target only the off-white, shadowed, debris-flecked background region for cleanup — feeds image_invert_selection + image_fill_area."
+   },
+   {
+    "n": 8,
+    "tool": "image_invert_selection",
+    "server": "adobe",
+    "inputs_from": [
+     "step 7"
+    ],
+    "output": "Inverted mask = background-only region for each photo",
+    "note": "Flip the subject mask to background so generative fill operates strictly on the dirty backdrop and never touches the product hardware."
+   },
+   {
+    "n": 9,
+    "tool": "image_fill_area",
+    "server": "adobe",
+    "inputs_from": [
+     "step 8",
+     "step 6"
+    ],
+    "output": "75 photos with cast shadows, seams, gaffer-tape marks, and grey gradient removed → true clean pure-white background",
+    "note": "MUST-EXERCISE generative fill. The 'consistent white background' the client provided is actually grimy and uneven; fill_area cleans each cell to print-grade #FFFFFF so the merged pages look like a real spec catalog. This is the core long-horizon photo-prep over many rows."
+   },
+   {
+    "n": 10,
+    "tool": "image_apply_auto_tone",
+    "server": "adobe",
+    "inputs_from": [
+     "step 9"
+    ],
+    "output": "75 tone-corrected photos (consistent exposure/white-point across the set)",
+    "note": "After background cleanup, normalize exposure so galvanized-steel hardware reads uniformly bright across all SKUs — chains to the color step."
+   },
+   {
+    "n": 11,
+    "tool": "image_adjust_color_temperature",
+    "server": "adobe",
+    "inputs_from": [
+     "step 10"
+    ],
+    "output": "75 photos with neutralized white balance (no yellow/blue cast), production-ready cell images",
+    "note": "Final photo-prep pass; the cleaned, toned, neutral images are now the exact image cells the data-merge will pull per SKU. Their URNs are written back into the merge data spec."
+   },
+   {
+    "n": 12,
+    "tool": "asset_add_file",
+    "server": "adobe",
+    "inputs_from": [
+     "step 11"
+    ],
+    "output": "75 finished cell images stored under /photos_clean with stable URNs",
+    "note": "Persist the prepped images so the data-merge template can reference them by URN/filename. Connects the photo pipeline (steps 6–11) to the document pipeline (steps 13+)."
+   },
+   {
+    "n": 13,
+    "tool": "document_render_layout",
+    "server": "adobe",
+    "inputs_from": [
+     "step 4",
+     "step 5",
+     "step 3"
+    ],
+    "output": "page_template.json — the connector-renderable master page spec (header band w/ logo, 2-col product grid, SKU/cross-ref/spec block, footer w/ page#)",
+    "note": "Author the single source-of-truth template that proves the design system (the explicit Phase-1 goal). Built from the recommended fonts, vector logo, and the client mockup's grid. This template is the thing document_merge_data_layout will replicate."
+   },
+   {
+    "n": 14,
+    "tool": "document_merge_data_layout",
+    "server": "adobe",
+    "inputs_from": [
+     "step 13",
+     "price_list.csv",
+     "sku_copy.json",
+     "step 12"
+    ],
+    "output": "~10 laid-out product pages (≈75 SKUs across a 2-col grid), each cell = cleaned photo + name + description + SKU + cross-reference part#",
+    "note": "MUST-EXERCISE primary data-merge. Drives every per-product page from the CSV/JSON spec against the master template, pulling the matching cleaned photo URN per row. This is the long-horizon render-loop the brief implies (75 SKUs)."
+   },
+   {
+    "n": 15,
+    "tool": "document_merge_data_vector",
+    "server": "adobe",
+    "inputs_from": [
+     "step 13",
+     "price_list.csv",
+     "step 5"
+    ],
+    "output": "Per-category spec-sheet / pricing rider pages (vector): cross-reference equivalence table + price-per-qty riders",
+    "note": "MUST-EXERCISE second data-merge on a vector template — generates the crisp, scalable spec/pricing rider sheets (tables, part-number equivalence) that sit alongside the product grid. Purchasing managers care about these part numbers more than aesthetics (per brief)."
+   },
+   {
+    "n": 16,
+    "tool": "document_render_layout",
+    "server": "adobe",
+    "inputs_from": [
+     "step 5",
+     "step 4",
+     "brand_palette.json"
+    ],
+    "output": "Front cover + TOC page + section divider (the non-merged fixed pages)",
+    "note": "Render the hand-built fixed pages (cover, hyperlinked TOC, divider) that bookend the merged product pages to assemble the full ~12-page Phase-1 pilot."
+   },
+   {
+    "n": 17,
+    "tool": "document_convert_pdf",
+    "server": "adobe",
+    "inputs_from": [
+     "step 16",
+     "step 14",
+     "step 15"
+    ],
+    "output": "catalog_print.pdf — single assembled 8.5×11 in catalog, correct trim/bleed, CMYK",
+    "note": "Merge cover + product pages + spec/pricing riders into one ordered PDF and produce the PRINT deliverable (CMYK, bleed) exactly as the brief's Phase-1 deliverable demands."
+   },
+   {
+    "n": 18,
+    "tool": "document_convert_pdf",
+    "server": "adobe",
+    "inputs_from": [
+     "step 17"
+    ],
+    "output": "catalog_web.pdf — compressed, sRGB, hyperlinked-TOC web/email version",
+    "note": "Derive the second required deliverable: the lightweight web/email PDF (sRGB, compressed, clickable TOC) from the same assembled document. Two-format pressure from one source."
+   },
+   {
+    "n": 19,
+    "tool": "document_render_layout",
+    "server": "adobe",
+    "inputs_from": [
+     "step 13",
+     "step 4",
+     "step 5"
+    ],
+    "output": "style_guide.pdf — short template/style guide (grid, type scale, color, logo rules, 'how to add a SKU')",
+    "note": "Produce the final Phase-1 deliverable: the style guide that lets Phase 2 scale. It documents the exact template (step 13), fonts (step 4), and logo (step 5) the agent committed to — closing the 'lock the design system' loop."
+   },
+   {
+    "n": 20,
+    "tool": "asset_copy_assets",
+    "server": "adobe",
+    "inputs_from": [
+     "step 17",
+     "step 18",
+     "step 19",
+     "step 13"
+    ],
+    "output": "/deliverables folder containing print PDF, web PDF, style guide, and editable template spec, organized for handoff",
+    "note": "Final packaging: collect all four deliverables (print PDF, web PDF, style guide, editable template source) into a clean handoff folder — the 'finished file' the client buys."
+   }
+  ],
+  "difficulty_rationale": "This is hard for an agent on five axes. (1) Long horizon with a render-loop: the honest path is 20 connector calls and a per-SKU photo-prep loop applied to all 75 images (steps 6–11 each fan out over the whole set), so the agent must batch and not lose rows. (2) Heavy state tracking across two pipelines that must converge: a photo pipeline (crop→mask→invert→fill→tone→white-balance→re-upload) and a document pipeline (template→two data-merges→assemble→two PDFs→style guide), where the merge (step 14) only works if each cleaned photo URN from step 12 is correctly keyed back to its SKU row in the CSV — one mismatched key silently produces the wrong photo on a page. (3) Many reused assets: the CSV, the vectorized logo, and the recommended fonts are each consumed by 4+ later steps; the 75 photos thread through six steps each. (4) Exact-spec pressure: two output PDFs with different, non-negotiable specs (8.5×11 CMYK with trim/bleed for print vs compressed sRGB with a hyperlinked TOC for web), plus a uniform 2000×2000 cell size so the merged grid stays aligned. (5) Taste-under-constraint judgment: the brief explicitly frames the rough mockup as 'a direction, not a brief' and invites elevation, so the agent must infer an 'industrial precision' design system, encode it once in a connector-renderable template (not a desktop .indd, which the capability sheet flags as non-headless), and then prove it scales — the literal Phase-1 success criterion. Getting any single template parameter wrong propagates across ~10 merged pages.",
+  "full_brief": "TSI Poultry is a multi-branch industrial and poultry-equipment distributor (Louisiana, Oklahoma, Tennessee) building a new catalog for its poultry division. The engagement is two-phase, and this task covers Phase 1, the pilot: the Winching & Suspension Systems catalog — roughly 10–12 pages covering ~75 SKUs in a single product category. The explicit point of Phase 1 is not just a pretty PDF; it is to lock in the design system, typography, and a reusable template that Phase 2 (the full multi-category poultry catalog) will scale from. The client provides everything needed: a rough mockup ('a direction we like, not a brief — genuinely open to your professional take'), a price list with every SKU, description, and cross-reference part number to industry-standard equivalents, a full set of product photography shot 'consistently on white background' (no stock, no reshoots), and brand assets (TSI Poultry logo and color palette). The desired aesthetic is 'industrial precision' — technical-documentation restraint, premium without being precious — for an audience of purchasing managers, integrators, and farm operators who care about specs and part numbers more than decoration but who respect a serious, well-built reference document.\\n\\nThe deliverables are fixed and specific: a print-ready PDF (8.5\\\"×11\\\", correct trim/bleed, CMYK); a web/email PDF (compressed, sRGB, with a hyperlinked table of contents); an editable source template; and a short template/style guide so Phase 2 can scale consistently. The honest workflow is a long-horizon data-merge over the ~75-row spec: design one master page template that proves the system, then drive every per-product page from the CSV/JSON via document_merge_data_layout, generate the cross-reference and price-per-quantity rider sheets via document_merge_data_vector, and — critically — clean up the supplied product photos before placement. The 'consistent white background' photography is in practice grimy and uneven (cast shadows, seams, tape marks, grey gradients), so each of the 75 images must be normalized and have its background generatively cleaned with image_fill_area to reach a true print-grade pure white before it is merged into the grid. The agent must keep every cleaned photo correctly keyed to its SKU row, assemble the fixed pages (cover, hyperlinked TOC, divider) around the merged pages, and export the two PDF formats from one assembled source plus the style guide.",
+  "grounding_note": "REAL (verbatim from the Upwork brief in db_all.json): multi-branch industrial & poultry-equipment distributor across Louisiana/Oklahoma/Tennessee; two-phase engagement; Phase 1 = pilot 'Winching & Suspension Systems Catalog', ~10–12 pages, ~75 SKUs, single category; Phase 1's stated purpose is to lock in the design system, typography, and template that Phase 2 scales from; client provides a rough mockup ('a direction we like, not a brief'), a price list with all SKUs + descriptions + cross-reference part numbers to industry-standard equivalents, a full product-photo set shot on white (no stock/reshoots), and brand assets (TSI Poultry logo + color palette); aesthetic = 'industrial precision'; audience = purchasing managers, integrators, farm operators who care about specs/part numbers; deliverables = print-ready PDF (8.5×11, trim/bleed, CMYK), web/email PDF (compressed, sRGB, hyperlinked TOC), editable source (InDesign preferred, Canva acceptable), and a short template/style guide; budget Hourly $5–$45; tool listed = InDesign. ENRICHED (implied, not stated literally): the specific count of 75 cleaned cell images and the 2000×2000 uniform cell size; the assertion that the 'consistent white' photos are actually dirty and need generative background cleanup via image_fill_area (the brief says they are clean — we enrich this because real distributor product shots almost always need white-point cleanup, and it is the honest reason the must-exercise tool belongs); the explicit split into document_merge_data_layout for product pages vs document_merge_data_vector for spec/pricing rider sheets; the exact folder/URN plumbing; the price-per-quantity rider format. The capability sheet's note that desktop .indd <<field>> data-merge is NOT headless is respected: the editable source is delivered as a connector-renderable template spec, not an .indd, which honors the brief's 'Canva acceptable if cleanly layered' fallback in spirit (layered, scalable, editable).",
+  "groups_covered": [
+   "photo_raster",
+   "document_layout"
+  ],
+  "id": "F2-06",
+  "inputs": [
+   {
+    "name": "price_list.csv",
+    "kind": "data",
+    "gen_model": "gemini-2.5-flash",
+    "gen_prompt": "Generate a realistic B2B industrial catalog price list as CSV for ~75 SKUs in the 'Winching & Suspension Systems' category for poultry-house equipment (winches, hand hoists, cable, snatch blocks, pulleys, brackets, S-hooks, turnbuckles, galvanized chain). Columns: sku, product_name, short_description (1 technical sentence with capacity/material, e.g. '1/4\" galvanized aircraft cable, 7x19 strand, 1,400 lb breaking strength'), long_description, cross_reference_part_no (equivalent industry-standard part numbers, e.g. 'CM Hammerlok 665, Crosby G-209'), unit_price_usd, price_per_100_usd, qty_break_note, category_subgroup, image_filename (winch_photo_01.jpg … winch_photo_75.jpg). Use plausible distributor pricing and real-sounding cross-reference brands (Crosby, CM, Campbell, Cooper). Keep SKUs in a consistent format like TSI-WS-0001.",
+    "realism_notes": "Must read like a real distributor export: consistent SKU scheme, believable capacities/materials, cross-reference brands purchasing managers recognize, two price columns (each + per-100). image_filename column is the join key to the cleaned photos.",
+    "used_in_steps": [
+     2,
+     14,
+     15
+    ]
+   },
+   {
+    "name": "sku_copy.json",
+    "kind": "data",
+    "gen_model": "gemini-2.5-flash",
+    "gen_prompt": "Produce a JSON array keyed by SKU (matching price_list.csv) holding the longer marketing/spec copy that won't fit in the CSV: {sku, spec_bullets:[3-5 technical bullets like working_load_limit, finish, dimensions, standard_compliance], application_note, warranty}. Tone: restrained technical documentation, no marketing fluff, written for integrators and farm operators.",
+    "realism_notes": "Separates short CSV fields from richer per-SKU spec blocks so the layout template has both a compact grid cell and a fuller spec block. SKU keys must exactly match the CSV.",
+    "used_in_steps": [
+     2,
+     14
+    ]
+   },
+   {
+    "name": "tsi_logo.png",
+    "kind": "image",
+    "gen_model": "gemini-3-pro-image",
+    "gen_prompt": "A clean B2B industrial brand logo for 'TSI Poultry', delivered as a flat raster PNG on transparent background: a bold geometric wordmark 'TSI' with a small poultry/feather-and-gear motif, restrained two-color (deep slate navy + safety orange accent), the words 'POULTRY EQUIPMENT' set in a small technical sans beneath. Crisp edges, no gradients, no 3D, looks like a real industrial distributor's logo printed on equipment and catalogs.",
+    "realism_notes": "Provided as raster (as real clients do) so the workflow must vectorize it (step 5). Two-color, print-safe, flat — vectorizes cleanly. Transparent background for header placement.",
+    "used_in_steps": [
+     2,
+     5,
+     13,
+     15,
+     16,
+     19
+    ]
+   },
+   {
+    "name": "brand_palette.json",
+    "kind": "data",
+    "gen_model": "gemini-2.5-flash",
+    "gen_prompt": "Generate a brand palette JSON for TSI Poultry: primary (deep slate navy), secondary (safety orange), neutrals (paper white, warm grey, near-black ink), each with hex, CMYK, and Pantone-equivalent; plus type-color roles (header_ink, body_ink, rule_lines, accent). Industrial, restrained, print-oriented.",
+    "realism_notes": "CMYK + Pantone present because the deliverable is print CMYK with trim/bleed; drives the cover, template, and style-guide color rules.",
+    "used_in_steps": [
+     2,
+     4,
+     13,
+     16
+    ]
+   },
+   {
+    "name": "client_rough_mockup.pdf",
+    "kind": "pdf",
+    "gen_model": "gemini-3-pro-image",
+    "gen_prompt": "A rough, slightly amateur 1-page catalog mockup PDF a non-designer client threw together: a 2-column product grid with placeholder boxes for product photos, product names, SKUs, prices, and a cross-reference line, plus a top band with a logo placeholder and a footer with a page number. Slightly uneven spacing, default-looking fonts, a couple of misaligned boxes — clearly 'a direction we like' rather than a finished design. Convey the intended structure (grid, SKU, cross-ref, spec) without polish.",
+    "realism_notes": "Intentionally rough/misaligned so the agent must elevate it ('taste, not mandate') rather than copy it. Rendered as a PDF page so the workflow extracts it via document_convert_pdf to read the intended grid.",
+    "used_in_steps": [
+     2,
+     3,
+     13
+    ]
+   },
+   {
+    "name": "winch_photo_set (75 raw product JPEGs)",
+    "kind": "image",
+    "gen_model": "gpt-image-2",
+    "gen_prompt": "Photoreal studio product shots of industrial winching & suspension hardware for poultry houses — hand winches, ratchet hoists, galvanized chain, snatch blocks, pulleys, cable spools, turnbuckles, S-hooks, mounting brackets — each on a SUPPOSED white sweep but realistically imperfect: visible soft cast shadows, a faint grey gradient toward the corners, a seam line where the sweep meets the table, occasional bits of gaffer-tape residue or dust, slightly warm/yellow white balance, inconsistent framing and zoom across shots. Real galvanized-steel texture, machining marks, brushed-metal reflections, tiny scratches and oil smudges on the hardware. Documentary product-catalog look, NOT glossy CGI — like a distributor's in-house photographer shot 75 SKUs quickly in one afternoon. Vary the subject per SKU.",
+    "realism_notes": "The deliberate imperfection (shadows, grey gradient, seams, tape residue, warm cast, inconsistent framing) is the whole reason the photo-prep loop and image_fill_area are needed. Real metal texture/scratches keep them photoreal, not CGI. Filenames winch_photo_01..75.jpg join to the CSV image_filename column.",
+    "used_in_steps": [
+     2,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     14
+    ]
+   }
+  ],
+  "iterative_chaining_note": "The two pipelines converge by URN/SKU key. Photo pipeline: raw photos (input) → step 6 crop/resize to a uniform 2000×2000 cell → step 7 subject mask → step 8 inverted (background-only) mask → step 9 image_fill_area cleans the background to true white using the step-6 image + step-8 mask → step 10 auto-tone → step 11 white-balance → step 12 re-upload the finished cells to /photos_clean, yielding stable URNs. Document pipeline consumes the photo pipeline's product: step 13 renders the master template from step 4 fonts + step 5 vector logo + step 3 mockup; step 14 document_merge_data_layout drives ~10 product pages from price_list.csv + sku_copy.json against the step-13 template, pulling the matching step-12 cleaned-photo URN for each SKU row (the join is image_filename↔URN); step 15 document_merge_data_vector builds spec/pricing riders from the same CSV + step-5 logo against the step-13 system. The fixed pages (step 16 cover/TOC/divider) reuse step 5 logo + step 4 fonts + brand_palette. Step 17 document_convert_pdf assembles step 16 + step 14 + step 15 into the CMYK print PDF; step 18 derives the sRGB web PDF from step 17's assembled source; step 19 renders the style guide describing the exact step-13 template + step-4 fonts + step-5 logo; step 20 copies steps 17/18/19/13 into the handoff folder. Reuse is dense: the vectorized logo (step 5) appears in steps 13/15/16/19; the recommended fonts (step 4) in 13/16/19; the CSV in 14/15; each raw photo in six steps (6–11) before its cleaned URN is keyed into the merge at step 14.",
+  "one_line_ask": "Design the 'industrial precision' template for TSI Poultry's pilot Winching & Suspension Systems catalog, generatively clean all ~75 supplied product photos to true white, data-merge them into a ~10–12-page 8.5×11 spread with cross-reference/pricing rider sheets, and deliver a print-ready CMYK PDF, a compressed sRGB web PDF with hyperlinked TOC, the editable template source, and a short style guide for Phase 2.",
+  "outputs": [
+   {
+    "name": "catalog_print.pdf",
+    "kind": "pdf",
+    "spec": "~10–12 pages, 8.5\"×11\" page (8.75\"×11.25\" with 0.125\" bleed all sides), CMYK, 300 dpi image cells, crop/trim marks, ~75 SKUs across a 2-column product grid plus cover, TOC, and spec/pricing rider pages",
+    "rubric_hook": "Annotator checks: correct trim size + bleed + crop marks present; CMYK (not RGB); every SKU cell shows the CORRECT cleaned photo keyed to its SKU (spot-check 10 rows); cross-reference part numbers present and legible; consistent grid alignment across all product pages; logo crisp (vector) in every header."
+   },
+   {
+    "name": "catalog_web.pdf",
+    "kind": "pdf",
+    "spec": "Same page order as print, 8.5\"×11\", sRGB, compressed (target <8 MB), screen-resolution images, working hyperlinked table of contents linking to each section/page, derived from the same assembled source as the print PDF",
+    "rubric_hook": "Annotator checks: file is meaningfully smaller than print PDF; color space is sRGB; TOC links actually jump to the right pages; no crop marks/bleed (web trim)."
+   },
+   {
+    "name": "product_photos_clean (75 images)",
+    "kind": "image",
+    "spec": "75 PNG/JPEG cells, uniform 2000×2000 px, true pure-white (#FFFFFF) seamless background, no cast shadow/seam/tape residue, consistent exposure and neutral white balance, subject centered",
+    "rubric_hook": "Annotator checks a sample: background is genuinely uniform white (no grey gradient/shadow/seam), product edges intact (no over-fill eating the hardware), exposure/white-balance consistent across the set, framing uniform."
+   },
+   {
+    "name": "page_template + style_guide.pdf",
+    "kind": "pdf",
+    "spec": "Editable connector-renderable template spec (the master page/grid) PLUS a short multi-page style guide PDF documenting grid, type scale (chosen fonts), color (hex/CMYK/Pantone), logo usage, and 'how to add a SKU' so Phase 2 scales",
+    "rubric_hook": "Annotator checks: template is genuinely parameterized/reusable (not a one-off page); style guide states the exact fonts, colors, grid, and logo rules actually used in the catalog; instructions would let someone add a SKU to Phase 2 without redesign."
+   }
+  ],
+  "slug": "tsi-poultry-catalog-pilot",
+  "source": {
+   "platform": "Upwork",
+   "url": "https://www.upwork.com/nx/search/jobs/?q=B2B%20Industrial%20Catalog%20Designer%20—%20Poultry%20Equipment%20Pilo"
+  },
+  "title": "B2B Industrial Catalog Designer — Poultry Equipment Pilot + Full Catalog Rollout",
+  "tool_call_count": 20,
+  "tools_used": [
+   "asset_create_folders",
+   "asset_add_file",
+   "document_convert_pdf",
+   "font_recommend",
+   "image_vectorize",
+   "image_crop_and_resize",
+   "image_select_subject",
+   "image_invert_selection",
+   "image_fill_area",
+   "image_apply_auto_tone",
+   "image_adjust_color_temperature",
+   "document_render_layout",
+   "document_merge_data_layout",
+   "document_merge_data_vector",
+   "asset_copy_assets"
+  ],
+  "vertical": "Automotive, Industrial & Agriculture"
+ },
+ "verdict": {
+  "severity": "minor",
+  "real_tools_only": true,
+  "calls_genuine": true,
+  "grounded": true,
+  "io_clear": true,
+  "hq_media": true,
+  "issues": [
+   "FEASIBILITY STRETCH (steps 17/18 PDF assembly): The capability sheet describes document_convert_pdf only as 'image/spec <-> PDF (and PDF page extraction).' Step 17 uses it to MERGE three separate rendered outputs (cover + ~10 merged product pages + vector rider sheets) into one ordered multi-page PDF AND impose print prepress controls (CMYK, 0.125in bleed, crop/trim marks). Multi-document concatenation/imposition and CMYK+bleed+crop-mark control are not stated capabilities anywhere on the sheet. This is the load-bearing print deliverable and its feasibility is asserted, not grounded.",
+   "FEASIBILITY STRETCH (step 18 web PDF derivation): Deriving catalog_web.pdf from the print PDF requires CMYK->sRGB color conversion, compression to <8MB, AND injecting a WORKING hyperlinked internal TOC. document_convert_pdf is not documented to do color-space transform, downsampling/compression, or hyperlink injection. The 'working hyperlinked TOC' (rubric_hook says links must actually jump to the right pages) is the riskiest unsupported claim.",
+   "TYPE MISMATCH (step 19, also latent in 16): document_render_layout is defined as 'render a JSON layout spec -> laid-out page' (a page, not a PDF). Step 19 names its direct output 'style_guide.pdf', skipping the document_convert_pdf step that the rest of the workflow uses to reach PDF. Step 16 correctly outputs 'pages' but step 19 conflates render with PDF export.",
+   "ENRICHMENT INVERTS A STATED BRIEF FACT: The verbatim Upwork brief says photos were shot 'consistently on white background' and explicitly 'no reshoots'; the spec ENRICHES this into 'actually grimy/uneven' to justify the must-exercise image_fill_area (steps 7-9). This is disclosed in grounding_note (honest), but the entire generative-cleanup spine rests on contradicting a real client statement rather than on a stated need.",
+   "METADATA: groups_covered=['photo_raster','document_layout'] declares only 2 groups, but the flagship definition wants >=3 groups and the workflow actually also exercises asset plumbing (create_folders/add_file/copy_assets). The asset group is used but not declared; minor inconsistency between declared coverage and actual coverage.",
+   "REDUNDANCY NOTE (steps 7-9 vs simpler path): isolating subject -> invert -> generative-fill the background to pure white is a valid but roundabout way to reach a clean white cell; image_remove_background (cut to transparent) + flatten on #FFFFFF would reach 'true pure-white background' more directly. Not wrong, but the chain length is partly to inflate the per-photo step count (6 steps x 75 images) for the long-horizon framing."
+  ],
+  "fixes": [
+   "Step 17: change the assembly mechanism to first render each page set via document_render_layout/document_render_vector, then use document_convert_pdf in its supported 'spec -> PDF' direction with a single ordered page-list spec; explicitly state that CMYK/bleed/crop-marks are encoded in that render/convert spec, OR drop the hard CMYK+bleed+crop-mark guarantees to what the connector can verifiably produce. If true print imposition is required, route through the Canva export-design path (sheet section B) and say so.",
+   "Step 18: split the web-PDF derivation so the hyperlinked TOC and sRGB/compression are produced at RENDER time (re-render the assembled pages to a screen/sRGB spec with TOC links baked into the layout), not by post-processing the print PDF through document_convert_pdf. Alternatively note that document_convert_pdf cannot inject internal hyperlinks and move the TOC-link responsibility into document_render_layout's spec.",
+   "Step 19: insert an explicit document_convert_pdf call after document_render_layout (render style-guide pages -> convert to style_guide.pdf), matching the pattern used for the catalog. Change the step-19 output from 'style_guide.pdf' to 'style-guide pages (laid out)' and let a convert step emit the PDF.",
+   "grounding_note: keep the disclosure but reframe the enrichment so it does not flatly contradict the brief — e.g., 'photos shot in-house on white but with the usual uneven white-point/seam/shadow artifacts that need normalization before print,' which justifies image_fill_area without asserting the client lied about clean photos.",
+   "Metadata: update groups_covered to ['photo_raster','document_layout','asset_plumbing'] to reflect actual tool usage and satisfy the >=3-group flagship bar explicitly.",
+   "Optional simplification: if the 6-step-per-photo chain is meant to be genuine rather than count-padding, justify each tonal step (auto_tone AND color_temperature) as addressing a distinct defect; otherwise consider image_remove_background -> flatten-on-white as the cleaner canonical path and reserve fill_area for in-frame defect removal (tape/seam) only."
+  ]
+ }
+}

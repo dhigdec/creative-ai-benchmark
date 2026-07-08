@@ -1,0 +1,185 @@
+{
+  "task_id": 5649,
+  "input_rubrics": {
+    "slab.jpg": [
+      {
+        "id": "slab_in_isslab",
+        "q": "Does the image show a graded trading-card slab (a card sealed inside a rigid clear plastic case with a printed grading label)?",
+        "type": "yesno",
+        "guidance": "Look for the encapsulated card-in-plastic-case form with a label strip across the top reading a grade (here 'ZENITH ASCENT #77 / GEM MINT 10'). A loose raw card or a sealed box would be wrong.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "slab_in_messydesk",
+        "q": "Is the slab shown on a realistic cluttered/used desk (e.g. wood desktop with keyboard and cables, held in a hand) rather than a clean studio sweep or solid backdrop?",
+        "type": "yesno",
+        "guidance": "Background should read as a real iPhone product snapshot: wooden desk surface, black keyboard at top-left, white/black cables, fingers gripping the slab. A seamless white/grey studio background is wrong.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "slab_in_notrademark",
+        "q": "Are there any REAL athlete likenesses or REAL card-brand / grading-company logos (PSA, BGS, SGC, Panini, Topps, Bowman, NFL teams, etc.) visible?",
+        "type": "yesno",
+        "guidance": "Everything should be fictional/generic: grader 'ZENITH ASCENT', player 'KAELEN VANCE', generic green-and-gold uniform with no real team mark, illustrated (not a photo of a real person). Any real trademark or recognizable real player is a fail.",
+        "ideal": "No"
+      },
+      {
+        "id": "slab_in_singlesubject",
+        "q": "Is exactly one slab the clear single subject, well-framed and fully in-frame (not cropped off, not multiple slabs)?",
+        "type": "yesno",
+        "guidance": "One graded slab should dominate the frame with its full outline visible (case corners not cut off). Multiple cards or a slab clipped by the frame edge is wrong.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "slab_in_realism",
+        "q": "Overall, how convincingly does this read as a genuine iPhone product photo of a collectible slab suitable as a background-removal test input?",
+        "type": "likert5",
+        "guidance": "5 = photorealistic slab with believable plastic case reflections, readable label, natural desk lighting and depth of field. Lower for cartoonish, warped case, illegible label, or obviously synthetic artifacts.",
+        "ideal": "5"
+      }
+    ],
+    "box.jpg": [
+      {
+        "id": "box_in_issealedbox",
+        "q": "Does the image show a sealed hobby/trading-card box (a closed rectangular retail product box), not a loose card or a graded slab?",
+        "type": "yesno",
+        "guidance": "Look for a standing 3D rectangular sealed box with printed front artwork and a visible side/top edge (here 'GALACTIC GRIDIRON / SERIES 1'). A flat card or an encapsulated slab would be wrong.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "box_in_messydesk",
+        "q": "Is the box shown on a realistic cluttered/used desk rather than a clean studio sweep or solid backdrop?",
+        "type": "yesno",
+        "guidance": "Background should read as a real desk snapshot: wood desktop with a black keyboard, a grey cable/loop, and a yellow sticky-note pad in view. A seamless white/grey studio background is wrong.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "box_in_notrademark",
+        "q": "Are there any REAL card-brand / manufacturer logos, REAL team/league marks (NFL, Panini, Topps, etc.), or REAL athlete likenesses visible?",
+        "type": "yesno",
+        "guidance": "Branding should be fictional/generic: 'GALACTIC GRIDIRON SERIES 1' with an abstract stained-glass football illustration. No real player photo and no real licensed logo should appear.",
+        "ideal": "No"
+      },
+      {
+        "id": "box_in_singlesubject",
+        "q": "Is exactly one sealed box the clear single subject, standing and fully in-frame (full box outline visible, not cropped off)?",
+        "type": "yesno",
+        "guidance": "One box should dominate the frame with all four front corners and at least one depth edge visible. Multiple boxes or a box clipped by the frame edge is wrong.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "box_in_realism",
+        "q": "Overall, how convincingly does this read as a genuine iPhone product photo of a sealed hobby box suitable as a background-removal test input?",
+        "type": "likert5",
+        "guidance": "5 = photorealistic box with believable 3D form, straight printed front, natural desk lighting/shadow and slight perspective. Lower for warped/melting geometry, gibberish text, or obviously synthetic artifacts.",
+        "ideal": "5"
+      }
+    ]
+  },
+  "output_rubrics": {
+    "slab_cutout.png": [
+      {
+        "id": "slab_out_bgremoved",
+        "q": "Is the original background fully removed, leaving transparency everywhere except the slab (no desk, keyboard, cable, or hand remaining)?",
+        "type": "yesno",
+        "guidance": "On a solid composite (magenta/grey) only the slab should be visible; the colour must show through the entire surrounding area. Any wood, keyboard, cable, or finger left behind is a fail.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "slab_out_subjectintact",
+        "q": "Is the slab fully intact with nothing erroneously clipped (all four case corners, the full label strip, and the whole card preserved)?",
+        "type": "yesno",
+        "guidance": "Check that the cutout did not eat into the slab: case edges, top label band ('ZENITH ASCENT / GEM MINT 10'), and the card art should all be complete. Missing corners or chopped label = fail.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "slab_out_edges",
+        "q": "Are the cutout edges clean — sharp and accurate along the slab outline with no coloured halo, fringe, or jagged stair-stepping?",
+        "type": "likert5",
+        "guidance": "View on magenta/grey: 5 = crisp outline hugging the plastic case, no wood-coloured rim, no glow. Lower for visible halo, leftover-background fringe, ragged or feathered edges. Note the clear-case rim is fine if it traces the slab.",
+        "ideal": "5"
+      },
+      {
+        "id": "slab_out_nobgleftover",
+        "q": "Is any piece of the original background (a sliver of desk, a finger/hand, or a cable) left attached to the subject?",
+        "type": "yesno",
+        "guidance": "Scan the slab's perimeter — especially the bottom and sides where fingers gripped it — for any retained skin, wood, or cable. Any attached background remnant = Yes (a defect).",
+        "ideal": "No"
+      },
+      {
+        "id": "slab_out_alpha",
+        "q": "Is the alpha matte clean (genuine full transparency in the background, solid opacity across the slab, only a thin natural anti-aliased edge band)?",
+        "type": "likert5",
+        "guidance": "5 = background ~fully transparent, slab ~fully opaque, with only a 1-2px partial-alpha edge. Lower for semi-transparent holes in the slab, speckled/partial transparency in the background, or a wide fuzzy alpha border.",
+        "ideal": "5"
+      }
+    ],
+    "box_cutout.png": [
+      {
+        "id": "box_out_bgremoved",
+        "q": "Is the original background fully removed, leaving transparency everywhere except the box (no desk, keyboard, cable, or sticky-note remaining)?",
+        "type": "yesno",
+        "guidance": "On a solid composite (magenta/grey) only the box should be visible; the colour must show through the entire surrounding area. Any wood, keyboard, cable, or sticky-note left behind is a fail.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "box_out_subjectintact",
+        "q": "Is the box fully intact with nothing erroneously clipped (full front face plus the visible top/side depth edge, all corners present)?",
+        "type": "yesno",
+        "guidance": "Check that the cutout kept the whole box including its 3D depth edge and the 'GALACTIC GRIDIRON / SERIES 1' artwork. Chopped corners, a missing top edge, or art eaten away = fail.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "box_out_edges",
+        "q": "Are the cutout edges clean — sharp and accurate along the box's straight rectangular outline with no coloured halo, fringe, or jagged stair-stepping?",
+        "type": "likert5",
+        "guidance": "View on magenta/grey: 5 = crisp straight edges tracing the box silhouette, no wood-coloured rim, no glow, corners stay square. Lower for halo, leftover-background fringe, wavy or feathered edges.",
+        "ideal": "5"
+      },
+      {
+        "id": "box_out_nobgleftover",
+        "q": "Is any piece of the original background (a sliver of desk, the cable, or the sticky-note) left attached to the box, OR is part of the box's real bottom shadow incorrectly retained as background?",
+        "type": "yesno",
+        "guidance": "Scan the box perimeter for retained wood, cable, or sticky-note. The darker bottom-front face is the box's own surface and is fine; only flag actual leftover background. Any remnant = Yes (a defect).",
+        "ideal": "No"
+      },
+      {
+        "id": "box_out_alpha",
+        "q": "Is the alpha matte clean (genuine full transparency in the background, solid opacity across the box, only a thin natural anti-aliased edge band)?",
+        "type": "likert5",
+        "guidance": "5 = background ~fully transparent, box ~fully opaque, with only a 1-2px partial-alpha edge. Lower for semi-transparent holes in the box face, speckled background transparency, or a wide fuzzy alpha border.",
+        "ideal": "5"
+      }
+    ]
+  },
+  "task_rubric": [
+    {
+      "id": "task_ontask",
+      "q": "Is each input-to-output pairing coherent and clearly on-task — a messy-desk collectible photo (slab / sealed box) in, the same product cleanly cut out onto transparency out?",
+      "type": "likert5",
+      "guidance": "5 = both pairs obviously demonstrate background removal on the correct subject with the product preserved. Lower if a subject is swapped, mismatched, or the output doesn't correspond to its input.",
+      "ideal": "5"
+    },
+    {
+      "id": "task_brief",
+      "q": "Would these transparent cutouts satisfy the Pushing Packs brief's background-removal requirement for Shopify product images (clean transparent PNG, subject intact, no leftover background/shadow)?",
+      "type": "likert5",
+      "guidance": "Judge ONLY the background-removal deliverable demonstrated here. 5 = both cutouts are clean, transparent, and upload-ready as cutouts. Do not penalize for the later centering / 2048x2048 / white-fill / handle-naming steps, which are outside this pair's transform.",
+      "ideal": "5"
+    },
+    {
+      "id": "task_deliver",
+      "q": "Would you accept and deliver these two cutouts to the client as the background-removal step of the workflow?",
+      "type": "likert5",
+      "guidance": "5 = ship as-is for the cutout stage; both subjects intact, edges clean, fully transparent. Lower for any visible halo, clipped product, or retained desk/hand that a $2,000-collectible store owner would reject.",
+      "ideal": "5"
+    },
+    {
+      "id": "task_notes",
+      "q": "Notes / what's missing.",
+      "type": "text",
+      "guidance": "Free note: flag any halo/fringe, clipped product, leftover background, semi-transparent holes, or any real trademark in an input. Also note that 2048x2048 centering and white-fill are not yet applied (expected, as this pair is the cutout step only).",
+      "ideal": "edges clean, background fully removed, subject intact, no real trademarks; centering/2048 not part of this step"
+    }
+  ]
+}

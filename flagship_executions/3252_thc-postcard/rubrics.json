@@ -1,0 +1,312 @@
+{
+  "task_id": 3252,
+  "input_assets": [
+    {
+      "key": "postcard_copy",
+      "display": "Approved copy deck (JSON + MD render)",
+      "files": [
+        "input_assets/postcard_copy.json",
+        "input_assets/postcard_copy.md"
+      ],
+      "what_it_is": "The client-approved, word-for-word copy deck for both sides of the postcard — every string on the card (headlines, subhead, stat, bullets, sections, key points, brands, QR labels/URLs, compliance line) must be transcribed from this file, not rewritten.",
+      "items": [
+        {
+          "id": "3252-in-postcard_copy-1",
+          "type": "yesno",
+          "question": "In postcard_copy.json, does the key_points array contain exactly five entries (Delta-9 THC; Hemp-derived; Legal in Missouri; Social alternative to alcohol; Multiple mg/dose options available.) with emphasize=true set ONLY on \"Legal in Missouri\" and emphasize=false on the other four?",
+          "guidance": "Open the JSON and read the key_points array literally. The client said Legal in Missouri 'is THE key point we need to get across', so the emphasis flag must travel with the data — a missing or extra emphasize=true would mis-style the printed pills downstream.",
+          "reference": "Yes — five entries in that order, emphasize=true only on \"Legal in Missouri\". Note the fifth point carries a trailing period (\"Multiple mg/dose options available.\")."
+        },
+        {
+          "id": "3252-in-postcard_copy-2",
+          "type": "likert5",
+          "question": "How faithful is the copy deck to the client work order, character for character — including curly punctuation and the nine brand spellings?",
+          "guidance": "Spot-check the risky strings: front headline \"SERVE WHAT’S NEXT\" must use a curly apostrophe (’, not '); the subhead must read \"...Made with hemp - marijuana’s milder cousin - for a lighter, more buildable buzz.\" with plain hyphens; back_sections[0].desc must keep curly double quotes around “Hightails”; back.qr_label must read \"WHAT’S THE BUZZ ABOUT? THC Drinks Explained - Scan to Watch\"; the brands array must spell CURRNT (six letters, no E), Don’t Be That Dude (curly apostrophe), HiSide (capital S), 8th Wonder (numeral 8). 5 = every string verbatim including punctuation; 3 = one or two minor punctuation slips that would survive print without client pushback; 1 = paraphrased or misspelled brand/headline copy.",
+          "reference": "A 5: every string matches. Verified verbatim: curly apostrophes in SERVE WHAT’S NEXT / marijuana’s / WHAT’S THE BUZZ ABOUT? / Don’t Be That Dude, curly quotes around “Hightails”, all nine brands spelled exactly, compliance_line reads \"21+ only. Hemp-derived Delta-9 THC compliant with the 2018 Farm Bill and Missouri law. Enjoy responsibly.\""
+        },
+        {
+          "id": "3252-in-postcard_copy-3",
+          "type": "text",
+          "question": "Comparing postcard_copy.json against the copy specified in the work order (TASK.md) and the original Upwork brief, list any wording or punctuation divergences you can find (or write 'none').",
+          "guidance": "Diff string by string. Pay attention to terminal punctuation on the fifth key point and on the back QR label — they are the only places the sources disagree.",
+          "reference": "Two sub-character deltas only: (1) key_points[4] \"Multiple mg/dose options available.\" carries a trailing period the original brief bullet lacked; (2) the JSON back.qr_label ends \"Scan to Watch\" with no trailing period, while TASK.md quotes the label as \"...Scan to Watch.\" Everything else, including all nine brand spellings and both URLs (archandprairie.com/trade/product-pricing-guide and /whats-the-buzz/thc-drinks-explained), matches."
+        }
+      ]
+    },
+    {
+      "key": "distributor_logo",
+      "display": "Arch & Prairie wordmark",
+      "files": [
+        "input_assets/distributor_logo.png"
+      ],
+      "what_it_is": "The distributor's own logo (1024x1024, gemini-3-pro-image) — per the brief it 'anchors the front' of the postcard, placed top-left on a cream chip after background removal.",
+      "items": [
+        {
+          "id": "3252-in-distributor_logo-1",
+          "type": "yesno",
+          "question": "Does the wordmark read exactly \"ARCH & PRAIRIE\" over \"BEVERAGE CO.\" (period after CO present) in deep-green serif capitals, with a gold coupe/cocktail-glass motif sitting between the ampersand and \"PRAIRIE\"?",
+          "guidance": "Read every letter — generated logos often drop the period after Co. or garble PRAIRIE. Confirm P-R-A-I-R-I-E is complete and the glass is a separate motif, not a replacement for a letter. (The pipeline's own QC bot wrongly claimed the period was missing — check the pixels yourself.)",
+          "reference": "Yes — both lines are spelled correctly, \"CO.\" includes the period, and the gold coupe with stem sits between \"&\" and \"PRAIRIE\" without deleting any letter."
+        },
+        {
+          "id": "3252-in-distributor_logo-2",
+          "type": "likert5",
+          "question": "How well does this wordmark sell 'craft-spirits importer, not dispensary' — the premium hospitality positioning the brief demands?",
+          "guidance": "The persona palette is deep charcoal-green #18271F + gold/copper accents. Look for: classic serif caps, restrained two-color scheme, a drinks-trade motif (coupe glass), and zero cannabis iconography (no leaf, no smoke). 5 = could sit on a fine-spirits price book unchanged; 3 = premium-ish but with one cheapening element (e.g. the gradient on the glass); 1 = reads like a smoke-shop or clip-art mark.",
+          "reference": "A 5: dark-green serif caps with a gold coupe motif, flat white background, no THC visual cues at all — convincingly a hospitality-trade brand. The slight gold gradient on the glass is the only deviation from a flat premium finish."
+        },
+        {
+          "id": "3252-in-distributor_logo-3",
+          "type": "likert5",
+          "question": "How suitable is this file for the Adobe workflow it feeds — background removal, then placement at roughly 396 px wide on a cream rounded chip?",
+          "guidance": "Check for cutout hazards: is the background pure flat white (it should be); do the thin serif strokes and the slim glass stem stay legible when the 1024 px mark is scaled to chip size; would the gold gradient band on the coupe leave fringing after auto background removal? 5 = clean cut and fully legible at chip size; 3 = legible but fine strokes go fragile; 1 = letters or stem break up.",
+          "reference": "A 5: flat white ground cuts cleanly; on the final front the chip version is crisp and readable, with both text lines and the coupe intact at small size."
+        }
+      ]
+    },
+    {
+      "key": "brand_logos",
+      "display": "Nine THC drink-brand marks",
+      "files": [
+        "input_assets/brand_hiside.png",
+        "input_assets/brand_howdy.png",
+        "input_assets/brand_thc_social.png",
+        "input_assets/brand_stay_cool.png",
+        "input_assets/brand_sup.png",
+        "input_assets/brand_8th_wonder.png",
+        "input_assets/brand_tempters.png",
+        "input_assets/brand_currnt.png",
+        "input_assets/brand_dont_be_that_dude.png"
+      ],
+      "what_it_is": "The nine portfolio brand marks the distributor carries — all must appear, legible, in the back-of-card logo wall after background removal.",
+      "items": [
+        {
+          "id": "3252-in-brand_logos-1",
+          "type": "text",
+          "question": "Transcribe the wordmark text of each of the nine logo files in order (hiside, howdy, thc_social, stay_cool, sup, 8th_wonder, tempters, currnt, dont_be_that_dude) and flag any that do not match the brief's brand list.",
+          "guidance": "The brief list is: HiSide, Howdy, THC Social, Stay Cool, SUP, 8th Wonder, Tempters, CURRNT, Don’t Be That Dude. Two were flagged by the pipeline's QC bot as possible misreads — the rope-script mark (claimed to read 'Heady') and the red script mark (claimed 'Templers'). Read them carefully yourself; script and rope letterforms are the failure-prone ones. Also confirm CURRNT has no E and Don’t keeps its apostrophe.",
+          "reference": "All nine match: HiSide (navy, gray underline swoosh), Howdy (tan rope script — it does read Howdy, not Heady), THC Social (charcoal + teal speech bubble), Stay Cool (navy condensed with light-blue outline), SUP (teal caps over a tan wave), 8th Wonder (black/gold art-deco), Tempters (red/black script with devil-tail arrow — not 'Templers'), CURRNT (charcoal caps, six letters, yellow zigzag through the middle), Don’t Be That Dude (black/orange stacked, apostrophe present)."
+        },
+        {
+          "id": "3252-in-brand_logos-2",
+          "type": "yesno",
+          "question": "Does the CURRNT mark spell exactly C-U-R-R-N-T — six letters with NO letter E — with a yellow-green zigzag line running through the letterforms?",
+          "guidance": "This is the easiest brand to silently 'auto-correct' to CURRENT. Count the letters in the image. The style hint is 'Bold Contemporary'; the zigzag is part of the identity, not a defect.",
+          "reference": "Yes — CURRNT, six letters, no E, with the chartreuse zigzag crossing the R-R-N region."
+        },
+        {
+          "id": "3252-in-brand_logos-3",
+          "type": "likert5",
+          "question": "As a set, how usable are these nine marks for a 3x3 logo wall printed at cells of roughly 1.4 x 0.45 inches — considering cutout cleanliness and small-size legibility?",
+          "guidance": "Judge the worst offenders, not the average: HiSide's thin geometric strokes, Howdy's intricate rope texture, 8th Wonder's fine deco linework, Stay Cool's outline/shadow, Tempters' script flourishes. All nine sit on flat white (good for image_remove_background). 5 = every mark survives at cell size with clean edges; 3 = one or two go mushy or thin but stay identifiable; 1 = several become illegible or cut badly.",
+          "reference": "A 4 is honest: all nine cut cleanly off white and remain identifiable on the final wall, but Howdy's rope detail and 8th Wonder's fine gold lines are at the edge of what 1.4-inch print cells can hold, and HiSide's thin strokes print light."
+        }
+      ]
+    },
+    {
+      "key": "lifestyle_photos",
+      "display": "Lifestyle photography set (bar pour, cooler lineup, patio toast)",
+      "files": [
+        "input_assets/bar_pour.jpg",
+        "input_assets/cooler_lineup.jpg",
+        "input_assets/patio_toast.jpg"
+      ],
+      "what_it_is": "Three gpt-image-2 lifestyle photos (1536x1024): the front hero (bartender pouring an unbranded can), the back header strip source (glowing can cooler), and the back social-proof thumb (three friends toasting cans at a patio dinner).",
+      "items": [
+        {
+          "id": "3252-in-lifestyle_photos-1",
+          "type": "likert5",
+          "question": "How photoreal are the people and surfaces — would a bar GM holding the printed card clock these as AI?",
+          "guidance": "Zoom into the failure zones: the bartender's beard and curly hair strands, his hands and knuckles around the silver can, the pour stream into the rocks glass; in patio_toast, the three faces mid-laugh, the woman's gold hoop earrings and the ring on the right woman's hand, fingers wrapped around three cans clinked together, the noodle plates; in cooler_lineup, can-to-can texture repetition and condensation. 5 = passes as commercial stock at print size; 3 = one visible tell under scrutiny; 1 = obvious AI artifacts (fused fingers, melted text, impossible reflections).",
+          "reference": "A 4-5: all three are strong — believable skin, hair and bokeh string lights. The pipeline judge scored bar_pour 10, patio_toast 10, cooler_lineup 9 (its one nitpick: subtle uniformity of sheen on the far-left cans)."
+        },
+        {
+          "id": "3252-in-lifestyle_photos-2",
+          "type": "yesno",
+          "question": "Are ALL cans visible across the three photos deliberately unbranded — no readable labels, logos or text on any can (per the brief: 'brand marks live in the logo wall, not on the cans')?",
+          "guidance": "Check the silver can in the bartender's hand, every can on the cooler's four shelves (dozens, in many colors), and the three white cans being toasted on the patio. Any legible pseudo-brand or garbled AI text on a can is a fail — it would collide with the real nine-brand portfolio on the card's back.",
+          "reference": "Yes — every can is a clean unlabeled cylinder (matte colors in the cooler, plain silver/white in the hands). No readable or pseudo text on any can."
+        },
+        {
+          "id": "3252-in-lifestyle_photos-3",
+          "type": "likert5",
+          "question": "How well do these three photos fit the specific layout jobs the plan assigns them — bar_pour as a full-bleed front with a dark left scrim and type column, cooler_lineup as a 7:2 header strip, patio_toast as a small warm thumbnail?",
+          "guidance": "bar_pour: is its left side dark/uncluttered enough to take a #18271F scrim plus cream headline type, with the subject weighted right? cooler_lineup: do the glowing shelves survive a brutal 7:2 horizontal crop (the interesting content spans the full height, so much must go)? patio_toast: does it still read 'social proof' when shrunk to ~300 px wide? 5 = all three slot in with no compromise; 3 = one asset fights its crop; 1 = a photo is unusable for its assigned role.",
+          "reference": "A 4: bar_pour is near-ideal (dark left, subject right); patio_toast thumbnails well; cooler_lineup is the compromise — a true 7:2 reframe keeps only one shelf-band of cans (the connector's first crop attempt even fell back to pillarboxing before a retry with point focus succeeded)."
+        }
+      ]
+    },
+    {
+      "key": "qr_codes",
+      "display": "Two real QR codes (pricing guide + explainer video)",
+      "files": [
+        "input_assets/qr_front_pricing.png",
+        "input_assets/qr_back_video.png"
+      ],
+      "what_it_is": "Deterministic, genuinely scannable 444x444 QR codes — front links to the product & pricing guide, back to the 'What's the Buzz' explainer video; the cardinal rule is they get placed, never redrawn.",
+      "items": [
+        {
+          "id": "3252-in-qr_codes-1",
+          "type": "yesno",
+          "question": "Scanning both PNGs with a phone, does qr_front_pricing.png resolve to https://archandprairie.com/trade/product-pricing-guide and qr_back_video.png to https://archandprairie.com/whats-the-buzz/thc-drinks-explained (the urls recorded in postcard_copy.json qr_links)?",
+          "guidance": "Actually scan them from the screen. The two codes must be distinct (they are visually different patterns) and must match their side: pricing on front, video on back. A swapped pair would route bar managers to the wrong asset.",
+          "reference": "Yes — two distinct codes encoding exactly those two archandprairie.com URLs, front=pricing-guide, back=thc-drinks-explained."
+        },
+        {
+          "id": "3252-in-qr_codes-2",
+          "type": "likert5",
+          "question": "How print-robust are these QR files as supplied — module crispness, contrast, and built-in quiet zone at 444x444 px?",
+          "guidance": "Zoom to pixel level: modules should be hard-edged pure black on pure white (no anti-aliasing soup, no JPEG ringing), with a white quiet-zone border of at least 4 modules baked into the file. At 444 px placed near 1.5 inches on a 300dpi card, module size is comfortable. 5 = crisp binary modules + generous quiet zone; 3 = scannable but soft edges or tight quiet zone; 1 = blurry or quiet zone missing.",
+          "reference": "A 5: both are clean library-generated codes — sharp black modules, white ground, visible white margin on all four sides."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "front",
+      "display": "Front artwork (front_7x5.png)",
+      "files": [
+        "outputs/front_7x5.png"
+      ],
+      "asked": "The front face of the double-sided 5x7 postcard — the 5-second 'high-margin revenue stream' pitch with headline, stat, bullets, wordmark and pricing-guide QR.",
+      "items": [
+        {
+          "id": "3252-out-front-1",
+          "type": "yesno",
+          "question": "Is every front copy block rendered verbatim from postcard_copy.json: headline \"SERVE WHAT’S NEXT\" (split SERVE / WHAT’S NEXT with a curly apostrophe), the full subhead ending \"...for a lighter, more buildable buzz.\", stat \"Alcohol consumption in the U.S. is at a 90-year low.\", supporting line \"Consumers still want social experiences - just different options.\", and the three bullets High-margin pours / Repeat purchase behavior / Easy to add to existing menus?",
+          "guidance": "Read each block on the artwork against the JSON character by character. Watch the two traps: a straightened apostrophe in WHAT’S, and any 'helpful' rewriting of the subhead's plain hyphens. Bullet order matters.",
+          "reference": "Yes — all blocks verbatim. The headline apostrophe is curly; the subhead wraps over four lines with the exact hyphen phrasing; the amber callout carries the 90-year-low stat word for word; bullets appear in JSON order with copper dot markers."
+        },
+        {
+          "id": "3252-out-front-2",
+          "type": "likert5",
+          "question": "Does the front deliver the brief's 5-second arm's-length read — 'make a GM see a high-margin revenue stream in five seconds, then scan a QR code'?",
+          "guidance": "Squint test at thumbnail size: the eye should land on SERVE WHAT’S NEXT, then the amber stat bar, then the QR panel. Check craft details: headline left-aligned in the scrim column without touching the photo's bright zones, the amber rule + amber bold stat visibly outranking the body copy, the three bullets aligned with even copper dots, the cream QR panel separated from the bullets (the run logged the left column bottoming at 1446 px vs a 1462 px safe limit — verify nothing collides or clips at the bottom edge). 5 = instant hierarchy, no collisions; 3 = readable but one weak link (e.g. supporting line crowds bullets); 1 = competing focal points or clipped content.",
+          "reference": "A 5 reads: headline -> amber stat -> bullets -> QR in that order at a glance, with the wordmark chip quietly anchoring top-left and clear space everywhere. The delivered front largely achieves this; the subhead is long but subordinated."
+        },
+        {
+          "id": "3252-out-front-3",
+          "type": "likert5",
+          "question": "How well does the treatment of the bar_pour hero photo serve the card — given that the cream QR panel is placed exactly over the region where the bartender's can-pour and glass sit in the source photo?",
+          "guidance": "Compare with input_assets/bar_pour.jpg: in the source, the action is a silver can pouring into a rocks glass. On the final front, judge what survives: you see the bartender's face looking down and the warm backbar, but the pour itself is hidden behind the QR panel, so the image reads 'bartender at work', not 'pouring a THC drink'. Decide how much that costs a card whose product story is the pour. 5 = hero action visible and composition feels intentional; 3 = action obscured but the photo still sells premium bar atmosphere; 1 = the layout visibly buries the point of the photo (e.g. amputated hands or floating glass artifacts).",
+          "reference": "Expect a 3-4: the scrim/typography integration and color grade (connector auto-tone + vibrance) are genuinely premium and nothing looks broken, but the one action moment — the pour — sits behind the QR panel, a real composition trade-off a senior designer might have avoided by mirroring the layout or nudging the crop."
+        },
+        {
+          "id": "3252-out-front-4",
+          "type": "text",
+          "question": "Transcribe the label under the front QR code exactly as printed (including line breaks), and state the color of the panel it sits on.",
+          "guidance": "Zoom into the bottom-right panel. The JSON string is \"Scan for Product & Pricing Guide\" — check the ampersand survived and nothing was appended (no period, no 'today!').",
+          "reference": "\"Scan for Product &\" / \"Pricing Guide\" — two centered lines, dark charcoal-green bold type on a cream (#F4EDDC-family) rounded panel, no trailing punctuation."
+        }
+      ]
+    },
+    {
+      "key": "back",
+      "display": "Back artwork (back_7x5.png)",
+      "files": [
+        "outputs/back_7x5.png"
+      ],
+      "asked": "The back face — 'A NEW KIND OF BUZZ' information side: three product sections, five key-point pills with Legal in Missouri emphasized, the nine-brand logo wall, explainer-video QR, and compliance fine print.",
+      "items": [
+        {
+          "id": "3252-out-back-1",
+          "type": "yesno",
+          "question": "Is \"Legal in Missouri\" the single visually emphasized key point — the only pill with a solid amber (#DCA54C) fill and bold charcoal-green text, while the other four (Delta-9 THC, Hemp-derived, Social alternative to alcohol, Multiple mg/dose options available.) are thin copper-outline pills?",
+          "guidance": "This is the client's number-one acceptance criterion ('THE key point we need to get across'). Count the pills: there must be exactly five (row of three + row of two), and exactly one amber-filled. Also confirm the fifth pill keeps its trailing period from the JSON.",
+          "reference": "Yes — five pills, with Legal in Missouri as the sole amber-filled, bold, slightly larger pill (third in the top row); the other four are outline-only; \"Multiple mg/dose options available.\" prints with its period."
+        },
+        {
+          "id": "3252-out-back-2",
+          "type": "text",
+          "question": "Read the 3x3 logo wall and list the nine brands in row-major order (left to right, top to bottom).",
+          "guidance": "The acceptance criteria require all nine marks placed and legible at print size, and the plan pins the order to the JSON brands array. Name each mark from the pixels — if any cell is ambiguous to you at print scale, say which.",
+          "reference": "Row 1: HiSide, Howdy, THC Social. Row 2: Stay Cool, SUP, 8th Wonder. Row 3: Tempters, CURRNT, Don’t Be That Dude. (Exactly the JSON order; all nine on one white rounded panel.)"
+        },
+        {
+          "id": "3252-out-back-3",
+          "type": "likert5",
+          "question": "Rate the back's information architecture and copy craft: A NEW KIND OF BUZZ header over a copper hairline, the 7:2 cooler photo strip, three product columns (Spirit Bottles / RTD Cans / THC Drops) with arrows and verbatim descriptions, the “Hightails” flourish, and the compliance fine print.",
+          "guidance": "Check each: (a) section descriptions verbatim — \"for shots + cocktails (“Hightails”)\", \"ready-to-drink social beverages\", \"turn any alcohol-free drink into a THC drink\"; (b) the arrows after the section names are drawn copper arrows (the run replaced Futura's missing U+2192 glyph with vector arrows — they should look uniform, not tofu boxes); (c) “Hightails” set in a copper Didot italic as the single typographic flourish; (d) the bottom line reads exactly \"21+ only. Hemp-derived Delta-9 THC compliant with the 2018 Farm Bill and Missouri law. Enjoy responsibly.\" in one uncut line. 5 = all verbatim, columns aligned, strip well-cropped, fine print clean; 3 = copy verbatim but one craft flaw (ragged column alignment, cramped strip); 1 = missing/paraphrased copy or rendering artifacts.",
+          "reference": "A 5: all three descriptions verbatim with uniform drawn copper arrows, the cooler strip showing a glowing band of multicolor cans full-width under the header, “Hightails” in copper italic serif inside curly quotes, and the exact compliance sentence centered along the bottom edge. (Known disclosed nuance: the fine print sits about 89 px from the artwork edge — inside trim but tighter than the usual 0.25-inch safe zone.)"
+        },
+        {
+          "id": "3252-out-back-4",
+          "type": "likert5",
+          "question": "How well does the back QR zone work: the explainer code at its native size on a white panel with the exact three-line label, plus the warmed patio-toast thumbnail as social proof?",
+          "guidance": "The label must read \"WHAT’S THE BUZZ ABOUT? THC Drinks Explained - Scan to Watch\" (curly apostrophe, capital WHAT’S line first). Per the run log the code is placed bit-identical at 444 px — judge what you can see: no rescaling blur, hard module edges, quiet zone of at least 4 modules of white/cream on all sides, and the rounded patio thumbnail below adding warmth without crowding the code. Try scanning the printed-size code off screen. 5 = scans instantly, label verbatim, panel uncluttered; 3 = scannable but tight margins or label line-broken awkwardly; 1 = blurred/rescaled code or wrong label.",
+          "reference": "A 5: crisp native-resolution code on a white rounded panel, generous quiet zone, label verbatim over three lines (\"WHAT’S THE BUZZ ABOUT?\" / \"THC Drinks Explained - Scan\" / \"to Watch\"), patio thumbnail neatly rounded beneath."
+        }
+      ]
+    },
+    {
+      "key": "print_pdf",
+      "display": "Print-ready PDF + delivery README",
+      "files": [
+        "outputs/postcard_print_5x7.pdf",
+        "outputs/README.md"
+      ],
+      "asked": "Deliverable 1: the double-sided 5x7 print-ready PDF with 0.125-inch bleed and crop marks; the README documents the asked-vs-produced mapping, including the editable-source handoff.",
+      "items": [
+        {
+          "id": "3252-out-print_pdf-1",
+          "type": "yesno",
+          "question": "Does the PDF contain exactly two pages (front, then back) on an oversized slug — pages of 546 x 402 pt (7.583 x 5.583 in) — with corner crop marks marking a 7 x 5 inch trim, the marks offset OUTSIDE the 0.125-inch bleed, and artwork color extending past the trim line on all four sides?",
+          "guidance": "Open the PDF at high zoom on each corner: you should see a white slug border, short horizontal+vertical tick marks that do not touch the artwork, and the charcoal-green/cream artwork bleeding past where the tick marks indicate the cut. Confirm page 1 is the SERVE WHAT’S NEXT front and page 2 the cream back. Marks overlapping the bleed area would risk printing inside the finished card.",
+          "reference": "Yes — 2 pages at 546x402 pt, four corner tick pairs per page aligned to the 7x5 trim, marks clear of the bleed, and the artwork (identical to front_7x5.png / back_7x5.png at 2175x1575 @300dpi) bleeding 0.125 in beyond trim."
+        },
+        {
+          "id": "3252-out-print_pdf-2",
+          "type": "likert5",
+          "question": "The run discloses that this PDF was assembled locally with PIL (the Adobe connector has no image-to-PDF tool) and is RGB raster at 300dpi — no PDF/X-4, no ICC/CMYK separation, no vector type. Given the brief asked for a 'print-ready PDF for professional printing', how acceptable is this file as delivered?",
+          "guidance": "Judge like a print buyer: 300dpi raster with bleed + crop marks is accepted by most short-run digital printers (they convert RGB in their RIP), but offset/prepress shops expect CMYK PDF/X with vector text for crisp small type — the 26 px compliance line is the most exposure-sensitive element. Weigh that the limitation is disclosed honestly in README 'Honest limitations' rather than hidden. 5 = perfectly adequate for the postcard's realistic print path, disclosure complete; 3 = usable but the client would likely incur a prepress conversion step; 1 = misrepresented as press-ready or technically broken.",
+          "reference": "A 3-4 is the honest range: dimensionally correct (bleed, trim marks, 300dpi) and transparently documented, but RGB raster-only — fine for a digital gang-run printer, short of true prepress PDF/X with live type."
+        },
+        {
+          "id": "3252-out-print_pdf-3",
+          "type": "likert5",
+          "question": "Does README.md honestly and completely map every asked deliverable to what was produced — in particular, is the missing editable Adobe Express/Canva source clearly flagged as a human-handoff gap rather than glossed over?",
+          "guidance": "The work order asked for (1) print-ready PDF, (2) editable source for SKU rotation, (3) an orientation recommendation, (4) the 24-48h/3-day timeline. Check the README's asked->produced table covers all four, states 'not produced — human handoff' for the Express source, offers compose_3252.py + postcard_copy.json as the interim regenerable source, gives the landscape-7x5 recommendation with a rationale, and notes same-day delivery within both windows. 5 = complete, accurate, nothing oversold; 3 = mostly accurate with one vague row; 1 = claims something exists that doesn't.",
+          "reference": "A 5: the README table covers all asked rows, explicitly marks the editable Express source 'not produced — human handoff', explains SKU rotation via editing postcard_copy.json and re-running compose_3252.py, and lists four honest limitations (RGB PDF, no Express source, 89 px fine-print clearance, 1536 px photo sources)."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "3252-task-1",
+      "type": "likert5",
+      "question": "End to end: would Arch & Prairie Beverage Co. accept this package and pay the invoice, measured against their seven acceptance criteria (verbatim copy, Legal-in-Missouri emphasis, 9 legible logos, both QRs with exact labels, 5x7 + bleed + crop marks + PDF + editable source, premium hospitality look with compliance fine print, timeline)?",
+      "guidance": "Score the contract, not the aesthetics alone. Six of seven criteria are checkable on the pixels/PDF; the seventh (editable source) is explicitly not delivered — decide how fatal that is for a client who said 'our team can update when SKUs rotate'. 5 = pay in full, no revisions; 4 = pay after one minor revision round; 3 = accept conditionally (e.g. demands the Express file before final payment); 2 = major rework; 1 = reject.",
+      "reference": "A 3-4: copy fidelity, Missouri emphasis, logo wall, QRs, dimensions/marks and styling are all satisfied; the one open contractual item is the editable Express/Canva source (disclosed as human handoff), which a real client would likely require before closing out the job."
+    },
+    {
+      "id": "3252-task-2",
+      "type": "yesno",
+      "question": "Is every one of the 15 supplied visual assets actually used in the final card? (distributor logo -> front chip; bar_pour -> front full-bleed; cooler_lineup -> back header strip; patio_toast -> back thumbnail; all nine brand marks -> logo wall; qr_front_pricing -> front panel; qr_back_video -> back panel.)",
+      "guidance": "Walk the list against both sides. The brief named front lead imagery from all three photos — the execution split them front/back instead, which is a defensible reading, but nothing the client supplied should be simply dropped.",
+      "reference": "Yes — all 15 assets appear exactly once each across the two faces, in the placements listed."
+    },
+    {
+      "id": "3252-task-3",
+      "type": "likert5",
+      "question": "Does the finished card hit the style mandate: premium alcohol/hospitality marketing ('closer to a craft-spirits importer than a dispensary') with strictly NO psychedelic, stoner or smoke-shop cues, on the approved palette (#18271F charcoal-green, #F4EDDC cream, #B97A36 copper, #DCA54C amber)?",
+      "guidance": "Scan both faces for forbidden tropes: cannabis leaves, smoke wisps, tie-dye, trippy gradients, goofy THC puns set in display type — there should be zero. Then sample the actual colors of the scrim, back ground, pills, rules and stat callout against the four hexes. 5 = could be mistaken for a fine-spirits trade piece, palette faithful; 3 = premium overall but one off-palette or tonally giggly element; 1 = reads dispensary/smoke-shop.",
+      "reference": "A 5: dark-green scrim + cream + copper/amber accents throughout, Futura-family hierarchy, no cannabis iconography anywhere — the only THC visuals are the word itself and the brand marks the client mandated."
+    },
+    {
+      "id": "3252-task-4",
+      "type": "likert5",
+      "question": "Do front and back cohere as one premium piece — shared palette, type system, rounded-panel language, photo grading and margins — such that both sides obviously belong to the same card?",
+      "guidance": "Flip between the two faces: the cream of the back ground should match the front's chip and QR panel; copper accents (front bullet dots, back arrows/hairline/pill outlines) should be the same hue; amber is reserved for emphasis on both sides (stat callout / Missouri pill); corner radii of chip, panels and thumbnails should feel like one family; the connector grading (auto-toned pour, warmed patio, glowing cooler) should share a warm cast. 5 = seamless system; 3 = clearly related but with one inconsistency (e.g. mismatched radii or label sizes); 1 = two different designers.",
+      "reference": "A 5: identical palette and Futura hierarchy on both faces, consistent rounded cream/white panels, copper used for all connective accents and amber strictly for the two emphasis moments."
+    },
+    {
+      "id": "3252-task-5",
+      "type": "text",
+      "question": "Name the single most consequential weakness of this delivery — the one thing a paying client would push back on first — and say in one sentence how you would fix it.",
+      "guidance": "Pick ONE and justify briefly. Strong candidates you should weigh: the contractually-promised editable Adobe Express source not being produced (only a Python script + JSON as interim source); the RGB raster-only PDF vs true prepress PDF/X; the front QR panel covering the bar_pour photo's actual pour action; the compliance line sitting 89 px from the artwork edge (tighter than the 0.25-inch safe zone).",
+      "reference": "Best answer: the missing editable Express/Canva source — it is an explicit deliverable tied to the client's stated workflow ('update when SKUs rotate'), and the fix is to rebuild the layout as an Express template (or at minimum a layered file) before final handoff. Also fully creditable: the QR panel hiding the hero pour (fix: mirror the panel to bottom-left or re-crop the photo), or the RGB-only PDF (fix: export PDF/X-4 with CMYK + live type)."
+    }
+  ]
+}

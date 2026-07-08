@@ -1,0 +1,7 @@
+REASONS: CANVAS-extension
+
+ISSUES:
+- Wrong `category` field: it is still "headshot_portrait" (line 6) for what is clearly a logo/brand-identity job. The grounding_note flags this and says it is passed through unchanged, but reverify.notes (line 224) explicitly claims '(4) category corrected from headshot_portrait to brand_logo_identity' — that correction was NOT applied. Direct contradiction between the reverify block and the actual field.
+- Stale, self-contradicting metadata in difficulty_rationale (line 219): claims '16 connector calls, 16 DISTINCT Adobe tools' but tool_call_count=15, distinct_adobe_tools=15, and tools_used lists 15. It also describes 'image_fill_area is used twice as solid-fill', a 'mask->invert->solid-fill' step, and image_fill_area at 'step 12 / step 14' — none of which exist in the actual connector_workflow (step 12 is image_apply_halftone; image_fill_area and image_invert_selection appear nowhere).
+- reverify.banned_capability_check (line 223) contradicts difficulty_rationale: it says 'image_fill_area is now used exactly once (step 12)', while difficulty_rationale says 'twice'. Neither is true — image_fill_area is not in the workflow at all. Both are leftover descriptions of an earlier draft.
+- Minor JPEG completeness gap: full_brief (step 8) and several output specs promise high-res PNG AND JPEG exports, but outputs[] only lists .png/.svg/.txt entries — no explicit .jpg output is enumerated (JPEG is only mentioned inside spec prose).

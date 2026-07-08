@@ -1,0 +1,722 @@
+{
+ "task_id": 5366,
+ "slug": "wedding-signage",
+ "title": "Wedding Signage Family (6-piece print suite)",
+ "started": "2026-06-11T16:29:27",
+ "finished": "2026-06-11T16:56:11",
+ "steps": [
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Original floral_reference.jpg (1536x1024) — the arch arrangement that seeds every floral element in the soft-floral family.",
+   "input": "input_assets/floral_reference.jpg",
+   "output": "input_assets/floral_reference.jpg",
+   "params": {
+    "size": "1536x1024"
+   },
+   "n": 1,
+   "ts": "2026-06-11T16:30:02",
+   "step_image": "steps/001_baseline_floral_reference.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Original signature_drinks_sign.png — the client-made anchor piece the new family must coordinate with; it is never altered.",
+   "input": "input_assets/signature_drinks_sign.png",
+   "output": "input_assets/signature_drinks_sign.png",
+   "params": {
+    "size": "1024x1536",
+    "policy": "read-only"
+   },
+   "n": 2,
+   "ts": "2026-06-11T16:30:02",
+   "step_image": "steps/002_baseline_signature_drinks_sign.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "wedding_copy.json — the verbatim copy source for all wording: welcome wordings, menu, thank-you, program, drinks, hashtag.",
+   "input": "input_assets/wedding_copy.json",
+   "output": "work/baseline_wedding_copy.png",
+   "params": {
+    "role": "copy source"
+   },
+   "n": 3,
+   "ts": "2026-06-11T16:30:02",
+   "step_image": "steps/003_baseline_wedding_copy_json.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "seating_chart.json — final guest list, 15 tables of 8, every spelling kept exactly as written.",
+   "input": "input_assets/seating_chart.json",
+   "output": "work/baseline_seating_chart.png",
+   "params": {
+    "tables": 15,
+    "guests": 120
+   },
+   "n": 4,
+   "ts": "2026-06-11T16:30:03",
+   "step_image": "steps/004_baseline_seating_chart_json.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "print_spec.json — the exact trim sizes, pixel targets, bleed and safe margins every deliverable is built to.",
+   "input": "input_assets/print_spec.json",
+   "output": "work/baseline_print_spec.png",
+   "params": {
+    "deliverables": 6
+   },
+   "n": 5,
+   "ts": "2026-06-11T16:30:03",
+   "step_image": "steps/005_baseline_print_spec_json.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_auto_tone",
+   "note": "Gently normalizes exposure and color of the floral reference before it is reused as the family decor element.",
+   "input": "input_assets/floral_reference.jpg",
+   "output": "work/floral_toned.png",
+   "params": {
+    "tool": "image_apply_auto_tone"
+   },
+   "adobe_request_id": "5bb80128-6901-4f35-95c4-f1eda55c7036",
+   "n": 6,
+   "ts": "2026-06-11T16:31:08",
+   "step_image": "steps/006_adobe_auto_tone_floral.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_remove_background",
+   "note": "Isolates the arch floral arrangement on transparency so it can bleed off corners of every sign as the family signature.",
+   "input": "work/floral_toned.png",
+   "output": "work/floral_arch_cutout.png",
+   "params": {
+    "mode": "select-subject cutout",
+    "output": "1536x1024 RGBA"
+   },
+   "adobe_request_id": "6f926f3c-2909-4763-8dd9-9c04f7f95989",
+   "n": 7,
+   "ts": "2026-06-11T16:31:42",
+   "step_image": "steps/007_adobe_remove_background_cutout.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "Prompt-guided 1:1 smart crop onto the densest rose cluster; this square becomes the small garnish element on cards, program and table signs.",
+   "input": "work/floral_toned.png",
+   "output": "work/floral_cluster_sq.png",
+   "params": {
+    "aspect": "1:1",
+    "focus_prompt": "the densest cluster of blush garden roses and cream ranunculus",
+    "detection_confidence": 0.96
+   },
+   "adobe_request_id": "29cfdc5f-457b-4485-907d-74000276721d",
+   "n": 8,
+   "ts": "2026-06-11T16:34:21",
+   "step_image": "steps/008_adobe_crop_cluster_square.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_generative_expand",
+   "note": "Outpaints the floral scene to a 16:9-ish 1836x1024 canvas; this becomes the soft blurred backdrop band on the two landscape boards.",
+   "input": "work/floral_toned.png",
+   "output": "work/floral_wide.png",
+   "params": {
+    "expandPixels": {
+     "left": 150,
+     "right": 150
+    },
+    "seed": 543238,
+    "output": "1836x1024"
+   },
+   "adobe_request_id": "6b0036f6-3532-4b37-8820-c2bab4502101",
+   "n": 9,
+   "ts": "2026-06-11T16:34:50",
+   "step_image": "steps/009_adobe_generative_expand_wide.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "anchor_sign_unchanged",
+   "note": "signature_drinks_sign.png kept byte-identical per brief; it is the anchor the new family coordinates with in palette and warmth.",
+   "input": "input_assets/signature_drinks_sign.png",
+   "output": "input_assets/signature_drinks_sign.png",
+   "params": {
+    "md5": "542032a80cf91381032a952126846c41",
+    "policy": "never altered, never uploaded"
+   },
+   "n": 10,
+   "ts": "2026-06-11T16:35:01",
+   "step_image": "steps/010_verify_anchor_untouched.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "lay_field_and_florals",
+   "note": "Ivory 20x30 field with the family floral signature: arch cutout bleeding off top-right, mirrored copy at 55% off bottom-left.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/01_s1.png",
+   "params": {
+    "canvas": "6000x9000",
+    "pattern": "TR bleed + BL mirrored 55%"
+   },
+   "n": 11,
+   "ts": "2026-06-11T16:54:54",
+   "step_image": "steps/011_compose_01_stage1.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_script_header",
+   "note": "Script welcome header set in Snell at ~640px in the top third (PLAN microcopy header noted).",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/01_s2.png",
+   "params": {
+    "font": "snell 640",
+    "microcopy": "Welcome"
+   },
+   "n": 12,
+   "ts": "2026-06-11T16:54:54",
+   "step_image": "steps/012_compose_01_stage2.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_copy_stack_final",
+   "note": "All four gathering lines rendered verbatim — names line in Snell, remaining lines letterspaced Hoefler caps; piece final.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/01_s3.png",
+   "params": {
+    "lines": 4,
+    "floral_coverage": 0.095
+   },
+   "n": 13,
+   "ts": "2026-06-11T16:54:54",
+   "step_image": "steps/013_compose_01_stage3.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "lay_field_band_florals",
+   "note": "Landscape ivory field with the connector-expanded floral_wide as a soft blurred bottom band, arch cutout + mirrored copy on the left and right edges.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/02_s1.png",
+   "params": {
+    "canvas": "10620x7080",
+    "band": "floral_wide blur50 alpha<=110"
+   },
+   "n": 14,
+   "ts": "2026-06-11T16:54:54",
+   "step_image": "steps/014_compose_02_stage1.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_names_and_hairline",
+   "note": "Couple names set in Snell with the PLAN-specified 6px sage hairline beneath.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/02_s2.png",
+   "params": {
+    "hairline": "sage 6px x 1700px"
+   },
+   "n": 15,
+   "ts": "2026-06-11T16:54:54",
+   "step_image": "steps/015_compose_02_stage2.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_date_and_welcome_final",
+   "note": "Date in letterspaced caps and the welcome sentence in Hoefler italic complete the centered stack; piece final.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/02_s3.png",
+   "params": {
+    "floral_coverage": 0.276
+   },
+   "n": 16,
+   "ts": "2026-06-11T16:54:55",
+   "step_image": "steps/016_compose_02_stage3.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "lay_card_field_florals",
+   "note": "Menu card front: ivory field at 4.25x9.25in artwork (0.125in bleed), small corner florals scaled to keep the long card type-first.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/03a_s1.png",
+   "params": {
+    "canvas": "1275x2775",
+    "trim": "1200x2700 centered"
+   },
+   "n": 17,
+   "ts": "2026-06-11T16:54:55",
+   "step_image": "steps/017_compose_03a_stage1.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_menu_header",
+   "note": "Script Dinner header set (PLAN microcopy header noted); course grid begins beneath.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/03a_s2.png",
+   "params": {
+    "microcopy": "Dinner"
+   },
+   "n": 18,
+   "ts": "2026-06-11T16:54:55",
+   "step_image": "steps/018_compose_03a_stage2.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_courses_final",
+   "note": "All three courses with both choices and descriptions rendered verbatim from wedding_copy.json; front final.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/03a_s3.png",
+   "params": {
+    "courses": 3,
+    "choices": 6,
+    "floral_coverage": 0.047
+   },
+   "n": 19,
+   "ts": "2026-06-11T16:54:55",
+   "step_image": "steps/019_compose_03a_stage3.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "lay_back_field_garnish",
+   "note": "Card back: ivory field with the connector-cropped rose cluster as a centered garnish above the message block.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/03b_s1.png",
+   "params": {
+    "garnish": "floral_cluster_sq 300px rounded"
+   },
+   "n": 20,
+   "ts": "2026-06-11T16:54:55",
+   "step_image": "steps/020_compose_03b_stage1.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_thankyou_block",
+   "note": "The full thank-you message set as a centered Hoefler block, rendered verbatim.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/03b_s2.png",
+   "params": {
+    "chars": 205
+   },
+   "n": 21,
+   "ts": "2026-06-11T16:54:55",
+   "step_image": "steps/021_compose_03b_stage2.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_names_hashtag_final",
+   "note": "Couple names in Snell beneath the message and the hashtag letterspaced at the base; back final.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/03b_s3.png",
+   "params": {
+    "floral_coverage": 0.048
+   },
+   "n": 22,
+   "ts": "2026-06-11T16:54:55",
+   "step_image": "steps/022_compose_03b_stage3.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "lay_board_field_florals",
+   "note": "47.2x35.4in board: ivory field, blurred floral_wide band along the base, family florals at top-right and bottom-left (panels will sit over them, keeping names clear).",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/04_s1.png",
+   "params": {
+    "canvas": "14160x10620"
+   },
+   "n": 23,
+   "ts": "2026-06-11T16:54:56",
+   "step_image": "steps/023_compose_04_stage1.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "grid_panels",
+   "note": "Header script + tracked caps set; 15 ivory panels (sage hairline border, 24px radius) gridded 5x3 over the decor so every name sits on clean ground (border drawn 3px for print visibility).",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/04_s2.png",
+   "params": {
+    "grid": "5x3",
+    "panel": "2568x2506px"
+   },
+   "n": 24,
+   "ts": "2026-06-11T16:54:56",
+   "step_image": "steps/024_compose_04_stage2.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_names_final",
+   "note": "All 120 guest names rendered verbatim (incl. suffixes) across 15 tables, head-table note in italic beneath; board final.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/04_s3.png",
+   "params": {
+    "names": 120,
+    "floral_coverage": 0.115
+   },
+   "n": 25,
+   "ts": "2026-06-11T16:54:56",
+   "step_image": "steps/025_compose_04_stage3.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "lay_outside_field",
+   "note": "Program outside spread (right panel = cover, left = back): ivory field, cover garnish, corner florals kept clear of the 0.2in fold zone.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/05a_s1.png",
+   "params": {
+    "fold_x": 1537,
+    "canvas": "3075x2175"
+   },
+   "n": 26,
+   "ts": "2026-06-11T16:54:56",
+   "step_image": "steps/026_compose_05a_stage1.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_cover_panel",
+   "note": "Cover panel set: script Wedding Program header (PLAN microcopy noted), names in Snell, date and venue in letterspaced caps.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/05a_s2.png",
+   "params": {
+    "microcopy": "Wedding Program"
+   },
+   "n": 27,
+   "ts": "2026-06-11T16:54:56",
+   "step_image": "steps/027_compose_05a_stage2.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_back_panel_final",
+   "note": "Back panel: hashtag letterspaced + the closing thank-you sentence (taken programmatically from thank_you_message) in italic, tiny floral at 55% bleeding the corner; outside final.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/05a_s3.png",
+   "params": {
+    "floral_coverage": 0.056
+   },
+   "n": 28,
+   "ts": "2026-06-11T16:54:56",
+   "step_image": "steps/028_compose_05a_stage3.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_inside_headers",
+   "note": "Inside spread: script panel headers The Order of the Day / Signature Sips with sage hairlines (PLAN microcopy noted), fold zone left clear.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/05b_s1.png",
+   "params": {
+    "microcopy": [
+     "The Order of the Day",
+     "Signature Sips"
+    ]
+   },
+   "n": 29,
+   "ts": "2026-06-11T16:54:56",
+   "step_image": "steps/029_compose_05b_stage1.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_order_of_day",
+   "note": "All eight program moments rendered verbatim — titles in Hoefler, lines in italic.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/05b_s2.png",
+   "params": {
+    "items": 8
+   },
+   "n": 30,
+   "ts": "2026-06-11T16:54:57",
+   "step_image": "steps/030_compose_05b_stage2.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_signature_sips_final",
+   "note": "Both signature drinks set — names in Snell, pet stories in italic, ingredients joined with middle dots in tracked caps — echoing the untouched anchor sign; inside final.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/05b_s3.png",
+   "params": {
+    "drinks": [
+     "The Barnaby",
+     "The Clementine"
+    ],
+    "floral_coverage": 0.0
+   },
+   "n": 31,
+   "ts": "2026-06-11T16:54:57",
+   "step_image": "steps/031_compose_05b_stage3.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "lay_table_sign_template",
+   "note": "Shared 5x7 table-sign template: cluster garnish top-center and a thin sage rule — identical scaffold for all six signs.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/06_s1.png",
+   "params": {
+    "canvas": "1500x2100",
+    "floral_coverage": 0.032
+   },
+   "n": 32,
+   "ts": "2026-06-11T16:54:57",
+   "step_image": "steps/032_compose_06_stage1.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "set_table_number",
+   "note": "TABLE in letterspaced Hoefler caps with the numeral in Snell at ~880px (sign 1 shown); numbers taken from seating_chart.json tables 1-6.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/06_s2.png",
+   "params": {
+    "numeral_font": "snell 880"
+   },
+   "n": 33,
+   "ts": "2026-06-11T16:54:57",
+   "step_image": "steps/033_compose_06_stage2.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "table_sign_family_final",
+   "note": "All six table signs composed with the identical layout — only the Snell numeral changes; family final.",
+   "input": "work/floral elements + input_assets JSON copy",
+   "output": "work/stages/06_s3.png",
+   "params": {
+    "signs": 6
+   },
+   "n": 34,
+   "ts": "2026-06-11T16:54:57",
+   "step_image": "steps/034_compose_06_stage3.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Exports Welcome Gathering Sign 20x30in at exactly 6000x9000px, 300dpi tag, per print_spec.json.",
+   "input": "compose_5366.py",
+   "output": "outputs/01_welcome_gathering_20x30.png",
+   "params": {
+    "px": "6000x9000",
+    "dpi": 300
+   },
+   "n": 35,
+   "ts": "2026-06-11T16:54:57",
+   "step_image": "steps/035_export_01.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Exports Welcome Ceremony & Reception Sign 35.4x23.6in at exactly 10620x7080px, 300dpi tag, per print_spec.json.",
+   "input": "compose_5366.py",
+   "output": "outputs/02_welcome_ceremony_reception_35.4x23.6.png",
+   "params": {
+    "px": "10620x7080",
+    "dpi": 300
+   },
+   "n": 36,
+   "ts": "2026-06-11T16:54:58",
+   "step_image": "steps/036_export_02.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Exports Menu/Thank-You card FRONT (4x9in trim + 0.125in bleed) at exactly 1275x2775px, 300dpi tag, per print_spec.json.",
+   "input": "compose_5366.py",
+   "output": "outputs/03a_menu_thankyou_front_4x9.png",
+   "params": {
+    "px": "1275x2775",
+    "dpi": 300
+   },
+   "n": 37,
+   "ts": "2026-06-11T16:55:00",
+   "step_image": "steps/037_export_03a.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Exports Menu/Thank-You card BACK (4x9in trim + 0.125in bleed) at exactly 1275x2775px, 300dpi tag, per print_spec.json.",
+   "input": "compose_5366.py",
+   "output": "outputs/03b_menu_thankyou_back_4x9.png",
+   "params": {
+    "px": "1275x2775",
+    "dpi": 300
+   },
+   "n": 38,
+   "ts": "2026-06-11T16:55:00",
+   "step_image": "steps/038_export_03b.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Exports Seating Chart 47.2x35.4in, 15 tables / 120 names at exactly 14160x10620px, 300dpi tag, per print_spec.json.",
+   "input": "compose_5366.py",
+   "output": "outputs/04_seating_chart_47.2x35.4.png",
+   "params": {
+    "px": "14160x10620",
+    "dpi": 300
+   },
+   "n": 39,
+   "ts": "2026-06-11T16:55:00",
+   "step_image": "steps/039_export_04.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Exports Program OUTSIDE spread (10x7in flat + 0.125in bleed) at exactly 3075x2175px, 300dpi tag, per print_spec.json.",
+   "input": "compose_5366.py",
+   "output": "outputs/05a_program_outside_10x7.png",
+   "params": {
+    "px": "3075x2175",
+    "dpi": 300
+   },
+   "n": 40,
+   "ts": "2026-06-11T16:55:02",
+   "step_image": "steps/040_export_05a.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png",
+   "note": "Exports Program INSIDE spread (10x7in flat + 0.125in bleed) at exactly 3075x2175px, 300dpi tag, per print_spec.json.",
+   "input": "compose_5366.py",
+   "output": "outputs/05b_program_inside_10x7.png",
+   "params": {
+    "px": "3075x2175",
+    "dpi": 300
+   },
+   "n": 41,
+   "ts": "2026-06-11T16:55:02",
+   "step_image": "steps/041_export_05b.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_png_table_signs",
+   "note": "Exports the six 5x7in table signs (1500x2100px each, 300dpi) — numerals 1-6 from seating_chart.json, identical layout.",
+   "input": "compose_5366.py",
+   "output": "outputs/06_table_sign_1.png ... 06_table_sign_6.png",
+   "params": {
+    "px": "1500x2100 x6",
+    "dpi": 300
+   },
+   "n": 42,
+   "ts": "2026-06-11T16:55:02",
+   "step_image": "steps/042_export_06_family.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_suite_pdf",
+   "note": "Assembles the 13-page print suite PDF LOCALLY with PIL (one page per piece) because the Adobe connector exposes no image-to-PDF tool; PDF/X-4 prepress conversion stays a print-house step.",
+   "input": "outputs/*.png",
+   "output": "outputs/wedding_signage_suite.pdf",
+   "params": {
+    "pages": 13,
+    "resolution_dpi": 300,
+    "assembly": "local PIL"
+   },
+   "n": 43,
+   "ts": "2026-06-11T16:55:03",
+   "step_image": "steps/043_export_suite_pdf.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "assert_dimensions",
+   "note": "Python pass asserts every one of the 13 PNGs at its exact target pixel size and floral coverage <=28% on every canvas (type wins).",
+   "input": "outputs/*.png",
+   "output": "work/verify_report.json",
+   "params": {
+    "dims_ok": 13,
+    "floral_coverage": {
+     "01": 0.0946,
+     "02": 0.2758,
+     "03a": 0.0466,
+     "03b": 0.0476,
+     "04": 0.1152,
+     "05a": 0.0558,
+     "05b": 0.0,
+     "06": 0.0321
+    }
+   },
+   "n": 44,
+   "ts": "2026-06-11T16:55:03",
+   "step_image": "steps/044_verify_dimensions.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "assert_copy_fidelity",
+   "note": "All 120 guest names (incl. suffixes), all menu courses/choices/descriptions, drink names, pet stories and dot-joined ingredients verified rendered verbatim from the input JSON; 7 PLAN-specified connective headers used (noted per stage).",
+   "input": "input_assets/wedding_copy.json + seating_chart.json",
+   "output": "work/verify_report.json",
+   "params": {
+    "guests_rendered": 120,
+    "rendered_strings": 180,
+    "microcopy_headers": [
+     "Dinner",
+     "Find Your Seat",
+     "Signature Sips",
+     "TABLE",
+     "The Order of the Day",
+     "Wedding Program",
+     "Welcome"
+    ],
+    "violations": []
+   },
+   "n": 45,
+   "ts": "2026-06-11T16:55:03",
+   "step_image": "steps/045_verify_copy_fidelity.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "visual_review_and_fixes",
+   "note": "Visual read of seating chart, program inside and menu front found three flaws — bare wooden stand visible in floral corners, lawn-heavy cluster garnish, top-heavy welcome stack — fixed (stand cropped from cutout, garnish zoomed to bloom mass, stack re-spaced) and ALL pieces re-rendered before export.",
+   "input": "work/stages/*",
+   "output": "outputs/*.png",
+   "params": {
+    "fixes": [
+     "arch stand crop 0.82h",
+     "garnish zoom 0.70sq",
+     "01/02 stack re-spacing"
+    ],
+    "script_clipping": "none — snell lines advanced by bbox*1.25"
+   },
+   "n": 46,
+   "ts": "2026-06-11T16:55:03",
+   "step_image": "steps/046_verify_visual_review.png"
+  }
+ ]
+}

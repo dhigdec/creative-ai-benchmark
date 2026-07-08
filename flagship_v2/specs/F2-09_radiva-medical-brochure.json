@@ -1,0 +1,384 @@
+{
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "CC storage folder tree: /RADIVA_Brochure/{01_inputs,02_stock,03_retouched,04_graded,05_layout,06_final}",
+   "note": "Establish a deterministic working tree so every later URN has a stable home and the agent can track state across the long chain. Headless-confirmed asset op."
+  },
+  {
+   "n": 2,
+   "tool": "asset_add_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "device_hero_clean.png",
+    "screenshot_bios_ui.png",
+    "screenshot_protocol_library.png",
+    "radiva_logo.svg",
+    "brand_kit.json",
+    "brochure_content.json"
+   ],
+   "output": "6 input URNs in /RADIVA_Brochure/01_inputs (device_hero_urn, ui_bios_urn, ui_proto_urn, logo_urn, brandkit_urn, content_urn)",
+   "note": "Ingest all client-provided assets into CC storage. NOTE: the device hero is supplied as an ALREADY-CLEAN studio capture (the client provides finished product photography); there is no connector object-removal step because AI object/cable removal is not an available connector capability. Every downstream step references these step-2 URNs."
+  },
+  {
+   "n": 3,
+   "tool": "asset_search",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "candidate Stock asset IDs: clinician+patient physiotherapy shot, abstract teal medical-tech background, gloved-hands-on-touchscreen close-up",
+   "note": "Search Adobe Stock for the clinical/lifestyle imagery the brief implies (physiotherapy session, premium medical-tech texture). Returns candidate IDs to license. Headless-confirmed."
+  },
+  {
+   "n": 4,
+   "tool": "asset_license_and_download_stock",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 3"
+   ],
+   "output": "3 licensed Stock URNs in /RADIVA_Brochure/02_stock: stock_clinician_urn, stock_techbg_urn, stock_touch_urn (each >=3500px, licensed BEFORE editing)",
+   "note": "MUST-EXERCISE. License and download the three chosen Stock photos at print resolution. These feed the cover, the Intelligent Clinical Workflow page and the Soft Shock comfort page. License before any edit, per the sheet."
+  },
+  {
+   "n": 5,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "device_cutout.png: clean transparent-background cut-out of the supplied device hero for the Solid-State Technology floating-spec callout",
+   "note": "Knock out the device against transparency for the exploded-spec page where the device floats over a tech background. This is a real headless raster op (remove_background -> transparent PNG); it replaces the former illegal 'generative cable removal' step. Operates on the already-clean device hero URN from step 2."
+  },
+  {
+   "n": 6,
+   "tool": "image_generative_expand",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "device_hero_wide (URN): supplied device hero outpainted to a 3:4 portrait canvas with clean studio gradient for the cover full-bleed",
+   "note": "The ONLY legitimately generative tool: outpaint/extend the device studio shot to the cover's portrait aspect (the original is too tight to bleed). Pure AI canvas-extend, headless-confirmed. Chains off the step-2 device URN."
+  },
+  {
+   "n": 7,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 6"
+   ],
+   "output": "cover_device_210x297 (URN): outpainted hero normalized to A4 portrait page geometry (210x297mm + 3mm bleed footprint, 300dpi)",
+   "note": "Normalize the outpainted device hero to the exact cover page geometry the layout template expects. Single-image geometry op, headless-confirmed."
+  },
+  {
+   "n": 8,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 4"
+   ],
+   "output": "3 Stock images normalized to their page slots: clinician_half, touch_close_half, bg_tech_full (300dpi, +3mm bleed where full-bleed)",
+   "note": "Normalize the three licensed Stock images to their target page geometries. Modeled as one logical normalize pass; honest execution is 3 invocations (one per Stock image) of the same single-image tool."
+  },
+  {
+   "n": 9,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 7",
+    "step 8"
+   ],
+   "output": "4 images warmed/cooled to a unified cool-clinical white balance matching the teal brand accent (device hero + 3 Stock)",
+   "note": "Match white balance across the Stock-sourced and studio-sourced images so the pages read as one shoot. PER-IMAGE TOOL: this represents 4 underlying invocations (1 device hero from step 7 + 3 Stock from step 8) applied identically; counted as 4 real calls in tool_call_count."
+  },
+  {
+   "n": 10,
+   "tool": "image_apply_preset",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 9"
+   ],
+   "output": "4 graded images sharing one clean-clinical Lightroom preset (cool, high-key, low-saturation, crisp); written to /04_graded as device_graded_urn + 3 stock_graded_urns",
+   "note": "Lock a single shared look across every image so the brochure is visually cohesive. PER-IMAGE TOOL: 4 underlying invocations of image_apply_preset with the identical preset across the device hero + 3 Stock images; counted as 4 real calls. Output feeds the cover render and the data-merge image slots."
+  },
+  {
+   "n": 11,
+   "tool": "font_recommend",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "font pairing recommendation: a geometric grotesque for headings + a humanist sans for body (European medical-device register)",
+   "note": "Choose brand-appropriate type before laying out, honoring the brand-kit constraints from brandkit_urn (step 2). Feeds the layout/merge typography spec. Headless-confirmed."
+  },
+  {
+   "n": 12,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 10",
+    "step 6",
+    "step 2",
+    "step 11"
+   ],
+   "output": "cover_page.pdf (single A4 page): rendered cover with full-bleed graded device hero + logo + RADIVA title lockup + tagline, print-spec page geometry",
+   "note": "Render the bespoke cover (the one non-templated page) from a GENUINE .indd via document_render_layout [C]. Composes the graded/outpainted hero (step 6->7->9->10), logo_urn + content_urn (step 2) and recommended fonts (step 11). Genuine-template render is headless-confirmed."
+  },
+  {
+   "n": 13,
+   "tool": "document_merge_data_layout",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": [
+    "step 10",
+    "step 5",
+    "step 2",
+    "step 11"
+   ],
+   "output": "interior_pages.pdf: 6 data-merged interior pages (RPWT Overview, Solid-State Tech, Soft Shock, BIOS Platform, Intelligent Workflow, Real-Time Control) with spec tables + feature rows + bound images/screenshots",
+   "note": "MUST-EXERCISE. The data-merge backbone: a USER-AUTHORED .indd template carrying real <<merge fields>> + the structured rows in content_urn (step 2) -> 6 consistent interior pages, each binding the right graded image (step 10), the device cut-out (step 5), and the two UI screenshots (ui_bios_urn, ui_proto_urn from step 2). Tagged [T] because data-merge requires an authored desktop .indd with genuine fields, not a headless-only render."
+  },
+  {
+   "n": 14,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 10",
+    "step 2",
+    "step 11"
+   ],
+   "output": "closing_page.pdf (single A4 page): Closing / Company Experience page (Biotech 32-year story, contact block, logo)",
+   "note": "Render the bespoke closing page that the merge template cannot express (free-form company-story layout) from a genuine .indd. Reuses the graded clinician Stock image (step 10), logo_urn + content_urn + brandkit_urn (step 2) and brand fonts (step 11). Headless-confirmed."
+  },
+  {
+   "n": 15,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 12",
+    "step 14"
+   ],
+   "output": "2 flattened page-preview image URNs (cover_preview.png, closing_preview.png) for the Firefly provenance board",
+   "note": "Produce image-URN previews of the rendered cover and closing PDFs so the Firefly board can pin IMAGE URNs (the board does not accept PDF URNs). Replaces the previous illegal practice of pinning raw PDFs to the board. Headless-confirmed asset op."
+  },
+  {
+   "n": 16,
+   "tool": "create_firefly_board",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2",
+    "step 5",
+    "step 6",
+    "step 10",
+    "step 15"
+   ],
+   "output": "RADIVA_concept_board (deep-link): moodboard pinning the supplied device hero (step 2), device cut-out (step 5), outpainted wide hero (step 6), graded Stock+device set (step 10) and the cover/closing page previews (step 15)",
+   "note": "Assemble the full IMAGE-URN provenance trail (supplied -> cut-out/outpaint -> graded -> laid-out previews) into one Firefly Board deep-link for client sign-off. Inputs are image URNs ONLY (no PDF URNs); the laid-out pages enter via their step-15 preview images. Headless-confirmed."
+  },
+  {
+   "n": 17,
+   "tool": "local_pdf_assemble",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 12",
+    "step 13",
+    "step 14"
+   ],
+   "output": "RADIVA_brochure_PRESS.pdf: single ordered 8-page PDF (cover + 6 merged interiors + closing) assembled locally; 300dpi raster preserved; print-prep profile (RGB->CMYK soft-proof) + crop-mark overlay applied off-connector",
+   "note": "MERGE is NOT a connector capability (document_convert_pdf does not combine files). Assemble the three rendered PDFs (steps 12,13,14) into one ordered 8-page press master LOCALLY [L] (pikepdf/Ghostscript), then apply the CMYK profile soft-proof and crop-mark overlay as a local print-prep finish. CMYK colorspace conversion and crop-mark stamping are explicitly NOT headless-attested connector capabilities, so they live in this local step."
+  },
+  {
+   "n": 18,
+   "tool": "local_pdf_derive_digital",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 17"
+   ],
+   "output": "RADIVA_brochure_DIGITAL.pdf: 8 pages, RGB, 150dpi, screen-optimized, no crop marks, small file size suitable for email",
+   "note": "Derive the digital deliverable from the press master LOCALLY [L]: down-sample to 150dpi, keep RGB, strip crop marks, optimize size. Live hyperlink injection is intentionally DROPPED (no connector or in-scope local step is asserted to inject PDF hyperlinks); that is left as an out-of-scope manual finish."
+  }
+ ],
+ "corrections_applied": [
+  "TOOL MISUSE REMOVED (image_fill_area as object-remover): deleted old steps 5 (select cables) + 6 (image_fill_area 'generatively removes clutter'). AI object-removal + generative fill are A6 [X]; image_fill_area is solid-color-only. Clean-device premise moved to the input (device_hero_clean.png supplied finished).",
+  "VERTICAL FIXED: 'Cannabis & Dispensary' -> 'Medical Devices & Healthcare'.",
+  "document_convert_pdf NO LONGER MERGES: old steps 16/17 combined 3 PDFs via convert_pdf (not a real capability). Replaced with local [L] assemble (step17) + local [L] derive-digital (step18).",
+  "CMYK + CROP MARKS SOFTENED: relegated to the local [L] print-prep finish and qualified as not headless-attested; rubric scores them as a local/partial print-prep step, not connector output.",
+  "HYPERLINK INJECTION DROPPED from the DIGITAL.pdf spec/rubric (no tool injects PDF links).",
+  "FIREFLY BOARD CLEANED: step16 pins image URNs only (steps 2,5,6,10) + step-15 asset_inline_preview page previews; removed the two PDF URNs.",
+  "INPUT PROVENANCE FIXED: steps 11/12/13/14 reference 'step 2' URNs instead of raw filenames.",
+  "PER-IMAGE BATCH TOOLS MADE HONEST: steps 8/9/10 flagged as single-image tools standing for 3/4/4 identical invocations; tool_call_count raised 18 -> 20.",
+  "ORPHANED-INPUT FIX: every input.used_in_steps re-pointed to steps that truly consume it (device hero [2,5,6]; UI screenshots [2,13]; logo [2,12,13,14]; brand_kit [2,11,13,14]; content [2,12,13,14]).",
+  "EXEC-MODE TAGS on every step: C×16, T×1 (authored-template data-merge step13), L×2 (local assemble + derive). headless_doable=false due to the [T] step.",
+  "BRIEF FRAMING NOTE added: digital brochure is the primary deliverable; press master is a deliberate enrichment.",
+  "PAGE-COUNT GAP CLOSED: exactly 8 pages = 1 cover + 6 merged interiors + 1 closing, order preserved by the local assemble."
+ ],
+ "difficulty_rationale": "Long horizon (20 real connector calls when the per-image tools are counted honestly) across three target groups with hard output->input coupling. The supplied clean device hero is the spine of a forked chain: device_hero_clean.png -> (step5 remove_background = floating cut-out) AND -> (step6 generative_expand to portrait = wide hero) -> (step7 crop to A4) -> (step9 color_temperature) -> (step10 apply_preset) -> consumed by BOTH the step12 cover render AND the step13 data-merge; the cut-out forks separately into the Solid-State Technology page. The 3 licensed Stock images ride the same grade pipeline (step8->9->10) so they color-match the device, then land in specific merged pages. State tracking is demanding: 6 input URNs + 3 licensed Stock + ~8 intermediate URNs live simultaneously, and the data-merge must bind the RIGHT graded image, the device cut-out, and the correct UI screenshot to each of 6 templated pages while reading spec rows from structured JSON. Exact-spec pressure is everywhere - A4 + 3mm bleed + 300dpi page geometry, exactly 8 pages in a fixed running order (cover, 6 named interiors, closing), and a European medical-device visual register a judge can score against named comparators (Zimmer, Storz, BTL, Chattanooga). The agent must correctly SPLIT work: bespoke cover/closing via document_render_layout [C] vs. the repeatable 6 interiors via an authored-template data-merge [T] - choosing the wrong tool for a page is a real failure mode. It must also respect capability honesty: no AI cable-removal/generative-fill (the clean hero arrives pre-shot), no connector merge/CMYK/crop-mark emission (those are local [L] print-prep), and no PDF pins on the Firefly board (preview images instead). The press-master-first framing is a DELIBERATE enrichment: the underlying brief emphasizes an ~8-page digital brochure, so the print master is added scope, with CMYK/crop-marks honestly relegated to a local finish rather than a hard-scored connector output.",
+ "exec_mode_summary": "C×15 T×1 L×2",
+ "full_brief": "Biotech - a manufacturer with 32 years in rehabilitation equipment - is launching RADIVA, a next-generation Solid-State Radial Pressure Wave Therapy (RPWT) system, and needs a premium ~8-page product brochure that positions it against leading medical-device brands (Zimmer, Storz Medical, BTL, Chattanooga). This is explicitly NOT a generic product catalog: the brochure must communicate Innovation, Intelligence, Clinical Confidence and Premium Technology, with a clean, modern, minimal, technology-driven European medical-device aesthetic. RADIVA's selling points must be surfaced as structured spec/feature content: Solid-State Electromagnetic Technology, Soft Shock Technology (patient comfort), the BIOS (Biotech Operating System) running an RTOS on a quad-core 64-bit ARM processor, a 10-inch capacitive touchscreen, a built-in clinical protocol library with user-created and QuickLink protocols, and real-time parameter adjustment during treatment.\\n\\nThe brochure has a fixed 8-page running order: (1) Cover, (2) RPWT Overview, (3) Solid-State Technology, (4) Soft Shock Technology, (5) BIOS Software Platform, (6) Intelligent Clinical Workflow, (7) Real-Time Treatment Control, (8) Closing / Company Experience. The client PROVIDES finished product photography (a clean studio device hero), software screenshots, the company logo, brand rules and detailed content; the freelancer sources any supporting clinical/lifestyle imagery, normalizes and grades all imagery to one cohesive look, produces a knocked-out device cut-out and a full-bleed outpainted cover hero, and lays out the spec tables and feature pages so every interior page is visually consistent. NOTE: because AI object/cable removal and generative fill are not available connector capabilities, the device hero is treated as an already-clean capture rather than a raw shot the connector cleans up; the legitimate connector retouch work is background knock-out and AI canvas-extend (outpaint), not object erasure.\\n\\nDeliverable framing: the brief's PRIMARY deliverable is the digital brochure (an ~8-page premium digital brochure) plus a print-ready PDF; the print master is therefore added as a deliberate enrichment. Constraints: A4 portrait (210x297 mm) with 3 mm bleed page geometry; a print master at 300 dpi assembled and print-prepped (RGB->CMYK soft-proof + crop-mark overlay) as a LOCAL print-prep finish, since CMYK colorspace conversion and crop-mark stamping are not headless-attested connector capabilities; a second screen-optimized digital PDF at 150 dpi, RGB, no crop marks (live hyperlink injection is out of scope - no tool injects PDF links); a single cohesive image grade (cool, high-key, low-saturation) across both client-shot and Stock-sourced imagery; brand-appropriate European-medical typography; and exactly 8 pages in the order above. Deliverables are the digital PDF and the print-ready PDF, plus a Firefly concept board (image previews only) capturing the supplied->cut-out/outpaint->graded->laid-out provenance for client sign-off.",
+ "grounding_note": "REAL (verbatim from the Freelancer.com brief in db_all.json): client is Biotech; product is RADIVA - Solid-State Radial Pressure Wave Therapy System; the comparator brands Zimmer, Storz Medical, BTL, Chattanooga; the explicit ~8-page scope with the exact page list (Cover, RPWT Overview, Solid-State Technology, Soft Shock Technology, BIOS Software Platform, Intelligent Clinical Workflow, Real-Time Treatment Control, Closing/Company Experience); the named features (Solid-State Electromagnetic, Soft Shock, BIOS/RTOS, quad-core 64-bit ARM, 10-inch capacitive touchscreen, clinical protocol library, user-created & QuickLink protocols, real-time parameter adjustment); '32 years' of Biotech experience; the requested style words (Premium, Modern, Minimal, Technology-driven, European medical device aesthetic); the perception goals (Innovation, Intelligence, Clinical Confidence, Premium Technology); the deliverables list including a digital brochure and a 'Print-ready PDF'; and the client statement that they will PROVIDE product photographs, software screenshots, company logo, reference brochures and content. ENRICHED (implied, not stated verbatim): exact print specs (A4 210x297mm, 3mm bleed, 300dpi master vs 150dpi RGB digital) - the brief says 'print-ready' + 'digital' but not the numbers, so industry-standard values are fixed to make the task scorable; the use of licensed Stock for clinical/lifestyle imagery (the brief supplies device/UI assets but a premium clinical brochure needs human-in-context shots, so sourcing them is implied); the structured brochure_content.json and brand_kit.json as concrete files; and the Firefly concept board for sign-off (a reasonable pro deliverable, not requested). CAPABILITY-HONESTY CORRECTIONS: the brief's 'we will provide product photographs' is read as FINISHED photography, so there is NO connector cable/clutter removal (that capability does not exist); CMYK colorspace + crop-marks are relegated to a local print-prep step (not a headless-attested connector output); PDF page MERGE is done locally (document_convert_pdf does not combine files); live hyperlink injection is dropped (no tool provides it); the Firefly board pins image previews only (no PDF URNs). The original brief also asks for editable source files (AI/PSD/INDD) which the headless connector cannot emit; that deliverable is intentionally dropped, and the data-merge interior step is correctly marked [T] because it requires a user-authored desktop .indd with genuine merge fields.",
+ "groups_covered": [
+  "asset_stock_storage",
+  "photo_raster",
+  "document_layout"
+ ],
+ "headless_doable": false,
+ "id": "F2-09",
+ "inputs": [
+  {
+   "name": "device_hero_clean.png",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal studio product photograph of a next-generation radial pressure-wave physiotherapy console: a sleek matte-white floor-standing medical device about 1.2m tall on castors, with a 10-inch glossy capacitive touchscreen tilted toward the viewer showing a faint teal UI, a coiled hand-applicator resting neatly in a side cradle. Shot on a seamless light-grey studio backdrop with soft large-softbox lighting and a subtle floor reflection. This is a FINISHED, CLEAN product shot - no stray cables on the floor, no loose cords, no desk clutter, nothing to retouch out (the client supplies it ready). Real material textures - fine brushed-aluminium trim, faint dust and fingerprints on the white plastic, accurate screen glare and subtle subsurface plastic sheen. Neutral daylight white balance, sharp focus, no text on the device body, no logos. Documentary product-shot realism, not a glossy CGI render.",
+   "realism_notes": "Supplied by the client as a FINISHED clean studio capture (no clutter to remove, because connector AI object/cable removal does not exist). Include authentic plastic imperfections, screen glare and a real soft floor shadow so it reads as a genuine photograph at print resolution. Avoid CGI-perfect surfaces.",
+   "used_in_steps": [
+    2,
+    5,
+    6
+   ]
+  },
+  {
+   "name": "screenshot_bios_ui.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A crisp, legible flat-UI screenshot of a medical-device operating system home screen called 'BIOS - Biotech Operating System' on a 10-inch capacitive touchscreen, 1280x800, dark-teal-on-near-black theme with clean white sans-serif labels. Show a top status bar (battery, RTOS clock, connectivity), a central grid of large rounded tiles labeled 'Clinical Protocols', 'QuickLink', 'User Protocols', 'Real-Time Control', 'Patient History', 'Settings', and a bottom dock. Subtle teal accent (#16a0a0), realistic soft inner shadows and 1px hairlines, faint glass reflection overlay at top. Text must be sharp and correctly spelled. No photographic background - pure UI capture.",
+   "realism_notes": "Text-bearing UI, so use gemini-3-pro-image for crisp legible labels. Must read as a real device screenshot (status bar, dock, hairlines, glass glare) so it can sit on the BIOS Software Platform page at print resolution.",
+   "used_in_steps": [
+    2,
+    13
+   ]
+  },
+  {
+   "name": "screenshot_protocol_library.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A clean, legible UI screenshot of a 'Clinical Protocol Library' screen for a physiotherapy device, 1280x800, same dark-teal theme as the BIOS home screen. A scrollable list of named treatment protocols (e.g. 'Plantar Fasciitis', 'Lateral Epicondylitis', 'Achilles Tendinopathy', 'Calcific Shoulder', 'Trigger Points') each row showing energy mJ, frequency Hz, pulse count, and a small QuickLink star. A right-hand panel previews live parameters with a teal value slider and an 'Adjust during treatment' toggle. Sharp correctly-spelled medical text, 1px separators, soft teal highlights. Pure UI, no photographic background.",
+   "realism_notes": "Second text-bearing screenshot for the Intelligent Clinical Workflow / Real-Time Control pages; needs accurate medical protocol names and numeric parameter columns that survive at 300dpi. gemini-3-pro-image for legibility.",
+   "used_in_steps": [
+    2,
+    13
+   ]
+  },
+  {
+   "name": "radiva_logo.svg",
+   "kind": "vector",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A minimal, premium wordmark logo for 'RADIVA' in a geometric grotesque uppercase, tight tracking, deep teal (#0f7d7d) with a single subtle radial-wave glyph (three concentric arcs emanating from the 'A') as the mark. Flat, two-color, no gradients, plenty of clear space, suitable as a vector. Render on pure white, crisp edges, centered. European medical-device brand feel - confident, clean, restrained.",
+   "realism_notes": "Provided by client as vector; generate as a clean two-color logo so placement reads cleanly. Must look like a real corporate medical wordmark, not clip-art. Delivered as SVG; if generated raster, vectorize before use.",
+   "used_in_steps": [
+    2,
+    12,
+    13,
+    14
+   ]
+  },
+  {
+   "name": "brand_kit.json",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a realistic brand-kit JSON for a premium medical-device brand 'RADIVA' by Biotech: palette (primary teal #0f7d7d, accent #16a0a0, ink #0b1f24, paper #f5f8f8, plus a warning amber for clinical callouts), typography intent (heading: geometric grotesque; body: humanist sans; numerals: tabular), spacing scale, allowed logo clear-space, and tone words (premium, minimal, clinical-confident, European). Include print constraints: CMYK build of the teal, minimum body size 8.5pt, max 2 accent colors per page. Valid JSON, realistic field names.",
+   "realism_notes": "Stands in for the brief's 'brand rules / marketing guidance'. Must be valid, internally consistent JSON the render/merge steps and font_recommend can consume.",
+   "used_in_steps": [
+    2,
+    11,
+    13,
+    14
+   ]
+  },
+  {
+   "name": "brochure_content.json",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a structured content JSON for an 8-page RADIVA medical-device brochure. Top-level 'pages' array in the exact order: cover, rpwt_overview, solid_state_technology, soft_shock_technology, bios_software_platform, intelligent_clinical_workflow, real_time_treatment_control, closing_company_experience. Each interior page object has: title, subtitle, body_paragraphs[], a feature_rows[] array (each {feature, benefit}), and a spec_table[] array (each {label, value, unit}) - populate spec_table with real plausible numbers: processor 'Quad-core 64-bit ARM', OS 'BIOS (RTOS)', display '10-inch capacitive touchscreen', energy range '0.05-0.68 mJ/mm2', frequency '1-22 Hz', protocol library count '120+ protocols', QuickLink slots, weight, dimensions, power. Cover has title 'RADIVA', tagline, and the line 'Solid-State Radial Pressure Wave Therapy System'. Closing page has the Biotech '32 years of rehabilitation equipment manufacturing' company story and a contact block. Valid JSON with consistent keys across pages so a data-merge template can iterate it.",
+   "realism_notes": "This is the data-merge backbone. Field names MUST be uniform across the 6 interior pages so the authored-template document_merge_data_layout can iterate one .indd template over them; spec numbers should be plausible for a real RPWT device and match the screenshots' theme.",
+   "used_in_steps": [
+    2,
+    12,
+    13,
+    14
+   ]
+  }
+ ],
+ "iterative_chaining_note": "The supplied clean device hero is the spine of a forked output->input chain: device_hero_clean.png ingested at step2 forks into (a) step5 image_remove_background = transparent cut-out for the Solid-State Technology page and (b) step6 image_generative_expand to portrait = wide cover hero -> step7 crop_and_resize to A4+bleed -> step9 color_temperature -> step10 apply_preset -> consumed by BOTH the step12 cover render AND the step13 data-merge device slot. The 3 licensed Stock images (step4) ride the same grade pipeline (step8 normalize -> step9 -> step10) to color-match, then land in specific merged/closing pages. content_urn (step2) drives cover copy (step12), the 6 interior pages (step13) and the closing story (step14); brandkit_urn (step2) feeds font_recommend (step11), reused by steps 12/13/14; the two UI screenshots (step2) bind onto the BIOS + Workflow/Control interiors at step13. Rendered PDFs (steps 12,13,14) assemble LOCALLY (step17) into the ordered 8-page press master, derived locally (step18) into the 150dpi digital PDF. For provenance, step15 asset_inline_preview turns cover+closing PDFs into IMAGE preview URNs so step16 create_firefly_board pins image URNs only. Every later step consumes a concrete earlier URN; no step uses an unavailable generative/object-removal/merge capability; the data-merge (step13) is the only [T] dependency.",
+ "one_line_ask": "Deliver a digital and a print-ready 8-page A4 premium brochure for the RADIVA Solid-State Radial Pressure Wave Therapy System - licensing clinical Stock imagery, knocking out and outpainting the supplied clean device photo, grading all imagery to one cohesive European medical-device look, and laying out the spec/feature pages from the supplied structured content (bespoke cover/closing via render, the 6 interiors via an authored-template data-merge).",
+ "outputs": [
+  {
+   "name": "RADIVA_brochure_DIGITAL.pdf",
+   "kind": "pdf",
+   "spec": "8 pages, A4 portrait 210x297mm layout, 150dpi, RGB, screen-optimized, no crop marks, small file size suitable for email. Derived from the press master. Live hyperlinks are out of scope (no tool injects PDF links).",
+   "rubric_hook": "Exactly 8 pages in the specified order (Cover, RPWT Overview, Solid-State Technology, Soft Shock Technology, BIOS Software Platform, Intelligent Clinical Workflow, Real-Time Treatment Control, Closing/Company Experience); RGB/150dpi, no crop marks; every spec table and feature row from brochure_content.json on the correct page; logo and brand teal applied; single cohesive cool/high-key grade across all imagery; European medical-device aesthetic comparable to Zimmer/Storz/BTL. Derived from (not independently rebuilt vs.) the press master. Hyperlinks NOT scored."
+  },
+  {
+   "name": "RADIVA_brochure_PRESS.pdf",
+   "kind": "pdf",
+   "spec": "8 pages, A4 portrait 210x297mm + 3mm bleed page geometry, 300dpi, locally assembled in fixed order; print-prep finish (RGB->CMYK soft-proof + crop-mark overlay) applied LOCALLY off-connector. CMYK/crop-marks are a local print-prep step, not a headless-attested connector output.",
+   "rubric_hook": "Exactly 8 pages in the specified order; A4+3mm bleed page geometry; 300dpi imagery; device hero is clean (cohesive, artifact-free) and full-bleed on the cover; every spec table/feature row present on the correct page; single cohesive grade. CMYK colorspace + crop marks are scored as a LOCAL print-prep finish (partial/human-print-prep tier), NOT as connector-emitted output."
+  },
+  {
+   "name": "device_cutout.png",
+   "kind": "image",
+   "spec": "Transparent-background knock-out of the supplied clean device hero, print resolution, used as the floating device on the Solid-State Technology spec page.",
+   "rubric_hook": "Clean alpha edge around the device with no haloing; device geometry and screen glare intact; resolution adequate for a half-page print placement."
+  },
+  {
+   "name": "RADIVA_concept_board (Firefly board)",
+   "kind": "vector",
+   "spec": "Firefly Boards deep-link pinning IMAGE URNs only: the supplied device hero, the device cut-out, the outpainted wide hero, the graded Stock+device set, and image previews of the rendered cover and closing pages, in provenance order. No PDF URNs.",
+   "rubric_hook": "Board exists and contains the full supplied->cut-out/outpaint->graded->laid-out(preview) image trail in a sensible sign-off order; contains only image URNs (no PDFs pinned)."
+  }
+ ],
+ "slug": "radiva-medical-brochure",
+ "source": {
+  "platform": "Freelancer.com",
+  "url": "https://www.freelancer.com/projects/adobe-creative-suite/Premium-Medical-Device-Brochure-Design"
+ },
+ "title": "Premium Medical Device Brochure Design - RADIVA Shockwave Therapy System (8-page digital + press)",
+ "tool_call_count": 18,
+ "tools_used": [
+  "asset_create_folders",
+  "asset_add_file",
+  "asset_search",
+  "asset_license_and_download_stock",
+  "image_remove_background",
+  "image_generative_expand",
+  "image_crop_and_resize",
+  "image_adjust_color_temperature",
+  "image_apply_preset",
+  "font_recommend",
+  "document_render_layout",
+  "document_merge_data_layout",
+  "asset_inline_preview",
+  "create_firefly_board",
+  "local_pdf_assemble",
+  "local_pdf_derive_digital"
+ ],
+ "vertical": "Medical Devices & Healthcare",
+ "reverify": {
+  "severity": "minor",
+  "residual_issues": [
+   "tool_call_count=20 is internally inconsistent with the spec's own per-image honesty narrative: steps 8/9/10 are said to stand for 3+4+4 invocations (+8 over the 1-each listed), which yields ~24 connector calls (16 logical connector steps + 8) or ~26 if counting all 18; +2 (18->20) only accounts for one batch expansion, not three. Conservative genuine connector-call count = 16 logical (C+T) steps.",
+   "Minor unproven inference: step15 assumes asset_inline_preview converts a rendered PDF into a pinnable IMAGE preview URN. asset_inline_preview is a real [C] A4 tool, but the sheet does not attest PDF->image-URN behavior; this enables the (otherwise correct) 'image-URNs-only' Firefly board.",
+   "Minor data-source format gap: document_merge_data_layout [T] per the sheet expects a USER-authored .indd + CSV; the spec feeds structured rows from content_urn (JSON). Concept is sound and correctly tagged [T], but JSON vs CSV is glossed over.",
+   "Provenance assumption (acceptable, not a violation): steps 12/14 document_render_layout [C] and step 13 [T] presuppose genuine user-authored .indd files with real merge fields exist; feasibility hinges on those authored templates being supplied."
+  ]
+ }
+}

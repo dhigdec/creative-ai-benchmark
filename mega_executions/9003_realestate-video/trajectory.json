@@ -1,0 +1,627 @@
+{
+ "task_id": 9003,
+ "slug": "realestate-video",
+ "title": "Real-estate lead-gen listing-media package — narrated tour + cleaned VO + graded hero/thumbnail + twilight cover + lower-third + Feed/Stories/Reels exports",
+ "started": "2026-06-15T10:06:32",
+ "finished": "2026-06-15T10:34:15",
+ "steps": [
+  {
+   "phase": "upload",
+   "actor": "local_video",
+   "action": "input_baseline_clips",
+   "note": "Six Veo/Sora room walkthrough clips (8s each, 1280x720; clip 06 is 720x1280 vertical) are the raw tour footage to summarize, order and cut.",
+   "input": "input_assets/walkthrough_*.mp4",
+   "params": {
+    "clips": 6,
+    "duration_s_each": 8,
+    "hook_clip": "walkthrough_01_exterior-approach"
+   },
+   "n": 1,
+   "ts": "2026-06-15T10:07:46",
+   "step_image": "steps/001_input_baseline_clips.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_video",
+   "action": "input_baseline_vo_rough",
+   "note": "Agent VO is 40.2s mono 24kHz over a rough music bed with roomy reverb — the speech-cleanup leg has to isolate and de-reverb this into a broadcast dialogue stem.",
+   "input": "input_assets/agent_vo_rough.mp3",
+   "params": {
+    "duration_s": 40.2,
+    "sr_hz": 24000,
+    "channels": "mono"
+   },
+   "n": 2,
+   "ts": "2026-06-15T10:07:46",
+   "step_image": "steps/002_input_baseline_vo_rough.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline_hero",
+   "note": "Hero interior living room with genuinely blown-out windows — the connector grade has to recover the windows and set the one shared listing look.",
+   "input": "input_assets/hero-interior-living-room.jpg",
+   "params": {
+    "px": "1536x1024"
+   },
+   "n": 3,
+   "ts": "2026-06-15T10:07:46",
+   "step_image": "steps/003_input_baseline_hero.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "local_compositor",
+   "action": "input_baseline_exterior_logo",
+   "note": "Exterior front under flat overcast sky (twilight-swap target) plus the brokerage logo to background-remove and vectorize for the lower-third bug.",
+   "input": "input_assets/exterior-front-overcast.jpg, input_assets/brokerage_logo.png",
+   "params": {
+    "exterior_px": "1536x1024",
+    "logo_px": "1024x1024"
+   },
+   "n": 4,
+   "ts": "2026-06-15T10:07:46",
+   "step_image": "steps/004_input_baseline_exterior.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "adobe_connector",
+   "action": "asset_finalize_file_upload",
+   "note": "Uploaded the 3 connector-input stills (hero interior, exterior, brokerage logo) to Creative Cloud so the Photoshop/Illustrator tools can fetch them by presigned URL.",
+   "input": "input_assets/{hero,exterior,logo}",
+   "output": "acp presigned URLs",
+   "params": {
+    "hero_assetId": "urn:aaid:sc:VA6C2:85c6a12e-b059-4773-b80d-6f989764777b",
+    "exterior_assetId": "urn:aaid:sc:VA6C2:5481efdf-8c1a-428c-a39c-d6f4308ce5b6",
+    "logo_assetId": "urn:aaid:sc:VA6C2:91ab918e-9ab3-4263-bb7d-75a4d2b4f81f"
+   },
+   "n": 5,
+   "ts": "2026-06-15T10:08:38",
+   "step_image": "steps/005_upload_connector_inputs.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_auto_straighten",
+   "note": "Levelled the hero interior so the verticals and the 5-window wall are square before grading.",
+   "input": "hero (acp)",
+   "output": "short-url ...61adf778",
+   "adobe_request_id": "dca5aa87-52c7-4c15-a7c9-cd58e3fc8dda",
+   "n": 6,
+   "ts": "2026-06-15T10:09:43"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_to_bounds",
+   "note": "Trimmed a 1% margin to clean the straighten edge before the campaign grade.",
+   "input": "short-url ...61adf778",
+   "output": "short-url ...531a0fdc",
+   "adobe_request_id": "19d80c95-1ed6-4051-948a-82fbfbb56734",
+   "params": {
+    "bounds": "0.01..0.99"
+   },
+   "n": 7,
+   "ts": "2026-06-15T10:09:43",
+   "step_image": "steps/007_hero_straighten_crop.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_auto_tone",
+   "note": "One-click tonal baseline before the deliberate listing-look adjustments.",
+   "input": "short-url ...531a0fdc",
+   "output": "short-url ...cdff0783",
+   "adobe_request_id": "cb7edc94-babf-4e03-81e8-2cf132e58a2e",
+   "n": 8,
+   "ts": "2026-06-15T10:09:43"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_color_temperature",
+   "note": "Set the campaign white balance per the look notes: gentle warmth (Lab a+6 b+16) for the inviting, natural-light feel reused across every still and the thumbnail.",
+   "input": "short-url ...cdff0783",
+   "output": "short-url ...8efc08ae",
+   "adobe_request_id": "684c48d6-83a1-4c5b-b7c5-33295bd178cd",
+   "params": {
+    "a": 6,
+    "b": 16,
+    "luminance": 50
+   },
+   "n": 9,
+   "ts": "2026-06-15T10:09:43"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_exposure",
+   "note": "Bright-airy global lift (gamma 1.18, +0.25 stop) to open the room before recovering the blown windows with a masked pass.",
+   "input": "short-url ...8efc08ae",
+   "output": "short-url ...7b62bb45",
+   "adobe_request_id": "3f1a606a-acd4-4a16-8cee-5eae83353532",
+   "params": {
+    "exposure": 0.25,
+    "gamma": 1.18,
+    "offset": 0.03
+   },
+   "n": 10,
+   "ts": "2026-06-15T10:09:43",
+   "step_image": "steps/010_hero_global_grade.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_by_prompt",
+   "note": "Masked the 5-window wall (the genuinely blown-out windows) so highlight recovery hits only the windows, not the room.",
+   "input": "short-url ...7b62bb45",
+   "output": "mask short-url ...ed2a6577",
+   "adobe_request_id": "f5a503cd-7158-490b-be57-795dfd808732",
+   "params": {
+    "prompt": "the bright blown-out windows",
+    "bbox": "x0.40 y0.13 w0.60 h0.61"
+   },
+   "n": 11,
+   "ts": "2026-06-15T10:12:30",
+   "step_image": "steps/011_hero_window_mask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_highlights",
+   "note": "Pulled the blown window highlights down hard (-85) on the window mask to start recovering exterior detail.",
+   "input": "short-url ...7b62bb45",
+   "output": "short-url ...9cffd027",
+   "adobe_request_id": "7d2698e3-d434-47dd-86ed-c292db7ba611",
+   "params": {
+    "amount": -85,
+    "maskURI": "...ed2a6577"
+   },
+   "n": 12,
+   "ts": "2026-06-15T10:12:31"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_exposure",
+   "note": "Masked exposure pull (-1.1 stop, gamma 0.82) on the windows to finish recovering the blown panels into legible exterior tone.",
+   "input": "short-url ...9cffd027",
+   "output": "short-url ...01a4c01d",
+   "adobe_request_id": "362c469f-f683-4e4e-9a9d-2eec9a91b103",
+   "params": {
+    "exposure": -1.1,
+    "gamma": 0.82,
+    "maskURI": "...ed2a6577"
+   },
+   "n": 13,
+   "ts": "2026-06-15T10:12:31",
+   "step_image": "steps/013_hero_windows_recovered.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_invert_selection",
+   "note": "Inverted the window mask to target the room (everything except the windows) for shadow/light balancing.",
+   "input": "mask short-url ...ed2a6577",
+   "output": "mask short-url ...7be0d193",
+   "adobe_request_id": "a8b6a844-c6b1-4d0c-871d-efd8971093ec",
+   "n": 14,
+   "ts": "2026-06-15T10:12:31"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_dark_portions",
+   "note": "Lifted the room shadows (-32) on the inverted mask to reveal sofa/floor detail for the airy look.",
+   "input": "short-url ...01a4c01d",
+   "output": "short-url ...e9a0fca9",
+   "adobe_request_id": "6ba8fb25-69d1-4d3e-a085-3d490f773973",
+   "params": {
+    "amount": -32,
+    "maskURI": "...7be0d193"
+   },
+   "n": 15,
+   "ts": "2026-06-15T10:12:31"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_light_portions",
+   "note": "Gently lifted the room light surfaces (+12) on the inverted mask to keep the bright-airy listing feel controlled.",
+   "input": "short-url ...e9a0fca9",
+   "output": "short-url ...d9e1aa94",
+   "adobe_request_id": "d50bce5e-b280-4712-b88b-f8fa478acb6b",
+   "params": {
+    "amount": 12,
+    "maskURI": "...7be0d193"
+   },
+   "n": 16,
+   "ts": "2026-06-15T10:12:31"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_hsl",
+   "note": "Cleaned to a harmonious palette (global sat -6, lightness +2) per the clean-color look note.",
+   "input": "short-url ...d9e1aa94",
+   "output": "short-url ...131151e4",
+   "adobe_request_id": "443a735f-7465-41ab-b644-35c8a28cc65d",
+   "params": {
+    "saturation": -6,
+    "lightness": 2
+   },
+   "n": 17,
+   "ts": "2026-06-15T10:12:31"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_vibrance_and_saturation",
+   "note": "Vibrance +14 to pop the warm woods and greenery without oversaturating neutrals.",
+   "input": "short-url ...131151e4",
+   "output": "short-url ...25d64e4c",
+   "adobe_request_id": "388bc15c-fbc1-4593-ae4d-4e9d3b6b6c25",
+   "params": {
+    "vibrance": 14,
+    "saturation": 2
+   },
+   "n": 18,
+   "ts": "2026-06-15T10:12:31"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_list_presets",
+   "note": "Listed Lightroom presets to pick the campaign listing-look preset.",
+   "output": "88 presets",
+   "adobe_request_id": "383de228-2757-4e6c-bbb4-f334b50cb148",
+   "n": 19,
+   "ts": "2026-06-15T10:12:31"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_preset",
+   "note": "Applied Color - Bright as the single shared listing-look preset (clean high-key, bright-airy) — this is the one grade reused across thumbnail and every cover still.",
+   "input": "short-url ...25d64e4c",
+   "output": "short-url ...28b6e1e3",
+   "adobe_request_id": "14a2a012-2671-4234-b85e-8fa6db747bee",
+   "params": {
+    "presetName": "Color - Bright"
+   },
+   "n": 20,
+   "ts": "2026-06-15T10:12:31",
+   "step_image": "steps/020_hero_graded_final.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_generative_expand",
+   "note": "Generative-expanded the graded hero (ceiling +720, floor +960) to 1506x2684 so the room can fill 1:1 and 9:16 covers WITHOUT cropping any of the room.",
+   "input": "short-url ...28b6e1e3",
+   "output": "short-url ...81d34ce0",
+   "adobe_request_id": "ed821af5-1bf3-41c9-a233-541e89e958ee",
+   "params": {
+    "top": 720,
+    "bottom": 960,
+    "seed": 73019,
+    "out_px": "1506x2684"
+   },
+   "n": 21,
+   "ts": "2026-06-15T10:13:47",
+   "step_image": "steps/021_hero_generative_expand.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "Reframed the expanded hero to 9:16 (1506x2677) — the Stories/Reels cover base, room fully in frame.",
+   "input": "short-url ...81d34ce0",
+   "output": "short-url ...1a2d97d6",
+   "adobe_request_id": "99d8ed71-a0ca-422f-b35e-e18d7ee8caba",
+   "params": {
+    "aspect": "9:16",
+    "focus": "0.55,0.5"
+   },
+   "n": 22,
+   "ts": "2026-06-15T10:13:48",
+   "step_image": "steps/022_hero_9x16_base.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "asset_search",
+   "note": "Searched Adobe Stock for a licensed twilight/dusk sky plate (warm horizon to indigo) to composite behind the listing exterior.",
+   "output": "stock hit 227883293 (10216x3844)",
+   "adobe_request_id": "n/a-stock-search",
+   "params": {
+    "entityScope": "StockAsset",
+    "query": "sunset twilight sky clouds",
+    "picked": "227883293"
+   },
+   "n": 23,
+   "ts": "2026-06-15T10:15:40"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "asset_license_and_download_stock",
+   "note": "Licensed the twilight sky plate (AdobeStock_227883293) for the exterior composite — state just_purchased.",
+   "input": "stock 227883293",
+   "output": "work/stock/twilight_sky.jpg",
+   "adobe_request_id": "stock-license-227883293",
+   "params": {
+    "state": "just_purchased",
+    "px": "10216x3844"
+   },
+   "n": 24,
+   "ts": "2026-06-15T10:15:40",
+   "step_image": "steps/024_twilight_sky_licensed.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_by_prompt",
+   "note": "Masked the flat overcast sky on the exterior (top half, y0-0.51) so the licensed twilight plate can be composited behind the house.",
+   "input": "exterior (acp)",
+   "output": "sky mask short-url ...5547a6ab",
+   "adobe_request_id": "4233bbf7-ef68-4356-a3b6-1fa538f88715",
+   "params": {
+    "prompt": "the overcast white sky above the house",
+    "bbox": "full-width y0-0.51"
+   },
+   "n": 25,
+   "ts": "2026-06-15T10:15:40",
+   "step_image": "steps/025_exterior_sky_mask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_fill_area",
+   "note": "Filled the masked sky with a deep twilight indigo as the graded base; the photographic twilight clouds are composited over this locally for the final plate.",
+   "input": "exterior (acp)",
+   "output": "short-url ...752b4bca",
+   "adobe_request_id": "527fc779-8ec4-4591-af58-7250d8c74404",
+   "params": {
+    "rgb": "58,70,110"
+   },
+   "n": 26,
+   "ts": "2026-06-15T10:15:40",
+   "step_image": "steps/026_exterior_sky_filled.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_remove_background",
+   "note": "Background-removed the brokerage logo to a transparent cutout — isolates the navy door + sage keyhole brand mark for the lower-third bug (wordmark text dropped as background, mark kept).",
+   "input": "logo (acp)",
+   "output": "short-url ...cf33fe1a",
+   "adobe_request_id": "05decd33-3fd4-4e51-99f8-4c3896948c45",
+   "params": {
+    "out_px": "1024x1024",
+    "alpha": true
+   },
+   "n": 27,
+   "ts": "2026-06-15T10:17:22",
+   "step_image": "steps/027_logo_cutout.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_vectorize",
+   "note": "Vectorized the logo cutout to a clean scalable SVG (Illustrator-ready) for the branded lower-third / logo bug.",
+   "input": "short-url ...cf33fe1a",
+   "output": "work/logo/logo_vector.svg",
+   "adobe_request_id": "61f8af84-6621-4838-88cb-fc8d3e6e6f1f",
+   "params": {
+    "format": "svg+xml"
+   },
+   "n": 28,
+   "ts": "2026-06-15T10:17:22",
+   "step_image": "steps/028_logo_vectorized.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "font_recommend",
+   "note": "Adobe Fonts recommended listing-lower-third typography: heading TheSeasons/RetiroStd/BrandonGrotesque (luxury/clean), price strip FuturaPT-Medium/Soleil/BasicSans (clean/precise). Brand spec = Libre Franklin + Inter; rendered locally with the closest installed grotesques.",
+   "output": "font groups: Luxury, Clean, Precise",
+   "adobe_request_id": "font-recommend-1",
+   "params": {
+    "moods": "elegant,trustworthy,modern,premium",
+    "picked_heading": "BrandonGrotesque-Regular",
+    "picked_strip": "FuturaPT-Medium"
+   },
+   "n": 29,
+   "ts": "2026-06-15T10:17:22"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_video",
+   "action": "media_summarize",
+   "note": "Footage summary + transcript (media_summarize done locally — connector media tools are not retrievable headless): exterior golden-hour clip leads as the hook, then kitchen->living->hallway->primary suite->spa bath to follow the narration beats.",
+   "input": "input_assets/walkthrough_*.mp4 + agent_vo_rough.txt",
+   "output": "work/footage_summary.json",
+   "params": {
+    "tour_order": "01,02,03,05,04,06",
+    "hook_s": 3.0
+   },
+   "n": 30,
+   "ts": "2026-06-15T10:18:58",
+   "step_image": "steps/030_footage_summary.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_video",
+   "action": "media_enhance_speech",
+   "note": "Cleaned the rough VO into a broadcast dialogue stem (media_enhance_speech done locally with ffmpeg): highpass/lowpass band-limit, 2-pass FFT denoise to strip the music/ambient bed, anlmdn + compand to suppress the reverb tail, loudnorm to -16 LUFS. Isolated dialogue, de-reverbed.",
+   "input": "input_assets/agent_vo_rough.mp3",
+   "output": "work/audio/vo_clean.wav, work/audio/vo_clean.mp3",
+   "params": {
+    "target_lufs": -16,
+    "sr": 48000,
+    "dur_s": 40.1
+   },
+   "n": 31,
+   "ts": "2026-06-15T10:18:58",
+   "step_image": "steps/031_vo_cleaned.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_video",
+   "action": "video_create_quick_cut",
+   "note": "Cut the story-ordered tour (video_create_quick_cut done locally with ffmpeg): exterior golden-hour HOOK in the first 3s, then kitchen->living->hallway->primary suite->spa bath, 0.4s crossfades, room durations 7/7/7/4/7/8s. Vertical bath clip pillarboxed with a blurred-fill bg.",
+   "input": "work/cut/seg_00..05",
+   "output": "work/cut/tour_master_silent.mp4",
+   "params": {
+    "order": "01,02,03,05,04,06",
+    "total_s": 37.5,
+    "transitions": "xfade 0.4s"
+   },
+   "n": 32,
+   "ts": "2026-06-15T10:21:13",
+   "step_image": "steps/032_tour_quick_cut.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_video",
+   "action": "mux_vo_music",
+   "note": "Built the tour audio: cleaned VO over the warm ambient bed, bed ducked under the VO via sidechain compression, faded out, loudnorm -15 LUFS; muxed into the 1280x720 H.264 landscape master.",
+   "input": "work/audio/vo_clean.wav + music_bed.wav + tour_master_silent.mp4",
+   "output": "work/cut/tour_master.mp4",
+   "params": {
+    "duck": "sidechaincompress ratio 8",
+    "mix_lufs": -15,
+    "a_codec": "aac 192k"
+   },
+   "n": 33,
+   "ts": "2026-06-15T10:21:13",
+   "step_image": "steps/033_tour_audio_mix.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_video",
+   "action": "video_resize_9x16",
+   "note": "Reframed the tour to 9:16 1080x1920 (Stories/Reels) with a blurred-fill background so the room is never cropped (video_resize done locally with ffmpeg).",
+   "input": "work/cut/tour_master.mp4",
+   "output": "work/reframe/tour_9x16.mp4",
+   "params": {
+    "px": "1080x1920",
+    "method": "scale+blur-pillar"
+   },
+   "n": 34,
+   "ts": "2026-06-15T10:27:49",
+   "step_image": "steps/034_reframe_9x16.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_video",
+   "action": "video_resize_1x1",
+   "note": "Reframed the tour to 1:1 1080x1080 (Feed) via subject-centered crop (video_resize done locally with ffmpeg).",
+   "input": "work/cut/tour_master.mp4",
+   "output": "work/reframe/tour_1x1.mp4",
+   "params": {
+    "px": "1080x1080"
+   },
+   "n": 35,
+   "ts": "2026-06-15T10:27:49"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_lower_third",
+   "note": "Built the branded lower-third / logo bug from the vectorized brokerage mark + agent name strip + Just-Listed price pill, all copy read from campaign_brief.json. Collision-safe layout at 1:1 and 9:16.",
+   "input": "work/logo/logo_mark.png + campaign_brief.json",
+   "output": "outputs/lower_third_{1x1,9x16}.png",
+   "params": {
+    "agent": "Eleanor Vance",
+    "price": "$975,000"
+   },
+   "n": 36,
+   "ts": "2026-06-15T10:27:49",
+   "step_image": "steps/036_lower_third.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_covers",
+   "note": "Composed Feed 1:1, Stories 9:16 and Reels 9:16 cover stills from the graded/expanded hero — one shared listing look — with brand lockup + lower-third baked in.",
+   "input": "work/grade/05_hero_graded_final.png + 06_hero_expanded.png",
+   "output": "outputs/cover_{feed_1x1,stories_9x16,reels_9x16}.png",
+   "params": {
+    "shared_grade": "Color - Bright + warm WB"
+   },
+   "n": 37,
+   "ts": "2026-06-15T10:27:50",
+   "step_image": "steps/037_covers.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_twilight_composite",
+   "note": "Composited the licensed Adobe Stock twilight sky behind the connector-masked exterior, dusk-graded the house to match, feathered the horizon, and built branded twilight covers (16:9 / Feed / Stories).",
+   "input": "input_assets/exterior + work/grade/08_exterior_sky_mask.png + work/stock/twilight_sky.jpg",
+   "output": "outputs/twilight_cover_*.png, outputs/twilight_exterior_composite.png",
+   "params": {
+    "stock": "AdobeStock_227883293"
+   },
+   "n": 38,
+   "ts": "2026-06-15T10:27:50",
+   "step_image": "steps/038_twilight_composite.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "compose_thumbnail",
+   "note": "Built the 1280x720 video thumbnail on the shared grade with a Just-Listed badge, play button and the lower-third — same white balance/tone/preset as every still.",
+   "input": "work/grade/05_hero_graded_final.png",
+   "output": "outputs/video_thumbnail_1280x720.png",
+   "params": {
+    "px": "1280x720"
+   },
+   "n": 39,
+   "ts": "2026-06-15T10:27:50",
+   "step_image": "steps/039_thumbnail.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_video",
+   "action": "export_platform_videos",
+   "note": "Exported the 3 platform tour videos (Feed 1:1, Stories/Reels 9:16, 16:9 master) — H.264/AAC, 37.4s, faststart, with the animated lower-third slid in at ~2s. Plus the cleaned VO dialogue stem (wav+mp3, -16 LUFS).",
+   "output": "outputs/tour_{feed_1x1,reels_stories_9x16,master_16x9}.mp4 + agent_vo_cleaned_stem.{wav,mp3}",
+   "params": {
+    "codec": "h264/aac",
+    "fps": 30
+   },
+   "n": 40,
+   "ts": "2026-06-15T10:34:14",
+   "step_image": "steps/040_export_videos.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "export_stills_and_assets",
+   "note": "Exported the still package: Feed/Stories/Reels covers, twilight covers (16:9/Feed/Stories), 1280x720 thumbnail, graded hero, twilight composite, lower-third overlays, vectorized logo SVG, and the footage summary + transcript.",
+   "output": "outputs/*.png + brokerage_logo_vector.svg + footage_summary_and_transcript.{json,txt}",
+   "params": {
+    "count": 18
+   },
+   "n": 41,
+   "ts": "2026-06-15T10:34:14",
+   "step_image": "steps/041_export_stills.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "self_verify",
+   "note": "Asserted all 11 image deliverables at exact target dims, all 3 videos 37.4s with correct dims + AAC audio, SVG valid (8 paths), VO stem -16.2 LUFS / -1.5 dB peak. Read the 2 most complex covers — no clipped text, no lower-third collisions, shared grade consistent across thumbnail + every still.",
+   "params": {
+    "images_ok": 11,
+    "videos_ok": 3,
+    "vo_lufs": -16.2
+   },
+   "n": 42,
+   "ts": "2026-06-15T10:34:14",
+   "step_image": "steps/042_self_verify.png"
+  }
+ ]
+}

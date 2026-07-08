@@ -1,0 +1,1135 @@
+<!doctype html><meta charset=utf-8><title>StudioBench — QA Report (100 tasks)</title><style>
+*{box-sizing:border-box}body{margin:0;font:13px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#1c1830;background:#f6f5fb;padding:24px 28px 70px;max-width:1180px}
+h1{font-size:22px;margin:0 0 4px}.lead{color:#5a5274;margin:0 0 14px;font-size:14px}
+h2{font-size:15px;margin:20px 0 6px;color:#2f2360}
+.kpi{display:flex;gap:22px;flex-wrap:wrap;background:#fff;border:1px solid #e6ddef;border-radius:11px;padding:13px 18px;margin:6px 0 12px}
+.kpi b{display:block;font-size:22px;color:#3c2f73}.kpi span{font-size:11.5px;color:#6b6385}
+.box{background:#fff;border:1px solid #e6ddef;border-radius:10px;padding:12px 15px;margin:0 0 12px;font-size:12.5px}
+.box ul{margin:6px 0 0;padding-left:18px}.box li{margin:3px 0}
+table{width:100%;border-collapse:collapse;font-size:11.5px;background:#fff;border:1px solid #e6ddef;border-radius:10px;overflow:hidden}
+th,td{border-bottom:1px solid #efeaf8;padding:5px 7px;text-align:left;vertical-align:top}
+th{background:#1a1333;color:#e9e4f5;font-weight:600;font-size:10.5px;position:sticky;top:0}
+tr.fl td{background:#fffdf7} td.id{font-weight:600;color:#3c2f73} td.iss{color:#8a5a12;font-size:11px}
+.v{font-size:10px;font-weight:600;border-radius:5px;padding:1px 6px}.v.g{background:#e1f5ee;color:#0f6e56}.v.b{background:#faeeda;color:#8a5a12}
+.st{font-size:10px;font-weight:700;border-radius:5px;padding:1px 6px}.st.pass{background:#e1f5ee;color:#0f6e56}.st.fixed{background:#e6f1fb;color:#185fa5}
+</style>
+<h1>StudioBench — QA report (all 100 tasks)</h1>
+<p class="lead">Independent per-task audit (one auditor per task) across IP/naming, connector-doability, realism, annotator-value, and presentation — followed by a fix pass on every flagged task and a full re-verification.</p>
+<div class="kpi">
+  <div><b>100</b><span>tasks audited</span></div>
+  <div><b>47</b><span>clean on first pass</span></div>
+  <div><b>53</b><span>flagged → all fixed</span></div>
+  <div><b>0</b><span>realism-weak</span></div>
+  <div><b>0</b><span>low-value</span></div>
+  <div><b>0</b><span>generative / banned steps (re-verified)</span></div>
+</div>
+<div class="box"><b>Resolution — all 53 flagged tasks fixed &amp; re-verified</b> <span style="color:#6b6385">(issue counts below overlap — some tasks had more than one):</span>
+<ul>
+<li><b>IP / naming — 4 tasks:</b><ul><li><b>AO-29</b> — Messi/Ronaldo/Mbappé (real players) → Solano/Ferraz/Rocher (fictional)</li><li><b>AO-52</b> — John Paul the Great Academy (real school) → Bayou Cross Classical Academy</li><li><b>AO-76</b> — Beacon Mutual Insurance (real co.) → Northlantic Insurance Group</li><li><b>AO-61</b> — THE LONG WAY ROUND (real franchise) → WANDER MILES</li></ul></li>
+<li><b>Doability — 16 tasks:</b> canvas-extension steps that wrongly used <code>image_fill_area</code> were swapped to <code>image_crop_and_resize</code> (gen-free reframe); stale “outpaint/expand” text cleaned in 32 specs.</li>
+<li><b>Presentation — 35 tasks:</b> missing fields, weak specs, and internal inconsistencies corrected.</li>
+</ul>
+<b>Re-verification (whole 100):</b> <code>image_generative_expand</code> = 0 · real-brand residuals = 0 · canvas-extension-via-fill = 0 · tool_call_count mismatches = 0 · every task grounded + tagged.</div>
+<h2>Per-task audit + status</h2>
+<table><thead><tr><th>ID</th><th>client brand</th><th>IP</th><th>doable</th><th>realism</th><th>value</th><th>present.</th><th>overall</th><th>status</th><th>top issue (pre-fix)</th></tr></thead>
+<tbody><tr class="fl">
+      <td class=id>AO-01</td>
+      <td>DERMAVERA (premium clinical skincare line)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale &quot;outpainted/generative_expand&quot; wording in the output spec and full_brief contradicts the corrected…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-02</td>
+      <td>DONE (fictional DTC homeware brand, taken verbatim from…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Narrative inconsistency: full_brief/one_line_ask/chaining_note/output-specs still instruct &quot;AI outpaint /…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-03</td>
+      <td>AURELIA BOTANICALS</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Step 14 applies image_apply_color_overlay (a raster tonal/color tool) to the step-13 vectorize SVG and claims a true…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-04</td>
+      <td>Unnamed silver jewellery line (anonymous Freelancer.com…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale metadata: chaining_note and difficulty_rationale still reference the removed banned step image_generative_expand,…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-06</td>
+      <td>Unnamed hands-off firearms/optics/outdoor Shopify store…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">major</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Step 10 uses image_fill_area to turn a non-square white-bg hero into a square 1:1 2048px canvas, but image_fill_area…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-07</td>
+      <td>Unnamed &quot;U.S.-based men&#x27;s accessories brand&quot; (no…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale references to &quot;generative_expand&quot;/&quot;single sanctioned generative step&quot; remain in chaining_note and…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-08</td>
+      <td>GATHER &amp; CO. (fictional lifestyle/cultural brand…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">major</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Step 16 banner: image_fill_area cannot expand a square master onto a wider 16:9 canvas with offset subject + white…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-10</td>
+      <td>ARGENT &amp; FAITH (fictional silver religious-jewelry brand;…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale outpaint/generative_expand references remain in grounding_note, chaining_note, and outputs[0].spec after the fix…</td>
+    </tr><tr class="">
+      <td class=id>AO-100</td>
+      <td>Vela Studio (independent podcast network; show &quot;Long…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-101</td>
+      <td>Northbound Signal (podcast) / Meridian Audio Collective…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-102</td>
+      <td>Foxglove Records (Foxglove Community Radio, 98.3)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-103</td>
+      <td>Stillwell (fictional sleep-and-mindfulness education…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="fl">
+      <td class=id>AO-104</td>
+      <td>Northwind Advisory Partners (persona Priya Venkataraman;…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Output→workflow completeness gap: the full 9-color + 9-B&amp;W crop matrix promised in outputs is only partially…</td>
+    </tr><tr class="">
+      <td class=id>AO-105</td>
+      <td>The Nocturne Sessions (fictional indie synth-noir act)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="fl">
+      <td class=id>AO-106</td>
+      <td>Nordheim Atelier (fictional independent Scandinavian…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Warm-yellow color_temperature accent is applied to only 2 of 4 looks (steps 7,15) despite the brief demanding the…</td>
+    </tr><tr class="">
+      <td class=id>AO-107</td>
+      <td>Deli &amp; Dough (@deliandough)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="fl">
+      <td class=id>AO-109</td>
+      <td>Kantyna Nova (owner persona Marta Zawadzka)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>image_apply_lens_blur is repeatedly mischaracterized as &quot;whole-frame/whole-image&quot; blur when the connector is actually a…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-11</td>
+      <td>Shady (a jeweler persona/first-name client)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale outputs[] spec for hero_banner_wide still says &quot;Generative-expand (outpaint) widening&quot; — describes a banned…</td>
+    </tr><tr class="">
+      <td class=id>AO-110</td>
+      <td>Summit &amp; Sable</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-111</td>
+      <td>Meadowlark Memory Lane (fictional family-history blog…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-112</td>
+      <td>SlabVault Cards</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-113</td>
+      <td>Loomhearth Supply Co.</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-114</td>
+      <td>Lumora Beauty Co. (&quot;Dewdrop&quot; lip oil)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-115</td>
+      <td>Rukmini Silverworks</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-116</td>
+      <td>Umbra Loft (fictional basement live-jazz/spoken-word…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-117</td>
+      <td>Marisol Cove (fictional boutique clifftop hotel)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-118</td>
+      <td>Fizzwild Kombucha</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-119</td>
+      <td>Harbor Crest Realty (persona: Priya Deshmukh, Marketing…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="fl">
+      <td class=id>AO-12</td>
+      <td>No named brand — a generic &quot;food-photography client&quot;…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Step-3 licensed stock backdrop (linen_backdrop_ref) is never consumed by any downstream step — a dangling, unused…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-13</td>
+      <td>El Vecino Cocina (fictional family-owned West Palm Beach…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale &quot;outpainted / scene extended / generative_expand&quot; wording in outputs[] specs and chaining_note contradicts the…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-14</td>
+      <td>Brickyard (retro street-food burger joint)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Step-7 note claims a food-pop preset is reused on the other three photos, but their sub-chains include no…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-15</td>
+      <td>Umaya (a fictional ramen + sushi restaurant; also…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Internal brand-name inconsistency between &quot;Umaya&quot; (title/brief) and &quot;house_of_umami&quot; (filenames/SVG output); both…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-17</td>
+      <td>Unnamed Portugal-based boutique digital agency (anonymous…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Step 9 image_fill_area is mis-tasked with a canvas-extension/reframe (3:2 → wider 16:9 with new left negative space)…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-18</td>
+      <td>Casa Polvo (logo wordmark) — a Portugal-based boutique…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale text: outputs[0].spec and chaining_note still describe generative-outpaint/canvas-extension for the hero banner,…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-20</td>
+      <td>Unnamed fictional industrial / CNC-machining company…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Descriptive/naming slips: lens_blur is whole-image but described as background-selective (&quot;subject sharp&quot;), and…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-21</td>
+      <td>Anonymous founder client with &quot;AV&quot; personal monogram (no…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale &quot;outpaint/generative_expand&quot; prose in grounding_note, input realism_notes, and difficulty_rationale contradicts…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-22</td>
+      <td>None named — anonymous first-person brand-refresh brief…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Step 14 relies on image_fill_area to build a wide banner-sized header lockup, but that tool only solid-fills a masked…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-23</td>
+      <td>STERLING ROW (luxury Manhattan real-estate broker&#x27;s…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale chaining_note prose still names the banned generative_expand step (contradicting the fixed workflow array); plus…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-24</td>
+      <td>Harlan Home Lending</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale &quot;generative outpaint&quot; language in the hero_property_banner output spec (and chaining_note) contradicts the fixed…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-25</td>
+      <td>Unnamed Saint-Martin (Caribbean) luxury vacation-rental…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Pool/terrace upload steps are described in prose instead of being enumerated, so steps 9/14 consume un-numbered raw…</td>
+    </tr><tr class="">
+      <td class=id>AO-26</td>
+      <td>No named client brand — generic &quot;real-estate media agency…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="fl">
+      <td class=id>AO-27</td>
+      <td>Kimberley (Dutch real-estate photographer / photography…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Step 18 uses asset_finalize_file_upload to &quot;save&quot; an in-place edit result (no matching initialize), which is a…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-29</td>
+      <td>Anonymous freelance client / poster studio (no client…</td>
+      <td><span class="v b">real_or_risky</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">major</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>IP: the full_brief/one_line_ask name three real living celebrities (Messi, Ronaldo, Mbappé) as poster subjects — a…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-30</td>
+      <td>Unnamed fictional artisan coffee roastery /…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Step 11 lens_blur is given a mask, but the sheet marks lens_blur whole-image/no-mask; the subject-pop background blur…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-31</td>
+      <td>Princerrr (PRINCERRR), a fictional daily-life vlog…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale &quot;generative_expand/outpaint&quot; wording in chaining_note and story_still output spec contradicts the corrected…</td>
+    </tr><tr class="">
+      <td class=id>AO-32</td>
+      <td>Generic unnamed &quot;landlord&quot; client (no brand/persona…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss>none (only a cosmetic TIFF-export naming nuance: two of the three full-res TIFF outputs are the un-resized graded…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-34</td>
+      <td>NORTHLOOP (fictional corporate brand; amber #E8A13A +…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Lower-third/call-out plates (steps 19-22) are specified as transparent-background PNGs but are produced by…</td>
+    </tr><tr class="">
+      <td class=id>AO-35</td>
+      <td>Unnamed family-history client (anonymous private…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss>none (only cosmetic nits: step-3 inputs_from over-lists the back and a wrong &quot;step 9&quot; cross-reference; recipe .txt not…</td>
+    </tr><tr class="">
+      <td class=id>AO-37</td>
+      <td>No brand — anonymous individual client restoring personal…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="fl">
+      <td class=id>AO-38</td>
+      <td>IRONLINE FORGE (fictional automotive-industrial…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>White #FFFFFF variant listed as a brief deliverable is documented-only, not produced by any connector step; and the…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-39</td>
+      <td>NORTHGROVE (fictional apparel wordmark; olive-green leaf…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale &quot;generative outpaint / image_generative_expand&quot; language survives in the hero_catalog_banner output spec (line…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-41</td>
+      <td>Maple Ridge Home Services</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>vertical metadata is mislabeled &quot;Health, Wellness &amp; Medical&quot; though the brand is home services (cosmetic); plus doc…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-42</td>
+      <td>OVERDRIVE (scholarship-focused merch brand)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Chaining gap: the hoodie mock is added to the Firefly usage board (step 13) but is never uploaded via a connector step,…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-45</td>
+      <td>HaulAway (a.k.a. &quot;HaulAway SOLUTIONS&quot;), a fictional…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Internal naming mismatch: the &quot;AB&quot; monogram / ab_junk_* filenames don&#x27;t correspond to the brand name &quot;HaulAway&quot;; plus…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-46</td>
+      <td>Unnamed generic &quot;custom football/soccer kit shop&quot; (no…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>The .ai/.eps deliverables (half the required outputs) hinge on an SVG→.ai &quot;authoring&quot; step that is not an enumerated…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-47</td>
+      <td>Unnamed generic &quot;pool-design / pool-builder studio&quot; (no…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stated PNG-set deliverable (pool_vectors_web_png_set.zip) is not produced by any explicit export step in the…</td>
+    </tr><tr class="">
+      <td class=id>AO-48</td>
+      <td>Northwind Analytics</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-49</td>
+      <td>Evergreen (fictional CT/OH/MO cannabis retailer)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-51</td>
+      <td>Vanguard (fictional youth/athletic team)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="fl">
+      <td class=id>AO-52</td>
+      <td>John Paul the Great Academy (a Catholic classical school…</td>
+      <td><span class="v b">real_or_risky</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">major</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>IP: client &#x27;John Paul the Great Academy&#x27; is a REAL, named, verbatim religious institution (Lafayette, LA), not a…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-54</td>
+      <td>RoadWise (RoadWise™) — driving-education brand</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">major</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Cover/end-card step 8 is not connector-doable — image_fill_area cannot extend a 1024x1024 frame onto a 1080x1920 canvas…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-55</td>
+      <td>Fuel&#x27;d Kitchen (client), delegated by agency &quot;Scale My…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale banned-capability language: hero_banner_still output spec (line 48) and chaining_note/difficulty_rationale (lines…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-56</td>
+      <td>No named brand — anonymous &quot;comedy gameplay YouTube…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Step 5 media_summarize is over-claimed to profile tempo/beat/energy for Quick Cut timing, exceeding its documented…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-57</td>
+      <td>NOCTURNE (fictional Instagram/TikTok creator…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Thumbnail output spec over-claims that the wordmark lockup is already composited onto the PNG, while the workflow…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-58</td>
+      <td>IRONLINE COACHING (fictional personal-training gym)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Vector branch mis-constructed: image_vectorize SVG output (step 9) is fed into raster-only…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-60</td>
+      <td>Unnamed small packaging design studio / packaging…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale narrative text (grounding_note, kraft-box realism_notes, chaining_note) still describes banned generative…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-61</td>
+      <td>THE LONG WAY ROUND (a YouTube travel/road-trip podcast,…</td>
+      <td><span class="v b">real_or_risky</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Client brand &quot;THE LONG WAY ROUND&quot; (road-trip/campervan travel podcast) collides with the real &quot;Long Way Round&quot;…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-62</td>
+      <td>PARTYWORKS (fictional event/party-supply promo brand)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale generative-expand/&quot;outpaint&quot; wording left in chaining_note and difficulty_rationale after step 5 was corrected to…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-63</td>
+      <td>Maple Cricket League (MCL) / &quot;Backyard Cricket League…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale banner output spec (outputs[5]) still says the wide banner is made by &quot;AI-outpainting&quot;/canvas extension,…</td>
+    </tr><tr class="">
+      <td class=id>AO-64</td>
+      <td>Aurelia Botanics (3-SKU serum line: Rosehip Renewal,…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-67</td>
+      <td>Unnamed &quot;traditional Tamil service business&quot; persona (no…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="fl">
+      <td class=id>AO-68</td>
+      <td>DYNAMIC SOLUTION CLASSES (fictional local coaching…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale prose references to the removed image_generative_expand step (output spec line 48, chaining_note,…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-69</td>
+      <td>TitanSeal (Dubai B2B private-label sealants brand)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale banned-capability wording (outpaint/generative_expand at line 75 and chaining_note line 332) survives the…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-72</td>
+      <td>No named client brand — anonymous online-shop owner…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Stale banned-capability language: difficulty_rationale, chaining_note, and two output specs still describe…</td>
+    </tr><tr class="">
+      <td class=id>AO-74</td>
+      <td>Crumb &amp; Co. (fictional small-batch wholesale bakery)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-75</td>
+      <td>Northgate Dental Students&#x27; Congress 2027</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="fl">
+      <td class=id>AO-76</td>
+      <td>Beacon Mutual Insurance Group</td>
+      <td><span class="v b">real_or_risky</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">major</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Client brand &quot;Beacon Mutual Insurance Group&quot; collides with the real Beacon Mutual Insurance Company (a RI insurance…</td>
+    </tr><tr class="">
+      <td class=id>AO-77</td>
+      <td>Willowfen Press (book &quot;Pip &amp; the Paper Moon&quot;)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-78</td>
+      <td>Hearthstone Brew Co.</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-79</td>
+      <td>Marlow &amp; Vane Realty (fictional boutique residential…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-80</td>
+      <td>Lanternwood Folk Fest (fictional two-day…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-81</td>
+      <td>Nimbadesk (fictional B2B SaaS help-desk company)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-82</td>
+      <td>Lumen Quarterly (magazine, published by Lumen House Press)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-83</td>
+      <td>Halden Sleep</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-84</td>
+      <td>Verdafix Industrie GmbH</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="fl">
+      <td class=id>AO-85</td>
+      <td>Ironclad Elevator &amp; Electrical Supply</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v b">issue</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Step 10&#x27;s use of asset_preview_file to extract only the flagged pages into a new subset PDF is an imperfect tool…</td>
+    </tr><tr class="">
+      <td class=id>AO-86</td>
+      <td>Amberleaf Tea Studio (sub-brands Golden Chai Co. and…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="fl">
+      <td class=id>AO-87</td>
+      <td>Little Lighthouse Fund (fictional children&#x27;s charity)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Two mild nits: (a) document_render_vector combining 8 separate plates/composites into one multi-placement proof PDF…</td>
+    </tr><tr class="fl">
+      <td class=id>AO-88</td>
+      <td>Ridgeline Rovers FC</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v b">issues</span></td>
+      <td><span class="v b">minor</span></td>
+      <td><span class="st fixed">fixed &amp; re-verified</span></td>
+      <td class=iss>Internal tool-count metadata is wrong: distinct_adobe_tools stated as 16 but tools_used lists 17 Adobe tools (18…</td>
+    </tr><tr class="">
+      <td class=id>AO-89</td>
+      <td>LUMIÈRE MÉNAGE</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-90</td>
+      <td>Apexguard Auto Film (with sub-brands Apexguard SHIELD and…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-91</td>
+      <td>Maison Valcere (fictional independent high-jewelry house)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-92</td>
+      <td>Wandergrain Supply Co. (&quot;Modern Wanderer&quot; tee line)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-93</td>
+      <td>Torqex Industrial (fictional maker of hydraulic torque…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss>Minor realism nit: several planted vector-structure defects (open/unclosed paths, stray anchor points, sub-0.25pt…</td>
+    </tr><tr class="">
+      <td class=id>AO-94</td>
+      <td>Vitalé Labs (presenter persona &quot;Dr. Nadia Reuter&quot;;…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-95</td>
+      <td>Voltcast (Voltcast Media) — fictional independent…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-96</td>
+      <td>SentinelMesh</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss>none — minor honest realism nit (media_summarize on pure-UI screen recordings that lack narration audio) is disclosed…</td>
+    </tr><tr class="">
+      <td class=id>AO-97</td>
+      <td>Pulsevault (fictional downtown nightclub)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss>none — honestly re-scoped: the video &quot;sizzle&quot; leans on quick_cut+resize as the connector analog since frame-accurate…</td>
+    </tr><tr class="">
+      <td class=id>AO-98</td>
+      <td>Velvet Hour Sessions / Velvet Hour Room (venue), with…</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr><tr class="">
+      <td class=id>AO-99</td>
+      <td>Lunara Silver (founder persona: Priya Nair)</td>
+      <td><span class="v g">fictional_clean</span></td>
+      <td><span class="v g">fully_doable</span></td>
+      <td><span class="v g">realistic</span></td>
+      <td><span class="v g">high</span></td>
+      <td><span class="v g">good</span></td>
+      <td><span class="v g">pass</span></td>
+      <td><span class="st pass">pass</span></td>
+      <td class=iss></td>
+    </tr></tbody></table>

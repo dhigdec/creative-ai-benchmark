@@ -1,0 +1,4 @@
+REASONS: 
+
+ISSUES:
+- difficulty_rationale (line 324) still contains a stale generative-tool claim: 'only ONE generative step and it is image_generative_expand (reframe-crop) — the sole sanctioned generative tool'. This directly contradicts the actual workflow (step 7 is image_crop_and_resize, a true letterbox crop of existing pixels) and the reverify note which explicitly states 'Zero generative steps'. The reverify pass claims it swept out all stale outpaint/generative references (outputs[0].spec and chaining_note) but missed this one in difficulty_rationale. No banned capability is actually invoked — the executable workflow is clean — but the leftover text is an internal contradiction that could mislead an annotator reading the rationale. Fix: change to reflect zero generative steps (crop-based reframe).

@@ -1,0 +1,6 @@
+REASONS: INPUTS incomplete
+
+ISSUES:
+- Campus-photo count mismatch: the brief, the campus_reference_board output spec, and workflow step 20 all say 'four campus reference photos', but inputs[] provides only THREE image files (chapel, oak_quad, and a combined schoolhouse_and_foundingclass). The founding-class and schoolhouse were bundled into one file, so '4' is asserted everywhere while only 3 assets exist. Fix by making inputs and every 'four' reference agree (either split into 4 files or say 'four references across three photos').
+- Two of the five declared plate outputs have no dedicated workflow step: plate_brick_red_halftone.png and plate_ink_black_lettering.png appear only parenthetically ('Brick Red + Ink Black plates produced the same way from choked_field'). For a 5-screen separation pack, all five plates should be produced by explicit numbered steps.
+- plate_ink_black_lettering.png is described in its output spec as carrying the vectorized hard-edge lettering/line-work as solid PLUS the darkest tonal dots, but the only step that references it says it is produced 'the same way from choked_field' — that would omit the vectorized lettering hold-out. The Ink Black plate step needs to combine the choked dot field with lettering_lineart.svg, so the parenthetical 'same way' description is inaccurate for this plate.

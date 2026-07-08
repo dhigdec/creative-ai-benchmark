@@ -1,0 +1,8 @@
+REASONS: OUTPUTS incomplete, WORKFLOW incoherent
+
+ISSUES:
+- connector_workflow is truncated: it contains only steps n=14 through n=36 (23 entries). Steps 1-13 — the ENTIRE front-chest pipeline (asset_create_folders, front select/fill x3, saturation adjust, remove_background, front red-select+vectorize, front navy-select+vectorize) — are missing from the array, even though the chaining_note and difficulty_rationale describe a contiguous 1..36 workflow.
+- Metadata contradicts the narrative fields: tool_call_count=23 and distinct_adobe_tools=8 in the JSON, but reverify.notes/difficulty_rationale/chaining_note all state 36 calls and 10 distinct tools. tools_used lists 11 tools (incl. asset_create_folders and image_adjust_single_color_saturation) that never appear in the visible workflow array.
+- Broken output->input chaining: step n=33 (upload) consumes front_sep_red_vector and front_sep_navy_vector, which are never produced by any step in the array (they were outputs of the deleted steps 10-13). Step n=14 consumes front_art_transparent, also never produced in the array (deleted step 9).
+- outputs[] only lists the final proof PDF. The brief promises 6 separation vectors, 2 transparent composite SVGs, and a print-shop recipe note as deliverables, but none of those appear in outputs[] — only the proof PDF is declared.
+- The recipe note step (n=36) uses server 'local' / exec_mode 'L' with a non-connector tool 'local_write_recipe_note'; this is a plausible hand-off convention but is not an Adobe connector step, worth confirming it is an accepted pattern for this benchmark.

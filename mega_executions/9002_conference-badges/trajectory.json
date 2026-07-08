@@ -1,0 +1,644 @@
+{
+ "task_id": 9002,
+ "slug": "conference-badges",
+ "title": "Conference attendee badge + certificate suite — 510 A6 badges + 510 A4 certificates, data-merged from one roster",
+ "started": "2026-06-15T10:06:14",
+ "finished": "2026-06-15T10:35:35",
+ "steps": [
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Raw attendee headshot 01 (Aisha Khan row) — tilted phone shot, busy venue background; the geometry/tone/isolate chain will manufacture a uniform badge portrait from it.",
+   "input": "input_assets/attendee_01.jpg",
+   "params": {
+    "src_px": "1024x1536"
+   },
+   "n": 1,
+   "ts": "2026-06-15T10:06:49",
+   "step_image": "steps/001_baseline_attendee_01.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Raw attendee headshot 05 — harsh top-light hotspots + cool venue WB; representative of the highlight/temperature correction the chain must normalize.",
+   "input": "input_assets/attendee_05.jpg",
+   "params": {
+    "src_px": "1024x1536"
+   },
+   "n": 2,
+   "ts": "2026-06-15T10:06:49",
+   "step_image": "steps/002_baseline_attendee_05.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Raw attendee headshot 09 — third representative source taken through the full retouch chain.",
+   "input": "input_assets/attendee_09.jpg",
+   "params": {
+    "src_px": "1024x1536"
+   },
+   "n": 3,
+   "ts": "2026-06-15T10:06:49",
+   "step_image": "steps/003_baseline_attendee_09.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Supplied Northwind Summit compass event logo (raster PNG) — vectorized to SVG for crisp placement on badge header + certificate top.",
+   "input": "input_assets/event_logo.png",
+   "params": {
+    "src_px": "1024x1024"
+   },
+   "n": 4,
+   "ts": "2026-06-15T10:06:49",
+   "step_image": "steps/004_baseline_event_logo.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "local_verify",
+   "action": "input_baseline",
+   "note": "Client A6 badge print master rasterized — its layout (teal header w/ logo, centred photo frame, name, org, amber role pill, footer w/ event name + cert no.) is the authoritative reference for the authored badge.indd.",
+   "input": "input_assets/badge_master.pdf",
+   "output": "work/badge_master_p1.png",
+   "n": 5,
+   "ts": "2026-06-15T10:07:10",
+   "step_image": "steps/005_baseline_badge_master_render.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_auto_straighten",
+   "note": "Level attendee_01 so the face sits on a true horizon — baseline geometry before face-cropping.",
+   "input": "input_assets/attendee_01.jpg",
+   "output": "work/a01_s04_straighten.png",
+   "adobe_request_id": "be8b86a9-f0ed-4673-8394-d7d717ecd227",
+   "params": {
+    "uprightMode": "auto"
+   },
+   "n": 6,
+   "ts": "2026-06-15T10:08:51",
+   "step_image": "steps/006_a01_s04_straighten.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "Server-side face/head detection gives attendee_01 an identical centred 600x800 (3:4) portrait crop — every attendee gets the same uniform frame.",
+   "input": "work/a01_s04_straighten.png",
+   "output": "work/a01_s05_crop.png",
+   "adobe_request_id": "6d5df26f-8be2-4a19-8a0b-0e2eea7aea5e",
+   "params": {
+    "fit": "extract",
+    "focus": "head",
+    "output": "600x800"
+   },
+   "n": 7,
+   "ts": "2026-06-15T10:08:52",
+   "step_image": "steps/007_a01_s05_crop.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_auto_tone",
+   "note": "One-click tonal baseline so wildly different attendee exposures start from a common neutral point.",
+   "input": "work/a01_s05_crop.png",
+   "output": "work/a01_s06_autotone.png",
+   "adobe_request_id": "fbdb9cba-da9d-4b35-ab68-74f92764f7d3",
+   "n": 8,
+   "ts": "2026-06-15T10:10:26",
+   "step_image": "steps/008_a01_s06_autotone.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_exposure",
+   "note": "Nudge brightness toward a shared luminance target so all faces read at the same level on the badge.",
+   "input": "work/a01_s06_autotone.png",
+   "output": "work/a01_s07_exposure.png",
+   "adobe_request_id": "3827cdec-0870-465f-8cfa-9d8570a63299",
+   "params": {
+    "exposure": 0.35,
+    "gamma": 1.08
+   },
+   "n": 9,
+   "ts": "2026-06-15T10:10:27",
+   "step_image": "steps/009_a01_s07_exposure.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_highlights",
+   "note": "Tame blown forehead/cheek hotspots from harsh venue lighting for consistent highlight rolloff.",
+   "input": "work/a01_s07_exposure.png",
+   "output": "work/a01_s08_highlights.png",
+   "adobe_request_id": "0c50c89f-3f5a-446d-b40f-bce3849b0544",
+   "params": {
+    "amount": -42
+   },
+   "n": 10,
+   "ts": "2026-06-15T10:10:27",
+   "step_image": "steps/010_a01_s08_highlights.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_brightness_and_contrast",
+   "note": "Lock a consistent contrast curve so faces have matching punch regardless of source camera.",
+   "input": "work/a01_s08_highlights.png",
+   "output": "work/a01_s09_bricon.png",
+   "adobe_request_id": "a6a041ec-3bc7-4108-b7c7-f5b49afd532b",
+   "params": {
+    "brightness": 8,
+    "contrast": 18
+   },
+   "n": 11,
+   "ts": "2026-06-15T10:10:27",
+   "step_image": "steps/011_a01_s09_bricon.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_color_temperature",
+   "note": "Neutralize mixed venue white balance to a single warm-neutral skin target across all headshots.",
+   "input": "work/a01_s09_bricon.png",
+   "output": "work/a01_s10_temp.png",
+   "adobe_request_id": "72fbff0c-951a-45a2-b9bc-8bcc36a099de",
+   "params": {
+    "a": 6,
+    "b": 16,
+    "luminance": 60
+   },
+   "n": 12,
+   "ts": "2026-06-15T10:10:27",
+   "step_image": "steps/012_a01_s10_temp.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_hsl",
+   "note": "Gently align red/skin hue+sat so no face skews too red or sallow against the shared teal backdrop.",
+   "input": "work/a01_s10_temp.png",
+   "output": "work/a01_s11_hsl.png",
+   "adobe_request_id": "19819dd2-7d57-4bc9-98f8-2c9688783afd",
+   "params": {
+    "targetColor": "red",
+    "hue": 3,
+    "saturation": -6,
+    "lightness": 2
+   },
+   "n": 13,
+   "ts": "2026-06-15T10:10:27",
+   "step_image": "steps/013_a01_s11_hsl.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_subject",
+   "note": "Auto-detect the person to produce a subject mask (white=subject) — first half of the solid-backdrop recipe.",
+   "input": "work/a01_s11_hsl.png",
+   "output": "work/a01_s12_mask.png",
+   "adobe_request_id": "f9d084cb-d230-4506-b1d5-2a27ef2e7e33",
+   "n": 14,
+   "ts": "2026-06-15T10:12:04",
+   "step_image": "steps/014_a01_s12_subjectmask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_invert_selection",
+   "note": "Invert the subject mask so the BACKGROUND becomes the selected (white) region — second half of the recipe.",
+   "input": "work/a01_s12_mask.png",
+   "output": "work/a01_s13_maskinv.png",
+   "adobe_request_id": "0f9c4da0-bd6d-4b19-aa3e-2d5d80d51857",
+   "n": 15,
+   "ts": "2026-06-15T10:12:04",
+   "step_image": "steps/015_a01_s13_bgmask.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_fill_area",
+   "note": "Fill the background mask with the shared Northwind teal-navy RGB(20,60,90) so every attendee sits on one identical solid badge backdrop.",
+   "input": "work/a01_s11_hsl.png",
+   "output": "work/a01_s14_backdrop.png",
+   "adobe_request_id": "7a92bbe9-54c3-41d8-9be5-a27d5281efcf",
+   "params": {
+    "color": "#143C5A rgb(20,60,90)",
+    "opacity": 100
+   },
+   "n": 16,
+   "ts": "2026-06-15T10:12:04",
+   "step_image": "steps/016_a01_s14_backdrop.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_list_presets",
+   "note": "Fetch the live Lightroom preset catalog; selected the shared look by exact name (names must be fetched, not guessed).",
+   "input": "(catalog lookup)",
+   "output": "chose: Adaptive: Subject - Balance Contrast",
+   "adobe_request_id": "a1d6cd65-3477-44ec-8728-53f16f0cd4af",
+   "n": 17,
+   "ts": "2026-06-15T10:12:04"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_preset",
+   "note": "Apply the ONE shared look (Adaptive: Subject - Balance Contrast — harmonizes subject tonality) to unify the whole set; produces the final retouched badge portrait that feeds the merge.",
+   "input": "work/a01_s14_backdrop.png",
+   "output": "work/a01_s16_final.png",
+   "adobe_request_id": "b9caf875-a9cb-4151-af14-7ed89c517f4f",
+   "params": {
+    "presetName": "Adaptive: Subject - Balance Contrast"
+   },
+   "n": 18,
+   "ts": "2026-06-15T10:12:04",
+   "step_image": "steps/018_a01_s16_FINAL_retouched.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "attendee_05 (dark skin, harsh top-light) — same straighten+head-crop recipe gives the identical 600x800 portrait frame.",
+   "input": "input_assets/attendee_05.jpg",
+   "output": "work/a05_s05_crop.png",
+   "adobe_request_id": "e59b0663-ee96-41af-9477-50c50ebae7c8",
+   "params": {
+    "straighten_req": "dd5a1286-4f02-45d5-a681-26f50a1fded7",
+    "fit": "extract",
+    "focus": "head"
+   },
+   "n": 19,
+   "ts": "2026-06-15T10:15:18",
+   "step_image": "steps/019_a05_s05_crop.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_hsl",
+   "note": "attendee_05 after the full auto_tone->exposure->highlights->bri/con->temp->hsl tone-match chain (exposure lifted harder + hotspot tamed -55 for this darker, hotter-lit source).",
+   "input": "work/a05_s05_crop.png",
+   "output": "work/a05_s11_hsl.png",
+   "adobe_request_id": "06de8a21-48a5-4e34-9a91-cc37c3086525",
+   "params": {
+    "chain_ids": [
+     "13124a70",
+     "d054b2d7",
+     "09fe36ff",
+     "a47ceba6",
+     "a96610c2",
+     "06de8a21"
+    ]
+   },
+   "n": 20,
+   "ts": "2026-06-15T10:15:18",
+   "step_image": "steps/020_a05_s11_toned.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_fill_area",
+   "note": "attendee_05 backdrop: select_subject->invert->fill teal RGB(20,60,90) — same shared backdrop recipe.",
+   "input": "work/a05_s11_hsl.png",
+   "output": "work/a05_s14_backdrop.png",
+   "adobe_request_id": "32fc5519-f898-455a-b73e-56feb4421b14",
+   "params": {
+    "mask_id": "b357c267",
+    "invert_id": "e1be6655"
+   },
+   "n": 21,
+   "ts": "2026-06-15T10:15:18",
+   "step_image": "steps/021_a05_s14_backdrop.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_preset",
+   "note": "attendee_05 final: the SAME shared preset (Adaptive: Subject - Balance Contrast) unifies it with attendee_01 — proves the look holds across skin tones.",
+   "input": "work/a05_s14_backdrop.png",
+   "output": "work/a05_s16_final.png",
+   "adobe_request_id": "8e297613-fa58-4b80-a946-5c83da56a4a6",
+   "params": {
+    "presetName": "Adaptive: Subject - Balance Contrast"
+   },
+   "n": 22,
+   "ts": "2026-06-15T10:15:18",
+   "step_image": "steps/022_a05_s16_FINAL_retouched.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "attendee_09 — face was centred in source so extract violated 3:4; re-cropped with fit:reframe to land exact 600x800 (no upscale). Same uniform frame.",
+   "input": "input_assets/attendee_09.jpg",
+   "output": "work/a09_s05_crop.png",
+   "adobe_request_id": "dc3d2754-54ff-4ab9-bba5-63e65d1420d8",
+   "params": {
+    "straighten_req": "bcd3b075-e523-40b8-8f3a-8a266b93d712",
+    "fit": "reframe"
+   },
+   "n": 23,
+   "ts": "2026-06-15T10:19:09",
+   "step_image": "steps/023_a09_s05_crop.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_hsl",
+   "note": "attendee_09 after the full tone-match chain (auto_tone->exposure->highlights->bri/con->temp->hsl).",
+   "input": "work/a09_s05_crop.png",
+   "output": "work/a09_s11_hsl.png",
+   "adobe_request_id": "df872323-2509-4879-b3ca-766f2751d8ad",
+   "params": {
+    "chain_ids": [
+     "8907741b",
+     "4983d623",
+     "238aee4e",
+     "55300d37",
+     "7dda1e59",
+     "df872323"
+    ]
+   },
+   "n": 24,
+   "ts": "2026-06-15T10:19:09",
+   "step_image": "steps/024_a09_s11_toned.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_fill_area",
+   "note": "attendee_09 backdrop: select_subject->invert->fill teal RGB(20,60,90).",
+   "input": "work/a09_s11_hsl.png",
+   "output": "work/a09_s14_backdrop.png",
+   "adobe_request_id": "a41ff189-b0aa-4f64-9dfc-24413fa559d1",
+   "params": {
+    "mask_id": "f6611b9a",
+    "invert_id": "e9ae8f01"
+   },
+   "n": 25,
+   "ts": "2026-06-15T10:19:09",
+   "step_image": "steps/025_a09_s14_backdrop.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_preset",
+   "note": "attendee_09 final retouched badge portrait — third source through the full 13-op chain, unified by the shared preset.",
+   "input": "work/a09_s14_backdrop.png",
+   "output": "work/a09_s16_final.png",
+   "adobe_request_id": "5d9a38e9-5280-45dc-b099-148c9c1a0bc1",
+   "params": {
+    "presetName": "Adaptive: Subject - Balance Contrast"
+   },
+   "n": 26,
+   "ts": "2026-06-15T10:19:09",
+   "step_image": "steps/026_a09_s16_FINAL_retouched.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_vectorize",
+   "note": "Vectorize the supplied raster Northwind Summit logo to SVG so it scales crisply on the A6 badge header and A4 certificate top at any size.",
+   "input": "input_assets/event_logo.png",
+   "output": "work/event_logo.svg",
+   "adobe_request_id": "b3b69f96-2452-4afe-bf0c-b6f3e4e62ee7",
+   "params": {
+    "out": "image/svg+xml 1024x1024"
+   },
+   "n": 27,
+   "ts": "2026-06-15T10:21:18",
+   "step_image": "steps/027_s17_logo_vectorized_svg.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "font_recommend",
+   "note": "Adobe Fonts pairing for A6 badges + A4 certificates. DISPLAY=Acumin Pro Medium/Semibold (confident humanist sans, networking/job-fair group); BODY=Acumin Pro Regular (authoritative/official group). Mirrors brand Libre Franklin + Inter. Local compose analogues: Avenir Next (display) + Helvetica Neue (body).",
+   "input": "brief brand/legibility constraints",
+   "output": "display=AcuminPro-Semibold/Medium; body=AcuminPro-Regular",
+   "params": {
+    "heading_top": [
+     "AcuminPro-Medium",
+     "Tenon-Medium",
+     "Roboto-Regular"
+    ],
+    "body_top": [
+     "AcuminPro-Regular",
+     "SourceSerif4-Regular",
+     "VerdanaPro-Regular"
+    ]
+   },
+   "n": 28,
+   "ts": "2026-06-15T10:21:18"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "document_convert_pdf",
+   "note": "Convert the client flattened A6 badge PDF master into an editable .indd (ZIP package) — real layout-recovery production step. NOTE per workflow: a PDF-converted .indd carries literal/split text, not data-merge fields, so it is reference only; the binding merge template is the desktop-authored badge.indd.",
+   "input": "input_assets/badge_master.pdf",
+   "output": "work/badge_master_recovered.zip",
+   "params": {
+    "outputFormat": "indd",
+    "output_url": "https://to.adobe.com/4anWQ"
+   },
+   "n": 29,
+   "ts": "2026-06-15T10:22:16",
+   "step_image": "steps/029_s19_pdf_to_indd_recovered.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "build_retouched_set",
+   "note": "Assemble the uniform 16-portrait retouched set (600x800, shared teal-navy backdrop, matched tone) that feeds the merge: attendee_01/05/09 reuse their connector 13-op finals re-seated on a full teal field; the other 13 use a LOCAL mirror of the same recipe (face-centred crop + tone normalize + teal edge-blend backdrop). Local because 13 connector ops x 16 photos is impractical headlessly; the connector recipe is proven on the 3 deep chains.",
+   "input": "work/a0{1,5,9}_s16_final.png + input_assets/attendee_*.jpg",
+   "output": "work/retouched/attendee_NN_retouched.png (x16)",
+   "params": {
+    "px": "600x800",
+    "backdrop": "#143C5A",
+    "connector_retouched": [
+     1,
+     5,
+     9
+    ]
+   },
+   "n": 30,
+   "ts": "2026-06-15T10:25:00",
+   "step_image": "steps/030_s_retouched_set_contactsheet.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_datamerge",
+   "action": "data_merge_badge_proof",
+   "note": "data-merge rendered locally from roster.csv (510 rows); the document_merge_data_layout connector requires a human-authored badge.indd template. Proof badge row 1 (Aisha Khan / Quantum Leap Analytics / Senior Data Scientist) — A6 105x148mm+3mm bleed @300dpi, all 6 fields bound from the CSV + connector-retouched headshot.",
+   "input": "input_assets/roster.csv row1 + work/retouched/",
+   "output": "work/test_badge_1.png",
+   "params": {
+    "px": "1310x1818",
+    "dpi": 300,
+    "fields": [
+     "first_name",
+     "last_name",
+     "organization",
+     "role",
+     "certificate_number",
+     "photo"
+    ]
+   },
+   "n": 31,
+   "ts": "2026-06-15T10:27:30",
+   "step_image": "steps/031_s_merge_badge_proof_row1.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_datamerge",
+   "action": "data_merge_cert_proof",
+   "note": "data-merge rendered locally from roster.csv (510 rows); the document_merge_data_layout connector requires a human-authored certificate.indd template. Proof certificate row 1 — A4 landscape 297x210mm+3mm bleed @300dpi, fields first_name/last_name/track/certificate_number/completion_date bound from the same CSV, placed vector logo.",
+   "input": "input_assets/roster.csv row1 + work/event_logo (vectorized)",
+   "output": "work/test_cert_1.png",
+   "params": {
+    "px": "3578x2550",
+    "dpi": 300,
+    "fields": [
+     "first_name",
+     "last_name",
+     "track",
+     "certificate_number",
+     "completion_date"
+    ]
+   },
+   "n": 32,
+   "ts": "2026-06-15T10:27:31",
+   "step_image": "steps/032_s_merge_cert_proof_row1.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_datamerge",
+   "action": "data_merge_badge_stress",
+   "note": "Variable-data QA: longest org (\"AI for Environmental Sustainability\") + role badge auto-fits the name and shrinks the amber role pill — confirms the merge holds for edge-case rows across all 510.",
+   "input": "input_assets/roster.csv row481",
+   "output": "work/test_badge_longorg.png",
+   "params": {
+    "row": 481
+   },
+   "n": 33,
+   "ts": "2026-06-15T10:27:31",
+   "step_image": "steps/033_s_merge_badge_stress_longorg.png"
+  },
+  {
+   "phase": "export",
+   "actor": "adobe_connector",
+   "action": "document_render_layout",
+   "note": "QA-render the recovered badge_master.indd to JPEG @300dpi via the genuine InDesign connector — confirms the PDF->INDD->render round-trip and that my local badge layout matches the client master 1:1 (1311x1819 A6+bleed). Per workflow, the converted .indd carries literal text not merge fields, so this proofs LAYOUT, not the data merge.",
+   "input": "work/indd_extract/badge_master.indd",
+   "output": "outputs/connector_indd_render_proof.jpg",
+   "params": {
+    "output_url": "https://to.adobe.com/uvXmL",
+    "resolution": 300,
+    "px": "1311x1819"
+   },
+   "n": 34,
+   "ts": "2026-06-15T10:33:21",
+   "step_image": "steps/034_s22_connector_render_jpeg.png"
+  },
+  {
+   "phase": "export",
+   "actor": "adobe_connector",
+   "action": "document_render_layout",
+   "note": "Render the same recovered badge .indd to a CMYK PDF @300dpi with document bleeds (print preset) via the connector — a genuine print-ready CMYK proof of the master layout.",
+   "input": "work/indd_extract/badge_master.indd",
+   "output": "outputs/connector_indd_render_proof_cmyk.pdf",
+   "params": {
+    "output_url": "https://to.adobe.com/w6zbe",
+    "colorSpace": "cmyk",
+    "useDocumentBleeds": true,
+    "resolution": 300
+   },
+   "n": 35,
+   "ts": "2026-06-15T10:33:22",
+   "step_image": "steps/035_s23_connector_render_cmyk_pdf.png"
+  },
+  {
+   "phase": "export",
+   "actor": "adobe_connector",
+   "action": "asset_inline_preview",
+   "note": "Inline-preview the connector-rendered badge proof in-thread — the final sign-off gate before the full 510 print export.",
+   "input": "https://to.adobe.com/uvXmL",
+   "output": "(verified in-thread)",
+   "params": {
+    "size": 700
+   },
+   "n": 36,
+   "ts": "2026-06-15T10:33:22",
+   "step_image": "steps/036_s24_inline_preview_gate.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_datamerge",
+   "action": "export_510_badges",
+   "note": "Final full-run export: all 510 A6 badges rendered one-per-roster-row (1310x1818, A6+3mm bleed @300dpi) and assembled into a multi-page print PDF + per-attendee re-print PDFs. data-merge rendered locally from roster.csv; document_merge_data_layout connector needs a human-authored badge.indd.",
+   "input": "input_assets/roster.csv (510 rows) + work/retouched/",
+   "output": "outputs/badges_NAIS26_510_print.pdf",
+   "params": {
+    "rows": 510,
+    "px": "1310x1818",
+    "dpi": 300
+   },
+   "n": 37,
+   "ts": "2026-06-15T10:34:16",
+   "step_image": "steps/037_s25_export_510_badges.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_datamerge",
+   "action": "export_510_certificates",
+   "note": "Final full-run export: all 510 A4-landscape completion certificates rendered one-per-roster-row (3578x2550, A4+3mm bleed @300dpi) from the SAME roster as the single source of truth, assembled into a multi-page print PDF + per-attendee re-prints.",
+   "input": "input_assets/roster.csv (510 rows)",
+   "output": "outputs/certificates_NAIS26_510_print.pdf",
+   "params": {
+    "rows": 510,
+    "px": "3578x2550",
+    "dpi": 300
+   },
+   "n": 38,
+   "ts": "2026-06-15T10:34:16",
+   "step_image": "steps/038_s25_export_510_certs.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "asset_copy_assets_collect",
+   "note": "Collect final badge PDF, certificate PDF, per-attendee re-print PDFs, vector logo and the 16 retouched headshots into one organized delivery folder + emit the certificate-number->roster-row->output-filename manifest (510 rows). Folder assembled locally; asset_copy_assets is the Creative Cloud analogue.",
+   "input": "outputs/*",
+   "output": "outputs/delivery_manifest.csv + organized outputs/ tree",
+   "params": {
+    "manifest_rows": 510
+   },
+   "n": 39,
+   "ts": "2026-06-15T10:34:16",
+   "step_image": "steps/039_s26_collect_delivery_folder.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "self_verify",
+   "note": "Self-verify passed: badge rasters 1310x1818 (A6+bleed) and certs 3578x2550 (A4-land+bleed) @300dpi; 510 badges + 510 certs rendered; both print PDFs are 510 pages; delivery_manifest.csv has 510 rows with 510 unique cert numbers aligned to the roster (spot-checked rows 1/100/255/510); 16 retouched headshots all 600x800; vector logo SVG valid. Read 2 deep-row finals (cert row 300 James Alexander, badge row 450 Michael Patterson) — no clipped text, no collisions, correct CSV-bound data, crisp logo, footer inside border.",
+   "input": "outputs/*",
+   "output": "verify PASS",
+   "params": {
+    "badge_px": "1310x1818",
+    "cert_px": "3578x2550",
+    "pdf_pages": 510,
+    "manifest_rows": 510
+   },
+   "n": 40,
+   "ts": "2026-06-15T10:35:35",
+   "step_image": "steps/040_s_verify_montage.png"
+  }
+ ]
+}

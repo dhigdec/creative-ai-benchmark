@@ -1,0 +1,220 @@
+{
+  "task_id": 5604,
+  "input_rubrics": {
+    "twilight.jpg": [
+      {
+        "id": "tw_in_luxury",
+        "q": "Does the image read as a believable, magazine-grade luxury real-estate twilight hero shot of a large estate exterior?",
+        "type": "likert5",
+        "guidance": "Look for a high-end modern/transitional estate facade shot at dusk with warm interior lights glowing through windows and a coloured sky; should look like a real MLS/luxury-listing hero photo, not a flat render or game screenshot.",
+        "ideal": "5"
+      },
+      {
+        "id": "tw_in_twilight_look",
+        "q": "Is this a genuine warm-twilight/dusk exposure (glowing interior lights, pink/orange sunset sky) consistent with the 'Sterling & Chase' warm editorial look?",
+        "type": "yesno",
+        "guidance": "Sky should show sunset colour (pink/orange/blue gradient) and the house interior windows should glow warm; a flat midday-blue-sky shot or a cold/grey image would fail.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "tw_in_no_people",
+        "q": "Is the scene free of any people (no figures in windows, on stairs, in the yard, or in vehicles)?",
+        "type": "yesno",
+        "guidance": "Scan windows, the entry stairs, driveway and yard; the brief requires a clean property shot with no people.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "tw_in_no_text",
+        "q": "Is the image free of any baked-in text, watermark, logo, address overlay, or agency branding?",
+        "type": "yesno",
+        "guidance": "There should be no captions, listing price, signage text, stock-site watermark or real brokerage logo anywhere in the frame.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "tw_in_artifacts",
+        "q": "Is the architecture free of obvious AI/render artifacts (no warped windows, melted railings, impossible geometry, garbled greenery or duplicated structures)?",
+        "type": "likert5",
+        "guidance": "Inspect window mullions, rooflines, the staircase, columns and trees; clean, structurally coherent architecture scores 5, visible warping/melting scores low.",
+        "ideal": "5"
+      },
+      {
+        "id": "tw_in_notes",
+        "q": "Note any element that undermines believability as a luxury listing photo.",
+        "type": "text",
+        "guidance": "One short note, e.g. 'people visible in window', 'sky looks fake', 'railing warped', or 'none'.",
+        "ideal": "none"
+      }
+    ],
+    "kitchen.jpg": [
+      {
+        "id": "kt_in_luxury",
+        "q": "Does the image read as a believable, magazine-grade luxury kitchen interior listing photo (marble waterfall island, designer pendants, high-end finishes)?",
+        "type": "likert5",
+        "guidance": "Look for a polished modern luxury kitchen: large marble/quartz waterfall island, glass globe pendant lights, custom wood cabinetry, premium appliances; should look like a real interior-design/listing photo, not a flat render.",
+        "ideal": "5"
+      },
+      {
+        "id": "kt_in_warm_editorial",
+        "q": "Does the interior carry a warm editorial ambience (warm cabinet/under-counter lighting, sunset view through the windows) matching the persona's warm-twilight look?",
+        "type": "yesno",
+        "guidance": "Warm wood tones, warm accent lighting, and a warm sunset visible through the rear floor-to-ceiling windows should be present; a cold/clinical white-balance kitchen would fail.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "kt_in_no_people",
+        "q": "Is the kitchen scene free of any people (no figures at the island, in the living area, or reflected in surfaces)?",
+        "type": "yesno",
+        "guidance": "Check the bar stools, the open living area and reflective marble/glass surfaces; the brief requires an unoccupied interior.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "kt_in_no_text",
+        "q": "Is the image free of any baked-in text, watermark, logo, or branding?",
+        "type": "yesno",
+        "guidance": "No stock watermark, appliance brand callouts as overlaid text, captions or agency logos anywhere in the frame.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "kt_in_artifacts",
+        "q": "Is the scene free of obvious AI/render artifacts (correct count and shape of stools and pendants, coherent marble veining, no melted hardware or warped reflections)?",
+        "type": "likert5",
+        "guidance": "Inspect the row of bar stools, the four+ glow pendants, faucet, cabinet lines and the island reflections; clean and physically coherent scores 5, garbled/duplicated elements score low.",
+        "ideal": "5"
+      },
+      {
+        "id": "kt_in_notes",
+        "q": "Note any element that undermines believability as a luxury listing photo.",
+        "type": "text",
+        "guidance": "One short note, e.g. 'stool legs warped', 'pendant melted', 'view looks fake', or 'none'.",
+        "ideal": "none"
+      }
+    ]
+  },
+  "output_rubrics": {
+    "twilight_toned.jpg": [
+      {
+        "id": "tw_out_improved",
+        "q": "Is the auto-tone result a clear improvement (or at minimum appropriate) for a luxury listing/postcard versus the input — better balanced contrast and richer, more finished tonality?",
+        "type": "likert5",
+        "guidance": "Compare to twilight.jpg: the toned version should look more print-ready (slightly deeper, cleaner contrast and more dimensional) without looking worse; no improvement-or-harm scores low.",
+        "ideal": "4"
+      },
+      {
+        "id": "tw_out_exposure_balanced",
+        "q": "Is exposure well balanced after toning — sunset sky not blown out and the foreground/landscape shadows not crushed to black?",
+        "type": "likert5",
+        "guidance": "Check the bright sky highlights retain colour/detail and the darker yard, tree and lower facade still show detail; clipped highlights or blocked-up shadows score low.",
+        "ideal": "4"
+      },
+      {
+        "id": "tw_out_warm_preserved",
+        "q": "Did auto-tone preserve (or enhance) the warm twilight editorial feel rather than neutralising it toward a cold/flat white balance?",
+        "type": "likert5",
+        "guidance": "The warm interior window glow and pink/orange sky warmth should remain; a result that turns cold, grey, or strips the golden ambience scores low.",
+        "ideal": "4"
+      },
+      {
+        "id": "tw_out_not_flattened",
+        "q": "Does the grade avoid flattening the image (it did not wash out, over-brighten, or HDR-flatten the dramatic dusk mood)?",
+        "type": "yesno",
+        "guidance": "Auto-tone sometimes lifts shadows so much the twilight drama disappears; a still-moody, dimensional result = Yes, a washed-out flat result = No.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "tw_out_no_colorcast",
+        "q": "Is the result free of an unnatural global colour cast or visible over-correction (e.g. magenta/green sky, orange-crushed facade, banding/halos)?",
+        "type": "yesno",
+        "guidance": "Whites of the facade should stay believable and the sky gradient smooth; an obvious cast, posterised sky, or halo along the roofline = No.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "tw_out_notes",
+        "q": "Note any tonal issue in the toned twilight image.",
+        "type": "text",
+        "guidance": "One short note, e.g. 'shadows slightly crushed', 'sky a touch oversaturated', or 'clean improvement'.",
+        "ideal": "clean improvement"
+      }
+    ],
+    "kitchen_toned.jpg": [
+      {
+        "id": "kt_out_improved",
+        "q": "Is the auto-tone result a clear improvement (or at minimum appropriate) for a luxury listing/postcard versus the input — better balanced contrast and richer, more finished tonality?",
+        "type": "likert5",
+        "guidance": "Compare to kitchen.jpg: the toned version should look more print-ready and dimensional (marble pops, pleasing contrast) without degrading the original; no change-or-harm scores low.",
+        "ideal": "4"
+      },
+      {
+        "id": "kt_out_exposure_balanced",
+        "q": "Is exposure well balanced after toning — bright marble/ceiling and the sunset window not blown out, while wood cabinetry and floor shadows retain detail?",
+        "type": "likert5",
+        "guidance": "Check the white marble island and the bright sunset view keep detail (not clipped white) and the darker cabinet interiors/floor remain readable; clipping or muddy shadows score low.",
+        "ideal": "4"
+      },
+      {
+        "id": "kt_out_warm_preserved",
+        "q": "Did auto-tone preserve (or enhance) the warm editorial interior ambience rather than cooling it to a clinical white balance?",
+        "type": "likert5",
+        "guidance": "Warm wood tones, warm accent lighting and the warm sunset glow should remain; a result that turns the kitchen cold/blue or grey scores low.",
+        "ideal": "4"
+      },
+      {
+        "id": "kt_out_not_flattened",
+        "q": "Does the grade avoid flattening the image (it did not wash out or HDR-flatten the depth and the soft evening mood of the interior)?",
+        "type": "yesno",
+        "guidance": "A still-dimensional, softly-lit interior = Yes; an over-brightened, flat, contrast-less result = No.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "kt_out_no_colorcast",
+        "q": "Is the result free of an unnatural global colour cast or visible over-correction (e.g. yellow/green cast on white marble, magenta walls, banding or halos)?",
+        "type": "yesno",
+        "guidance": "White marble and white ceiling should stay believably neutral-warm, not tinted; an obvious cast, posterised gradient on the window, or halos = No.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "kt_out_notes",
+        "q": "Note any tonal issue in the toned kitchen image.",
+        "type": "text",
+        "guidance": "One short note, e.g. 'marble slightly clipped', 'warmth nicely retained', or 'clean improvement'.",
+        "ideal": "clean improvement"
+      }
+    ]
+  },
+  "task_rubric": [
+    {
+      "id": "task_satisfies_brief",
+      "q": "Would these auto-toned listing photos satisfy the client's need for clean, print/post-ready luxury listing imagery for postcards, mailers and social posts?",
+      "type": "likert5",
+      "guidance": "Both outputs should be polished, on-brand-feeling (warm luxury editorial), and ready to drop into a Sterling & Chase / KW postcard or social layout with minimal rework.",
+      "ideal": "4"
+    },
+    {
+      "id": "task_pairing_coherent",
+      "q": "Is each input -> output pairing coherent and clearly on-task (same scene, only a tonal/auto-tone grade applied, no unintended crop, warp, or content change)?",
+      "type": "likert5",
+      "guidance": "Output must be the identical composition to its input with only tone/colour adjusted; any added objects, removed elements, reframing or distortion lowers the score.",
+      "ideal": "5"
+    },
+    {
+      "id": "task_brand_fit",
+      "q": "Do the graded photos fit the persona's warm, refined luxury aesthetic (suitable alongside a black/white/gold/red brand kit) rather than looking cheap, oversaturated, or amateur?",
+      "type": "likert5",
+      "guidance": "Judge whether the warm-twilight editorial mood survives the grade and reads as upscale/exclusive; gaudy, flat, or low-end results score low.",
+      "ideal": "4"
+    },
+    {
+      "id": "task_accept_deliver",
+      "q": "Would you accept and deliver these toned images to the client as-is?",
+      "type": "yesno",
+      "guidance": "Yes only if both outputs are balanced, warm-preserved, artifact-free improvements over the inputs; if either is over-corrected, flattened, or colour-cast, answer No.",
+      "ideal": "Yes"
+    },
+    {
+      "id": "task_notes",
+      "q": "Notes / what's missing.",
+      "type": "text",
+      "guidance": "One or two short notes on the overall input->output quality or anything that would block delivery.",
+      "ideal": "none"
+    }
+  ]
+}

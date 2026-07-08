@@ -1,0 +1,4 @@
+REASONS: CANVAS-extension
+
+ISSUES:
+- Internal contradiction on plate transparency: the reverify.notes and chaining_note both state the fix was applied (step 19 sources from the vectorized logo's already-transparent canvas, inputs_from = logo_vector.svg), but the actual connector_workflow step 19 still has inputs_from = ['brand_look_reference_frame.jpg'] and its note reads 'On a copy of the graded reference frame (reused as the plate canvas)'. Since that reference frame is an opaque graded JPG, solid-filling a selected region on it cannot yield the transparent-background PNG that both plate output specs (lower_third_bar_plate.png, callout_badge_plate.png) promise. The described resolution was not actually wired into the workflow. Fix: point step 19 inputs_from to logo_vector.svg (or another transparent canvas) and update its note to match, so the plates genuinely retain a transparent background.

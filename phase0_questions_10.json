@@ -1,0 +1,144 @@
+{
+ "theme_order": [
+  "Feasibility",
+  "Completeness",
+  "Verifiability",
+  "Scope",
+  "Consistency"
+ ],
+ "scoring_rule": "Apply all 10 questions to the BRIEF TEXT ALONE (client's written ask). Do NOT open asset files, read metadata tags, or view agent output — that is a later pass. Every question is phrased so YES is the good answer; a NO always flags a problem. (1) If ANY dealbreaker question (Q1, Q2, Q3, Q4, Q5, Q7, Q9, Q10) is answered NO => REJECT the task outright — it requires a banned capability, requests an artifact/structure no tool emits, names no concrete deliverable, has a missing/unlocatable source or off-page/forthcoming input, offers no objective success criterion, bundles separate-modality or unbounded jobs, or contradicts itself; these are not repairable in this pass. (2) Else if ANY fixable question (Q6, Q8) is answered NO (and no dealbreaker is NO) => FIX: send the brief back for the small named edit (add the missing output parameter; remove the metric/iterate-until-happy acceptance condition), then re-run the FULL 10-question checklist from the top. (3) If EVERY question is answered YES => VALIDATED (keep).",
+ "coverage_note": "All nine mandated bad-task families are each covered by exactly one question. needs-a-banned-capability -> Q1 (six-case enumerated list incl. text-to-image, from-scratch art, upscale, occluded/missing-pixel inpainting, generative expand/composite, bespoke lettering, unreachable system) plus Q2 (editable-structure / written-opinion outputs no tool emits). missing/unnamed source asset -> Q4 (present-source check, absorbing merge output-field/filter sourcing from source-Q15). no concrete deliverable -> Q3 (closed concrete-artifact-noun class vs abstract-outcome words). missing/forthcoming input -> Q5 case (a) (forthcoming / future-conditional / external-system). off-page back-reference -> Q5 case (b) (deictic back-reference list). no objective success criterion -> Q7 (anchor-present + no-taste-gate + inspectable-match-target). unbounded/open-ended output -> Q9 CHECK B. bundled separate jobs -> Q9 CHECK A (same-modality; a shared source does NOT unify distinct modalities). self-contradiction -> Q10 (closed same-property value-conflict list + numeric/reference agreement). Every objectivity_flag rewrite is applied: Q1 keys only on literal brief triggers and end-state (no pixel inference); Q2 splits editable-structure and written-opinion into independent literal triggers (no 'core/substance'); Q4 uses a closed asset-noun + article/possessive trigger; Q7 uses closed observable/taste-adjective lists and drops the counterfactual 'would removal change pass'; Q9 uses closed modality buckets; Q10 restricts to a closed same-property value-conflict list. All five slip-through bad tasks are now caught without an 11th question: data-merge unfurnishable fields/filters -> Q4 B/C; verb-free occluded/missing-pixel restoration -> Q1 case (c)(ii); match-against-attached-but-uninspectable (video for a still grade) -> Q7 (c); three-modality bundle off one source -> Q9 CHECK A; future-conditional shared-drive input -> Q5 case (a). Deliberately dropped as OUT OF SCOPE for a brief-only pass: all six Tags questions (source Q26-Q31, require metadata inspection); source Q22 (trivial-one-liner / est_calls padding — depends on the est_calls tag); source Q14 and Q20 (multi-instruction-anchoring and solution-leakage — folded functionally: Q7's anchor+taste-gate rules cover the verifiability spirit of Q14, and Q20's full-solution-leakage is a benchmark-quality concern not a GOOD/BAD feasibility gate, so it is intentionally not among the 10). Severity split: 8 dealbreakers (Q1-Q5, Q7, Q9, Q10) reject outright; 2 fixables (Q6 missing output parameter, Q8 external-evidence acceptance) trigger a small brief edit then a full re-check.",
+ "list": [
+  {
+   "id": "Q1",
+   "question": "Is the brief free of every banned generative/unreachable capability on the enumerated list below as a required step?",
+   "objective_test": "Answer NO if ANY of the following fires against the brief's LITERAL wording (no inference about the asset's actual pixels; point to the brief text for each); YES only if NONE fire. (a) generate/create/design/illustrate/draw/make an image, artwork, logo, mascot, or illustration with NO named source asset. (b) upscale / increase resolution / make higher-res / '4K-ify' an existing asset. (c) OCCLUDED/MISSING PIXELS: fire if EITHER (i) the brief's own words state a blot/tear/crease/stain/scratch/object lies ON, ACROSS, OVER, or THROUGH a named subject/face/object, OR uses reconstruct/rebuild/recreate/fill-in/repair-missing/restore-the-missing for a torn/missing corner, edge, or region; OR (ii) the brief requires a covered/occluded region (something sitting over a face/subject) to be made visible/whole/complete again, OR requires a missing/torn/absent portion of the image (a lost edge, corner, or fraction of the print) to be present in the output — regardless of verb ('bring back', 'make visible again', 'give us back', 'complete', 'make whole'). A bare 'remove scratches / fix dust / repair the photo' with no ON/ACROSS/OVER/missing/make-whole wording does NOT fire. (d) CANVAS/COMPOSITE: fire if the brief uses expand/extend/outpaint/widen-the-canvas/fill-the-added-area/generate-background/blend-into/relight-into wording, OR names a destination scene with descriptive wording introduced by 'into a …'; a destination given as an attached file, a proper-named backdrop asset, a single stated solid colour, crop/resize/scaling, or a stock-license step does NOT fire. (e) produce text in 'hand-lettered', 'hand-drawn', 'custom letterform', or 'bespoke lettering' style with no named font asset and no font-search/recommend step. (f) use a named live external account or system the agent cannot reach. Do NOT fire on generic verbs (enhance/improve/fix/edit/clean-up) — literal match against these six cases only.",
+   "no_means": "The task requires a capability the agent does not have (text-to-image, from-scratch art, upscale, inpainting occluded/missing pixels, generative expand/composite, bespoke lettering, or an unreachable system), so it can never be executed.",
+   "theme": "Feasibility",
+   "severity": "dealbreaker",
+   "catches": "'Generate a brand-new mascot, upscale to 4K, make the bride's face visible again under the ink blot, give us back the missing bottom third of the print, expand the canvas to fill the wider frame with matching scene, and add the band name in distressed hand-lettering' — every clause hits a banned capability.",
+   "source_ids": [
+    "Q1",
+    "Q3",
+    "Q4",
+    "Q5"
+   ]
+  },
+  {
+   "id": "Q2",
+   "question": "Does the requested deliverable ask only for an artifact a tool actually emits — a rendered/flattened image, vector paths, a rendered PDF/document, video, audio, or merged data — and NOT internally editable structure nor a written opinion as its only output?",
+   "objective_test": "Two independent mechanical triggers; NO if EITHER fires, YES only if NEITHER fires. (a) EDITABLE-STRUCTURE trigger: fire if the brief's stated output format/structure demands any of {named editable layers, live/editable text, smart objects, grouped editable components, layered PSD/AI hand-off, IDML/editable source}. (b) WRITTEN-OPINION trigger: fire if the SOLE named deliverable noun is a written artifact (report, write-up, essay, recommendation, ranking, critique, mood-board rationale) AND the brief names no produced/transformed asset (edited image, vector, laid-out doc, cut video, cleaned audio, merged data) as a delivered output. If the brief names at least one produced/transformed asset as a delivered output, an additional note/report does NOT fire (b).",
+   "no_means": "The deliverable's required internal structure, or its written-opinion-only nature, cannot be emitted by any available tool as a gradeable asset, so even a correct edit could not be delivered.",
+   "theme": "Feasibility",
+   "severity": "dealbreaker",
+   "catches": "'Vectorize the logo and hand off a multi-layer .ai with each colour on its own named editable layer and live text', or 'deliver a report ranking the 10 strongest shots with a paragraph on why each works' — editable-structure demand / written-opinion-only.",
+   "source_ids": [
+    "Q6",
+    "Q7"
+   ]
+  },
+  {
+   "id": "Q3",
+   "question": "Does the brief name a concrete deliverable — a noun from the concrete-artifact class below — rather than only an abstract-outcome word, a bare verb, or a goal?",
+   "objective_test": "Answer YES iff the brief names at least one noun from the concrete-artifact class: a physically renderable/exportable output such as {flyer, poster, banner, menu, card, invitation, certificate, brochure, newsletter, logo, headshot, portrait, product shot, thumbnail, PDF, document, video, reel, clip, sizzle-reel, audio track, vector file, cutout, resized image, merged document set}, OR a same-kind noun clearly denoting one produced file/asset with a stated medium. Presence of a concrete artifact noun is sufficient REGARDLESS of whether its parameters/criteria are specified (those are judged by Q6/Q7). Answer NO only if the only nouns are abstract-outcome words {presence, material, content, branding, look, feel, vibe, results} or a bare action/goal with no renderable-artifact noun anywhere. Match against the artifact class literally; ignore adjectives.",
+   "no_means": "There is no defined end product, so no output can be produced or checked — the task is not a real commission.",
+   "theme": "Completeness",
+   "severity": "dealbreaker",
+   "catches": "'Can you make my restaurant look more premium?' or 'we need some marketing material / a stronger social presence' — a goal/abstract-outcome noun with no named deliverable artifact.",
+   "source_ids": [
+    "Q9"
+   ]
+  },
+  {
+   "id": "Q4",
+   "question": "Does every brief-named pictorial or data element have a present, named source — and, where a named data source feeds a merge/layout, does every required output field and every filter map to a named column/value in that data?",
+   "objective_test": "Three checks; all must pass for YES. CHECK A (source present): an element REQUIRES a present source iff the brief refers to it with (definite article OR possessive) + a concrete pictorial/data noun naming a specific reusable asset from {logo, mascot, photo, image, headshot, product shot, illustration, icon, CSV, spreadsheet, data file, price list, template, backdrop, footage, track, master file}. For each such reference, pass A iff the brief also (i) attaches/filenames it, (ii) describes a stock-search/license step that yields it, or (iii) identifies it as an authored template supplied; fail A if any such reference has none of (i)-(iii), including a bare definite-article back-reference ('the CSV', 'the template') never named or attached anywhere. Generic brand-adjective phrases with no concrete asset noun ('on-brand', 'our style') are NOT elements and are ignored. CHECK B (merge output fields): when a named element is a data source feeding a merge/layout, pass B iff every output field the brief says must appear has a correspondingly named source column/value in the brief's data description; fail B if any required output field has no stated source column. CHECK C (merge filters): pass C iff every stated filter/selection/exclusion names a concrete field, flag, or value in that data; fail C if any filter has no operable selector. Judge from brief text only; do not open the file. YES if A, B, and C all pass; NO otherwise.",
+   "no_means": "A brief-named element has no locatable present source, or a data merge references an output field/filter the cited data cannot furnish, so the task is non-self-contained or unexecutable as specified.",
+   "theme": "Completeness",
+   "severity": "dealbreaker",
+   "catches": "'Make a poster featuring our mascot and merge the dishes into the menu template' (mascot has no file; CSV/template never named), or 'merge name, price, allergen icons and the chef's-star and include only vegan dishes' from a CSV the brief describes as name+price only.",
+   "source_ids": [
+    "Q2",
+    "Q10",
+    "Q15"
+   ]
+  },
+  {
+   "id": "Q5",
+   "question": "Is every required input present NOW — none forthcoming, to-be-sent, conditioned on a future/external event, or located only in an external system — AND is the brief free of any load-bearing back-reference to off-page context whose value is not restated or attached?",
+   "objective_test": "Answer NO if EITHER fires. (a) NOT-PRESENT-NOW: fire if any required input is described as forthcoming/to-be-sent ('we will send', 'the licensed track we'll provide'), OR its availability is conditioned on a future or external event ('once/after X uploads/sends/provides', 'when we get', 'as soon as it's ready', 'pending', 'to follow'), OR it lives only in an external system/drive/account not attached to the brief (shared drive, cloud folder, someone's dropbox) — regardless of exact wording. (b) OFF-PAGE BACK-REFERENCE: fire if the brief contains a deictic back-reference to unattached context — 'as we discussed / as before / the usual / like last time / same as before / the file I sent / our house X' — where the referent's value, asset, or spec is not also restated or attached in the brief. YES if neither fires.",
+   "no_means": "A load-bearing input does not exist at task time (or lives in an unreachable place), or a load-bearing instruction lives in off-page context the agent cannot access, so the task is non-self-contained.",
+   "theme": "Completeness",
+   "severity": "dealbreaker",
+   "catches": "'Sync the cuts to the licensed track we will send and apply the usual grade we discussed', or 'once our photographer uploads the final hero shot to the shared drive later today, drop it into the masthead' — inputs not present now / conditioned on a future event / spec off-page.",
+   "source_ids": [
+    "Q11",
+    "Q12"
+   ]
+  },
+  {
+   "id": "Q6",
+   "question": "Are the check-critical output parameters — dimensions/aspect-ratio, file format, count where the ask is plural, and colour space where print-relevant — either STATED in the brief or pinned by a named platform/spec on the fixed inference table?",
+   "objective_test": "List the check-critical parameters (size/ratio, format, count if plural, colour-space if print). A parameter counts as inferable ONLY if the brief names a platform/spec on this fixed list that pins it: Instagram post 1080x1080; IG story/reel 1080x1920; YouTube thumbnail 1280x720; A4; US Letter; 'print-ready' -> CMYK/PDF-with-bleed. A named target NOT on that list ('billboard', 'our website', 'a poster') with no explicit dimensions is NOT inferable. YES if every check-critical parameter is stated or pinned by a listed platform. NO otherwise.",
+   "no_means": "A required output parameter is missing and cannot be defaulted, so the correct output is undefined and no verifier can be written.",
+   "theme": "Completeness",
+   "severity": "fixable",
+   "catches": "'Resize this for the billboard' with no dimensions and no listed standard, or 'produce banner variants' with no count, size, or format.",
+   "source_ids": [
+    "Q13"
+   ]
+  },
+  {
+   "id": "Q7",
+   "question": "Does the brief supply at least one objectively checkable success anchor for the core deliverable, with every acceptance sentence free of a taste-only gate and every 'match X' target attached or given as an exact inspectable value?",
+   "objective_test": "YES requires ALL of (a),(b),(c); NO if any fails. (a) ANCHOR PRESENT: the brief contains at least one anchor from the closed observable list — a stated number/count, a dimension/ratio, a file format/type, a named element that must be present or absent, a stated colour/hex/value, or a named end-state operation (crop/remove-bg/vectorize/merge/cut/resize). (b) NO TASTE-ONLY GATE: the brief's stated acceptance/requirement sentences contain NO taste adjective from the closed set {balanced, on-brand, premium, nicer, eye-catching, pop, clean, modern, fresh, striking, elevated, high-end, professional-looking, cohesive} UNLESS that same sentence ALSO carries an anchor from list (a). (c) INSPECTABLE MATCH-TARGET: for every 'match/same as X' acceptance clause, the target is a comparable STATIC, INSPECTABLE reference of the same evaluable kind — an attached still image, an exact palette/hex list, or a stated numeric value — AND pass/fail is decidable by observation with no aesthetic word ('mood', 'vibe', 'feel', 'look') carrying the gate; a target that is off-brief, OR attached only as a non-comparable/temporal asset (e.g. a video used to grade a still), OR gated solely by a taste noun, fails (c).",
+   "no_means": "No objective scoring contract can be authored — success rests on opinion or on a reference the annotator cannot inspect — so the task can never be graded pass/fail.",
+   "theme": "Verifiability",
+   "severity": "dealbreaker",
+   "catches": "'Enhance this headshot'; 'grade the 12 photos to match the look of our existing catalogue' (nothing attached); or 'colour-grade to match reference.mp4's mood' (a video attached to gate a still-image grade).",
+   "source_ids": [
+    "Q16",
+    "Q17",
+    "Q18"
+   ]
+  },
+  {
+   "id": "Q8",
+   "question": "Is success verifiable from the delivered file(s) alone, with no stated acceptance condition depending on a performance metric, an A/B outcome, or iterate-until-satisfied language?",
+   "objective_test": "Answer NO only if a STATED success/acceptance condition depends on one of: a numeric performance metric (CTR, conversions, impressions, engagement, SEO rank, revenue), an A/B-test outcome, or explicit iteration-until-satisfied language ('until the client is happy', 'until approved', 'revise until signed off'). Routine delivery phrasing ('for the client', 'final version') is NOT a disqualifier. YES if no such condition is stated.",
+   "no_means": "Part of 'done' can never be checked at scoring time because the evidence lives outside the deliverable.",
+   "theme": "Verifiability",
+   "severity": "fixable",
+   "catches": "'Design a banner that increases our click-through rate by 10%' or 'edit these until the client is happy' — acceptance depends on metrics/reactions never visible in the file.",
+   "source_ids": [
+    "Q19"
+   ]
+  },
+  {
+   "id": "Q9",
+   "question": "Do all end artifacts form ONE bounded deliverable — the SAME output modality (or N variations of one type from a shared source, or a pipeline to one final artifact) AND every quantity a stated finite number or bound to a named/attached fixed input set?",
+   "objective_test": "Two mechanical checks; both must pass for YES. CHECK A (single modality): list every end artifact and its output modality (image / video / audio / document/vector). Pass A if there is exactly one deliverable, OR every end artifact is the SAME output modality operating on the same source asset(s), OR they form a single multi-step pipeline to ONE final artifact. Fail A if two or more end artifacts are DIFFERENT output modalities — even when they derive from the same source asset (a shared source does NOT merge distinct-modality deliverables); merely sharing a brand, client, event, or campaign theme also does NOT unify them. CHECK B (bounded volume): pass B if every requested quantity is a stated finite number OR explicitly bounded to a named/attached fixed input set ('each of the attached photos', 'every row in the CSV', 'the 28 rows'); fail B if any quantity uses open-ended language ('as many as needed', 'keep iterating', 'ongoing', 'all future') OR refers to a batch with neither a stated number nor a named/attached-set bound. YES if it passes A and B; NO otherwise.",
+   "no_means": "The brief bundles independent commissions with no single success definition, or its output volume is uncapped — an open-ended engagement, not a discrete task.",
+   "theme": "Scope",
+   "severity": "dealbreaker",
+   "catches": "'From event.mp4: cut a highlight reel, grade a hero still into a poster, and clean the speech into a podcast .wav' (three modalities off one source), or 'social variations for all our products on an ongoing basis' (uncapped volume).",
+   "source_ids": [
+    "Q21",
+    "Q23"
+   ]
+  },
+  {
+   "id": "Q10",
+   "question": "Are all instructions and all brief-stated numbers/references mutually consistent — no two directives assigning literally opposite values to the same property of one deliverable, and no two same-kind stated facts that conflict?",
+   "objective_test": "Two mechanical checks; both must pass for YES. CHECK A (same-property value conflict): fire NO only when two brief instructions assign the SAME listed property of the SAME deliverable literally opposite stated values, from this closed type list: {aspect/shape (square vs a different stated ratio), presence-of-background (transparent/removed vs retain/keep a stated background), colour-mode (grayscale/mono vs preserve a stated colour), inclusion (remove X vs keep/retain that same X), orientation (portrait vs landscape for one file), count for one asset}. Do NOT fire on taste-adjective tension ('pop' vs 'minimal') — those carry no stated property value. CHECK B (numeric/reference agreement): compare only numbers and references that both appear in the brief text, bucketed by kind; fire NO if two same-kind stated facts conflict — a '1:1 square' given as '1080x1350', a '3-panel brochure' later called 'the 4 panels', two different stated dimensions/counts/prices for the same item. Do NOT cross-check against attached files. YES if neither check fires.",
+   "no_means": "No single output can satisfy the brief because two requirements are mutually exclusive or two stated facts conflict.",
+   "theme": "Consistency",
+   "severity": "dealbreaker",
+   "catches": "'A fully transparent-background PNG cutout of the bottle whose pure white #FFFFFF background must be retained; deliver a 2048x2048 square but the 3000-pixel-wide master must be exactly square' — an impossible pair plus conflicting stated dimensions.",
+   "source_ids": [
+    "Q24",
+    "Q25"
+   ]
+  }
+ ]
+}

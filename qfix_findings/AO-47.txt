@@ -1,0 +1,5 @@
+REASONS: CANVAS-extension
+
+ISSUES:
+- Transparent-background contradiction: the background is knocked out with a SOLID WHITE fill (image_fill_area preset white, steps 7/17/25) and never removed, yet outputs[] and steps 29-31 promise 'transparent-background web PNGs' ('pad-to-canvas', 'outputFileType=png'). The chain has no image_remove_background and no alpha-producing step, so a PNG exported from these solid-white-knocked rasters would have a white background, not transparency. Fix by either (a) dropping 'transparent' and calling the PNGs 'flat-white-background', or (b) inserting image_remove_background instead of/after the fill so the exported PNGs genuinely carry alpha.
+- Minor: the SVG outputs are vectorized from a solid-white-background raster, so the SVGs will also carry a white backing field rather than being transparent — consistent with the white knockout but worth stating explicitly in the SVG output specs, which currently imply clean isolated pool artwork.

@@ -1,0 +1,442 @@
+{
+  "task_id": 9005,
+  "input_assets": [
+    {
+      "key": "hero_portraits_raw",
+      "display": "Four raw hero portraits (the maker shoot)",
+      "files": [
+        "input_assets/hero_01_ceramicist_red-jacket.jpg",
+        "input_assets/hero_02_woodworker.jpg",
+        "input_assets/hero_03_weaver.jpg",
+        "input_assets/hero_04_metalsmith.jpg"
+      ],
+      "what_it_is": "The four photoreal raw maker portraits (ceramicist, woodworker, weaver, metalsmith) that get straightened, cropped, masked, blurred, graded and duotoned for the feature.",
+      "items": [
+        {
+          "id": "hero_photoreal_documentary",
+          "type": "likert5",
+          "question": "Do all four hero portraits read as genuine documentary studio photography (real pores, hair flyaways, working-craft environments) rather than CGI-glossy or obviously AI renders?",
+          "guidance": "5 = all four look like a real photographed maker shoot: skin texture, stray hairs, dust/clay/shavings, believable workshop light. 1 = plastic skin, melted hands/tools, fake bokeh, uncanny faces.",
+          "reference": "All four are photoreal: ceramicist at a wheel in a sun-lit studio with shelved pots; woodworker hand-planing a beam with shavings flying; weaver at a loom in a rough plastered room; metalsmith with a loupe over a bench. Hands, tools and grime are convincing — meets the gpt-image-2 photoreal spec."
+        },
+        {
+          "id": "hero_red_garment_present",
+          "type": "yesno",
+          "question": "Does every one of the four heroes wear a clearly RED/maroon garment that can serve as the single colour kept in the colour-splash pull-quote?",
+          "guidance": "Yes = each subject has a distinctly red garment (jacket/shirt/sweater). No = any subject's clothing is a different colour or ambiguous.",
+          "reference": "Yes — hero_01 red chore jacket (paint/clay flecked), hero_02 maroon henley, hero_03 red linen shirt, hero_04 rust-red sweater. The ceramicist's red jacket is the one used for the SPLASH frame."
+        },
+        {
+          "id": "hero_tilt_mixed_light",
+          "type": "yesno",
+          "question": "Are the raw frames consistent with the brief's 'tilted, mixed-light' premise that justifies the auto-straighten + tonal-grade chain (i.e. they are NOT already perfectly level, evenly lit studio crops)?",
+          "guidance": "Yes = framing is candid/slightly off-level with warm directional or mixed window light, leaving real work for straighten/crop/grade. No = already pristine, centred, flat-lit (nothing for the pipeline to fix).",
+          "reference": "Yes — all four are candid working frames with warm directional window/lamp light and loose framing (e.g. weaver lit from a side window, metalsmith under a desk lamp), giving the straighten/crop/grade chain genuine work."
+        }
+      ]
+    },
+    {
+      "key": "contributor_headshots",
+      "display": "Five contributor headshots",
+      "files": [
+        "input_assets/contrib_writer.jpg",
+        "input_assets/contrib_photographer.jpg",
+        "input_assets/contrib_stylist.jpg",
+        "input_assets/contrib_editor.jpg",
+        "input_assets/contrib_illustrator.jpg"
+      ],
+      "what_it_is": "Five photoreal square-ish contributor headshots that get circular-cropped into the page-6 data-merged contributors strip.",
+      "items": [
+        {
+          "id": "contrib_headshot_quality",
+          "type": "likert5",
+          "question": "Are all five contributor headshots clean, photoreal portrait crops on plain/neutral backgrounds suitable for a small circular byline thumbnail?",
+          "guidance": "5 = real-looking faces, even editorial light, uncluttered neutral wall, head-and-shoulders framing that survives a circular crop. 1 = busy backgrounds, cut-off heads, distorted faces, or non-photoreal.",
+          "reference": "5 — e.g. contrib_writer is a dark-haired woman in a navy linen blouse against a soft beige wall; contrib_photographer is a long-haired man in an olive jacket against a pale window wall. Both are clean head-and-shoulders crops that circular-crop cleanly."
+        },
+        {
+          "id": "contrib_count_five",
+          "type": "yesno",
+          "question": "Are there exactly five distinct headshot files, one per roster role (writer, photographer, stylist, editor, illustrator)?",
+          "guidance": "Yes = five distinct people, filenames map to the five roster roles. No = duplicates, missing role, or wrong count.",
+          "reference": "Yes — contrib_writer / contrib_photographer / contrib_stylist / contrib_editor / contrib_illustrator, matching the five roster rows whose headshot_filename column points at these files."
+        }
+      ]
+    },
+    {
+      "key": "masthead_scan",
+      "display": "Hand-drawn 'THE MAKERS' masthead scan",
+      "files": [
+        "input_assets/masthead_makers.png"
+      ],
+      "what_it_is": "A high-contrast hand-lettered 'THE MAKERS' wordmark (ornate flourished drop-cap T plus ink-splatter specks) inked on white paper, to be vectorized.",
+      "items": [
+        {
+          "id": "masthead_legible_wordmark",
+          "type": "yesno",
+          "question": "Does the scan clearly spell 'THE MAKERS' with a large decorative drop-cap/flourished 'T' as the dominant glyph?",
+          "guidance": "Yes = the words THE and MAKERS are legible and correctly spelled, with an oversized ornate T. No = misspelled, illegible, or missing the drop-cap.",
+          "reference": "Yes — an oversized calligraphic swash 'T' with 'THE' set small above 'MAKERS' to its right, all in black brush lettering with ink-splatter flecks on cream paper."
+        },
+        {
+          "id": "masthead_vectorizable_contrast",
+          "type": "likert5",
+          "question": "Is the artwork high-contrast flat black-on-white line art clean enough to trace into crisp vector paths?",
+          "guidance": "5 = solid black strokes, white ground, sharp edges, no gradients/anti-alias haze — ideal for image_vectorize. 1 = grey muddy strokes, photographic shading, or coloured ground that would trace poorly.",
+          "reference": "5 — pure black ink on near-white paper with sharp brush edges; only the intentional spatter dots are small, which is exactly the kind of art that traces to clean paths (the output SVG has 218 paths)."
+        }
+      ]
+    },
+    {
+      "key": "inks_swatch",
+      "display": "Brand inks / palette swatch sheet",
+      "files": [
+        "input_assets/inks_swatch.png"
+      ],
+      "what_it_is": "A brand swatch sheet of three torn-edge paper chips defining the duotone shadow ink, the warm paper highlight and the deep-red accent.",
+      "items": [
+        {
+          "id": "inks_three_palette_chips",
+          "type": "yesno",
+          "question": "Does the swatch show the three brand colours — a deep ink shadow (~#1A2A33 navy), a warm paper highlight (~#EDE4D3 cream) and a deep red accent (~#B5331F)?",
+          "guidance": "Yes = three chips reading dark-navy / warm-cream / brick-red, matching the brief palette. No = wrong hues, missing a colour, or extra colours.",
+          "reference": "Yes — left chip is a deep desaturated navy (#1A2A33 shadow ink), centre is warm cream (#EDE4D3 paper highlight), right is brick/terracotta red (#B5331F accent), each on a torn-edge handmade-paper card."
+        },
+        {
+          "id": "inks_targets_not_textures",
+          "type": "yesno",
+          "question": "Is this a colour-target reference only (it sets the duotone/accent hues) rather than one of the licensed page-ground textures?",
+          "guidance": "Yes = it reads as a swatch sheet defining colour targets, consistent with the decision that the actual grounds are licensed Adobe Stock textures. No = it is being treated as the paper/ink ground itself.",
+          "reference": "Yes — per the INTAKE decision the inks_swatch only sets the colour targets; GROUND_PAPER/GROUND_INK are separately licensed Adobe Stock textures graded toward these hues."
+        }
+      ]
+    },
+    {
+      "key": "copy_deck_and_roster",
+      "display": "Copy deck + contributors roster (text/data inputs)",
+      "files": [
+        "input_assets/copy_deck.json",
+        "input_assets/copy_deck.md",
+        "input_assets/contributors_roster.csv",
+        "input_assets/contributors_roster.json"
+      ],
+      "what_it_is": "The feature copy deck (headline, standfirst, four maker bodies, pull-quote, captions) plus the five-row contributors roster CSV that drives the data-merge strip.",
+      "items": [
+        {
+          "id": "copy_deck_complete",
+          "type": "yesno",
+          "question": "Does the copy deck contain every text element the layout needs — headline, standfirst, pull-quote, four maker bodies (name/craft/city/text) and per-slot captions?",
+          "guidance": "Yes = all fields present and coherent with the four makers. No = a missing field, mismatched maker, or empty caption.",
+          "reference": "Yes — headline 'Hands That Shape Beauty', a standfirst, pull-quote 'There's a quiet magic in coaxing form from clay...', four body entries (Elara Vance/ceramicist/Riverbend, Silas Thorne/woodworker/Oakhaven, Lena Petrova/weaver/Willow Creek, Kaelen Reed/metalsmith/Stonehaven) and five captions keyed to HERO_DUOTONE/SPLASH/PORTRAIT_2/3/4."
+        },
+        {
+          "id": "roster_csv_headers_for_merge",
+          "type": "yesno",
+          "question": "Does the roster CSV expose exactly the five data-merge columns name,role,city,instagram,headshot_filename, with five contributor rows?",
+          "guidance": "Yes = header row is name,role,city,instagram,headshot_filename and there are 5 data rows whose headshot_filename values point to real contributor JPGs. No = renamed columns, wrong count, or broken filename references.",
+          "reference": "Yes — header is name,role,city,instagram,headshot_filename; rows are Elara Vance/Writer/Ashville, NC/@elara.vance/contrib_writer.jpg; Kaelen Singh/Photographer/Beacon, NY/@kaelen.s/contrib_photographer.jpg; Lena Petrova/Stylist/Ojai, CA/@lena.p.style/contrib_stylist.jpg; Javier Morales/Editor/Portland, ME/@javier.m_edit/contrib_editor.jpg; Sasha Chen/Illustrator/Athens, GA/@sasha.draws/contrib_illustrator.jpg."
+        },
+        {
+          "id": "roster_vs_body_name_overlap_note",
+          "type": "text",
+          "question": "Note any name collisions between the feature body makers and the contributors roster, and confirm the layout used the ROSTER values (not the maker bios) for the contributors strip.",
+          "guidance": "A good answer flags that two roster names (Elara Vance, Lena Petrova) reuse maker names but with different roles/cities, and confirms the strip shows the roster's roles/cities/handles — not the makers' crafts/cities.",
+          "reference": "Roster reuses 'Elara Vance' (here a Writer, Ashville NC) and 'Lena Petrova' (here a Stylist, Ojai CA), distinct from their maker bios (ceramicist/Riverbend, weaver/Willow Creek). The rendered strip correctly shows the roster role+city+handle, so the data-merge consumed the CSV, not the copy deck."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "duotone_heroes",
+      "display": "Four duotone hero portraits (graded assets)",
+      "files": [
+        "outputs/graded_assets/HERO_DUOTONE_ceramicist.png",
+        "outputs/graded_assets/PORTRAIT_2_woodworker_duotone.png",
+        "outputs/graded_assets/PORTRAIT_3_weaver_duotone.png",
+        "outputs/graded_assets/PORTRAIT_4_metalsmith_duotone.png"
+      ],
+      "what_it_is": "The four masked, soft-blurred, tonally graded two-ink editorial duotone portraits (one per maker) used across the feature.",
+      "items": [
+        {
+          "id": "duotone_consistent_two_ink",
+          "type": "likert5",
+          "question": "Do all four portraits share ONE consistent two-ink duotone look (same shadow-ink hue, same highlight, same contrast feel)?",
+          "guidance": "5 = all four read as the identical signature duotone (deep navy-ink shadows lifting to warm/neutral highlights), like one cohesive feature. 1 = mismatched tints, one warm one cold, inconsistent contrast.",
+          "reference": "5 — all four are the same cool slate/navy-blue duotone keyed to the shadow ink #1A2A33 (hue ~202), with matching contrast and grain across ceramicist, woodworker, weaver and metalsmith."
+        },
+        {
+          "id": "duotone_subject_mask_blur",
+          "type": "likert5",
+          "question": "Is the subject cleanly separated from a softly blurred background (clean edges around hair/shoulders, believable depth) in each portrait?",
+          "guidance": "5 = crisp subject with no haloing, background pleasantly soft-blurred for depth. 1 = ragged cutout, halos, blurred-into-subject edges, or no background separation at all.",
+          "reference": "5 — e.g. HERO_DUOTONE_ceramicist keeps the subject and jacket sharp while the shelved-pottery background goes soft; mask edges around the bun and earring are clean. Same treatment holds on PORTRAIT_2/3/4."
+        },
+        {
+          "id": "duotone_crop_grain",
+          "type": "yesno",
+          "question": "Are the portraits cropped to a portrait (~4:5) editorial frame at 1024x1280 with a subtle film-grain finish (not the raw 1024x1536 source ratio)?",
+          "guidance": "Yes = 4:5 crop, fine grain present, tonally graded. No = uncropped source ratio, no grain, or flat untoned image.",
+          "reference": "Yes — all four duotones are 1024x1280 (4:5), re-cropped from the 1024x1536 raw frames, with fine added grain consistent with the image_add_grain step."
+        },
+        {
+          "id": "duotone_no_color_leak",
+          "type": "yesno",
+          "question": "Have the original garment/skin colours been fully converted to the duotone (no leftover red jacket or natural skin colour leaking through)?",
+          "guidance": "Yes = entirely two-ink, no residual chroma. No = patches of original red/skin colour survive, breaking the duotone.",
+          "reference": "Yes — the ceramicist's red jacket and all skin tones are rendered in the slate-blue duotone with no residual red; colour is reserved exclusively for the separate SPLASH frame."
+        }
+      ]
+    },
+    {
+      "key": "colour_splash",
+      "display": "Colour-splash pull-quote frame",
+      "files": [
+        "outputs/graded_assets/SPLASH_colour-splash.png"
+      ],
+      "what_it_is": "The selective-colour pull-quote frame: the ceramicist with her red jacket kept saturated while the rest of the frame reads monochrome.",
+      "items": [
+        {
+          "id": "splash_red_kept_rest_mono",
+          "type": "likert5",
+          "question": "Is exactly ONE garment colour (the ceramicist's red jacket) kept vivid while the rest of the image reads monochrome/desaturated?",
+          "guidance": "5 = the red jacket is clearly saturated and everything else (background, skin reads near-neutral) is convincingly desaturated — a clean colour-splash. 1 = whole image still colourful, or the jacket also desaturated, or random other colours left in.",
+          "reference": "5 — the red chore jacket stays richly saturated (tuned toward accent #B5331F) while the studio, shelves and pots fall to near-mono; warm skin retains only a little natural warmth, the intended editorial splash read."
+        },
+        {
+          "id": "splash_mask_clean",
+          "type": "yesno",
+          "question": "Is the red kept cleanly confined to the jacket (no obvious bleed of colour onto skin, hair or background, and no desaturated holes inside the jacket)?",
+          "guidance": "Yes = colour boundary follows the garment edge accurately. No = red halos onto background/skin or grey patches eat into the jacket.",
+          "reference": "Yes — the select-by-prompt + invert + single-colour-desaturate chain confines chroma to the jacket; edges around the collar and sleeves hold, with no stray colour in the background."
+        },
+        {
+          "id": "splash_full_color_source",
+          "type": "yesno",
+          "question": "Is the SPLASH derived from the FULL-COLOUR cropped ceramicist (i.e. it is NOT just the duotone with red painted back), preserving real photographic detail?",
+          "guidance": "Yes = retains genuine photographic tonality and detail outside the duotone pipeline. No = looks like the flat duotone with a red overlay.",
+          "reference": "Yes — SPLASH_colour-splash.png is the full-colour cropped hero_01 with selective desaturation, so the studio retains photographic micro-tonality rather than the flat slate duotone."
+        }
+      ]
+    },
+    {
+      "key": "stock_grounds",
+      "display": "Paper + ink page-ground textures (and halftone accent)",
+      "files": [
+        "outputs/graded_assets/GROUND_PAPER.png",
+        "outputs/graded_assets/GROUND_INK.png",
+        "outputs/graded_assets/halftone_accent.png"
+      ],
+      "what_it_is": "Two licensed Adobe Stock textures graded into a warm uncoated-paper ground and a dark ink-bleed wash ground, plus a Ben-Day halftone decorative accent block.",
+      "items": [
+        {
+          "id": "grounds_paper_warm_subtle",
+          "type": "likert5",
+          "question": "Is GROUND_PAPER a subtle, warm uncoated-paper grain in the cream highlight family (#EDE4D3) that reads as a backdrop without fighting overprinted text?",
+          "guidance": "5 = soft warm paper grain with gentle flecks, light enough to carry body type. 1 = busy/dark/colour-cast texture that would swamp text, or a flat solid with no grain.",
+          "reference": "5 — GROUND_PAPER.png is a warm off-white uncoated stock with faint brown flecks at full print res (6720x4480), graded light via image_adjust_light_portions; on page 3 it sits quietly behind the Silas Thorne body copy."
+        },
+        {
+          "id": "grounds_ink_tinted_shadow",
+          "type": "likert5",
+          "question": "Is GROUND_INK a dark ink-bleed/wash texture tinted toward the shadow ink (#1A2A33), giving a moody near-black ground for the ink-wash page?",
+          "guidance": "5 = rich dark ink-roller wash with visible bleed texture, colour pulled toward deep navy ink. 1 = pure flat black, or a wash that's clearly a different colour/too light.",
+          "reference": "5 — GROUND_INK.png is a near-black ink-roller wash with cloudy bleed mottling, multiplied toward #1A2A33 via image_apply_color_overlay; it grounds the metalsmith page 5 (Kaelen Reed) as a dark ink-wash spread."
+        },
+        {
+          "id": "grounds_halftone_benday",
+          "type": "yesno",
+          "question": "Is halftone_accent.png a coarse Ben-Day dot halftone of a portrait, suitable as the decorative accent block on the body spread?",
+          "guidance": "Yes = clearly a regular dot-screen halftone derived from a portrait. No = a flat tint, noise, or non-halftone texture.",
+          "reference": "Yes — halftone_accent.png is a coarse black-on-white dot halftone of the weaver portrait (from image_apply_halftone), placed as the 'FROM THE STUDIO FLOOR' accent on page 3."
+        },
+        {
+          "id": "grounds_stock_licensed",
+          "type": "yesno",
+          "question": "Are the two grounds genuinely sourced from licensed Adobe Stock textures (full-res), not synthesized from the inks swatch?",
+          "guidance": "Yes = grounds carry real photographic texture at print resolution consistent with a licensed Stock download. No = flat generated fills.",
+          "reference": "Yes — per outputs/README the grounds are AdobeStock_640682633 (paper, 6720x4480) and AdobeStock_363606168 (ink-roller wash), licensed via asset_license_and_download_stock; GROUND_PAPER is full print res, GROUND_INK 2339x1654."
+        }
+      ]
+    },
+    {
+      "key": "masthead_vector",
+      "display": "Vectorized masthead glyph (SVG/PDF/PNG)",
+      "files": [
+        "outputs/MASTHEAD_glyph_vector.svg",
+        "outputs/MASTHEAD_glyph_vector.pdf",
+        "outputs/MASTHEAD_glyph_transparent.png"
+      ],
+      "what_it_is": "The hand-drawn masthead traced to a clean multi-path vector (SVG + PDF) plus an alpha-keyed transparent placement PNG.",
+      "items": [
+        {
+          "id": "masthead_vector_fidelity",
+          "type": "likert5",
+          "question": "Does the vectorized masthead faithfully reproduce the hand-lettered 'THE MAKERS' wordmark — the swash T, the lettering and the ink spatter — with clean smooth paths?",
+          "guidance": "5 = crisp curves, the ornate T and both words intact, spatter preserved, no jaggies or lost strokes. 1 = broken letters, lost flourishes, blobby or jagged tracing, misspelling introduced.",
+          "reference": "5 — the SVG (218 paths) preserves the swash T, 'THE' and 'MAKERS' and the surrounding spatter dots; the transparent PNG shows the full wordmark cleanly keyed off white."
+        },
+        {
+          "id": "masthead_transparent_alpha",
+          "type": "yesno",
+          "question": "Is MASTHEAD_glyph_transparent.png a true alpha-transparent placement asset (ink only, no white paper box) so it can drop over both light and dark page grounds?",
+          "guidance": "Yes = RGBA with transparent background, ink isolated. No = opaque white rectangle behind the glyph.",
+          "reference": "Yes — it is 1024x1024 RGBA keyed off the scan; on page 1 it sits in warm cream over the dark duotone hero and on page 6 in ink over the cream ground, proving the alpha works on both grounds."
+        },
+        {
+          "id": "masthead_pdf_present",
+          "type": "yesno",
+          "question": "Is a print-usable vector PDF of the masthead delivered alongside the SVG?",
+          "guidance": "Yes = MASTHEAD_glyph_vector.pdf exists and is a vector container of the glyph. No = PDF missing or merely a raster screenshot.",
+          "reference": "Yes — MASTHEAD_glyph_vector.pdf is delivered; per outputs/README it was re-containered from the genuine connector SVG (document_render_vector rejected the SVG as not a valid .ai, so the PDF was built locally from the connector vector)."
+        }
+      ]
+    },
+    {
+      "key": "contributors_strip",
+      "display": "Data-merged contributors strip",
+      "files": [
+        "outputs/contributors_strip_datamerged.png"
+      ],
+      "what_it_is": "A five-card horizontal contributors strip data-merged from the roster CSV, each card a circular headshot plus name/role/city·handle.",
+      "items": [
+        {
+          "id": "strip_five_cards_data_fidelity",
+          "type": "likert5",
+          "question": "Does the strip show exactly five contributor cards whose name, role, city and @handle EXACTLY match the roster CSV, in order?",
+          "guidance": "5 = all five cards correct and complete with no typo/transposition. 1 = wrong names, swapped roles, missing handle, or a missing/duplicate card.",
+          "reference": "5 — Elara Vance/WRITER/Ashville, NC · @elara.vance; Kaelen Singh/PHOTOGRAPHER/Beacon, NY · @kaelen.s; Lena Petrova/STYLIST/Ojai, CA · @lena.p.style; Javier Morales/EDITOR/Portland, ME · @javier.m_edit; Sasha Chen/ILLUSTRATOR/Athens, GA · @sasha.draws — all verbatim from the CSV."
+        },
+        {
+          "id": "strip_headshots_bound",
+          "type": "yesno",
+          "question": "Is each card's circular headshot the CORRECT image for that contributor (the headshot_filename bound to the right row)?",
+          "guidance": "Yes = each face matches its named role/file. No = headshots shuffled or a wrong face under a name.",
+          "reference": "Yes — circular crops match the roster: the navy-blouse woman (contrib_writer) on Elara Vance, the olive-jacket man (contrib_photographer) on Kaelen Singh, etc.; each headshot_filename is bound to its row."
+        },
+        {
+          "id": "strip_typography_brand",
+          "type": "yesno",
+          "question": "Does the strip use the feature's type system (serif display names over small-caps roles and a fine body line) on the warm paper ground, matching the editorial look?",
+          "guidance": "Yes = display serif names, caps roles, subtle separator dot between city and handle, on cream. No = generic single-weight text, wrong colours, off-brand.",
+          "reference": "Yes — names in the Didot-style display serif, roles in letter-spaced small caps, 'city · @handle' as a fine line, on the cream paper ground, consistent with pages 1-6."
+        }
+      ]
+    },
+    {
+      "key": "feature_pdf_and_pages",
+      "display": "6-page feature spread (print PDF + page PNGs + editable INDD)",
+      "files": [
+        "outputs/THE_MAKERS_feature_PRINT_A4-bleed.pdf",
+        "outputs/THE_MAKERS_feature_READER_A4.pdf",
+        "outputs/pages_png/page1.png",
+        "outputs/pages_png/page2.png",
+        "outputs/pages_png/page3.png",
+        "outputs/pages_png/page4.png",
+        "outputs/pages_png/page5.png",
+        "outputs/pages_png/page6.png",
+        "outputs/THE_MAKERS_feature_editable_INDD.zip"
+      ],
+      "what_it_is": "The assembled 6-page 'THE MAKERS' feature rendered to a print PDF (with crop marks) plus a trimmed reader PDF, 300dpi page PNGs, and a genuine editable .indd round-trip package.",
+      "items": [
+        {
+          "id": "pdf_six_pages_structure",
+          "type": "likert5",
+          "question": "Do the six pages follow the briefed structure — (1) masthead+duotone hero cover with headline/standfirst, (2) colour-splash pull-quote, (3-4) body spread over paper ground, (5) portrait over ink-wash ground, (6) contributors — and look like a real editorial feature?",
+          "guidance": "5 = all six pages present, correct roles, professional editorial layout (grid, hierarchy, captions, running heads). 1 = pages missing/out of order, amateur layout, empty frames.",
+          "reference": "5 — page1 cover (masthead in cream + duotone ceramicist + 'Hands That Shape Beauty' + standfirst), page2 colour-splash pull-quote, page3 Silas Thorne body over paper ground with halftone accent, page5 Kaelen Reed over dark ink ground, page6 CONTRIBUTORS with the strip and colophon; 7 page-objects per PDF (6 pages)."
+        },
+        {
+          "id": "pdf_copy_fidelity",
+          "type": "likert5",
+          "question": "Is every piece of placed copy (headline, standfirst, pull-quote, maker bios, captions, attributions) reproduced verbatim from the copy deck with correct spelling and attribution?",
+          "guidance": "5 = all copy matches the deck exactly, no retyping errors, correct maker/city/craft on each page. 1 = paraphrased, misspelled, wrong city/name, or placeholder lorem text.",
+          "reference": "5 — headline 'Hands That Shape Beauty', standfirst verbatim, pull-quote 'There's a quiet magic in coaxing form from clay, a dialogue between earth and intention' attributed 'ELARA VANCE, CERAMICIST · RIVERBEND', and the Silas Thorne / Kaelen Reed bodies match the deck word-for-word with WOODWORKER·OAKHAVEN / METALSMITH·STONEHAVEN eyebrows."
+        },
+        {
+          "id": "pdf_palette_and_type",
+          "type": "yesno",
+          "question": "Does the layout honour the brand palette (ink #1A2A33, paper #EDE4D3, near-black text, red accent #B5331F) and a display-serif + sans body pairing throughout?",
+          "guidance": "Yes = ink/paper/red used as primary/secondary/accent, red used sparingly for rules and drop-caps, high-contrast display serif headings over a clean sans body. No = off-palette colours or a single generic typeface.",
+          "reference": "Yes — cream paper grounds, deep-ink duotones and dark ink-wash, red accent rules/quote-mark/drop-caps (red 'T' on page3, red 'I' on page5), Didot-style display headings over Avenir-Next-style body, matching the brief palette and type intent."
+        },
+        {
+          "id": "pdf_print_specs",
+          "type": "text",
+          "question": "Record the delivered print specs (page size / bleed / crop marks / page PNG resolution) and note any deviation from the requested A4 (210x297mm) + 3mm bleed, CMYK-intent target.",
+          "guidance": "A strong answer states the actual MediaBox and PNG size, confirms crop marks + editable .indd, and honestly flags that the trim is not exactly A4 and that CMYK is an intent on an RGB container.",
+          "reference": "PRINT and READER PDFs share MediaBox 612x858.72pt (~8.5x11.92in) — close to but NOT exact A4 (should be ~595x842pt); page PNGs are 2550x3578 (A4+bleed @300dpi); the PRINT PDF carries crop marks; a genuine ~13.8MB .indd ships in THE_MAKERS_feature_editable_INDD.zip. Per README, CMYK is an intent (RGB container) and the heroes are placed from 1024px sources (not native 300dpi)."
+        }
+      ]
+    },
+    {
+      "key": "web_teaser_crops",
+      "display": "Web/social teaser crops of the duotone hero",
+      "files": [
+        "outputs/web_teaser_hero_1080x1350.png",
+        "outputs/web_teaser_hero_1080x1080.png"
+      ],
+      "what_it_is": "Two social-teaser crops of the duotone ceramicist hero — a 4:5 portrait and a 1:1 square — for the issue announce.",
+      "items": [
+        {
+          "id": "teaser_exact_dims",
+          "type": "yesno",
+          "question": "Are the two crops exactly 1080x1350 (4:5) and 1080x1080 (1:1) as specified?",
+          "guidance": "Yes = both files are precisely those pixel dimensions. No = off-size, wrong ratio, or upscaled artifacts.",
+          "reference": "Yes — web_teaser_hero_1080x1350.png is 1080x1350 and web_teaser_hero_1080x1080.png is 1080x1080, both exact."
+        },
+        {
+          "id": "teaser_well_framed_duotone",
+          "type": "likert5",
+          "question": "Are both crops well-composed (subject's face comfortably in frame, not cut awkwardly) and do they carry the same duotone treatment as the feature hero?",
+          "guidance": "5 = face nicely placed in both ratios, square crop face-centred, identical slate-blue duotone. 1 = head clipped, off-centre, or a different/untreated image.",
+          "reference": "5 — both are the slate-blue duotone ceramicist; the 1:1 is face-centred (face-detected crop, per README) and the 4:5 keeps the head and jacket framed, matching HERO_DUOTONE."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "tl_all_deliverables_present",
+      "type": "yesno",
+      "question": "Are all eight briefed deliverables present — 6-page print PDF, four duotone heroes, one colour-splash, two graded Stock grounds, vectorized masthead, data-merged contributors strip, applied type pairing, and 1080x1350 + 1080x1080 web crops?",
+      "guidance": "Yes = every deliverable exists and is the right kind of artifact. No = any deliverable missing or substituted.",
+      "reference": "Yes — outputs/ contains THE_MAKERS_feature_PRINT_A4-bleed.pdf (+READER+INDD), 4 duotone PNGs, SPLASH_colour-splash.png, GROUND_PAPER/GROUND_INK (+halftone_accent), MASTHEAD_glyph_vector.svg/pdf/png, contributors_strip_datamerged.png, applied Didot/Avenir type, and both web crops."
+    },
+    {
+      "id": "tl_editorial_cohesion",
+      "type": "likert5",
+      "question": "Does the finished 6-page feature read as a single, professionally art-directed editorial spread (consistent duotone, palette, grid and type from cover to colophon) worthy of the 'Atelier & Form' craft quarterly?",
+      "guidance": "5 = cohesive, restrained, premium editorial design that could ship in a real print quarterly. 1 = inconsistent treatments, clashing colours, amateur spacing, template-y feel.",
+      "reference": "5 — the slate duotone, cream/ink grounds and sparing red accent run consistently; high-contrast serif display over a clean sans body, generous margins, running heads ('THE MAKERS · ISSUE Nº 14'), captions and a colophon ('PRINTED ON UNCOATED STOCK') give it a genuine considered-and-warm Atelier & Form voice."
+    },
+    {
+      "id": "tl_duotone_consistency_across_faces",
+      "type": "likert5",
+      "question": "Across all four maker portraits AND the web crops, is the two-ink duotone genuinely consistent (same ink hue, contrast and grain), so the makers read as one coherent series?",
+      "guidance": "5 = identical duotone identity across all five appearances. 1 = portraits drift in hue/contrast or the web crop differs from the feature hero.",
+      "reference": "5 — HERO_DUOTONE, PORTRAIT_2/3/4 and both web teasers all carry the same hue-202 slate-blue duotone (shadow ink #1A2A33), matching contrast and grain."
+    },
+    {
+      "id": "tl_data_and_copy_no_retype",
+      "type": "yesno",
+      "question": "Were all names, quotes, cities, captions and @handles taken programmatically from the copy deck and roster CSV (zero retyping errors anywhere in the spread)?",
+      "guidance": "Yes = every string in the PDF and strip matches the source data exactly. No = any introduced typo, paraphrase, or wrong attribution.",
+      "reference": "Yes — the pull-quote, maker bios, captions and the five contributor cards all match copy_deck.json and contributors_roster.csv verbatim (README states copy was read programmatically, no name/quote/city/handle retyped)."
+    },
+    {
+      "id": "tl_connector_workflow_authenticity",
+      "type": "likert5",
+      "question": "Did the real Adobe connector perform the per-element creative work (straighten, crop, subject mask, blur, multi-stage grade, duotone, colour-splash, halftone, grain, Stock license, vectorize, web crops), with local steps limited to layout assembly / data-merge / vector re-container as honestly disclosed?",
+      "guidance": "5 = the element edits are genuine connector output with real requestIds and the local steps are exactly the ones that require a desktop-authored .indd/.ai, all disclosed. 1 = core creative steps faked locally or limitations hidden.",
+      "reference": "5 — trajectory.json logs the connector chain (grades, duotone, splash, Stock license AdobeStock_640682633/363606168, image_vectorize→218-path SVG, image_crop_and_resize web crops, document_convert_pdf round-trip); README transparently flags that layout, data-merge and the vector→PDF re-container are local because document_render_layout/merge need an authored .indd and document_render_vector rejected the SVG."
+    },
+    {
+      "id": "tl_known_limitations_acceptable",
+      "type": "text",
+      "question": "Summarize the honest limitations a print editor should know before sending this to press (resolution cap, type substitution, colour mode, trim size) and judge whether they are acceptable for a proof-stage deliverable.",
+      "guidance": "A strong answer lists: heroes placed from ~1024px sources (not native 300dpi) so full-bleed is enlarged; fonts mapped to local Didot/Avenir analogues rather than the licensed Adobe Fonts; CMYK is an intent on an RGB PDF; trim is ~8.5x11.9in not exact A4 — and concludes these are reasonable for a proof, fixable at the printer's RIP from the supplied .indd.",
+      "reference": "Acceptable for a proof: per README the 1024x1536 heroes were not upscaled (sized generously at full-bleed), type is mapped to Didot/Avenir analogues for the font_recommend faces, CMYK is an intent on an RGB container (separation at the RIP), and the editable .indd ships for final press prep; note the PDF MediaBox 612x858.72pt is slightly off true A4 (595x842pt) and would want correcting before final output."
+    }
+  ]
+}

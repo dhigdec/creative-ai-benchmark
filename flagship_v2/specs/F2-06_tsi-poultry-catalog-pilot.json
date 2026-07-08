@@ -1,0 +1,434 @@
+{
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [],
+   "output": "CC storage tree: /tsi-poultry/{photos_raw, photos_clean, brand, data, templates, renders, deliverables}",
+   "note": "Establish the working folder structure in CC storage so every later upload/render has a stable home and the agent can track state across a long run. Headless-confirmed asset plumbing [C]."
+  },
+  {
+   "n": 2,
+   "tool": "asset_add_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "price_list.csv",
+    "sku_copy.json",
+    "tsi_logo.png",
+    "brand_palette.json",
+    "client_rough_mockup.pdf",
+    "winch_photo_01..75 (75 raw product JPEGs)",
+    "catalog_master.indd (user-authored InDesign data-merge template)",
+    "spec_rider_master.ai (user-authored Illustrator Variables template)"
+   ],
+   "output": "CC URNs for the data files, brand assets, client mockup, the two USER-AUTHORED desktop templates (.indd/.ai with real merge fields), and all 75 raw product photos",
+   "note": "Bulk-ingest every provided input into CC storage. The 75 raw photos plus the CSV/JSON spec are the spine of the job; their URNs are reused by nearly every downstream step. The two desktop templates are user-authored carriers of real <<fields>>/Variables required by the [T] data-merge tools (a PDF-converted .indd does NOT bind)."
+  },
+  {
+   "n": 3,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "Rasterized pages of client_rough_mockup.pdf (PNG per page) for layout reference",
+   "note": "Use document_convert_pdf in its supported PDF->page-extraction/raster direction to read the client's rough mockup as images, so the agent can infer the implied grid/columns/hierarchy it must honor as 'a direction we like' before designing the template. No merge/imposition is asked of this tool. [C]."
+  },
+  {
+   "n": 4,
+   "tool": "font_recommend",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 3",
+    "brand_palette.json"
+   ],
+   "output": "Brand-appropriate type pairing (technical sans for headers + tabular-figure body) with rationale",
+   "note": "Lock the 'industrial precision' typography for the whole catalog. The chosen families become a fixed parameter referenced by every template render and the style guide. Headless-confirmed [C]."
+  },
+  {
+   "n": 5,
+   "tool": "image_vectorize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "tsi_logo.svg — clean vector TSI Poultry logo for print/repeat placement",
+   "note": "Vectorize the raster logo once so it can be dropped crisply into the master page header on all pages and the cover at any scale (print-safe). Headless-confirmed raster->SVG [C]."
+  },
+  {
+   "n": 6,
+   "tool": "image_crop_and_resize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 2"
+   ],
+   "output": "75 product photos normalized to a uniform square frame (2000x2000 px, centered subject)",
+   "note": "First pass of the photo-prep loop applied across all 75 raw shots: every raw shot is inconsistently framed; normalize all to one canonical cell size so the data-merge grid stays perfectly aligned. Headless-confirmed geometry [C]."
+  },
+  {
+   "n": 7,
+   "tool": "image_remove_background",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 6"
+   ],
+   "output": "75 transparent-background PNGs — the winch/hoist hardware cut cleanly from its uneven in-house white sweep (soft shadow, grey corner gradient, table seam, tape/dust all removed with the backdrop)",
+   "note": "CORRECTED canonical white-cell path (replaces the former select_subject->invert->fill_area misuse). image_remove_background isolates the hardware to a transparent PNG in one headless step, discarding the imperfect backdrop entirely so no generative or compositing tool is needed. [C]. The flatten-on-pure-white happens locally at step 9."
+  },
+  {
+   "n": 8,
+   "tool": "image_apply_auto_tone",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 7"
+   ],
+   "output": "75 tone-corrected cut-out PNGs (consistent exposure/white-point on the hardware across the set)",
+   "note": "Normalize exposure so galvanized-steel hardware reads uniformly bright across all SKUs. auto_tone addresses the per-shot exposure drift (a distinct defect from white-balance). Headless-confirmed tonal [C]."
+  },
+  {
+   "n": 9,
+   "tool": "image_adjust_color_temperature",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 8"
+   ],
+   "output": "75 cut-out PNGs with neutralized white balance (warm/yellow cast removed) — production-ready foreground subjects",
+   "note": "Final headless photo-prep pass; color_temperature addresses the warm/yellow cast from the in-house lighting (a different defect than exposure, so both tonal steps are genuinely justified, not count-padding). Output feeds the local flatten step. [C]."
+  },
+  {
+   "n": 10,
+   "tool": "(local) PIL flatten-on-white",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 9"
+   ],
+   "output": "75 finished 2000x2000 cell JPEGs/PNGs: each transparent subject composited centered onto a true #FFFFFF seamless background",
+   "note": "LOCAL composite [L]: flatten each tone/WB-corrected transparent cut-out onto a pure-white 2000x2000 canvas with PIL. This is the legitimate compositor the workflow needs (image_fill_area is solid-color-fill-only and cannot composite; A6 forbids photo compositing connectors), so the flatten is done off-connector. Produces the canonical print-grade white cell."
+  },
+  {
+   "n": 11,
+   "tool": "asset_add_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 10"
+   ],
+   "output": "75 finished cell images stored under /photos_clean with stable URNs",
+   "note": "Persist the prepped cells back to CC storage so the data-merge template can reference them by URN/filename (join key = image_filename<->URN). Connects the photo pipeline (6-10) to the document pipeline. [C]."
+  },
+  {
+   "n": 12,
+   "tool": "document_merge_data_layout",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": [
+    "step 2",
+    "price_list.csv",
+    "sku_copy.json",
+    "step 11"
+   ],
+   "output": "~10 laid-out product pages (≈75 SKUs across a 2-col grid), each cell = cleaned photo + name + description + SKU + cross-reference part#",
+   "note": "MUST-EXERCISE primary data-merge [T]: binds the USER-AUTHORED catalog_master.indd (step-2 URN, real <<fields>>) against price_list.csv + sku_copy.json, pulling the matching step-11 cleaned-photo URN per SKU row. [T] because InDesign data-merge requires a genuine authored .indd carrying merge fields (sheet A2) — not headless-auto, runs in the product."
+  },
+  {
+   "n": 13,
+   "tool": "document_merge_data_vector",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": [
+    "step 2",
+    "price_list.csv",
+    "step 5"
+   ],
+   "output": "Per-category spec-sheet / pricing rider pages (vector): cross-reference equivalence table + price-per-qty riders",
+   "note": "MUST-EXERCISE second data-merge [T]: binds the USER-AUTHORED spec_rider_master.ai (step-2 URN, real Illustrator Variables) against the CSV, placing the vector logo. Produces the crisp scalable spec/pricing rider sheets purchasing managers rely on. [T] — Illustrator Variables need an authored .ai (sheet A2)."
+  },
+  {
+   "n": 14,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 4",
+    "step 5",
+    "step 3",
+    "brand_palette.json"
+   ],
+   "output": "Front cover + hyperlinked-TOC page + section divider, laid-out pages (NOT yet PDF) — print spec: 8.5x11 trim, 0.125in bleed, crop marks, CMYK color refs, TOC entries carrying internal page-anchor links baked into the layout",
+   "note": "Render the hand-built fixed pages from a genuine layout spec (fonts step 4, vector logo step 5, palette). CMYK/bleed/crop-marks AND the working internal TOC hyperlinks are encoded in THIS render spec at render time (per verdict fix) — they are NOT post-processed onto a finished PDF. Output is laid-out pages [C]."
+  },
+  {
+   "n": 15,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 4",
+    "step 5",
+    "step 3"
+   ],
+   "output": "style_guide pages (laid out, NOT PDF): grid, type scale, color (hex/CMYK/Pantone), logo usage rules, 'how to add a SKU'",
+   "note": "Render the style-guide as laid-out pages (corrected: render emits pages, not a PDF). Documents the exact fonts (step 4), logo (step 5), and grid/system used. A separate convert/assemble step turns these into the PDF, matching the catalog pattern. [C]."
+  },
+  {
+   "n": 16,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 14"
+   ],
+   "output": "fixed_pages.pdf — cover + TOC + divider exported to PDF, CMYK with bleed/crop-marks and live TOC anchors preserved from the render spec",
+   "note": "Convert the step-14 laid-out fixed pages to PDF in document_convert_pdf's supported spec->PDF direction (single page-set, NO multi-file merge asked of it). Print prepress (CMYK/bleed/crop) and TOC links come from the render spec, not from this convert. [C]."
+  },
+  {
+   "n": 17,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 15"
+   ],
+   "output": "style_guide.pdf — the style-guide pages exported to PDF",
+   "note": "Convert the step-15 style-guide pages to PDF (corrected: render->convert, closing the type mismatch the verdict raised on the old step 19). Single page-set spec->PDF, no merge. [C]."
+  },
+  {
+   "n": 18,
+   "tool": "(local) ffmpeg/qpdf assemble + prepress",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 16",
+    "step 12",
+    "step 13"
+   ],
+   "output": "catalog_print.pdf — single ordered ~10-12pp 8.5x11 CMYK PDF with 0.125in bleed + crop/trim marks: fixed_pages.pdf (cover/TOC/divider) + ~10 merged product pages + vector rider sheets concatenated in reading order, TOC anchors resolved to final page numbers",
+   "note": "LOCAL assembly [L] (replaces the former document_convert_pdf-as-merger misuse — A2 says convert_pdf does NOT concatenate multiple files): use qpdf/pikepdf to CONCATENATE the three PDF page-sets into one ordered document and stamp/verify crop+bleed. This is the load-bearing print deliverable; multi-file imposition is done off-connector where it is verifiable."
+  },
+  {
+   "n": 19,
+   "tool": "(local) qpdf/Ghostscript web derivative",
+   "server": "local",
+   "exec_mode": "L",
+   "inputs_from": [
+    "step 18",
+    "step 14"
+   ],
+   "output": "catalog_web.pdf — same page order, 8.5x11 (web trim, no crop/bleed), CMYK->sRGB converted, downsampled+compressed to <8MB, working internal hyperlinked TOC",
+   "note": "LOCAL derivative [L] (replaces convert_pdf misuse for color/compression/hyperlink — none of which it does): Ghostscript converts CMYK->sRGB + downsamples to screen res, qpdf strips crop/bleed, and the TOC named-destination links (baked at render time in step 14) are carried into the web version. Honest off-connector finish."
+  },
+  {
+   "n": 20,
+   "tool": "asset_add_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 18",
+    "step 19",
+    "step 17"
+   ],
+   "output": "catalog_print.pdf, catalog_web.pdf, and style_guide.pdf uploaded back into /tsi-poultry/deliverables with stable URNs",
+   "note": "Re-ingest the locally-assembled deliverables into CC storage so the handoff folder holds connector-addressable URNs for the final copy step. [C]."
+  },
+  {
+   "n": 21,
+   "tool": "asset_copy_assets",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": [
+    "step 20",
+    "step 2"
+   ],
+   "output": "/deliverables folder containing print PDF, web PDF, style guide, AND the editable source templates (catalog_master.indd + spec_rider_master.ai), organized for handoff",
+   "note": "Final packaging [C]: collect the four deliverables — print PDF, web PDF, style guide, and the editable .indd/.ai source templates (the genuine editable sources, per the brief's 'InDesign preferred') — into a clean handoff folder. The 'finished file' the client buys."
+  }
+ ],
+ "corrections_applied": [],
+ "difficulty_rationale": "This is hard for an agent on five axes, now with execution-mode honesty. (1) Long horizon with a render-loop: the honest path is 21 steps and a per-SKU photo-prep loop applied across all 75 images (steps 6-10 each fan out over the whole set), so the agent must batch and never lose a row. (2) Heavy state tracking across two pipelines that must converge: a photo pipeline (crop -> remove_background -> auto_tone -> color_temperature -> local flatten -> re-upload) and a document pipeline (two authored-template [T] data-merges -> render fixed pages -> convert each set -> local assemble -> local web derivative -> package), where merge step 12 only works if each cleaned cell URN from step 11 is correctly keyed to its SKU row (image_filename<->URN); one mismatched key silently places the wrong photo. (3) Mixed execution modes the agent must respect: the two data-merges are [T] (need user-authored .indd/.ai), the print assembly / color-convert / hyperlink-carry are [L] local glue (convert_pdf cannot merge, recolor, compress, or inject links), and the rest are [C] headless — getting the mode wrong means asserting a capability the connector lacks. (4) Exact-spec pressure: two PDFs with non-negotiable, divergent specs (8.5x11 CMYK with trim/bleed/crop-marks for print vs compressed sRGB with a WORKING hyperlinked TOC for web), where the TOC links must be baked at render time (step 14) because no connector injects them afterward, plus a uniform 2000x2000 cell size. (5) Taste-under-constraint: the brief frames the rough mockup as 'a direction, not a brief', so the agent must infer an 'industrial precision' system, encode it once in the authored master template, and prove it scales — the literal Phase-1 success criterion. One wrong template parameter propagates across ~10 merged pages.",
+ "exec_mode_summary": "C×16 T×2 L×3",
+ "full_brief": "TSI Poultry is a multi-branch industrial and poultry-equipment distributor (Louisiana, Oklahoma, Tennessee) building a new catalog for its poultry division. The engagement is two-phase, and this task covers Phase 1, the pilot: the Winching & Suspension Systems catalog — roughly 10-12 pages covering ~75 SKUs in a single product category. The explicit point of Phase 1 is not just a pretty PDF; it is to lock in the design system, typography, and a reusable template that Phase 2 (the full multi-category poultry catalog) will scale from. The client provides everything needed: a rough mockup ('a direction we like, not a brief — genuinely open to your professional take'), a price list with every SKU, description, and cross-reference part number to industry-standard equivalents, a full set of product photography shot in-house on white background (no stock, no reshoots), and brand assets (TSI Poultry logo and color palette). The desired aesthetic is 'industrial precision' — technical-documentation restraint, premium without being precious — for an audience of purchasing managers, integrators, and farm operators who care about specs and part numbers more than decoration but who respect a serious, well-built reference document.\\n\\nThe deliverables are fixed and specific: a print-ready PDF (8.5\\\"x11\\\", correct trim/bleed, CMYK); a web/email PDF (compressed, sRGB, with a hyperlinked table of contents); an editable source template (InDesign preferred); and a short template/style guide so Phase 2 can scale consistently. The honest workflow is a long-horizon data-merge over the ~75-row spec, and it must respect the connector's real execution modes. First, prepare the photos: the in-house white-background shots carry the usual uneven white-point, table-seam, and soft-shadow artifacts, so each of the 75 images is normalized to a uniform 2000x2000 cell (image_crop_and_resize), the hardware is cut cleanly off its imperfect backdrop with image_remove_background, exposure and white-balance are corrected (image_apply_auto_tone, image_adjust_color_temperature), and the transparent subject is flattened onto a true #FFFFFF canvas in a local compositing step (image_fill_area is solid-color-fill-only and cannot composite, so the flatten is done off-connector). The cleaned cells are re-uploaded for stable URNs. Then the document pipeline: the agent's USER-AUTHORED master InDesign template (real <<merge fields>>) is bound against the CSV/JSON via document_merge_data_layout (an authored-template [T] step) to drive every per-product page, pulling each SKU's cleaned-photo URN; an authored Illustrator-Variables template drives the cross-reference and price-per-quantity rider sheets via document_merge_data_vector ([T]). The fixed pages (cover, hyperlinked TOC, divider) are produced with document_render_layout, with CMYK/bleed/crop-marks and the working internal TOC links baked into the render spec (because document_convert_pdf cannot inject color-space, compression, or hyperlinks). Each page-set is exported to PDF with document_convert_pdf in its supported spec->PDF direction; the print PDF is then assembled by concatenating the three page-sets locally (convert_pdf does not merge multiple files), and the compressed sRGB web PDF with its live TOC is derived locally. The style guide is rendered then converted the same render->convert way. Finally the four deliverables — print PDF, web PDF, style guide, and the editable .indd/.ai source — are copied into a clean handoff folder.",
+ "grounding_note": "REAL (verbatim from the Upwork brief in db_all.json): multi-branch industrial & poultry-equipment distributor across Louisiana/Oklahoma/Tennessee; two-phase engagement; Phase 1 = pilot 'Winching & Suspension Systems Catalog', ~10-12 pages, ~75 SKUs, single category; Phase 1's stated purpose is to lock in the design system, typography, and template that Phase 2 scales from; client provides a rough mockup ('a direction we like, not a brief'), a price list with all SKUs + descriptions + cross-reference part numbers to industry-standard equivalents, a full product-photo set shot on white (no stock/reshoots), and brand assets (TSI Poultry logo + color palette); aesthetic = 'industrial precision'; audience = purchasing managers, integrators, farm operators who care about specs/part numbers; deliverables = print-ready PDF (8.5x11, trim/bleed, CMYK), web/email PDF (compressed, sRGB, hyperlinked TOC), editable source (InDesign preferred, Canva acceptable), and a short template/style guide; budget Hourly $5-$45; tool listed = InDesign. ENRICHED (implied, not stated literally, and reframed so it does NOT contradict the brief): the specific count of 75 cleaned cell images and the 2000x2000 uniform cell size; that the in-house white-background shots carry the ordinary uneven white-point / table-seam / soft-shadow artifacts that any real distributor product set has and that must be normalized before print — this justifies the photo-prep spine without asserting the client misdescribed their photos as clean; that the white cell is reached the canonical headless way (image_remove_background -> tonal/WB correction -> LOCAL flatten on #FFFFFF), NOT via image_fill_area, which the corrected capability sheet flags as solid-color-fill-only (not a compositor/cleaner); the explicit split into document_merge_data_layout for product pages vs document_merge_data_vector for spec/pricing rider sheets, both run as authored-template [T] steps against user-authored .indd/.ai carrying real merge fields/Variables (a PDF-converted .indd does not bind); that print prepress (CMYK/bleed/crop) and the working TOC hyperlinks are baked at render time and the multi-file print assembly + sRGB/compression web derivative are done LOCALLY because document_convert_pdf does not merge files, change color space, compress, or inject hyperlinks; the exact folder/URN plumbing; the price-per-quantity rider format. The editable source is delivered as the genuine authored .indd/.ai (honoring 'InDesign preferred').",
+ "groups_covered": [
+  "photo_raster",
+  "document_layout",
+  "asset_plumbing"
+ ],
+ "headless_doable": false,
+ "id": "F2-06",
+ "inputs": [
+  {
+   "name": "price_list.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a realistic B2B industrial catalog price list as CSV for ~75 SKUs in the 'Winching & Suspension Systems' category for poultry-house equipment (winches, hand hoists, cable, snatch blocks, pulleys, brackets, S-hooks, turnbuckles, galvanized chain). Columns: sku, product_name, short_description (1 technical sentence with capacity/material, e.g. '1/4\" galvanized aircraft cable, 7x19 strand, 1,400 lb breaking strength'), long_description, cross_reference_part_no (equivalent industry-standard part numbers, e.g. 'CM Hammerlok 665, Crosby G-209'), unit_price_usd, price_per_100_usd, qty_break_note, category_subgroup, image_filename (winch_photo_01.jpg ... winch_photo_75.jpg). Use plausible distributor pricing and real-sounding cross-reference brands (Crosby, CM, Campbell, Cooper). Keep SKUs in a consistent format like TSI-WS-0001.",
+   "realism_notes": "Must read like a real distributor export: consistent SKU scheme, believable capacities/materials, cross-reference brands purchasing managers recognize, two price columns (each + per-100). image_filename column is the join key to the cleaned photos and the merge field source for both [T] data-merges.",
+   "used_in_steps": [
+    2,
+    12,
+    13
+   ]
+  },
+  {
+   "name": "sku_copy.json",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Produce a JSON array keyed by SKU (matching price_list.csv) holding the longer marketing/spec copy that won't fit in the CSV: {sku, spec_bullets:[3-5 technical bullets like working_load_limit, finish, dimensions, standard_compliance], application_note, warranty}. Tone: restrained technical documentation, no marketing fluff, written for integrators and farm operators.",
+   "realism_notes": "Separates short CSV fields from richer per-SKU spec blocks so the InDesign template has both a compact grid cell and a fuller spec block. SKU keys must exactly match the CSV.",
+   "used_in_steps": [
+    2,
+    12
+   ]
+  },
+  {
+   "name": "tsi_logo.png",
+   "kind": "image",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A clean B2B industrial brand logo for 'TSI Poultry', delivered as a flat raster PNG on transparent background: a bold geometric wordmark 'TSI' with a small poultry/feather-and-gear motif, restrained two-color (deep slate navy + safety orange accent), the words 'POULTRY EQUIPMENT' set in a small technical sans beneath. Crisp edges, no gradients, no 3D, looks like a real industrial distributor's logo printed on equipment and catalogs.",
+   "realism_notes": "Provided as raster (as real clients do) so the workflow must vectorize it (step 5). Two-color, print-safe, flat — vectorizes cleanly. Transparent background for header placement.",
+   "used_in_steps": [
+    2,
+    5,
+    13,
+    14,
+    15
+   ]
+  },
+  {
+   "name": "brand_palette.json",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a brand palette JSON for TSI Poultry: primary (deep slate navy), secondary (safety orange), neutrals (paper white, warm grey, near-black ink), each with hex, CMYK, and Pantone-equivalent; plus type-color roles (header_ink, body_ink, rule_lines, accent). Industrial, restrained, print-oriented.",
+   "realism_notes": "CMYK + Pantone present because the deliverable is print CMYK with trim/bleed; drives the cover, template, and style-guide color rules.",
+   "used_in_steps": [
+    2,
+    4,
+    14
+   ]
+  },
+  {
+   "name": "client_rough_mockup.pdf",
+   "kind": "pdf",
+   "gen_model": "gemini-3-pro-image",
+   "gen_prompt": "A rough, slightly amateur 1-page catalog mockup PDF a non-designer client threw together: a 2-column product grid with placeholder boxes for product photos, product names, SKUs, prices, and a cross-reference line, plus a top band with a logo placeholder and a footer with a page number. Slightly uneven spacing, default-looking fonts, a couple of misaligned boxes — clearly 'a direction we like' rather than a finished design. Convey the intended structure (grid, SKU, cross-ref, spec) without polish.",
+   "realism_notes": "Intentionally rough/misaligned so the agent must elevate it ('taste, not mandate') rather than copy it. Rendered as a PDF page so the workflow extracts it via document_convert_pdf (PDF->raster direction) to read the intended grid.",
+   "used_in_steps": [
+    2,
+    3,
+    14,
+    15
+   ]
+  },
+  {
+   "name": "catalog_master.indd",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Describe/author a real Adobe InDesign data-merge template (.indd/.idml package) for an 8.5x11 industrial product catalog page: a 2-column product grid where each cell carries genuine InDesign data-merge placeholders <<product_name>>, <<sku>>, <<short_description>>, <<cross_reference_part_no>>, <<unit_price_usd>>, <<price_per_100_usd>> and an image-placeholder frame bound to <<image_filename>>; a header band with a logo frame and a footer with a page-number variable. Built with the recommended technical-sans / tabular-figure type, 0.125in bleed, crop marks, CMYK swatches. This is a USER-AUTHORED desktop file (not connector-generated) carrying REAL merge fields so document_merge_data_layout can bind it.",
+   "realism_notes": "Required because document_merge_data_layout is an AUTHORED-TEMPLATE [T] tool — it needs a genuine .indd with real <<fields>>; a PDF-converted .indd with literal text does NOT bind (capability sheet A2). This is the editable InDesign source the brief asks for.",
+   "used_in_steps": [
+    2,
+    12
+   ]
+  },
+  {
+   "name": "spec_rider_master.ai",
+   "kind": "vector",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Author a real Adobe Illustrator template (.ai) using Illustrator Variables for the cross-reference equivalence table and price-per-quantity rider sheet: text objects bound to dataset Variables (sku, cross_reference_part_no, unit_price_usd, price_per_100_usd, qty_break_note) laid out as a crisp vector table with a header logo frame, ruled rows, and CMYK swatches matching the brand palette. USER-AUTHORED with real Variables so document_merge_data_vector can bind it.",
+   "realism_notes": "Required because document_merge_data_vector is an AUTHORED-TEMPLATE [T] tool needing a genuine .ai with Illustrator Variables (capability sheet A2). Vector so the rider tables stay crisp at any scale for print.",
+   "used_in_steps": [
+    2,
+    13
+   ]
+  },
+  {
+   "name": "winch_photo_set (75 raw product JPEGs)",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "Photoreal studio product shots of industrial winching & suspension hardware for poultry houses — hand winches, ratchet hoists, galvanized chain, snatch blocks, pulleys, cable spools, turnbuckles, S-hooks, mounting brackets — each on a white sweep but realistically imperfect as in-house shots are: visible soft cast shadows, a faint grey gradient toward the corners, a seam line where the sweep meets the table, occasional bits of dust, slightly warm/yellow white balance, inconsistent framing and zoom across shots. Real galvanized-steel texture, machining marks, brushed-metal reflections, tiny scratches and oil smudges on the hardware. Documentary product-catalog look, NOT glossy CGI — like a distributor's in-house photographer shot 75 SKUs quickly in one afternoon. Vary the subject per SKU.",
+   "realism_notes": "The ordinary in-house imperfection (soft shadow, grey corner gradient, table seam, warm cast, inconsistent framing) is the honest reason the photo-prep loop is needed: crop/resize, remove_background (cut off the imperfect backdrop), auto_tone, color_temperature, then a local flatten on #FFFFFF. Real metal texture/scratches keep them photoreal, not CGI. Filenames winch_photo_01..75.jpg join to the CSV image_filename column.",
+   "used_in_steps": [
+    2,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ]
+  }
+ ],
+ "iterative_chaining_note": "The two pipelines converge by URN/SKU key, and the execution modes are honored end to end. Photo pipeline (all [C] except the local flatten): raw photos -> step 6 crop/resize to a uniform 2000x2000 cell -> step 7 image_remove_background cuts the hardware off its imperfect in-house backdrop to a transparent PNG -> step 8 auto_tone (exposure) -> step 9 color_temperature (warm-cast neutralize) -> step 10 LOCAL [L] PIL flatten of the transparent subject onto a true #FFFFFF 2000x2000 canvas (the compositor image_fill_area cannot be, since it is solid-color-fill-only) -> step 11 re-upload the finished cells to /photos_clean for stable URNs. Document pipeline consumes the photo product: step 12 document_merge_data_layout [T] binds the USER-AUTHORED catalog_master.indd against price_list.csv + sku_copy.json, pulling the matching step-11 cleaned-photo URN per SKU row (join = image_filename<->URN); step 13 document_merge_data_vector [T] binds the USER-AUTHORED spec_rider_master.ai against the CSV + step-5 logo for the rider sheets. Fixed pages: step 14 document_render_layout [C] renders cover/TOC/divider from step-4 fonts + step-5 logo + step-3 mockup + palette, BAKING CMYK/bleed/crop-marks and live internal TOC anchor links into the render spec (because convert_pdf cannot inject them); step 15 renders the style-guide PAGES. Convert: step 16 document_convert_pdf [C] exports step-14 fixed pages to PDF (single spec->PDF, no merge); step 17 exports step-15 style-guide pages to style_guide.pdf. Assemble: step 18 LOCAL [L] qpdf CONCATENATES fixed_pages.pdf + step-12 product pages + step-13 rider sheets into the ordered CMYK print PDF and resolves TOC anchors (convert_pdf does not merge files); step 19 LOCAL [L] Ghostscript/qpdf derives the compressed sRGB web PDF with the live TOC from step 18 + the step-14 link map. Package: step 20 re-ingests the three local PDFs into CC storage; step 21 asset_copy_assets [C] collects the print PDF, web PDF, style guide, AND the editable catalog_master.indd + spec_rider_master.ai into /deliverables. Reuse is dense: the vectorized logo (step 5) appears in steps 13/14/15; the recommended fonts (step 4) in 14/15; the CSV in 12/13; each raw photo threads steps 6-11 before its cleaned URN is keyed into the merge at step 12; the two authored templates carry from ingest (2) through merge (12/13) to handoff (21).",
+ "one_line_ask": "Design the 'industrial precision' template for TSI Poultry's pilot Winching & Suspension Systems catalog, headlessly clean all ~75 supplied product photos to true white (remove_background -> tonal/WB correct -> local flatten on #FFFFFF, not generative fill), data-merge them via authored InDesign/Illustrator templates into a ~10-12-page 8.5x11 spread with cross-reference/pricing rider sheets, and deliver a print-ready CMYK PDF, a compressed sRGB web PDF with hyperlinked TOC, the editable .indd/.ai source, and a short style guide for Phase 2.",
+ "outputs": [
+  {
+   "name": "catalog_print.pdf",
+   "kind": "pdf",
+   "spec": "~10-12 pages, 8.5\"x11\" page (8.75\"x11.25\" with 0.125\" bleed all sides), CMYK, 300 dpi image cells, crop/trim marks, ~75 SKUs across a 2-column product grid plus cover, TOC, and spec/pricing rider pages; assembled by local concatenation of three rendered/merged PDF page-sets (convert_pdf does not merge files), with CMYK/bleed/crop-marks baked at render time",
+   "rubric_hook": "Annotator checks: correct trim size + bleed + crop marks present; CMYK (not RGB); every SKU cell shows the CORRECT cleaned photo keyed to its SKU (spot-check 10 rows); cross-reference part numbers present and legible; consistent grid alignment across all product pages; logo crisp (vector) in every header."
+  },
+  {
+   "name": "catalog_web.pdf",
+   "kind": "pdf",
+   "spec": "Same page order as print, 8.5\"x11\" (web trim, no crop/bleed), sRGB (CMYK->sRGB converted locally), compressed (target <8 MB), screen-resolution images, working hyperlinked table of contents whose links are baked at render time and carried into this derivative, derived locally from the assembled print source",
+   "rubric_hook": "Annotator checks: file is meaningfully smaller than print PDF; color space is sRGB; TOC links actually jump to the right pages; no crop marks/bleed (web trim)."
+  },
+  {
+   "name": "product_photos_clean (75 images)",
+   "kind": "image",
+   "spec": "75 PNG/JPEG cells, uniform 2000x2000 px, true pure-white (#FFFFFF) seamless background reached via remove_background + local flatten (NOT generative fill), no cast shadow/seam/tape residue, consistent exposure and neutral white balance, subject centered",
+   "rubric_hook": "Annotator checks a sample: background is genuinely uniform white (no grey gradient/shadow/seam), product edges intact (clean cutout, no halo and no over-fill eating the hardware), exposure/white-balance consistent across the set, framing uniform."
+  },
+  {
+   "name": "editable_source (catalog_master.indd + spec_rider_master.ai) + style_guide.pdf",
+   "kind": "pdf",
+   "spec": "The genuine editable InDesign/Illustrator source templates (the master data-merge page + the vector rider template, both carrying real merge fields/Variables) PLUS a short multi-page style guide PDF (rendered then convert_pdf'd) documenting grid, type scale (chosen fonts), color (hex/CMYK/Pantone), logo usage, and 'how to add a SKU' so Phase 2 scales",
+   "rubric_hook": "Annotator checks: source templates are genuinely parameterized/reusable (real merge fields, not a one-off page); style guide states the exact fonts, colors, grid, and logo rules actually used in the catalog; instructions would let someone add a SKU to Phase 2 without redesign."
+  }
+ ],
+ "slug": "tsi-poultry-catalog-pilot",
+ "source": {
+  "platform": "Upwork",
+  "url": "https://www.upwork.com/nx/search/jobs/?q=B2B%20Industrial%20Catalog%20Designer%20—%20Poultry%20Equipment%20Pilo"
+ },
+ "title": "B2B Industrial Catalog Designer — Poultry Equipment Pilot + Full Catalog Rollout",
+ "tool_call_count": 21,
+ "tools_used": [
+  "asset_create_folders",
+  "asset_add_file",
+  "document_convert_pdf",
+  "font_recommend",
+  "image_vectorize",
+  "image_crop_and_resize",
+  "image_remove_background",
+  "image_apply_auto_tone",
+  "image_adjust_color_temperature",
+  "document_merge_data_layout",
+  "document_merge_data_vector",
+  "document_render_layout",
+  "asset_copy_assets",
+  "(local) PIL flatten-on-white",
+  "(local) qpdf/Ghostscript assemble+derive"
+ ],
+ "vertical": "Automotive, Industrial & Agriculture",
+ "reverify": {
+  "severity": "major",
+  "residual_issues": [
+   "STEP 16 & 17 (document_convert_pdf, [C]) assert a 'spec->PDF' / render-pages->PDF direction that the capability sheet does NOT grant. Sheet A2 line 55 documents convert_pdf as ONLY 'PDF -> genuine .indd (ZIP)'. There is no render-output->PDF affordance. The spec's repeated phrase 'in document_convert_pdf's supported spec->PDF direction' is a fabricated capability re-skinned to sound legitimate. This is the same class of over-claim the correction claims to have fixed elsewhere.",
+   "STEPS 16/17 are also REDUNDANT: sheet says document_render_layout already exports GENUINE .indd/.idml -> PDF/JPEG/PNG directly (line 52). The render(14/15)->convert(16/17) split both misuses convert_pdf AND is unnecessary; render_layout should emit the PDF itself, removing two steps.",
+   "STEP 3 (document_convert_pdf, [C]) asserts a 'PDF->page-extraction/raster' (PDF->PNG) direction. No PDF->image/raster affordance exists anywhere in the sheet; the only convert_pdf direction is PDF->.indd, and A6 explicitly lists image->PDF as unavailable. PDF->raster to 'read the mockup as images' is not a supported headless connector operation.",
+   "Knock-on dependency risk: step 18 (local print PDF assembly) consumes step 16 output (fixed_pages.pdf) and step 19 (web derivative) consumes step 16/14; since step 16 rests on an unsupported convert direction, the load-bearing print deliverable's input is not actually producible by the named connector as specified."
+  ]
+ }
+}

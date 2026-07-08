@@ -1,0 +1,7 @@
+REASONS: INPUTS incomplete
+
+ISSUES:
+- Dead inputs: the three player cut-out plates (player_left/centre/right_cutout.png) are declared in inputs[] and the brief hands them over 'for selective per-player grading', but no connector step consumes them — steps 7-12 do all per-player accents via image_select_by_prompt masks on the hero frame itself. The reverify note even claims 'the three cut-outs' are consumed by a step, which is false. Either wire the cut-outs into the grade chain or drop them from inputs and stop calling them per-player grading plates.
+- Brief promises a 'layered/working master export' (full_brief goal #5, grounding_note deliverables = 'layered master'), but outputs[] contains only a flattened TIFF/PDF/JPEGs/SVG/board — no layered/working master. The connector can't emit a true layered PSD, so this is a brief-vs-outputs mismatch; the brief should drop the 'layered master' promise or reframe it as the working .psd/.tiff that is actually deliverable.
+- TIFF deliverable has no explicit export step: continental_poster_print_master_A2.tiff is assigned to step 18's hero_a2_master output by note only, with no format/colour-space (TIFF, print-intent) conversion step in the workflow. Minor — the raster op's output file is simply labeled TIFF.
+- Cosmetic: full_brief contains an unresolved editing artifact — 'Marco Ferraz and Kylian... — no: Diego Solano, Marco Ferraz and Théo Rocher' — the aborted name should be cleaned up before annotator handoff.

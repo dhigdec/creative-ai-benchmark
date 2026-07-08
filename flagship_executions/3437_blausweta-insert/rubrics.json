@@ -1,0 +1,333 @@
+{
+  "task_id": 3437,
+  "input_assets": [
+    {
+      "key": "campaign_copy",
+      "display": "Campaign copy (insert_copy.json / .md)",
+      "files": ["input_assets/insert_copy.json", "input_assets/insert_copy.md"],
+      "what_it_is": "The complete German copy deck for the insert: front headline/subline/intro, six back_benefits rows with icon_hints, both discount codes with conditions, loyalty/referral lines, CTA and legal footer.",
+      "items": [
+        {
+          "id": "3437-in-campaign_copy-1",
+          "type": "yesno",
+          "question": "Do the two code objects specify exactly SHOP7 with discount_pct 7 and one_time true, and DANKE5 with discount_pct 5 and one_time false — and is the Euro sign (€) absent from every German string in the file (percentages-only rule)?",
+          "guidance": "Open insert_copy.json and read the codes array. SHOP7's applies_to_de must scope it to the FIRST direct shop order ('Für Ihre erste direkte Shop-Bestellung als Neukunde.') and DANKE5 to follow-up orders ('Für jede weitere Shop-Bestellung als unser geschätzter Kunde.'). Then search the whole file for '€' or any Euro-amount discount wording — the brief forbids it everywhere.",
+          "reference": "Yes — codes are exactly SHOP7/7/one_time:true and DANKE5/5/one_time:false with the correct first-order vs follow-up scoping, and no € sign or Euro-amount wording appears anywhere; the legal footer even states 'Alle Rabatte sind in Prozent.'"
+        },
+        {
+          "id": "3437-in-campaign_copy-2",
+          "type": "likert5",
+          "question": "Rate the German copy quality: is every _de field natural, native-quality German in the formal Sie-form with the warm-but-businesslike specialist-retailer voice the persona demands?",
+          "guidance": "Read all 21 _de fields. 5 = flawless idiomatic German, consistently Sie-form (e.g. 'Wir danken Ihnen herzlich für Ihr Vertrauen...', 'Profitieren Sie von...', 'Vertrauen Sie auf unser Expertenwissen...'), titles ≤5 words, descriptions concrete and ≤~18 words. 3 = grammatical but stiff/translated-sounding or one slip in register. 1 = grammar errors, machine-translation artifacts, or informal Du-form (note the old draft_back used 'WIR SIND FÜR DICH DA' — that register must NOT appear here). Minor flag: the truck row repeats 'Schneller, zuverlässiger Versand' verbatim as both title and the start of its description — judge whether that redundancy costs polish.",
+          "reference": "A 5 reads like a German shop owner wrote it: correct umlauts/ß (regelmäßigen, größte, geschätzter), consistent Sie-form, percentages only. The supplied copy is near-native; the title/desc repetition in the Versand row is the one visible blemish, so 4-5 is the expected score."
+        },
+        {
+          "id": "3437-in-campaign_copy-3",
+          "type": "text",
+          "question": "Transcribe the cta_de string exactly as it appears in insert_copy.json, and state the shop domain it names.",
+          "guidance": "Copy the value character-for-character including punctuation. This exact line must later appear on BOTH sides of the printed insert, so the transcription is the ground truth for the output checks.",
+          "reference": "\"Besuchen Sie uns jetzt: www.blausweta-rasur.de\" — domain www.blausweta-rasur.de, a plausible official .de domain matching the brand name."
+        }
+      ]
+    },
+    {
+      "key": "official_logo",
+      "display": "Official logo (logo_blausweta.png)",
+      "files": ["input_assets/logo_blausweta.png"],
+      "what_it_is": "The official Blausweta-Rasur logo file the brief orders to be placed as-is (never traced or rebuilt from the AI drafts): a navy wordmark with a navy/purple straight-razor motif on white, 1024×1024.",
+      "items": [
+        {
+          "id": "3437-in-official_logo-1",
+          "type": "yesno",
+          "question": "Does the wordmark read EXACTLY 'Blausweta-Rasur' — capital B, capital R, with the hyphen, no garbled or doubled letters?",
+          "guidance": "AI-generated logos frequently garble letterforms. Zoom in and read every glyph: B-l-a-u-s-w-e-t-a, hyphen, R-a-s-u-r. Compare against the brand name in persona/INTAKE ('Blausweta-Rasur').",
+          "reference": "Yes — the wordmark is cleanly set as 'Blausweta-Rasur' in a navy bold sans-serif with the hyphen present and no spelling defects."
+        },
+        {
+          "id": "3437-in-official_logo-2",
+          "type": "likert5",
+          "question": "Rate the logo's production quality as a brand mark: flat vector-style edges, strictly deep-navy #1E2D5C + rich-purple #5B4A9E on plain white, one minimal straight-razor motif, no gradients/shadows/tagline.",
+          "guidance": "5 = crisp anti-aliased but vector-clean edges on both the type and the open straight razor (purple handle with two white pivot dots, navy blade), exactly the two brand colors on white, nothing else. 3 = correct concept but soft edges, off-palette tints, or a slightly mushy razor silhouette. 1 = gradients, drop shadows, extra text, or a second motif.",
+          "reference": "A 5: the supplied mark is a clean flat wordmark+razor lockup — purple razor handle with white pivot dots, navy blade and navy type — with no gradients, no tagline, and edges crisp enough to print small on an A5 insert."
+        },
+        {
+          "id": "3437-in-official_logo-3",
+          "type": "likert5",
+          "question": "Rate the file's usability for the layout workflow: clearspace, croppability and legibility at print size (the front places it about 64 mm wide at the top of an A5 page).",
+          "guidance": "The 1024×1024 canvas has the lockup occupying roughly the middle horizontal band with generous white margins — good for a tight optical crop. Check: would a background-removal cutout endanger the white interior counters of the letters (a known hazard the trajectory hit)? 5 = ample clearspace, scales down legibly, white-on-white counters are the only cutout risk. 3 = cramped margins or thin strokes that fuzz at small sizes. 1 = clipped edges or illegible when small.",
+          "reference": "A 5: generous clearspace on all sides, the wordmark stays legible scaled to ~64 mm wide, and the only processing hazard is that naive background removal drops the white letter counters — which is why placing the original on white (as the brief allows) is the safe play."
+        }
+      ]
+    },
+    {
+      "key": "draft_refs",
+      "display": "Client AI drafts (front + back) — the bad references",
+      "files": ["input_assets/draft_front.png", "input_assets/draft_back.png"],
+      "what_it_is": "The client's own two AI drafts the rebuild must replace: a wedding-card-style front and a clumsy benefits-list back. They define the structure to keep and the styling to avoid; the brief says do NOT upscale them.",
+      "items": [
+        {
+          "id": "3437-in-draft_refs-1",
+          "type": "likert5",
+          "question": "Rate draft_front.png as a believable 'bad first AI draft': does it exhibit precisely the flaws the brief bans — handwritten romantic script ('Vielen Dank'), ornamental corner filigree, watercolor pastel washes, small hearts — while still staying in the navy/purple world?",
+          "guidance": "The draft should justify the rebuild. Look for: rough 'BLAUSWETA-RASUR' wordmark band at top, script headline, flourish dividers, at least two heart motifs, patchy lavender watercolor blotches, the lines 'Wir danken Ihnen für Ihre Bestellung' and 'Genießen Sie Ihre Rasur', photographed-on-wood-table presentation. 5 = unmistakably wedding-thank-you-card styling in navy/purple, exactly what the client said looks wrong. 3 = some flagged flaws missing. 1 = it accidentally looks professional (no contrast with the rebuild).",
+          "reference": "A 5: the draft is a soft pastel thank-you card — script 'Vielen Dank', filigree corners, hearts, watercolor — that obviously violates the no-wedding-feel rule while keeping the navy/purple palette, making the clean rebuild's purpose self-evident."
+        },
+        {
+          "id": "3437-in-draft_refs-2",
+          "type": "yesno",
+          "question": "Does draft_back.png supply the structural skeleton the rebuild keeps (icon benefit rows + a boxed coupon area at the bottom) while containing styling violations the brief explicitly bans — notably the GOLD/yellow thumbs-up and gold gift-box clip-art icons and the informal Du-form copy ('WIR SIND FÜR DICH DA', 'BEI DEINER NÄCHSTEN BESTELLUNG')?",
+          "guidance": "Confirm both halves: (a) structure — five bullet rows ('GROSSE AUSWAHL', 'SICHERE BESTELLUNG', 'KUNDEN-SERVICE', 'ZUFRIEDENHEITS GARANTIE', 'EXKLUSIVE ANGEBOTE') each with a clip-art icon, plus the 'DEIN GUTSCHEIN-CODE!' coupon box; (b) violations — mismatched icon styles (navy gear, purple smiley shopping cart, yellow thumbs-up, gold gift box), gold tones breaking the no-gold rule, and Du-form German breaking the Sie-form voice.",
+          "reference": "Yes — the back draft is a benefits list + coupon box in structure, but its gold/yellow icons, mismatched clip-art, uneven spacing and Du-form copy are exactly the off-brief elements the rebuild must eliminate."
+        },
+        {
+          "id": "3437-in-draft_refs-3",
+          "type": "text",
+          "question": "Transcribe the coupon code and discount advertised in draft_back.png's coupon box — this legacy offer must appear NOWHERE in the rebuilt insert.",
+          "guidance": "Read the purple coupon box near the bottom of draft_back.png and the small-print line under it. Record the code, the percentage, and the expiry wording. The rebuild replaces this offer with SHOP7/DANKE5, so any leak of this string into the outputs is a hard failure.",
+          "reference": "Code 'RASUR-FREUNDE10' for '10% RABATT BEI DEINER NÄCHSTEN BESTELLUNG', small print 'Gültig bis zum 31.12.2024. Nur ein Code pro Person. *Es gelten die AGB.' — none of which may survive into the rebuilt front/back."
+        }
+      ]
+    },
+    {
+      "key": "warehouse_header",
+      "display": "Clean warehouse header photo",
+      "files": ["input_assets/warehouse_header.jpg"],
+      "what_it_is": "The supplied clean packing-area photo (1536×1024) for the front: a small e-commerce warehouse with wooden packing bench, kraft cartons, tissue paper and tape dispenser — delivered WITHOUT any baked-in logo so the logo can be positioned separately in layout.",
+      "items": [
+        {
+          "id": "3437-in-warehouse_header-1",
+          "type": "yesno",
+          "question": "Is the photo completely free of text, letters, numbers, watermarks and logos — on the shelf cartons, the white product boxes, the navy jars/bottles, the tape dispenser and everywhere else?",
+          "guidance": "The brief's whole point is a 'clean warehouse header image (no baked-in logo)'. Scan every box face and label-sized surface at zoom: the kraft shipping cartons on the bench, the stacked white cartons and navy product packaging on the metal shelving, the cosmetic bottles, the window area. Any legible or pseudo-legible glyph fails.",
+          "reference": "Yes — all cartons and products are unbranded blanks; there is no text, watermark or logo anywhere in the frame."
+        },
+        {
+          "id": "3437-in-warehouse_header-2",
+          "type": "likert5",
+          "question": "Rate the photographic realism: does it pass as a candid documentary photo of a German specialist retailer's packing area rather than CGI or staged stock?",
+          "guidance": "Look for the briefed lived-in cues: bright neutral daylight from the large left window, white-brick wall, metal shelving with plain boxes, wooden bench with kraft cartons + white tissue paper + tape dispenser, flattened cardboard stacked under the table, scuffed concrete floor, trailing green plant at right, shallow depth of field. 5 = believable working space with natural light falloff, plausible shadows and imperfections. 3 = mostly believable but with telltale AI smoothness, repeated box geometry or physics oddities (check shelf brackets and box edges). 1 = obviously synthetic gloss.",
+          "reference": "A 5: convincing available-light documentary look — coherent window light, believable clutter (open carton with tissue, tape dispenser mid-bench), realistic materials; only forensic-level inspection of repeated cartons would hint it is generated."
+        },
+        {
+          "id": "3437-in-warehouse_header-3",
+          "type": "likert5",
+          "question": "Rate its usability for this layout: calm space along the top edge (composed so a logo could sit there), croppable to the wide 2:1 band the front uses with the packing bench prominent, and enough resolution for ~300 dpi at final size.",
+          "guidance": "The plan reframes it to 2:1 centred on the bench/box ('cardboard packing box on bench' focus). Check: the upper third is a calm white wall suitable as headroom; a 2:1 centre crop keeps bench, open kraft box and tissue paper as the subject; 1536 px width cover-fitted to a 1495×760 px band means ~1.0× scale, i.e. ~300 dpi effective with no upscaling. 5 = all three hold. 3 = crop forces awkward amputation of the bench or marginal resolution. 1 = busy top edge or sub-250-dpi softness.",
+          "reference": "A 5: the photo was composed with calmer wall space up top, the 2:1 reframe keeps the bench and open box dominant, and at 1495×760 px placement the source supplies ~300 dpi effective resolution without upscaling."
+        }
+      ]
+    },
+    {
+      "key": "icon_set",
+      "display": "Benefit icon set (truck / percent / star / people)",
+      "files": ["input_assets/icon_shipping.png", "input_assets/icon_discount.png", "input_assets/icon_loyalty.png", "input_assets/icon_referral.png"],
+      "what_it_is": "Four flat 1024×1024 icons for the back-page benefit rows — delivery truck (shipping), percent-in-circle badge (prices), star with three dots (bonus points), two people with arrow (referral) — in thick navy strokes with purple accents on white.",
+      "items": [
+        {
+          "id": "3437-in-icon_set-1",
+          "type": "likert5",
+          "question": "Rate the set's stylistic consistency: do all four icons read as one family — thick rounded deep-navy #1E2D5C strokes with rich-purple #5B4A9E accents on pure white, similar visual weight, padding and minimalism?",
+          "guidance": "Compare stroke weight and corner rounding across truck, percent badge, star and people. Known blemishes from QC to weigh: the stray purple dash on the truck's front bumper, slightly thinner purple motion dashes behind the truck, the referral arrow being a purple FILL while the figures are stroked+filled, and the loyalty star's three floating purple dots clustering to one side rather than arcing. 5 = reads as one commissioned set despite micro-flaws. 3 = noticeably divergent weights or fill-vs-stroke treatments (e.g. the referral figures are heavily filled while the percent badge is pure outline). 1 = looks like icons from four different libraries — the failure mode of draft_back.",
+          "reference": "A 4-5: consistent navy/purple two-color system and rounded strokes; honest deductions for the truck's orphan purple dash, the solid-fill people vs outline-only star/percent, and the loyalty dots' ambiguous placement."
+        },
+        {
+          "id": "3437-in-icon_set-2",
+          "type": "yesno",
+          "question": "Is the % glyph inside icon_discount.png the ONLY glyph anywhere in the set — no letters, numbers, words or captions baked into any of the four icons?",
+          "guidance": "The first generation attempt failed QC for text under each icon. Inspect all four at zoom, including the box symbol on the truck's cargo door (must be a pictogram, not a character) and the area below each icon.",
+          "reference": "Yes — the percent sign in the discount badge is the sole glyph; the other three icons are purely pictographic with no baked-in text."
+        },
+        {
+          "id": "3437-in-icon_set-3",
+          "type": "text",
+          "question": "insert_copy.json assigns six icon_hints (percent, star, people, shield, package, truck). Which two hinted subjects have NO matching icon file in this supplied set, and which benefit rows does that leave icon-less?",
+          "guidance": "Cross-reference the four files against the six back_benefits icon_hint values. This coverage gap is a real input deficiency the layout must visibly work around, so name the orphaned rows by their German titles.",
+          "reference": "shield and package are missing — leaving 'Kompetente Fachberatung' (shield) and 'Umfassendes Sortiment' (package) without supplied icons; the execution substitutes navy numbered circles '4' and '5' for those rows."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "front_preview",
+      "display": "Front side hi-res preview (front_152x214mm.png)",
+      "files": ["outputs/front_152x214mm.png"],
+      "asked": "Deliverable 2 (front half): separate high-resolution front preview at full artwork size — 1795×2528 px = 152×214 mm @300 dpi (148×210 trim + 2 mm bleed).",
+      "items": [
+        {
+          "id": "3437-out-front_preview-1",
+          "type": "yesno",
+          "question": "Is every front string verbatim from insert_copy.json with correct German typography: headline 'Vielen Dank für Ihre Bestellung!', subline 'Willkommen in der Welt der traditionellen Rasur.', and the full two-sentence intro ('Wir danken Ihnen herzlich für Ihr Vertrauen und Ihren Einkauf bei uns. Entdecken Sie jetzt die volle Produktvielfalt und exklusive Vorteile in unserem offiziellen Online-Shop.') — umlauts (für ×3) rendered cleanly, no _en gloss leaked?",
+          "guidance": "Compare character-for-character against insert_copy.json's front object. Check the ü glyphs at zoom for substitution boxes or wrong diacritics, confirm the exclamation mark on the headline, and confirm no English ('Thank you for your order!') appears anywhere.",
+          "reference": "Yes — all three front fields render verbatim with clean umlauts; no English gloss and no paraphrasing."
+        },
+        {
+          "id": "3437-out-front_preview-2",
+          "type": "likert5",
+          "question": "Rate the front's layout craft: logo placed as-is on the white top band above a purple hairline, centered type stack with clear hierarchy (navy bold headline > purple medium subline > navy regular 3-line intro), rounded-corner photo band with navy keyline inset from the edges, then chips + CTA — all aligned, nothing colliding or clipped.",
+          "guidance": "5 = confident vertical rhythm: consistent center axis, even spacing between the six stacked elements, the warehouse band's 24 px rounded corners and thin navy keyline crisp, all content visibly inside the 5 mm safe zone (the README asserts front content ends y=2326 vs limit 2445). 3 = workable but with uneven gaps (e.g. dead space below the CTA), or the headline crowding the hairline. 1 = misalignment, overlaps or clipped descenders.",
+          "reference": "A 5 looks like a designer's clean thank-you page: logo band, hairline, type stack, photo band, two chips, CTA — one centered axis, generous margins, no collisions. Note the bottom region under the CTA is relatively empty; judge whether that reads as airy or unfinished."
+        },
+        {
+          "id": "3437-out-front_preview-3",
+          "type": "likert5",
+          "question": "Rate brand/style compliance of the front: strictly navy #1E2D5C / purple #5B4A9E on white, warmer-and-personal yet businesslike, with zero residue of draft_front's wedding styling (no hearts, no filigree, no script type, no watercolor), and the warehouse photo graded cooler/neutral.",
+          "guidance": "Sample the headline (should be the deep navy), subline and hairline (purple), chip fills (one navy, one purple). Confirm the typeface is a clean modern sans (Helvetica Neue) everywhere — no script. Compare the photo band's cast against the original warehouse_header.jpg: the connector applied auto-tone then a cooler temperature shift (a=6, b=-18), so the band should look slightly cooler/more neutral than the warm source. 5 = pure three-color world, warm tone carried by copy and photo content only. 3 = minor off-palette tints or a still-warm cast. 1 = any heart/flourish/script or extra colors beyond the photo's natural content.",
+          "reference": "A 5: navy/purple/white discipline throughout, sans-serif only, and a visibly cooler, businesslike photo grade versus the source — warm in voice, not in styling."
+        },
+        {
+          "id": "3437-out-front_preview-4",
+          "type": "yesno",
+          "question": "Are the two code chips built ONLY from codes[] data — navy chip reading 'SHOP7  7 %' and purple chip 'DANKE5  5 %' — with no per-code conditions, no legal text and no € sign anywhere on the front?",
+          "guidance": "The plan deliberately keeps conditions ('Für Ihre erste...' etc.), the 'einmalig' marker and legal_footer_de OFF the front to keep it inviting. Verify chip texts character-exact (SHOP7 not SHOP-7; the space-separated '7 %' per German convention), the CTA line 'Besuchen Sie uns jetzt: www.blausweta-rasur.de' beneath them, and scan the whole page for €.",
+          "reference": "Yes — exactly two chips (SHOP7 7 % on navy, DANKE5 5 % on purple) plus the CTA; conditions and small print appear only on the back, and no € exists on the page."
+        }
+      ]
+    },
+    {
+      "key": "back_preview",
+      "display": "Back side hi-res preview (back_152x214mm.png)",
+      "files": ["outputs/back_152x214mm.png"],
+      "asked": "Deliverable 2 (back half): separate high-resolution back preview at full artwork size — the professional shop-benefits page with 2×3 grid, coupon boxes, loyalty/referral lines and legal footer.",
+      "items": [
+        {
+          "id": "3437-out-back_preview-1",
+          "type": "yesno",
+          "question": "Are all six benefit rows present with verbatim titles — 'Attraktive Shop-Preise', 'Exklusive Bonusprogramme', 'Freunde werben Freunde', 'Kompetente Fachberatung', 'Umfassendes Sortiment', 'Schneller, zuverlässiger Versand' — and is each supplied icon on its hinted row (percent→Shop-Preise, star→Bonusprogramme, people→Freunde, truck→Versand)?",
+          "guidance": "Read the 2×3 grid row-major against insert_copy.json's back_benefits order (1 percent, 2 star, 3 people, 4 shield, 5 package, 6 truck). Confirm each desc_de paragraph is verbatim too (e.g. 'Sammeln Sie bei jedem Einkauf wertvolle Punkte...' under Bonusprogramme; '...Ihre Bestellung ist im Handumdrehen bei Ihnen.' under Versand). Any swapped icon (e.g. star next to Shop-Preise) fails.",
+          "reference": "Yes — six rows in JSON order, titles and descriptions verbatim, with percent/star/people/truck icons each on the row their icon_hint dictates."
+        },
+        {
+          "id": "3437-out-back_preview-2",
+          "type": "likert5",
+          "question": "The shield and package rows had no supplied icons; the execution renders navy numbered circles '4' and '5' next to 'Kompetente Fachberatung' and 'Umfassendes Sortiment' as a documented fallback. Rate how acceptable this fallback is in the finished design.",
+          "guidance": "This is a disclosed limitation (README + trajectory log it as microcopy/fallback). Judge it on craft and honesty, not just existence: do the circles match the icon column's size and stroke weight? Do they read as deliberate list numbering or as obvious placeholders? Does mixing pictogram rows (truck, star...) with numeral rows (4, 5) break the grid's professionalism — the exact mismatched-icons flaw draft_back was criticized for? 5 = visually consistent, a client might accept it as a style choice. 3 = noticeable inconsistency but tidy and honestly disclosed. 1 = looks like an error or undisclosed.",
+          "reference": "Expected ~3: the circles are clean, navy, weight-matched and disclosed, but '4' and '5' floating among four pictograms (and numbering only rows 4-5 of an unnumbered list) reads as a gap a human finisher should replace with real shield/package icons."
+        },
+        {
+          "id": "3437-out-back_preview-3",
+          "type": "likert5",
+          "question": "Rate the coupon section's accuracy and craft: navy-outlined SHOP7 box with bold 'SHOP7', purple '7 %', verbatim condition 'Für Ihre erste direkte Shop-Bestellung als Neukunde.' and a purple 'einmalig' chip; DANKE5 box with '5 %', 'Für jede weitere Shop-Bestellung als unser geschätzter Kunde.' and NO einmalig chip; followed by the loyalty and referral lines with inline star/people icons.",
+          "guidance": "Check one_time fidelity: the einmalig badge must appear in the SHOP7 box only (one_time:true) and be absent from DANKE5 (one_time:false). Verify the loyalty line 'Sammeln Sie bei jeder Shop-Bestellung Bonuspunkte, die Sie später einlösen können.' and referral line 'Profitieren Sie von Empfehlungsrabatten, wenn Sie unseren Shop weiterempfehlen.' verbatim with correctly scaled-down inline icons. 5 = all strings exact, boxes equal-sized and aligned, percent values in purple, badge logic correct. 3 = correct content with cosmetic unevenness (e.g. DANKE5 box bottom feels empty without the badge). 1 = wrong condition text, badge on the wrong code, or a € anywhere.",
+          "reference": "A 5: both coupon boxes data-exact with the einmalig chip only on SHOP7, loyalty/referral lines verbatim with inline star and people icons — the layout makes the 7 %-first-order vs 5 %-follow-up logic instantly scannable."
+        },
+        {
+          "id": "3437-out-back_preview-4",
+          "type": "likert5",
+          "question": "Rate whether the back reads as a professional shop-benefits page overall: full-bleed navy header band with 'Ihre Vorteile im offiziellen Online-Shop' in white, balanced 2×3 grid, clean section dividers, bold repeated CTA, and the two-line light-weight legal footer — all collision-free and inside the safe zone.",
+          "guidance": "The first composition FAILED here (loyalty/referral lines collided with a fixed footer, legal text overflowed to y=2469 vs the 2445 limit) and was rebuilt with measured flow. Verify the fix held: no overlap between the referral line and the purple hairline, footer 'Besuchen Sie uns jetzt: www.blausweta-rasur.de' bold-centered, legal line 'Codes nicht kombinierbar, pro Bestellung nur ein Code. SHOP7 nur einmal pro Kunde gültig. Alle Rabatte sind in Prozent.' breaking into two balanced lines, everything ≥5 mm inside trim except the deliberately full-bleed navy band. 5 = composed, hierarchical, draft_back's clutter fully exorcised. 3 = sound structure with uneven grid gutters or cramped descriptions. 1 = collisions or clipped text still present.",
+          "reference": "A 5: navy band → 2×3 benefits → coupon pair → loyalty/referral → CTA + small print, in strict navy/purple/white with confident hierarchy; the previously-logged footer collision is gone and content ends at y=2419, inside the 2445 safe limit."
+        }
+      ]
+    },
+    {
+      "key": "print_pdf",
+      "display": "Two-sided print PDF (insert_print_A5.pdf)",
+      "files": ["outputs/insert_print_A5.pdf"],
+      "asked": "Deliverable 1: print-ready two-sided PDF for SAXOPRINT — DIN A5 portrait, trim 148×210 mm, artwork 152×214 mm with 2 mm bleed, CMYK / PDF/X-4 preferred (delivered as RGB raster with disclosed limitation).",
+      "items": [
+        {
+          "id": "3437-out-print_pdf-1",
+          "type": "yesno",
+          "question": "Does the PDF contain exactly 2 pages (page 1 = front, page 2 = back, identical artwork to the PNG previews) with crop marks at all four corners marking the 148×210 mm trim box, drawn outside the artwork with a gap so they don't intrude into the bleed?",
+          "guidance": "Open the PDF and compare each page against front_152x214mm.png / back_152x214mm.png — same composition, same copy. At each corner expect two short hairline marks (horizontal + vertical) on the white slug margin, offset from the trim corner; they must not touch the 2 mm bleed area or overprint artwork.",
+          "reference": "Yes — 2 pages matching the previews, with corner crop marks registering the 148×210 mm trim on a wider slug canvas, separated from the bleed by a visible gap."
+        },
+        {
+          "id": "3437-out-print_pdf-2",
+          "type": "text",
+          "question": "From the PDF's page properties, report the page size in points and state whether it equals the documented 1895×2628 px slug at 300 dpi.",
+          "guidance": "Read the MediaBox / document properties. Convert: px ÷ 300 dpi × 72 = pt, so 1895 px → 454.80 pt and 2628 px → 630.72 pt. The slug is intentionally larger than the 152×214 mm artwork to host the crop marks.",
+          "reference": "454.8 × 630.72 pt per page — exactly 1895×2628 px @300 dpi, i.e. the 152×214 mm artwork centered on a slug with room for trim marks."
+        },
+        {
+          "id": "3437-out-print_pdf-3",
+          "type": "likert5",
+          "question": "The brief asked for CMYK PDF/X-4 with embedded/outlined fonts; the delivered file is an RGB raster PDF with text flattened into the image, and the README states CMYK/PDF-X-4 conversion is left to the print house. Rate the acceptability of this disclosed limitation for the SAXOPRINT submission.",
+          "guidance": "Judge disclosure + practical printability, not just spec-matching. In favor: SAXOPRINT preflight does convert RGB input, the raster is a true 300 dpi with correct trim/bleed/marks, and the gap is stated plainly in README row 1 rather than hidden. Against: 'PDF/X-4 preferred' and 'embed all fonts' are acceptance criteria the file objectively does not meet, and rasterized text is a real downgrade for a print product. 5 = limitation fully disclosed AND the file would still print correctly via the print house's normal RGB→CMYK path. 3 = disclosed but a prepress operator would bounce it back for a proper X-4 source. 1 = the README had claimed compliance it doesn't have.",
+          "reference": "Expected 3-4: geometry, resolution and marks are right and the README is candid that RGB-raster→CMYK/X-4 is a print-house or human-.ai step — honest and usable, but objectively short of the 'passes SAXOPRINT preflight as PDF/X-4' acceptance line."
+        },
+        {
+          "id": "3437-out-print_pdf-4",
+          "type": "likert5",
+          "question": "Rate the raster quality of the PDF pages at print scale: is the 300 dpi flattening clean enough that body text (the 30 px-light legal line, the 37 px benefit descriptions) and the thin navy coupon outlines stay crisp at 100% A5 size?",
+          "guidance": "Zoom both pages to actual print size. 5 = type edges crisp, no resampling ringing or JPEG blocking, hairlines (purple dividers, coupon box strokes) unbroken, photo band free of compression artifacts. 3 = slight softness in the lightest small text but legible. 1 = visible resampling blur or artifacting that would survive into print.",
+          "reference": "A 5: the pages were embedded at native 1:1 resolution from the 1795×2528 px artwork, so the smallest text on the sheet — the two-line legal footer — remains sharp and the hairlines clean at 300 dpi."
+        }
+      ]
+    },
+    {
+      "key": "vector_logo_svg",
+      "display": "Vector logo support file (support/logo_blausweta.svg)",
+      "files": ["outputs/support/logo_blausweta.svg"],
+      "asked": "Supporting asset toward Deliverable 3 (editable source / 'real vector logo'): a true SVG vectorization of the official logo, produced via the connector's image_vectorize (Illustrator API), for the human .ai handoff.",
+      "items": [
+        {
+          "id": "3437-out-vector_logo_svg-1",
+          "type": "yesno",
+          "question": "Is this a genuine vector file — real <path> geometry (around 29 paths on a 1024×1024 canvas) reconstructing the razor motif and the 'Blausweta-Rasur' wordmark — rather than an SVG wrapper around an embedded bitmap?",
+          "guidance": "Open the file as text: it must contain multiple <path d=...> elements and NO <image> tag with base64 data. Then render it scaled up (e.g. 400%) — edges must stay mathematically crisp, which a wrapped raster cannot do.",
+          "reference": "Yes — ~29 vector paths, no embedded raster; the lockup scales without pixelation."
+        },
+        {
+          "id": "3437-out-vector_logo_svg-2",
+          "type": "likert5",
+          "question": "Rate the vectorization fidelity against logo_blausweta.png: letterform accuracy of 'Blausweta-Rasur' (including the hyphen and the bowl/counter shapes of a, e, u, R), the razor's blade/handle geometry with its two white pivot dots, and color fidelity to the navy/purple originals.",
+          "guidance": "Auto-trace failure modes to hunt: lumpy or wobbling curve segments on letter bowls, filled-in counters (the enclosed whites of a/e/u/B/R), rounded-off corners on the blade, color quantization shifting #1E2D5C or #5B4A9E. Overlay or A/B the SVG render with the PNG at the same size. 5 = visually indistinguishable at print sizes, counters open, dots present. 3 = legible but with visible trace softness on close inspection. 1 = distorted glyphs or lost details.",
+          "reference": "A 5: the trace preserves every glyph, the hyphen, open counters, the purple handle with both white pivot dots and the navy blade, in colors matching the brand hexes — usable wherever the PNG was."
+        },
+        {
+          "id": "3437-out-vector_logo_svg-3",
+          "type": "likert5",
+          "question": "Rate this SVG's fitness for its declared purpose — making the human .ai/.indd handoff trivial: is it import-ready for Illustrator, and does it have drawbacks a finisher must fix (e.g. a full-canvas white background path baked in as the first path, traced outlines instead of live type)?",
+          "guidance": "Inspect the path list: the first path spans the whole 0,0→1024,1024 canvas (an opaque background rectangle), meaning the logo is NOT transparent-backed as delivered, and all lettering is outlines, not editable text — fine for 'fonts converted to outlines' print use, useless for retyping. 5 = clean layered paths, trivial to delete the background and group the mark. 3 = works but needs cleanup (background removal, path grouping, stray nodes). 1 = single merged blob path that defeats the handoff purpose.",
+          "reference": "Expected 4: a real Illustrator-API vectorization that genuinely de-risks the handoff, with two known cleanup chores — delete the baked-in full-canvas background path and accept outlined (non-live) letterforms."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "3437-task-1",
+      "type": "likert5",
+      "question": "Score end-to-end deliverable coverage against the brief's four numbered deliverables: (1) print PDF for SAXOPRINT, (2) separate hi-res front/back previews, (3) editable .ai/.indd source with editable text, (4) safe-zone/bleed/250-300 dpi compliance — counting honest disclosure where a line could not be met.",
+      "guidance": "Map each line to files: (1) insert_print_A5.pdf exists but is RGB raster, not CMYK/X-4 — disclosed; (2) front_152x214mm.png + back_152x214mm.png at exact 1795×2528 @300 dpi — fully met; (3) no .ai/.indd exists — declared a human handoff per the brief's own 'partial' feasibility, mitigated by the parametric compose_3437.py + vector SVG + processed work/ assets; (4) content asserted ≥5 mm inside trim, navy band full-bleed, no upscaling. 5 = every producible line produced at spec and every gap explicitly disclosed with a credible mitigation. 3 = deliverables present but a gap under-disclosed or mitigation thin. 1 = asked lines silently missing.",
+      "reference": "Expected 4: previews and geometry are fully met, the two hard gaps (RGB-not-X-4 PDF, no .ai/.indd) are the connector's documented ceiling, disclosed in README rows 1 and 3 with concrete handoff mitigations — strong coverage, but two of four asked lines still need a human to truly close."
+    },
+    {
+      "id": "3437-task-2",
+      "type": "yesno",
+      "question": "Campaign integrity across ALL pieces: do SHOP7 = 7 % (first direct order after switching, one-time) and DANKE5 = 5 % (follow-up order) appear consistently on front and back, with every discount expressed as a percentage, zero € signs anywhere, and zero leakage of the drafts' legacy offer 'RASUR-FREUNDE10 / 10%' or its 31.12.2024 expiry?",
+      "guidance": "Scan front chips, back coupon boxes, loyalty/referral lines, both CTA lines and the legal footer on every output (both PNGs and both PDF pages). The codes must be spelled identically everywhere (SHOP7, DANKE5 — no hyphens, no lowercase), 7 % always with SHOP7 and 5 % always with DANKE5, and nothing from draft_back's coupon may survive.",
+      "reference": "Yes — both codes are consistent across all four rendered surfaces, percentages only ('Alle Rabatte sind in Prozent.' in the footer), no €, and the legacy RASUR-FREUNDE10 offer appears nowhere."
+    },
+    {
+      "id": "3437-task-3",
+      "type": "likert5",
+      "question": "Rate front↔back coherence as one two-sided piece: same navy #1E2D5C / purple #5B4A9E / white palette, same Helvetica Neue family and weight logic, the front's code chips visually foreshadowing the back's coupon boxes, the same purple hairline divider language, and 'Besuchen Sie uns jetzt: www.blausweta-rasur.de' anchoring both sides.",
+      "guidance": "Flip between the two PNGs. 5 = unmistakably one designed object — identical hues (sample them), consistent corner radii and stroke weights between front chips and back coupon outlines, matching margins, the warm-front/professional-back contrast feeling intentional rather than disjointed. 3 = shared palette but mismatched component styling (e.g. chip radius vs coupon radius, differing hairline weights). 1 = the sides could be from different jobs.",
+      "reference": "A 5: shared palette, type system, hairlines and centered CTA bind the warm thank-you front and the dense benefits back into one coherent insert — the front teases the codes, the back explains them."
+    },
+    {
+      "id": "3437-task-4",
+      "type": "likert5",
+      "question": "Would the real client — Blausweta-Rasur's owner, who rejected their own AI drafts and is paying for a clean SAXOPRINT-ready rebuild — accept this package and pay?",
+      "guidance": "Adopt the client's stated success test: a proper print layout that fixes the drafts' wedding-card front and clumsy back, exact codes, navy/purple discipline, files they can send to SAXOPRINT. 5 = accept and pay as-is, treating the disclosed RGB/.ai gaps as expected per the job's 'partial' feasibility note. 4 = accept with minor revision requests (real shield/package icons, transparent-background SVG). 3 = pay only after a human supplies the CMYK X-4 PDF and .ai source. 2 = dispute over missing contracted deliverables. 1 = reject outright.",
+      "reference": "Expected 4: the design rebuild itself is exactly what was ordered and visibly superior to the drafts, codes and copy are flawless; the withheld payment risk sits entirely on the .ai source and true PDF/X-4 — both flagged upfront as human-handoff items."
+    },
+    {
+      "id": "3437-task-5",
+      "type": "yesno",
+      "question": "Prohibitions audit across the final outputs: is there NO gold, NO green, NO Trustpilot badge, NO hearts/ornamental flourishes/handwritten romantic scripts, and is every rendered German string in the formal Sie-form (the drafts' Du-form 'FÜR DICH' / 'DEINER' register fully eliminated)?",
+      "guidance": "Sweep both output PNGs and the PDF pages. Color check: the warehouse photo may contain natural wood/kraft tones (photographic content is exempt), but no DESIGN element may be gold or green; the drafts' yellow thumbs-up/gold gift box must have no descendants. Type check: every face is a clean sans; read all 34 rendered strings for informal address — the four added microcopy strings ('Ihre Vorteile im offiziellen Online-Shop', 'einmalig', '4', '5') must also be register-correct.",
+      "reference": "Yes — design elements are exclusively navy/purple/white, no badges or romantic ornamentation anywhere, and all copy including the added microcopy uses the formal Sie-form ('Ihre Vorteile...')."
+    },
+    {
+      "id": "3437-task-6",
+      "type": "text",
+      "question": "Name the single most significant weakness of this delivery that you would flag to the client before they send files to SAXOPRINT, and say whether the freelancer disclosed it.",
+      "guidance": "Pick ONE top issue and justify briefly. Strong candidates observed in this package: (a) the print PDF is flattened RGB raster — no live/outlined fonts, no CMYK, no PDF/X-4 — so the contractual 'passes SAXOPRINT preflight' criterion is unproven; (b) no editable .ai/.indd source at all, the brief's deliverable #1 by the client's own numbering; (c) the numbered-circle '4'/'5' fallback rows on the back breaking icon consistency. Weak answers cite cosmetic nits while missing the prepress gap.",
+      "reference": "Expected: the RGB-raster, non-PDF/X-4 print file (equivalently: the missing editable .ai/.indd it depends on) — the one gap that blocks true print-readiness; it IS disclosed, candidly, in outputs/README.md rows 1 and 3 and the acceptance-criteria check."
+    }
+  ]
+}

@@ -1,0 +1,326 @@
+{
+  "task_id": 5388,
+  "input_assets": [
+    {
+      "key": "ad_copy",
+      "display": "Approved ad copy deck (JSON + MD)",
+      "files": ["input_assets/ad_copy.json", "input_assets/ad_copy.md"],
+      "what_it_is": "The client-approved copy deck: per concept a headline, supporting line, CTA label, photo brief and mood words — the verbatim source for every string rendered on the 9 finals.",
+      "items": [
+        {
+          "id": "5388-in-ad_copy-1",
+          "type": "yesno",
+          "question": "Does the deck contain exactly three concepts mapped to the briefed angles in order — id 1 'Same old dynamic' / 'recognition-of-the-pattern', id 2 'Growing silent gaps' / 'the-quiet-distance-at-home', id 3 'A new framework' / 'a-real-way-forward' — each with a headline, ONE supporting line and a cta_label?",
+          "guidance": "Open ad_copy.json and check ids, names and angle slugs against the three angles named in TASK.md (recognition of the pattern / the quiet distance at home / a real way forward). ad_copy.md should be the identical JSON in a fenced block, not a divergent rewrite.",
+          "reference": "Yes — all three concepts present in that order, each with headline / supporting_line / cta_label; ad_copy.md mirrors the JSON exactly."
+        },
+        {
+          "id": "5388-in-ad_copy-2",
+          "type": "likert5",
+          "question": "Rate the copy against the persona — an exhausted, relationship-driven mother who is done with tips and wants a system. Consider 'Tired of the same conversations, same results' (7 words), 'The quiet has grown louder between you' (7 words), 'Beyond tips: a system for real change at home' (9 words), and the CTAs 'Explore a new way' / 'Discover the path' / 'See the system'.",
+          "guidance": "5 = every headline is at or under 9 words, dignified and specific, zero clickbait, exclamation marks or emojis; supporting lines are at or under 15 words and bridge recognition to the landing page; CTAs are 2-4 calm words with 'see how it works' energy. 3 = on-brief but generic enough to fit any parenting brand. 1 = clickbait devices, fear-mongering, or therapy-clinic jargon.",
+          "reference": "Strong pass expected (4-5): all headlines fit the 9-word cap, there are no exclamation marks anywhere, and concept 3 explicitly contrasts 'tips' with 'a system' — the persona's stated need."
+        },
+        {
+          "id": "5388-in-ad_copy-3",
+          "type": "text",
+          "question": "Transcribe concept 2's three renderable strings (headline, supporting_line, cta_label) exactly as they appear in ad_copy.json.",
+          "guidance": "Copy character-for-character including punctuation — these are the strings the finals must reproduce byte-identically, so this transcription is the answer key for the c2 output checks.",
+          "reference": "Headline: 'The quiet has grown louder between you' — Supporting: 'This unspoken distance feels familiar. There is a path to reconnect.' — CTA: 'Discover the path'."
+        }
+      ]
+    },
+    {
+      "key": "brand_guide",
+      "display": "TeenTalk brand guide",
+      "files": ["input_assets/brand_guide.md"],
+      "what_it_is": "One-page brand guide the designer must execute from: 5-colour palette with roles, stamp usage rule, mobile-first type hierarchy, do/don't list, and the CTA chip spec.",
+      "items": [
+        {
+          "id": "5388-in-brand_guide-1",
+          "type": "likert5",
+          "question": "Rate the guide as a working document a freelance designer could execute from without follow-up questions.",
+          "guidance": "5 = the palette table gives all five exact hexes with unambiguous roles (Soft Teal #3AA8A0 calm fields, Purple #6B4FA1 wordmark + stamp, Warm Gold #F2B23E 'CTA chips ONLY', Deep Ink #232A31 headline text, Warm Off-White #FAF6EF light fields), a measurable stamp rule (7-9% of canvas width, clearspace at least half the stamp's diameter, never over a face), a 5-step reading order, and a concrete chip spec (gold chip, deep ink label, 2-4 calm words, exactly one per creative). 3 = rules present but some are unmeasurable. 1 = vague mood-board language.",
+          "reference": "The guide contains all of the above verbatim — a 5 unless the expert finds a genuine ambiguity."
+        },
+        {
+          "id": "5388-in-brand_guide-2",
+          "type": "yesno",
+          "question": "Does the guide mandate Libre Franklin for headlines and Lora for the supporting line — i.e. fonts the finished ads did NOT use (the finals use Avenir Next, disclosed in outputs/README.md)?",
+          "guidance": "Check section 3 'Mobile-First Type Hierarchy'. This establishes that the font substitution in the finals is a traceable deviation from this input document, not an invention by the rubric.",
+          "reference": "Yes — 'Headline (Libre Franklin)' and 'ONE short supporting line (Lora)' are both named in section 3."
+        }
+      ]
+    },
+    {
+      "key": "stamp",
+      "display": "TeenTalk purple round stamp",
+      "files": ["input_assets/teentalk_stamp.png"],
+      "what_it_is": "1024x1024 brand stamp on white — a purple ring with the 'TeenTalk' wordmark inside — cut out by the connector and placed small in the top corner of all 9 finals.",
+      "items": [
+        {
+          "id": "5388-in-stamp-1",
+          "type": "yesno",
+          "question": "Does the wordmark read exactly 'TeenTalk' — one word, capital T in 'Teen' and capital T in 'Talk', modern sans-serif — with no tagline or extra glyphs anywhere, and only purple and white used (no gradients, shadows or bevels)?",
+          "guidance": "Check the letterforms one by one; AI logo generators frequently double letters, warp the second word, or sneak in decorations. Confirm the flat-vector look the generation prompt demanded.",
+          "reference": "Yes — clean 'TeenTalk' in purple (#6B4FA1-class) on white, flat, no extra elements."
+        },
+        {
+          "id": "5388-in-stamp-2",
+          "type": "likert5",
+          "question": "Rate the stamp's production usability for this job: cutout-friendly plain white background, even ring weight, clean circular geometry, sturdy letterforms with generous clearspace from the ring.",
+          "guidance": "5 = a perfectly centred circle with smooth edges that survive background removal cleanly, the wordmark well clear of the ring. 3 = minor wobble in the circle or tight wordmark clearspace. 1 = ragged or distorted geometry that would show even at 86px placement size.",
+          "reference": "The supplied stamp is clean, symmetrical, evenly weighted with generous clearspace — high score expected; the connector cutout in work/ shows no edge artefacts."
+        },
+        {
+          "id": "5388-in-stamp-3",
+          "type": "likert5",
+          "question": "Pipeline QC flagged this badge as 'a ring, not a filled round badge as required' (it still vision-scored 9). At the placed size — 86px wide, 8% of a 1080px canvas, over photography — rate whether the open-ring form stays legible and brand-credible.",
+          "guidance": "Look at any final's corner stamp (e.g. top-right of c1_story_1080x1920.png): at 86px the wordmark is only a few pixels tall and the white interior disc is what keeps the purple ring visible against photos. 5 = it reads instantly as a brand mark even though the wordmark is unreadable at that size; 3 = the ring is visible but the interior reads as an empty hole; 1 = the mark disappears into the photograph.",
+          "reference": "Honest mid-to-high score: the purple ring plus white disc read clearly on all 9 finals, but 'TeenTalk' itself is illegible at 86px — a filled badge would not have fixed the wordmark size."
+        }
+      ]
+    },
+    {
+      "key": "c1_photos",
+      "display": "Concept 1 photography — 'Same old dynamic' (tall + square)",
+      "files": ["input_assets/concept1_photo_tall.jpg", "input_assets/concept1_photo_sq.jpg"],
+      "what_it_is": "Two gpt-image-2 frames of the concept-1 late-afternoon kitchen scene: a 1024x1536 vertical master (source of the 9:16 and 4:5 crops) and a 1024x1024 wider alternate shot from across the room (the 1:1 base).",
+      "items": [
+        {
+          "id": "5388-in-c1_photos-1",
+          "type": "likert5",
+          "question": "Rate photographic realism across both frames: the mother's coily tied-back hair with flyaway strands, her skin texture and necklace, the teen's hands and thumbs on his phone, the dish-rack clutter and white mug, and the natural window light.",
+          "guidance": "Zoom in on: the mother's hand resting on the counter (finger count and joints), the dish-rack jumble left of her in the tall frame; in the square frame check the pendant lamps, the stove/range hood, the fruit basket on the counter and the blurred sofa cushions in the foreground. 5 = passes as a candid 35mm documentary photo; 3 = believable at feed size but with tells on close inspection; 1 = CGI gloss, painted hair or anatomical errors.",
+          "reference": "Both frames passed pipeline vision QC at 10/10; expect a 4-5, with any nit-picks most likely in the dish rack and the background appliance shapes."
+        },
+        {
+          "id": "5388-in-c1_photos-2",
+          "type": "yesno",
+          "question": "Do both frames match the approved photo brief: late-afternoon kitchen, mother (40s) by the counter looking towards her teen, the teen scrolling on a phone with his back slightly turned, her expression quietly weary, the teen absorbed and oblivious?",
+          "guidance": "Check the staging (who is where, phone in hand, back turned) and the emotional register — weary and reflective, not angry; no tears or conflict imagery, per the generation constraints.",
+          "reference": "Yes — tall frame: the mother leans on the counter gazing past the camera with the hooded teen on his phone behind her; square frame: the same dynamic from across the room with the teen standing by the table at right."
+        },
+        {
+          "id": "5388-in-c1_photos-3",
+          "type": "text",
+          "question": "The square frame was generated as 'same home, same two people, same clothes, same light' as the vertical master. List every wardrobe/prop continuity break you can find between the two frames.",
+          "guidance": "Compare the mother's top, the teen's hoodie and trousers, and any held objects across the two files.",
+          "reference": "Mother: olive-green V-neck tee leaning on the counter (tall) vs grey long-sleeve sweater holding a teal mug (square). Teen: slate-blue hoodie with dark striped track pants (tall) vs pale-grey hoodie with jeans (square). The 'same clothes' instruction was not honoured — this matters because the square final runs in the same campaign as the story/feed finals of the same concept."
+        }
+      ]
+    },
+    {
+      "key": "c2_photos",
+      "display": "Concept 2 photography — 'Growing silent gaps' (tall + square)",
+      "files": ["input_assets/concept2_photo_tall.jpg", "input_assets/concept2_photo_sq.jpg"],
+      "what_it_is": "Two frames of the concept-2 evening sofa scene: a vertical master (mother reading at one end, daughter in headphones at the other, warm lamp light) and an over-the-mother's-shoulder square alternate.",
+      "items": [
+        {
+          "id": "5388-in-c2_photos-1",
+          "type": "likert5",
+          "question": "Rate fidelity to the 'Distant, observant, quiet, longing' brief: bodies close on one sofa but worlds apart, the mother's gaze gentle and non-intrusive, warm lamp light, no distress or tears.",
+          "guidance": "In the tall frame the mother should be glancing from her open paperback towards the daughter — not staring — while the daughter is sealed off by over-ear headphones and a device. In the square frame the over-the-shoulder composition should put the viewer literally in the mother's seat, her blurred hair/shoulder and book in the foreground. 5 = the gap is palpable and dignified; 3 = two people merely coexisting with no readable relationship; 1 = staged, melodramatic or distressed.",
+          "reference": "Both frames land the brief: the tall frame catches her mid-glance over the book; the square adopts her exact viewpoint. Expect 4-5."
+        },
+        {
+          "id": "5388-in-c2_photos-2",
+          "type": "likert5",
+          "question": "Rate realism with attention to the one defect pipeline QC logged on the tall frame: the paperback's pages 'appear slightly thick and uniform'. Also check the daughter's over-ear headphone geometry, her hands on the device, and hair strands against the lamp light.",
+          "guidance": "Zoom on the open book block in both frames (page edges should vary, not look like a moulded slab), the headphone band and cup alignment on the daughter's head, and the mother's bun and earring. 5 = candid and printable; 3 = the book or headphones look slightly moulded but pass at feed size; 1 = plastic skin or warped anatomy.",
+          "reference": "Tall frame QC'd 9/10 with the book-pages issue as the only flag; square frame 10/10. An honest 4 with the book block as the named tell."
+        },
+        {
+          "id": "5388-in-c2_photos-3",
+          "type": "text",
+          "question": "In the square frame, what hangs high on the wall above the sofa, and why did it matter for the final 1:1 layout?",
+          "guidance": "Look at the upper portion of concept2_photo_sq.jpg, especially toward the top-right corner; then cross-check the stamp-rule note for c2_square in outputs/README.md.",
+          "reference": "A cluster of small pinned photo prints containing tiny figures/faces sits high on the wall toward the top-right — they are why the TeenTalk stamp was flipped to the top-LEFT corner on c2_square_1080x1080.png (the never-over-a-face rule)."
+        }
+      ]
+    },
+    {
+      "key": "c3_photos",
+      "display": "Concept 3 photography — 'A new framework' (tall + square)",
+      "files": ["input_assets/concept3_photo_tall.jpg", "input_assets/concept3_photo_sq.jpg"],
+      "what_it_is": "Two frames of the concept-3 morning-kitchen scene: a vertical master (silver-haired mother warmly watching her teen son cut fruit) and a wider square alternate at the marble kitchen island.",
+      "items": [
+        {
+          "id": "5388-in-c3_photos-1",
+          "type": "likert5",
+          "question": "Rate how well these frames deliver the 'real way forward' payoff that must differentiate concept 3 from the distance of concepts 1-2: morning light, purposeful breakfast prep, and the subtle shared ease between the mother (about 50, silver-streaked hair) and her son.",
+          "guidance": "The connection must read as ease, not a staged grin: in the tall frame, her warm sidelong look at the focused teen; in the square, the mirrored soft smiles across the island. 5 = hopeful and credible, a clearly different emotional register from concepts 1-2; 3 = pleasant but interchangeable; 1 = the 'perfect family' stock feel the brief explicitly bans.",
+          "reference": "Both frames show soft mutual ease without grinning — the tall frame is the stronger emotional image. Expect 4-5."
+        },
+        {
+          "id": "5388-in-c3_photos-2",
+          "type": "likert5",
+          "question": "Rate realism at the classic AI danger spots: the teen's two hands working a knife through apple slices on the wooden board, the fruit (bananas, apples, citrus, the cut pieces), the mother's silver-streaked hair strands, and in the square frame the marble island top and pendant lamp.",
+          "guidance": "Knife-and-hands is the canonical generation failure: count fingers, check the blade's contact with fruit and board, check the cut-fruit geometry. Also inspect the fruit-bowl pile-up at lower-left of the tall frame and the plate of fruit on the island in the square.",
+          "reference": "Both frames QC'd 10/10; the knife grip in the tall frame is plausible (left hand steadying the fruit, right hand on the handle). Expect 4-5."
+        },
+        {
+          "id": "5388-in-c3_photos-3",
+          "type": "yesno",
+          "question": "Does the tall master keep usable quiet negative space for the ad overlay — i.e. is roughly the top third soft blank wall/window with no critical detail, so the 9:16 crop can hold a corner stamp and clear the Stories UI zone?",
+          "guidance": "The story and feed finals put a multi-line headline low and the stamp high; the source needs croppable headroom above the two heads.",
+          "reference": "Yes — the upper portion of concept3_photo_tall.jpg is plain white wall plus a soft window edge at left; both faces sit in the middle band of the frame."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "c1_set",
+      "display": "Concept 1 finals — 'Same old dynamic' (story, feed, square)",
+      "files": ["outputs/c1_story_1080x1920.png", "outputs/c1_feed_1080x1350.png", "outputs/c1_square_1080x1080.png"],
+      "asked": "Concept 1 ('recognition of the pattern') delivered in all three required formats: 9:16 1080x1920 Stories/Reels, 4:5 1080x1350 Feed, 1:1 1080x1080 Square.",
+      "items": [
+        {
+          "id": "5388-out-c1_set-1",
+          "type": "yesno",
+          "question": "On all three files, is the copy byte-exact to ad_copy.json concept 1 — headline 'Tired of the same conversations, same results', supporting line 'You've tried everything. A different approach can change the pattern.', CTA chip 'Explore a new way' — with no other text on the canvas besides the stamp's tiny wordmark, and exactly ONE gold chip per file?",
+          "guidance": "Read every word on each file. Check the comma after 'conversations', the apostrophe in 'You've', and the closing period of the supporting line. Any retyped, truncated or paraphrased string fails this item.",
+          "reference": "Yes on all three — the run claims 27/27 strings verified byte-identical; visual reading confirms the three strings and a single chip per file."
+        },
+        {
+          "id": "5388-out-c1_set-2",
+          "type": "likert5",
+          "question": "Rate the text-block craft across the three formats: the short teal accent rule above the headline, headline wrap (3 lines on story and feed; 2 lines at the disclosed 64px shrink-to-fit on the square), supporting line within 2 lines, single gold chip with ink label, no clipping and no text touching a face.",
+          "guidance": "Check the consistent left margin (72px), even line spacing, whether the headline block stays below the mother's face (the square shrink to 64px was done precisely to keep it there), and that the chip clears the bottom edge. On the story format, the top ~220px and bottom ~200px should hold no critical content (stamp excepted) for platform UI overlays.",
+          "reference": "5 = clean, aligned block with consistent geometry on all three; deduct if the 64px square headline feels undersized next to the 40px chip label, or if the scrim's upper edge cuts visibly across the mother's body."
+        },
+        {
+          "id": "5388-out-c1_set-3",
+          "type": "yesno",
+          "question": "Are the three files exactly 1080x1920 (story), 1080x1350 (feed) and 1080x1080 (square) pixels?",
+          "guidance": "Verify actual pixel dimensions of the PNGs, not just the filenames.",
+          "reference": "Yes — confirmed from the PNG headers: 1080x1920, 1080x1350, 1080x1080."
+        },
+        {
+          "id": "5388-out-c1_set-4",
+          "type": "likert5",
+          "question": "Rate concept 1's fitness for the warm retargeting audience: does the weary-mother / phone-absorbed-son dynamic survive the crops and the dark ink scrim, and does the pairing with 'Tired of the same conversations, same results' nail the recognition-of-the-pattern angle?",
+          "guidance": "Both people must be present and readable in all three files (the teen's phone may be edge-clipped on the story — disclosed in the trajectory). Judge whether the scrim — extended to roughly 59-70% of canvas height on this concept versus the planned 38/42% — leaves enough of the photograph's emotional information, especially the mother's face and gaze. 5 = instantly stops the right mother; 3 = the faces carry it but the lower photo is lost to the scrim; 1 = it reads as a text card with a sliver of photo.",
+          "reference": "Both people present on all three; the mother's face stays clear of text on each. A 4 is a reasonable anchor — the main deduction is the scrim swallowing most of her body on story and feed."
+        }
+      ]
+    },
+    {
+      "key": "c2_set",
+      "display": "Concept 2 finals — 'Growing silent gaps' (story, feed, square)",
+      "files": ["outputs/c2_story_1080x1920.png", "outputs/c2_feed_1080x1350.png", "outputs/c2_square_1080x1080.png"],
+      "asked": "Concept 2 ('the quiet distance at home') delivered in the same three required formats: 1080x1920, 1080x1350, 1080x1080.",
+      "items": [
+        {
+          "id": "5388-out-c2_set-1",
+          "type": "yesno",
+          "question": "On all three files, is the copy byte-exact to ad_copy.json concept 2 — headline 'The quiet has grown louder between you', supporting line 'This unspoken distance feels familiar. There is a path to reconnect.', CTA chip 'Discover the path'?",
+          "guidance": "Read every word; the supporting line is two sentences — confirm both periods. Confirm exactly one gold chip per file and no stray text.",
+          "reference": "Yes on all three — strings render verbatim, two-line headline, two-line support, one chip each."
+        },
+        {
+          "id": "5388-out-c2_set-2",
+          "type": "likert5",
+          "question": "Rate stamp-rule compliance across this set: roughly 86px (8% of width) purple ring with clearspace of at least half its diameter, placed top-RIGHT on the story and feed but flipped top-LEFT on the square specifically to avoid the pinned wall photos containing small faces.",
+          "guidance": "Eyeball the ~48px offsets from both edges. On c2_square confirm the top-right region indeed shows the wall prints from the source photo and that the stamp sits top-left, over neither the daughter nor the prints. Confirm the stamp is never recoloured or enlarged and never over a face on any of the three; on the feed it sits near the warm lamp — check it still separates from the background.",
+          "reference": "Compliant: story and feed top-right over dim wall/doorway areas, square top-left; the flip decision matches what is genuinely in the photograph. 5 unless clearspace or contrast issues are found."
+        },
+        {
+          "id": "5388-out-c2_set-3",
+          "type": "likert5",
+          "question": "On c2_square the mother exists only as a blurred over-the-shoulder foreground (hair, shoulder, book) that the ink scrim further darkens. Rate whether the headline's 'between you' two-person framing still reads, or whether the square has effectively become a single-subject portrait of the headphoned daughter.",
+          "guidance": "View the file at phone size (~270px wide): can a casual viewer tell there is a second person in the frame? The scrim starts around y=298 (covering ~72% of the canvas), swallowing the book and most of the mother's shoulder. 5 = her presence is subtle but unmistakable even at thumbnail size; 3 = discoverable only on inspection; 1 = she is gone and the copy loses its anchor.",
+          "reference": "An honest middle score (around 3): her blurred hair and shoulder survive at the left edge above the scrim, but at thumbnail size she is easy to miss — the weakest two-person read of the nine finals."
+        },
+        {
+          "id": "5388-out-c2_set-4",
+          "type": "text",
+          "question": "List every gold/amber element you can see across the three c2 files besides the CTA chip, and state whether any of them reads as the flat brand gold #F2B23E of the chip.",
+          "guidance": "Candidates to inspect: the warm table-lamp glow (present in all three), and the mustard throw pillow behind the daughter in the square. The brand rule is gold on the CTA chip ONLY — photographic warm tones are acceptable provided they do not read as the flat brand gold.",
+          "reference": "The lamp glow and the mustard cushion are the only warm-gold elements; both are photographic, desaturated and shadowed, and neither matches the flat #F2B23E chip. Verdict: rule respected (the run's pixel scan reported zero brand-gold pixels outside the chips)."
+        }
+      ]
+    },
+    {
+      "key": "c3_set",
+      "display": "Concept 3 finals — 'A new framework' (story, feed, square)",
+      "files": ["outputs/c3_story_1080x1920.png", "outputs/c3_feed_1080x1350.png", "outputs/c3_square_1080x1080.png"],
+      "asked": "Concept 3 ('a real way forward') delivered in the same three required formats: 1080x1920, 1080x1350, 1080x1080.",
+      "items": [
+        {
+          "id": "5388-out-c3_set-1",
+          "type": "yesno",
+          "question": "On all three files, is the copy byte-exact to ad_copy.json concept 3 — headline 'Beyond tips: a system for real change at home', supporting line 'Move past isolated advice. Explore a structured approach designed for your family dynamic.', CTA chip 'See the system'?",
+          "guidance": "Check the colon after 'Beyond tips' and both sentences of the supporting line. Confirm exactly one gold chip per file.",
+          "reference": "Yes on all three — verbatim, with the headline at 3 lines on the story and 2 lines on feed and square."
+        },
+        {
+          "id": "5388-out-c3_set-2",
+          "type": "likert5",
+          "question": "On c3_feed the stamp was flipped top-LEFT because the teen's head reaches the top-right corner. Rate the crop and stamp decisions across the set: story and square keep the stamp top-right over blank wall, the feed flips it, no face is ever covered, and both people stay fully in frame in all three files.",
+          "guidance": "On the feed, check the teen's curly hair against the top-right corner — would a top-right stamp have overlapped it? (It would.) On the story, confirm the top ~220px holds only white wall and the stamp, clear of the Stories UI zone, and that neither the mother's nor the teen's head is cropped in any format.",
+          "reference": "Feed: yes — the teen's head occupies the upper-right, so the flip was necessary and correct; story and square top-right corners are blank wall. Both people are present and uncropped in all three. High score expected."
+        },
+        {
+          "id": "5388-out-c3_set-3",
+          "type": "likert5",
+          "question": "On c3_square the wide kitchen-island frame makes both people small, and the first headline line 'Beyond tips: a system for' passes close to the mother's head. Rate the square's layout: face-to-text clearance, mobile legibility of the 76px headline over the busy kitchen, and whether the two people still register as the emotional subject.",
+          "guidance": "Check whether any glyph touches the mother's head or hair (it should clear it, but this is the tightest spacing of the nine files). Check the two-sentence supporting line stays readable over the island clutter thanks to the scrim (which starts around y=298, ~72% of the canvas). At ~270px width, can you still find both faces and read the relationship?",
+          "reference": "No actual collision — the headline clears her head — but this is the tightest face-text spacing and the weakest emotional read of the set because the figures are small. A 3-4 is honest."
+        },
+        {
+          "id": "5388-out-c3_set-4",
+          "type": "likert5",
+          "question": "Rate whether the c3 set delivers the 'a real way forward' payoff against concepts 1 and 2: morning brightness, mutual ease at the counter, and copy that promises a system ('Beyond tips… See the system'), giving the three-concept campaign a readable arc from recognition to distance to a way forward.",
+          "guidance": "Put one file from each concept side by side: c1 and c2 should feel like the problem (low light, distance, screens), c3 like the resolution (brighter, warmer, working together). 5 = the arc is unmistakable even though all nine share one layout system; 3 = c3 is brighter but the uniform dark scrim mutes the turn; 1 = the concepts are emotionally indistinguishable.",
+          "reference": "The source photography carries the turn (morning light, shared ease, fruit-cutting); the shared dark-scrim template dampens it somewhat. A 4 is a reasonable anchor."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "5388-task-1",
+      "type": "yesno",
+      "question": "Did the freelancer deliver exactly what the brief priced: 9 final image files — three concepts each at 1080x1920 (9:16), 1080x1350 (4:5) and 1080x1080 (1:1) — with the correct copy mapped to the correct concept on every file?",
+      "guidance": "Count the PNGs in outputs/, verify each file's true pixel dimensions, and spot-check the mapping: every c1 file must carry 'Tired of the same conversations, same results', every c2 file 'The quiet has grown louder between you', every c3 file 'Beyond tips: a system for real change at home'.",
+      "reference": "Yes — 9 PNGs at exact spec dimensions (verified from PNG headers) with correct copy-to-concept mapping on all nine."
+    },
+    {
+      "id": "5388-task-2",
+      "type": "likert5",
+      "question": "Rate the nine files as one campaign family: identical layout grammar (teal accent rule, bottom-left text block at a 72px margin, gold chip of constant 96px height, small corner stamp), a consistent type system, and consistent scrim treatment — while the three concepts remain visually distinct.",
+      "guidance": "Tile all nine files. 5 = obviously one brand's campaign, with concept identity carried by the photography and copy; 3 = coherent but monotonous — every file is the same dark-bottom template; 1 = geometry drifts between formats. Also weigh the continuity wrinkle: within each concept the square final shows the family in different clothes than the story/feed finals (e.g. concept 1's mother wears an olive tee in story/feed but a grey sweater in the square), because the two source frames broke the 'same clothes' instruction.",
+      "reference": "The layout system is rigorously consistent across all nine. The open judgment calls are template monotony and the wardrobe discontinuity between formats of the same concept."
+    },
+    {
+      "id": "5388-task-3",
+      "type": "likert5",
+      "question": "The README discloses four limitations: the editable source is a parametric Python/PIL script (compose_5388.py) rather than the requested Canva/Figma/Photoshop/Illustrator file ('if possible' in the brief); fonts are Avenir Next instead of the brand guide's Libre Franklin (headlines) and Lora (support); the 1024-class AI source photos were upscaled 1.05-1.25x to reach the 1080px spec; and the ink scrims were extended well past the planned 38/42% of canvas (up to ~72% on squares). Rate whether this disclosure package is acceptable for a $120 engagement with one revision round.",
+      "guidance": "Judge as the client. 'If possible' softens the source-file ask, but a Python script is unusable to a typical designer; the font swap contradicts the client's own brand guide and is a legitimate revision-round request (both mandated fonts are free Google Fonts); the upscale is modest and invisible at feed size; the deeper scrims are an aesthetic trade for guaranteed legibility. 5 = all deviations reasonable AND honestly flagged; 3 = acceptable only because the included revision round can fix the fonts; 1 = material spec breaches dressed up as disclosures.",
+      "reference": "Everything is honestly disclosed and traceable to the trajectory; the font substitution is the deviation most likely to be rejected since Libre Franklin and Lora were explicitly named and freely available."
+    },
+    {
+      "id": "5388-task-4",
+      "type": "yesno",
+      "question": "Across all nine finals, is the flat brand gold #F2B23E used exclusively on the single CTA chip per creative — no gold rules, gold text, gold stamp tints or other gold UI anywhere?",
+      "guidance": "Scan each file for any designed element in gold besides the chip; the accent rule must be teal #3AA8A0 and the stamp purple. Photographic warm content (the c2 lamp and mustard cushion, c3's bananas and oranges, wood tones) does not count against the rule.",
+      "reference": "Yes — exactly one gold chip per file and no other gold design elements; consistent with the run's pixel-scan claim of zero brand-gold pixels outside the chips."
+    },
+    {
+      "id": "5388-task-5",
+      "type": "likert5",
+      "question": "Acting as TeenTalk's growth lead with a $120 fixed budget and one included revision round: rate the likelihood you would accept this delivery (as-is or after the included revision) rather than dispute it.",
+      "guidance": "Weigh for: all 9 files at exact spec, copy rendered verbatim, brand palette and stamp rules honoured with photo-aware corner flips, emotional on-persona photography, honest documentation. Weigh against: wrong typefaces versus the brand guide, scrims burying 52-72% of the photography, the c2 square's near-invisible mother, the c3 square's small figures, no conventional editable source file. 5 = accept as-is and rehire; 4 = accept after the revision round; 3 = accept reluctantly; 2 = demand rework beyond one round; 1 = dispute.",
+      "reference": "A reasonable expert lands at 4: the delivery is complete, professional and honest, with the font swap and scrim depth as the natural revision-round requests."
+    },
+    {
+      "id": "5388-task-6",
+      "type": "text",
+      "question": "Name the single biggest weakness of this delivery — the one thing most likely to come back as the client's revision request — and justify your pick in one or two sentences.",
+      "guidance": "Pick ONE. Candidates worth weighing: (a) Avenir Next used instead of the mandated Libre Franklin/Lora; (b) ink scrims covering 52-72% of the canvas, darkening the emotional photography the brief leads with; (c) wardrobe continuity breaks between the tall and square source frames within each concept; (d) the stamp's 'TeenTalk' wordmark being illegible at the 86px placement size.",
+      "reference": "Most defensible: (a) the font substitution — it contradicts an explicit input document (brand_guide.md section 3), is trivially fixable with free fonts, and is exactly the kind of brief-compliance issue the acceptance criteria say must be corrected in the revision round. (b) scrim depth is the strongest aesthetic alternative."
+    }
+  ]
+}

@@ -1,0 +1,354 @@
+{
+ "spec": {
+  "connector_workflow": [
+   {
+    "n": 1,
+    "tool": "asset_initialize_file_upload",
+    "server": "adobe",
+    "inputs_from": [
+     "original_artwork_concept"
+    ],
+    "output": "upload_session + presigned URL for the client's existing 'Gateway Spiritualism' cover-art PNG",
+    "note": "Begin pulling the client-attached source artwork into CC storage so every downstream tool can reference it by URN. This is the 'use as inspiration/source material' asset the brief mandates."
+   },
+   {
+    "n": 2,
+    "tool": "asset_finalize_file_upload",
+    "server": "adobe",
+    "inputs_from": [
+     "step 1",
+     "original_artwork_concept"
+    ],
+    "output": "asset_urn_original (CC-stored URN for the source cover art)",
+    "note": "Finalize the upload → durable URN. Reused as a visual reference in steps 3, 4 and as a 'before' tile on the concept board (step 18)."
+   },
+   {
+    "n": 3,
+    "tool": "image_remove_background",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2"
+    ],
+    "output": "original_artwork_cutout.png (gateway/doorway motif isolated on transparency)",
+    "note": "Strip the busy cover-art background so only the central gateway/eye motif remains — the element the client says must stay central. Cleaning it first makes the refine/vectorize step honest rather than tracing a noisy raster."
+   },
+   {
+    "n": 4,
+    "tool": "image_vectorize",
+    "server": "adobe",
+    "inputs_from": [
+     "step 3",
+     "refined_mark_render"
+    ],
+    "output": "gateway_mark.svg (clean scalable vector of the refined gateway+abstract-eye icon)",
+    "note": "Convert the refined raster mark into a clean SVG — delivers the 'fully scalable vector' icon the brief requires and is the master geometry reused for every logo lockup, template fill, animation, and board tile downstream."
+   },
+   {
+    "n": 5,
+    "tool": "font_recommend",
+    "server": "adobe",
+    "inputs_from": [
+     "full_brief"
+    ],
+    "output": "type_recommendation (2-3 elegant minimalist serif/humanist pairings for wordmark + tagline)",
+    "note": "Satisfies deliverable #3 'Typography recommendations for Gateway Spiritualism.' The chosen pairing is carried as the brand type into the stationery/social fills (steps 8-14) for consistency."
+   },
+   {
+    "n": 6,
+    "tool": "asset_search",
+    "server": "adobe",
+    "inputs_from": [
+     "full_brief"
+    ],
+    "output": "palette_reference assets (calm, restrained spiritual tones — deep indigo/warm stone/off-white)",
+    "note": "Pull restrained reference swatches to lock a 'calm, elegant, timeless' palette (no psychedelic/New-Age clichés). The palette tokens are reused on the board (step 18) and inform the template fills."
+   },
+   {
+    "n": 7,
+    "tool": "search_design",
+    "server": "adobe",
+    "inputs_from": [
+     "full_brief"
+    ],
+    "output": "business_card_template (Express template, 3.5x2in card)",
+    "note": "MUST-EXERCISE. Find an elegant minimalist business-card Express template — deliverable 'Business card compatible version.' Carries the gateway_mark.svg (step 4) and recommended type (step 5)."
+   },
+   {
+    "n": 8,
+    "tool": "fill_text",
+    "server": "adobe",
+    "inputs_from": [
+     "step 7",
+     "step 4",
+     "step 5"
+    ],
+    "output": "business_card_filled (front: 'Gateway Spiritualism' wordmark + name/role; back: mantra line)",
+    "note": "MUST-EXERCISE. Fill the card placeholders with the refined wordmark and the brand mantra copy ('Awakening through the inner passage'). Text-only fill preserves the template layout per the tool's constraint."
+   },
+   {
+    "n": 9,
+    "tool": "search_design",
+    "server": "adobe",
+    "inputs_from": [
+     "full_brief"
+    ],
+    "output": "social_profile_template (1:1 square avatar template for Substack/Podcast/YouTube/social)",
+    "note": "MUST-EXERCISE (reuse). Find a square profile/icon template — covers deliverable 'Social profile/icon version' that 'works cleanly across Substack, Podcast profiles, YouTube, Social media.'"
+   },
+   {
+    "n": 10,
+    "tool": "fill_text",
+    "server": "adobe",
+    "inputs_from": [
+     "step 9",
+     "step 4"
+    ],
+    "output": "social_avatar_filled (icon-only square with the simplified gateway symbol centered)",
+    "note": "MUST-EXERCISE (reuse). Place the simplified icon mark; minimal/no text so it stays recognizable at small sizes per the brief. Feeds the animation (step 15) and the board (step 18)."
+   },
+   {
+    "n": 11,
+    "tool": "search_design",
+    "server": "adobe",
+    "inputs_from": [
+     "full_brief"
+    ],
+    "output": "letterhead_template (A4 stationery template for website/Substack header use)",
+    "note": "MUST-EXERCISE (reuse). Find a stationery/letterhead template for the horizontal logo lockup — supports 'Horizontal and stacked logo variations' and 'Website branding.'"
+   },
+   {
+    "n": 12,
+    "tool": "fill_text",
+    "server": "adobe",
+    "inputs_from": [
+     "step 11",
+     "step 4",
+     "step 5"
+    ],
+    "output": "letterhead_filled (horizontal lockup: icon + 'Gateway Spiritualism' + tagline)",
+    "note": "MUST-EXERCISE (reuse). Fill the horizontal lockup wordmark and tagline. Establishes the horizontal variation reused as the YouTube/banner motion base in step 15."
+   },
+   {
+    "n": 13,
+    "tool": "document_render_layout",
+    "server": "adobe",
+    "inputs_from": [
+     "step 4",
+     "step 5",
+     "step 6"
+    ],
+    "output": "logo_variations_sheet (one spec page: primary stacked, horizontal, icon-only, B/W, on light + dark)",
+    "note": "Deterministically lay out the full variation matrix the brief demands: 'refined primary logo,' 'simplified icon,' 'Horizontal and stacked,' 'Black and white,' and 'light and dark backgrounds' — all from the single vector master."
+   },
+   {
+    "n": 14,
+    "tool": "document_convert_pdf",
+    "server": "adobe",
+    "inputs_from": [
+     "step 13"
+    ],
+    "output": "GatewaySpiritualism_LogoGuide.pdf (print+web logo-usage sheet)",
+    "note": "Convert the variation sheet to a shareable PDF — a 'web and print use' deliverable and the printable usage spec the client can hand to vendors."
+   },
+   {
+    "n": 15,
+    "tool": "animate_design",
+    "server": "adobe",
+    "inputs_from": [
+     "step 12",
+     "step 4"
+    ],
+    "output": "brand_intro_anim (gentle gateway-opening reveal of the horizontal lockup, ~5s, 1920x1080)",
+    "note": "MUST-EXERCISE. Add a calm fade/zoom 'doorway opens' reveal to the filled horizontal Express design → the YouTube/podcast video intro. Honors 'gentle reveal' and the 'calm, quietly profound' tone; consumes the step-12 lockup and step-4 mark."
+   },
+   {
+    "n": 16,
+    "tool": "video_resize",
+    "server": "adobe",
+    "inputs_from": [
+     "step 15"
+    ],
+    "output": "brand_intro_anim_square (1:1 reframed intro for Substack/podcast/social)",
+    "note": "Subject-aware reframe of the 16:9 intro to 1:1 so the motion asset works on square-first platforms (podcast apps, Substack). Same length; both ratios delivered."
+   },
+   {
+    "n": 17,
+    "tool": "asset_inline_preview",
+    "server": "adobe",
+    "inputs_from": [
+     "step 8",
+     "step 10",
+     "step 12",
+     "step 14"
+    ],
+    "output": "preview_thumbs for each applied template + the PDF guide",
+    "note": "Render previews of the filled stationery, avatar, letterhead, and logo-guide PDF so they can be embedded as board tiles with correct framing in the next step."
+   },
+   {
+    "n": 18,
+    "tool": "create_firefly_board",
+    "server": "adobe",
+    "inputs_from": [
+     "step 2",
+     "step 4",
+     "step 6",
+     "step 8",
+     "step 10",
+     "step 12",
+     "step 15",
+     "step 17"
+    ],
+    "output": "GatewaySpiritualism_ConceptBoard (Firefly Board deep-link: before→after mark, palette, type, applied templates, animation)",
+    "note": "MUST-EXERCISE. Assemble one concept board presenting the refined mark vs original (step 2), the vector master (step 4), palette (step 6), the applied business card/avatar/letterhead (steps 8/10/12) and the animated intro (step 15) as a single client-facing presentation."
+   },
+   {
+    "n": 19,
+    "tool": "asset_create_folders",
+    "server": "adobe",
+    "inputs_from": [
+     "step 4",
+     "step 14",
+     "step 15",
+     "step 16"
+    ],
+    "output": "/GatewaySpiritualism delivery folder (vector master, PDF guide, both anim ratios organized for handoff)",
+    "note": "Organize all final scalable/PNG/PDF/motion deliverables into one CC folder for the 'editable source files + full ownership handoff' the brief requires. Closes the input→delivery loop."
+   }
+  ],
+  "difficulty_rationale": "This is hard for an agent on every axis the flagship bar cares about. (1) Long horizon: 19 ordered connector calls across three capability groups (express_template_track, asset_stock_storage, plus document/layout glue) with real output→input dependencies — the vector master from step 4 must be threaded through eight later steps, and losing track of it breaks the whole identity. (2) Heavy state tracking and asset reuse: one source artwork URN (step 2), one vector master (step 4), one type recommendation (step 5), and one palette (step 6) are each reused across multiple downstream steps; the agent must remember which filled-template output feeds the animation vs. the board vs. the preview. (3) Exact-spec pressure: the brief enumerates a precise deliverable matrix — primary + simplified icon, horizontal + stacked, B/W, light + dark, business-card, social-icon, scalable vector + transparent PNG — and the agent must map each to the right tool and size (3.5x2in card, 1:1 avatar, A4 letterhead, 1920x1080 then 1:1 intro) without inventing capabilities. (4) Constraint adherence under taste: the client's long list of forbidden directions (no literal/realistic eye, no occult/psychedelic/conspiracy/New-Age-cliché/all-seeing-eye, not loud/flashy/corporate/life-coach) means a naive agent that just generates a flashy mystical logo fails — the refine path (cutout→vectorize the EXISTING motif rather than concept-from-scratch) is mandated and easy to violate. (5) Tool discipline: it must use search_design/fill_text/animate_design/create_firefly_board correctly (fill_text is text-only, animate_design is Express-only) and keep 'local' glue out entirely. The combination of long chain, mandated reuse, a forbidden-aesthetic minefield, and a strict deliverable matrix makes both autonomous execution and human scoring demanding.",
+  "full_brief": "Gateway Spiritualism is a spiritual/philosophical project (podcasting, writing, Substack articles, YouTube videos and public-facing content) centered on inner change, emotional honesty, and awakening from self-judgment and endless self-improvement. The client already has an existing logo/artwork concept (attached) but it reads as symbolic cover art, not a true brand identity. They explicitly do NOT want a new concept from scratch and do NOT want any piece of the original reused verbatim — instead, refine and distill the existing imagery into a professional, elegant, timeless logo and brand symbol that works cleanly across Substack, podcast profiles, YouTube, business cards, social media, and website branding. The core symbolism to PRESERVE is: gateway/doorway (must remain central), awakening, awareness/perception, transformation, and inner passage/transition. The eye-as-awareness idea may be used only if abstract, elegant, subtle and integrated into the gateway — never a literal/realistic eye, and never anything occult, psychedelic, conspiracy-oriented, fantasy/New-Age cliché, or 'all-seeing-eye.' The brand must feel thoughtful, emotionally intelligent, spiritually reflective, calm, elegant, minimalist, timeless, and quietly profound — and must NOT feel loud, flashy, corporate, 'life-coach,' mystical-fantasy, overly New Age, or visually busy. Visual style: clean lines, negative space, restrained elegance, symbolic simplicity, modern minimalist spirituality; the mark must stay recognizable and powerful at small sizes.\\n\\nDeliverables requested by the client: (1) a refined primary logo; (2) a simplified icon/symbol version; (3) typography recommendations for 'Gateway Spiritualism'; (4) versions for light and dark backgrounds. File deliverables: fully scalable vector files (AI/SVG/EPS), transparent PNG files, horizontal and stacked logo variations, black-and-white versions, a social profile/icon version, a business-card-compatible version, typography/font recommendations, and logo files suitable for both web and print. Ownership: full commercial and proprietary rights to all final approved artwork plus editable source files. The client also asks: avoid stock icons and recycled logo templates; treat the attached artwork as inspiration/source rather than reusing it directly.\\n\\nThe long-horizon version asks the freelancer to take this through one continuous connector chain: ingest and clean the attached artwork, refine and vectorize the gateway mark into a single scalable master, recommend brand type and lock a restrained palette, then APPLY the refined identity onto real Express templates (business card, square social/profile icon, A4 letterhead) by filling the wordmark and mantra copy, render a full light/dark + horizontal/stacked + B&W variation sheet to PDF, animate a gentle 'doorway-opening' brand reveal (16:9 for YouTube plus a 1:1 reframe for podcast/Substack), and assemble everything — original-vs-refined mark, palette, type, applied templates, and the motion intro — into a single Firefly concept board for client review, with all finals organized in a delivery folder.",
+  "grounding_note": "REAL (verbatim from the client's fulldesc in db_all.json): the project name 'Gateway Spiritualism'; that it spans podcasting, writing, Substack, YouTube and public-facing content about inner change/emotional honesty/awakening; that an existing logo/artwork concept is attached and must be REFINED not replaced (and not reused piece-by-piece); the requirement that it work across Substack, podcast profiles, YouTube, business cards, social media, website branding; the core symbolism to preserve (gateway/doorway central, awakening, awareness/perception, transformation, inner passage); the eye guidance (abstract/elegant/subtle/integrated, NOT literal/occult/psychedelic/conspiracy/New-Age-cliché/all-seeing-eye); the overall feeling and the explicit 'do NOT feel' list; the visual style notes; small-size recognizability; the four numbered asks (refined primary logo, simplified icon, typography recommendations, light/dark versions); the full file-deliverable list (scalable vector AI/SVG/EPS, transparent PNG, horizontal + stacked, B&W, social profile/icon, business-card, web+print); the ownership/editable-source requirement; and the 'avoid stock icons/recycled templates' note. The listed source tools are Premiere Pro + Illustrator (consistent with a logo + a video intro). ENRICHED (implied, not literally stated): the specific brand mantra/tagline copy used in fill_text ('Awakening through the inner passage' is an illustrative placeholder the agent should set with the client); the exact animation spec (gentle doorway-opening reveal, ~5s, 1920x1080 plus a 1:1 reframe) — the brief implies YouTube/video use and lists Premiere Pro but does not specify a motion-logo, so the animated brand intro is an enrichment justified by the YouTube/podcast scope; the choice to APPLY the identity onto specific Express templates (business card, square avatar, A4 letterhead) and to present it on a Firefly concept board — the brief asks for a business-card-compatible and social-profile version and for deliverables suitable for review, so applied mockups and a single review board are a faithful long-horizon expansion rather than a new ask. The restrained palette (indigo/stone/off-white) is an illustrative interpretation of the stated 'calm/elegant/timeless' direction.",
+  "groups_covered": [
+   "express_template_track",
+   "asset_stock_storage"
+  ],
+  "id": "F2-08",
+  "inputs": [
+   {
+    "name": "original_artwork_concept",
+    "kind": "image",
+    "gen_model": "gemini-3-pro-image",
+    "gen_prompt": "A symbolic spiritual 'cover-art' style illustration for a project called 'Gateway Spiritualism' — the kind of slightly busy, painterly concept art a client would have made first and now wants refined. Centered composition of an ancient stone doorway / archway opening onto a soft glowing dawn, with a very subtle abstract eye-like shape suggested in the negative space of the arch (NOT a literal realistic eye, NOT an all-seeing eye, no occult or conspiracy symbols). Muted contemplative palette of deep indigo, warm stone grey, and pale dawn light. Hand-illustrated texture, gentle gradients, a little visually busy and uneven on purpose so it reads as 'cover art that needs distilling into a real logo.' Square format, no text, no lettering anywhere in the image.",
+    "realism_notes": "This is the client's ATTACHED source artwork, so it should look like an authentic first-pass concept/cover illustration — slightly over-designed, textured, painterly, NOT a clean finished logo. Deliberately imperfect/busy so the refine→vectorize chain has something real to distill. Absolutely no embedded text and no literal eye, to respect the brief's prohibitions.",
+    "used_in_steps": [
+     1,
+     2,
+     3,
+     4,
+     18
+    ]
+   },
+   {
+    "name": "brand_voice_notes",
+    "kind": "data",
+    "gen_model": "gemini-2.5-flash",
+    "gen_prompt": "Write a short JSON brand brief for 'Gateway Spiritualism' capturing the client's stated direction: an array of 'preserve' symbols (gateway/doorway central, awakening, awareness/perception, transformation, inner passage), a 'forbidden' array (literal realistic eye, occult, psychedelic, conspiracy, fantasy/New-Age cliché, all-seeing-eye, loud, flashy, corporate, life-coach, visually busy), a 'feeling' array (thoughtful, emotionally intelligent, spiritually reflective, calm, elegant, minimalist, timeless, quietly profound), a candidate tagline/mantra string, and a 'platforms' array (Substack, podcast, YouTube, business card, social, website). Keep it faithful to a calm minimalist spiritual brand; no marketing hype.",
+    "realism_notes": "A small structured brief the agent uses to drive font_recommend, palette search, and the mantra copy in fill_text. Plain JSON, realistic field names, values lifted from the real client description so the agent has a single source of truth for tone and forbidden directions.",
+    "used_in_steps": [
+     5,
+     6,
+     8,
+     12
+    ]
+   }
+  ],
+  "iterative_chaining_note": "The chain is genuinely output→input. The client's attached artwork is uploaded (1) and finalized to a URN (2); that URN is background-removed (3) to isolate the gateway motif; the cutout is vectorized (4) into gateway_mark.svg — the single master consumed by EIGHT later steps. font_recommend (5) and the palette search (6) read brand_voice_notes and produce type + palette tokens reused in the template fills and the variation sheet. Each search_design (7,9,11) returns an Express template immediately consumed by the matching fill_text (8,10,12); each fill_text consumes BOTH the chosen template AND the step-4 vector mark (plus step-5 type for text-bearing lockups). The filled horizontal lockup (12) plus the step-4 mark feed animate_design (15) → the 16:9 brand intro, which is itself the input to video_resize (16) for the 1:1 reframe. document_render_layout (13) consumes step-4 + step-5 + step-6 to build the variation matrix, which document_convert_pdf (14) turns into the usage PDF. asset_inline_preview (17) consumes the filled outputs (8,10,12) and the PDF (14) for board tiles. create_firefly_board (18) pulls the original URN (2), the vector master (4), palette (6), the three applied templates (8,10,12), and the animation (15) into ONE board — the convergence of every branch. asset_create_folders (19) gathers step-4, step-14, and both animation ratios into the delivery folder. The step-4 vector master threaded from creation to board to folder is the spine of the chain.\"",
+  "one_line_ask": "Refine the client's attached 'Gateway Spiritualism' cover-art into a clean, scalable minimalist logo system (primary, icon, horizontal/stacked, B&W, light/dark), apply it to real Express stationery and social templates, animate a gentle doorway-opening brand intro, and present the whole refined identity on a single Firefly concept board with an organized delivery folder.",
+  "outputs": [
+   {
+    "name": "gateway_mark.svg",
+    "kind": "vector",
+    "spec": "Clean scalable SVG of the refined gateway+abstract-eye icon, single-path-friendly, works mono and full-color; reproducible as AI/EPS/transparent-PNG exports. Must stay legible down to ~32px favicon size.",
+    "rubric_hook": "Is the mark a faithful REFINEMENT of the attached artwork (gateway/doorway central, awareness implied subtly) rather than a from-scratch concept or a verbatim trace? Does it avoid every forbidden direction (no literal/occult/psychedelic/all-seeing eye, not busy)? Is it truly vector-clean and legible at small size?"
+   },
+   {
+    "name": "logo_variation_guide.pdf",
+    "kind": "pdf",
+    "spec": "Multi-zone usage sheet: primary stacked logo, horizontal lockup, icon-only, black-and-white version, each shown on light AND dark backgrounds, plus the recommended type pairing. Web+print suitable, single PDF.",
+    "rubric_hook": "Does the sheet contain ALL required variations (primary, simplified icon, horizontal, stacked, B&W, light + dark) derived from the one vector master, and does the typography match the font_recommend output? Is spacing/alignment clean and print-usable?"
+   },
+   {
+    "name": "applied_templates_set",
+    "kind": "image",
+    "spec": "Three filled Express designs exported as transparent/flat PNGs at native template size: business card (3.5x2in / 1050x600px @300dpi), square social profile/icon (1080x1080px), A4 letterhead horizontal lockup. Wordmark reads 'Gateway Spiritualism'; card/letterhead carry the mantra line.",
+    "rubric_hook": "On each applied template, is the refined mark placed correctly, is the filled text exactly the brand wordmark + mantra (no layout breakage, fill_text text-only), and does the result still feel calm/minimalist/timeless rather than flashy/corporate?"
+   },
+   {
+    "name": "brand_intro_16x9.mp4",
+    "kind": "video",
+    "spec": "~5s 1920x1080 (16:9) gentle 'doorway-opening' reveal of the horizontal lockup — soft fade/zoom, calm pacing, ends on the static lockup. For YouTube/website.",
+    "rubric_hook": "Is the motion gentle and on-brand (calm, quietly profound — not loud/flashy)? Does it reveal the actual refined horizontal lockup and resolve to a clean hold frame? Correct 1920x1080 / ~5s spec?"
+   },
+   {
+    "name": "brand_intro_1x1.mp4",
+    "kind": "video",
+    "spec": "~5s 1080x1080 (1:1) subject-aware reframe of the 16:9 intro for podcast apps / Substack / square social. Same length and motion, lockup kept centered and uncropped.",
+    "rubric_hook": "Is the square reframe subject-aware (mark/lockup not cut off), same duration as the 16:9 master, and visually consistent with it?"
+   },
+   {
+    "name": "GatewaySpiritualism_concept_board",
+    "kind": "data",
+    "spec": "Firefly Boards deep-link presenting: original artwork (before) vs refined mark (after), the palette, the type pairing, the three applied templates, and the animated intro — laid out as one client-review concept board.",
+    "rubric_hook": "Does the board tell the refine story (before→after) and assemble every key artifact (mark, palette, type, applied templates, motion) coherently in one deep-link for client review?"
+   },
+   {
+    "name": "delivery_folder",
+    "kind": "data",
+    "spec": "CC storage folder /GatewaySpiritualism containing the vector master, the logo-variation PDF, and both animation ratios, organized for an editable-source + full-ownership handoff.",
+    "rubric_hook": "Are all final deliverables (scalable vector master, usage PDF, both motion ratios) present and organized in one folder consistent with the brief's editable-source/ownership handoff requirement?"
+   }
+  ],
+  "slug": "gateway-spiritualism-logo-refine",
+  "source": {
+   "platform": "Upwork",
+   "url": "https://www.upwork.com/nx/search/jobs/?q=Refine%20Existing%20Logo%20into%20Elegant%20Spiritual%20Brand%20Identi"
+  },
+  "title": "Refine Existing Logo into Elegant Spiritual Brand Identity",
+  "tool_call_count": 19,
+  "tools_used": [
+   "asset_initialize_file_upload",
+   "asset_finalize_file_upload",
+   "image_remove_background",
+   "image_vectorize",
+   "font_recommend",
+   "asset_search",
+   "search_design",
+   "fill_text",
+   "document_render_layout",
+   "document_convert_pdf",
+   "animate_design",
+   "video_resize",
+   "asset_inline_preview",
+   "create_firefly_board",
+   "asset_create_folders"
+  ],
+  "vertical": "Music, Film, Publishing & Media"
+ },
+ "verdict": {
+  "severity": "major",
+  "real_tools_only": true,
+  "calls_genuine": true,
+  "grounded": true,
+  "io_clear": true,
+  "hq_media": true,
+  "issues": [
+   "FEASIBILITY VIOLATION (major): Steps 7/9/11 search_design, 8/10/12 fill_text, and 15 animate_design (7 of 19 steps) are tools the project's own BINDING feasibility doc (/Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/complex_benchmark/FEASIBILITY.md, [X] NOT USABLE, lines 50-52) marks as unrunnable ('Express - need a human gallery click'), with an explicit rule (line 71): 'never put an [X] tool in a workflow.' Both SMOKE_RESULTS.md (line 45) and SMOKE_RESULTS_v2.md (line 46) independently classify search_design/fill_text/animate_design as needs-human / NOT headless. The spec compounds this by labeling these exact steps 'MUST-EXERCISE,' directly contradicting the feasibility ruling.",
+   "fill_text CANNOT place the gateway_mark.svg. The real fill_text tool schema accepts only templateURN/description/generalQuery and 'Replaces text content ONLY' (no image insertion). Steps 8/10/12 explicitly claim fill_text 'Carries the gateway_mark.svg (step 4)' and 'Place the simplified icon mark' - this is impossible with fill_text. The step-4 vector-mark dependency into the filled templates (a core 'spine of the chain' claim) is not achievable via the named tool.",
+   "PHANTOM REFINEMENT STEP / dangling input ref. Step 4 image_vectorize lists inputs_from ['step 3','refined_mark_render'], but 'refined_mark_render' is defined nowhere - it is not in inputs[] and no prior step outputs it (grep confirms it appears only in step 4's inputs_from). There is NO tool between the step-3 background-removal and step-4 vectorize that actually 'refines' the motif, yet steps 3/4 and the gateway_mark.svg output repeatedly assert a 'refined' mark.",
+   "BRIEF CONSTRAINT CONFLICT: the client brief explicitly forbids reusing the original 'piece-by-piece' / 'verbatim' and says treat the artwork as inspiration NOT reuse it directly. The actual chain (step3 remove_background -> step4 vectorize of the original cutout) is exactly a verbatim trace of the original artwork. Without a genuine refinement step, the chain produces the forbidden output - the spec's own rubric_hook flags 'rather than a verbatim trace' as a fail condition.",
+   "create_firefly_board (step 18, 'MUST-EXERCISE') is marked '★UNUSED-BEFORE★' in the capability sheet and does NOT appear in any [C] connector-confirmed smoke list - it is unproven headless. Also its schema imports a video (step-15 animation) only 'with a thumbnail,' so the board shows a still, not the motion the note implies.",
+   "video_resize (step 16) is [L] in FEASIBILITY.md: connector video tools 'ACCEPT jobs but return async results that are NOT retrievable in this headless harness'; the doc says default to local ffmpeg. The spec presents step 15->16 as a clean connector edge with no acknowledgement that the result can't be retrieved in-harness.",
+   "OUTPUT-SPEC OVERSTATEMENT (minor): output gateway_mark.svg claims it is 'reproducible as AI/EPS/transparent-PNG exports,' but image_vectorize returns SVG only (sheet line 33). AI/EPS are not produced by any step in the chain.",
+   "animate_design dependency overstated (minor): its schema takes a single templateOrDocumentURN; it can animate the step-12 filled design but cannot also 'consume the step-4 mark' as a separate input as the step-15 note claims."
+  ],
+  "fixes": [
+   "Decide the harness posture explicitly. Either (a) re-tag this as an interactive/main-session task and DROP the 'MUST-EXERCISE' + headless framing, OR (b) replace the [X] Express steps with feasible substitutes per FEASIBILITY.md: build the business card / square avatar / A4 letterhead lockups via document_render_layout + document_convert_pdf (InDesign, [C]-confirmed) or local PIL compose, and produce the animated intro via local ffmpeg (the doc's [L] path). Do not keep search_design/fill_text/animate_design as required headless steps.",
+   "Remove the false image-injection claim from fill_text steps. fill_text can only set the wordmark/mantra TEXT. The gateway_mark.svg must be placed by a different mechanism (a pre-authored template that already contains the mark, or a render_layout/local compose that lays the SVG + text together). Rewrite steps 8/10/12 notes so the step-4 vector dependency flows into the layout/compose step, not into fill_text.",
+   "Fix the dangling reference: either (a) add a real refinement step between step 3 and step 4 (e.g. an image edit/clean-up the chain can actually perform) and name its output, or (b) remove 'refined_mark_render' from step 4 inputs_from and stop claiming the vectorize input is 'refined.' Define every token used in inputs_from as either an inputs[] asset or a prior step output.",
+   "Resolve the brief conflict: to honor 'do NOT reuse verbatim / treat as inspiration only,' the mark must be re-drawn/distilled, not background-removed-and-traced. Since the connector cannot re-illustrate from scratch, generate a NEW distilled mark as an input asset (gemini-3-pro-image, prompted from the brand_voice_notes 'preserve/forbidden' arrays, using the original only as visual reference) and vectorize THAT - then the original artwork is genuinely 'inspiration,' satisfying the brief and the rubric_hook.",
+   "Drop create_firefly_board from 'MUST-EXERCISE' (it is unproven/UNUSED-BEFORE) or label step 18 as unverified; ensure the source-artwork URN is routed via import_generic_assets (it is an uploaded PNG, not a Firefly generation) and note the animation tile renders as a thumbnail still.",
+   "Annotate step 16 (and 15) as [L]/[L-or-connector] with the ffmpeg fallback, matching the binding doc, instead of presenting in-harness video retrieval as guaranteed.",
+   "Correct the gateway_mark.svg output spec to 'SVG (vector master); AI/EPS/PNG are downstream desktop exports, not connector outputs,' and soften the step-15 note so it doesn't claim animate_design consumes two separate inputs."
+  ]
+ }
+}

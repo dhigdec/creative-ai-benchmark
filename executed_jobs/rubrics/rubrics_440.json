@@ -1,0 +1,132 @@
+{
+  "task_id": 440,
+  "input_rubrics": {
+    "logo_chatgpt_raster.png": [
+      {
+        "id": "in_wordmark_exact",
+        "q": "Does the wordmark read EXACTLY 'Emberleaf Teas' (correct spelling, two words, no extra or missing letters)?",
+        "type": "yesno",
+        "guidance": "Read the text under the emblem letter by letter: E-m-b-e-r-l-e-a-f on line 1, T-e-a-s on line 2. Reject any misspelling, dropped letter, or invented text.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "in_emblem_subject",
+        "q": "Does the emblem show a stylized tea leaf / small tea plant (green leaves) rising from a terracotta cup-or-pot base, matching an artisanal-tea brand?",
+        "type": "yesno",
+        "guidance": "Expect a sprig of pointed green leaves growing out of a curved terracotta/orange tulip-shaped vessel. On-subject for a loose-leaf tea company.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "in_flat_no_gradients",
+        "q": "Is the artwork flat and solid-filled (no gradients, no drop shadows, no photographic elements)?",
+        "type": "likert5",
+        "guidance": "5 = fully flat solid color shapes suitable for clean vectorizing; lower if you see gradients, glows, shadows, or photo texture. A slight AI-softness at edges is acceptable.",
+        "ideal": "5"
+      },
+      {
+        "id": "in_palette_match",
+        "q": "Do the colours match the brand palette: ember green (#4A5F4B) leaves/text and terracotta (#C77C5F) base on a plain near-white background?",
+        "type": "likert5",
+        "guidance": "5 = green and terracotta clearly in-palette on white; lower if hues drift (too bright/teal/brown) or extra unrelated colours appear.",
+        "ideal": "4"
+      },
+      {
+        "id": "in_composition",
+        "q": "Is the composition centered with the emblem above the wordmark, brand name as the only text, on a plain white background?",
+        "type": "likert5",
+        "guidance": "5 = centered, emblem-over-wordmark, no tagline or extra text, white field. Lower for off-center, clutter, or extra copy.",
+        "ideal": "5"
+      },
+      {
+        "id": "in_notes",
+        "q": "Free note: anything off about the generated input logo (artifacts, odd letterforms, palette drift)?",
+        "type": "text",
+        "guidance": "One short line. Note e.g. soft/fuzzy edges, leaf count, any color that looks off-brand.",
+        "ideal": "minor AI softness only; otherwise on-brief"
+      }
+    ]
+  },
+  "output_rubrics": {
+    "logo_vectorized.svg": [
+      {
+        "id": "out_true_vector",
+        "q": "Is the output a genuine vector (SVG built from <path> shapes, NOT just an embedded raster image wrapped in SVG)?",
+        "type": "yesno",
+        "guidance": "Confirm the file contains many <path d=...> elements and NO <image> tag embedding the PNG. This SVG is all paths = genuine vector.",
+        "ideal": "Yes"
+      },
+      {
+        "id": "out_emblem_fidelity",
+        "q": "Are the emblem's shapes/edges sharp and faithful to the original (leaf sprig + terracotta base recognizable, contours clean)?",
+        "type": "likert5",
+        "guidance": "5 = crisp curves matching the leaves and cup with no blobby distortion; lower if shapes are warped, merged, or jagged. Compare against the input emblem.",
+        "ideal": "4"
+      },
+      {
+        "id": "out_wordmark_legible",
+        "q": "Is the 'Emberleaf Teas' wordmark still fully legible and correctly spelled in the vector?",
+        "type": "likert5",
+        "guidance": "Each letter should be a clean closed shape; read the full text. 5 = perfectly legible, correct spelling; lower if letters are broken, filled-in, or fused.",
+        "ideal": "5"
+      },
+      {
+        "id": "out_colors_preserved",
+        "q": "Are the brand colours preserved (green leaves/text near #4A5F4B, terracotta base near #C77C5F) without introducing a different palette?",
+        "type": "likert5",
+        "guidance": "Greens trace to ~rgb(94,112,93) and terracotta to ~rgb(200,138,103) here — close to brand but slightly light/desaturated green and slightly lighter terracotta. 5 = visually on-brand; dock for noticeable hue shift.",
+        "ideal": "4"
+      },
+      {
+        "id": "out_edge_artifacts",
+        "q": "Did vectorizing the deliberately-softened raster introduce stray anti-alias fringe shapes (thin halo-coloured slivers around edges)?",
+        "type": "yesno",
+        "guidance": "Look for extra tiny paths in pale tints like rgb(222,234,220)/rgb(232,242,229) or muddy rgb(167,116,84) hugging the emblem outline — these are traced soft-edge halos. Any present = Yes (a defect).",
+        "ideal": "No"
+      },
+      {
+        "id": "out_color_count",
+        "q": "Is the colour count kept tight (~3-5 flat colours as the brief requires) rather than ballooning into many near-duplicate fills?",
+        "type": "likert5",
+        "guidance": "Count distinct fills. 5 = ~3-5 clean colours; lower the more redundant near-greens/edge tints appear. This trace adds several intermediate fringe colours, so expect a mid score.",
+        "ideal": "4"
+      },
+      {
+        "id": "out_print_ready",
+        "q": "Would this SVG be clean enough to hand to a printer as a scalable logo (no leftover background fill or transparency issues around the artwork)?",
+        "type": "likert5",
+        "guidance": "Note the full canvas is a near-white rgb(254,254,254) background path rather than transparent; judge whether that and the edge slivers would need cleanup before print delivery.",
+        "ideal": "4"
+      }
+    ]
+  },
+  "task_rubric": [
+    {
+      "id": "task_on_task_pairing",
+      "q": "Is the input to output pairing coherent and clearly on-task (raster Emberleaf Teas logo in to scalable vector SVG of the same logo out)?",
+      "type": "likert5",
+      "guidance": "5 = output is unmistakably a vectorized version of the same emblem and wordmark. Lower if content drifted or the wrong asset was produced.",
+      "ideal": "5"
+    },
+    {
+      "id": "task_satisfies_brief",
+      "q": "Would this output satisfy the client's brief (refine the ChatGPT logo into a sharp, print-ready vector with accurate colour)?",
+      "type": "likert5",
+      "guidance": "Weigh sharp edges + true vector (good) against the soft-edge fringe shapes, light green hue, and non-transparent background (would likely need touch-up). 5 = ship as-is; 3-4 = good but needs minor cleanup.",
+      "ideal": "4"
+    },
+    {
+      "id": "task_deliver",
+      "q": "Would you accept and deliver this SVG to the client as the final refined logo?",
+      "type": "yesno",
+      "guidance": "Yes only if legibility, shapes, and colour are all acceptable and artifacts are negligible/easily cleaned; No if fringe slivers or palette drift are bad enough to reject.",
+      "ideal": "Yes"
+    },
+    {
+      "id": "task_notes",
+      "q": "Notes / what's missing for a fully print-ready deliverable.",
+      "type": "text",
+      "guidance": "One short line, e.g. remove anti-alias fringe paths, nudge green toward #4A5F4B, make background transparent, also supply AI/EPS + hi-res PNG promised in the brief.",
+      "ideal": "minor cleanup of edge slivers and background; otherwise faithful"
+    }
+  ]
+}

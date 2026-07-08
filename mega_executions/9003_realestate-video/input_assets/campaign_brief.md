@@ -1,0 +1,63 @@
+```json
+{
+  "property": {
+    "address": "1234 Serene Haven Way",
+    "city_area": "Willow Creek Estates",
+    "price": "$975,000",
+    "beds": 4,
+    "baths": 3,
+    "sqft": 2850
+  },
+  "highlights": [
+    "Spacious open-concept living with abundant natural light",
+    "Gourmet kitchen featuring premium appliances and large island",
+    "Luxurious primary suite with spa-like en-suite bath",
+    "Expansive private backyard ideal for entertaining"
+  ],
+  "agent": {
+    "name": "Eleanor Vance",
+    "title": "Senior Sales Associate",
+    "phone": "(555) 201-9876",
+    "email": "eleanor.vance@solsticeproperties.com",
+    "license_no": "RE-0192834"
+  },
+  "lower_third": {
+    "agent_name_line": "Eleanor Vance, Senior Sales Associate",
+    "price_strip": "Just Listed - $975,000"
+  },
+  "look_notes": [
+    "We ensure precise white balance to truly reflect the home's inviting warmth and natural light, allowing you to envision your elevated lifestyle.",
+    "Our exposure settings are meticulously calibrated to achieve a bright, airy feel, showcasing every detail that enhances your unique benefits.",
+    "We maintain a clean, harmonious color palette, emphasizing the home's serene ambiance and guiding you confidently towards discovering your perfect space."
+  ],
+  "platforms": [
+    {
+      "platform": "Facebook",
+      "label": "Feed Post",
+      "size": "1080x1080",
+      "aspect": "1:1"
+    },
+    {
+      "platform": "Facebook/Instagram",
+      "label": "Story",
+      "size": "1080x1920",
+      "aspect": "9:16"
+    },
+    {
+      "platform": "Instagram",
+      "label": "Reel",
+      "size": "1080x1920",
+      "aspect": "9:16"
+    }
+  ],
+  "room_order": [
+    "kitchen",
+    "living-room",
+    "exterior-patio",
+    "primary-suite",
+    "primary-bath",
+    "dining-room"
+  ],
+  "narration_script": "Discover an oasis where every detail elevates your daily life! Step into the expansive, light-filled living room, perfect for cherished gatherings. The chef-inspired kitchen, with its generous island and premium finishes, flows seamlessly for entertaining and culinary adventures. Retreat to the serene primary suite, a true sanctuary designed for relaxation. Its spa-like en-suite bath offers a luxurious, comforting escape. Imagine starting and ending your days here. Ready to experience this exceptional property? Contact us today to schedule your private showing and uncover your new beginning."
+}
+```

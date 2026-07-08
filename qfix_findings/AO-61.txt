@@ -1,0 +1,6 @@
+REASONS: INPUTS incomplete
+
+ISSUES:
+- inputs[] is incomplete: it lists only brand_logo_lockup.png, but the full_brief and connector_workflow explicitly rely on THREE other supplied source assets that are absent from inputs[] — the raw 1080p podcast master (podcast_raw_master_1080p.mp4, consumed by steps 1-2/5/6/7), the noisy voice scratch track (host_voice_scratch_track.wav, step 3-4), and the lower-third texture plate (lower_third_texture_plate.jpg, steps 12-17). Three of the four inputs the task depends on have no inputs[] entry, no kind, no realism_notes, and no gen spec. An annotator or agent reading inputs[] would be missing most of the source material.
+- Workflow steps that load these missing assets (step 3 voice, step 8 logo, step 12 plate) all have inputs_from: [] and refer to filenames only in their notes; because those files aren't declared in inputs[], the load steps aren't grounded to a defined input.
+- Minor: the reverify note claims the brand was renamed to a 'non-colliding' name but the result 'WANDER MILES' is just the capitalized form of the flagged real 'Wander Miles' travel-media franchise — the collision it purports to fix is not clearly resolved. Reads as plausibly generic, but worth double-checking the mark is IP-clean.

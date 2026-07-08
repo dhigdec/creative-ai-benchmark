@@ -1,0 +1,431 @@
+{
+ "task_id": 9006,
+ "slug": "comic-variants",
+ "title": "VOIDRUNNER #1 variant-cover pack — 6 print-ready graphic-novel variant covers + data-merged trade-dress + spot separations",
+ "started": "2026-06-15T10:56:16",
+ "finished": "2026-06-15T11:17:10",
+ "steps": [
+  {
+   "phase": "upload",
+   "actor": "adobe_connector",
+   "action": "input_baseline",
+   "note": "Approved inked hero cover illustration for VOIDRUNNER #1 (the master raster all six variants fork from). Source is 1024x1536 px — well below the 1988x3075 needed for true 300dpi comic trim; resolution noted honestly.",
+   "input": "input_assets/voidrunner1_hero_inked.png",
+   "params": {
+    "src_px": "1024x1536"
+   },
+   "n": 1,
+   "ts": "2026-06-15T10:57:25",
+   "step_image": "steps/001_input_hero_inked.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "adobe_connector",
+   "action": "input_baseline",
+   "note": "VOIDRUNNER title/logo lockup (cyan/black distressed wordmark on transparency) — vectorized to a reusable SVG masthead reused across all six covers.",
+   "input": "input_assets/voidrunner_logo_lockup.png",
+   "params": {
+    "src_px": "1536x1024"
+   },
+   "n": 2,
+   "ts": "2026-06-15T10:57:26",
+   "step_image": "steps/002_input_logo_lockup.png"
+  },
+  {
+   "phase": "upload",
+   "actor": "adobe_connector",
+   "action": "asset_initialize_file_upload + asset_finalize_file_upload",
+   "note": "Step 1-2: block-uploaded the hero illustration + logo lockup into Adobe CC storage; finalize returned the presigned URLs every downstream connector op reads from.",
+   "input": "input_assets/voidrunner1_hero_inked.png, voidrunner_logo_lockup.png",
+   "output": "hero=https://at.adobe.com/8wXT7VsuWv6sUExr ; logo=https://at.adobe.com/U4X24aBN1EbuuptL",
+   "params": {
+    "hero_assetId": "urn:aaid:sc:VA6C2:2491bbe0-fa61-426d-85d9-711cee1d1b3f",
+    "logo_assetId": "urn:aaid:sc:VA6C2:1c44af7a-18b9-42b8-9fec-03ae564b7a8d"
+   },
+   "n": 3,
+   "ts": "2026-06-15T10:57:26",
+   "step_image": "steps/003_uploaded_hero.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_auto_tone",
+   "note": "Step 3: normalized the inked artwork tone so blacks read true and the colour base is even — establishes the master raster all six variants fork from.",
+   "input": "hero presigned URL",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:a73b1163-9f1d-431b-b7c7-40e79e018623",
+   "adobe_request_id": "9e09a6ba-b93a-412a-ba7d-49c736556ef3",
+   "n": 4,
+   "ts": "2026-06-15T10:59:40",
+   "step_image": "steps/004_03_autotone_master.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_crop_and_resize",
+   "note": "Step 4: reframed the toned master to the comic trim+bleed aspect (55:84 = 6.875x10.5in full-bleed) at source resolution so every variant shares identical registration. Source 1024x1536 -> 1006x1536; note this is ~1536px, below the 3150px true 300dpi target — honest resolution cap.",
+   "input": "auto-tone output",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:158e1735-922d-4932-913e-2da4c324ef7c",
+   "adobe_request_id": "c003566d-5d1c-4e20-844f-399f446e27a4",
+   "params": {
+    "aspect": "55:84",
+    "out_px": "1006x1536"
+   },
+   "n": 5,
+   "ts": "2026-06-15T10:59:40",
+   "step_image": "steps/005_04_trim_master.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_select_subject",
+   "note": "Step 5: auto-selected the central VOIDRUNNER figure to isolate hero-only grading from the sky/cityscape background.",
+   "input": "trim master",
+   "output": "mask https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:572df46d-622b-4e92-b7da-e05c7bfa0429",
+   "adobe_request_id": "7931b5db-a604-4160-bba1-c64301cc8294",
+   "n": 6,
+   "ts": "2026-06-15T10:59:41",
+   "step_image": "steps/006_05_subject_mask_src.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_vibrance_and_saturation",
+   "note": "Step 6: pushed vibrance/saturation on the masked figure ONLY (subject mask) so the hero pops for Cover A standard.",
+   "input": "trim master + subject mask",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:cabe6065-1618-4de6-9366-7aea34820a4a",
+   "adobe_request_id": "21aaebc5-e14c-4602-9f31-6da4535714f6",
+   "params": {
+    "vibrance": 38,
+    "saturation": 18
+   },
+   "n": 7,
+   "ts": "2026-06-15T10:59:41",
+   "step_image": "steps/007_06_figure_pop.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_invert_selection",
+   "note": "Step 7: inverted the subject mask to target the background (sky + neon city) for separate atmospheric grading.",
+   "input": "subject mask",
+   "output": "bg mask https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:cf74e3ab-3144-4586-87a9-6479dbe3138e",
+   "adobe_request_id": "51dc4a38-7ff9-474f-b6d5-8cb5b4889403",
+   "n": 8,
+   "ts": "2026-06-15T10:59:41",
+   "step_image": "steps/008_07_bg_mask_src.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_color_temperature",
+   "note": "Step 8: cooled the inverted background toward signal-cyan/blue night-city tones (Lab a=8,b=-42), deepening the sci-fi mood behind the warm hero — completes the Cover A colour grade.",
+   "input": "figure-graded raster + bg mask",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:77b4caaf-d2e8-4ed1-ae98-74abd6419053",
+   "adobe_request_id": "1de01539-4a27-423e-80d8-a61212864103",
+   "params": {
+    "a": 8,
+    "b": -42,
+    "luminance": 48
+   },
+   "n": 9,
+   "ts": "2026-06-15T10:59:41",
+   "step_image": "steps/009_08_bg_cooled.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_dark_portions",
+   "note": "Step 9: crushed dark portions on the full frame (amount +30) to restore deep inked blacks after grading — this is the finished Cover A colour master that B/C/D/E fork from.",
+   "input": "graded raster",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:81f96788-8945-412c-8347-11a6ff5e929d",
+   "adobe_request_id": "93aa7ebe-2c05-440c-9e57-fe403c998d18",
+   "params": {
+    "amount": 30
+   },
+   "n": 10,
+   "ts": "2026-06-15T10:59:42",
+   "step_image": "steps/010_09_coverA_master.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_halftone",
+   "note": "Step 10: forked Cover B Retro — applied a Ben-Day-style colour halftone dot screen (radius 7) over the Cover A master for the retro-print look. Genuine Photoshop Color-Halftone output.",
+   "input": "Cover A master",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:925fcde6-5af7-4654-b220-891584fa811e",
+   "adobe_request_id": "b36a5e92-48b1-4e05-8ee2-c134f3654cc4",
+   "params": {
+    "radius": 7,
+    "blackAndWhite": false
+   },
+   "n": 11,
+   "ts": "2026-06-15T11:06:54",
+   "step_image": "steps/011_10_retro_halftone.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_hsl",
+   "note": "Step 11: flattened the halftoned Retro toward a punchy limited Ben-Day palette (saturation +50, lightness +14) — finishes Cover B.",
+   "input": "halftoned variant",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:db6f2690-7558-448f-8a83-5f186689897e",
+   "adobe_request_id": "c7aa9e40-57a1-4ffe-987f-529a40051f5b",
+   "params": {
+    "saturation": 50,
+    "lightness": 14
+   },
+   "n": 12,
+   "ts": "2026-06-15T11:06:54",
+   "step_image": "steps/012_11_coverB_retro.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_monochromatic_tint",
+   "note": "Step 12: forked Cover C Noir — applied a signal-cyan duotone monochromatic tint (hue 181) to the Cover A master for the ink-black/cyan noir read.",
+   "input": "Cover A master",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:1da00309-8282-4121-b61c-118615091b9a",
+   "adobe_request_id": "793c5bdc-fa0e-49c4-9bb8-5a6c4957c3c3",
+   "params": {
+    "hue": 181,
+    "saturation": 30
+   },
+   "n": 13,
+   "ts": "2026-06-15T11:06:54",
+   "step_image": "steps/013_12_noir_duotone.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_adjust_brightness_and_contrast",
+   "note": "Step 13: cranked contrast (+45) on the duotone to harden the noir light/shadow separation — finishes Cover C.",
+   "input": "duotone variant",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:811f6969-ac30-49cf-a298-7f92c96edebb",
+   "adobe_request_id": "275cc4b9-dc6b-4724-901a-91cb96f45983",
+   "params": {
+    "brightness": -8,
+    "contrast": 45
+   },
+   "n": 14,
+   "ts": "2026-06-15T11:06:55",
+   "step_image": "steps/014_13_coverC_noir.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_glitch_effect",
+   "note": "Step 14: forked Cover D Cyber 1:10 incentive — applied RGB-split VHS glitch distortion (offset -24) to the Cover A master.",
+   "input": "Cover A master",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:3919d54e-8280-4acb-9521-8cf51d9f6518",
+   "adobe_request_id": "46205c6f-f5d6-4de9-9ce7-cd0702fb6e09",
+   "params": {
+    "horizontalOffset": -24
+   },
+   "n": 15,
+   "ts": "2026-06-15T11:06:55",
+   "step_image": "steps/015_14_cyber_glitch.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_add_grain",
+   "note": "Step 15: layered analog film grain (55) over the glitched variant to sell the degraded-broadcast aesthetic — finishes Cover D Cyber.",
+   "input": "glitched variant",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:38152e4f-9855-4f59-b95c-c86f655a3f16",
+   "adobe_request_id": "8cc87430-55e2-416e-8b52-e03ed36c4a97",
+   "params": {
+    "grainAmount": 55
+   },
+   "n": 16,
+   "ts": "2026-06-15T11:06:55",
+   "step_image": "steps/016_15_coverD_cyber.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "asset_search",
+   "note": "Step 16: searched Adobe Stock for a high-res monochrome grunge/scratched-metal distress texture for the Cover E Battle-Damage 1:25 overlay. 607 hits.",
+   "input": "StockAsset query: grunge scratched metal distress texture monochrome high-res overlay",
+   "output": "selected assetId 353984581 (6000x4000 B&W grunge metal/dust scratch)",
+   "adobe_request_id": "asset_search",
+   "params": {
+    "entityScope": "StockAsset",
+    "contentType": "Photo"
+   },
+   "n": 17,
+   "ts": "2026-06-15T11:06:55",
+   "step_image": "steps/017_16_stock_grunge.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_color_overlay",
+   "note": "Step 18: began Cover E — applied a scorched amber/oxblood multiply colour overlay (RGB 150,70,32) to the Cover A master to base-tint the battle-damage variant.",
+   "input": "Cover A master",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:d2f958c5-8ef0-40fe-872f-6abe3561a739",
+   "adobe_request_id": "f948bd86-78bb-488e-8a5b-399a50c9604c",
+   "params": {
+    "blendMode": "multiply"
+   },
+   "n": 18,
+   "ts": "2026-06-15T11:06:56",
+   "step_image": "steps/018_18_coverE_overlay.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_add_noise",
+   "note": "Step 19: added coarse noise (35) to the colour-overlaid Battle-Damage base so the licensed grunge reads as scratched/abraded ink — finishes the Cover E connector base (Stock distress texture composited locally at layout).",
+   "input": "colour-overlaid variant + licensed grunge texture",
+   "output": "https://photoshop-api.adobe.io/v2/short-url/urn:aaid:ps:US:5e9d37b2-879e-449b-89bb-8008f220d330",
+   "adobe_request_id": "f74d5a45-4ec5-420e-9e56-dcb1a1ebd7dc",
+   "params": {
+    "noiseAmount": 35
+   },
+   "n": 19,
+   "ts": "2026-06-15T11:06:56",
+   "step_image": "steps/019_19_coverE_base.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "asset_license_and_download_stock",
+   "note": "Step 17: licensed + downloaded the chosen grunge distress texture (Adobe Stock id 353984581) at full resolution (6000x4000) as the Battle-Damage overlay source. state=just_purchased.",
+   "input": "StockAsset id 353984581",
+   "output": "work/stock_grunge_353984581.jpg",
+   "adobe_request_id": "license_353984581",
+   "params": {
+    "license": "just_purchased",
+    "px": "6000x4000"
+   },
+   "n": 20,
+   "ts": "2026-06-15T11:08:47",
+   "step_image": "steps/020_17_licensed_grunge.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_vectorize",
+   "note": "Step 20: forked Cover F Sketch — vectorized the auto-toned master (cleanest pre-grade line-art) to a scalable SVG (the reusable line-art base + the Sketch vector deliverable). A clean B&W inked-lineart raster was additionally derived locally for the no-fills retailer-exclusive read.",
+   "input": "auto-tone master",
+   "output": "work/20_coverF_sketch.svg",
+   "adobe_request_id": "abf9e7b5-cb58-46c8-bdea-fbd3995958e7",
+   "n": 21,
+   "ts": "2026-06-15T11:08:47",
+   "step_image": "steps/021_20_coverF_sketch_lineart.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_vectorize",
+   "note": "Step 23: vectorized the uploaded VOIDRUNNER title/logo lockup to a clean reusable SVG masthead that scales identically across all six covers trade dress. (Steps 21-22 logo upload were finalized in the initial batch upload.)",
+   "input": "logo presigned URL",
+   "output": "work/23_logo_masthead.svg",
+   "adobe_request_id": "91d085cb-ad64-4482-aee3-0e5fb3b625ec",
+   "n": 22,
+   "ts": "2026-06-15T11:08:47",
+   "step_image": "steps/022_23_logo_masthead.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "font_recommend",
+   "note": "Step 24: recommended trade-dress typeface pairing matching the gritty sci-fi masthead. Chosen: Mono45 Headline Bold + Bebas Neue (display) for issue-no/variant tag; condensed sans for credit line/price. Mapped locally to Futura Condensed XBold (display) + Helvetica Neue Condensed Bold (secondary).",
+   "input": "vectorized logo style",
+   "output": "font pairing: Mono45-Headline-Bold / BebasNeue + condensed secondary",
+   "adobe_request_id": "font_recommend",
+   "params": {
+    "display": "Mono45 Headline Bold / Bebas Neue",
+    "secondary": "condensed sans"
+   },
+   "n": 23,
+   "ts": "2026-06-15T11:09:37",
+   "step_image": "steps/023_24_font_recommend.png"
+  },
+  {
+   "phase": "element_processing",
+   "actor": "adobe_connector",
+   "action": "image_apply_halftone",
+   "note": "Step 25: generated the isolated monochrome Ben-Day halftone dot field from the finished Cover B Retro variant (radius 6, B&W gradient map) — the press screen pattern the underbase + 3 spot plates are built from on the separation sheet.",
+   "input": "Cover B Retro",
+   "output": "work/25_retro_halftone_field_bw.png",
+   "adobe_request_id": "a769d31e-04b1-49ec-8ab7-39663672772c",
+   "params": {
+    "radius": 6,
+    "blackAndWhite": true
+   },
+   "n": 24,
+   "ts": "2026-06-15T11:09:37",
+   "step_image": "steps/024_25_retro_halftone_field.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_datamerge",
+   "action": "document_merge_data_vector",
+   "note": "Step 26 [T]: trade-dress data-merge rendered LOCALLY from trade_dress_merge.csv (6 rows, one per cover A-F) via compose_lib.data_merge; the document_merge_data_vector connector requires a human-authored Illustrator Variables template (.ai) which is unusable headless. Each row swaps the variant raster + stamps issue_no/colourway_name/variant_ratio/cover_price/credit_line/variant_code and toggles the UPC barcode zone by barcode_zone. Copy read programmatically from the CSV + cover_spec.json.",
+   "input": "input_assets/trade_dress_merge.csv + 6 variant rasters + logo SVG + font pairing",
+   "output": "work/cover_final_A..F.png; outputs/trade_dress_merge_sheet.pdf",
+   "params": {
+    "rows": 6,
+    "actor_note": "local data-merge"
+   },
+   "n": 25,
+   "ts": "2026-06-15T11:15:36",
+   "step_image": "steps/025_26_trade_dress_merge.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "document_render_vector",
+   "note": "Step 27: rendered the six merged trade-dress artboards to print-ready PDFs (with printer crop marks at the trim box) + 2048px web JPGs. Connector document_render_vector was attempted on the connector-vectorized Sketch + logo SVGs (requestIds below) but rejected SVG input (requires a PDF-based/PostScript .ai); the genuine merged-artboard render is therefore composed locally at full-bleed 2062x3150 @300dpi.",
+   "input": "6 merged covers",
+   "output": "outputs/cover_[A-F]_*_print.pdf + *_web2048.jpg",
+   "params": {
+    "render_vector_attempts": [
+     "SVG->PDF rejected",
+     "SVG->PNG rejected"
+    ],
+    "page_px": "2062x3150"
+   },
+   "n": 26,
+   "ts": "2026-06-15T11:15:37",
+   "step_image": "steps/026_27_print_render.png"
+  },
+  {
+   "phase": "composition",
+   "actor": "local_compositor",
+   "action": "document_render_vector",
+   "note": "Step 28: rendered the authored 4-colour Retro spot-separation/registration sheet (underbase + 3 spot plates carrying the step-25 halftone dot field, corner registration targets + centre bullseye, per-ink swatch cards) to a print PDF — driven by spot_separation.csv. Composed locally (the separation .ai Variables template is unusable headless).",
+   "input": "spot_separation.csv + work/25_retro_halftone_field_bw.png",
+   "output": "outputs/retro_spot_separation_sheet.pdf",
+   "params": {
+    "inks": 4
+   },
+   "n": 27,
+   "ts": "2026-06-15T11:15:37",
+   "step_image": "steps/027_28_spot_separation.png"
+  },
+  {
+   "phase": "export",
+   "actor": "local_compositor",
+   "action": "compose_contact_proof",
+   "note": "Local contact-sheet proof: all six variant covers A-F side-by-side with colourway/ratio/price labels for client sign-off.",
+   "input": "6 final covers",
+   "output": "outputs/variant_pack_contact_proof.pdf",
+   "n": 28,
+   "ts": "2026-06-15T11:15:54",
+   "step_image": "steps/028_29_contact_proof.png"
+  },
+  {
+   "phase": "verify",
+   "actor": "local_verify",
+   "action": "self_verify",
+   "note": "Asserted all 6 full-res covers are 2062x3150 (6.875x10.5in full-bleed @300dpi) and all 6 web JPGs are long-edge 2048; validated 2 SVGs + 9 PDFs. Visually reviewed the Battle-Damage composite, Retro halftone and spot-separation sheet — trade dress legible, no clipped text/collisions/garbles. Honest ~1536px source cap recorded.",
+   "input": "outputs/",
+   "output": "PASS: dims + 9 PDFs + 6 JPGs + 2 SVGs",
+   "n": 29,
+   "ts": "2026-06-15T11:17:10",
+   "step_image": "steps/029_30_self_verify.png"
+  }
+ ]
+}

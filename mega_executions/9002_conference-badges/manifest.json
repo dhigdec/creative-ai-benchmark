@@ -1,0 +1,677 @@
+{
+  "schema_version": 1,
+  "task_id": 9002,
+  "slug": "conference-badges",
+  "title": "Conference attendee badge + certificate suite — 510 personalized A6 badges and matching completion certificates, data-merged from one roster CSV and exported as print-ready CMYK PDFs",
+  "task_type": "data-merge-badge-certificate-suite",
+  "category": "Print & Data Merge",
+  "family": "Layout & Print Production",
+  "feasibility": "template",
+  "source": "freelancer",
+  "source_url": "https://www.freelancer.com/projects/adobe-photoshop/event-badge-name-photo-placement.html",
+  "mcp_workflow": "asset_initialize_file_upload -> asset_finalize_file_upload -> asset_preview_file -> image_auto_straighten -> image_crop_and_resize -> image_apply_auto_tone -> image_adjust_exposure -> image_adjust_highlights -> image_adjust_brightness_and_contrast -> image_adjust_color_temperature -> image_adjust_hsl -> image_select_subject -> image_invert_selection -> image_fill_area -> image_list_presets -> image_apply_preset -> image_vectorize -> font_recommend -> document_convert_pdf -> document_merge_data_layout (badges) -> document_merge_data_layout (certificates) -> document_render_layout -> document_render_layout -> asset_inline_preview -> document_render_layout -> asset_copy_assets",
+  "original_brief": "Northwind Forum needs 510 personalized A6 name badges and 510 matching A4 completion certificates for the Northwind Applied Intelligence Summit 2026, all driven from ONE attendee roster CSV. A folder of mixed-quality attendee headshots must be retouched to a uniform look (auto-straighten, face-crop, tone-match, subject-isolate, one shared teal-navy brand backdrop, one Lightroom preset), then fed as additionalImageFiles into two desktop-authored InDesign Data Merge templates and exported as print-ready CMYK 300dpi PDFs, with QA proofs and a certificate-number-to-row delivery manifest.",
+  "generated_at": "2026-06-15T09:49:53Z",
+  "pipeline_version": "0.1.0",
+  "client_persona": {
+    "brand_name": "Northwind Forum",
+    "tagline": "Navigating the Future of Applied AI.",
+    "industry": "Applied Artificial Intelligence Conference & Community",
+    "palette": [
+      {
+        "name": "Northwind Teal",
+        "hex": "#143C5A",
+        "role": "primary"
+      },
+      {
+        "name": "Card White",
+        "hex": "#FFFFFF",
+        "role": "secondary"
+      },
+      {
+        "name": "Summit Amber",
+        "hex": "#E0A43B",
+        "role": "accent"
+      }
+    ],
+    "fonts": {
+      "heading": "Libre Franklin",
+      "body": "Inter"
+    },
+    "voice": "The tone is clear, credible, and professional, reflecting a serious commitment to AI discourse. It also conveys warmth and welcome, fostering a collaborative and engaging environment for attendees.",
+    "persona_file": "persona.json"
+  },
+  "assets": [
+    {
+      "key": "attendee_roster",
+      "input_requirement": "Attendee roster CSV — the single source of truth driving BOTH merges: columns first_name, last_name, organization, role, certificate_number, track, completion_date, and photo (filename matching the additionalImageFiles map key)",
+      "kind": "data",
+      "file": "assets/roster.json",
+      "format": "json",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "You are the registration operations lead for the Northwind Applied Intelligence Summit 2026, a three-day applied-AI industry conference hosted by the Northwind Forum. Produce the FINAL attendee roster that will drive BOTH a name-badge data merge and a completion-certificate data merge in InDesign. Return ONE JSON object with EXACTLY one top-level key \"rows\": a list of EXACTLY 510 attendee objects. Each object MUST have EXACTLY these eight keys, spelled and ordered exactly like this (they are the InDesign data-merge field names — do not rename, add or drop any): \"first_name\", \"last_name\", \"organization\", \"role\", \"certificate_number\", \"track\", \"completion_date\", \"photo\".\n\nContent rules:\n- first_name / last_name: realistic, richly diverse adult names spanning many cultural backgrounds (do NOT cluster one ethnicity; no celebrities; no placeholders like John Doe; include a few hyphenated surnames and one or two suffixes like Jr.). Across the 510 rows aim for distinct people.\n- organization: a believable employer — invented companies, universities, startups, agencies and non-profits (e.g. \"Tessellate Labs\", \"Cedarbrook University\", \"Meridian Health Systems\"); NO real-world company names.\n- role: a realistic job title (e.g. \"Data Scientist\", \"VP Engineering\", \"ML Researcher\", \"Product Manager\", \"Founder & CEO\", \"Solutions Architect\", \"PhD Candidate\").\n- certificate_number: a unique sequential ID of the EXACT form \"NAIS26-0001\" .. \"NAIS26-0510\" (zero-padded to 4 digits, ascending, one per row, no gaps, no duplicates).\n- track: one of EXACTLY these five conference tracks — \"Foundations\", \"Applied ML\", \"Responsible AI\", \"AI in Production\", \"Leadership\" — distributed across the roster.\n- completion_date: one of the three summit days, formatted EXACTLY as \"14 March 2026\", \"15 March 2026\" or \"16 March 2026\".\n- photo: the headshot FILENAME this attendee maps to in the InDesign additionalImageFiles map, of the EXACT form \"attendee_0001.jpg\" .. \"attendee_0510.jpg\" (zero-padded to 4 digits, matching the certificate_number index — row N's photo is \"attendee_<NNNN>.jpg\").\n\nJSON only — no markdown, no commentary. The list MUST contain all 510 rows.",
+        "prompt_file": "prompts/attendee_roster.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "217cc4d3f9dd5f4ba3c34703d2800b7c7db39cf1cbb926634eb133efb49073d7"
+    },
+    {
+      "key": "attendee_roster.render",
+      "input_requirement": "Attendee roster CSV — the single source of truth driving BOTH merges: columns first_name, last_name, organization, role, certificate_number, track, completion_date, and photo (filename matching the additionalImageFiles map key)",
+      "kind": "data",
+      "file": "assets/roster.csv",
+      "format": "md",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "You are the registration operations lead for the Northwind Applied Intelligence Summit 2026, a three-day applied-AI industry conference hosted by the Northwind Forum. Produce the FINAL attendee roster that will drive BOTH a name-badge data merge and a completion-certificate data merge in InDesign. Return ONE JSON object with EXACTLY one top-level key \"rows\": a list of EXACTLY 510 attendee objects. Each object MUST have EXACTLY these eight keys, spelled and ordered exactly like this (they are the InDesign data-merge field names — do not rename, add or drop any): \"first_name\", \"last_name\", \"organization\", \"role\", \"certificate_number\", \"track\", \"completion_date\", \"photo\".\n\nContent rules:\n- first_name / last_name: realistic, richly diverse adult names spanning many cultural backgrounds (do NOT cluster one ethnicity; no celebrities; no placeholders like John Doe; include a few hyphenated surnames and one or two suffixes like Jr.). Across the 510 rows aim for distinct people.\n- organization: a believable employer — invented companies, universities, startups, agencies and non-profits (e.g. \"Tessellate Labs\", \"Cedarbrook University\", \"Meridian Health Systems\"); NO real-world company names.\n- role: a realistic job title (e.g. \"Data Scientist\", \"VP Engineering\", \"ML Researcher\", \"Product Manager\", \"Founder & CEO\", \"Solutions Architect\", \"PhD Candidate\").\n- certificate_number: a unique sequential ID of the EXACT form \"NAIS26-0001\" .. \"NAIS26-0510\" (zero-padded to 4 digits, ascending, one per row, no gaps, no duplicates).\n- track: one of EXACTLY these five conference tracks — \"Foundations\", \"Applied ML\", \"Responsible AI\", \"AI in Production\", \"Leadership\" — distributed across the roster.\n- completion_date: one of the three summit days, formatted EXACTLY as \"14 March 2026\", \"15 March 2026\" or \"16 March 2026\".\n- photo: the headshot FILENAME this attendee maps to in the InDesign additionalImageFiles map, of the EXACT form \"attendee_0001.jpg\" .. \"attendee_0510.jpg\" (zero-padded to 4 digits, matching the certificate_number index — row N's photo is \"attendee_<NNNN>.jpg\").\n\nJSON only — no markdown, no commentary. The list MUST contain all 510 rows.",
+        "prompt_file": "prompts/attendee_roster.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "302155b0be74a61626f7bc9a60aad83ce376a5d0809d15d379ca26dd3bcccee2"
+    },
+    {
+      "key": "brand_backdrop",
+      "input_requirement": "Brand backdrop colour swatch / hex behind every subject (drives the image_fill_area RGB)",
+      "kind": "data",
+      "file": "assets/brand_backdrop.json",
+      "format": "json",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "Produce the brand backdrop colour specification that drives the solid badge-backdrop fill behind every isolated attendee headshot (the image_fill_area custom-RGB step). Return ONE JSON object with EXACTLY these top-level keys:\n\"backdrop\": an object with \"name\" (\"Northwind Deep Teal-Navy\"), \"hex\" (EXACTLY \"#143C5A\"), \"rgb\" (a 3-element list of integers, the exact RGB of that hex: [20, 60, 90]), and \"usage\" (one short line: solid fill behind every subject so all 510 badges share one identical backdrop);\n\"accent\": an object with \"name\" (\"Northwind Amber\"), \"hex\" (EXACTLY \"#E0A43B\"), \"rgb\" (its exact RGB integer list [224, 164, 59]), and \"usage\" (one line: the role pill + brand band highlight);\n\"swatches\": a list of EXACTLY these two objects, in order — {\"name\": \"Northwind Deep Teal-Navy\", \"hex\": \"#143C5A\", \"role\": \"backdrop\"}, {\"name\": \"Northwind Amber\", \"hex\": \"#E0A43B\", \"role\": \"accent\"}.\nJSON only — no markdown, no commentary.",
+        "prompt_file": "prompts/brand_backdrop.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "fb98c4261aa2bccdfe524005001ddd50a9b9187a1d2448b06228a47783f9bc03"
+    },
+    {
+      "key": "brand_backdrop.render",
+      "input_requirement": "Brand backdrop colour swatch / hex behind every subject (drives the image_fill_area RGB)",
+      "kind": "data",
+      "file": "assets/brand_backdrop.md",
+      "format": "md",
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-2.5-flash",
+        "prompt": "Produce the brand backdrop colour specification that drives the solid badge-backdrop fill behind every isolated attendee headshot (the image_fill_area custom-RGB step). Return ONE JSON object with EXACTLY these top-level keys:\n\"backdrop\": an object with \"name\" (\"Northwind Deep Teal-Navy\"), \"hex\" (EXACTLY \"#143C5A\"), \"rgb\" (a 3-element list of integers, the exact RGB of that hex: [20, 60, 90]), and \"usage\" (one short line: solid fill behind every subject so all 510 badges share one identical backdrop);\n\"accent\": an object with \"name\" (\"Northwind Amber\"), \"hex\" (EXACTLY \"#E0A43B\"), \"rgb\" (its exact RGB integer list [224, 164, 59]), and \"usage\" (one line: the role pill + brand band highlight);\n\"swatches\": a list of EXACTLY these two objects, in order — {\"name\": \"Northwind Deep Teal-Navy\", \"hex\": \"#143C5A\", \"role\": \"backdrop\"}, {\"name\": \"Northwind Amber\", \"hex\": \"#E0A43B\", \"role\": \"accent\"}.\nJSON only — no markdown, no commentary.",
+        "prompt_file": "prompts/brand_backdrop.txt"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "0c574fcbd9db4262eaa88884c32ad6fe2504a4313d6ab24938b7663cfd653e0b"
+    },
+    {
+      "key": "attendee_headshots[0]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_01.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a woman in her late 20s with shoulder-length dark curly hair and warm brown skin — wearing an open-collar olive linen shirt over a conference lanyard, shot at a busy real-world industry conference. Realistic on-site capture: harsh overhead fluorescent expo-hall light from above-left, cool greenish cast, a hard hotspot blowing out on her forehead and one cheek. Framing: a hurried phone snapshot held slightly low so the camera looks up at her, head tilted about 6 degrees clockwise, off-centre to the left with empty wall above. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "51a7321a15acc8bb796c4a096f8fb680729b747ec586033d488c280edebdafa9"
+    },
+    {
+      "key": "attendee_headshots[1]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_02.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a man in his 50s with a salt-and-pepper beard, thinning hair and light tan skin — wearing a wrinkled navy blazer over a grey crew-neck, shot at a busy real-world industry conference. Realistic on-site capture: warm tungsten lobby lighting, very orange white balance, soft and slightly underexposed. Framing: a candid grab shot, the horizon tilted about 5 degrees anticlockwise, a blurred registration banner falling out of focus behind him on the right. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_1.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "2fd7b79d64fa53588a48f854ecdbf2609aabc563b32b3d2959c31a6e921718e5"
+    },
+    {
+      "key": "attendee_headshots[2]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_03.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a young man in his early 20s with short black hair, glasses and deep brown skin — wearing a charcoal hoodie under an unzipped windbreaker, shot at a busy real-world industry conference. Realistic on-site capture: flat overcast daylight spilling from a big window on the right, cool blue shadows on the left side of his face, slightly washed-out contrast. Framing: an off-the-cuff selfie-distance shot, framed too tight at the top so a little of the crown is cut, tilted 4 degrees clockwise. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_2.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "b7cf31c5d024d78e77f207fb1d891601b15451e6adaddaf355347fc99fb57c49"
+    },
+    {
+      "key": "attendee_headshots[3]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_04.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a woman in her 40s with straight black hair in a low bun and East-Asian features — wearing a structured burgundy blouse with a delegate badge clipped at the collar, shot at a busy real-world industry conference. Realistic on-site capture: mixed light — warm tungsten key from the front and a cold fluorescent spill from behind giving an uneven split white balance across her face. Framing: a phone photo taken at a slight downward angle, head a touch low in frame with lots of ceiling above, tilted about 3 degrees anticlockwise. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_3.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "fc62bd9841ea33419990311f69f3ea54537ccbec7707b2201fbdb4d091ca4de8"
+    },
+    {
+      "key": "attendee_headshots[4]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_05.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a man in his 30s with a shaved head, full dark beard and rich dark-brown skin — wearing a heather-grey polo shirt, shot at a busy real-world industry conference. Realistic on-site capture: single harsh stage spotlight from high right, deep shadow swallowing the left half of his face, a bright specular hotspot on his forehead. Framing: a quick candid from below eye level looking up, tilted 7 degrees clockwise, his shoulder clipped on the left edge. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_4.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 7,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": [
+          "While generally good, the skin texture, particularly on the forehead and cheeks, lacks the distinct visibility of pores and fine lines expected from a truly 'unretouched' phone photo. It exhibits a subtle, almost imperceptible smoothness or 'AI sheen' that makes it appear slightly enhanced rather than completely raw and natural.",
+          "The highlights on the skin, especially on the forehead, contribute to this slightly waxy or overly smooth appearance, detracting from the 'visible pores' requirement."
+        ]
+      },
+      "sha256": "47b351161b5d248aae4247652aa64c2494e3204a1fd0e20b3fda3ae20117c5ac"
+    },
+    {
+      "key": "attendee_headshots[5]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_06.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a woman in her early 30s with long wavy auburn hair, freckles and fair skin — wearing a forest-green knit cardigan over a white tee, shot at a busy real-world industry conference. Realistic on-site capture: soft window daylight from the left but heavily underexposed and slightly blue, a dim muddy background. Framing: a relaxed candid, head tilted about 5 degrees anticlockwise, positioned off-centre to the right with a cluttered coffee-station counter blurred behind. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_5.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "a3790fb812e6716fc4052a7a4c766f786e95c4a74905812ef8c66f9733f68222"
+    },
+    {
+      "key": "attendee_headshots[6]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_07.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — an older man in his 60s with grey combed-back hair, reading glasses and fair weathered skin — wearing a tweed sport coat over a checked shirt, no tie, shot at a busy real-world industry conference. Realistic on-site capture: warm late-afternoon sun raking in low from one side, long hard shadow across half his face, the lit side slightly blown. Framing: a phone grab shot held at arm's length, the verticals leaning about 4 degrees, his head near the top edge with a doorway visible behind. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_6.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "51895a6cbe8b92678786975845d256e565192c9408acdd6041008298449b961b"
+    },
+    {
+      "key": "attendee_headshots[7]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_08.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a woman in her 20s with tightly coiled natural black hair and dark skin — wearing a mustard-yellow blouse with small hoop earrings, shot at a busy real-world industry conference. Realistic on-site capture: cool LED panel lighting overhead giving a faint magenta-cyan colour cast and a slightly clinical flat look. Framing: a candid mid-conversation snap, head turned three-quarters and tilted 6 degrees clockwise, framed loose with a glass partition reflecting behind her. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_7.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "e843878a062ea5cd3aaee741b97db00ce742ab01d9e6cc818af3daab767dc8de"
+    },
+    {
+      "key": "attendee_headshots[8]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_09.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a man in his 40s with short brown hair, stubble, glasses and olive Mediterranean skin — wearing a light-blue dress shirt with the top button open and sleeves rolled, shot at a busy real-world industry conference. Realistic on-site capture: harsh direct on-camera-flash look, flat frontal blow-out on the nose and forehead, a hard dark drop-shadow on the wall behind. Framing: a hurried flash snapshot, tilted about 3 degrees anticlockwise, framed slightly high so there is too much headroom. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_8.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "205bd508eca54d5bc0632cbde5e91913cd191f35bedb2e65ecf5122c38e185e9"
+    },
+    {
+      "key": "attendee_headshots[9]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_10.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a woman in her 50s with a short silver pixie cut and pale skin — wearing a teal scarf over a black top, shot at a busy real-world industry conference. Realistic on-site capture: warm uneven uplighting from a registration desk lamp casting an unflattering glow from below, the background dropping into shadow. Framing: a quick desk-side candid, the camera slightly tilted 5 degrees clockwise, her head off-centre left with a monitor edge intruding on the right. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_9.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "42a578733d922144c0903ceb583edbb1ddb71d818abed6d6fac06098bd893843"
+    },
+    {
+      "key": "attendee_headshots[10]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_11.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a young woman in her early 20s with long straight black hair and South-Asian features — wearing a coral kurti-style top with a delegate lanyard, shot at a busy real-world industry conference. Realistic on-site capture: backlit by a bright window so her face is in soft shadow and slightly underexposed while the background is blown to near-white. Framing: a phone snapshot framed a little too wide with empty space all around, tilted about 4 degrees anticlockwise. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_10.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "b066183472df7a4c36014cda4acfb0be2ca50800beaa1499b4150462907a51e6"
+    },
+    {
+      "key": "attendee_headshots[11]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_12.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a man in his 30s with curly ginger hair, a short beard and freckled fair skin — wearing a maroon zip-up sweater, shot at a busy real-world industry conference. Realistic on-site capture: greenish convention-centre fluorescent light, low contrast and a slight colour cast, mildly noisy in the shadows. Framing: a candid grab as he glances toward the lens, head tilted 6 degrees clockwise, a directional-signage board blurred behind his shoulder. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_11.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "2aa5d7532caf375a918884ba66a86a90c73e2805d4aee4697f6c32b79000acb3"
+    },
+    {
+      "key": "attendee_headshots[12]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_13.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a woman in her 40s with shoulder-length brown hair and warm medium-brown skin — wearing a cream blazer over a patterned blouse, shot at a busy real-world industry conference. Realistic on-site capture: warm spotlight from the right and cool ambient fill from the left producing a clear split white balance and a bright hotspot on the right cheek. Framing: a phone photo with the horizon tilted about 5 degrees clockwise, her head a little low with banner text out of focus above. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_12.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "6b711baad6b995c2ab0836fa5336262be24d48f5c70f5f704f6934e7e8a6af4d"
+    },
+    {
+      "key": "attendee_headshots[13]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_14.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a man in his 20s with a topknot, undercut, small nose ring and tan skin — wearing a black bomber jacket over a graphic-free tee, shot at a busy real-world industry conference. Realistic on-site capture: moody dim breakout-room lighting, generally underexposed with a single warm practical lamp glowing behind him. Framing: a low-light candid, slightly soft, tilted 4 degrees anticlockwise, framed off-centre to the right. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_13.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 9,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": [
+          "While the skin texture is realistic and not airbrushed, it doesn't exhibit highly pronounced individual pores or fine lines, though this is a minor point for a candid phone snapshot."
+        ]
+      },
+      "sha256": "7aecad493f378107f6d7e4288eb2c89d1dbc1e16dc63e3081b639840c594b86c"
+    },
+    {
+      "key": "attendee_headshots[14]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_15.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a woman in her 60s with short curly grey hair, glasses and deep brown skin — wearing a plum cowl-neck sweater, shot at a busy real-world industry conference. Realistic on-site capture: flat bright daylight through frosted glass, cool and even but slightly overexposed, washing out some detail on her forehead. Framing: a friendly candid, head tilted about 3 degrees clockwise, a touch too much headroom and a corridor receding behind her. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.",
+        "prompt_file": "prompts/attendee_headshots_14.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 1,
+        "issues": []
+      },
+      "sha256": "9f99e260e2f8e7fce8fad0d734d24a6213a540af362c54a91f1dc7c9351e29fc"
+    },
+    {
+      "key": "attendee_headshots[15]",
+      "input_requirement": "Raw attendee headshots — mixed framing, lighting, white-balance and tilt — a representative sampled batch of the full 510-photo folder; one feeds each badge",
+      "kind": "image",
+      "file": "assets/attendee_16.jpg",
+      "format": "jpg",
+      "dims": [
+        1024,
+        1536
+      ],
+      "generator": {
+        "provider": "openai",
+        "model": "gpt-image-2",
+        "quality": "high",
+        "size": "1024x1536",
+        "prompt": "Candid documentary phone photograph of ONE conference attendee — a man in his 50s with a bald head, trimmed grey moustache and fair ruddy skin — wearing a deep-green quarter-zip pullover, shot at a busy real-world industry conference. Realistic on-site capture: harsh side window light from the left blowing out the left temple while the right side falls into cool shadow, strong contrast. Framing: an arm's-length phone grab, verticals leaning about 6 degrees, his head off-centre left with a potted plant blurred on the right. This is an UNRETOUCHED raw attendee snapshot, NOT a studio portrait — keep it honest and imperfect: natural skin texture with clearly visible pores and fine lines, no beauty retouching, no airbrushing; individual hair strands with real flyaways and stray wisps — hair must NOT look painted, helmet-like or plastic; anatomically correct hands if any hand shows; genuine candid expression, not a posed stock smile. Believable lived-in detail: slight skin shine, a crease in the collar, the lanyard sitting a little crooked. Shot on a smartphone at f/2.0, shallow but imperfect depth of field, a little sensor noise in the shadows. NOT CGI-glossy, NOT over-saturated, NOT a clean staged headshot — it must read as a real candid grabbed in passing so a retoucher has genuine work to do (straighten, face-crop, tone-match, isolate the subject, drop on a clean backdrop). Plain or cluttered real venue background behind the subject (it will be masked out later). ABSOLUTELY NO text, letters, numbers, watermarks, logos or symbols anywhere in the image. No real-world brands, trademarks, celebrity or athlete likenesses, or recognizable team logos.\n\nA previous attempt FAILED review. Avoid these exact issues:\n- Visible text on the zipper pull of the jacket, which violates the 'No text or watermarks anywhere' criterion.",
+        "prompt_file": "prompts/attendee_headshots_15.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 10,
+        "judge": "gemini/gemini-2.5-flash",
+        "attempts": 2,
+        "issues": []
+      },
+      "sha256": "73bb6616608a4a444ee06a2503fbb36abc4a80b6738fda60e9dd0a4c9757242c"
+    },
+    {
+      "key": "event_logo",
+      "input_requirement": "Event logo (raster) to vectorize for crisp placement on badge + certificate",
+      "kind": "image",
+      "file": "assets/event_logo.png",
+      "format": "png",
+      "dims": [
+        1024,
+        1024
+      ],
+      "generator": {
+        "provider": "gemini",
+        "model": "gemini-3-pro-image",
+        "quality": null,
+        "size": "1024x1024",
+        "prompt": "Flat vector event logo for a professional applied-AI industry conference, reading EXACTLY \"NORTHWIND SUMMIT\" on one line with a smaller line beneath reading EXACTLY \"Applied Intelligence 2026\". Pair the wordmark with one clean geometric emblem — a stylised compass-rose / north-star mark suggesting \"Northwind\" — sitting to the left of or above the wordmark. Colours: deep summit teal-navy #143C5A for the wordmark and emblem, with a single warm amber #E0A43B accent detail. PLAIN FLAT WHITE background, crisp solid shapes, NO gradients, NO drop shadows, NO photographic texture — it must vectorize cleanly to SVG and stay razor-sharp scaled from a tiny A6 badge corner up to a large A4 certificate header. Perfect spelling, balanced kerning, generous clear space, no tagline beyond the two quoted lines, no other text. Modern, trustworthy, conference-grade.",
+        "prompt_file": "prompts/event_logo_0.txt"
+      },
+      "post_process": [],
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "vision_score": 9,
+        "judge": "openai/gpt-4.1-mini",
+        "attempts": 1,
+        "issues": [
+          "The compass rose emblem includes a circle at the bottom which is not specified in the criteria.",
+          "The compass rose uses a navy-teal color but the amber accent is a gradient rather than a flat solid shape."
+        ]
+      },
+      "sha256": "8c670ef4e305a240180f0fabdb8e2c666ea0352bae76269bd4367f34bcc3b359"
+    },
+    {
+      "key": "badge_master_pdf",
+      "input_requirement": "Client-supplied flattened badge PDF master (the print-shop's existing badge artwork) — converted to editable .indd for layout recovery/reference",
+      "kind": "program",
+      "file": "assets/badge_master.pdf",
+      "format": "pdf",
+      "generator": {
+        "provider": "deterministic",
+        "model": "reportlab — genuine A6 vector badge PDF master",
+        "prompt": "{\"lib\": \"reportlab\", \"format\": \"pdf\", \"vector\": true, \"trim_mm\": \"105x148\", \"bleed_mm\": 3, \"intent\": \"CMYK-300dpi-print-master\", \"note\": \"flattened literal-text master for document_convert_pdf layout recovery; binding template is the authored badge.indd decision\"}"
+      },
+      "qc": {
+        "status": "pass",
+        "technical": "pass",
+        "attempts": 1
+      },
+      "sha256": "236938f0ea87d69c0d57389e1e988ac3242a9112d6a58adf1132267eb887badc"
+    }
+  ],
+  "decisions": [
+    {
+      "requirement": "Desktop-authored badge.indd template (A6, front+back) with GENUINE InDesign data-merge <<field>> placeholders + a data-merge image frame — client-supplied authored input for the [T] merge",
+      "assumed_value": "USER-AUTHORED in desktop InDesign (Data Merge panel), bound to roster.csv. A6 portrait, 105x148mm + 3mm bleed, CMYK. Layout top->bottom: (1) teal-navy #143C5A brand band header with the placed VECTOR event logo; (2) a DATA-MERGE IMAGE FRAME ~45x60mm centred whose merge field is the CSV 'photo' column (InDesign pulls each row's retouched headshot via additionalImageFiles, map key = the 'photo' value); (3) <<first_name>> <<last_name>> in the recommended display face ~28pt; (4) <<organization>> ~14pt; (5) <<role>> in an amber #E0A43B pill ~12pt; (6) footer with the static event name + <<certificate_number>> as a small ref. Back side: static sponsor strip + QR static art. ALL five text fields and the image field MUST be GENUINE <<field>> Data Merge placeholders inserted via Insert Field — not literal typed text — or nothing binds.",
+      "why": "We do not generate .indd; the user authors it once in desktop InDesign. It is the binding template for document_merge_data_layout (badges)."
+    },
+    {
+      "requirement": "Desktop-authored certificate.indd template (A4 landscape) with GENUINE <<field>> placeholders — client-supplied authored input for the [T] merge",
+      "assumed_value": "USER-AUTHORED in desktop InDesign (Data Merge panel), bound to the SAME roster.csv. A4 landscape, 297x210mm + 3mm bleed, CMYK. Layout: centred placed VECTOR event logo at top; static 'Certificate of Completion'; <<first_name>> <<last_name>> in the recommended display face ~40pt as the awardee line; static 'has successfully completed'; <<track>> as the program/track line ~20pt; a signature row with static signatory blocks; footer with 'Certificate No. <<certificate_number>>' and 'Issued <<completion_date>>'. Every <<field>> MUST be a GENUINE Data Merge field inserted via the panel (not typed angle-bracket text) so document_merge_data_layout binds one output per CSV row.",
+      "why": "Templates are authored, not generated; this is the binding template for the certificate merge — driven from the same roster as the single source of truth."
+    },
+    {
+      "requirement": "Output: 510 print-ready A6 (105x148mm, CMYK, 300dpi) name badges + 510 A4 landscape completion certificates, both merged from the roster CSV and exported as print PDFs (with per-attendee re-print PDFs)",
+      "assumed_value": "OUTPUT spec for the Adobe agent: document_merge_data_layout x2 (badge.indd and certificate.indd, each driven by roster.csv) -> application/pdf at 300 DPI; 510 A6 badges (105x148mm + 3mm bleed) and 510 A4-landscape certificates (297x210mm + 3mm bleed), CMYK; createSeparateFiles for per-attendee re-print PDFs; QA proofs via document_render_layout (JPEG + CMYK PDF) before the full 510-run; final delivery manifest mapping certificate_number -> roster row -> output filename.",
+      "why": "Describes the deliverable the connector workflow produces from these inputs (sizes/format/CMYK), not a collectible client input."
+    },
+    {
+      "requirement": "Recommended badge/certificate typography pairing (display + body) that reads cleanly at A6 and A4 — informs the authored templates' fonts",
+      "assumed_value": "Resolved live by the connector via font_recommend (display + body pairing with PostScript names), then set in both authored templates. Assumed direction: a confident humanist sans display for names/headlines + a highly legible neutral sans for body, both readable down to A6 badge size and up to A4 certificate size; final pairing is the font_recommend output, not a pre-supplied input.",
+      "why": "Typography is a connector recommendation (font_recommend) that feeds the authored templates, not a generated client asset."
+    }
+  ],
+  "coverage": {
+    "inputs_total": 9,
+    "covered_by_assets": 5,
+    "covered_by_decisions": 4,
+    "uncovered": []
+  },
+  "stats": {
+    "images_generated": 18,
+    "regenerations": 1,
+    "est_cost_usd": 4.94,
+    "text_calls": 21,
+    "wall_time_s": 3235
+  },
+  "ready_for_agent": true
+}

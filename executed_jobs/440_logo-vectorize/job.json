@@ -1,0 +1,65 @@
+{
+  "id": 440,
+  "slug": "440_logo-vectorize",
+  "title": "Logo Refinement for Print",
+  "source": "freelancer",
+  "source_url": "https://www.freelancer.com/projects/adobe-illustrator/Logo-Refinement-for-Print",
+  "category": "Vectorize (Raster \u2192 Vector)",
+  "family": "Vector & Illustrator",
+  "feasibility": "full",
+  "task_type": "Raster logo \u2192 print-ready vector",
+  "description": "Enhance an existing logo created on ChatGPT. Love the design but need it made professional. Improve resolution for printing, make edges sharper, enhance colour accuracy. Ideal skills: vector software (AI, EPS), eye for colour, logo refinement.",
+  "mcp_workflow": "asset_add_file (existing AI-generated raster logo) -> image_vectorize (clean sharp vector edges) -> document_render_vector (AI/EPS + high-res PNG for print)",
+  "exec_workflow": "asset_initialize_file_upload \u2192 (PUT bytes) \u2192 asset_finalize_file_upload \u2192 image_vectorize \u2192 document/download (SVG)",
+  "tool": "image_vectorize",
+  "tool_label": "Illustrator \u00b7 Vectorize",
+  "persona": {
+    "brand_name": "Emberleaf Teas",
+    "tagline": "Crafted warmth in every cup.",
+    "industry": "Artisanal loose-leaf tea blending and sales",
+    "palette": [
+      {
+        "name": "Ember Green",
+        "hex": "#4A5F4B",
+        "role": "primary"
+      },
+      {
+        "name": "Terracotta Blush",
+        "hex": "#C77C5F",
+        "role": "secondary"
+      },
+      {
+        "name": "Cream Brew",
+        "hex": "#F5EFE6",
+        "role": "accent"
+      }
+    ],
+    "fonts": {
+      "heading": "Lora",
+      "body": "Work Sans"
+    },
+    "voice": "Our brand voice is comforting and knowledgeable, like a friendly guide sharing a cherished recipe. We aim to evoke a sense of quiet ritual and natural goodness.",
+    "persona_file": "persona.json"
+  },
+  "pairs": [
+    {
+      "in": "logo_chatgpt_raster.png",
+      "out": "logo_vectorized.svg",
+      "akey": "logo_raster",
+      "transform": "Raster logo \u2192 scalable SVG vector",
+      "api": [
+        {
+          "tool": "asset_initialize_file_upload",
+          "note": "block upload init"
+        },
+        {
+          "tool": "image_vectorize",
+          "requestId": "44cdb1b3-1abe-4db8-bbb4-cac5a2bdccb4",
+          "note": "Adobe Illustrator vectorize API"
+        }
+      ],
+      "intended_prompt": "Flat graphic logo for \"Emberleaf Teas\" \u2014 Artisanal loose-leaf tea blending and sales. The logo should feature a simplified, flat emblem of a stylized tea leaf or a small tea plant, paired with 'Emberleaf Teas' as a clear, elegant wordmark. It should use 3-4 flat colors from the palette, avoiding gradients for clean vectorization.\nWordmark text reading EXACTLY \"Emberleaf Teas\" beneath a simple flat emblem.\nColors strictly limited to: #4A5F4B, #C77C5F, #F5EFE6. Plain white background, centered composition,\n3-5 flat solid colors, crisp shapes, no gradients, no shadows, no photo elements, no extra\ntext besides the brand name. Style: the slightly-soft look of an AI chatbot-generated logo.",
+      "input_requirement": "The ChatGPT-generated raster logo file"
+    }
+  ]
+}

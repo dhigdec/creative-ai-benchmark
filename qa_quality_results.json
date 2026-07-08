@@ -1,0 +1,1593 @@
+{
+ "summary": {
+  "reviewed": 100,
+  "overall": {
+   "minor": 52,
+   "major": 6,
+   "pass": 42
+  },
+  "realistic": {
+   "realistic_professional": 100
+  },
+  "brief": {
+   "strong": 100
+  },
+  "not_realistic": [],
+  "weak_brief": [],
+  "io_issues": [
+   "AO-39"
+  ],
+  "incoherent": [
+   "AO-02",
+   "AO-87"
+  ],
+  "red_flags": [
+   {
+    "id": "AO-10",
+    "flag": "Stale grounding_note sentence still states image_generative_expand (banned outpaint/expand) is \"used only for honest outpaint of the canvas\" — contradicts the reverify claim it was scrubbed and the gen-free workflow; the banned tool does NOT appear in connector_workflow/tools_used, so execution is clean, but the narrative names a banned capability as in-use."
+   },
+   {
+    "id": "AO-13",
+    "flag": "Stale leftover: difficulty_rationale still calls the reframe-crop \"the only sanctioned generative step (generative_expand reframe-crop)\", but the actual workflow (n=13/14/15) uses image_crop_and_resize with no pixel invention — a doc-only contradiction, not an actual banned capability in the workflow."
+   },
+   {
+    "id": "AO-39",
+    "flag": "Step 11 image_fill_area is described as widening the hero onto a \"wider solid studio-white canvas\" with \"extra horizontal margins solid-filled\" for a 2:1 banner — but image_fill_area only solid-fills a region WITHIN existing pixels and cannot extend/add canvas; adding new horizontal margin area is generative-expand (banned). The reverify note's claim that \"no canvas is invented, padded, or extended\" directly contradicts the output spec and chaining_note that say margins are added/canvas is widened."
+   },
+   {
+    "id": "AO-55",
+    "flag": "difficulty_rationale (line 340) still names image_generative_expand as a used generative capability, contradicting the actual workflow (step 10 = image_fill_area, solid fill, no generation); the reverify note itself admits this stale banned-capability reference was left unfixed"
+   },
+   {
+    "id": "AO-68",
+    "flag": "Stale internal contradiction: difficulty_rationale still says \"The single generative step is image_generative_expand ... the only permitted generative op,\" but no generative_expand step exists in the runnable workflow (it was replaced by gen-free image_crop_and_resize). No banned capability is actually executed; the contradiction is documentation-only and self-acknowledged in the reverify block."
+   },
+   {
+    "id": "AO-72",
+    "flag": "Banned capability image_generative_expand is still named in grounding_note and difficulty_rationale (though NOT in the executable workflow, which uses crop-only image_crop_and_resize) — an internal contradiction the reverify block falsely claims to have fully removed."
+   }
+  ],
+  "majors": [
+   {
+    "id": "AO-02",
+    "issues": [
+     "Workflow-capability contradiction on the three ratio canvases (steps 13-18): the outputs promise 1080x1080, 1080x1350 and 1080x1920 frames where the product is 'never cropped', 'preserved', with 'generous brand negative space' added on a solid #F4EFE7 canvas at the exact platform size, produced with 'no generation'. But the chosen tools cannot do this. image_crop_and_resize only crops/resizes the existing frame (it removes pixels or distorts; it cannot ADD canvas area to change a 4:3 hero into a 9:16 vertical while keeping the whole product). image_fill_area is solid-color-fill of a selection WITHIN the existing image (per reference_adobe_connector_exec_modes.md line 18) and cannot enlarge the canvas or place a product layer onto a new larger canvas. Extending canvas while preserving the full subject is either generative_expand (banned) or compositing, and the same memory (line 19) states compositing is not available headless. So done_creative_1x1/4x5/9x16 as specified cannot be produced by this workflow.",
+     "Internal contradiction inside the ratio steps: step 16's note asserts 'no canvas is invented, padded, or extended' and 'a crop/resize of the existing frame', while step 18's note and output spec (line 61) require 'leaving generous brand negative space' on a '1080x1920' canvas with the product preserved. You cannot both keep the full 4:3 product uncropped AND fill out to 9:16 without extending the canvas — the two descriptions are mutually exclusive.",
+     "The reverify block claims the gen-free reframe-and-place approach is valid ('places the product on a solid brand off-white canvas at the exact platform size'), but that placement operation (compositing product onto a larger solid canvas) is not something any listed headless tool performs — the fix that removed generative_expand replaced it with tools that also cannot achieve the stated output."
+    ]
+   },
+   {
+    "id": "AO-03",
+    "issues": [
+     "outputs[] declares only ONE deliverable (AURELIA_logo_brandgreen.svg), but the full_brief and the connector_workflow both promise/produce FOUR: the 2000x2000 white-bg catalog hero (step 10), the transparent product cut-out PNG (step 4), the neutral vector logo (step 13), and the recolored logo (step 14). Three of the four promised deliverables have no entry/spec in outputs[], so annotators have no declared dimensions/format/colour-space for the main product deliverables.",
+     "Internal contradiction on the logo-recolor pipeline: the executable connector_workflow does vectorize FIRST (step 13, sketch->SVG) then applies image_apply_color_overlay to the VECTOR (step 14, inputs_from AURELIA_logo_vector). But the output spec (line 34), chaining_note, difficulty_rationale and reverify all describe the OPPOSITE flow: 'color-overlay the RASTER sketch first, then RE-TRACE with image_vectorize' (implying a second vectorize call). The array has no second vectorize and recolors a vector, so the metadata narrative does not match the actual steps.",
+     "Self-contradicting verification claim: reverify boasts 'no vector-recolor type mismatch' because the mark is 'recolored on the RASTER then re-traced', yet the actual step 14 applies image_apply_color_overlay to AURELIA_logo_vector (a vector output) — the very vector-recolor case it claims to avoid.",
+     "Step-count / numbering inconsistency: connector_workflow is numbered n:1..17 and tool_call_count=17, but chaining_note, difficulty_rationale and reverify repeatedly state '18 connector calls' and reference a 'step 18' (asset_copy_assets), which does not exist in the array (asset_copy_assets is n:17)."
+    ]
+   },
+   {
+    "id": "AO-39",
+    "issues": [
+     "outputs[] lists only ONE deliverable (hero_catalog_banner.jpg), but the full_brief promises FIVE and the workflow produces all five: the 1:1 Instagram square (step 12), the catalog banner (step 13), the transparent packshot PNG (step 16), the vectorized SVG logo (step 19), and the zipped apparel_set (step 21). Four of the five promised/produced deliverables are missing from outputs[], each with its own spec (dimensions/format/colour). This is a brief<->outputs<->workflow mismatch.",
+     "Internal contradiction / latent red flag at step 11: the output spec and chaining_note say the banner is made by WIDENING the hero onto a 'wider solid-white canvas' with 'extra horizontal margins solid-filled' for 'horizontal breathing room', but image_fill_area only fills a masked region inside the existing frame and cannot extend the canvas. Either the banner is really just a crop (contradicting the brief's explicit 'wider solid-white studio canvas ... breathing room' ask) or it needs canvas extension (banned generative-expand). The reverify note asserts 'no canvas is invented, padded, or extended', which contradicts the same spec's 'extra horizontal margins solid-filled'.",
+     "Minor duplication: step 20 (create_firefly_board) and step 21 (asset_copy_assets) both bundle the same four leaf deliverables; only step 21 is called out as a deliverable, so step 20 is presentational and fine, but the brief never asks for a moodboard/contact-sheet."
+    ]
+   },
+   {
+    "id": "AO-60",
+    "issues": [
+     "INPUTS INCOMPLETE (major): The brief, workflow, and chaining_note all center on SEVEN client stills — six packaging photos (tea carton, cosmetics jar, coffee bag, craft-beer can, perfume box, chocolate bar sleeve) plus the kraft title-card box — and steps 1-2 explicitly upload '7 client stills'. But inputs[] defines only ONE asset (pkg_kraft_box_titlecard.jpg). The six packaging photos that the entire cohesive-grade pipeline (steps 3-9), the crop set, the jar cut-out (steps 11-12), the reel, and the moodboard are all built from are missing from inputs[]. Annotators/executors have no defined source assets for the core deliverable.",
+     "STEP 10 TOOL CONTRADICTS THE SPEC'S OWN NOTES (major): connector_workflow step 10 tool is 'image_crop_and_resize' with output 'kraft box seated on a solid charcoal 1920x1080 full-bleed card' — but a crop/resize only reframes existing pixels and cannot 'seat the box on a solid charcoal card'. The inputs[].realism_notes explicitly say step 10 should be image_fill_area ('so image_fill_area can solid-fill the surrounding region... and step 13 crops it'), and reverify.banned_capability_check states 'Step 10 is image_fill_area (solid charcoal #2B2B2B fill...)'. So the executable step 10 uses the wrong tool for what it claims to produce, and directly contradicts the spec's realism_notes and reverify block. The intended chain is fill_area (charcoal seat) then crop to 1920x1080, which is not what step 10 as written does.",
+     "MINOR: difficulty_rationale says '17 distinct Adobe tools' but the actual distinct count is 16 (distinct_adobe_tools field and tools_used are both 16). Stale number in the prose."
+    ]
+   },
+   {
+    "id": "AO-61",
+    "issues": [
+     "inputs[] is incomplete: it lists only brand_logo_lockup.png, but the full_brief and connector_workflow explicitly rely on THREE other supplied source assets that are absent from inputs[] — the raw 1080p podcast master (podcast_raw_master_1080p.mp4, consumed by steps 1-2/5/6/7), the noisy voice scratch track (host_voice_scratch_track.wav, step 3-4), and the lower-third texture plate (lower_third_texture_plate.jpg, steps 12-17). Three of the four inputs the task depends on have no inputs[] entry, no kind, no realism_notes, and no gen spec. An annotator or agent reading inputs[] would be missing most of the source material.",
+     "Workflow steps that load these missing assets (step 3 voice, step 8 logo, step 12 plate) all have inputs_from: [] and refer to filenames only in their notes; because those files aren't declared in inputs[], the load steps aren't grounded to a defined input.",
+     "Minor: the reverify note claims the brand was renamed to a 'non-colliding' name but the result 'WANDER MILES' is just the capitalized form of the flagged real 'Wander Miles' travel-media franchise — the collision it purports to fix is not clearly resolved. Reads as plausibly generic, but worth double-checking the mark is IP-clean."
+    ]
+   },
+   {
+    "id": "AO-87",
+    "issues": [
+     "connector_workflow is truncated: it contains only steps n=14 through n=36 (23 entries). Steps 1-13 — the ENTIRE front-chest pipeline (asset_create_folders, front select/fill x3, saturation adjust, remove_background, front red-select+vectorize, front navy-select+vectorize) — are missing from the array, even though the chaining_note and difficulty_rationale describe a contiguous 1..36 workflow.",
+     "Metadata contradicts the narrative fields: tool_call_count=23 and distinct_adobe_tools=8 in the JSON, but reverify.notes/difficulty_rationale/chaining_note all state 36 calls and 10 distinct tools. tools_used lists 11 tools (incl. asset_create_folders and image_adjust_single_color_saturation) that never appear in the visible workflow array.",
+     "Broken output->input chaining: step n=33 (upload) consumes front_sep_red_vector and front_sep_navy_vector, which are never produced by any step in the array (they were outputs of the deleted steps 10-13). Step n=14 consumes front_art_transparent, also never produced in the array (deleted step 9).",
+     "outputs[] only lists the final proof PDF. The brief promises 6 separation vectors, 2 transparent composite SVGs, and a print-shop recipe note as deliverables, but none of those appear in outputs[] — only the proof PDF is declared.",
+     "The recipe note step (n=36) uses server 'local' / exec_mode 'L' with a non-connector tool 'local_write_recipe_note'; this is a plausible hand-off convention but is not an Adobe connector step, worth confirming it is an accepted pattern for this benchmark."
+    ]
+   }
+  ]
+ },
+ "results": [
+  {
+   "id": "AO-01",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Step 12 tool choice is questionable: it uses image_fill_area to 'place the finished hero on a solid pure-white 5000x2800px field.' image_fill_area is a solid-color region fill on an existing raster, not a canvas-extension/compositing op. Going from a ~4000x5000 portrait hero to a WIDER 5000x2800 landscape white field requires enlarging/re-canvasing the image and positioning the product on it — that is padding/reframe work better expressed via image_crop_and_resize (fit-onto-white) than fill_area. As written the step does not obviously produce the stated wider-than-source canvas without either generative expand (correctly banned) or a compositing step the connector does not own. Recommend switching step 12 to image_crop_and_resize (pad-to-white to 5000x2800) or clarifying how fill_area yields a larger landscape canvas from a portrait source.",
+    "Minor internal-metadata inconsistency: distinct_adobe_tools is stated as 17 in one field and the difficulty_rationale text says '18 DISTINCT Adobe tools'; the reverify note correctly reconciles to 17 (image_fill_area repeats at steps 7 and 12), but the difficulty_rationale copy is stale."
+   ],
+   "strength": "A genuine, well-grounded production/finishing commission that correctly re-scopes an out-of-scope from-scratch identity brief to the connector-owned craft (white-bg cleanup, vectorize, data-merge labels, print-ready carton export), with a clean output-to-input chain and print-ready + editable-source deliverables that map 1:1 to the brief."
+  },
+  {
+   "id": "AO-02",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "incoherent",
+   "red_flag": "none",
+   "overall": "major",
+   "issues": [
+    "Workflow-capability contradiction on the three ratio canvases (steps 13-18): the outputs promise 1080x1080, 1080x1350 and 1080x1920 frames where the product is 'never cropped', 'preserved', with 'generous brand negative space' added on a solid #F4EFE7 canvas at the exact platform size, produced with 'no generation'. But the chosen tools cannot do this. image_crop_and_resize only crops/resizes the existing frame (it removes pixels or distorts; it cannot ADD canvas area to change a 4:3 hero into a 9:16 vertical while keeping the whole product). image_fill_area is solid-color-fill of a selection WITHIN the existing image (per reference_adobe_connector_exec_modes.md line 18) and cannot enlarge the canvas or place a product layer onto a new larger canvas. Extending canvas while preserving the full subject is either generative_expand (banned) or compositing, and the same memory (line 19) states compositing is not available headless. So done_creative_1x1/4x5/9x16 as specified cannot be produced by this workflow.",
+    "Internal contradiction inside the ratio steps: step 16's note asserts 'no canvas is invented, padded, or extended' and 'a crop/resize of the existing frame', while step 18's note and output spec (line 61) require 'leaving generous brand negative space' on a '1080x1920' canvas with the product preserved. You cannot both keep the full 4:3 product uncropped AND fill out to 9:16 without extending the canvas — the two descriptions are mutually exclusive.",
+    "The reverify block claims the gen-free reframe-and-place approach is valid ('places the product on a solid brand off-white canvas at the exact platform size'), but that placement operation (compositing product onto a larger solid canvas) is not something any listed headless tool performs — the fix that removed generative_expand replaced it with tools that also cannot achieve the stated output."
+   ],
+   "strength": "Grounded, genuinely professional DTC paid-social product-creative commission with a verbatim Upwork grounding note, a clear well-structured brief, fully defined inputs/outputs, and a correct, coherent headless white-bg + grade + vectorize + board pipeline for steps 1-12 and 19-23."
+  },
+  {
+   "id": "AO-03",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "partial",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "major",
+   "issues": [
+    "outputs[] declares only ONE deliverable (AURELIA_logo_brandgreen.svg), but the full_brief and the connector_workflow both promise/produce FOUR: the 2000x2000 white-bg catalog hero (step 10), the transparent product cut-out PNG (step 4), the neutral vector logo (step 13), and the recolored logo (step 14). Three of the four promised deliverables have no entry/spec in outputs[], so annotators have no declared dimensions/format/colour-space for the main product deliverables.",
+    "Internal contradiction on the logo-recolor pipeline: the executable connector_workflow does vectorize FIRST (step 13, sketch->SVG) then applies image_apply_color_overlay to the VECTOR (step 14, inputs_from AURELIA_logo_vector). But the output spec (line 34), chaining_note, difficulty_rationale and reverify all describe the OPPOSITE flow: 'color-overlay the RASTER sketch first, then RE-TRACE with image_vectorize' (implying a second vectorize call). The array has no second vectorize and recolors a vector, so the metadata narrative does not match the actual steps.",
+    "Self-contradicting verification claim: reverify boasts 'no vector-recolor type mismatch' because the mark is 'recolored on the RASTER then re-traced', yet the actual step 14 applies image_apply_color_overlay to AURELIA_logo_vector (a vector output) — the very vector-recolor case it claims to avoid.",
+    "Step-count / numbering inconsistency: connector_workflow is numbered n:1..17 and tool_call_count=17, but chaining_note, difficulty_rationale and reverify repeatedly state '18 connector calls' and reference a 'step 18' (asset_copy_assets), which does not exist in the array (asset_copy_assets is n:17)."
+   ],
+   "strength": "A genuine, common e-commerce commission (Amazon-compliant pure-white product retouch + hand-sketch-to-vector logo) that is honestly re-framed from a real Freelancer.com brief, gen-free, with a well-ordered masking/tone/vector chain."
+  },
+  {
+   "id": "AO-04",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Stale internal contradiction in grounding_note (line 11): it states 'The square 1:1 export is reached by AI canvas outpaint (image_generative_expand, the one allowed generative step)', but the actual connector_workflow reaches 1:1 via image_crop_to_bounds (step 11) with NO generative_expand anywhere. The reverify block's own notes claim this narrative was corrected, but the grounding_note text was missed.",
+    "difficulty_rationale (line 212) still lists 'generative_expand' in the tool-group chain ('...remove_background -> generative_expand -> crop_and_resize'), referencing a step that does not exist in the 16-step workflow. Same residual contradiction with the corrected crop-to-square path.",
+    "Both are documentation-only nits — the executable connector_workflow, inputs, outputs and tool counts are clean and contain no banned capability — but they should be scrubbed before annotator handoff so reviewers don't see a generative step that isn't actually performed."
+   ],
+   "strength": "A genuine, high-frequency paid commission (iPhone jewelry shots to white-bg e-commerce set) with a strict pixel/colour acceptance bar, cleanly executed via a real non-generative select-invert-fill white-background path plus a grade-matched JPEG/PNG fork."
+  },
+  {
+   "id": "AO-06",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [],
+   "strength": "A textbook, high-demand e-commerce freelance gig (marketplace white-background product-image cleanup) grounded in a verbatim Upwork brief, with a correctly-sequenced retouch pipeline that stays strictly inside non-generative Adobe capabilities — the square hero is a crop-then-resize and the white background is a solid image_fill_area on an inverted subject mask, not gen-fill."
+  },
+  {
+   "id": "AO-07",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "difficulty_rationale (line 302) still contains stale narrative text: 'the single sanctioned generative step (generative_expand reframe-crop)' — this contradicts the corrected executable workflow (step 15 is image_crop_and_resize, a non-generative geometric reframe) and contradicts reverify.notes which claims this stale text was already reconciled. Presentation-only, but an annotator reading the rationale could be misled into expecting a generative step. Fix: replace 'generative_expand reframe-crop' / 'the single sanctioned generative step' with 'a geometric reframe-crop (image_crop_and_resize)'.",
+    "Metadata mismatch: vertical is labelled 'Automotive, Industrial & Agriculture' for what is clearly a jewelry/men's-accessories task (category is correctly 'jewelry_photo'). Minor tagging nit."
+   ],
+   "strength": "Faithfully carves the genuinely Adobe-doable 2D asset-prep slice out of a real Upwork 3D-CAD jewelry brief (honestly documented), with a fully-chained 24-step three-branch workflow of real connectors that cleanly produces all five stated deliverables and enforces pendant/chain color consistency."
+  },
+  {
+   "id": "AO-08",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Metadata nit: the `vertical` field reads \"Automotive, Industrial & Agriculture\" for a jewelry/accessory bracelet job — an obvious mislabel. Non-blocking (does not appear in the annotator-facing brief) but should be corrected to a jewelry/fashion/consumer-goods vertical.",
+    "Internal-notes hygiene: the `reverify.notes` field contains visible self-contradictory musing about whether tools_used is 16 or 17 before landing on 17. The actual JSON fields are consistent (workflow=21 steps, tool_call_count=21, distinct_adobe_tools=17, tools_used=17 entries), so there is no real count defect — but the rambling note should be cleaned up before delivery."
+   ],
+   "strength": "A faithfully-scoped, honestly-grounded jewelry launch post-production commission (white-bg e-comm, graded 4:5 hero, crop-only 16:9 banner, vectorized wordmark, licensed backdrop, Firefly review board) with a clean hub-and-spoke 21-step workflow and zero banned generative capability."
+  },
+  {
+   "id": "AO-10",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "Stale grounding_note sentence still states image_generative_expand (banned outpaint/expand) is \"used only for honest outpaint of the canvas\" — contradicts the reverify claim it was scrubbed and the gen-free workflow; the banned tool does NOT appear in connector_workflow/tools_used, so execution is clean, but the narrative names a banned capability as in-use.",
+   "overall": "minor",
+   "issues": [
+    "grounding_note final sentence still asserts 'image_generative_expand only for honest outpaint of the canvas' — a banned capability named as in-use. The authoritative connector_workflow, tools_used[], outputs[0].spec and chaining_note are all correctly gen-free (4:5 achieved via image_crop_and_resize), so this is a stale narrative-drift line the reverify block claims to have already scrubbed but did not fully remove. Fix: delete/rewrite that clause to reference the crop/resize reframe.",
+    "brand_logo.png is declared in inputs[] and referenced in the brief (spec-sheet/board lockup) but is never consumed by any connector_workflow step (the .indd template carries its own wordmark area, and the board assembly at step 17 does not ingest it). Minor unused-input dangling reference.",
+    "Step 11 applies a whole-image image_apply_lens_blur for a 'shallow-depth background look,' but by that point the background is already a flat solid-grey sweep (from step 9 fill) and the subject was isolated — a whole-image blur has no distinct background to blur and would soften the subject too. Plausible-but-imperfect finishing step; not workflow-breaking."
+   ],
+   "strength": "A genuinely realistic multi-deliverable jewelry-photo commission (hero retouch + vector spec + halftone tech graphic + dual authored-template data merges + review board), honestly reinterpreted from an out-of-scope 'design from scratch' source brief into a fully in-scope, well-chained 17-step production pipeline around a client-supplied shot."
+  },
+  {
+   "id": "AO-100",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor tooling-fidelity nit: media_summarize is cast as the per-episode 'listen-through content pass' feeding the cleanup notes, but summarization won't reliably localize specific noise events (e.g. the ~12-min phone buzz on ep048) that the notes are asked to report; the notes' event-level detail leans partly on the input's realism_notes rather than on what the connector actually returns. Does not break the workflow."
+   ],
+   "strength": "A genuine, common freelance commission (batch de-noise/level three raw podcast tracks) grounded in a real brief, with distinct per-episode defect profiles and an explicit no-re-cut constraint, executed via the correct non-generative audio tools."
+  },
+  {
+   "id": "AO-101",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor/inherent-limitation: the workflow relies on media_summarize (content/timeline summarizer) and asset_preview_file (preview) to substantiate quantitative acoustic findings, but neither connector is a true audio meter. Precise observed_value fields the brief/outputs imply (e.g. 'hum floor ~-48 dB vs spec <-60 dB', integrated LUFS, true-peak dBTP) cannot be actually measured by the chain — only qualitatively estimated. The spec is explicitly self-aware about this (states summarize must not fabricate dB readings; acoustic evidence comes from media_enhance_speech's isolated background track), so it is handled honestly, but annotators should not expect real metered numbers — the defensible output is defect attribution + severity, not measured dB values."
+   ],
+   "strength": "Honestly reframes an out-of-scope full-edit podcast job into an in-scope, well-grounded audio QC audit with three distinctly-defected inputs, a numeric delivery-spec ground truth, and a clearly-labelled non-master reference track — a genuine paid commission with a coherent inspect→compare→report connector chain."
+  },
+  {
+   "id": "AO-102",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "source.reference is stale/mismatched: it reads 'Edit a 2-minute vertical (9:16) product video from a ready-made storyboard' — a VIDEO job title — while this is an AUDIO task. The grounding_note explains the reframe, but the reference field itself still names the wrong deliverable and should be updated to reflect the audio spot (metadata-level, does not affect the brief a designer reads).",
+    "The cue-sheet 'confirmation' step relies on media_summarize reading back narration and the agent manually reconciling it into spot_script_timing_confirmed.csv before re-upload (steps 12->13). This is handled honestly in the spec, but the confirmation is a soft/manual reconciliation rather than a tool-verified diff — worth annotators knowing when scoring the CSV output."
+   ],
+   "strength": "A grounded, honestly-scoped audio-prep commission that maps a real 'assemble it cleanly' brief onto media_enhance_speech voice isolation + media_summarize read-back, correctly carries the cleared music bed untouched, and explicitly flags the final DAW layer-mix as the human-finish step — no over-claimed generative capability."
+  },
+  {
+   "id": "AO-103",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Cosmetic: steps 17 and 18 both use the tool name 'local_write_recipe_note' even though step 17 actually assembles the transcript/chapter pack (not the recipe note). The outputs, inputs_from and notes are correct, so it is executable, but the tool name is misapplied to the transcript-pack write."
+   ],
+   "strength": "Honest, well-documented scoping of a real Freelancer.com video-production brief down to the audio-only voice-cleanup work the connector can genuinely do; six takes each carry a distinct realistic noise problem giving media_enhance_speech real per-take work, and out-of-scope music/EQ/loudness mastering is explicitly flagged as the client's own step."
+  },
+  {
+   "id": "AO-104",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: steps 8/20/33 feed an eyes/teeth selection mask (from image_select_by_prompt) into image_adjust_light_portions to drive selective brightening. image_adjust_light_portions is fundamentally a global tonal tool; whether it honors a prior selection mask as a scoping input is not certain. The intent is sound and it is the natural connector pairing, but annotators may find the selective effect weaker/less localized than the brief's 'gently brighten his eyes and teeth' implies."
+   ],
+   "strength": "Grounded verbatim to a real Freelancer.com headshot brief, honestly re-scoped to post-production only; long-horizon 43-step edit chain with strict output-to-input chaining, a real cross-frame consistency requirement, and 18 explicit crops that exactly match the brief and outputs. No banned capabilities; brand and people are fictional and IP-clean."
+  },
+  {
+   "id": "AO-105",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: the duotone is built whole-image via monochromatic_tint + a lighten-blend color_overlay, which is a legitimate two-ink approximation of true duotone (not a per-channel tonal-range ink map). The spec is explicit and honest about this and it correctly avoids any unsupported tonal selection, so it is in-bounds, but reviewers should know the result is an approximation.",
+    "Minor: font_recommend (step 10) is purely advisory with no downstream binding into the data-merge, so the template's actual fonts are unchanged by the chain. The spec flags this ('advisory'), so it is honest but slightly ornamental."
+   ],
+   "strength": "A genuine arts/music freelance commission (duotone gig poster from supplied parts) grounded in a real Freelancer.com brief, with a fully IP-clean fictional band, complete specced inputs/outputs, and a strictly chained 16-step all-Adobe workflow that produces every stated deliverable without any banned/generative capability."
+  },
+  {
+   "id": "AO-106",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor geometry inconsistency: the brief calls the template's image frame 'full-height' on an A2 portrait (420x594mm, ~1:1.41 aspect), but the image is cropped/specced to 4:5 (0.8). A 4:5 image cannot be genuinely full-height on an A2 canvas; 'full-height' vs '4:5 frame' should be reconciled (e.g. call it a tall/dominant image frame, or size the crop closer to the A2 ratio). Does not break the workflow."
+   ],
+   "strength": "A genuinely grounded, IP-clean commission with an exceptionally complete brief and a strict output-to-input 40-step chain that correctly uses an authored .indd for a real InDesign data-merge while staying entirely within allowed (non-generative) connector capabilities."
+  },
+  {
+   "id": "AO-107",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [],
+   "strength": "Grounded in a verbatim real Upwork Uber Eats banner brief with an IP-clean fictional brand; the authored-.ai-template modeling correctly converts an otherwise-banned freehand-compositing job into a fully connector-doable grade+cutout+vectorize+data-merge+render chain that hits the exact 2880x2304 spec without any generative-expand/text-to-image/upscale."
+  },
+  {
+   "id": "AO-109",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Preset-fidelity gap: the brief promises a 'reusable food-grade preset' capturing the hero's manual 6-step grade (warm WB + lifted shadows + vibrance + contrast) and applying 'that same preset' across the set, but step 8 uses image_list_presets which only enumerates/selects a BUILT-IN preset — it does not author a custom preset from the pierogi grade. So steps 11-34 apply a generic built-in preset, not the exact hero look. The chain is unbroken and the spec's reverify is transparent about this ('no custom-preset-authoring capability is claimed'), but there is a real mismatch between the promised cohesion mechanism and what the connectors actually reproduce.",
+    "Minor deliverable-completeness nit: only the two hero photos (schnitzel n12, kompot n30) and the busy-background subjects get lens_blur; the brief frames the blur step (4) as applying to 'the busiest backgrounds' which is honored, but the salad/grazing prompts also describe 'busy' backgrounds yet get no blur — reasonable editorial choice, worth an annotator note only."
+   ],
+   "strength": "Genuine batch-consistency retouch commission, grounded verbatim in a real Freelancer.com restaurant-photo brief with a clean IP-safe brand swap; long-horizon (39 steps, 15 tools), strictly output-input chained, exact crop specs, and fully within banned-capability limits (no generative fill/expand/upscale/inpainting)."
+  },
+  {
+   "id": "AO-11",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: pendant_lookbook_spec.indd is tagged kind:'pdf' (disclosed as a schema workaround since there is no .indd kind) — harmless but slightly inconsistent with its actual file type.",
+    "Trivial grammar: one_line_ask reads 'an reframe-cropped banner' (should be 'a reframe-cropped banner').",
+    "Very minor: step 11 image_apply_preset is described as applying a preset 'matching the hero grade' — the connector applies presets but cannot literally save a custom grade from the hero as a new preset; the color-match intent is sound but the mechanism is slightly idealized."
+   ],
+   "strength": "A genuinely grounded freelance jewelry commission with an exemplary, fully-disclosed re-anchor from an impossible 3D-CAD ask onto a deep, cleanly-chained 22-step Adobe photo/vector/export package that invents no pixels."
+  },
+  {
+   "id": "AO-110",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Output-spec vs workflow mismatch on the two variants: variant_strap_gunmetal.jpg (step 22) and variant_label_forest_green.jpg (step 24) both specify 'long edge 2000px, sRGB' in outputs[], but the workflow never runs image_crop_and_resize on them. They are produced directly from the graded full-res heroes (~2400x3000) and fed to the Firefly board at that size, while the six catalog images DO get resized (steps 25-30). To fully satisfy the stated variant specs, two crop_and_resize steps (or a note that the recolor branch inherits the web frame) are needed. Small, easily fixed."
+   ],
+   "strength": "Grounded in a verbatim real Upwork eCommerce product-editing brief; a bread-and-butter paid freelance job (batch house-look grade + non-destructive part recolor) with a fictional IP-clean brand, a real supplied .xmp preset, clear constraints, and a coherent 31-step masked-edit workflow using only in-bounds Adobe tools (no banned generative/upscale capabilities)."
+  },
+  {
+   "id": "AO-111",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [],
+   "strength": "A genuine, high-frequency freelance commission (restore a treasured faded/scratched family photo) grounded in a real Freelancer.com posting with verbatim client phrases, IP-clean brand, exact print specs, and a 17-step chain that stays rigorously within the connector's real capabilities — scratches concealed only over a uniform backdrop via solid fill, 'sharpness' delivered via clarity preset not an invented sharpen op, and A4 sizing a genuine downscale not an upscale."
+  },
+  {
+   "id": "AO-112",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Brief says auto-tone AND 'gently warm the cool kitchen cast' should be applied 'identically to all six' for a consistent set, but the connector_workflow only applies image_adjust_color_temperature (warming) to the PSA10 SKU (step 4). The other five sub-chains (steps 9-34) run only auto_straighten + auto_tone with no warming step, contradicting the brief's stated identical warm-cast correction across all six. Fix by adding image_adjust_color_temperature to each of the other five sub-chains (or scoping the brief's warming claim)."
+   ],
+   "strength": "A textbook, high-demand real Upwork e-commerce gig (cutout + center-on-white + 2048x2048 Shopify export + handle naming) grounded verbatim, with a fully-doable Adobe palette that correctly uses image_remove_background's #FFFFFF backgroundColor path and onSubjectClipping='pad' to stay clear of all banned generative capabilities."
+  },
+  {
+   "id": "AO-113",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "web_ready_jpeg_x6 output and the full_brief both promise SIX web-ready JPEGs, but connector_workflow only enumerates THREE web-ready downsize steps (n44 tee, n45 hoodie, n46 jacket). The henley, rugby, and jeans web-ready exports are hand-waved in n46's note ('remaining three web-ready exports follow the same downscale pattern') rather than being actual steps. Add three explicit image_crop_and_resize steps (henley/rugby/jeans -> *_web_ready) so the workflow actually produces all six promised web-ready assets.",
+    "Minor consistency: the delivery upload session (n47) uploads the six cut-out PNGs and six high-res JPEGs but does NOT include any of the web-ready JPEGs in delivered_asset_urns, even though web-ready JPEGs are a stated deliverable. Consider adding the web-ready outputs to the delivery upload for completeness."
+   ],
+   "strength": "A genuine, common apparel-retouch commission (photographer->retoucher hand-off) executed via the canonical, non-generative select_subject->remove_background + invert_selection->fill_area mid-gray pattern, cleanly chained across six garments with correct deliverables and no banned capabilities."
+  },
+  {
+   "id": "AO-114",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: outputs promise 16 product files (8 white JPEG + 8 transparent PNG), but the workflow only explicitly materializes ONE transparent PNG (n17, Peach) flagged as 'representative of the batch,' and Clear Gloss has no PNG step. The intent to repeat is clear (n22 note says 'the transparent PNG(s)') so the chain isn't broken, but a strict reader could want the remaining 7 PNG cut steps enumerated or an explicit batch note that each white variant gets a matching 300 DPI PNG cut."
+   ],
+   "strength": "A genuine, common e-commerce commission (clean cutout on white + recolor one hero shot into a shade range) grounded in a real Upwork brief with verbatim quotes, IP-cleaned, out-of-scope from-scratch vector part honestly dropped, and executed with a disciplined base-prep-then-masked-recolor chain that stays fully within non-generative connector capabilities."
+  },
+  {
+   "id": "AO-115",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor brief/workflow mismatch: full_brief step (3) says to 'gently push clarity/contrast' for every SKU, but only sku01 gets an explicit image_adjust_brightness_and_contrast step (n5). sku02-06 go straight from neutralise to selection with no contrast/clarity step, so the per-SKU chains don't fully honor the brief's 'for every SKU' contrast language. Does not break outputs or coherence."
+   ],
+   "strength": "A grounded, bread-and-butter e-commerce batch clean-up (isolate-on-white + metal grade, dual PNG/JPEG per SKU) with exact specs, IP-clean brand, and a fully non-generative select->invert->solid-fill white-BG pipeline that respects every banned-capability limit."
+  },
+  {
+   "id": "AO-116",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: the duotone/vignette construction leans on specific color_overlay blend modes ('lighten so only brighter pixels shift', 'multiply/darken edge vignette') that the connector-capabilities sheet lists only as a generic whole-image color tool without documenting per-blend behavior; the effect is plausibly achievable whole-image and the spec keeps it mask-free, but the exact tonal-split behavior is somewhat asserted rather than documented.",
+    "Minor: '~300 DPI equivalent' is print-intent framing since image_crop_and_resize sets pixel dimensions, not DPI; the brief hedges with 'equivalent' so it is defensible, but the A2 pixel target is left implicit rather than stated as an exact WxH."
+   ],
+   "strength": "A genuine, well-grounded noir duotone concert-series commission that builds a real two-ink treatment entirely from non-generative whole-image tools, with three identical strictly-chained spines and complete, spec'd deliverables — no banned capability anywhere."
+  },
+  {
+   "id": "AO-117",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [],
+   "strength": "A genuine hospitality freelance commission (boutique-hotel homepage hero pair) grounded in a real Upwork brief, regrounded IP-clean, with the out-of-scope AI-model-generation bonus deliberately dropped; the brief nails exact sizes, grade direction, left-third clearance, exact copy, logo preservation, brand hex, and a complete authored-.indd data-merge plus triple-export chain with no banned generative steps."
+  },
+  {
+   "id": "AO-118",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [],
+   "strength": "A genuine web-graphics commission (5 exact-size hero/header/CTA/banner slots + reusable wordmark) grounded in a verbatim Freelancer.com brief, run as a fully gen-free Adobe chain that licenses oversized stock and crops DOWN, grades every slot with one shared recipe for a cohesive family, and hands clean imagery + vector/transparent wordmark to the dev team for live overlay."
+  },
+  {
+   "id": "AO-119",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor bookkeeping: the brief lists 'a shared CC folder' as a deliverable and the workflow creates it (step 19), but there is no dedicated outputs[] entry for the folder itself; it is only mentioned inside the review-board output spec. Not a gap in execution, just an outputs-list completeness nit."
+   ],
+   "strength": "A genuine agency-grade 'one cohesive web graphics family' commission: single licensed large stock hero, deliberately gen-free (crop/reframe, never expand), with a clean license->grade->7-slot-crop->vectorize->hand-off chain and exact per-destination dimensions."
+  },
+  {
+   "id": "AO-12",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Orphaned intermediate output: step 11 image_invert_selection produces bg_mask, but the only consumer of a mask (step 12 adjust_light_portions) takes food_mask (from step 10), not bg_mask. As written, bg_mask is never consumed, so step 11 is a dangling step. Either step 12 should consume bg_mask (to protect the background per its own note 'through the food mask so the hero dish pops without brightening the protected background' is self-contradictory), or step 11 should be dropped. This is the one genuine chaining defect.",
+    "Stale metadata contradicts the actual workflow: difficulty_rationale claims '21 steps, 16 distinct Adobe tools' and 'three connector groups (asset/stock ...)' plus 'a stock linen-backdrop license', but the actual connector_workflow is 20 steps / 15 distinct adobe tools with no asset_license_and_download_stock step (reverify confirms the stock step was removed). tool_call_count=20 and distinct_adobe_tools=15 are the correct values; the difficulty_rationale numbers/prose are stale.",
+    "grounding_note enrichment prose still describes an added 'stock linen-backdrop license + an Adobe Express social-teaser sizing step as a realistic upsell', but neither survives in the final workflow (no stock license step; the IG teaser is sized via image_crop_and_resize [C], not Express). Prose should be reconciled to avoid implying deliverables/steps that don't exist.",
+    "Minor grading thinness on the matched frames: the 45-degree frame (steps 13-15) has no explicit exposure or shadow-lift op and the side frame (steps 16-17) applies only auto_tone + dark_portions, both leaning on auto_tone to 'bake' the rest of the bright-and-airy recipe. Coherent but noticeably lighter than the flat-lay's full WB->exposure->highlights->shadows->vibrance chain; a competent annotator may question whether the three frames truly match."
+   ],
+   "strength": "A grounded, genuinely commissionable Lightroom bright-and-airy cohesive grade of a client's own 38-frame food set, executed as a real, correctly-ordered, gen-free raster recipe (straighten/crop -> WB -> exposure -> highlight recovery -> shadow lift -> vibrance -> masked food-pop) with clean matched inputs/outputs and no banned capabilities."
+  },
+  {
+   "id": "AO-13",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "Stale leftover: difficulty_rationale still calls the reframe-crop \"the only sanctioned generative step (generative_expand reframe-crop)\", but the actual workflow (n=13/14/15) uses image_crop_and_resize with no pixel invention — a doc-only contradiction, not an actual banned capability in the workflow.",
+   "overall": "minor",
+   "issues": [
+    "difficulty_rationale (line 300) still references 'the only sanctioned generative step (generative_expand reframe-crop)' — a stale phrasing left over from a prior version. The reverify note documents that outputs[] and chaining_note were corrected to image_crop_and_resize, but this one clause in difficulty_rationale was missed. It contradicts the actual workflow (which correctly uses image_crop_and_resize, invents no pixels) and should be reworded to avoid an annotator flagging a banned generative step that is not actually present."
+   ],
+   "strength": "A genuinely realistic, well-grounded freelance restaurant Meta-ad photo-prep commission, honestly scoped to the connector-doable asset pipeline (retouch/grade/mask/cutout/reframe/stock/vectorize/package) with a deep, correctly output→input-chained 20-step workflow and 1:1 brief-to-outputs mapping."
+  },
+  {
+   "id": "AO-14",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor consistency looseness: the hero photo is cropped to 4:5 (n9) then background-removed to a transparent PNG (n10) to sit over the chalkboard, while the other three fill 4:5 template photo frames. A background-lifted cutout does not really occupy a fixed photo frame the way the cropped-4:5 ones do, so the 'all four consistently 4:5-cropped to the template frames' framing is slightly loose for the hero. Internally consistent and not a blocker."
+   ],
+   "strength": "Verbatim-grounded real Freelancer.com burger-menu brief with a fictional IP-clean brand; the from-scratch-layout scope problem is handled correctly by modeling a client-supplied authored .indd with real merge fields, and the 25-step chain (Stock license, 4-photo grade pipelines, vectorize, upload, real InDesign [T] data-merge, dual export, Firefly board) is strictly output-input chained and gen-free within scope."
+  },
+  {
+   "id": "AO-15",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor traceability: the declared output ramen_brand_graded.png is never split out as its own named file in the workflow — it lives inside the combined photos_brand_graded set (step 8) and is not individually carried into the delivery folder (step 21), so its 1:1 mapping to a delivered file is implicit rather than explicit.",
+    "Minor: the umaya_menu_assets_board output spec promises a 'packaged asset folder/zip'; the workflow produces a CC delivery folder via asset_copy_assets (step 21) but there is no literal zip step — acceptable since no connector zips, but the word 'zip' slightly overstates the connector output."
+   ],
+   "strength": "A genuine Upwork restaurant-menu commission correctly scoped to the Adobe-doable production wrap (grade, cut-out, crop, vectorize, texture-prep, export the authored .ai) with layout typesetting honestly excluded as out-of-connector-scope; long, multi-branch, fully gen-free chain."
+  },
+  {
+   "id": "AO-17",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Internal contradiction between connector_workflow and reverify: the reverify block states step 9 was changed from image_fill_area to image_crop_and_resize (output hero_expanded -> hero_reframed_16x9) and that step 10 now consumes hero_reframed_16x9 and distinct_adobe_tools drops to 15. But the actual connector_workflow array was NOT updated: step 9 still lists tool 'image_fill_area' with output 'hero_expanded' and a 'solid-fill compositing' note, and step 10 still lists inputs_from 'hero_expanded'. The fix documented in reverify was never applied to the array.",
+    "As-written, step 9's image_fill_area cannot produce the stated result. image_fill_area is a solid-color fill of a selected region; it cannot enlarge a 3:2 frame to a wider 16:9 canvas or add new left-side negative space beyond the source. This is exactly the tool misuse the reverify block diagnosed. It must be executed as the intended image_crop_and_resize reframe (crop 3:2 to 16:9 with subject offset right so the native dark surround becomes left headline space).",
+    "Top-level metadata is stale relative to the intended fix: tools_used still lists image_fill_area but NOT image_crop_and_resize (step 10's tool), and distinct_adobe_tools=16 conflicts with reverify's stated 15. chaining_note still describes step 9 as image_fill_area / 'crop_and_resize (9...)' inconsistently and references the old hero_expanded name."
+   ],
+   "strength": "A genuinely grounded, honestly-scoped food-photo retouch commission: a 10-step masked hero pipeline plus true grade-matching across three differently-lit raws converging into one moodboard — realistic, gen-free, and expertly chained."
+  },
+  {
+   "id": "AO-18",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "difficulty_rationale (line 324) still contains a stale generative-tool claim: 'only ONE generative step and it is image_generative_expand (reframe-crop) — the sole sanctioned generative tool'. This directly contradicts the actual workflow (step 7 is image_crop_and_resize, a true letterbox crop of existing pixels) and the reverify note which explicitly states 'Zero generative steps'. The reverify pass claims it swept out all stale outpaint/generative references (outputs[0].spec and chaining_note) but missed this one in difficulty_rationale. No banned capability is actually invoked — the executable workflow is clean — but the leftover text is an internal contradiction that could mislead an annotator reading the rationale. Fix: change to reflect zero generative steps (crop-based reframe)."
+   ],
+   "strength": "A genuinely well-grounded, long-horizon commission (real Upwork dark-mode restaurant gig) honestly scoped to the Adobe-doable food-photo asset suite, with a fully output→input-chained 26-step workflow and three real reuse points of a locked hero grade — no banned capability in the actual pipeline."
+  },
+  {
+   "id": "AO-20",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [],
+   "strength": "A grounded, verbatim-sourced real corporate retouch commission that routes the brief's 'remove unwanted objects' through the only allowed connector path (select_subject to invert to solid fill_area to whole-image lens_blur), with two deliberately differently-toned inputs making the shared-preset consistency a genuine test, and a strictly output-to-input-chained 20-step workflow producing all 7 declared outputs."
+  },
+  {
+   "id": "AO-21",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [],
+   "strength": "A genuine post-production headshot delivery commission, honestly grounded in a real Freelancer.com post with a transparent grounding_note that scopes out the live shoot and keeps only the retouch/grade/crop/vectorize work an actual freelancer hands over; the 16:9 reframe is correctly done as a pure crop of a 4000x5000 frame (never grown, no pixels invented), and the 20-step chain threads mask-driven selective edits (select_by_prompt->adjust_light_portions; select_subject->invert->gaussian_blur) into a single color master fanned out into 5 clean deliverables plus folder/preview."
+  },
+  {
+   "id": "AO-22",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Wrong `category` field: it is still \"headshot_portrait\" (line 6) for what is clearly a logo/brand-identity job. The grounding_note flags this and says it is passed through unchanged, but reverify.notes (line 224) explicitly claims '(4) category corrected from headshot_portrait to brand_logo_identity' — that correction was NOT applied. Direct contradiction between the reverify block and the actual field.",
+    "Stale, self-contradicting metadata in difficulty_rationale (line 219): claims '16 connector calls, 16 DISTINCT Adobe tools' but tool_call_count=15, distinct_adobe_tools=15, and tools_used lists 15. It also describes 'image_fill_area is used twice as solid-fill', a 'mask->invert->solid-fill' step, and image_fill_area at 'step 12 / step 14' — none of which exist in the actual connector_workflow (step 12 is image_apply_halftone; image_fill_area and image_invert_selection appear nowhere).",
+    "reverify.banned_capability_check (line 223) contradicts difficulty_rationale: it says 'image_fill_area is now used exactly once (step 12)', while difficulty_rationale says 'twice'. Neither is true — image_fill_area is not in the workflow at all. Both are leftover descriptions of an earlier draft.",
+    "Minor JPEG completeness gap: full_brief (step 8) and several output specs promise high-res PNG AND JPEG exports, but outputs[] only lists .png/.svg/.txt entries — no explicit .jpg output is enumerated (JPEG is only mentioned inside spec prose)."
+   ],
+   "strength": "A genuine, grounded logo production-and-finishing commission that correctly refuses the from-scratch ideation and delivers a well-chained 15-step non-generative pipeline fanning one cleaned master into every contracted hand-off deliverable."
+  },
+  {
+   "id": "AO-23",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Category-tag contradiction: field `category` on line 6 still reads \"headshot_portrait\", but the spec's own reverify.notes (line 274) states this was 'corrected from headshot_portrait to multi_deliverable_content_package'. The documented fix was never applied to the JSON, and headshot_portrait mislabels a 6-deliverable teaser/thumbnail/end-card package.",
+    "Cleaned-VO not folded back into deliverables: outputs teaser_youtube_1920x1080 and teaser_linkedin_1080x1080 both promise 'cleaned voice-over', but the teaser deliverables are produced at steps 15-16 BEFORE the VO is denoised at step 17. media_enhance_speech (step 17) emits teaser_vo_cleaned as a terminal node, and the note only asserts it is 'muxed back over the teaser deliverables' — there is no connector step that actually re-muxes the cleaned audio into the delivered MP4s, and teaser_vo_cleaned is not itself a listed output. The audio-clean either needs an explicit mux step or must run before the resize branches, or the outputs should stop promising a cleaned track on files finalized pre-clean."
+   ],
+   "strength": "A genuine, common Upwork commission (luxury real-estate YouTube content package) with a verbatim grounding_note, fictional STERLING ROW brand, exact pixel/format specs, complete inputs, and an honest banned-capability boundary that punts only the headline typesetting to one local step."
+  },
+  {
+   "id": "AO-24",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Input metadata mismatch: 'open_house_finance_flyer.indd' is declared with \"kind\": \"pdf\", but it is an authored InDesign document (.indd), not a PDF. The realism_notes and connector_workflow correctly treat it as a live .indd with merge fields, so this is a cosmetic label inaccuracy that a reviewer/annotator could find confusing; kind should be 'indd' (or a document type), not 'pdf'."
+   ],
+   "strength": "A grounded, IP-clean mortgage-flyer commission with a genuine multi-branch Adobe production pipeline (tilt/exposure correction, brass-gold luxury grade, background cut-out, color-matched headshot, wordmark vectorize, authored-.indd export, and a real CSV data-merge) that reconverges at a Firefly approval board — the banner is honest crop_and_resize, not a banned generative op."
+  },
+  {
+   "id": "AO-25",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: the crop_and_resize export steps (12, 17, 21, 22) carry the sRGB/JPEG-q90 export burden in their notes, but crop_and_resize is fundamentally a reframe/resize op; whether it emits the exact color space + JPEG quality is slightly conflated with pure resizing. Presentation-level, non-blocking."
+   ],
+   "strength": "Genuinely grounded in a real Upwork real-estate HDR brief with verbatim DO-NOT-WANT constraints; long-horizon 3-lane grade that converges into one consistent set, with out-of-connector-scope work (perspective warp, cable/stain cloning) honestly flagged rather than faked."
+  },
+  {
+   "id": "AO-26",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Step 6 note overstates: image_adjust_highlights applied inside the windows mask cannot in one call both do a masked window pull AND a separate global highlight tame — the prose conflates two effects (already self-flagged in reverify; non-blocking).",
+    "Interior 'window pull' steps (17, 20) apply image_adjust_highlights globally with no preceding select_by_prompt mask, unlike the exterior which masks the windows. A global highlight tame is a defensible interior treatment but is labelled a 'window pull' in the brief — minor label/precision mismatch, workflow still valid."
+   ],
+   "strength": "A genuine high-volume Upwork real-estate retouch job, grounded verbatim, with every generative-sounding ask (HDR merge, sky replacement, object cleanup) honestly down-scoped to real headless connector capabilities and explicitly flagged — a well-chained 21-step flagship with correct masked select→adjust sub-chains and a preset reused across frames to enforce consistency."
+  },
+  {
+   "id": "AO-27",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Internal contradiction: reverify.notes and chaining_note both state step 18 was changed to asset_get_presigned_urls, but connector_workflow[18].tool is still asset_finalize_file_upload. asset_get_presigned_urls appears in tools_used (15 entries) and in chaining_note but nowhere in the actual workflow.",
+    "bracket_asset is dead weight: it is loaded via two full upload steps (3 init + 4 finalize) but no workflow step consumes it. chaining_note explicitly claims 'bracket_asset ... is an actively consumed inputs_from reference at step 13', but connector_workflow[13].inputs_from is ['color_balanced_img','window_mask'] with no bracket_asset. The claimed fix was described in reverify but not applied to the workflow array.",
+    "Metadata mismatch: distinct_adobe_tools=14 and tool_call_count=19 match the actual workflow, but tools_used lists 15 entries (includes asset_get_presigned_urls which never appears as a workflow step), so tools_used no longer matches the workflow."
+   ],
+   "strength": "A genuine verbatim-grounded Dutch real-estate editing commission with honest, connector-legal capability mapping (HDR->single-frame tonal recovery, window pull->masked selective tonal edit, object removal->solid fill) and no banned capabilities."
+  },
+  {
+   "id": "AO-29",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "partial",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Dead inputs: the three player cut-out plates (player_left/centre/right_cutout.png) are declared in inputs[] and the brief hands them over 'for selective per-player grading', but no connector step consumes them — steps 7-12 do all per-player accents via image_select_by_prompt masks on the hero frame itself. The reverify note even claims 'the three cut-outs' are consumed by a step, which is false. Either wire the cut-outs into the grade chain or drop them from inputs and stop calling them per-player grading plates.",
+    "Brief promises a 'layered/working master export' (full_brief goal #5, grounding_note deliverables = 'layered master'), but outputs[] contains only a flattened TIFF/PDF/JPEGs/SVG/board — no layered/working master. The connector can't emit a true layered PSD, so this is a brief-vs-outputs mismatch; the brief should drop the 'layered master' promise or reframe it as the working .psd/.tiff that is actually deliverable.",
+    "TIFF deliverable has no explicit export step: continental_poster_print_master_A2.tiff is assigned to step 18's hero_a2_master output by note only, with no format/colour-space (TIFF, print-intent) conversion step in the workflow. Minor — the raster op's output file is simply labeled TIFF.",
+    "Cosmetic: full_brief contains an unresolved editing artifact — 'Marco Ferraz and Kylian... — no: Diego Solano, Marco Ferraz and Théo Rocher' — the aborted name should be cleaned up before annotator handoff."
+   ],
+   "strength": "A genuine colourist/finishing commission (cinematic grade + per-player selective accents + atmosphere + A2 print master + social crops) honestly reframed to stay inside the connector's real capabilities, with a long, well-chained 23-step single-spine workflow and IP-clean fictional players/tournament."
+  },
+  {
+   "id": "AO-30",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Stale difficulty_rationale: it still says '19 connector calls' / '19 distinct Adobe tools' and describes the OLD thumbnail path ('select_by_prompt -> invert -> masked lens_blur -> 16:9 crop'), contradicting the reverified 22-call workflow that dropped invert_selection/lens_blur in favor of the masked Subject-Pop preset. Cosmetic doc drift (the runnable workflow, tools_used, tool_call_count=22 and outputs are all correctly reconciled), but the rationale text should be updated to match.",
+    "Minor conflation in steps 9-12: the notes say image_apply_adjustments 'batches' the Lightroom look-preset applied via image_apply_preset on the hero; strictly, a preset and an adjustments call are different mechanisms. The intent (replicate the identical recipe on the 4 non-hero frames) is clear and the frames are properly costed, so this is a wording nit, not a workflow break."
+   ],
+   "strength": "A grounded, honestly-enriched daily promo-finishing package that maps every deliverable to a real Freelancer.com brief and exercises a genuine colorist decision chain held consistent across a 5-frame set, plus thumbnail, licensed stock, VO repair, sizzle and summary — all strictly within connector limits."
+  },
+  {
+   "id": "AO-31",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor non-load-bearing nit: difficulty_rationale retains leftover 'format-bridge reframe-crop' / 'reframe-crop' phrasing from a prior edit that once described a generative reframe; the executable workflow and outputs[] correctly describe a gen-free image_crop_and_resize, so this is stale prose only and does not affect what an annotator or agent would do."
+   ],
+   "strength": "Faithfully grounded in a real Freelancer.com vlog post-production brief, honestly enriched to the still-brand-kit slice the Adobe connector genuinely owns; a long-horizon 18-step chain (multi-stage color grade, select->invert->masked-saturation subject pop, gen-free 9:16 crops, vectorized wordmark, Firefly board, async video reframe + VO denoise) with every output mapping to a client bullet and zero banned/generative calls."
+  },
+  {
+   "id": "AO-32",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "TIFF deliverable has no producing step in connector_workflow: the two web JPEGs (living_room_web, bedroom_web) are emitted by explicit image_crop_and_resize steps, but the full-res TIFFs (living_room_full.tif, bedroom_full.tif) are merely ASSERTED to be 'the un-resized master at native resolution' (lr_graded #9, bd_brightened #23). No connector call actually converts to or exports a TIFF / sets TIFF format+color-space, yet full-resolution TIFF is an explicit client deliverable and one of the 7 outputs. Fix by adding explicit export steps (or a note that crop_and_resize/export produces both JPEG and TIFF).",
+    "Output naming conflates master with format: kitchen_full.tif is the literal output of step 16 (image_fill_area), i.e. the corrected raster master, not a TIFF export; step 25 (create_firefly_board) then consumes 'kitchen_full.tif' as an input, blurring master vs delivered-TIFF. Minor labeling inconsistency, not a functional break.",
+    "Cosmetic asymmetry: the living-room chain runs auto_tone + color_temperature + dark_portions + vibrance while kitchen omits shadow-lift and bedroom omits auto_tone/color_temperature/vibrance. Each is internally consistent and justified by its per-room brief, but a reviewer may expect a more uniform correction template across the three listing shots."
+   ],
+   "strength": "A genuine, common paid commission (real-estate listing post-production) grounded in a verbatim Freelancer.com brief, with a correctly-ordered, well-chained straighten to crop to tone to WB to shadow/highlight to mask to solid-fill spot-fix to grade to resize pipeline across three rooms using only real, headless Adobe connectors and honoring the solid-fill-only (non-generative) constraint."
+  },
+  {
+   "id": "AO-34",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Internal contradiction on plate transparency: the reverify.notes and chaining_note both state the fix was applied (step 19 sources from the vectorized logo's already-transparent canvas, inputs_from = logo_vector.svg), but the actual connector_workflow step 19 still has inputs_from = ['brand_look_reference_frame.jpg'] and its note reads 'On a copy of the graded reference frame (reused as the plate canvas)'. Since that reference frame is an opaque graded JPG, solid-filling a selected region on it cannot yield the transparent-background PNG that both plate output specs (lower_third_bar_plate.png, callout_badge_plate.png) promise. The described resolution was not actually wired into the workflow. Fix: point step 19 inputs_from to logo_vector.svg (or another transparent canvas) and update its note to match, so the plates genuinely retain a transparent background."
+   ],
+   "strength": "A genuine, well-grounded Freelancer.com explainer-video commission with an honest, explicit [A] async-video/audio vs [C] headless-still split and a long, strictly output-to-input-chained 25-step workflow across audio, video, Lightroom-class grade, vector, and board packaging."
+  },
+  {
+   "id": "AO-35",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Third deliverable 'restoration_recipe_notes.txt' is promised in outputs[] and the full_brief ('Document the exact per-card operation sequence') but is not produced by any of the 18 connector steps — no step emits a text log. Either add a step/tool that writes the recipe or note it as an out-of-band artifact.",
+    "Step 3 (image_auto_straighten) lists inputs_from = 'front_raw_uri + back_raw_uri' but produces only front_straight_uri; the back is not straightened until step 13. The inputs_from should list only front_raw_uri. Cosmetic annotation error, not a chain break.",
+    "Step 3's note cross-references 'Same call is re-run on back at step 9' but the back is actually straightened at step 13. Stale step number."
+   ],
+   "strength": "A grounded, verbatim-sourced antique family-photo restoration job — a genuine bread-and-butter Upwork commission — with a correctly ordered, headless-only tonal-recovery pipeline split into two coherent front/back sub-recipes and no banned generative operations."
+  },
+  {
+   "id": "AO-37",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Metadata mismatch (cosmetic, non-client-facing): the vertical tag is 'Technology, SaaS & Startups', which is an odd fit for a personal family-photo restoration commission; a 'Personal / Consumer' or 'Photography' vertical would fit better. Does not affect the brief, inputs, outputs, or workflow.",
+    "Self-disclosed under-count: steps 18 (image_add_grain) and 19 (image_crop_and_resize) each act on three images but are logged as one call ('run per image'), so a literal run is 3x each. This under-claims rather than over-claims work, so it is non-blocking, but an annotator should expect ~6 extra tool invocations at execution time."
+   ],
+   "strength": "Grounded in a real Freelancer.com brief with a verbatim grounding_note; the enrichment honestly scopes 'scratch/tear repair' to solid-fill concealment over PLAIN uniform regions and 'clarity' to tonal/contrast shaping, explicitly refusing the connector's missing generative-heal/clone/sharpen ops — making correct tool discipline the core challenge with a strict, fully output-to-input-chained 20-step workflow."
+  },
+  {
+   "id": "AO-38",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Brief scope inconsistency: full_brief opens with 'deliver a four-color family per mark' (implying black/white/gold/silver for all five marks), but the detailed pipeline and workflow generate the four color variants for the LOGO only (steps 10-13); the four coins are only vectorized (steps 14-16), with no coin color-variant steps. The board/ZIP output specs tie the variant set to the logo, so the dominant spec is self-consistent, but the 'per mark' phrase over-promises. Tighten to say variants are logo-only (or add coin variant steps).",
+    "Stale metadata in difficulty_rationale/chaining_note: text says 'Long-horizon (17 steps, 13 distinct Adobe tools)' and 'all 16 core steps' and reverify says '18 core steps', but the actual connector_workflow has 19 steps and distinct_adobe_tools=14 / tools_used lists 14. The narrative step and tool counts are inconsistent with the real workflow; update to 19 steps / 14 distinct Adobe tools.",
+    "coin_vectors_x4.svg output (and step 16) collapse four separate coin vectors under one filename/handle; a cleaner spec would name four distinct SVG outputs to avoid ambiguity in what the single .svg contains."
+   ],
+   "strength": "A genuinely commissionable raster-to-vector challenge-coin/logo job, verbatim-grounded in a real $400 Upwork brief, with an IP-clean fictional brand and a fully chained 19-step Adobe connector pipeline that respects every capability limit (vectorize as the true raster-to-vector path, solid-only fill_area, gen-free crop-and-resize, no banned generative steps)."
+  },
+  {
+   "id": "AO-39",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "unclear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "Step 11 image_fill_area is described as widening the hero onto a \"wider solid studio-white canvas\" with \"extra horizontal margins solid-filled\" for a 2:1 banner — but image_fill_area only solid-fills a region WITHIN existing pixels and cannot extend/add canvas; adding new horizontal margin area is generative-expand (banned). The reverify note's claim that \"no canvas is invented, padded, or extended\" directly contradicts the output spec and chaining_note that say margins are added/canvas is widened.",
+   "overall": "major",
+   "issues": [
+    "outputs[] lists only ONE deliverable (hero_catalog_banner.jpg), but the full_brief promises FIVE and the workflow produces all five: the 1:1 Instagram square (step 12), the catalog banner (step 13), the transparent packshot PNG (step 16), the vectorized SVG logo (step 19), and the zipped apparel_set (step 21). Four of the five promised/produced deliverables are missing from outputs[], each with its own spec (dimensions/format/colour). This is a brief<->outputs<->workflow mismatch.",
+    "Internal contradiction / latent red flag at step 11: the output spec and chaining_note say the banner is made by WIDENING the hero onto a 'wider solid-white canvas' with 'extra horizontal margins solid-filled' for 'horizontal breathing room', but image_fill_area only fills a masked region inside the existing frame and cannot extend the canvas. Either the banner is really just a crop (contradicting the brief's explicit 'wider solid-white studio canvas ... breathing room' ask) or it needs canvas extension (banned generative-expand). The reverify note asserts 'no canvas is invented, padded, or extended', which contradicts the same spec's 'extra horizontal margins solid-filled'.",
+    "Minor duplication: step 20 (create_firefly_board) and step 21 (asset_copy_assets) both bundle the same four leaf deliverables; only step 21 is called out as a deliverable, so step 20 is presentational and fine, but the brief never asks for a moodboard/contact-sheet."
+   ],
+   "strength": "Grounded in a real verbatim Freelancer.com brief and honestly re-cast so the two literally out-of-scope asks (shirt compositing, AI clutter erase) are dropped and replaced with in-scope mask-driven isolation + solid-fill backdrop cleanup — a genuine, professional, long-horizon apparel e-commerce commission."
+  },
+  {
+   "id": "AO-41",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Vertical metadata mismatch: `vertical` is set to 'Health, Wellness & Medical' but the task is a home-services brand (logo/brand-asset system). The reverify note even claims 'vertical metadata' was among the fixes applied, yet the field still reads Health/Wellness/Medical — it should be something like 'Home & Local Services'. Metadata-only, does not affect the runnable chain."
+   ],
+   "strength": "An honestly-scoped, grounded Upwork brand-asset commission that avoids the from-scratch-illustration ban by framing the work as cleanup/productization of client-supplied raster concepts, with a long (16-step), fully output→input-chained three-branch pipeline of real headless Adobe connectors and deliverables that exactly match the brief."
+  },
+  {
+   "id": "AO-42",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Icon/avatar step mismatch: the deliverable (steps 6 note + OVERDRIVE_icon_avatar_transparent.png spec) calls for a cap-mark icon 'derived from the cap mark', but image_crop_to_bounds on the primary horizontal lockup crops to the content bounds of the WHOLE wordmark+cap lockup, not the cap alone. The connector step cannot isolate just the graduation cap from a horizontal wordmark lockup, so the produced icon will be the full lockup tight-cropped, not a cap-only avatar as promised.",
+    "Palette-build sub-chain (steps 13-18) is contrived: image_select_by_prompt selects semantic content, but the cropped icon canvas has no pre-existing 'first/second/third swatch block' to select. Prompt-selecting three non-existent 'blocks' to then solid-fill is a fragile way to fabricate a swatch reference; a real freelancer would author the palette tile differently. Functional intent is honestly documented but the mechanism is the weakest link in the chain.",
+    "Minor internal count inconsistency: difficulty_rationale text says '14 steps, 11 distinct Adobe tools', but the structured fields are tool_call_count=21 and distinct_adobe_tools=12. The prose numbers are stale (likely from an earlier draft) and should be reconciled."
+   ],
+   "strength": "A genuinely realistic merch brand-kit finishing commission, verbatim-grounded in an Upwork brief and honestly scoped to the Adobe-productionizable half (background removal, single-color variants, vectorize, palette, fonts, board) with the banned from-scratch-logo/AI-removal asks explicitly excluded and the AI/EPS+PDF+rights letter noted as human finishing items."
+  },
+  {
+   "id": "AO-45",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor stale counts from the step-16 split: difficulty_rationale says '18 connector calls' and '15 distinct Adobe tools', but the workflow has 19 steps and 16 distinct tools (tool_call_count=19 and distinct_adobe_tools=16 are correct). Cosmetic, no impact on the task.",
+    "Step 15 (image_crop_and_resize) derives the 'stacked/vertical' lockup by re-cropping the horizontal lockup to square-ish. Cropping cannot actually re-arrange a horizontal lockup into a true stacked composition — it only reframes it. The spec is honest that layout composition is out of connector scope, so this is an accepted fidelity compromise rather than a defect, but the 'stacked/vertical' label slightly over-promises what a crop delivers."
+   ],
+   "strength": "A genuine, common freelance commission (vectorize a client's raster logo into a print/wrap-ready brand kit) with a verbatim grounding_note, a clean single-hub chain of real [C] connector steps, and disciplined avoidance of all banned generative capabilities — vectors come only from image_vectorize and fills are solid-color only."
+  },
+  {
+   "id": "AO-46",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor cosmetic: the outputs[] entry 'letters_AZ.eps / numbers_09.eps' bundles two distinct files into one row rather than listing them as two separate output entries; harmless but slightly inconsistent with the one-file-per-row style used elsewhere."
+   ],
+   "strength": "A genuine, common apparel-freelance commission (recreate a jersey font glyph set as print-ready SVG/EPS/AI), verbatim-grounded on an Upwork brief, with a fully output-input-chained 24-step workflow that uses only allowed connectors and honestly scopes fill_area and the authored .ai masters."
+  },
+  {
+   "id": "AO-47",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Transparent-background contradiction: the background is knocked out with a SOLID WHITE fill (image_fill_area preset white, steps 7/17/25) and never removed, yet outputs[] and steps 29-31 promise 'transparent-background web PNGs' ('pad-to-canvas', 'outputFileType=png'). The chain has no image_remove_background and no alpha-producing step, so a PNG exported from these solid-white-knocked rasters would have a white background, not transparency. Fix by either (a) dropping 'transparent' and calling the PNGs 'flat-white-background', or (b) inserting image_remove_background instead of/after the fill so the exported PNGs genuinely carry alpha.",
+    "Minor: the SVG outputs are vectorized from a solid-white-background raster, so the SVGs will also carry a white backing field rather than being transparent — consistent with the white knockout but worth stating explicitly in the SVG output specs, which currently imply clean isolated pool artwork."
+   ],
+   "strength": "A genuinely grounded Upwork photo-to-vector commission with three distinct-palette pools, per-image adaptive prep, and a strictly output->input-chained 34-step Adobe-only workflow that lands squarely on the literal image_vectorize deliverable with no banned capabilities."
+  },
+  {
+   "id": "AO-48",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Brief-vs-workflow mismatch on the 'web header bug' export: full_brief step (9) and outputs[] line 45 both promise a 'web header bug' PNG alongside the 1024 icon and 512 avatar, but connector_workflow only produces icon_1024_png (step 14) and avatar_512_png (step 15). No step generates the header bug, so one promised deliverable has no producing step. Fix by adding a third image_crop_and_resize step or dropping the header bug from the outputs.",
+    "Minor output-spec vagueness: the header-bug entry in outputs[] gives no dimensions/aspect (unlike the 1024 and 512 entries), which compounds the above gap — the annotator can't tell what size the missing export should be."
+   ],
+   "strength": "A genuine, ubiquitous freelance commission (AI-raster-logo -> vector) grounded verbatim in a real Upwork brief, with an honest long-horizon Adobe chain that correctly cleans/de-skews/isolates BEFORE tracing and uses image_vectorize (not any banned from-scratch/gen tool) for the vector."
+  },
+  {
+   "id": "AO-49",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "partial",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Orphaned input: grunge_paper_texture.jpg is listed in inputs[] and referenced in the full_brief ('subtle grunge paper texture... worn, premium hand-feel'), but NO connector_workflow step ever consumes it and no output derives from it. Its realism_note even says it is 'sourced via Adobe Stock in the workflow rather than uploaded', yet the workflow has no asset_license_and_download_stock step and no step that applies the texture (e.g. grain/overlay/composite). It should either be wired in (add a stock-license step + a texture-application step producing a distressed variant), removed from inputs[], or the brief line dropped — as written it is a promised asset that does nothing.",
+    "Minor: image_apply_halftone is used to produce a 'purple/black halftone' spot-color variant; the connector's documented purpose is duotone/print-screen, so the exact two-color spot mapping is the softest capability claim in the chain (the spec's own reverify flags this). Not a banned capability, but worth an annotator note.",
+    "Minor: step 19 bundles crest_transparent (a step-9 intermediate) into the handoff zip; it is a legal addressable asset to copy, but it is an intermediate rather than a dedicated named deliverable output, so the 'cleaned transparent crest' appears in the zip spec without its own outputs[] entry (acceptable but slightly asymmetric)."
+   ],
+   "strength": "A genuine, well-grounded screen-print separation commission (real Upwork brief, IP-clean 'Evergreen' brand, locked palette) with a long, honestly-chained 20-step Adobe-only workflow that uses image_fill_area and document_render_vector in their only legal modes and dodges all banned generative capabilities."
+  },
+  {
+   "id": "AO-51",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Step 22 note claims render_vector exports 'press-ready PDF + PNG', but the step's declared output is only vanguard_press_export.pdf (the social PNG actually comes from step 16). Cosmetic note-only inconsistency, not a feasibility break.",
+    "vanguard_separations_source.ai is listed as a deliverable in outputs[] but is actually a human-authored input feeding step 22 (render_vector only exports it, never composes it). This is explicitly disclosed and permitted, but means one of the seven 'outputs' is not connector-generated — worth calling out for annotators so they don't score the .ai as agent-produced.",
+    "Chaining is 86% (19/22 post-first steps), passing the >=80% bar, but three steps (second upload init at 18, font_recommend at 21, and the .ai export at 22) do not chain on a prior connector output."
+   ],
+   "strength": "A verbatim-grounded real Upwork screen-print job (refine ChatGPT raster into spot-color separations) executed via the honest non-generative connector path — solid-fill spot locking, vectorize, and authored-.ai export — long-horizon (23 steps, 15 tools) with a strict output->input chain."
+  },
+  {
+   "id": "AO-52",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "partial",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Campus-photo count mismatch: the brief, the campus_reference_board output spec, and workflow step 20 all say 'four campus reference photos', but inputs[] provides only THREE image files (chapel, oak_quad, and a combined schoolhouse_and_foundingclass). The founding-class and schoolhouse were bundled into one file, so '4' is asserted everywhere while only 3 assets exist. Fix by making inputs and every 'four' reference agree (either split into 4 files or say 'four references across three photos').",
+    "Two of the five declared plate outputs have no dedicated workflow step: plate_brick_red_halftone.png and plate_ink_black_lettering.png appear only parenthetically ('Brick Red + Ink Black plates produced the same way from choked_field'). For a 5-screen separation pack, all five plates should be produced by explicit numbered steps.",
+    "plate_ink_black_lettering.png is described in its output spec as carrying the vectorized hard-edge lettering/line-work as solid PLUS the darkest tonal dots, but the only step that references it says it is produced 'the same way from choked_field' — that would omit the vectorized lettering hold-out. The Ink Black plate step needs to combine the choked dot field with lettering_lineart.svg, so the parenthetical 'same way' description is inaccurate for this plate."
+   ],
+   "strength": "Genuinely grounded screenprint-separations production job that honestly scopes the banned from-scratch illustration out (supplied as an approved client master) and builds a coherent, banned-capability-clean 17-tool halftone/choke/spot-plate/registration-render chain."
+  },
+  {
+   "id": "AO-54",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "difficulty_rationale (line 272) contradicts the actual workflow: it states 'The one generative step is image_generative_expand (reframe-crop) only', but the workflow was deliberately rewritten to use gen-free image_crop_and_resize (step 8) and contains NO image_generative_expand step. The spec's own reverify note (line 277) explicitly flags this stale reference as unfixed. A client/annotator reading this field would be told a generative step exists that does not.",
+    "The reverify note (line 277) reads 'Client brand LaneLoom ... renamed to the clearly-fictional LaneLoom' — a leftover rename-to-itself artifact; harmless but sloppy provenance text. The slug 'roadwise-topdown' and filename also still carry a 'roadwise' remnant vs the LaneLoom brand.",
+    "Nit: difficulty_rationale also says 'fifteen [C] headless steps plus two [A]' — correct count-wise, but bundled with the stale generative-step claim it compounds the documentation drift."
+   ],
+   "strength": "An honestly-reframed real Upwork commission: instead of claiming impossible from-scratch AE 2D animation, it delivers the connector-doable upstream source-asset kit (vectorized SVG icons, locked brand grade, 9:16 crop cover, licensed asphalt texture, denoised VO, vertical preview) via a clean, well-branched, banned-capability-free 17-step chain."
+  },
+  {
+   "id": "AO-55",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "partial",
+   "workflow_coherent": "coherent",
+   "red_flag": "difficulty_rationale (line 340) still names image_generative_expand as a used generative capability, contradicting the actual workflow (step 10 = image_fill_area, solid fill, no generation); the reverify note itself admits this stale banned-capability reference was left unfixed",
+   "overall": "minor",
+   "issues": [
+    "difficulty_rationale (line 340) still describes a 'real generative step... (image_generative_expand reframe-crop)' and later 'no gen-fill' — an internal contradiction; the actual workflow uses image_fill_area (solid charcoal fill, no generation). The reverify note (line 345) explicitly acknowledges this stale banned-capability text was not rewritten. Must be scrubbed before client/annotator handoff since it names a banned capability.",
+    "Brief promises a THREE-format cutdown set including 'the original 16:9', but outputs[] lists only showcase_9x16 and showcase_1x1 (no explicit 16:9 output), and the workflow (steps 18-19) produces only those two. The 16:9 is implicitly the untouched source; if it counts as a deliverable it should appear in outputs[] for parity with the brief's 'three-format set'."
+   ],
+   "strength": "A genuinely commission-shaped, long-horizon multi-channel package (retouched hero, 3-format video cutdowns + AI sizzle, denoised VO, vectorized logo, review board) faithfully grounded in a real Upwork meal-prep agency brief with a strictly output→input-chained 25-step workflow across 5 Adobe connector groups."
+  },
+  {
+   "id": "AO-56",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Naming mismatch on the SVG deliverables: outputs are labeled 'text_callout_card_1/2.svg' and the brief/grounding_note promise 'two text-callout cards vectorized to SVG', but the workflow (steps 14-15) whole-raster-vectorizes the duotone meme tile and the styled hero frame — neither is a text-callout card. The output spec fields even acknowledge this ('vectorization of the duotone meme tile', 'vectorization of the styled hero frame'), so the deliverable name overstates what is produced. Minor labeling inconsistency, not a workflow break — rename to something like 'overlay_graphic_1/2.svg' to match reality.",
+    "Weak creative choice (not blocking): image_vectorize is applied to a photoreal gameplay hero still (step 15); photographic rasters vectorize poorly into genuinely 'crisp' SVGs. It is within tool capability and defensible for a stylized/posterized callout, but a real editor might question the crispness claim."
+   ],
+   "strength": "A faithful, well-grounded real Freelancer.com comedy-gameplay editing commission with a clear numbered brief, complete inputs/outputs, and a coherent 18-step connector chain (three parallel sub-chains converging into one project package) that stays strictly inside the capability sheet with no banned generative steps."
+  },
+  {
+   "id": "AO-57",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "partial",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "outputs[] is incomplete relative to the brief: the full_brief and connector_workflow both promise FOUR deliverables (final ~30s 9:16 MP4, captions/text asset, cleaned voiceover track, graded 1080x1920 thumbnail), but outputs[] lists ONLY thumbnail_cover_1080x1920.png. The reel (reel_9x16, step 23), cleaned VO (voiceover_clean, step 26), and captions asset (captions_asset, step 28) are produced by the workflow but missing from outputs[] with their own specs. Add these three output entries so outputs[] matches the brief.",
+    "Minor: the final reel is [A] async (video_create_quick_cut + video_resize) — its exact runtime/output are entitlement/widget-polled rather than headless-retrievable, so the ~30s duration deliverable is best-effort; this is honestly flagged in the spec but worth noting an executor cannot fully verify the MP4 spec headlessly."
+   ],
+   "strength": "A faithfully re-scoped, honestly mode-tagged phonk short-form package: a genuine 9-step headless raster grade-and-thumbnail spine with a real select_subject-masked selective edit, plus honest [A] async video/audio steps, no banned capability, fictional brand, and out-of-scope timeline work explicitly named as the human-finish step."
+  },
+  {
+   "id": "AO-58",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Vertical metadata mismatch: the task is tagged vertical 'Real Estate, Construction & Property' but is a fitness/personal-training commission. Cosmetic categorization error, does not affect the brief or execution.",
+    "Step 8 note describes 'crop/resize the white logo to a ~400x400 corner-badge' but the source logo is already square (2048x2048), so this is effectively just a resize; harmless wording but 'crop' is slightly imprecise."
+   ],
+   "strength": "A faithfully grounded, honestly-scoped long-horizon pipeline (15 chained steps, 13 distinct tools, 3 converging sub-chains) that maps a real Upwork consulting brief to only genuinely-available Adobe connector capabilities and explicitly defers video compositing/burn-in to the human Premiere step."
+  },
+  {
+   "id": "AO-60",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "partial",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "major",
+   "issues": [
+    "INPUTS INCOMPLETE (major): The brief, workflow, and chaining_note all center on SEVEN client stills — six packaging photos (tea carton, cosmetics jar, coffee bag, craft-beer can, perfume box, chocolate bar sleeve) plus the kraft title-card box — and steps 1-2 explicitly upload '7 client stills'. But inputs[] defines only ONE asset (pkg_kraft_box_titlecard.jpg). The six packaging photos that the entire cohesive-grade pipeline (steps 3-9), the crop set, the jar cut-out (steps 11-12), the reel, and the moodboard are all built from are missing from inputs[]. Annotators/executors have no defined source assets for the core deliverable.",
+    "STEP 10 TOOL CONTRADICTS THE SPEC'S OWN NOTES (major): connector_workflow step 10 tool is 'image_crop_and_resize' with output 'kraft box seated on a solid charcoal 1920x1080 full-bleed card' — but a crop/resize only reframes existing pixels and cannot 'seat the box on a solid charcoal card'. The inputs[].realism_notes explicitly say step 10 should be image_fill_area ('so image_fill_area can solid-fill the surrounding region... and step 13 crops it'), and reverify.banned_capability_check states 'Step 10 is image_fill_area (solid charcoal #2B2B2B fill...)'. So the executable step 10 uses the wrong tool for what it claims to produce, and directly contradicts the spec's realism_notes and reverify block. The intended chain is fill_area (charcoal seat) then crop to 1920x1080, which is not what step 10 as written does.",
+    "MINOR: difficulty_rationale says '17 distinct Adobe tools' but the actual distinct count is 16 (distinct_adobe_tools field and tools_used are both 16). Stale number in the prose."
+   ],
+   "strength": "A genuinely realistic, well-briefed long-horizon commission: recognizing that a 'hero video' request with only mismatched stills must become an honest cohesive-grade photo pipeline plus async Quick Cut assembly, with a clean branch/reconverge and no banned generative steps."
+  },
+  {
+   "id": "AO-61",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "partial",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "major",
+   "issues": [
+    "inputs[] is incomplete: it lists only brand_logo_lockup.png, but the full_brief and connector_workflow explicitly rely on THREE other supplied source assets that are absent from inputs[] — the raw 1080p podcast master (podcast_raw_master_1080p.mp4, consumed by steps 1-2/5/6/7), the noisy voice scratch track (host_voice_scratch_track.wav, step 3-4), and the lower-third texture plate (lower_third_texture_plate.jpg, steps 12-17). Three of the four inputs the task depends on have no inputs[] entry, no kind, no realism_notes, and no gen spec. An annotator or agent reading inputs[] would be missing most of the source material.",
+    "Workflow steps that load these missing assets (step 3 voice, step 8 logo, step 12 plate) all have inputs_from: [] and refer to filenames only in their notes; because those files aren't declared in inputs[], the load steps aren't grounded to a defined input.",
+    "Minor: the reverify note claims the brand was renamed to a 'non-colliding' name but the result 'WANDER MILES' is just the capitalized form of the flagged real 'Wander Miles' travel-media franchise — the collision it purports to fix is not clearly resolved. Reads as plausibly generic, but worth double-checking the mark is IP-clean."
+   ],
+   "strength": "A genuinely realistic, well-scoped podcast-editing commission with an honest, tightly output→input-chained 20-step Adobe workflow and clearly specced multi-format deliverables."
+  },
+  {
+   "id": "AO-62",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor realism gap: the CSV has ~24 rows with a per-row @ImagePath column, but only ONE product image (product_art_prepped.png, the 'hero SKU') is actually prepped — a real full merge would need image paths for every row. The spec discloses this honestly (product_art_prepped is explicitly 'the merge image for the hero SKU'), so it is not a contradiction, but a strict reviewer would note the other ~23 image cells are undefined.",
+    "Minor ordering quirk: step 12 font_recommend is said to 'inform the authored template's type', yet the .indd/.ai are already client-authored (steps 2-3) before the recommendation runs, so it cannot retroactively change the template. Harmless because the brief treats the font pairing as a standalone handoff deliverable (font_recommendation.txt), not a template edit."
+   ],
+   "strength": "A genuinely grounded variable-data print-merge commission that honestly reframes an out-of-scope 'build a plugin' brief into a legitimate two-format InDesign+Illustrator data merge on client-authored auto-fit templates, with a clean gen-free image-prep chain and no banned capabilities."
+  },
+  {
+   "id": "AO-63",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "partial",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "outputs[] is under-populated: the brief and connector_workflow produce SIX named deliverables (MCL_logo_system_traced.svg, MCL_logo_master_export.pdf, MCL_away_crest_screenprint_halftone.png, MCL_hero_graded.jpg, MCL_hero_banner_wide.jpg, MCL_jersey_cutout.png) plus the final MCL_brand_delivery.zip, but outputs[] lists only MCL_hero_banner_wide.jpg. The other five exports and the zip package are missing from outputs[], so five of six promised deliverables have no output entry or spec.",
+    "Only the single listed output carries a spec; the missing deliverables lack format/dimension/colour-space specs (e.g. the halftone separation's DPI/single-color spec, the SVG/PDF vector specs, the transparent PNG cut-out spec) that annotators would need to score them."
+   ],
+   "strength": "Grounded, IP-clean production-art commission with five properly output-to-input-chained Adobe sub-chains (raster-to-vector, authored-.ai export, straighten-to-crop-to-halftone, 5-step color grade, cut-out) converging into a packaged handoff, with correct connector-limit discipline and no banned generative steps."
+  },
+  {
+   "id": "AO-64",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Asset-count inconsistency: the full_brief step 1 and connector_workflow step 1 both say '8 client-supplied assets' but then enumerate only 7 filenames, and inputs[] contains exactly 7 entries (hero photo, logo, leaf motif, dieline .ai, label .indd, skus.csv, brand_guide.pdf). The '8' is wrong; should read 7. Cosmetic, non-blocking.",
+    "carton_dieline_print output is declared kind='pdf' but its spec and workflow step 13 also promise 'plus a preview PNG', collapsing two exported artifacts into one output/one render_vector node (typically one format per call). The board step then consumes 'carton_dieline_print' as a preview image, relying on that PNG. Minor modeling liberty already acknowledged in reverify.",
+    "CMYK/3mm-bleed fidelity of the exported PDFs is inherited from the authored .ai/.indd inputs rather than guaranteed by render_vector/render_layout; the spec attributes this correctly, so it is consistent but worth an annotator note."
+   ],
+   "strength": "A genuinely realistic, well-grounded premium skincare print-prep commission with a disciplined 17-step export-only/data-merge pipeline that stays strictly inside connector limits (no gen-fill, no from-scratch layout) while exercising a deep retouch chain plus four reconverging asset-prep branches."
+  },
+  {
+   "id": "AO-67",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "partial",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Outputs<->workflow count mismatch: banner_set_exports.zip and the brief promise print PDF + high-res PNG for ALL SIX authored masters (3x10x10, 2x10x20, 1x10x6), but connector_workflow contains only ONE document_render_vector call (n=17, the 10x20). The note 'Repeated per the six authored masters' is asserted, not chained; steps 20/21 reference only banner_10x20_print.pdf+.png, so the other five exports are never produced. The five remaining masters (banner_masters_remaining.ai) are uploaded conceptually but never rendered.",
+    "Internal contradiction in difficulty_rationale: it still says 'bleed must be real reframe-crop (image_generative_expand) not padding' and 'the only generative step permitted is the reframe-crop', but the actual workflow (n=10) and reverify replaced image_generative_expand with image_crop_and_resize (explicitly a non-generative reframe). The stale prose contradicts the shipped, gen-free workflow.",
+    "PNG described with CMYK intent: hero_graded_bleed.png is sRGB (fine), but banner PNG exports and the packaging spec attach 'CMYK intent' to PNG outputs; PNG is an RGB/indexed format and cannot carry CMYK. Only the PDF exports can be CMYK. Minor spec wording nit.",
+    "banner_set_exports.zip is labeled/kind='data' (.zip) but step 21 uses asset_copy_assets to populate a delivery FOLDER, not produce an actual zip archive; the note even says 'no separate [L] step needed'. Output name overstates the artifact as a zip. Minor labeling nit."
+   ],
+   "strength": "A genuinely grounded, long-horizon (21-step, 16-tool) print-production commission with an honest authored-master/EXPORT split that keeps locked Tamil typesetting out of connector scope while exercising a real photo-grade, mask, vectorize, halftone, and PDF->INDD chain."
+  },
+  {
+   "id": "AO-68",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "Stale internal contradiction: difficulty_rationale still says \"The single generative step is image_generative_expand ... the only permitted generative op,\" but no generative_expand step exists in the runnable workflow (it was replaced by gen-free image_crop_and_resize). No banned capability is actually executed; the contradiction is documentation-only and self-acknowledged in the reverify block.",
+   "overall": "minor",
+   "issues": [
+    "difficulty_rationale (line 266) still claims image_generative_expand is 'the single generative step / the only permitted generative op' — contradicts the reconciled workflow, which contains no generative_expand (replaced by gen-free image_crop_and_resize at step 13). Stale prose; reverify block already flags it as needing a maintainer fix.",
+    "brand_palette_swatch.png is declared in inputs[] but is never consumed by any connector_workflow step — it functions only as a reference swatch, so it is a technically-unconsumed input (acceptable but slightly loose).",
+    "chaining_note (line 265) claims '17 distinct Adobe tools' while tools_used lists 16 and distinct_adobe_tools=16 — a small internal count inconsistency (difficulty_rationale also says 17)."
+   ],
+   "strength": "A faithful, grounded large-format print-prep commission with a genuine 7-stage straighten/crop/tone/white-balance/brand-grade chain that fans out to three derivatives plus vectorize + authored-.indd CMYK export — exercising the real layout-composition gap correctly."
+  },
+  {
+   "id": "AO-69",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Step 7 contradicts the reverify note and its own output spec. The reverify block explicitly claims step 7 was changed from image_fill_area to image_crop_and_resize (a gen-free 3:1 crop), but connector_workflow step 7 STILL uses image_fill_area with a note about placing the logo on a solid brand-blue canvas. The fix was documented as applied but never actually applied to the workflow array.",
+    "Output/tool semantic mismatch: titanseal_horizontal_lockup.png is specced as 'a horizontal band of the source, cropped/reframed, no invented pixels,' but step 7's image_fill_area composites the logo onto a solid-color fill canvas — a different operation that does not crop a band from the source. As written, executing step 7 would not produce the output the spec promises.",
+    "Count inconsistency: distinct_adobe_tools=15, but the tools_used array lists 14 entries and the reverify note itself says the count should be 14. Also image_fill_area is actually used at step 7 yet is absent from tools_used, while nothing in tools_used is wrong — the array reflects the intended (post-fix) workflow, not the shipped one.",
+    "Minor design concern: cropping a 3:1 band out of a centered square logo composition would slice off the top and bottom of the mark; if step 7 is corrected to a crop, the resulting 'lockup' may clip the icon/wordmark rather than reframe it cleanly."
+   ],
+   "strength": "A genuinely commission-grade, verbatim-grounded Upwork sealants-brand-launch job: long-horizon 22-step chain correctly using authored-template [T] InDesign/Illustrator data-merge bound to a header-matched CSV, DERIVED logo variants (no from-scratch art), licensed stock (not text-to-image), and honest out-of-scope flags — no banned capabilities."
+  },
+  {
+   "id": "AO-72",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "Banned capability image_generative_expand is still named in grounding_note and difficulty_rationale (though NOT in the executable workflow, which uses crop-only image_crop_and_resize) — an internal contradiction the reverify block falsely claims to have fully removed.",
+   "overall": "minor",
+   "issues": [
+    "grounding_note (line 11) still states the hero is 'extended to both ratios via image_generative_expand' — a banned generative capability — contradicting the brief's 'crop existing pixels, no generation' and the crop-only workflow (n8-n11 use image_crop_and_resize).",
+    "difficulty_rationale (line 341) says 'the only generative op is image_generative_expand (reframe-crop)', which is self-contradictory (a crop is not a generative op) and contradicts the same sentence's claim that no generative-expand/upscaling is used.",
+    "reverify block (lines 345-346) asserts 'All stale generative-expand prose ... has been rewritten' and 'No banned/generative capability remains in any field' — this is inaccurate, since grounding_note and difficulty_rationale still name image_generative_expand.",
+    "category is 'stock_hero_expand' but no expand operation occurs; the label is a residue of the original generative approach and is mildly misleading given the crop-only method actually delivered."
+   ],
+   "strength": "A genuine, well-scoped agency storefront-graphics commission (hero + PDP + decoration) with a fictional IP-clean brand, complete inputs, spec'd outputs, and a coherent 24-step license-before-edit / master-grade-then-propagate connector pipeline that stays inside real capabilities."
+  },
+  {
+   "id": "AO-74",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Straightening coherence gap: the brief says all 12 photos are tilted 3-5 degrees and asks to 'straighten the tilted frames' across every product photo, but image_auto_straighten runs only on the lead sourdough (step 1). The other 11 sub-chains (tone -> preset -> crop) omit straightening. A Lightroom-style apply_preset cannot carry a per-image auto-straighten geometry correction, so as written the other 11 outputs would not be leveled despite the brief promising it.",
+    "The graded_product_photos_x12 output is described as 'straightened' but only 1 of the 12 workflow sub-chains actually straightens, reinforcing the same gap on the outputs side."
+   ],
+   "strength": "A genuine, gradeable B2B catalog data-merge grounded verbatim in a real Freelancer.com brief, with an authored .indd correctly modeled as a supplied input and a strict 45-step chain that threads a locked preset as a real cross-photo dependency and converges into a real InDesign [T] merge plus dual print/JPEG export."
+  },
+  {
+   "id": "AO-75",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "font_recommend (step 13) is slightly vestigial: the template is a supplied, already-authored .indd with fonts baked in, so a font pairing 'note' informs nothing downstream — harmless but adds no value to the chain.",
+    "Two of the five outputs (northgate_wordmark.svg, role_qr_prepped_x4) are really intermediate production assets rather than final deliverables; acceptable because they are surfaced via the review folder, but they slightly inflate the outputs[] list."
+   ],
+   "strength": "Grounded in a real Upwork dental-conference brief, transparently and honestly enriched from an out-of-scope from-scratch-logo request into a genuinely connector-doable ~1,000-row InDesign data-merge that preserves the brief's true intent (physical delegate badges), with a real authored .indd, CSV headers matching merge fields exactly, and clean output→input chaining."
+  },
+  {
+   "id": "AO-76",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "reverify.notes is internally garbled from a botched find-and-replace: it claims the brand 'collided with the real Northlantic Insurance Company (a Rhode Island carrier), so it was renamed to... Northlantic Insurance Group' (i.e. renamed to the same name it already had) and that 'Northlantic Slate color renamed to Northlantic Slate'. Web search finds no real 'Northlantic' carrier (closest are 'North Atlantic Insurance Associates' and 'Northland Insurance'), so the client brand is in fact IP-clean and fictional. This is a QA-metadata blemish only, confined to reverify.notes; the title/brief/inputs/outputs/workflow the agent and annotators consume are all clean and consistent. Recommend cleaning up the reverify.notes text before delivery.",
+    "Output northlantic_linen_texture_fullres is really an intermediate/licensed asset rather than a final client deliverable, and outputs list the JPEG spec as 'max-quality' without an explicit pixel dimension or DPI (minor spec looseness, acceptable given A4 portrait is fixed)."
+   ],
+   "strength": "A genuine, common production commission — binding a regulated premium CSV into a brand-locked authored InDesign rate card via a real [T] data-merge, then dual-exporting a press PDF + high-res JPEG — with a crisp 6-point brief, matching CSV/merge-field headers, and a strictly output-input-chained 15-step workflow that stays fully in connector scope (no generative/from-scratch capabilities)."
+  },
+  {
+   "id": "AO-77",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Metadata contradiction: top-level distinct_adobe_tools=7 (line 209) contradicts the reverify note's explicit 'CORRECTED COUNT: 8' and the actual count of 8 distinct Adobe tools in tools_used[]. The header field was not updated to match the correction.",
+    "Vestigial template phrasing: full_brief closes with 'every caption and price stays as supplied' — a children's picture book interior has no prices, so 'price' reads as leftover boilerplate. Harmless but slightly incongruous.",
+    "Minor output-spec gap: interior_export_proof.pdf / interior_template_proof.pdf specs omit explicit dimensions/colour-space, which for a print preflight (where trim/bleed/CMYK are the whole point) could be stated; acceptable since these are diagnostic proof renders, not deliverable print files."
+   ],
+   "strength": "A genuine, common KDP paperback preflight commission, honestly enriched from a verbatim Upwork brief into a multi-artifact analyze task that cross-checks three representations of one book against numeric targets, with deliberately-seeded defects (overset caption, tight spine, under-res image) giving the audit real findings to surface."
+  },
+  {
+   "id": "AO-78",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Consistency gap between brief and workflow: the brief promises a 'consistent look across all five' photos and step 8's note says the warm food-pop preset is 'same preset reused for the other four', but image_apply_preset appears only once in the workflow (step 8, flat-white hero). The pancakes/toast/croissant/cortado sub-chains never apply the preset, so the promised uniform grade is not actually enforced in the chain.",
+    "Uneven per-photo grading: the brief lists shadow-lift (dark_portions) and vibrance push as part of the per-photo grade, but those steps run only on the flat-white hero. The other four get abbreviated chains (auto_tone + color_temperature, plus lens_blur only for pancakes), so the four non-hero photos are graded less thoroughly than the brief describes. Deliberate abbreviation but it undercuts the 'consistent, appetizing look across all five' claim an annotator would score against."
+   ],
+   "strength": "Genuinely grounded café-menu commission with a correctly-modeled supplied .indd template (connector binds/exports, not authors), a real InDesign data-merge whose CSV headers match the merge fields, and a long, cleanly output-to-input chained 29-step workflow using only in-scope Adobe tools."
+  },
+  {
+   "id": "AO-79",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: step 27 (document_render_layout) is described as emitting four per-page JPEGs from one call; whether one call yields four separate JPEG files vs. one composite is slightly ambiguous but reasonable.",
+    "Minor: the recipe-note step (n29) and its output are the one non-Adobe-connector piece (server='local', exec_mode 'L') — acceptable as an in-palette local step but worth noting as outside the Adobe suite."
+   ],
+   "strength": "A genuine, common real-estate freelance commission (recurring per-listing flyer batch) realistically decomposed into a real InDesign data-merge with the connector correctly binding/exporting a client-authored .indd rather than composing layout from scratch — honestly in-bounds, with well-justified imperfect photos driving a real grade pipeline."
+  },
+  {
+   "id": "AO-80",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor count mismatch: the schedule CSV is specced for ~14 performance sets and the sponsor CSV for ~9 sponsors, but only 3 performer press photos and 3 sponsor logos are supplied as inputs and graded/prepped in the workflow. The data-merge references artist_photo/sponsor_logo filenames per row, so most rows would have no corresponding prepped image. This is a representative-subset modeling choice for the runnable benchmark rather than a hard defect, but it is a small completeness loose end an annotator may flag."
+   ],
+   "strength": "A grounded, verbatim-sourced real freelance program-booklet commission that correctly models the un-doable from-scratch layout/identity as a supplied authored .indd and does only genuinely-doable Adobe work (logo vectorize/lift, photo grade, licensed texture, two-pass InDesign data-merge, dual PDF export) with strict output-to-input chaining and no banned capabilities."
+  },
+  {
+   "id": "AO-81",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [],
+   "strength": "A genuinely realistic production-designer finishing job: clean up three raw product screenshots into a consistent on-brand family, vectorize a supplied logo, then run a real InDesign data-merge (one CSV row per tier into an authored .indd with matching merge fields) to dual print PDF + high-res JPEG — grounded verbatim in a real Upwork sell-sheet brief with an IP-clean fictional brand, correct [T] merge modeling (template supplied, not generated), and no banned/generative capabilities."
+  },
+  {
+   "id": "AO-82",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor over-justification: image_select_by_prompt returns a selection mask over a region/subject, not a hex readout or proportional measurement, so the note's claim that it 'isolates the approved hex chips' for exact colour comparison slightly overstates what the tool actually yields. It genuinely locates the chip/lockup regions, and the real colour/proportion comparison happens at the recipe-note analysis step, so this is a wording nit rather than a workflow break."
+   ],
+   "strength": "A genuine pre-press brand-consistency audit of a laid-out magazine issue against a supplied style guide — honestly reframed from an out-of-scope 'produce on-brand artwork' brief into a fully connector-doable inspect-and-report task, with planted defects (wrong-hex coral, coral body copy, wrong-face headline, stretched masthead, cold-graded photo) that make the analyze non-trivial, and a precise per-finding schema."
+  },
+  {
+   "id": "AO-83",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: steps 5/6/12 rely on media_summarize to extract structured CSV cells and checklist rules; media_summarize is a media-summarization tool rather than a precise CSV field extractor, so cell-level validation (blank detection, unit drift, price-format) is somewhat optimistic for that connector, though it does not break the workflow."
+   ],
+   "strength": "A grounded, IP-clean data-merge pre-flight AUDIT with all defects deliberately seeded in the supplied roster/image inputs, making pass/fail objectively verifiable, and a coherent 14-step chain that binds a real authored .indd for a proof render without any from-scratch layout or banned generative capability."
+  },
+  {
+   "id": "AO-84",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "The variants CSV is stated as 12 SKU/variant rows with a per-row photo_file reference, but only 3 raw product photos are supplied as inputs and graded in the workflow. The brief/outputs imply every variant gets a bound product photo, so the 12-rows-vs-3-photos asymmetry is a small realism gap. Defensible (one photo reused across sizes/colour variants of a product line) but the CSV/inputs should either note the sharing explicitly or supply photos matching the distinct products, so an annotator isn't left inferring how 12 rows resolve to 3 images.",
+    "Minor: step 14 asset_initialize_file_upload is modeled as ingesting the already-produced connector outputs (cropped photos + SVGs) plus the folder in one call, compressing the real init->presign->finalize upload handshake; acceptable as an abstraction but slightly loose versus the actual connector sequence."
+   ],
+   "strength": "A genuine, grounded label-conversion commission that correctly models the un-authorable step (master .indd) as a supplied input, then does real, connector-doable production work: consistent photo grading, vectorizing regulated barcodes/GHS symbols, and a true InDesign data-merge to per-SKU CMYK-with-bleed PDFs — long-horizon, well-chained, and free of any banned capability."
+  },
+  {
+   "id": "AO-85",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor internal inconsistency: difficulty_rationale opens with \"13 connector calls\" while tool_call_count is 14 and there are 14 connector_workflow steps (reverify reconciles to 14; the 13 appears to count only Adobe/server steps but reads as a mismatch).",
+    "Slight tool-purpose stretch: media_summarize (an audio/video summarization tool, tagged [A]) is used to extract and align printed spec-row text across proof pages; within the inspect/summarize spirit and reverify-approved, but not the most natural tool for tabular text extraction."
+   ],
+   "strength": "A grounded, honestly-scoped pre-press data-integrity audit: a real freelance specialty, with deliberately-seeded defects (narrow part_no frame, blank cells, section count mismatch) that give the analyze chain genuine findings, and a clean [T]-merge -> render -> inspect -> cross-check -> findings-report workflow that stays fully in-bounds."
+  },
+  {
+   "id": "AO-86",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [],
+   "strength": "Grounded in a verbatim real Freelancer.com \"Vectorize Logos & Packaging\" brief — a genuine, common paid commission — with fictional IP-clean brands, a clear 7-part brief, complete inputs, spec'd outputs, and a coherent 26-step chained workflow (three parallel clean→trace pipelines + crest reuse hub + crop/solid-fill label branch) that stays strictly in-bounds (vectors only from image_vectorize; image_fill_area solid-fill only; no generative/compositing)."
+  },
+  {
+   "id": "AO-87",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "partial",
+   "workflow_coherent": "incoherent",
+   "red_flag": "none",
+   "overall": "major",
+   "issues": [
+    "connector_workflow is truncated: it contains only steps n=14 through n=36 (23 entries). Steps 1-13 — the ENTIRE front-chest pipeline (asset_create_folders, front select/fill x3, saturation adjust, remove_background, front red-select+vectorize, front navy-select+vectorize) — are missing from the array, even though the chaining_note and difficulty_rationale describe a contiguous 1..36 workflow.",
+    "Metadata contradicts the narrative fields: tool_call_count=23 and distinct_adobe_tools=8 in the JSON, but reverify.notes/difficulty_rationale/chaining_note all state 36 calls and 10 distinct tools. tools_used lists 11 tools (incl. asset_create_folders and image_adjust_single_color_saturation) that never appear in the visible workflow array.",
+    "Broken output->input chaining: step n=33 (upload) consumes front_sep_red_vector and front_sep_navy_vector, which are never produced by any step in the array (they were outputs of the deleted steps 10-13). Step n=14 consumes front_art_transparent, also never produced in the array (deleted step 9).",
+    "outputs[] only lists the final proof PDF. The brief promises 6 separation vectors, 2 transparent composite SVGs, and a print-shop recipe note as deliverables, but none of those appear in outputs[] — only the proof PDF is declared.",
+    "The recipe note step (n=36) uses server 'local' / exec_mode 'L' with a non-connector tool 'local_write_recipe_note'; this is a plausible hand-off convention but is not an Adobe connector step, worth confirming it is an accepted pattern for this benchmark."
+   ],
+   "strength": "Genuine IP-clean freelance commission grounded in a real Upwork brief; a legitimate edit-only spot-color screen-print separation job (isolate->force-to-PANTONE-hex->vectorize) with no banned generative capability and PANTONE used correctly as an industry standard."
+  },
+  {
+   "id": "AO-88",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: the black-outline plate is delivered as a raster .png (ridgeline_crest_black_outline_plate.png) whereas brief step (3) frames the outline as a stitch-PATH the factory follows; a vector version could be preferable, though the spot-separated SVG already carries vector linework, so this is acceptable.",
+    "Minor: step 19 uses image_apply_color_overlay on the cleaned transparent crest to produce the one-color knockout silhouette; a color overlay recolors existing pixels rather than guaranteeing a single filled silhouette, so the 'solid emblem silhouette' result is a mild stretch, though defensible as an in-scope solid recolor.",
+    "Nit: ridgeline_crest.ai is a supplied authored input whose geometry is said to derive from connector-traced SVGs produced later in the same chain — an unusual but honestly-declared construct (document_render_vector only exports, never composes)."
+   ],
+   "strength": "A genuine, common freelancer commission (club crest photo -> factory-ready vector package), grounded verbatim in a real Freelancer.com brief with an unusually honest grounding_note that scopes the out-of-connector stitch-digitizing to the factory and keeps only the doable vectorization pipeline; long, correctly output->input-chained, and fully within connector limits."
+  },
+  {
+   "id": "AO-89",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: font_recommend takes lumiere_menage_master.svg as inputs_from, but the tool is normally text/style-context driven rather than SVG-consuming; it works as a reasonable proxy for matching the wordmark tone but is a slightly loose chaining link.",
+    "Minor: the brief references an 'AI/EPS export' and 'printed spec sheet' as deliverables but scopes them as human/format-export finishing items outside the connector chain, so they are (correctly and honestly) absent from outputs[] — internally consistent, worth an annotator note only."
+   ],
+   "strength": "Grounded in a verbatim real Freelancer.com monochrome-logo brief, honestly re-scoped to the production/finishing half a freelancer actually runs in Adobe (clean → vectorize → assemble reversible variant system), with a clean 17-step hub-and-spoke chain that stays strictly inside connector limits and the brief's monochrome-only exclusions."
+  },
+  {
+   "id": "AO-90",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: the brief and several output specs reference AI/EPS as 'the same master exported to those formats,' but no output entry or workflow step actually emits an .ai or .eps file (only SVG/PDF/PNG). Framed as trivial re-exports rather than promised standalone deliverables, so not a real gap, but could be tightened by either adding explicit AI/EPS outputs+render steps or dropping the mention."
+   ],
+   "strength": "A genuine, grounded PPF/tint rebrand commission: clean+de-skew AI-drafted rasters, vectorize to production SVG masters, derive knockouts, and assemble a multi-size die-cut decal sheet by merging the traced marks and a sizes CSV into the client's authored cut-line template — a real freelance job with an honest, correctly-chained 30-step Adobe workflow and no banned generative steps."
+  },
+  {
+   "id": "AO-91",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: step 16 document_convert_pdf is described as rendering the agent-written findings note into a PDF, which presumes the note is already in a convertible document form; this is a slight hand-wave but plausible for an analyze emit path.",
+    "Minor: the emit step (15) uses local_write_recipe_note (server=local), a non-Adobe tool, so the report core is produced outside the Adobe connector set — consistent with other analyze tasks but worth noting.",
+    "Minor: output valcere_inspection_rasters is an intermediate/working artifact rather than a client-facing deliverable, softer than the other two outputs."
+   ],
+   "strength": "A genuinely grounded luxury-brand production audit that cleverly reframes a banned from-scratch logo brief into a doable, non-trivial vector & print-readiness inspection with planted defects, dual ground-truth specs, and a severity-ranked go/no-go findings report — every risky tool (image_vectorize, image_select_by_prompt) stays strictly inspection-only."
+  },
+  {
+   "id": "AO-92",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Brief promises to verify the 'keep text editable' / layered-vector condition and one input is described as 'still a layered vector', but every actual supplied input is a raster PNG (the crest is explicitly tee_compass_rose_crest.ai.png, a flattened preview). The connector can only test-vectorize raster previews, so the 'confirm type is still crisp editable vector, not flattened raster' check cannot be literally satisfied for any file. The spec discloses this honestly in realism_notes, so it's a framing nit rather than a break, but an annotator will notice the vector-editability promise is not fully executable on PNG inputs.",
+    "Minor: image_apply_halftone as a 'survivability probe at press LPI' and transparency-halo detection via image_select_by_prompt are plausible diagnostic uses, but their precision as measurement (e.g., proving exactly '3 near-duplicate tones' or a '1px off-white halo') depends on tool fidelity the spec assumes; findings will be qualitative/visual rather than exact, which the report framing should keep honest."
+   ],
+   "strength": "A genuine screen-print pre-flight/separation audit with authentic domain constraints (4-color press limit, 156-mesh detail, registration/trap), four inputs deliberately spanning pass/fix-first/no-go/go, and a claimed-vs-measured CSV reconciliation that is the real value of a pre-flight; an out-of-scope CREATE brief cleanly reframed to an in-scope AUDIT."
+  },
+  {
+   "id": "AO-93",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Step 16 uses document_convert_pdf to turn the findings JSON into a laid-out A4 report PDF (cover summary + pass/fail matrix + per-finding rows). document_convert_pdf's real role is PDF->INDD/raster conversion, not composing a report from structured JSON; a layout/render step (or a local render) is the honest tool for generating the report deliverable.",
+    "The inspection modality (rasterize each vector to a proof, then image_select_by_prompt + inline preview) cannot reliably observe several of the planted, metadata-level defects: RGB-vs-CMYK colour profile (#1B49E5 vs C100 M72 K18 render to near-identical on-screen blues once rasterized), stray/open anchor points, and a 0.15pt-vs-0.25pt hairline stroke are vector/structural properties largely lost in a raster proof. media_summarize surfaces the spec rules but the chain has no genuine way to read the .pdf/.svg colour space or path/anchor geometry, so the audit's headline findings are asserted rather than truly detectable via the stated connector steps.",
+    "local_write_recipe_note (step 15) is a non-Adobe local step; acceptable as this dataset's sanctioned analyze-emit convention, but worth confirming it is an approved connector for delivery."
+   ],
+   "strength": "An honest, well-grounded reframe of a banned from-scratch-logo brief into a genuine print-readiness preflight AUDIT of supplied vector artwork, with a strong spec, planted defects, and a deliberately-clean file so the audit must distinguish good from bad rather than flag everything."
+  },
+  {
+   "id": "AO-94",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor realism stretch: outputs and step 7/14 lean on media_summarize to yield a full verbatim 'transcript of the spoken take' for the caption note, whereas a summarize tool typically produces a summary rather than a word-for-word transcript. Does not break the task, but the caption note's transcript fidelity is slightly optimistic about the tool's output."
+   ],
+   "strength": "A grounded, honestly-scoped multi-platform wellness video job: the grounding_note openly documents which parts of the real brief are out of connector scope and models only the doable speech-cleanup + quick-cut + resize slice, with a coherent 15-step async pipeline and exact non-stretched export dimensions."
+  },
+  {
+   "id": "AO-95",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "The brief promises exact numeric observed-vs-required audio values (e.g. integrated loudness ~-12 vs -14 LUFS, 'music at least 12 LU below narration') but media_summarize returns a qualitative content/scene/audio summary, not metered LUFS/true-peak/LU-gap measurements; some planted-defect findings therefore rest on precision the connector cannot reliably deliver. The spec honestly reframes these as qualitative 'loudness feel' / 'does music duck' reads, so it is workable, but the observed_value/required_value numeric fields in the findings schema slightly overstate what the workflow can measure.",
+    "Timecode-referenced findings depend on media_summarize's scene timestamps plus single poster/keyframe previews (asset_preview_file returns one poster frame, not arbitrary-timecode seeking), so frame-accurate 'timecode or time range' precision for defects like the near-edge callout is somewhat aspirational; acceptable at the qualitative level the audit actually needs."
+   ],
+   "strength": "A genuine, well-grounded delivery-QC / spec-compliance audit of outsourced video edits, honestly reframed from an out-of-scope re-edit into a fully read-only inspect-compare-report chain with a verbatim source brief, IP-clean fictional brand, and complete inputs/outputs."
+  },
+  {
+   "id": "AO-96",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "minor_gap",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Plate-transparency inconsistency: outputs lower_third_bar_plate.png and callout_badge_plate.png are specified as 'transparent-background' plates, but the workflow (steps 16-19) builds them by taking the graded end-card JPG as canvas, selecting a region with image_select_by_prompt, and solid-filling it with image_fill_area. Filling a region on an opaque photo yields an opaque photo with a colored region, not a transparent-background PNG plate. The stated output (transparent PNG) does not match what the described technique actually produces. Fix by either building the plates on a transparent/new canvas or dropping the 'transparent-background' claim.",
+    "Minor realism note (already acknowledged in the spec's reverify): media_summarize is oriented toward narration/dialogue, but the primary video inputs are silent UI screen captures; only the b-roll carries ambient audio. The summarize step is framed as flow/talking-point summarization steered by the messaging CSV, so it stays in-bounds, but it is a slight stretch of the tool's typical use."
+   ],
+   "strength": "A grounded, verbatim-sourced Upwork B2B SaaS product-video commission with a complete, well-structured brief, fully enumerated inputs/outputs, and a long-horizon 21-step chain that honestly splits async video/audio from headless still/plate work with no banned capabilities."
+  },
+  {
+   "id": "AO-97",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor framing note (not a defect): the headline deliverable is a '30-second high-energy recap', but the connector-doable pass explicitly excludes the beat-synced cuts/hard transitions/motion-graphics/music-sync that define 'high-energy' — those are deferred to a manual Premiere/AE finish. The spec discloses this clearly and repeatedly and re-scopes the automated pass honestly, so it is defensible, but the top-line ask reads as slightly more than the automated pass alone produces."
+   ],
+   "strength": "Grounded in a real Freelancer.com club-recap brief with a verbatim grounding_note; honest capability boundaries, complete inputs/outputs, and a coherent 31-step output→input chain (raster grade spine + async video/VO paths) with no banned generative capability."
+  },
+  {
+   "id": "AO-98",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "minor",
+   "issues": [
+    "Steps 8-9 (image_select_by_prompt as an 'inspection locator' then inline-previewing the isolated performer region) are mildly contrived: selection produces a mask/region, not a separately-previewable asset the way step 9's note implies, and no downstream edit consumes the selection. It reads as decorative tool-count padding for the analyze floor. It does not break the chain or alter the deliverables, so it is a nit rather than a defect.",
+    "Minor: media_summarize is leaned on to read both temporal/audio defects (dead air, tuning chatter) AND is paired with visual previews for focus/bump/drift; the split of which defects are caught audibly vs visually is plausible but rests on media_summarize returning fairly rich transcript+scene content per clip, which is an optimistic read of that async tool."
+   ],
+   "strength": "An honest, well-grounded reframe of a real Upwork editor brief into a doable footage-review/best-take-selection pass (KEEP/MAYBE/REJECT log + structured JSON + selects contact sheet) that respects the no-cut/no-generate limits and chains real connectors cleanly."
+  },
+  {
+   "id": "AO-99",
+   "realistic": "realistic_professional",
+   "brief_quality": "strong",
+   "inputs_defined": "clear",
+   "outputs_defined": "clear",
+   "workflow_coherent": "coherent",
+   "red_flag": "none",
+   "overall": "pass",
+   "issues": [
+    "Minor: the dated CC handoff folder produced by asset_copy_assets (step 25) satisfies the brief's 'keep sources in our CC folder' ask but is not enumerated in outputs[] — it lives only as a workflow step. Not a defect (it's housekeeping, not a promised artifact), but adding it as an output for completeness would fully close the brief-to-outputs mapping."
+   ],
+   "strength": "A genuinely grounded D2C jewellery social-repurpose commission (verbatim Freelancer.com brief, IP-clean Lunara Silver rebrand) with a demanding, honestly-scoped 25-step chain that repurposes one source clip into four honest video outputs, a VO cleanup, caption sheet, and a real 7-step masked end-card raster spine — with all timeline/motion-graphics work correctly flagged as out-of-scope manual finish."
+  }
+ ]
+}

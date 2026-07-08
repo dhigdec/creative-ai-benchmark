@@ -1,0 +1,326 @@
+{
+  "task_id": 1559,
+  "input_assets": [
+    {
+      "key": "drink_menus",
+      "display": "Drink menus copy database (JSON + MD render)",
+      "files": ["input_assets/drink_menus.json", "input_assets/drink_menus.md"],
+      "what_it_is": "Generated menu copy source (gemini-2.5-flash): 3 menus / 25 sections / 104 items with 2026 UK pub prices — the verbatim text source for every name, detail line and price on all three tri-folds (the .md is a human-readable render of the same JSON).",
+      "items": [
+        {
+          "id": "1559-in-drink_menus-1",
+          "type": "yesno",
+          "question": "Does drink_menus.json contain exactly the briefed structure — three menus named \"Main Drinks Menu\", \"Wine List\" and \"Cocktail Menu\" with 11 / 8 / 6 sections respectively, in the exact order TASK.md lists, including the exact spellings \"Tequila, Shots & Liqueurs\", \"Rosé Wines\" and \"Wine by the Glass & Bottle Pricing\"?",
+          "guidance": "Walk the JSON \"sections\" arrays against the deliverables list in TASK.md one by one. Any renamed, merged, reordered or missing section is a No. Also confirm the price shapes: spirits sections (Gin through Tequila, Shots & Liqueurs) carry {\"25ml\",\"50ml\"} price pairs, still wines carry {\"175ml\",\"250ml\",\"bottle\"}, Premium Wines are bottle-only, and the final wine section holds three unpriced note items.",
+          "reference": "Yes — 11/8/6 sections in exact briefed order; spirits use 25ml/50ml pairs, wines 175ml/250ml/bottle, the four Premium Wines are bottle-only (£48/£52/£56/£42), and \"Wine by the Glass & Bottle Pricing\" closes with three note items (Smaller Measures, All Wines by the Glass, Sparkling Serves)."
+        },
+        {
+          "id": "1559-in-drink_menus-2",
+          "type": "likert5",
+          "question": "How convincing is this copy as the real 2026 bar list of a premium Northamptonshire market-town pub?",
+          "guidance": "5 = prices sit in realistic bands (cask/draught £5.40–£6.50 a pint, cocktails £9.00–£12.50, mocktails £5.50–£6.50, premium bottles £42–£58), British spellings throughout (flavour, draught, liqueur), invented local producers with genuine place flavour (Oundle Gold Best Bitter, River Nene Lager, Nene Valley Rhubarb & Ginger Gin, Northamptonshire Pure Vodka), and sensible 25ml→50ml price steps. 3 = believable overall but with flat generic entries (e.g. \"Coffee Liqueur\", \"Orange Juice\") dominating. 1 = US spellings, absurd prices, or duplicated items. Also weigh the brand rule: the generator was told to invent brewery/distillery/wine-house names but real trademarks DO appear in soft drinks, mixers and cocktail specs (Coca-Cola, Fentimans, Fever-Tree, Aperol, Campari, Angostura) — judge whether that split reads as authentic pub practice (it is normal for a pub to list Fever-Tree and Aperol) or as an inconsistency.",
+          "reference": "Strong copy scores 4–5: the invented beer/gin/whisky names are local-flavoured and trademark-free while real brands are confined to soft drinks/mixers/classic cocktail specs where a real pub menu would also name them; all pricing falls inside the briefed bands."
+        },
+        {
+          "id": "1559-in-drink_menus-3",
+          "type": "text",
+          "question": "Transcribe, exactly as written in the JSON, the 25ml and 50ml prices of \"Cotswold Single Malt\" and \"Oak Barrel Armagnac\".",
+          "guidance": "Find Cotswold Single Malt under Whisky & Bourbon and Oak Barrel Armagnac under Brandy & Cognac. Copy the price strings verbatim including the £ sign and decimals — these are the two dearest pours on the Main Drinks Menu and are used downstream as fidelity probes.",
+          "reference": "Cotswold Single Malt: 25ml £6.50, 50ml £12.50. Oak Barrel Armagnac: 25ml £6.80, 50ml £13.00."
+        }
+      ]
+    },
+    {
+      "key": "crest_logo",
+      "display": "George Inn crest logo",
+      "files": ["input_assets/george_inn_logo.png"],
+      "what_it_is": "Generated pub crest (gemini-3-pro-image, 1024×1024) — the brand mark that must lead the front panel of all three menus; pipeline QC passed it 7/10 while flagging that the shield cross is red rather than the strictly demanded green/gold.",
+      "items": [
+        {
+          "id": "1559-in-crest_logo-1",
+          "type": "yesno",
+          "question": "Is every piece of lettering on the crest exactly right — arched \"THE GEORGE INN\" across the top, \"OUNDLE\" set smaller beneath the emblem, \"EST. 1684\" at the base — correctly spelled, cleanly formed, with no stray or extra text anywhere?",
+          "guidance": "Zoom to native resolution. AI logo lettering often shows malformed serifs, doubled strokes or phantom characters. Check each letterform of OUNDLE (six letters, O-U-N-D-L-E) and the date 1684 (not 1648/1664). Any gibberish, misspelling or additional text = No.",
+          "reference": "Yes — all three text elements are present, correctly spelled and crisply drawn: arched gold \"THE GEORGE INN\" with dark-green outlines, \"OUNDLE\" in spaced gold caps below the wreath, \"EST. 1684\" in small caps at the base; no other text."
+        },
+        {
+          "id": "1559-in-crest_logo-2",
+          "type": "likert5",
+          "question": "How well does the crest deliver the briefed heraldic design — a St George cross shield beneath a small crown, flanked by oak-leaf sprigs, in flat engraved pub-sign line art using dark green #1E3B2A and gold #B08D3C on pale cream?",
+          "guidance": "5 = all heraldic elements present and balanced, engraved hatching consistent, flat colours with no gradients or photo elements, premium and timeless. Note the one recorded deviation: the shield's cross is rendered red, which the pipeline QC flagged against the \"strictly dark green and gold\" colour instruction — decide whether it reads as a natural St George reference that improves authenticity (minor or no deduction) or as a palette violation that fights the green/gold brand (larger deduction). 3 = elements present but hatching/symmetry is uneven; 1 = missing motifs or non-heraldic style.",
+          "reference": "A 5 shows crown + St-George-cross shield + symmetric oak sprigs in clean engraved strokes, gold/green dominant, cream ground — the supplied crest achieves this with the red cross as the single, defensible palette deviation."
+        },
+        {
+          "id": "1559-in-crest_logo-3",
+          "type": "likert5",
+          "question": "How production-ready is this crest file for the menu workflow — clean keying off its flat cream square, letterforms that survive reduction to ~620 px on the covers, and centred composition with even margins?",
+          "guidance": "The workflow needs the crest cut out and placed straight onto parchment (the brief forbids boxing it in). 5 = flat uniform background trivially separable, high edge contrast, no halos or JPEG noise, comfortable margins on all sides. Note the built-in hazard: the gold lettering sits tonally close to the cream ground — exactly what later caused the Adobe background-removal to half-erase \"OUNDLE\" and \"EST. 1684\" (see trajectory step 47). Judge how separable lettering vs ground genuinely is: low contrast that invites cutout failure costs a point even if the artwork is pretty.",
+          "reference": "A 4 is honest here: composition, margins and edge crispness are excellent, but the gold-on-cream lettering contrast is marginal for automated keying — the documented connector cutout failure proves the risk."
+        }
+      ]
+    },
+    {
+      "key": "parchment_texture",
+      "display": "Parchment background texture",
+      "files": ["input_assets/parchment_texture.jpg"],
+      "what_it_is": "Generated aged-cream parchment texture (gemini-3.1-flash-image, 1024×1536) — the approved full-bleed background for all six menu faces; must stay quiet under small black text. QC 9/10.",
+      "items": [
+        {
+          "id": "1559-in-parchment_texture-1",
+          "type": "likert5",
+          "question": "How well does the texture meet its job spec: overall tone close to parchment cream #F3ECD9, only faint paper fibres and gentle mottling, even shadowless lighting, flat sheet edge to edge — quiet enough to sit behind 34 px italic menu text after a 78% cream wash?",
+          "guidance": "Sample a few areas: average tone should be a warm cream near #F3ECD9 with low variance. 5 = whisper-quiet, even illumination, no hot/dark corners; 3 = usable but with noticeable mottled patches or a warm cast that would show behind body text; 1 = stains, burns, vignette, curled/torn edges or visible table — anything that fights legibility.",
+          "reference": "A 5 looks like blank quality writing paper photographed flat: barely-there fibres, no feature your eye can name. The supplied texture is close to this — its only flaw is slightly stronger mottling in a few zones, which the compositor further suppressed with the cream overlay."
+        },
+        {
+          "id": "1559-in-parchment_texture-2",
+          "type": "yesno",
+          "question": "Is the texture completely free of text, letterforms, numbers, watermarks, ink marks and physical-edge artifacts (no page edges, curls, tears or shadows of a surface beneath)?",
+          "guidance": "Scan the full frame at 100%, especially corners and the lower third where generators tend to place watermarks or sneak in 'aged document' flourishes. Any legible or near-legible mark = No.",
+          "reference": "Yes — the frame is a featureless flat sheet edge to edge with no marks of any kind."
+        }
+      ]
+    },
+    {
+      "key": "pub_photos",
+      "display": "Pub photo pair (exterior + interior)",
+      "files": ["input_assets/pub_exterior.jpg", "input_assets/pub_interior.jpg"],
+      "what_it_is": "Two generated accent photos (gpt-image-2, 1536×1024 each): dusk exterior of the coaching inn (used on the Wine List back panel) and firelit bar interior with two pints (used on the Main Drinks and Cocktail back panels). Exterior QC: accepted_with_warnings 6/10 after 3 attempts; interior QC 9/10.",
+      "items": [
+        {
+          "id": "1559-in-pub_photos-1",
+          "type": "likert5",
+          "question": "How photorealistic and on-brief is pub_exterior.jpg — a 17th-century honey-limestone coaching inn at blue hour with glowing sash windows, hanging flower baskets, a wrought-iron bracket holding a pictorial knight-on-horseback sign, and cobbled foreground?",
+          "guidance": "Check the classic AI tells at 100%: glazing-bar geometry in the lit windows (should be a regular leaded/sash grid, not melted), the through-window interior content (the QC noted it lacks the briefed oak beams/candlelight — judge whether what IS visible still reads as a warm pub), stone coursing and mortar continuity, foliage structure in the baskets, the sign bracket's ironwork logic, and the painted knight (must be purely pictorial). 5 = passes as an editorial photograph; 3 = believable at menu size but with visible tells at 100%; 1 = obvious CGI gloss or structural impossibilities.",
+          "reference": "A strong pass: convincing weathered limestone, believable dusk light and a clean pictorial sign. Known soft spot per QC — the window interior shows generic lamp-lit warmth rather than the briefed beams/candles/brass; at the ~880 px back-panel placement this is invisible, so 4 is a fair score."
+        },
+        {
+          "id": "1559-in-pub_photos-2",
+          "type": "likert5",
+          "question": "How photorealistic and on-brief is pub_interior.jpg — two freshly pulled pints with tight foam heads on a polished dark-oak bar, brass rail, lit stone inglenook fireplace, and horse brasses catching the firelight?",
+          "guidance": "Inspect: the two pint glasses (glass refraction, condensation, foam texture — QC noted the foam is slightly too uniform), the brass rail's curve and reflections, fire shape and glow falloff, the row of horse brasses on the beam (each should be a plausible ring-and-plate form), floorboard wear, and the candle/mirror zone at left. 5 = indistinguishable from an editorial pub photograph; 3 = good at placement size, minor tells at 100%; 1 = melted brass, impossible reflections or plastic-looking beer.",
+          "reference": "This is the stronger of the pair (QC 9/10): warm believable firelight, correct beer colour and condensation, coherent brass and wood. A 4–5 unless you find tells the QC missed."
+        },
+        {
+          "id": "1559-in-pub_photos-3",
+          "type": "yesno",
+          "question": "Are both photos verifiably free of readable text, numbers, watermarks and real-world logos — including the hanging pub sign (purely pictorial knight, no lettering) and any glassware or pump clips in the interior?",
+          "guidance": "Zoom on the exterior sign, the door furniture, the distant street buildings, and in the interior on the glasses, beer mats, the mirror and anything on the back bar. Any legible characters or recognisable trademark = No.",
+          "reference": "Yes — the sign is a letterless painted knight on horseback, the beer mats are plain, and no characters or brands appear anywhere in either image."
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "key": "main_drinks_menu",
+      "display": "Main Drinks Menu — tri-fold spreads",
+      "files": ["outputs/main-drinks_outside_spread.png", "outputs/main-drinks_inside_spread.png"],
+      "asked": "Deliverable 1 — Main Drinks Menu tri-fold: 11 sections in exact order, high-res PNG faces (outside + inside spreads, 3579×2551 @300dpi).",
+      "items": [
+        {
+          "id": "1559-out-main_drinks_menu-1",
+          "type": "yesno",
+          "question": "Are all 11 sections present, exactly named and in JSON order, flowing flap → inside 1 → inside 2 → inside 3 (Draught Beer & Cider and Bottled Beer & Cider with the first two gins on the flap; Gin resuming on inside panel 1; Whisky & Bourbon split across inside panels 1→2; Juices closing inside panel 3), with each split section re-headed with its name plus an italic \"(continued)\" note and fresh 25ml/50ml column headers?",
+          "guidance": "The outside spread reads [flap | back | cover] left to right (stated in README). Tick off all 11 section heads: Draught Beer & Cider, Bottled Beer & Cider, Gin, Vodka, Rum, Whisky & Bourbon, Brandy & Cognac, Tequila, Shots & Liqueurs, Soft Drinks, Mixers, Juices. Verify the Gin split: flap ends after \"Nene Valley Rhubarb & Ginger Gin\"; inside panel 1 opens \"GIN (continued)\" with \"Elderflower Bloom Gin\". Verify Whisky & Bourbon: panel 1 ends after \"Emerald Isle Irish Whiskey\"; panel 2 opens \"(continued)\" with \"Kentucky River Bourbon\". Any missing/renamed section, wrong order, or a split without the continued note = No.",
+          "reference": "Yes — all 11 sections in exact order; both splits land at item boundaries with \"(continued)\" and repeated 25ml/50ml headers; Mixers and Juices fill inside panel 3."
+        },
+        {
+          "id": "1559-out-main_drinks_menu-2",
+          "type": "likert5",
+          "question": "Spot-checking rendered copy against drink_menus.json, how faithful is the typesetting? Probe at minimum: \"Oundle Gold Best Bitter\" £5.40 leading Draught; \"Fenland Craft IPA\" detail ending \"5.5% ABV, Cambridgeshire.\" at £6.50; \"Oundle Navy Strength Gin\" £5.50/£10.50; \"Gold Añejo Tequila\" (the ñ must survive); \"Fentimans Rose Lemonade\" detail \"…275ml bottle.\" at £4.20; \"Soda Water\" £2.50.",
+          "guidance": "Zoom to native resolution for each probe and compare character-for-character with the JSON, including £ glyphs, decimals, the ñ accent, and full detail sentences (ABV percentages and bottle sizes are where retyping errors hide). 5 = every probed string verbatim; 4 = a single cosmetic deviation (e.g. a clipped descender); 2–3 = any altered price or truncated detail; 1 = wrong prices or missing items. The render log claims 54/54 items and 85/85 prices — your job is to catch what an assert can't, like swapped 25ml/50ml columns or a price attached to the wrong item.",
+          "reference": "All six probes render verbatim with correct £ glyphs and the ñ intact; 25ml prices sit in the left price column, 50ml in the right, matching the JSON pairs."
+        },
+        {
+          "id": "1559-out-main_drinks_menu-3",
+          "type": "likert5",
+          "question": "Judge the layout craft of this, the densest menu (54 items): price columns right-aligned at each panel edge, gold dotted leaders sitting on the baseline, clear hierarchy (green tracked-caps section heads with paired gold hairlines > semibold item names > smaller italic detail lines), nothing colliding with the two fold lines, and comfortably legible at arm's length on a pub table.",
+          "guidance": "Scan each of the two fold positions (at 1/3 and 2/3 of the spread width) for text crossing or crowding them — the plan demands ≥6 mm clearance. Check leader dots: consistent spacing, stopping short of prices, never running through text. Check the two-price-column sections: the \"25ml / 50ml\" headers must sit directly over their columns. 5 = nothing to fix, columns optically aligned across all panels; 3 = a few crowded blocks or slightly drifting leader baselines but readable; 1 = collisions, clipped text or ragged price alignment.",
+          "reference": "A 5 shows clean uninterrupted gutters at both folds, every price flush right with its column header, and a calm three-level hierarchy that survives reduction to table size."
+        },
+        {
+          "id": "1559-out-main_drinks_menu-4",
+          "type": "text",
+          "question": "Transcribe the four lines of the visit block beneath the interior photo on the back (centre outside) panel, exactly as rendered.",
+          "guidance": "Zoom on the centre panel of the outside spread, below the gold hairline under the photo. This block is composed microcopy — the only strings on this menu not sourced from drink_menus.json — so transcribe carefully and note anything that looks like a real-world claim.",
+          "reference": "\"The George Inn · Oundle\" / \"Food served daily · 12 noon – 9pm\" / \"01832 555 0168\" / \"www.thegeorgeinnoundle.co.uk\". The phone and URL are fictional placeholders, disclosed in the README for replacement with the pub's real details before print."
+        }
+      ]
+    },
+    {
+      "key": "wine_list_menu",
+      "display": "Wine List — tri-fold spreads",
+      "files": ["outputs/wine-list_outside_spread.png", "outputs/wine-list_inside_spread.png"],
+      "asked": "Deliverable 2 — Wine List tri-fold: 8 sections in exact order, high-res PNG faces (outside + inside spreads, 3579×2551 @300dpi).",
+      "items": [
+        {
+          "id": "1559-out-wine_list_menu-1",
+          "type": "yesno",
+          "question": "Are all 8 sections present and exactly named, with sections 1–7 in JSON order through the reading flow (White Wines on the flap; Rosé + Red on inside panel 1; Premium + Sparkling on inside panel 2; Prosecco + Port on inside panel 3) and the 8th, \"Wine by the Glass & Bottle Pricing\", closing the menu on the back panel beneath the exterior photo with all three notes (Smaller Measures / All Wines by the Glass / Sparkling Serves)?",
+          "guidance": "Confirm each section head spelling including the é in both \"Rosé Wines\" and \"Italian Rosé Prosecco DOCG\". The placement of section 8 on the outside back panel is a disclosed design interpretation (README: the measures notes close the menu where a diner folding it shut will see them) — count it as present-and-ordered if all three notes render with their full italic detail sentences. Missing/renamed sections or a dropped note = No.",
+          "reference": "Yes — 7 list sections flow flap→inside in exact order; the measures section sits on the back panel with all three headings and their one-line details verbatim (e.g. \"A 125ml glass measure for still wines is available upon request.\")."
+        },
+        {
+          "id": "1559-out-wine_list_menu-2",
+          "type": "likert5",
+          "question": "How correct is the price-column architecture? Still wines must show three columns headed 175ml / 250ml / Bottle (e.g. Riverbend Sauvignon Blanc £7.20 / £9.40 / £27.00); Premium Wines a single Bottle column (Chablis £48.00, Sancerre £52.00, Barolo £56.00, Bordeaux £42.00); Sparkling Wines 125ml / Bottle (English Sparkling Wine £11.50 / £55.00); Prosecco 125ml / Bottle with the bottle-only \"Miniature Prosecco (200ml)\" at £9.00; Port 50ml / Bottle (Late Bottled Vintage £7.80 / £44.00).",
+          "guidance": "The column sets are derived per-section from each item's JSON prices keys — this is the easiest place for a generator to go wrong. Verify every section's header matches its measures, every value lands under the right header, and bottle-only rows (all four premium bins, Miniature Prosecco) align to the Bottle column rather than floating. 5 = all headers and all probed values verbatim and correctly placed; 3 = values correct but a header/alignment slip; 1 = any price under the wrong measure.",
+          "reference": "All five section column-sets render as specified; bottle-only rows right-align under Bottle; all probed prices match the JSON exactly."
+        },
+        {
+          "id": "1559-out-wine_list_menu-3",
+          "type": "likert5",
+          "question": "Judge the elegance of the wine list as a piece: with only 29 items it should breathe — generous leading, balanced panel heights, accented characters set correctly (Rosé, Añejo-style diacritics), italic flourishes like \"Requires decanting.\" under Piedmont Barolo intact, the dusk exterior photo cleanly placed with rounded corners on the back panel, and a cover with quiet boutique-inn confidence.",
+          "guidance": "Compare panel densities on the inside spread — no panel should feel crammed while another floats. Check the é glyphs at native resolution (accents are a common font-fallback casualty). Check the exterior photo: no distortion, corners cleanly rounded, sits clear of the measures text below. 5 = reads like a boutique hotel wine list; 3 = correct but mechanical spacing; 1 = cramped, broken accents, or photo crowding the notes.",
+          "reference": "A 5 shows evenly weighted panels, perfect é glyphs, the Barolo decanting note in italics, and a back panel where photo and measures notes share the panel without contact."
+        },
+        {
+          "id": "1559-out-wine_list_menu-4",
+          "type": "text",
+          "question": "Which wine carries the highest bottle price anywhere on the rendered list, and what is that price? Name the section and panel where it appears.",
+          "guidance": "Scan every Bottle column across both spreads, including Premium Wines (£42–£56) and Sparkling Wines. This is a reading-completeness probe — answer from the rendered PNGs, not the JSON.",
+          "reference": "House Champagne Brut at £58.00 (also £12.00 per 125ml) — Sparkling Wines section, inside spread centre panel (panel 2)."
+        }
+      ]
+    },
+    {
+      "key": "cocktail_menu",
+      "display": "Cocktail Menu — tri-fold spreads",
+      "files": ["outputs/cocktails_outside_spread.png", "outputs/cocktails_inside_spread.png"],
+      "asked": "Deliverable 3 — Cocktail Menu tri-fold: 6 sections in exact order, high-res PNG faces (outside + inside spreads, 3579×2551 @300dpi).",
+      "items": [
+        {
+          "id": "1559-out-cocktail_menu-1",
+          "type": "yesno",
+          "question": "Are all 6 sections present, exactly named and in JSON order — Signature Cocktails on the flap (Oundle Orchard Spritz £10.80, Market Town Martini £11.50, Nene River Sour £12.00, George Inn Negroni Twist £11.00), Classic Cocktails on inside panel 1, Spritz Selection + Mocktails on inside panel 2, Premium Serves + Seasonal Specials on inside panel 3?",
+          "guidance": "Verify the four signature names and prices on the flap word-for-word, then the section heads across the inside spread. Confirm none of the 21 cocktails went missing: 4 signatures, 5 classics, 3 spritzes, 3 mocktails, 3 premium serves, 3 seasonal specials. Any omission, reorder or renamed section = No.",
+          "reference": "Yes — six sections in exact order, 21/21 items; the flap carries all four George Inn signatures with verbatim prices."
+        },
+        {
+          "id": "1559-out-cocktail_menu-2",
+          "type": "likert5",
+          "question": "How faithfully are the ingredient detail lines typeset? Probe: \"Pornstar Martini\" must end \"…served with a shot of Prosecco.\" at £10.80; \"Nene River Sour\" carries the long detail \"…a hint of maple syrup, garnished with a cherry.\" which wraps to a second line — check the wrap is clean and unclipped; \"Margarita\" ends \"…served with a salted rim.\" at £10.00; \"Finest Whisky Highball\" is the dearest item at £12.50; the three mocktails price at £5.50 / £6.00 / £6.50.",
+          "guidance": "Ingredient lists are the densest prose on any of the three menus — compare each probe character-for-character with the JSON. On the Nene River Sour, confirm the second line of the detail is fully visible and doesn't collide with the next item. 5 = all probes verbatim with clean wraps; 3 = correct text but an awkward break or tight collision; 1 = truncated or altered ingredients/prices.",
+          "reference": "All probes verbatim; the Nene River Sour detail wraps to two italic lines with normal spacing before \"George Inn Negroni Twist\"; mocktail prices read £5.50, £6.00, £6.50 in order."
+        },
+        {
+          "id": "1559-out-cocktail_menu-3",
+          "type": "likert5",
+          "question": "Judge the cocktail menu's single-price layout and its character within the family: one right-aligned price column (no 25ml/50ml headers anywhere), generous leading across only 21 items, and a cover identical in system to the other two but titled \"COCKTAIL MENU\". The plan's optional gold coupe-glass glyph was deliberately skipped — does the cover still carry enough of its own character, or do the three covers read interchangeable apart from the title?",
+          "guidance": "Confirm no spirits-style column headers leaked in (every cocktail is one price). Assess balance: panels 2 and 3 each stack two short sections — heads should align at consistent heights. On the cover question, judge as a client would: identical covers are partly the point (\"one family, one look\"), so only deduct if the sameness reads as a missed opportunity rather than discipline. 5 = airy, balanced, family-consistent with a confident cover; 3 = correct but visibly templated; 1 = misapplied column headers or cramped stacking.",
+          "reference": "A 5 shows a single tidy price column throughout, evenly breathing panels, and a cover that reads as the deliberate third sibling — the skipped coupe glyph was a permitted simplification, disclosed in the README."
+        },
+        {
+          "id": "1559-out-cocktail_menu-4",
+          "type": "text",
+          "question": "Transcribe the three Seasonal Specials exactly as rendered — name and price for each.",
+          "guidance": "Bottom section of inside panel 3 (rightmost). Copy names and prices verbatim from the PNG; flag any deviation you spot from the JSON (e.g. dropped garnish words in the details).",
+          "reference": "Autumn Spice Old Fashioned £12.20; Winter Berry Bellini £10.80; Summer Breeze Gin Fizz £11.50."
+        }
+      ]
+    },
+    {
+      "key": "print_pdfs",
+      "display": "Print-ready PDFs (all three menus)",
+      "files": ["outputs/main-drinks_print.pdf", "outputs/wine-list_print.pdf", "outputs/cocktails_print.pdf"],
+      "asked": "Per-menu print-ready PDF with proper page margins and bleed (TASK.md acceptance criterion).",
+      "items": [
+        {
+          "id": "1559-out-print_pdfs-1",
+          "type": "yesno",
+          "question": "Is each of the three PDFs exactly 2 pages (outside spread, then inside spread) on a slug page of 882.96 × 636.24 pt (= 3679×2651 px, ≈311.5 × 224.4 mm), with crop marks registering the A4-landscape 297 × 210 mm trim and the artwork extending 3 mm beyond trim on all sides as bleed?",
+          "guidance": "Open each PDF and read the page size from the document inspector. Measure from a corner crop mark pair to the opposite pair — it should come to 297 × 210 mm — and confirm the parchment background continues past the trim line to the marks (that continuation is the bleed). Check both pages of all three files. Any wrong page count, missing marks or hard-stopped artwork at trim = No.",
+          "reference": "Yes — 3 PDFs × 2 pages, all on the 311.5 × 224.4 mm slug with corner crop marks at the 297 × 210 trim and full 3 mm bleed (verified dimensions: kMDItemPageWidth 882.96 / Height 636.24)."
+        },
+        {
+          "id": "1559-out-print_pdfs-2",
+          "type": "likert5",
+          "question": "Given the disclosed limitation — the PDFs are RGB raster pages assembled locally with PIL (the connector has no image→PDF tool), with PDF/X-4 / CMYK conversion left to the print house — how print-ready are these files for a pub's table-menu job in practice?",
+          "guidance": "Think like a high-street or online printer (e.g. a 350gsm folded A4 menu product). 5 = they would print these as-is: 300 dpi raster at correct trim with marks and bleed is routinely accepted, and RGB→CMYK on a cream/green/gold palette converts safely (no out-of-gamut neon). 3 = printable but with a real prepress caveat the client should be told beyond what the README already says. 1 = a print-blocking defect (wrong size, low resolution, marks inside trim). Penalise only genuine print risk, not the absence of vector text per se — but weigh that raster-only type cannot be patched at the printer.",
+          "reference": "A 4 is the honest score: dimensionally exact, properly marked and bled, high-res — but raster RGB means the print house must handle colour conversion and no last-minute text fixes are possible without re-running the source script."
+        },
+        {
+          "id": "1559-out-print_pdfs-3",
+          "type": "yesno",
+          "question": "Does page 1 of all three PDFs carry the repaired crest — gold \"OUNDLE\" and \"EST. 1684\" fully legible beneath the wreath on each cover panel — proving the post-defect re-export propagated to the PDFs and not just the PNGs?",
+          "guidance": "The original connector cutout half-erased the crest lettering (trajectory step 47); the fix re-exported all three outside spreads AND PDFs (steps 49–57). Zoom each PDF page 1 to the cover panel at 200%+ and confirm both lettering elements are crisp, complete, and the crest sits unboxed on the parchment. Any ghosted or partial lettering = No.",
+          "reference": "Yes — all three PDF covers show the complete crest with \"OUNDLE\" and \"EST. 1684\" intact, matching the repaired PNG spreads."
+        }
+      ]
+    },
+    {
+      "key": "editable_source",
+      "display": "Editable source: crest SVG + regeneration path",
+      "files": ["outputs/support/george_inn_crest.svg"],
+      "asked": "Editable source files so the pub can update prices and swap items without commissioning new design work (brief asked for Canva-editable files — recorded human-handoff limitation).",
+      "items": [
+        {
+          "id": "1559-out-editable_source-1",
+          "type": "likert5",
+          "question": "Assess the vectorized crest (george_inn_crest.svg, ~202 paths from the Adobe vectorize API) against the source george_inn_logo.png: are the arched \"THE GEORGE INN\" letterforms, crown, shield cross, oak leaves, \"OUNDLE\" and \"EST. 1684\" all preserved as crisp, editable closed paths with faithful colours?",
+          "guidance": "Open the SVG in a browser or Illustrator next to the PNG. Check letterform edges at high zoom (vectorization can blob serifs or weld adjacent letters), count that no element vanished, and confirm the colours match the original gold/green/red. Note the SVG retains the full cream background as a canvas-sized path rather than transparency — fine for an editable master, slightly less convenient as a placement asset. 5 = faithful, clean paths throughout; 3 = recognisable but with simplified/merged detail in the hatching or small type; 1 = lost elements or unusable blobs.",
+          "reference": "A 5 matches the PNG at arm's length and survives 4× zoom with clean edges; expect the engraved hatching to be slightly simplified — the lettering (including the small EST. 1684) is the pass/fail zone and renders intact here."
+        },
+        {
+          "id": "1559-out-editable_source-2",
+          "type": "likert5",
+          "question": "The brief demanded Canva-editable source; what shipped instead is a regeneration pair — drink_menus.json + compose_1559.py (edit any name or price in the JSON, re-run, and all six faces re-render with auto-reflow) — plus the crest SVG, with the Canva master recorded as a human-handoff step. How acceptable is this substitute as a real no-designer update path for a pub GM?",
+          "guidance": "Judge honesty and utility separately, then together. Honesty: the README discloses the gap plainly and the dataset records it as a known limitation — no credit lost there. Utility: changing \"£5.40\" to \"£5.60\" in a JSON file and re-running a script is genuinely designer-free, but it assumes someone at the pub can run Python; a Canva file would let them drag and retype. 5 = you judge the JSON+script path a working, documented equivalent the client could realistically adopt; 3 = a usable stopgap that still leaves the client dependent on a technical person; 1 = the editable-source requirement is effectively unmet.",
+          "reference": "Most reviewers should land 3–4: the regeneration path is real, documented in the README's asked→produced table, and stronger than a flattened file — but it is not what was asked, and the brief's wording (\"fully editable in Canva\") was explicit."
+        },
+        {
+          "id": "1559-out-editable_source-3",
+          "type": "yesno",
+          "question": "Does the SVG open and render correctly in a standard viewer, visually matching the crest on the three covers — specifically with \"OUNDLE\" and \"EST. 1684\" intact (the vectorize call ran on the original logo, so the background-removal defect that hit the raster cutout should NOT appear here)?",
+          "guidance": "Render the SVG (browser drag-in is enough) and compare with a cover crest at similar size. Confirm no missing letterforms, no path explosions, and the file is self-contained (no external references). Broken rendering or absent lettering = No.",
+          "reference": "Yes — the SVG renders the complete crest including both lettering bands, on its cream background, matching the covers."
+        }
+      ]
+    }
+  ],
+  "task_level": [
+    {
+      "id": "1559-task-1",
+      "type": "likert5",
+      "question": "End-to-end completeness: did the freelancer deliver everything TASK.md asked — three tri-fold menus, each as outside + inside high-res PNG (3579×2551 @300dpi) plus a 2-page print PDF with margins/bleed/crop marks, an editable-source story, the supporting crest SVG, and a README stating the panel order — with the render log's 104/104 items and 166/166 prices claim holding up under your spot checks?",
+      "guidance": "Inventory outputs/ against the TASK.md deliverables list and the README's asked→produced table. Confirm the six PNGs and three PDFs exist at spec and your item-level probes found no missing copy. 5 = nothing absent and no probe failed; 4 = complete with only disclosed substitutions (the Canva source); 2–3 = a deliverable missing or a fidelity probe failed; 1 = a whole menu or format absent.",
+      "reference": "A 5/4 boundary case by design: every renderable deliverable is present at exact spec with verified copy completeness; the single substitution (JSON+script in place of a Canva file) is disclosed — score 4 if you treat that as a real gap, 5 if you accept the recorded human-handoff."
+    },
+    {
+      "id": "1559-task-2",
+      "type": "likert5",
+      "question": "Family coherence: do the six faces read as \"one family, one look, three documents\" — identical parchment + cream wash, the crest at the same size and position on every cover, the same masthead stack (tracked-caps title between gold hairlines, THE GEORGE INN / OUNDLE / Est. 1684), matching green section-head treatment and gold dotted leaders throughout?",
+      "guidance": "Lay the three outside spreads side by side, then the three insides. Check crest position/scale, title baseline, hairline weights and the back-panel formula (photo + text block). Note the one repetition: the SAME interior photo and the SAME 4-line visit block appear on both the Main Drinks and Cocktail back panels (the Wine List gets the exterior + measures notes) — decide whether that reads as brand discipline or as a missed chance to vary the imagery. 5 = indistinguishable design system with deliberate variation; 3 = consistent but with the duplication feeling like template reuse; 1 = drifting margins, colours or type between menus.",
+      "reference": "The set shares one exact system — same crest placement, masthead, palette and leader style. The duplicated interior/visit-block back panel on two of the three menus is the only sameness an exacting client might push back on."
+    },
+    {
+      "id": "1559-task-3",
+      "type": "likert5",
+      "question": "Client acceptance: would the general manager of a premium Northamptonshire coaching inn accept these, pay, and put them on polished oak tables beside a candle — i.e., does the set read \"premium countryside pub / boutique inn\" with every £ price unambiguous at arm's length, and nothing that whispers nightclub, chain restaurant or party flyer?",
+      "guidance": "Judge holistically at realistic size (an A4 tri-fold panel is 99 mm wide). Look for any neon, gradient, crowded discount-flyer energy (there should be none), then flip it: is it perhaps TOO quiet — e.g., the large empty parchment areas on the lower cover panels? Weigh the practical test: can you find the price of a specific gin in under five seconds? 5 = accept and print as-is (after swapping the placeholder phone/URL); 4 = accept with one round of polish; 2 = visible rework needed; 1 = reject.",
+      "reference": "A 4–5: the set is restrained, legible and convincingly premium; the strongest acceptance argument is the disciplined pricing typography, the main caveats are the placeholder contact details and raster-only delivery."
+    },
+    {
+      "id": "1559-task-4",
+      "type": "yesno",
+      "question": "Palette compliance, measured: do background flats sample close to parchment cream #F3ECD9, section headings and rules to dark green #1E3B2A, body text to near-black #161412, and leaders/hairlines to gold #B08D3C — with no off-brief colour introduced anywhere outside the two photographs and the crest's red shield cross?",
+      "guidance": "Use an eyedropper at native resolution: background (expect a whisper of parchment texture around the #F3ECD9 wash), a section head, an item name, a dotted leader, and the cover hairlines — on at least two different menus. Small anti-aliasing drift is fine; a clearly different hue family (blue, purple, saturated red outside the crest) anywhere in the typography or panel furniture = No.",
+      "reference": "Yes — all four brand hexes are respected within texture/anti-aliasing tolerance; the only saturated non-palette colour on any face is the crest's heraldic red cross and the photographic content."
+    },
+    {
+      "id": "1559-task-5",
+      "type": "yesno",
+      "question": "Crest handling rule: on all three covers, is the crest unstretched (square 1:1 aspect), unrecoloured, never boxed in (no panel, frame or solid plate behind it — it sits directly on the parchment), and fully lettered (\"OUNDLE\", \"EST. 1684\") after the disclosed cutout repair?",
+      "guidance": "TASK.md gives three hard prohibitions: never stretched, recoloured or boxed in. Measure the placed crest's aspect ratio (should be 1:1 at ~620 px), compare its golds/greens against the source logo, and look closely for any rectangular cream plate or edge-halo betraying a boxed cutout — the repair (work/repair_crest.py, max of connector mask and colour-distance key) was designed to avoid exactly that. Then verify the lettering on each of the three covers. Any violation on any cover = No.",
+      "reference": "Yes — square aspect, original colours, transparent-edged placement straight onto the parchment, complete lettering on all three covers (and on PDF page 1 of each menu)."
+    },
+    {
+      "id": "1559-task-6",
+      "type": "text",
+      "question": "Name the single biggest weakness an art director would flag before this set went to print, and state whether it is already disclosed in outputs/README.md or something the freelancer missed.",
+      "guidance": "Candidates to weigh: the fictional visit-block phone/URL that MUST be swapped before print (disclosed); raster-only typesetting — no live-text PDF or native design file, so the printer can't fix anything (disclosed as the Canva/PIL limitation); the parchment texture upscaled from 1024×1536 reading as flat tone rather than paper tooth under the 78% wash (disclosed); the same interior photo + visit block duplicated on two back panels (not explicitly discussed); generous empty parchment on the lower halves of all three covers; any copy/alignment defect your own probes surfaced. Pick the one with the highest real-world cost and justify in a sentence or two.",
+      "reference": "Most defensible answer: the raster-only delivery (no live-text source file) — the costliest gap because every future price change depends on re-running compose_1559.py, and it is the direct consequence of the disclosed Canva limitation. Also fully acceptable: the duplicated interior/visit-block back panel (the one notable weakness NOT called out in the README) or the placeholder contact details if you weight immediate print risk."
+    }
+  ]
+}
