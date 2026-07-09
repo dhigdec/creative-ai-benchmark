@@ -24,6 +24,7 @@ def main():
     ap.add_argument("--prompt", required=True)
     ap.add_argument("--aspect", default="")
     ap.add_argument("--ref", default="", help="absolute path to a starting still for image-to-video")
+    ap.add_argument("--model", default="2.0", help="'2.0' (latest, best t2v) or '1.0' (Pro — required for i2v from person stills; 2.0 i2v rejects real-person likenesses)")
     a = ap.parse_args()
     d = Path(glob.glob(str(config.OUT_ROOT / (a.task + "_*")))[0])
     dest = d / "assets" / a.asset
@@ -35,7 +36,7 @@ def main():
     if a.ref:
         import fal_client
         image_url = fal_client.upload_file(a.ref)  # fal needs a URL for image-to-video
-    meta = seedance.generate(a.prompt + ANTIBRAND, dest, aspect=asp, resolution="1080p", duration="5", image_url=image_url)
+    meta = seedance.generate(a.prompt + ANTIBRAND, dest, aspect=asp, resolution="1080p", duration="5", image_url=image_url, model=a.model)
     ff = media_gen._ffmpeg()
     frame = d / "assets" / ("_pv_" + a.asset + ".jpg")
     subprocess.run([ff, "-y", "-i", str(dest), "-vf", "select=eq(n\\,45)", "-vframes", "1", str(frame)], capture_output=True)
