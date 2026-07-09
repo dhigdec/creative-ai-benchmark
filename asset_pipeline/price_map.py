@@ -33,7 +33,7 @@ def parse_budget(s):
 def _display(p, basis):
     est = basis in ("vertical-median", "global-median")
     if p["kind"] == "hourly" and p.get("low") and p.get("high"):
-        core = "$%d–$%d/hr" % (p["low"], p["high"])
+        core = ("$%d/hr" % p["low"]) if p["low"] == p["high"] else ("$%d–$%d/hr" % (p["low"], p["high"]))
     else:
         core = "$%s" % ("{:,}".format(p["usd"]) if p.get("usd") else "?")
     if est:
@@ -57,6 +57,10 @@ def build():
             byv.setdefault(v, []).append(p["usd"]); allfixed.append(p["usd"])
     vmed = {v: round(statistics.median(x)) for v, x in byv.items() if len(x) >= 3}
     gmed = round(statistics.median(allfixed)) if allfixed else 150
+    # median tool-call count across our tasks — used to scale estimates by task complexity
+    _calls = [(json.load(open(sp)).get("tool_call_count") or 0)
+              for sp in glob.glob(str(config.PROJECT_DIR / "complex_benchmark/adobe_only/specs/*.json"))]
+    gmed_calls = statistics.median([c for c in _calls if c]) or 20
 
     exact_idx = {}
     for t, v, p in pool:
@@ -93,7 +97,10 @@ def build():
             rec = {"usd": p["usd"], "kind": p["kind"], "low": p.get("low"), "high": p.get("high"),
                    "basis": basis, "raw": p["raw"]}
         else:
-            est = vmed.get(vert, gmed)
+            base = vmed.get(vert, gmed)
+            calls = s.get("tool_call_count") or gmed_calls
+            factor = max(0.6, min(1.6, calls / gmed_calls))  # harder (more tool calls) -> costs more
+            est = max(15, int(round(base * factor / 5.0)) * 5)  # rounded to nearest $5
             rec = {"usd": est, "kind": "estimate", "low": None, "high": None,
                    "basis": "vertical-median" if vert in vmed else "global-median", "raw": ""}
         rec["display"] = _display(rec, rec["basis"])
