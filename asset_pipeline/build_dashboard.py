@@ -52,7 +52,7 @@ pre{white-space:pre-wrap;background:#0a0512;border:1px solid #2c2440;border-radi
 .work{background:#141026;border:1px solid #2c2440;border-radius:12px;padding:12px 14px;margin:14px 0 8px}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
 .chip{font-size:11px;font-weight:700;background:#221a38;color:#c9bff0;border-radius:99px;padding:3px 10px}
-.chip.src{background:#123047;color:#7cc7ee}.chip.long{background:#3a2410;color:#f4b567}
+.chip.src{background:#123047;color:#7cc7ee}.chip.long{background:#3a2410;color:#f4b567}.chip.price{background:#123a2a;color:#7fe0b0}
 .steps{margin:6px 0 0 18px;padding:0;font-size:12px;color:#c9bff0}.steps li{margin:2px 0}
 .work code{background:#0a0512;border-radius:4px;padding:1px 5px;color:#8bd6ee;font-size:11px}
 .work ul{margin:6px 0 0 18px;font-size:12px;color:#c9bff0}
@@ -94,6 +94,14 @@ def load_consistency():
         return {}
     d = json.load(open(f))
     return {r["task"]: bool(r.get("consistent", True)) for r in d.get("all", [])}
+
+_PRICES = None
+def price_of(tid):
+    global _PRICES
+    if _PRICES is None:
+        f = config.PROJECT_DIR / "task_prices.json"
+        _PRICES = json.load(open(f)) if f.exists() else {}
+    return _PRICES.get(tid, {})
 
 def classify(path: Path, kind: str):
     ext = path.suffix.lower()
@@ -175,6 +183,10 @@ def render_brief_panel(spec):
     plat, ref = src.get("platform") or "", src.get("reference") or ""
     tc, dt, nature = spec_complexity(spec)
     chips = []
+    pr = price_of(spec.get("id", ""))
+    if pr.get("display"):
+        title = "client budget (%s)" % pr.get("platform", "Upwork") if pr.get("basis") in ("exact", "fuzzy") else "estimated from %s" % pr.get("basis", "median")
+        chips.append("<span class='chip price' title='%s'>\U0001F4B0 %s</span>" % (html.escape(title), html.escape(pr["display"])))
     if plat:
         chips.append("<span class='chip src'>%s</span>" % html.escape(plat))
     if tc:
@@ -276,10 +288,12 @@ def write_task_sheet(task_dir, man, consistent, spec):
     e.append(render_asset_groups(groups, sheet, "h2"))
     e.append("</div></body></html>")
     sheet.write_text("".join(e))
+    pr = price_of(tid)
     return {"tid": tid, "title": title, "brief": brief, "ready": ready, "consistent": consistent,
             "n": len(files), "img": len(groups["image"]), "vid": len(groups["video"]),
             "aud": len(groups["audio"]), "data": len(groups["data"]),
             "calls": tc, "tools": dt, "nature": nature,
+            "price": pr.get("display", ""), "price_usd": pr.get("usd") or 0, "price_basis": pr.get("basis", ""),
             "cover": (groups["image"][0][0] if groups["image"] else
                       (poster_for(groups["video"][0][0]) if groups["video"] else None)),
             "folder": task_dir.name}
@@ -353,12 +367,16 @@ def main():
     sc = sorted(c["calls"] for c in cards if c["calls"])
     med_calls = sc[len(sc) // 2] if sc else 0
     nlong = sum(1 for c in cards if c["calls"] >= 16)
+    pp = sorted(c["price_usd"] for c in cards if c.get("price_usd"))
+    med_price = pp[len(pp) // 2] if pp else 0
+    n_real_price = sum(1 for c in cards if c.get("price_basis") in ("exact", "fuzzy"))
     e.append("<h1>StudioBench — input assets</h1>")
     e.append("<p class='muted'>Client-supplied assets for 100 real freelance design tasks, sourced verbatim from "
              "Upwork &amp; Freelancer.com briefs. Every card shows the task's workflow depth (tool calls) — each task "
              "is a long multi-step job, not a one-shot generation. <a href='all_assets.html'>see every asset on one page →</a></p>")
     e.append("<div class='summary'>")
     for n, l in [(len(cards), "tasks"), ("%d" % med_calls, "median tool calls"), (nlong, "long-horizon (16+)"),
+                 ("$%d" % med_price, "median task price"), (n_real_price, "real Upwork budgets"),
                  (sum(t for t in tot.values()), "input assets"),
                  (tot["img"], "images"), (tot["vid"], "video"), (tot["aud"], "audio"), (tot["data"], "data"),
                  (nready, "ready"), (ncons, "brand-kit ✓")]:
@@ -372,7 +390,8 @@ def main():
             cov = "<div class='novid'>audio / data only</div>"
         counts = " · ".join("%d %s" % (c[k], lbl) for k, lbl in
                             [("img", "img"), ("vid", "vid"), ("aud", "aud"), ("data", "data")] if c[k])
-        cx = "🛠 %d tool calls · %d tools%s" % (c["calls"], c["tools"], (" · " + c["nature"]) if c["nature"] else "")
+        cx = "%s🛠 %d tool calls · %d tools%s" % (("💰 %s · " % c["price"]) if c.get("price") else "",
+                                                  c["calls"], c["tools"], (" · " + c["nature"]) if c["nature"] else "")
         longb = ("<span class='badge' style='background:#3a2410;color:#f4b567'>long-horizon</span>"
                  if c["calls"] >= 16 else "")
         e.append("<div class='card'>%s<div class='tid'>%s</div><div class='ttl'>%s</div>"
