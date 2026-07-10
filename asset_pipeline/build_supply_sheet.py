@@ -67,11 +67,30 @@ def load_specs():
     return d
 
 
+_MEDIA_EXT = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".mp4", ".mov", ".webm", ".m4v",
+              ".wav", ".mp3", ".m4a", ".aac", ".flac", ".ogg", ".csv", ".json", ".txt",
+              ".pdf", ".md", ".ai", ".indd", ".eps", ".svg", ".zip"}
+
+
+def _folder_file_count(d: Path) -> int:
+    import os
+    return sum(1 for f in os.listdir(d)
+               if not f.startswith(("._", "_pv_", "_wpv_")) and Path(f).suffix.lower() in _MEDIA_EXT)
+
+
 def load_manifest_counts():
+    """num_inputs = actual input FILES the agent receives. A manifest asset that is a folder on disk
+    (e.g. a raw-clips or music folder) hides multiple files, so expand it to its real file count."""
     d = {}
     for mp in glob.glob(str(ROOT / "input_assets/AO-*/manifest.json")):
-        m = json.load(open(mp)); tid = m.get("task_id") or Path(mp).parent.name.split("_")[0]
-        d[tid] = len(m.get("assets", []))
+        td = Path(mp).parent
+        m = json.load(open(mp)); tid = m.get("task_id") or td.name.split("_")[0]
+        total = 0
+        for a in m.get("assets", []):
+            nm = a.get("name", "")
+            folder = next((c for c in (td / nm, td / "assets" / nm) if c.is_dir()), None)
+            total += _folder_file_count(folder) if folder else 1
+        d[tid] = total
     return d
 
 
@@ -84,7 +103,16 @@ def load_preserved():
     return keep
 
 
+# Curated overrides where the pre-separator title head names the SUBJECT, not the deliverable,
+# and would mislead an ops/pricing lead (e.g. an audit task that reads like a produce-from-scratch job).
+NAME_OVERRIDES = {
+    "AO-82": "Lumen Quarterly brand-consistency audit",
+}
+
+
 def short_name(spec):
+    if spec.get("id") in NAME_OVERRIDES:
+        return NAME_OVERRIDES[spec["id"]]
     t = spec.get("title", "")
     for sep in [" — ", ": ", " - "]:
         if sep in t:
@@ -109,7 +137,7 @@ def build_rows():
         bd, ntypes = breakdown(outs)
         rows.append({
             "task_id": tid,
-            "task": keep.get(tid, {}).get("task") or short_name(s),
+            "task": NAME_OVERRIDES.get(tid) or keep.get(tid, {}).get("task") or short_name(s),
             "family": keep.get(tid, {}).get("family", ""),
             "difficulty": band(tc),
             "expected_tool_calls": tc,
