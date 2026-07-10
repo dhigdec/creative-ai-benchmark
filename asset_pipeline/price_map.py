@@ -109,8 +109,38 @@ def build():
     json.dump(out, open(config.PROJECT_DIR / "task_prices.json", "w"), indent=2)
     return out, gmed, len(vmed)
 
+def write_csv(out):
+    """Emit the shareable per-task price sheet task_prices.csv (joins prices with spec metadata)."""
+    import csv
+    SRC = {"exact": "real_upwork_budget", "fuzzy": "real_upwork_budget",
+           "vertical-median": "estimate_vertical_median", "global-median": "estimate_global_median"}
+    specs = {}
+    for p in glob.glob(str(config.PROJECT_DIR / "complex_benchmark/adobe_only/specs/*.json")):
+        try:
+            s = json.load(open(p)); specs[s["id"]] = s
+        except Exception:
+            continue
+    cols = ["task_id", "title", "vertical", "category", "deliverable", "workflow", "tool_calls",
+            "distinct_tools", "difficulty", "freelancer_price_usd", "price_display", "price_source",
+            "platform", "upwork_budget_raw", "source_job_title"]
+    with open(config.PROJECT_DIR / "task_prices.csv", "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=cols); w.writeheader()
+        for tid in sorted(out, key=lambda t: int(t.split("-")[1])):
+            s = specs.get(tid, {}); p = out[tid]; calls = s.get("tool_call_count") or 0
+            w.writerow({"task_id": tid, "title": s.get("title", ""), "vertical": s.get("vertical", ""),
+                        "category": s.get("category", ""), "deliverable": (s.get("one_line_ask") or "")[:120],
+                        "workflow": s.get("workflow_nature", ""), "tool_calls": calls,
+                        "distinct_tools": s.get("distinct_adobe_tools", ""),
+                        "difficulty": "T4_advanced" if calls >= 16 else ("T3_intermediate" if calls >= 8 else "T2_basic"),
+                        "freelancer_price_usd": p.get("usd", ""), "price_display": p.get("display", ""),
+                        "price_source": SRC.get(p.get("basis"), p.get("basis", "")),
+                        "platform": p.get("platform", "") or (s.get("source") or {}).get("platform", ""),
+                        "upwork_budget_raw": p.get("raw", ""),
+                        "source_job_title": (s.get("source") or {}).get("reference", "")})
+
 def main():
     out, gmed, nv = build()
+    write_csv(out)
     real = [r for r in out.values() if r["basis"] in ("exact", "fuzzy")]
     est = [r for r in out.values() if r["basis"] not in ("exact", "fuzzy")]
     usds = sorted(r["usd"] for r in out.values() if r["usd"])
