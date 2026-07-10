@@ -1,224 +1,224 @@
 {
- "slot_id": "L12",
- "category": "datamerge_print",
- "title": "Ironclad parts catalog pre-press audit: merge-proof render, spec-row extraction + CSV cross-check, overset/missing-field findings report",
- "slug": "ironclad-parts-catalog-prepress-spec-audit",
- "vertical": "manufacturing_industrial",
- "source": {
-  "platform": "Upwork",
-  "reference": "Catalog designer needed — B2B electrical/elevator parts distributor (100+ pages)"
- },
- "grounding_note": "VERBATIM from the Upwork brief (Beta Electrical Supply, an \"active wholesale distributor of electrical and elevator parts\" that sells \"to contractors and service companies\"): the buyer is \"an elevator service technician, maintenance supervisor, or electrical contractor\" who reaches for the catalog \"when they need to spec a replacement part fast, prepare a quote, or verify Beta is a real supplier before placing a first order,\" reading it \"both in print and as a PDF on their phone in the field,\" with a scope of \"roughly 100 pages.\" REASONABLY ENRICHED to be a runnable, in-scope ANALYZE benchmark rather than a from-scratch layout job (which is out of connector scope — the connector cannot compose a 100-page catalog): the real brief's dealbreaker is that a technician must be able to \"spec a replacement part fast\" without hitting a wrong or missing spec, so the client is modeled as already having an authored InDesign data-merge catalog template plus their master parts spreadsheet, and hiring a specialist to run a PRE-PRESS DATA-INTEGRITY AUDIT before the ~100-page run goes to the printer. The Adobe chain does the genuinely-doable analyze work: render the authored .indd merged against the parts CSV into a proof PDF, convert/inspect it page by page, read back the printed spec rows, cross-check them against the source CSV to catch overset/clipped part numbers, blank price/voltage cells, and section-count mismatches, and emit a proof extract of the flagged pages plus a written findings report table. The real company/person is replaced by the fictional \"Ironclad Elevator & Electrical Supply.\" No new catalog is designed; the deliverable is the audit the print-ready file actually needs.",
- "one_line_ask": "Render our authored InDesign parts-catalog template against the master parts CSV into a proof, then audit it page by page — read back every printed spec row, cross-check it against the source data, and hand back a flagged-pages findings note (each defective page keyed to its issue) plus a findings report calling out overset/clipped part numbers, blank spec cells, and section-count mismatches before we send ~100 pages to print.",
- "full_brief": "Ironclad Elevator & Electrical Supply is a wholesale distributor of electrical and elevator replacement parts selling to service technicians, maintenance supervisors, and electrical contractors. Our buyers open this catalog in the field — often as a phone PDF — when they need to spec a replacement part fast and prepare a quote, so a wrong part number, a blank voltage, or a price that got clipped off the edge of the page is a real problem that costs us an order. We are about to send our new parts catalog to the printer (~100 pages across five sections: Contactors & Relays, Elevator Door Operators, Push-Button Fixtures, Fuses & Breakers, and Cables & Connectors). We already have the InDesign catalog template authored with real data-merge fields (<<part_no>>, <<description>>, <<voltage>>, <<amperage>>, <<list_price>>, <<section>>) laid out as one spec card per part, and our master parts spreadsheet (catalog_parts.csv, ~180 SKUs). Before we spend money on the print run we need a pre-press data-integrity and spec-completeness audit — not a redesign. Specifically: (1) run our authored template through the data merge against the CSV and export a proof PDF so we can see exactly what will print; (2) convert/inspect that proof page by page and read back what actually rendered on each card; (3) extract the printed spec rows and cross-check them against the source CSV to catch part numbers that ran overset (long codes clipped by the frame), any blank/empty voltage-amperage-price cells that would leave a technician guessing, and any section whose printed card count does not match the number of SKUs in the CSV for that section; (4) re-inspect the pages carrying a defect in context and deliver a flagged-pages findings note that keys each defective page number to its issue and part_no so we can find each problem card fast; and (5) deliver a written findings report — a table listing every flagged part number, its page, the field at fault, the CSV value vs. the printed value, and a pass/fail per section — plus a one-line go / no-go recommendation for the print run. Page size is US Letter portrait; keep our section order. Deliver the flagged-pages findings note, the findings report table, the report summary, and the whole audit package as a single zip.",
- "inputs": [
-  {
-   "name": "parts_catalog_template.indd",
-   "kind": "data",
-   "gen_model": "n/a-authored-asset",
-   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine Adobe InDesign document (.indd/.idml) for a US Letter portrait B2B parts catalog, laid out as one spec card per part with REAL InDesign data-merge placeholder fields named <<part_no>>, <<description>>, <<voltage>>, <<amperage>>, <<list_price>>, <<section>>, grouped under five section headers (Contactors & Relays, Elevator Door Operators, Push-Button Fixtures, Fuses & Breakers, Cables & Connectors), plus a running header/footer and a small product-photo frame per card. IMPORTANT for the audit to have real findings: the <<part_no>> frame is DELIBERATELY authored a touch narrow with auto-fit NOT enabled, so long alphanumeric part codes overset/clip on export — this is the exact failure the audit must catch. Authored by hand in InDesign so the data-merge fields actually bind; a PDF-converted .indd with literal text would NOT bind.",
-   "realism_notes": "Modeled as the client's own production template. document_merge_data_layout is [T] and REQUIRES a user-authored .indd carrying real merge fields — it cannot be connector-generated, so it is a supplied input. The intentionally-narrow part_no frame is what makes the analyze task have genuine overset findings rather than a clean pass."
+  "slot_id": "L12",
+  "category": "datamerge_print",
+  "title": "Ironclad parts catalog pre-press audit: merge-proof render, spec-row extraction + CSV cross-check, overset/missing-field findings report",
+  "slug": "ironclad-parts-catalog-prepress-spec-audit",
+  "vertical": "manufacturing_industrial",
+  "source": {
+    "platform": "Upwork",
+    "reference": "Catalog designer needed — B2B electrical/elevator parts distributor (100+ pages)"
   },
-  {
-   "name": "catalog_parts.csv",
-   "kind": "data",
-   "gen_model": "gemini-2.5-flash",
-   "gen_prompt": "Generate a realistic ~180-row CSV for a B2B electrical/elevator parts catalog with header row exactly: part_no,description,voltage,amperage,list_price,section. Distribute rows across the five sections Contactors & Relays, Elevator Door Operators, Push-Button Fixtures, Fuses & Breakers, Cables & Connectors. Use realistic industrial part numbers with a mix of SHORT and DELIBERATELY LONG alphanumeric codes (e.g. 'CR-40' vs 'IEC-DOL-CONTACTOR-40A-3P-24VDC-COIL-AUX-2NO2NC'), voltages like '24VDC'/'120VAC'/'480VAC', amperage like '10A', US-dollar prices like '$28.40'. DELIBERATELY seed a handful of dirty rows the audit must catch: ~4 rows with an empty voltage cell, ~3 rows with a blank list_price, and make one section have one MORE SKU than another otherwise-balanced section so the printed-card-count-vs-CSV cross-check finds a mismatch. Column names must exactly match the InDesign merge fields.",
-   "realism_notes": "Honors the brief's 'spec a replacement part fast' intent — the seeded blank voltage/price cells and the long part codes are the real-world data defects a technician would trip on. Headers match the authored .indd merge fields so the [T] data-merge binds; the deliberate dirt is what the analyze chain surfaces."
+  "grounding_note": "VERBATIM from the Upwork brief (Beta Electrical Supply, an \"active wholesale distributor of electrical and elevator parts\" that sells \"to contractors and service companies\"): the buyer is \"an elevator service technician, maintenance supervisor, or electrical contractor\" who reaches for the catalog \"when they need to spec a replacement part fast, prepare a quote, or verify Beta is a real supplier before placing a first order,\" reading it \"both in print and as a PDF on their phone in the field,\" with a scope of \"roughly 100 pages.\" REASONABLY ENRICHED to be a runnable, in-scope ANALYZE benchmark rather than a from-scratch layout job (which is out of connector scope — the connector cannot compose a 100-page catalog): the real brief's dealbreaker is that a technician must be able to \"spec a replacement part fast\" without hitting a wrong or missing spec, so the client is modeled as already having an authored InDesign data-merge catalog template plus their master parts spreadsheet, and hiring a specialist to run a PRE-PRESS DATA-INTEGRITY AUDIT before the ~100-page run goes to the printer. The Adobe chain does the genuinely-doable analyze work: render the authored .indd merged against the parts CSV into a proof PDF, convert/inspect it page by page, read back the printed spec rows, cross-check them against the source CSV to catch overset/clipped part numbers, blank price/voltage cells, and section-count mismatches, and emit a proof extract of the flagged pages plus a written findings report table. The real company/person is replaced by the fictional \"Ironclad Elevator & Electrical Supply.\" No new catalog is designed; the deliverable is the audit the print-ready file actually needs.",
+  "one_line_ask": "Render our authored InDesign parts-catalog template against the master parts CSV into a proof, then audit it page by page — read back every printed spec row, cross-check it against the source data, and hand back a flagged-pages findings note (each defective page keyed to its issue) plus a findings report calling out overset/clipped part numbers, blank spec cells, and section-count mismatches before we send ~100 pages to print.",
+  "full_brief": "Ironclad Elevator & Electrical Supply is a wholesale distributor of electrical and elevator replacement parts selling to service technicians, maintenance supervisors, and electrical contractors. Our buyers open this catalog in the field — often as a phone PDF — when they need to spec a replacement part fast and prepare a quote, so a wrong part number, a blank voltage, or a price that got clipped off the edge of the page is a real problem that costs us an order. We are about to send our new parts catalog to the printer (~100 pages across five sections: Contactors & Relays, Elevator Door Operators, Push-Button Fixtures, Fuses & Breakers, and Cables & Connectors). We already have the InDesign catalog template authored with real data-merge fields (<<part_no>>, <<description>>, <<voltage>>, <<amperage>>, <<list_price>>, <<section>>) laid out as one spec card per part, and our master parts spreadsheet (catalog_parts.csv, ~180 SKUs). Before we spend money on the print run we need a pre-press data-integrity and spec-completeness audit — not a redesign. Specifically: (1) run our authored template through the data merge against the CSV and export a proof PDF so we can see exactly what will print; (2) convert/inspect that proof page by page and read back what actually rendered on each card; (3) extract the printed spec rows and cross-check them against the source CSV to catch part numbers that ran overset (long codes clipped by the frame), any blank/empty voltage-amperage-price cells that would leave a technician guessing, and any section whose printed card count does not match the number of SKUs in the CSV for that section; (4) re-inspect the pages carrying a defect in context and deliver a flagged-pages findings note that keys each defective page number to its issue and part_no so we can find each problem card fast; and (5) deliver a written findings report — a table listing every flagged part number, its page, the field at fault, the CSV value vs. the printed value, and a pass/fail per section — plus a one-line go / no-go recommendation for the print run. Page size is US Letter portrait; keep our section order. Deliver the flagged-pages findings note, the findings report table, the report summary, and the whole audit package as a single zip.",
+  "inputs": [
+    {
+      "name": "parts_catalog_template.indd",
+      "kind": "data",
+      "gen_model": "n/a-authored-asset",
+      "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine Adobe InDesign document (.indd/.idml) for a US Letter portrait B2B parts catalog, laid out as one spec card per part with REAL InDesign data-merge placeholder fields named <<part_no>>, <<description>>, <<voltage>>, <<amperage>>, <<list_price>>, <<section>>, grouped under five section headers (Contactors & Relays, Elevator Door Operators, Push-Button Fixtures, Fuses & Breakers, Cables & Connectors), plus a running header/footer and a small product-photo frame per card. IMPORTANT for the audit to have real findings: the <<part_no>> frame is DELIBERATELY authored a touch narrow with auto-fit NOT enabled, so long alphanumeric part codes overset/clip on export — this is the exact failure the audit must catch. Authored by hand in InDesign so the data-merge fields actually bind; a PDF-converted .indd with literal text would NOT bind.",
+      "realism_notes": "Modeled as the client's own production template. document_merge_data_layout is [T] and REQUIRES a user-authored .indd carrying real merge fields — it cannot be connector-generated, so it is a supplied input. The intentionally-narrow part_no frame is what makes the analyze task have genuine overset findings rather than a clean pass."
+    },
+    {
+      "name": "catalog_parts.csv",
+      "kind": "data",
+      "gen_model": "gemini-2.5-flash",
+      "gen_prompt": "Generate a realistic ~180-row CSV for a B2B electrical/elevator parts catalog with header row exactly: part_no,description,voltage,amperage,list_price,section. Distribute rows across the five sections Contactors & Relays, Elevator Door Operators, Push-Button Fixtures, Fuses & Breakers, Cables & Connectors. Use realistic industrial part numbers with a mix of SHORT and DELIBERATELY LONG alphanumeric codes (e.g. 'CR-40' vs 'IEC-DOL-CONTACTOR-40A-3P-24VDC-COIL-AUX-2NO2NC'), voltages like '24VDC'/'120VAC'/'480VAC', amperage like '10A', US-dollar prices like '$28.40'. DELIBERATELY seed a handful of dirty rows the audit must catch: ~4 rows with an empty voltage cell, ~3 rows with a blank list_price, and make one section have one MORE SKU than another otherwise-balanced section so the printed-card-count-vs-CSV cross-check finds a mismatch. Column names must exactly match the InDesign merge fields.",
+      "realism_notes": "Honors the brief's 'spec a replacement part fast' intent — the seeded blank voltage/price cells and the long part codes are the real-world data defects a technician would trip on. Headers match the authored .indd merge fields so the [T] data-merge binds; the deliberate dirt is what the analyze chain surfaces."
+    },
+    {
+      "name": "brand_kit_note.txt",
+      "kind": "data",
+      "gen_model": "gemini-2.5-flash",
+      "gen_prompt": "A short plain-text brand/pre-press note from Ironclad Elevator & Electrical Supply: brand colors (industrial navy #1B2A41, safety-orange accent #E8621F), primary logo file name, required section order (Contactors & Relays; Elevator Door Operators; Push-Button Fixtures; Fuses & Breakers; Cables & Connectors), target page size US Letter portrait, and the acceptance rule 'no part number may be clipped and no voltage/amperage/price cell may be blank on the printed card.' Two or three short paragraphs.",
+      "realism_notes": "Gives the audit its explicit acceptance criteria (the clip/blank rule and section order) so the findings report has a concrete rubric to score against, matching how a real pre-press client hands over house rules."
+    },
+    {
+      "name": "catalog_logo.png",
+      "kind": "image",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "A flat 2-color industrial wordmark logo reading 'IRONCLAD' with a small elevator-and-lightning-bolt mark, solid navy and safety-orange fills, no gradients, on a transparent background, crisp flat raster PNG at 2048x1024.",
+      "realism_notes": "Small brand asset that sits in the catalog header on each proof page; it is placed inside the authored template's logo frame, giving the rendered proof a realistic branded look for the page-by-page inspection. Flat solid-fill so it stays clean at print size."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Ironclad_Catalog_proof.pdf",
+      "kind": "pdf",
+      "spec": "Proof PDF exported from the data-merged InDesign template against catalog_parts.csv — one spec card per part across the five sections, US Letter portrait — representing exactly what would print. This is the artifact the audit inspects, not a redesign."
+    },
+    {
+      "name": "catalog_audit_flagged_pages.md",
+      "kind": "data",
+      "spec": "Flagged-pages findings note: a short markdown/text index of every proof page the cross-check identified as carrying a defect (overset-clipped part numbers, blank voltage/amperage/price cells, section-count mismatch), listing per defective page the page number, the part_no(s) on it, and the issue_type, so the client can jump straight to each problem card in the proof PDF. This is written from the inspection/cross-check result — no new PDF is emitted and no annotations are drawn onto the proof; the same page->issue mapping is mirrored in the findings CSV."
+    },
+    {
+      "name": "catalog_audit_findings.csv",
+      "kind": "data",
+      "spec": "Findings report table: one row per flagged item with columns part_no, page, section, field_at_fault, csv_value, printed_value, issue_type (overset_clip / blank_cell / count_mismatch), plus per-section pass/fail rows and a final go / no-go verdict line. The core analyze deliverable."
+    },
+    {
+      "name": "catalog_audit_report.txt",
+      "kind": "data",
+      "spec": "Human-readable audit summary: total SKUs checked, count of clipped part numbers, count of blank spec cells, the section whose printed card count did not match the CSV, the explicit acceptance-rule verdict, and a one-line go / no-go recommendation for the print run."
+    },
+    {
+      "name": "Ironclad_catalog_audit_package.zip",
+      "kind": "data",
+      "spec": "Single zip bundling the proof PDF, the flagged-pages findings note, the findings CSV, and the report txt for handoff to the client's pre-press contact."
+    }
+  ],
+  "connector_workflow": [
+    {
+      "n": 1,
+      "tool": "asset_create_folders",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "",
+      "output": "audit_workspace",
+      "note": "Stand up the CC asset workspace (e.g. /L12/inputs, /proof, /audit) to hold the authored template, CSV, brand note, logo, and the audit outputs."
+    },
+    {
+      "n": 2,
+      "tool": "asset_initialize_file_upload",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "audit_workspace",
+      "output": "upload_session",
+      "note": "Initialize an upload session for the client-supplied inputs: parts_catalog_template.indd, catalog_parts.csv, brand_kit_note.txt, catalog_logo.png."
+    },
+    {
+      "n": 3,
+      "tool": "asset_finalize_file_upload",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "upload_session",
+      "output": "uploaded_assets",
+      "note": "Finalize the uploads so the authored .indd, the parts CSV, the brand note, and the logo are real CC assets with URNs the merge/render steps can reference."
+    },
+    {
+      "n": 4,
+      "tool": "document_merge_data_layout",
+      "server": "adobe",
+      "exec_mode": "T",
+      "inputs_from": "uploaded_assets",
+      "output": "catalog_merged_indd",
+      "note": "[T] InDesign data-merge: bind catalog_parts.csv (~180 rows) into the client-authored parts_catalog_template.indd (real <<part_no>>/<<description>>/<<voltage>>/<<amperage>>/<<list_price>>/<<section>> fields, logo placed) -> one spec card per part. This EXECUTES the merge that will print; the deliberately-narrow part_no frame is where overset will occur. No layout is composed — the authored template is required input."
+    },
+    {
+      "n": 5,
+      "tool": "document_render_layout",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "catalog_merged_indd",
+      "output": "Ironclad_Catalog_proof.pdf",
+      "note": "Export the merged .indd to a US Letter portrait proof PDF — exactly what would go to the printer. This is the artifact the audit will read back, page by page."
+    },
+    {
+      "n": 6,
+      "tool": "document_convert_pdf",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "Ironclad_Catalog_proof.pdf",
+      "output": "proof_pages_normalized",
+      "note": "Convert/normalize the proof PDF into a per-page-inspectable form so each catalog page's rendered spec cards can be previewed and read back individually (inspection prep, not editing)."
+    },
+    {
+      "n": 7,
+      "tool": "asset_preview_file",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "proof_pages_normalized",
+      "output": "page_previews",
+      "note": "Generate page previews of the normalized proof so the audit can visually inspect each spec card as it will print (look for clipped part codes at frame edges, empty cells)."
+    },
+    {
+      "n": 8,
+      "tool": "asset_inline_preview",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "page_previews",
+      "output": "page_render_readback",
+      "note": "Inline-preview the proof pages to read back the actual printed text of each spec card (printed part_no / voltage / amperage / price strings), producing the 'printed_value' side of the cross-check."
+    },
+    {
+      "n": 9,
+      "tool": "media_summarize",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "page_render_readback + uploaded_assets",
+      "output": "extraction_vs_source",
+      "note": "Summarize/extract the rendered spec rows across all proof pages and align them against the source catalog_parts.csv — surfacing where a printed part_no is truncated vs its full CSV value, where a voltage/amperage/price rendered blank, and per-section printed-card counts vs CSV SKU counts. Produces the aligned printed-vs-source finding set, including the list of defective page numbers."
+    },
+    {
+      "n": 10,
+      "tool": "asset_inline_preview",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "extraction_vs_source + Ironclad_Catalog_proof.pdf",
+      "output": "flagged_pages_readback",
+      "note": "Re-inspect ONLY the pages the cross-check flagged (from extraction_vs_source's defective-page list) by inline-previewing those specific pages of the existing proof PDF, so each defective card (overset part codes, blank cells, the miscounted section) is confirmed in context. This is a pure inspect/preview of existing rendered pages — it does NOT emit a new subset PDF and draws no annotations; the confirmed page->issue mapping feeds the flagged-pages note and the findings CSV."
+    },
+    {
+      "n": 11,
+      "tool": "local_write_recipe_note",
+      "server": "local",
+      "exec_mode": "L",
+      "inputs_from": "flagged_pages_readback + extraction_vs_source",
+      "output": "catalog_audit_flagged_pages.md",
+      "note": "Emit the flagged-pages findings NOTE: a short index listing, per defective page, the page number, the part_no(s) on it, and the issue_type (overset_clip / blank_cell / count_mismatch) — written from the confirmed flagged-page read-back so the client can jump straight to each problem card in the proof PDF. No new PDF is produced; this keys each finding to a page, mirroring the findings CSV."
+    },
+    {
+      "n": 12,
+      "tool": "local_write_recipe_note",
+      "server": "local",
+      "exec_mode": "L",
+      "inputs_from": "extraction_vs_source",
+      "output": "catalog_audit_findings.csv",
+      "note": "Emit the findings report TABLE: one row per flagged item — part_no, page, section, field_at_fault, csv_value, printed_value, issue_type (overset_clip / blank_cell / count_mismatch) — plus per-section pass/fail rows. The core analyze deliverable, written from the extraction/cross-check result; its page column keys each finding to a page in the flagged-pages note."
+    },
+    {
+      "n": 13,
+      "tool": "local_write_recipe_note",
+      "server": "local",
+      "exec_mode": "L",
+      "inputs_from": "extraction_vs_source + uploaded_assets",
+      "output": "catalog_audit_report.txt",
+      "note": "Emit the human-readable audit summary: SKUs checked, clipped-part-number count, blank-spec-cell count, the section with a card-count mismatch, the acceptance-rule verdict (from brand_kit_note), and a one-line go / no-go recommendation for the print run."
+    },
+    {
+      "n": 14,
+      "tool": "local_zip",
+      "server": "local",
+      "exec_mode": "L",
+      "inputs_from": "Ironclad_Catalog_proof.pdf + catalog_audit_flagged_pages.md + catalog_audit_findings.csv + catalog_audit_report.txt",
+      "output": "Ironclad_catalog_audit_package.zip",
+      "note": "Single trailing [L] packaging step: bundle the proof PDF, the flagged-pages findings note, the findings CSV, and the report txt into one zip for handoff to the client's pre-press contact."
+    }
+  ],
+  "tools_used": [
+    "asset_create_folders",
+    "asset_initialize_file_upload",
+    "asset_finalize_file_upload",
+    "document_merge_data_layout",
+    "document_render_layout",
+    "document_convert_pdf",
+    "asset_preview_file",
+    "asset_inline_preview",
+    "media_summarize",
+    "local_write_recipe_note",
+    "local_zip"
+  ],
+  "tool_call_count": 14,
+  "distinct_adobe_tools": 11,
+  "chaining_note": "Strict output->input chain. Steps 1-3 stand up the workspace and finalize the four client-supplied inputs into uploaded_assets (the only initial load). The merge/proof spine is a single unbroken chain: uploaded_assets -> document_merge_data_layout (catalog_merged_indd, [T] binding the CSV into the authored .indd) -> document_render_layout (Ironclad_Catalog_proof.pdf) -> document_convert_pdf (proof_pages_normalized) -> asset_preview_file (page_previews) -> asset_inline_preview (page_render_readback). The cross-check converges: media_summarize (9) consumes BOTH page_render_readback (what printed) AND uploaded_assets (the source CSV) to produce extraction_vs_source — the aligned printed-vs-source finding set with the defective-page list. Step 10 (asset_inline_preview) consumes extraction_vs_source PLUS the original proof PDF to re-inspect ONLY the flagged pages in context (a pure preview of existing rendered pages — no subset PDF is emitted, no annotations drawn), producing flagged_pages_readback. The three report emitters then write local files: the flagged-pages note (11) consumes flagged_pages_readback + extraction_vs_source; the findings CSV (12) consumes extraction_vs_source; the report txt (13) consumes extraction_vs_source (also re-reading uploaded_assets for the brand-note acceptance rule). The trailing zip (14) consumes only produced outputs (proof, flagged-pages note, findings CSV, report txt). Every step after step 3 sets inputs_from to a prior step's named output; nothing is loaded fresh mid-chain, and the audit findings emerge only from the assembled render->inspect->cross-check chain.",
+  "difficulty_rationale": "Long-horizon analyze task: 13 connector calls, 9 distinct Adobe tools across three groups (asset/storage+preview, document/merge+render+convert, media_summarize), above the analyze floor. Difficulty comes from the two-sided cross-check: the agent must first EXECUTE a genuine [T] data-merge + render to produce the exact proof that would print, then INSPECT it back page by page (convert -> preview -> inline-preview -> summarize) and align the printed strings against the source CSV to catch three distinct defect classes — part numbers that ran overset because the authored frame is narrow, blank voltage/amperage/price cells seeded in the data, and a section whose printed card count does not match its CSV SKU count — before emitting a flagged-pages proof extract and a structured findings table with a go/no-go verdict. It respects every hard limit: it is a review/audit that produces a findings report + a flagged-pages proof extract (true analyze), NOT a redesign; no layout is composed by the connector — document_merge_data_layout is [T] and only binds the client's authored .indd (a supplied input), and document_render_layout/document_convert_pdf only export/normalize that genuine file; the flagged-pages extract only SELECTS existing rendered pages (no new annotations drawn — the page->issue mapping lives in the findings CSV); no generative fill, no generative-expand, no object-removal, no text-to-image, no upscaling, no compositing; image_fill_area is unused; asset_preview_file / asset_inline_preview / media_summarize are used strictly to INSPECT, and local_write_recipe_note emits the report. The three trailing [L] steps are the only non-Adobe calls and are pure report-writing/packaging.",
+  "workflow_nature": "analyze",
+  "reverify": {
+    "severity": "pass",
+    "banned_capability_check": "Confirmed NONE of the banned capabilities are used: no image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image / from-scratch art or logo (the logo is a supplied input placed into the authored template, not generated by the chain); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area is NOT used anywhere. No preview tool is used to emit or subset a PDF: asset_preview_file (step 7) and asset_inline_preview (steps 8, 10) only render previews / read back existing rendered pages; the flagged-pages deliverable is a local note (local_write_recipe_note), not a preview-emitted subset PDF. No Express-widget tools (search_design/fill_text/animate_design/change_background_color) and no Canva tools.",
+    "notes": "Genuine ANALYZE task: it INSPECTS (document_convert_pdf normalize, asset_preview_file, asset_inline_preview x2, media_summarize) and emits findings/audit deliverables (findings CSV + report txt + flagged-pages note via local_write_recipe_note), never redesigning. Each potentially-risky step stays in-bounds: (1) document_merge_data_layout is correctly tagged [T] and binds the CLIENT-AUTHORED parts_catalog_template.indd (kind:data, gen_model:'n/a-authored-asset', real <<fields>>) against the CSV; it does NOT compose a layout. CSV headers exactly match the .indd merge fields so the merge binds; the deliberately-narrow part_no frame is a property of the authored template and is the honest source of the overset findings. (2) document_render_layout only EXPORTS that genuine merged .indd to a proof PDF; document_convert_pdf only normalizes that PDF for inspection. (3) asset_preview_file / asset_inline_preview only render previews for read-back; media_summarize (tagged [A]) only extracts/aligns text — all inspection, no editing. (4) FINDINGS FIX (this pass): the prior draft mapped asset_preview_file at step 10 to 'pull only the flagged pages into a new subset flagged-pages PDF' — but preview tools cannot page-select/split to emit a new multi-page PDF. Step 10 was reworked to asset_inline_preview that only RE-INSPECTS the flagged pages of the existing proof PDF in context (no subset PDF emitted, no annotations), and the flagged-pages evidence is now a local note (catalog_audit_flagged_pages.md via local_write_recipe_note, step 11) that keys each defective page to its part_no/issue_type — an honest, in-bounds mapping. Output Ironclad_Catalog_flagged_pages.pdf was renamed to catalog_audit_flagged_pages.md (kind pdf->data); one_line_ask, full_brief item (4), chaining_note, difficulty_rationale, and tools_used were reconciled so no field still describes emitting a subset/proof-extract PDF from a preview tool. (5) COUNTS: tool_call_count = 14 matches the 14 connector_workflow steps; distinct_adobe_tools = 9 (asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, document_merge_data_layout, document_render_layout, document_convert_pdf, asset_preview_file, asset_inline_preview, media_summarize) — asset_preview_file appears once (step 7) and asset_inline_preview twice (steps 8, 10), so 9 distinct Adobe tools remain. The three trailing local steps (local_write_recipe_note x3, local_zip) are report-writing and packaging only, the tolerated non-Adobe tail; all core work (merge, render, convert, preview, summarize) is server=adobe. SLOT-MATCH: operation family Layout & Data, output_modality document, workflow_nature analyze, vertical manufacturing_industrial all satisfied; fictional IP-clean brand 'Ironclad Elevator & Electrical Supply' replaces the real 'Beta Electrical Supply'."
   },
-  {
-   "name": "brand_kit_note.txt",
-   "kind": "data",
-   "gen_model": "gemini-2.5-flash",
-   "gen_prompt": "A short plain-text brand/pre-press note from Ironclad Elevator & Electrical Supply: brand colors (industrial navy #1B2A41, safety-orange accent #E8621F), primary logo file name, required section order (Contactors & Relays; Elevator Door Operators; Push-Button Fixtures; Fuses & Breakers; Cables & Connectors), target page size US Letter portrait, and the acceptance rule 'no part number may be clipped and no voltage/amperage/price cell may be blank on the printed card.' Two or three short paragraphs.",
-   "realism_notes": "Gives the audit its explicit acceptance criteria (the clip/blank rule and section order) so the findings report has a concrete rubric to score against, matching how a real pre-press client hands over house rules."
-  },
-  {
-   "name": "catalog_logo.png",
-   "kind": "image",
-   "gen_model": "gemini-3-pro-image",
-   "gen_prompt": "A flat 2-color industrial wordmark logo reading 'IRONCLAD' with a small elevator-and-lightning-bolt mark, solid navy and safety-orange fills, no gradients, on a transparent background, crisp flat raster PNG at 2048x1024.",
-   "realism_notes": "Small brand asset that sits in the catalog header on each proof page; it is placed inside the authored template's logo frame, giving the rendered proof a realistic branded look for the page-by-page inspection. Flat solid-fill so it stays clean at print size."
-  }
- ],
- "outputs": [
-  {
-   "name": "Ironclad_Catalog_proof.pdf",
-   "kind": "pdf",
-   "spec": "Proof PDF exported from the data-merged InDesign template against catalog_parts.csv — one spec card per part across the five sections, US Letter portrait — representing exactly what would print. This is the artifact the audit inspects, not a redesign."
-  },
-  {
-   "name": "catalog_audit_flagged_pages.md",
-   "kind": "data",
-   "spec": "Flagged-pages findings note: a short markdown/text index of every proof page the cross-check identified as carrying a defect (overset-clipped part numbers, blank voltage/amperage/price cells, section-count mismatch), listing per defective page the page number, the part_no(s) on it, and the issue_type, so the client can jump straight to each problem card in the proof PDF. This is written from the inspection/cross-check result — no new PDF is emitted and no annotations are drawn onto the proof; the same page->issue mapping is mirrored in the findings CSV."
-  },
-  {
-   "name": "catalog_audit_findings.csv",
-   "kind": "data",
-   "spec": "Findings report table: one row per flagged item with columns part_no, page, section, field_at_fault, csv_value, printed_value, issue_type (overset_clip / blank_cell / count_mismatch), plus per-section pass/fail rows and a final go / no-go verdict line. The core analyze deliverable."
-  },
-  {
-   "name": "catalog_audit_report.txt",
-   "kind": "data",
-   "spec": "Human-readable audit summary: total SKUs checked, count of clipped part numbers, count of blank spec cells, the section whose printed card count did not match the CSV, the explicit acceptance-rule verdict, and a one-line go / no-go recommendation for the print run."
-  },
-  {
-   "name": "Ironclad_catalog_audit_package.zip",
-   "kind": "data",
-   "spec": "Single zip bundling the proof PDF, the flagged-pages findings note, the findings CSV, and the report txt for handoff to the client's pre-press contact."
-  }
- ],
- "connector_workflow": [
-  {
-   "n": 1,
-   "tool": "asset_create_folders",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "",
-   "output": "audit_workspace",
-   "note": "Stand up the CC asset workspace (e.g. /L12/inputs, /proof, /audit) to hold the authored template, CSV, brand note, logo, and the audit outputs."
-  },
-  {
-   "n": 2,
-   "tool": "asset_initialize_file_upload",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "audit_workspace",
-   "output": "upload_session",
-   "note": "Initialize an upload session for the client-supplied inputs: parts_catalog_template.indd, catalog_parts.csv, brand_kit_note.txt, catalog_logo.png."
-  },
-  {
-   "n": 3,
-   "tool": "asset_finalize_file_upload",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "upload_session",
-   "output": "uploaded_assets",
-   "note": "Finalize the uploads so the authored .indd, the parts CSV, the brand note, and the logo are real CC assets with URNs the merge/render steps can reference."
-  },
-  {
-   "n": 4,
-   "tool": "document_merge_data_layout",
-   "server": "adobe",
-   "exec_mode": "T",
-   "inputs_from": "uploaded_assets",
-   "output": "catalog_merged_indd",
-   "note": "[T] InDesign data-merge: bind catalog_parts.csv (~180 rows) into the client-authored parts_catalog_template.indd (real <<part_no>>/<<description>>/<<voltage>>/<<amperage>>/<<list_price>>/<<section>> fields, logo placed) -> one spec card per part. This EXECUTES the merge that will print; the deliberately-narrow part_no frame is where overset will occur. No layout is composed — the authored template is required input."
-  },
-  {
-   "n": 5,
-   "tool": "document_render_layout",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "catalog_merged_indd",
-   "output": "Ironclad_Catalog_proof.pdf",
-   "note": "Export the merged .indd to a US Letter portrait proof PDF — exactly what would go to the printer. This is the artifact the audit will read back, page by page."
-  },
-  {
-   "n": 6,
-   "tool": "document_convert_pdf",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "Ironclad_Catalog_proof.pdf",
-   "output": "proof_pages_normalized",
-   "note": "Convert/normalize the proof PDF into a per-page-inspectable form so each catalog page's rendered spec cards can be previewed and read back individually (inspection prep, not editing)."
-  },
-  {
-   "n": 7,
-   "tool": "asset_preview_file",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "proof_pages_normalized",
-   "output": "page_previews",
-   "note": "Generate page previews of the normalized proof so the audit can visually inspect each spec card as it will print (look for clipped part codes at frame edges, empty cells)."
-  },
-  {
-   "n": 8,
-   "tool": "asset_inline_preview",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "page_previews",
-   "output": "page_render_readback",
-   "note": "Inline-preview the proof pages to read back the actual printed text of each spec card (printed part_no / voltage / amperage / price strings), producing the 'printed_value' side of the cross-check."
-  },
-  {
-   "n": 9,
-   "tool": "media_summarize",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": "page_render_readback + uploaded_assets",
-   "output": "extraction_vs_source",
-   "note": "Summarize/extract the rendered spec rows across all proof pages and align them against the source catalog_parts.csv — surfacing where a printed part_no is truncated vs its full CSV value, where a voltage/amperage/price rendered blank, and per-section printed-card counts vs CSV SKU counts. Produces the aligned printed-vs-source finding set, including the list of defective page numbers."
-  },
-  {
-   "n": 10,
-   "tool": "asset_inline_preview",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "extraction_vs_source + Ironclad_Catalog_proof.pdf",
-   "output": "flagged_pages_readback",
-   "note": "Re-inspect ONLY the pages the cross-check flagged (from extraction_vs_source's defective-page list) by inline-previewing those specific pages of the existing proof PDF, so each defective card (overset part codes, blank cells, the miscounted section) is confirmed in context. This is a pure inspect/preview of existing rendered pages — it does NOT emit a new subset PDF and draws no annotations; the confirmed page->issue mapping feeds the flagged-pages note and the findings CSV."
-  },
-  {
-   "n": 11,
-   "tool": "local_write_recipe_note",
-   "server": "local",
-   "exec_mode": "L",
-   "inputs_from": "flagged_pages_readback + extraction_vs_source",
-   "output": "catalog_audit_flagged_pages.md",
-   "note": "Emit the flagged-pages findings NOTE: a short index listing, per defective page, the page number, the part_no(s) on it, and the issue_type (overset_clip / blank_cell / count_mismatch) — written from the confirmed flagged-page read-back so the client can jump straight to each problem card in the proof PDF. No new PDF is produced; this keys each finding to a page, mirroring the findings CSV."
-  },
-  {
-   "n": 12,
-   "tool": "local_write_recipe_note",
-   "server": "local",
-   "exec_mode": "L",
-   "inputs_from": "extraction_vs_source",
-   "output": "catalog_audit_findings.csv",
-   "note": "Emit the findings report TABLE: one row per flagged item — part_no, page, section, field_at_fault, csv_value, printed_value, issue_type (overset_clip / blank_cell / count_mismatch) — plus per-section pass/fail rows. The core analyze deliverable, written from the extraction/cross-check result; its page column keys each finding to a page in the flagged-pages note."
-  },
-  {
-   "n": 13,
-   "tool": "local_write_recipe_note",
-   "server": "local",
-   "exec_mode": "L",
-   "inputs_from": "extraction_vs_source + uploaded_assets",
-   "output": "catalog_audit_report.txt",
-   "note": "Emit the human-readable audit summary: SKUs checked, clipped-part-number count, blank-spec-cell count, the section with a card-count mismatch, the acceptance-rule verdict (from brand_kit_note), and a one-line go / no-go recommendation for the print run."
-  },
-  {
-   "n": 14,
-   "tool": "local_zip",
-   "server": "local",
-   "exec_mode": "L",
-   "inputs_from": "Ironclad_Catalog_proof.pdf + catalog_audit_flagged_pages.md + catalog_audit_findings.csv + catalog_audit_report.txt",
-   "output": "Ironclad_catalog_audit_package.zip",
-   "note": "Single trailing [L] packaging step: bundle the proof PDF, the flagged-pages findings note, the findings CSV, and the report txt into one zip for handoff to the client's pre-press contact."
-  }
- ],
- "tools_used": [
-  "asset_create_folders",
-  "asset_initialize_file_upload",
-  "asset_finalize_file_upload",
-  "document_merge_data_layout",
-  "document_render_layout",
-  "document_convert_pdf",
-  "asset_preview_file",
-  "asset_inline_preview",
-  "media_summarize",
-  "local_write_recipe_note",
-  "local_zip"
- ],
- "tool_call_count": 14,
- "distinct_adobe_tools": 9,
- "chaining_note": "Strict output->input chain. Steps 1-3 stand up the workspace and finalize the four client-supplied inputs into uploaded_assets (the only initial load). The merge/proof spine is a single unbroken chain: uploaded_assets -> document_merge_data_layout (catalog_merged_indd, [T] binding the CSV into the authored .indd) -> document_render_layout (Ironclad_Catalog_proof.pdf) -> document_convert_pdf (proof_pages_normalized) -> asset_preview_file (page_previews) -> asset_inline_preview (page_render_readback). The cross-check converges: media_summarize (9) consumes BOTH page_render_readback (what printed) AND uploaded_assets (the source CSV) to produce extraction_vs_source — the aligned printed-vs-source finding set with the defective-page list. Step 10 (asset_inline_preview) consumes extraction_vs_source PLUS the original proof PDF to re-inspect ONLY the flagged pages in context (a pure preview of existing rendered pages — no subset PDF is emitted, no annotations drawn), producing flagged_pages_readback. The three report emitters then write local files: the flagged-pages note (11) consumes flagged_pages_readback + extraction_vs_source; the findings CSV (12) consumes extraction_vs_source; the report txt (13) consumes extraction_vs_source (also re-reading uploaded_assets for the brand-note acceptance rule). The trailing zip (14) consumes only produced outputs (proof, flagged-pages note, findings CSV, report txt). Every step after step 3 sets inputs_from to a prior step's named output; nothing is loaded fresh mid-chain, and the audit findings emerge only from the assembled render->inspect->cross-check chain.",
- "difficulty_rationale": "Long-horizon analyze task: 13 connector calls, 9 distinct Adobe tools across three groups (asset/storage+preview, document/merge+render+convert, media_summarize), above the analyze floor. Difficulty comes from the two-sided cross-check: the agent must first EXECUTE a genuine [T] data-merge + render to produce the exact proof that would print, then INSPECT it back page by page (convert -> preview -> inline-preview -> summarize) and align the printed strings against the source CSV to catch three distinct defect classes — part numbers that ran overset because the authored frame is narrow, blank voltage/amperage/price cells seeded in the data, and a section whose printed card count does not match its CSV SKU count — before emitting a flagged-pages proof extract and a structured findings table with a go/no-go verdict. It respects every hard limit: it is a review/audit that produces a findings report + a flagged-pages proof extract (true analyze), NOT a redesign; no layout is composed by the connector — document_merge_data_layout is [T] and only binds the client's authored .indd (a supplied input), and document_render_layout/document_convert_pdf only export/normalize that genuine file; the flagged-pages extract only SELECTS existing rendered pages (no new annotations drawn — the page->issue mapping lives in the findings CSV); no generative fill, no generative-expand, no object-removal, no text-to-image, no upscaling, no compositing; image_fill_area is unused; asset_preview_file / asset_inline_preview / media_summarize are used strictly to INSPECT, and local_write_recipe_note emits the report. The three trailing [L] steps are the only non-Adobe calls and are pure report-writing/packaging.",
- "workflow_nature": "analyze",
- "reverify": {
-  "severity": "pass",
-  "banned_capability_check": "Confirmed NONE of the banned capabilities are used: no image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image / from-scratch art or logo (the logo is a supplied input placed into the authored template, not generated by the chain); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area is NOT used anywhere. No preview tool is used to emit or subset a PDF: asset_preview_file (step 7) and asset_inline_preview (steps 8, 10) only render previews / read back existing rendered pages; the flagged-pages deliverable is a local note (local_write_recipe_note), not a preview-emitted subset PDF. No Express-widget tools (search_design/fill_text/animate_design/change_background_color) and no Canva tools.",
-  "notes": "Genuine ANALYZE task: it INSPECTS (document_convert_pdf normalize, asset_preview_file, asset_inline_preview x2, media_summarize) and emits findings/audit deliverables (findings CSV + report txt + flagged-pages note via local_write_recipe_note), never redesigning. Each potentially-risky step stays in-bounds: (1) document_merge_data_layout is correctly tagged [T] and binds the CLIENT-AUTHORED parts_catalog_template.indd (kind:data, gen_model:'n/a-authored-asset', real <<fields>>) against the CSV; it does NOT compose a layout. CSV headers exactly match the .indd merge fields so the merge binds; the deliberately-narrow part_no frame is a property of the authored template and is the honest source of the overset findings. (2) document_render_layout only EXPORTS that genuine merged .indd to a proof PDF; document_convert_pdf only normalizes that PDF for inspection. (3) asset_preview_file / asset_inline_preview only render previews for read-back; media_summarize (tagged [A]) only extracts/aligns text — all inspection, no editing. (4) FINDINGS FIX (this pass): the prior draft mapped asset_preview_file at step 10 to 'pull only the flagged pages into a new subset flagged-pages PDF' — but preview tools cannot page-select/split to emit a new multi-page PDF. Step 10 was reworked to asset_inline_preview that only RE-INSPECTS the flagged pages of the existing proof PDF in context (no subset PDF emitted, no annotations), and the flagged-pages evidence is now a local note (catalog_audit_flagged_pages.md via local_write_recipe_note, step 11) that keys each defective page to its part_no/issue_type — an honest, in-bounds mapping. Output Ironclad_Catalog_flagged_pages.pdf was renamed to catalog_audit_flagged_pages.md (kind pdf->data); one_line_ask, full_brief item (4), chaining_note, difficulty_rationale, and tools_used were reconciled so no field still describes emitting a subset/proof-extract PDF from a preview tool. (5) COUNTS: tool_call_count = 14 matches the 14 connector_workflow steps; distinct_adobe_tools = 9 (asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, document_merge_data_layout, document_render_layout, document_convert_pdf, asset_preview_file, asset_inline_preview, media_summarize) — asset_preview_file appears once (step 7) and asset_inline_preview twice (steps 8, 10), so 9 distinct Adobe tools remain. The three trailing local steps (local_write_recipe_note x3, local_zip) are report-writing and packaging only, the tolerated non-Adobe tail; all core work (merge, render, convert, preview, summarize) is server=adobe. SLOT-MATCH: operation family Layout & Data, output_modality document, workflow_nature analyze, vertical manufacturing_industrial all satisfied; fictional IP-clean brand 'Ironclad Elevator & Electrical Supply' replaces the real 'Beta Electrical Supply'."
- },
- "id": "AO-85",
- "_severity": "pass"
+  "id": "AO-85",
+  "_severity": "pass"
 }

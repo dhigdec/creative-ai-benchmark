@@ -142,8 +142,10 @@ def write_csv(out):
             w.writerow({"task_id": tid, "title": s.get("title", ""), "vertical": s.get("vertical", ""),
                         "category": s.get("category", ""), "deliverable": (s.get("one_line_ask") or "")[:120],
                         "workflow": s.get("workflow_nature", ""), "tool_calls": calls,
-                        "distinct_tools": s.get("distinct_adobe_tools", ""),
-                        "difficulty": "T4_advanced" if calls >= 16 else ("T3_intermediate" if calls >= 8 else "T2_basic"),
+                        "distinct_tools": len(set(s.get("tools_used") or [])) or s.get("distinct_adobe_tools", ""),
+                        # CANONICAL difficulty band (must match tasks_supply_sheet.csv / build_supply_sheet.py):
+                        # T2_basic <=15, T3_intermediate 16-25, T4_advanced >=26 tool calls.
+                        "difficulty": "T2_basic" if calls <= 15 else ("T3_intermediate" if calls <= 25 else "T4_advanced"),
                         "freelancer_price_usd": p.get("usd", ""), "price_display": p.get("display", ""),
                         "price_source": SRC.get(p.get("basis"), p.get("basis", "")),
                         "platform": p.get("platform", "") or (s.get("source") or {}).get("platform", ""),

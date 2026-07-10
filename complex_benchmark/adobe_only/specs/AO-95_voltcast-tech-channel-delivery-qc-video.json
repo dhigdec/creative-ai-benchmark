@@ -1,201 +1,201 @@
 {
- "slot_id": "M02",
- "category": "video_edit",
- "title": "Voltcast tech-channel delivery QC: audit the outsourced editor's YouTube master + vertical cut against the channel delivery-spec sheet (timecode-referenced video findings report)",
- "slug": "voltcast-tech-channel-delivery-qc-video-audit",
- "vertical": "Music, Film, Publishing & Media",
- "source": {
-  "platform": "Freelancer.com",
-  "reference": "Tech Channel Video Editor Needed"
- },
- "grounding_note": "VERBATIM from the Freelancer.com brief 'Tech Channel Video Editor Needed': the client publishes \"tech-focused content several times a week\" and needs \"both long-form reviews (8-12 minutes) and short vertical cuts for YouTube Shorts, Reels and TikTok\"; \"Every edit should be platform-ready. That means a 16:9 master for YouTube plus a reformatted 9:16 or 1:1 version whenever the topic suits social media\"; the client supplies \"4K footage, screen recordings, b-roll and a rough talking-head guide\" and expects \"on-brand text overlays, background music that doesn't clash with narration, and light-weight animations that highlight specs, prices or key takeaways.\" REASONABLY REFRAMED to an ANALYZE task (the slot's workflow_nature=analyze): actually re-cutting/finishing the footage is a from-scratch video-composition deliverable that is NOT in Adobe-connector scope (no NLE timeline editing, no compositing, no burning-in of new overlays). The honest, fully-doable read of the brief's real concern -- is every edit actually 'platform-ready' and on-spec? -- is a delivery QC / spec-compliance audit: the channel owner has already outsourced this episode to a junior editor, receives back a 16:9 YouTube master plus a 9:16 vertical cut, and hires the freelancer to INSPECT both deliverables against the channel's written delivery-spec sheet (duration window, resolution/frame-rate, loudness, safe-margins for overlays, music-vs-narration balance, intro/outro presence, on-brand text) before it publishes. The connector chain only inspects -- summarize the master and the vertical cut for content/scene structure and audio (media_summarize), rasterize the spec-sheet PDF to read the exact delivery rules, and preview the video poster frames and the supplied reference thumbnails -- then emits a page/timestamp-referenced findings report via local_write_recipe_note and renders it to a QC report PDF. Nothing is re-edited; no deliverable is invented beyond the QC report the brief's 'every edit should be platform-ready' requirement implies. Brand (Voltcast), episode and persona are fictional and IP-clean; no real channel or trademark is used.",
- "one_line_ask": "Audit the outsourced editor's Voltcast episode deliverables -- the 16:9 YouTube master and the 9:16 vertical cut -- against the channel's written delivery-spec sheet, and return a timestamp-referenced QC findings report (as a report PDF plus structured JSON) listing every spec drift: duration, resolution/fps, loudness, music-vs-narration balance, missing intro/outro, unsafe-margin overlays and off-brand text.",
- "full_brief": "Voltcast is a fictional independent consumer-tech review channel run by Voltcast Media that publishes several times a week -- long-form reviews plus short vertical cuts for Shorts / Reels / TikTok. We outsource the actual editing to a rotating pool of junior editors, and before an episode goes live we run a delivery QC pass so nothing off-spec reaches the feed (the last episode published with the sponsor read buried under the music and the price-callout overlay clipped off the bottom on mobile, and we only caught it after it went out).\n\nFor this episode ('Voltcast E42 -- Budget Phone Shootout') you will receive four things: (1) voltcast_e42_master_16x9.mp4, the finished 4K 16:9 YouTube master the editor delivered; (2) voltcast_e42_vertical_9x16.mp4, the reformatted vertical Shorts/Reels cut derived from the same edit; (3) voltcast_delivery_spec.pdf, our written channel delivery-spec sheet; and (4) voltcast_brand_frames.png, a reference sheet of our correct intro end-card, lower-third, and price-callout overlay so you can compare on-screen text against the approved look. The delivery-spec sheet states the exact rules: long-form runtime must land in the 8:00-12:00 window; master must be 3840x2160 at 23.976 or 24 fps, H.264, with integrated loudness at -14 LUFS (+/-1) and true-peak at or below -1 dBTP; background music must sit at least 12 LU below narration during any spoken segment (no clashing under the sponsor read or verdict); the branded intro end-card must appear in the first 8 seconds and the subscribe/outro card in the final 15 seconds; every text overlay (lower-thirds, spec/price callouts) must sit inside the title-safe margin (5% inset) so it is not clipped, and the vertical 9:16 cut must keep those callouts inside the tighter mobile safe area; on-brand text must use the channel's approved lower-third style, not a default editor font.\n\nThe job is an audit, not a re-edit -- do NOT re-cut, re-grade, re-mix, or re-export the episode. Watch/inspect both deliverables, compare what is actually there against the spec sheet, and hand back a delivery-QC report that, for each issue found, gives the affected file, the timecode (or time range), a plain-language description of the drift, the exact spec clause it violates, the observed-vs-required value, and a severity (blocker / warning / nit). We expect you to catch things like: a runtime that overshoots the 12:00 ceiling, music that does NOT drop under the sponsor read, a price-callout overlay clipped outside the mobile safe area on the vertical cut, an outro card that is missing or too short, and a lower-third set in the wrong font. Deliver the report as a clean A4 report PDF plus the raw findings as a structured JSON file, and open the PDF with a one-page cover summary counting findings by severity. The report is for our managing editor, not the printer -- it is the go / no-go checklist before we schedule the upload.",
- "inputs": [
-  {
-   "name": "voltcast_e42_master_16x9.mp4",
-   "kind": "video",
-   "gen_model": "veo-3.1",
-   "gen_prompt": "A realistic ~11-minute 4K 16:9 consumer-tech review episode as delivered by a junior editor: a talking-head host at a desk reviewing budget smartphones, intercut with product b-roll and screen-recorded benchmark charts, a spoken sponsor read around the 2-minute mark, spec/price callout overlays and lower-thirds, a branded intro end-card in the first few seconds and a subscribe/outro card near the end. Deliberately planted delivery defects for the QC to catch: total runtime slightly OVERSHOOTS the 12:00 ceiling (~12:20); during the sponsor read the background music does NOT duck under the narration (music sits roughly level with the voice); one price-callout overlay sits very close to the bottom edge (inside the 16:9 frame but risky); the lower-third name strap is set in a generic default sans instead of the channel's approved lower-third style; audio is mixed a touch hot (integrated loudness around -12 LUFS instead of -14). Render as a genuine .mp4 with narration + music beds, real motion, real burned-in text overlays.",
-   "realism_notes": "Must be a real delivered master with genuine burned-in overlays, a music bed and narration so media_summarize can read the scene structure and audio, and so the planted spec drifts (over-runtime, no music duck under the sponsor read, hot loudness, wrong lower-third font, near-edge callout) are actually present to be found. This is the primary thing under audit; the connector only INSPECTS it -- nothing re-edits it."
+  "slot_id": "M02",
+  "category": "video_edit",
+  "title": "Voltcast tech-channel delivery QC: audit the outsourced editor's YouTube master + vertical cut against the channel delivery-spec sheet (timecode-referenced video findings report)",
+  "slug": "voltcast-tech-channel-delivery-qc-video-audit",
+  "vertical": "Music, Film, Publishing & Media",
+  "source": {
+    "platform": "Freelancer.com",
+    "reference": "Tech Channel Video Editor Needed"
   },
-  {
-   "name": "voltcast_e42_vertical_9x16.mp4",
-   "kind": "video",
-   "gen_model": "veo-3.1",
-   "gen_prompt": "A ~50-second 9:16 vertical Shorts/Reels cut reformatted from the same budget-phone-shootout episode: the host's best hook and the verdict, product b-roll reframed to vertical, the price-callout overlay carried over from the 16:9 edit. Deliberately planted vertical-specific defect: the price-callout overlay is positioned where it was in the 16:9 master, so on the tighter 9:16 mobile frame it is CLIPPED / falls outside the mobile safe area (bottom of the number cut off). Also plant: no subscribe/outro end-card on the vertical cut (missing on the short form). Real vertical .mp4 with burned-in overlay and audio.",
-   "realism_notes": "The vertical cut is the second deliverable under audit. Its planted defects (callout clipped outside the mobile safe area, missing outro card) are exactly the platform-readiness issues the brief cares about ('reformatted 9:16 or 1:1 version', 'platform-ready'). media_summarize + poster-frame preview surface them; nothing is re-cut."
+  "grounding_note": "VERBATIM from the Freelancer.com brief 'Tech Channel Video Editor Needed': the client publishes \"tech-focused content several times a week\" and needs \"both long-form reviews (8-12 minutes) and short vertical cuts for YouTube Shorts, Reels and TikTok\"; \"Every edit should be platform-ready. That means a 16:9 master for YouTube plus a reformatted 9:16 or 1:1 version whenever the topic suits social media\"; the client supplies \"4K footage, screen recordings, b-roll and a rough talking-head guide\" and expects \"on-brand text overlays, background music that doesn't clash with narration, and light-weight animations that highlight specs, prices or key takeaways.\" REASONABLY REFRAMED to an ANALYZE task (the slot's workflow_nature=analyze): actually re-cutting/finishing the footage is a from-scratch video-composition deliverable that is NOT in Adobe-connector scope (no NLE timeline editing, no compositing, no burning-in of new overlays). The honest, fully-doable read of the brief's real concern -- is every edit actually 'platform-ready' and on-spec? -- is a delivery QC / spec-compliance audit: the channel owner has already outsourced this episode to a junior editor, receives back a 16:9 YouTube master plus a 9:16 vertical cut, and hires the freelancer to INSPECT both deliverables against the channel's written delivery-spec sheet (duration window, resolution/frame-rate, loudness, safe-margins for overlays, music-vs-narration balance, intro/outro presence, on-brand text) before it publishes. The connector chain only inspects -- summarize the master and the vertical cut for content/scene structure and audio (media_summarize), rasterize the spec-sheet PDF to read the exact delivery rules, and preview the video poster frames and the supplied reference thumbnails -- then emits a page/timestamp-referenced findings report via local_write_recipe_note and renders it to a QC report PDF. Nothing is re-edited; no deliverable is invented beyond the QC report the brief's 'every edit should be platform-ready' requirement implies. Brand (Voltcast), episode and persona are fictional and IP-clean; no real channel or trademark is used.",
+  "one_line_ask": "Audit the outsourced editor's Voltcast episode deliverables -- the 16:9 YouTube master and the 9:16 vertical cut -- against the channel's written delivery-spec sheet, and return a timestamp-referenced QC findings report (as a report PDF plus structured JSON) listing every spec drift: duration, resolution/fps, loudness, music-vs-narration balance, missing intro/outro, unsafe-margin overlays and off-brand text.",
+  "full_brief": "Voltcast is a fictional independent consumer-tech review channel run by Voltcast Media that publishes several times a week -- long-form reviews plus short vertical cuts for Shorts / Reels / TikTok. We outsource the actual editing to a rotating pool of junior editors, and before an episode goes live we run a delivery QC pass so nothing off-spec reaches the feed (the last episode published with the sponsor read buried under the music and the price-callout overlay clipped off the bottom on mobile, and we only caught it after it went out).\n\nFor this episode ('Voltcast E42 -- Budget Phone Shootout') you will receive four things: (1) voltcast_e42_master_16x9.mp4, the finished 4K 16:9 YouTube master the editor delivered; (2) voltcast_e42_vertical_9x16.mp4, the reformatted vertical Shorts/Reels cut derived from the same edit; (3) voltcast_delivery_spec.pdf, our written channel delivery-spec sheet; and (4) voltcast_brand_frames.png, a reference sheet of our correct intro end-card, lower-third, and price-callout overlay so you can compare on-screen text against the approved look. The delivery-spec sheet states the exact rules: long-form runtime must land in the 8:00-12:00 window; master must be 3840x2160 at 23.976 or 24 fps, H.264, with integrated loudness at -14 LUFS (+/-1) and true-peak at or below -1 dBTP; background music must sit at least 12 LU below narration during any spoken segment (no clashing under the sponsor read or verdict); the branded intro end-card must appear in the first 8 seconds and the subscribe/outro card in the final 15 seconds; every text overlay (lower-thirds, spec/price callouts) must sit inside the title-safe margin (5% inset) so it is not clipped, and the vertical 9:16 cut must keep those callouts inside the tighter mobile safe area; on-brand text must use the channel's approved lower-third style, not a default editor font.\n\nThe job is an audit, not a re-edit -- do NOT re-cut, re-grade, re-mix, or re-export the episode. Watch/inspect both deliverables, compare what is actually there against the spec sheet, and hand back a delivery-QC report that, for each issue found, gives the affected file, the timecode (or time range), a plain-language description of the drift, the exact spec clause it violates, the observed-vs-required value, and a severity (blocker / warning / nit). We expect you to catch things like: a runtime that overshoots the 12:00 ceiling, music that does NOT drop under the sponsor read, a price-callout overlay clipped outside the mobile safe area on the vertical cut, an outro card that is missing or too short, and a lower-third set in the wrong font. Deliver the report as a clean A4 report PDF plus the raw findings as a structured JSON file, and open the PDF with a one-page cover summary counting findings by severity. The report is for our managing editor, not the printer -- it is the go / no-go checklist before we schedule the upload.",
+  "inputs": [
+    {
+      "name": "voltcast_e42_master_16x9.mp4",
+      "kind": "video",
+      "gen_model": "veo-3.1",
+      "gen_prompt": "A realistic ~11-minute 4K 16:9 consumer-tech review episode as delivered by a junior editor: a talking-head host at a desk reviewing budget smartphones, intercut with product b-roll and screen-recorded benchmark charts, a spoken sponsor read around the 2-minute mark, spec/price callout overlays and lower-thirds, a branded intro end-card in the first few seconds and a subscribe/outro card near the end. Deliberately planted delivery defects for the QC to catch: total runtime slightly OVERSHOOTS the 12:00 ceiling (~12:20); during the sponsor read the background music does NOT duck under the narration (music sits roughly level with the voice); one price-callout overlay sits very close to the bottom edge (inside the 16:9 frame but risky); the lower-third name strap is set in a generic default sans instead of the channel's approved lower-third style; audio is mixed a touch hot (integrated loudness around -12 LUFS instead of -14). Render as a genuine .mp4 with narration + music beds, real motion, real burned-in text overlays.",
+      "realism_notes": "Must be a real delivered master with genuine burned-in overlays, a music bed and narration so media_summarize can read the scene structure and audio, and so the planted spec drifts (over-runtime, no music duck under the sponsor read, hot loudness, wrong lower-third font, near-edge callout) are actually present to be found. This is the primary thing under audit; the connector only INSPECTS it -- nothing re-edits it."
+    },
+    {
+      "name": "voltcast_e42_vertical_9x16.mp4",
+      "kind": "video",
+      "gen_model": "veo-3.1",
+      "gen_prompt": "A ~50-second 9:16 vertical Shorts/Reels cut reformatted from the same budget-phone-shootout episode: the host's best hook and the verdict, product b-roll reframed to vertical, the price-callout overlay carried over from the 16:9 edit. Deliberately planted vertical-specific defect: the price-callout overlay is positioned where it was in the 16:9 master, so on the tighter 9:16 mobile frame it is CLIPPED / falls outside the mobile safe area (bottom of the number cut off). Also plant: no subscribe/outro end-card on the vertical cut (missing on the short form). Real vertical .mp4 with burned-in overlay and audio.",
+      "realism_notes": "The vertical cut is the second deliverable under audit. Its planted defects (callout clipped outside the mobile safe area, missing outro card) are exactly the platform-readiness issues the brief cares about ('reformatted 9:16 or 1:1 version', 'platform-ready'). media_summarize + poster-frame preview surface them; nothing is re-cut."
+    },
+    {
+      "name": "voltcast_delivery_spec.pdf",
+      "kind": "pdf",
+      "gen_model": "n/a-authored-asset",
+      "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine multi-page channel delivery-spec sheet PDF for the fictional 'Voltcast' tech-review channel. Must state, in text the connector can read/summarize: the long-form RUNTIME window (8:00-12:00); the MASTER technical spec (3840x2160, 23.976 or 24 fps, H.264, ~35-45 Mbps); the AUDIO spec (integrated loudness -14 LUFS +/-1, true-peak <= -1 dBTP, and the rule 'music must sit at least 12 LU below narration during any spoken segment; never let music clash with the sponsor read or the verdict'); the INTRO/OUTRO rule ('branded intro end-card within the first 8 seconds; subscribe/outro card in the final 15 seconds, present on BOTH the 16:9 master and the vertical cut'); the SAFE-MARGIN rule ('all text overlays inside the 5% title-safe margin on 16:9; on the 9:16 vertical cut all callouts must sit inside the mobile safe area with extra bottom inset for the UI'); and the ON-BRAND TEXT rule ('lower-thirds and callouts use the approved Voltcast lower-third style; no default editor fonts'). Authored by hand and supplied by the client; the audit's ground truth.",
+      "realism_notes": "The audit's ground-truth spec. media_summarize / rasterize-and-preview reads the stated rules out of this PDF so each finding can cite the exact clause and give observed-vs-required values. A real supplied delivery-spec sheet, not connector-generated."
+    },
+    {
+      "name": "voltcast_brand_frames.png",
+      "kind": "image",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "A clean flat brand reference sheet on a neutral background showing three labelled panels of the APPROVED Voltcast on-screen elements: (1) the correct branded intro end-card (channel wordmark + episode strap), (2) the approved lower-third name/title style in the channel's specified font and colour, (3) the approved price/spec callout chip with its correct safe-margin placement guide drawn as a thin inset rectangle. Crisp flat labels, no photography, high legibility, 2400x1350px PNG.",
+      "realism_notes": "The reference the audit compares the episode's on-screen text against -- to catch the wrong lower-third font and the near/over-edge callouts. Flat labelled panels so preview reads the approved look unambiguously; a supplied brand reference, not connector-generated."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Voltcast_E42_Delivery_QC.pdf",
+      "kind": "pdf",
+      "spec": "The primary deliverable: a clean A4 portrait delivery-QC report PDF. Opens with a one-page cover summary (go / no-go verdict + total findings by severity: blocker / warning / nit), then one row per finding with the affected file (master or vertical cut), the timecode or time range, a plain-language description of the drift, the exact delivery-spec clause it violates, observed-vs-required values, and severity. This is a FINDINGS report, NOT a re-edit of the episode."
+    },
+    {
+      "name": "voltcast_e42_qc_findings.json",
+      "kind": "data",
+      "spec": "The raw structured findings emitted by local_write_recipe_note: an ordered list of records {file, timecode, drift, spec_clause, required_value, observed_value, severity} plus a summary block with counts by severity and an overall go/no-go flag. Machine-readable companion to the PDF for the managing editor's publish tracker."
+    },
+    {
+      "name": "voltcast_qc_evidence_frames",
+      "kind": "image",
+      "spec": "The poster/keyframe previews and the spec-sheet page rasters gathered during inspection (the master's intro-card frame and sponsor-read frame, the vertical cut's clipped-callout frame, the rasterized delivery-spec pages, and the brand-reference sheet), retained as the visual evidence the findings reference by timecode/page. Intermediate/working artifact kept alongside the report."
+    }
+  ],
+  "connector_workflow": [
+    {
+      "n": 1,
+      "tool": "asset_create_folders",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "",
+      "output": "qc_workspace",
+      "note": "Stand up the CC asset workspace (e.g. /M02/deliverables, /spec, /findings) to hold the two supplied video deliverables, the delivery-spec PDF, the brand-reference sheet, and the emitted QC report."
+    },
+    {
+      "n": 2,
+      "tool": "asset_initialize_file_upload",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "qc_workspace",
+      "output": "upload_session",
+      "note": "Initialize an upload session for the client-supplied audit inputs: voltcast_e42_master_16x9.mp4, voltcast_e42_vertical_9x16.mp4, voltcast_delivery_spec.pdf, voltcast_brand_frames.png."
+    },
+    {
+      "n": 3,
+      "tool": "asset_finalize_file_upload",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "upload_session",
+      "output": "uploaded_inputs",
+      "note": "Finalize the upload so the 16:9 master, the 9:16 vertical cut, the delivery-spec PDF and the brand-reference PNG are real CC assets with URNs the inspection steps can read."
+    },
+    {
+      "n": 4,
+      "tool": "media_summarize",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "uploaded_inputs",
+      "output": "master_content_summary",
+      "note": "Summarize voltcast_e42_master_16x9.mp4 to read its scene/content structure and audio: total runtime, whether an intro end-card appears in the first seconds, where the sponsor read and verdict sit, whether background music ducks under narration, and the overall loudness feel -- the inspection surface for the master's spec checks."
+    },
+    {
+      "n": 5,
+      "tool": "media_summarize",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "uploaded_inputs",
+      "output": "vertical_content_summary",
+      "note": "Summarize voltcast_e42_vertical_9x16.mp4 to read the reformatted cut: its duration, whether the price-callout overlay is fully in-frame on the tighter vertical crop, and whether a subscribe/outro card is present -- the inspection surface for the vertical cut's platform-readiness checks."
+    },
+    {
+      "n": 6,
+      "tool": "media_summarize",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "uploaded_inputs",
+      "output": "spec_rules_extract",
+      "note": "Summarize voltcast_delivery_spec.pdf to pull out the machine-usable ground-truth rules the audit checks against: the 8:00-12:00 runtime window, the 4K/24fps/H.264 master spec, the -14 LUFS / -1 dBTP audio spec and the 'music at least 12 LU below narration' rule, the intro-within-8s / outro-in-final-15s rule (both cuts), the title-safe / mobile-safe overlay rule, and the approved-lower-third rule."
+    },
+    {
+      "n": 7,
+      "tool": "document_convert_pdf",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "uploaded_inputs",
+      "output": "spec_pages_raster",
+      "note": "Convert voltcast_delivery_spec.pdf into per-page raster images so the exact clause text and any diagrammed safe-margin guides can be visually read and cited by page in the findings (cross-checks the media_summarize extract)."
+    },
+    {
+      "n": 8,
+      "tool": "asset_preview_file",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "uploaded_inputs",
+      "output": "master_poster_preview",
+      "note": "Preview voltcast_e42_master_16x9.mp4 to pull its poster/keyframe so the intro end-card presence, the lower-third font, and the near-edge price-callout placement on the 16:9 frame can be visually inspected against the brand reference."
+    },
+    {
+      "n": 9,
+      "tool": "asset_preview_file",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "uploaded_inputs",
+      "output": "vertical_poster_preview",
+      "note": "Preview voltcast_e42_vertical_9x16.mp4 to pull its poster/keyframe and confirm the reframed price-callout is clipped outside the mobile safe area on the vertical crop (the planted vertical-specific defect)."
+    },
+    {
+      "n": 10,
+      "tool": "asset_inline_preview",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "uploaded_inputs",
+      "output": "brand_reference_preview",
+      "note": "Inline-preview voltcast_brand_frames.png so the approved intro end-card, the approved lower-third font/style, and the correct callout safe-margin placement are available to compare the episode's on-screen text against (catches the wrong lower-third font and the unsafe callout)."
+    },
+    {
+      "n": 11,
+      "tool": "asset_inline_preview",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "master_poster_preview, vertical_poster_preview, spec_pages_raster",
+      "output": "flagged_evidence_previews",
+      "note": "Inline-preview the master poster frame, the vertical clipped-callout frame and the rasterized spec pages together at high detail to confirm each suspected drift (near/over-edge callout, wrong lower-third font, missing vertical outro, the exact spec thresholds) before it is written into the report."
+    },
+    {
+      "n": 12,
+      "tool": "local_write_recipe_note",
+      "server": "local",
+      "exec_mode": "L",
+      "inputs_from": "spec_rules_extract, master_content_summary, vertical_content_summary, brand_reference_preview, flagged_evidence_previews",
+      "output": "voltcast_e42_qc_findings.json",
+      "note": "Emit the structured QC findings: for each drift, a record {file, timecode, drift, spec_clause, required_value, observed_value, severity} cross-referencing the extracted delivery-spec rules against the confirmed on-screen/audio state of both cuts, plus a summary block counting blockers/warnings/nits and an overall go/no-go flag. The analyze deliverable's data core."
+    },
+    {
+      "n": 13,
+      "tool": "document_convert_pdf",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "voltcast_e42_qc_findings.json",
+      "output": "Voltcast_E42_Delivery_QC.pdf",
+      "note": "Render the written QC findings (cover summary with go/no-go verdict + per-finding rows) into the clean A4 portrait Delivery-QC report PDF for the managing editor -- the primary analyze deliverable."
+    }
+  ],
+  "tools_used": [
+    "asset_create_folders",
+    "asset_initialize_file_upload",
+    "asset_finalize_file_upload",
+    "media_summarize",
+    "document_convert_pdf",
+    "asset_preview_file",
+    "asset_inline_preview",
+    "local_write_recipe_note"
+  ],
+  "tool_call_count": 13,
+  "distinct_adobe_tools": 8,
+  "chaining_note": "Strict output->input chaining. Steps 1-3 stand up the workspace and finalize the four client-supplied inputs into uploaded_inputs (the only initial load). Three inspection branches diverge from there, all consuming uploaded_inputs: the audio/content branch runs three media_summarize calls (4 master, 5 vertical, 6 spec-sheet) to read each deliverable's scene structure/audio and to extract the spec's ground-truth rules; the document branch runs document_convert_pdf(7) to rasterize the spec sheet for clause-level reading; and the visual branch previews the two video poster frames (asset_preview_file 8 master, 9 vertical) and the brand reference (asset_inline_preview 10). The master/vertical poster frames plus the spec rasters converge into flagged_evidence_previews(11) for high-detail confirmation. Everything then converges at local_write_recipe_note(12), which consumes spec_rules_extract + master_content_summary + vertical_content_summary + brand_reference_preview + flagged_evidence_previews to produce voltcast_e42_qc_findings.json; that JSON is the sole input to document_convert_pdf(13), which renders the final QC report PDF. No inspection step reads a raw input that was not first routed through upload; the report emerges only from the assembled inspect->compare->report chain.",
+  "difficulty_rationale": "Long-horizon analyze/QC on the video modality: 13 connector calls, 7 distinct Adobe tools across three groups (asset workspace/upload/preview, media_summarize [A] video/audio inspection, document_convert_pdf) plus the single [L] recipe-note emit -- above the >=10-call / >=6-distinct-tool floor for an analyze task. Difficulty is in the analytic structure, not raster grunt-work: the agent must (a) extract the actual delivery rules from a supplied spec sheet via media_summarize + PDF raster rather than assuming them, (b) run media_summarize over TWO separate video deliverables (the 16:9 master and the 9:16 vertical cut) to read runtime, scene structure, intro/outro presence, and the crucial audio question of whether music ducks under narration, (c) preview each cut's poster frame and the brand reference to compare on-screen overlays (lower-third font, callout safe-margin, mobile-safe clipping) against the approved look, (d) distinguish an on-spec deliverable from the planted drifts (over-12:00 runtime, hot loudness, music not ducking under the sponsor read, callout clipped outside the mobile safe area on the vertical cut, missing vertical outro, wrong lower-third font), and (e) emit a structured, file+timecode-referenced, severity-ranked go/no-go findings report. It respects every hard limit: NOTHING is re-edited, re-cut, re-mixed or re-exported -- media_summarize only READS the videos, asset_preview/inline_preview only inspect, document_convert_pdf only rasterizes the spec for reading and renders the written report, and no video_resize / video_create_quick_cut / media_enhance_speech (which would alter the footage) is used. No generative / text-to-image / object-removal / upscaling / from-scratch composition appears. The output is a report/marked-up findings deliverable on the video track, exactly matching workflow_nature=analyze and output_modality=video.",
+  "workflow_nature": "analyze",
+  "reverify": {
+    "severity": "pass",
+    "banned_capability_check": "CONFIRMED none of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art/logo/layout/video (the two video deliverables, the spec sheet and the brand reference are SUPPLIED authored inputs, not connector-composed); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area is not used. No image_* edit tool is used at all. Crucially for the video track: video_resize, video_create_quick_cut and media_enhance_speech are NOT used -- those would ALTER the footage, but this is an audit, so only the read-only media_summarize is used on the videos. document_merge_data_layout/_vector are not used (this is a QC audit, not a merge).",
+    "notes": "Each potentially-risky step stays in-bounds: (1) media_summarize [A] (steps 4-6) is used strictly per its documented read-only role -- summarizing a video/audio's content (scene summary + audio) and summarizing the spec PDF's text -- never generating or altering media; it is the sanctioned inspection tool for the video modality and correctly tagged [A] async. (2) document_convert_pdf [C] is used per its real semantics -- first to rasterize the supplied spec PDF into per-page images for clause-level reading, then to render the agent-written findings note into the QC report PDF; it never composes or restyles the episode. (3) asset_preview_file / asset_inline_preview [C] (steps 8-11) are pure inspection -- pulling poster/keyframes of the two cuts and previewing the brand reference and spec rasters; no pixels of the video or overlays are altered. (4) asset_create_folders / init / finalize (steps 1-3) are workspace/upload plumbing. (5) local_write_recipe_note [L] emits the findings/report, the sanctioned analyze output path. The deliverable is a report + structured findings + retained evidence frames -- a review/QC output on the video track, matching workflow_nature=analyze and output_modality=video; nothing new is authored beyond the report itself. Three [A] media_summarize calls and one [L] recipe note are the only non-[C] steps, all legitimate and expected for a video analyze task. Counts verified: 13 connector_workflow steps = tool_call_count 13; distinct adobe-server tools = {asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, media_summarize, document_convert_pdf, asset_preview_file, asset_inline_preview} = 7. Slot match verified: category video_edit, operation O3 / family Motion & Audio, output_modality video, workflow_nature analyze, vertical media_publishing -- all equal the M02 slot."
   },
-  {
-   "name": "voltcast_delivery_spec.pdf",
-   "kind": "pdf",
-   "gen_model": "n/a-authored-asset",
-   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine multi-page channel delivery-spec sheet PDF for the fictional 'Voltcast' tech-review channel. Must state, in text the connector can read/summarize: the long-form RUNTIME window (8:00-12:00); the MASTER technical spec (3840x2160, 23.976 or 24 fps, H.264, ~35-45 Mbps); the AUDIO spec (integrated loudness -14 LUFS +/-1, true-peak <= -1 dBTP, and the rule 'music must sit at least 12 LU below narration during any spoken segment; never let music clash with the sponsor read or the verdict'); the INTRO/OUTRO rule ('branded intro end-card within the first 8 seconds; subscribe/outro card in the final 15 seconds, present on BOTH the 16:9 master and the vertical cut'); the SAFE-MARGIN rule ('all text overlays inside the 5% title-safe margin on 16:9; on the 9:16 vertical cut all callouts must sit inside the mobile safe area with extra bottom inset for the UI'); and the ON-BRAND TEXT rule ('lower-thirds and callouts use the approved Voltcast lower-third style; no default editor fonts'). Authored by hand and supplied by the client; the audit's ground truth.",
-   "realism_notes": "The audit's ground-truth spec. media_summarize / rasterize-and-preview reads the stated rules out of this PDF so each finding can cite the exact clause and give observed-vs-required values. A real supplied delivery-spec sheet, not connector-generated."
-  },
-  {
-   "name": "voltcast_brand_frames.png",
-   "kind": "image",
-   "gen_model": "gemini-3-pro-image",
-   "gen_prompt": "A clean flat brand reference sheet on a neutral background showing three labelled panels of the APPROVED Voltcast on-screen elements: (1) the correct branded intro end-card (channel wordmark + episode strap), (2) the approved lower-third name/title style in the channel's specified font and colour, (3) the approved price/spec callout chip with its correct safe-margin placement guide drawn as a thin inset rectangle. Crisp flat labels, no photography, high legibility, 2400x1350px PNG.",
-   "realism_notes": "The reference the audit compares the episode's on-screen text against -- to catch the wrong lower-third font and the near/over-edge callouts. Flat labelled panels so preview reads the approved look unambiguously; a supplied brand reference, not connector-generated."
-  }
- ],
- "outputs": [
-  {
-   "name": "Voltcast_E42_Delivery_QC.pdf",
-   "kind": "pdf",
-   "spec": "The primary deliverable: a clean A4 portrait delivery-QC report PDF. Opens with a one-page cover summary (go / no-go verdict + total findings by severity: blocker / warning / nit), then one row per finding with the affected file (master or vertical cut), the timecode or time range, a plain-language description of the drift, the exact delivery-spec clause it violates, observed-vs-required values, and severity. This is a FINDINGS report, NOT a re-edit of the episode."
-  },
-  {
-   "name": "voltcast_e42_qc_findings.json",
-   "kind": "data",
-   "spec": "The raw structured findings emitted by local_write_recipe_note: an ordered list of records {file, timecode, drift, spec_clause, required_value, observed_value, severity} plus a summary block with counts by severity and an overall go/no-go flag. Machine-readable companion to the PDF for the managing editor's publish tracker."
-  },
-  {
-   "name": "voltcast_qc_evidence_frames",
-   "kind": "image",
-   "spec": "The poster/keyframe previews and the spec-sheet page rasters gathered during inspection (the master's intro-card frame and sponsor-read frame, the vertical cut's clipped-callout frame, the rasterized delivery-spec pages, and the brand-reference sheet), retained as the visual evidence the findings reference by timecode/page. Intermediate/working artifact kept alongside the report."
-  }
- ],
- "connector_workflow": [
-  {
-   "n": 1,
-   "tool": "asset_create_folders",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "",
-   "output": "qc_workspace",
-   "note": "Stand up the CC asset workspace (e.g. /M02/deliverables, /spec, /findings) to hold the two supplied video deliverables, the delivery-spec PDF, the brand-reference sheet, and the emitted QC report."
-  },
-  {
-   "n": 2,
-   "tool": "asset_initialize_file_upload",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "qc_workspace",
-   "output": "upload_session",
-   "note": "Initialize an upload session for the client-supplied audit inputs: voltcast_e42_master_16x9.mp4, voltcast_e42_vertical_9x16.mp4, voltcast_delivery_spec.pdf, voltcast_brand_frames.png."
-  },
-  {
-   "n": 3,
-   "tool": "asset_finalize_file_upload",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "upload_session",
-   "output": "uploaded_inputs",
-   "note": "Finalize the upload so the 16:9 master, the 9:16 vertical cut, the delivery-spec PDF and the brand-reference PNG are real CC assets with URNs the inspection steps can read."
-  },
-  {
-   "n": 4,
-   "tool": "media_summarize",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": "uploaded_inputs",
-   "output": "master_content_summary",
-   "note": "Summarize voltcast_e42_master_16x9.mp4 to read its scene/content structure and audio: total runtime, whether an intro end-card appears in the first seconds, where the sponsor read and verdict sit, whether background music ducks under narration, and the overall loudness feel -- the inspection surface for the master's spec checks."
-  },
-  {
-   "n": 5,
-   "tool": "media_summarize",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": "uploaded_inputs",
-   "output": "vertical_content_summary",
-   "note": "Summarize voltcast_e42_vertical_9x16.mp4 to read the reformatted cut: its duration, whether the price-callout overlay is fully in-frame on the tighter vertical crop, and whether a subscribe/outro card is present -- the inspection surface for the vertical cut's platform-readiness checks."
-  },
-  {
-   "n": 6,
-   "tool": "media_summarize",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": "uploaded_inputs",
-   "output": "spec_rules_extract",
-   "note": "Summarize voltcast_delivery_spec.pdf to pull out the machine-usable ground-truth rules the audit checks against: the 8:00-12:00 runtime window, the 4K/24fps/H.264 master spec, the -14 LUFS / -1 dBTP audio spec and the 'music at least 12 LU below narration' rule, the intro-within-8s / outro-in-final-15s rule (both cuts), the title-safe / mobile-safe overlay rule, and the approved-lower-third rule."
-  },
-  {
-   "n": 7,
-   "tool": "document_convert_pdf",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "uploaded_inputs",
-   "output": "spec_pages_raster",
-   "note": "Convert voltcast_delivery_spec.pdf into per-page raster images so the exact clause text and any diagrammed safe-margin guides can be visually read and cited by page in the findings (cross-checks the media_summarize extract)."
-  },
-  {
-   "n": 8,
-   "tool": "asset_preview_file",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "uploaded_inputs",
-   "output": "master_poster_preview",
-   "note": "Preview voltcast_e42_master_16x9.mp4 to pull its poster/keyframe so the intro end-card presence, the lower-third font, and the near-edge price-callout placement on the 16:9 frame can be visually inspected against the brand reference."
-  },
-  {
-   "n": 9,
-   "tool": "asset_preview_file",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "uploaded_inputs",
-   "output": "vertical_poster_preview",
-   "note": "Preview voltcast_e42_vertical_9x16.mp4 to pull its poster/keyframe and confirm the reframed price-callout is clipped outside the mobile safe area on the vertical crop (the planted vertical-specific defect)."
-  },
-  {
-   "n": 10,
-   "tool": "asset_inline_preview",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "uploaded_inputs",
-   "output": "brand_reference_preview",
-   "note": "Inline-preview voltcast_brand_frames.png so the approved intro end-card, the approved lower-third font/style, and the correct callout safe-margin placement are available to compare the episode's on-screen text against (catches the wrong lower-third font and the unsafe callout)."
-  },
-  {
-   "n": 11,
-   "tool": "asset_inline_preview",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "master_poster_preview, vertical_poster_preview, spec_pages_raster",
-   "output": "flagged_evidence_previews",
-   "note": "Inline-preview the master poster frame, the vertical clipped-callout frame and the rasterized spec pages together at high detail to confirm each suspected drift (near/over-edge callout, wrong lower-third font, missing vertical outro, the exact spec thresholds) before it is written into the report."
-  },
-  {
-   "n": 12,
-   "tool": "local_write_recipe_note",
-   "server": "local",
-   "exec_mode": "L",
-   "inputs_from": "spec_rules_extract, master_content_summary, vertical_content_summary, brand_reference_preview, flagged_evidence_previews",
-   "output": "voltcast_e42_qc_findings.json",
-   "note": "Emit the structured QC findings: for each drift, a record {file, timecode, drift, spec_clause, required_value, observed_value, severity} cross-referencing the extracted delivery-spec rules against the confirmed on-screen/audio state of both cuts, plus a summary block counting blockers/warnings/nits and an overall go/no-go flag. The analyze deliverable's data core."
-  },
-  {
-   "n": 13,
-   "tool": "document_convert_pdf",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "voltcast_e42_qc_findings.json",
-   "output": "Voltcast_E42_Delivery_QC.pdf",
-   "note": "Render the written QC findings (cover summary with go/no-go verdict + per-finding rows) into the clean A4 portrait Delivery-QC report PDF for the managing editor -- the primary analyze deliverable."
-  }
- ],
- "tools_used": [
-  "asset_create_folders",
-  "asset_initialize_file_upload",
-  "asset_finalize_file_upload",
-  "media_summarize",
-  "document_convert_pdf",
-  "asset_preview_file",
-  "asset_inline_preview",
-  "local_write_recipe_note"
- ],
- "tool_call_count": 13,
- "distinct_adobe_tools": 7,
- "chaining_note": "Strict output->input chaining. Steps 1-3 stand up the workspace and finalize the four client-supplied inputs into uploaded_inputs (the only initial load). Three inspection branches diverge from there, all consuming uploaded_inputs: the audio/content branch runs three media_summarize calls (4 master, 5 vertical, 6 spec-sheet) to read each deliverable's scene structure/audio and to extract the spec's ground-truth rules; the document branch runs document_convert_pdf(7) to rasterize the spec sheet for clause-level reading; and the visual branch previews the two video poster frames (asset_preview_file 8 master, 9 vertical) and the brand reference (asset_inline_preview 10). The master/vertical poster frames plus the spec rasters converge into flagged_evidence_previews(11) for high-detail confirmation. Everything then converges at local_write_recipe_note(12), which consumes spec_rules_extract + master_content_summary + vertical_content_summary + brand_reference_preview + flagged_evidence_previews to produce voltcast_e42_qc_findings.json; that JSON is the sole input to document_convert_pdf(13), which renders the final QC report PDF. No inspection step reads a raw input that was not first routed through upload; the report emerges only from the assembled inspect->compare->report chain.",
- "difficulty_rationale": "Long-horizon analyze/QC on the video modality: 13 connector calls, 7 distinct Adobe tools across three groups (asset workspace/upload/preview, media_summarize [A] video/audio inspection, document_convert_pdf) plus the single [L] recipe-note emit -- above the >=10-call / >=6-distinct-tool floor for an analyze task. Difficulty is in the analytic structure, not raster grunt-work: the agent must (a) extract the actual delivery rules from a supplied spec sheet via media_summarize + PDF raster rather than assuming them, (b) run media_summarize over TWO separate video deliverables (the 16:9 master and the 9:16 vertical cut) to read runtime, scene structure, intro/outro presence, and the crucial audio question of whether music ducks under narration, (c) preview each cut's poster frame and the brand reference to compare on-screen overlays (lower-third font, callout safe-margin, mobile-safe clipping) against the approved look, (d) distinguish an on-spec deliverable from the planted drifts (over-12:00 runtime, hot loudness, music not ducking under the sponsor read, callout clipped outside the mobile safe area on the vertical cut, missing vertical outro, wrong lower-third font), and (e) emit a structured, file+timecode-referenced, severity-ranked go/no-go findings report. It respects every hard limit: NOTHING is re-edited, re-cut, re-mixed or re-exported -- media_summarize only READS the videos, asset_preview/inline_preview only inspect, document_convert_pdf only rasterizes the spec for reading and renders the written report, and no video_resize / video_create_quick_cut / media_enhance_speech (which would alter the footage) is used. No generative / text-to-image / object-removal / upscaling / from-scratch composition appears. The output is a report/marked-up findings deliverable on the video track, exactly matching workflow_nature=analyze and output_modality=video.",
- "workflow_nature": "analyze",
- "reverify": {
-  "severity": "pass",
-  "banned_capability_check": "CONFIRMED none of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art/logo/layout/video (the two video deliverables, the spec sheet and the brand reference are SUPPLIED authored inputs, not connector-composed); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area is not used. No image_* edit tool is used at all. Crucially for the video track: video_resize, video_create_quick_cut and media_enhance_speech are NOT used -- those would ALTER the footage, but this is an audit, so only the read-only media_summarize is used on the videos. document_merge_data_layout/_vector are not used (this is a QC audit, not a merge).",
-  "notes": "Each potentially-risky step stays in-bounds: (1) media_summarize [A] (steps 4-6) is used strictly per its documented read-only role -- summarizing a video/audio's content (scene summary + audio) and summarizing the spec PDF's text -- never generating or altering media; it is the sanctioned inspection tool for the video modality and correctly tagged [A] async. (2) document_convert_pdf [C] is used per its real semantics -- first to rasterize the supplied spec PDF into per-page images for clause-level reading, then to render the agent-written findings note into the QC report PDF; it never composes or restyles the episode. (3) asset_preview_file / asset_inline_preview [C] (steps 8-11) are pure inspection -- pulling poster/keyframes of the two cuts and previewing the brand reference and spec rasters; no pixels of the video or overlays are altered. (4) asset_create_folders / init / finalize (steps 1-3) are workspace/upload plumbing. (5) local_write_recipe_note [L] emits the findings/report, the sanctioned analyze output path. The deliverable is a report + structured findings + retained evidence frames -- a review/QC output on the video track, matching workflow_nature=analyze and output_modality=video; nothing new is authored beyond the report itself. Three [A] media_summarize calls and one [L] recipe note are the only non-[C] steps, all legitimate and expected for a video analyze task. Counts verified: 13 connector_workflow steps = tool_call_count 13; distinct adobe-server tools = {asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, media_summarize, document_convert_pdf, asset_preview_file, asset_inline_preview} = 7. Slot match verified: category video_edit, operation O3 / family Motion & Audio, output_modality video, workflow_nature analyze, vertical media_publishing -- all equal the M02 slot."
- },
- "id": "AO-95"
+  "id": "AO-95"
 }
