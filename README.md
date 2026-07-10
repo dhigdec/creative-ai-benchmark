@@ -37,6 +37,29 @@ cp .env.example .env    # then add your own GEMINI/OPENAI/ANTHROPIC/FAL keys
 ./.venv/bin/python build_dashboard.py     # rebuild the HTML dashboards from on-disk assets
 ```
 
+## Live reports (GitHub Pages)
+
+The self-contained ops reports live in **`docs/`** and are served by GitHub Pages, so the
+team always sees the latest pushed version at a stable URL — no re-sharing files.
+
+- `docs/index.html` — landing page linking the reports
+- `docs/Task_Tags_v3_Table.html` — per-task tags + price table
+- `docs/Taxonomy_Distribution.html` — distribution by family / modality / vertical / difficulty
+- `docs/Quality_QA_Report.html` — per-task QA report
+
+**To refresh the live site:** run `./publish_docs.sh` (syncs the reports into `docs/`) then
+`git push`. Pages redeploys automatically.
+
+**One-time enable** (repo owner, in the GitHub UI): **Settings → Pages → Source: “Deploy from
+a branch” → `main` / `/docs` → Save.** Site publishes at
+`https://dhigdec.github.io/creative-ai-benchmark/`.
+
+> Note: this repo is **private**. GitHub Pages on a private repo requires **GitHub Pro/Team/
+> Enterprise** (Pages is unavailable on Free private repos). Pages serves only the `docs/`
+> folder — the clean reports, no secrets or raw scraped data — so on Pro the site is public
+> but exposes only those reports. Alternatives: mirror `docs/` to a separate **public**
+> repo's Pages (keeps this repo private), or host `docs/` on GCS/Netlify.
+
 ## Secrets
 
 No credentials are committed. `asset_pipeline/.env` and `pipeline/.env` are gitignored —
