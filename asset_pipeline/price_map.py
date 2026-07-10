@@ -51,16 +51,20 @@ def build():
                 continue
             pool.append((r.get("title", ""), (r.get("vertical") or "").lower(), parse_budget(r.get("budget", ""))))
     # vertical medians (fixed jobs only, >=3 samples), + global
-    byv, allfixed = {}, []
+    # Realistic pricing: freelancer cost ~= market HOURLY RATE x effort HOURS.
+    # NOTE: we deliberately do NOT use scraped fixed-price medians — those are inflated by large
+    # branding/catalog PROJECTS (p75 ~$400), not comparable to StudioBench's atomic single-deliverable
+    # tasks (the tasks that actually matched real posts have a ~$28 median). Hourly rate x realistic
+    # hours keeps estimates in the true atomic-gig band (~$30-150).
+    byv_hr, all_hr = {}, []
     for t, v, p in pool:
-        if p["kind"] == "fixed" and p["usd"]:
-            byv.setdefault(v, []).append(p["usd"]); allfixed.append(p["usd"])
-    vmed = {v: round(statistics.median(x)) for v, x in byv.items() if len(x) >= 3}
-    gmed = round(statistics.median(allfixed)) if allfixed else 150
-    # median tool-call count across our tasks — used to scale estimates by task complexity
-    _calls = [(json.load(open(sp)).get("tool_call_count") or 0)
-              for sp in glob.glob(str(config.PROJECT_DIR / "complex_benchmark/adobe_only/specs/*.json"))]
-    gmed_calls = statistics.median([c for c in _calls if c]) or 20
+        if p["kind"] == "hourly" and p["usd"] and 0 < p["usd"] < 200:
+            byv_hr.setdefault(v, []).append(p["usd"]); all_hr.append(p["usd"])
+    vrate = {v: round(statistics.median(x)) for v, x in byv_hr.items() if len(x) >= 5}
+    grate = round(statistics.median(all_hr)) if all_hr else 25   # ~$25/hr observed market median
+
+    def est_hours(calls):
+        return max(0.75, min(6.0, 0.75 + (calls or 20) * 0.08))  # atomic-gig effort in hours
 
     exact_idx = {}
     for t, v, p in pool:
@@ -93,27 +97,35 @@ def build():
         ref = (s.get("source") or {}).get("reference", "")
         vert = (s.get("vertical") or "").lower()
         p, basis = match(ref)
-        if p:
-            rec = {"usd": p["usd"], "kind": p["kind"], "low": p.get("low"), "high": p.get("high"),
-                   "basis": basis, "raw": p["raw"]}
+        hours = est_hours(s.get("tool_call_count"))
+        if p and p["kind"] == "fixed" and p["usd"]:
+            # real posted FIXED budget = the actual freelancer cost; keep verbatim
+            rec = {"usd": p["usd"], "kind": "fixed", "low": None, "high": None,
+                   "basis": basis, "raw": p["raw"], "display": "$%s" % "{:,}".format(p["usd"])}
+        elif p and p["kind"] == "hourly" and (p.get("low") or p.get("usd")):
+            # real posted HOURLY rate; cost = rate x effort hours, but keep the real rate on display
+            mid = ((p["low"] + p["high"]) / 2) if (p.get("low") and p.get("high")) else p["usd"]
+            usd = max(15, int(round(mid * hours / 5.0)) * 5)
+            disp = ("$%d/hr" % p["low"]) if (p.get("low") and p["low"] == p.get("high")) \
+                else ("$%d–$%d/hr" % (p["low"], p["high"]) if p.get("low") else "$%d/hr" % round(mid))
+            rec = {"usd": usd, "kind": "hourly", "low": p.get("low"), "high": p.get("high"),
+                   "basis": basis, "raw": p["raw"], "display": disp}
         else:
-            base = vmed.get(vert, gmed)
-            calls = s.get("tool_call_count") or gmed_calls
-            factor = max(0.6, min(1.6, calls / gmed_calls))  # harder (more tool calls) -> costs more
-            est = max(15, int(round(base * factor / 5.0)) * 5)  # rounded to nearest $5
-            rec = {"usd": est, "kind": "estimate", "low": None, "high": None,
-                   "basis": "vertical-median" if vert in vmed else "global-median", "raw": ""}
-        rec["display"] = _display(rec, rec["basis"])
+            # no real budget -> estimate from market hourly rate x effort hours (per-vertical rate if known)
+            rate = vrate.get(vert, grate)
+            usd = max(15, int(round(rate * hours / 5.0)) * 5)
+            rec = {"usd": usd, "kind": "estimate", "low": None, "high": None,
+                   "basis": "market-estimate", "raw": "", "display": "~$%s est." % "{:,}".format(usd)}
         rec["platform"] = (s.get("source") or {}).get("platform", "")
         out[tid] = rec
     json.dump(out, open(config.PROJECT_DIR / "task_prices.json", "w"), indent=2)
-    return out, gmed, len(vmed)
+    return out, grate, len(vrate)
 
 def write_csv(out):
     """Emit the shareable per-task price sheet task_prices.csv (joins prices with spec metadata)."""
     import csv
     SRC = {"exact": "real_upwork_budget", "fuzzy": "real_upwork_budget",
-           "vertical-median": "estimate_vertical_median", "global-median": "estimate_global_median"}
+           "market-estimate": "estimate_market_rate"}
     specs = {}
     for p in glob.glob(str(config.PROJECT_DIR / "complex_benchmark/adobe_only/specs/*.json")):
         try:
@@ -139,14 +151,14 @@ def write_csv(out):
                         "source_job_title": (s.get("source") or {}).get("reference", "")})
 
 def main():
-    out, gmed, nv = build()
+    out, grate, nv = build()
     write_csv(out)
     real = [r for r in out.values() if r["basis"] in ("exact", "fuzzy")]
     est = [r for r in out.values() if r["basis"] not in ("exact", "fuzzy")]
     usds = sorted(r["usd"] for r in out.values() if r["usd"])
-    print("wrote task_prices.json — %d tasks" % len(out))
-    print("  real budget (exact+fuzzy): %d  |  estimated (vertical/global median): %d" % (len(real), len(est)))
-    print("  vertical medians available: %d verticals | global median fixed = $%d" % (nv, gmed))
+    print("wrote task_prices.json + task_prices.csv — %d tasks" % len(out))
+    print("  real posted budgets kept: %d  |  market-rate estimates: %d" % (len(real), len(est)))
+    print("  model: market hourly rate $%d/hr x effort hours | %d verticals with own rate" % (grate, nv))
     print("  price spread: min $%d / median $%d / max $%d" % (usds[0], usds[len(usds)//2], usds[-1]))
     print("  samples:", [(t, out[t]["display"], out[t]["basis"]) for t in list(out)[:6]])
 
