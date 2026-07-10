@@ -124,6 +124,8 @@ def build():
 def write_csv(out):
     """Emit the shareable per-task price sheet task_prices.csv (joins prices with spec metadata)."""
     import csv
+    import task_difficulty
+    diff = task_difficulty.compute()  # canonical composite difficulty (same band as tasks_supply_sheet.csv)
     SRC = {"exact": "real_upwork_budget", "fuzzy": "real_upwork_budget",
            "market-estimate": "estimate_market_rate"}
     specs = {}
@@ -143,9 +145,8 @@ def write_csv(out):
                         "category": s.get("category", ""), "deliverable": (s.get("one_line_ask") or "")[:120],
                         "workflow": s.get("workflow_nature", ""), "tool_calls": calls,
                         "distinct_tools": len({t for t in (s.get("tools_used") or []) if not t.startswith("local_")}) or s.get("distinct_adobe_tools", ""),
-                        # CANONICAL difficulty band (must match tasks_supply_sheet.csv / build_supply_sheet.py):
-                        # T2_basic <=15, T3_intermediate 16-25, T4_advanced >=26 tool calls.
-                        "difficulty": "T2_basic" if calls <= 15 else ("T3_intermediate" if calls <= 25 else "T4_advanced"),
+                        # CANONICAL composite difficulty band (identical to tasks_supply_sheet.csv via task_difficulty.py)
+                        "difficulty": diff.get(tid, ""),
                         "freelancer_price_usd": p.get("usd", ""), "price_display": p.get("display", ""),
                         "price_source": SRC.get(p.get("basis"), p.get("basis", "")),
                         "platform": p.get("platform", "") or (s.get("source") or {}).get("platform", ""),

@@ -5,7 +5,8 @@ Every column is recomputed DETERMINISTICALLY from the source of truth so the she
   task_id            spec id
   task               short human name (preserved from the curated existing sheet if present, else spec title head)
   family             operation family (preserved from Task_Tags map / existing sheet)
-  difficulty         CANONICAL band by tool_call_count:  T2_basic <=15,  T3_intermediate 16-25,  T4_advanced >=26
+  difficulty         COMPOSITE complexity band (task_difficulty.py): weighted calls+outputs+tools+inputs, banded
+                     T1_simple / T2_moderate / T3_complex / T4_expert (~25/30/25/20) so the easy->hard range is visible
   expected_tool_calls spec.tool_call_count
   distinct_tools     len(spec.tools_used)   <-- the ACCURATE distinct count (spec.distinct_adobe_tools is stale for some)
   num_inputs         number of actual input FILES the agent receives = count of manifest 'assets' (folder-expanded)
@@ -23,6 +24,7 @@ from collections import Counter
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import config
+import task_difficulty
 
 ROOT = config.PROJECT_DIR
 SPECS = ROOT / "complex_benchmark/adobe_only/specs"
@@ -134,6 +136,7 @@ def build_rows():
     man = load_manifest_counts()
     prices = json.load(open(ROOT / "task_prices.json"))
     keep = load_preserved()
+    diff = task_difficulty.compute()  # composite complexity band (calls+outputs+tools+inputs)
     cols = ["task_id", "task", "full_title", "description", "family", "difficulty",
             "expected_tool_calls", "distinct_tools", "num_inputs", "num_outputs",
             "output_types", "output_breakdown", "price"]
@@ -155,7 +158,7 @@ def build_rows():
             "full_title": (s.get("title") or "").strip(),
             "description": (s.get("one_line_ask") or "").strip(),
             "family": keep.get(tid, {}).get("family", ""),
-            "difficulty": band(tc),
+            "difficulty": diff[tid],
             "expected_tool_calls": tc,
             "distinct_tools": distinct,
             "num_inputs": ni,
