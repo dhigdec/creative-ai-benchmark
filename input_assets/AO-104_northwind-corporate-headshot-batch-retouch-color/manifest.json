@@ -46,78 +46,99 @@
       "name": "okoro_headshot_frame03.jpg",
       "kind": "image",
       "path": "assets/okoro_headshot_frame03.jpg",
-      "provider": "openai",
-      "model": "gpt-image-2",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
       "size": "1024x1536",
       "qc": {
         "panel": [
           {
+            "provider": "openai",
+            "score": 9,
+            "issues": [],
+            "text_found": ""
+          },
+          {
             "provider": "gemini",
-            "score": 10,
+            "score": 9,
             "issues": [],
             "text_found": ""
           },
           {
             "provider": "anthropic",
             "score": 9,
-            "issues": [
-              "Frame appears level/not tilted ~2.5 degrees as specified",
-              "Contrast appears slightly more processed than a raw flat export",
-              "Shadow side of face is reasonably exposed but could be slightly more underexposed per brief",
-              "Eyes appear relatively bright/retouched rather than dull raw-export look"
-            ],
+            "issues": [],
             "text_found": ""
           }
         ],
         "min_score": 9,
         "passed": true,
-        "judges": 2,
-        "regens": 0
+        "judges": 3,
+        "regens": 2
       },
       "brand_scan": {
         "real_brands": [],
         "clean": true
       },
-      "audit_note": "regenerated to portrait 1024x1536 (4:5) \u2014 prior copy was square 1024x1024, violating spec's portrait 4000x5000 requirement"
+      "audit_note": "identity-locked regen: conditioned on okoro_headshot_frame01.jpg via gemini-3-pro-image to fix identity/grooming drift (prior copy had heavier grey beard/temples + fuller face vs frame01). Squared pose, arms lightly crossed, warm smile, slight tilt, shadow-side underexposure, RAW-flat look preserved. 3-model identity panel post-fix: same_person=true, pairwise 10/10/10.",
+      "verification": {
+        "min": 9,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 9,
+          "gemini": 9,
+          "anthropic": 9
+        }
+      }
     },
     {
       "name": "okoro_headshot_frame02.jpg",
       "kind": "image",
       "path": "assets/okoro_headshot_frame02.jpg",
-      "provider": "openai",
-      "model": "gpt-image-2",
+      "provider": "gemini",
+      "model": "gemini-3-pro-image",
       "size": "1024x1536",
       "qc": {
         "panel": [
           {
+            "provider": "openai",
+            "score": 8,
+            "issues": [],
+            "text_found": ""
+          },
+          {
             "provider": "gemini",
             "score": 9,
-            "issues": [
-              "The subject's head is turned very slightly to camera-right (his right), whereas the prompt requested it to be turned very slightly to camera-left (his left)."
-            ],
+            "issues": [],
             "text_found": ""
           },
           {
             "provider": "anthropic",
-            "score": 9,
-            "issues": [
-              "Very slight warmth in skin tones deviates marginally from the specified cool/blue strobe white balance",
-              "Background gradient is marginally uneven on camera-left side",
-              "Head turn to camera-left is subtle but within acceptable range"
-            ],
+            "score": 8,
+            "issues": [],
             "text_found": ""
           }
         ],
-        "min_score": 9,
+        "min_score": 8,
         "passed": true,
-        "judges": 2,
-        "regens": 0
+        "judges": 3,
+        "regens": 1
       },
       "brand_scan": {
         "real_brands": [],
         "clean": true
       },
-      "audit_note": "regenerated to portrait 1024x1536 (4:5) \u2014 prior copy was square 1024x1024, violating spec's portrait 4000x5000 requirement"
+      "audit_note": "identity-locked regen: conditioned on okoro_headshot_frame01.jpg via gemini-3-pro-image (Nano Banana Pro) to fix cross-frame identity/grooming drift (prior gpt-image-2 copy diverged: fuller/greyer beard, broader face vs frame01). Soft half-smile, head slightly camera-left, RAW-flat cool look preserved. 3-model cross-frame identity panel post-fix: same_person=true, pairwise 10/10/10.",
+      "verification": {
+        "min": 8,
+        "passed": true,
+        "real_brands": [],
+        "scores": {
+          "openai": 8,
+          "gemini": 9,
+          "anthropic": 8
+        }
+      }
     },
     {
       "name": "northwind_retouch_brief.pdf",
@@ -137,9 +158,19 @@
     "min_scores": [
       9,
       9,
-      9
+      8
     ]
   },
   "cost_usd": 0.876,
-  "ready_for_agent": true
+  "ready_for_agent": true,
+  "identity_consistency": {
+    "checked": "3-model cross-frame forensic identity panel (gemini-2.5-flash, gpt-4.1, claude-sonnet-4-5)",
+    "result": "same_person_all_three=true (unanimous)",
+    "pairwise": {
+      "1v2": 10,
+      "1v3": 10,
+      "2v3": 10
+    },
+    "note": "frame02+frame03 regenerated identity-locked on frame01; prior gpt-image-2 copies drifted (beard/hair greyness + face build), which all 3 judges flagged as not-one-session."
+  }
 }
