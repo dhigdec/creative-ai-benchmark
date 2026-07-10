@@ -1,43 +1,146 @@
-<html><head><meta charset='utf-8'><title>AO-77 — Willowfen Press KDP picture-book preflight: audit supplied interior + cover .indd/PDF against KDP print specs and emit a marked-up preflight report</title><style>
-*{box-sizing:border-box}body{font-family:-apple-system,Segoe UI,Inter,sans-serif;background:#0c0715;color:#ece7f6;margin:0;padding:30px}
-a{color:#8bd6ee;text-decoration:none}a:hover{text-decoration:underline}.muted{color:#9b93b3}.wrap{max-width:1280px;margin:0 auto}
-h1{letter-spacing:-1px;margin:0 0 4px}h2{margin:34px 0 12px;border-bottom:1px solid #2c2440;padding-bottom:8px;font-size:19px}
-h3{margin:22px 0 8px;font-size:15px;color:#c9bff0}
-.summary{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0 26px}
-.stat{background:#171028;border:1px solid #2c2440;border-radius:12px;padding:12px 18px;min-width:120px}
-.stat .n{font-size:26px;font-weight:800}.stat .l{font-size:12px;color:#9b93b3}
-.idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.card{background:#171028;border:1px solid #2c2440;border-radius:14px;padding:13px;overflow:hidden}
-.card .cover{width:100%;height:170px;object-fit:cover;border-radius:9px;background:#fff;display:block}
-.card .novid{width:100%;height:170px;border-radius:9px;background:#221a38;display:flex;align-items:center;justify-content:center;color:#6b6088;font-size:13px}
-.tid{font-size:12px;color:#8bd6ee;font-weight:700;margin-top:9px}
-.ttl{font-weight:700;font-size:14px;line-height:1.25;margin:2px 0 6px}
-.brief{font-size:12px;color:#9b93b3;line-height:1.35;max-height:52px;overflow:hidden}
-.counts{font-size:11.5px;color:#b9aee0;margin:9px 0 6px}
-.badge{display:inline-block;font-size:10.5px;font-weight:700;border-radius:99px;padding:3px 9px;margin:2px 4px 0 0}
-.pass{background:#10402c;color:#5ee0a8}.warn{background:#4a3a10;color:#f4cf67}.fail{background:#4a1620;color:#ff8b9e}.kit{background:#123047;color:#7cc7ee}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
-.asset{background:#120c22;border:1px solid #2c2440;border-radius:11px;padding:10px}
-.asset img,.asset video{width:100%;border-radius:8px;background:#fff;display:block}
-.asset audio{width:100%;margin-top:6px}
-.aname{font-size:12px;font-weight:600;margin-top:8px;word-break:break-all}
-.ameta{font-size:11px;color:#9b93b3;margin-top:3px}
-details{margin-top:7px;font-size:12px}summary{cursor:pointer;color:#b9aee0}
-pre{white-space:pre-wrap;background:#0a0512;border:1px solid #2c2440;border-radius:8px;padding:9px;font-size:11px;color:#cfc6e8;max-height:280px;overflow:auto}
-.pill{display:inline-block;background:#221a38;border-radius:6px;padding:2px 8px;font-size:11px;margin:2px 4px 2px 0;color:#c9bff0}
-.work{background:#141026;border:1px solid #2c2440;border-radius:12px;padding:12px 14px;margin:14px 0 8px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px}
-.chip{font-size:11px;font-weight:700;background:#221a38;color:#c9bff0;border-radius:99px;padding:3px 10px}
-.chip.src{background:#123047;color:#7cc7ee}.chip.long{background:#3a2410;color:#f4b567}.chip.price{background:#123a2a;color:#7fe0b0}
-.steps{margin:6px 0 0 18px;padding:0;font-size:12px;color:#c9bff0}.steps li{margin:2px 0}
-.work code{background:#0a0512;border-radius:4px;padding:1px 5px;color:#8bd6ee;font-size:11px}
-.work ul{margin:6px 0 0 18px;font-size:12px;color:#c9bff0}
-.cx{font-size:11.5px;color:#f4b567;margin:2px 0 6px;font-weight:600}
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>AO-77 — Willowfen Press KDP picture-book preflight: audit supplied interior + cover .indd/PDF against KDP print specs and emit a marked-up preflight report</title><style>
+:root{
+  --bg:#0b0e15; --bg2:#0f1420; --surf:#141b28; --surf2:#1a2333; --surf3:#212c40;
+  --bd:#26324a; --bd2:#33425f; --tx:#e8edf6; --tx2:#aab6cc; --mut:#6f7d97;
+  --acc:#5b9dff; --acc2:#a984ff; --shadow:0 8px 30px -12px rgba(0,0,0,.7); --sb:270px;
+}
+:root[data-theme="light"]{
+  --bg:#eef1f7; --bg2:#e7ecf4; --surf:#ffffff; --surf2:#f4f7fc; --surf3:#eaf0f9;
+  --bd:#dce4f0; --bd2:#c8d4e6; --tx:#141c2b; --tx2:#3f4b60; --mut:#7a869c;
+  --shadow:0 8px 26px -14px rgba(30,50,90,.28);
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#eef1f7; --bg2:#e7ecf4; --surf:#ffffff; --surf2:#f4f7fc; --surf3:#eaf0f9;
+  --bd:#dce4f0; --bd2:#c8d4e6; --tx:#141c2b; --tx2:#3f4b60; --mut:#7a869c;
+  --shadow:0 8px 26px -14px rgba(30,50,90,.28);
+}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+  background:var(--bg);color:var(--tx);line-height:1.5;-webkit-font-smoothing:antialiased;font-size:14px}
+a{color:inherit;text-decoration:none}
+::-webkit-scrollbar{width:10px;height:10px}::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:6px}
+::-webkit-scrollbar-track{background:transparent}
 
-.thumb{width:100%;border-radius:8px;background:#fff;display:block}
-.vid-badge{position:absolute;top:8px;left:8px;background:#000a;color:#fff;font-size:11px;font-weight:700;border-radius:6px;padding:2px 8px}
-.rel{position:relative}.miss{padding:30px;text-align:center;color:#6b6088;font-size:12px;background:#221a38;border-radius:8px}
-</style></head><body><div class='wrap'><p class='muted'><a href='index.html'>← all tasks</a></p><h1>AO-77 — Willowfen Press KDP picture-book preflight: audit supplied interior + cover .indd/PDF against KDP print specs and emit a marked-up preflight report</h1><span class='chip price'>💰 $200</span> <span class='chip'>8 assets</span><p class='muted' style='margin-top:8px'>Audit Willowfen Press&#x27;s supplied 32-page KDP picture-book interior .indd, its exported interior PDF, and the wraparound cover PDF against the KDP spec sheet — checking trim, bleed, margins, spine width, image resolution and caption overset — and emit a marked-up preflight report plus proof renders that says whether the files will pass KDP preflight.</p><h2>Data &amp; other (8)</h2><div class='asset' style='margin-bottom:10px'><b>kdp_spec_sheet.pdf.txt</b><details><summary>content</summary><pre># KDP Paperback Print Spec Sheet - Pip &amp; the Paper Moon
+.app{display:grid;grid-template-columns:var(--sb) 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:linear-gradient(180deg,var(--bg2),var(--bg));
+  border-right:1px solid var(--bd);padding:22px 18px;display:flex;flex-direction:column;gap:20px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--acc),var(--acc2));
+  display:grid;place-items:center;font-weight:800;color:#fff;font-size:16px;box-shadow:0 4px 14px -4px var(--acc)}
+.brand b{font-size:16px;letter-spacing:-.3px;display:block}
+.brand span{font-size:11.5px;color:var(--mut);letter-spacing:.3px}
+.search{position:relative}
+.search input{width:100%;background:var(--surf);border:1px solid var(--bd);border-radius:11px;padding:10px 12px 10px 34px;
+  color:var(--tx);font-size:13.5px;outline:none;transition:.15s}
+.search input:focus{border-color:var(--acc);box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 22%,transparent)}
+.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--mut)}
+.fg{display:flex;flex-direction:column;gap:9px}
+.fg-h{font-size:11px;text-transform:uppercase;letter-spacing:.9px;color:var(--mut);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--surf);border:1px solid var(--bd);color:var(--tx2);
+  border-radius:999px;padding:6px 11px;font-size:12.5px;cursor:pointer;transition:.14s;user-select:none;font-weight:500}
+.chip:hover{border-color:var(--bd2);color:var(--tx);transform:translateY(-1px)}
+.chip .dot{width:8px;height:8px;border-radius:50%}
+.chip.on{background:color-mix(in srgb,var(--acc) 16%,var(--surf));border-color:var(--acc);color:var(--tx)}
+.chip[data-k="family"].on,.chip[data-k="diff"].on{background:color-mix(in srgb,var(--cf,var(--acc)) 20%,var(--surf));border-color:var(--cf,var(--acc))}
+.chip .n{font-size:10.5px;color:var(--mut);font-weight:700}
+.side-links{margin-top:auto;display:flex;flex-direction:column;gap:2px;border-top:1px solid var(--bd);padding-top:14px}
+.side-links a{display:flex;align-items:center;gap:9px;padding:8px 9px;border-radius:9px;font-size:13px;color:var(--tx2);transition:.13s}
+.side-links a:hover{background:var(--surf);color:var(--tx)}
+.side-links .ic{width:16px;text-align:center;opacity:.85}
+
+main{min-width:0;padding:0 0 60px}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:16px;padding:15px 30px;
+  background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd)}
+.topbar h1{font-size:19px;margin:0;letter-spacing:-.4px;font-weight:750}
+.topbar .count{color:var(--mut);font-size:13px}
+.topbar .count b{color:var(--acc);font-weight:750}
+.spacer{flex:1}
+.tbtn{background:var(--surf);border:1px solid var(--bd);color:var(--tx2);border-radius:10px;width:38px;height:38px;
+  display:grid;place-items:center;cursor:pointer;transition:.14s;font-size:15px}
+.tbtn:hover{border-color:var(--bd2);color:var(--tx)}
+.menu-btn{display:none}
+
+.stats{display:flex;gap:12px;flex-wrap:wrap;padding:22px 30px 4px}
+.stat{background:linear-gradient(150deg,var(--surf),var(--surf2));border:1px solid var(--bd);border-radius:14px;
+  padding:13px 18px;min-width:96px;flex:1}
+.stat .n{font-size:23px;font-weight:800;letter-spacing:-.5px}
+.stat .l{font-size:11.5px;color:var(--mut);margin-top:1px;letter-spacing:.2px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(248px,1fr));gap:18px;padding:20px 30px}
+.card{background:var(--surf);border:1px solid var(--bd);border-radius:16px;overflow:hidden;cursor:pointer;
+  transition:.18s cubic-bezier(.2,.7,.3,1);display:flex;flex-direction:column;position:relative}
+.card:hover{transform:translateY(-4px);border-color:var(--bd2);box-shadow:var(--shadow)}
+.thumb{position:relative;aspect-ratio:16/10;background:var(--surf3);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s}
+.card:hover .thumb img{transform:scale(1.05)}
+.thumb .ph{width:100%;height:100%;display:grid;place-items:center;font-size:30px;color:var(--mut);
+  background:radial-gradient(120% 120% at 30% 20%,var(--surf3),var(--surf))}
+.bid{position:absolute;top:9px;left:9px;background:rgba(6,10,18,.72);color:#fff;font-size:11px;font-weight:750;
+  border-radius:7px;padding:3px 8px;letter-spacing:.4px;backdrop-filter:blur(4px)}
+.bfam{position:absolute;top:9px;right:9px;font-size:10.5px;font-weight:700;border-radius:7px;padding:3px 8px;
+  color:#fff;backdrop-filter:blur(3px)}
+.bvid{background:rgba(6,10,18,.72);color:#fff;font-size:10.5px;font-weight:700;border-radius:7px;padding:3px 8px;
+  display:inline-flex;align-items:center;gap:4px}
+.thumb .bvid{position:absolute;bottom:9px;right:9px}
+.cbody{padding:12px 14px 14px;display:flex;flex-direction:column;gap:9px;flex:1}
+.ctitle{font-size:13.5px;font-weight:650;line-height:1.35;letter-spacing:-.1px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:37px}
+.cmeta{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.pill{font-size:11px;font-weight:700;border-radius:6px;padding:3px 8px;letter-spacing:.2px}
+.pill.diff{color:#fff}
+.price{font-size:12px;color:var(--tx2);font-weight:600;margin-left:auto}
+.counts{display:flex;gap:9px;flex-wrap:wrap;color:var(--mut);font-size:11.5px;margin-top:auto}
+.counts span{display:inline-flex;align-items:center;gap:3px}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:70px 0;font-size:15px}
+
+.dh{padding:26px 30px 8px}
+.dh h1{margin:0 0 4px;font-size:25px;letter-spacing:-.6px;line-height:1.2}
+.dh .tid{color:var(--acc);font-weight:800;font-size:14px;letter-spacing:.5px}
+.dh .desc{color:var(--tx2);font-size:14px;max-width:900px;margin:12px 0 0}
+.dbadges{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.crumb{display:inline-flex;align-items:center;gap:7px;color:var(--tx2);font-size:13px;
+  background:var(--surf);border:1px solid var(--bd);border-radius:9px;padding:8px 12px;transition:.14s}
+.crumb:hover{border-color:var(--bd2);color:var(--tx)}
+.sec{padding:8px 30px 4px}
+.sec-h{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:750;margin:22px 0 12px;letter-spacing:-.2px}
+.sec-h .cnt{font-size:11px;color:var(--mut);background:var(--surf);border:1px solid var(--bd);border-radius:999px;padding:2px 9px;font-weight:700}
+.agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.asset{background:var(--surf);border:1px solid var(--bd);border-radius:13px;overflow:hidden;transition:.16s}
+.asset:hover{border-color:var(--bd2);transform:translateY(-2px);box-shadow:var(--shadow)}
+.asset .im{position:relative;aspect-ratio:1/1;background:var(--surf3);cursor:zoom-in}
+.asset .im img{width:100%;height:100%;object-fit:contain;display:block}
+.asset .miss{aspect-ratio:1/1;display:grid;place-items:center;color:var(--mut);font-size:12px;text-align:center;padding:14px}
+.asset .an{padding:9px 11px;font-size:11.5px;color:var(--tx2);word-break:break-word;border-top:1px solid var(--bd)}
+.datarow{background:var(--surf);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.datarow b{font-size:13px}
+.datarow pre{background:var(--bg2);border:1px solid var(--bd);border-radius:9px;padding:11px;overflow:auto;
+  font-size:11.5px;max-height:240px;margin:9px 0 0;color:var(--tx2)}
+.datarow summary{cursor:pointer;color:var(--acc);font-size:12px;margin-top:7px}
+.nav-tasks{display:flex;gap:10px;padding:26px 30px}
+.nav-tasks a{flex:1;background:var(--surf);border:1px solid var(--bd);border-radius:12px;padding:13px 16px;transition:.15s;color:var(--tx2)}
+.nav-tasks a:hover{border-color:var(--acc);color:var(--tx)}
+.nav-tasks .k{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px}
+.nav-tasks .v{font-size:13px;font-weight:600;margin-top:2px}
+.nav-tasks .next{text-align:right}
+
+.lb{position:fixed;inset:0;background:rgba(4,7,13,.9);backdrop-filter:blur(6px);z-index:100;display:none;
+  place-items:center;padding:40px;cursor:zoom-out}
+.lb.on{display:grid}
+.lb img{max-width:94vw;max-height:90vh;border-radius:12px;box-shadow:0 20px 70px -20px #000}
+.lb .cap{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);color:#cfd8e8;font-size:13px;
+  background:rgba(6,10,18,.7);border-radius:8px;padding:6px 14px}
+
+@media (max-width:860px){
+  .app{grid-template-columns:1fr}
+  .sidebar{position:fixed;left:0;top:0;width:82%;max-width:320px;z-index:50;transform:translateX(-105%);transition:.24s;box-shadow:0 0 60px rgba(0,0,0,.5)}
+  .sidebar.open{transform:none}
+  .menu-btn{display:grid}
+  .stats,.grid,.sec,.dh,.nav-tasks,.topbar{padding-left:18px;padding-right:18px}
+  .scrim{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40;display:none}.scrim.on{display:block}
+}
+</style></head><body><div id='scrim' class='scrim'></div><div class='app'><aside class='sidebar'><div class='brand'><div class='logo'>◆</div><div><b>StudioBench</b><span>Input Asset Gallery</span></div></div><a class='crumb' href='index.html'>← All tasks</a><div class='fg'><div class='fg-h'>AO-77</div><div class='dbadges' style='margin-top:2px'><span class='pill' style='background:#33b7a622;color:#33b7a6'>Layout &amp; Data</span><span class='pill diff' style='background:#3fbf7f'>Simple</span><span class='pill' style='background:var(--surf2);color:var(--tx2)'>💰 $200</span></div></div><div class='fg'><div class='fg-h'>Jump to</div><div class='side-links' style='margin-top:0;border:0;padding:0'><a href='#data'><span class='ic'>🗂️</span>Data<span class='n' style='margin-left:auto'>8</span></a></div></div><div class='side-links'><a href='../tasks_supply_sheet.csv'><span class='ic'>📄</span>Supply sheet (CSV)</a><a href='../Task_Tags_v3_Table.html'><span class='ic'>🏷️</span>Task tags table</a><a href='../Taxonomy_Distribution.html'><span class='ic'>📊</span>Taxonomy & distribution</a><a href='../Quality_QA_Report.html'><span class='ic'>✅</span>Quality / QA report</a><a href='../index.html'><span class='ic'>🏠</span>Reports home</a></div></aside><main><div class='topbar'><button class='tbtn menu-btn' id='mb'>☰</button><h1>Task assets</h1><div class='spacer'></div><button class='tbtn' id='tt'><span id='ti'>☾</span></button></div><div class='dh'><div class='tid'>AO-77</div><h1>Willowfen Press KDP picture-book preflight: audit supplied interior + cover .indd/PDF against KDP print specs and emit a marked-up preflight report</h1><p class='desc'>Audit Willowfen Press&#x27;s supplied 32-page KDP picture-book interior .indd, its exported interior PDF, and the wraparound cover PDF against the KDP spec sheet — checking trim, bleed, margins, spine width, image resolution and caption overset — and emit a marked-up preflight report plus proof renders that says whether the files will pass KDP preflight.</p><div class='dbadges'><span class='pill' style='background:#33b7a622;color:#33b7a6'>Layout &amp; Data</span><span class='pill diff' style='background:#3fbf7f'>Simple</span><span class='pill' style='background:var(--surf2);color:var(--tx2)'>💰 $200</span><span class='pill' style='background:var(--surf2);color:var(--tx2)'>8 assets</span></div></div><div class='sec'><div class='sec-h' id='data'>🗂️ Data &amp; files <span class='cnt'>8</span></div><div class='datarow'><b>kdp_spec_sheet.pdf.txt</b><details><summary>view contents</summary><pre># KDP Paperback Print Spec Sheet - Pip &amp; the Paper Moon
 
 This document summarizes the key print specifications required for the KDP paperback edition of *Pip &amp; the Paper Moon*.
 
@@ -57,7 +160,7 @@ This document summarizes the key print specifications required for the KDP paper
 | PDF standard | PDF/X compatible (PDF/X-1a, X-3 or X-4) |
 
 Files failing any of these parameters will be rejected by KDP preflight.
-</pre></details></div><div class='asset' style='margin-bottom:10px'><b>pip_cover_wrap.pdf.txt</b><details><summary>content</summary><pre># KDP Print-Ready Cover - Pip &amp; the Paper Moon
+</pre></details></div><div class='datarow'><b>pip_cover_wrap.pdf.txt</b><details><summary>view contents</summary><pre># KDP Print-Ready Cover - Pip &amp; the Paper Moon
 
 ## Document Details
 **File Name:** pip_cover_wrap.pdf
@@ -99,7 +202,15 @@ Files failing any of these parameters will be rejected by KDP preflight.
 
 ---
 
-### Fron</pre></details></div><div class='asset' style='margin-bottom:10px'><b>pip_interior_export.pdf.txt</b><details><summary>content</summary><pre>exported from pip_interior_template.indd; trim 8.5 x 11 in; bleed 0.125 in on outer edges; illustrations run full-bleed; captions burned in;
+### Front Panel Content
+**Trim Area:** 8.5&quot; Wide x 11&quot; High
+**Bleed:** All background and design elements extend 0.125&quot; beyond trim on right, top, bottom, and into the spine area.
+**Key Elements:**
+*   **Main Title:** Pip &amp; the Paper Moon
+    *   **Font:** [Decorative Script, e.g., &#x27;Scriptina&#x27;, Soft Gold text color]
+    *   **Position:** Horizontally centered, positioned in the upper-middle section of the panel, well within the safe zone.
+*   **Wordmark:** Willowfen Press
+    *   **Font:** [Elegant Seri</pre></details></div><div class='datarow'><b>pip_interior_export.pdf.txt</b><details><summary>view contents</summary><pre>exported from pip_interior_template.indd; trim 8.5 x 11 in; bleed 0.125 in on outer edges; illustrations run full-bleed; captions burned in;
 Note: (a) page 17 illustration downsampled to ~180 DPI (below 300 DPI minimum); (b) page 24 caption oversets/clips its caption frame.
 
 Page 1
@@ -150,7 +261,22 @@ Caption: They played hide-and-seek.
 Page 10
 [full-bleed illustration: Pip holding the moon, floating upwards in the room.]
 Caption: Up, up, up they went!
-(alt-text: Pip and moon f</pre></details></div><div class='asset' style='margin-bottom:10px'><b>kdp_spec_sheet.pdf</b></div><div class='asset' style='margin-bottom:10px'><b>pip_captions.csv</b><details><summary>content</summary><pre>page_no,caption,alt_note
+(alt-text: Pip and moon floating upward)
+
+Page 11
+[full-bleed illustration: Pip and the moon soar past shelves of colorful books.]
+Caption: Flying past tall bookshelves.
+(alt-text: Pip and moon flying by bookshelves)
+
+Page 12
+[full-bleed illustration: Pip and the moon gently float above a napping cat.]
+Caption: Over the sleepy cat.
+(alt-text: Pip and moon floating over sleeping cat)
+
+Page 13
+[full-bleed illustration: Pip and the moon look out a window at a starry night sky.]
+Caption: A new world unfolded.
+(alt-text: Pip</pre></details></div><div class='datarow'><b>kdp_spec_sheet.pdf</b></div><div class='datarow'><b>pip_captions.csv</b><details><summary>view contents</summary><pre>page_no,caption,alt_note
 1,Pip loved to dream.,&quot;Pip, a small mouse, sleeps soundly in a cozy bed.&quot;
 2,&quot;One day, a special idea sparked.&quot;,&quot;Pip, now awake, has a thought bubble with a crescent moon.&quot;
 3,I&#x27;ll make my own moon!,Pip holds a large sheet of paper and scissors.
@@ -173,7 +299,11 @@ Caption: Up, up, up they went!
 20,&quot;There it was, caught in a tree!&quot;,The paper moon is gently snagged on a branch of a tall tree.
 21,Pip climbed and climbed.,&quot;Pip carefully scales the tree trunk, reaching for the moon.&quot;
 22,Almost there!,&quot;Pip stretches a paw out, just fingertips away from the moon.&quot;
-23,Success! A happy reunion.,&quot;Pip hugs the paper moon tightly, both </pre></details></div><div class='asset' style='margin-bottom:10px'><b>pip_cover_wrap.pdf</b></div><div class='asset' style='margin-bottom:10px'><b>pip_interior_export.pdf</b></div><div class='asset' style='margin-bottom:10px'><b>pip_interior_template.indd.proxy.txt</b><details><summary>content</summary><pre>**File Name:** `pip_interior_template.indd`
+23,Success! A happy reunion.,&quot;Pip hugs the paper moon tightly, both smiling.&quot;
+24,&quot;Together again, they floated home, feeling quite adventurous and ready for a warm cup of cocoa and some well-deserved rest after their incredible journey through the starlit sky.&quot;,&quot;Pip and the moon descend gently, looking content and sleepy.&quot;
+25,Back in Pip&#x27;s cozy room.,&quot;Pip and the moon are back in Pip&#x27;s room, safe and sound.&quot;
+26,The moon hung over the bed.,&quot;The paper moon hangs above Pip&#x27;s bed, casting a soft glow.&quot;
+27,Guarding sweet dreams.,&quot;Pip sleeps peacefully, the moon watch</pre></details></div><div class='datarow'><b>pip_cover_wrap.pdf</b></div><div class='datarow'><b>pip_interior_export.pdf</b></div><div class='datarow'><b>pip_interior_template.indd.proxy.txt</b><details><summary>view contents</summary><pre>**File Name:** `pip_interior_template.indd`
 
 **Description:**
 This is an Adobe InDesign template for the 32-page interior of the children&#x27;s picture book &#x27;Pip &amp; the Paper Moon&#x27;. The document is configured for US Letter (8.5x11 inches) portrait orientation with a standard facing-pages spread layout.
@@ -197,4 +327,17 @@ The template utilizes a clean, legible aesthetic suitable for a children&#x27;s 
 
 **Embedded Defects (Deliberate for Audit):**
 1.  **Text Overset:** One specific caption text frame is intentionally undersized, causing a long merged `&lt;caption&gt;` field to display with overset text.
-2.  **Low Resolution Image:** One of the pre-placed illustrations within its full-bleed frame is below the recommended 300 DPI resolution for print production.</pre></details></div></div></body></html>
+2.  **Low Resolution Image:** One of the pre-placed illustrations within its full-bleed frame is below the recommended 300 DPI resolution for print production.</pre></details></div></div><div class='nav-tasks'><a href='AO-76.html'><div class='k'>← Previous</div><div class='v'>AO-76</div></a><a class='next' href='AO-78.html'><div class='k'>Next →</div><div class='v'>AO-78</div></a></div></main></div><div class='lb' id='lb'><img alt=''><div class='cap'></div></div><script>
+const root=document.documentElement;
+const setTheme=t=>{root.dataset.theme=t;localStorage.setItem('sb-theme',t);const b=document.querySelector('#ti');if(b)b.textContent=t==='dark'?'☀':'☾';};
+setTheme(localStorage.getItem('sb-theme')|| (matchMedia('(prefers-color-scheme:light)').matches?'light':'dark'));
+const tt=document.querySelector('#tt'); if(tt) tt.onclick=()=>setTheme(root.dataset.theme==='dark'?'light':'dark');
+const lb=document.querySelector('#lb');
+document.querySelectorAll('.im[data-full]').forEach(el=>el.onclick=()=>{
+  lb.querySelector('img').src=el.dataset.full; lb.querySelector('.cap').textContent=el.dataset.name; lb.classList.add('on');
+});
+if(lb) lb.onclick=()=>lb.classList.remove('on');
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&lb)lb.classList.remove('on');});
+const mb=document.querySelector('#mb'); if(mb) mb.onclick=()=>{document.querySelector('.sidebar').classList.toggle('open');document.querySelector('#scrim').classList.toggle('on');};
+const sc=document.querySelector('#scrim'); if(sc) sc.onclick=()=>{document.querySelector('.sidebar').classList.remove('open');document.querySelector('#scrim').classList.remove('on');};
+</script></body></html>
