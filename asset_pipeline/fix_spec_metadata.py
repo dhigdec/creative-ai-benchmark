@@ -22,7 +22,8 @@ SPECS = config.PROJECT_DIR / "complex_benchmark/adobe_only/specs"
 changed = []
 for p in glob.glob(str(SPECS / "*.json")):
     s = json.load(open(p)); tid = s["id"]; dirty = False
-    true_distinct = len(set(s.get("tools_used") or []))
+    # distinct ADOBE tools only — exclude local_* helpers (local_write_recipe_note, local_zip)
+    true_distinct = len({t for t in (s.get("tools_used") or []) if not t.startswith("local_")})
     if true_distinct and s.get("distinct_adobe_tools") != true_distinct:
         changed.append(f"{tid}: distinct_adobe_tools {s.get('distinct_adobe_tools')} -> {true_distinct}")
         s["distinct_adobe_tools"] = true_distinct; dirty = True

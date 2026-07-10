@@ -131,7 +131,10 @@ def build_rows():
     for tid in sorted(specs, key=lambda t: int(t.split("-")[1])):
         s = specs[tid]
         tc = s.get("tool_call_count") or 0
-        distinct = len(set(s.get("tools_used") or [])) or s.get("distinct_adobe_tools") or 0
+        # distinct ADOBE tools only — exclude local_* helpers (local_write_recipe_note, local_zip),
+        # matching the column's origin (spec.distinct_adobe_tools) and the Adobe-focused benchmark.
+        distinct = len({t for t in (s.get("tools_used") or []) if not t.startswith("local_")}) \
+            or s.get("distinct_adobe_tools") or 0
         ni = man.get(tid, len(s.get("inputs") or []))   # actual provided files
         outs = s.get("outputs") or []
         bd, ntypes = breakdown(outs)
