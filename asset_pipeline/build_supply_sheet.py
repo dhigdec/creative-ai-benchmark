@@ -110,14 +110,23 @@ NAME_OVERRIDES = {
 }
 
 
+def _clean_short(t, limit=52):
+    """Word-boundary truncate (never mid-word); add … only if actually shortened."""
+    t = t.strip()
+    if len(t) <= limit:
+        return t
+    cut = t[:limit].rsplit(" ", 1)[0].rstrip(" ,-–—:+/&")
+    return cut + "…"
+
+
 def short_name(spec):
     if spec.get("id") in NAME_OVERRIDES:
         return NAME_OVERRIDES[spec["id"]]
     t = spec.get("title", "")
     for sep in [" — ", ": ", " - "]:
         if sep in t:
-            return t.split(sep)[0].strip()
-    return t.strip()[:60]
+            return _clean_short(t.split(sep)[0].strip())
+    return _clean_short(t)
 
 
 def build_rows():
@@ -125,8 +134,9 @@ def build_rows():
     man = load_manifest_counts()
     prices = json.load(open(ROOT / "task_prices.json"))
     keep = load_preserved()
-    cols = ["task_id", "task", "family", "difficulty", "expected_tool_calls", "distinct_tools",
-            "num_inputs", "num_outputs", "output_types", "output_breakdown", "price"]
+    cols = ["task_id", "task", "full_title", "description", "family", "difficulty",
+            "expected_tool_calls", "distinct_tools", "num_inputs", "num_outputs",
+            "output_types", "output_breakdown", "price"]
     rows = []
     for tid in sorted(specs, key=lambda t: int(t.split("-")[1])):
         s = specs[tid]
@@ -140,7 +150,10 @@ def build_rows():
         bd, ntypes = breakdown(outs)
         rows.append({
             "task_id": tid,
-            "task": NAME_OVERRIDES.get(tid) or keep.get(tid, {}).get("task") or short_name(s),
+            # short scannable label, regenerated (word-boundary, no mid-word cuts); override wins
+            "task": NAME_OVERRIDES.get(tid) or short_name(s),
+            "full_title": (s.get("title") or "").strip(),
+            "description": (s.get("one_line_ask") or "").strip(),
             "family": keep.get(tid, {}).get("family", ""),
             "difficulty": band(tc),
             "expected_tool_calls": tc,
