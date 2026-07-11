@@ -146,6 +146,7 @@ main{min-width:0;padding:0 0 60px}
 .asset:hover{border-color:var(--bd2);transform:translateY(-2px);box-shadow:var(--shadow)}
 .asset .im{position:relative;aspect-ratio:1/1;background:var(--surf3);cursor:zoom-in}
 .asset .im img{width:100%;height:100%;object-fit:contain;display:block}
+.vid{width:100%;aspect-ratio:16/10;background:#000;display:block;object-fit:contain;border:0}
 .asset .miss{aspect-ratio:1/1;display:grid;place-items:center;color:var(--mut);font-size:12px;text-align:center;padding:14px}
 .asset .an{padding:9px 11px;font-size:11.5px;color:var(--tx2);word-break:break-word;border-top:1px solid var(--bd)}
 .datarow{background:var(--surf);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin-bottom:10px}
@@ -310,6 +311,8 @@ def badge_row(flabel, fhex, dlabel, dhex, price, extra=""):
 def build():
     OUT.mkdir(parents=True, exist_ok=True)
     meta = load_meta()
+    mmpath = OUT / "media_map.json"
+    media_map = json.load(open(mmpath)) if mmpath.exists() else {}
     tids = sorted(glob.glob(str(config.OUT_ROOT / "AO-*/manifest.json")),
                   key=lambda p: int(Path(p).parent.name.split("_")[0].split("-")[1]))
     order = [Path(p).parent for p in tids]
@@ -366,13 +369,25 @@ def build():
                 p.append("<div class='asset'>%s<div class='an'>%s</div></div>" % (cell, html.escape(path.name)))
             p.append("</div></div>")
         if counts["video"]:
+            playable = sum(1 for pp, _ in groups["video"] if ("%s/%s" % (tid, pp.name)) in media_map)
+            note = "— click to play" if playable == counts["video"] else "— preview frame (some clips still uploading)"
             p.append("<div class='sec'><div class='sec-h' id='video'>🎬 Video <span class='cnt'>%d</span> "
-                     "<span style='font-size:11px;color:var(--mut);font-weight:500'>— preview frame; full playback via GCS</span></div><div class='agrid'>" % counts["video"])
+                     "<span style='font-size:11px;color:var(--mut);font-weight:500'>%s</span></div><div class='agrid'>" % (counts["video"], note))
             for path, _m in groups["video"]:
                 t = _video_thumb(path)
                 if t and cover is None:
                     cover = t
-                cell = ("<div class='im' data-full='%s' data-name='%s'><img loading='lazy' src='%s'><span class='bvid' style='position:absolute;bottom:8px;right:8px'>▶ VIDEO</span></div>" % (t, html.escape(path.name), t)) if t else "<div class='miss'>video preview unavailable</div>"
+                mpath = media_map.get("%s/%s" % (tid, path.name))
+                if mpath:
+                    poster = (" poster='%s'" % t) if t else ""
+                    cell = ("<video class='vid' controls preload='none'%s><source src='%s' type='video/mp4'>"
+                            "</video>" % (poster, mpath))
+                elif t:
+                    cell = ("<div class='im' data-full='%s' data-name='%s'><img loading='lazy' src='%s'>"
+                            "<span class='bvid' style='position:absolute;bottom:8px;right:8px'>▶ VIDEO</span></div>"
+                            % (t, html.escape(path.name), t))
+                else:
+                    cell = "<div class='miss'>video preview unavailable</div>"
                 p.append("<div class='asset'>%s<div class='an'>%s</div></div>" % (cell, html.escape(path.name)))
             p.append("</div></div>")
         if counts["audio"]:
