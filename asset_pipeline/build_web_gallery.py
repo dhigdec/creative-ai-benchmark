@@ -225,11 +225,27 @@ SEARCH_SVG = ('<svg width="15" height="15" viewBox="0 0 24 24" fill="none" strok
               'stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>')
 
 
-def _thumb(path, maxw=520, q=76):
+def _thumb(path, maxw=520, q=78):
     try:
-        im = Image.open(path); im.thumbnail((maxw, maxw))
+        im = Image.open(path)
         if im.mode in ("RGBA", "LA", "P"):
+            im = im.convert("RGBA")
+            a = im.getchannel("A")
+            bb = a.getbbox()
+            # trim excessive transparent margin so logos aren't stranded in a huge empty field,
+            # then present on a clean white tile with tasteful padding (logos are dark-on-transparent).
+            if bb and a.getextrema()[0] < 250:
+                im = im.crop(bb)
+                w, h = im.size
+                pad = max(12, int(0.10 * max(w, h)))
+                canvas = Image.new("RGBA", (w + 2 * pad, h + 2 * pad), (255, 255, 255, 255))
+                canvas.alpha_composite(im, (pad, pad))
+                im = canvas
+            else:
+                bg = Image.new("RGBA", im.size, (255, 255, 255, 255))
+                im = Image.alpha_composite(bg, im)
             im = im.convert("RGB")
+        im.thumbnail((maxw, maxw))
         buf = io.BytesIO(); im.save(buf, "JPEG", quality=q)
         return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode()
     except Exception:
