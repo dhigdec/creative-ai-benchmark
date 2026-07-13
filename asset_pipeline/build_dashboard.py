@@ -282,9 +282,10 @@ def write_task_sheet(task_dir, man, consistent, spec):
     if brief:
         e.append("<p class='muted' style='margin-top:10px'>%s</p>" % html.escape(brief))
     e.append(render_brief_panel(spec))
-    e.append("<p class='muted' style='margin-top:14px'>Client-supplied input assets: "
-             "%d total · %d images · %d video · %d audio · %d data</p>" %
-             (len(files), len(groups["image"]), len(groups["video"]), len(groups["audio"]), len(groups["data"])))
+    _parts = [("images", len(groups["image"])), ("video", len(groups["video"])),
+              ("audio", len(groups["audio"])), ("data", len(groups["data"]))]
+    _summ = ("%d total · " % len(files)) + " · ".join("%d %s" % (n, l) for l, n in _parts if n)
+    e.append("<p class='muted' style='margin-top:14px'>Client-supplied input assets: %s</p>" % _summ)
     e.append(render_asset_groups(groups, sheet, "h2"))
     e.append("</div></body></html>")
     sheet.write_text("".join(e))
@@ -325,6 +326,8 @@ def write_all_in_one(cons):
     e.append("<div class='summary'>")
     for n, l in [(len(tasks), "tasks"), (sum(tot.values()), "assets"), (tot["img"], "images"),
                  (tot["vid"], "video"), (tot["aud"], "audio"), (tot["data"], "data")]:
+        if l == "audio" and n == 0:
+            continue
         e.append("<div class='stat'><div class='n'>%s</div><div class='l'>%s</div></div>" % (n, l))
     e.append("</div>")
     e.append("<div class='nav'>" + "".join("<a href='#%s'>%s</a>" % (t[0], t[0]) for t in tasks) + "</div>")
@@ -337,9 +340,10 @@ def write_all_in_one(cons):
         if brief:
             e.append("<p class='muted' style='margin-top:8px'>%s</p>" % html.escape(brief))
         e.append(render_brief_panel(spec))
-        e.append("<p class='muted' style='margin-top:12px'>Client-supplied input assets: "
-                 "%d total · %d img · %d video · %d audio · %d data</p>" % (
-                     len(files), len(groups["image"]), len(groups["video"]), len(groups["audio"]), len(groups["data"])))
+        _p = [("img", len(groups["image"])), ("video", len(groups["video"])),
+              ("audio", len(groups["audio"])), ("data", len(groups["data"]))]
+        _s = ("%d total · " % len(files)) + " · ".join("%d %s" % (n, l) for l, n in _p if n)
+        e.append("<p class='muted' style='margin-top:12px'>Client-supplied input assets: %s</p>" % _s)
         e.append(render_asset_groups(groups, out, "h3"))
         e.append("</div>")
     e.append("</div></body></html>")
@@ -380,6 +384,8 @@ def main():
                  (sum(t for t in tot.values()), "input assets"),
                  (tot["img"], "images"), (tot["vid"], "video"), (tot["aud"], "audio"), (tot["data"], "data"),
                  (nready, "ready"), (ncons, "brand-kit ✓")]:
+        if l == "audio" and n == 0:
+            continue
         e.append("<div class='stat'><div class='n'>%s</div><div class='l'>%s</div></div>" % (n, l))
     e.append("</div><div class='idx'>")
     for c in cards:
@@ -387,7 +393,7 @@ def main():
             cov = "<a href='%s/contact_sheet.html'><img class='cover' loading='lazy' src='%s'></a>" % (
                 c["folder"], rel(idx, c["cover"]))
         else:
-            cov = "<div class='novid'>audio / data only</div>"
+            cov = "<div class='novid'>data only</div>"
         counts = " · ".join("%d %s" % (c[k], lbl) for k, lbl in
                             [("img", "img"), ("vid", "vid"), ("aud", "aud"), ("data", "data")] if c[k])
         cx = "%s🛠 %d tool calls · %d tools%s" % (("💰 %s · " % c["price"]) if c.get("price") else "",
