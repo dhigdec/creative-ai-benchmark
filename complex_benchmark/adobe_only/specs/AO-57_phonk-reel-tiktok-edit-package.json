@@ -338,34 +338,7 @@
     "uploaded_captions_ref"
    ],
    "output": "captions_asset",
-   "note": "Finalize the captions cue sheet (reel_captions.json) into the client's CC project folder so source/captions stay with the project."
-  },
-  {
-   "n": 26,
-   "tool": "create_firefly_board",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "thumbnail_1080x1920",
-    "logo_svg",
-    "reel_9x16"
-   ],
-   "output": "handoff_board",
-   "note": "Assemble the produced assets — graded thumbnail (step 11), vector logo (step 14), and reframed reel (step 23) — into a Firefly Boards deep-link so the client previews the whole package in one place."
-  },
-  {
-   "n": 27,
-   "tool": "asset_copy_assets",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "thumbnail_1080x1920",
-    "logo_svg",
-    "captions_asset",
-    "reel_9x16"
-   ],
-   "output": "reel_package_folder",
-   "note": "Copy the final deliverables (thumbnail, logo SVG, captions, reel) into a single dated handoff folder in the client's Creative Cloud so source + deliverables sit together for easy tweaks (the brief's 'source/project file' ask)."
+   "note": "Finalize the captions cue sheet (reel_captions.json) into the client's CC project folder so source/captions stay with the project alongside the other finalized deliverables."
   }
  ],
  "tools_used": [
@@ -383,18 +356,16 @@
   "image_vectorize",
   "asset_inline_preview",
   "video_create_quick_cut",
-  "video_resize",
-  "create_firefly_board",
-  "asset_copy_assets"
+  "video_resize"
  ],
- "tool_call_count": 27,
- "distinct_adobe_tools": 17,
- "chaining_note": "One continuous output-to-input chain anchored on the client-supplied assets. The hero still is uploaded (1) then finalized (2); the finalized URL feeds straighten (3) -> auto_tone (4) -> color_temperature (5) -> hsl grade (6). The graded image (6) is consumed by select_subject (7) to make a mask, and both the graded image (6) and that mask (7) feed the masked vibrance/saturation subject-pop (8) -> halftone (9) -> grain (10) -> crop_and_resize to the 1080x1920 thumbnail (11). In parallel the logo is uploaded (12)/finalized (13) and vectorized (14); the thumbnail (11) plus logo SVG (14) are QC'd via inline_preview (15). The three clips are uploaded/finalized (16-21) and consumed by quick_cut (22), whose sizzle output feeds video_resize to the 9:16 reel (23). Captions are uploaded/finalized (24-25). Finally the produced thumbnail (11), logo SVG (14), and reel (23) populate a Firefly board (26), and all finals (11/14/25/23) are copied into one handoff folder (27). Every post-load step sets inputs_from to the producing step's output name; the deliverable package emerges from the chain.",
- "difficulty_rationale": "Long-horizon flagship: 27 connector calls, 17 distinct Adobe tools, across 3 groups (A1 raster/grade, A4 asset/board, A5 video). The raster grade-and-thumbnail spine is a genuine 9-step headless [C] chain with a real masked selective edit (select_subject -> masked vibrance). It is honestly mode-tagged: the video sizzle/reframe is [A] async (entitled, product-widget-polled, not headless-retrievable), and the spec states up front that frame-accurate cuts, transitions, and motion graphics are NOT connector-doable and are the flagged manual Premiere finish — so nothing from the A6 not-available list is claimed as a core deliverable. Difficulty comes from breadth, the strict output->input dependency, mixing [C] and [A] modes, and faithfully re-scoping a Premiere-class brief onto the real Adobe connector surface. The only non-connector composite (logo lockup placement) is named as the single human-finish step, consistent with the 'partial' grade for the timeline polish.",
+ "tool_call_count": 25,
+ "distinct_adobe_tools": 15,
+ "chaining_note": "One continuous output-to-input chain anchored on the client-supplied assets. The hero still is uploaded (1) then finalized (2); the finalized URL feeds straighten (3) -> auto_tone (4) -> color_temperature (5) -> hsl grade (6). The graded image (6) is consumed by select_subject (7) to make a mask, and both the graded image (6) and that mask (7) feed the masked vibrance/saturation subject-pop (8) -> halftone (9) -> grain (10) -> crop_and_resize to the 1080x1920 thumbnail (11). In parallel the logo is uploaded (12)/finalized (13) and vectorized (14); the thumbnail (11) plus logo SVG (14) are QC'd via inline_preview (15). The three clips are uploaded/finalized (16-21) and consumed by quick_cut (22), whose sizzle output feeds video_resize to the 9:16 reel (23). Captions are uploaded/finalized (24-25) into the client's CC project folder alongside the graded thumbnail (11), vector logo (14), and reframed reel (23) so source and deliverables sit together. Every post-load step sets inputs_from to the producing step's output name; the deliverable package emerges from the chain.",
+ "difficulty_rationale": "Long-horizon flagship: 25 connector calls, 15 distinct Adobe tools, across 3 groups (A1 raster/grade, A4 asset, A5 video). The raster grade-and-thumbnail spine is a genuine 9-step headless [C] chain with a real masked selective edit (select_subject -> masked vibrance). It is honestly mode-tagged: the video sizzle/reframe is [A] async (entitled, product-widget-polled, not headless-retrievable), and the spec states up front that frame-accurate cuts, transitions, and motion graphics are NOT connector-doable and are the flagged manual Premiere finish — so nothing from the A6 not-available list is claimed as a core deliverable. Difficulty comes from breadth, the strict output->input dependency, mixing [C] and [A] modes, and faithfully re-scoping a Premiere-class brief onto the real Adobe connector surface. The only non-connector composite (logo lockup placement) is named as the single human-finish step, consistent with the 'partial' grade for the timeline polish.",
  "_severity": "pass",
  "reverify": {
   "severity": "pass",
   "banned_capability_check": "No banned capability used. The thumbnail is produced via image_crop_and_resize (gen-free crop/reframe, output <= source dims) — no generative-expand/outpaint, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction. image_apply_halftone/image_add_grain are texture filters; image_select_subject + masked image_adjust_vibrance_and_saturation is a real selective edit. image_vectorize traces a client-supplied flat PNG. asset_inline_preview is used only for QC, not to emit a subset file. Video steps (video_create_quick_cut, video_resize same-length) are honest [A] async product actions; captions delivered as an uploaded JSON data asset, not burned into video; logo compositing named as the single human-finish step.",
-  "notes": "All 27 steps are real Adobe-connector actions with a coherent output->input chain. Only stale over-claim wording (thumbnail 'carries' the lockup) was corrected to match the connector reality (placement is human-finish). No other field described a banned capability."
+  "notes": "All 25 steps are real Adobe-connector actions with a coherent output->input chain. Only stale over-claim wording (thumbnail 'carries' the lockup) was corrected to match the connector reality (placement is human-finish). No other field described a banned capability."
  }
 }

@@ -73,11 +73,6 @@
    "name": "letters_AZ.eps / numbers_09.eps",
    "kind": "vector",
    "spec": "EPS exports of each set for legacy DTF/Flex/Flock RIP workflows. Emitted by document_render_vector, which lists application/eps as a supported output media type, from the two authored .ai masters."
-  },
-  {
-   "name": "jersey_font_vector_package.zip",
-   "kind": "archive",
-   "spec": "Single organized package: /letters and /numbers folders each containing the SVG + EPS + AI plus a contact-sheet preview PNG."
   }
  ],
  "connector_workflow": [
@@ -286,16 +281,7 @@
    "exec_mode": "C",
    "inputs_from": "letters_AZ_clean.svg, numbers_09_clean.svg, letters_AZ_exports, numbers_09_exports, package_folders",
    "output": "packaged_assets",
-   "note": "Copy both clean SVGs and both export sets into their respective delivery folders, assembling the final organized package."
-  },
-  {
-   "n": 24,
-   "tool": "zip_package",
-   "server": "local",
-   "exec_mode": "L",
-   "inputs_from": "packaged_assets",
-   "output": "jersey_font_vector_package.zip",
-   "note": "Single unavoidable local step: zip the organized /letters and /numbers folders (SVG+EPS+AI + contact-sheet PNG) into one downloadable package for handoff."
+   "note": "Copy both clean SVGs and both export sets into their respective /letters and /numbers delivery folders in Adobe storage, assembling the final organized package for handoff."
   }
  ],
  "tools_used": [
@@ -314,14 +300,14 @@
   "asset_create_folders",
   "asset_copy_assets"
  ],
- "tool_call_count": 24,
+ "tool_call_count": 23,
  "distinct_adobe_tools": 14,
- "chaining_note": "Two parallel branches off one shared cleanup recipe, both feeding a single package. Setup: license the collar ink reference (1, an eyeballed QC reference only) and upload the two client sheets (2→3 uploaded_sheets). LETTERS BRANCH consumes uploaded_sheets and chains strictly output→input: auto_straighten(4)→auto_tone(5)→color_temperature(6, a global white-balance shift with the collar tone used as a visual target)→brightness_contrast(7)→select_by_prompt(8)→invert_selection(9)→fill_area(10, consuming both the inverted mask and the high-contrast raster, solid-fill within the canvas only)→vectorize(11)=letters_AZ_clean.svg. NUMBERS BRANCH (12–19) re-consumes the SAME uploaded_sheets handle and applies the identical recipe in the same order to produce numbers_09_clean.svg, guaranteeing weight/proportion parity. Each traced SVG's geometry is re-wrapped into an authored .ai master that is DECLARED in inputs[] (letters_AZ_master.ai, numbers_09_master.ai) — no type is drawn from scratch, the paths are identical to the connector-produced SVGs, they are only re-saved into Illustrator container format so document_render_vector has a genuine .ai to export. document_render_vector then EXPORTS each authored master to .ai/EPS/SVG/PDF/PNG (20, 21); EPS is a documented output media type of that tool. asset_create_folders(22) consumes both export sets; asset_copy_assets(23) consumes both clean SVGs + both export sets + the new folders to assemble the package; the lone local step zip_package(24) consumes packaged_assets to emit the final zip. Every step after the initial load consumes a named prior output; the deliverable (clean weight-matched vector glyph family in SVG+EPS+AI) emerges from the chain.",
- "difficulty_rationale": "Long-horizon and wide-mix: 24 steps, 14 distinct Adobe tools across 3 connector groups (image_* raster cleanup, document_* vector export, asset_* stock/upload/storage). It demands real planning — a shared deterministic cleanup recipe applied identically across two parallel branches for cross-set consistency, correct ordering (straighten before tone before select, license before edit), and honest handling of the connector's limits: vectorize is the only path to the SVG, fill_area is used strictly as a solid two-tone flattener (not generative), and the .ai/EPS masters are EXPORTED via document_render_vector from authored vectors rather than composed from scratch. Difficulty comes from glyph-edge fidelity (crushing fabric weave without eroding stroke weight) and keeping the letter and number sets a coherent family, not from any single hard step.",
+ "chaining_note": "Two parallel branches off one shared cleanup recipe, both feeding a single package. Setup: license the collar ink reference (1, an eyeballed QC reference only) and upload the two client sheets (2→3 uploaded_sheets). LETTERS BRANCH consumes uploaded_sheets and chains strictly output→input: auto_straighten(4)→auto_tone(5)→color_temperature(6, a global white-balance shift with the collar tone used as a visual target)→brightness_contrast(7)→select_by_prompt(8)→invert_selection(9)→fill_area(10, consuming both the inverted mask and the high-contrast raster, solid-fill within the canvas only)→vectorize(11)=letters_AZ_clean.svg. NUMBERS BRANCH (12–19) re-consumes the SAME uploaded_sheets handle and applies the identical recipe in the same order to produce numbers_09_clean.svg, guaranteeing weight/proportion parity. Each traced SVG's geometry is re-wrapped into an authored .ai master that is DECLARED in inputs[] (letters_AZ_master.ai, numbers_09_master.ai) — no type is drawn from scratch, the paths are identical to the connector-produced SVGs, they are only re-saved into Illustrator container format so document_render_vector has a genuine .ai to export. document_render_vector then EXPORTS each authored master to .ai/EPS/SVG/PDF/PNG (20, 21); EPS is a documented output media type of that tool. asset_create_folders(22) consumes both export sets; asset_copy_assets(23) consumes both clean SVGs + both export sets + the new folders to assemble the final organized /letters and /numbers package in Adobe storage. Every step after the initial load consumes a named prior output; the deliverable (clean weight-matched vector glyph family in SVG+EPS+AI) emerges from the chain.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 23 steps, 14 distinct Adobe tools across 3 connector groups (image_* raster cleanup, document_* vector export, asset_* stock/upload/storage). It demands real planning — a shared deterministic cleanup recipe applied identically across two parallel branches for cross-set consistency, correct ordering (straighten before tone before select, license before edit), and honest handling of the connector's limits: vectorize is the only path to the SVG, fill_area is used strictly as a solid two-tone flattener (not generative), and the .ai/EPS masters are EXPORTED via document_render_vector from authored vectors rather than composed from scratch. Difficulty comes from glyph-edge fidelity (crushing fabric weave without eroding stroke weight) and keeping the letter and number sets a coherent family, not from any single hard step.",
  "_severity": "pass",
  "reverify": {
   "severity": "pass",
   "banned_capability_check": "No banned capability used. image_vectorize is the only raster→vector path (allowed). image_fill_area is used strictly as a solid two-tone flattener within the existing canvas — no canvas grow/square/composite, no generation. No image_crop_and_resize/reframe-crop, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction. image_apply_lens_blur is not used. The two authored .ai masters carry geometry verbatim from the connector-traced SVGs (no type drawn from scratch) and are now DECLARED in inputs[], satisfying the render-vector authored-input rule; document_render_vector exports them to SVG/PDF/PNG and EPS, all documented output media types (EPS = application/eps is explicitly supported). Client brand is a generic fictional 'custom football/soccer kit shop'; no real company, institution, or person is named or depicted. Adobe Stock and the platforms named are permitted and unchanged.",
-  "notes": "All steps map to real Adobe connector tools plus one unavoidable local zip. The prior reverify's stale claim that EPS is not a render_vector capability was incorrect (application/eps IS a supported outputMediaType) and has been reconciled; the authored-.ai-input gap it flagged is now closed by declaring both masters in inputs[]. Chain is fully doable end to end."
+  "notes": "All steps map to real Adobe connector tools. The prior reverify's stale claim that EPS is not a render_vector capability was incorrect (application/eps IS a supported outputMediaType) and has been reconciled; the authored-.ai-input gap it flagged is now closed by declaring both masters in inputs[]. Chain is fully doable end to end."
  }
 }

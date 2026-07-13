@@ -59,11 +59,6 @@
    "name": "logo_mark.svg",
    "kind": "vector",
    "spec": "Clean 2-color vector logo mark (monoline octopus + wordmark), scalable SVG for retina/responsive use"
-  },
-  {
-   "name": "restaurant_photo_suite.zip",
-   "kind": "data",
-   "spec": "Single zip bundling all five deliverables in a /hero, /menu, /logo folder structure for handoff"
   }
  ],
  "connector_workflow": [
@@ -290,16 +285,7 @@
    "exec_mode": "C",
    "inputs_from": "handoff_folders,hero_banner_ultrawide,hero_mobile_vertical,menu_tile_octopus,menu_tile_steak,logo_mark",
    "output": "organized_suite",
-   "note": "Copy each finished deliverable into its handoff folder so the suite is cleanly organized."
-  },
-  {
-   "n": 26,
-   "tool": "zip_outputs",
-   "server": "local",
-   "exec_mode": "L",
-   "inputs_from": "organized_suite",
-   "output": "restaurant_photo_suite.zip",
-   "note": "Single unavoidable [L] packaging step: zip the organized /hero,/menu,/logo folders into restaurant_photo_suite.zip for one-file handoff. Not core work."
+   "note": "Copy each finished deliverable into its handoff folder so the suite is cleanly organized into /hero,/menu,/logo for the dev to pull from CC storage."
   }
  ],
  "tools_used": [
@@ -318,14 +304,14 @@
   "asset_create_folders",
   "asset_copy_assets"
  ],
- "tool_call_count": 26,
+ "tool_call_count": 25,
  "distinct_adobe_tools": 14,
- "chaining_note": "The deliverable suite emerges from one connected chain, no orphan steps. HERO SPINE: upload (1->2) -> auto_straighten (3) -> auto_tone (4) -> color_temperature (5) -> dark_portions (6 = locked 'hero_graded' reference) -> crop to 21:9 ultra-wide reframe (7, gen-free letterbox crop of the existing wide 3:2 pixels) -> resize to exact 3440x1440 banner (8). The SAME hero_graded (6) is reused two more times: crop to mobile vertical (9), and select_subject (17) to build the octopus menu tile (17->18->19->20), guaranteeing the mobile hero and octopus tile carry an identical grade. STEAK BRANCH: upload (10->11) -> select_by_prompt (12) -> invert (13) -> fill_area near-black backdrop (14) -> color_temperature match-to-hero (15) -> square crop (16). The two menu tiles share the identical #0B0B0D fill (14 & 19) and warm grade, so the grid reads as one shoot. LOGO BRANCH: upload (21->22) -> vectorize (23). CONVERGENCE: all five image/vector deliverables feed folder creation (24) -> copy into /hero,/menu,/logo (25) -> single local zip (26). Every post-load step consumes a named prior output via inputs_from.",
- "difficulty_rationale": "Long-horizon and wide-mix: 26 steps, 14 distinct Adobe connector tools (>=10 calls and >=6 distinct, well clear), spanning three connector groups — image_* (raster/grade/select/fill/vectorize/geometry), asset_* (upload/folders/copy), and a single local zip. Genuine output->input chaining with three real reuse points of the locked hero grade (banner, mobile, octopus tile), which is what makes it 'wide-mix' rather than a linear pipeline. Strictly inside the capability sheet: ZERO generative steps — the 21:9 hero reframe is a true image_crop_and_resize letterbox crop of the existing wide 3:2 pixels (downscaled to 3440x1440, never larger than source, no invented content); image_fill_area is used for solid near-black backdrop only (no gen-fill, no object removal, no compositing); selective warmth via adjust tools; image_vectorize is a legitimate raster->SVG trace; no layout COMPOSITION is claimed (document_render_* deliberately not used since there is no authored .indd/.ai). The out-of-scope half of the original gig (Wix/Framer site build) is explicitly excluded, keeping the task honestly Adobe-doable end to end as [C] (+1 [L]).",
+ "chaining_note": "The deliverable suite emerges from one connected chain, no orphan steps. HERO SPINE: upload (1->2) -> auto_straighten (3) -> auto_tone (4) -> color_temperature (5) -> dark_portions (6 = locked 'hero_graded' reference) -> crop to 21:9 ultra-wide reframe (7, gen-free letterbox crop of the existing wide 3:2 pixels) -> resize to exact 3440x1440 banner (8). The SAME hero_graded (6) is reused two more times: crop to mobile vertical (9), and select_subject (17) to build the octopus menu tile (17->18->19->20), guaranteeing the mobile hero and octopus tile carry an identical grade. STEAK BRANCH: upload (10->11) -> select_by_prompt (12) -> invert (13) -> fill_area near-black backdrop (14) -> color_temperature match-to-hero (15) -> square crop (16). The two menu tiles share the identical #0B0B0D fill (14 & 19) and warm grade, so the grid reads as one shoot. LOGO BRANCH: upload (21->22) -> vectorize (23). CONVERGENCE: all five image/vector deliverables feed folder creation (24) -> copy into /hero,/menu,/logo (25), the cleanly organized handoff suite in CC storage the dev pulls from. Every post-load step consumes a named prior output via inputs_from.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 25 steps, 14 distinct Adobe connector tools (>=10 calls and >=6 distinct, well clear), spanning two connector groups — image_* (raster/grade/select/fill/vectorize/geometry) and asset_* (upload/folders/copy). Genuine output->input chaining with three real reuse points of the locked hero grade (banner, mobile, octopus tile), which is what makes it 'wide-mix' rather than a linear pipeline. Strictly inside the capability sheet: ZERO generative steps — the 21:9 hero reframe is a true image_crop_and_resize letterbox crop of the existing wide 3:2 pixels (downscaled to 3440x1440, never larger than source, no invented content); image_fill_area is used for solid near-black backdrop only (no gen-fill, no object removal, no compositing); selective warmth via adjust tools; image_vectorize is a legitimate raster->SVG trace; no layout COMPOSITION is claimed (document_render_* deliberately not used since there is no authored .indd/.ai). The out-of-scope half of the original gig (Wix/Framer site build) is explicitly excluded, keeping the task honestly Adobe-doable end to end as [C].",
  "_severity": "pass",
  "reverify": {
   "severity": "pass",
-  "banned_capability_check": "PASS — no banned capability anywhere. Workflow, outputs[].spec, full_brief, and chaining_note are now all consistent: step 7 is image_crop_and_resize (a 21:9 letterbox crop of the existing 4000x2667 3:2 hero, downscaled to 3440x1440 — never larger than source, no invented pixels). Zero generative steps: no generative expand/outpaint, no text-to-image, no from-scratch art, no upscale/super-resolution, no object-removal-with-reconstruction, no prompt-based background replacement. The 21:9 reframe (step 7) is a plain image_crop_and_resize crop of existing pixels, not a generative reframe. image_fill_area (steps 14, 19) is solid-color #0B0B0D fill only — sanctioned. image_vectorize is legitimate raster->SVG. All 26 steps are real Adobe connector actions ([C]) plus one trailing local zip ([L]).",
+  "banned_capability_check": "PASS — no banned capability anywhere. Workflow, outputs[].spec, full_brief, and chaining_note are now all consistent: step 7 is image_crop_and_resize (a 21:9 letterbox crop of the existing 4000x2667 3:2 hero, downscaled to 3440x1440 — never larger than source, no invented pixels). Zero generative steps: no generative expand/outpaint, no text-to-image, no from-scratch art, no upscale/super-resolution, no object-removal-with-reconstruction, no prompt-based background replacement. The 21:9 reframe (step 7) is a plain image_crop_and_resize crop of existing pixels, not a generative reframe. image_fill_area (steps 14, 19) is solid-color #0B0B0D fill only — sanctioned. image_vectorize is legitimate raster->SVG. All 25 steps are real Adobe connector actions ([C]).",
   "notes": "Text-sync fix only; the executable workflow was already clean. Removed the two stale reframe-crop references: outputs[0].spec ('canvas-extended (reframe-cropped) bleed') and chaining_note ('generative-expand reframe-crop (7)') now describe the crop-based reframe step 7 actually performs. Client brand CASA POLVO is invented/fictional; dish subjects (Galician octopus, ribeye steak) are generic, no real people depicted — no IP issues. full_brief already described the reframe as a 'cinematic letterbox reframe of the existing wide shot' (no stale outpaint text there)."
  }
 }

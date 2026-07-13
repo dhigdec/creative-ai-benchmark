@@ -10,7 +10,7 @@
  },
  "grounding_note": "VERBATIM from the source brief: the client runs variable-data merges into printing projects, and their core pain is that \"InDesign can't automatically reduce font sizes if they are too long for the frame\" — text runs overset / gets clipped when long records are merged, and they want the export to come out clean (\"automatically shrink overset text when exporting\"). The brief is literally phrased as a request to BUILD an InDesign plugin (a from-scratch software-development job), which is out of scope for the Adobe connector and for any design deliverable. REASONABLY ENRICHED to make it a runnable Adobe data-merge benchmark while staying faithful to the brief's actual intent: instead of writing a plugin, we treat the overset problem the way the connector legitimately can — the client authors the .indd merge template with InDesign's native auto-fit / \"shrink text to fit frame\" (auto-size text frames) already enabled on the variable-data frames, and the agent runs the variable-data merge + export through that overset-safe template so long records render without clipping. I invented a concrete event/promotion product (a party-supply / event-promo product catalog with one card per SKU, plus matching price tags) because the brief's vertical is \"Party, Events & Promotion\" and gives no specific product; the field names, CSV columns, and bleed/spec numbers are reasonable trade-print conventions, not taken from the brief. The auto-fit behavior is the client's stated requirement, not an invented one — it is baked into the authored template inputs ([T] steps), which is the honest connector path since document_merge_data_layout/vector require a user-authored .indd/.ai carrying real merge fields. No plugin is written; the deliverable is the merged, overset-safe print PDFs the plugin was meant to produce.",
  "one_line_ask": "Run our variable-data merge into the auto-fit (shrink-to-fit) InDesign catalog template and the Illustrator price-tag template so long product names no longer overset, prepping the product hero art and licensed background first, and export print-ready PDFs.",
- "full_brief": "We print a per-event promotional product catalog and matching shelf price tags, and our records come from a spreadsheet (one row per SKU: product name, blurb, price, event, SKU). Our recurring headache is that when a product name or blurb is long, the merged text overflows the frame and gets clipped on export — InDesign won't shrink it to fit on its own. We have already rebuilt our InDesign catalog template (catalog_template.indd) and our Illustrator price-tag template (pricetag_template.ai) with auto-size / \"shrink text to fit frame\" enabled on every variable-data frame and real merge fields (<<ProductName>>, <<Blurb>>, <<Price>>, <<SKU>>, <<EventName>>) wired up, so the layout itself is now overset-safe. We need you to: (1) stand up an asset workspace; (2) take in our authored templates, our catalog data (catalog_data.csv, ~24 SKUs), our product hero photo (hero_product.jpg) and our logo (logo_master.png); (3) prep the art that flows into the merge — isolate the product from its messy shot, clean the tone, build a clean bleed-safe background by cropping a licensed stock texture to the A4-plus-bleed frame, and vectorize the logo so it stays crisp at any print size; (4) run the data merge into BOTH the catalog .indd (one catalog card per row) and the price-tag .ai (Illustrator Variables, one tag per row); (5) export both as print-ready PDFs (catalog at A4 with bleed, tags at tag size); and (6) hand back a tidy package plus a font recommendation that pairs with our brand. The whole point: long records must render legibly via the template's auto-fit, never clipped.",
+ "full_brief": "We print a per-event promotional product catalog and matching shelf price tags, and our records come from a spreadsheet (one row per SKU: product name, blurb, price, event, SKU). Our recurring headache is that when a product name or blurb is long, the merged text overflows the frame and gets clipped on export — InDesign won't shrink it to fit on its own. We have already rebuilt our InDesign catalog template (catalog_template.indd) and our Illustrator price-tag template (pricetag_template.ai) with auto-size / \"shrink text to fit frame\" enabled on every variable-data frame and real merge fields (<<ProductName>>, <<Blurb>>, <<Price>>, <<SKU>>, <<EventName>>) wired up, so the layout itself is now overset-safe. We need you to: (1) stand up an asset workspace; (2) take in our authored templates, our catalog data (catalog_data.csv, ~24 SKUs), our product hero photo (hero_product.jpg) and our logo (logo_master.png); (3) prep the art that flows into the merge — isolate the product from its messy shot, clean the tone, build a clean bleed-safe background by cropping a licensed stock texture to the A4-plus-bleed frame, and vectorize the logo so it stays crisp at any print size; (4) run the data merge into BOTH the catalog .indd (one catalog card per row) and the price-tag .ai (Illustrator Variables, one tag per row); (5) export both as print-ready PDFs (catalog at A4 with bleed, tags at tag size); and (6) hand back the finished print-ready files. The whole point: long records must render legibly via the template's auto-fit, never clipped.",
  "inputs": [
   {
    "name": "catalog_template.indd",
@@ -75,16 +75,6 @@
    "name": "product_art_prepped.png",
    "kind": "image",
    "spec": "Background-removed, auto-toned, cropped-to-cell product hero PNG (transparent) used as the merge image for the hero SKU."
-  },
-  {
-   "name": "font_recommendation.txt",
-   "kind": "data",
-   "spec": "Adobe Fonts pairing recommendation (display + body) that suits the event/party brand, from font_recommend."
-  },
-  {
-   "name": "merge_package.zip",
-   "kind": "data",
-   "spec": "Single zip bundling the two PDFs, the SVG, the prepped product PNG, and the font note for handoff (local packaging)."
   }
  ],
  "connector_workflow": [
@@ -189,15 +179,6 @@
   },
   {
    "n": 12,
-   "tool": "font_recommend",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "uploaded_assets",
-   "output": "font_recommendation",
-   "note": "Recommend an Adobe Fonts display+body pairing matching the party/event brand (informs the authored template's type, returned as a note)."
-  },
-  {
-   "n": 13,
    "tool": "document_merge_data_layout",
    "server": "adobe",
    "exec_mode": "T",
@@ -206,7 +187,7 @@
    "note": "[T] InDesign Data Merge: bind catalog_data.csv into the client-authored catalog_template.indd (real <<fields>>, auto-fit frames), pulling the prepped product art, bleed background and vector logo → one catalog card per row. Auto-size frames shrink long records (the brief's overset fix)."
   },
   {
-   "n": 14,
+   "n": 13,
    "tool": "document_render_layout",
    "server": "adobe",
    "exec_mode": "C",
@@ -215,7 +196,7 @@
    "note": "Export the merged .indd to print-ready multipage PDF (A4 + 3mm bleed) → catalog_merged_print.pdf."
   },
   {
-   "n": 15,
+   "n": 14,
    "tool": "document_merge_data_vector",
    "server": "adobe",
    "exec_mode": "T",
@@ -224,31 +205,13 @@
    "note": "[T] Illustrator Variables: bind catalog_data.csv into the client-authored pricetag_template.ai (variables + auto-size area type), placing the vector logo → one 70x40mm tag per row."
   },
   {
-   "n": 16,
+   "n": 15,
    "tool": "document_render_vector",
    "server": "adobe",
    "exec_mode": "C",
    "inputs_from": "pricetags_merged_ai",
    "output": "pricetags_merged_pdf",
    "note": "Export the merged .ai to print-ready PDF → pricetags_merged.pdf."
-  },
-  {
-   "n": 17,
-   "tool": "create_firefly_board",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "catalog_merged_print_pdf, pricetags_merged_pdf, product_art_prepped, logo_vector",
-   "output": "review_board",
-   "note": "Assemble the produced assets (catalog PDF, tag PDF, prepped art, vector logo) into a Firefly Board deep-link for client review/sign-off."
-  },
-  {
-   "n": 18,
-   "tool": "local_zip",
-   "server": "local",
-   "exec_mode": "L",
-   "inputs_from": "catalog_merged_print_pdf, pricetags_merged_pdf, logo_vector, product_art_prepped, font_recommendation",
-   "output": "merge_package",
-   "note": "Single unavoidable [L] packaging step: zip the two PDFs, the SVG, the prepped PNG and the font note into merge_package.zip for handoff."
   }
  ],
  "tools_used": [
@@ -262,21 +225,19 @@
   "image_apply_auto_tone",
   "image_adjust_vibrance_and_saturation",
   "image_vectorize",
-  "font_recommend",
   "document_merge_data_layout",
   "document_render_layout",
   "document_merge_data_vector",
-  "document_render_vector",
-  "create_firefly_board"
+  "document_render_vector"
  ],
- "tool_call_count": 18,
- "distinct_adobe_tools": 16,
- "chaining_note": "Strict output→input chain. Steps 1-3 stand up the workspace and finalize the client-supplied assets into uploaded_assets (the only initial load). Background branch: licensed_bg (4, from stock) → bg_bleed (5, geometric crop to the A4+bleed aspect box — reframes existing licensed pixels, invents nothing) → bg_final (6, resize to exact 216x303mm print box). Product branch: hero_cutout (7, from uploaded hero) → hero_toned (8) → hero_pop (9) → product_art_prepped (10). Logo branch: logo_vector (11, vectorize uploaded logo). Each of these consumes only a prior step's named output. The two [T] merges are the convergence point: document_merge_data_layout (13) consumes uploaded_assets (the authored .indd + CSV) PLUS product_art_prepped + bg_final + logo_vector; its output catalog_merged_indd feeds render_layout (14). document_merge_data_vector (15) consumes the authored .ai + logo_vector; its output feeds render_vector (16). The Firefly board (17) and the final zip (18) consume only produced outputs (the two PDFs, the SVG, the prepped PNG, the font note). Nothing after step 3 reads a raw input that wasn't routed through a prior step's output.",
- "difficulty_rationale": "Long-horizon and wide-mix: 18 steps, 16 distinct Adobe tools across 3 groups (asset/stock, image/raster, document/layout-vector) plus font and board. It exercises three independent prep branches (stock→reframe-crop→crop, cutout→tone→vibrance→crop, vectorize) that converge into a two-format variable-data merge, then export and package. Difficulty comes from (a) honoring the [T] reality — the merges only work because the client authored real .indd/.ai templates with bindable fields/variables AND the auto-fit/shrink-to-fit that solves the brief's overset complaint, so the agent must recognize it cannot 'fix overset' itself and must route field-matched CSV/art into the authored template; (b) exact field-name/column alignment between CSV, .indd fields and .ai variables; (c) the generative step being legitimately only image_crop_and_resize (reframe-crop), with no gen-fill/object-removal/compositing anywhere; (d) licensing stock BEFORE editing. The deliverable genuinely emerges from the chain rather than any single call.",
+ "tool_call_count": 15,
+ "distinct_adobe_tools": 14,
+ "chaining_note": "Strict output→input chain. Steps 1-3 stand up the workspace and finalize the client-supplied assets into uploaded_assets (the only initial load). Background branch: licensed_bg (4, from stock) → bg_bleed (5, geometric crop to the A4+bleed aspect box — reframes existing licensed pixels, invents nothing) → bg_final (6, resize to exact 216x303mm print box). Product branch: hero_cutout (7, from uploaded hero) → hero_toned (8) → hero_pop (9) → product_art_prepped (10). Logo branch: logo_vector (11, vectorize uploaded logo). Each of these consumes only a prior step's named output. The two [T] merges are the convergence point: document_merge_data_layout (12) consumes uploaded_assets (the authored .indd + CSV) PLUS product_art_prepped + bg_final + logo_vector; its output catalog_merged_indd feeds render_layout (13). document_merge_data_vector (14) consumes the authored .ai + logo_vector; its output feeds render_vector (15). Nothing after step 3 reads a raw input that wasn't routed through a prior step's output.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 15 steps, 14 distinct Adobe tools across 3 groups (asset/stock, image/raster, document/layout-vector). It exercises three independent prep branches (stock→reframe-crop→crop, cutout→tone→vibrance→crop, vectorize) that converge into a two-format variable-data merge, then export. Difficulty comes from (a) honoring the [T] reality — the merges only work because the client authored real .indd/.ai templates with bindable fields/variables AND the auto-fit/shrink-to-fit that solves the brief's overset complaint, so the agent must recognize it cannot 'fix overset' itself and must route field-matched CSV/art into the authored template; (b) exact field-name/column alignment between CSV, .indd fields and .ai variables; (c) the generative step being legitimately only image_crop_and_resize (reframe-crop), with no gen-fill/object-removal/compositing anywhere; (d) licensing stock BEFORE editing. The deliverable genuinely emerges from the chain rather than any single call.",
  "_severity": "pass",
  "reverify": {
   "severity": "pass",
   "banned_capability_check": "No banned capability anywhere. Step 5 is image_crop_to_bounds — a purely geometric crop that reframes existing licensed-stock pixels to the A4+bleed aspect box, inventing no pixels; step 6 image_crop_and_resize resizes that crop to the exact 216x303mm print box (never larger than the source in any grown dimension). No image_crop_and_resize/reframe-crop, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no gen-fill, no AI object-removal-with-reconstruction, no bg-replace-by-prompt, no image→PDF misuse, no per-artboard named export. image_remove_background is a mask/cutout (allowed, non-generative). document_merge_data_layout/_vector remain [T] on genuine user-authored .indd/.ai templates carrying real bindable merge fields/variables; document_render_layout/_vector only export the real merged docs. Stock licensed at step 4 BEFORE any edit. All prose (full_brief, outputs[].spec, chaining_note, difficulty_rationale) now describes the gen-free crop path — no residual 'outpaint'/'generative expand' wording remains.",
-  "notes": "Only cosmetic scrubs applied: removed the stale 'reframe-crop'/'image_crop_and_resize' references from chaining_note and difficulty_rationale so the prose matches the already-corrected step 5 (image_crop_to_bounds). No workflow, input, output, dimension, or count changes; still 18 total calls, 16 distinct Adobe tools. Task remains real, coherent, and fully connector-doable."
+  "notes": "Only cosmetic scrubs applied: removed the stale 'reframe-crop'/'image_crop_and_resize' references from chaining_note and difficulty_rationale so the prose matches the already-corrected step 5 (image_crop_to_bounds). Low-value extras trimmed (Firefly review board + redundant re-bundling zip + standalone font-recommendation .txt removed); 15 total calls, 14 distinct Adobe tools. Task remains real, coherent, and fully connector-doable."
  }
 }

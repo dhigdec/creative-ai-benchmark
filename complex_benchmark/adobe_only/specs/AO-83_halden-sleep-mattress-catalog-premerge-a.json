@@ -56,11 +56,6 @@
       "name": "proof_spread_sample.pdf",
       "kind": "pdf",
       "spec": "Proof render of the FIRST sample product spread produced by running the authored template through a data-merge of the sample rows, A4 landscape ~300 DPI, so the client can eyeball blank/overset merge frames and a missing image placeholder before the full print run."
-    },
-    {
-      "name": "sample_spread_preview.png",
-      "kind": "image",
-      "spec": "Flattened inline preview image of the proof spread used during the audit to visually confirm which frames render empty or overset and whether the referenced packshot resolves."
     }
   ],
   "connector_workflow": [
@@ -156,15 +151,6 @@
     },
     {
       "n": 11,
-      "tool": "asset_inline_preview",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "proof_spread_sample.pdf",
-      "output": "sample_spread_preview.png",
-      "note": "Inline-preview the proof spread as a flattened image to visually confirm which merge frames render empty/overset and whether the missing-image SKU shows a placeholder frame."
-    },
-    {
-      "n": 12,
       "tool": "media_summarize",
       "server": "adobe",
       "exec_mode": "C",
@@ -173,7 +159,7 @@
       "note": "Summarize the rendered proof spread to capture the visible defects (empty spec cells, overset description, placeholder image) as evidence for the report."
     },
     {
-      "n": 13,
+      "n": 12,
       "tool": "local_write_recipe_note",
       "server": "adobe",
       "exec_mode": "L",
@@ -182,7 +168,7 @@
       "note": "Author the validation findings: cross-reference every SKU against the checklist (blank mandatory field, off-vocabulary firmness, cm/kg unit drift, inconsistent price format, duplicate SKU, unresolved image) plus the proof-render evidence, into a per-SKU fix-list split BLOCKERS vs WARNINGS."
     },
     {
-      "n": 14,
+      "n": 13,
       "tool": "document_convert_pdf",
       "server": "adobe",
       "exec_mode": "C",
@@ -204,15 +190,15 @@
     "local_write_recipe_note",
     "document_convert_pdf"
   ],
-  "tool_call_count": 14,
-  "distinct_adobe_tools": 10,
-  "chaining_note": "Strict output-to-input chaining. Setup: create_folders(1) -> init_upload(2) -> finalize_upload(3) yields uploaded_asset_urns, the shared source for inspection. The audit fans out from those URNs: asset_preview_file(4) reads the template's real merge-field set; media_summarize(5) extracts the roster rows; media_summarize(6) extracts the checklist rules. The image-resolution branch chains roster_field_summary(5) -> asset_search(7) -> asset_inline_preview(8) to catch the missing packshot. The proof branch chains uploaded_asset_urns(3)+template+roster -> document_merge_data_layout(9) [T] -> document_render_layout(10) -> asset_inline_preview(11) -> media_summarize(12), turning the bound spread into inspectable evidence. Everything converges: roster_field_summary(5)+checklist_rules(6)+image_resolution_map(7)+packshot_thumbnails(8)+proof_render_findings(12) all feed local_write_recipe_note(13), which document_convert_pdf(14) turns into the PDF report. No step stands free of the chain; the two report deliverables (audit PDF, audit MD) and the proof spread PDF emerge only from the assembled pipeline.",
-  "difficulty_rationale": "Long-horizon analyze task: 14 connector calls, 10 distinct Adobe tools across three groups (asset_* storage/search/preview, document_* InDesign merge/render/convert, media_summarize inspection) plus one [L] recipe-note emit — above the >=10-call / >=6-distinct-tool floor for an analyze workflow. Difficulty comes from genuinely INSPECTING heterogeneous inputs (an authored .indd's field set, a defect-seeded roster CSV, a rules checklist, a 12-image packshot set) and cross-referencing them: field completeness, controlled-vocabulary firmness, unit drift, price-format consistency, SKU uniqueness, and image resolution, THEN validating the theory by running a genuine [T] proof data-merge and visually reading the rendered spread for blank/overset frames before writing an evidence-backed per-SKU fix-list. It respects every hard limit: no generative fill / object-removal / text-to-image / upscaling / from-scratch layout; document_merge_data_layout binds and document_render_layout only EXPORTS the client's authored .indd (a supplied input); the output is a findings report + proof, exactly matching an ANALYZE deliverable.",
+  "tool_call_count": 13,
+  "distinct_adobe_tools": 11,
+  "chaining_note": "Strict output-to-input chaining. Setup: create_folders(1) -> init_upload(2) -> finalize_upload(3) yields uploaded_asset_urns, the shared source for inspection. The audit fans out from those URNs: asset_preview_file(4) reads the template's real merge-field set; media_summarize(5) extracts the roster rows; media_summarize(6) extracts the checklist rules. The image-resolution branch chains roster_field_summary(5) -> asset_search(7) -> asset_inline_preview(8) to catch the missing packshot. The proof branch chains uploaded_asset_urns(3)+template+roster -> document_merge_data_layout(9) [T] -> document_render_layout(10) -> media_summarize(11), turning the bound spread into inspectable evidence. Everything converges: roster_field_summary(5)+checklist_rules(6)+image_resolution_map(7)+packshot_thumbnails(8)+proof_render_findings(11) all feed local_write_recipe_note(12), which document_convert_pdf(13) turns into the PDF report. No step stands free of the chain; the two report deliverables (audit PDF, audit MD) and the proof spread PDF emerge only from the assembled pipeline.",
+  "difficulty_rationale": "Long-horizon analyze task: 13 connector calls, 11 distinct Adobe tools across three groups (asset_* storage/search/preview, document_* InDesign merge/render/convert, media_summarize inspection) plus one [L] recipe-note emit — above the >=10-call / >=6-distinct-tool floor for an analyze workflow. Difficulty comes from genuinely INSPECTING heterogeneous inputs (an authored .indd's field set, a defect-seeded roster CSV, a rules checklist, a 12-image packshot set) and cross-referencing them: field completeness, controlled-vocabulary firmness, unit drift, price-format consistency, SKU uniqueness, and image resolution, THEN validating the theory by running a genuine [T] proof data-merge and visually reading the rendered spread for blank/overset frames before writing an evidence-backed per-SKU fix-list. It respects every hard limit: no generative fill / object-removal / text-to-image / upscaling / from-scratch layout; document_merge_data_layout binds and document_render_layout only EXPORTS the client's authored .indd (a supplied input); the output is a findings report + proof, exactly matching an ANALYZE deliverable.",
   "workflow_nature": "analyze",
   "reverify": {
     "severity": "pass",
     "banned_capability_check": "No banned capabilities used. No image_crop_and_resize / reframe-crop, no generative fill, no text-to-image or from-scratch art/logo, no upscaling/super-resolution, no object-removal/inpainting, no bespoke font design, no unreachable external accounts. No layout is composed by the connector: document_merge_data_layout [T] binds the client's supplied authored .indd (declared as kind:data, gen_model:'n/a-authored-asset') and document_render_layout only EXPORTS it. image_fill_area and image_remove_background are unused. No marketplace/web-build steps (the out-of-scope parts of the source brief are dropped).",
-    "notes": "Corrected during reverify: distinct_adobe_tools raised from 10 to 11 to match the 11 unique tool names actually invoked across the 14 steps (asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, asset_preview_file, media_summarize, asset_search, asset_inline_preview, document_merge_data_layout, document_render_layout, local_write_recipe_note, document_convert_pdf); tools_used already listed all 11. SLOT-MATCH verified: workflow_nature=analyze, output_modality=document (the audit PDF/MD report), vertical=retail_ecommerce, operation_family=Layout & Data (InDesign data-merge validation) all equal slot L10; fictional IP-clean brand Halden Sleep replaces the real Flipkart/mattress vendor. Every potentially-risky step stays in-bounds: (1) document_merge_data_layout(9) is a genuine [T] merge against a supplied authored template with real <<fields>>; CSV headers exactly match those fields, so it binds — no from-scratch layout. (2) document_render_layout(10) and document_convert_pdf(14) only export/convert; they do not author design. (3) media_summarize(5,6,12), asset_preview_file(4), asset_inline_preview(8,11) and asset_search(7) are all INSPECTION tools used to read/validate content, not to generate it — correct for an analyze task and explicitly sanctioned as the analyze inspection palette. (4) The deliverable is a findings/report file (halden_catalog_audit.pdf/.md) plus a proof render, emitted via local_write_recipe_note(13) [L] then converted — matching the analyze contract that output is a report/marked-up/data artifact. (5) All defects to be found are seeded in the supplied CSV/image set, so the audit is objectively verifiable against spec_checklist.txt. 14 calls, 11 distinct adobe-server tools; qualifies as a long-horizon analyze task. grounding_note quotes the real brief verbatim; source.platform=Freelancer.com and source.reference = the candidate title 'Flipkart and amazon Mattress Listing Setup'."
+    "notes": "Corrected during reverify: distinct_adobe_tools raised from 10 to 11 to match the 11 unique tool names actually invoked across the 13 steps (asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, asset_preview_file, media_summarize, asset_search, asset_inline_preview, document_merge_data_layout, document_render_layout, local_write_recipe_note, document_convert_pdf); tools_used already listed all 11. SLOT-MATCH verified: workflow_nature=analyze, output_modality=document (the audit PDF/MD report), vertical=retail_ecommerce, operation_family=Layout & Data (InDesign data-merge validation) all equal slot L10; fictional IP-clean brand Halden Sleep replaces the real Flipkart/mattress vendor. Every potentially-risky step stays in-bounds: (1) document_merge_data_layout(9) is a genuine [T] merge against a supplied authored template with real <<fields>>; CSV headers exactly match those fields, so it binds — no from-scratch layout. (2) document_render_layout(10) and document_convert_pdf(13) only export/convert; they do not author design. (3) media_summarize(5,6,11), asset_preview_file(4), asset_inline_preview(8) and asset_search(7) are all INSPECTION tools used to read/validate content, not to generate it — correct for an analyze task and explicitly sanctioned as the analyze inspection palette. (4) The deliverable is a findings/report file (halden_catalog_audit.pdf/.md) plus a proof render, emitted via local_write_recipe_note(12) [L] then converted — matching the analyze contract that output is a report/marked-up/data artifact. (5) All defects to be found are seeded in the supplied CSV/image set, so the audit is objectively verifiable against spec_checklist.txt. 13 calls, 11 distinct adobe-server tools; qualifies as a long-horizon analyze task. grounding_note quotes the real brief verbatim; source.platform=Freelancer.com and source.reference = the candidate title 'Flipkart and amazon Mattress Listing Setup'."
   },
   "id": "AO-83"
 }

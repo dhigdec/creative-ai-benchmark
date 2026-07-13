@@ -54,11 +54,6 @@
    "name": "northgrove_logo.svg",
    "kind": "vector",
    "spec": "Vector SVG of the NORTHGROVE 2-color wordmark (charcoal type + olive leaf glyph) traced from the raster logo, scalable crisp paths for woven-label and banner use. DELIVERABLE 4 (step 19)."
-  },
-  {
-   "name": "apparel_set.zip",
-   "kind": "archive",
-   "spec": "Single CC folder / ZIP bundle gathering the four leaf deliverables (hero_square_1x1.jpg, hero_catalog_banner.jpg, shirt_packshot.png, northgrove_logo.svg) for marketplace handoff. DELIVERABLE 5 (step 21)."
   }
  ],
  "connector_workflow": [
@@ -232,31 +227,11 @@
    "inputs_from": "logo_asset_uri",
    "output": "northgrove_logo",
    "note": "Vectorize the flat 2-color NORTHGROVE wordmark raster to a clean SVG for label + banner. DELIVERABLE 4. Consumes step 18 output."
-  },
-  {
-   "n": 20,
-   "tool": "create_firefly_board",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "hero_square_1x1, hero_catalog_banner, shirt_packshot, northgrove_logo",
-   "output": "apparel_board",
-   "note": "Assemble the four produced deliverables into a Firefly Boards moodboard/contact-sheet for client review (honest use: presenting assets already produced). Consumes the outputs of steps 12, 13, 16, 19."
-  },
-  {
-   "n": 21,
-   "tool": "asset_copy_assets",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "hero_square_1x1, hero_catalog_banner, shirt_packshot, northgrove_logo",
-   "output": "apparel_set",
-   "note": "Gather the four deliverables into a single CC folder for ZIP handoff (apparel_set.zip). DELIVERABLE 5. Consumes steps 12, 13, 16, 19."
   }
  ],
  "tools_used": [
-  "asset_copy_assets",
   "asset_finalize_file_upload",
   "asset_initialize_file_upload",
-  "create_firefly_board",
   "image_adjust_color_temperature",
   "image_adjust_single_color_saturation",
   "image_apply_auto_tone",
@@ -269,14 +244,14 @@
   "image_select_subject",
   "image_vectorize"
  ],
- "tool_call_count": 21,
- "distinct_adobe_tools": 15,
- "chaining_note": "Strict output->input chain, three input branches converging on a bundle. HERO branch: upload(1)->finalize(2: hero_asset_uri)->auto_straighten(3)->auto_tone(4)->color_temperature(5: hero_wb_fixed)->select_subject(6: mask)->invert_selection(7: bg mask, uses step-6 mask + step-5 image)->fill_area white(8: hero_clean_white)->select_by_prompt shirt(9)->single_color_saturation(10: hero_color_true MASTER, uses step-9 mask + step-8 image). From the master: crop_and_resize wide-reframe(11: hero_wide_reframe, honest horizontal crop to ~2:1)->crop_and_resize(13: catalog banner export); and crop_and_resize(12: square) straight off the master. FLATLAY branch: upload(14)->finalize(15)->remove_background(16: transparent packshot). LOGO branch: upload(17)->finalize(18)->vectorize(19: SVG). CONVERGENCE: create_firefly_board(20) and asset_copy_assets(21) each consume the four leaf deliverables from steps 12,13,16,19. Every step after each branch's initial finalize consumes a named prior output; nothing is free-floating.",
- "difficulty_rationale": "Long-horizon flagship: 21 connector calls, 15 distinct Adobe tools, spanning 3 capability groups (A1 raster/photo, A4 asset/board/storage, plus the upload/copy asset plumbing) with three converging input branches. It exercises the full headless photo pipeline (geometry -> tone -> white balance -> mask-driven selective edits -> solid-fill background cleanup -> honest multi-ratio crop/reframe export), plus isolation (remove_background), vectorization, and asset assembly. Difficulty comes from the masking discipline (select_subject -> invert -> fill, then a second select_by_prompt -> selective saturation on the SAME image) and from honestly re-casting a brief whose literal asks (compositing a shirt in, AI-erasing clutter) are both out of scope — the agent must recognize the [X] capabilities and deliver the in-scope equivalent. All steps are [C] headless-confirmed; no [W]/[A]/[T] dependencies, so it runs end-to-end autonomously. There is no generative step: the wide catalog banner is an honest horizontal crop of the master frame (image_crop_and_resize), which trims the top/bottom to hit the ~2:1 ratio rather than inventing canvas; the only solid-color fill is the in-scope background cleanup (step 8), and no gen-fill, canvas extension, object-removal, text-to-image, compositing, or layout-composition is used.",
+ "tool_call_count": 19,
+ "distinct_adobe_tools": 13,
+ "chaining_note": "Strict output->input chain, three independent input branches each yielding named leaf deliverables. HERO branch: upload(1)->finalize(2: hero_asset_uri)->auto_straighten(3)->auto_tone(4)->color_temperature(5: hero_wb_fixed)->select_subject(6: mask)->invert_selection(7: bg mask, uses step-6 mask + step-5 image)->fill_area white(8: hero_clean_white)->select_by_prompt shirt(9)->single_color_saturation(10: hero_color_true MASTER, uses step-9 mask + step-8 image). From the master: crop_and_resize wide-reframe(11: hero_wide_reframe, honest horizontal crop to ~2:1)->crop_and_resize(13: catalog banner export); and crop_and_resize(12: square) straight off the master. FLATLAY branch: upload(14)->finalize(15)->remove_background(16: transparent packshot). LOGO branch: upload(17)->finalize(18)->vectorize(19: SVG). The four leaf deliverables are steps 12, 13, 16 and 19. Every step after each branch's initial finalize consumes a named prior output; nothing is free-floating.",
+ "difficulty_rationale": "Long-horizon flagship: 19 connector calls, 13 distinct Adobe tools, spanning 2 capability groups (A1 raster/photo, plus the A4 upload/storage asset plumbing) with three independent input branches. It exercises the full headless photo pipeline (geometry -> tone -> white balance -> mask-driven selective edits -> solid-fill background cleanup -> honest multi-ratio crop/reframe export), plus isolation (remove_background) and vectorization. Difficulty comes from the masking discipline (select_subject -> invert -> fill, then a second select_by_prompt -> selective saturation on the SAME image) and from honestly re-casting a brief whose literal asks (compositing a shirt in, AI-erasing clutter) are both out of scope — the agent must recognize the [X] capabilities and deliver the in-scope equivalent. All steps are [C] headless-confirmed; no [W]/[A]/[T] dependencies, so it runs end-to-end autonomously. There is no generative step: the wide catalog banner is an honest horizontal crop of the master frame (image_crop_and_resize), which trims the top/bottom to hit the ~2:1 ratio rather than inventing canvas; the only solid-color fill is the in-scope background cleanup (step 8), and no gen-fill, canvas extension, object-removal, text-to-image, compositing, or layout-composition is used.",
  "_severity": "pass",
  "reverify": {
   "severity": "pass",
-  "banned_capability_check": "PASS — no banned/generative capability remains in either the executable workflow or the narrative text. The wide catalog banner is produced by an HONEST crop: step 11 (image_crop_and_resize) reframes the master hero to the ~2:1 banner shape by trimming the top/bottom of the existing frame centered on the model, and step 13 (image_crop_and_resize) exports it at 2400x1200. No canvas is invented, padded, widened, or solid-filled to build the banner; the output->input chain (hero_color_true -> hero_wide_reframe -> hero_catalog_banner) is intact. image_fill_area appears ONLY at step 8, strictly as a solid-color fill of the inverted background region inside the existing frame (the in-scope background cleanup) — it never extends the canvas. No generative canvas extension, upscale, text-to-image, from-scratch art, object-removal-with-reconstruction, gen-fill, or bg-replace-by-prompt anywhere. All 21 steps are server=='adobe' [C] headless.",
-  "notes": "Resolved the QA findings: (1) outputs[] now enumerates all FIVE deliverables (hero_square_1x1.jpg, hero_catalog_banner.jpg, shirt_packshot.png, northgrove_logo.svg, apparel_set.zip) each with a concrete spec; (2) the canvas-extension contradiction is removed — step 11 changed from an impossible image_fill_area 'widen to a wider white canvas' to an honest image_crop_and_resize horizontal reframe, and the full_brief, output spec, step notes, chaining_note, difficulty_rationale were rewritten to say the banner is a crop that trims top/bottom (no padded/added/solid-filled canvas). tool_call_count (21) and distinct_adobe_tools (15) unchanged — image_fill_area is still used at step 8, image_crop_and_resize at steps 11/12/13. Step 20 (create_firefly_board) is presentational only and is not counted as a deliverable."
+  "banned_capability_check": "PASS — no banned/generative capability remains in either the executable workflow or the narrative text. The wide catalog banner is produced by an HONEST crop: step 11 (image_crop_and_resize) reframes the master hero to the ~2:1 banner shape by trimming the top/bottom of the existing frame centered on the model, and step 13 (image_crop_and_resize) exports it at 2400x1200. No canvas is invented, padded, widened, or solid-filled to build the banner; the output->input chain (hero_color_true -> hero_wide_reframe -> hero_catalog_banner) is intact. image_fill_area appears ONLY at step 8, strictly as a solid-color fill of the inverted background region inside the existing frame (the in-scope background cleanup) — it never extends the canvas. No generative canvas extension, upscale, text-to-image, from-scratch art, object-removal-with-reconstruction, gen-fill, or bg-replace-by-prompt anywhere. All 19 steps are server=='adobe' [C] headless.",
+  "notes": "Resolved the QA findings: (1) outputs[] enumerates the FOUR leaf deliverables (hero_square_1x1.jpg, hero_catalog_banner.jpg, shirt_packshot.png, northgrove_logo.svg) each with a concrete spec; (2) the canvas-extension contradiction is removed — step 11 changed from an impossible image_fill_area 'widen to a wider white canvas' to an honest image_crop_and_resize horizontal reframe, and the full_brief, output spec, step notes, chaining_note, difficulty_rationale were rewritten to say the banner is a crop that trims top/bottom (no padded/added/solid-filled canvas). Trim pass: the presentational create_firefly_board review step and the redundant asset_copy_assets ZIP bundle (which only re-bundled the four separately-listed leaf deliverables) were cut; tool_call_count now 19 and distinct_adobe_tools now 13 — image_fill_area is still used at step 8, image_crop_and_resize at steps 11/12/13."
  }
 }

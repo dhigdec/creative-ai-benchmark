@@ -10,7 +10,7 @@
  },
  "grounding_note": "VERBATIM from the Freelancer.com brief: a \"creative, vibrant, and appetizing one-page menu design for a fast-food burger restaurant named Brickyard\"; \"Retro, street-food style, or rustic chalkboard feel\"; sections \"Classic Burgers, Specialty Burgers, Sides, and Beverages (Just use placeholder text/prices for now)\"; \"Must include space for high-quality food photos\"; deliverables \"High-res JPEG and print-ready PDF.\" REASONABLY ENRICHED to make it a runnable Adobe-only benchmark: the original brief implies a from-scratch layout, which is NOT in connector scope (no layout composition; render_layout/merge_data_layout only EXPORT/bind a GENUINE authored .indd). So the client is modeled as supplying the authored InDesign menu template carrying real <<fields>> + photo frames (a normal freelancer hand-off / second-round revision scenario), the four raw food photos, the wordmark, the chalkboard texture choice, and the placeholder prices CSV. The Adobe chain then does the genuinely-doable heavy lifting the brief actually rewards: color-grading + cropping the food photos so they look appetizing, vectorizing the wordmark for crisp print, sourcing the rustic chalkboard texture, binding the placeholder copy via real InDesign data-merge, and exporting the print PDF + high-res JPEG. The \"placeholder text/prices\" instruction is honored literally via the CSV. No deliverable was invented beyond the menu the brief asks for.",
  "one_line_ask": "Grade four raw burger photos, vectorize the Brickyard wordmark, source a chalkboard texture, and run the client's authored InDesign menu template through a data-merge to produce a print-ready PDF and high-res JPEG.",
- "full_brief": "Brickyard, a retro street-food burger joint, needs its one-page menu finished for print. The owner has handed off an authored InDesign menu template (menu_template.indd) laid out in a rustic chalkboard style with four photo frames and real data-merge fields (<<section>>, <<item>>, <<desc>>, <<price>> across Classic Burgers, Specialty Burgers, Sides, Beverages), the brand wordmark as a flat PNG, four raw phone-shot food photos (a double Brickyard, a specialty bacon-jalapeño burger, a basket of fries, a craft cola), and a CSV of placeholder item names / descriptions / prices. The four food photos are unappetizing as-shot: slightly tilted, dull/flat, cool white-balance, busy backgrounds. The job: (1) make every food photo look vibrant and appetizing — give the hero double-smash shot the full grade (straighten, auto-tone, warm the white balance toward a hot street-food look, push vibrance, apply a food-pop preset, and throw the cluttered background out of focus so the burger reads as hero), and bring the other three to a matching appetizing look through their own lighter auto-tone / warm-up (plus a background lens-blur where the background is busy) sub-chains; consistently crop all four to the same frame ratio the template expects; (2) lift the hero double-smash shot cleanly onto a transparent background so it can sit over the chalkboard without a hard photographic edge; (3) vectorize the flat wordmark PNG into a clean SVG so it stays razor-sharp at large print size; (4) license a rustic chalkboard/blackboard texture from Adobe Stock to back the layout; (5) upload all the prepped assets, then run the client's authored .indd through InDesign data-merge against the placeholder-prices CSV so each section/item/price binds into the template, and export the bound document to a print-ready PDF and a high-resolution JPEG; (6) assemble the produced assets onto a Firefly board so the owner can sign off on the photo treatment and final menu in one deep-link. Every section/price stays placeholder per the brief.",
+ "full_brief": "Brickyard, a retro street-food burger joint, needs its one-page menu finished for print. The owner has handed off an authored InDesign menu template (menu_template.indd) laid out in a rustic chalkboard style with four photo frames and real data-merge fields (<<section>>, <<item>>, <<desc>>, <<price>> across Classic Burgers, Specialty Burgers, Sides, Beverages), the brand wordmark as a flat PNG, four raw phone-shot food photos (a double Brickyard, a specialty bacon-jalapeño burger, a basket of fries, a craft cola), and a CSV of placeholder item names / descriptions / prices. The four food photos are unappetizing as-shot: slightly tilted, dull/flat, cool white-balance, busy backgrounds. The job: (1) make every food photo look vibrant and appetizing — give the hero double-smash shot the full grade (straighten, auto-tone, warm the white balance toward a hot street-food look, push vibrance, apply a food-pop preset, and throw the cluttered background out of focus so the burger reads as hero), and bring the other three to a matching appetizing look through their own lighter auto-tone / warm-up (plus a background lens-blur where the background is busy) sub-chains; consistently crop all four to the same frame ratio the template expects; (2) lift the hero double-smash shot cleanly onto a transparent background so it can sit over the chalkboard without a hard photographic edge; (3) vectorize the flat wordmark PNG into a clean SVG so it stays razor-sharp at large print size; (4) license a rustic chalkboard/blackboard texture from Adobe Stock to back the layout; (5) upload all the prepped assets, then run the client's authored .indd through InDesign data-merge against the placeholder-prices CSV so each section/item/price binds into the template, and export the bound document to a print-ready PDF and a high-resolution JPEG. Every section/price stays placeholder per the brief.",
  "inputs": [
   {
    "name": "menu_template.indd",
@@ -82,11 +82,6 @@
    "name": "brickyard_wordmark.svg",
    "kind": "vector",
    "spec": "Clean vector SVG of the Brickyard wordmark for crisp scaling at large print size."
-  },
-  {
-   "name": "Brickyard_Menu_review_board",
-   "kind": "data",
-   "spec": "Firefly board deep-link assembling the graded photos, vectorized wordmark, and final menu render for one-click owner sign-off."
   }
  ],
  "connector_workflow": [
@@ -358,20 +353,6 @@
    ],
    "output": "Brickyard_Menu_highres.jpg",
    "note": "Export the same merged document to a high-resolution JPEG deliverable."
-  },
-  {
-   "n": 25,
-   "tool": "create_firefly_board",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "classic_hero_transparent_png",
-    "specialty_cropped_4x5",
-    "wordmark_svg",
-    "Brickyard_Menu_highres.jpg"
-   ],
-   "output": "Brickyard_Menu_review_board",
-   "note": "Assemble the graded photos, vector wordmark and final menu render onto a Firefly board deep-link for owner sign-off."
   }
  ],
  "tools_used": [
@@ -389,17 +370,16 @@
   "asset_initialize_file_upload",
   "asset_finalize_file_upload",
   "document_merge_data_layout",
-  "document_render_layout",
-  "create_firefly_board"
+  "document_render_layout"
  ],
- "tool_call_count": 25,
- "distinct_adobe_tools": 16,
- "chaining_note": "Strict output→input chaining throughout. The hero photo runs a 7-link grade pipeline: photo_classic_double_smash.jpg → auto_straighten(3) → auto_tone(4) → color_temperature(5) → vibrance(6) → preset(7) → lens_blur(8) → crop(9) → remove_background(10), each step consuming only the prior step's output. The specialty/fries/cola photos each feed their own shorter grade→crop sub-chains (11-14, 15-16, 17-18). The chalkboard texture chains search(1)→license(2). The wordmark chains raw PNG→vectorize(19). All prepped outputs (classic_hero_transparent_png, specialty/fries/cola_cropped_4x5, wordmark_svg, chalkboard_texture_fullres) converge into the upload session(20)→finalize(21)→data-merge(22), which also consumes the authored menu_template.indd + prices CSV. The merged .indd(22) is the single source for both exports — render PDF(23) and render JPEG(24) — and four upstream outputs plus the JPEG converge into the Firefly review board(25). Nothing after step 1/2 (search) and the raw input loads originates outside the chain; the final menu emerges only from the assembled chain.",
- "difficulty_rationale": "Long-horizon flagship: 25 connector calls across 4 tool groups (image_* raster, asset_* stock/storage, document_* InDesign, create_firefly_board), 16 distinct Adobe tools — far above the ≥10 calls / ≥6 distinct-tool floor. Difficulty comes from running four separate photos through a consistent multi-step grade pipeline, branching the hero into a transparent cutout, vectorizing a logo, sourcing+licensing stock, then converging everything into a genuine InDesign [T] data-merge and dual export. It respects every hard limit: no generative fill / object-removal / text-to-image / compositing / upscaling; image_fill_area is unused; the layout is NOT composed by the connector — render_layout/merge_data_layout only EXPORT/bind the client's authored .indd, which is listed as a supplied input; lens_blur is whole-image (no fake masked DOF claim); placeholder copy honored literally via CSV per the brief.",
+ "tool_call_count": 24,
+ "distinct_adobe_tools": 15,
+ "chaining_note": "Strict output→input chaining throughout. The hero photo runs a 7-link grade pipeline: photo_classic_double_smash.jpg → auto_straighten(3) → auto_tone(4) → color_temperature(5) → vibrance(6) → preset(7) → lens_blur(8) → crop(9) → remove_background(10), each step consuming only the prior step's output. The specialty/fries/cola photos each feed their own shorter grade→crop sub-chains (11-14, 15-16, 17-18). The chalkboard texture chains search(1)→license(2). The wordmark chains raw PNG→vectorize(19). All prepped outputs (classic_hero_transparent_png, specialty/fries/cola_cropped_4x5, wordmark_svg, chalkboard_texture_fullres) converge into the upload session(20)→finalize(21)→data-merge(22), which also consumes the authored menu_template.indd + prices CSV. The merged .indd(22) is the single source for both exports — render PDF(23) and render JPEG(24). Nothing after step 1/2 (search) and the raw input loads originates outside the chain; the final menu emerges only from the assembled chain.",
+ "difficulty_rationale": "Long-horizon flagship: 24 connector calls across 3 tool groups (image_* raster, asset_* stock/storage, document_* InDesign), 15 distinct Adobe tools — far above the ≥10 calls / ≥6 distinct-tool floor. Difficulty comes from running four separate photos through a consistent multi-step grade pipeline, branching the hero into a transparent cutout, vectorizing a logo, sourcing+licensing stock, then converging everything into a genuine InDesign [T] data-merge and dual export. It respects every hard limit: no generative fill / object-removal / text-to-image / compositing / upscaling; image_fill_area is unused; the layout is NOT composed by the connector — render_layout/merge_data_layout only EXPORT/bind the client's authored .indd, which is listed as a supplied input; lens_blur is whole-image (no fake masked DOF claim); placeholder copy honored literally via CSV per the brief.",
  "_severity": "pass",
  "reverify": {
   "severity": "pass",
-  "banned_capability_check": "No banned capabilities present. image_fill_area is not used. image_apply_lens_blur (n8, n13) is whole-image with no masked-DOF claim. image_remove_background (n10) produces a transparent PNG (not compositing/reconstruction). image_crop_and_resize handles all cropping (gen-free). document_merge_data_layout (n22) is [T] against a supplied user-authored .indd carrying real <<fields>>; document_render_layout (n23/n24) only exports. No generative-expand/outpaint, no upscale/super-resolution, no text-to-image/from-scratch art, no object-removal-with-reconstruction, no background-replace-by-prompt. asset_search is the Adobe stock/asset search (not the Express search_design widget). All 25 steps server=='adobe'. All step inputs are declared in inputs[] (authored .indd, CSV, four photos, wordmark PNG).",
+  "banned_capability_check": "No banned capabilities present. image_fill_area is not used. image_apply_lens_blur (n8, n13) is whole-image with no masked-DOF claim. image_remove_background (n10) produces a transparent PNG (not compositing/reconstruction). image_crop_and_resize handles all cropping (gen-free). document_merge_data_layout (n22) is [T] against a supplied user-authored .indd carrying real <<fields>>; document_render_layout (n23/n24) only exports. No generative-expand/outpaint, no upscale/super-resolution, no text-to-image/from-scratch art, no object-removal-with-reconstruction, no background-replace-by-prompt. asset_search is the Adobe stock/asset search (not the Express search_design widget). All 24 steps server=='adobe'. All step inputs are declared in inputs[] (authored .indd, CSV, four photos, wordmark PNG).",
   "notes": "All actions map to real Adobe connector tools and are gen-free within scope. The only edits were textual reconciliation of an over-claiming note/brief; the executable workflow (tools, exec_modes, chaining) is unchanged and remains fully doable."
  }
 }

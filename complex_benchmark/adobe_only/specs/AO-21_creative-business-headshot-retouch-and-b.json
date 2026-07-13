@@ -9,8 +9,8 @@
   "url": "https://www.freelancer.com/projects/photography/Creative-Business-Headshot-Photography"
  },
  "grounding_note": "VERBATIM from the source brief: a \"creative and dynamic headshot for my professional business profile,\" shot \"in a studio,\" wanting \"creative and dynamic compositions\" and \"studio lighting.\" The original Freelancer post asks for the photoshoot itself — live studio filming is [X] out of scope for any connector. So this benchmark is faithfully scoped to the POST-PRODUCTION + brand-asset deliverable a creative-headshot freelancer actually hands over once the RAW studio frame exists: the client supplies the un-retouched studio capture (and a flat brand monogram), and the freelancer must deliver a retouched, color-graded, creatively composed headshot plus platform-ready crops and a vector logomark for the professional profile. REASONABLY ENRICHED (to make it a runnable, gradeable Adobe chain, all consistent with \"creative/dynamic\" + \"professional business profile\"): the specific look targets (clean studio skin tone, eye/teeth brightening via selective tonal edits, a softly blurred separation behind the subject, a wider 16:9 \"dynamic\" environmental reframe produced by cropping the tall studio frame down to landscape (using the empty backdrop room on one side, no pixels invented), a monochrome alt version, LinkedIn 1:1 + banner 1584x396 crops), and the vectorized monogram. No invented unrelated deliverable — every output is something this headshot-for-profile client would expect in a delivery folder.",
- "one_line_ask": "Take the client's raw studio headshot frame and brand monogram and produce a retouched, color-graded, creatively recomposed professional-profile headshot set (color + monochrome + 16:9 dynamic + LinkedIn 1:1 + banner crops) plus a clean vector logomark, all delivered in one folder.",
- "full_brief": "I'm a founder who needs a creative, dynamic headshot for my professional business profile (LinkedIn + website \"About\"). My photographer shot me in-studio against a seamless mid-gray backdrop but only gave me the flat, un-retouched RAW-export JPEG plus my simple wordmark monogram as a PNG — I need the actual finished, polished delivery set.\n\nPlease, working only from the files I provide:\n1. Straighten and clean up the frame, then apply a professional studio tone so the exposure and contrast look intentional, not flat.\n2. Warm the skin tone slightly (studio strobes left it a touch cool) and give the whole image a cohesive graded look — I want it to read \"premium business portrait,\" not phone snapshot.\n3. Do tasteful, believable retouching: brighten my eyes and teeth a little using selective adjustments (no plastic skin, no face reshaping).\n4. Make it feel \"dynamic\": separate me from the background with a soft blur behind the subject, and reframe the shot into a wider 16:9 environmental crop (using the empty backdrop room on one side) so it works as a hero image with breathing room for text.\n5. Give me a tasteful monochrome alternate of the final color portrait for places that want B&W.\n6. Produce the profile crops I'll actually upload: a 1:1 LinkedIn/avatar crop and a 1584x396 LinkedIn banner crop, both off the finished color portrait.\n7. Vectorize my flat monogram PNG into a clean SVG logomark so it stays crisp on print and large web.\n8. Put everything — color hero, mono alt, 1:1, banner, vector logo — into one delivery folder and give me a preview.\n\nDeliverable: a print/web-ready professional headshot package for my business profile.",
+ "one_line_ask": "Take the client's raw studio headshot frame and brand monogram and produce a retouched, color-graded, creatively recomposed professional-profile headshot set (color + monochrome + 16:9 dynamic + LinkedIn 1:1 + banner crops) plus a clean vector logomark.",
+ "full_brief": "I'm a founder who needs a creative, dynamic headshot for my professional business profile (LinkedIn + website \"About\"). My photographer shot me in-studio against a seamless mid-gray backdrop but only gave me the flat, un-retouched RAW-export JPEG plus my simple wordmark monogram as a PNG — I need the actual finished, polished delivery set.\n\nPlease, working only from the files I provide:\n1. Straighten and clean up the frame, then apply a professional studio tone so the exposure and contrast look intentional, not flat.\n2. Warm the skin tone slightly (studio strobes left it a touch cool) and give the whole image a cohesive graded look — I want it to read \"premium business portrait,\" not phone snapshot.\n3. Do tasteful, believable retouching: brighten my eyes and teeth a little using selective adjustments (no plastic skin, no face reshaping).\n4. Make it feel \"dynamic\": separate me from the background with a soft blur behind the subject, and reframe the shot into a wider 16:9 environmental crop (using the empty backdrop room on one side) so it works as a hero image with breathing room for text.\n5. Give me a tasteful monochrome alternate of the final color portrait for places that want B&W.\n6. Produce the profile crops I'll actually upload: a 1:1 LinkedIn/avatar crop and a 1584x396 LinkedIn banner crop, both off the finished color portrait.\n7. Vectorize my flat monogram PNG into a clean SVG logomark so it stays crisp on print and large web.\n\nDeliverable: a print/web-ready professional headshot package for my business profile — color hero, mono alt, 1:1 avatar, banner, and vector logo.",
  "inputs": [
   {
    "name": "studio_headshot_raw.jpg",
@@ -52,11 +52,6 @@
    "name": "monogram_logomark.svg",
    "kind": "vector",
    "spec": "Clean vectorized SVG of the 'AV' ring monogram, single-color paths, scalable for print + large web."
-  },
-  {
-   "name": "Headshot_Delivery/ (folder + preview)",
-   "kind": "data",
-   "spec": "One CC asset folder containing all of the above, plus an inline preview of the delivery set for client review."
   }
  ],
  "connector_workflow": [
@@ -212,33 +207,6 @@
    "inputs_from": "monogram_asset",
    "output": "monogram_logomark.svg",
    "note": "Trace the flat solid-color monogram into a clean scalable SVG logomark."
-  },
-  {
-   "n": 18,
-   "tool": "asset_create_folders",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "",
-   "output": "delivery_folder",
-   "note": "Create the Headshot_Delivery/ folder in CC storage to hold the final set."
-  },
-  {
-   "n": 19,
-   "tool": "asset_copy_assets",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "hero_color_16x9.jpg, hero_mono.jpg, linkedin_1x1.jpg, linkedin_banner_1584x396.jpg, monogram_logomark.svg, delivery_folder",
-   "output": "delivery_folder_populated",
-   "note": "Copy all five final deliverables into the delivery folder."
-  },
-  {
-   "n": 20,
-   "tool": "asset_inline_preview",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "delivery_folder_populated",
-   "output": "delivery_preview",
-   "note": "Render an inline preview of the delivery set for client review."
   }
  ],
  "tools_used": [
@@ -254,19 +222,16 @@
   "image_apply_gaussian_blur",
   "image_apply_monochromatic_tint",
   "image_crop_and_resize",
-  "image_vectorize",
-  "asset_create_folders",
-  "asset_copy_assets",
-  "asset_inline_preview"
+  "image_vectorize"
  ],
- "tool_call_count": 20,
- "distinct_adobe_tools": 16,
- "chaining_note": "Strict output-to-input chain. Steps 1-2 load the raw studio frame (raw_headshot_asset). 3 straightens it; 4 auto-tones the straightened output; 5 warms the auto-toned output. 6 selects eyes/teeth FROM the warmed image, and 7 brightens using BOTH the warmed image and that mask. 8 selects the subject from the brightened result, 9 inverts that mask to a background mask, and 10 blurs the brightened image THROUGH the background mask. 11 crops/reframes the separated image into the 16:9 hero (trimming the tall frame to landscape, no pixels invented) — the single canonical color master. From that hero: 12 makes the mono alt, 13 makes the 1:1 crop, 14 makes the banner crop. In parallel, 15-16 load the flat monogram and 17 vectorizes it. 18 creates the delivery folder; 19 copies all five finished deliverables (hero, mono, 1:1, banner, SVG) into it; 20 previews the populated folder. Every non-load step consumes a prior step's named output; the deliverable set emerges purely from the chain.",
- "difficulty_rationale": "Long-horizon and wide-mix: 20 connector calls, 16 distinct Adobe tools, spanning two capability groups (A1 raster/tonal/selection/FX/crop/vector + A4 asset/storage). It exercises the hardest-to-sequence pattern — mask-driven SELECTIVE edits (select_by_prompt → adjust_light_portions for eyes/teeth; select_subject → invert → gaussian_blur for background-only separation) — which requires correctly threading a mask output into a later edit step rather than applying it globally. It reframes the tall studio master into the 16:9 landscape hero purely by cropping (image_crop_and_resize, no pixels invented), then fans that single master out into four derived deliverables, plus an independent vectorize sub-chain, then storage/folder/preview packaging. No prohibited capabilities: no generative expand/outpaint, no gen-fill, no AI object removal, no text-to-image, no compositing, no bg-replace-by-prompt, no upscaling, no layout composition; fill_area is never used; all edits are real Photoshop/Lightroom-class operations. Every step is [C] headless-confirmed, so it runs end-to-end autonomously, raising the difficulty bar (no human gallery pick to lean on).",
+ "tool_call_count": 17,
+ "distinct_adobe_tools": 13,
+ "chaining_note": "Strict output-to-input chain. Steps 1-2 load the raw studio frame (raw_headshot_asset). 3 straightens it; 4 auto-tones the straightened output; 5 warms the auto-toned output. 6 selects eyes/teeth FROM the warmed image, and 7 brightens using BOTH the warmed image and that mask. 8 selects the subject from the brightened result, 9 inverts that mask to a background mask, and 10 blurs the brightened image THROUGH the background mask. 11 crops/reframes the separated image into the 16:9 hero (trimming the tall frame to landscape, no pixels invented) — the single canonical color master. From that hero: 12 makes the mono alt, 13 makes the 1:1 crop, 14 makes the banner crop. In parallel, 15-16 load the flat monogram and 17 vectorizes it into the SVG logomark. Every non-load step consumes a prior step's named output; the five finished deliverables (hero, mono, 1:1, banner, SVG) emerge purely from the chain.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 17 connector calls, 13 distinct Adobe tools, spanning two capability groups (A1 raster/tonal/selection/FX/crop/vector + A4 asset/storage). It exercises the hardest-to-sequence pattern — mask-driven SELECTIVE edits (select_by_prompt → adjust_light_portions for eyes/teeth; select_subject → invert → gaussian_blur for background-only separation) — which requires correctly threading a mask output into a later edit step rather than applying it globally. It reframes the tall studio master into the 16:9 landscape hero purely by cropping (image_crop_and_resize, no pixels invented), then fans that single master out into four derived deliverables, plus an independent vectorize sub-chain, all loaded through CC asset storage. No prohibited capabilities: no generative expand/outpaint, no gen-fill, no AI object removal, no text-to-image, no compositing, no bg-replace-by-prompt, no upscaling, no layout composition; fill_area is never used; all edits are real Photoshop/Lightroom-class operations. Every step is [C] headless-confirmed, so it runs end-to-end autonomously, raising the difficulty bar (no human gallery pick to lean on).",
  "_severity": "pass",
  "reverify": {
   "severity": "pass",
-  "banned_capability_check": "No banned capability remains, in the executable chain OR in prose. Step 11 uses image_crop_and_resize to reframe the tall 4000x5000 studio master into the 16:9 landscape hero (~4000x2250 crop, resized to 2560x1440) — a pure crop/resize that trims (never grows) the frame, no pixels invented. All stale 'reframe-crop/reframe-crop' language that previously described this as a generative step has been rewritten to the crop-only method actually used: grounding_note ('via reframe-crop' -> crop-down reframe), input realism_notes ('so reframe-crop + crops have something to work with' -> crop-only reframe room), difficulty_rationale (dropped the 'the sole reframe/crop step (generative-expand reframe-crop)' claim and the 'reframe-crop' capability term; corrected the distinct-tool/capability-group counts; added 'no generative expand/outpaint' to the prohibited list), and chaining_note ('11 outpaints' -> '11 crops/reframes ... no pixels invented'). Remaining occurrences of 'reframe-crop/generative' are only negations and the reverify swap-history audit trail. Full scan: no generative expand/outpaint, no gen-fill, no text-to-image, no from-scratch art/logo, no upscale/super-resolution, no AI object-removal/reconstruction, no bg-replace-by-prompt, no compositing, no OCR, no layout render; image_fill_area is never used. All 16 distinct tools are [C] headless raster/tonal/selection/FX/crop/vector (A1) + asset/storage (A4) — all real Adobe connector actions.",
-  "notes": "tool_call_count stays 20 and connector_workflow structure is unchanged (only step-11 note text refined); no step added, removed, or re-tooled. distinct_adobe_tools = 16 and tools_used unchanged. All fixes are text-only reconciliation to match the already-correct crop-only chain, plus tightening of step-11 note and outputs[0].spec to make the crop mechanics (subject headroom preserved, never larger than source) explicit — addressing the findings' heavy-reframe concern. No real brand/person names present (fictional 'AV' monogram, generic 'founder' subject; LinkedIn is a delivery platform, kept). grounding_note and difficulty_rationale were also fixed in the file but are not returnable via this schema. JSON re-validated."
+  "banned_capability_check": "No banned capability remains, in the executable chain OR in prose. Step 11 uses image_crop_and_resize to reframe the tall 4000x5000 studio master into the 16:9 landscape hero (~4000x2250 crop, resized to 2560x1440) — a pure crop/resize that trims (never grows) the frame, no pixels invented. All stale 'reframe-crop/reframe-crop' language that previously described this as a generative step has been rewritten to the crop-only method actually used: grounding_note ('via reframe-crop' -> crop-down reframe), input realism_notes ('so reframe-crop + crops have something to work with' -> crop-only reframe room), difficulty_rationale (dropped the 'the sole reframe/crop step (generative-expand reframe-crop)' claim and the 'reframe-crop' capability term; corrected the distinct-tool/capability-group counts; added 'no generative expand/outpaint' to the prohibited list), and chaining_note ('11 outpaints' -> '11 crops/reframes ... no pixels invented'). Remaining occurrences of 'reframe-crop/generative' are only negations and the reverify swap-history audit trail. Full scan: no generative expand/outpaint, no gen-fill, no text-to-image, no from-scratch art/logo, no upscale/super-resolution, no AI object-removal/reconstruction, no bg-replace-by-prompt, no compositing, no OCR, no layout render; image_fill_area is never used. All 13 distinct tools are [C] headless raster/tonal/selection/FX/crop/vector (A1) + asset/storage (A4) — all real Adobe connector actions.",
+  "notes": "tool_call_count is 17 after trimming the redundant Headshot_Delivery/ packaging output (asset_create_folders + asset_copy_assets + asset_inline_preview steps removed — they only served a re-bundling folder/preview already redundant with the five separately-listed deliverables); connector_workflow is otherwise unchanged and renumbered 1-17. distinct_adobe_tools = 13 (asset_create_folders, asset_copy_assets, asset_inline_preview dropped from tools_used to match). All fixes are text-only reconciliation to match the already-correct crop-only chain, plus tightening of step-11 note and outputs[0].spec to make the crop mechanics (subject headroom preserved, never larger than source) explicit — addressing the findings' heavy-reframe concern. No real brand/person names present (fictional 'AV' monogram, generic 'founder' subject; LinkedIn is a delivery platform, kept). grounding_note and difficulty_rationale were also fixed in the file but are not returnable via this schema. JSON re-validated."
  }
 }

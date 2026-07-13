@@ -90,11 +90,6 @@
    "name": "decoration_backgrounds.png",
    "kind": "image",
    "spec": "Two tileable/section decoration backgrounds (2000x1200 PNG) in brand paper + accent tones with subtle grain, plus the exported section-divider graphics; ties pages together."
-  },
-  {
-   "name": "store_graphics_package.zip",
-   "kind": "data",
-   "spec": "Single labeled ZIP bundling all layered source exports and optimized JPG/PNG/SVG deliverables in clearly named folders (01_banner, 02_pdp, 03_decoration, 00_source)."
   }
  ],
  "connector_workflow": [
@@ -303,16 +298,7 @@
    "exec_mode": "C",
    "inputs_from": "package_folders, hero_banner_desktop_master, hero_banner_mobile_master, secondary_banner_panel_master, pdp_frame_set_master, icon_sheet_export, accent_vector, decoration_backgrounds_master, banner_source_export",
    "output": "organized_package",
-   "note": "Copy every produced deliverable into its labeled folder for clean handoff."
-  },
-  {
-   "n": 24,
-   "tool": "zip_package",
-   "server": "local",
-   "exec_mode": "L",
-   "inputs_from": "organized_package",
-   "output": "store_graphics_package.zip",
-   "note": "Single unavoidable local step: zip the organized folders into one labeled deliverable archive."
+   "note": "Copy every produced deliverable into its labeled folder for clean handoff; the labeled CC folders are the final organized package delivered to the client."
   }
  ],
  "tools_used": [
@@ -335,14 +321,14 @@
   "asset_create_folders",
   "asset_copy_assets"
  ],
- "tool_call_count": 24,
+ "tool_call_count": 23,
  "distinct_adobe_tools": 18,
- "chaining_note": "Strict output→input chaining. Stock path: asset_search(1)→license(2)→temp_match(12)→vibrance(13)→crop(14)→secondary panel; the panel also feeds the decoration base fill_area(19)→add_grain(20). Hero path: upload init(3)→finalize(4)→straighten(5)→auto_tone(6)→temperature(7) produces the MASTER look, which forks twice into crop-only reframes: desktop reframe(8)→crop(9) and mobile reframe(10)→crop(11), both cropping the existing 4000x3000 hero to the target ratios (no generation). PDP path: client macros→apply_preset matched to the hero grade(15)→crop_to_bounds(16)→frame set, and frame set 18 vectorizes an accent. Authored sources export via document_render_vector(17, icons) and document_render_layout(21, banner). Everything converges: create_folders(22) and copy_assets(23) consume all eight deliverable outputs, and the single local zip(24) consumes the organized package. No step after the initial loads stands alone — each consumes a named prior output.",
- "difficulty_rationale": "Long-horizon and wide-mix: 24 steps, 18 distinct Adobe tools spanning four groups (asset/stock, raster photo, vector/document export, organization) plus one allowed local zip. It exercises a realistic agency pipeline — establish a master grade on the hero, propagate it to a stock asset and PDP macros for visual cohesion, fork the same graded hero into two honest crop-only reframes (desktop and mobile ratios), export two genuinely client-authored InDesign/Illustrator sources, vectorize an accent, and build a grain-textured solid decoration background — all chained. Difficulty comes from sequencing dependencies (license-before-edit, straighten/tone before cropping, grade before propagate), reusing inputs across branches, and staying strictly inside real capabilities: the reframe steps are image_crop_and_resize crops of the existing hero (edges cropped away to hit each ratio, no invented pixels), fill_area is solid-color only, and both authored templates are EXPORTED not composed. No not-available capability (generative expand, gen-fill, object removal, text-to-image, compositing, layout composition, upscaling) is used.",
+ "chaining_note": "Strict output→input chaining. Stock path: asset_search(1)→license(2)→temp_match(12)→vibrance(13)→crop(14)→secondary panel; the panel also feeds the decoration base fill_area(19)→add_grain(20). Hero path: upload init(3)→finalize(4)→straighten(5)→auto_tone(6)→temperature(7) produces the MASTER look, which forks twice into crop-only reframes: desktop reframe(8)→crop(9) and mobile reframe(10)→crop(11), both cropping the existing 4000x3000 hero to the target ratios (no generation). PDP path: client macros→apply_preset matched to the hero grade(15)→crop_to_bounds(16)→frame set, and frame set 18 vectorizes an accent. Authored sources export via document_render_vector(17, icons) and document_render_layout(21, banner). Everything converges: create_folders(22) and copy_assets(23) consume all eight deliverable outputs to build the labeled CC folders that are the final organized handoff. No step after the initial loads stands alone — each consumes a named prior output.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 23 steps, 18 distinct Adobe tools spanning four groups (asset/stock, raster photo, vector/document export, organization). It exercises a realistic agency pipeline — establish a master grade on the hero, propagate it to a stock asset and PDP macros for visual cohesion, fork the same graded hero into two honest crop-only reframes (desktop and mobile ratios), export two genuinely client-authored InDesign/Illustrator sources, vectorize an accent, and build a grain-textured solid decoration background — all chained. Difficulty comes from sequencing dependencies (license-before-edit, straighten/tone before cropping, grade before propagate), reusing inputs across branches, and staying strictly inside real capabilities: the reframe steps are image_crop_and_resize crops of the existing hero (edges cropped away to hit each ratio, no invented pixels), fill_area is solid-color only, and both authored templates are EXPORTED not composed. No not-available capability (generative expand, gen-fill, object removal, text-to-image, compositing, layout composition, upscaling) is used.",
  "_severity": "pass",
  "reverify": {
   "severity": "pass",
-  "banned_capability_check": "No banned/generative capability remains in any field. no canvas-generation tool appears anywhere. Workflow steps n8/n10 are image_crop_and_resize crops of the 4000x3000 hero down to 1920x720 and 1080x1350 — never larger than the source in any dimension, edges cropped away to hit each ratio, no invented pixels. image_fill_area (n19) is solid-color only (#FAF6EF); document_render_layout/document_render_vector EXPORT genuine client-authored .indd/.ai inputs (both declared in inputs[]); image_vectorize/image_apply_preset/crop_to_bounds/add_grain are all real gen-free connector ops. No generative expand, gen-fill, text-to-image, upscale, object removal, or from-scratch composition. All stale 'extend/expand/outpaint' prose in category, grounding_note, product_hero_shot realism_notes, difficulty_rationale, and this reverify block has been rewritten to the crop-only reframe method actually used. Only trailing local step is the zip.",
-  "notes": "Findings were prose-only (residual generative-expand language): the connector_workflow was already crop-only, but category ('stock_hero_expand'), grounding_note ('extended to both ratios'), the hero realism_notes ('outpaint/expand step'), difficulty_rationale ('stock_hero_expand intent', 'before expand', wrong '19 distinct tools'), and this reverify block still carried expand/outpaint residue. Reconciled all of them to honest crop-only reframing and corrected the distinct-tool count to 18. No step count, tool set, chaining, or input declarations changed (24 steps, 18 distinct Adobe tools intact)."
+  "banned_capability_check": "No banned/generative capability remains in any field. no canvas-generation tool appears anywhere. Workflow steps n8/n10 are image_crop_and_resize crops of the 4000x3000 hero down to 1920x720 and 1080x1350 — never larger than the source in any dimension, edges cropped away to hit each ratio, no invented pixels. image_fill_area (n19) is solid-color only (#FAF6EF); document_render_layout/document_render_vector EXPORT genuine client-authored .indd/.ai inputs (both declared in inputs[]); image_vectorize/image_apply_preset/crop_to_bounds/add_grain are all real gen-free connector ops. No generative expand, gen-fill, text-to-image, upscale, object removal, or from-scratch composition. All stale 'extend/expand/outpaint' prose in category, grounding_note, product_hero_shot realism_notes, difficulty_rationale, and this reverify block has been rewritten to the crop-only reframe method actually used.",
+  "notes": "Findings were prose-only (residual generative-expand language): the connector_workflow was already crop-only, but category ('stock_hero_expand'), grounding_note ('extended to both ratios'), the hero realism_notes ('outpaint/expand step'), difficulty_rationale ('stock_hero_expand intent', 'before expand', wrong '19 distinct tools'), and this reverify block still carried expand/outpaint residue. Reconciled all of them to honest crop-only reframing and corrected the distinct-tool count to 18. Separately, the low-value re-bundle deliverable (store_graphics_package.zip) and its sole local zip step were trimmed; the labeled CC folders (create_folders+copy_assets) remain as the organized handoff, leaving 23 steps and 18 distinct Adobe tools intact."
  }
 }

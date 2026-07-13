@@ -82,11 +82,6 @@
       "name": "verdafix_ghs_pictograms.svg",
       "kind": "vector",
       "spec": "Vectorized GHS02/GHS05/GHS07 hazard pictograms that stay sharp at label print resolution."
-    },
-    {
-      "name": "verdafix_label_run_notes.txt",
-      "kind": "data",
-      "spec": "A short local recipe/handoff note recording the per-variant merge order, the CMYK/bleed/DPI print settings applied, and the asset URNs placed, so the printer and the next revision round can reproduce the run."
     }
   ],
   "connector_workflow": [
@@ -260,24 +255,6 @@
       "inputs_from": "labels_merged_indd",
       "output": "Verdafix_labels_print_pdf_set",
       "note": "Export the merged document to print-ready CMYK PDFs with 3 mm bleed at ~300 DPI - one page/file per SKU/variant record."
-    },
-    {
-      "n": 20,
-      "tool": "asset_inline_preview",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "Verdafix_labels_print_pdf_set",
-      "output": "label_qa_previews",
-      "note": "Pull inline previews of the exported label PDFs to QA that each variant bound the correct German copy, pictogram and barcode before printer handoff."
-    },
-    {
-      "n": 21,
-      "tool": "local_write_recipe_note",
-      "server": "local",
-      "exec_mode": "L",
-      "inputs_from": "uploaded_asset_urns, labels_merged_indd, Verdafix_labels_print_pdf_set",
-      "output": "verdafix_label_run_notes.txt",
-      "note": "Emit a local recipe/handoff note recording per-variant merge order, CMYK/bleed/DPI settings and placed asset URNs so the printer and next revision round can reproduce the run."
     }
   ],
   "tools_used": [
@@ -291,19 +268,17 @@
     "asset_finalize_file_upload",
     "asset_add_file",
     "document_merge_data_layout",
-    "document_render_layout",
-    "asset_inline_preview",
-    "local_write_recipe_note"
+    "document_render_layout"
   ],
-  "tool_call_count": 21,
-  "distinct_adobe_tools": 12,
-  "chaining_note": "Strict output->input chaining throughout. Each product photo runs its own short grade->crop sub-chain feeding only the prior step's output: MS-Polymer photo_ms_polymer_grau_600.jpg -> auto_straighten(1) -> auto_tone(2) -> color_temperature(3) -> crop(4); Hybrid photo -> auto_tone(5) -> color_temperature(6) -> crop(7); Acryl photo -> auto_straighten(8) -> auto_tone(9) -> crop(10). The two supplied graphics each chain raw PNG -> vectorize: barcodes(11), pictograms(12). A CC folder is created(13), and the three cropped photos plus both SVGs converge into the upload session(14) -> finalize(15), yielding the asset URNs. The authored master .indd(16) and the variants CSV(17) are added to the same folder, then all converge into the [T] data-merge(18), which is the single source for the CMYK PDF export(19). The exported set feeds the inline-preview QA(20), and the URNs + merged doc + PDF set converge into the local recipe note(21). No step after the raw input loads stands free of the chain; the final label set emerges only from the assembled chain.",
-  "difficulty_rationale": "Long-horizon flagship: 21 connector calls across three tool groups (image_* raster prep, asset_* storage/preview, document_* InDesign data-merge/export) plus one [L] local emit, 12 distinct Adobe tools - above the >=10 calls / >=6 distinct-tool floor. Difficulty comes from running three separate line-side product photos through a consistent multi-step grade->crop pipeline, vectorizing two regulated graphic sets (barcodes + GHS pictograms) that must stay razor-sharp, staging every asset into a CC folder, then converging the authored master template + a 12-row per-variant CSV + placed assets into a genuine InDesign [T] data-merge that outputs one CMYK-with-bleed PDF per SKU/variant, QA'd via inline preview and logged locally. It respects every hard limit: the label layout is NOT composed by the connector - document_merge_data_layout/document_render_layout only BIND/EXPORT the client's authored master .indd, a supplied input; no generative fill / outpaint / text-to-image / from-scratch design / upscaling / object-removal; image_fill_area is unused; German copy and H/P statements are bound verbatim from the CSV; barcodes/pictograms are only vectorized, not invented.",
+  "tool_call_count": 19,
+  "distinct_adobe_tools": 11,
+  "chaining_note": "Strict output->input chaining throughout. Each product photo runs its own short grade->crop sub-chain feeding only the prior step's output: MS-Polymer photo_ms_polymer_grau_600.jpg -> auto_straighten(1) -> auto_tone(2) -> color_temperature(3) -> crop(4); Hybrid photo -> auto_tone(5) -> color_temperature(6) -> crop(7); Acryl photo -> auto_straighten(8) -> auto_tone(9) -> crop(10). The two supplied graphics each chain raw PNG -> vectorize: barcodes(11), pictograms(12). A CC folder is created(13), and the three cropped photos plus both SVGs converge into the upload session(14) -> finalize(15), yielding the asset URNs. The authored master .indd(16) and the variants CSV(17) are added to the same folder, then all converge into the [T] data-merge(18), which is the single source for the CMYK PDF export(19) - the print-ready label set handed to the printer. No step after the raw input loads stands free of the chain; the final label set emerges only from the assembled chain.",
+  "difficulty_rationale": "Long-horizon flagship: 19 connector calls across three tool groups (image_* raster prep, asset_* storage, document_* InDesign data-merge/export), 11 distinct Adobe tools - above the >=10 calls / >=6 distinct-tool floor. Difficulty comes from running three separate line-side product photos through a consistent multi-step grade->crop pipeline, vectorizing two regulated graphic sets (barcodes + GHS pictograms) that must stay razor-sharp, staging every asset into a CC folder, then converging the authored master template + a 12-row per-variant CSV + placed assets into a genuine InDesign [T] data-merge that outputs one CMYK-with-bleed PDF per SKU/variant. It respects every hard limit: the label layout is NOT composed by the connector - document_merge_data_layout/document_render_layout only BIND/EXPORT the client's authored master .indd, a supplied input; no generative fill / outpaint / text-to-image / from-scratch design / upscaling / object-removal; image_fill_area is unused; German copy and H/P statements are bound verbatim from the CSV; barcodes/pictograms are only vectorized, not invented.",
   "workflow_nature": "edit",
   "reverify": {
     "severity": "pass",
     "banned_capability_check": "None of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art/logo/label design (the master layout, barcodes and GHS pictograms are all supplied authored inputs, only prepped/vectorized); no upscaling / super-resolution; no object-removal-with-reconstruction/inpainting; no bespoke font/letterform design; no unreachable external account.",
-    "notes": "document_merge_data_layout (n18) is correctly tagged [T] and operates on the user-authored verdafix_label_master.indd (kind:data, gen_model:'n/a-authored-asset') carrying real <<merge fields>>; the CSV headers exactly match those fields so binding is genuine, and the spec explicitly flags that a PDF-converted .indd with literal/outlined text would NOT bind. document_render_layout (n19) only EXPORTS that merged authored document to CMYK PDFs - it does not compose a layout (confirmed against connector exec-modes: render_layout is EXPORT-only [C]). image_auto_straighten/apply_auto_tone/adjust_color_temperature/crop_and_resize (n1-10) are whole-image raster corrections on supplied photos with no generative or masked-DOF claim. image_vectorize (n11,n12) converts supplied flat high-contrast raster (barcodes, regulated GHS symbols) into SVG - a real vectorization, not from-scratch creation. asset_create_folders/initialize/finalize/add_file/inline_preview are plain storage/preview [C] steps. local_write_recipe_note (n21) is an [L] local text emit. image_fill_area and image_remove_background are not used; no Express-widget (search_design/fill_text/animate_design/change_background_color) or Canva tools; every Adobe step server=='adobe'. Counts verified programmatically: 21 steps -> tool_call_count=21; 12 distinct adobe-server tools -> distinct_adobe_tools=12. Slot-match: operation O5 / 'Layout & Data' family / output_modality document (PDF set) / workflow_nature edit / vertical manufacturing_industrial all satisfied; brand fully fictionalized (Verdafix Industrie GmbH), no real trademarks (real-brief 'Levanta' replaced), CLP/GHS references are regulatory standards not proprietary IP."
+    "notes": "document_merge_data_layout (n18) is correctly tagged [T] and operates on the user-authored verdafix_label_master.indd (kind:data, gen_model:'n/a-authored-asset') carrying real <<merge fields>>; the CSV headers exactly match those fields so binding is genuine, and the spec explicitly flags that a PDF-converted .indd with literal/outlined text would NOT bind. document_render_layout (n19) only EXPORTS that merged authored document to CMYK PDFs - it does not compose a layout (confirmed against connector exec-modes: render_layout is EXPORT-only [C]). image_auto_straighten/apply_auto_tone/adjust_color_temperature/crop_and_resize (n1-10) are whole-image raster corrections on supplied photos with no generative or masked-DOF claim. image_vectorize (n11,n12) converts supplied flat high-contrast raster (barcodes, regulated GHS symbols) into SVG - a real vectorization, not from-scratch creation. asset_create_folders/initialize/finalize/add_file are plain storage [C] steps. image_fill_area and image_remove_background are not used; no Express-widget (search_design/fill_text/animate_design/change_background_color) or Canva tools; every Adobe step server=='adobe'. Counts verified programmatically: 19 steps -> tool_call_count=19; 11 distinct adobe-server tools -> distinct_adobe_tools=11. Slot-match: operation O5 / 'Layout & Data' family / output_modality document (PDF set) / workflow_nature edit / vertical manufacturing_industrial all satisfied; brand fully fictionalized (Verdafix Industrie GmbH), no real trademarks (real-brief 'Levanta' replaced), CLP/GHS references are regulatory standards not proprietary IP."
   },
   "id": "AO-84"
 }

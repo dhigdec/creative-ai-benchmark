@@ -9,8 +9,8 @@
   "url": "https://www.freelancer.com/projects/adobe-photoshop/Photoshop-Expert-For-new-corporate"
  },
  "grounding_note": "VERBATIM from the real Freelancer.com brief: \"professionally enhance a complete set of images for our corporate website\"; \"Correct lighting imbalances and exposure issues\"; \"Enhance color, contrast, and sharpness\"; \"Remove distractions, unwanted objects, and background clutter\"; \"Create a consistent visual style across all website images\"; \"Resize and optimize images for web performance without compromising quality\"; \"Prepare images for desktop, tablet, and mobile responsiveness\"; \"Showcase our facilities, operations, equipment, and people in the best possible light\"; \"maintain a natural and realistic appearance.\" REASONABLY ENRICHED to make it a runnable single-asset benchmark: the original posting is a vague \"MUST READ BEFORE BID\" open call with no images attached, so I fixed the concrete subject as a hero shot of a plant-floor engineer beside CNC/machining equipment (faithful to the Automotive/Industrial/Agriculture vertical and the \"facilities, operations, equipment, and people\" language) plus a paired exec portrait, and pinned the responsive export sizes (1920px desktop hero, 1024px tablet, 640px mobile) since the brief says desktop/tablet/mobile but gives no numbers. IMPORTANT capability-honest reading: the brief's literal \"remove unwanted objects\" is NOT done via AI object removal (forbidden / not-available). It is honored the only legitimate connector way — selecting the subject, inverting, and applying a solid neutral fill to a cluttered backdrop region plus a lens blur to suppress background clutter, which is exactly how a retoucher cleans a busy plant-floor backdrop while keeping the subject authentic. No layout composition, no generative fill, no text-to-image is claimed.",
- "one_line_ask": "Take two client-shot raw corporate images (a plant-floor engineer-by-equipment hero and an executive portrait), professionally retouch and color-grade them to one consistent premium look, declutter the busy backgrounds the allowed way, then export a web-optimized responsive set (desktop/tablet/mobile) plus a Firefly board for sign-off.",
- "full_brief": "We are launching a new corporate website for our industrial / CNC-machining business and need a Photoshop expert to professionally retouch a set of images so they look premium, modern, and consistent. Attached are two client-shot RAW-ish JPEGs straight off the camera: (1) HERO — a process engineer standing beside a CNC machining centre on the plant floor, shot under mixed fluorescent + window light so it is slightly underexposed, cool/green-cast, and the background is cluttered with parts bins, cables and a fire extinguisher; (2) a paired executive half-body portrait shot in the same facility, warmer but flat and low-contrast.\\n\\nWe need you to: correct the lighting imbalance and exposure on the hero; pull the white balance neutral and add real contrast, color and sharpness so it reads premium; clean up the distracting background clutter behind the engineer (we don't want a fake studio look — keep it authentic, just calm it down) by selecting the subject, inverting to a background-only region and laying a neutral fill over the clutter, then give the whole frame a gentle lens-blur soft-focus so it feels like a shallow-depth premium shot (the subject stays clean because the clutter around it was filled, not erased with AI); then carry the EXACT same finished look onto the executive portrait so the two images are visually consistent as a set. Once the look is locked, prepare web-optimized, responsive exports of the hero at desktop (1920px wide), tablet (1024px) and mobile (640px) sizes, all centred on the subject and fast-loading. Finally, collect the graded hero, the matching portrait and the three responsive crops into a single review board so our marketing lead can approve the style in one click before we roll it across the rest of the site library. Keep everything natural and realistic — this is a real factory, not a render.",
+ "one_line_ask": "Take two client-shot raw corporate images (a plant-floor engineer-by-equipment hero and an executive portrait), professionally retouch and color-grade them to one consistent premium look, declutter the busy backgrounds the allowed way, then export a web-optimized responsive set (desktop/tablet/mobile).",
+ "full_brief": "We are launching a new corporate website for our industrial / CNC-machining business and need a Photoshop expert to professionally retouch a set of images so they look premium, modern, and consistent. Attached are two client-shot RAW-ish JPEGs straight off the camera: (1) HERO — a process engineer standing beside a CNC machining centre on the plant floor, shot under mixed fluorescent + window light so it is slightly underexposed, cool/green-cast, and the background is cluttered with parts bins, cables and a fire extinguisher; (2) a paired executive half-body portrait shot in the same facility, warmer but flat and low-contrast.\\n\\nWe need you to: correct the lighting imbalance and exposure on the hero; pull the white balance neutral and add real contrast, color and sharpness so it reads premium; clean up the distracting background clutter behind the engineer (we don't want a fake studio look — keep it authentic, just calm it down) by selecting the subject, inverting to a background-only region and laying a neutral fill over the clutter, then give the whole frame a gentle lens-blur soft-focus so it feels like a shallow-depth premium shot (the subject stays clean because the clutter around it was filled, not erased with AI); then carry the EXACT same finished look onto the executive portrait so the two images are visually consistent as a set. Once the look is locked, prepare web-optimized, responsive exports of the hero at desktop (1920px wide), tablet (1024px) and mobile (640px) sizes, all centred on the subject and fast-loading. Deliver the graded hero, the matching portrait and the three responsive crops so our marketing lead can approve the style before we roll it across the rest of the site library. Keep everything natural and realistic — this is a real factory, not a render.",
  "inputs": [
   {
    "name": "hero_engineer_cnc_raw.jpg",
@@ -31,7 +31,7 @@
   {
    "name": "hero_graded_master.png",
    "kind": "image",
-   "spec": "Full-resolution retouched, color-graded and preset-locked hero master (this is the hero_look_locked URN that fans out to the crops, board and zip): exposure/WB corrected, contrast+color+sharpness enhanced, cluttered backdrop region calmed with a solid neutral fill (subject preserved by the inverted subject mask), a whole-image lens-blur soft-focus finishing pass, then the shared 'corporate premium' preset applied. ~6000x4000px PNG, the locked premium look."
+   "spec": "Full-resolution retouched, color-graded and preset-locked hero master (this is the hero_look_locked URN that fans out to the responsive crops): exposure/WB corrected, contrast+color+sharpness enhanced, cluttered backdrop region calmed with a solid neutral fill (subject preserved by the inverted subject mask), a whole-image lens-blur soft-focus finishing pass, then the shared 'corporate premium' preset applied. ~6000x4000px PNG, the locked premium look."
   },
   {
    "name": "portrait_graded_master.png",
@@ -52,16 +52,6 @@
    "name": "hero_mobile_640.png",
    "kind": "image",
    "spec": "Responsive mobile crop, 640px wide, subject-centred, fast-loading, from the graded master."
-  },
-  {
-   "name": "corporate_retouch_review_board",
-   "kind": "url",
-   "spec": "Firefly Board deep-link assembling the graded hero, the matching portrait and the three responsive crops for one-click marketing sign-off."
-  },
-  {
-   "name": "corporate_website_image_set.zip",
-   "kind": "archive",
-   "spec": "Single ZIP bundling the two graded masters and the three responsive crops for handoff to the web team."
   }
  ],
  "connector_workflow": [
@@ -171,7 +161,7 @@
    "exec_mode": "C",
    "inputs_from": "hero_lens_soft, preset_catalog",
    "output": "hero_graded_master",
-   "note": "Apply the chosen preset to the graded+decluttered+soft-focused hero to define the canonical finished look and produce hero_graded_master, the deliverable that fans out to the crops, board and zip (the exact same preset is reused on the portrait for consistency)."
+   "note": "Apply the chosen preset to the graded+decluttered+soft-focused hero to define the canonical finished look and produce hero_graded_master, the deliverable that fans out to the responsive crops (the exact same preset is reused on the portrait for consistency)."
   },
   {
    "n": 13,
@@ -226,24 +216,6 @@
    "inputs_from": "hero_graded_master",
    "output": "hero_mobile_640",
    "note": "Responsive mobile export at 640px wide, subject-centred and fast-loading, completing desktop/tablet/mobile coverage."
-  },
-  {
-   "n": 19,
-   "tool": "create_firefly_board",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "hero_graded_master, portrait_graded_master, hero_desktop_1920, hero_tablet_1024, hero_mobile_640",
-   "output": "review_board_url",
-   "note": "Assemble the graded hero master, matching portrait and three responsive crops into one Firefly Board for one-click marketing sign-off (presents assets already produced; does not generate art)."
-  },
-  {
-   "n": 20,
-   "tool": "zip_outputs",
-   "server": "local",
-   "exec_mode": "L",
-   "inputs_from": "hero_graded_master, portrait_graded_master, hero_desktop_1920, hero_tablet_1024, hero_mobile_640",
-   "output": "corporate_website_image_set.zip",
-   "note": "Single unavoidable local packaging step: zip the two masters and three responsive crops for handoff to the web team."
   }
  ],
  "tools_used": [
@@ -259,17 +231,16 @@
   "image_apply_lens_blur",
   "image_list_presets",
   "image_apply_preset",
-  "image_crop_and_resize",
-  "create_firefly_board"
+  "image_crop_and_resize"
  ],
- "tool_call_count": 20,
- "distinct_adobe_tools": 14,
- "chaining_note": "Strict output→input chain. The two client assets enter via upload (1→2 hero, 13→14 portrait); nothing else is loaded from outside. The hero grade is a linear pipeline where each step consumes the prior output: hero_raw_asset → auto_tone(3) → color_temperature(4) → brightness_contrast(5) → vibrance_saturation(6). The declutter branch reuses hero_color: select_subject(7) → invert_selection(8) → fill_area(9, consuming hero_color + the inverted mask; a masked SOLID FILL that keeps the subject clean) → lens_blur(10, a WHOLE-IMAGE soft-focus finishing pass, no mask) = hero_lens_soft. list_presets(11) feeds apply_preset(12) which consumes hero_lens_soft to produce hero_graded_master — the single canonical deliverable — AND emits preset_catalog, the consistency linchpin: the SAME preset_catalog choice is reused on portrait_raw_asset at step 15 so both images share one look. hero_graded_master then fans out to three responsive crops (16,17,18). Finally all five rendered deliverables (hero_graded_master, portrait_graded_master, and the three crops) converge into the Firefly board (19) and the local zip (20). Every step after the two initial loads consumes a named prior output via inputs_from; the premium responsive deliverable set emerges purely from the chain.",
- "difficulty_rationale": "Long-horizon and wide-mix: 20 steps, 14 distinct Adobe tools (well above the ≥10 calls / ≥6 distinct-tool floor), spanning asset I/O, a multi-stage tonal/color grade, mask-based selective editing, preset-driven cross-image consistency, responsive multi-size export, and board assembly. Difficulty comes from (a) the multi-branch dependency graph — a linear grade, a select→invert→fill→blur declutter branch reusing an intermediate, and a preset that must be captured once and reused on a second, differently-toned image; (b) capability discipline: the brief literally says 'remove unwanted objects', which a naive agent would attempt via forbidden AI object-removal — the honest solution routes it through select_subject→invert→solid fill_area→lens_blur, the only allowed path; (c) consistency is a genuine test because the portrait starts warm/flat while the hero starts cool/underexposed, so a shared preset must actually unify two different starting points; (d) the 1920/1024/640 responsive fan-out and final convergence into a single board + zip. All connector work is [C] headless-confirmed with a single permitted [L] zip at the end.",
+ "tool_call_count": 18,
+ "distinct_adobe_tools": 13,
+ "chaining_note": "Strict output→input chain. The two client assets enter via upload (1→2 hero, 13→14 portrait); nothing else is loaded from outside. The hero grade is a linear pipeline where each step consumes the prior output: hero_raw_asset → auto_tone(3) → color_temperature(4) → brightness_contrast(5) → vibrance_saturation(6). The declutter branch reuses hero_color: select_subject(7) → invert_selection(8) → fill_area(9, consuming hero_color + the inverted mask; a masked SOLID FILL that keeps the subject clean) → lens_blur(10, a WHOLE-IMAGE soft-focus finishing pass, no mask) = hero_lens_soft. list_presets(11) feeds apply_preset(12) which consumes hero_lens_soft to produce hero_graded_master — the single canonical deliverable — AND emits preset_catalog, the consistency linchpin: the SAME preset_catalog choice is reused on portrait_raw_asset at step 15 so both images share one look. hero_graded_master then fans out to three responsive crops (16,17,18). Every step after the two initial loads consumes a named prior output via inputs_from; the premium responsive deliverable set — the two graded masters plus the three responsive crops — emerges purely from the chain.",
+ "difficulty_rationale": "Long-horizon and wide-mix: 18 steps, 13 distinct Adobe tools (well above the ≥10 calls / ≥6 distinct-tool floor), spanning asset I/O, a multi-stage tonal/color grade, mask-based selective editing, preset-driven cross-image consistency, and responsive multi-size export. Difficulty comes from (a) the multi-branch dependency graph — a linear grade, a select→invert→fill→blur declutter branch reusing an intermediate, and a preset that must be captured once and reused on a second, differently-toned image; (b) capability discipline: the brief literally says 'remove unwanted objects', which a naive agent would attempt via forbidden AI object-removal — the honest solution routes it through select_subject→invert→solid fill_area→lens_blur, the only allowed path; (c) consistency is a genuine test because the portrait starts warm/flat while the hero starts cool/underexposed, so a shared preset must actually unify two different starting points; (d) the 1920/1024/640 responsive fan-out from a single locked graded master. All connector work is [C] headless-confirmed.",
  "_severity": "pass",
  "reverify": {
   "severity": "pass",
-  "banned_capability_check": "No banned capabilities used. image_fill_area is a masked SOLID neutral fill of the cluttered backdrop region (not AI object-removal, outpaint, or reframe-crop). image_apply_lens_blur is correctly declared and described as WHOLE-IMAGE (inputs_from is only hero_bg_calmed, no mask); the prior 'subject sharp via selective blur' overclaim is removed. No generative expand/outpaint, no upscale/super-resolution, no text-to-image, no from-scratch art/logo. All crops via image_crop_and_resize (gen-free, never larger than the 6000x4000 source). Every input a step consumes is declared. All actions are real Adobe connector tools plus one permitted local zip.",
-  "notes": "Both flagged descriptive/naming slips are resolved: (1) step-10 note and the hero_graded_master.png spec no longer imply a background-selective/subject-preserving blur — the subject stays clean because of the step-9 masked solid fill, and the lens blur is stated as whole-image soft-focus. (2) Naming is reconciled: the preset-locked master that actually fans out to crops/board/zip is now named hero_graded_master (matching the declared output), so the declared deliverable name and the delivered URN align. Renamed the pre-preset intermediate to hero_lens_soft to remove the collision. Chain remains coherent and fully connector-doable."
+  "banned_capability_check": "No banned capabilities used. image_fill_area is a masked SOLID neutral fill of the cluttered backdrop region (not AI object-removal, outpaint, or reframe-crop). image_apply_lens_blur is correctly declared and described as WHOLE-IMAGE (inputs_from is only hero_bg_calmed, no mask); the prior 'subject sharp via selective blur' overclaim is removed. No generative expand/outpaint, no upscale/super-resolution, no text-to-image, no from-scratch art/logo. All crops via image_crop_and_resize (gen-free, never larger than the 6000x4000 source). Every input a step consumes is declared. All actions are real Adobe connector tools.",
+  "notes": "Both flagged descriptive/naming slips are resolved: (1) step-10 note and the hero_graded_master.png spec no longer imply a background-selective/subject-preserving blur — the subject stays clean because of the step-9 masked solid fill, and the lens blur is stated as whole-image soft-focus. (2) Naming is reconciled: the preset-locked master that actually fans out to the responsive crops is now named hero_graded_master (matching the declared output), so the declared deliverable name and the delivered URN align. Renamed the pre-preset intermediate to hero_lens_soft to remove the collision. Chain remains coherent and fully connector-doable."
  }
 }

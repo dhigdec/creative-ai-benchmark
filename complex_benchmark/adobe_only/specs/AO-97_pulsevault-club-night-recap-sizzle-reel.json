@@ -76,11 +76,6 @@
    "name": "PULSEVAULT_logo.svg",
    "kind": "vector",
    "spec": "Clean vectorized venue wordmark (SVG) produced from the flat logo PNG, used as the scalable corner lockup on the cover frame and reusable for future weekly recaps. [C]"
-  },
-  {
-   "name": "recap_package_folder (CC handoff)",
-   "kind": "data",
-   "spec": "A single dated handoff folder in the client's Creative Cloud gathering the deliverables (reel MP4, captions JSON, graded cover PNG, logo SVG) plus the kept-in-CC source references, so source + deliverables sit together for the promoter's weekly tweaks. [C]"
   }
  ],
  "connector_workflow": [
@@ -221,15 +216,6 @@
   },
   {
    "n": 16,
-   "tool": "asset_inline_preview",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "cover_frame_1080x1920, logo_svg",
-   "output": "cover_qc",
-   "note": "Pull the graded cover frame (step 12) and the vector logo (step 15) back as base64 to visually QC the grade, crop, and that the wordmark reads crisp before handoff."
-  },
-  {
-   "n": 17,
    "tool": "asset_initialize_file_upload",
    "server": "adobe",
    "exec_mode": "C",
@@ -238,7 +224,7 @@
    "note": "Upload raw_clip_crowd_handsup_01.mp4 (media_type video/mp4) into the project folder to feed the video chain."
   },
   {
-   "n": 18,
+   "n": 17,
    "tool": "asset_finalize_file_upload",
    "server": "adobe",
    "exec_mode": "C",
@@ -247,7 +233,7 @@
    "note": "Finalize clip 01 into a real CC video assetId."
   },
   {
-   "n": 19,
+   "n": 18,
    "tool": "asset_initialize_file_upload",
    "server": "adobe",
    "exec_mode": "C",
@@ -256,7 +242,7 @@
    "note": "Upload raw_clip_laser_haze_02.mp4 into the project folder."
   },
   {
-   "n": 20,
+   "n": 19,
    "tool": "asset_finalize_file_upload",
    "server": "adobe",
    "exec_mode": "C",
@@ -265,7 +251,7 @@
    "note": "Finalize clip 02 into a real CC video assetId."
   },
   {
-   "n": 21,
+   "n": 20,
    "tool": "asset_initialize_file_upload",
    "server": "adobe",
    "exec_mode": "C",
@@ -274,34 +260,34 @@
    "note": "Upload raw_clip_confetti_drop_03.mp4 into the project folder."
   },
   {
-   "n": 22,
+   "n": 21,
    "tool": "asset_finalize_file_upload",
    "server": "adobe",
    "exec_mode": "C",
    "inputs_from": "uploaded_clip03_ref",
    "output": "clip03_asset",
-   "note": "Finalize clip 03 into a real CC video assetId. Steps 17-22 give the quick_cut tool its three source assetIds."
+   "note": "Finalize clip 03 into a real CC video assetId. Steps 16-21 give the quick_cut tool its three source assetIds."
   },
   {
-   "n": 23,
+   "n": 22,
    "tool": "video_create_quick_cut",
    "server": "adobe",
    "exec_mode": "A",
    "inputs_from": "clip01_asset, clip02_asset, clip03_asset",
    "output": "sizzle_cut",
-   "note": "AI sizzle/highlight assembly across the three finalized club clips (steps 18/20/22), target_duration ~30s, user_prompt for high-energy fast-paced club-recap pacing. [A] async — the product widget polls and notifies; this is the connector's analog to 'pick the best moments'. Frame-accurate cuts/transitions/motion-graphics remain the flagged manual finish."
+   "note": "AI sizzle/highlight assembly across the three finalized club clips (steps 17/19/21), target_duration ~30s, user_prompt for high-energy fast-paced club-recap pacing. [A] async — the product widget polls and notifies; this is the connector's analog to 'pick the best moments'. Frame-accurate cuts/transitions/motion-graphics remain the flagged manual finish."
   },
   {
-   "n": 24,
+   "n": 23,
    "tool": "video_resize",
    "server": "adobe",
    "exec_mode": "A",
    "inputs_from": "sizzle_cut",
    "output": "recap_9x16",
-   "note": "Reframe/resize the sizzle cut from step 23 to a clean full-frame 1080x1920 (9:16), SAME length (no trim). [A] async. Produces pulsevault_recap_9x16.mp4."
+   "note": "Reframe/resize the sizzle cut from step 22 to a clean full-frame 1080x1920 (9:16), SAME length (no trim). [A] async. Produces pulsevault_recap_9x16.mp4."
   },
   {
-   "n": 25,
+   "n": 24,
    "tool": "asset_initialize_file_upload",
    "server": "adobe",
    "exec_mode": "C",
@@ -310,31 +296,13 @@
    "note": "Upload the event_info_captions.json cue sheet (media_type application/json) into the project folder as the on-screen event-info/text asset for the editor."
   },
   {
-   "n": 26,
+   "n": 25,
    "tool": "asset_finalize_file_upload",
    "server": "adobe",
    "exec_mode": "C",
    "inputs_from": "uploaded_captions_ref",
    "output": "captions_asset",
    "note": "Finalize the captions/event-info cue sheet (recap_captions.json) into the client's CC project folder so source + captions stay with the project."
-  },
-  {
-   "n": 27,
-   "tool": "create_firefly_board",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "cover_frame_1080x1920, logo_svg, recap_9x16",
-   "output": "signoff_board",
-   "note": "Assemble the produced assets — graded cover frame (step 12), vector logo (step 15), and reframed recap reel (step 24) — into a Firefly Boards deep-link so the promoter previews the whole package in one place before posting."
-  },
-  {
-   "n": 28,
-   "tool": "asset_copy_assets",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "cover_frame_1080x1920, logo_svg, captions_asset, recap_9x16",
-   "output": "recap_package_folder",
-   "note": "Copy the final deliverables (graded cover, logo SVG, captions, reel) into a single dated handoff folder in the client's Creative Cloud so source + deliverables sit together for the promoter's weekly tweaks (the brief's 'keep it easy each week' ask)."
   }
  ],
  "tools_used": [
@@ -351,21 +319,18 @@
   "image_add_grain",
   "image_crop_and_resize",
   "image_vectorize",
-  "asset_inline_preview",
   "video_create_quick_cut",
-  "video_resize",
-  "create_firefly_board",
-  "asset_copy_assets"
+  "video_resize"
  ],
- "tool_call_count": 28,
- "distinct_adobe_tools": 18,
- "chaining_note": "One continuous output-to-input chain anchored on the client-supplied assets. The hero cover still is uploaded (1) then finalized (2); the finalized URL feeds straighten (3) -> auto_tone (4) -> dark-portion lift (5) -> color_temperature (6) -> HSL grade (7). The graded image (7) is consumed by select_subject (8) to make a mask, and both the graded image (7) and that mask (8) feed the masked vibrance/saturation subject-pop (9) -> halftone (10) -> grain (11) -> crop_and_resize to the 1080x1920 cover frame (12). In parallel the logo is uploaded (13)/finalized (14) and vectorized (15); the cover frame (12) plus logo SVG (15) are QC'd via inline_preview (16). The three club clips are uploaded/finalized (17-22) and consumed by quick_cut (23), whose sizzle output feeds video_resize to the 9:16 reel (24). Captions are uploaded/finalized (25-26). Finally the produced cover frame (12), logo SVG (15), and reel (24) populate a Firefly board (27), and all finals (12/15/26/24) are copied into one dated handoff folder (28). Every post-load step sets inputs_from to the producing step's output name; the recap package emerges only from the assembled chain — nothing new is generated outside it.",
- "difficulty_rationale": "Long-horizon flagship: 28 connector calls, 18 distinct Adobe tools, across 3 groups (image raster/grade, asset/board/storage, video). The raster grade-and-cover-frame spine is a genuine 10-step headless [C] chain with a real masked selective edit (select_subject -> masked vibrance subject-pop). It is honestly mode-tagged: the video sizzle/reframe is [A] async (entitled, product-widget-polled, not headless-retrievable), and the spec states up front that frame-accurate cuts, hard transitions, and animated motion graphics are NOT connector-doable and are the flagged manual Premiere/After Effects finish — so nothing from the not-available list is claimed as a core deliverable. This is a genuine 'create' task (assemble a NEW deliverable from SUPPLIED raw clips + stills + logo, non-generative) that reads as a straightforward 30s recap but forces the agent to recognize the honest Adobe path: a long headless grade pipeline on the cover still FIRST, then async video assembly + reframe — while avoiding unavailable capabilities (no text-to-image B-roll, no compositing the logo onto the frame, no AI object removal, no upscaling, no timeline-trim-to-timestamp). The single non-connector composite (logo lockup placement) is named as the one human-finish step. Well above the >=10 calls / >=6 distinct-tool flagship floor.",
+ "tool_call_count": 25,
+ "distinct_adobe_tools": 15,
+ "chaining_note": "One continuous output-to-input chain anchored on the client-supplied assets. The hero cover still is uploaded (1) then finalized (2); the finalized URL feeds straighten (3) -> auto_tone (4) -> dark-portion lift (5) -> color_temperature (6) -> HSL grade (7). The graded image (7) is consumed by select_subject (8) to make a mask, and both the graded image (7) and that mask (8) feed the masked vibrance/saturation subject-pop (9) -> halftone (10) -> grain (11) -> crop_and_resize to the 1080x1920 cover frame (12). In parallel the logo is uploaded (13)/finalized (14) and vectorized (15) into the reusable corner-lockup SVG. The three club clips are uploaded/finalized (16-21) and consumed by quick_cut (22), whose sizzle output feeds video_resize to the 9:16 reel (23). Captions are uploaded/finalized (24-25). Every post-load step sets inputs_from to the producing step's output name; the recap package emerges only from the assembled chain — nothing new is generated outside it.",
+ "difficulty_rationale": "Long-horizon flagship: 25 connector calls, 15 distinct Adobe tools, across 3 groups (image raster/grade, asset/storage, video). The raster grade-and-cover-frame spine is a genuine 10-step headless [C] chain with a real masked selective edit (select_subject -> masked vibrance subject-pop). It is honestly mode-tagged: the video sizzle/reframe is [A] async (entitled, product-widget-polled, not headless-retrievable), and the spec states up front that frame-accurate cuts, hard transitions, and animated motion graphics are NOT connector-doable and are the flagged manual Premiere/After Effects finish — so nothing from the not-available list is claimed as a core deliverable. This is a genuine 'create' task (assemble a NEW deliverable from SUPPLIED raw clips + stills + logo, non-generative) that reads as a straightforward 30s recap but forces the agent to recognize the honest Adobe path: a long headless grade pipeline on the cover still FIRST, then async video assembly + reframe — while avoiding unavailable capabilities (no text-to-image B-roll, no compositing the logo onto the frame, no AI object removal, no upscaling, no timeline-trim-to-timestamp). The single non-connector composite (logo lockup placement) is named as the one human-finish step. Well above the >=10 calls / >=6 distinct-tool flagship floor.",
  "workflow_nature": "create",
  "reverify": {
   "severity": "pass",
-  "banned_capability_check": "No banned capability is used. No generative fill of new content; no text-to-image / from-scratch art or logo (the wordmark is a supplied client PNG, only vectorized); no upscaling / super-resolution (video is Full HD native, video_resize is a same-length reframe not an upscale); no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area is NOT used. image_remove_background is NOT used. No Express-widget [W] tools (search_design/fill_text/animate_design/change_background_color) and no Canva tools — all 28 steps server=='adobe'.",
-  "notes": "Every potentially-risky step stays in-bounds. image_select_subject (8) returns a mask consumed ONLY by masked image_adjust_vibrance_and_saturation (9) — a legal selective raster edit, not object removal or compositing. image_apply_halftone (10) and image_add_grain (11) are whole-image stylistic filters. image_vectorize (15) runs on a flat high-contrast supplied logo PNG → clean SVG (documented use). The video steps (23 quick_cut, 24 resize) are correctly tagged [A] async-widget: quick_cut assembles three SUPPLIED motion clips (its intended input — genuine video, not a stills-only stretch) and video_resize is same-length (no trim). The one composite the brief implies (logo lockup ON the cover frame) is explicitly declared the single human-finish placement step and the cover_frame output PNG is described as NOT having the logo burned in, so no compositing is claimed as connector-doable. create_firefly_board (27) and asset_copy_assets (28) only gather assets the chain itself produced (honest board/handoff use, consistent with the accepted AO-57/AO-60 pattern in the dataset). Frame-accurate cuts / transitions / motion graphics are named as out-of-scope manual finish, so no timeline-edit capability is over-claimed. Counts verified independently: connector_workflow has 28 steps (tool_call_count=28) and 18 distinct adobe-server tools (distinct_adobe_tools=18), and tools_used lists exactly those 18. Slot-match confirmed: category video_edit / operation family Motion & Video / output_modality video (primary deliverable pulsevault_recap_9x16.mp4) / workflow_nature create / vertical Events & Entertainment; brand 'Pulsevault' is fictional and IP-clean."
+  "banned_capability_check": "No banned capability is used. No generative fill of new content; no text-to-image / from-scratch art or logo (the wordmark is a supplied client PNG, only vectorized); no upscaling / super-resolution (video is Full HD native, video_resize is a same-length reframe not an upscale); no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area is NOT used. image_remove_background is NOT used. No Express-widget [W] tools (search_design/fill_text/animate_design/change_background_color) and no Canva tools — all 25 steps server=='adobe'.",
+  "notes": "Every potentially-risky step stays in-bounds. image_select_subject (8) returns a mask consumed ONLY by masked image_adjust_vibrance_and_saturation (9) — a legal selective raster edit, not object removal or compositing. image_apply_halftone (10) and image_add_grain (11) are whole-image stylistic filters. image_vectorize (15) runs on a flat high-contrast supplied logo PNG → clean SVG (documented use). The video steps (22 quick_cut, 23 resize) are correctly tagged [A] async-widget: quick_cut assembles three SUPPLIED motion clips (its intended input — genuine video, not a stills-only stretch) and video_resize is same-length (no trim). The one composite the brief implies (logo lockup ON the cover frame) is explicitly declared the single human-finish placement step and the cover_frame output PNG is described as NOT having the logo burned in, so no compositing is claimed as connector-doable. Frame-accurate cuts / transitions / motion graphics are named as out-of-scope manual finish, so no timeline-edit capability is over-claimed. Counts verified independently: connector_workflow has 25 steps (tool_call_count=25) and 15 distinct adobe-server tools (distinct_adobe_tools=15), and tools_used lists exactly those 15. Slot-match confirmed: category video_edit / operation family Motion & Video / output_modality video (primary deliverable pulsevault_recap_9x16.mp4) / workflow_nature create / vertical Events & Entertainment; brand 'Pulsevault' is fictional and IP-clean."
  },
  "id": "AO-97"
 }
