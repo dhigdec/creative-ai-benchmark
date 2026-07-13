@@ -27,7 +27,7 @@ for p in glob.glob(str(SPECS / "*.json")):
     if true_distinct and s.get("distinct_adobe_tools") != true_distinct:
         changed.append(f"{tid}: distinct_adobe_tools {s.get('distinct_adobe_tools')} -> {true_distinct}")
         s["distinct_adobe_tools"] = true_distinct; dirty = True
-    if tid == "AO-123":
+    if False and tid == "AO-123":  # audio de-scoped 2026-07-11 — do NOT re-add the wav
         names = {i.get("name") for i in (s.get("inputs") or [])}
         if "lecture_audio_raw.wav" not in names:
             # insert right after the lecture video it derives from

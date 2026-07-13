@@ -1,293 +1,244 @@
 {
- "id": "AO-56",
- "slug": "comedy-gameplay-youtube-edit-package",
- "title": "Comedy Gameplay YouTube Edit: Sizzle Cut, Reframed Shorts Variant, Meme Cutaway Graphics + Clickbait Thumbnail",
- "vertical": "Music, Film, Publishing & Media",
- "category": "video_edit",
- "source": {
-  "platform": "Freelancer.com",
-  "url": "https://www.freelancer.com/projects/youtube/Comedy-Gameplay-Video-Editing"
- },
- "grounding_note": "VERBATIM from the brief: raw gameplay captures to be turned into an entertaining 1080p (or higher) YouTube upload encoded in H.264; comedy-sketch feel with rapid reaction zooms, text call-outs, meme-style cutaways and on-screen memes; aggressive trimming of dead air, jump cuts, edits timed to the beat of background tracks; client supplies the footage, rough time-stamped notes on funny moments, custom graphics, and a royalty-free music folder; deliverables = one fully edited 1080p H.264 video, a matching project file for later tweaks, and a thumbnail frame exported as a PNG. REASONABLY ENRICHED to make it a runnable long Adobe chain: (a) the meme cutaways / text call-outs are produced as concrete on-screen graphic assets — a clean-toned hero gameplay frame, two text-callout cards vectorized to SVG, and a duotone meme reaction tile — rather than left abstract; (b) a second vertical 1080x1920 reframed cut is added as a YouTube Shorts teaser since the connector exposes reframe; (c) the supplied voice ad-lib / commentary track is denoised; (d) the music folder is summarized for beat/energy reference; (e) all source media plus the produced graphics are organized into a CC project folder and a Firefly Board acts as the 'project file' reference board. NO capability is invented: no AI object removal, no generative fill (only solid fills + reframe-crop-expand are used), no text-to-image, no layout composition (the .indd is only EXPORTED from a client-authored title-card file). The hard creative judgement of WHERE jokes land is encoded as the client's time-stamped notes feeding the Quick Cut prompt, matching the brief's 'I'll supply my rough time-stamped notes'.",
- "one_line_ask": "Turn raw comedy gameplay footage plus client notes, custom graphics and a music folder into a punchy 1080p H.264 YouTube cut with a vertical Shorts variant, polished meme/text-callout overlay graphics, a denoised commentary track, and a clickbait thumbnail PNG — all organized into one reusable project package.",
- "full_brief": "You are editing a comedy gameplay channel's next upload. The client hands you: a ~22-minute raw 1080p gameplay capture (ranked match, lots of dead air between highlights), a voice-memo commentary/ad-lib track recorded on a cheap mic, a time-stamped notes sheet flagging the funny moments ('3:12 clutch fail', '7:48 teammate rage', '14:02 accidental teamkill', etc.), a folder of custom graphics (a raw 'POV:' meme reaction screenshot and a hero gameplay still earmarked for the thumbnail), and a royalty-free music folder.\\n\\nGoal: a fully edited, fast-paced comedy YouTube piece that lands a laugh every few seconds — rapid reaction zooms, jump cuts, text call-outs, and meme-style cutaways — PLUS a matching reusable project package and a clickbait thumbnail.\\n\\nConcretely:\\n1. Pull the client's footage, commentary, meme screenshot, hero still and music into a managed Creative Cloud project folder, and license one extra royalty-free 'explosion/impact' stock sound or sting if the supplied folder is thin.\\n2. Summarize the music folder for content/mood/structure so the right track can be paired with the cut; clean the commentary track so the ad-libs sit cleanly over the gameplay.\\n3. Generate the on-screen comedy graphics from the supplied raw assets: straighten + auto-tone + crop the hero frame into a punchy 1280x720 thumbnail base; punch its contrast/saturation and apply a clickbait color overlay; turn the raw 'POV:' meme screenshot into a high-contrast duotone meme tile; and vectorize two meme/callout stills to clean SVGs so they stay crisp when zoomed.\\n4. Cut the gameplay down to a tight comedy edit driven by the client's funny-moment notes as free-text prompt steering, then produce a vertical Shorts teaser of the same energy.\\n5. Hand back: the edited 1080p H.264 master, the vertical Shorts cut, the thumbnail PNG, the overlay graphic set (duotone tile + 2 SVG callouts), and a project board/folder that ties every source + produced asset together so the client can tweak details later.\\n\\nStay within YouTube guidelines; humor tasteful; graphics crisp at zoom.",
- "inputs": [
-  {
-   "name": "raw_gameplay_capture.mp4",
-   "kind": "video",
-   "gen_model": "veo-3.1-generate-preview",
-   "gen_prompt": "Screen-recorded first-person competitive shooter gameplay, 1080p, 22-minute-style ranked match feel rendered as a representative 40s clip: HUD with health/ammo/minimap, crosshair, kill-feed popups, occasional missed shots and a clumsy fall, long stretches of walking with little action between 2-3 highlight spikes. Flat game-capture look, slight compression, no cinematic grade, native game audio (footsteps, gunfire, ambient).",
-   "realism_notes": "Must look like genuine OBS/console screen-capture, not a cinematic render — flat exposure, real HUD elements, dead air between highlights so trimming has something to trim."
+  "id": "AO-56",
+  "slug": "comedy-gameplay-youtube-edit-package",
+  "title": "Comedy Gameplay YouTube Edit: Sizzle Cut, Reframed Shorts Variant, Meme Cutaway Graphics + Clickbait Thumbnail",
+  "vertical": "Music, Film, Publishing & Media",
+  "category": "video_edit",
+  "source": {
+    "platform": "Freelancer.com",
+    "url": "https://www.freelancer.com/projects/youtube/Comedy-Gameplay-Video-Editing"
   },
-  {
-   "name": "commentary_adlibs.wav",
-   "kind": "audio",
-   "gen_model": "gpt-4o-mini-tts",
-   "gen_prompt": "Energetic young male streamer ad-libbing reactions over gameplay: 'oh no no no — NOT like this', 'bro why is my teammate like this', nervous laughing, a few 'let's gooo' shouts. Casual, fast, slightly off-mic.",
-   "realism_notes": "Capture to WAV then deliberately roughen: cheap-mic timbre, room reverb, mild hiss/plosives and uneven level — this is the repair target for media_enhance_speech, so it must sound like a real bedroom mic, not studio-clean."
-  },
-  {
-   "name": "funny_moment_notes.csv",
-   "kind": "data",
-   "gen_model": "gemini-2.5-flash",
-   "gen_prompt": "CSV with columns timestamp,label,reaction_type for ~10 flagged comedy beats across a 22-min match, e.g. 00:03:12,clutch fail,zoom; 00:07:48,teammate rage,text-callout; 00:14:02,accidental teamkill,meme-cutaway; 00:19:30,victory dance,sound-bite. Mix of zoom/text/meme/sound reactions.",
-   "realism_notes": "Reads like a creator's rough hand-typed notes — lowercase, terse labels, a couple of slightly inconsistent timestamp formats. Passed to Quick Cut only as free-text prompt steering, not as exact-timestamp trim points."
-  },
-  {
-   "name": "pov_meme_screenshot.png",
-   "kind": "image",
-   "gen_model": "gemini-3-pro-image",
-   "gen_prompt": "A meme-style reaction screenshot: bold white impact-font top text reading 'POV: your teammate has the aim of a potato', over a slightly blurry exaggerated in-game character close-up. Deliberately low-effort meme aesthetic with hard text outline.",
-   "realism_notes": "Text-bearing meme image — use the text-capable model. Slight JPEG-ish softness so the duotone/halftone treatment has texture to bite into."
-  },
-  {
-   "name": "hero_thumbnail_frame.png",
-   "kind": "image",
-   "gen_model": "gpt-image-2",
-   "gen_prompt": "A dramatic high-action gameplay still earmarked for a YouTube thumbnail: explosion/muzzle flash, character mid-dive, vivid orange-and-teal scene, slightly tilted handheld-capture framing, a little underexposed and crooked (so it visibly needs straighten + tone + crop). 1920x1080, photoreal game-render look.",
-   "realism_notes": "Intentionally a few degrees off-level and slightly flat/underexposed so auto_straighten, auto_tone and the contrast/overlay steps have real work to do."
-  },
-  {
-   "name": "royalty_free_music_folder",
-   "kind": "audio",
-   "gen_model": "gpt-4o-mini-tts",
-   "gen_prompt": "Stand-in royalty-free background tracks folder reference: two upbeat royalty-free instrumental loops (one trap/hype 140bpm, one goofy comedic ukulele) used as reference for pairing a track with the cut. Represented as short instrumental stems.",
-   "realism_notes": "These are content/mood reference only; media_summarize summarizes their content/mood/structure. Should sound like generic library music, clearly instrumental, loopable."
+  "grounding_note": "VERBATIM from the brief: raw gameplay captures to be turned into an entertaining 1080p (or higher) YouTube upload encoded in H.264; comedy-sketch feel with rapid reaction zooms, text call-outs, meme-style cutaways and on-screen memes; aggressive trimming of dead air and jump cuts; client supplies the footage, rough time-stamped notes on funny moments, and custom graphics; deliverables = one fully edited 1080p H.264 video, a matching project file for later tweaks, and a thumbnail frame exported as a PNG. REASONABLY ENRICHED to make it a runnable long Adobe chain: (a) the meme cutaways / text call-outs are produced as concrete on-screen graphic assets — a clean-toned hero gameplay frame, two text-callout cards vectorized to SVG, and a duotone meme reaction tile — rather than left abstract; (b) a second vertical 1080x1920 reframed cut is added as a YouTube Shorts teaser since the connector exposes reframe; (c) all source media plus the produced graphics are organized into a CC project folder and a Firefly Board acts as the 'project file' reference board. NO capability is invented: no AI object removal, no generative fill (only solid fills + reframe-crop-expand are used), no text-to-image, no layout composition (the .indd is only EXPORTED from a client-authored title-card file). The hard creative judgement of WHERE jokes land is encoded as the client's time-stamped notes feeding the Quick Cut prompt, matching the brief's 'I'll supply my rough time-stamped notes'.",
+  "one_line_ask": "Turn raw comedy gameplay footage plus client notes and custom graphics into a punchy 1080p H.264 YouTube cut with a vertical Shorts variant, polished meme/text-callout overlay graphics, and a clickbait thumbnail PNG — all organized into one reusable project package.",
+  "full_brief": "You are editing a comedy gameplay channel's next upload. The client hands you: a ~22-minute raw 1080p gameplay capture (ranked match, lots of dead air between highlights), a time-stamped notes sheet flagging the funny moments ('3:12 clutch fail', '7:48 teammate rage', '14:02 accidental teamkill', etc.), and a folder of custom graphics (a raw 'POV:' meme reaction screenshot and a hero gameplay still earmarked for the thumbnail).\\n\\nGoal: a fully edited, fast-paced comedy YouTube piece that lands a laugh every few seconds — rapid reaction zooms, jump cuts, text call-outs, and meme-style cutaways — PLUS a matching reusable project package and a clickbait thumbnail.\\n\\nConcretely:\\n1. Pull the client's footage, meme screenshot, hero still and notes into a managed Creative Cloud project folder.\\n2. Generate the on-screen comedy graphics from the supplied raw assets: straighten + auto-tone + crop the hero frame into a punchy 1280x720 thumbnail base; punch its contrast/saturation and apply a clickbait color overlay; turn the raw 'POV:' meme screenshot into a high-contrast duotone meme tile; and vectorize two meme/callout stills to clean SVGs so they stay crisp when zoomed.\\n3. Cut the gameplay down to a tight comedy edit driven by the client's funny-moment notes as free-text prompt steering, then produce a vertical Shorts teaser of the same energy.\\n4. Hand back: the edited 1080p H.264 master, the vertical Shorts cut, the thumbnail PNG, the overlay graphic set (duotone tile + 2 SVG callouts), and a project board/folder that ties every source + produced asset together so the client can tweak details later.\\n\\nStay within YouTube guidelines; humor tasteful; graphics crisp at zoom.",
+  "inputs": [
+    {
+      "name": "raw_gameplay_capture.mp4",
+      "kind": "video",
+      "gen_model": "veo-3.1-generate-preview",
+      "gen_prompt": "Screen-recorded first-person competitive shooter gameplay, 1080p, 22-minute-style ranked match feel rendered as a representative 40s clip: HUD with health/ammo/minimap, crosshair, kill-feed popups, occasional missed shots and a clumsy fall, long stretches of walking with little action between 2-3 highlight spikes. Flat game-capture look, slight compression, no cinematic grade.",
+      "realism_notes": "Must look like genuine OBS/console screen-capture, not a cinematic render — flat exposure, real HUD elements, dead air between highlights so trimming has something to trim."
+    },
+    {
+      "name": "funny_moment_notes.csv",
+      "kind": "data",
+      "gen_model": "gemini-2.5-flash",
+      "gen_prompt": "CSV with columns timestamp,label,reaction_type for ~10 flagged comedy beats across a 22-min match, e.g. 00:03:12,clutch fail,zoom; 00:07:48,teammate rage,text-callout; 00:14:02,accidental teamkill,meme-cutaway; 00:19:30,victory dance,freeze-frame. Mix of zoom/text/meme/freeze reactions.",
+      "realism_notes": "Reads like a creator's rough hand-typed notes — lowercase, terse labels, a couple of slightly inconsistent timestamp formats. Passed to Quick Cut only as free-text prompt steering, not as exact-timestamp trim points."
+    },
+    {
+      "name": "pov_meme_screenshot.png",
+      "kind": "image",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "A meme-style reaction screenshot: bold white impact-font top text reading 'POV: your teammate has the aim of a potato', over a slightly blurry exaggerated in-game character close-up. Deliberately low-effort meme aesthetic with hard text outline.",
+      "realism_notes": "Text-bearing meme image — use the text-capable model. Slight JPEG-ish softness so the duotone/halftone treatment has texture to bite into."
+    },
+    {
+      "name": "hero_thumbnail_frame.png",
+      "kind": "image",
+      "gen_model": "gpt-image-2",
+      "gen_prompt": "A dramatic high-action gameplay still earmarked for a YouTube thumbnail: explosion/muzzle flash, character mid-dive, vivid orange-and-teal scene, slightly tilted handheld-capture framing, a little underexposed and crooked (so it visibly needs straighten + tone + crop). 1920x1080, photoreal game-render look.",
+      "realism_notes": "Intentionally a few degrees off-level and slightly flat/underexposed so auto_straighten, auto_tone and the contrast/overlay steps have real work to do."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "comedy_edit_master_1080p_h264.mp4",
+      "kind": "video",
+      "spec": "Edited fast-paced comedy cut, 1920x1080, H.264/MP4, ~3-4 min target, produced by an AI Quick Cut driven by the funny-moment notes as free-text prompt steering — the YouTube master deliverable."
+    },
+    {
+      "name": "comedy_edit_shorts_1080x1920.mp4",
+      "kind": "video",
+      "spec": "Vertical reframed teaser of the master cut, 1080x1920, H.264/MP4, SAME length as its source clip (reframe only, no trim) — YouTube Shorts variant."
+    },
+    {
+      "name": "youtube_thumbnail_1280x720.png",
+      "kind": "image",
+      "spec": "Clickbait thumbnail: straightened, auto-toned, contrast/saturation-punched hero frame with clickbait color overlay, cropped/resized to 1280x720 PNG."
+    },
+    {
+      "name": "meme_cutaway_tile.png",
+      "kind": "image",
+      "spec": "High-contrast duotone/halftone meme reaction tile derived from the 'POV:' screenshot, ready to drop in as an on-screen cutaway."
+    },
+    {
+      "name": "text_callout_card_1.svg",
+      "kind": "vector",
+      "spec": "Crisp whole-raster vectorization (SVG) of the duotone meme tile for on-screen call-outs, stays sharp under reaction zooms."
+    },
+    {
+      "name": "text_callout_card_2.svg",
+      "kind": "vector",
+      "spec": "Second whole-raster vectorization (SVG) of the styled hero frame, matching style, for a different beat."
+    },
+    {
+      "name": "project_package",
+      "kind": "data",
+      "spec": "A CC project folder containing every source + produced asset plus a Firefly Board deep-link that ties them together as the reusable 'project file' reference."
+    }
+  ],
+  "connector_workflow": [
+    {
+      "n": 1,
+      "tool": "asset_create_folders",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "",
+      "output": "project_folder",
+      "note": "Create a managed Creative Cloud project folder ('Comedy_Gameplay_Edit') to hold all source + produced assets. Root of the deliverable package."
+    },
+    {
+      "n": 2,
+      "tool": "asset_initialize_file_upload",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "project_folder",
+      "output": "upload_sessions",
+      "note": "Initialize upload of the client-supplied source files (gameplay mp4, meme screenshot, hero still, notes csv) into project_folder."
+    },
+    {
+      "n": 3,
+      "tool": "asset_finalize_file_upload",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "upload_sessions",
+      "output": "ingested_assets",
+      "note": "Finalize the uploads, yielding stored CC asset handles for every source file — the chain's root inputs now live in the project."
+    },
+    {
+      "n": 4,
+      "tool": "image_auto_straighten",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "ingested_assets (hero_thumbnail_frame.png)",
+      "output": "hero_straightened",
+      "note": "Level the crooked hero gameplay still (the thumbnail base) — first step of the thumbnail chain."
+    },
+    {
+      "n": 5,
+      "tool": "image_apply_auto_tone",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "hero_straightened",
+      "output": "hero_toned",
+      "note": "Auto-tone the straightened hero frame to fix the underexposed/flat capture."
+    },
+    {
+      "n": 6,
+      "tool": "image_adjust_vibrance_and_saturation",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "hero_toned",
+      "output": "hero_punched",
+      "note": "Punch vibrance/saturation on the toned hero frame for that high-energy clickbait pop."
+    },
+    {
+      "n": 7,
+      "tool": "image_apply_color_overlay",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "hero_punched",
+      "output": "hero_overlaid",
+      "note": "Apply a warm clickbait color overlay (orange-teal push) on the punched hero frame for thumbnail vibe."
+    },
+    {
+      "n": 8,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "hero_overlaid",
+      "output": "youtube_thumbnail_1280x720",
+      "note": "Crop + resize the overlaid hero frame to the 1280x720 YouTube thumbnail spec → thumbnail PNG deliverable."
+    },
+    {
+      "n": 9,
+      "tool": "image_adjust_brightness_and_contrast",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "ingested_assets (pov_meme_screenshot.png)",
+      "output": "meme_contrasted",
+      "note": "Crank contrast on the raw 'POV:' meme screenshot to prep it for a punchy duotone treatment — start of the meme-tile chain."
+    },
+    {
+      "n": 10,
+      "tool": "image_apply_halftone",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "meme_contrasted",
+      "output": "meme_cutaway_tile",
+      "note": "Apply halftone/duotone to the contrasted meme screenshot → high-contrast meme cutaway tile deliverable."
+    },
+    {
+      "n": 11,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "meme_cutaway_tile",
+      "output": "text_callout_card_1",
+      "note": "Whole-raster vectorize the duotone meme tile into a clean SVG so it stays crisp under reaction zooms → SVG callout #1 deliverable. (Traces the whole image, not a text sub-region.)"
+    },
+    {
+      "n": 12,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "hero_overlaid",
+      "output": "text_callout_card_2",
+      "note": "Whole-raster vectorize the styled hero frame into a second clean SVG callout card (matching look, different beat) → SVG callout #2 deliverable. (Traces the whole image, not a sub-region.)"
+    },
+    {
+      "n": 13,
+      "tool": "video_create_quick_cut",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "ingested_assets (raw_gameplay_capture.mp4)",
+      "output": "comedy_edit_master_1080p_h264",
+      "note": "AI Quick Cut of the raw gameplay into a tight comedy sizzle; prompt driven by the client's funny-moment notes as free-text steering (NOT exact-timestamp trimming). 1080p H.264 master deliverable. Async-widget."
+    },
+    {
+      "n": 14,
+      "tool": "video_resize",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "comedy_edit_master_1080p_h264",
+      "output": "comedy_edit_shorts_1080x1920",
+      "note": "Reframe the master cut to vertical 1080x1920 (same length, no trim) for the YouTube Shorts teaser variant. Consumes the master from step 13. Async-widget."
+    },
+    {
+      "n": 15,
+      "tool": "create_firefly_board",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "youtube_thumbnail_1280x720, meme_cutaway_tile, text_callout_card_1, text_callout_card_2, comedy_edit_master_1080p_h264, comedy_edit_shorts_1080x1920",
+      "output": "project_package",
+      "note": "Assemble all produced asset URNs (thumbnail, meme tile, 2 SVG callouts, master + shorts cuts) into a Firefly Board deep-link as the reusable 'project file' reference board, alongside the project folder. Final package."
+    }
+  ],
+  "tools_used": [
+    "asset_create_folders",
+    "asset_initialize_file_upload",
+    "asset_finalize_file_upload",
+    "image_auto_straighten",
+    "image_apply_auto_tone",
+    "image_adjust_vibrance_and_saturation",
+    "image_apply_color_overlay",
+    "image_crop_and_resize",
+    "image_adjust_brightness_and_contrast",
+    "image_apply_halftone",
+    "image_vectorize",
+    "video_create_quick_cut",
+    "video_resize",
+    "create_firefly_board"
+  ],
+  "tool_call_count": 15,
+  "distinct_adobe_tools": 14,
+  "chaining_note": "Strict output→input chain. Steps 1-3 stand up the project: create folder → init upload → finalize upload yields ingested_assets (every source file). The THUMBNAIL chain is fully linear: ingested hero still → auto_straighten(4) → auto_tone(5) → vibrance/sat(6) → color_overlay(7) → crop_and_resize(8)=thumbnail PNG. The MEME chain: ingested meme screenshot → brightness/contrast(9) → halftone(10)=meme tile → vectorize(11)=SVG callout #1 (whole-raster trace). SVG callout #2 (12) whole-raster vectorizes the styled hero frame from step 7. The VIDEO chain: Quick Cut(13) consumes the ingested gameplay, steered by the funny-moment notes as free text → master cut; video_resize(14) consumes that master → vertical Shorts (same length, reframe only). Finally create_firefly_board(15) consumes the outputs of 8,10,11,12,13,14 to assemble the reusable project package board. Every step after the initial asset load (step 3) consumes a prior step's named output — nothing is loaded twice from scratch.",
+  "difficulty_rationale": "Long-horizon flagship: 15 connector calls, 14 distinct Adobe tools, spanning four connector groups (A4 asset/storage/board, A5 video, A1 photo/raster, A2 vector) with three parallel sub-chains (thumbnail, meme/callout graphics, video) that converge into one project-package deliverable — well past the ≥12 calls / ≥3 groups / ≥6 distinct tools flagship bar. Difficulty also comes from honest execution-mode mixing: the core video steps (13,14) are [A] async-widget (product-doable, not headless-retrievable), while the durable creative spine (thumbnail, meme tile, SVG callouts, folder, board) is all [C] headless-confirmed, so a grader can verify most of the deliverable autonomously. Faithful to a real Freelancer.com comedy-gameplay brief while staying strictly inside the capability sheet — no generative fill, no object removal, no text-to-image, no layout composition; image_fill_area avoided; video_resize used as same-length reframe only.",
+  "_severity": "pass",
+  "reverify": {
+    "severity": "pass",
+    "banned_capability_check": "No banned capability appears in any step or in any prose field. No image_crop_and_resize crop-grow, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction. image_fill_area is not used. image_apply_lens_blur is not used. video_resize is used as a same-length vertical reframe only (no trim). image_crop_and_resize crops/reframes the hero frame (never grows it). image_vectorize traces whole rasters into SVGs. Quick Cut is prompt-driven from the client's funny-moment notes as free-text steering (no exact-timestamp trimming). Every input a step consumes is declared in inputs[].",
+    "notes": "All 15 steps map to real Adobe connector tools and are gen-free. Task stays real, coherent, and fully connector-doable as a pure visual/video edit."
   }
- ],
- "outputs": [
-  {
-   "name": "comedy_edit_master_1080p_h264.mp4",
-   "kind": "video",
-   "spec": "Edited fast-paced comedy cut, 1920x1080, H.264/MP4, ~3-4 min target, produced by an AI Quick Cut driven by the funny-moment notes as free-text prompt steering — the YouTube master deliverable."
-  },
-  {
-   "name": "comedy_edit_shorts_1080x1920.mp4",
-   "kind": "video",
-   "spec": "Vertical reframed teaser of the master cut, 1080x1920, H.264/MP4, SAME length as its source clip (reframe only, no trim) — YouTube Shorts variant."
-  },
-  {
-   "name": "youtube_thumbnail_1280x720.png",
-   "kind": "image",
-   "spec": "Clickbait thumbnail: straightened, auto-toned, contrast/saturation-punched hero frame with clickbait color overlay, cropped/resized to 1280x720 PNG."
-  },
-  {
-   "name": "meme_cutaway_tile.png",
-   "kind": "image",
-   "spec": "High-contrast duotone/halftone meme reaction tile derived from the 'POV:' screenshot, ready to drop in as an on-screen cutaway."
-  },
-  {
-   "name": "text_callout_card_1.svg",
-   "kind": "vector",
-   "spec": "Crisp whole-raster vectorization (SVG) of the duotone meme tile for on-screen call-outs, stays sharp under reaction zooms."
-  },
-  {
-   "name": "text_callout_card_2.svg",
-   "kind": "vector",
-   "spec": "Second whole-raster vectorization (SVG) of the styled hero frame, matching style, for a different beat."
-  },
-  {
-   "name": "cleaned_commentary.wav",
-   "kind": "audio",
-   "spec": "Denoised/cleaned commentary ad-lib voice track (speech-only enhancement) for layering over gameplay."
-  },
-  {
-   "name": "project_package",
-   "kind": "data",
-   "spec": "A CC project folder containing every source + produced asset plus a Firefly Board deep-link that ties them together as the reusable 'project file' reference; plus a music content/mood summary note for track pairing."
-  }
- ],
- "connector_workflow": [
-  {
-   "n": 1,
-   "tool": "asset_create_folders",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "",
-   "output": "project_folder",
-   "note": "Create a managed Creative Cloud project folder ('Comedy_Gameplay_Edit') to hold all source + produced assets. Root of the deliverable package."
-  },
-  {
-   "n": 2,
-   "tool": "asset_initialize_file_upload",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "project_folder",
-   "output": "upload_sessions",
-   "note": "Initialize upload of the client-supplied source files (gameplay mp4, commentary wav, meme screenshot, hero still, notes csv, music stems) into project_folder."
-  },
-  {
-   "n": 3,
-   "tool": "asset_finalize_file_upload",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "upload_sessions",
-   "output": "ingested_assets",
-   "note": "Finalize the uploads, yielding stored CC asset handles for every source file — the chain's root inputs now live in the project."
-  },
-  {
-   "n": 4,
-   "tool": "asset_license_and_download_stock",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "ingested_assets",
-   "output": "licensed_impact_sting",
-   "note": "Search + license one royalty-free 'explosion/impact' stock sound sting to supplement the thin music folder; full-res presigned URL added to the project. (License before use.)"
-  },
-  {
-   "n": 5,
-   "tool": "media_summarize",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": "ingested_assets (music stems)",
-   "output": "music_content_summary",
-   "note": "Summarize the royalty-free music stems' content/mood/structure (instrumentation, energy character, sections) so the right track can be paired with the cut. Consumes the ingested music stems only. Async-widget."
-  },
-  {
-   "n": 6,
-   "tool": "media_enhance_speech",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": "ingested_assets (commentary_adlibs.wav)",
-   "output": "cleaned_commentary",
-   "note": "Denoise/clean the cheap-mic commentary ad-lib WAV (speech-only) so it sits cleanly over gameplay. Consumes the ingested commentary track only. Async-widget."
-  },
-  {
-   "n": 7,
-   "tool": "image_auto_straighten",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "ingested_assets (hero_thumbnail_frame.png)",
-   "output": "hero_straightened",
-   "note": "Level the crooked hero gameplay still (the thumbnail base) — first step of the thumbnail chain."
-  },
-  {
-   "n": 8,
-   "tool": "image_apply_auto_tone",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "hero_straightened",
-   "output": "hero_toned",
-   "note": "Auto-tone the straightened hero frame to fix the underexposed/flat capture."
-  },
-  {
-   "n": 9,
-   "tool": "image_adjust_vibrance_and_saturation",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "hero_toned",
-   "output": "hero_punched",
-   "note": "Punch vibrance/saturation on the toned hero frame for that high-energy clickbait pop."
-  },
-  {
-   "n": 10,
-   "tool": "image_apply_color_overlay",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "hero_punched",
-   "output": "hero_overlaid",
-   "note": "Apply a warm clickbait color overlay (orange-teal push) on the punched hero frame for thumbnail vibe."
-  },
-  {
-   "n": 11,
-   "tool": "image_crop_and_resize",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "hero_overlaid",
-   "output": "youtube_thumbnail_1280x720",
-   "note": "Crop + resize the overlaid hero frame to the 1280x720 YouTube thumbnail spec → thumbnail PNG deliverable."
-  },
-  {
-   "n": 12,
-   "tool": "image_adjust_brightness_and_contrast",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "ingested_assets (pov_meme_screenshot.png)",
-   "output": "meme_contrasted",
-   "note": "Crank contrast on the raw 'POV:' meme screenshot to prep it for a punchy duotone treatment — start of the meme-tile chain."
-  },
-  {
-   "n": 13,
-   "tool": "image_apply_halftone",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "meme_contrasted",
-   "output": "meme_cutaway_tile",
-   "note": "Apply halftone/duotone to the contrasted meme screenshot → high-contrast meme cutaway tile deliverable."
-  },
-  {
-   "n": 14,
-   "tool": "image_vectorize",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "meme_cutaway_tile",
-   "output": "text_callout_card_1",
-   "note": "Whole-raster vectorize the duotone meme tile into a clean SVG so it stays crisp under reaction zooms → SVG callout #1 deliverable. (Traces the whole image, not a text sub-region.)"
-  },
-  {
-   "n": 15,
-   "tool": "image_vectorize",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "hero_overlaid",
-   "output": "text_callout_card_2",
-   "note": "Whole-raster vectorize the styled hero frame into a second clean SVG callout card (matching look, different beat) → SVG callout #2 deliverable. (Traces the whole image, not a sub-region.)"
-  },
-  {
-   "n": 16,
-   "tool": "video_create_quick_cut",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": "ingested_assets (raw_gameplay_capture.mp4), music_content_summary",
-   "output": "comedy_edit_master_1080p_h264",
-   "note": "AI Quick Cut of the raw gameplay into a tight comedy sizzle; prompt driven by the client's funny-moment notes as free-text steering, with music_content_summary used to pick the matching track/tone (NOT exact-timestamp trimming). 1080p H.264 master deliverable. Async-widget."
-  },
-  {
-   "n": 17,
-   "tool": "video_resize",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": "comedy_edit_master_1080p_h264",
-   "output": "comedy_edit_shorts_1080x1920",
-   "note": "Reframe the master cut to vertical 1080x1920 (same length, no trim) for the YouTube Shorts teaser variant. Consumes the master from step 16. Async-widget."
-  },
-  {
-   "n": 18,
-   "tool": "create_firefly_board",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "youtube_thumbnail_1280x720, meme_cutaway_tile, text_callout_card_1, text_callout_card_2, comedy_edit_master_1080p_h264, comedy_edit_shorts_1080x1920, cleaned_commentary",
-   "output": "project_package",
-   "note": "Assemble all produced asset URNs (thumbnail, meme tile, 2 SVG callouts, master + shorts cuts, cleaned VO) into a Firefly Board deep-link as the reusable 'project file' reference board, alongside the project folder. Final package."
-  }
- ],
- "tools_used": [
-  "asset_create_folders",
-  "asset_initialize_file_upload",
-  "asset_finalize_file_upload",
-  "asset_license_and_download_stock",
-  "media_summarize",
-  "media_enhance_speech",
-  "image_auto_straighten",
-  "image_apply_auto_tone",
-  "image_adjust_vibrance_and_saturation",
-  "image_apply_color_overlay",
-  "image_crop_and_resize",
-  "image_adjust_brightness_and_contrast",
-  "image_apply_halftone",
-  "image_vectorize",
-  "video_create_quick_cut",
-  "video_resize",
-  "create_firefly_board"
- ],
- "tool_call_count": 18,
- "distinct_adobe_tools": 17,
- "chaining_note": "Strict output→input chain. Steps 1-3 stand up the project: create folder → init upload → finalize upload yields ingested_assets (every source file). Step 4 licenses a stock sting referencing the ingested set. Step 5 (music content/mood/structure summary) consumes the ingested music stems only; step 6 (commentary clean) consumes the ingested commentary.wav only. The THUMBNAIL chain is fully linear: ingested hero still → auto_straighten(7) → auto_tone(8) → vibrance/sat(9) → color_overlay(10) → crop_and_resize(11)=thumbnail PNG. The MEME chain: ingested meme screenshot → brightness/contrast(12) → halftone(13)=meme tile → vectorize(14)=SVG callout #1 (whole-raster trace). SVG callout #2 (15) whole-raster vectorizes the styled hero frame from step 10. The VIDEO chain: Quick Cut(16) consumes the ingested gameplay + music_content_summary(5) to pick the matching track/tone, steered by the funny-moment notes as free text → master cut; video_resize(17) consumes that master → vertical Shorts (same length, reframe only). Finally create_firefly_board(18) consumes the outputs of 11,13,14,15,16,17 and 6 to assemble the reusable project package board. Every step after the initial asset load (step 3) consumes a prior step's named output — nothing is loaded twice from scratch.",
- "difficulty_rationale": "Long-horizon flagship: 18 connector calls, 17 distinct Adobe tools, spanning four connector groups (A4 asset/storage/board, A5 video/audio, A1 photo/raster, A2 vector) with three parallel sub-chains (thumbnail, meme/callout graphics, video) that converge into one project-package deliverable — well past the ≥12 calls / ≥3 groups / ≥6 distinct tools flagship bar. Difficulty also comes from honest execution-mode mixing: the core video/audio steps (5,6,16,17) are [A] async-widget (product-doable, not headless-retrievable), while the durable creative spine (thumbnail, meme tile, SVG callouts, folder, board) is all [C] headless-confirmed, so a grader can verify most of the deliverable autonomously. Faithful to a real Freelancer.com comedy-gameplay brief while staying strictly inside the capability sheet — no generative fill, no object removal, no text-to-image, no layout composition; image_fill_area avoided; video_resize used as same-length reframe only.",
- "_severity": "pass",
- "reverify": {
-  "severity": "pass",
-  "banned_capability_check": "No banned capability appears in any step or in any prose field. No image_crop_and_resize/reframe-crop, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction. image_fill_area is not used. image_apply_lens_blur is not used. video_resize is used as a same-length vertical reframe only (no trim). image_crop_and_resize crops/reframes the hero frame (never grows it). image_vectorize traces whole rasters into SVGs. media_summarize is now scoped to a documented content/mood/structure summary (no beat/tempo/BPM map), and Quick Cut is prompt-driven from that summary plus the client's notes as free-text steering (no exact-timestamp trimming). The prior stale grounding_note reference to 'reframe-crop-expand' was removed. Every input a step consumes is declared in inputs[].",
-  "notes": "All 18 steps map to real Adobe connector tools and are gen-free. Reframing media_summarize to a content/structure summary keeps it inside documented semantics while preserving the chain (Quick Cut still consumes music_content_summary, now for track/tone pairing rather than a beat-map). Task stays real, coherent, and fully connector-doable."
- }
 }

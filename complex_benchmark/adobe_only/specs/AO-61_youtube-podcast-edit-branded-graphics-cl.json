@@ -1,352 +1,317 @@
 {
- "id": "AO-61",
- "slug": "youtube-podcast-edit-branded-graphics-clean-audio",
- "title": "Fun YouTube Podcast: clean-audio cut, reframed 1080p sizzle, and a branded graphics kit (lower-third + end-screen + vector logo)",
- "vertical": "Music, Film, Publishing &amp; Media",
- "category": "audio_clean",
- "source": {
-  "platform": "Freelancer.com",
-  "url": "https://www.freelancer.com/projects/adobe-premiere-pro/Fun-YouTube-Podcast-Editing"
- },
- "grounding_note": "VERBATIM from the Freelancer.com brief: raw YouTube podcast footage to be shaped into an engaging episode; \"trim unwanted pauses or stumbles\", \"add clean transitions\", \"weave in light-hearted graphics or effects that match a casual, fun vibe\", incorporate the client's existing logo \"in the intro, a lower-third, or the end screen\" so branding feels consistent \"without overpowering the content\"; deliverables = a fully edited 1080p (or higher) video, the editing project file, and \"any custom graphic assets you create, delivered separately in PNG/transparent or vector format\"; \"Smooth audio levels and synced visuals are a must… ensuring voices are clear and balanced\", \"no elaborate sound design required\". REASONABLY ENRICHED to make it a runnable Adobe-connector benchmark: (1) the editing project file is delivered as the connector's own packaged artifacts (cleaned-audio WAV + reframed 1080p master + sizzle reel + asset kit), since the connector has no Premiere/FCP/Resolve project export — this is stated plainly to the client as the equivalent hand-off; (2) the audio voice-clean maps to media_enhance_speech (voice-only, not music/loudness mastering, per the brief's \"no elaborate sound design\"); (3) \"trim pauses/stumbles\" is honestly realized as an AI visual-engagement Quick Cut sizzle/highlight pass (video_create_quick_cut is engagement-based, NOT timestamp trimming) PLUS a full-length reframed master — the spec is explicit that frame-accurate stumble removal is the one human-finishable step; (4) the \"custom graphic assets\" PNG-transparent/vector deliverables (cleaned + vectorized logo, lower-third plate, end-screen plate) are produced through the headless image_*/vectorize chain. No capability is invented: no generative fill, no compositing of the graphics INTO the video (delivered \"separately\" exactly as the brief requests), no text-to-image, no upscaling.",
- "one_line_ask": "Turn the raw podcast footage into a clean-voiced, reframed 1080p YouTube master plus a fun branded graphics kit (vector logo + lower-third + end-screen as PNG-transparent/vector), delivered separately.",
- "full_brief": "You are editing one episode of a casual, fun YouTube podcast. The client supplies the raw multi-cam-ish recording (a single 1080p+ master with two speakers), a separate isolated voice scratch track that has room hiss and uneven levels, their existing brand logo lockup (a flat PNG on a busy background), and a hand-shot lower-third texture plate. They want three things delivered: (A) a fully edited 1080p YouTube-ready video that flows smoothly with clear, balanced voices; (B) the working hand-off so they can tweak later; and (C) any custom graphic assets you create, delivered SEPARATELY in PNG/transparent or vector format, with their logo worked in tastefully in the intro / lower-third / end screen without overpowering the content.\n\nConcretely: clean the voice track so the two hosts are clear and balanced (denoise/de-hiss only — no elaborate sound design). Produce a punchy highlight/sizzle cut from the raw footage for the cold-open, and reframe the full episode to a clean 1080p YouTube frame. Pull a short content summary to seed the chapter markers and description. For the graphics kit: lift the client's logo off its busy background to a clean transparent PNG, color-correct and brand-tint it, then vectorize it to an infinitely-scalable SVG for the end screen. Build a lower-third \"name plate\" from the supplied texture plate: knock out the background, fill a clean solid brand-colored bar, tint it to match, crop it to a broadcast lower-third strip, and recommend a friendly display font for the host name. License one subtle on-brand background texture from stock for the end-screen card. Present the whole graphics kit as a Firefly board the client can review. The vibe is light-hearted and casual — clean and consistent branding, never stiff or corporate.",
- "inputs": [
-  {
-   "name": "podcast_raw_master_1080p.mp4",
-   "kind": "video",
-   "gen_model": "gemini-3-pro-image",
-   "gen_prompt": "A single continuous 1080p podcast recording of two casual hosts seated at a wooden table with mics, warm friendly studio lighting, relaxed two-shot framing with occasional single-speaker moments, light-hearted vibe; the two speakers talk, laugh, and gesture — natural conversational pacing with a few pauses and stumbles",
-   "realism_notes": "Represents the client's supplied raw episode master: a single ~25-minute 1080p+ video with two on-camera speakers and natural conversational audio. Provides real footage for media_summarize (chapter seeds), video_create_quick_cut (engagement highlight), and video_resize (same-length reframe). Generated as a short representative clip stand-in for the full master."
+  "id": "AO-61",
+  "slug": "youtube-podcast-edit-branded-graphics",
+  "title": "Fun YouTube Podcast: reframed 1080p sizzle cut and a branded graphics kit (lower-third + end-screen + vector logo)",
+  "vertical": "Music, Film, Publishing &amp; Media",
+  "category": "video_edit",
+  "source": {
+    "platform": "Freelancer.com",
+    "url": "https://www.freelancer.com/projects/adobe-premiere-pro/Fun-YouTube-Podcast-Editing"
   },
-  {
-   "name": "host_voice_scratch_track.wav",
-   "kind": "audio",
-   "gen_model": "gpt-image-2",
-   "gen_prompt": "A rough isolated two-host podcast voice scratch track with audible room hiss, uneven levels between the two speakers, and background hum — clear speech but noticeably unpolished, capturing a casual studio recording that needs denoise/de-hiss",
-   "realism_notes": "The separate isolated voice track the brief describes: room hiss, uneven levels, no music. Gives media_enhance_speech a genuine voice-only denoise/de-hiss job. WAV mono/stereo, ~25 minutes to match the episode length. (gen_prompt describes the audio content for the synthesizing model.)"
-  },
-  {
-   "name": "brand_logo_lockup.png",
-   "kind": "image",
-   "gen_model": "gemini-3-pro-image",
-   "gen_prompt": "Flat circular podcast brand logo lockup reading 'TRAILGREMLIN POD' with a small retro campervan icon, bold friendly rounded sans-serif, mustard-and-teal color scheme, placed on a BUSY distracting background (cluttered desk with coffee mug, cables, and plants) so the mark must be isolated, photographed slightly off-center",
-   "realism_notes": "Crisp legible vector-style text logo on a deliberately busy/cluttered photographic background, so remove_background + select_by_prompt have a real subject-vs-clutter separation job; flat brand colors so tint/overlay and vectorize produce a clean SVG. 'TRAILGREMLIN POD' is an invented, IP-clean mark."
-  },
-  {
-   "name": "lower_third_texture_plate.jpg",
-   "kind": "image",
-   "gen_model": "gemini-3-pro-image",
-   "gen_prompt": "A hand-shot photo of a warm textured surface — pale kraft-paper / lightly grained card stock with soft directional lighting — framed slightly tilted/off-level, no text, intended as a raw material plate for building a lower-third name bar",
-   "realism_notes": "The 'hand-shot lower-third texture plate' the brief supplies. Slightly tilted so auto_straighten has a real job; a clear textured surface vs. surrounding background so select_subject/invert then solid fill are meaningful. Full-res JPG for the lower-third sub-chain."
+  "grounding_note": "VERBATIM from the Freelancer.com brief: raw YouTube podcast footage to be shaped into an engaging episode; \"trim unwanted pauses or stumbles\", \"add clean transitions\", \"weave in light-hearted graphics or effects that match a casual, fun vibe\", incorporate the client's existing logo \"in the intro, a lower-third, or the end screen\" so branding feels consistent \"without overpowering the content\"; deliverables = a fully edited 1080p (or higher) video, the editing project file, and \"any custom graphic assets you create, delivered separately in PNG/transparent or vector format\". REASONABLY ENRICHED to make it a runnable Adobe-connector benchmark: (1) the editing project file is delivered as the connector's own packaged artifacts (reframed 1080p master + sizzle reel + asset kit), since the connector has no Premiere/FCP/Resolve project export — this is stated plainly to the client as the equivalent hand-off; (2) \"trim pauses/stumbles\" is honestly realized as an AI visual-engagement Quick Cut sizzle/highlight pass (video_create_quick_cut is engagement-based, NOT timestamp trimming) PLUS a full-length reframed master — the spec is explicit that frame-accurate stumble removal is the one human-finishable step; (3) the \"custom graphic assets\" PNG-transparent/vector deliverables (cleaned + vectorized logo, lower-third plate, end-screen plate) are produced through the headless image_*/vectorize chain. No capability is invented: no generative fill, no compositing of the graphics INTO the video (delivered \"separately\" exactly as the brief requests), no text-to-image, no upscaling.",
+  "one_line_ask": "Turn the raw podcast footage into a reframed 1080p YouTube master plus a cold-open sizzle and a fun branded graphics kit (vector logo + lower-third + end-screen as PNG-transparent/vector), delivered separately.",
+  "full_brief": "You are editing one episode of a casual, fun YouTube podcast. The client supplies the raw multi-cam-ish recording (a single 1080p+ master with two speakers), their existing brand logo lockup (a flat PNG on a busy background), and a hand-shot lower-third texture plate. They want three things delivered: (A) a fully edited 1080p YouTube-ready video that flows smoothly; (B) the working hand-off so they can tweak later; and (C) any custom graphic assets you create, delivered SEPARATELY in PNG/transparent or vector format, with their logo worked in tastefully in the intro / lower-third / end screen without overpowering the content.\n\nConcretely: produce a punchy highlight/sizzle cut from the raw footage for the cold-open, and reframe the full episode to a clean 1080p YouTube frame. Pull a short content summary to seed the chapter markers and description. For the graphics kit: lift the client's logo off its busy background to a clean transparent PNG, color-correct and brand-tint it, then vectorize it to an infinitely-scalable SVG for the end screen. Build a lower-third \"name plate\" from the supplied texture plate: knock out the background, fill a clean solid brand-colored bar, tint it to match, crop it to a broadcast lower-third strip, and recommend a friendly display font for the host name. License one subtle on-brand background texture from stock for the end-screen card. Present the whole graphics kit as a Firefly board the client can review. The vibe is light-hearted and casual — clean and consistent branding, never stiff or corporate.",
+  "inputs": [
+    {
+      "name": "podcast_raw_master_1080p.mp4",
+      "kind": "video",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "A single continuous 1080p podcast recording of two casual hosts seated at a wooden table with mics, warm friendly studio lighting, relaxed two-shot framing with occasional single-speaker moments, light-hearted vibe; the two speakers talk, laugh, and gesture — natural conversational pacing with a few pauses and stumbles",
+      "realism_notes": "Represents the client's supplied raw episode master: a single ~25-minute 1080p+ video with two on-camera speakers. Provides real footage for media_summarize (chapter seeds), video_create_quick_cut (engagement highlight), and video_resize (same-length reframe). Generated as a short representative clip stand-in for the full master."
+    },
+    {
+      "name": "brand_logo_lockup.png",
+      "kind": "image",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "Flat circular podcast brand logo lockup reading 'TRAILGREMLIN POD' with a small retro campervan icon, bold friendly rounded sans-serif, mustard-and-teal color scheme, placed on a BUSY distracting background (cluttered desk with coffee mug, cables, and plants) so the mark must be isolated, photographed slightly off-center",
+      "realism_notes": "Crisp legible vector-style text logo on a deliberately busy/cluttered photographic background, so remove_background + select_by_prompt have a real subject-vs-clutter separation job; flat brand colors so tint/overlay and vectorize produce a clean SVG. 'TRAILGREMLIN POD' is an invented, IP-clean mark."
+    },
+    {
+      "name": "lower_third_texture_plate.jpg",
+      "kind": "image",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "A hand-shot photo of a warm textured surface — pale kraft-paper / lightly grained card stock with soft directional lighting — framed slightly tilted/off-level, no text, intended as a raw material plate for building a lower-third name bar",
+      "realism_notes": "The 'hand-shot lower-third texture plate' the brief supplies. Slightly tilted so auto_straighten has a real job; a clear textured surface vs. surrounding background so select_subject/invert then solid fill are meaningful. Full-res JPG for the lower-third sub-chain."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "podcast_coldopen_sizzle_1080p.mp4",
+      "kind": "video",
+      "spec": "~20s AI highlight/sizzle reel for the cold-open, 1920x1080, sourced from the raw master via engagement-based Quick Cut (visual-engagement highlight, not frame-accurate timestamp trim)."
+    },
+    {
+      "name": "podcast_master_reframed_1080p.mp4",
+      "kind": "video",
+      "spec": "Full-length episode reframed/resized to a clean 1920x1080 YouTube frame, SAME length as source (no trim, no format convert)."
+    },
+    {
+      "name": "episode_content_summary.txt",
+      "kind": "data",
+      "spec": "Scene/content summary of the episode to seed YouTube chapter markers + description copy."
+    },
+    {
+      "name": "brand_logo_clean.png",
+      "kind": "image",
+      "spec": "Client logo lifted off its busy background to a clean transparent PNG, color-corrected and brand-tinted."
+    },
+    {
+      "name": "brand_logo_vector.svg",
+      "kind": "vector",
+      "spec": "Infinitely-scalable vectorized SVG of the cleaned logo for the end screen — the 'vector format' graphic-asset deliverable."
+    },
+    {
+      "name": "lower_third_plate.png",
+      "kind": "image",
+      "spec": "Broadcast lower-third name-plate strip: background knocked out, clean solid brand-colored bar, brand-tinted, cropped to a lower-third aspect; transparent PNG — the 'PNG/transparent' graphic-asset deliverable."
+    },
+    {
+      "name": "endscreen_texture.jpg",
+      "kind": "image",
+      "spec": "One licensed full-res stock background texture for the end-screen card, on-brand and subtle."
+    },
+    {
+      "name": "font_recommendation.txt",
+      "kind": "data",
+      "spec": "Recommended friendly display typeface(s) for the host-name lower-third text."
+    },
+    {
+      "name": "graphics_kit_board",
+      "kind": "data",
+      "spec": "Firefly board (deep-link) assembling the cleaned logo, vector logo, lower-third plate, and end-screen texture for client review."
+    }
+  ],
+  "connector_workflow": [
+    {
+      "n": 1,
+      "tool": "asset_initialize_file_upload",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "podcast_raw_master_1080p.mp4"
+      ],
+      "output": "uploaded_raw_video_ref",
+      "note": "Initialize upload of the client's supplied raw 1080p podcast master (podcast_raw_master_1080p.mp4) into CC storage to get an asset ref/presigned target. Initial load step."
+    },
+    {
+      "n": 2,
+      "tool": "asset_finalize_file_upload",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "uploaded_raw_video_ref"
+      ],
+      "output": "raw_video_assetId",
+      "note": "Finalize the raw-video upload begun in step 1, yielding a stable assetId used by the video/summary steps."
+    },
+    {
+      "n": 3,
+      "tool": "media_summarize",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": [
+        "raw_video_assetId"
+      ],
+      "output": "episode_content_summary.txt",
+      "note": "Summarize the raw master's on-screen content to seed chapter markers + description. Consumes the step-2 assetId."
+    },
+    {
+      "n": 4,
+      "tool": "video_create_quick_cut",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": [
+        "raw_video_assetId"
+      ],
+      "output": "podcast_coldopen_sizzle_1080p.mp4",
+      "note": "AI engagement-based highlight/sizzle cut from the raw master for the cold-open (NOT timestamp trimming). Consumes the step-2 assetId."
+    },
+    {
+      "n": 5,
+      "tool": "video_resize",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": [
+        "raw_video_assetId"
+      ],
+      "output": "podcast_master_reframed_1080p.mp4",
+      "note": "Reframe/resize the full raw master to a clean 1920x1080 YouTube frame, SAME length (no trim/convert). Consumes the step-2 assetId."
+    },
+    {
+      "n": 6,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "brand_logo_lockup.png"
+      ],
+      "output": "logo_transparent",
+      "note": "Lift the client logo (brand_logo_lockup.png) off its busy cluttered background to a transparent PNG. Loads the supplied logo asset and begins the graphics-kit chain."
+    },
+    {
+      "n": 7,
+      "tool": "image_apply_auto_tone",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "logo_transparent"
+      ],
+      "output": "logo_autotoned",
+      "note": "Auto-tone the isolated logo to normalize exposure/contrast after background removal. Consumes step-6 output."
+    },
+    {
+      "n": 8,
+      "tool": "image_apply_color_overlay",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "logo_autotoned"
+      ],
+      "output": "brand_logo_clean.png",
+      "note": "Apply the brand mustard/teal color overlay to lock the logo to brand color, producing the clean transparent-PNG logo deliverable. Consumes step-7 output."
+    },
+    {
+      "n": 9,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "brand_logo_clean.png"
+      ],
+      "output": "brand_logo_vector.svg",
+      "note": "Vectorize the cleaned/brand-tinted logo into an infinitely-scalable SVG for the end screen — the vector graphic-asset deliverable. Consumes step-8 output."
+    },
+    {
+      "n": 10,
+      "tool": "image_auto_straighten",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "lower_third_texture_plate.jpg"
+      ],
+      "output": "plate_straightened",
+      "note": "Auto-straighten the slightly-tilted lower_third_texture_plate.jpg. Loads the supplied texture plate and begins the lower-third sub-chain."
+    },
+    {
+      "n": 11,
+      "tool": "image_select_subject",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "plate_straightened"
+      ],
+      "output": "plate_subject_mask",
+      "note": "Select the main textured surface on the straightened plate to derive a mask. Consumes step-10 output."
+    },
+    {
+      "n": 12,
+      "tool": "image_invert_selection",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "plate_subject_mask"
+      ],
+      "output": "plate_bg_mask",
+      "note": "Invert the selection to target the background area for the solid bar fill. Consumes step-11 output."
+    },
+    {
+      "n": 13,
+      "tool": "image_fill_area",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "plate_bg_mask"
+      ],
+      "output": "plate_solid_bar",
+      "note": "Solid-fill the inverted region with a clean brand-color bar (image_fill_area = solid color only). Consumes step-12 mask."
+    },
+    {
+      "n": 14,
+      "tool": "image_apply_monochromatic_tint",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "plate_solid_bar"
+      ],
+      "output": "plate_tinted",
+      "note": "Apply a brand monochromatic tint to unify the lower-third plate's look. Consumes step-13 output."
+    },
+    {
+      "n": 15,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "plate_tinted"
+      ],
+      "output": "lower_third_plate.png",
+      "note": "Crop/resize the tinted plate to a broadcast lower-third strip (transparent PNG deliverable). Consumes step-14 output."
+    },
+    {
+      "n": 16,
+      "tool": "font_recommend",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "lower_third_plate.png"
+      ],
+      "output": "font_recommendation.txt",
+      "note": "Recommend a friendly casual display font for the host-name text on the finished lower-third plate. Consumes step-15 deliverable as the design context."
+    },
+    {
+      "n": 17,
+      "tool": "asset_license_and_download_stock",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "episode_content_summary.txt"
+      ],
+      "output": "endscreen_texture.jpg",
+      "note": "Search → license → download one subtle on-brand background texture for the end-screen card, themed by the episode summary keywords. Consumes step-3 summary to pick a relevant on-brand texture."
+    },
+    {
+      "n": 18,
+      "tool": "create_firefly_board",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": [
+        "brand_logo_clean.png",
+        "brand_logo_vector.svg",
+        "lower_third_plate.png",
+        "endscreen_texture.jpg"
+      ],
+      "output": "graphics_kit_board",
+      "note": "Assemble the produced graphics-kit assets (clean logo, vector logo, lower-third plate, end-screen texture) into a Firefly board deep-link for client review. Consumes steps 8/9/15/17 outputs."
+    }
+  ],
+  "tools_used": [
+    "asset_initialize_file_upload",
+    "asset_finalize_file_upload",
+    "media_summarize",
+    "video_create_quick_cut",
+    "video_resize",
+    "image_remove_background",
+    "image_apply_auto_tone",
+    "image_apply_color_overlay",
+    "image_vectorize",
+    "image_auto_straighten",
+    "image_select_subject",
+    "image_invert_selection",
+    "image_fill_area",
+    "image_apply_monochromatic_tint",
+    "image_crop_and_resize",
+    "font_recommend",
+    "asset_license_and_download_stock",
+    "create_firefly_board"
+  ],
+  "tool_call_count": 18,
+  "distinct_adobe_tools": 18,
+  "chaining_note": "Strict output→input chain. One source load seeds the video branch: the raw video (steps 1-2 → raw_video_assetId). raw_video_assetId fans into media_summarize (3), video_create_quick_cut (4), and video_resize (5). The graphics kit is its own deep chain: logo background-removal (6) → auto_tone (7) → color_overlay = brand_logo_clean.png (8) → vectorize = brand_logo_vector.svg (9). The texture plate chain: auto_straighten (10) → select_subject (11) → invert_selection (12) → fill_area solid bar (13) → monochromatic_tint (14) → crop_and_resize = lower_third_plate.png (15) → font_recommend on that plate (16). The episode summary (3) feeds stock licensing keyword choice (17 → endscreen_texture.jpg). Finally create_firefly_board (18) consumes the four finished kit assets from steps 8, 9, 15, and 17. Every non-load step sets inputs_from to a prior step's named output; the deliverables (sizzle, reframed master, summary, clean logo, vector logo, lower-third, end-screen texture, font rec, review board) emerge directly from the chain.",
+  "difficulty_rationale": "Long-horizon flagship: 18 connector calls, 18 distinct Adobe tools, spanning four connector groups (asset/storage, video [A], photo/raster [C], document/font + board). It is hard because the agent must HONESTLY decompose a Premiere/FCP/Resolve brief that has no direct connector analog: recognize that 'trim pauses/stumbles' cannot be done frame-accurately and instead deliver an engagement-based Quick Cut + a same-length reframed master (and flag the human-finishable trim), and that the 'custom graphic assets… delivered separately' are produced via the headless image_*/vectorize chain rather than composited into the video (which the connector cannot do and the brief does not ask for). It mixes async-widget [A] media steps with a deep headless [C] raster→vector pipeline, requires a correct select→invert→solid-fill→tint→crop sequence for the lower-third, and reuses the raw-video assetId and the episode summary across multiple branches. No not-available capability is used (no gen-fill, no compositing, no text-to-image, no upscaling, no timestamp trim, no per-artboard export). The only non-headless steps are the three [A] media calls, which are explicitly in scope for the Adobe×Claude product.",
+  "_severity": "pass",
+  "reverify": {
+    "severity": "pass",
+    "banned_capability_check": "No banned capabilities present. All 18 steps use real Adobe connector actions: asset upload (init/finalize), media_summarize [A], video_create_quick_cut [A] engagement-highlight (not timestamp trim), video_resize [A] same-length reframe, and a headless raster/vector chain (remove_background, auto_tone, color_overlay, vectorize, auto_straighten, select_subject, invert_selection, image_fill_area=solid-color fill within canvas, monochromatic_tint, crop_and_resize to lower-third strip, font_recommend, license_and_download_stock, create_firefly_board). No generative expand/outpaint, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction, no compositing graphics into the video, no image_apply_lens_blur mask. image_fill_area is used only as a solid-color fill of an inverted in-canvas region and crop_and_resize only crops down, so no canvas growth. Gen-free.",
+    "notes": "IP/naming: the client brand was renamed to the invented, non-colliding mark 'TRAILGREMLIN POD'. The name string appears only in brand_logo_lockup.png's gen_prompt; all other fields reference the brand generically ('brand logo', 'brand color', 'mustard/teal'), so no further edits were needed on that count. INPUTS completeness: the two additional supplied source assets that the full_brief and connector_workflow depend on — podcast_raw_master_1080p.mp4 (steps 1-2/3/4/5) and lower_third_texture_plate.jpg (steps 10-15) — are declared as distinct inputs[] entries with kind/gen_model/gen_prompt/realism_notes, and the corresponding load steps (1, 6, 10) set inputs_from to those declared assets so every load is grounded. The task remains real, coherent, and fully connector-doable."
   }
- ],
- "outputs": [
-  {
-   "name": "podcast_voice_cleaned.wav",
-   "kind": "audio",
-   "spec": "Denoised/de-hissed voice track, voices clear and balanced; WAV, voice-only enhancement (no music processing, no loudness mastering) — the brief's 'clear and balanced voices' deliverable."
-  },
-  {
-   "name": "podcast_coldopen_sizzle_1080p.mp4",
-   "kind": "video",
-   "spec": "~20s AI highlight/sizzle reel for the cold-open, 1920x1080, sourced from the raw master via engagement-based Quick Cut (visual-engagement highlight, not frame-accurate timestamp trim)."
-  },
-  {
-   "name": "podcast_master_reframed_1080p.mp4",
-   "kind": "video",
-   "spec": "Full-length episode reframed/resized to a clean 1920x1080 YouTube frame, SAME length as source (no trim, no format convert)."
-  },
-  {
-   "name": "episode_content_summary.txt",
-   "kind": "data",
-   "spec": "Scene/transcript summary of the episode to seed YouTube chapter markers + description copy."
-  },
-  {
-   "name": "brand_logo_clean.png",
-   "kind": "image",
-   "spec": "Client logo lifted off its busy background to a clean transparent PNG, color-corrected and brand-tinted."
-  },
-  {
-   "name": "brand_logo_vector.svg",
-   "kind": "vector",
-   "spec": "Infinitely-scalable vectorized SVG of the cleaned logo for the end screen — the 'vector format' graphic-asset deliverable."
-  },
-  {
-   "name": "lower_third_plate.png",
-   "kind": "image",
-   "spec": "Broadcast lower-third name-plate strip: background knocked out, clean solid brand-colored bar, brand-tinted, cropped to a lower-third aspect; transparent PNG — the 'PNG/transparent' graphic-asset deliverable."
-  },
-  {
-   "name": "endscreen_texture.jpg",
-   "kind": "image",
-   "spec": "One licensed full-res stock background texture for the end-screen card, on-brand and subtle."
-  },
-  {
-   "name": "font_recommendation.txt",
-   "kind": "data",
-   "spec": "Recommended friendly display typeface(s) for the host-name lower-third text."
-  },
-  {
-   "name": "graphics_kit_board",
-   "kind": "data",
-   "spec": "Firefly board (deep-link) assembling the cleaned logo, vector logo, lower-third plate, and end-screen texture for client review."
-  }
- ],
- "connector_workflow": [
-  {
-   "n": 1,
-   "tool": "asset_initialize_file_upload",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "podcast_raw_master_1080p.mp4"
-   ],
-   "output": "uploaded_raw_video_ref",
-   "note": "Initialize upload of the client's supplied raw 1080p podcast master (podcast_raw_master_1080p.mp4) into CC storage to get an asset ref/presigned target. Initial load step."
-  },
-  {
-   "n": 2,
-   "tool": "asset_finalize_file_upload",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "uploaded_raw_video_ref"
-   ],
-   "output": "raw_video_assetId",
-   "note": "Finalize the raw-video upload begun in step 1, yielding a stable assetId used by the video/summary steps."
-  },
-  {
-   "n": 3,
-   "tool": "asset_initialize_file_upload",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "host_voice_scratch_track.wav"
-   ],
-   "output": "uploaded_voice_ref",
-   "note": "Initialize upload of the client's supplied noisy host_voice_scratch_track.wav. Second source load."
-  },
-  {
-   "n": 4,
-   "tool": "media_enhance_speech",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": [
-    "uploaded_voice_ref"
-   ],
-   "output": "podcast_voice_cleaned.wav",
-   "note": "Denoise/de-hiss the uploaded voice scratch track so the two hosts are clear and balanced (voice-only, no music/loudness mastering). Async-widget; consumes step-3 output."
-  },
-  {
-   "n": 5,
-   "tool": "media_summarize",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": [
-    "raw_video_assetId"
-   ],
-   "output": "episode_content_summary.txt",
-   "note": "Summarize the raw master's content to seed chapter markers + description. Consumes the step-2 assetId."
-  },
-  {
-   "n": 6,
-   "tool": "video_create_quick_cut",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": [
-    "raw_video_assetId"
-   ],
-   "output": "podcast_coldopen_sizzle_1080p.mp4",
-   "note": "AI engagement-based highlight/sizzle cut from the raw master for the cold-open (NOT timestamp trimming). Consumes the step-2 assetId."
-  },
-  {
-   "n": 7,
-   "tool": "video_resize",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": [
-    "raw_video_assetId"
-   ],
-   "output": "podcast_master_reframed_1080p.mp4",
-   "note": "Reframe/resize the full raw master to a clean 1920x1080 YouTube frame, SAME length (no trim/convert). Consumes the step-2 assetId."
-  },
-  {
-   "n": 8,
-   "tool": "image_remove_background",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "brand_logo_lockup.png"
-   ],
-   "output": "logo_transparent",
-   "note": "Lift the client logo (brand_logo_lockup.png) off its busy cluttered background to a transparent PNG. Loads the supplied logo asset and begins the graphics-kit chain."
-  },
-  {
-   "n": 9,
-   "tool": "image_apply_auto_tone",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "logo_transparent"
-   ],
-   "output": "logo_autotoned",
-   "note": "Auto-tone the isolated logo to normalize exposure/contrast after background removal. Consumes step-8 output."
-  },
-  {
-   "n": 10,
-   "tool": "image_apply_color_overlay",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "logo_autotoned"
-   ],
-   "output": "brand_logo_clean.png",
-   "note": "Apply the brand mustard/teal color overlay to lock the logo to brand color, producing the clean transparent-PNG logo deliverable. Consumes step-9 output."
-  },
-  {
-   "n": 11,
-   "tool": "image_vectorize",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "brand_logo_clean.png"
-   ],
-   "output": "brand_logo_vector.svg",
-   "note": "Vectorize the cleaned/brand-tinted logo into an infinitely-scalable SVG for the end screen — the vector graphic-asset deliverable. Consumes step-10 output."
-  },
-  {
-   "n": 12,
-   "tool": "image_auto_straighten",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "lower_third_texture_plate.jpg"
-   ],
-   "output": "plate_straightened",
-   "note": "Auto-straighten the slightly-tilted lower_third_texture_plate.jpg. Loads the supplied texture plate and begins the lower-third sub-chain."
-  },
-  {
-   "n": 13,
-   "tool": "image_select_subject",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "plate_straightened"
-   ],
-   "output": "plate_subject_mask",
-   "note": "Select the main textured surface on the straightened plate to derive a mask. Consumes step-12 output."
-  },
-  {
-   "n": 14,
-   "tool": "image_invert_selection",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "plate_subject_mask"
-   ],
-   "output": "plate_bg_mask",
-   "note": "Invert the selection to target the background area for the solid bar fill. Consumes step-13 output."
-  },
-  {
-   "n": 15,
-   "tool": "image_fill_area",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "plate_bg_mask"
-   ],
-   "output": "plate_solid_bar",
-   "note": "Solid-fill the inverted region with a clean brand-color bar (image_fill_area = solid color only). Consumes step-14 mask."
-  },
-  {
-   "n": 16,
-   "tool": "image_apply_monochromatic_tint",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "plate_solid_bar"
-   ],
-   "output": "plate_tinted",
-   "note": "Apply a brand monochromatic tint to unify the lower-third plate's look. Consumes step-15 output."
-  },
-  {
-   "n": 17,
-   "tool": "image_crop_and_resize",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "plate_tinted"
-   ],
-   "output": "lower_third_plate.png",
-   "note": "Crop/resize the tinted plate to a broadcast lower-third strip (transparent PNG deliverable). Consumes step-16 output."
-  },
-  {
-   "n": 18,
-   "tool": "font_recommend",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "lower_third_plate.png"
-   ],
-   "output": "font_recommendation.txt",
-   "note": "Recommend a friendly casual display font for the host-name text on the finished lower-third plate. Consumes step-17 deliverable as the design context."
-  },
-  {
-   "n": 19,
-   "tool": "asset_license_and_download_stock",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "episode_content_summary.txt"
-   ],
-   "output": "endscreen_texture.jpg",
-   "note": "Search → license → download one subtle on-brand background texture for the end-screen card, themed by the episode summary keywords. Consumes step-5 summary to pick a relevant on-brand texture."
-  },
-  {
-   "n": 20,
-   "tool": "create_firefly_board",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": [
-    "brand_logo_clean.png",
-    "brand_logo_vector.svg",
-    "lower_third_plate.png",
-    "endscreen_texture.jpg"
-   ],
-   "output": "graphics_kit_board",
-   "note": "Assemble the produced graphics-kit assets (clean logo, vector logo, lower-third plate, end-screen texture) into a Firefly board deep-link for client review. Consumes steps 10/11/17/19 outputs."
-  }
- ],
- "tools_used": [
-  "asset_initialize_file_upload",
-  "asset_finalize_file_upload",
-  "media_enhance_speech",
-  "media_summarize",
-  "video_create_quick_cut",
-  "video_resize",
-  "image_remove_background",
-  "image_apply_auto_tone",
-  "image_apply_color_overlay",
-  "image_vectorize",
-  "image_auto_straighten",
-  "image_select_subject",
-  "image_invert_selection",
-  "image_fill_area",
-  "image_apply_monochromatic_tint",
-  "image_crop_and_resize",
-  "font_recommend",
-  "asset_license_and_download_stock",
-  "create_firefly_board"
- ],
- "tool_call_count": 20,
- "distinct_adobe_tools": 19,
- "chaining_note": "Strict output→input chain. Two source loads seed the chain: the raw video (steps 1-2 → raw_video_assetId) and the voice track (step 3). raw_video_assetId fans into media_summarize (5), video_create_quick_cut (6), and video_resize (7). The voice ref (3) feeds media_enhance_speech (4). The graphics kit is its own deep chain: logo background-removal (8) → auto_tone (9) → color_overlay = brand_logo_clean.png (10) → vectorize = brand_logo_vector.svg (11). The texture plate chain: auto_straighten (12) → select_subject (13) → invert_selection (14) → fill_area solid bar (15) → monochromatic_tint (16) → crop_and_resize = lower_third_plate.png (17) → font_recommend on that plate (18). The episode summary (5) feeds stock licensing keyword choice (19 → endscreen_texture.jpg). Finally create_firefly_board (20) consumes the four finished kit assets from steps 10, 11, 17, and 19. Every non-load step sets inputs_from to a prior step's named output; the deliverables (cleaned audio, sizzle, reframed master, summary, clean logo, vector logo, lower-third, end-screen texture, font rec, review board) emerge directly from the chain.",
- "difficulty_rationale": "Long-horizon flagship: 20 connector calls, 19 distinct Adobe tools, spanning four connector groups (asset/storage, video/audio [A], photo/raster [C], document/font + board). It is hard because the agent must HONESTLY decompose a Premiere/FCP/Resolve brief that has no direct connector analog: recognize that 'trim pauses/stumbles' cannot be done frame-accurately and instead deliver an engagement-based Quick Cut + a same-length reframed master (and flag the human-finishable trim), that 'clean audio' = voice-only media_enhance_speech (not music/loudness), and that the 'custom graphic assets… delivered separately' are produced via the headless image_*/vectorize chain rather than composited into the video (which the connector cannot do and the brief does not ask for). It mixes async-widget [A] media steps with a deep headless [C] raster→vector pipeline, requires a correct select→invert→solid-fill→tint→crop sequence for the lower-third, and reuses the raw-video assetId and the episode summary across multiple branches. No not-available capability is used (no gen-fill, no compositing, no text-to-image, no upscaling, no timestamp trim, no per-artboard export). The only non-headless steps are the four [A] media calls, which are explicitly in scope for the Adobe×Claude product.",
- "_severity": "pass",
- "reverify": {
-  "severity": "pass",
-  "banned_capability_check": "No banned capabilities present. All 20 steps use real Adobe connector actions: asset upload (init/finalize), media_enhance_speech [A] voice-only denoise, media_summarize [A], video_create_quick_cut [A] engagement-highlight (not timestamp trim), video_resize [A] same-length reframe, and a headless raster/vector chain (remove_background, auto_tone, color_overlay, vectorize, auto_straighten, select_subject, invert_selection, image_fill_area=solid-color fill within canvas, monochromatic_tint, crop_and_resize to lower-third strip, font_recommend, license_and_download_stock, create_firefly_board). No generative expand/outpaint, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction, no compositing graphics into the video, no image_apply_lens_blur mask. image_fill_area is used only as a solid-color fill of an inverted in-canvas region and crop_and_resize only crops down, so no canvas growth. Gen-free.",
-  "notes": "IP/naming: the client brand was renamed to the invented, non-colliding mark 'TRAILGREMLIN POD' (the earlier 'WANDER MILES' was merely the capitalized form of the real 'Wander Miles' travel-media franchise, so the collision was not actually resolved). The name string appears only in brand_logo_lockup.png's gen_prompt; all other fields reference the brand generically ('brand logo', 'brand color', 'mustard/teal'), so no further edits were needed on that count. INPUTS completeness: the three additional supplied source assets that the full_brief and connector_workflow depend on — podcast_raw_master_1080p.mp4 (steps 1-2/5/6/7), host_voice_scratch_track.wav (steps 3-4), and lower_third_texture_plate.jpg (steps 12-17) — are now declared as distinct inputs[] entries with kind/gen_model/gen_prompt/realism_notes, and the corresponding load steps (1, 3, 8, 12) now set inputs_from to those declared assets so every load is grounded. The task remains real, coherent, and fully connector-doable."
- }
 }

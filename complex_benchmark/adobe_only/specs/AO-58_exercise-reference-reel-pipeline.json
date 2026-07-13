@@ -1,243 +1,228 @@
 {
- "id": "AO-58",
- "slug": "exercise-reference-reel-pipeline",
- "title": "Repeatable Adobe pipeline turning one raw exercise clip into a branded vertical coaching reel (subtitles cue, cleaned VO, watermark, muscle-group callout)",
- "vertical": "Health, Wellness & Fitness",
- "category": "video_edit",
- "source": {
-  "platform": "Upwork",
-  "url": "https://www.upwork.com/nx/search/jobs/?q=AI%20Workflow%20Consultant%20for%20Adobe%20Premiere%20and%20Claude%20V"
- },
- "grounding_note": "VERBATIM from the real brief: a personal-training business with a library of 5,000+ exercises wants to turn raw footage into short educational exercise reference videos; the stated workflow goals quoted nearly word-for-word are subtitle generation, reusable branding overlays / watermarks / footers, arrows/highlights/callouts pointing to muscle groups or movement patterns, and clip organization / naming conventions / metadata. The original post is a request to HIRE A COACH to architect a repeatable Premiere Pro + Claude pipeline (an abstract consulting ask, not a single deliverable). To make it a runnable Adobe-connector benchmark I REASONABLY ENRICHED it into ONE concrete instantiation of that repeatable pipeline run end-to-end on a single representative exercise ('Goblet Squat'): the agent produces the actual reusable asset set + one finished branded vertical reel, which is exactly the repeatable unit the consultant was being hired to design. The specific exercise name, the 30s/1080x1920 reel spec, the brand color/white watermark choice, and the folder/naming convention are enriched concretizations consistent with the brief; nothing contradicts it. NOTE on honesty: Premiere-class transitions, burned-in subtitle compositing, and overlaying the watermark/arrow physically onto video frames are NOT available on the Adobe connector (no video compositing) — so this benchmark targets the parts that ARE real Adobe tools: media summarize (to author subtitle/cue text + naming), speech cleanup of the coaching VO, headless creation of the reusable branding+callout overlay assets, vertical reframing, an AI highlight cut, and the organized asset library; the final composite/burn-in is explicitly left as the human/Premiere step the consultant would still own.",
- "one_line_ask": "Run our repeatable exercise-reel pipeline on one raw 'Goblet Squat' clip: summarize it for subtitle/cue text and naming, clean the coaching voiceover, build the reusable white-watermark and branded muscle-group arrow overlays, reframe to vertical, cut a 30s reference reel, and file everything under our naming convention.",
- "full_brief": "We run a personal-training business with a library of 5,000+ exercises and want to turn raw footage into short, consistent educational reference videos for coach education and client support — today each one takes 20-30 min in Premiere and we want a repeatable, AI-assisted production pipeline. This task is ONE run of that pipeline on a single representative exercise, the Goblet Squat, so we can validate the repeatable unit before scaling it across the library.\n\nSupplied assets: (1) a raw ~45s 4K landscape clip of a coach demoing the goblet squat with spoken form cues recorded in a slightly echoey gym (camera mic); (2) our gym's square logo PNG (dark logo on transparent-ish background); (3) a flat hand-drawn red 'muscle-activation' arrow/callout PNG we use to point at the working muscle groups.\n\nWhat we need produced this run:\n1. SUBTITLE & CUE SOURCE — an AI content summary / transcript-style scene summary of the raw clip we can paste into Premiere as the subtitle + on-screen coaching-cue source text, and which we'll also use to name the clip consistently.\n2. CLEAN VOICEOVER — the coach's spoken cues de-echoed / denoised into a clean voice track to drop back under the reel (voice only — leave the music/ambience decision to us).\n3. REUSABLE WATERMARK — our logo turned into a transparent, corner-sized, white version that reads on dark gym footage (this becomes a reusable overlay asset for the whole library).\n4. REUSABLE MUSCLE-GROUP CALLOUT — the hand-drawn arrow cleaned up into a crisp scalable vector recolored to our brand accent, sized as an overlay element (also reusable library-wide).\n5. VERTICAL REEL — the raw clip reframed to 1080x1920 vertical (full length, no trimming at this step) and then cut down by AI into a punchy ~30s highlight 'reference reel' of the key reps.\n6. ORGANIZED LIBRARY ENTRY — a folder following our naming convention (Exercise / LowerBody / GobletSquat) with the finished reel + the reusable overlay assets copied in, ready to template across the next 5,000 clips.\n\nHonesty note for the vendor: we understand the actual frame-by-frame compositing (burning subtitles in, placing the watermark and arrow onto the video, transitions) stays in Premiere on our side — what we want from this automated pipeline is every input asset and the reframed/cut reel prepared and organized so that final Premiere step is fast and identical every time.",
- "inputs": [
-  {
-   "name": "goblet_squat_raw_4k.mp4",
-   "kind": "video",
-   "gen_model": "veo-3.1-generate-preview",
-   "gen_prompt": "Handheld documentary 4K 3840x2160 landscape clip, ~45 seconds, of a real fitness coach in a slightly worn commercial gym demonstrating a goblet squat holding a single dumbbell at the chest. Natural window + overhead fluorescent mixed lighting, visible floor rubber tiles, a rack of weights softly out of focus behind. The coach speaks clear spoken form cues to camera with a slightly echoey reverberant gym-mic sound ('chest up, weight in the heels, drive through the floor'). Real skin texture, sweat sheen, natural body mechanics across 4-5 full reps, candid not-glossy realism, no captions or graphics burned in.",
-   "realism_notes": "Must be genuine handheld 4K landscape with audible spoken coaching cues and slight room echo so media_summarize has real content to transcribe and media_enhance_speech has real reverb/noise to clean. No on-screen text/graphics (those are produced downstream). Native audio required."
+  "id": "AO-58",
+  "slug": "exercise-reference-reel-pipeline",
+  "title": "Repeatable Adobe pipeline turning one raw exercise clip into a branded vertical coaching reel (scene summary, watermark, muscle-group callout, vertical cut)",
+  "vertical": "Health, Wellness & Fitness",
+  "category": "video_edit",
+  "source": {
+    "platform": "Upwork",
+    "url": "https://www.upwork.com/nx/search/jobs/?q=AI%20Workflow%20Consultant%20for%20Adobe%20Premiere%20and%20Claude%20V"
   },
-  {
-   "name": "gym_logo_square.png",
-   "kind": "image",
-   "gen_model": "gemini-3-pro-image",
-   "gen_prompt": "A clean square brand logo for a personal-training gym named 'IRONLINE COACHING' — a bold geometric barbell-and-line monogram mark above the wordmark, solid dark charcoal (#1C1C1C) artwork on a flat light grey background, crisp vector-like edges, high contrast, centered, 2048x2048, no photographic texture.",
-   "realism_notes": "Dark mark on light background so image_remove_background has a clean edge to cut and image_apply_color_overlay has solid dark pixels to recolor to white. Logo wordmark text must render legibly (gemini-3-pro-image for text)."
-  },
-  {
-   "name": "muscle_arrow_callout_raw.png",
-   "kind": "image",
-   "gen_model": "gemini-3-pro-image",
-   "gen_prompt": "A single flat hand-drawn-style curved red arrow with a small 'GLUTES' tag at the tail, drawn with a marker texture, solid red (#D8352A) on a plain white background, slightly rough edges as if hand-drawn, 1600x1600, no other elements, no shadow.",
-   "realism_notes": "Flat solid-color marker arrow on plain white so image_vectorize produces a clean SVG and image_fill_area can solid-recolor the traced shape to the brand accent. Rough hand-drawn edges justify the vectorize cleanup step."
-  },
-  {
-   "name": "coach_cue_script.json",
-   "kind": "data",
-   "gen_model": "gemini-2.5-flash",
-   "gen_prompt": "Generate a small JSON object with the exercise metadata and the spoken coaching-cue lines for a goblet squat demo: fields = exercise_name, primary_muscles (array), secondary_muscles (array), cue_lines (array of 5 short spoken-cue strings matching the VO in the clip), naming_slug ('Exercise/LowerBody/GobletSquat'). Used only as the ground-truth reference for naming and to validate the AI summary, not edited by the connector.",
-   "realism_notes": "Lightweight reference metadata so the grader can check the summary/naming step against ground truth; not a connector input that gets transformed."
+  "grounding_note": "VERBATIM from the real brief: a personal-training business with a library of 5,000+ exercises wants to turn raw footage into short educational exercise reference videos; the stated workflow goals quoted nearly word-for-word are reusable branding overlays / watermarks / footers, arrows/highlights/callouts pointing to muscle groups or movement patterns, and clip organization / naming conventions / metadata. The original post is a request to HIRE A COACH to architect a repeatable Premiere Pro + Claude pipeline (an abstract consulting ask, not a single deliverable). To make it a runnable Adobe-connector benchmark I REASONABLY ENRICHED it into ONE concrete instantiation of that repeatable pipeline run end-to-end on a single representative exercise ('Goblet Squat'): the agent produces the actual reusable asset set + one finished branded vertical reel, which is exactly the repeatable unit the consultant was being hired to design. The specific exercise name, the 30s/1080x1920 reel spec, the brand color/white watermark choice, and the folder/naming convention are enriched concretizations consistent with the brief; nothing contradicts it. NOTE on honesty: Premiere-class transitions, on-screen text/caption compositing, and overlaying the watermark/arrow physically onto video frames are NOT available on the Adobe connector (no video compositing) — so this benchmark targets the parts that ARE real Adobe tools: media summarize (to author a visual scene/movement summary for metadata + consistent naming), headless creation of the reusable branding+callout overlay assets, vertical reframing, an AI highlight cut, and the organized asset library; the final composite/burn-in is explicitly left as the human/Premiere step the consultant would still own.",
+  "one_line_ask": "Run our repeatable exercise-reel pipeline on one raw 'Goblet Squat' clip: summarize the clip into a scene/movement breakdown for metadata and naming, build the reusable white-watermark and branded muscle-group arrow overlays, reframe to vertical, cut a 30s reference reel, and file everything under our naming convention.",
+  "full_brief": "We run a personal-training business with a library of 5,000+ exercises and want to turn raw footage into short, consistent educational reference videos for coach education and client support — today each one takes 20-30 min in Premiere and we want a repeatable, AI-assisted production pipeline. This task is ONE run of that pipeline on a single representative exercise, the Goblet Squat, so we can validate the repeatable unit before scaling it across the library.\n\nSupplied assets: (1) a raw ~45s 4K landscape clip of a coach demoing the goblet squat; (2) our gym's square logo PNG (dark logo on transparent-ish background); (3) a flat hand-drawn red 'muscle-activation' arrow/callout PNG we use to point at the working muscle groups.\n\nWhat we need produced this run:\n1. SCENE SUMMARY & METADATA — an AI scene/movement summary of the raw clip capturing the movement phases + rep structure, which we'll use to name the clip consistently and as reference notes for the on-screen coaching-cue text our editor adds in Premiere.\n2. REUSABLE WATERMARK — our logo turned into a transparent, corner-sized, white version that reads on dark gym footage (this becomes a reusable overlay asset for the whole library).\n3. REUSABLE MUSCLE-GROUP CALLOUT — the hand-drawn arrow cleaned up into a crisp scalable vector recolored to our brand accent, sized as an overlay element (also reusable library-wide).\n4. VERTICAL REEL — the raw clip reframed to 1080x1920 vertical (full length, no trimming at this step) and then cut down by AI into a punchy ~30s highlight 'reference reel' of the key reps.\n5. ORGANIZED LIBRARY ENTRY — a folder following our naming convention (Exercise / LowerBody / GobletSquat) with the finished reel + the reusable overlay assets copied in, ready to template across the next 5,000 clips.\n\nHonesty note for the vendor: we understand the actual frame-by-frame compositing (placing the watermark and arrow onto the video, adding on-screen text, transitions) stays in Premiere on our side — what we want from this automated pipeline is every input asset and the reframed/cut reel prepared and organized so that final Premiere step is fast and identical every time.",
+  "inputs": [
+    {
+      "name": "goblet_squat_raw_4k.mp4",
+      "kind": "video",
+      "gen_model": "veo-3.1-generate-preview",
+      "gen_prompt": "Handheld documentary 4K 3840x2160 landscape clip, ~45 seconds, of a real fitness coach in a slightly worn commercial gym demonstrating a goblet squat holding a single dumbbell at the chest. Natural window + overhead fluorescent mixed lighting, visible floor rubber tiles, a rack of weights softly out of focus behind. The coach demonstrates clear, deliberate form to camera across 4-5 full reps, showing chest up, weight in the heels, and drive through the floor through visible body mechanics. Real skin texture, sweat sheen, natural body mechanics, candid not-glossy realism, no captions or graphics burned in.",
+      "realism_notes": "Must be genuine handheld 4K landscape footage with clear, readable body mechanics across the reps so media_summarize has real visual content to summarize for metadata and naming. No on-screen text/graphics (those are produced downstream)."
+    },
+    {
+      "name": "gym_logo_square.png",
+      "kind": "image",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "A clean square brand logo for a personal-training gym named 'IRONLINE COACHING' — a bold geometric barbell-and-line monogram mark above the wordmark, solid dark charcoal (#1C1C1C) artwork on a flat light grey background, crisp vector-like edges, high contrast, centered, 2048x2048, no photographic texture.",
+      "realism_notes": "Dark mark on light background so image_remove_background has a clean edge to cut and image_apply_color_overlay has solid dark pixels to recolor to white. Logo wordmark text must render legibly (gemini-3-pro-image for text)."
+    },
+    {
+      "name": "muscle_arrow_callout_raw.png",
+      "kind": "image",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "A single flat hand-drawn-style curved red arrow with a small 'GLUTES' tag at the tail, drawn with a marker texture, solid red (#D8352A) on a plain white background, slightly rough edges as if hand-drawn, 1600x1600, no other elements, no shadow.",
+      "realism_notes": "Flat solid-color marker arrow on plain white so image_vectorize produces a clean SVG and image_fill_area can solid-recolor the traced shape to the brand accent. Rough hand-drawn edges justify the vectorize cleanup step."
+    },
+    {
+      "name": "coach_cue_script.json",
+      "kind": "data",
+      "gen_model": "gemini-2.5-flash",
+      "gen_prompt": "Generate a small JSON object with the exercise metadata and the on-screen coaching-cue lines for a goblet squat demo: fields = exercise_name, primary_muscles (array), secondary_muscles (array), cue_lines (array of 5 short on-screen form-cue strings), naming_slug ('Exercise/LowerBody/GobletSquat'). Used only as the ground-truth reference for naming and to validate the AI summary, not edited by the connector.",
+      "realism_notes": "Lightweight reference metadata so the grader can check the summary/naming step against ground truth; not a connector input that gets transformed."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "goblet_squat_scene_summary.txt",
+      "kind": "text/summary",
+      "spec": "AI scene/movement summary of the raw clip (media_summarize output) capturing the movement phases + rep structure, usable as the consistent clip-naming basis and as reference notes for the on-screen coaching-cue text the editor adds in Premiere."
+    },
+    {
+      "name": "watermark_white_corner.png",
+      "kind": "image",
+      "spec": "Transparent PNG of the gym logo, background removed, recolored solid white, cropped/resized to a corner-badge overlay size (~400x400) — reusable library-wide watermark."
+    },
+    {
+      "name": "muscle_arrow_accent.svg",
+      "kind": "vector",
+      "spec": "Clean vectorized muscle-group callout arrow: the raw red raster arrow is first recolored to the brand accent (image_apply_color_overlay) and scaled to overlay size (image_crop_and_resize), then traced to a crisp scalable SVG (image_vectorize) as the final step — reusable library-wide overlay element."
+    },
+    {
+      "name": "goblet_squat_vertical_full.mp4",
+      "kind": "video",
+      "spec": "Raw clip reframed to 1080x1920 vertical, full original length (no trim) via video_resize."
+    },
+    {
+      "name": "goblet_squat_reference_reel_30s.mp4",
+      "kind": "video",
+      "spec": "~30s AI highlight cut (video_create_quick_cut) of the vertical clip — the punchy key-reps reference reel."
+    },
+    {
+      "name": "Exercise_LowerBody_GobletSquat_folder",
+      "kind": "asset-folder",
+      "spec": "CC asset folder following the naming convention containing the finished reel + reusable watermark + arrow overlay, copied in and ready to template across the library."
+    }
+  ],
+  "connector_workflow": [
+    {
+      "n": 1,
+      "tool": "asset_search",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "",
+      "output": "found_source_assets",
+      "note": "Initial load: locate the three client-supplied assets (raw goblet_squat_raw_4k.mp4, gym_logo_square.png, muscle_arrow_callout_raw.png) in CC/CC-uploads scope, returning their references for the chain."
+    },
+    {
+      "n": 2,
+      "tool": "asset_initialize_file_upload",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "found_source_assets",
+      "output": "raw_clip_upload_session",
+      "note": "Initialize an upload session for the raw 4K clip resolved in step 1 so it is held in CC storage as a transformable media asset."
+    },
+    {
+      "n": 3,
+      "tool": "asset_finalize_file_upload",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "raw_clip_upload_session",
+      "output": "raw_clip_asset",
+      "note": "Finalize the upload session from step 2 into a stable raw-clip asset URN that the video/summary steps consume."
+    },
+    {
+      "n": 4,
+      "tool": "media_summarize",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "raw_clip_asset",
+      "output": "clip_content_summary",
+      "note": "Summarize the finalized raw clip into a visual scene/movement summary of the exercise's movement phases + rep structure -> the metadata/naming basis and reference notes for the editor's on-screen coaching-cue text."
+    },
+    {
+      "n": 5,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "found_source_assets",
+      "output": "logo_transparent",
+      "note": "Cut the dark gym logo off its light background (supplied in step 1) -> transparent-background logo PNG."
+    },
+    {
+      "n": 6,
+      "tool": "image_apply_color_overlay",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "logo_transparent",
+      "output": "logo_white",
+      "note": "Recolor the transparent logo from step 5 to solid white so it reads on dark gym footage."
+    },
+    {
+      "n": 7,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "logo_white",
+      "output": "watermark_white_corner",
+      "note": "Crop/resize the white logo from step 6 down to a ~400x400 corner-badge overlay -> reusable watermark_white_corner.png."
+    },
+    {
+      "n": 8,
+      "tool": "image_apply_color_overlay",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "found_source_assets",
+      "output": "arrow_accent_raster",
+      "note": "Recolor the raw red hand-drawn muscle-activation arrow raster PNG (supplied in step 1) to the brand accent color — whole-image color overlay on the solid-red marker artwork, same raster recolor pattern as the logo branch (no selection needed)."
+    },
+    {
+      "n": 9,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "arrow_accent_raster",
+      "output": "arrow_accent_scaled",
+      "note": "Crop/resize the recolored raster arrow from step 8 to the overlay element scale (raster->raster)."
+    },
+    {
+      "n": 10,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "arrow_accent_scaled",
+      "output": "muscle_arrow_accent",
+      "note": "Vectorize the recolored/scaled raster arrow from step 9 into a clean crisp scalable SVG as the final step -> reusable muscle_arrow_accent.svg (genuine vector deliverable emitted by vectorize)."
+    },
+    {
+      "n": 11,
+      "tool": "video_resize",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "raw_clip_asset",
+      "output": "vertical_full_clip",
+      "note": "Reframe the finalized raw 4K landscape clip to 1080x1920 vertical at full original length (no trim) -> goblet_squat_vertical_full.mp4."
+    },
+    {
+      "n": 12,
+      "tool": "video_create_quick_cut",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "vertical_full_clip",
+      "output": "reference_reel_30s",
+      "note": "AI highlight-cut the vertical full clip from step 11 to a ~30s punchy key-reps reference reel -> goblet_squat_reference_reel_30s.mp4."
+    },
+    {
+      "n": 13,
+      "tool": "asset_create_folders",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "clip_content_summary",
+      "output": "library_folder",
+      "note": "Create the naming-convention folder Exercise/LowerBody/GobletSquat (slug derived from the step-4 summary/naming) as the organized library entry."
+    },
+    {
+      "n": 14,
+      "tool": "asset_copy_assets",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "reference_reel_30s, watermark_white_corner, muscle_arrow_accent, library_folder",
+      "output": "filed_library_entry",
+      "note": "Copy the finished reel (step 12) + reusable watermark (step 7) + reusable arrow overlay SVG (step 10) into the step-13 folder -> the templated, organized library entry."
+    }
+  ],
+  "tools_used": [
+    "asset_search",
+    "asset_initialize_file_upload",
+    "asset_finalize_file_upload",
+    "media_summarize",
+    "image_remove_background",
+    "image_apply_color_overlay",
+    "image_crop_and_resize",
+    "image_vectorize",
+    "video_resize",
+    "video_create_quick_cut",
+    "asset_create_folders",
+    "asset_copy_assets"
+  ],
+  "tool_call_count": 14,
+  "distinct_adobe_tools": 12,
+  "chaining_note": "Strict output->input chain. Step 1 (asset_search) is the only initial load. Steps 2->3 build raw_clip_asset, which feeds two media branches: media_summarize (4) and video_resize (11) both consume raw_clip_asset; video_create_quick_cut (12) consumes the reframed vertical_full_clip from 11. The watermark branch chains 1->5 remove_background -> 6 color_overlay -> 7 crop_and_resize. The callout branch stays entirely raster until the end: 1->8 image_apply_color_overlay (recolor the raw red raster arrow to the brand accent) -> 9 image_crop_and_resize (scale the recolored raster to overlay size) -> 10 image_vectorize (trace the recolored raster to the final brand-accent SVG); vectorize runs LAST so muscle_arrow_accent.svg is genuinely emitted as vector and no raster-only tool ever receives an SVG. The organization branch consumes the summary's naming (4->13 create_folders) and then asset_copy_assets (14) consumes FOUR prior outputs (reel from 12, watermark from 7, arrow SVG from 10, folder from 13) to assemble the final templated library entry. Every step after step 1 consumes at least one prior step's named output; the deliverable set (scene summary, watermark, vector arrow, vertical clip, 30s reel, organized folder) emerges only at the end of the chain.",
+  "difficulty_rationale": "Long-horizon and wide-mix: 14 connector calls, 12 distinct Adobe tools spanning multiple tool groups (asset/storage, media video [A], raster image [C], and the vectorize path), with three parallel sub-chains (media/reframe, watermark, callout) that converge into one organized library deliverable. It exercises real cross-group dependency tracking (the raw_clip_asset fan-out, the 4-input final copy) and forces correct execution-mode handling — the [A] async video steps interleave with [C] headless image steps. It is honestly bounded: it deliberately stops at asset preparation + reframe + AI cut + organization and explicitly leaves frame-by-frame burn-in/compositing/transitions to the human Premiere step, since Adobe-connector video compositing, on-screen text burn-in, and overlay placement are not available — making the difficulty come from orchestration and faithful capability mapping rather than from any disallowed generative/compositing shortcut.",
+  "_severity": "pass",
+  "reverify": {
+    "severity": "pass",
+    "banned_capability_check": "No banned capability anywhere in the chain: no generative-expand/outpaint, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction, no video compositing/on-screen-text burn-in/overlay placement (those are explicitly left to the human Premiere step). image_apply_color_overlay is used as a whole-image tonal recolor on solid-color raster artwork (logo and arrow) — an allowed use. video_resize is full-length (no trim); media_summarize and video_create_quick_cut are correctly tagged async [A] and product-doable; media_summarize produces a visual scene/movement summary of the clip for metadata + naming. Every tool acts on a compatible input type.",
+    "notes": "Vector-branch type mismatch resolved: the arrow branch performs all raster edits (image_apply_color_overlay recolor, image_crop_and_resize scale) on the raster PNG and runs image_vectorize LAST, so no raster-only tool receives an SVG and the muscle_arrow_accent.svg deliverable is truly produced as vector by vectorize. The former missing-selection issue is gone because image_fill_area was removed entirely (recoloring is now done by whole-image color_overlay, which needs no selection). All 14 calls use real Adobe-connector tools on compatible inputs; every declared input (raw 4K clip, square logo PNG, hand-drawn arrow PNG) is consumed by a step and declared in inputs[]. Grounding/scope unchanged and honest."
   }
- ],
- "outputs": [
-  {
-   "name": "goblet_squat_subtitle_cue_source.txt",
-   "kind": "text/summary",
-   "spec": "AI scene/transcript-style summary of the raw clip (media_summarize output) capturing the spoken form cues + rep structure, usable as Premiere subtitle + on-screen cue source text and as the consistent clip-naming basis."
-  },
-  {
-   "name": "goblet_squat_VO_clean.wav",
-   "kind": "audio",
-   "spec": "Coach's spoken cue track de-echoed/denoised (voice only) via media_enhance_speech, ready to drop under the reel."
-  },
-  {
-   "name": "watermark_white_corner.png",
-   "kind": "image",
-   "spec": "Transparent PNG of the gym logo, background removed, recolored solid white, cropped/resized to a corner-badge overlay size (~400x400) — reusable library-wide watermark."
-  },
-  {
-   "name": "muscle_arrow_accent.svg",
-   "kind": "vector",
-   "spec": "Clean vectorized muscle-group callout arrow: the raw red raster arrow is first recolored to the brand accent (image_apply_color_overlay) and scaled to overlay size (image_crop_and_resize), then traced to a crisp scalable SVG (image_vectorize) as the final step — reusable library-wide overlay element."
-  },
-  {
-   "name": "goblet_squat_vertical_full.mp4",
-   "kind": "video",
-   "spec": "Raw clip reframed to 1080x1920 vertical, full original length (no trim) via video_resize."
-  },
-  {
-   "name": "goblet_squat_reference_reel_30s.mp4",
-   "kind": "video",
-   "spec": "~30s AI highlight cut (video_create_quick_cut) of the vertical clip — the punchy key-reps reference reel."
-  },
-  {
-   "name": "Exercise_LowerBody_GobletSquat_folder",
-   "kind": "asset-folder",
-   "spec": "CC asset folder following the naming convention containing the finished reel + reusable watermark + arrow overlay, copied in and ready to template across the library."
-  }
- ],
- "connector_workflow": [
-  {
-   "n": 1,
-   "tool": "asset_search",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "",
-   "output": "found_source_assets",
-   "note": "Initial load: locate the three client-supplied assets (raw goblet_squat_raw_4k.mp4, gym_logo_square.png, muscle_arrow_callout_raw.png) in CC/CC-uploads scope, returning their references for the chain."
-  },
-  {
-   "n": 2,
-   "tool": "asset_initialize_file_upload",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "found_source_assets",
-   "output": "raw_clip_upload_session",
-   "note": "Initialize an upload session for the raw 4K clip resolved in step 1 so it is held in CC storage as a transformable media asset."
-  },
-  {
-   "n": 3,
-   "tool": "asset_finalize_file_upload",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "raw_clip_upload_session",
-   "output": "raw_clip_asset",
-   "note": "Finalize the upload session from step 2 into a stable raw-clip asset URN that the video/summary/speech steps consume."
-  },
-  {
-   "n": 4,
-   "tool": "media_summarize",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": "raw_clip_asset",
-   "output": "clip_content_summary",
-   "note": "Summarize the finalized raw clip into a scene/transcript-style summary of the spoken form cues + rep structure -> the subtitle/cue source text and the basis for consistent clip naming."
-  },
-  {
-   "n": 5,
-   "tool": "media_enhance_speech",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": "raw_clip_asset",
-   "output": "vo_clean",
-   "note": "De-echo/denoise the coach's spoken cue track from the same finalized raw clip (voice only) -> goblet_squat_VO_clean.wav."
-  },
-  {
-   "n": 6,
-   "tool": "image_remove_background",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "found_source_assets",
-   "output": "logo_transparent",
-   "note": "Cut the dark gym logo off its light background (supplied in step 1) -> transparent-background logo PNG."
-  },
-  {
-   "n": 7,
-   "tool": "image_apply_color_overlay",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "logo_transparent",
-   "output": "logo_white",
-   "note": "Recolor the transparent logo from step 6 to solid white so it reads on dark gym footage."
-  },
-  {
-   "n": 8,
-   "tool": "image_crop_and_resize",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "logo_white",
-   "output": "watermark_white_corner",
-   "note": "Crop/resize the white logo from step 7 down to a ~400x400 corner-badge overlay -> reusable watermark_white_corner.png."
-  },
-  {
-   "n": 9,
-   "tool": "image_apply_color_overlay",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "found_source_assets",
-   "output": "arrow_accent_raster",
-   "note": "Recolor the raw red hand-drawn muscle-activation arrow raster PNG (supplied in step 1) to the brand accent color — whole-image color overlay on the solid-red marker artwork, same raster recolor pattern as the logo branch (no selection needed)."
-  },
-  {
-   "n": 10,
-   "tool": "image_crop_and_resize",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "arrow_accent_raster",
-   "output": "arrow_accent_scaled",
-   "note": "Crop/resize the recolored raster arrow from step 9 to the overlay element scale (raster->raster)."
-  },
-  {
-   "n": 11,
-   "tool": "image_vectorize",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "arrow_accent_scaled",
-   "output": "muscle_arrow_accent",
-   "note": "Vectorize the recolored/scaled raster arrow from step 10 into a clean crisp scalable SVG as the final step -> reusable muscle_arrow_accent.svg (genuine vector deliverable emitted by vectorize)."
-  },
-  {
-   "n": 12,
-   "tool": "video_resize",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": "raw_clip_asset",
-   "output": "vertical_full_clip",
-   "note": "Reframe the finalized raw 4K landscape clip to 1080x1920 vertical at full original length (no trim) -> goblet_squat_vertical_full.mp4."
-  },
-  {
-   "n": 13,
-   "tool": "video_create_quick_cut",
-   "server": "adobe",
-   "exec_mode": "A",
-   "inputs_from": "vertical_full_clip",
-   "output": "reference_reel_30s",
-   "note": "AI highlight-cut the vertical full clip from step 12 to a ~30s punchy key-reps reference reel -> goblet_squat_reference_reel_30s.mp4."
-  },
-  {
-   "n": 14,
-   "tool": "asset_create_folders",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "clip_content_summary",
-   "output": "library_folder",
-   "note": "Create the naming-convention folder Exercise/LowerBody/GobletSquat (slug derived from the step-4 summary/naming) as the organized library entry."
-  },
-  {
-   "n": 15,
-   "tool": "asset_copy_assets",
-   "server": "adobe",
-   "exec_mode": "C",
-   "inputs_from": "reference_reel_30s, watermark_white_corner, muscle_arrow_accent, library_folder",
-   "output": "filed_library_entry",
-   "note": "Copy the finished reel (step 13) + reusable watermark (step 8) + reusable arrow overlay SVG (step 11) into the step-14 folder -> the templated, organized library entry."
-  }
- ],
- "tools_used": [
-  "asset_search",
-  "asset_initialize_file_upload",
-  "asset_finalize_file_upload",
-  "media_summarize",
-  "media_enhance_speech",
-  "image_remove_background",
-  "image_apply_color_overlay",
-  "image_crop_and_resize",
-  "image_vectorize",
-  "video_resize",
-  "video_create_quick_cut",
-  "asset_create_folders",
-  "asset_copy_assets"
- ],
- "tool_call_count": 15,
- "distinct_adobe_tools": 13,
- "chaining_note": "Strict output->input chain. Step 1 (asset_search) is the only initial load. Steps 2->3 build raw_clip_asset, which feeds the three media branches: media_summarize (4) and media_enhance_speech (5) and video_resize (12) all consume raw_clip_asset; video_create_quick_cut (13) consumes the reframed vertical_full_clip from 12. The watermark branch chains 1->6 remove_background -> 7 color_overlay -> 8 crop_and_resize. The callout branch stays entirely raster until the end: 1->9 image_apply_color_overlay (recolor the raw red raster arrow to the brand accent) -> 10 image_crop_and_resize (scale the recolored raster to overlay size) -> 11 image_vectorize (trace the recolored raster to the final brand-accent SVG); vectorize runs LAST so muscle_arrow_accent.svg is genuinely emitted as vector and no raster-only tool ever receives an SVG. The organization branch consumes the summary's naming (4->14 create_folders) and then asset_copy_assets (15) consumes FOUR prior outputs (reel from 13, watermark from 8, arrow SVG from 11, folder from 14) to assemble the final templated library entry. Every step after step 1 consumes at least one prior step's named output; the deliverable set (subtitle source, clean VO, watermark, vector arrow, vertical clip, 30s reel, organized folder) emerges only at the end of the chain.",
- "difficulty_rationale": "Long-horizon and wide-mix: 15 connector calls, 14 distinct Adobe tools spanning four tool groups (asset/storage, media video+audio [A], raster image [C], and the vectorize path), with three parallel sub-chains (media, watermark, callout) that converge into one organized library deliverable. It exercises real cross-group dependency tracking (the raw_clip_asset fan-out, the 4-input final copy) and forces correct execution-mode handling — the [A] async video/audio steps interleave with [C] headless image steps. It is honestly bounded: it deliberately stops at asset preparation + reframe + AI cut + organization and explicitly leaves frame-by-frame burn-in/compositing/transitions to the human Premiere step, since Adobe-connector video compositing, subtitle burn-in, and overlay placement are not available — making the difficulty come from orchestration and faithful capability mapping rather than from any disallowed generative/compositing shortcut.",
- "_severity": "pass",
- "reverify": {
-  "severity": "pass",
-  "banned_capability_check": "No banned capability anywhere in the chain: no generative-expand/outpaint, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction, no video compositing/subtitle burn-in/overlay placement (those are explicitly left to the human Premiere step). image_apply_color_overlay is used as a whole-image tonal recolor on solid-color raster artwork (logo and arrow) — an allowed use. video_resize is full-length (no trim); media_summarize/media_enhance_speech/video_create_quick_cut are correctly tagged async [A] and product-doable. Every tool acts on a compatible input type.",
-  "notes": "Vector-branch type mismatch resolved: the arrow branch now performs all raster edits (image_apply_color_overlay recolor, image_crop_and_resize scale) on the raster PNG and runs image_vectorize LAST, so no raster-only tool receives an SVG and the muscle_arrow_accent.svg deliverable is truly produced as vector by vectorize. The former missing-selection issue is gone because image_fill_area was removed entirely (recoloring is now done by whole-image color_overlay, which needs no selection). All 15 calls use real Adobe-connector tools on compatible inputs; every declared input (raw 4K clip, square logo PNG, hand-drawn arrow PNG) is consumed by a step and declared in inputs[]. Grounding/scope unchanged and honest."
- }
 }

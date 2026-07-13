@@ -430,7 +430,8 @@ def build():
         diff_chips += ("<button class='chip' data-k='diff' data-v='%s' style='--cf:%s'>"
                        "<span class='dot' style='background:%s'></span>%s</button>" % (slug, hexc, hexc, label))
     mod_chips = "".join("<button class='chip' data-k='mod' data-v='%s'>%s %s</button>" % (m, ic, lbl)
-                        for m, ic, lbl in [("video", "🎬", "Has video"), ("audio", "🔊", "Has audio")])
+                        for m, ic, lbl in [("video", "🎬", "Has video"), ("audio", "🔊", "Has audio")]
+                        if tot.get(m, 0) > 0)
 
     e = [head("StudioBench — Input Asset Gallery")]
     e.append("<div id='scrim' class='scrim'></div><div class='app'>")
@@ -446,6 +447,8 @@ def build():
     e.append("<div class='stats'>")
     for n, l in [(len(cards), "tasks"), (sum(tot.values()), "assets"), (tot["image"], "images"),
                  (tot["video"], "video"), (tot["audio"], "audio"), (tot["data"], "data")]:
+        if l == "audio" and n == 0:
+            continue
         e.append("<div class='stat'><div class='n'>%s</div><div class='l'>%s</div></div>" % (n, l))
     e.append("</div><div class='grid' id='grid'>")
     for c in cards:
