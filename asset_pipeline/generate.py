@@ -253,7 +253,33 @@ class TaskRunner:
         contact_sheet.write_task_sheet(self.dir, man)
         self.log.log("task %s done: ready_for_agent=%s, est $%.2f, %ds" % (
             self.rec["id"], man["ready_for_agent"], self.meter.usd, stats["wall_time_s"]))
+        self._sync_to_gcs()
         return man
+
+    def _sync_to_gcs(self):
+        """Auto-mirror this task's assets to GCS after a real regeneration.
+        Best-effort: never fails the run. Disable with env GCS_SYNC=0."""
+        import os, shutil, subprocess
+        if getattr(self.args, "dry_run", False):
+            return
+        if os.environ.get("GCS_SYNC", "").lower() in ("0", "off", "false", "no"):
+            self.log.log("gcs sync: disabled via GCS_SYNC")
+            return
+        here = os.path.dirname(os.path.abspath(__file__))
+        script = os.path.join(here, "sync_to_gcs.sh")
+        if not os.path.exists(script) or not shutil.which("gsutil"):
+            return
+        try:
+            r = subprocess.run(["bash", script, "--task", self.rec["id"]],
+                               capture_output=True, text=True, timeout=900)
+            if r.returncode == 0:
+                self.log.log("gcs sync: %s mirrored to bucket" % self.rec["id"])
+            else:
+                tail = (r.stderr or r.stdout or "").strip().splitlines()
+                self.log.log("gcs sync skipped (%s): %s" % (
+                    self.rec["id"], tail[-1][:160] if tail else "unknown"))
+        except Exception as e:
+            self.log.log("gcs sync error (%s): %s" % (self.rec["id"], e))
 
     def _load_cached_data(self, ctx):
         for a in self.spec["assets"]:
