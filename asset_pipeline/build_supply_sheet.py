@@ -56,8 +56,23 @@ def band(tc: int) -> str:
     return "T2_basic" if tc <= 15 else ("T3_intermediate" if tc <= 25 else "T4_advanced")
 
 
+def label_of(o) -> str:
+    """A single deliverable can ship in multiple file formats (e.g. a vector logo also exported
+    as PNG/PDF, or a print PDF plus a JPEG copy) — spec.outputs[] carries these as one entry with
+    a 'formats' list so the client-facing deliverable count doesn't double up per format."""
+    fmts = o.get("formats")
+    if fmts and len(fmts) > 1:
+        cats = []
+        for fm in fmts:
+            cc = cat_of(fm.get("kind"))
+            if cc not in cats:
+                cats.append(cc)
+        return "+".join(cats)
+    return cat_of(o.get("kind"))
+
+
 def breakdown(outputs) -> tuple[str, int]:
-    c = Counter(cat_of(o.get("kind")) for o in (outputs or []))
+    c = Counter(label_of(o) for o in (outputs or []))
     parts = sorted(c.items(), key=lambda kv: (-kv[1], CAT_ORDER.index(kv[0]) if kv[0] in CAT_ORDER else 99))
     return ", ".join(f"{k}×{v}" for k, v in parts), len(c)
 

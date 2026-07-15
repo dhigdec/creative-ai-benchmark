@@ -1,204 +1,209 @@
 {
-  "slot_id": "L10",
-  "category": "datamerge_print",
-  "title": "Halden Sleep mattress catalog pre-merge audit: validate SKU roster against the authored InDesign merge template, proof-render a sample spread, and emit a fix-list report",
-  "slug": "halden-sleep-mattress-catalog-premerge-audit",
-  "vertical": "retail_ecommerce",
-  "source": {
-    "platform": "Freelancer.com",
-    "reference": "Flipkart and amazon Mattress Listing Setup"
+ "slot_id": "L10",
+ "category": "datamerge_print",
+ "title": "Halden Sleep mattress catalog pre-merge audit: validate SKU roster against the authored InDesign merge template, proof-render a sample spread, and emit a fix-list report",
+ "slug": "halden-sleep-mattress-catalog-premerge-audit",
+ "vertical": "retail_ecommerce",
+ "source": {
+  "platform": "Freelancer.com",
+  "reference": "Flipkart and amazon Mattress Listing Setup"
+ },
+ "grounding_note": "VERBATIM from the Freelancer.com brief: \"The product descriptions and a clean image set are already prepared; what I am missing are the detailed specifications that Flipkart requires\u2014sizes, materials, firmness levels, certifications, weight, packaging dimensions, and anything else their catalogue team usually checks for approval.\" Reframed IP-cleanly for fictional brand Halden Sleep as an InDesign catalog data-merge pre-flight AUDIT: validate the supplied SKU roster against the authored merge template + the mandatory-spec checklist, proof-render a sample spread, and emit a per-SKU fix-list report.",
+ "one_line_ask": "Audit Halden Sleep's mattress product roster CSV against the authored InDesign catalog merge template and the mandatory-spec checklist, run a proof data-merge of a sample spread to inspect for blank/overset frames, and emit a per-SKU validation findings report with a prioritized fix-list.",
+ "full_brief": "Halden Sleep is a boxed-mattress startup about to send its 2026 wholesale catalog to the printer and to its retail-partner intake team. We already have (a) an authored InDesign catalog template (halden_catalog_template.indd) \u2014 a 2-up A4 landscape product-spread layout with real InDesign data-merge fields (<<sku>>, <<model>>, <<size>>, <<firmness>>, <<material>>, <<height_in>>, <<weight_lb>>, <<cert>>, <<box_dims>>, <<price>>, plus an <<image>> frame per product) and (b) a product roster CSV (mattress_roster.csv) with one row per SKU that our ops team filled in by hand. Before we spend money on a print run and before the retail intake team rejects us, we need someone to VALIDATE the roster against the template and against the marketplace-style mandatory-spec checklist \u2014 the same fields a catalogue approval team checks: size, material, firmness level, certification, weight, and packaging (box) dimensions must be present and non-blank on EVERY SKU, prices must be formatted consistently, firmness must be one of a controlled vocabulary (Soft / Medium / Medium-Firm / Firm), and specs must be consistent across all SKUs (no unit drift, e.g. some rows in cm and some in inches). Deliverable: a plain-English validation findings report (halden_catalog_audit.md/pdf) that lists, per SKU, exactly which mandatory field is missing, mis-formatted, off-vocabulary, or inconsistent, with a prioritized fix-list ranked by blocker vs. warning; plus a proof: run a data-merge of the FIRST sample spread through the authored template and export it so we can eyeball whether any merge frame comes out blank or text oversets. Do NOT redesign the catalog \u2014 the .indd layout is final; we only need the data checked and a proof spread rendered. Page size A4 landscape, 300 DPI proof. Please also confirm every referenced product image resolves (no missing/placeholder frames) by previewing the sample.",
+ "inputs": [
+  {
+   "name": "halden_catalog_template.indd",
+   "kind": "data",
+   "gen_model": "n/a-authored-asset",
+   "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine Adobe InDesign document (.indd/.idml) for a 2-up A4 LANDSCAPE mattress-catalog product spread. Must contain REAL InDesign data-merge placeholder fields named <<sku>>, <<model>>, <<size>>, <<firmness>>, <<material>>, <<height_in>>, <<weight_lb>>, <<cert>>, <<box_dims>>, <<price>>, and a linked <<image>> frame per product, arranged as a repeating product card with a spec table. Authored by hand in InDesign so the fields actually bind; a PDF-converted .indd with literal text would NOT bind.",
+   "realism_notes": "Modeled as the client's own final catalog template (normal freelancer hand-off). document_merge_data_layout is [T] and REQUIRES a user-authored .indd carrying real merge fields; it is a supplied input, not a chain output. The audit checks the CSV against THIS template's field set."
   },
-  "grounding_note": "VERBATIM from the Freelancer.com brief: \"The product descriptions and a clean image set are already prepared; what I am missing are the detailed specifications that Flipkart requires—sizes, materials, firmness levels, certifications, weight, packaging dimensions, and anything else their catalogue team usually checks for approval.\" Reframed IP-cleanly for fictional brand Halden Sleep as an InDesign catalog data-merge pre-flight AUDIT: validate the supplied SKU roster against the authored merge template + the mandatory-spec checklist, proof-render a sample spread, and emit a per-SKU fix-list report.",
-  "one_line_ask": "Audit Halden Sleep's mattress product roster CSV against the authored InDesign catalog merge template and the mandatory-spec checklist, run a proof data-merge of a sample spread to inspect for blank/overset frames, and emit a per-SKU validation findings report with a prioritized fix-list.",
-  "full_brief": "Halden Sleep is a boxed-mattress startup about to send its 2026 wholesale catalog to the printer and to its retail-partner intake team. We already have (a) an authored InDesign catalog template (halden_catalog_template.indd) — a 2-up A4 landscape product-spread layout with real InDesign data-merge fields (<<sku>>, <<model>>, <<size>>, <<firmness>>, <<material>>, <<height_in>>, <<weight_lb>>, <<cert>>, <<box_dims>>, <<price>>, plus an <<image>> frame per product) and (b) a product roster CSV (mattress_roster.csv) with one row per SKU that our ops team filled in by hand. Before we spend money on a print run and before the retail intake team rejects us, we need someone to VALIDATE the roster against the template and against the marketplace-style mandatory-spec checklist — the same fields a catalogue approval team checks: size, material, firmness level, certification, weight, and packaging (box) dimensions must be present and non-blank on EVERY SKU, prices must be formatted consistently, firmness must be one of a controlled vocabulary (Soft / Medium / Medium-Firm / Firm), and specs must be consistent across all SKUs (no unit drift, e.g. some rows in cm and some in inches). Deliverable: a plain-English validation findings report (halden_catalog_audit.md/pdf) that lists, per SKU, exactly which mandatory field is missing, mis-formatted, off-vocabulary, or inconsistent, with a prioritized fix-list ranked by blocker vs. warning; plus a proof: run a data-merge of the FIRST sample spread through the authored template and export it so we can eyeball whether any merge frame comes out blank or text oversets. Do NOT redesign the catalog — the .indd layout is final; we only need the data checked and a proof spread rendered. Page size A4 landscape, 300 DPI proof. Please also confirm every referenced product image resolves (no missing/placeholder frames) by previewing the sample.",
-  "inputs": [
-    {
-      "name": "halden_catalog_template.indd",
-      "kind": "data",
-      "gen_model": "n/a-authored-asset",
-      "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine Adobe InDesign document (.indd/.idml) for a 2-up A4 LANDSCAPE mattress-catalog product spread. Must contain REAL InDesign data-merge placeholder fields named <<sku>>, <<model>>, <<size>>, <<firmness>>, <<material>>, <<height_in>>, <<weight_lb>>, <<cert>>, <<box_dims>>, <<price>>, and a linked <<image>> frame per product, arranged as a repeating product card with a spec table. Authored by hand in InDesign so the fields actually bind; a PDF-converted .indd with literal text would NOT bind.",
-      "realism_notes": "Modeled as the client's own final catalog template (normal freelancer hand-off). document_merge_data_layout is [T] and REQUIRES a user-authored .indd carrying real merge fields; it is a supplied input, not a chain output. The audit checks the CSV against THIS template's field set."
-    },
-    {
-      "name": "mattress_roster.csv",
-      "kind": "data",
-      "gen_model": "gemini-2.5-flash",
-      "gen_prompt": "Generate a realistic hand-filled product-roster CSV, ~14 rows, columns exactly: sku,model,size,firmness,material,height_in,weight_lb,cert,box_dims,price,image. Model names like 'Halden Cloud 10', 'Halden Terra Hybrid', etc. DELIBERATELY seed realistic data-entry defects a catalogue-approval team would reject: 2-3 rows with a BLANK mandatory field (e.g. empty cert or empty box_dims), 1 row with firmness off the controlled vocabulary ('Plush' instead of Soft/Medium/Medium-Firm/Firm), 2 rows with UNIT DRIFT (box_dims in cm while the rest are in inches; one height row in cm), inconsistent price formatting ('$799' vs '799.00' vs '1,299'), one duplicate SKU code, and one image cell pointing to a filename not present in the image set. The remaining rows are clean and valid.",
-      "realism_notes": "The defects are the whole point of an ANALYZE task — they are what the audit must detect and report. Column headers exactly match the authored template's <<merge fields>> so the proof data-merge binds."
-    },
-    {
-      "name": "product_images_set/ (12 packshots)",
-      "kind": "image",
-      "gen_model": "gpt-image-2",
-      "gen_prompt": "A set of clean e-commerce packshots of boxed foam/hybrid mattresses on plain light-grey studio seamless: some shown as the compressed box with a branded sleeve, some as the rolled-out mattress at a slight angle showing quilted top and side profile. Even soft studio light, neutral white balance, product centered, generous margin. Filenames like sku_HC10.jpg, sku_TH20.jpg matching the roster's image column (with ONE roster row intentionally referencing a filename NOT in this set).",
-      "realism_notes": "Supplied 'clean image set' straight from the brief ('a clean image set are already prepared'). One deliberately-missing filename lets the audit catch an unresolved image reference during the sample preview."
-    },
-    {
-      "name": "spec_checklist.txt",
-      "kind": "data",
-      "gen_model": "gemini-2.5-flash",
-      "gen_prompt": "Write a short plain-text mandatory-spec checklist a marketplace catalogue-approval team uses for mattresses: (1) mandatory non-blank fields = size, material, firmness, cert, weight_lb, box_dims; (2) firmness controlled vocabulary = Soft, Medium, Medium-Firm, Firm; (3) all linear dimensions in INCHES, weight in POUNDS (no cm/kg); (4) price formatted as $#,###.## consistently; (5) sku must be unique; (6) every image reference must resolve. Mirrors the brief's 'sizes, materials, firmness levels, certifications, weight, packaging dimensions ... their catalogue team usually checks'.",
-      "realism_notes": "The rubric the audit validates against; taken almost verbatim from the client's own field list. Keeps the pass/fail criteria objective and grounded."
-    }
-  ],
-  "outputs": [
-    {
-      "name": "halden_catalog_audit.pdf",
-      "kind": "pdf",
-      "spec": "Plain-English validation findings report: a per-SKU table of every mandatory-field defect (blank field, off-vocabulary firmness, unit drift, inconsistent price format, duplicate SKU, unresolved image) with a prioritized fix-list split into BLOCKERS (will fail approval / export blank frame) vs WARNINGS (cosmetic/inconsistency). Rendered to PDF from the recipe note for hand-off."
-    },
-    {
-      "name": "halden_catalog_audit.md",
-      "kind": "data",
-      "spec": "The same findings + fix-list authored as a Markdown recipe note (source of the PDF), listing each SKU, the failing rule from the checklist, and the exact edit needed."
-    },
-    {
-      "name": "proof_spread_sample.pdf",
-      "kind": "pdf",
-      "spec": "Proof render of the FIRST sample product spread produced by running the authored template through a data-merge of the sample rows, A4 landscape ~300 DPI, so the client can eyeball blank/overset merge frames and a missing image placeholder before the full print run."
-    }
-  ],
-  "connector_workflow": [
-    {
-      "n": 1,
-      "tool": "asset_create_folders",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "",
-      "output": "audit_workspace_folder",
-      "note": "Create a Creative Cloud working folder to hold the roster, template, images and audit artifacts for this catalog review."
-    },
-    {
-      "n": 2,
-      "tool": "asset_initialize_file_upload",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "audit_workspace_folder",
-      "output": "upload_session",
-      "note": "Open an upload session for the supplied inputs (template .indd, roster CSV, checklist, 12 packshots)."
-    },
-    {
-      "n": 3,
-      "tool": "asset_finalize_file_upload",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "upload_session; halden_catalog_template.indd; mattress_roster.csv; spec_checklist.txt; product_images_set/ (12 packshots)",
-      "output": "uploaded_asset_urns",
-      "note": "Finalize the upload; returns URNs the preview, merge and image-checks reference."
-    },
-    {
-      "n": 4,
-      "tool": "asset_preview_file",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "uploaded_asset_urns",
-      "output": "template_preview",
-      "note": "Inspect the authored .indd to read its merge-field set and confirm which fields the layout actually expects (<<sku>>,<<model>>,<<size>>,<<firmness>>,<<material>>,<<height_in>>,<<weight_lb>>,<<cert>>,<<box_dims>>,<<price>>,<<image>>)."
-    },
-    {
-      "n": 5,
-      "tool": "media_summarize",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "uploaded_asset_urns",
-      "output": "roster_field_summary",
-      "note": "Summarize/extract the roster CSV contents (columns + all rows) to enumerate every SKU and its filled/blank cells for the field-completeness pass."
-    },
-    {
-      "n": 6,
-      "tool": "media_summarize",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "uploaded_asset_urns",
-      "output": "checklist_rules",
-      "note": "Extract the mandatory-spec checklist rules (required fields, firmness vocabulary, unit + price-format rules, uniqueness, image-resolves) that the roster is validated against."
-    },
-    {
-      "n": 7,
-      "tool": "asset_search",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "audit_workspace_folder; roster_field_summary",
-      "output": "image_resolution_map",
-      "note": "Search the uploaded packshot set for each filename referenced in the roster's image column to detect the unresolved/missing image reference (a hit-or-miss per SKU)."
-    },
-    {
-      "n": 8,
-      "tool": "asset_inline_preview",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "image_resolution_map",
-      "output": "packshot_thumbnails",
-      "note": "Inline-preview the resolved packshots to confirm they are real product images (not blank/placeholder) so the audit only flags the genuinely-missing one."
-    },
-    {
-      "n": 9,
-      "tool": "document_merge_data_layout",
-      "server": "adobe",
-      "exec_mode": "T",
-      "inputs_from": "uploaded_asset_urns; halden_catalog_template.indd; mattress_roster.csv",
-      "output": "proof_merged_indd",
-      "note": "Run a PROOF data-merge of the sample rows through the client's authored .indd (real <<fields>>) so we can observe how the current roster binds — blank cells surface as empty frames, over-long text as overset. [T] requires the supplied authored template; no layout is composed."
-    },
-    {
-      "n": 10,
-      "tool": "document_render_layout",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "proof_merged_indd",
-      "output": "proof_spread_sample.pdf",
-      "note": "Export the first proof spread to an A4-landscape ~300 DPI PDF for visual inspection of blank/overset frames."
-    },
-    {
-      "n": 11,
-      "tool": "media_summarize",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "proof_spread_sample.pdf",
-      "output": "proof_render_findings",
-      "note": "Summarize the rendered proof spread to capture the visible defects (empty spec cells, overset description, placeholder image) as evidence for the report."
-    },
-    {
-      "n": 12,
-      "tool": "local_write_recipe_note",
-      "server": "adobe",
-      "exec_mode": "L",
-      "inputs_from": "roster_field_summary; checklist_rules; image_resolution_map; packshot_thumbnails; proof_render_findings",
-      "output": "halden_catalog_audit.md",
-      "note": "Author the validation findings: cross-reference every SKU against the checklist (blank mandatory field, off-vocabulary firmness, cm/kg unit drift, inconsistent price format, duplicate SKU, unresolved image) plus the proof-render evidence, into a per-SKU fix-list split BLOCKERS vs WARNINGS."
-    },
-    {
-      "n": 13,
-      "tool": "document_convert_pdf",
-      "server": "adobe",
-      "exec_mode": "C",
-      "inputs_from": "halden_catalog_audit.md",
-      "output": "halden_catalog_audit.pdf",
-      "note": "Convert the Markdown findings report to a clean PDF deliverable for hand-off to the owner and the retail-intake team."
-    }
-  ],
-  "tools_used": [
-    "asset_create_folders",
-    "asset_initialize_file_upload",
-    "asset_finalize_file_upload",
-    "asset_preview_file",
-    "media_summarize",
-    "asset_search",
-    "asset_inline_preview",
-    "document_merge_data_layout",
-    "document_render_layout",
-    "local_write_recipe_note",
-    "document_convert_pdf"
-  ],
-  "tool_call_count": 13,
-  "distinct_adobe_tools": 11,
-  "chaining_note": "Strict output-to-input chaining. Setup: create_folders(1) -> init_upload(2) -> finalize_upload(3) yields uploaded_asset_urns, the shared source for inspection. The audit fans out from those URNs: asset_preview_file(4) reads the template's real merge-field set; media_summarize(5) extracts the roster rows; media_summarize(6) extracts the checklist rules. The image-resolution branch chains roster_field_summary(5) -> asset_search(7) -> asset_inline_preview(8) to catch the missing packshot. The proof branch chains uploaded_asset_urns(3)+template+roster -> document_merge_data_layout(9) [T] -> document_render_layout(10) -> media_summarize(11), turning the bound spread into inspectable evidence. Everything converges: roster_field_summary(5)+checklist_rules(6)+image_resolution_map(7)+packshot_thumbnails(8)+proof_render_findings(11) all feed local_write_recipe_note(12), which document_convert_pdf(13) turns into the PDF report. No step stands free of the chain; the two report deliverables (audit PDF, audit MD) and the proof spread PDF emerge only from the assembled pipeline.",
-  "difficulty_rationale": "Long-horizon analyze task: 13 connector calls, 11 distinct Adobe tools across three groups (asset_* storage/search/preview, document_* InDesign merge/render/convert, media_summarize inspection) plus one [L] recipe-note emit — above the >=10-call / >=6-distinct-tool floor for an analyze workflow. Difficulty comes from genuinely INSPECTING heterogeneous inputs (an authored .indd's field set, a defect-seeded roster CSV, a rules checklist, a 12-image packshot set) and cross-referencing them: field completeness, controlled-vocabulary firmness, unit drift, price-format consistency, SKU uniqueness, and image resolution, THEN validating the theory by running a genuine [T] proof data-merge and visually reading the rendered spread for blank/overset frames before writing an evidence-backed per-SKU fix-list. It respects every hard limit: no generative fill / object-removal / text-to-image / upscaling / from-scratch layout; document_merge_data_layout binds and document_render_layout only EXPORTS the client's authored .indd (a supplied input); the output is a findings report + proof, exactly matching an ANALYZE deliverable.",
-  "workflow_nature": "analyze",
-  "reverify": {
-    "severity": "pass",
-    "banned_capability_check": "No banned capabilities used. No image_crop_and_resize / reframe-crop, no generative fill, no text-to-image or from-scratch art/logo, no upscaling/super-resolution, no object-removal/inpainting, no bespoke font design, no unreachable external accounts. No layout is composed by the connector: document_merge_data_layout [T] binds the client's supplied authored .indd (declared as kind:data, gen_model:'n/a-authored-asset') and document_render_layout only EXPORTS it. image_fill_area and image_remove_background are unused. No marketplace/web-build steps (the out-of-scope parts of the source brief are dropped).",
-    "notes": "Corrected during reverify: distinct_adobe_tools raised from 10 to 11 to match the 11 unique tool names actually invoked across the 13 steps (asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, asset_preview_file, media_summarize, asset_search, asset_inline_preview, document_merge_data_layout, document_render_layout, local_write_recipe_note, document_convert_pdf); tools_used already listed all 11. SLOT-MATCH verified: workflow_nature=analyze, output_modality=document (the audit PDF/MD report), vertical=retail_ecommerce, operation_family=Layout & Data (InDesign data-merge validation) all equal slot L10; fictional IP-clean brand Halden Sleep replaces the real Flipkart/mattress vendor. Every potentially-risky step stays in-bounds: (1) document_merge_data_layout(9) is a genuine [T] merge against a supplied authored template with real <<fields>>; CSV headers exactly match those fields, so it binds — no from-scratch layout. (2) document_render_layout(10) and document_convert_pdf(13) only export/convert; they do not author design. (3) media_summarize(5,6,11), asset_preview_file(4), asset_inline_preview(8) and asset_search(7) are all INSPECTION tools used to read/validate content, not to generate it — correct for an analyze task and explicitly sanctioned as the analyze inspection palette. (4) The deliverable is a findings/report file (halden_catalog_audit.pdf/.md) plus a proof render, emitted via local_write_recipe_note(12) [L] then converted — matching the analyze contract that output is a report/marked-up/data artifact. (5) All defects to be found are seeded in the supplied CSV/image set, so the audit is objectively verifiable against spec_checklist.txt. 13 calls, 11 distinct adobe-server tools; qualifies as a long-horizon analyze task. grounding_note quotes the real brief verbatim; source.platform=Freelancer.com and source.reference = the candidate title 'Flipkart and amazon Mattress Listing Setup'."
+  {
+   "name": "mattress_roster.csv",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Generate a realistic hand-filled product-roster CSV, ~14 rows, columns exactly: sku,model,size,firmness,material,height_in,weight_lb,cert,box_dims,price,image. Model names like 'Halden Cloud 10', 'Halden Terra Hybrid', etc. DELIBERATELY seed realistic data-entry defects a catalogue-approval team would reject: 2-3 rows with a BLANK mandatory field (e.g. empty cert or empty box_dims), 1 row with firmness off the controlled vocabulary ('Plush' instead of Soft/Medium/Medium-Firm/Firm), 2 rows with UNIT DRIFT (box_dims in cm while the rest are in inches; one height row in cm), inconsistent price formatting ('$799' vs '799.00' vs '1,299'), one duplicate SKU code, and one image cell pointing to a filename not present in the image set. The remaining rows are clean and valid.",
+   "realism_notes": "The defects are the whole point of an ANALYZE task \u2014 they are what the audit must detect and report. Column headers exactly match the authored template's <<merge fields>> so the proof data-merge binds."
   },
-  "id": "AO-83"
+  {
+   "name": "product_images_set/ (12 packshots)",
+   "kind": "image",
+   "gen_model": "gpt-image-2",
+   "gen_prompt": "A set of clean e-commerce packshots of boxed foam/hybrid mattresses on plain light-grey studio seamless: some shown as the compressed box with a branded sleeve, some as the rolled-out mattress at a slight angle showing quilted top and side profile. Even soft studio light, neutral white balance, product centered, generous margin. Filenames like sku_HC10.jpg, sku_TH20.jpg matching the roster's image column (with ONE roster row intentionally referencing a filename NOT in this set).",
+   "realism_notes": "Supplied 'clean image set' straight from the brief ('a clean image set are already prepared'). One deliberately-missing filename lets the audit catch an unresolved image reference during the sample preview."
+  },
+  {
+   "name": "spec_checklist.txt",
+   "kind": "data",
+   "gen_model": "gemini-2.5-flash",
+   "gen_prompt": "Write a short plain-text mandatory-spec checklist a marketplace catalogue-approval team uses for mattresses: (1) mandatory non-blank fields = size, material, firmness, cert, weight_lb, box_dims; (2) firmness controlled vocabulary = Soft, Medium, Medium-Firm, Firm; (3) all linear dimensions in INCHES, weight in POUNDS (no cm/kg); (4) price formatted as $#,###.## consistently; (5) sku must be unique; (6) every image reference must resolve. Mirrors the brief's 'sizes, materials, firmness levels, certifications, weight, packaging dimensions ... their catalogue team usually checks'.",
+   "realism_notes": "The rubric the audit validates against; taken almost verbatim from the client's own field list. Keeps the pass/fail criteria objective and grounded."
+  }
+ ],
+ "outputs": [
+  {
+   "name": "halden_catalog_audit.pdf",
+   "kind": "pdf",
+   "spec": "Plain-English validation findings report: a per-SKU table of every mandatory-field defect (blank field, off-vocabulary firmness, unit drift, inconsistent price format, duplicate SKU, unresolved image) with a prioritized fix-list split into BLOCKERS (will fail approval / export blank frame) vs WARNINGS (cosmetic/inconsistency). Rendered to PDF from the recipe note for hand-off. Also delivered as halden_catalog_audit.md: The same findings + fix-list authored as a Markdown recipe note (source of the PDF), listing each SKU, the failing rule from the checklist, and the exact edit needed.",
+   "formats": [
+    {
+     "name": "halden_catalog_audit.pdf",
+     "kind": "pdf"
+    },
+    {
+     "name": "halden_catalog_audit.md",
+     "kind": "data"
+    }
+   ]
+  },
+  {
+   "name": "proof_spread_sample.pdf",
+   "kind": "pdf",
+   "spec": "Proof render of the FIRST sample product spread produced by running the authored template through a data-merge of the sample rows, A4 landscape ~300 DPI, so the client can eyeball blank/overset merge frames and a missing image placeholder before the full print run."
+  }
+ ],
+ "connector_workflow": [
+  {
+   "n": 1,
+   "tool": "asset_create_folders",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "",
+   "output": "audit_workspace_folder",
+   "note": "Create a Creative Cloud working folder to hold the roster, template, images and audit artifacts for this catalog review."
+  },
+  {
+   "n": 2,
+   "tool": "asset_initialize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "audit_workspace_folder",
+   "output": "upload_session",
+   "note": "Open an upload session for the supplied inputs (template .indd, roster CSV, checklist, 12 packshots)."
+  },
+  {
+   "n": 3,
+   "tool": "asset_finalize_file_upload",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "upload_session; halden_catalog_template.indd; mattress_roster.csv; spec_checklist.txt; product_images_set/ (12 packshots)",
+   "output": "uploaded_asset_urns",
+   "note": "Finalize the upload; returns URNs the preview, merge and image-checks reference."
+  },
+  {
+   "n": 4,
+   "tool": "asset_preview_file",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_asset_urns",
+   "output": "template_preview",
+   "note": "Inspect the authored .indd to read its merge-field set and confirm which fields the layout actually expects (<<sku>>,<<model>>,<<size>>,<<firmness>>,<<material>>,<<height_in>>,<<weight_lb>>,<<cert>>,<<box_dims>>,<<price>>,<<image>>)."
+  },
+  {
+   "n": 5,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_asset_urns",
+   "output": "roster_field_summary",
+   "note": "Summarize/extract the roster CSV contents (columns + all rows) to enumerate every SKU and its filled/blank cells for the field-completeness pass."
+  },
+  {
+   "n": 6,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "uploaded_asset_urns",
+   "output": "checklist_rules",
+   "note": "Extract the mandatory-spec checklist rules (required fields, firmness vocabulary, unit + price-format rules, uniqueness, image-resolves) that the roster is validated against."
+  },
+  {
+   "n": 7,
+   "tool": "asset_search",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "audit_workspace_folder; roster_field_summary",
+   "output": "image_resolution_map",
+   "note": "Search the uploaded packshot set for each filename referenced in the roster's image column to detect the unresolved/missing image reference (a hit-or-miss per SKU)."
+  },
+  {
+   "n": 8,
+   "tool": "asset_inline_preview",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "image_resolution_map",
+   "output": "packshot_thumbnails",
+   "note": "Inline-preview the resolved packshots to confirm they are real product images (not blank/placeholder) so the audit only flags the genuinely-missing one."
+  },
+  {
+   "n": 9,
+   "tool": "document_merge_data_layout",
+   "server": "adobe",
+   "exec_mode": "T",
+   "inputs_from": "uploaded_asset_urns; halden_catalog_template.indd; mattress_roster.csv",
+   "output": "proof_merged_indd",
+   "note": "Run a PROOF data-merge of the sample rows through the client's authored .indd (real <<fields>>) so we can observe how the current roster binds \u2014 blank cells surface as empty frames, over-long text as overset. [T] requires the supplied authored template; no layout is composed."
+  },
+  {
+   "n": 10,
+   "tool": "document_render_layout",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "proof_merged_indd",
+   "output": "proof_spread_sample.pdf",
+   "note": "Export the first proof spread to an A4-landscape ~300 DPI PDF for visual inspection of blank/overset frames."
+  },
+  {
+   "n": 11,
+   "tool": "media_summarize",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "proof_spread_sample.pdf",
+   "output": "proof_render_findings",
+   "note": "Summarize the rendered proof spread to capture the visible defects (empty spec cells, overset description, placeholder image) as evidence for the report."
+  },
+  {
+   "n": 12,
+   "tool": "local_write_recipe_note",
+   "server": "adobe",
+   "exec_mode": "L",
+   "inputs_from": "roster_field_summary; checklist_rules; image_resolution_map; packshot_thumbnails; proof_render_findings",
+   "output": "halden_catalog_audit.md",
+   "note": "Author the validation findings: cross-reference every SKU against the checklist (blank mandatory field, off-vocabulary firmness, cm/kg unit drift, inconsistent price format, duplicate SKU, unresolved image) plus the proof-render evidence, into a per-SKU fix-list split BLOCKERS vs WARNINGS."
+  },
+  {
+   "n": 13,
+   "tool": "document_convert_pdf",
+   "server": "adobe",
+   "exec_mode": "C",
+   "inputs_from": "halden_catalog_audit.md",
+   "output": "halden_catalog_audit.pdf",
+   "note": "Convert the Markdown findings report to a clean PDF deliverable for hand-off to the owner and the retail-intake team."
+  }
+ ],
+ "tools_used": [
+  "asset_create_folders",
+  "asset_initialize_file_upload",
+  "asset_finalize_file_upload",
+  "asset_preview_file",
+  "media_summarize",
+  "asset_search",
+  "asset_inline_preview",
+  "document_merge_data_layout",
+  "document_render_layout",
+  "local_write_recipe_note",
+  "document_convert_pdf"
+ ],
+ "tool_call_count": 13,
+ "distinct_adobe_tools": 11,
+ "chaining_note": "Strict output-to-input chaining. Setup: create_folders(1) -> init_upload(2) -> finalize_upload(3) yields uploaded_asset_urns, the shared source for inspection. The audit fans out from those URNs: asset_preview_file(4) reads the template's real merge-field set; media_summarize(5) extracts the roster rows; media_summarize(6) extracts the checklist rules. The image-resolution branch chains roster_field_summary(5) -> asset_search(7) -> asset_inline_preview(8) to catch the missing packshot. The proof branch chains uploaded_asset_urns(3)+template+roster -> document_merge_data_layout(9) [T] -> document_render_layout(10) -> media_summarize(11), turning the bound spread into inspectable evidence. Everything converges: roster_field_summary(5)+checklist_rules(6)+image_resolution_map(7)+packshot_thumbnails(8)+proof_render_findings(11) all feed local_write_recipe_note(12), which document_convert_pdf(13) turns into the PDF report. No step stands free of the chain; the two report deliverables (audit PDF, audit MD) and the proof spread PDF emerge only from the assembled pipeline.",
+ "difficulty_rationale": "Long-horizon analyze task: 13 connector calls, 11 distinct Adobe tools across three groups (asset_* storage/search/preview, document_* InDesign merge/render/convert, media_summarize inspection) plus one [L] recipe-note emit \u2014 above the >=10-call / >=6-distinct-tool floor for an analyze workflow. Difficulty comes from genuinely INSPECTING heterogeneous inputs (an authored .indd's field set, a defect-seeded roster CSV, a rules checklist, a 12-image packshot set) and cross-referencing them: field completeness, controlled-vocabulary firmness, unit drift, price-format consistency, SKU uniqueness, and image resolution, THEN validating the theory by running a genuine [T] proof data-merge and visually reading the rendered spread for blank/overset frames before writing an evidence-backed per-SKU fix-list. It respects every hard limit: no generative fill / object-removal / text-to-image / upscaling / from-scratch layout; document_merge_data_layout binds and document_render_layout only EXPORTS the client's authored .indd (a supplied input); the output is a findings report + proof, exactly matching an ANALYZE deliverable.",
+ "workflow_nature": "analyze",
+ "reverify": {
+  "severity": "pass",
+  "banned_capability_check": "No banned capabilities used. No image_crop_and_resize / reframe-crop, no generative fill, no text-to-image or from-scratch art/logo, no upscaling/super-resolution, no object-removal/inpainting, no bespoke font design, no unreachable external accounts. No layout is composed by the connector: document_merge_data_layout [T] binds the client's supplied authored .indd (declared as kind:data, gen_model:'n/a-authored-asset') and document_render_layout only EXPORTS it. image_fill_area and image_remove_background are unused. No marketplace/web-build steps (the out-of-scope parts of the source brief are dropped).",
+  "notes": "Corrected during reverify: distinct_adobe_tools raised from 10 to 11 to match the 11 unique tool names actually invoked across the 13 steps (asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, asset_preview_file, media_summarize, asset_search, asset_inline_preview, document_merge_data_layout, document_render_layout, local_write_recipe_note, document_convert_pdf); tools_used already listed all 11. SLOT-MATCH verified: workflow_nature=analyze, output_modality=document (the audit PDF/MD report), vertical=retail_ecommerce, operation_family=Layout & Data (InDesign data-merge validation) all equal slot L10; fictional IP-clean brand Halden Sleep replaces the real Flipkart/mattress vendor. Every potentially-risky step stays in-bounds: (1) document_merge_data_layout(9) is a genuine [T] merge against a supplied authored template with real <<fields>>; CSV headers exactly match those fields, so it binds \u2014 no from-scratch layout. (2) document_render_layout(10) and document_convert_pdf(13) only export/convert; they do not author design. (3) media_summarize(5,6,11), asset_preview_file(4), asset_inline_preview(8) and asset_search(7) are all INSPECTION tools used to read/validate content, not to generate it \u2014 correct for an analyze task and explicitly sanctioned as the analyze inspection palette. (4) The deliverable is a findings/report file (halden_catalog_audit.pdf/.md) plus a proof render, emitted via local_write_recipe_note(12) [L] then converted \u2014 matching the analyze contract that output is a report/marked-up/data artifact. (5) All defects to be found are seeded in the supplied CSV/image set, so the audit is objectively verifiable against spec_checklist.txt. 13 calls, 11 distinct adobe-server tools; qualifies as a long-horizon analyze task. grounding_note quotes the real brief verbatim; source.platform=Freelancer.com and source.reference = the candidate title 'Flipkart and amazon Mattress Listing Setup'."
+ },
+ "id": "AO-83"
 }
