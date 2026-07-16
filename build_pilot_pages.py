@@ -153,8 +153,7 @@ idx = f"""<h1>StudioBench Pilot — task handoff</h1>
 <a class=filelink href="verifiers.html"><span class=n>Verifier mapping (task list + verifiers)</span><span class=d>The scoring checklist for both tasks — view as table, or download the CSV.</span></a>
 <a class=filelink href="AO-13.html"><span class=n>AO-13 — Creative brief</span><span class=d>El Vecino Cocina Meta ad asset pack: brief, deliverables, specs.</span></a>
 <a class=filelink href="AO-115.html"><span class=n>AO-115 — Creative brief</span><span class=d>Rukmini Silverworks jewelry catalog: brief, deliverables, specs.</span></a>
-<a class=filelink href="pilot_verifier_mapping.csv"><span class=n>pilot_verifier_mapping.csv</span><span class=d>Raw CSV (task_id, check, type, pass_condition, capability, weight).</span></a>
-<p class=muted style="margin-top:22px">Input assets (photos/logo) will be shared separately.</p>"""
+<a class=filelink href="pilot_verifier_mapping.csv"><span class=n>pilot_verifier_mapping.csv</span><span class=d>Raw CSV (task_id, check, type, pass_condition, capability, weight).</span></a>"""
 (OUT / "index.html").write_text(page("StudioBench Pilot", idx, back=False), encoding="utf-8")
 
 print("built docs/pilot/:", ", ".join(sorted(p.name for p in OUT.iterdir())))
