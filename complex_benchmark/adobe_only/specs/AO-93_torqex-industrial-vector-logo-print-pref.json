@@ -66,7 +66,7 @@
     {
       "name": "Torqex_Logo_PrintPreflight_Audit.pdf",
       "kind": "pdf",
-      "spec": "The primary deliverable: a clean A4 portrait print-readiness preflight report PDF. Opens with a one-page cover summary (total findings by severity: blocker / warning / nit, plus a per-file pass/fail matrix), then one row per finding with the file name, the region/element on the mark, a plain-language description of the defect, the exact print-spec clause it violates, the observed value vs the approved value, and severity. This is a FINDINGS report, not a redesign of the logo."
+      "spec": "The primary deliverable: a clean A4 portrait print-readiness preflight report PDF, rendered locally from torqex_preflight_findings.json (no Adobe layout tool authors it). Opens with a one-page cover summary (total findings by severity: blocker / warning / nit, plus a per-file pass/fail matrix), then one row per finding with the file name, the region/element on the mark, a plain-language description of the defect, the exact print-spec clause it violates, the observed value vs the approved value, and severity. This is a FINDINGS report, not a redesign of the logo."
     },
     {
       "name": "torqex_preflight_findings.json",
@@ -104,12 +104,12 @@
     },
     {
       "n": 4,
-      "tool": "media_summarize",
-      "server": "adobe",
-      "exec_mode": "A",
+      "tool": "local_read_spec",
+      "server": "local",
+      "exec_mode": "L",
       "inputs_from": "uploaded_inputs",
       "output": "spec_rules_extract",
-      "note": "Summarize torqex_nameplate_print_spec.pdf to pull out the machine-usable ground-truth preflight rules the audit checks against: CMYK-only + approved Torqex Blue C100 M72 K18, text-must-be-outlined, closed-paths/no-stray-points, 0.25 pt minimum stroke, transparent-background + 3 mm bleed, one-colour/reverse must be flat (no gradients/tints)."
+      "note": "Read and extract the written requirements from the supplied document locally. (media_summarize only summarises SPOKEN content in audio/video and cannot read a PDF/CSV.) torqex_nameplate_print_spec.pdf to pull out the machine-usable ground-truth preflight rules the audit checks against: CMYK-only + approved Torqex Blue C100 M72 K18, text-must-be-outlined, closed-paths/no-stray-points, 0.25 pt minimum stroke, transparent-background + 3 mm bleed, one-colour/reverse must be flat (no gradients/tints)."
     },
     {
       "n": 5,
@@ -131,15 +131,24 @@
     },
     {
       "n": 7,
-      "tool": "document_convert_pdf",
+      "tool": "convert_pdf_to_indd",
       "server": "adobe",
       "exec_mode": "C",
       "inputs_from": "uploaded_inputs",
-      "output": "pdf_proof_raster",
-      "note": "Convert torqex_master.pdf to a per-page raster proof so the print-PDF export can be inspected for its colour profile (the planted RGB-instead-of-CMYK defect) and bleed/background state."
+      "output": "ao-93_proof.indd",
+      "note": "Convert the proof PDF into a real InDesign document (this tool emits indd/idml only, never rasters), so the following step can render inspectable per-page images."
     },
     {
       "n": 8,
+      "tool": "document_render_layout",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "ao-93_proof.indd",
+      "output": "pdf_proof_raster",
+      "note": "Render every page of the converted document to PNG for per-page visual inspection (outputMediaType='image/png', pageRange='All')."
+    },
+    {
+      "n": 9,
       "tool": "asset_inline_preview",
       "server": "adobe",
       "exec_mode": "C",
@@ -148,7 +157,7 @@
       "note": "Inline-preview each rendered proof to read the actual on-artwork state — wordmark colour, tagline text, icon geometry, stroke weights, variant fills, background — as the inspection surface for the audit."
     },
     {
-      "n": 9,
+      "n": 10,
       "tool": "asset_preview_file",
       "server": "adobe",
       "exec_mode": "C",
@@ -157,7 +166,7 @@
       "note": "Preview torqex_logo.svg directly to expose its raw structure/colour so the RGB colour, the live <text> elements (un-outlined fonts) and the opaque white background rectangle can be identified against the transparent-CMYK spec."
     },
     {
-      "n": 10,
+      "n": 11,
       "tool": "image_select_by_prompt",
       "server": "adobe",
       "exec_mode": "C",
@@ -166,7 +175,7 @@
       "note": "On the .ai and .pdf proofs, select the 'main TORQEX wordmark' region so its rendered colour can be sampled and compared against the approved Torqex Blue — catches that the .pdf export reads RGB #1B49E5 while the .ai reads the CMYK build. INSPECTION locator only."
     },
     {
-      "n": 11,
+      "n": 12,
       "tool": "image_select_by_prompt",
       "server": "adobe",
       "exec_mode": "C",
@@ -175,7 +184,7 @@
       "note": "Select the 'HYDRAULIC TORQUE SYSTEMS tagline text' region on the master proof so its edges can be checked for the live-vs-outlined-font tell (anti-aliased type rendering vs solid vector paths) against the text-must-be-outlined rule. Selection only, no edit follows."
     },
     {
-      "n": 12,
+      "n": 13,
       "tool": "image_select_by_prompt",
       "server": "adobe",
       "exec_mode": "C",
@@ -184,7 +193,7 @@
       "note": "Select the 'hex-bolt / torque-arrow icon and the thin register keyline' region so the icon geometry can be zoomed for the stray-point / un-closed-path defects and the hairline register stroke can be judged against the 0.25 pt minimum. Selection only."
     },
     {
-      "n": 13,
+      "n": 14,
       "tool": "image_select_by_prompt",
       "server": "adobe",
       "exec_mode": "C",
@@ -193,7 +202,7 @@
       "note": "Select the 'reverse-variant mark fill' region so its white can be checked for the flat-vs-gradient defect against the single-flat-colour rule for variants. Selection only."
     },
     {
-      "n": 14,
+      "n": 15,
       "tool": "asset_inline_preview",
       "server": "adobe",
       "exec_mode": "C",
@@ -202,7 +211,7 @@
       "note": "Inline-preview the isolated wordmark-colour / tagline-text / icon-geometry / reverse-fill regions at high detail to CONFIRM each suspected defect (RGB in the .pdf, live tagline, stray points + open bolt path + hairline register line, faint gradient on reverse) before it is written into the report."
     },
     {
-      "n": 15,
+      "n": 16,
       "tool": "local_write_recipe_note",
       "server": "local",
       "exec_mode": "L",
@@ -211,36 +220,34 @@
       "note": "Emit the structured preflight findings: for each defect a record {file, region, defect, spec_clause, approved_value, observed_value, severity} cross-referencing the print-spec rules against the confirmed on-artwork state, plus a per-file pass/fail matrix and a summary block counting blockers / warnings / nits. This is the analyze deliverable's data core."
     },
     {
-      "n": 16,
-      "tool": "document_convert_pdf",
-      "server": "adobe",
-      "exec_mode": "C",
+      "n": 17,
+      "tool": "local_render_pdf",
+      "server": "local",
+      "exec_mode": "L",
       "inputs_from": "torqex_preflight_findings.json",
       "output": "Torqex_Logo_PrintPreflight_Audit.pdf",
-      "note": "Render the written preflight findings (cover summary + per-file pass/fail matrix + per-finding rows) into the clean A4 portrait Print-Readiness Preflight Audit report PDF for the production manager and the nameplate vendor — the primary analyze deliverable."
+      "note": "Render the written preflight findings (cover summary + per-file pass/fail matrix + per-finding rows) into the clean A4 portrait Print-Readiness Preflight Audit report PDF for the production manager and the nameplate vendor — the primary analyze deliverable. This is a LOCAL render from torqex_preflight_findings.json (a local helper, NOT an Adobe connector call): document_convert_pdf converts an EXISTING PDF into an InDesign document and cannot author a report PDF out of a .json/.md findings file, so the report is typeset locally."
     }
   ],
   "tools_used": [
     "asset_create_folders",
     "asset_initialize_file_upload",
     "asset_finalize_file_upload",
-    "media_summarize",
+    "local_read_spec",
     "document_render_vector",
-    "document_convert_pdf",
+    "convert_pdf_to_indd",
+    "document_render_layout",
     "asset_inline_preview",
     "asset_preview_file",
     "image_select_by_prompt",
-    "local_write_recipe_note"
+    "local_write_recipe_note",
+    "local_render_pdf"
   ],
-  "tool_call_count": 16,
+  "tool_call_count": 17,
   "distinct_adobe_tools": 9,
-  "chaining_note": "Strict output→input chaining. Steps 1-3 stand up the workspace and finalize the seven client-supplied inputs (six vector/PDF logo files + the print-spec PDF) into uploaded_inputs — the only initial load. Two inspection tracks diverge from there: the ground-truth track runs uploaded_inputs → media_summarize(4) → spec_rules_extract (the preflight rules the audit checks against); the artwork track renders the pack for inspection via three parallel exports that each consume uploaded_inputs — document_render_vector(5) → ai_proof_raster (the .ai master), document_render_vector(6) → variants_proof_raster (the one-colour + reverse variants), and document_convert_pdf(7) → pdf_proof_raster (the print PDF). Those three proofs converge into asset_inline_preview(8) for whole-file reading, while the SVG is previewed separately at asset_preview_file(9) from uploaded_inputs to expose its RGB/live-text/opaque-bg structure. Four image_select_by_prompt calls act purely as INSPECTION locators over the proofs: wordmark colour(10) consumes the .ai + .pdf proofs, tagline text(11) and icon geometry(12) consume the .ai proof, reverse fill(13) consumes the variants proof; all four converge into flagged_region_previews(14). Everything then converges at local_write_recipe_note(15), which consumes spec_rules_extract + pack_inline_previews + svg_preview + flagged_region_previews to produce torqex_preflight_findings.json; that JSON is the sole input to document_convert_pdf(16), which renders the final preflight report PDF. No inspection step reads a raw input that was not first routed through upload/render/convert; the report emerges only from the assembled inspect→compare→report chain.",
-  "difficulty_rationale": "Long-horizon analyze/audit: 16 connector calls, 9 distinct Adobe tools across four groups (asset workspace/upload/preview, media_summarize, document_render_vector + document_convert_pdf export/rasterize, image_select_by_prompt inspection locator) plus the single [L] recipe-note emit — above the ≥10-call / ≥6-distinct-tool floor for an analyze task. Difficulty is in the analytic structure, not raster grunt-work: the agent must (a) extract the actual manufacturer preflight rules from the supplied spec PDF via media_summarize rather than assuming them, (b) render/convert six different vector/PDF/SVG files to proofs and inspect each one, (c) use image_select_by_prompt purely as an INSPECTION locator to isolate the wordmark-colour, tagline-text, icon-geometry and reverse-fill regions so on-artwork colour/text-state/geometry/fill can be compared against the ground truth, (d) distinguish compliant files from the planted defects (RGB in the .pdf and .svg, live tagline text, stray points + one open bolt path, a sub-0.25 pt hairline register line, a faint gradient on the reverse variant, an opaque background on the SVG) while correctly PASSING the clean one-colour variant and the CMYK master colour, and (e) emit a structured, per-file, severity-ranked findings report with a pass/fail matrix. It respects every hard limit: NOTHING is drawn, re-coloured, re-lettered or restyled — image_select_by_prompt only selects for inspection (no fill, no mask edit, no compositing, no vectorize), document_render_vector / document_convert_pdf are used only to rasterize the supplied files for reading and to render the written report, no image_* edit tool alters the logo, and no generative / text-to-image / from-scratch vector authoring / upscaling / object-removal is used. The output is a report / marked-up findings deliverable, exactly matching workflow_nature=analyze; output modality is vector (the subject inspected and the pack audited are vector artwork).",
+  "chaining_note": "Strict output→input chaining. Steps 1-3 stand up the workspace and finalize the seven client-supplied inputs (six vector/PDF logo files + the print-spec PDF) into uploaded_inputs — the only initial load. Two inspection tracks diverge from there: the ground-truth track runs uploaded_inputs → media_summarize(4) → spec_rules_extract (the preflight rules the audit checks against); the artwork track renders the pack for inspection via three parallel exports that each consume uploaded_inputs — document_render_vector(5) → ai_proof_raster (the .ai master), document_render_vector(6) → variants_proof_raster (the one-colour + reverse variants), and document_convert_pdf(7) → pdf_proof_raster (the print PDF). Those three proofs converge into asset_inline_preview(8) for whole-file reading, while the SVG is previewed separately at asset_preview_file(9) from uploaded_inputs to expose its RGB/live-text/opaque-bg structure. Four image_select_by_prompt calls act purely as INSPECTION locators over the proofs: wordmark colour(10) consumes the .ai + .pdf proofs, tagline text(11) and icon geometry(12) consume the .ai proof, reverse fill(13) consumes the variants proof; all four converge into flagged_region_previews(14). Everything then converges at local_write_recipe_note(15), which consumes spec_rules_extract + pack_inline_previews + svg_preview + flagged_region_previews to produce torqex_preflight_findings.json; that JSON is the sole input to local_render_pdf(16), a local helper that typesets the final preflight report PDF (the Adobe document_convert_pdf tool converts an existing PDF into InDesign and cannot author a report, so the render is local). No inspection step reads a raw input that was not first routed through upload/render/convert; the report emerges only from the assembled inspect→compare→report chain.",
+  "difficulty_rationale": "Long-horizon analyze/audit: 16 workflow steps (14 Adobe connector calls + 2 local helper steps), 9 distinct Adobe tools across four groups (asset workspace/upload/preview, media_summarize, document_render_vector + document_convert_pdf export/rasterize, image_select_by_prompt inspection locator) plus two [L] local steps (the recipe-note emit and the local report-PDF render) — above the ≥10-call / ≥6-distinct-tool floor for an analyze task. Difficulty is in the analytic structure, not raster grunt-work: the agent must (a) extract the actual manufacturer preflight rules from the supplied spec PDF via media_summarize rather than assuming them, (b) render/convert six different vector/PDF/SVG files to proofs and inspect each one, (c) use image_select_by_prompt purely as an INSPECTION locator to isolate the wordmark-colour, tagline-text, icon-geometry and reverse-fill regions so on-artwork colour/text-state/geometry/fill can be compared against the ground truth, (d) distinguish compliant files from the planted defects (RGB in the .pdf and .svg, live tagline text, stray points + one open bolt path, a sub-0.25 pt hairline register line, a faint gradient on the reverse variant, an opaque background on the SVG) while correctly PASSING the clean one-colour variant and the CMYK master colour, and (e) emit a structured, per-file, severity-ranked findings report with a pass/fail matrix. It respects every hard limit: NOTHING is drawn, re-coloured, re-lettered or restyled — image_select_by_prompt only selects for inspection (no fill, no mask edit, no compositing, no vectorize), document_render_vector / document_convert_pdf are used only on the SUPPLIED vector/PDF files to get them into an inspectable form (the findings report itself is rendered locally, never by an Adobe layout tool), no image_* edit tool alters the logo, and no generative / text-to-image / from-scratch vector authoring / upscaling / object-removal is used. The output is a report / marked-up findings deliverable, exactly matching workflow_nature=analyze; output modality is vector (the subject inspected and the pack audited are vector artwork).",
   "workflow_nature": "analyze",
-  "reverify": {
-    "severity": "pass",
-    "banned_capability_check": "CONFIRMED none of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art/logo/letterform design (the logo pack and print spec are SUPPLIED authored inputs, not connector-composed); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area is not used. image_vectorize is NOT used (this is an audit of existing vectors, not a trace). document_merge_data_layout/_vector are not used (no merge). The only image_* tool present is image_select_by_prompt, used strictly as an inspection locator (selection only — no fill, overlay, mask edit, background removal, recolour or compositing follows it). document_render_vector and document_convert_pdf are used only in their EXPORT/rasterize role to turn supplied vector/PDF files into raster proofs for inspection and to render the agent-written findings note into the report PDF; they never compose, author or restyle artwork.",
-    "notes": "Each potentially-risky step stays in-bounds: (1) document_render_vector [C] (n5,n6) exports the SUPPLIED .ai master and the two variant .ai files to raster proofs per its real EXPORT-only semantics — it never composes or edits the vector artwork; the .ai files are declared as supplied authored inputs (kind:vector, gen_model:'n/a-authored-asset'). (2) document_convert_pdf [C] (n7,n16) is used first to rasterize the supplied print PDF for inspection and then to render the agent-written findings note into the report PDF — no layout is composed. (3) image_select_by_prompt (n10-n13) is confirmed INSPECTION-only — its outputs feed asset_inline_preview and the recipe note, never an edit/fill/composite/vectorize step, so no artwork pixels/paths are altered. (4) media_summarize [A] READS the print-spec PDF's stated rules (its documented summarize/inspect role), not generating content. (5) asset_inline_preview / asset_preview_file [C] are pure inspection. (6) local_write_recipe_note [L] emits the findings/report, the sanctioned analyze output path. The deliverable is a report + structured findings + working proof rasters — a review/audit output, matching workflow_nature=analyze; nothing new is authored beyond the report itself. One [A] step (media_summarize) and one [L] step (recipe note) are the only non-[C] calls; both are legitimate and expected for an analyze task. Count corrected: 9 distinct Adobe tools (≥6) and 16 calls (≥10) clear the long-horizon analyze floor (the authored draft mis-stated distinct_adobe_tools as 8; the true count is 9 — asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, media_summarize, document_render_vector, document_convert_pdf, asset_inline_preview, asset_preview_file, image_select_by_prompt)."
-  },
+  "reverify": "{\"severity\": \"pass\", \"banned_capability_check\": \"CONFIRMED none of the banned capabilities are used. No image_crop_and_resize / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art/logo/letterform design (the logo pack and print spec are SUPPLIED authored inputs, not connector-composed); no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font/letterform design; no unreachable external account. image_fill_area is not used. image_vectorize is NOT used (this is an audit of existing vectors, not a trace). document_merge_data_layout/_vector are not used (no merge). The only image_* tool present is image_select_by_prompt, used strictly as an inspection locator (selection only \\u2014 no fill, overlay, mask edit, background removal, recolour or compositing follows it). document_render_vector and document_convert_pdf are used only in their EXPORT/rasterize role to turn supplied vector/PDF files into raster proofs for inspection and to render the agent-written findings note into the report PDF; they never compose, author or restyle artwork.\", \"notes\": \"Each potentially-risky step stays in-bounds: (1) document_render_vector [C] (n5,n6) exports the SUPPLIED .ai master and the two variant .ai files to raster proofs per its real EXPORT-only semantics \\u2014 it never composes or edits the vector artwork; the .ai files are declared as supplied authored inputs (kind:vector, gen_model:'n/a-authored-asset'). (2) document_convert_pdf [C] (n7,n16) is used first to rasterize the supplied print PDF for inspection and then to render the agent-written findings note into the report PDF \\u2014 no layout is composed. (3) image_select_by_prompt (n10-n13) is confirmed INSPECTION-only \\u2014 its outputs feed asset_inline_preview and the recipe note, never an edit/fill/composite/vectorize step, so no artwork pixels/paths are altered. (4) media_summarize [A] READS the print-spec PDF's stated rules (its documented summarize/inspect role), not generating content. (5) asset_inline_preview / asset_preview_file [C] are pure inspection. (6) local_write_recipe_note [L] emits the findings/report, the sanctioned analyze output path. The deliverable is a report + structured findings + working proof rasters \\u2014 a review/audit output, matching workflow_nature=analyze; nothing new is authored beyond the report itself. One [A] step (media_summarize) and one [L] step (recipe note) are the only non-[C] calls; both are legitimate and expected for an analyze task. Count corrected: 9 distinct Adobe tools (\\u22656) and 16 calls (\\u226510) clear the long-horizon analyze floor (the authored draft mis-stated distinct_adobe_tools as 8; the true count is 9 \\u2014 asset_create_folders, asset_initialize_file_upload, asset_finalize_file_upload, media_summarize, document_render_vector, document_convert_pdf, asset_inline_preview, asset_preview_file, image_select_by_prompt).\"}",
   "id": "AO-93"
 }

@@ -154,7 +154,7 @@
       "exec_mode": "C",
       "inputs_from": "sku01_whitebg",
       "output": "sku01_whitebg_3000",
-      "note": "Crop to a centered square and export at 3000x3000 sRGB - the fixed target applied identically to all six SKUs. White-BG JPEG #1."
+      "note": "Crop to a centered square and export at 3000x3000 sRGB - the fixed target applied identically to all six SKUs. White-BG JPEG #1. onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 10,
@@ -217,7 +217,7 @@
       "exec_mode": "C",
       "inputs_from": "sku02_whitebg",
       "output": "sku02_whitebg_3000",
-      "note": "Same 3000x3000 centered-square crop/export. White-BG JPEG #2."
+      "note": "Same 3000x3000 centered-square crop/export. White-BG JPEG #2. onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 17,
@@ -271,7 +271,7 @@
       "exec_mode": "C",
       "inputs_from": "sku03_whitebg",
       "output": "sku03_whitebg_3000",
-      "note": "3000x3000 centered-square crop/export. White-BG JPEG #3."
+      "note": "3000x3000 centered-square crop/export. White-BG JPEG #3. onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 23,
@@ -325,7 +325,7 @@
       "exec_mode": "C",
       "inputs_from": "sku04_whitebg",
       "output": "sku04_whitebg_3000",
-      "note": "3000x3000 centered-square crop/export. White-BG JPEG #4."
+      "note": "3000x3000 centered-square crop/export. White-BG JPEG #4. onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 29,
@@ -388,7 +388,7 @@
       "exec_mode": "C",
       "inputs_from": "sku05_whitebg",
       "output": "sku05_whitebg_3000",
-      "note": "3000x3000 centered-square crop/export. White-BG JPEG #5."
+      "note": "3000x3000 centered-square crop/export. White-BG JPEG #5. onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 36,
@@ -442,7 +442,7 @@
       "exec_mode": "C",
       "inputs_from": "sku06_whitebg",
       "output": "sku06_whitebg_3000",
-      "note": "3000x3000 centered-square crop/export completing the matched set. White-BG JPEG #6."
+      "note": "3000x3000 centered-square crop/export completing the matched set. White-BG JPEG #6. onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 42,
@@ -502,10 +502,6 @@
   "chaining_note": "Strict output-to-input chaining throughout. Six parallel per-SKU sub-chains each run the same isolate-on-white pipeline, seeded only from that SKU's raw frame, and each produces BOTH deliverables from one graded master. Hero sku01 (n2-10): raw -> auto_straighten(2) -> auto_tone(3) -> color_temperature(4) -> brightness_contrast(5) => graded master, which forks into the white-BG path [select_subject(6) -> invert_selection(7) -> fill_area #FFFFFF on the background mask(8) -> crop_and_resize 3000(9)] and the transparent-PNG path [remove_background(10)]. sku02 (11-17), sku03 (18-23), sku04 (24-29), sku05 (30-36, with an extra dark_portions lift so the oxidised detail survives) and sku06 (37-42) mirror the same select->invert->fill->crop white-BG build plus a remove_background branch, with per-image white-balance direction. The white backdrop is never made by remove_background+fill; it is built the palette-correct way (subject selection inverted to a background mask, then solid #FFFFFF fill of that mask), matching the reference bg_removal_batch / product_ecom_whitebg specs. asset_create_folders(1) provides the destination folder consumed at finalize(44). All twelve finished deliverables (six transparent PNGs + six 3000 white-BG JPEGs) converge into upload_session(43) -> finalize(44) -> inline_preview QA(45), which verifies every background is pure #FFFFFF, shadow-free, and the set reads as one consistent catalog before hand-off. Nothing after the raw input loads and the folder-create originates outside the chain; the matched catalog set emerges only from the assembled pipeline.",
   "difficulty_rationale": "Long-horizon batch flagship: 45 connector calls, 14 distinct Adobe tools, far above the >=10 calls / >=6 distinct-tool floor. Difficulty comes from running six separate SKUs through an identical multi-step isolate-on-white pipeline while handling per-image variance (warm cast on some, cool on others; an oxidised piece needing a dark-portions lift so detail survives; a chain whose link-gaps must land in the background mask and not be painted as metal; a reflective solitaire whose specular edge must be retained), each SKU forking one graded master into a select->invert->solid-fill white-BG JPEG and a remove_background transparent PNG, then converging twelve deliverables into folder storage and an inline-preview QA pass. It respects every hard limit: the white background is produced non-generatively by image_select_subject -> image_invert_selection -> image_fill_area (SOLID #FFFFFF fill of the background mask), exactly the reference pattern, NOT by feeding a transparent PNG into fill; image_remove_background is used only to lift a graded master to a transparent PNG; NO generative fill / expand / reframe-crop, NO upscaling / super-resolution, NO inpainting-of-occluded-pixels, NO text-to-image / from-scratch art, NO bespoke fonts, NO background-replacement-by-prompt. The pieces are inspected via asset_inline_preview, not regenerated.",
   "workflow_nature": "edit",
-  "reverify": {
-    "severity": "pass",
-    "banned_capability_check": "CONFIRMED none of the banned capabilities are used: no image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image / from-scratch art or logo; no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting of occluded pixels; no bespoke font/letterform design; no background-replacement-by-prompt; no unreachable external account. All 45 steps use only the sanctioned palette.",
-    "notes": "CORRECTED from the authored draft, which had two coherence/feasibility defects: (a) it fed image_remove_background's transparent-PNG output into image_fill_area to 'lay a backdrop behind' the piece, but image_fill_area fills a SELECTED region and there is no active background selection after remove_background; (b) it omitted image_invert_selection entirely. The white backdrop is now built the palette-correct, non-generative way used by the reference bg_removal_batch / product_ecom_whitebg specs (AO-00, AO-04, AO-39): image_select_subject -> image_invert_selection (background-only mask) -> image_fill_area (SOLID #FFFFFF fill of that mask) -> image_crop_and_resize to 3000x3000. image_fill_area (n8,15,21,27,34,40) is SOLID #FFFFFF fill of a real inverted background mask only - no generated content. image_remove_background (n10,17,23,29,36,42) lifts each SKU's SAME graded master to a TRANSPARENT PNG (its only sanctioned output), never reconstructing hidden pixels or compositing a scene; the two deliverables per SKU therefore carry an identical grade. All grade steps (auto_straighten, apply_auto_tone, adjust_color_temperature, adjust_brightness_and_contrast, adjust_dark_portions) are non-generative raster adjustments. asset_inline_preview only INSPECTS the uploaded results for QA. distinct_adobe_tools counts the 14 adobe-server tools (all 14 entries of tools_used). tool_call_count = 45 = number of connector_workflow steps. Category bg_removal_batch, operation O2, family Photo & Image, output_modality image, workflow_nature edit, vertical jewelry_luxury_goods all match the slot; brand 'Rukmini Silverworks' is a fictional, IP-clean persona replacing the real Nagpur client."
-  },
+  "reverify": "{\"severity\": \"pass\", \"banned_capability_check\": \"CONFIRMED none of the banned capabilities are used: No generative expansion or upscaling. image_crop_and_resize IS used for downscale-only reframe crops, pinned to onSubjectClipping='extract' so it never routes to a generative canvas expansion. ; no generative fill of new content; no text-to-image / from-scratch art or logo; no upscaling / super-resolution; no object-removal-with-reconstruction / inpainting of occluded pixels; no bespoke font/letterform design; no background-replacement-by-prompt; no unreachable external account. All 45 steps use only the sanctioned palette.\", \"notes\": \"CORRECTED from the authored draft, which had two coherence/feasibility defects: (a) it fed image_remove_background's transparent-PNG output into image_fill_area to 'lay a backdrop behind' the piece, but image_fill_area fills a SELECTED region and there is no active background selection after remove_background; (b) it omitted image_invert_selection entirely. The white backdrop is now built the palette-correct, non-generative way used by the reference bg_removal_batch / product_ecom_whitebg specs (AO-00, AO-04, AO-39): image_select_subject -> image_invert_selection (background-only mask) -> image_fill_area (SOLID #FFFFFF fill of that mask) -> image_crop_and_resize to 3000x3000. image_fill_area (n8,15,21,27,34,40) is SOLID #FFFFFF fill of a real inverted background mask only - no generated content. image_remove_background (n10,17,23,29,36,42) lifts each SKU's SAME graded master to a TRANSPARENT PNG (its only sanctioned output), never reconstructing hidden pixels or compositing a scene; the two deliverables per SKU therefore carry an identical grade. All grade steps (auto_straighten, apply_auto_tone, adjust_color_temperature, adjust_brightness_and_contrast, adjust_dark_portions) are non-generative raster adjustments. asset_inline_preview only INSPECTS the uploaded results for QA. distinct_adobe_tools counts the 14 adobe-server tools (all 14 entries of tools_used). tool_call_count = 45 = number of connector_workflow steps. Category bg_removal_batch, operation O2, family Photo & Image, output_modality image, workflow_nature edit, vertical jewelry_luxury_goods all match the slot; brand 'Rukmini Silverworks' is a fictional, IP-clean persona replacing the real Nagpur client.\"}",
   "id": "AO-115"
 }

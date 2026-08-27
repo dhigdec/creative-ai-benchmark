@@ -10,7 +10,7 @@
   },
   "grounding_note": "VERBATIM from the Freelancer.com brief: raw YouTube podcast footage to be shaped into an engaging episode; \"trim unwanted pauses or stumbles\", \"add clean transitions\", \"weave in light-hearted graphics or effects that match a casual, fun vibe\", incorporate the client's existing logo \"in the intro, a lower-third, or the end screen\" so branding feels consistent \"without overpowering the content\"; deliverables = a fully edited 1080p (or higher) video, the editing project file, and \"any custom graphic assets you create, delivered separately in PNG/transparent or vector format\". REASONABLY ENRICHED to make it a runnable Adobe-connector benchmark: (1) the editing project file is delivered as the connector's own packaged artifacts (reframed 1080p master + sizzle reel + asset kit), since the connector has no Premiere/FCP/Resolve project export — this is stated plainly to the client as the equivalent hand-off; (2) \"trim pauses/stumbles\" is honestly realized as an AI visual-engagement Quick Cut sizzle/highlight pass (video_create_quick_cut is engagement-based, NOT timestamp trimming) PLUS a full-length reframed master — the spec is explicit that frame-accurate stumble removal is the one human-finishable step; (3) the \"custom graphic assets\" PNG-transparent/vector deliverables (cleaned + vectorized logo, lower-third plate, end-screen plate) are produced through the headless image_*/vectorize chain. No capability is invented: no generative fill, no compositing of the graphics INTO the video (delivered \"separately\" exactly as the brief requests), no text-to-image, no upscaling.",
   "one_line_ask": "Turn the raw podcast footage into a reframed 1080p YouTube master plus a cold-open sizzle and a fun branded graphics kit (vector logo + lower-third + end-screen as PNG-transparent/vector), delivered separately.",
-  "full_brief": "You are editing one episode of a casual, fun YouTube podcast. The client supplies the raw multi-cam-ish recording (a single 1080p+ master with two speakers), their existing brand logo lockup (a flat PNG on a busy background), and a hand-shot lower-third texture plate. They want three things delivered: (A) a fully edited 1080p YouTube-ready video that flows smoothly; (B) the working hand-off so they can tweak later; and (C) any custom graphic assets you create, delivered SEPARATELY in PNG/transparent or vector format, with their logo worked in tastefully in the intro / lower-third / end screen without overpowering the content.\n\nConcretely: produce a punchy highlight/sizzle cut from the raw footage for the cold-open, and reframe the full episode to a clean 1080p YouTube frame. Pull a short content summary to seed the chapter markers and description. For the graphics kit: lift the client's logo off its busy background to a clean transparent PNG, color-correct and brand-tint it, then vectorize it to an infinitely-scalable SVG for the end screen. Build a lower-third \"name plate\" from the supplied texture plate: knock out the background, fill a clean solid brand-colored bar, tint it to match, crop it to a broadcast lower-third strip. License one subtle on-brand background texture from stock for the end-screen card. The vibe is light-hearted and casual — clean and consistent branding, never stiff or corporate.",
+  "full_brief": "You are editing one episode of a casual, fun YouTube podcast. The client supplies the raw multi-cam-ish recording (a single 1080p+ master with two speakers), their existing brand logo lockup (a flat PNG on a busy background), and a hand-shot lower-third texture plate. They want three things delivered: (A) a fully edited 1080p YouTube-ready video that flows smoothly; (B) the working hand-off so they can tweak later; and (C) any custom graphic assets you create, delivered SEPARATELY in PNG/transparent or vector format, with their logo worked in tastefully in the intro / lower-third / end screen without overpowering the content.\n\nConcretely: produce a punchy highlight/sizzle cut from the raw footage for the cold-open, and reframe the full episode to a clean 1080p YouTube frame. For the graphics kit: lift the client's logo off its busy background to a clean transparent PNG, color-correct and brand-tint it, then vectorize it to an infinitely-scalable SVG for the end screen. Build a lower-third \"name plate\" from the supplied texture plate: knock out the background, fill a clean solid brand-colored bar, tint it to match, crop it to a broadcast lower-third strip. License one subtle on-brand background texture from stock for the end-screen card. The vibe is light-hearted and casual — clean and consistent branding, never stiff or corporate.",
   "inputs": [
     {
       "name": "podcast_raw_master_1080p.mp4",
@@ -32,23 +32,46 @@
       "gen_model": "gemini-3-pro-image",
       "gen_prompt": "A hand-shot photo of a warm textured surface — pale kraft-paper / lightly grained card stock with soft directional lighting — framed slightly tilted/off-level, no text, intended as a raw material plate for building a lower-third name bar",
       "realism_notes": "The 'hand-shot lower-third texture plate' the brief supplies. Slightly tilted so auto_straighten has a real job; a clear textured surface vs. surrounding background so select_subject/invert then solid fill are meaningful. Full-res JPG for the lower-third sub-chain."
+    },
+    {
+      "name": "raw_supplemental_02.mp4",
+      "kind": "video",
+      "gen_model": "seedance-2.0",
+      "gen_prompt": "Gentle natural motion: the two podcast hosts chat and laugh softly with subtle head movements and small relaxed hand gestures, natural conversational pacing, slight handheld camera sway. Warm friendly studio lighting stays consistent. Everything remains plain and unbranded; the matte-black microphones stay smooth with no text, labels or logos. Different camera angle: wider establishing framing, slow push-in. Realistic candid handheld raw phone/camera look. NO real brand names, logos or trademarks on any object/screen/product/clothing — plain unbranded or fictional only.",
+      "realism_notes": "Supplemental raw coverage clip (10s, 1080p, silent) generated to match the primary clip's look — a different angle/beat so the edit has real, cuttable coverage rather than one short take."
+    },
+    {
+      "name": "raw_supplemental_03.mp4",
+      "kind": "video",
+      "gen_model": "seedance-2.0",
+      "gen_prompt": "Gentle natural motion: the two podcast hosts chat and laugh softly with subtle head movements and small relaxed hand gestures, natural conversational pacing, slight handheld camera sway. Warm friendly studio lighting stays consistent. Everything remains plain and unbranded; the matte-black microphones stay smooth with no text, labels or logos. Different coverage: tighter detail shot, shallow depth of field, slow drift. Realistic candid handheld raw phone/camera look. NO real brand names, logos or trademarks on any object/screen/product/clothing — plain unbranded or fictional only.",
+      "realism_notes": "Supplemental raw coverage clip (10s, 1080p, silent) generated to match the primary clip's look — a different angle/beat so the edit has real, cuttable coverage rather than one short take."
+    },
+    {
+      "name": "raw_supplemental_04.mp4",
+      "kind": "video",
+      "gen_model": "seedance-2.0",
+      "gen_prompt": "Gentle natural motion: the two podcast hosts chat and laugh softly with subtle head movements and small relaxed hand gestures, natural conversational pacing, slight handheld camera sway. Warm friendly studio lighting stays consistent. Everything remains plain and unbranded; the matte-black microphones stay smooth with no text, labels or logos. Different beat: medium shot from the opposite side, gentle handheld sway. Realistic candid handheld raw phone/camera look. NO real brand names, logos or trademarks on any object/screen/product/clothing — plain unbranded or fictional only.",
+      "realism_notes": "Supplemental raw coverage clip (10s, 1080p, silent) generated to match the primary clip's look — a different angle/beat so the edit has real, cuttable coverage rather than one short take."
+    },
+    {
+      "name": "raw_supplemental_05.mp4",
+      "kind": "video",
+      "gen_model": "seedance-2.0",
+      "gen_prompt": "Gentle natural motion: the two podcast hosts chat and laugh softly with subtle head movements and small relaxed hand gestures, natural conversational pacing, slight handheld camera sway. Warm friendly studio lighting stays consistent. Everything remains plain and unbranded; the matte-black microphones stay smooth with no text, labels or logos. Different moment: low-angle framing, slow lateral pan across the scene. Realistic candid handheld raw phone/camera look. NO real brand names, logos or trademarks on any object/screen/product/clothing — plain unbranded or fictional only.",
+      "realism_notes": "Supplemental raw coverage clip (10s, 1080p, silent) generated to match the primary clip's look — a different angle/beat so the edit has real, cuttable coverage rather than one short take."
     }
   ],
   "outputs": [
     {
       "name": "podcast_coldopen_sizzle_1080p.mp4",
       "kind": "video",
-      "spec": "~20s AI highlight/sizzle reel for the cold-open, 1920x1080, sourced from the raw master via engagement-based Quick Cut (visual-engagement highlight, not frame-accurate timestamp trim)."
+      "spec": "~12s AI highlight/sizzle reel for the cold-open (drawn across the master + 4 supplemental clips, ~45s of total footage), 1920x1080, sourced from the raw master via engagement-based Quick Cut (visual-engagement highlight, not frame-accurate timestamp trim)."
     },
     {
       "name": "podcast_master_reframed_1080p.mp4",
       "kind": "video",
       "spec": "Full-length episode reframed/resized to a clean 1920x1080 YouTube frame, SAME length as source (no trim, no format convert)."
-    },
-    {
-      "name": "episode_content_summary.txt",
-      "kind": "data",
-      "spec": "Scene/content summary of the episode to seed YouTube chapter markers + description copy."
     },
     {
       "name": "brand_logo_clean.png",
@@ -78,10 +101,14 @@
       "server": "adobe",
       "exec_mode": "C",
       "inputs_from": [
-        "podcast_raw_master_1080p.mp4"
+        "podcast_raw_master_1080p.mp4",
+        "raw_supplemental_02.mp4",
+        "raw_supplemental_03.mp4",
+        "raw_supplemental_04.mp4",
+        "raw_supplemental_05.mp4"
       ],
-      "output": "uploaded_raw_video_ref",
-      "note": "Initialize upload of the client's supplied raw 1080p podcast master (podcast_raw_master_1080p.mp4) into CC storage to get an asset ref/presigned target. Initial load step."
+      "output": "uploaded_video_refs",
+      "note": "Initialize upload of ALL five supplied video clips into CC storage: the raw 1080p podcast master (podcast_raw_master_1080p.mp4) plus the four supplemental coverage clips (raw_supplemental_02.mp4, raw_supplemental_03.mp4, raw_supplemental_04.mp4, raw_supplemental_05.mp4). Initial load step."
     },
     {
       "n": 2,
@@ -89,46 +116,33 @@
       "server": "adobe",
       "exec_mode": "C",
       "inputs_from": [
-        "uploaded_raw_video_ref"
+        "uploaded_video_refs"
       ],
-      "output": "raw_video_assetId",
-      "note": "Finalize the raw-video upload begun in step 1, yielding a stable assetId used by the video/summary steps."
+      "output": "ingested_video_assets",
+      "note": "Finalize the uploads begun in step 1, yielding stable assetIds for the master and all four supplemental clips (~45s of total footage) used by the video steps."
     },
     {
       "n": 3,
-      "tool": "media_summarize",
-      "server": "adobe",
-      "exec_mode": "A",
-      "inputs_from": [
-        "raw_video_assetId"
-      ],
-      "output": "episode_content_summary.txt",
-      "note": "Summarize the raw master's on-screen content to seed chapter markers + description. Consumes the step-2 assetId."
-    },
-    {
-      "n": 4,
       "tool": "video_create_quick_cut",
       "server": "adobe",
       "exec_mode": "A",
-      "inputs_from": [
-        "raw_video_assetId"
-      ],
+      "inputs_from": "ingested_video_assets (master + raw_supplemental_02/03/04/05), podcast_raw_master_1080p.mp4, raw_supplemental_02.mp4, raw_supplemental_03.mp4, raw_supplemental_04.mp4, raw_supplemental_05.mp4",
       "output": "podcast_coldopen_sizzle_1080p.mp4",
-      "note": "AI engagement-based highlight/sizzle cut from the raw master for the cold-open (NOT timestamp trimming). Consumes the step-2 assetId."
+      "note": "AI engagement-based highlight/sizzle cut drawing across ALL five ingested clips (master + 4 supplemental coverage clips, ~45s total footage) for the ~12s cold-open (NOT timestamp trimming). Consumes the step-2 ingested set."
     },
     {
-      "n": 5,
+      "n": 4,
       "tool": "video_resize",
       "server": "adobe",
       "exec_mode": "A",
       "inputs_from": [
-        "raw_video_assetId"
+        "ingested_video_assets (podcast_raw_master_1080p.mp4)"
       ],
       "output": "podcast_master_reframed_1080p.mp4",
-      "note": "Reframe/resize the full raw master to a clean 1920x1080 YouTube frame, SAME length (no trim/convert). Consumes the step-2 assetId."
+      "note": "Reframe/resize the full-length master (podcast_raw_master_1080p.mp4) from the ingested set to a clean 1920x1080 YouTube frame, SAME length (no trim/convert)."
     },
     {
-      "n": 6,
+      "n": 5,
       "tool": "image_remove_background",
       "server": "adobe",
       "exec_mode": "C",
@@ -139,7 +153,7 @@
       "note": "Lift the client logo (brand_logo_lockup.png) off its busy cluttered background to a transparent PNG. Loads the supplied logo asset and begins the graphics-kit chain."
     },
     {
-      "n": 7,
+      "n": 6,
       "tool": "image_apply_auto_tone",
       "server": "adobe",
       "exec_mode": "C",
@@ -150,7 +164,7 @@
       "note": "Auto-tone the isolated logo to normalize exposure/contrast after background removal. Consumes step-6 output."
     },
     {
-      "n": 8,
+      "n": 7,
       "tool": "image_apply_color_overlay",
       "server": "adobe",
       "exec_mode": "C",
@@ -161,7 +175,7 @@
       "note": "Apply the brand mustard/teal color overlay to lock the logo to brand color, producing the clean transparent-PNG logo deliverable. Consumes step-7 output."
     },
     {
-      "n": 9,
+      "n": 8,
       "tool": "image_vectorize",
       "server": "adobe",
       "exec_mode": "C",
@@ -172,7 +186,7 @@
       "note": "Vectorize the cleaned/brand-tinted logo into an infinitely-scalable SVG for the end screen — the vector graphic-asset deliverable. Consumes step-8 output."
     },
     {
-      "n": 10,
+      "n": 9,
       "tool": "image_auto_straighten",
       "server": "adobe",
       "exec_mode": "C",
@@ -183,7 +197,7 @@
       "note": "Auto-straighten the slightly-tilted lower_third_texture_plate.jpg. Loads the supplied texture plate and begins the lower-third sub-chain."
     },
     {
-      "n": 11,
+      "n": 10,
       "tool": "image_select_subject",
       "server": "adobe",
       "exec_mode": "C",
@@ -194,7 +208,7 @@
       "note": "Select the main textured surface on the straightened plate to derive a mask. Consumes step-10 output."
     },
     {
-      "n": 12,
+      "n": 11,
       "tool": "image_invert_selection",
       "server": "adobe",
       "exec_mode": "C",
@@ -205,7 +219,7 @@
       "note": "Invert the selection to target the background area for the solid bar fill. Consumes step-11 output."
     },
     {
-      "n": 13,
+      "n": 12,
       "tool": "image_fill_area",
       "server": "adobe",
       "exec_mode": "C",
@@ -216,7 +230,7 @@
       "note": "Solid-fill the inverted region with a clean brand-color bar (image_fill_area = solid color only). Consumes step-12 mask."
     },
     {
-      "n": 14,
+      "n": 13,
       "tool": "image_apply_monochromatic_tint",
       "server": "adobe",
       "exec_mode": "C",
@@ -227,7 +241,7 @@
       "note": "Apply a brand monochromatic tint to unify the lower-third plate's look. Consumes step-13 output."
     },
     {
-      "n": 15,
+      "n": 14,
       "tool": "image_crop_and_resize",
       "server": "adobe",
       "exec_mode": "C",
@@ -238,21 +252,20 @@
       "note": "Crop/resize the tinted plate to a broadcast lower-third strip (transparent PNG deliverable). Consumes step-14 output."
     },
     {
-      "n": 16,
+      "n": 15,
       "tool": "asset_license_and_download_stock",
       "server": "adobe",
       "exec_mode": "C",
       "inputs_from": [
-        "episode_content_summary.txt"
+        "brand_logo_clean.png"
       ],
       "output": "endscreen_texture.jpg",
-      "note": "Search → license → download one subtle on-brand background texture for the end-screen card, themed by the episode summary keywords. Consumes step-3 summary to pick a relevant on-brand texture."
+      "note": "Search -> license -> download one subtle on-brand background texture for the end-screen card, keyed to the cleaned brand logo's palette (mustard/teal). License-before-edit."
     }
   ],
   "tools_used": [
     "asset_initialize_file_upload",
     "asset_finalize_file_upload",
-    "media_summarize",
     "video_create_quick_cut",
     "video_resize",
     "image_remove_background",
@@ -267,14 +280,14 @@
     "image_crop_and_resize",
     "asset_license_and_download_stock"
   ],
-  "tool_call_count": 16,
-  "distinct_adobe_tools": 16,
-  "chaining_note": "Strict output→input chain. One source load seeds the video branch: the raw video (steps 1-2 → raw_video_assetId). raw_video_assetId fans into media_summarize (3), video_create_quick_cut (4), and video_resize (5). The graphics kit is its own deep chain: logo background-removal (6) → auto_tone (7) → color_overlay = brand_logo_clean.png (8) → vectorize = brand_logo_vector.svg (9). The texture plate chain: auto_straighten (10) → select_subject (11) → invert_selection (12) → fill_area solid bar (13) → monochromatic_tint (14) → crop_and_resize = lower_third_plate.png (15). The episode summary (3) feeds stock licensing keyword choice (16 → endscreen_texture.jpg). Every non-load step sets inputs_from to a prior step's named output; the deliverables (sizzle, reframed master, summary, clean logo, vector logo, lower-third, end-screen texture) emerge directly from the chain.",
-  "difficulty_rationale": "Long-horizon flagship: 16 connector calls, 16 distinct Adobe tools, spanning three connector groups (asset/storage, video [A], photo/raster [C]). It is hard because the agent must HONESTLY decompose a Premiere/FCP/Resolve brief that has no direct connector analog: recognize that 'trim pauses/stumbles' cannot be done frame-accurately and instead deliver an engagement-based Quick Cut + a same-length reframed master (and flag the human-finishable trim), and that the 'custom graphic assets… delivered separately' are produced via the headless image_*/vectorize chain rather than composited into the video (which the connector cannot do and the brief does not ask for). It mixes async-widget [A] media steps with a deep headless [C] raster→vector pipeline, requires a correct select→invert→solid-fill→tint→crop sequence for the lower-third, and reuses the raw-video assetId and the episode summary across multiple branches. No not-available capability is used (no gen-fill, no compositing, no text-to-image, no upscaling, no timestamp trim, no per-artboard export). The only non-headless steps are the three [A] media calls, which are explicitly in scope for the Adobe×Claude product.",
+  "tool_call_count": 15,
+  "distinct_adobe_tools": 15,
+  "chaining_note": "Strict output->input chain. Steps 1-2 ingest all five supplied video clips (podcast_raw_master_1080p.mp4 + raw_supplemental_02/03/04/05.mp4, ~45s of total footage) into CC storage as ingested_video_assets. That set fans into the video branch: video_create_quick_cut (3) draws across all five clips for the ~12s engagement-based cold-open sizzle, while video_resize (4) reframes the full-length master specifically to a clean 1920x1080 YouTube frame (same length, no trim). The graphics kit is its own deep chain: logo background-removal (5) -> auto_tone (6) -> color_overlay = brand_logo_clean.png (7) -> vectorize = brand_logo_vector.svg (8). The texture-plate chain: auto_straighten (9) -> select_subject (10) -> invert_selection (11) -> fill_area solid bar (12) -> monochromatic_tint (13) -> crop_and_resize = lower_third_plate.png (14). Finally asset_license_and_download_stock (15) searches, licenses and downloads one subtle on-brand end-screen texture keyed to the cleaned brand logo (7). Every non-load step sets inputs_from to a prior step's named output; the deliverables (cold-open sizzle, reframed master, clean logo, vector logo, lower-third plate, end-screen texture) emerge directly from the chain.",
+  "difficulty_rationale": "Long-horizon flagship: 15 connector calls, 15 distinct Adobe tools, spanning three connector groups (asset/storage, video [A], photo/raster [C]). It is hard because the agent must HONESTLY decompose a Premiere/FCP/Resolve brief that has no direct connector analog: recognize that 'trim pauses/stumbles' cannot be done frame-accurately and instead deliver an engagement-based Quick Cut + a same-length reframed master (and flag the human-finishable trim), and that the 'custom graphic assets… delivered separately' are produced via the headless image_*/vectorize chain rather than composited into the video (which the connector cannot do and the brief does not ask for). It mixes async-widget [A] media steps with a deep headless [C] raster→vector pipeline, requires a correct select→invert→solid-fill→tint→crop sequence for the lower-third, and reuses the ingested video asset set across the two media branches. No not-available capability is used (no gen-fill, no compositing, no text-to-image, no upscaling, no timestamp trim, no per-artboard export). The only non-headless steps are the two [A] media calls (Quick Cut + video_resize), which are explicitly in scope for the Adobe×Claude product.",
   "_severity": "pass",
   "reverify": {
     "severity": "pass",
-    "banned_capability_check": "No banned capabilities present. All 16 steps use real Adobe connector actions: asset upload (init/finalize), media_summarize [A], video_create_quick_cut [A] engagement-highlight (not timestamp trim), video_resize [A] same-length reframe, and a headless raster/vector chain (remove_background, auto_tone, color_overlay, vectorize, auto_straighten, select_subject, invert_selection, image_fill_area=solid-color fill within canvas, monochromatic_tint, crop_and_resize to lower-third strip, license_and_download_stock). No generative expand/outpaint, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction, no compositing graphics into the video, no image_apply_lens_blur mask. image_fill_area is used only as a solid-color fill of an inverted in-canvas region and crop_and_resize only crops down, so no canvas growth. Gen-free.",
-    "notes": "IP/naming: the client brand was renamed to the invented, non-colliding mark 'TRAILGREMLIN POD'. The name string appears only in brand_logo_lockup.png's gen_prompt; all other fields reference the brand generically ('brand logo', 'brand color', 'mustard/teal'), so no further edits were needed on that count. INPUTS completeness: the two additional supplied source assets that the full_brief and connector_workflow depend on — podcast_raw_master_1080p.mp4 (steps 1-2/3/4/5) and lower_third_texture_plate.jpg (steps 10-15) — are declared as distinct inputs[] entries with kind/gen_model/gen_prompt/realism_notes, and the corresponding load steps (1, 6, 10) set inputs_from to those declared assets so every load is grounded. The task remains real, coherent, and fully connector-doable."
+    "banned_capability_check": "No banned capabilities present. All 15 steps use real Adobe connector actions: asset upload (init/finalize), video_create_quick_cut [A] engagement-highlight (not timestamp trim), video_resize [A] same-length reframe, and a headless raster/vector chain (remove_background, auto_tone, color_overlay, vectorize, auto_straighten, select_subject, invert_selection, image_fill_area=solid-color fill within canvas, monochromatic_tint, crop_and_resize to lower-third strip, license_and_download_stock). No generative expand/outpaint, no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction, no compositing graphics into the video, no image_apply_lens_blur mask. image_fill_area is used only as a solid-color fill of an inverted in-canvas region and crop_and_resize only crops down, so no canvas growth. Gen-free.",
+    "notes": "IP/naming: the client brand was renamed to the invented, non-colliding mark 'TRAILGREMLIN POD'; the name string appears only in brand_logo_lockup.png's gen_prompt, all other fields reference the brand generically. INPUTS completeness: all five supplied video clips (podcast_raw_master_1080p.mp4 + raw_supplemental_02/03/04/05.mp4) are now ingested in steps 1-2 and drawn on by the Quick Cut cold-open (step 3), giving ~45s of real footage behind the ~12s sizzle; the master is reframed full-length by video_resize (step 4). The lower_third_texture_plate.jpg feeds the plate chain (steps 9-14) and brand_logo_lockup.png feeds the graphics-kit chain (steps 5-8). DESCOPE: the episode content-summary deliverable was removed — the source video has no audio stream and no media_summarize step remained to produce it — and the end-screen stock license (step 15) is now keyed to the cleaned brand logo instead of the removed summary. The task remains real, coherent, and fully connector-doable."
   }
 }

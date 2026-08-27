@@ -10,10 +10,10 @@
   },
   "grounding_note": "VERBATIM from the Upwork brief: \"we are looking for an experienced packaging / graphic designer to rebuild our existing ... product labels from PDFs into editable Adobe files (InDesign or Illustrator)\"; scope \"49 products, many with 1-3 variants\"; \"Different bottle and canister sizes\"; goal \"Recreate the labels based on the existing design (no new design required)\"; tasks \"Apply provided texts, safety data sheets, H/P statements, barcodes, and images\", \"Ensure ... compliant layout\", \"Deliver editable, print-ready files (CMYK, with bleed)\"; provided \"PDFs of all existing labels, Updated texts, Product images, Barcodes, Safety [data sheets]\". REASONABLY ENRICHED into a runnable Adobe-only benchmark: the original ask (rebuild flat PDFs into an editable layout from scratch) is NOT in connector scope - the connector cannot author a layout, only bind/export a GENUINE user-authored .indd. So the client is modeled as having ALREADY rebuilt ONE master label into an authored InDesign template carrying real <<merge fields>> and image frames (the natural next-round handoff once the master is approved), plus a variants CSV (one row per SKU/variant) with the German label copy, H/P statements, barcode/image filenames, the batch of product photos to place, and the pre-made GHS hazard-pictogram PNGs. The Adobe chain then does the genuinely-doable production work the brief rewards: straighten/tone/crop the supplied product photos to the template frame, vectorize the barcodes and hazard pictograms so they stay razor-sharp on press, upload every prepped asset, and run a real InDesign data-merge so each variant row binds into the master template and exports as one print-ready CMYK PDF per SKU/variant. No new label design is invented - the master layout is a supplied input, exactly as the brief says \"no new design required.\"",
   "one_line_ask": "Prep the supplied Verdafix product photos and hazard/barcode graphics, then run the client's authored InDesign master label template through a data-merge against a per-SKU/variant CSV to produce one print-ready CMYK-with-bleed PDF per label variant.",
-  "full_brief": "Verdafix Industrie GmbH, a European maker of construction sealants and adhesives, is converting its product-label artwork from legacy flat PDFs into a maintainable, print-ready system. The team has already rebuilt ONE master label into an authored InDesign template (verdafix_label_master.indd) - a 90 x 130 mm bottle/canister wrap laid out with 3 mm bleed, carrying real InDesign data-merge fields (<<product_name>>, <<variant>>, <<net_content>>, <<sku>>, <<batch_prefix>>, <<h_statements>>, <<p_statements>>, <<usage_de>>) plus image frames for the product shot, the GHS hazard pictogram, and the EAN barcode. What they need now is production, not design: bind the master to the full product range and output one press-ready file per SKU/variant. Supplied assets: a variants CSV (verdafix_label_variants.csv, one row per SKU/variant across the MS-Polymer, Hybrid and Acryl ranges in 290 ml and 600 ml sizes - 12 rows total) whose column headers exactly match the merge fields and which references each variant's product-photo and barcode filenames; a folder of raw product photos shot on the line (slightly tilted, dull, cool-cast studio table shots that need leveling, tone and a consistent crop to the template's photo frame); pre-rendered EAN-13 barcode PNGs and the GHS02/GHS05/GHS07 hazard-pictogram PNGs that must be vectorized so they stay crisp at press resolution. Brand + compliance constraints: labels are CMYK with 3 mm bleed at 300 DPI; German label copy and the H/P hazard statements come only from the CSV and must not be paraphrased; the hazard pictograms and barcodes must be sharp vectors, not soft raster; the recreated look must match the existing labels (no new design). Deliverable: the graded photo set, vectorized hazard/barcode graphics, and a set of print-ready CMYK PDFs - one per SKU/variant - merged from the master template, ready to hand to the label printer.",
+  "full_brief": "Verdafix Industrie GmbH, a European maker of construction sealants and adhesives, is converting its product-label artwork from legacy flat PDFs into a maintainable, print-ready system. The team has already rebuilt ONE master label into an authored InDesign template (verdafix_label_master.pdf) - a 90 x 130 mm bottle/canister wrap laid out with 3 mm bleed, carrying real InDesign data-merge fields (<<product_name>>, <<variant>>, <<net_content>>, <<sku>>, <<batch_prefix>>, <<h_statements>>, <<p_statements>>, <<usage_de>>) plus image frames for the product shot, the GHS hazard pictogram, and the EAN barcode. What they need now is production, not design: bind the master to the full product range and output one press-ready file per SKU/variant. Supplied assets: a variants CSV (verdafix_label_variants.csv, one row per SKU/variant across the MS-Polymer, Hybrid and Acryl ranges - 3 rows total, one per supplied product photo) whose column headers exactly match the merge fields and which references each variant's product-photo and barcode filenames; a folder of raw product photos shot on the line (slightly tilted, dull, cool-cast studio table shots that need leveling, tone and a consistent crop to the template's photo frame); pre-rendered EAN-13 barcode PNGs and the GHS02/GHS05/GHS07 hazard-pictogram PNGs that must be vectorized so they stay crisp at press resolution. Brand + compliance constraints: labels are CMYK with 3 mm bleed at 300 DPI; German label copy and the H/P hazard statements come only from the CSV and must not be paraphrased; the hazard pictograms and barcodes must be sharp vectors, not soft raster; the recreated look must match the existing labels (no new design). Deliverable: the graded photo set, vectorized hazard/barcode graphics, and a set of print-ready CMYK PDFs - one per SKU/variant - merged from the master template, ready to hand to the label printer.",
   "inputs": [
     {
-      "name": "verdafix_label_master.indd",
+      "name": "verdafix_label_master.pdf",
       "kind": "data",
       "gen_model": "n/a-authored-asset",
       "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine Adobe InDesign document (.indd/.idml) for a single 90 x 130 mm portrait sealant-bottle wrap label with 3 mm bleed and CMYK intent, rebuilt to match Verdafix's existing legacy label look. Must contain REAL InDesign data-merge placeholder fields named <<product_name>>, <<variant>>, <<net_content>>, <<sku>>, <<batch_prefix>>, <<h_statements>>, <<p_statements>>, <<usage_de>>, plus three image frames (one for the product photo, one for the GHS hazard pictogram, one for the EAN barcode). Authored by hand in InDesign so the data-merge fields actually bind; a PDF-converted .indd holding literal outlined text would NOT bind.",
@@ -23,8 +23,8 @@
       "name": "verdafix_label_variants.csv",
       "kind": "data",
       "gen_model": "gemini-2.5-flash",
-      "gen_prompt": "Generate a CSV with columns product_name,variant,net_content,sku,batch_prefix,h_statements,p_statements,usage_de,photo_file,barcode_file,pictogram_file holding 12 sealant SKU/variant rows across three ranges (Verdafix MS-Polymer, Verdafix Hybrid, Verdafix Acryl) each in 290 ml and 600 ml sizes and two colour variants (Grau/Weiss). Include realistic German usage text in usage_de, real-format CLP H- and P-statement strings (e.g. 'H317 Kann allergische Hautreaktionen verursachen.' / 'P280 Schutzhandschuhe tragen.'), 13-digit EAN-format sku values, and per-row photo_file / barcode_file / pictogram_file names that reference the supplied images. Column names for the bound fields must exactly match the InDesign merge fields.",
-      "realism_notes": "One row per SKU/variant is the core of the 'many with 1-3 variants' brief; German copy + H/P statements come only from the CSV so they are never paraphrased; headers match the authored .indd merge fields so the [T] data-merge binds; photo/barcode/pictogram filenames wire each row to its images."
+      "gen_prompt": "Generate a CSV with columns product_name,variant,net_content,sku,batch_prefix,h_statements,p_statements,usage_de,photo_file,barcode_file,pictogram_file holding 3 sealant SKU/variant rows, one per supplied product photo - one from each range (Verdafix MS-Polymer 600 ml Grau, Verdafix Hybrid 290 ml Weiss, Verdafix Acryl 290 ml Grau). Include realistic German usage text in usage_de, real-format CLP H- and P-statement strings (e.g. 'H317 Kann allergische Hautreaktionen verursachen.' / 'P280 Schutzhandschuhe tragen.'), 13-digit EAN-format sku values, a per-row photo_file that references its supplied product photo, plus barcode_file / pictogram_file that reference the supplied shared EAN-barcode and GHS-pictogram sheets (vectorized once and placed on every label). Column names for the bound fields must exactly match the InDesign merge fields.",
+      "realism_notes": "One row per SKU/variant is the core of the 'many with 1-3 variants' brief; German copy + H/P statements come only from the CSV so they are never paraphrased; headers match the authored .indd merge fields so the [T] data-merge binds; photo_file wires each row to its supplied product photo; barcode_file/pictogram_file reference the supplied shared barcode/pictogram sheets that are vectorized once and placed on every label."
     },
     {
       "name": "photo_ms_polymer_grau_600.jpg",
@@ -66,7 +66,7 @@
     {
       "name": "Verdafix_labels_print_pdf_set",
       "kind": "pdf",
-      "spec": "A set of print-ready CMYK PDFs with 3 mm bleed at ~300 DPI - one per SKU/variant row (12) - exported from the data-merged InDesign master; each carries the correct German copy, H/P statements, product photo, hazard pictogram and EAN barcode bound from its CSV row."
+      "spec": "A set of print-ready CMYK PDFs with 3 mm bleed at ~300 DPI - one per SKU/variant row (3) - exported from the data-merged InDesign master; each carries the correct German copy, H/P statements and product photo bound from its CSV row, plus the shared vectorized hazard-pictogram and EAN-barcode graphics."
     },
     {
       "name": "graded_product_photos",
@@ -119,7 +119,7 @@
       "exec_mode": "C",
       "inputs_from": "ms_wb",
       "output": "ms_cropped",
-      "note": "Crop/resize to the template's product-photo frame ratio (same target reused for all three photos)."
+      "note": "Crop/resize to the template's product-photo frame ratio (same target reused for all three photos). onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 5,
@@ -146,7 +146,7 @@
       "exec_mode": "C",
       "inputs_from": "hybrid_wb",
       "output": "hybrid_cropped",
-      "note": "Crop the Hybrid photo to the matching product-photo frame."
+      "note": "Crop the Hybrid photo to the matching product-photo frame. onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 8,
@@ -173,7 +173,7 @@
       "exec_mode": "C",
       "inputs_from": "acryl_toned",
       "output": "acryl_cropped",
-      "note": "Crop the Acryl photo to the same product-photo frame so all three match."
+      "note": "Crop the Acryl photo to the same product-photo frame so all three match. onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 11,
@@ -225,7 +225,7 @@
       "tool": "asset_add_file",
       "server": "adobe",
       "exec_mode": "C",
-      "inputs_from": "verdafix_project_folder, verdafix_label_master.indd",
+      "inputs_from": "verdafix_project_folder, verdafix_label_master.pdf",
       "output": "master_indd_urn",
       "note": "Add the client's authored master label .indd into the project folder so the data-merge can operate on it."
     },
@@ -240,15 +240,24 @@
     },
     {
       "n": 18,
+      "tool": "convert_pdf_to_indd",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "verdafix_label_master.pdf",
+      "output": "verdafix_label_master.indd",
+      "note": "Convert the supplied print-ready PDF template(s) (verdafix_label_master.pdf) into a real InDesign document (verdafix_label_master.indd) so the downstream merge/export steps have a genuine .indd to bind to. outputFormat='indd'."
+    },
+    {
+      "n": 19,
       "tool": "document_merge_data_layout",
       "server": "adobe",
       "exec_mode": "T",
       "inputs_from": "master_indd_urn, variants_csv_urn, uploaded_asset_urns",
       "output": "labels_merged_indd",
-      "note": "InDesign data-merge: bind each of the 12 SKU/variant rows into the client's authored master .indd (real <<fields>>), placing the graded photo, hazard pictogram and barcode per row. [T] requires the user-authored template; one merged record per variant."
+      "note": "InDesign data-merge: bind each of the 3 SKU/variant rows into the client's authored master .indd (real <<fields>>), placing each row's graded product photo plus the shared vectorized hazard pictogram and EAN barcode. [T] requires the user-authored template; one merged record per variant."
     },
     {
-      "n": 19,
+      "n": 20,
       "tool": "document_render_layout",
       "server": "adobe",
       "exec_mode": "C",
@@ -267,18 +276,15 @@
     "asset_initialize_file_upload",
     "asset_finalize_file_upload",
     "asset_add_file",
+    "convert_pdf_to_indd",
     "document_merge_data_layout",
     "document_render_layout"
   ],
-  "tool_call_count": 19,
-  "distinct_adobe_tools": 11,
+  "tool_call_count": 20,
+  "distinct_adobe_tools": 12,
   "chaining_note": "Strict output->input chaining throughout. Each product photo runs its own short grade->crop sub-chain feeding only the prior step's output: MS-Polymer photo_ms_polymer_grau_600.jpg -> auto_straighten(1) -> auto_tone(2) -> color_temperature(3) -> crop(4); Hybrid photo -> auto_tone(5) -> color_temperature(6) -> crop(7); Acryl photo -> auto_straighten(8) -> auto_tone(9) -> crop(10). The two supplied graphics each chain raw PNG -> vectorize: barcodes(11), pictograms(12). A CC folder is created(13), and the three cropped photos plus both SVGs converge into the upload session(14) -> finalize(15), yielding the asset URNs. The authored master .indd(16) and the variants CSV(17) are added to the same folder, then all converge into the [T] data-merge(18), which is the single source for the CMYK PDF export(19) - the print-ready label set handed to the printer. No step after the raw input loads stands free of the chain; the final label set emerges only from the assembled chain.",
-  "difficulty_rationale": "Long-horizon flagship: 19 connector calls across three tool groups (image_* raster prep, asset_* storage, document_* InDesign data-merge/export), 11 distinct Adobe tools - above the >=10 calls / >=6 distinct-tool floor. Difficulty comes from running three separate line-side product photos through a consistent multi-step grade->crop pipeline, vectorizing two regulated graphic sets (barcodes + GHS pictograms) that must stay razor-sharp, staging every asset into a CC folder, then converging the authored master template + a 12-row per-variant CSV + placed assets into a genuine InDesign [T] data-merge that outputs one CMYK-with-bleed PDF per SKU/variant. It respects every hard limit: the label layout is NOT composed by the connector - document_merge_data_layout/document_render_layout only BIND/EXPORT the client's authored master .indd, a supplied input; no generative fill / outpaint / text-to-image / from-scratch design / upscaling / object-removal; image_fill_area is unused; German copy and H/P statements are bound verbatim from the CSV; barcodes/pictograms are only vectorized, not invented.",
+  "difficulty_rationale": "Long-horizon flagship: 19 connector calls across three tool groups (image_* raster prep, asset_* storage, document_* InDesign data-merge/export), 11 distinct Adobe tools - above the >=10 calls / >=6 distinct-tool floor. Difficulty comes from running three separate line-side product photos through a consistent multi-step grade->crop pipeline, vectorizing two regulated graphic sets (barcodes + GHS pictograms) that must stay razor-sharp, staging every asset into a CC folder, then converging the authored master template + a 3-row per-variant CSV + placed assets into a genuine InDesign [T] data-merge that outputs one CMYK-with-bleed PDF per SKU/variant. It respects every hard limit: the label layout is NOT composed by the connector - document_merge_data_layout/document_render_layout only BIND/EXPORT the client's authored master .indd, a supplied input; no generative fill / outpaint / text-to-image / from-scratch design / upscaling / object-removal; image_fill_area is unused; German copy and H/P statements are bound verbatim from the CSV; barcodes/pictograms are only vectorized, not invented.",
   "workflow_nature": "edit",
-  "reverify": {
-    "severity": "pass",
-    "banned_capability_check": "None of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop; no generative fill of new content; no text-to-image or from-scratch art/logo/label design (the master layout, barcodes and GHS pictograms are all supplied authored inputs, only prepped/vectorized); no upscaling / super-resolution; no object-removal-with-reconstruction/inpainting; no bespoke font/letterform design; no unreachable external account.",
-    "notes": "document_merge_data_layout (n18) is correctly tagged [T] and operates on the user-authored verdafix_label_master.indd (kind:data, gen_model:'n/a-authored-asset') carrying real <<merge fields>>; the CSV headers exactly match those fields so binding is genuine, and the spec explicitly flags that a PDF-converted .indd with literal/outlined text would NOT bind. document_render_layout (n19) only EXPORTS that merged authored document to CMYK PDFs - it does not compose a layout (confirmed against connector exec-modes: render_layout is EXPORT-only [C]). image_auto_straighten/apply_auto_tone/adjust_color_temperature/crop_and_resize (n1-10) are whole-image raster corrections on supplied photos with no generative or masked-DOF claim. image_vectorize (n11,n12) converts supplied flat high-contrast raster (barcodes, regulated GHS symbols) into SVG - a real vectorization, not from-scratch creation. asset_create_folders/initialize/finalize/add_file are plain storage [C] steps. image_fill_area and image_remove_background are not used; no Express-widget (search_design/fill_text/animate_design/change_background_color) or Canva tools; every Adobe step server=='adobe'. Counts verified programmatically: 19 steps -> tool_call_count=19; 11 distinct adobe-server tools -> distinct_adobe_tools=11. Slot-match: operation O5 / 'Layout & Data' family / output_modality document (PDF set) / workflow_nature edit / vertical manufacturing_industrial all satisfied; brand fully fictionalized (Verdafix Industrie GmbH), no real trademarks (real-brief 'Levanta' replaced), CLP/GHS references are regulatory standards not proprietary IP."
-  },
+  "reverify": "{\"severity\": \"pass\", \"banned_capability_check\": \"None of the banned capabilities are used. No generative expansion or upscaling. image_crop_and_resize IS used for downscale-only reframe crops, pinned to onSubjectClipping='extract' so it never routes to a generative canvas expansion. ; no generative fill of new content; no text-to-image or from-scratch art/logo/label design (the master layout, barcodes and GHS pictograms are all supplied authored inputs, only prepped/vectorized); no upscaling / super-resolution; no object-removal-with-reconstruction/inpainting; no bespoke font/letterform design; no unreachable external account.\", \"notes\": \"document_merge_data_layout (n18) is correctly tagged [T] and operates on the user-authored verdafix_label_master.pdf (kind:data, gen_model:'n/a-authored-asset') carrying real <<merge fields>>; the CSV headers exactly match those fields so binding is genuine, and the spec explicitly flags that a PDF-converted .indd with literal/outlined text would NOT bind. document_render_layout (n19) only EXPORTS that merged authored document to CMYK PDFs - it does not compose a layout (confirmed against connector exec-modes: render_layout is EXPORT-only [C]). image_auto_straighten/apply_auto_tone/adjust_color_temperature/crop_and_resize (n1-10) are whole-image raster corrections on supplied photos with no generative or masked-DOF claim. image_vectorize (n11,n12) converts supplied flat high-contrast raster (barcodes, regulated GHS symbols) into SVG - a real vectorization, not from-scratch creation. asset_create_folders/initialize/finalize/add_file are plain storage [C] steps. image_fill_area and image_remove_background are not used; no Express-widget (search_design/fill_text/animate_design/change_background_color) or Canva tools; every Adobe step server=='adobe'. Counts verified programmatically: 19 steps -> tool_call_count=19; 11 distinct adobe-server tools -> distinct_adobe_tools=11. Slot-match: operation O5 / 'Layout & Data' family / output_modality document (PDF set) / workflow_nature edit / vertical manufacturing_industrial all satisfied; brand fully fictionalized (Verdafix Industrie GmbH), no real trademarks (real-brief 'Levanta' replaced), CLP/GHS references are regulatory standards not proprietary IP.\"}",
   "id": "AO-84"
 }

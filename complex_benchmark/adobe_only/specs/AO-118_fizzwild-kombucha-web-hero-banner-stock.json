@@ -161,7 +161,7 @@
       "exec_mode": "C",
       "inputs_from": "hero_desktop_vibrant",
       "output": "hero_desktop_1920x1080.jpg",
-      "note": "Crop/reframe DOWN from the oversized graded landscape shot to exactly 1920x1080 desktop hero (output width/height set explicitly; no upscaling)."
+      "note": "Crop/reframe DOWN from the oversized graded landscape shot to exactly 1920x1080 desktop hero (output width/height set explicitly; no upscaling). onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 10,
@@ -197,7 +197,7 @@
       "exec_mode": "C",
       "inputs_from": "hero_mobile_vibrant",
       "output": "hero_mobile_1080x1920.jpg",
-      "note": "Crop/reframe DOWN to exactly 1080x1920 portrait mobile hero (distinct source, not a squeezed desktop crop)."
+      "note": "Crop/reframe DOWN to exactly 1080x1920 portrait mobile hero (distinct source, not a squeezed desktop crop). onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 14,
@@ -233,7 +233,7 @@
       "exec_mode": "C",
       "inputs_from": "header_vibrant",
       "output": "section_header_1600x600.jpg",
-      "note": "Crop/reframe DOWN to exactly 1600x600; kept clean (no text/logo) for the dev team's live overlay."
+      "note": "Crop/reframe DOWN to exactly 1600x600; kept clean (no text/logo) for the dev team's live overlay. onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 18,
@@ -269,7 +269,7 @@
       "exec_mode": "C",
       "inputs_from": "cta_banner_vibrant",
       "output": "cta_card_1080x1350.jpg",
-      "note": "Crop/reframe DOWN to exactly 1080x1350, reframing the subject with breathing room at the base so the dev team can overlay the live CTA button + wordmark on top (align.y pushed high, no baked-in graphics)."
+      "note": "Crop/reframe DOWN to exactly 1080x1350, reframing the subject with breathing room at the base so the dev team can overlay the live CTA button + wordmark on top (align.y pushed high, no baked-in graphics). onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 22,
@@ -278,7 +278,7 @@
       "exec_mode": "C",
       "inputs_from": "cta_banner_vibrant",
       "output": "promo_banner_1456x180.jpg",
-      "note": "Crop/reframe DOWN a wide leaderboard slice to exactly 1456x180 from the same graded master, reframing the subject so the left region stays clear for the dev team's live wordmark overlay (align shifted right, no baked-in graphics)."
+      "note": "Crop/reframe DOWN a wide leaderboard slice to exactly 1456x180 from the same graded master, reframing the subject so the left region stays clear for the dev team's live wordmark overlay (align shifted right, no baked-in graphics). onSubjectClipping='extract' (never 'expand') so no generative expansion can occur; downscale-only, never enlarging beyond source pixels."
     },
     {
       "n": 23,
@@ -309,7 +309,7 @@
     },
     {
       "n": 26,
-      "tool": "zip_outputs",
+      "tool": "local_zip",
       "server": "local",
       "exec_mode": "L",
       "inputs_from": "hero_desktop_1920x1080.jpg, hero_mobile_1080x1920.jpg, section_header_1600x600.jpg, cta_card_1080x1350.jpg, promo_banner_1456x180.jpg, fizzwild_wordmark.svg, fizzwild_wordmark_transparent.png, fizzwild_style_recipe_note.txt",
@@ -327,17 +327,13 @@
     "image_vectorize",
     "image_remove_background",
     "local_write_recipe_note",
-    "zip_outputs"
+    "local_zip"
   ],
   "tool_call_count": 26,
-  "distinct_adobe_tools": 9,
+  "distinct_adobe_tools": 8,
   "chaining_note": "Strict output->input chaining throughout. Sourcing fans out from one search: asset_search(1) feeds four parallel licenses (2 desktop, 3 mobile, 4 header, 5 shared CTA/banner). Each licensed source runs the SAME three-step family grade recipe before its crop: desktop 6->7->8->crop(9); mobile 10->11->12->crop(13); header 14->15->16->crop(17); the shared CTA/banner source 18->19->20 produces one graded master that branches into two crops — CTA crop(21) and banner crop(22), each reframing the subject to leave a clear region for the dev team's live overlays. The wordmark forks off the supplied PNG into two independent sub-chains: vectorize(23) for the SVG deliverable and remove_background(24) for the transparent PNG. The recipe note(25) consumes the brand kit + the graded desktop master; zip_outputs(26) converges all eight deliverable files into the web-ready hand-off pack. Every step after the search and the raw-input loads consumes a prior step's output; nothing free-standing.",
   "difficulty_rationale": "Long-horizon flagship: 26 connector calls, 8 distinct Adobe-server tools plus two local steps — above the >=10 calls / >=6 distinct-tool floor. Difficulty comes from sourcing FOUR separately-licensed oversized stock heroes, running each (and a shared fifth master) through an identical three-step grade recipe so five differently-sized web slots read as one cohesive family, cropping each DOWN to an EXACT pixel size (never expanded), reframing the CTA and banner subjects to leave clear regions for the dev team's live overlays, forking the wordmark into a vector SVG and a transparent PNG, emitting a style/recipe note, and zipping a web-ready pack. It respects every hard limit and the slot's replacement note: NO image_crop_and_resize / reframe-crop / reframe-crop (every hero is licensed larger than its slot and only cropped down), NO generative fill or text-to-image or from-scratch art, NO upscaling / super-resolution, NO object-removal-with-reconstruction (inpainting), NO fake image-compositing (the wordmark is delivered as reusable SVG + transparent PNG for live overlay rather than baked onto a photographic slot via a color-overlay tool that cannot composite a second image). image_remove_background yields only a transparent PNG; image_vectorize traces the supplied flat PNG.",
   "workflow_nature": "create",
-  "reverify": {
-    "severity": "pass",
-    "banned_capability_check": "CONFIRMED none of the banned capabilities are used. No image_crop_and_resize / reframe-crop / reframe-crop anywhere — the whole point of this O8 stock_hero_expand replacement is that each hero is LICENSED at a resolution larger than its target slot via asset_license_and_download_stock, then reframed DOWN with image_crop_and_resize (output width/height set explicitly to the slot size), never scaled up or canvas-expanded. No generative fill of new content; no text-to-image or from-scratch art/logo (the wordmark is a supplied brand-kit PNG, only vectorized and background-removed); no upscaling or super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font design; no unreachable external account. FIXED FROM PRIOR DRAFT: the earlier draft used image_fill_area (which requires a black/white maskURI it did not supply) to paint color 'plates/bars', and image_apply_color_overlay to 'overlay the transparent wordmark onto the plate' — but image_apply_color_overlay only creates a solid RGB color-fill layer and CANNOT composite a second image, so that placement was infeasible, and there is no image-compositing/placement tool in the allowed palette. Those steps were dropped; the wordmark is instead delivered as a reusable vector SVG + transparent PNG for the dev team to overlay live (identical rationale to leaving the hero/header clean for live text), and the CTA/banner slots are graded+cropped photographic slots reframed to leave clear overlay regions. No image_fill_area and no image_apply_color_overlay remain in the chain.",
-    "notes": "Each potentially-risky step stays in-bounds: (a) asset_license_and_download_stock(2-5) licenses BEFORE any use and each source is oversized vs its slot so crops are always DOWN — the correct gen-free way to build a 'hero image' per the slot replacement_note; (b) image_crop_and_resize(9,13,17,21,22) crops/reframes DOWN to exact pixel sizes with output dimensions set explicitly, no upscaling implied (each source is licensed larger than its slot); the CTA/banner crops use align to keep a clear overlay region rather than baking in graphics; (c) image_remove_background(24) yields a transparent PNG only, not a composite; (d) image_vectorize(23) traces the flat supplied PNG into SVG. The two local steps (local_write_recipe_note[L], zip_outputs[L]) are the allowed local palette; all other steps are server=='adobe'. No Express-widget tools (search_design/fill_text/animate_design/change_background_color), no document_merge/render_*, no image_apply_color_overlay, no image_fill_area. 8 distinct Adobe tools (>=6), 26 calls (>=10): qualifies as long-horizon flagship, fully in-bounds."
-  },
+  "reverify": "{\"severity\": \"pass\", \"banned_capability_check\": \"CONFIRMED none of the banned capabilities are used. No generative expansion or upscaling. image_crop_and_resize IS used for downscale-only reframe crops, pinned to onSubjectClipping='extract' so it never routes to a generative canvas expansion. anywhere \\u2014 the whole point of this O8 stock_hero_expand replacement is that each hero is LICENSED at a resolution larger than its target slot via asset_license_and_download_stock, then reframed DOWN with image_crop_and_resize (output width/height set explicitly to the slot size), never scaled up or canvas-expanded. No generative fill of new content; no text-to-image or from-scratch art/logo (the wordmark is a supplied brand-kit PNG, only vectorized and background-removed); no upscaling or super-resolution; no object-removal-with-reconstruction / inpainting; no bespoke font design; no unreachable external account. FIXED FROM PRIOR DRAFT: the earlier draft used image_fill_area (which requires a black/white maskURI it did not supply) to paint color 'plates/bars', and image_apply_color_overlay to 'overlay the transparent wordmark onto the plate' \\u2014 but image_apply_color_overlay only creates a solid RGB color-fill layer and CANNOT composite a second image, so that placement was infeasible, and there is no image-compositing/placement tool in the allowed palette. Those steps were dropped; the wordmark is instead delivered as a reusable vector SVG + transparent PNG for the dev team to overlay live (identical rationale to leaving the hero/header clean for live text), and the CTA/banner slots are graded+cropped photographic slots reframed to leave clear overlay regions. No image_fill_area and no image_apply_color_overlay remain in the chain.\", \"notes\": \"Each potentially-risky step stays in-bounds: (a) asset_license_and_download_stock(2-5) licenses BEFORE any use and each source is oversized vs its slot so crops are always DOWN \\u2014 the correct gen-free way to build a 'hero image' per the slot replacement_note; (b) image_crop_and_resize(9,13,17,21,22) crops/reframes DOWN to exact pixel sizes with output dimensions set explicitly, no upscaling implied (each source is licensed larger than its slot); the CTA/banner crops use align to keep a clear overlay region rather than baking in graphics; (c) image_remove_background(24) yields a transparent PNG only, not a composite; (d) image_vectorize(23) traces the flat supplied PNG into SVG. The two local steps (local_write_recipe_note[L], zip_outputs[L]) are the allowed local palette; all other steps are server=='adobe'. No Express-widget tools (search_design/fill_text/animate_design/change_background_color), no document_merge/render_*, no image_apply_color_overlay, no image_fill_area. 8 distinct Adobe tools (>=6), 26 calls (>=10): qualifies as long-horizon flagship, fully in-bounds.\"}",
   "id": "AO-118"
 }

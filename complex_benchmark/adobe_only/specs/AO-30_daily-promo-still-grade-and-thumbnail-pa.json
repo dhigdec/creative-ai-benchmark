@@ -10,7 +10,7 @@
   },
   "grounding_note": "VERBATIM from the real brief: a daily promotional-video turnaround for a public-facing audience where the client supplies \"fresh promotional footage\" via shared drive, wants \"tasteful color correction,\" \"the occasional caption or lower-third,\" a polished 1080p+ deliverable, and same-day consistency with a \"lively and accessible…nothing overly corporate\" style. ENRICHED to make it a runnable Adobe-connector benchmark: the brief's core ask (full Premiere timeline edit — trim/sequence/transitions/MP4 export + editable project) is NOT an Adobe-connector capability (video tools are async-widget [A]; video_resize is same-length-no-trim; quick_cut is AI-sizzle not timestamp trimming; no editable-project export). So I keep faithful to the brief's stated, connector-supported sub-tasks and reframe the DELIVERABLE as the same-day \"promo package\" a colorist/finisher actually hands back alongside the cut: a consistent color-grade applied to the client's exported key frames (matches category color_grade_lr and the brief's \"tasteful color correction\" + \"lively, accessible, not corporate\" look), a YouTube/social thumbnail derived from the hero frame (the brief's public-facing posting context), and a short engagement-cut sizzle + content summary for the post copy. The daily-folder return (\"drop the finished files back in the folder\") becomes the asset-folder packaging steps. No invented unrelated deliverable; every enrichment maps to a sentence in the brief.",
   "one_line_ask": "Take today's exported promo key frames, apply one consistent lively color grade across the frames, build a YouTube thumbnail from the hero shot, generate a sizzle cut and a content summary, and drop the finished, organized package back in the daily folder — same day.",
-  "full_brief": "Fresh promotional footage lands in the shared drive each afternoon and the finished, post-ready package must go back in the same folder within 24 hours. For today's spot the client exported five representative key frames from the raw clips (hero close-up, two mid-shots, an environment/wide, and a product/detail shot), all shot in mixed afternoon lighting so they look uneven and slightly cool. Deliver a same-day \"promo finishing package\": (1) all five key frames carrying ONE consistent, lively-but-tasteful grade — auto-tone baseline, warmer temperature, lifted shadows, controlled highlights, a touch more vibrance, plus the same Lightroom look-preset on every frame so the set feels edited together and \"accessible, not corporate\"; (2) a 1920x1080 YouTube/social thumbnail built from the graded hero frame (subject popped from the busy background via a blurred-background treatment, then cropped to 16:9 with the subject weighted left so a title can sit right); (3) a 15-second vertical-friendly sizzle cut from the source clips for the social teaser, plus a short auto-generated content summary to seed the post caption/description. Package the graded frames, thumbnail and sizzle into a dated daily-delivery folder in CC and confirm done. Keep the turnaround fast and the look consistent across every frame.",
+  "full_brief": "Fresh promotional footage lands in the shared drive each afternoon and the finished, post-ready package must go back in the same folder within 24 hours. For today's spot the client exported five representative key frames from the raw clips (hero close-up, two mid-shots, an environment/wide, and a product/detail shot), all shot in mixed afternoon lighting so they look uneven and slightly cool. Deliver a same-day \"promo finishing package\": (1) all five key frames carrying ONE consistent, lively-but-tasteful grade — auto-tone baseline, warmer temperature, lifted shadows, controlled highlights, a touch more vibrance, plus the same Lightroom look-preset on every frame so the set feels edited together and \"accessible, not corporate\"; (2) a 1920x1080 YouTube/social thumbnail built from the graded hero frame (subject cut out of the busy background and dropped onto a clean solid brand-colour plate, then cropped to 16:9 with the subject weighted left so a title can sit right); (3) a 15-second vertical-friendly sizzle cut from the source clips for the social teaser, plus a short auto-generated content summary to seed the post caption/description. Package the graded frames, thumbnail and sizzle into a dated daily-delivery folder in CC and confirm done. Keep the turnaround fast and the look consistent across every frame.",
   "inputs": [
     {
       "name": "keyframe_hero_closeup.jpg",
@@ -59,17 +59,17 @@
     {
       "name": "graded_keyframes/ (5 files)",
       "kind": "image",
-      "spec": "5x 1920x1080 JPEG/PNG, each carrying the identical grade chain (auto-tone -> warmer temperature -> lifted shadows -> recovered highlights -> +vibrance -> same Lightroom look-preset), applied identically to all five frames (hero + 4). Visually consistent 'edited-together' lively look."
+      "spec": "5x 1920x1080 JPEG/PNG, each carrying the identical grade chain (auto-tone -> warmer temperature -> lifted shadows -> recovered highlights -> +vibrance -> same Lightroom look-preset), applied identically to all five frames (hero + 4). Visually consistent 'edited-together' lively look. Each frame is finished with image_crop_and_resize (extract mode) to exactly 1920x1080 (16:9) from the 2016x1344 source — existing pixels only, no upscale."
     },
     {
       "name": "youtube_thumbnail_1920x1080.png",
       "kind": "image",
-      "spec": "1920x1080 (16:9) PNG thumbnail from the graded hero frame: subject popped via the masked Adaptive 'Subject Pop / Blur Background' preset (subject stays sharp, busy background blurred), then cropped with subject weighted left, title-safe negative space on the right."
+      "spec": "1920x1080 (16:9) PNG thumbnail from the graded hero frame: the subject is cut out with image_remove_background and the busy background replaced with a clean solid brand-colour plate via masked image_fill_area (image_apply_preset and image_apply_lens_blur are whole-image and expose no mask parameter, so no regional background blur is possible), then cropped with the subject weighted left and title-safe negative space on the right."
     },
     {
       "name": "sizzle_15s_teaser.mp4",
       "kind": "video",
-      "spec": "~15s AI engagement-cut sizzle reel assembled from the source clips for the social teaser (async-widget result in product)."
+      "spec": "~10s AI engagement-cut sizzle reel assembled from the source clips for the social teaser (async-widget result in product)."
     },
     {
       "name": "content_summary.txt",
@@ -193,24 +193,78 @@
     },
     {
       "n": 13,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "hero_graded_final",
+      "output": "hero_kf_1080",
+      "note": "Crop/resize the graded frame hero_graded_final to exactly 1920x1080 (16:9) from the 2016x1344 source: image_crop_and_resize with onSubjectClipping='extract' (existing pixels only — no upscale, no generative expand)."
+    },
+    {
+      "n": 14,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "midA_graded_final",
+      "output": "midA_kf_1080",
+      "note": "Crop/resize the graded frame midA_graded_final to exactly 1920x1080 (16:9) from the 2016x1344 source: image_crop_and_resize with onSubjectClipping='extract' (existing pixels only — no upscale, no generative expand)."
+    },
+    {
+      "n": 15,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "midB_graded_final",
+      "output": "midB_kf_1080",
+      "note": "Crop/resize the graded frame midB_graded_final to exactly 1920x1080 (16:9) from the 2016x1344 source: image_crop_and_resize with onSubjectClipping='extract' (existing pixels only — no upscale, no generative expand)."
+    },
+    {
+      "n": 16,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "wide_graded_final",
+      "output": "wide_kf_1080",
+      "note": "Crop/resize the graded frame wide_graded_final to exactly 1920x1080 (16:9) from the 2016x1344 source: image_crop_and_resize with onSubjectClipping='extract' (existing pixels only — no upscale, no generative expand)."
+    },
+    {
+      "n": 17,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "product_graded_final",
+      "output": "product_kf_1080",
+      "note": "Crop/resize the graded frame product_graded_final to exactly 1920x1080 (16:9) from the 2016x1344 source: image_crop_and_resize with onSubjectClipping='extract' (existing pixels only — no upscale, no generative expand)."
+    },
+    {
+      "n": 18,
       "tool": "image_select_by_prompt",
       "server": "adobe",
       "exec_mode": "C",
       "inputs_from": "hero_graded_final",
       "output": "hero_subject_mask",
-      "note": "On the graded hero, select the subject (business owner) by prompt to build the mask that drives the subject-pop treatment."
+      "note": "On the graded hero, select the subject (business owner) by prompt to build the mask that drives the masked background fill in step 15. image_apply_preset / image_apply_lens_blur expose no mask parameter, so the subject pop is done with a cutout + masked fill instead of a masked preset."
     },
     {
-      "n": 14,
-      "tool": "image_apply_preset",
+      "n": 19,
+      "tool": "image_remove_background",
       "server": "adobe",
       "exec_mode": "C",
-      "inputs_from": "hero_graded_final,hero_subject_mask",
-      "output": "hero_subject_popped",
-      "note": "Apply the masked Adaptive 'Subject Pop / Blur Background' preset: the preset uses the subject mask to keep the subject sharp while blurring the busy background, popping the subject for a clickable thumbnail. Consumes the graded hero + the subject mask (masked-preset path, not whole-image lens_blur)."
+      "inputs_from": "hero_graded_final",
+      "output": "hero_subject_cutout",
+      "note": "Cut the subject out of the busy roastery background to a transparent PNG. image_remove_background auto-detects the subject and takes the image only (no mask parameter). This is the regional half of the subject pop that a whole-image preset/lens-blur cannot do."
     },
     {
-      "n": 15,
+      "n": 20,
+      "tool": "image_fill_area",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "hero_graded_final,hero_subject_cutout,hero_subject_mask",
+      "output": "hero_subject_popped",
+      "note": "Invert-fill the area outside hero_subject_mask with a clean solid brand-colour plate so the subject reads sharp and separated for a clickable thumbnail. image_fill_area is the only image tool here that DOES accept a mask; it is solid-colour fill only, which is why the busy background is replaced by a flat plate rather than blurred (no connector tool applies a regional blur)."
+    },
+    {
+      "n": 21,
       "tool": "image_crop_and_resize",
       "server": "adobe",
       "exec_mode": "C",
@@ -219,7 +273,7 @@
       "note": "Crop/resize the popped hero to exactly 1920x1080 (16:9) with the subject weighted left, leaving title-safe space on the right. Final thumbnail deliverable."
     },
     {
-      "n": 16,
+      "n": 22,
       "tool": "video_create_quick_cut",
       "server": "adobe",
       "exec_mode": "A",
@@ -228,16 +282,16 @@
       "note": "AI engagement-cut a ~15s social sizzle from the ingested source montage for the teaser. Async-widget; consumes the ingested montage asset."
     },
     {
-      "n": 17,
+      "n": 23,
       "tool": "media_summarize",
       "server": "adobe",
       "exec_mode": "A",
       "inputs_from": "ingested_asset_ids",
       "output": "content_summary",
-      "note": "Summarize the source montage's scenes to seed the post caption/description copy. Async-widget; consumes the ingested montage."
+      "note": "Summarize source_clips_for_sizzle.mp4 — a real AV asset with speech (the owner talking to camera and customers chatting on the roastery floor) — to seed the post caption/description copy. Async-widget; consumes the ingested montage video, not any document."
     },
     {
-      "n": 18,
+      "n": 24,
       "tool": "asset_create_folders",
       "server": "adobe",
       "exec_mode": "C",
@@ -246,11 +300,11 @@
       "note": "Create the dated daily-delivery folder in CC storage for the same-day handback."
     },
     {
-      "n": 19,
+      "n": 25,
       "tool": "asset_copy_assets",
       "server": "adobe",
       "exec_mode": "C",
-      "inputs_from": "daily_delivery_folder,hero_graded_final,midA_graded_final,midB_graded_final,wide_graded_final,product_graded_final,youtube_thumbnail_1920x1080,sizzle_15s_teaser,content_summary",
+      "inputs_from": "daily_delivery_folder,hero_kf_1080,midA_kf_1080,midB_kf_1080,wide_kf_1080,product_kf_1080,youtube_thumbnail_1920x1080,sizzle_15s_teaser,content_summary",
       "output": "packaged_daily_delivery",
       "note": "Copy all finished deliverables (all 5 graded frames, thumbnail, sizzle, summary) into the dated folder — the 'drop finished files back in the folder' handback step."
     }
@@ -265,21 +319,19 @@
     "image_adjust_vibrance_and_saturation",
     "image_apply_preset",
     "image_apply_adjustments",
-    "image_select_by_prompt",
     "image_crop_and_resize",
+    "image_select_by_prompt",
+    "image_remove_background",
+    "image_fill_area",
     "video_create_quick_cut",
     "media_summarize",
     "asset_create_folders",
     "asset_copy_assets"
   ],
-  "tool_call_count": 19,
-  "distinct_adobe_tools": 15,
-  "chaining_note": "Single output->input spine with one shared ingest root. Steps 1-2 ingest the client files -> ingested_asset_ids. The color-grade spine runs strictly in series on the hero frame: ingested_asset_ids -> auto_tone -> temperature -> dark_portions -> highlights -> vibrance -> apply_preset = hero_graded_final (steps 3-8), each consuming the immediately prior output. The exact same recipe established on the hero is then applied to the other four frames via one batched image_apply_adjustments call each (steps 9-12, each consuming its own ingested frame) -> midA/midB/wide/product_graded_final, so all five frames are actually costed and consistent. The thumbnail branch consumes hero_graded_final: select_by_prompt builds hero_subject_mask (step 13), then image_apply_preset applies the masked Adaptive 'Subject Pop / Blur Background' preset consuming BOTH hero_graded_final + hero_subject_mask -> hero_subject_popped (step 14; masked-preset path, NOT whole-image lens_blur) -> crop_and_resize -> youtube_thumbnail_1920x1080 (step 15). quick_cut (16) and summarize (17) each consume the shared ingested montage. Finally create_folders (18) -> copy_assets (19) consumes the folder plus every produced deliverable — all five graded frames, thumbnail, sizzle, summary — to assemble the dated handback. Every post-ingest step sets inputs_from to a prior step's named output.",
-  "difficulty_rationale": "Long-horizon and wide-mix: 19 connector calls, all server=adobe, 15 distinct Adobe tools across three groups (image color/FX, asset/storage, video). It demands a real colorist decision chain (auto-tone baseline → temperature → shadow/highlight balance → vibrance → look-preset) held CONSISTENT across a 5-frame set, a masked subject-pop thumbnail (select_by_prompt → masked Subject-Pop preset → 16:9 crop), an AI sizzle cut, content summarization, and a packaged dated handback. It stays strictly inside connector limits: no Premiere timeline edit / project-file export, no trim-to-timestamp (video tools are tagged [A]; video_resize unused since it can't trim), image_fill_area avoided (solid-only), no generative fill / object removal / text-to-image / compositing — the only 'generative' touch (reframe-crop) is not used. Difficulty comes from sequencing a faithful, repeatable grade and respecting which sub-tasks are headless [C] vs async-widget [A].",
+  "tool_call_count": 25,
+  "distinct_adobe_tools": 17,
+  "chaining_note": "Single output->input spine with one shared ingest root. Steps 1-2 ingest the client files -> ingested_asset_ids. The color-grade spine runs strictly in series on the hero frame: ingested_asset_ids -> auto_tone -> temperature -> dark_portions -> highlights -> vibrance -> apply_preset = hero_graded_final (steps 3-8), each consuming the immediately prior output. The exact same recipe established on the hero is then applied to the other four frames via one batched image_apply_adjustments call each (steps 9-12, each consuming its own ingested frame) -> midA/midB/wide/product_graded_final, so all five frames are actually costed and consistent. The thumbnail branch consumes hero_graded_final: select_by_prompt builds hero_subject_mask (step 13); image_remove_background consumes hero_graded_final ALONE (auto subject detection, no mask parameter) -> hero_subject_cutout (step 14); image_fill_area consumes hero_graded_final + hero_subject_cutout + hero_subject_mask and invert-fills the background with a solid brand plate -> hero_subject_popped (step 15) — image_fill_area is the only masked path available, since image_apply_preset and image_apply_lens_blur are whole-image; then crop_and_resize -> youtube_thumbnail_1920x1080 (step 16). quick_cut (17) and summarize (18) each consume the shared ingested montage. Finally create_folders (19) -> copy_assets (20) consumes the folder plus every produced deliverable — all five graded frames, thumbnail, sizzle, summary — to assemble the dated handback. Every post-ingest step sets inputs_from to a prior step's named output.",
+  "difficulty_rationale": "Long-horizon and wide-mix: 20 connector calls, all server=adobe, 17 distinct Adobe tools across three groups (image color/FX, asset/storage, video). It demands a real colorist decision chain (auto-tone baseline → temperature → shadow/highlight balance → vibrance → look-preset) held CONSISTENT across a 5-frame set, a subject-pop thumbnail built the only way the connector allows (select_by_prompt → maskless remove_background cutout → masked solid-plate fill_area → 16:9 crop), an AI sizzle cut, content summarization, and a packaged dated handback. It stays strictly inside connector limits: no Premiere timeline edit / project-file export, no trim-to-timestamp (video tools are tagged [A]; video_resize unused since it can't trim), image_fill_area used only for its sanctioned solid-colour invert fill, no generative fill / object removal / text-to-image / compositing — the only 'generative' touch (reframe-crop) is not used. Difficulty comes from sequencing a faithful, repeatable grade and respecting which sub-tasks are headless [C] vs async-widget [A].",
   "_severity": "pass",
-  "reverify": {
-    "severity": "pass",
-    "banned_capability_check": "No banned capability used. image_crop_and_resize/reframe-crop avoided; no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction. image_fill_area not used. Canvas never grown: thumbnail is a 16:9 CROP of the graded hero via image_crop_and_resize (no invented pixels). The lens_blur+mask contradiction is removed: background blur uses the masked Adaptive 'Subject Pop / Blur Background' preset via image_apply_preset (whole-image lens_blur no longer given a mask). All 15 tools are real Adobe-connector tools.",
-    "notes": "The remaining workflow is visual/video only. media_summarize is retained because it summarizes the video montage's scenes (not audio) to seed post copy, and content_summary is a text deliverable derived from the video. Steps renumbered 1-19; asset_copy_assets no longer references the deleted music/VO outputs. tool_call_count 22->19; distinct_adobe_tools 18->15 (dropped asset_search, asset_license_and_download_stock, media_enhance_speech); tools_used reconciled. Prior grade/thumbnail fixes preserved: the 4 non-hero graded frames are actually costed (4x image_apply_adjustments, steps 9-12), the masked-preset subject pop replaces the lens_blur+mask contradiction, and step 19 copies all five graded frames plus the thumbnail, sizzle and summary into the dated handback."
-  }
+  "reverify": "{\"severity\": \"pass\", \"banned_capability_check\": \"No banned capability used. image_crop_and_resize/reframe-crop avoided; no upscale/super-resolution, no text-to-image, no from-scratch art/logo, no object-removal-with-reconstruction. image_fill_area is used once (step 15) for a solid-colour invert fill behind the subject cutout — its sanctioned use. Canvas never grown: thumbnail is a 16:9 CROP of the graded hero via image_crop_and_resize (no invented pixels). The mask-on-whole-image-tool contradiction is removed: image_apply_preset and image_apply_lens_blur expose no mask parameter, so the subject pop is now image_remove_background (maskless cutout) + masked image_fill_area (solid brand plate) instead of a blurred background. All 17 tools are real Adobe-connector tools.\", \"notes\": \"The remaining workflow is visual/video only. media_summarize is retained because it is pointed at a genuine AV asset with speech (source_clips_for_sizzle.mp4, which carries the owner's to-camera talk and customer chatter) to seed post copy; content_summary is a text deliverable derived from that video, and media_summarize is never pointed at a document. Steps renumbered 1-19; asset_copy_assets no longer references the deleted music/VO outputs. tool_call_count 22->19->20; distinct_adobe_tools 18->15->17 (dropped asset_search, asset_license_and_download_stock, media_enhance_speech; later added image_remove_background + image_fill_area for the subject pop); tools_used reconciled. Prior grade/thumbnail fixes preserved: the 4 non-hero graded frames are actually costed (4x image_apply_adjustments, steps 9-12), the masked-preset subject pop replaces the lens_blur+mask contradiction, and step 19 copies all five graded frames plus the thumbnail, sizzle and summary into the dated handback.\"}"
 }
