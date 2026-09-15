@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Halden Diaries patron card</title>
+<style>
+  /* Trim = 148 x 105 mm LANDSCAPE. Media box = trim, NO bleed. */
+  @page { size: 148mm 105mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .card {
+    position: relative;
+    width: 148mm;
+    height: 105mm;
+    background: #F6F2E9;               /* Warm Paper ground */
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* Left third: a REAL rectangular graphic frame holding the episode photograph, filled to the frame. */
+  .picture {
+    position: absolute;
+    top: 0; left: 0;
+    width: 52mm;
+    height: 105mm;
+    overflow: hidden;
+    background: #2B2A33;
+  }
+  .picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /*
+    HOW IT IS ACTUALLY SET (structural trap, baked faithfully):
+    The EPISODE TITLE, the DATE, the STANDFIRST and the CHANNEL URL are NOT four
+    addressable frames. They are ONE continuous text story in a SINGLE text frame
+    that flows top to foot, the fields separated only by line breaks within the one
+    story. Everything below lives inside this single .story frame.
+  */
+  .story {
+    position: absolute;
+    top: 0;
+    left: 52mm;
+    width: 96mm;
+    height: 105mm;
+    padding: 11mm 10mm 9mm 10mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #2B2A33;                    /* Board Ink */
+  }
+
+  .title {
+    font-family: Georgia, 'Times New Roman', serif;   /* warm humanist serif display */
+    font-weight: 700;
+    font-size: 25pt;
+    line-height: 1.08;
+    letter-spacing: 0.1pt;
+    margin: 0;
+  }
+
+  /* Kitchen Terracotta hairline rule under the title (a rule, not a picture well). */
+  .rule {
+    height: 0.5pt;
+    background: #C06A47;
+    width: 34mm;
+    margin: 3.4mm 0 4.2mm 0;
+  }
+
+  .date {
+    font-family: Arial, Helvetica, sans-serif;         /* quiet humanist sans */
+    font-weight: 700;
+    font-size: 10.5pt;
+    letter-spacing: 0.2pt;
+    margin: 0 0 2.6mm 0;
+  }
+
+  .standfirst {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.34;
+    margin: 0;
+    max-width: 70mm;
+  }
+
+  /* Channel URL along the foot, letter-spaced, in Window Sage. Last run of the one story. */
+  .url {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 9pt;
+    letter-spacing: 2.4pt;
+    text-transform: lowercase;
+    color: #8B9B82;                    /* Window Sage */
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Left third: real graphic frame, per-record picture bound and filled to frame -->
+    <div class="picture">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/MOTION-14/assets/halden_still_01.jpg" alt="episode picture">
+    </div>
+
+    <!-- SINGLE continuous text story (one frame): title / date / standfirst / URL, top to foot -->
+    <div class="story">
+      <div class="head">
+        <div class="title">The good light in the morning</div>
+        <div class="rule"></div>
+        <div class="date">Sunday 1 March 2026</div>
+        <div class="standfirst">The kettle, the window, and twenty good minutes before anyone needed me.</div>
+      </div>
+      <div class="url">www.haldendiaries.tv</div>
+    </div>
+
+  </div>
+</body>
+</html>

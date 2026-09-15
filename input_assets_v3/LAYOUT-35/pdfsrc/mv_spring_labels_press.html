@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Marrow and Vane — spring wall label</title>
+<style>
+  /* Trim = media box, A6 portrait, NO bleed box (0mm bleed) */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    background: #F6F4EF;          /* Gallery White */
+    color: #1A1A18;              /* Ink Black */
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ONE continuous single-frame text story, ranged left, ~78mm measure,
+     sitting in the top third of the card. The four apparent blocks are
+     paragraphs within this single story, separated only by paragraph
+     spacing and line breaks — not six addressable frames. */
+  .story {
+    position: absolute;
+    top: 14mm;
+    left: 13.5mm;
+    width: 78mm;
+    font-family: Georgia, 'Times New Roman', 'Times', serif;
+    color: #1A1A18;
+    text-align: left;
+    -webkit-font-feature-settings: "onum" 1, "liga" 1;
+    font-feature-settings: "onum" 1, "liga" 1;
+  }
+  .story p { margin: 0; }
+
+  /* Block 1 — Title, italic of the text face, ~11pt */
+  .title {
+    font-style: italic;
+    font-size: 11pt;
+    line-height: 1.25;
+    margin-bottom: 3.4mm;
+  }
+  /* Block 2 — Artist and year on one line, roman, ~9pt */
+  .byline {
+    font-size: 9pt;
+    line-height: 1.3;
+    margin-bottom: 3.4mm;
+  }
+  /* Block 3 — Medium, then dimensions, then (where present) the credit
+     line as its OWN separately styled italic run inside the story. */
+  .block3 {
+    font-size: 8pt;
+    line-height: 1.5;
+    margin-bottom: 3.4mm;
+  }
+  .credit {
+    font-style: italic;
+    font-size: 7.5pt;
+  }
+  /* Block 4 — Accession alone at the foot of the printed block, ~6.5pt */
+  .accession {
+    font-size: 6.5pt;
+    line-height: 1.3;
+  }
+
+  /* Placed reference photograph — a real graphic frame (mandatory for
+     convert_pdf_to_indd). The picture well sits below the text story in
+     the lower stock; the very foot is left as unprinted card. */
+  .plate {
+    position: absolute;
+    top: 55mm;
+    left: 13.5mm;
+    width: 78mm;
+    height: 80mm;
+    overflow: hidden;
+    background: #F6F4EF;
+  }
+  .plate img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 42%;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <div class="story">
+      <p class="title">The Long Field</p>
+      <p class="byline">Marisol Enback, 2022</p>
+      <p class="block3">Oil and wax on linen<br>
+152 &#215; 122 cm<br>
+<span class="credit">Courtesy of the artist and the Rittenhouse Trust</span></p>
+      <p class="accession">2015.213</p>
+    </div>
+
+    <div class="plate">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-35/assets/2015-213.jpg"
+           alt="Marisol Enback, The Long Field, 2022 — reference photograph">
+    </div>
+
+  </div>
+</body>
+</html>

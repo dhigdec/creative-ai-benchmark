@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NIGHTFORM sleeve card 2024</title>
+<style>
+  /*
+    NIGHTFORM label sleeve card — the printer's press PDF from the PREVIOUS release
+    (nightform_card_2024.pdf), to be reverse-engineered downstream into a live
+    six-record merge template.
+
+    Trim = 105 x 148 mm PORTRAIT (A6). Media box = trim. NO bleed box (0 mm bleed).
+  */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    background: #E8E4DC;                 /* Tunnel White board */
+    overflow: hidden;
+    /* clean grotesque sans, set tight and quiet, per the brand voice */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #0C0E12;                      /* Asphalt Black ink */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16mm 12mm 14mm 12mm;
+    text-align: center;
+  }
+
+  /*
+    HEAD: the NIGHTFORM wordmark, PLACED AS ARTWORK (the flat black plate), centred
+    at the top. Per the layout spec this is a PLACED IMAGE, not live text — it is the
+    card's one real graphic frame, and downstream the same slot takes the recovered
+    mark. The plate's own black ground shows as a band on the pale board, which is the
+    documented behaviour of this flat plate the moment it lands on light board.
+  */
+  .wordmark {
+    width: 64mm;
+    height: auto;                        /* keep the plate's 1400x400 (3.5:1) aspect */
+    display: block;
+  }
+
+  /* thin Sodium Amber rule beneath the wordmark — a drawn rule, not a picture well */
+  .rule {
+    width: 30mm;
+    height: 0.6pt;
+    background: #C77A2E;                  /* Sodium Amber */
+    margin: 6.5mm 0 0 0;
+  }
+
+  /*
+    HOW IT IS ACTUALLY SET (the structural trap, baked faithfully):
+    The TITLE line, the CATALOGUE NUMBER, the FORMAT and the RELEASE DATE are NOT four
+    separately addressable frames. They are ONE continuous text story in a SINGLE text
+    frame, the four fields separated ONLY by line breaks within that one story. There is
+    no per-field frame to bind a merge value into — every field past the title has to be
+    reached as a position inside this one reconstructed story.
+  */
+  .story {
+    margin-top: 15mm;
+    line-height: 1.0;
+  }
+  .story .title {
+    /* Line 1 — TITLE: display grotesque sans, large */
+    font-size: 26pt;
+    font-weight: 700;
+    letter-spacing: 0.2pt;
+  }
+  .story .meta {
+    /* Lines 2-4 — CATALOGUE / FORMAT / DATE: small, same one story */
+    font-size: 10.5pt;
+    font-weight: 400;
+    letter-spacing: 0.4pt;
+  }
+  .story .gap { font-size: 7pt; }        /* a blank line break inside the one story */
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- HEAD: placed image (the flat black wordmark plate) — the one real graphic frame -->
+    <img class="wordmark"
+         src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/MOTION-12/assets/nightform_wordmark.png"
+         alt="NIGHTFORM wordmark">
+
+    <!-- thin amber rule beneath the wordmark -->
+    <div class="rule"></div>
+
+    <!--
+      ONE continuous text story in a SINGLE text frame: TITLE / CATALOGUE / FORMAT / DATE,
+      separated only by <br> line breaks. Values are the PREVIOUS release's (2024) real
+      printed values from the layout spec — deliberately stale against the new NF-007 /
+      October 2026 drop this template is reprinted for.
+    -->
+    <div class="story">
+      <span class="title">Nightfall Drive</span><br>
+      <span class="gap">&nbsp;</span><br>
+      <span class="meta">NF-006</span><br>
+      <span class="meta">12-inch vinyl</span><br>
+      <span class="meta">Released March 2024</span>
+    </div>
+
+  </div>
+</body>
+</html>

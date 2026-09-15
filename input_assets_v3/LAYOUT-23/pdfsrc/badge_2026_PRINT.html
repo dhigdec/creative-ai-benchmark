@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Meridian Summit 2026 delegate badge</title>
+<style>
+  /* Trim = media box. 4in x 3in landscape = 101.6mm x 76.2mm. NO bleed box. */
+  @page { size: 101.6mm 76.2mm; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #F5F2EC; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .card {
+    position: relative;
+    width: 101.6mm;
+    height: 76.2mm;
+    overflow: hidden;
+    background: #1B2733;                 /* Deep Ink Navy right-panel ground */
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  }
+
+  /* ---- Placed graphic 1: the delegate PORTRAIT (a real image, mandatory) ---- */
+  /* Left column ~40% width, a vertical near-square photo filling the panel to the trim edge. */
+  .portrait {
+    position: absolute;
+    left: 0; top: 0;
+    width: 40.64mm;                       /* ~40% of 101.6mm */
+    height: 76.2mm;                       /* full trim height, to the edge */
+    overflow: hidden;
+    background: #DED6C7;
+  }
+  .portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 22%;          /* keep the face in frame */
+    display: block;
+  }
+
+  /* ---- Right panel: the typographic side on the navy ground ---- */
+  .panel {
+    position: absolute;
+    left: 40.64mm; top: 0;
+    width: 60.96mm;                       /* ~60% */
+    height: 76.2mm;
+    padding: 6.2mm 6mm 5.6mm 6.4mm;
+  }
+
+  /* ---- Placed graphic 2 is the summit MARK; here it is the recovered brass line mark,
+          drawn as engraved-brass line art (open counters), small, top-right, above the name ---- */
+  .mark {
+    position: absolute;
+    top: 4.6mm; right: 5.6mm;
+    display: flex;
+    align-items: center;
+    gap: 1.7mm;
+  }
+  .mark svg { display: block; }
+  .mark .wordmark {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    color: #A98544;                       /* Engraved Brass */
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-weight: 600;
+  }
+  .mark .wordmark .w1 { font-size: 5.4pt; letter-spacing: 0.34em; }
+  .mark .wordmark .w2 { font-size: 4.2pt; letter-spacing: 0.30em; margin-top: 0.9mm; padding-left: 0.1mm; }
+
+  /* ---- THE STRUCTURAL TRAP ----
+     Name, organisation and track are ONE continuous story in ONE fixed-measure text block
+     (a single tab-delimited story that DOES NOT SPILL), NOT three addressable frames.
+     A string longer than the measure is silently clipped at the frame's right edge. */
+  .story {
+    position: absolute;
+    left: 6.4mm;
+    top: 27mm;
+    width: 48.6mm;                        /* the fixed measure */
+    overflow: hidden;                     /* fixed frame does not spill: overflow is lost */
+  }
+  .story .name {
+    display: block;
+    font-family: 'Georgia', 'Times New Roman', serif;   /* quiet high-contrast serif */
+    color: #F5F2EC;                       /* Paper Off White */
+    font-size: 18pt;                      /* large and calm; this record fits the measure */
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: 0.005em;
+    white-space: nowrap;                  /* runs off the measure edge rather than spilling */
+  }
+  .story .org {
+    display: block;
+    margin-top: 3.4mm;
+    font-family: 'Helvetica Neue', 'Arial', sans-serif; /* restrained humanist sans, small caps */
+    font-variant: small-caps;
+    text-transform: lowercase;
+    color: #DED6C7;                       /* Warm Stone */
+    font-size: 9.6pt;
+    font-weight: 500;
+    letter-spacing: 0.09em;
+    line-height: 1.18;
+    white-space: nowrap;                  /* over-long organisation clips at the frame edge */
+  }
+  .story .track {
+    display: block;
+    margin-top: 3.1mm;
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    color: #A98544;                       /* Engraved Brass, no colour block */
+    font-size: 8.4pt;
+    font-weight: 600;
+    letter-spacing: 0.20em;
+    white-space: nowrap;
+  }
+
+  /* ---- The CHECK-IN CODE PANEL ----
+     NOT a picture well and NOT a live field: a flat grey filled rectangle placed as a
+     decorative graphic (Graphite #3C4148 at ~35% tint over the navy ground). Drawn as a
+     CSS shape, never an <img>. */
+  .code {
+    position: absolute;
+    right: 5.6mm; bottom: 5.6mm;
+    width: 15mm; height: 15mm;
+    background: #27303A;                  /* #3C4148 at ~35% over #1B2733 */
+    border: 0.2mm solid #333d47;
+  }
+  .code-label {
+    position: absolute;
+    right: 5.6mm; bottom: 3.1mm;
+    width: 15mm;
+    text-align: center;
+    color: #A98544;
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 3.6pt;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Placed graphic 1: real delegate portrait -->
+    <div class="portrait">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-23/assets/meridian_headshot_01.jpg" alt="Delegate portrait">
+    </div>
+
+    <div class="panel">
+
+      <!-- Summit mark: recovered engraved-brass line mark, open crescent counters, above the name -->
+      <div class="mark">
+        <svg width="34" height="34" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" aria-label="Meridian Summit mark">
+          <!-- unfilled circle: interior stays open (transparent counters) -->
+          <circle cx="17" cy="17" r="13.2" fill="none" stroke="#A98544" stroke-width="1.5"/>
+          <!-- vertical meridian dividing the interior into two thin crescent counters -->
+          <line x1="17" y1="3.4" x2="17" y2="30.6" stroke="#A98544" stroke-width="1.5"/>
+        </svg>
+        <span class="wordmark">
+          <span class="w1">MERIDIAN</span>
+          <span class="w2">SUMMIT</span>
+        </span>
+      </div>
+
+      <!-- ONE continuous, fixed-measure, non-spilling text story: name \t organisation \t track -->
+      <div class="story">
+        <span class="name">Harold Brennan</span>
+        <span class="org">Cascade Grid Operators</span>
+        <span class="track">Operators</span>
+      </div>
+
+      <!-- Decorative check-in code panel: flat grey filled rectangle, not a picture well, not a field -->
+      <div class="code"></div>
+      <div class="code-label">Scan at desk</div>
+
+    </div>
+
+  </div>
+</body>
+</html>

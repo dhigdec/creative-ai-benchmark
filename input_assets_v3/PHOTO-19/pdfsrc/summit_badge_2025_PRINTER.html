@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cascadia Founders Summit 2025 — Delegate Badge</title>
+<style>
+  /* Media box = trim, no bleed box. Exact 2025 badge trim: 100 x 70 mm. */
+  @page { size: 100mm 70mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  :root {
+    --slate:  #23303A;  /* Cascadia Slate  */
+    --paper:  #F2EEE7;  /* Warm Paper      */
+    --fog:    #D9DDDE;  /* Fog Grey        */
+    --copper: #B06B3E;  /* Signal Copper   */
+    --ink:    #1A1F24;  /* Near Black      */
+  }
+
+  /* One card frame, exactly at trim. */
+  .badge {
+    position: relative;
+    width: 100mm;
+    height: 70mm;
+    overflow: hidden;
+    background: var(--paper);
+    /* Clean neutral sans for names, role lines and affiliation (badge type
+       is the printer's, not an Adobe-Fonts face). */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Background split: upper slate band, lower warm-paper panel. */
+  .band-slate {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100mm;
+    height: 27mm;
+    background: var(--slate);
+  }
+
+  /* Quiet CFS monogram top-left in the slate band, Fog Grey. */
+  .mark {
+    position: absolute;
+    top: 5.5mm; left: 8mm;
+    color: var(--fog);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 5.2pt;
+    letter-spacing: 2.4pt;
+  }
+
+  /* -------------------------------------------------------------------------
+     PICTURE FRAME — STRUCTURAL TRAP (baked exactly as the printer authored it)
+     The printed 2025 badge reads as a neat SQUARE picture chip, but the actual
+     graphic frame is a TALL PORTRAIT rectangle at ~3:4 (27mm wide x 36mm tall)
+     set to fill/fit content to the frame. Any square crop bound in is re-fitted
+     to this 3:4 frame and the crown of the head is cropped on every record.
+     Placed as a REAL <img> so convert_pdf_to_indd sees a real graphic frame.
+     ------------------------------------------------------------------------- */
+  .picture-frame {
+    position: absolute;
+    top: 6mm;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 27mm;    /* 3 : 4 portrait — taller than wide */
+    height: 36mm;
+    overflow: hidden;
+    background: var(--fog);
+    box-shadow: 0 0 0 0.35mm var(--paper);
+  }
+  .picture-frame img {
+    width: 100%;
+    height: 100%;
+    /* fill/fit content to frame proportionally -> crown clipped at top */
+    object-fit: cover;
+    object-position: 50% 22%;
+    display: block;
+  }
+
+  /* -------------------------------------------------------------------------
+     NAME + ROLE LINE — ONE continuous story (single text frame), left-aligned
+     on the warm panel. The role frame is a FIXED-DEPTH single line at printed
+     size. Kept in ONE block so the fields cannot be addressed uniformly.
+     ------------------------------------------------------------------------- */
+  .story {
+    position: absolute;
+    left: 8mm;
+    top: 45mm;
+    width: 84mm;
+  }
+  .story .name {
+    margin: 0;
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 12pt;
+    line-height: 1.02;
+    letter-spacing: 0.1pt;
+  }
+  .story .role {
+    margin: 1.3mm 0 0 0;
+    color: var(--ink);
+    font-weight: 500;
+    font-size: 8pt;
+    line-height: 1.05;
+    white-space: nowrap;         /* fixed-depth single line at trim */
+  }
+
+  /* AFFILIATION — sits ALONE in its own separate text frame, Signal Copper. */
+  .affiliation {
+    position: absolute;
+    left: 8mm;
+    top: 58.5mm;
+    width: 84mm;
+    margin: 0;
+    color: var(--copper);
+    font-weight: 600;
+    font-size: 7pt;
+    letter-spacing: 0.3pt;
+  }
+
+  /* Thin Signal Copper rule along the bottom trim. */
+  .bottom-rule {
+    position: absolute;
+    left: 0;
+    bottom: 2.4mm;
+    width: 100mm;
+    height: 0.5mm;
+    background: var(--copper);
+  }
+</style>
+</head>
+<body>
+  <div class="badge">
+    <div class="band-slate"></div>
+    <div class="mark">CFS</div>
+
+    <!-- [PICTURE] real graphic frame, authored 3:4 portrait (reads as square) -->
+    <div class="picture-frame">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-19/assets/speaker_portrait_01.jpg" alt="Delegate portrait">
+    </div>
+
+    <!-- [NAME] + [ROLE_LINE] : single continuous story / one text frame -->
+    <div class="story">
+      <p class="name">Marguerite Halloran</p>
+      <p class="role">Founder &amp; CEO</p>
+    </div>
+
+    <!-- [AFFILIATION] : separate text frame -->
+    <p class="affiliation">Aldermoor Robotics</p>
+
+    <div class="bottom-rule"></div>
+  </div>
+</body>
+</html>

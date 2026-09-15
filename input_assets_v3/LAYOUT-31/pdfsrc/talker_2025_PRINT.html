@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cellar &amp; Cru A6 Shelf-Talker</title>
+<style>
+  /* A6 portrait, media box = trim, NO bleed box */
+  @page { size: 105mm 148mm; margin: 0; }
+  /* clip the root to exactly one A6 page so Chrome prints a single page, no phantom overflow */
+  html, body { margin: 0; padding: 0; width: 105mm; height: 148mm; overflow: hidden; font-size: 0; }
+
+  :root {
+    --ink:    #23282B;  /* Cellar Ink  */
+    --claret: #6B2434;  /* Claret      */
+    --vine:   #4A5A3C;  /* Vine        */
+    --brass:  #9A7B3F;  /* Brass Key   */
+    --chalk:  #F1ECE1;  /* Chalk White */
+    --stone:  #9B958A;  /* Stone Grey  */
+  }
+  * { box-sizing: border-box; }
+
+  /* one card, exactly A6 trim; overflow hidden = nothing past the media box */
+  .card {
+    width: 105mm; height: 148mm;
+    background: var(--chalk);
+    color: var(--ink);
+    padding: 7.5mm 8.5mm 8mm;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-size: 9pt;
+    font-family: Arial, Helvetica, 'Helvetica Neue', sans-serif; /* plain grotesque */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---- placed mark: monoline vine-and-key device + serif wordmark + hairline ---- */
+  .mark { display:flex; flex-direction:column; align-items:center; margin-bottom:3mm; }
+  .mark .device { width:15mm; height:auto; display:block; }
+  .wordmark {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-variant: small-caps;
+    letter-spacing: 0.30em;
+    padding-left: 0.30em;
+    font-size: 11pt;
+    color: var(--ink);
+    margin-top: 1.4mm;
+  }
+  .mark-rule { width:32mm; height:0; border-top:0.2mm solid var(--stone); margin-top:1.6mm; }
+
+  /* ---- bottle image: a REAL rectangular graphic frame in the upper third ---- */
+  .pic {
+    width: 100%; height: 40mm;
+    margin: 0 0 3.5mm;
+    border: 0.2mm solid var(--stone);
+    background: var(--chalk);
+    overflow: hidden;
+  }
+  .pic img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
+
+  /* ---- the single continuous story (one text frame; not per-field frames) ---- */
+  .story { flex:1 1 auto; display:flex; flex-direction:column; }
+  .field { white-space: pre-wrap; tab-size: 1; }          /* preserves the LABEL\tVALUE tab */
+  .lbl {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 6.5pt; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--stone);
+  }
+
+  .wine-field { margin-bottom: 0.8mm; }
+  .wine {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20pt; line-height: 1.06; color: var(--ink);
+  }
+  .claret-rule { width:16mm; height:0; border-top:0.6mm solid var(--claret); margin:1.4mm 0 2.4mm; }
+
+  .meta .lbl { display:inline-block; min-width:15mm; }
+  .mval { font-size: 9pt; color: var(--ink); }
+  .meta .field { margin-bottom: 0.6mm; }
+
+  .note-row { display:flex; gap:3mm; align-items:flex-start; margin-top:2.2mm; }
+  .note-block { flex:1 1 auto; min-width:0; }
+  .note-label .lbl { display:block; margin-bottom:0.6mm; }
+  /* FIXED-MEASURE note frame: sized to last season's ~110-120 char notes; over-long copy is simply clipped */
+  .note-frame { height:15mm; overflow:hidden; }
+  .note {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 9.5pt; line-height: 1.32; color: var(--ink);
+  }
+
+  /* SCORE badge: decorative ring, drawn as vector (NOT a placed image / graphic frame) */
+  .score-ring { flex:0 0 auto; width:13mm; height:13mm; display:block; }
+
+  .foot-rule { border-top:0.2mm solid var(--stone); margin-top:auto; }
+  .foot { display:flex; justify-content:space-between; align-items:flex-end; padding-top:1.6mm; }
+  .foot .field { margin:0; }
+  .foot .lbl { display:block; margin-bottom:0.4mm; }
+  .stockist .sval { font-size:8pt; color:var(--stone); letter-spacing:0.04em; }
+  .score .scval  { font-size:8pt; color:var(--stone); }
+  .score { text-align:center; }
+  .price { text-align:right; }
+  .price .pval { font-size:12pt; color:var(--ink); }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- placed mark -->
+    <div class="mark">
+      <svg class="device" viewBox="0 0 120 138" aria-hidden="true">
+        <g fill="none" stroke="#23282B" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <!-- key bow with an ENCLOSED COUNTER (an open hole through the bow) -->
+          <circle cx="60" cy="26" r="16"/>
+          <!-- shaft -->
+          <line x1="60" y1="42" x2="60" y2="112"/>
+          <!-- teeth -->
+          <line x1="60" y1="98"  x2="73" y2="98"/>
+          <line x1="60" y1="112" x2="69" y2="112"/>
+          <!-- single monoline vine tendril curling up the shaft -->
+          <path d="M60 100 C 42 96, 40 78, 54 74 C 66 70, 70 58, 60 52"/>
+        </g>
+        <!-- two small vine leaves -->
+        <g fill="#4A5A3C" stroke="none">
+          <ellipse cx="45" cy="86" rx="4.2" ry="2.2" transform="rotate(-38 45 86)"/>
+          <ellipse cx="66" cy="62" rx="4.2" ry="2.2" transform="rotate(28 66 62)"/>
+        </g>
+      </svg>
+      <div class="wordmark">Cellar &amp; Cru</div>
+      <div class="mark-rule"></div>
+    </div>
+
+    <!-- bottle image: mandatory placed graphic (real rectangular image well) -->
+    <div class="pic">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-31/assets/bottle_shot_11.jpg" alt="Clos du Verger Bourgogne Rouge bottle on the counter">
+    </div>
+
+    <!-- ONE continuous tab-delimited story: WINE / GROWER / REGION / VINTAGE / STYLE / NOTE / STOCKIST / SCORE / PRICE -->
+    <div class="story">
+
+      <div class="wine-field field"><span class="lbl">WINE</span>&#9;<span class="wine">Clos du Verger Bourgogne Rouge</span></div>
+      <div class="claret-rule"></div>
+
+      <div class="meta">
+        <div class="field"><span class="lbl">Grower</span>&#9;<span class="mval">Clos du Verger</span></div>
+        <div class="field"><span class="lbl">Region</span>&#9;<span class="mval">Burgundy, France</span></div>
+        <div class="field"><span class="lbl">Vintage</span>&#9;<span class="mval">2021</span></div>
+        <div class="field"><span class="lbl">Style</span>&#9;<span class="mval">Pinot Noir</span></div>
+      </div>
+
+      <div class="note-row">
+        <div class="note-block">
+          <div class="note-label field"><span class="lbl">Note</span>&#9;</div>
+          <div class="note-frame"><span class="note">Light-framed village Burgundy, red cherry and forest floor over silky tannin. Serve it cool. The gateway to proper Pinot.</span></div>
+        </div>
+        <svg class="score-ring" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="47" fill="#9A7B3F"/>
+          <circle cx="50" cy="50" r="47" fill="none" stroke="#23282B" stroke-width="1.4" opacity="0.22"/>
+          <text x="50" y="47" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="33" fill="#F1ECE1">91</text>
+          <text x="50" y="70" text-anchor="middle" font-family="Arial, sans-serif" font-size="9" letter-spacing="1.4" fill="#F1ECE1">SCORE</text>
+        </svg>
+      </div>
+
+      <div class="foot-rule"></div>
+      <div class="foot">
+        <div class="stockist field"><span class="lbl">Stockist</span>&#9;<span class="sval">BIN 214 &middot; CDV-BR-21</span></div>
+        <div class="score field"><span class="lbl">Score</span>&#9;<span class="scval">91 Cellar Notes</span></div>
+        <div class="price field"><span class="lbl">Price</span>&#9;<span class="pval">&pound;58.00</span></div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Girdermark Components Data Sheet</title>
+<style>
+  /* Media box = trim (US Letter portrait 8.5 x 11 in). No bleed anywhere. */
+  @page { size: 215.9mm 279.4mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  /* Printer's neutral grotesque. No brand font on this vendor's sheet. */
+  body { font-family: Arial, Helvetica, sans-serif; color: #1A1C1E; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .card {
+    position: relative;
+    width: 215.9mm;
+    height: 279.4mm;
+    background: #F4F5F6;      /* Warehouse White */
+    overflow: hidden;
+  }
+
+  .abs { position: absolute; }
+
+  /* ---- Header band: cast house mark left, DATA SHEET / Cleveland right ---- */
+  .mark {
+    left: 15mm; top: 12mm;
+    display: flex; align-items: center;
+    border: 1.1pt solid #1A1C1E;   /* thin rectangular keyline */
+    padding: 2.2mm 4mm 2.2mm 3mm;
+  }
+  .mark svg { display: block; margin-right: 3.2mm; }
+  .wm { font-family: Arial, Helvetica, sans-serif; font-weight: 800; font-size: 22pt;
+        letter-spacing: -0.4pt; line-height: 1; color: #1A1C1E;
+        transform: scaleX(0.86); transform-origin: left center; }
+  .sub { font-family: Arial, Helvetica, sans-serif; font-weight: 600; font-size: 6.6pt;
+         letter-spacing: 2.4pt; margin-top: 1.4mm; color: #1A1C1E; }
+
+  .rightblock { left: 128mm; top: 14mm; width: 72.9mm; text-align: right; }
+  .rightblock .h { font-weight: 800; font-size: 15pt; letter-spacing: 2pt; }
+  .rightblock .l { font-size: 9.5pt; color: #1A1C1E; margin-top: 1.6mm; }
+
+  .hrule { left: 15mm; width: 185.9mm; border-top: 0.9pt solid #1A1C1E; }
+
+  /* ---- Identity line ---- */
+  .partno { left: 15mm; top: 40mm; font-weight: 800; font-size: 31pt; letter-spacing: -0.5pt; }
+  .desc   { left: 15mm; top: 54mm; font-size: 13.5pt; font-weight: 400; color: #1A1C1E; }
+
+  /* ---- Spec table hairlines (drawn first, so story text stays one flow) ---- */
+  .trule { left: 15mm; width: 100mm; border-top: 0.5pt solid #6E747A; }
+
+  /* ---- Ordering-code panel box (drawn before the story text) ---- */
+  .ordbox { left: 15mm; top: 210mm; width: 185.9mm; height: 44mm; border: 0.9pt solid #1A1C1E; }
+  .ordboxtitle { left: 19mm; top: 205mm; font-size: 8pt; font-weight: 700; letter-spacing: 2pt; color: #6E747A; background: #F4F5F6; padding: 0 2mm; }
+
+  /*
+    THE CONTINUOUS STORY.
+    Content/DOM order runs the whole LEFT visual column top-to-bottom
+    (Duty Rating, Bore Diameter, Material, Certification Code) and THEN the whole
+    RIGHT visual column (Load Rating, Mount Type, Finish, Seismic Rating), with the
+    ordering-code panel text appended to the same run. The eye reads the printed grid
+    ACROSS rows; the story holds it DOWN then DOWN, so the two orders diverge from row 2.
+  */
+  .cell .k { font-size: 8pt; font-weight: 700; letter-spacing: 1.2pt; color: #6E747A; text-transform: uppercase; }
+  .cell .v { font-size: 12.5pt; font-weight: 700; color: #1A1C1E; margin-top: 1.4mm; }
+  .cell { width: 46mm; }
+  .ord .k { font-size: 8pt; font-weight: 700; letter-spacing: 1.2pt; color: #6E747A; text-transform: uppercase; }
+  .ord .v { font-size: 13pt; font-weight: 700; color: #1A1C1E; margin-top: 1.4mm; }
+
+  /* ---- Placed graphic 1: the part photograph (roughly square, right side) ---- */
+  .photo { left: 124mm; top: 72mm; width: 76mm; height: 76mm; object-fit: cover;
+           border: 0.6pt solid #6E747A; }
+
+  /* ---- Placed graphic 2: certification strip (narrow horizontal band) ---- */
+  .certstrip { left: 15mm; top: 168mm; }
+
+  /* ---- Footer ---- */
+  .foot { left: 15mm; top: 267mm; width: 185.9mm; display: flex; justify-content: space-between;
+          font-size: 9pt; color: #1A1C1E; border-top: 0.6pt solid #6E747A; padding-top: 2mm; }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- HEADER BAND -->
+  <div class="mark abs">
+    <svg width="8.5mm" height="12mm" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="26" height="6.5" fill="#1A1C1E"/>
+      <rect x="11.75" y="8.5" width="6.5" height="23" fill="#1A1C1E"/>
+      <rect x="2" y="31.5" width="26" height="6.5" fill="#1A1C1E"/>
+    </svg>
+    <div>
+      <div class="wm">GIRDERMARK</div>
+      <div class="sub">ELEVATOR &amp; ELECTRIC</div>
+    </div>
+  </div>
+  <div class="rightblock abs">
+    <div class="h">DATA SHEET</div>
+    <div class="l">Cleveland, Ohio</div>
+  </div>
+  <div class="hrule abs" style="top:33mm;"></div>
+
+  <!-- IDENTITY LINE -->
+  <div class="partno abs">GSV-800</div>
+  <div class="desc abs">Governor Sheave Assembly</div>
+  <div class="hrule abs" style="top:68mm;"></div>
+
+  <!-- SPEC-TABLE HAIRLINES (painted before the story) -->
+  <div class="trule abs" style="top:70mm;"></div>
+  <div class="trule abs" style="top:91mm;"></div>
+  <div class="trule abs" style="top:112mm;"></div>
+  <div class="trule abs" style="top:133mm;"></div>
+  <div class="trule abs" style="top:154mm;"></div>
+
+  <!-- ORDERING PANEL BOX + TITLE (painted before the story text) -->
+  <div class="ordboxtitle abs">ORDERING</div>
+  <div class="ordbox abs"></div>
+
+  <!--
+    CONTINUOUS STORY: spec cells DOWN the left column, then DOWN the right column,
+    then the ordering-code panel appended. Visual positions read ACROSS rows.
+  -->
+  <div class="story">
+    <!-- left visual column, top to bottom -->
+    <div class="cell abs" style="left:15mm; top:74mm;"><div class="k">Duty Rating</div><div class="v">Continuous</div></div>
+    <div class="cell abs" style="left:15mm; top:95mm;"><div class="k">Bore Diameter</div><div class="v">1.500 in</div></div>
+    <div class="cell abs" style="left:15mm; top:116mm;"><div class="k">Material</div><div class="v">Cast Iron</div></div>
+    <div class="cell abs" style="left:15mm; top:137mm;"><div class="k">Certification Code</div><div class="v">A17.1-2019</div></div>
+    <!-- right visual column, top to bottom -->
+    <div class="cell abs" style="left:64mm; top:74mm;"><div class="k">Load Rating</div><div class="v">4500 lb</div></div>
+    <div class="cell abs" style="left:64mm; top:95mm;"><div class="k">Mount Type</div><div class="v">Shaft keyed</div></div>
+    <div class="cell abs" style="left:64mm; top:116mm;"><div class="k">Finish</div><div class="v">Mill Finish</div></div>
+    <div class="cell abs" style="left:64mm; top:137mm;"><div class="k">Seismic Rating</div><div class="v">Zone 4</div></div>
+    <!-- ordering-code panel, appended to the same story -->
+    <div class="ord abs" style="left:20mm; top:217mm;"><div class="k">Ordering Code</div><div class="v">GM-GSV-800</div></div>
+    <div class="ord abs" style="left:20mm; top:234mm;"><div class="k">List Price (USD)</div><div class="v">8950.00</div></div>
+    <div class="ord abs" style="left:110mm; top:217mm;"><div class="k">Dealer Price (USD)</div><div class="v">7160.00</div></div>
+    <div class="ord abs" style="left:110mm; top:234mm;"><div class="k">Superseded By</div><div class="v">&mdash;</div></div>
+  </div>
+
+  <!-- PLACED GRAPHIC 1: part photograph (mandatory real graphic frame) -->
+  <img class="photo abs" src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-27/assets/bench_photo_01.jpg" alt="">
+
+  <!-- PLACED GRAPHIC 2: certification strip. Same graphic-frame kind, distinguishable
+       from the photograph only by its bounds; unnamed. -->
+  <svg class="certstrip abs" width="185.9mm" height="16mm" viewBox="0 0 700 60" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.5" y="0.5" width="699" height="59" fill="none" stroke="#6E747A" stroke-width="1"/>
+    <g fill="none" stroke="#1A1C1E" stroke-width="1.4" font-family="Arial, Helvetica, sans-serif">
+      <rect x="18" y="16" width="112" height="28"/>
+      <rect x="150" y="16" width="86" height="28"/>
+      <rect x="256" y="16" width="86" height="28"/>
+      <rect x="362" y="16" width="150" height="28"/>
+      <rect x="532" y="16" width="150" height="28"/>
+    </g>
+    <g fill="#1A1C1E" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+      <text x="74" y="35">A17.1-2019</text>
+      <text x="193" y="35">UL 508A</text>
+      <text x="299" y="35">CSA</text>
+      <text x="437" y="35">ASME A17.1</text>
+      <text x="607" y="35">ISO 9001</text>
+    </g>
+  </svg>
+
+  <!-- FOOTER -->
+  <div class="foot abs">
+    <span>Flat, accurate, in stock</span>
+    <span>2026 season</span>
+  </div>
+
+</div>
+</body>
+</html>

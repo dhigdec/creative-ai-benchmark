@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Redecker Machine Works — Data Plate 2024</title>
+<!--
+  Faithful press proof of redecker_plate_2024.pdf (last year's data plate artwork).
+  Media box = trim = 150 x 90 mm (matches source PDF MediaBox 425.1969 x 255.1181 pt). NO bleed.
+  Structural traps baked to match the layout spec / defect_engineered:
+    1. Variable wording SET AS ONE CONTINUOUS TEXT STORY (single .story frame, one flow) — NOT six labelled frames.
+    2. MODEL value sits in a FIXED-MEASURE frame that TRUNCATES (overflow:hidden; white-space:nowrap) instead of overrunning.
+    3. Stale/wrong baked value: this is LAST YEAR'S plate — YEAR 2024, SERIAL RMW-259114 — stale against the Nov 2026 order book.
+    4. Media box = trim, no bleed introduced from this file.
+  Real font stack (Helvetica/Arial grotesque), Works Green field, Signal White reversed wording.
+-->
+<style>
+  @page { size: 150mm 90mm; margin: 0 }
+  html, body { margin: 0; padding: 0 }
+
+  :root {
+    --works-green: #33564A;   /* field colour */
+    --signal-white: #F6F6F3;  /* reversed wording */
+    --machine-black: #1B1E1D;
+    --plate-steel: #8A9091;
+  }
+
+  .plate {
+    position: relative;
+    width: 150mm;
+    height: 90mm;
+    box-sizing: border-box;
+    background: var(--works-green);
+    color: var(--signal-white);
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* --- Recovered mark, reversed top-left. Real placed graphic frame (picture area). --- */
+  .mark {
+    position: absolute;
+    top: 7mm;
+    left: 8mm;
+    width: 41mm;
+    height: 26mm;
+    border: 0.25mm solid rgba(246, 246, 243, 0.55);
+    overflow: hidden;
+  }
+  .mark img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 46%;
+  }
+
+  /* --- Works green field wordmark caption beside the placed mark --- */
+  .wordmark {
+    position: absolute;
+    top: 8mm;
+    left: 56mm;
+    width: 86mm;
+  }
+  .wordmark .name {
+    font-size: 6.4mm;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    line-height: 1.02;
+    text-transform: uppercase;
+  }
+  .wordmark .sub {
+    margin-top: 1.6mm;
+    font-size: 2.5mm;
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--signal-white);
+    opacity: 0.9;
+  }
+
+  /* --- ONE CONTINUOUS TEXT STORY: all six variable lines in a single frame / one flow --- */
+  .story {
+    position: absolute;
+    top: 37mm;
+    left: 8mm;
+    width: 134mm;
+    font-size: 3.15mm;
+    line-height: 4.6mm;
+    letter-spacing: 0.02em;
+  }
+  .story .line {
+    display: block;
+    white-space: nowrap;
+  }
+  .story .lbl {
+    display: inline-block;
+    width: 40mm;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .story .val {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  /* FIXED-MEASURE MODEL frame: sized to the longest 2024 designation; a longer string clips, it does not spill. */
+  .story .val.model {
+    display: inline-block;
+    width: 30mm;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+  }
+
+  /* --- Hairline rule + fixed address block, reversed, at the foot of the plate --- */
+  .rule {
+    position: absolute;
+    left: 8mm;
+    top: 68.5mm;
+    width: 134mm;
+    height: 0;
+    border-top: 0.2mm solid var(--signal-white);
+    opacity: 0.85;
+  }
+  .addr {
+    position: absolute;
+    left: 8mm;
+    top: 71mm;
+    width: 134mm;
+    font-size: 2.6mm;
+    line-height: 3.5mm;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .addr .co { font-weight: 700; }
+  .addr .st { font-weight: 400; opacity: 0.92; }
+</style>
+</head>
+<body>
+  <div class="plate">
+
+    <!-- Picture area: recovered company mark placed as a real graphic frame -->
+    <div class="mark">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/VECTOR-02/assets/redecker_nameplate_rebuild.jpg" alt="Redecker Machine Works mark">
+    </div>
+
+    <div class="wordmark">
+      <div class="name">Redecker Machine Works</div>
+      <div class="sub">Formed true since 1919</div>
+    </div>
+
+    <!-- ONE continuous threaded story (single frame, one flow): LABEL   value per line -->
+    <div class="story">
+      <div class="line"><span class="lbl">Model</span><span class="val model">RB-90</span></div>
+      <div class="line"><span class="lbl">Serial No.</span><span class="val">RMW-259114</span></div>
+      <div class="line"><span class="lbl">Year</span><span class="val">2024</span></div>
+      <div class="line"><span class="lbl">Voltage</span><span class="val">480 V</span></div>
+      <div class="line"><span class="lbl">Phase</span><span class="val">3</span></div>
+      <div class="line"><span class="lbl">Weight (kg)</span><span class="val">4600</span></div>
+    </div>
+
+    <div class="rule"></div>
+    <div class="addr">
+      <div class="co">Redecker Machine Works</div>
+      <div class="st">1419 Foundry Street, Sheboygan, WI 53081 USA</div>
+    </div>
+
+  </div>
+</body>
+</html>

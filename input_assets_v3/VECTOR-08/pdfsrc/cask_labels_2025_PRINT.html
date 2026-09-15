@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>cask_labels_2025_PRINT</title>
+<style>
+  /* Media box = trim. A5 landscape (210 x 148 mm). NO bleed, no crop marks. */
+  @page { size: 210mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  :root{
+    --iron:#1F2A2E;      /* Deep Sea Iron  - type */
+    --oxblood:#5A1F1B;   /* Oxblood Wax    - rule  */
+    --slate:#6E7B80;     /* Cold Slate     - die-cut guides */
+    --rope:#D9CFB8;      /* Bleached Rope  - ground */
+    --serif: Georgia, 'Times New Roman', Times, serif;
+    --sans: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  }
+
+  /* The whole sheet is the bleached-rope label stock. The two labels are
+     die-cut side by side because that is how the cutter is set. */
+  .sheet{
+    position:relative;
+    width:210mm; height:148mm;
+    background:var(--rope);
+    color:var(--iron);
+    overflow:hidden;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+
+  /* faint die-cut guides + centre gutter (decorative, not copy) */
+  .diecut{ position:absolute; border:0.2mm dashed var(--slate); }
+  .gutter{ position:absolute; top:6mm; left:105mm; width:0; height:136mm;
+           border-left:0.2mm dashed var(--slate); }
+
+  .label{ position:absolute; top:6mm; height:136mm; }
+  .front{ left:8mm;   width:94mm; }
+  .back { left:108mm; width:94mm; }
+
+  .abs{ position:absolute; }
+
+  /* ---- FRONT LABEL: mark + photo image frames plus separable text ---- */
+  .mark{ left:35mm; top:5mm; width:24mm; height:24mm; }
+  .mark img{ width:24mm; height:24mm; display:block; }
+
+  .brandline{ left:0; top:31mm; width:94mm; text-align:center;
+    font-family:var(--serif); font-size:9pt; letter-spacing:0.16em;
+    text-transform:uppercase; }
+  .founding{ left:0; top:35.6mm; width:94mm; text-align:center;
+    font-family:var(--sans); font-size:5pt; letter-spacing:0.24em;
+    text-transform:uppercase; color:var(--iron); }
+
+  .rule{ left:27mm; top:40.5mm; width:40mm; height:0.5mm;
+    background:var(--oxblood); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+  .expr{ left:0; top:44mm; width:94mm; text-align:center;
+    font-family:var(--serif); font-size:20pt; line-height:1; font-weight:400;
+    letter-spacing:0.01em; }
+  .subhead{ left:0; top:55.5mm; width:94mm; text-align:center;
+    font-family:var(--sans); font-size:6pt; letter-spacing:0.26em;
+    text-transform:uppercase; color:var(--iron); }
+
+  /* addressable front fields — each its own separable text frame */
+  .fld{ left:9mm; width:50mm; font-family:var(--sans); font-size:8.5pt;
+    letter-spacing:0.05em; }
+  .fld .lab{ font-size:6pt; letter-spacing:0.20em; text-transform:uppercase;
+    color:var(--slate); }
+  .f-cask{ top:64mm; }
+  .f-str { top:69.5mm; }
+  .f-out { top:75mm; }
+  .f-bot { top:80.5mm; }
+
+  /* decorative sunburst roundel — inline SVG (vector), NOT an image frame */
+  .roundel{ left:60mm; top:62mm; width:26mm; height:26mm; }
+
+  /* bottle photograph — real placed graphic frame, lower-centre */
+  .photo{ left:30.5mm; top:90mm; width:33mm; height:44mm; }
+  .photo img{ width:33mm; height:44mm; object-fit:cover; display:block; }
+
+  /* ---- BACK LABEL: entire copy is ONE continuous story in ONE frame ---- */
+  .backrule{ left:8mm; top:12mm; width:78mm; height:0.4mm;
+    background:var(--oxblood); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .story{ left:8mm; top:18mm; width:78mm; height:112mm;
+    font-family:var(--sans); font-size:8.2pt; line-height:1.62;
+    color:var(--iron); text-align:left; }
+  .story .tn{ font-family:var(--serif); font-style:italic; }
+  .story .leg{ font-size:6.4pt; color:var(--slate); letter-spacing:0.02em; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+
+    <!-- die-cut guides for the two-up sheet -->
+    <div class="diecut" style="left:8mm;   top:6mm; width:94mm; height:136mm;"></div>
+    <div class="diecut" style="left:108mm; top:6mm; width:94mm; height:136mm;"></div>
+    <div class="gutter"></div>
+
+    <!-- ================= FRONT LABEL (left half) ================= -->
+    <div class="label front">
+
+      <!-- IMAGE FRAME 1: the house mark -->
+      <div class="abs mark">
+        <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/VECTOR-08/assets/house_mark_colour.png" alt="house mark">
+      </div>
+
+      <div class="abs brandline">Coble &amp; Vane</div>
+      <div class="abs founding">Est. 2020 &middot; North Sea Coast</div>
+      <div class="abs rule"></div>
+
+      <!-- EXPRESSION_NAME (large) -->
+      <div class="abs expr">Beached Coble</div>
+      <div class="abs subhead">Single Cask &middot; Cask Strength</div>
+
+      <!-- addressable fields: CASK_NO / STRENGTH / OUTTURN / BOTTLED -->
+      <div class="abs fld f-cask"><span class="lab">Cask No.</span> 188</div>
+      <div class="abs fld f-str"><span class="lab">Strength</span> 58.2% ABV</div>
+      <div class="abs fld f-out"><span class="lab">Outturn</span> 214 bottles</div>
+      <div class="abs fld f-bot"><span class="lab">Bottled</span> 03 / 2025</div>
+
+      <!-- decorative sunburst roundel: inline vector, not a placed image -->
+      <svg class="abs roundel" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#1F2A2E" stroke-width="1.4">
+          <circle cx="50" cy="50" r="47"/>
+          <circle cx="50" cy="50" r="33"/>
+        </g>
+        <g stroke="#5A1F1B" stroke-width="1.5">
+          <!-- sunburst ticks in the ring band (r 37 to 44) -->
+          <line x1="50" y1="6"    x2="50" y2="13"/>
+          <line x1="50" y1="94"   x2="50" y2="87"/>
+          <line x1="94" y1="50"   x2="87" y2="50"/>
+          <line x1="6"  y1="50"   x2="13" y2="50"/>
+          <line x1="81.1" y1="18.9" x2="76.2" y2="23.8"/>
+          <line x1="18.9" y1="18.9" x2="23.8" y2="23.8"/>
+          <line x1="81.1" y1="81.1" x2="76.2" y2="76.2"/>
+          <line x1="18.9" y1="81.1" x2="23.8" y2="76.2"/>
+        </g>
+        <text x="50" y="48" text-anchor="middle" font-family="Georgia, serif"
+              font-size="13" fill="#1F2A2E" letter-spacing="0.5">58.2%</text>
+        <text x="50" y="60" text-anchor="middle" font-family="Arial, sans-serif"
+              font-size="6" fill="#5A1F1B" letter-spacing="1.2">CASK STR.</text>
+      </svg>
+
+      <!-- IMAGE FRAME 2: the cask photograph -->
+      <div class="abs photo">
+        <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/VECTOR-08/assets/cask_photo_221.jpg" alt="cask bottle">
+      </div>
+    </div>
+
+    <!-- ================= BACK LABEL (right half) ================= -->
+    <div class="label back">
+      <div class="abs backrule"></div>
+
+      <!-- ONE continuous story in ONE text frame: distilled-at, filling date,
+           bottling date, volume, two-sentence tasting note, legal / ABV line -->
+      <div class="abs story">
+        Distilled and matured at Coble &amp; Vane Still House, on the Northumberland
+        coast of England.<br>
+        Filling date 06 / 2016.<br>
+        Bottling date 03 / 2025.<br>
+        Volume 700 ml.<br><br>
+        <span class="tn">Salt and cold iron on the nose, over a low line of
+        woodsmoke drifting off the shore. The palate runs long and dry, sea-air
+        and dark honey drawn slowly across a spine of North Sea oak.</span><br><br>
+        <span class="leg">Bottled at cask strength, 58.2% vol. 700 ml&#8494;.
+        Coble &amp; Vane, Northumberland, England. Single cask, non&#8209;chill
+        filtered. Please enjoy responsibly.</span>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

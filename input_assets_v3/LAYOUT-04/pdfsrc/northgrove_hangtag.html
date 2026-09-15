@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NORTHGROVE hang tag</title>
+<style>
+  /* Media box = trim, 55 x 90 mm portrait, NO bleed box, no crop/registration marks. */
+  @page { size: 55mm 90mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Oat-Cotton tag ground #D8CDB6, one card exactly 55 x 90 mm per page. */
+  .card {
+    position: relative;
+    width: 55mm;
+    height: 90mm;
+    background: #D8CDB6;
+    color: #33352F;                 /* Charcoal ink */
+    overflow: hidden;               /* trim = frame; nothing spills past the media box */
+    page-break-after: always;
+    font-family: Georgia, 'Times New Roman', serif;  /* sturdy text face */
+  }
+  .card:last-child { page-break-after: auto; }
+
+  /* ---- FRONT ---- */
+  /* 4 mm punched string hole centred at the very top */
+  .punch {
+    position: absolute;
+    top: 4mm; left: 50%;
+    width: 4mm; height: 4mm;
+    margin-left: -2mm;
+    border: 0.3mm solid #33352F;
+    border-radius: 50%;
+    background: #D8CDB6;
+  }
+  .front-inner { position: absolute; top: 11mm; left: 5mm; right: 5mm; bottom: 6mm; }
+
+  /* Wordmark lockup: charcoal condensed NORTHGROVE + small Workshop-Olive leaf glyph */
+  .lockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.4mm;
+  }
+  .wordmark {
+    font-family: 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;  /* condensed grotesque display */
+    font-weight: 700;
+    font-stretch: condensed;
+    letter-spacing: 0.35mm;
+    font-size: 15pt;
+    color: #33352F;
+    text-transform: uppercase;
+  }
+  .leaf { width: 4.4mm; height: 4.4mm; display: block; }
+
+  /* Piece name: large condensed display face, Charcoal */
+  .piece-name {
+    position: absolute;
+    left: 0; right: 0;
+    top: 34mm;
+    text-align: center;
+    font-family: 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-stretch: condensed;
+    text-transform: uppercase;
+    letter-spacing: 0.2mm;
+    line-height: 0.98;
+    font-size: 26pt;
+    color: #33352F;
+  }
+  .colourway {
+    position: absolute;
+    left: 0; right: 0;
+    top: 50mm;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 9pt;
+    color: #5E6844;                 /* Workshop Olive */
+  }
+
+  /* Price line: plain text face, with a small Forge-Rust rule above it */
+  .price-block {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: 8mm;
+    text-align: center;
+  }
+  .price-rule {
+    width: 12mm; height: 0.7mm;
+    background: #9A5A38;            /* Forge Rust */
+    margin: 0 auto 2.4mm auto;
+  }
+  .price {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 15pt;
+    color: #33352F;
+    letter-spacing: 0.3mm;
+  }
+
+  /* ---- BACK ---- */
+  .back-inner { position: absolute; top: 6mm; left: 5mm; right: 5mm; bottom: 6mm; }
+
+  /* Placed square SWATCH graphic frame ~34 x 34 mm, top-left, a real linked image */
+  .swatch-frame {
+    width: 34mm; height: 34mm;
+    overflow: hidden;
+    border: 0.25mm solid #33352F;
+    background: #B7AE97;
+  }
+  .swatch-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;             /* fills the square graphic frame like a fabric close-up */
+    display: block;
+  }
+
+  /* SPECIFICATION BLOCK — a single FIXED-MEASURE frame.
+     Height is locked and overset flow is OFF: a make note longer than
+     last season's short note is CLIPPED (stops rendering) rather than
+     spilling to a new line or frame. */
+  .spec-block {
+    margin-top: 4mm;
+    height: 22mm;                  /* locked measure */
+    overflow: hidden;              /* clip, do not spill */
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 6.5pt;
+    line-height: 1.28;
+    color: #33352F;
+  }
+  .spec-label {
+    font-family: 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.25mm;
+    font-size: 6pt;
+    color: #5E6844;
+  }
+  .spec-line { margin: 0 0 1.6mm 0; }
+
+  .origin {
+    position: absolute;
+    left: 5mm; right: 5mm; bottom: 6mm;
+    text-align: center;
+    font-family: 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    letter-spacing: 0.5mm;
+    font-size: 7pt;
+    color: #33352F;
+  }
+</style>
+</head>
+<body>
+
+  <!-- FRONT (page 1) -->
+  <div class="card">
+    <div class="punch"></div>
+    <div class="front-inner">
+      <div class="lockup">
+        <svg class="leaf" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M16 30 C16 18 20 8 29 3 C29 15 25 26 16 30 Z" fill="#5E6844"/>
+          <path d="M16 30 C16 18 12 8 3 3 C3 15 7 26 16 30 Z" fill="#5E6844"/>
+          <path d="M16 30 L16 9" stroke="#D8CDB6" stroke-width="1.1" fill="none"/>
+        </svg>
+        <span class="wordmark">Northgrove</span>
+      </div>
+    </div>
+    <div class="piece-name">Fell<br>Overshirt</div>
+    <div class="colourway">Charcoal</div>
+    <div class="price-block">
+      <div class="price-rule"></div>
+      <div class="price">$128</div>
+    </div>
+  </div>
+
+  <!-- BACK (page 2) -->
+  <div class="card">
+    <div class="back-inner">
+      <div class="swatch-frame">
+        <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-04/assets/northgrove_flatlay_01.jpg" alt="Fell Overshirt fabric swatch">
+      </div>
+      <div class="spec-block">
+        <p class="spec-line"><span class="spec-label">Fabric</span><br>12 oz cotton canvas, Charcoal.</p>
+        <p class="spec-line"><span class="spec-label">Make</span><br>Triple-needle felled shoulder and side seams, corozo buttons, single-layer yoke, cut and sewn in Burlington from Cone Mills canvas; garment-washed once for a broken-in hand.</p>
+      </div>
+    </div>
+    <div class="origin">Cut and sewn in Burlington, Vermont</div>
+  </div>
+
+</body>
+</html>

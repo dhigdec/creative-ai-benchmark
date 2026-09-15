@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Halden and Roe — Marlow trade book page — MRL-101 Ashfield Serving Bowl</title>
+<style>
+  /* Media box = trim. A4 portrait 210 x 297 mm. NO bleed box. */
+  @page { size: 210mm 297mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Printer's licensed faces were 'Brattleboro Text' (display serif, piece name)
+     and 'Coventry Old Style' (text serif). Neither font file can be extracted
+     for reuse, so this proof substitutes a real embeddable serif stack; Chrome
+     subsets and embeds it into the PDF. */
+  :root {
+    --paper:  #EFE7D6; /* warm paper ground, NOT pure white */
+    --ink:    #24211C; /* Studio Ink: piece name, spec text, price */
+    --slate:  #4A4E4C; /* Matte Slate: caption */
+    --kraft:  #B79C74; /* Kraft Tan: inter-row hairline rules */
+    --serif:  Georgia, 'Times New Roman', 'PT Serif', serif;
+  }
+
+  .card {
+    position: relative;
+    box-sizing: border-box;
+    width: 210mm;
+    height: 297mm;
+    background: var(--paper);
+    overflow: hidden;
+    color: var(--ink);
+    font-family: var(--serif);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Piece name — large display serif, set left with a wide margin. */
+  .piece-name {
+    position: absolute;
+    left: 20mm; top: 19mm;
+    width: 165mm;
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 32pt;
+    line-height: 1.02;
+    letter-spacing: 0.2pt;
+    color: var(--ink);
+  }
+
+  /* One-line caption — text serif italic, Matte Slate. */
+  .caption {
+    position: absolute;
+    left: 20mm; top: 35mm;
+    width: 158mm;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 11pt;
+    line-height: 1.35;
+    color: var(--slate);
+  }
+
+  /* Large upright product photograph in a rectangular well (~108 x 135 mm),
+     centred on the page width. This is one of the two graphic frames. */
+  .photo-well {
+    position: absolute;
+    top: 52mm;
+    left: 51mm;            /* (210 - 108) / 2 */
+    width: 108mm;
+    height: 135mm;
+    overflow: hidden;
+  }
+  .photo-well img {
+    display: block;
+    width: 108mm;
+    height: 135mm;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* THE STRUCTURAL TRAP: the eight-row spec block AND the trade price are ONE
+     continuous tab-delimited text story in a SINGLE text frame — not eight rows
+     and not a separate price frame. Each parameter is separated from its value
+     by a TAB, each row ended by a line break, and the trade price is the final
+     line of the same story. Kraft-tan hairline rules are painted as a background
+     under each line so the text stays a single frame. */
+  .story {
+    position: absolute;
+    left: 20mm; top: 194mm;
+    width: 122mm;
+    font-family: var(--serif);
+    font-size: 10pt;
+    line-height: 6.2mm;
+    color: var(--ink);
+    white-space: pre-wrap;
+    tab-size: 22;
+    -moz-tab-size: 22;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent calc(6.2mm - 0.2pt),
+        var(--kraft) calc(6.2mm - 0.2pt),
+        var(--kraft) 6.2mm);
+    background-position: 0 0;
+  }
+  /* Trade price — stated once, plainly, a little larger; still the final line of
+     the same single story (no box, no starburst, no 'from'). */
+  .story .price {
+    font-size: 13pt;
+  }
+
+  /* Small footer mark — the impressed maker's stamp in its own small well
+     (~18 x 18 mm), centred at the very bottom, on the paper ground (not white).
+     This is the SECOND graphic frame; it differs from the product well only by
+     bounds and link. */
+  .footer-mark {
+    position: absolute;
+    top: 262mm;
+    left: 96mm;            /* (210 - 18) / 2 */
+    width: 18mm;
+    height: 18mm;
+    overflow: hidden;
+  }
+  .footer-mark img {
+    display: block;
+    width: 18mm;
+    height: 18mm;
+    object-fit: cover;
+    object-position: center;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- PIECE NAME -->
+    <div class="piece-name">Ashfield Serving Bowl</div>
+
+    <!-- CAPTION -->
+    <div class="caption">Oatmeal breaks pale over the rim and pools brown in the throwing rings. Thrown and glazed in Brattleboro.</div>
+
+    <!-- PRODUCT PHOTOGRAPH (graphic frame 1) -->
+    <div class="photo-well">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-24/assets/marlow_shot_01.jpg" alt="Ashfield Serving Bowl, reactive oatmeal glaze">
+    </div>
+
+    <!-- EIGHT-ROW SPEC BLOCK + TRADE PRICE as ONE continuous tab-delimited
+         story in ONE text frame. Firing and care sit as adjacent lines in the
+         same run; the price is the final line of the same story. -->
+    <div class="story">PIECE CODE&#9;MRL-101
+DIMENSIONS&#9;280 mm dia x 110 mm
+CAPACITY&#9;2.4 L
+GLAZE&#9;Reactive Oatmeal
+FIRING&#9;Reduction fired to cone 10
+CARE&#9;Dishwasher safe. Wipe the pooled rings dry to keep them bright.
+LEAD TIME&#9;In stock
+CARTON&#9;6
+<span class="price">$62</span></div>
+
+    <!-- FOOTER MARK — impressed maker's stamp (graphic frame 2) -->
+    <div class="footer-mark">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-24/assets/pot_base_stamp.jpg" alt="Halden and Roe impressed maker's stamp">
+    </div>
+
+  </div>
+</body>
+</html>

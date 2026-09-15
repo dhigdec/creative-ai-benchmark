@@ -1,0 +1,169 @@
+<!--
+  OSTRA per-guest menu card — printer's proof, A5 portrait 148 x 210 mm, no bleed (media box = trim).
+  Faithful reconstruction of the old printer's press file for convert_pdf_to_indd.
+  STRUCTURAL TRAP baked exactly per the layout spec:
+    - guest line + date line + five-course list + pairing block are ONE continuous story inside ONE
+      fixed-measure text frame (~118 mm tall x 96 mm wide) with overflow:hidden. The frame does NOT
+      auto-grow: content that runs past its depth silently stops rendering at the frame edge (no overset
+      error), while the page still exports at the correct page count. This is the single frame, not four blocks.
+    - STALE VALUES baked: shown record is last season's static press content — the SHORT course titles
+      (Oyster, buckthorn / Scallop, butter / ...) and the "Saturday, 12 October" date the printer set,
+      NOT this season's longer kitchen spellings. Those shorter titles are exactly what the frame was
+      sized to, so this season's longer records will overrun and truncate.
+  Real record: Mr Ellery Vance (ostra_covers.csv seat 1, service 2026-09-12, Full, Cellar) — also the
+  spec's static press placeholder. NO decorative price roundel exists on this card, so none is drawn.
+  One placed photograph (mandatory real graphic frame): the signature opening course, oysters.
+-->
+<title>OSTRA menu card — press proof</title>
+<style>
+  @page { size: 148mm 210mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+
+  body {
+    background: #E6DFD2;                 /* Bone card stock */
+    color: #3A2A22;                      /* Warm-Ink */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .card {
+    position: relative;
+    width: 148mm;
+    height: 210mm;
+    background: #E6DFD2;                 /* Bone stock, media box = trim, no bleed */
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* --- Wordmark: OSTRA, small, centred, quiet editorial serif --- */
+  .wordmark {
+    position: absolute;
+    top: 15mm;
+    left: 0;
+    width: 148mm;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 15pt;
+    letter-spacing: 7pt;
+    text-indent: 7pt;                    /* balance the trailing tracking */
+    color: #3A2A22;
+  }
+  .rule {
+    position: absolute;
+    top: 24mm;
+    left: 54mm;
+    width: 40mm;
+    height: 0.4pt;
+    background: #9C8459;                 /* Subdued Brass hairline */
+  }
+
+  /* --- Placed photograph: signature opening course (real graphic frame) --- */
+  .plate {
+    position: absolute;
+    top: 30mm;
+    left: 26mm;
+    width: 96mm;
+    height: 46mm;
+    overflow: hidden;
+  }
+  .plate img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+  }
+
+  /* --- THE fixed-measure, fixed-depth story frame (single continuous flow) --- */
+  .flow {
+    position: absolute;
+    top: 82mm;
+    left: 26mm;
+    width: 96mm;                         /* fixed measure */
+    height: 118mm;                       /* fixed depth, sized to last season's SHORT titles */
+    overflow: hidden;                    /* does not auto-grow; overrun silently truncates at edge */
+  }
+
+  .guest {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20pt;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .date {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 8pt;
+    letter-spacing: 1.6pt;
+    text-transform: uppercase;
+    color: #5A5A5C;                      /* Ash Grey detail */
+    margin: 2.5mm 0 0 0;
+  }
+
+  .courses {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 12pt;
+    line-height: 2.0;
+    margin: 9mm 0 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .courses li { margin: 0; }
+
+  .pairing {
+    margin: 9mm 0 0 0;
+  }
+  .flight {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 8pt;
+    letter-spacing: 1.6pt;
+    text-transform: uppercase;
+    color: #9C8459;                      /* brass label */
+    margin: 0 0 2.5mm 0;
+  }
+  .pours {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.7;
+    color: #3A2A22;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .pours li { margin: 0; }
+</style>
+
+<div class="card">
+  <div class="wordmark">OSTRA</div>
+  <div class="rule"></div>
+
+  <div class="plate">
+    <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-09/assets/ostra_service_one_01.jpg" alt="">
+  </div>
+
+  <!-- ONE continuous story: guest -> date -> courses -> pairing, all in this single fixed frame -->
+  <div class="flow">
+    <p class="guest">Mr Ellery Vance</p>
+    <p class="date">Saturday, 12 October</p>
+
+    <ul class="courses">
+      <li>Oyster, buckthorn</li>
+      <li>Scallop, butter</li>
+      <li>Lobster, fennel</li>
+      <li>Duck, quince</li>
+      <li>Caramel, cream</li>
+    </ul>
+
+    <div class="pairing">
+      <p class="flight">Pairing flight &mdash; Cellar</p>
+      <ul class="pours">
+        <li>Muscadet</li>
+        <li>White Burgundy</li>
+        <li>Chardonnay</li>
+        <li>Pinot Noir</li>
+        <li>Tawny</li>
+      </ul>
+    </div>
+  </div>
+</div>

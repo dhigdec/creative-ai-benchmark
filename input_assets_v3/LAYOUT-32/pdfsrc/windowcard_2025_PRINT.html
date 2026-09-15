@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vanguard Motors window card</title>
+<style>
+  @page { size: 210mm 297mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+
+  .card {
+    width: 210mm;
+    height: 297mm;
+    background: #161B26;               /* Midnight ground, media box = trim, no bleed */
+    color: #F2F3F1;                    /* Signal White */
+    padding: 15mm;                     /* generous quiet margins */
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---- TOP: shield graphic + three separate headline frames ---- */
+  .header {
+    display: flex;
+    align-items: flex-start;
+    gap: 11mm;
+  }
+  .shield {
+    width: 28mm;                       /* ~28mm shield, top-left */
+    height: auto;
+    flex: 0 0 auto;
+  }
+  .headline {
+    padding-top: 1mm;
+  }
+  /* Frame 1 (year) — its own text frame */
+  .hl-year {
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 12.5pt;
+    letter-spacing: 3.5pt;
+    color: #B7BEC4;                    /* Chrome Silver */
+    margin: 0 0 1.5mm 0;
+  }
+  /* Frame 2 (marque) — its own text frame, sturdy grotesque */
+  .hl-marque {
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 33pt;
+    line-height: 1.02;
+    letter-spacing: 2.5pt;
+    text-transform: uppercase;
+    color: #F2F3F1;                    /* Signal White */
+    margin: 0;
+  }
+  /* Frame 3 (model) — its own text frame */
+  .hl-model {
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 17pt;
+    letter-spacing: 0.5pt;
+    color: #B7BEC4;                    /* Chrome Silver */
+    margin: 2mm 0 0 0;
+  }
+
+  .rule {
+    height: 0.4mm;
+    background: #4A5560;               /* Vanguard Steel hairline keyline */
+    margin: 7mm 0 0 0;
+  }
+
+  /* ---- HERO PHOTO: single vehicle graphic frame, landscape window ---- */
+  .hero {
+    width: 180mm;
+    height: 108mm;                     /* ~180 x 108mm card window */
+    margin: 7mm 0 0 0;
+    overflow: hidden;
+    background: #0F131B;
+  }
+  .hero img {
+    width: 180mm;
+    height: 108mm;
+    object-fit: cover;
+    object-position: 50% 42%;
+    display: block;
+  }
+
+  /* ---- BODY: ONE continuous tab-delimited story (spec + price + mileage + finance) ---- */
+  .body-story {
+    white-space: pre-wrap;             /* honour tabs and wrap the finance run */
+    tab-size: 42;
+    -moz-tab-size: 42;
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.95;
+    color: #C7CDD2;
+    margin: 9mm 0 0 0;
+  }
+  .body-story .price {
+    font-size: 25pt;
+    font-weight: 600;
+    letter-spacing: 0.5pt;
+    color: #F2F3F1;                    /* Signal White, large but quiet */
+  }
+  .body-story .mileage {
+    font-size: 11pt;
+    color: #8A8E93;                    /* Brushed Pewter */
+    letter-spacing: 0.3pt;
+  }
+  .body-story .finance {
+    font-size: 8pt;
+    line-height: 1.5;
+    color: #8A8E93;                    /* Brushed Pewter, small legible secondary */
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <!-- Recovered Vanguard shield, reproduced small in pale ink on the midnight ground.
+           Bordered device: outer edge, hairline keyline inside it, an upward chevron whose
+           enclosed counter stays open to the ground (no opaque backing box). -->
+      <svg class="shield" viewBox="0 0 100 132" xmlns="http://www.w3.org/2000/svg" aria-label="Vanguard Motors shield">
+        <!-- outer shield edge -->
+        <path d="M6 6 H94 V72 C94 100 74 118 50 128 C26 118 6 100 6 72 Z"
+              fill="none" stroke="#B7BEC4" stroke-width="2.2"/>
+        <!-- hairline keyline just inside the outer edge -->
+        <path d="M12 12 H88 V71 C88 95.5 71 111.5 50 120.5 C29 111.5 12 95.5 12 71 Z"
+              fill="none" stroke="#B7BEC4" stroke-width="0.8"/>
+        <!-- upward chevron, drawn as strokes so its triangular counter is open to the ground -->
+        <path d="M24 74 L50 44 L76 74" fill="none" stroke="#B7BEC4" stroke-width="4"
+              stroke-linejoin="miter" stroke-linecap="butt"/>
+        <text x="50" y="92" text-anchor="middle" fill="#B7BEC4"
+              font-family="Georgia, 'Times New Roman', serif" font-size="12"
+              letter-spacing="1.2" font-weight="600">VANGUARD</text>
+        <text x="50" y="105" text-anchor="middle" fill="#B7BEC4"
+              font-family="Georgia, 'Times New Roman', serif" font-size="7.5"
+              letter-spacing="2.4">MOTORS</text>
+      </svg>
+
+      <div class="headline">
+        <!-- Frame 1: year -->
+        <div class="hl-year">2019</div>
+        <!-- Frame 2: marque -->
+        <div class="hl-marque">Aldermayne</div>
+        <!-- Frame 3: model -->
+        <div class="hl-model">Corsair SE</div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="hero">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-32/assets/lot_photo_01.jpg" alt="2019 Aldermayne Corsair SE, silver, on the forecourt">
+    </div>
+
+<div class="body-story"><span class="specblock">Full service history	Cruise control
+One owner	DAB radio
+Heated front seats	Bluetooth
+Satellite navigation	18in alloy wheels
+Rear parking sensors	</span>
+<span class="price">£18,500</span>
+<span class="mileage">42,150 miles    Automatic    Petrol</span>
+
+<span class="finance">£289 per month. Finance subject to status. Vanguard Motors is a credit broker, not a lender, and can introduce you to a limited number of finance providers. We may receive a commission for such introductions. Figures shown are a representative example and depend on deposit, term and annual mileage. Written quotations on request. Over 18s only. Terms apply.</span></div>
+  </div>
+</body>
+</html>

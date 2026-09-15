@@ -1,0 +1,148 @@
+{
+ "task_id": "LAYOUT-21",
+ "brand": "Harborline Realty",
+ "notes": "Harborline Realty coastal-brokerage weekly listing-sheet set: the retired printer's US Letter press PDF (description + beds/baths/sqft strip + price + reference code set as ONE continuous story whose mapping readout drops the 14-char ref-code run but keeps its break so offsets go short while the validator returns VALID, a fixed short description measure that oversets silently, and a hero frame whose real bounds are near-square with a centre-anchored proportional fill exposed in no readout), eleven mixed heroes split 4 warm deep-black late-afternoon photographer estate frames vs 7 flat cold lifted-black midday agent phone frames (two ~1.5deg off level, one twilight with windows clipped to paper white), a 12-row Monday export that hides one Under-Contract row against a stated eleven active, a hand-typed point-estate row with an odd spelled-out address, a $-and-commas price no other row carries and a ~130-word description ~3x the 2025-book length, one active row whose photo cell is a renamed name matching no file, the office-window house mark whose fine rope gaps and small R counter close when reproduced small on the cream ground, and Dana Marlow's clean two-register brand note that names Sea Meadow as under agreement to ground the roster reconciliation.",
+ "assets": [
+  {
+   "filename": "listingsheet_2025_press.pdf",
+   "type": "pdf",
+   "role": "data",
+   "defect_engineered": "Continuous-flow story (DESCRIPTION + beds/baths/sqft strip + PRICE + REF_CODE in ONE text frame; ADDRESS and AGENT standalone) whose convenience mapping readout silently omits the 14-char REF_CODE run while keeping its trailing break (ref-code placeholder absent, every offset past it short by that run's length, validator returns VALID); DESCRIPTION lives in a fixed ~3-line measure with no auto-grow so a long string oversets and stops rendering with no error; the HERO frame's real bounds are near-square (~1:1.04) with a centre-anchored proportional fill exposed in no readout, so any bound image is re-cropped from its own centre",
+   "content": "LAYOUT SPEC for the retired printer's flat press PDF of the Harborline weekly listing sheet (flat, single record; to be reverse-engineered into a live merge template downstream).\n\nDocument: single sheet, US LETTER PORTRAIT (215.9 x 279.4 mm / 8.5 x 11 in), one record, fonts fully embedded as subsets, media box = trim (no separate bleed box present; a with-bleed delivery cannot be honoured from this file however the render is called). Produced from a real page-layout document so convert_pdf_to_indd returns clean, editable frames.\n\nWHAT IT LOOKS LIKE PRINTED (the apparent blocks, top to bottom):\n- ADDRESS line, top, one line, small-caps humanist sans, Sea Slate.\n- HEADLINE, transitional serif, large, Deep Harbour Navy.\n- One large HERO PHOTOGRAPH, reading as a wide letterbox band across the sheet.\n- A three-line DESCRIPTION, transitional serif, Deep Harbour Navy.\n- A BEDS / BATHS / SQ FT strip, humanist sans, Sea Slate, separated by hairline Weathered Rope Tan rules.\n- The PRICE, transitional serif, large, Deep Harbour Navy, a thin Buoy Red rule beneath.\n- The AGENT line, humanist sans, small, Sea Slate.\n- A small REFERENCE CODE line, humanist sans, very small, Sea Slate, at the foot.\n\nHOW IT IS ACTUALLY SET (the reverse-engineering traps):\n- The DESCRIPTION, the BEDS/BATHS/SQ FT strip, the PRICE and the small REFERENCE CODE are ONE continuous text story in a SINGLE text frame flowing top to bottom (run order: DESCRIPTION, then the strip, then PRICE, then the REFERENCE CODE line). The ADDRESS line and the AGENT line each sit in their own standalone frame.\n- generate_indd_mapping_prompt's convenience readout (textContent) SILENTLY OMITS the fourteen-character REFERENCE-CODE run (e.g. 'REF HL-25-0148') while KEEPING its trailing line break, so the reference-code placeholder is simply absent from the readout (mappings silently missing) and every character offset computed past that point is short by exactly that run's length -- yet the validator still returns VALID. The true story must be rebuilt from the exported IDML by unzipping it and concatenating the frame's content runs, never trusted from the readout.\n- The DESCRIPTION sub-run lives in a FIXED-MEASURE region sized for the short 2025-book entries (roughly three lines at 10.5/13.5 pt, no auto-grow). A longer string does NOT spill and does NOT error: it oversets and simply stops rendering at the frame edge, so a merged page comes back looking finished with the copy ending mid-sentence at trim. There is no overset readout anywhere in the chain.\n- The HERO frame reads as a wide letterbox in this printed sample, but its REAL bounds are close to SQUARE (approx 1 : 1.04). Its content fitting is a CENTRE-ANCHORED PROPORTIONAL FILL exposed in NO readout -- not in the conversion result, the mapping readout, the validator, or the merge response -- so any image bound into it is re-cropped from its own centre regardless of how it was prepared, and a house composed high in its own frame loses its roofline off the top.\n\nFIELD LABELS the downstream mapping must resolve (present as content, not visible tokens): ADDRESS | HEADLINE | DESCRIPTION | BEDS | BATHS | SQFT | PRICE | AGENT | REF_CODE | plus one HERO graphic frame (the picture well).\n\nColours: Cream #F4ECDD ground, Deep Harbour Navy #12324A headline / description / price, Weathered Rope Tan #B48A54 hairline rules, Sea Slate #5C6E74 address / strip / agent / reference code, Buoy Red #A6392E thin rule under the price. Embedded faces: 'Harborline Text' (transitional serif -- headline, description, price) and 'Coastline Sans' (humanist sans -- address, strip, agent, reference code). No Adobe Fonts face can reach this merged sheet; it inherits only these embedded subsets."
+  },
+  {
+   "filename": "hero_select_01.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4200, 2800],
+   "defect_engineered": "estate flagship reference: warm late-afternoon photographer frame, interior lights carrying, deep true blacks; HOUSE COMPOSED HIGH with the roofline near the top and a foreground drive and hedge, so the sheet's centre-anchored fill re-crops from the middle and takes the roofline off the top (primary trigger for the fill-from-centre checkpoint on the point-estate proof)",
+   "prompt": "Photorealistic real-estate hero photograph shot by a professional on a full-frame camera in warm late-afternoon golden light: a large shingle-and-stone waterfront point estate, open water behind it, the interior windows glowing warm from lamps left on inside. Deep, rich, true blacks in the shadows, warm white balance. Composed with the HOUSE HIGH IN THE FRAME so the full roofline sits near the top edge and the lower third is foreground lawn, a curving gravel drive and a clipped hedge. Wide landscape framing that reads letterbox. No people, no cars, sharp, editorial real-estate look."
+  },
+  {
+   "filename": "hero_select_02.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4200, 2800],
+   "defect_engineered": "estate: warm late-afternoon photographer frame, interior lights on, deep true blacks, warm white balance; house set high in frame with foreground lawn so a centre fill crops it too",
+   "prompt": "Photorealistic real-estate hero photograph by a professional, warm late-afternoon golden light: a weathered-shingle Colonial on the water with a private dock and a stone terrace, interior windows glowing warm, deep true blacks, warm white balance, the house set high in the frame above a foreground of lawn and shorefront, wide landscape framing, no people, sharp, editorial."
+  },
+  {
+   "filename": "hero_select_03.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4200, 2800],
+   "defect_engineered": "estate: warm late-afternoon photographer frame, deep rich blacks, warm white balance, interior glass catching warm light",
+   "prompt": "Photorealistic real-estate hero photograph by a professional, warm late-afternoon light: a glass-and-cedar contemporary set on a granite ledge above the bay, walls of glass catching warm interior light, deep rich true blacks, warm white balance, generous sky, wide landscape framing, no people, sharp, editorial."
+  },
+  {
+   "filename": "hero_select_04.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4200, 2800],
+   "defect_engineered": "estate: warm late-afternoon photographer frame, deep true blacks, warm white balance",
+   "prompt": "Photorealistic real-estate hero photograph by a professional, warm late-afternoon golden light: a restored 1840s sea captain's house, white clapboard with black shutters and a wraparound porch, warm low sun, deep true blacks, warm white balance, mature trees framing the drive, wide landscape framing, no people, sharp, editorial."
+  },
+  {
+   "filename": "hero_select_05.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4032, 3024],
+   "defect_engineered": "starter: flat cold midday agent phone frame, cool blue coastal cast, LIFTED milky grey black point (reads clean alone, obviously grey beside an estate frame); this is the ORPHAN file whose CSV row lost its name (row points at 12_birch_front.jpg) so it must be re-paired by address/content",
+   "prompt": "Casual handheld smartphone real-estate photo taken at flat midday: a small three-bed ranch on a sunny corner lot near a working harbour. Noticeably COOL, slightly blue white balance from the overcast coastal light, and a LIFTED, milky, greyish black point so the shadows look washed and grey rather than deep black. Level horizon, snapshot quality, wide 4:3 phone framing, no people."
+  },
+  {
+   "filename": "hero_select_06.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4032, 3024],
+   "defect_engineered": "starter: flat cold midday agent phone frame, cool cast, lifted grey blacks; OFF LEVEL by ~1.5 degrees so straightening must precede any crop and consumes the edge margin a later crop wants",
+   "prompt": "Casual handheld smartphone real-estate photo at flat midday: an updated village Cape with a new grey roof and a fenced yard. Cool, slightly blue white balance, lifted milky grey blacks. The WHOLE FRAME sits about ONE AND A HALF DEGREES OFF LEVEL -- the roof ridge and the horizon line are visibly slightly tilted. Snapshot quality, wide 4:3 phone framing, no people."
+  },
+  {
+   "filename": "hero_select_07.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4032, 3024],
+   "defect_engineered": "starter: flat cold midday agent phone frame, cool blue cast, lifted milky grey black point, level",
+   "prompt": "Casual handheld smartphone real-estate photo at flat midday: a single-level ranch with a two-car garage on a quiet dead-end street. Cool, slightly blue coastal white balance, lifted milky grey black point, level horizon, snapshot quality, wide 4:3 phone framing, no people."
+  },
+  {
+   "filename": "hero_select_08.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4032, 3024],
+   "defect_engineered": "starter: flat cold midday agent phone frame, cool cast, lifted milky grey blacks, level",
+   "prompt": "Casual handheld smartphone real-estate photo at flat midday: a well-kept two-family house a few blocks from the waterfront, two front doors, off-street parking. Cool, slightly blue white balance, lifted milky grey blacks, level, snapshot quality, wide 4:3 phone framing, no people."
+  },
+  {
+   "filename": "hero_select_09.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4032, 3024],
+   "defect_engineered": "starter: flat cold midday agent phone frame, cool cast, lifted grey blacks; the SECOND OFF-LEVEL frame (~1.5 degrees tilted) that must be straightened before any crop is locked",
+   "prompt": "Casual handheld smartphone real-estate photo at flat midday: a small storybook in-town cottage with a deep private yard and a detached studio. Cool, slightly blue white balance, lifted milky grey blacks. The frame sits about ONE AND A HALF DEGREES OFF LEVEL, the rooflines and the fence line visibly slightly tilted. Snapshot quality, wide 4:3 phone framing, no people."
+  },
+  {
+   "filename": "hero_select_10.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4032, 3024],
+   "defect_engineered": "mid-tier: flat cold midday agent phone frame, cool coastal cast, lifted milky grey black point, level",
+   "prompt": "Casual handheld smartphone real-estate photo at flat midday: a center-entrance Camden Colonial with black shutters and a screened porch over the garden. Cool, slightly blue coastal white balance, lifted milky grey black point, level horizon, snapshot quality, wide 4:3 phone framing, no people."
+  },
+  {
+   "filename": "hero_select_11.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4032, 3024],
+   "defect_engineered": "starter: TWILIGHT exterior whose window and porch highlights are CLIPPED to paper white with no data behind them, so a highlight recovery returns a file identical to the one it was given (the frame that may not join the set at all)",
+   "prompt": "Casual handheld smartphone real-estate photo at DUSK: a harborside bungalow with a farmer's porch, photographed at twilight against a deep blue evening sky. The interior lights and the porch lights are BLOWN OUT to flat paper white with NO detail or data behind them (fully clipped highlights). Cool blue twilight cast elsewhere in the frame, snapshot quality, wide 4:3 phone framing, no people."
+  },
+  {
+   "filename": "weekly_active.csv",
+   "type": "csv",
+   "role": "data",
+   "defect_engineered": "12 rows against a stated eleven active: row 12 (Sea Meadow, Beauchamp Ave) is Status 'Under Contract' and MUST NOT PRINT; row 1 (the point estate) is hand-typed -- spelled-out address with state and ZIP where every other row abbreviates and drops the state, a '$4,500,000' price no other row carries a symbol or commas on, and a ~130-word description roughly 3x the 2025-book length that oversets the fixed description frame; row 5's Photo cell is a renamed name '12_birch_front.jpg' that matches no supplied file, so hero_select_05.jpg is orphaned and must be re-paired",
+   "content": "Address,Headline,Description,Beds,Baths,SqFt,Price,Agent,RefCode,Status,Photo\n\"18 Lighthouse Point Road, Rockport, Maine 04856\",\"A Point Estate at the End of the Reach\",\"Set at the very end of the reach on nearly four private acres, this shingle-and-stone point estate takes in open water on three sides, with two hundred and forty feet of owned shorefront, a deep-water dock rated for a forty-foot boat, and a protected mooring in the cove. Inside, five bedrooms and four and a half baths open to water from nearly every room, a chef's kitchen with two islands gives onto a glassed morning room, and the primary suite holds its own wing with a stone fireplace and a private balcony over the water. A carriage house, a heated gunite pool, mature gardens laid out by a noted landscape architect, and a gated drive complete a property that comes to this stretch of the mid coast perhaps once in a generation.\",5,4.5,6200,\"$4,500,000\",Theo Vane,HL-25-0201,Active,hero_select_01.jpg\n\"9 Shore Rd, Camden\",\"Shingled Shorefront with a Deep-Water Dock\",\"Weathered-shingle Colonial on the water with a private dock, a stone terrace and open bay views from the main rooms. A short walk to the village.\",4,3,3200,1850000,Dana Marlow,HL-25-0182,Active,hero_select_02.jpg\n\"24 Bayview Ter, Rockport\",\"Bay-Facing Contemporary on the Ledge\",\"Glass-and-cedar contemporary set on a granite ledge above the bay, with walls of glass, an open plan and long afternoon light throughout.\",4,3,2900,1250000,Cara Alden,HL-25-0176,Active,hero_select_03.jpg\n\"3 Beacon Ln, Lincolnville\",\"Restored Sea Captain's House\",\"An 1840s captain's house restored to the studs, with wide-board floors, four fireplaces and a wraparound porch, minutes from the beach.\",5,3,3600,1450000,Miles Trott,HL-25-0169,Active,hero_select_04.jpg\n\"42 Birch Ln, Rockland\",\"Corner-Lot Starter, Steps to the Harbor\",\"Tidy three-bed on a sunny corner lot, a short walk to the working harbour. New furnace, level yard, room to grow. Open Sunday, one to three.\",3,1,1100,320000,Nora Beck,HL-25-0148,Active,12_birch_front.jpg\n\"7 Mechanic St, Rockland\",\"Village Cape with a New Roof\",\"Updated village Cape with a new roof, refinished floors and an eat-in kitchen. Fenced yard, off-street parking, walk to town.\",3,2,1450,389000,Sam Ives,HL-25-0151,Active,hero_select_06.jpg\n\"115 Cedar St, Thomaston\",\"Updated Ranch on a Quiet Street\",\"Single-level ranch with an open kitchen, a two-car garage and a private back yard on a quiet dead-end street.\",3,2,1600,415000,Nora Beck,HL-25-0155,Active,hero_select_07.jpg\n\"28 Pleasant St, Rockland\",\"Two-Family Near the Waterfront\",\"Well-kept two-family a few blocks from the waterfront: live in one and rent the other, separate utilities and off-street parking.\",4,2,2000,465000,Cara Alden,HL-25-0158,Active,hero_select_08.jpg\n\"6 Elm St, Camden\",\"In-Town Cottage with a Deep Yard\",\"Storybook in-town cottage with a deep, private yard and a detached studio, a short walk to Camden's shops and harbour.\",2,1,980,349000,Miles Trott,HL-25-0161,Active,hero_select_09.jpg\n\"51 High St, Camden\",\"Classic Camden Colonial\",\"Center-entrance Colonial on High Street with generous rooms, a formal dining room and a screened porch over the garden.\",4,2,2400,675000,Dana Marlow,HL-25-0164,Active,hero_select_10.jpg\n\"19 Sea St, Rockland\",\"Harborside Bungalow\",\"Cozy harborside bungalow with water peeks, a farmer's porch and a new kitchen, minutes to the ferry and the galleries.\",2,1,1050,359000,Sam Ives,HL-25-0167,Active,hero_select_11.jpg\n\"5 Beauchamp Ave, Camden\",\"Sea Meadow Cottage with Meadow Views\",\"Shingled cottage above a tidal meadow with long views, an open kitchen and a screened porch, a short walk to the harbour.\",3,2,1500,529000,Theo Vane,HL-25-0143,Under Contract,hero_select_12.jpg\n"
+  },
+  {
+   "filename": "officesign_photo.jpg",
+   "type": "image",
+   "role": "logo_text",
+   "model": "gemini-3-pro-image",
+   "size": "1024x1024",
+   "target_px": [3024, 3024],
+   "defect_engineered": "the house mark survives ONLY here: cream paint on glass, a rope ring drawn as a fine repeating twist with HAIRLINE GAPS and an R carrying a small enclosed counter, the mark occupying only about the central third of the frame (low pixel count) and on the shadowed side the thin cream paint runs close in value to a pale harbour reflection; it traces clean at raster scale but the rope gaps and the R counter close up when the mark is reproduced small on the cream ground the collateral uses",
+   "prompt": "Handheld smartphone photograph of the front window of a small harbour-front real-estate office, shot slightly from the side with the harbour and moored boats reflected in the glass. Painted on the glass in CREAM paint is the office's house mark, occupying only about the central third of the frame: a circular ROPE RING enclosing a simple LIGHTHOUSE, with the letters H and R below the lighthouse. The rope ring is rendered as a fine repeating twist of short cream strokes with HAIRLINE GAPS between the twists, and the R carries a small enclosed counter (the little hole in the bowl of the letter). Uneven daylight so the RIGHT SIDE of the mark falls into soft shadow where the thin cream paint runs close in value to a pale reflection in the glass. Realistic window framing, faint fingerprints and reflections, casual real-world snapshot, not a studio shot; the fine rope gaps and the small R counter are delicate enough that they would close up if the mark were reproduced small."
+  },
+  {
+   "filename": "principal_note.txt",
+   "type": "txt",
+   "role": "data",
+   "defect_engineered": "none -- the clean basis: two-register positioning (estate restraint vs starter price-forward), what Dana means by 'cheap', the two rival signs in town, the recover-don't-redraw mark instruction, the Thursday price-move editability requirement for the open-house set, and the line naming Sea Meadow as under agreement so the roster reconciliation (eleven active, not twelve) is grounded in the note",
+   "content": "HARBORLINE REALTY -- a note from Dana on how we want to look (for the designer)\n\nWHO WE ARE\nEight of us, one office on the harbour, since 2009. I run it. We list the whole mid coast book -- a three hundred and twenty thousand dollar corner-lot starter one week and a four and a half million place out on the point the next -- and both matter to us the same. We are grounded, coastal, understated. We describe the house, not ourselves, and we never oversell.\n\nTHE TWO OTHER SIGNS IN TOWN\nOne is a national franchise storefront: loud, red, everything shouting, the same template whether it is a cottage or a compound. The other is a discount flat-fee outfit that makes every listing look like a classified ad. We do not want to be either. When I say a sheet looks cheap I mean this: too much on the page, the price screaming, a photo that fights the type, blacks gone grey, a logo that is nearly ours but not.\n\nTHE TWO REGISTERS (this is the whole job)\nThe point estate at four and a half million sells to people over fifty with cash who read restraint as proof we can be trusted with the sale: one photograph, deep margins, quiet type, the price set small and sure. The corner-lot starter at three-twenty sells to first-timers under thirty-five who need the price, the bed count and the open-house time to reach them from across a room: brighter, denser, price forward. Style the whole book like the estate and the starters look empty and evasive; style it like the starter and the estate looks like volume work in front of a vendor paying a six-figure commission. Make the difference read -- but both still have to be obviously us.\n\nTHE MARK\nThe rope ring around a lighthouse with the H and the R is our mark. It is painted on the office window and that glass is the only place it still exists; the artwork was lost years ago. Whatever goes on the posts has to be that mark, recovered, knuckle for knuckle. Not something close to it, not redrawn into a font.\n\nTHE OPEN HOUSE POSTS\nPrices move on Thursdays. Whatever you hand us for the open houses I have to be able to open and change a price in myself, in a minute, without paying anyone twice.\n\nTHE ROSTER\nWe should be carrying eleven active this week. The Sea Meadow cottage on Beauchamp went under agreement Thursday -- it should be off the run, but Monday's export may still have it in. If anything else looks off, ask me: two sheets went out last month with January's prices and I am not doing that again.\n\n-- Dana Marlow"
+  }
+ ]
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SlabVault Cards sleeve ticket</title>
+<style>
+  /* Media box = trim, NO bleed. 90 mm x 55 mm landscape. */
+  @page { size: 90mm 55mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Brand palette (SlabVault house note): sober grey / near-black / one amber accent */
+  :root {
+    --paper:    #F2F3F4; /* Paper Neutral  – light stage / ground */
+    --charcoal: #1C1F24; /* Vault Charcoal – text and frame      */
+    --slate:    #8A9099; /* Slate Grey     – secondary label ink  */
+    --amber:    #C8892E; /* Signal Amber   – single restrained accent */
+  }
+
+  /* One card, exactly trim size. */
+  .card {
+    position: relative;
+    width: 90mm;
+    height: 55mm;
+    box-sizing: border-box;
+    background: var(--paper);
+    /* single restrained charcoal keyline, amber hairline inside it */
+    border: 0.35mm solid var(--charcoal);
+    color: var(--charcoal);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Stationery masthead (the amber accent already used on printed stationery) */
+  .masthead {
+    position: absolute;
+    top: 3.6mm;
+    left: 5mm;
+    right: 5mm;
+    height: 5.2mm;
+    border-bottom: 0.25mm solid var(--amber);
+  }
+  .masthead .house {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: 8pt;
+    letter-spacing: 0.9pt;
+    color: var(--charcoal);
+    text-transform: uppercase;
+    line-height: 1;
+  }
+  .masthead .kind {
+    position: absolute;
+    right: 0;
+    top: 0.6mm;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 5.4pt;
+    letter-spacing: 1.4pt;
+    color: var(--slate);
+    text-transform: uppercase;
+  }
+
+  /* THE ONLY GRAPHIC FRAME: ~24 x 34 mm holder thumbnail (left). */
+  .holder-frame {
+    position: absolute;
+    left: 5mm;
+    top: 12.5mm;
+    width: 24mm;
+    height: 34mm;
+    box-sizing: border-box;
+    border: 0.3mm solid var(--charcoal);
+    background: var(--slate);
+    overflow: hidden;
+  }
+  .holder-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  /* THE ONE TEXT STORY (single frame): the six fields authored as ONE
+     continuous flow so conversion collapses them into a single text frame.
+     Fixed measure — a long condition note simply stops at the frame edge. */
+  .story {
+    position: absolute;
+    left: 33mm;      /* 5 (pad) + 24 (thumb) + 4 (gutter) */
+    top: 12.5mm;
+    width: 51mm;     /* to 84mm, 6mm right margin */
+    height: 37.5mm;  /* FIXED-MEASURE: overflow clips with no signal */
+    overflow: hidden;
+    color: var(--charcoal);
+  }
+
+  /* Runs inside the one story — line breaks only, no separate frames. */
+  .story .lot {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 800;
+    font-size: 12pt;
+    letter-spacing: 0.4pt;
+    line-height: 1.02;
+    margin: 0 0 0.4mm 0;
+  }
+  .story .title {
+    font-weight: 600;
+    font-size: 8pt;
+    line-height: 1.12;
+    margin: 0 0 1.5mm 0;
+  }
+  .story .grade {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 9.5pt;
+    letter-spacing: 0.3pt;
+    line-height: 1.05;
+    margin: 0 0 0.6mm 0;
+  }
+  .story .cert {   /* certification-number line: its own run, mid-story */
+    font-weight: 400;
+    font-size: 7.2pt;
+    letter-spacing: 0.2pt;
+    color: var(--charcoal);
+    line-height: 1.1;
+    margin: 0 0 0.6mm 0;
+  }
+  .story .consignor {
+    font-weight: 400;
+    font-size: 7pt;
+    letter-spacing: 0.2pt;
+    color: var(--slate);
+    line-height: 1.1;
+    margin: 0 0 1.6mm 0;
+  }
+  .story .note-label {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 5.4pt;
+    letter-spacing: 1.2pt;
+    text-transform: uppercase;
+    color: var(--slate);
+    line-height: 1;
+    margin: 0 0 0.6mm 0;
+  }
+  .story .note {
+    font-weight: 400;
+    font-size: 7pt;
+    line-height: 1.22;
+    color: var(--charcoal);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <div class="masthead">
+      <span class="house">SlabVault Cards</span>
+      <span class="kind">Sleeve Ticket</span>
+    </div>
+
+    <!-- ONLY graphic frame: this lot's own holder thumbnail (LOT-001) -->
+    <div class="holder-frame">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-16/assets/slabvault_consignment_2026F_01.jpg" alt="LOT-001 holder">
+    </div>
+
+    <!-- ONE continuous text story: lot / title / grade / cert / consignor / note.
+         Authored as a single flow (soft line breaks, no per-field frames) so the
+         six blocks collapse to ONE text frame on conversion. The certification
+         line is its own run positioned mid-story. -->
+    <div class="story">
+      <div class="lot">LOT-001</div>
+      <div class="title">1998 Northwind Hockey Dale Corriveau RC</div>
+      <div class="grade">GRADEX 9.5</div>
+      <div class="cert">Cert GX-3391045</div>
+      <div class="consignor">Consignor CN-11</div>
+      <div class="note-label">Condition</div>
+      <div class="note">Sharp corners, clean surface.</div>
+    </div>
+
+  </div>
+</body>
+</html>

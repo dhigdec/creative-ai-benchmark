@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vellacourt speaker card — press proof</title>
+<style>
+  /* A6 portrait, 105 x 148 mm. Media box = trim, NO bleed box (0 mm bleed). */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    overflow: hidden;
+    background: #E8E1D6;              /* Warm Neutral ground */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* The ONE real picture frame on the card: the portrait well, full-bleed
+     to the card edges within the top panel. This is the graphic frame
+     convert_pdf_to_indd binds a photo into. */
+  .portrait {
+    position: absolute;
+    top: 0; left: 0;
+    width: 105mm;
+    height: 89mm;
+    overflow: hidden;
+    background: #262524;
+  }
+  .portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 20%;
+  }
+
+  /* The reverse-engineering trap: talk title, event name and date read as
+     three tidy fields but are set as ONE continuous threaded story in a
+     SINGLE text frame (title, then event, then date sitting mid-to-end of
+     the flow) — NOT three addressable frames. */
+  .story {
+    position: absolute;
+    top: 96mm;
+    left: 9mm;
+    right: 9mm;
+  }
+  .story .title {
+    display: block;
+    font-family: Georgia, 'Times New Roman', serif;   /* display serif */
+    font-weight: 600;
+    font-size: 19pt;
+    line-height: 1.12;
+    letter-spacing: 0.1pt;
+    color: #262524;                  /* Vellacourt Ink */
+  }
+  .story .event {
+    display: block;
+    margin-top: 3.4mm;
+    font-family: 'Helvetica Neue', Arial, sans-serif;  /* neutral sans */
+    font-weight: 500;
+    font-size: 10pt;
+    letter-spacing: 0.35pt;
+    color: #4C5560;                  /* Studio Slate */
+  }
+  .story .date {
+    display: block;
+    margin-top: 1.5mm;
+    font-family: 'Helvetica Neue', Arial, sans-serif;  /* neutral sans, small */
+    font-weight: 400;
+    font-size: 8.5pt;
+    letter-spacing: 0.35pt;
+    color: #4C5560;                  /* Studio Slate */
+  }
+
+  /* The corner AV monogram: NOT a picture/graphic frame. Baked flat as
+     artwork (inline vector in the page content stream, not a linked image
+     XObject), so it cannot be bound per record and rides the same on every
+     card unless replaced downstream with the recovered vector. */
+  .monogram {
+    position: absolute;
+    right: 9mm;
+    bottom: 8mm;
+    width: 16mm;
+    height: 10mm;
+  }
+  .monogram svg { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- ONE real picture frame: the portrait for this engagement -->
+    <div class="portrait">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-20/assets/vellacourt_session_02.jpg"
+           alt="Astrid Vellacourt, studio portrait">
+    </div>
+
+    <!-- ONE continuous threaded story in a single text frame:
+         talk title -> event name -> date (date mid-to-end of the flow) -->
+    <div class="story">
+      <span class="title">Designing the thing before the deck</span>
+      <span class="event">Northlight Design Forum</span>
+      <span class="date">14 Feb 2026</span>
+    </div>
+
+    <!-- Baked-flat corner monogram (AV lockup), not a bindable frame -->
+    <div class="monogram">
+      <svg viewBox="0 0 128 80" xmlns="http://www.w3.org/2000/svg">
+        <text x="-2" y="66" font-family="Georgia, 'Times New Roman', serif"
+              font-size="82" font-weight="600" fill="#B98A4B">A</text>
+        <text x="52" y="66" font-family="Georgia, 'Times New Roman', serif"
+              font-size="82" font-weight="600" fill="#B98A4B">V</text>
+      </svg>
+    </div>
+
+  </div>
+</body>
+</html>

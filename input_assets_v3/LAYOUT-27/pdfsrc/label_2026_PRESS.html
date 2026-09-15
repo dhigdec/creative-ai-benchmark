@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Girdermark Components Bin Label</title>
+<style>
+  /* Media box = trim (100 x 62 mm landscape). No bleed anywhere in the file. */
+  @page { size: 100mm 62mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  /* Printer's / label house's neutral grotesque. No brand font. */
+  body { font-family: Arial, Helvetica, sans-serif; color: #1A1C1E; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .card {
+    position: relative;
+    width: 100mm;
+    height: 62mm;
+    background: #F4F5F6;      /* Warehouse White */
+    overflow: hidden;
+  }
+  .abs { position: absolute; }
+
+  /* Small house mark, top-left, one ink */
+  .mark { left: 4mm; top: 3.5mm; display: flex; align-items: center;
+          border: 0.8pt solid #1A1C1E; padding: 1mm 2mm; }
+  .mark svg { display: block; margin-right: 1.6mm; }
+  .wm  { font-weight: 800; font-size: 10.5pt; letter-spacing: -0.3pt; line-height: 1;
+         transform: scaleX(0.85); transform-origin: left center; }
+  .sub { font-weight: 600; font-size: 3.6pt; letter-spacing: 1.3pt; margin-top: 0.6mm; }
+
+  /* Part number: very large and bold across the top */
+  .partno { left: 4mm; top: 15mm; font-weight: 800; font-size: 30pt; letter-spacing: -0.6pt; line-height: 1; }
+
+  /* Girder Blue rule under the part number */
+  .blue { left: 4mm; top: 32.5mm; width: 58mm; height: 1.4mm; background: #1C3A5E; }
+
+  /*
+    Description in a FIXED-MEASURE frame (~68 mm), one line only, sized to last
+    season's longest string. It does not auto-size and does not spill: a longer
+    record simply stops rendering at the frame edge, with no overset warning.
+  */
+  .descframe { left: 4mm; top: 35mm; width: 68mm; height: 6mm;
+               white-space: nowrap; overflow: hidden;
+               font-size: 11pt; font-weight: 600; }
+
+  /* Ordering code, lower-left */
+  .ordcode { left: 4mm; top: 51mm; font-size: 11pt; font-weight: 700; letter-spacing: 0.3pt; }
+
+  /* Small part picture in a graphic frame at right (~30 x 30 mm) */
+  .pic { left: 67mm; top: 25mm; width: 29mm; height: 29mm; object-fit: cover;
+         border: 0.5pt solid #6E747A; }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- Hairline DIE OUTLINE, drawn as a PLACED graphic exactly at the 100 x 62 mm trim.
+       Decorative only: it is NOT a document bleed and no true bleed exists in the file. -->
+  <svg class="abs" style="left:0; top:0;" width="100mm" height="62mm" viewBox="0 0 100 62" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0.2" y="0.2" width="99.6" height="61.6" fill="none" stroke="#1A1C1E" stroke-width="0.2"/>
+  </svg>
+
+  <!-- Small house mark, one ink -->
+  <div class="mark abs">
+    <svg width="4mm" height="5.6mm" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="26" height="6.5" fill="#1A1C1E"/>
+      <rect x="11.75" y="8.5" width="6.5" height="23" fill="#1A1C1E"/>
+      <rect x="2" y="31.5" width="26" height="6.5" fill="#1A1C1E"/>
+    </svg>
+    <div>
+      <div class="wm">GIRDERMARK</div>
+      <div class="sub">ELEVATOR &amp; ELECTRIC</div>
+    </div>
+  </div>
+
+  <!-- Part number, very large -->
+  <div class="partno abs">GSV-800</div>
+
+  <!-- Girder Blue rule -->
+  <div class="blue abs"></div>
+
+  <!-- Description in the fixed-measure frame -->
+  <div class="descframe abs">Governor Sheave Assembly</div>
+
+  <!-- Ordering code -->
+  <div class="ordcode abs">GM-GSV-800</div>
+
+  <!-- Small part picture (mandatory real graphic frame) -->
+  <img class="pic abs" src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-27/assets/bench_photo_01.jpg" alt="">
+
+</div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!--
+  Nordhaven room directory card 2025 — press-PDF source (single-sided, A6 portrait 105 x 148 mm).
+  Faithful printer's proof of LAST SEASON's card, to be reverse-engineered into a live InDesign merge template.
+  Real record shown: room "Quay" (nordhaven_rooms.csv row 1 / property_shoot_01.jpg) — the shortest name the
+  card's room-name measure was set around, exactly as the layout spec describes.
+  Ink #14161A on limewash #E7E2D8. Display serif for the room name only; neutral grotesque elsewhere.
+  Media box = trim (no bleed box). One image frame + ONE continuous text story (the four printed blocks are
+  drawn as a single flowing text frame, NOT four separate frames).
+-->
+<meta charset="utf-8">
+<title>Nordhaven Room Card 2025</title>
+<style>
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    overflow: hidden;
+    background: #E7E2D8;           /* limewash plaster ground */
+    color: #14161A;               /* near-black ink */
+    font-family: Arial, Helvetica, 'Helvetica Neue', sans-serif;
+  }
+
+  /* IMAGE BLOCK — full-width room photograph, top ~55% of the card, run to the top and side edges. */
+  .photo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 105mm;
+    height: 81mm;                 /* ~55% of 148mm */
+    overflow: hidden;
+  }
+  .photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  /* ONE continuous text story holding all four printed blocks (name / floor-bed / view / rate).
+     Deliberately a single flowing text frame so the printed blocks do NOT convert to four editable frames. */
+  .story {
+    position: absolute;
+    top: 81mm;
+    left: 0;
+    width: 105mm;
+    height: 67mm;
+    padding: 8mm 9mm 7mm;
+    text-align: center;
+    line-height: 1.0;
+  }
+
+  /* ROOM NAME — display serif, large (~30pt), measure set tight around the shortest name ("Quay").
+     nowrap + clip reproduce the no-slack frame: an over-long merged name stops at the edge with no spill. */
+  .name {
+    display: block;
+    font-family: Georgia, 'Times New Roman', 'Iowan Old Style', serif;
+    font-size: 30pt;
+    font-weight: 400;
+    letter-spacing: 0.2pt;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 0 5.5mm;
+  }
+
+  /* FLOOR & BED LINE — neutral grotesque, small caps. */
+  .meta {
+    display: block;
+    font-size: 8pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.6pt;
+    margin: 0 0 3mm;
+  }
+
+  /* VIEW LINE — sentence case grotesque. */
+  .view {
+    display: block;
+    font-size: 10.5pt;
+    font-weight: 400;
+    letter-spacing: 0.2pt;
+    margin: 0 0 8mm;
+  }
+
+  /* RATE — grotesque, small and quiet at the bottom, never set as an offer. */
+  .rate {
+    display: block;
+    font-size: 8pt;
+    font-weight: 400;
+    letter-spacing: 0.6pt;
+    margin: 0;
+  }
+</style>
+
+<div class="card">
+  <div class="photo">
+    <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-22/assets/property_shoot_01.jpg" alt="Quay — harbour room">
+  </div>
+  <div class="story"><span class="name">Quay</span><span class="meta">Ground Floor &middot; Queen</span><span class="view">Harbour view</span><span class="rate">$600 / night</span></div>
+</div>

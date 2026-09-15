@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lumen Quarterly — Autumn plate card (printer proof)</title>
+<style>
+  /* A6 LANDSCAPE 148 x 105 mm. Media box = trim: NO bleed box, 0 mm bleed. */
+  @page { size: 148mm 105mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  :root {
+    --paper: #F3EEE3;   /* Uncoated Paper ground */
+    --ink:   #1F3A3C;   /* Masthead Ink — plate numeral + title */
+    --body:  #26262A;   /* Charcoal — caption */
+    --rule:  #9C968B;   /* Rule Grey — credit + folio */
+    --ochre: #B4762E;   /* Signal Ochre — hairline plate rule */
+  }
+
+  .card {
+    position: relative;
+    width: 148mm; height: 105mm;
+    background: var(--paper);
+    overflow: hidden;
+  }
+
+  /* Plate picture: a page-level anchored image filling the upper two-thirds.
+     On conversion this flattens — there is NO graphic frame; a picture
+     placeholder must be BUILT downstream before the set can merge. */
+  .plate {
+    position: absolute; top: 0; left: 0;
+    width: 148mm; height: 70mm;
+    object-fit: cover; object-position: 50% 52%;
+  }
+
+  /* Signal Ochre hairline plate rule — drawn as a vector rule, not a picture well. */
+  .plate-rule {
+    position: absolute; top: 70mm; left: 0;
+    width: 148mm; height: 0.5mm;
+    background: var(--ochre);
+  }
+
+  /* ONE continuous threaded story: plate numeral + title + caption + credit flow
+     top-to-bottom in a SINGLE text frame. They are NOT four addressable fields;
+     each field offset is only knowable by reconstructing this story string. */
+  .story {
+    position: absolute;
+    left: 11mm; right: 11mm; top: 75.5mm;
+  }
+  .story .plateline {
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    font-size: 15pt; line-height: 1.05;
+    margin: 0 0 1.6mm 0;
+  }
+  .story .plateline .no { letter-spacing: 0.4pt; }
+  .story .plateline .sep { color: var(--rule); font-weight: 400; padding: 0 2mm; }
+  .story .caption {
+    color: var(--body);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 9.5pt; line-height: 12.5pt;
+    margin: 0 0 1.6mm 0;
+  }
+  .story .credit {
+    color: var(--rule);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 7pt; letter-spacing: 0.3pt;
+    margin: 0;
+  }
+
+  /* The issue / folio line is a SECOND short story of its own along the foot. */
+  .folio {
+    position: absolute;
+    left: 11mm; right: 11mm; bottom: 5.5mm;
+    color: var(--rule);
+    font-family: Helvetica, Arial, sans-serif;
+    font-variant: small-caps; letter-spacing: 1pt;
+    font-size: 6.5pt;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+
+<section class="card">
+  <!-- Placed plate picture (frame 01, running-order Plate I). -->
+  <img class="plate" src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-14/assets/lumen_autumn_essay_01.jpg" alt="The shed above Sennet Cove">
+
+  <div class="plate-rule"></div>
+
+  <!-- Single continuous story: numeral + title + caption + credit. -->
+  <div class="story">
+    <div class="plateline"><span class="no">Plate&nbsp;I</span><span class="sep">&mdash;</span><span class="title">Above Sennet Cove</span></div>
+    <div class="caption">The shed above Sennet Cove, an hour before the light turns.</div>
+    <div class="credit">Photograph: Perrin Doyle</div>
+  </div>
+
+  <!-- Second short story: issue / folio line. -->
+  <div class="folio">Lumen Quarterly&nbsp;&middot;&nbsp;Autumn&nbsp;&middot;&nbsp;Sennet Cove</div>
+</section>
+
+</body>
+</html>

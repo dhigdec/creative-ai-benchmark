@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cedarline Institute - Executive Diploma</title>
+<style>
+  /* Media box = trim (A3 landscape), no bleed */
+  @page { size: 420mm 297mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+
+  .card {
+    position: relative;
+    width: 420mm; height: 297mm;
+    background: #F3EBD8;                  /* Warm Certificate Cream */
+    overflow: hidden;
+    /* engraved, higher-contrast serif for the executive register */
+    font-family: 'Times New Roman', 'Times', Georgia, serif;
+    color: #1E2620;                       /* Deep Ink */
+  }
+
+  /* Double engraved-gold rule with wide margins - page artwork, not a frame. */
+  .border-outer {
+    position: absolute; top: 20mm; left: 20mm; right: 20mm; bottom: 20mm;
+    border: 1.5pt solid #9A7B33;          /* Engraved Gold */
+  }
+  .border-inner {
+    position: absolute; top: 24mm; left: 24mm; right: 24mm; bottom: 24mm;
+    border: 0.6pt solid #9A7B33;
+  }
+
+  /* THE TRAP: the whole face is ONE continuous typeset block. Heading, body
+     prose, name, programme, date, honours, credential number and BOTH
+     signatory names live in a SINGLE story frame. No per-field frames. */
+  .story {
+    position: absolute; top: 44mm; left: 55mm; width: 310mm;
+    text-align: center;
+  }
+  .story .institute {
+    display: block;
+    font-variant: small-caps; letter-spacing: 0.22em;
+    font-size: 23pt; font-weight: 700; color: #33503C;   /* Cedar Green */
+    margin-bottom: 22mm;
+  }
+  .story .body {
+    font-size: 20pt; line-height: 1.75; color: #1E2620;
+    margin: 0 10mm 96mm;
+  }
+  .story .body .who   { font-size: 25pt; }
+  .story .body .cred  { letter-spacing: 0.06em; }
+  .story .sigrow {
+    display: flex; justify-content: space-between; margin: 0 8mm;
+  }
+  .story .sig { width: 118mm; text-align: center; }
+  .story .sig .line { border-top: 0.5pt solid #1E2620; margin-bottom: 2mm; }
+  .story .sig .who  { font-size: 12.5pt; color: #1E2620; }
+
+  /* The seal is FLATTENED into the artwork / set as an inline element: drawn
+     as inline SVG (NOT an <img>), so after conversion there is NO picture or
+     graphic frame to bind a per-record seal into - offset arithmetic only. */
+  .seal {
+    position: absolute; top: 176mm; left: 190mm; width: 40mm; height: 40mm;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="border-outer"></div>
+    <div class="border-inner"></div>
+
+    <div class="story">
+      <span class="institute">Cedarline Institute</span>
+      <div class="body">
+        This is to certify that <span class="who">Eleanor Whitfield</span> has satisfied
+        the requirements of the Executive Programme in Professional Practice, completed on
+        17 October 2026, and is hereby awarded this Diploma With Distinction.
+        Credential <span class="cred">CL-2026-0130</span>.
+      </div>
+      <div class="sigrow">
+        <div class="sig"><div class="line"></div><div class="who">Dr Miriam Voss &mdash; Director of Executive Education</div></div>
+        <div class="sig"><div class="line"></div><div class="who">Helen Abbott &mdash; Registrar</div></div>
+      </div>
+    </div>
+
+    <svg class="seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Cedarline Institute seal, cedar device and founding year 1978">
+      <defs>
+        <path id="topArc" d="M 40 78 Q 100 40 160 78" fill="none"/>
+        <path id="botArc" d="M 44 126 Q 100 162 156 126" fill="none"/>
+      </defs>
+      <circle cx="100" cy="100" r="90" fill="none" stroke="#9A7B33" stroke-width="1.4"/>
+      <circle cx="100" cy="100" r="82" fill="none" stroke="#9A7B33" stroke-width="3.4" stroke-dasharray="5 3.2"/>
+      <circle cx="100" cy="100" r="73" fill="none" stroke="#9A7B33" stroke-width="0.8"/>
+      <text font-family="'Times New Roman', serif" font-size="11.5" letter-spacing="1.6"
+            fill="#33503C" text-anchor="middle">
+        <textPath href="#topArc" startOffset="50%">CEDARLINE INSTITUTE</textPath>
+      </text>
+      <text font-family="'Times New Roman', serif" font-size="13" letter-spacing="4"
+            fill="#33503C" text-anchor="middle">
+        <textPath href="#botArc" startOffset="50%">1978</textPath>
+      </text>
+      <!-- stylised single cedar tree device, centred -->
+      <g fill="#33503C" stroke="#33503C" stroke-width="0.4">
+        <rect x="97" y="126" width="6" height="12"/>
+        <polygon points="100,58 82,92 118,92"/>
+        <polygon points="100,74 78,110 122,110"/>
+        <polygon points="100,90 74,128 126,128"/>
+      </g>
+    </svg>
+  </div>
+</body>
+</html>

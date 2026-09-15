@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nimbadesk conference badge 2026</title>
+<style>
+  /* Media box = trim. 4 x 3 in landscape = 101.6 x 76.2 mm. NO bleed box. */
+  @page { size: 101.6mm 76.2mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .badge {
+    position: relative;
+    width: 101.6mm;
+    height: 76.2mm;
+    background: #FFFFFF;            /* Paper */
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* Slim Signal Blue accent band down the left edge */
+  .accent {
+    position: absolute;
+    left: 0; top: 0;
+    width: 5mm; height: 100%;
+    background: #2E6BE6;           /* Signal Blue */
+  }
+
+  .content {
+    position: absolute;
+    left: 5mm; right: 0; top: 0; bottom: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8mm 9mm 8mm 8mm;
+  }
+
+  /* PHOTO WELL — what prints is a ~1.1in SQUARE window on a Mist backing.
+     The picture frame it actually carries is PORTRAIT (taller than wide) and
+     is cropped by this overlapping square window (overflow:hidden), so plates
+     cut square sit wrong against the true portrait bounds. */
+  .photo-well {
+    position: relative;
+    flex: 0 0 auto;
+    width: 28mm;                   /* ~1.1 in square printed window */
+    height: 28mm;
+    background: #EEF2F8;           /* Mist photo-well backing */
+    overflow: hidden;
+  }
+  .photo-well img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 28mm;                   /* true frame bounds are PORTRAIT: */
+    height: 37mm;                  /* taller than the square window, cropped top & bottom */
+    object-fit: cover;
+    object-position: 50% 32%;      /* seat the face high, same across the run */
+    display: block;
+  }
+
+  .typeblock {
+    flex: 1 1 auto;
+    padding-left: 8mm;
+  }
+
+  /* NAME / ROLE / COMPANY are ONE continuous text story in a single frame
+     (three paragraph breaks inside one story), NOT three addressable frames.
+     Fields sit by paragraph position inside this one block. */
+  .story {
+    margin: 0;
+    line-height: 1.18;
+  }
+  .story .name {
+    font-weight: 700;
+    font-size: 21pt;
+    letter-spacing: -0.2pt;
+    color: #16233A;                /* Nimbus Ink */
+  }
+  .story .role {
+    font-weight: 400;
+    font-size: 11.5pt;
+    color: #5B6B82;                /* Slate */
+  }
+  .story .company {
+    font-weight: 700;
+    font-size: 9pt;
+    font-variant: small-caps;
+    letter-spacing: 1.6pt;
+    color: #16233A;                /* Nimbus Ink */
+  }
+
+  /* Thin Signal Blue rule beneath the company line */
+  .rule {
+    margin-top: 2.4mm;
+    width: 26mm;
+    height: 0.5mm;
+    background: #2E6BE6;           /* Signal Blue */
+  }
+</style>
+</head>
+<body>
+  <div class="badge">
+    <div class="accent"></div>
+    <div class="content">
+      <div class="photo-well">
+        <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-09/assets/booth_headshot_01.jpg" alt="Priya Nair">
+      </div>
+      <div class="typeblock">
+        <div class="story"><span class="name">Priya Nair</span><br><span class="role">Co-founder &amp; CEO</span><br><span class="company">Nimbadesk</span></div>
+        <div class="rule"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

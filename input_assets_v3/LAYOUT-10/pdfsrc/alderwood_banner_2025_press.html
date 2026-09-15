@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Alderwood Scholars Fund — Appeal Banner (press proof)</title>
+<style>
+  /* Media box = trim = artwork quarter scale (450 x 150 mm). The press scales 4x
+     at output to the 1800 x 600 mm finished banner. NO bleed box: trim = media box,
+     0 mm bleed on all four edges. */
+  @page { size: 450mm 150mm; margin: 0; }
+  html, body { margin: 0; padding: 0; width: 450mm; height: 150mm; overflow: hidden; }
+  *{ -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
+
+  :root{
+    --evergreen:#1E4034;
+    --gold:#C8922E;
+    --brick:#9A4B34;
+    --stone:#EDE6D8;
+    --ink:#2A2723;
+    --cream:#FBF7EF;
+  }
+
+  .card{
+    position:relative;
+    width:450mm;
+    height:150mm;
+    background:var(--evergreen);
+    overflow:hidden;
+    box-sizing:border-box;
+    color:var(--cream);
+  }
+
+  /* ---- placed photograph (real graphic frame, mandatory) ---- */
+  .photo{
+    position:absolute;
+    top:0;
+    left:280mm;
+    width:170mm;
+    height:150mm;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+  }
+  /* thin cream keyline that frames the picture area */
+  .photo-frame{
+    position:absolute;
+    top:0; left:280mm;
+    width:170mm; height:150mm;
+    border-left:1.5mm solid var(--gold);
+    box-shadow:inset 0 0 0 0.5mm var(--cream);
+    pointer-events:none;
+  }
+
+  /* ---- masthead: recovered crest (inline SVG vector artwork) + wordmark ---- */
+  .crest{
+    position:absolute;
+    top:12mm; left:18mm;
+    width:40mm; height:40mm;
+  }
+  .mast{
+    position:absolute;
+    top:15mm; left:64mm;
+    width:206mm;
+  }
+  .wordmark{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    font-weight:700;
+    color:var(--cream);
+    font-size:8mm;
+    letter-spacing:2.2mm;
+    line-height:1.0;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .tagline{
+    font-family:Georgia, 'Times New Roman', serif;
+    font-style:italic;
+    color:var(--gold);
+    font-size:6mm;
+    letter-spacing:0.3mm;
+    margin-top:3mm;
+  }
+
+  /* Lamplight-gold hairline rule under the masthead */
+  .rule{
+    position:absolute;
+    top:52mm; left:18mm;
+    width:246mm; height:0.7mm;
+    background:var(--gold);
+  }
+
+  /* ---- Warm Stone address panel ---- */
+  .panel{
+    position:absolute;
+    top:62mm; left:18mm;
+    width:246mm; height:74mm;
+    background:var(--stone);
+    border-left:4mm solid var(--brick);
+    box-sizing:border-box;
+    box-shadow:inset 0 0 0 0.4mm rgba(42,39,35,0.35);
+  }
+
+  /* SINGLE continuous text story in ONE text frame: centre name, street address,
+     opening hours and coordinator separated only by line breaks — NOT four
+     addressable frames. */
+  .story{
+    position:absolute;
+    top:70mm; left:36mm;
+    width:220mm;
+    margin:0;
+  }
+  .cname{
+    font-family:Georgia, 'Times New Roman', serif;
+    font-weight:700;
+    color:var(--evergreen);
+    font-size:17mm;
+    line-height:1.55;
+    letter-spacing:0.1mm;
+  }
+  .cline{
+    font-family:'Helvetica Neue', Arial, sans-serif;
+    color:var(--ink);
+    font-size:6.4mm;
+    line-height:1.85;
+    letter-spacing:0.15mm;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Placed field photograph — a real raster in a graphic frame (Pawtucket Mills
+         evening reading event). Quarter-scale artwork: the source frame is 6000x4000,
+         which holds 4x at the 1800mm output. -->
+    <img class="photo"
+         src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-10/assets/pawtucket_mills_02.jpg"
+         alt="Pawtucket Mills reading event">
+    <div class="photo-frame"></div>
+
+    <!-- Recovered crest: compound lockup drawn as live vector (reverse / cream
+         variant so it reads on the Evergreen ground). Arc small-caps type around a
+         ring, an oil-lamp device inside, and a thin concentric inner rule. This is a
+         separate graphic frame from the text story. -->
+    <svg class="crest" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-label="Alderwood Scholars Fund crest">
+      <defs>
+        <path id="arcTop" d="M 20,100 A 80,80 0 0 0 180,100" fill="none"></path>
+      </defs>
+      <!-- outer ring -->
+      <circle cx="100" cy="100" r="95" fill="none" stroke="#FBF7EF" stroke-width="4"></circle>
+      <!-- thin concentric inner rule (Lamplight Gold) -->
+      <circle cx="100" cy="100" r="63" fill="none" stroke="#C8922E" stroke-width="1.6"></circle>
+      <!-- arc small-caps type around the ring -->
+      <text font-family="Helvetica Neue, Arial, sans-serif" font-size="15" font-weight="700"
+            letter-spacing="2.2" fill="#FBF7EF">
+        <textPath href="#arcTop" startOffset="50%" text-anchor="middle">ALDERWOOD SCHOLARS FUND</textPath>
+      </text>
+      <!-- oil-lamp device inside the ring -->
+      <g fill="#FBF7EF">
+        <ellipse cx="100" cy="142" rx="21" ry="4"></ellipse>
+        <rect x="93" y="131" width="14" height="9"></rect>
+        <ellipse cx="100" cy="122" rx="31" ry="15"></ellipse>
+        <path d="M71,120 L46,115 L69,129 Z"></path>
+        <path d="M129,115 q17,2 15,13 q-2,9 -13,9 q7,-4 5,-11 q-2,-7 -7,-7 z"></path>
+        <circle cx="100" cy="106" r="4.2"></circle>
+      </g>
+      <!-- flame (Lamplight Gold) -->
+      <path d="M100,103 q-6,-11 0,-21 q6,10 0,21 z" fill="#C8922E"></path>
+      <!-- founding line inside the ring -->
+      <text x="100" y="160" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif"
+            font-size="8.5" letter-spacing="1.6" fill="#C8922E">PROVIDENCE&#160;·&#160;2006</text>
+    </svg>
+
+    <!-- Masthead wordmark + tagline -->
+    <div class="mast">
+      <div class="wordmark">Alderwood Scholars Fund</div>
+      <div class="tagline">Twenty years of after school.</div>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- Warm Stone address panel -->
+    <div class="panel"></div>
+
+    <!-- ONE continuous text story (line breaks only): NAME / ADDRESS / HOURS / COORDINATOR -->
+    <div class="story"><span class="cname">Pawtucket Mills Centre</span><br><span class="cline">300 Mill Street, Pawtucket, RI 02860</span><br><span class="cline">Mon-Thu 3:00-6:30pm; Fri 3:00-5:30pm</span><br><span class="cline">Coordinator: Rosa Iannucci</span></div>
+
+  </div>
+</body>
+</html>

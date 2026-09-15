@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ada, 1912 - Hollis caption card</title>
+<style>
+  /* A6 LANDSCAPE, media box == trim, no bleed box */
+  @page { size: 148mm 105mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #F5F1E9; }
+
+  /* one card, exactly A6 landscape trim */
+  .card {
+    position: relative;
+    width: 148mm;
+    height: 105mm;
+    background: #F5F1E9;               /* Paper White ground */
+    overflow: hidden;
+    box-sizing: border-box;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  /* GRAPHIC FRAME - the small placed reference thumbnail (a real linked image) */
+  .thumb {
+    position: absolute;
+    left: 9mm;
+    top: 27mm;
+    width: 34mm;                        /* fixed graphic frame, ~34 x 45 mm */
+    height: 45mm;
+    object-fit: cover;
+    display: block;
+    background: #D9D0C1;                /* Linen, shows through if image is missing */
+  }
+  .thumb-keyline {                      /* thin framer's keyline around the thumbnail */
+    position: absolute;
+    left: 9mm;
+    top: 27mm;
+    width: 34mm;
+    height: 45mm;
+    box-sizing: border-box;
+    border: 0.25mm solid #D9D0C1;       /* Linen hairline */
+    pointer-events: none;
+  }
+
+  /* TEXT FRAME - a SINGLE continuous story in ONE fixed-measure frame.
+     It does NOT auto-grow and it clips overset silently: any caption
+     longer than the framer's 2019 measure simply stops at the frame edge
+     at trim with no warning. */
+  .caption {
+    position: absolute;
+    left: 50mm;
+    top: 24mm;
+    width: 92mm;                        /* fixed measure ~95 x 62 mm */
+    height: 62mm;
+    overflow: hidden;                   /* the trap: overset is absent at trim */
+  }
+
+  /* the four runs live inside the one story, in order */
+  .caption p { margin: 0; }
+
+  .caption .title {                     /* Run 1: TITLE */
+    font-size: 15pt;
+    line-height: 1.15;
+    font-weight: normal;
+    letter-spacing: 0.2pt;
+    color: #191613;                     /* Archive Black */
+  }
+  .caption .dateplace {                 /* Run 2: DATE_PLACE, one line */
+    margin-top: 4mm;
+    font-size: 10pt;
+    line-height: 1.4;
+    color: #33302B;                     /* Ink Charcoal */
+    white-space: nowrap;
+  }
+  .caption .names {                     /* Run 3: NAMES, one line */
+    margin-top: 1.5mm;
+    font-size: 10pt;
+    line-height: 1.4;
+    color: #33302B;                     /* Ink Charcoal */
+    white-space: nowrap;
+  }
+  .caption .provenance {                /* Run 4: PROVENANCE, italic, its own run */
+    margin-top: 4mm;
+    font-size: 9pt;
+    line-height: 1.35;
+    font-style: italic;
+    color: #6F6B64;                     /* Museum Grey */
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- placed reference thumbnail for this record: Ada, 1912 studio card -->
+    <img class="thumb"
+         src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-06/assets/hollis_scan_01.jpg"
+         alt="Ada Hollis, 1912 studio card portrait">
+    <div class="thumb-keyline"></div>
+
+    <!-- ONE continuous story / ONE fixed-measure text frame (not a div per field) -->
+    <div class="caption">
+      <p class="title">Ada, 1912</p>
+      <p class="dateplace">Brattleboro</p>
+      <p class="names">Ada Hollis</p>
+      <p class="provenance">Studio card.</p>
+    </div>
+
+  </div>
+</body>
+</html>

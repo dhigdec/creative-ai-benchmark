@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>su_hangtag_2025</title>
+<style>
+  /* Media box = trim. 55 x 90 mm portrait hang tag. NO bleed, no bleed marks (flush to trim). */
+  @page { size: 55mm 90mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Brand palette: Union Black #141414 ink on Bone #EDE7DA stock. One ink. */
+  .card {
+    position: relative;
+    width: 55mm;
+    height: 90mm;
+    box-sizing: border-box;
+    background: #EDE7DA;
+    color: #141414;
+    overflow: hidden;
+    page-break-after: always;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .card.last { page-break-after: auto; }
+
+  /* 4 mm punched hole, centred 6 mm from the top edge (die keyline). */
+  .hole {
+    position: absolute;
+    top: 4mm;                 /* top 4mm + radius 2mm => centre 6mm from top */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4mm; height: 4mm;
+    box-sizing: border-box;
+    border: 0.3mm solid #141414;
+    border-radius: 50%;
+    background: transparent;
+  }
+
+  /* -------- FACE: ONE continuous text story (single frame / one flow) -------- *
+   * ITEM / COLOURWAY / SIZE / PRICE / EDITION / STOCKIST CODE all live inside   *
+   * ONE positioned container, stacked as one flowing block (NOT six frames),    *
+   * with the arc-badge lockup as the small placed mark at the head of the flow. */
+  .story {
+    position: absolute;
+    top: 10mm;
+    left: 4mm;
+    width: 47mm;
+    text-align: center;
+    color: #141414;
+  }
+  .story .badge {           /* Line 1 head mark: decorative roundel as INLINE SVG */
+    display: block;
+    width: 11mm; height: 11mm;
+    margin: 0 auto 2mm;
+  }
+  .story .item {            /* Line 2 ITEM — heavy condensed caps */
+    display: block;
+    font-family: 'Arial Narrow', 'Helvetica Neue Condensed', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 4.6mm;
+    line-height: 1.02;
+    letter-spacing: 0.15mm;
+    text-transform: uppercase;
+    transform: scaleX(0.9);
+    transform-origin: center;
+    margin: 0 0 2mm;
+  }
+  .story .cw {              /* Line 3 COLOURWAY */
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 2.6mm;
+    line-height: 1.15;
+    margin: 0 0 1.4mm;
+  }
+  .story .sz {              /* Line 4 SIZE */
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 2.6mm;
+    line-height: 1.15;
+    margin: 0 0 1.4mm;
+  }
+  .story .pr {              /* Line 5 PRICE — leading dollar sign */
+    display: block;
+    font-family: 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 4mm;
+    line-height: 1.05;
+    margin: 0 0 1.4mm;
+  }
+  .story .ed {              /* Line 6 EDITION */
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 2.4mm;
+    line-height: 1.15;
+    letter-spacing: 0.3mm;
+    text-transform: uppercase;
+    margin: 0 0 1.4mm;
+  }
+  .story .code {            /* Line 7 STOCKIST CODE — small mono caps */
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    font-size: 2.8mm;
+    line-height: 1.1;
+    letter-spacing: 0.5mm;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  /* Placed product photograph (real graphic frame for the picture area). */
+  .photo {
+    position: absolute;
+    left: 5mm;
+    top: 55mm;
+    width: 45mm;
+    height: 24mm;
+    object-fit: cover;
+    display: block;
+    box-sizing: border-box;
+    border: 0.2mm solid #141414;
+  }
+
+  /* Stale baked season code (last season's press file: AW25). */
+  .season {
+    position: absolute;
+    bottom: 3.2mm;
+    right: 5mm;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    font-size: 2.1mm;
+    letter-spacing: 0.4mm;
+    color: #141414;
+  }
+
+  /* -------- REVERSE (static, no merge fields) -------- */
+  .rev {
+    position: absolute;
+    top: 0; left: 0;
+    width: 55mm; height: 90mm;
+    box-sizing: border-box;
+    padding: 0 6mm;
+    text-align: center;
+  }
+  .rev .wordmark {
+    position: absolute;
+    top: 24mm; left: 6mm; width: 43mm;
+    text-align: center;
+  }
+  .rev .bars { display: block; width: 30mm; margin: 0 auto; }
+  .rev .bars .bar { display: block; width: 30mm; height: 0.7mm; background: #141414; margin: 0.6mm auto; }
+  .rev .name {
+    display: block;
+    font-family: 'Arial Narrow', 'Helvetica Neue Condensed', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 6.2mm;
+    line-height: 1.0;
+    letter-spacing: 0.4mm;
+    text-transform: uppercase;
+    transform: scaleX(0.9);
+    transform-origin: center;
+    margin: 2.2mm 0;
+  }
+  .rev .tagline {
+    position: absolute;
+    top: 52mm; left: 8mm; width: 39mm;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 2.7mm;
+    line-height: 1.35;
+    letter-spacing: 0.2mm;
+    font-variant: small-caps;
+    text-transform: lowercase;
+  }
+  .rev .place {
+    position: absolute;
+    top: 62mm; left: 8mm; width: 39mm;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 2.6mm;
+    letter-spacing: 0.6mm;
+    text-transform: uppercase;
+  }
+  .rev .url {
+    position: absolute;
+    top: 67mm; left: 8mm; width: 39mm;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 400;
+    font-size: 2.5mm;
+    letter-spacing: 0.3mm;
+    text-transform: uppercase;
+  }
+  .rev .copy {
+    position: absolute;
+    bottom: 6mm; left: 8mm; width: 39mm;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 2.1mm;
+    letter-spacing: 0.3mm;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<!-- =========================== PAGE 1 — TAG FACE =========================== -->
+<div class="card">
+  <span class="hole"></span>
+
+  <!-- ONE continuous flow: badge (head) + the six merge fields as a single story -->
+  <div class="story">
+    <!-- Line 1: Static Union arc-badge lockup — decorative roundel drawn as INLINE SVG -->
+    <svg class="badge" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Static Union arc badge">
+      <circle cx="50" cy="50" r="47" fill="none" stroke="#141414" stroke-width="2.4"/>
+      <circle cx="50" cy="50" r="31" fill="none" stroke="#141414" stroke-width="0.9"/>
+      <defs>
+        <path id="suArcTop" d="M 11,50 A 39,39 0 0 1 89,50"/>
+      </defs>
+      <text font-family="'Arial Narrow', Arial, sans-serif" font-size="8.2" font-weight="700"
+            letter-spacing="2.2" fill="#141414" text-anchor="middle">
+        <textPath href="#suArcTop" xlink:href="#suArcTop" startOffset="50%">STATIC UNION</textPath>
+      </text>
+      <path d="M53 39 L44 57 L50.5 57 L47 72 L61 51 L53.5 51 Z" fill="#141414"/>
+    </svg>
+
+    <span class="item">Arc Badge Patch</span>
+    <span class="cw">Union Black twill / Rail Gold</span>
+    <span class="sz">2.5 in</span>
+    <span class="pr">$18.00</span>
+    <span class="ed">Edition of 150</span>
+    <span class="code">SU-P02</span>
+  </div>
+
+  <!-- Placed product photograph (arc-badge woven piece) — real graphic frame -->
+  <img class="photo"
+       src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/VECTOR-12/assets/su_woven_label_photo.jpg"
+       alt="Static Union arc badge woven piece">
+
+  <span class="season">AW25</span>
+</div>
+
+<!-- =========================== PAGE 2 — TAG REVERSE ======================== -->
+<div class="card last">
+  <span class="hole"></span>
+
+  <div class="rev">
+    <div class="wordmark">
+      <span class="bars">
+        <span class="bar" style="width:100%"></span>
+        <span class="bar" style="width:100%"></span>
+        <span class="bar" style="width:100%"></span>
+      </span>
+      <span class="name">Static Union</span>
+      <span class="bars">
+        <span class="bar" style="width:100%"></span>
+        <span class="bar" style="width:100%"></span>
+        <span class="bar" style="width:100%"></span>
+      </span>
+    </div>
+
+    <div class="tagline">Two drops a year, made to be worn out</div>
+    <div class="place">Portland, Oregon</div>
+    <div class="url">staticunion.example</div>
+    <div class="copy">&copy; 2025 Static Union</div>
+  </div>
+</div>
+
+</body>
+</html>

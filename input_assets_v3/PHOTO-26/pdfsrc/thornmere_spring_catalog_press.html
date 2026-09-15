@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--
+  Thornmere Home spring catalogue - press page, reverse-engineering source.
+  One product to a page. A5 portrait, trim 148 x 210 mm.
+  Media box = TRIM. No bleed box, no 3mm bleed (connector-derived template cannot produce bleed).
+  Real record shown: TH-001 Oatmeal Breakfast Mug (autumn_shoot_01.jpg).
+  Structural trap (as the layout spec sets it): the caption reads as a stack of
+  separate lines but is authored as ONE continuous text story / single text frame -
+  product name, dimensions, materials, CARE line, price are runs in a single block
+  separated only by soft line breaks, so on conversion the stack collapses and the
+  CARE run is the one a converted-story readout drops while keeping its break.
+-->
+<style>
+  @page { size: 148mm 210mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Palette: Warm Paper Ground #F6F1E8, near-black ink, Stoneware Charcoal accents. */
+  .card {
+    box-sizing: border-box;
+    width: 148mm;
+    height: 210mm;
+    background: #F6F1E8;
+    padding: 16mm 15mm 15mm 15mm;
+    color: #211E1A;
+    position: relative;
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* PRODUCT PHOTOGRAPH - large placed image, upper ~60% of the page. */
+  .photo {
+    width: 118mm;
+    height: 118mm;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    background: #F6F1E8;
+  }
+
+  /* CAPTION STACK - authored as ONE continuous text story (single text frame).
+     The visual "stack" is soft line breaks inside one block; the different type
+     treatments are character runs (spans), not separate frames. */
+  .caption {
+    margin: 11mm 0 0 0;
+    max-width: 118mm;
+    line-height: 1.85;
+  }
+  .caption .name {
+    font-family: Georgia, 'Times New Roman', 'Iowan Old Style', serif;
+    font-size: 16pt;
+    font-weight: 400;
+    letter-spacing: 0.1pt;
+    color: #211E1A;
+  }
+  .caption .detail {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 9.5pt;
+    font-weight: 400;
+    letter-spacing: 0.3pt;
+    color: #3B3733;
+  }
+  .caption .care {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 9.5pt;
+    font-weight: 400;
+    letter-spacing: 0.3pt;
+    color: #3B3733;
+  }
+  .caption .price {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 12pt;
+    font-weight: 600;
+    letter-spacing: 0.2pt;
+    color: #211E1A;
+  }
+
+  /* Running foot - separate frame, not part of the caption story. */
+  .foot {
+    position: absolute;
+    left: 15mm;
+    right: 15mm;
+    bottom: 10mm;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 2.4pt;
+    text-transform: uppercase;
+    color: #C9A98E;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <img class="photo"
+         src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-26/assets/autumn_shoot_01.jpg"
+         alt="Oatmeal Breakfast Mug on a pale warm-paper sweep">
+
+    <div class="caption"><span class="name">Oatmeal Breakfast Mug</span><br>
+<span class="detail">H 95 x Dia 85 mm</span><br>
+<span class="detail">Glazed stoneware</span><br>
+<span class="care">Dishwasher safe.</span><br>
+<span class="price">$45</span></div>
+
+    <div class="foot">Thornmere Home&nbsp;&nbsp;&middot;&nbsp;&nbsp;Spring</div>
+  </div>
+</body>
+</html>

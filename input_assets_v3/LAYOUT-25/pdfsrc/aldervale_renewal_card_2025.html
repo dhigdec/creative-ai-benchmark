@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Aldervale Mutual — Autumn Renewal Card (press proof)</title>
+<style>
+  /* Trim = 152.4 x 107.95 mm (6 x 4.25 in) LANDSCAPE. Media box = trim, NO bleed box. */
+  @page { size: 152.4mm 107.95mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
+
+  :root {
+    --oat:      #F3EDE1; /* Oat Paper ground */
+    --green:    #21473A; /* House Green rule + shield + wordmark */
+    --slate:    #2A2926; /* Slate Ink body */
+    --warmgrey: #8B8378; /* Warm Grey regulatory line + wordmark ink */
+    /* Text serif ~ 'Wemberley Text' (2019 sheet, now unlicensable) -> Georgia.
+       Display serif ~ 'Corbett' (heavier) -> Georgia bold. */
+    --text-serif: Georgia, 'Times New Roman', 'Times', serif;
+  }
+
+  .card {
+    position: relative;
+    width: 152.4mm;
+    height: 107.95mm;
+    overflow: hidden;                 /* fixed, non-reflowing surface */
+    background: var(--oat);
+    color: var(--slate);
+    page-break-after: always;
+    break-after: page;
+  }
+  .card.back { page-break-after: auto; break-after: auto; }
+
+  /* ---- FRONT / message side ------------------------------------------- */
+
+  /* THE TRAP: salutation + address block + rule label + producer line +
+     offer band are ONE continuous text story in ONE fixed-height frame,
+     NOT six addressable frames. Every field lives by position inside this
+     single flow. The frame does not spill or reflow: a longer record
+     simply clips at the bottom at trim. */
+  .story {
+    position: absolute;
+    left: 11mm;
+    top: 12mm;
+    width: 84mm;
+    height: 80mm;            /* fixed frame height */
+    overflow: hidden;        /* non-reflowing: overset is lost at trim */
+    font-family: var(--text-serif);
+    color: var(--slate);
+  }
+  .story p { margin: 0; }
+  .salu {
+    font-weight: 700;                 /* heavier display serif */
+    font-size: 11.5pt;
+    line-height: 1.35;
+    color: var(--slate);
+    margin-bottom: 3.4mm;
+  }
+  .addr {
+    font-size: 9.5pt;
+    line-height: 1.5;
+    margin-bottom: 4mm;
+  }
+  .rule {                             /* the '— Your renewal —' run */
+    text-align: center;
+    font-style: italic;
+    font-size: 9.5pt;
+    letter-spacing: 0.4pt;
+    color: var(--green);
+    margin: 0 6mm 4mm 6mm;
+  }
+  .prod-intro { font-size: 9.5pt; line-height: 1.4; }
+  .prod-name {
+    font-weight: 700;                 /* producer name larger than offer */
+    font-size: 14pt;
+    line-height: 1.2;
+    color: var(--slate);
+    margin: 0.6mm 0 0.6mm 0;
+  }
+  .prod-static { font-size: 9.5pt; line-height: 1.4; margin-bottom: 4mm; }
+  .offer {                            /* fixed offer band: one set line, no reflow */
+    font-size: 8.5pt;
+    line-height: 1.45;
+    color: var(--slate);
+    margin-bottom: 3.2mm;
+  }
+  .due {
+    font-size: 8pt;
+    line-height: 1.3;
+    color: var(--warmgrey);
+  }
+
+  /* standing regulatory line — its own short story, very small */
+  .reg {
+    position: absolute;
+    left: 11mm;
+    bottom: 5.5mm;
+    width: 96mm;
+    font-family: var(--text-serif);
+    font-size: 5.4pt;
+    line-height: 1.35;
+    color: var(--warmgrey);
+  }
+
+  /* the one REAL graphic frame: producer photograph, portrait 34 x 40 mm (~0.85:1) */
+  .photo {
+    position: absolute;
+    right: 11mm;
+    top: 13mm;
+    width: 34mm;
+    height: 40mm;
+    overflow: hidden;
+    border: 0.4mm solid var(--green);
+    background: var(--oat);
+  }
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 42%;         /* face optically placed, not centred */
+    display: block;
+  }
+
+  /* the mark: two-ink compound lockup drawn as inline vector (NOT an <img>);
+     sits on the Oat ground, clear of the photograph (brand rule). */
+  .mark {
+    position: absolute;
+    right: 11mm;
+    top: 61mm;
+    width: 40mm;
+    display: flex;
+    align-items: center;
+    gap: 2.4mm;
+  }
+  .mark svg { display: block; }
+  .mark .lockup-rule {                /* hairline rule between shield and wordmark */
+    width: 0.25mm;
+    height: 11mm;
+    background: var(--green);
+  }
+  .mark .wordmark {
+    font-family: var(--text-serif);
+    color: var(--warmgrey);
+    font-size: 8.4pt;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 1.3pt;
+    text-transform: uppercase;
+  }
+
+  /* ---- BACK / address-and-indicia side -------------------------------- */
+  .ret {
+    position: absolute;
+    left: 11mm;
+    top: 11mm;
+    width: 70mm;
+    font-family: var(--text-serif);
+    font-size: 8pt;
+    line-height: 1.5;
+    color: var(--slate);
+  }
+  .ret .ret-name { font-weight: 700; }
+  .indicia {
+    position: absolute;
+    right: 11mm;
+    top: 10mm;
+    width: 34mm;
+    height: 22mm;
+    border: 0.3mm solid var(--warmgrey);
+    font-family: var(--text-serif);
+    font-size: 6.4pt;
+    line-height: 1.35;
+    color: var(--slate);
+    text-align: center;
+    letter-spacing: 0.4pt;
+    padding: 2.2mm 1mm;
+    text-transform: uppercase;
+  }
+  .maddr {
+    position: absolute;
+    left: 58mm;
+    top: 62mm;
+    width: 72mm;
+    font-family: var(--text-serif);
+    font-size: 11pt;
+    line-height: 1.55;
+    color: var(--slate);
+  }
+  .maddr .m-name { font-weight: 700; }
+  .not-bill {
+    position: absolute;
+    left: 11mm;
+    bottom: 6mm;
+    font-family: var(--text-serif);
+    font-size: 6pt;
+    color: var(--warmgrey);
+    letter-spacing: 0.4pt;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== PAGE 1 — FRONT / message side ===================== -->
+  <div class="card front">
+
+    <!-- ONE continuous story: salutation -> address -> rule label -> producer -> offer -> due -->
+    <div class="story">
+      <p class="salu">Dear Mr. and Mrs. Alden Frost,</p>
+
+      <p class="addr">214 Coburn Road<br>
+      Cabot, VT&nbsp;&nbsp;05647</p>
+
+      <p class="rule">— Your renewal —</p>
+
+      <p class="prod-intro">Your producer,</p>
+      <p class="prod-name">Harlan Pease,</p>
+      <p class="prod-static">will be glad to walk your renewal through with you.</p>
+
+      <p class="offer">Your renewal is ready; your current rate holds for the coming year.</p>
+
+      <p class="due">Your renewal is due Friday, 31 October 2025.</p>
+    </div>
+
+    <!-- the one real graphic frame -->
+    <div class="photo">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-25/assets/aldervale_producers/harlan_pease.jpg" alt="Harlan Pease, producer">
+    </div>
+
+    <!-- compound mark: shield-ring + oak leaf (House Green), hairline rule, warm-taupe wordmark -->
+    <div class="mark">
+      <svg width="12mm" height="14mm" viewBox="0 0 100 118" xmlns="http://www.w3.org/2000/svg" aria-label="Aldervale shield mark">
+        <!-- shield RING (outline only; open interior shows the ground) -->
+        <path d="M14 14 H86 V58 C86 90 62 106 50 112 C38 106 14 90 14 58 Z"
+              fill="none" stroke="#21473A" stroke-width="5"/>
+        <!-- single oak leaf, centred inside the ring -->
+        <path d="M50 30
+                 C55 37 61 38 59 47
+                 C66 48 66 57 57 59
+                 C62 66 56 72 50 68
+                 C44 72 38 66 43 59
+                 C34 57 34 48 41 47
+                 C39 38 45 37 50 30 Z"
+              fill="#21473A"/>
+        <line x1="50" y1="66" x2="50" y2="90" stroke="#21473A" stroke-width="3.4" stroke-linecap="round"/>
+      </svg>
+      <div class="lockup-rule"></div>
+      <div class="wordmark">Aldervale<br>Mutual</div>
+    </div>
+
+    <!-- standing regulatory line, verbatim -->
+    <div class="reg">
+      Aldervale Mutual Assurance is a policyholder-owned mutual chartered in Vermont in 1963.
+      Coverage is subject to policy terms, conditions and eligibility. This notice is not a bill.
+    </div>
+
+  </div>
+
+  <!-- ===================== PAGE 2 — BACK / address-and-indicia side ===================== -->
+  <div class="card back">
+
+    <div class="ret">
+      <span class="ret-name">Aldervale Mutual Assurance</span><br>
+      P.O. Box 148<br>
+      Randolph, VT&nbsp;&nbsp;05060
+    </div>
+
+    <div class="indicia">
+      Presorted<br>First-Class Mail<br>U.S. Postage<br>PAID<br>Randolph, VT<br>Permit No. 6
+    </div>
+
+    <div class="maddr">
+      <span class="m-name">Mr. and Mrs. Alden Frost</span><br>
+      214 Coburn Road<br>
+      Cabot, VT&nbsp;&nbsp;05647
+    </div>
+
+    <div class="not-bill">This notice is not a bill.</div>
+
+  </div>
+
+</body>
+</html>

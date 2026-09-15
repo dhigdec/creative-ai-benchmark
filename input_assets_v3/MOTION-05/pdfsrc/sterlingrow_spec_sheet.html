@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sterling Row — Residence Spec Sheet</title>
+<style>
+  /* Developer's printed unit spec sheet, one residence per page.
+     A4 PORTRAIT 210 x 297 mm. NO bleed box: media box == trim, 0 mm bleed. */
+  @page { size: 210mm 297mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+
+  :root {
+    --near-black: #14161A;   /* unit + price type */
+    --cast-brass: #B08D57;   /* hairline rule */
+    --stone-grey: #6E7378;   /* spec labels + disclosure lines */
+    --warm-white: #F2F1ED;   /* ground */
+    --slate:      #2C333A;   /* availability note */
+  }
+
+  .card {
+    width: 210mm;
+    height: 297mm;
+    background: var(--warm-white);
+    padding: 17mm 16mm 14mm 16mm;
+    display: flex;
+    flex-direction: column;
+    color: var(--near-black);
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* --- masthead: wordmark small, centered, over a brass hairline rule --- */
+  .masthead { text-align: center; }
+  .wordmark {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 12pt;
+    letter-spacing: 0.42em;
+    text-indent: 0.42em;
+    color: var(--near-black);
+    font-weight: 400;
+  }
+  .rule {
+    margin: 4.5mm auto 0 auto;
+    width: 100%;
+    height: 0;
+    border-top: 0.35mm solid var(--cast-brass);
+  }
+
+  /* --- unit designation, below left, quiet display face, medium --- */
+  .unit {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 25pt;
+    font-weight: 400;
+    color: var(--near-black);
+    margin-top: 10mm;
+    line-height: 1.02;
+  }
+  .unit-kicker {
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 7.5pt;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--stone-grey);
+    margin-top: 2.5mm;
+  }
+
+  /* --- placed hero photograph (real graphic frame) --- */
+  .hero {
+    margin-top: 8mm;
+    width: 178mm;
+    height: 96mm;
+    overflow: hidden;
+    background: var(--slate);
+  }
+  .hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+    display: block;
+  }
+
+  /* --- spec grid: ONE continuous tabbed text story in a SINGLE frame.
+         Labels and values are character runs inside one text block,
+         NOT five addressable fields. Tab stops align the value column. --- */
+  .spec {
+    margin-top: 9mm;
+    white-space: pre;
+    tab-size: 44mm;
+    -moz-tab-size: 44mm;
+    font-size: 10.5pt;
+    line-height: 2.05;
+  }
+  .spec .lbl {
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone-grey);
+  }
+  .spec .val {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 11pt;
+    color: var(--near-black);
+  }
+
+  /* --- price (set apart, right) + availability (under grid, left) --- */
+  .row {
+    margin-top: 9mm;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+  .avail-label, .price-label {
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 8pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--stone-grey);
+    margin-bottom: 2.5mm;
+  }
+  .avail-value {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 12pt;
+    color: var(--slate);
+  }
+  .price-cell { text-align: right; }
+
+  /* FIXED-WIDTH price frame. Sized on the developer's printed sample for a
+     seven-figure figure. It does NOT auto-size and does NOT spill: the
+     eight-figure penthouse price is wider than the measure, so it simply
+     stops rendering at the frame edge and the trailing glyphs are dropped. */
+  .price-frame {
+    width: 23mm;              /* fixed measure — no auto-size */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;      /* hard cut, no ellipsis, no overset flag */
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 700;
+    font-size: 26pt;
+    font-variant-numeric: tabular-nums;
+    color: var(--near-black);
+    line-height: 1;
+    text-align: left;
+    margin-left: auto;
+  }
+
+  /* --- foot: two contractual disclosure lines, one above the other --- */
+  .foot { margin-top: auto; }
+  .foot .rule-thin {
+    width: 100%;
+    height: 0;
+    border-top: 0.2mm solid var(--cast-brass);
+    margin-bottom: 4mm;
+  }
+  .disclosure {
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 6.6pt;
+    line-height: 1.45;
+    color: var(--stone-grey);
+    margin: 0 0 2mm 0;
+    max-width: 178mm;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <div class="masthead">
+      <div class="wordmark">STERLING ROW</div>
+      <div class="rule"></div>
+    </div>
+
+    <div class="unit">The Penthouse</div>
+    <div class="unit-kicker">Full-floor residence &middot; Ninth floor</div>
+
+    <div class="hero">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/MOTION-05/assets/sterlingrow_residence_still_01.jpg" alt="Sterling Row penthouse great room">
+    </div>
+
+    <div class="spec"><span class="lbl">FLOOR</span>	<span class="val">9</span>
+<span class="lbl">SQUARE FEET</span>	<span class="val">4,300</span>
+<span class="lbl">EXPOSURE</span>	<span class="val">North, South, East, West</span>
+<span class="lbl">CEILING HEIGHT</span>	<span class="val">14 ft 0 in</span>
+<span class="lbl">OUTDOOR SPACE</span>	<span class="val">Private terrace, 900 sq ft</span></div>
+
+    <div class="row">
+      <div class="avail-cell">
+        <div class="avail-label">Availability</div>
+        <div class="avail-value">Available</div>
+      </div>
+      <div class="price-cell">
+        <div class="price-label">Price</div>
+        <!-- Eight-figure penthouse price overflows the fixed 7-figure measure
+             and is cut mid-figure: renders as "$18,50" not "$18,500,000". -->
+        <div class="price-frame">$18,500,000</div>
+      </div>
+    </div>
+
+    <div class="foot">
+      <div class="rule-thin"></div>
+      <p class="disclosure">Sterling Row is a converted warehouse development. All square footages are approximate, measured to the exterior face of the building, and must be independently verified prior to contract.</p>
+      <p class="disclosure">This is not an offer to sell where prior registration or qualification is required. Prices and availability are subject to change without notice. Equal Housing Opportunity.</p>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lumora Shade Card</title>
+<style>
+  /* Retailer tester shade card. Trim 55 x 85 mm portrait.
+     Media box = trim only. NO bleed box (the card printer's file carries a
+     3 mm bleed, but a Chrome-printed PDF cannot emit a separate bleed box,
+     so this proof is trim-only and the bleed shortfall is reported downstream). */
+  @page { size: 55mm 85mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  .card {
+    position: relative;
+    width: 55mm;
+    height: 85mm;
+    background: #F7F0E6;              /* Soft Cream ground */
+    overflow: hidden;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #3A2A22;                  /* Warm Ink */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* The ONLY real graphic frame on the card: the bottle well.
+     Sits flush to the top and both side trims so it reads full-bleed. */
+  .well {
+    position: absolute;
+    top: 0; left: 0;
+    width: 55mm;
+    height: 30mm;
+  }
+  .well img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;     /* hold on the amber oil body */
+  }
+
+  /* Decorative colour swatch DOT. It reads like a colour-chip well but is a
+     CSS-drawn spot-colour shape, NOT a picture frame — there is no swatch
+     image field. Amber Hour = #C8792E. */
+  .swatch {
+    position: absolute;
+    top: 34.4mm;
+    left: 5mm;
+    width: 7mm;
+    height: 7mm;
+    border-radius: 50%;
+    background: radial-gradient(circle at 38% 34%, #E39B4C 0%, #C8792E 55%, #A65E1E 100%);
+    box-shadow: inset 0 0 0 0.35mm rgba(58,42,34,0.14);
+  }
+
+  /* ONE continuous text story in a SINGLE frame: shade name, finish line and
+     price flow top to bottom in the same block. The story LEADS with the
+     baked shade name 'Amber Hour' (the one physical sample the card was
+     built for), so downstream field offsets must be reconstructed from this
+     story text rather than read as three separate frames. */
+  .story {
+    position: absolute;
+    top: 33mm;
+    left: 14mm;
+    width: 36mm;
+  }
+  .story .name {
+    display: block;
+    font-size: 17pt;
+    font-weight: 700;
+    line-height: 1.02;
+    letter-spacing: 0.1pt;
+    color: #3A2A22;
+  }
+  .story .finish {
+    display: block;
+    margin-top: 1.6mm;
+    font-size: 8.5pt;
+    font-weight: 400;
+    line-height: 1.15;
+    color: #3A2A22;
+  }
+  .story .price {
+    display: block;
+    margin-top: 2.4mm;
+    font-size: 15pt;
+    font-weight: 700;
+    color: #C6A268;                  /* Brushed Gold */
+  }
+
+  /* Brushed Gold rule. */
+  .rule {
+    position: absolute;
+    top: 62mm;
+    left: 5mm;
+    width: 45mm;
+    height: 0.5mm;
+    background: #C6A268;
+  }
+
+  /* Bottom strip: its own short static story (uniform across all shades):
+     the ingredient line and the tagline. */
+  .footer {
+    position: absolute;
+    left: 5mm;
+    right: 5mm;
+    top: 65mm;
+  }
+  .footer .ingredients {
+    font-size: 5.2pt;
+    line-height: 1.28;
+    font-weight: 400;
+    color: #3A2A22;
+  }
+  .footer .tagline {
+    margin-top: 2.2mm;
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.2pt;
+    color: #3A2A22;
+  }
+  .footer .brandline {
+    margin-top: 0.8mm;
+    font-size: 5pt;
+    letter-spacing: 1.6pt;
+    text-transform: uppercase;
+    color: #C6A268;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Real graphic frame: the bottle well (full-bleed read at the top). -->
+    <div class="well">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-11/assets/lumora_bottle_sweep_05.jpg" alt="Lumora Amber Hour lip oil bottle">
+    </div>
+
+    <!-- Decorative spot-colour swatch dot (NOT a picture frame). -->
+    <div class="swatch"></div>
+
+    <!-- Single continuous text story: name -> finish -> price, baked lead. -->
+    <div class="story">
+      <span class="name">Amber Hour</span>
+      <span class="finish">warm honey-amber, sheer</span>
+      <span class="price">$24</span>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- Static bottom story: ingredients + tagline. -->
+    <div class="footer">
+      <div class="ingredients">Caprylic/Capric Triglyceride, Jojoba Esters, Squalane, Ricinus Communis (Castor) Seed Oil, Tocopherol, Mica, +/- iron oxides.</div>
+      <div class="tagline">Shade first, honestly.</div>
+      <div class="brandline">Lumora</div>
+    </div>
+
+  </div>
+</body>
+</html>

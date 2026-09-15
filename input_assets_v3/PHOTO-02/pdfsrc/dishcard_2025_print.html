@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>dishcard_2025_print</title>
+<style>
+  /* Media box = trim, no bleed. 105 x 148 mm portrait (A6). */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* House palette */
+  /* House Cream #F4ECDD ground / Bread Crust #7A4A24 dish name /
+     Ink #33302B body / Burnt Butter #B8823A hairline rule */
+
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    background: #F4ECDD;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* GRAPHIC FRAME: one linked placed photograph, full width, ~78mm tall, top of card */
+  .photo {
+    width: 105mm;
+    height: 78mm;
+    flex: none;
+    overflow: hidden;
+    background: #E7E3DB; /* Pass Marble, in case the frame ever shows through */
+  }
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Text lives inside the 3mm safety margin */
+  .body {
+    flex: 1 1 auto;
+    padding: 6mm 7mm 7mm 7mm;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* TEXT FRAME A — ONE continuous story: name + description + allergen */
+  .frameA { }
+  .frameA .name {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 22pt;
+    line-height: 1.05;
+    color: #7A4A24;            /* Bread Crust */
+  }
+  .frameA .desc {
+    margin: 2.2mm 0 0 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    line-height: 1.28;
+    color: #33302B;            /* Ink */
+  }
+  .frameA .allergen {
+    margin: 1.8mm 0 0 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8.5pt;
+    line-height: 1.2;
+    color: #33302B;            /* Ink */
+  }
+
+  .spacer { flex: 1 1 auto; }
+
+  /* Hairline rule between Frame A and Frame B */
+  .rule {
+    height: 0.3mm;
+    background: #B8823A;        /* Burnt Butter */
+    margin: 0 0 3.5mm 0;
+  }
+
+  /* TEXT FRAME B — SEPARATE story: provenance + price */
+  .frameB { }
+  .frameB .provenance {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: italic;
+    font-size: 8.5pt;
+    line-height: 1.2;
+    color: #33302B;            /* Ink */
+  }
+  .frameB .price {
+    margin: 2.4mm 0 0 0;
+    text-align: right;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13pt;
+    line-height: 1;
+    color: #33302B;            /* Ink */
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <!-- GRAPHIC FRAME: real placed image (mandatory graphic frame for convert_pdf_to_indd) -->
+    <div class="photo">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-02/assets/service_shot_03.jpg" alt="Braised dish on the marble pass">
+    </div>
+
+    <div class="body">
+      <!-- TEXT FRAME A: one story, three runs (DISH_NAME, DESCRIPTION, ALLERGENS).
+           2025 card values, retired dish — deliberately NOT a current spring dish. -->
+      <div class="frameA">
+        <p class="name">Braised Lamb Shoulder</p>
+        <p class="desc">Slow lamb, white beans, salsa verde, good bread.</p>
+        <p class="allergen">Gluten, dairy, celery.</p>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="rule"></div>
+
+      <!-- TEXT FRAME B: a SEPARATE story, two runs (PROVENANCE, PRICE). -->
+      <div class="frameB">
+        <p class="provenance">Lamb from Sweetgrass Farm, Little Compton.</p>
+        <p class="price">22</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Marisol Cove rate card - Cove View King</title>
+<style>
+  /* A6 portrait 105 x 148 mm. Media box = trim. No bleed. */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    overflow: hidden;
+    background: #E7DBC8;              /* Bluff Sand ground */
+    color: #2C2621;                  /* Warm Ink */
+    font-family: Helvetica, Arial, sans-serif; /* humanist sans, embedded subset */
+  }
+
+  /* Mandatory placed image: real graphic frame, the room this card sells. */
+  .photo {
+    display: block;
+    width: 105mm;
+    height: 56mm;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  /* The whole card face is ONE continuous text story in ONE text block:
+     room name, sleeps, the two rate lines, the includes paragraph and the
+     contact footer are not six addressable field frames, they are a single
+     flow. (Faithful reverse-engineering trap: convert_pdf_to_indd collapses
+     the six apparent blocks to one text frame.) */
+  .story {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 56mm;
+    padding: 8mm 9mm 7mm 9mm;
+    line-height: 1.34;
+  }
+
+  .roomname {
+    font-family: Georgia, 'Times New Roman', serif; /* quiet high-contrast display serif */
+    font-weight: 400;
+    font-size: 25pt;
+    letter-spacing: 0.3pt;
+    color: #2C2621;                  /* Warm Ink */
+  }
+  .sleeps {
+    font-size: 9.5pt;
+    letter-spacing: 0.4pt;
+    color: #465448;                  /* Cypress */
+  }
+  .rate {
+    font-size: 11pt;
+    color: #6E8894;                  /* Cove Grey Blue */
+  }
+  .includes-label {
+    font-size: 8.5pt;
+    letter-spacing: 1.2pt;
+    text-transform: uppercase;
+    color: #465448;                  /* Cypress */
+  }
+  .includes {
+    font-size: 9pt;
+    color: #2C2621;                  /* Warm Ink body */
+  }
+  .keyline {
+    display: inline-block;
+    width: 100%;
+    border-top: 0.4mm solid #C39A82; /* Dusk Clay thin keyline */
+  }
+
+  /* Decorative hairline wave rule above the footer, echoing the mark.
+     It is a grouped vector path drawn inline, NOT a picture well: no
+     graphic frame comes from it. */
+  .wave { display: block; width: 40mm; height: 3.4mm; }
+  .wave path { fill: none; stroke: #6E8894; stroke-width: 1; }
+
+  .contact {
+    font-size: 7.5pt;
+    letter-spacing: 0.3pt;
+    color: #465448;                  /* Cypress */
+  }
+  .contact .brand { color: #2C2621; }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- picture area: real placed photograph of the room this card is for -->
+    <img class="photo"
+         src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-13/assets/marisol_cove_view_king.jpg"
+         alt="Cove View King room, Marisol Cove">
+
+    <!-- ONE text block: all six apparent blocks are a single continuous story -->
+    <div class="story">
+      <span class="roomname">Cove View King</span><br>
+      <span class="sleeps">Sleeps 2</span><br>
+      <br>
+      <span class="rate">Autumn shoulder &mdash; $520 per night</span><br>
+      <span class="rate">Winter &mdash; $470 per night &mdash; one-night minimum</span><br>
+      <br>
+      <span class="includes-label">Includes</span><br>
+      <span class="includes">Breakfast for two; cove view; welcome carafe.</span><br>
+      <br>
+      <span class="keyline"></span><br>
+      <svg class="wave" viewBox="0 0 300 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,12 Q15,2 30,12 T60,12 T90,12 T120,12 T150,12 T180,12 T210,12 T240,12 T270,12 T300,12"/></svg>
+      <span class="contact"><span class="brand">Marisol Cove</span> &nbsp;&middot;&nbsp; 707 555 0148 &nbsp;&middot;&nbsp; stay@marisolcove.example &nbsp;&middot;&nbsp; marisolcove.example</span>
+    </div>
+
+  </div>
+</body>
+</html>

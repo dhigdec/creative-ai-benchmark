@@ -1,0 +1,80 @@
+{
+ "task_id": "VECTOR-04",
+ "brand": "Meridian and Ash",
+ "notes": "A hand-painted window mark on glass (compound lockup, street reflection across the right third), three bag illustrations of which one is screened at press and one crosses the gusset fold, last season's shelf-card PDF set as one continuous flow, and a six-origin data file with two double-length rows and one wholesale price.",
+ "assets": [
+  {
+   "filename": "meridian_window_mark.jpg",
+   "type": "image",
+   "role": "logo_text",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4160, 3120],
+   "prompt": "Handheld photograph taken from the sidewalk of a specialty-coffee shop window, the house mark HAND-PAINTED directly on the glass in two inks. The mark is a compound lockup: a shaded serif wordmark 'MERIDIAN & ASH' arched over a filled roundel, and inside the roundel a single ash leaf sits within a FINE HAIRLINE RING. Painted in roast brown (#3E2A20) and ash green (#5B6B54) with visible brush texture and slight paint imperfection. Across the RIGHT THIRD of the window the street and building opposite REFLECT in the glass at nearly the same value as the darker brown ink, so that side of the mark is partly lost in reflection. The dim cafe interior is faintly visible behind the glass, daylight outside, a real off-angle street snapshot, not a studio shot.",
+   "defect_engineered": "compound lockup painted on glass (naming the window/glass returns the pane; a single compound selection returns the arched wordmark but drops the ring + leaf; a one-call knockout on the enclosed ring returns a solid disc); street reflection across the right third sits at the darker ink's value"
+  },
+  {
+   "filename": "meridian_bag_moth.jpg",
+   "type": "image",
+   "role": "logo_text",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [5472, 3648],
+   "prompt": "Overhead flat-lay photograph of a kraft-brown coffee bag on a warm wooden surface. Printed on the front, flat and centred, is a single illustration of a MOTH with spread wings, drawn as clean bold linework and printed in SOLID roast-brown ink (one solid flat colour, crisp continuous edges, no dot pattern). The bag is lying flat and square with the illustration fully on the flat front panel (not crossing any fold). Soft even daylight, subtle kraft paper texture, a coffee scoop just visible at the frame edge. Warm, hand-made specialty-coffee feel.",
+   "defect_engineered": "clean SOLID-ink illustration on the flat panel (the well-behaved control against which the screened and folded frames are judged)"
+  },
+  {
+   "filename": "meridian_bag_ridgeline.jpg",
+   "type": "image",
+   "role": "logo_text",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [5472, 3648],
+   "prompt": "Overhead flat-lay photograph of a kraft-brown coffee bag on a warm wooden surface. Printed on the flat front panel is an illustration of a mountain RIDGE LINE / layered hills, printed as a HALFTONE SCREEN at press: the fill is built from fine printed dots rather than solid ink, so from a normal viewing distance it reads as a flat brick-red tone but on close inspection it is clearly a dot screen (visible rosette / stipple in the mid-tones). Bold, otherwise simple linework. The illustration is fully on the flat front panel, bag lying square. Soft even daylight, kraft texture. Warm specialty-coffee feel. CRITICAL: absolutely no real brand names, logos, wordmarks, trademarks or trade dress anywhere in frame; specifically NO 'RIDGELINE COFFEE CO.' or any 'COFFEE CO.' wordmark, NO 'SMALL BATCH' / 'SPECIALTY COFFEE' tagline, and NO weight/volume copy such as '12 OZ' or '340 G'. The kraft bag is plain and unbranded and carries ONLY the single halftone-screened ridge-line illustration and nothing else — no other printed text, roundel, wordmark or price; if any branding at all appears it may ONLY be the fictional brand 'Meridian and Ash'. No famous-brand look-alikes (no Katz's-style deli paper, no Marshall-style amp livery, etc.) and no burned-in real person names or captions. Match the unbranded treatment of the moth and pour-over frames exactly.",
+   "defect_engineered": "printed as a HALFTONE SCREEN — reads as flat tone at preview scale but traces into thousands of dot contours instead of a drawing"
+  },
+  {
+   "filename": "meridian_bag_pourover.jpg",
+   "type": "image",
+   "role": "logo_text",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [5472, 3648],
+   "prompt": "Overhead flat-lay photograph of a kraft-brown coffee bag with a side GUSSET, on a warm wooden surface. Printed in SOLID ash-green ink is an illustration of a POUR-OVER CONE with a rising steam curl. The bag is photographed so the illustration WRAPS ACROSS the side gusset fold: part of the cone sits on the flat front panel and part bends around the gusset crease, so a portion of the geometry is on a plane turned away from the camera and looks bent/foreshortened and will NOT flatten when the frame is straightened. Solid ink, crisp edges. Soft even daylight, visible fold shadow along the gusset, kraft texture.",
+   "defect_engineered": "illustration crosses the bag's gusset fold, so part of its geometry is bent off-plane and does not straighten with the frame"
+  },
+  {
+   "filename": "meridian_shelfcard_2025.pdf",
+   "type": "pdf",
+   "role": "data",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1024",
+   "target_px": null,
+   "prompt": "",
+   "content": "LAYOUT DESCRIPTION (for the renderer/author of this press PDF)\n\nProduct: counter shelf card that sits in a fixed acrylic holder in front of each origin. Trim 105 x 148 mm (A6) portrait, one card per origin. This is the file that actually went to press last season. No bleed set. Trim CANNOT change (the holders are cut for it).\n\nAppearance: Warm Cream (#F3E7D3) ground, Roast Brown (#3E2A20) text, a small Meridian & Ash roundel top-left.\n\nIMPORTANT STRUCTURE: the origin name, the roast line, the tasting notes (two printed lines) and the price were ALL set as ONE CONTINUOUS THREADED TEXT FLOW (a single story), NOT four separate labelled frames. A conversion therefore exposes one story, not four tidy blocks.\n\nFIELD CONTENT in the story, in order:\n  ORIGIN\n  ROAST\n  TASTING NOTES\n  PRICE\n\nExample values printed last season:\n  ORIGIN Ethiopia Guji | ROAST Light | TASTING NOTES jasmine / bergamot / white peach | PRICE 19",
+   "defect_engineered": "all copy set as ONE continuous flow (converted frames won't be the four blocks the printed card shows; a lossy story readout drops one run while keeping its line break, so offsets past it fall short and validate clean)"
+  },
+  {
+   "filename": "meridian_origins.csv",
+   "type": "csv",
+   "role": "data",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1024",
+   "target_px": null,
+   "prompt": "",
+   "content": "origin,farm,process,roast,tasting_notes,price\nEthiopia Guji,Dancho Washing Station,Washed,Light,jasmine / bergamot / white peach,19\nColombia Huila,Finca Alto Sereno,Washed,Medium,red apple / cane sugar / cocoa,18\nGuatemala Huehuetenango,Finca La Cima Verde,Washed,Medium,milk chocolate / orange / toffee — long syrupy finish with a hint of baking spice,18\nKenya Nyeri,Ngaru Factory,Washed,Light-Medium,blackcurrant / tomato / brown sugar,21\nSumatra Aceh,Ceria Gayo Cooperative,Wet-hulled,Dark,cedar / dark chocolate / pipe tobacco — heavy bodied and earthy with a lingering savoury depth,17\nBrazil Cerrado,Fazenda Vento Sul,Natural,Medium-Dark,peanut / milk chocolate / dried fig,9.50\n",
+   "defect_engineered": "rows 3 (Guatemala) and 5 (Sumatra) carry a second tasting line so they run ~twice as long as their neighbours; row 6 (Brazil) price 9.50 is the wholesale-per-pound figure, not the counter price, and no column header distinguishes it"
+  },
+  {
+   "filename": "meridian_sheet_spec.txt",
+   "type": "txt",
+   "role": "data",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1024",
+   "target_px": null,
+   "prompt": "",
+   "content": "MERIDIAN AND ASH — STICKER PRINTER SPEC\n(what our printer sent when we asked what they need)\n\nSHEET\n  Gang sheet size: 305 x 457 mm (12 x 18 in), white gloss vinyl, solvent print.\n  Safe margin from sheet edge: 10 mm. No artwork and no cut inside this margin.\n  Minimum gutter between adjacent cut contours: 6 mm.\n\nCUT CONTOUR — STANDING REQUIREMENT\n  Supply the kiss-cut contour as ITS OWN separable object: one closed path per sticker on a dedicated cut layer named 'CutContour'. Do NOT draw the cut line into the picture. Our last supplier baked it into the artwork and the press operator ended up redrawing it by hand — we are not doing that again.\n  Contour offset: 2.5 mm outward from the artwork edge.\n  Corners: minimum 3 mm radius so the blade can follow it.\n  Interior negative space: resolve deliberately (a kiss-cut does not weed interior islands unless you say so).\n\nARTWORK\n  Single stickers reproduce at 55 mm on the long edge on the tent table. Keep fine interior negative space OPEN at 55 mm.\n\nTRANSPARENT PROOFS\n  Also supply each sticker as a transparent PNG at press scale for our RIP preview: genuine alpha, no white rectangle behind it.\n\nSIZES / PRICING (reference)\n  Singles $3, four-pack $9.",
+   "defect_engineered": "none (clean reference: true sheet size, gutter, safe margin, the separable-cut-layer requirement, offset and the transparent-proof ask)"
+  }
+ ]
+}

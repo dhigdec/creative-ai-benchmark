@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vitale Labs — The Balance Brief episode card (press proof)</title>
+<style>
+  /* Media box = trim. 127 x 178 mm portrait (5x7 in). NO bleed. */
+  @page { size: 127mm 178mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+
+  .card {
+    position: relative;
+    width: 127mm;
+    height: 178mm;
+    overflow: hidden;
+    background: #23282B;               /* Lab Ink ground beneath the photo */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+  }
+
+  /* THE ONE REAL PICTURE WELL: full-bleed per-episode portrait photograph.
+     Genuine rectangular graphic frame — a real placed <img>, bindable per record. */
+  .portrait {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 127mm;
+    height: 178mm;
+    object-fit: cover;
+    object-position: 50% 26%;          /* subject sits high in frame */
+    display: block;
+  }
+
+  /* Soft dark scrim on the photo so the lower-left copy reads. Lab Ink #23282B. */
+  .scrim {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 108mm;
+    background: linear-gradient(to bottom,
+      rgba(35,40,43,0) 0%,
+      rgba(35,40,43,0.28) 30%,
+      rgba(35,40,43,0.72) 62%,
+      rgba(35,40,43,0.93) 100%);
+  }
+
+  /* Top-right episode-number device: Soft Amber #D9A24E dot with the number
+     reversed out. A DECORATIVE PAINTED DEVICE drawn as inline SVG — NOT a field,
+     NOT an <img>, NOT a picture well. */
+  .epi-dot {
+    position: absolute;
+    top: 11mm;
+    right: 11mm;
+    width: 17mm;
+    height: 17mm;
+  }
+
+  /* THE SINGLE CONTINUOUS TEXT STORY. Title + presenter + detail + claim are ONE
+     text frame flowing top to bottom with hard line breaks between them — NOT four
+     addressable frames. Kept as one block; lines separated by <br>. */
+  .story {
+    position: absolute;
+    left: 12mm;
+    bottom: 14mm;
+    width: 101mm;
+    color: #F6F3EC;                    /* Off White default ink */
+  }
+
+  /* EPISODE TITLE — warm humanist display serif on the scrim. FIXED MEASURE:
+     a fixed title area that does NOT spill or auto-size. A title longer than
+     last season's simply stops rendering at the trim edge (overflow clipped),
+     with no overset flag. */
+  .story .title {
+    display: block;
+    width: 95mm;
+    height: 27mm;                      /* fixed height title area */
+    overflow: hidden;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-weight: 600;
+    font-size: 21pt;
+    line-height: 1.06;
+    letter-spacing: 0.1pt;
+    color: #F6F3EC;                    /* Off White */
+    margin: 0 0 2.4mm 0;
+  }
+
+  .story .presenter {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-weight: 500;
+    font-size: 9.4pt;
+    letter-spacing: 0.2pt;
+    color: #E7E0D4;                    /* Warm Neutral */
+  }
+
+  /* DETAIL line: small caps sans — air date + short link. */
+  .story .detail {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-weight: 500;
+    font-size: 7.6pt;
+    font-variant: small-caps;
+    letter-spacing: 0.9pt;
+    color: #E7E0D4;                    /* Warm Neutral */
+  }
+  .story .detail .link { color: #B5765A; }   /* Clay accent on the link */
+
+  /* Sage rule — a thin drawn rule giving the cleared claim room. */
+  .sage-rule {
+    display: block;
+    width: 20mm;
+    height: 0.5mm;
+    background: #7E8F6E;               /* Sage */
+    margin: 3.2mm 0 3.4mm 0;
+  }
+
+  /* CLEARED CLAIM LINE — one sentence in the humanist sans, given room. */
+  .story .claim {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 10.4pt;
+    line-height: 1.34;
+    color: #F6F3EC;                    /* Off White */
+  }
+
+  /* Small brand footline, quiet. */
+  .brandline {
+    position: absolute;
+    left: 12mm;
+    bottom: 8mm;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 6.4pt;
+    letter-spacing: 1.4pt;
+    text-transform: uppercase;
+    color: #7E8F6E;                    /* Sage */
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <!-- One real rectangular image frame: the per-episode portrait (episode 1 cover). -->
+    <img class="portrait" src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/MOTION-16/assets/balance_still_02.jpg" alt="">
+
+    <div class="scrim"></div>
+
+    <!-- Decorative Soft Amber episode-number dot: inline SVG, not a picture well. -->
+    <svg class="epi-dot" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="50" cy="50" r="50" fill="#D9A24E"></circle>
+      <text x="50" y="50" text-anchor="middle" dominant-baseline="central"
+            font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="600"
+            fill="#23282B">01</text>
+    </svg>
+
+    <!-- SINGLE continuous text story: title / presenter / detail / claim in ONE frame. -->
+    <div class="story">
+      <span class="title">What Clinically Studied Means</span>
+      <span class="presenter">Dr. Nadia Reuter, Vitale Labs</span><br>
+      <span class="detail">Air date 21 September 2025&nbsp;&nbsp;·&nbsp;&nbsp;<span class="link">vitalelabs.co/brief/01</span></span>
+      <span class="sage-rule"></span>
+      <span class="claim">A studied dose is the amount used in the research, not the amount that fits on a label.</span>
+    </div>
+
+    <div class="brandline">The Balance Brief</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Meridian and Ash — counter shelf card (2025)</title>
+<style>
+  /* Press artwork: A6 portrait, trim = media box, NO bleed (holders are cut for this trim). */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  :root{
+    --roast:#3E2A20;   /* Roast Brown */
+    --kraft:#C8A97E;   /* Kraft */
+    --ash:#5B6B54;     /* Ash Green */
+    --cream:#F3E7D3;   /* Warm Cream */
+    --brick:#A8442E;   /* Brick Red */
+    --ink:#201914;     /* Ink Black */
+  }
+
+  .card{
+    position:relative;
+    width:105mm; height:148mm;
+    box-sizing:border-box;
+    background:var(--cream);              /* printed Warm Cream ground, fills trim, no bleed */
+    color:var(--roast);
+    padding:9mm 9mm 8mm 9mm;
+    font-family:Georgia,"Times New Roman",Times,serif;
+    -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+  }
+
+  /* ---- Header: the Meridian & Ash roundel (inline vector, top-left) + wordmark ---- */
+  .head{
+    display:flex; align-items:center; gap:4.5mm;
+    height:20mm;
+  }
+  .roundel{ width:20mm; height:20mm; flex:0 0 auto; display:block; }
+  .lockup{ display:flex; flex-direction:column; justify-content:center; }
+  .wordmark{
+    font-size:12.5pt; letter-spacing:0.9pt; font-weight:700;
+    color:var(--roast); line-height:1.05;
+  }
+  .tagline{
+    font-size:6.6pt; letter-spacing:1.6pt; text-transform:uppercase;
+    color:var(--ash); margin-top:1.2mm; font-family:Georgia,"Times New Roman",serif;
+  }
+
+  .rule{ height:0.5pt; background:var(--roast); opacity:0.55; margin:3mm 0 4mm 0; }
+
+  /* ---- The single continuous story: ORIGIN / ROAST / TASTING NOTES / PRICE ----
+     All four fields set as ONE threaded text flow (one story), not four frames. */
+  .story{
+    color:var(--roast);
+    /* one flowing text block; runs separated only by soft breaks */
+    line-height:1.28;
+  }
+  .r-origin{
+    font-size:25pt; font-weight:700; letter-spacing:0.2pt; line-height:1.02;
+  }
+  .r-roast{
+    font-size:10pt; font-style:italic; color:var(--ash);
+    letter-spacing:0.3pt;
+  }
+  .r-notes{
+    font-size:11.5pt; font-style:italic; color:var(--roast);
+  }
+  .r-price{
+    font-size:16pt; font-weight:700; color:var(--brick); letter-spacing:0.4pt;
+  }
+  .story .gap-lg{ display:block; height:3.2mm; }
+  .story .gap-md{ display:block; height:2.4mm; }
+  .story .gap-sm{ display:block; height:2.0mm; }
+
+  /* ---- Picture area: origin product photo, real graphic frame ---- */
+  .plate{
+    position:absolute; left:9mm; right:9mm; bottom:8mm;
+    height:52mm;
+    border:0.6mm solid var(--roast);
+    background:var(--kraft);
+    overflow:hidden;
+  }
+  .plate img{
+    width:100%; height:100%;
+    object-fit:cover; object-position:center 42%;
+    display:block;
+  }
+  .plate .cap{
+    position:absolute; left:0; right:0; bottom:0;
+    background:var(--roast); color:var(--cream);
+    font-size:6.6pt; letter-spacing:1.4pt; text-transform:uppercase;
+    padding:1.6mm 3mm; font-family:Georgia,"Times New Roman",serif;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Roundel is authored as inline SVG vector (NOT a placed image) so it stays
+         editable/scalable through conversion: filled disc + fine hairline ring +
+         ash leaf, arched shaded serif wordmark, painted two-ink feel. -->
+    <div class="head">
+      <svg class="roundel" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Meridian and Ash roundel">
+        <defs>
+          <path id="arc" d="M 26 112 A 74 74 0 0 1 174 112" fill="none"/>
+        </defs>
+        <!-- filled roundel -->
+        <circle cx="100" cy="118" r="58" fill="#3E2A20"/>
+        <!-- fine hairline ring inside the roundel -->
+        <circle cx="100" cy="118" r="49" fill="none" stroke="#F3E7D3" stroke-width="1.6"/>
+        <!-- single ash leaf within the ring -->
+        <g fill="#5B6B54">
+          <path d="M100 86
+                   C 116 100, 122 120, 100 150
+                   C 78 120, 84 100, 100 86 Z"/>
+        </g>
+        <!-- leaf midrib -->
+        <path d="M100 92 L100 148" stroke="#F3E7D3" stroke-width="1.4" fill="none"/>
+        <path d="M100 108 L110 104 M100 120 L112 116 M100 108 L90 104 M100 120 L88 116"
+              stroke="#F3E7D3" stroke-width="1.0" fill="none" opacity="0.85"/>
+        <!-- shaded serif wordmark, arched over the roundel -->
+        <text font-family="Georgia, 'Times New Roman', serif" font-size="19" font-weight="700"
+              letter-spacing="0.7" fill="#3E2A20">
+          <textPath href="#arc" startOffset="50%" text-anchor="middle">MERIDIAN &amp; ASH</textPath>
+        </text>
+      </svg>
+
+      <div class="lockup">
+        <div class="wordmark">MERIDIAN&nbsp;&amp;&nbsp;ASH</div>
+        <div class="tagline">Roasted in the machine shop</div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- ONE continuous threaded story (single frame): origin, roast, tasting notes, price.
+         Values are last season's press copy for this holder. -->
+    <div class="story">
+      <span class="r-origin">Ethiopia Guji</span><span class="gap-lg"></span><span
+      class="r-roast">Light roast &middot; Washed</span><span class="gap-md"></span><span
+      class="r-notes">jasmine / bergamot / white peach</span><span class="gap-lg"></span><span
+      class="r-price">$19</span>
+    </div>
+
+    <!-- Picture area: real graphic frame holding the origin product photograph. -->
+    <div class="plate">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/VECTOR-04/assets/meridian_bag_moth.jpg" alt="Meridian and Ash coffee bag">
+      <div class="cap">Single origin &middot; roasted in Portland</div>
+    </div>
+
+  </div>
+</body>
+</html>

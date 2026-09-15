@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nordheim Atelier — FW26 Line Card</title>
+<style>
+  /* Media box = trim. A5 portrait 148 x 210 mm. No bleed box. */
+  @page { size: 148mm 210mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+
+  .card {
+    width: 148mm;
+    height: 210mm;
+    background: #EDEBE6;              /* Paper ground */
+    color: #111112;                  /* Ink */
+    padding: 9mm;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;                /* fixed trim; nothing spills past media box */
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Small running caption — a set caption, not the recovered wordmark lockup. */
+  .runhead {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6E7075;                  /* Cool Grey secondary */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4mm;
+  }
+
+  /* TOP TWO-THIRDS: the look photograph, a full-width rectangle to the page
+     margins. This is a real placed graphic (a genuine picture frame). */
+  .photoframe {
+    width: 100%;
+    height: 126mm;
+    background: #6E7075;             /* neutral grey behind the placed image */
+    overflow: hidden;
+  }
+  .photoframe img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 22%;
+    display: block;
+  }
+
+  /* THE REVERSE-ENGINEERING TRAP:
+     The look name, fabric composition, colourway and both prices read as four
+     tidy blocks, but they are ONE continuous text story flowing top to bottom
+     in a SINGLE text frame — the "blocks" are only paragraph styles and line
+     breaks inside this one story, not four addressable frames. */
+  .story {
+    flex: 1 1 auto;
+    padding-top: 5mm;
+    display: block;                  /* one flowing frame, not a per-field grid */
+  }
+  .story .lookname {
+    font-family: Georgia, 'Times New Roman', serif;   /* high-contrast display serif */
+    font-weight: 700;
+    font-size: 27pt;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    color: #111112;
+    margin: 0;
+  }
+  /* Bone hairline divider between blocks. */
+  .story .rule {
+    border: 0;
+    border-top: 0.35mm solid #DAD5CC;
+    margin: 3.2mm 0;
+  }
+  .story .fabric {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    line-height: 1.32;
+    color: #111112;
+    margin: 0;
+  }
+  .story .colourway {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8.5pt;
+    line-height: 1.3;
+    color: #6E7075;                  /* Cool Grey caption */
+    margin: 2.6mm 0 0 0;
+  }
+  .story .colourway .val { color: #111112; }
+  .story .price {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    color: #111112;
+    margin: 3.4mm 0 0 0;
+    display: flex;
+    gap: 12mm;                       /* wholesale and retail set side by side */
+  }
+  .story .price .lab {
+    display: block;
+    font-size: 7pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6E7075;
+    margin-bottom: 0.8mm;
+  }
+  .story .price .amt {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 12pt;
+    color: #111112;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="runhead">
+      <span>Nordheim Atelier</span>
+      <span>Line Card &middot; Look 01</span>
+    </div>
+
+    <!-- Real placed image: the Look 1 Harbour Coat studio frame -->
+    <div class="photoframe">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-06/assets/nordheim_shoot_01.jpg" alt="Harbour Coat look photograph">
+    </div>
+
+    <!-- ONE continuous text story: name / fabric / colourway / prices -->
+    <div class="story">
+      <p class="lookname">Harbour Coat</p>
+      <hr class="rule">
+      <p class="fabric">100% undyed Gotland wool, milled in West Yorkshire.</p>
+      <p class="colourway">Colourway&nbsp;&mdash;&nbsp;<span class="val">Undyed</span></p>
+      <p class="price">
+        <span><span class="lab">Wholesale</span><span class="amt">USD 1,150</span></span>
+        <span><span class="lab">Retail</span><span class="amt">USD 2,400</span></span>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

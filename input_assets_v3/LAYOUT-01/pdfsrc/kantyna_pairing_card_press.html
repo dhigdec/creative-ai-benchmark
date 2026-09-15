@@ -1,0 +1,121 @@
+<meta charset="utf-8">
+<title>Kantyna Nova pairing card</title>
+<style>
+  /* Trim = 127 x 89 mm landscape. Media box equals trim: NO bleed box present
+     (0 mm bleed), exactly as the printer's existing press file is set. */
+  @page { size: 127mm 89mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+
+  /* Font roles per the press spec:
+       guest name  -> transitional display serif
+       course/wine -> humanist text face (wine italic)
+       allergen    -> humanist, small caps                                */
+  .serif { font-family: Georgia, 'Times New Roman', 'Hoefler Text', serif; }
+  .human { font-family: 'Optima', 'Gill Sans', 'Helvetica Neue', Arial, sans-serif; }
+
+  .card {
+    position: relative;
+    width: 127mm;
+    height: 89mm;
+    background: #14110F;                 /* Cellar Black ground + picture surround */
+    overflow: hidden;
+  }
+
+  /* PICTURE WELL — a real rectangular graphic frame, left half of the card
+     (~63.5 x 89 mm), running to the left trim edge. One real image is placed
+     here; downstream this is the frame one dish photo binds into per guest. */
+  .well {
+    position: absolute;
+    left: 0; top: 0;
+    width: 63.5mm; height: 89mm;
+    background: #14110F;
+    overflow: hidden;
+  }
+  .well img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 50% 46%;
+    display: block;
+  }
+
+  /* RIGHT COLUMN (the printed piece is picture on the left, text on the right) */
+  .col {
+    position: absolute;
+    left: 63.5mm; top: 0;
+    width: 63.5mm; height: 89mm;
+    padding: 9mm 7mm 8mm 8mm;
+  }
+
+  /* THE CONTINUOUS TEXT STORY — the reverse-engineering trap.
+     GUEST NAME, COURSE and ALLERGEN are ONE continuous text story in a SINGLE
+     text frame flowing top to bottom down the right column. They are NOT three
+     separately addressable field frames, so the frame granularity a conversion
+     exposes is far coarser than the four tidy blocks the printed card implies. */
+  .story {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .story .name {
+    display: block;
+    color: #E9E2D4;                      /* Warm Bone */
+    font-size: 25pt;
+    line-height: 1.02;
+    letter-spacing: 0.2pt;
+    padding-bottom: 2.4mm;
+    border-bottom: 0.35mm solid #A6875A; /* Aged Brass hairline under the name */
+  }
+  .story .course {
+    display: block;
+    color: #E9E2D4;                      /* Warm Bone */
+    font-size: 10.5pt;
+    line-height: 1.28;
+    margin-top: 3.2mm;
+    max-width: 46mm;
+  }
+  .story .allergen {
+    display: block;
+    margin-top: auto;                    /* quiet bottom-right strip */
+    color: #7C7468;                      /* Ash Stone */
+    font-size: 7.5pt;
+    font-variant: small-caps;
+    letter-spacing: 1.4pt;
+  }
+
+  /* WINE DESIGNATION — the exception. It sits in its OWN separate text frame,
+     a FIXED width sized exactly around the printer's short sample string
+     'Muscadet 2021'. It does not grow, it does not push the following line
+     down, and it does not spill anywhere visible: a longer designation
+     (producer + appellation + vintage) simply stops rendering at the right
+     frame edge, mid word, on that record alone. The short sample value and the
+     fixed measure are kept exactly as the printer set them. */
+  .wine {
+    position: absolute;
+    left: 8mm;                           /* aligned to the story text column */
+    top: 32mm;                           /* under the course, above the allergen */
+    width: 28mm;                         /* fixed measure ~ width of 'Muscadet 2021' */
+    height: 4.8mm;                       /* single fixed line; never reflows or grows */
+    color: #A6875A;                      /* Aged Brass, italic */
+    font-style: italic;
+    font-size: 9.5pt;
+    line-height: 4.8mm;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+</style>
+
+<div class="card">
+  <div class="well">
+    <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-01/assets/kantyna_plate_07.jpg" alt="Seared scallop, cauliflower, brown butter">
+  </div>
+
+  <div class="col">
+    <div class="story human">
+      <span class="name serif">Marta</span>
+      <span class="course">Seared scallop, cauliflower, brown butter</span>
+      <span class="allergen">Shellfish</span>
+    </div>
+    <div class="wine human">Muscadet 2021</div>
+  </div>
+</div>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Maison Serault - Enclosure Card</title>
+<style>
+  /* Single enclosure card, 100 x 70 mm LANDSCAPE.
+     Media box == trim, 0 mm bleed: page box equals the card, no bleed box. */
+  @page { size: 100mm 70mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #EFE9DC;   /* Card Cream  - ground */
+    --ink:    #1B2A2E;   /* Serault Ink - name, reference, price */
+    --brass:  #B08D4C;   /* Warm Brass  - foil monogram */
+    --stone:  #C9BEA8;   /* Soft Stone  - hairline rule */
+  }
+
+  .card {
+    position: relative;
+    width: 100mm;
+    height: 70mm;
+    background: var(--cream);
+    overflow: hidden;
+    /* faithful printer's proof, no bleed introduced */
+  }
+
+  /* --- Head monogram: the card printer's own crude redrawn tracing,
+         held as a GROUP OF VECTOR PATHS (inline SVG), NOT a picture frame
+         and NOT the recovered master. It must be replaced downstream,
+         not reused, and nothing binds here. --- */
+  .monogram {
+    position: absolute;
+    top: 4.5mm;
+    left: 41mm;          /* centred: (100 - 18) / 2 */
+    width: 18mm;         /* about 18 mm across, per spec */
+    height: 16mm;
+  }
+  .monogram svg { display: block; width: 100%; height: 100%; }
+
+  /* --- The ONE continuous text story: piece name, a forced line break,
+         reference + metal, a forced line break, price. A single frame,
+         reachable only by position, NOT three addressable blocks. --- */
+  .story {
+    position: absolute;
+    left: 9mm;
+    top: 25mm;
+    width: 45mm;
+    color: var(--ink);
+  }
+  .story .name {
+    font-family: Georgia, 'Times New Roman', 'Times', serif;
+    font-size: 17pt;
+    font-weight: 400;
+    letter-spacing: 0.2pt;
+    line-height: 1.05;
+  }
+  .story .refmetal {
+    font-family: Arial, 'Helvetica Neue', 'Helvetica', sans-serif;
+    font-size: 7pt;
+    font-weight: 400;
+    letter-spacing: 1.1pt;
+    text-transform: uppercase;
+  }
+  .story .price {
+    font-family: Georgia, 'Times New Roman', 'Times', serif;
+    font-size: 12.5pt;
+    font-weight: 400;
+    letter-spacing: 0.3pt;
+  }
+  /* forced line breaks inside the one story */
+  .story .gap-a { display: block; height: 3.2mm; }
+  .story .gap-b { display: block; height: 3.6mm; }
+
+  /* --- The one genuine rectangular PICTURE / GRAPHIC FRAME:
+         the small square piece window on the right, where the
+         per-piece photograph binds. This is a real placed image. --- */
+  .window {
+    position: absolute;
+    right: 9mm;
+    top: 22.5mm;
+    width: 30mm;
+    height: 30mm;
+    border: 0.2mm solid var(--stone);
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .window img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Soft Stone hairline rule above the care strip */
+  .rule {
+    position: absolute;
+    left: 9mm;
+    right: 9mm;
+    bottom: 12.5mm;
+    height: 0.2mm;
+    background: var(--stone);
+  }
+
+  /* --- The house CARE LINE is its own separate short story. --- */
+  .care {
+    position: absolute;
+    left: 9mm;
+    right: 9mm;
+    bottom: 3.2mm;
+    font-family: Arial, 'Helvetica Neue', 'Helvetica', sans-serif;
+    font-size: 5pt;
+    line-height: 1.32;
+    letter-spacing: 0.1pt;
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Head monogram: decorative vector path group (printer's crude tracing), NOT a picture well, NOT the recovered master -->
+    <div class="monogram" aria-hidden="true">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <g fill="#B08D4C">
+          <!-- crude serif M -->
+          <path d="M8,80 L8,22 L20,22 L34,58 L48,22 L60,22 L60,80 L50,80 L50,37 L38,68 L30,68 L18,37 L18,80 Z"/>
+        </g>
+        <!-- crude serif S, interlocked with the M (shared enclosed counters) -->
+        <path d="M86,38 C86,25 63,24 60,38 C57,52 84,52 84,66 C84,82 61,82 56,68"
+              fill="none" stroke="#B08D4C" stroke-width="11"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- ONE continuous text story: name / reference + metal / price.
+         Carries BAKED stale text from the card it was set for -
+         piece 'Serault Signet', old reference 'SER-R-09', price '$1,650' -
+         none of which matches the current collection list. -->
+    <div class="story">
+      <span class="name">Serault Signet</span>
+      <span class="gap-a"></span>
+      <span class="refmetal">SER-R-09&nbsp;&nbsp;&middot;&nbsp;&nbsp;18ct Yellow Gold</span>
+      <span class="gap-b"></span>
+      <span class="price">$1,650</span>
+    </div>
+
+    <!-- The single real picture window: per-piece photograph binds here -->
+    <div class="window">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/VECTOR-13/assets/serault_card_monogram.jpg" alt="piece">
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- Separate short story: the house care line -->
+    <div class="care">Your piece has been made and finished by hand. Keep it dry, store it apart from other pieces, and bring it back to us to be cleaned and checked. Gold and brass warm with wear; this is intended.</div>
+
+  </div>
+</body>
+</html>

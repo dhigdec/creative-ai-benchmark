@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ferncroft Bench Tag</title>
+<style>
+  /* Trim = media box, 148 x 210 mm (A5) portrait, NO bleed. */
+  @page { size: 148mm 210mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+
+  .card {
+    position: relative;
+    width: 148mm;
+    height: 210mm;
+    background: #EFE9DC;            /* Bench Cream ground */
+    overflow: hidden;
+    font-family: Georgia, 'Times New Roman', serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* The whole tag's copy is ONE continuous threaded story (single text
+     frame): common name + botanical + care + pot + price, addressed only by
+     ordered offset arithmetic. There is no placed photo to split it, so it
+     stays a single flow. The .gap is the blank run the panel sits over. */
+  .story {
+    position: absolute;
+    top: 20mm;
+    left: 14mm;
+    right: 14mm;
+    text-align: center;
+    line-height: 1.12;
+  }
+  .story .common {
+    font-size: 28pt;
+    letter-spacing: 0.2pt;
+    color: #4A4E48;                 /* Slate Grey */
+  }
+  .story .botanical {
+    font-style: italic;
+    font-size: 17pt;
+    color: #3E5A34;                 /* Fern Green */
+  }
+  .story .gap { display: block; height: 110mm; }
+  .story .care {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    line-height: 1.3;
+    color: #6B4E36;                 /* Bark Brown */
+  }
+  .story .pot {
+    display: block;
+    margin-top: 3mm;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+    letter-spacing: 0.4pt;
+    color: #4A4E48;                 /* Slate Grey */
+  }
+  .story .price {
+    display: block;
+    margin-top: 1.5mm;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13pt;                /* small on purpose: restraint is the house rule */
+    color: #4A4E48;                 /* Slate Grey */
+  }
+
+  /* What READS as the photograph panel is NOT a placed image and NOT a
+     graphic frame: it is a flat tinted vector rectangle (a filled path in
+     Sage under a thin keyline). There is deliberately NO image well anywhere
+     on this format, so a per-variety photograph has nowhere to bind. */
+  .panel {
+    position: absolute;
+    top: 55mm;
+    left: 14mm;
+    width: 120mm;
+    height: 100mm;
+    background: #9AA988;            /* Sage flat tint */
+    border: 0.35mm solid #7C8A6C;  /* thin keyline */
+  }
+
+  /* Care icon row at the foot: grouped vector paths, not glyphs, not image. */
+  .icons {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 12mm;
+    text-align: center;
+  }
+  .icons svg { width: 66mm; height: 15mm; }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <div class="story">
+      <span class="common">Japanese Maple &lsquo;Bloodgood&rsquo;</span><br>
+      <span class="botanical">Acer palmatum</span>
+      <span class="gap"></span>
+      <span class="care">Dappled shade, shelter from wind. Slow and worth it.</span>
+      <span class="pot">7 gal</span>
+      <span class="price">$95</span>
+    </div>
+
+    <div class="panel"></div>
+
+    <div class="icons">
+      <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" fill="none"
+           stroke="#3E5A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Sun -->
+        <g>
+          <circle cx="20" cy="20" r="7" fill="#3E5A34" stroke="none"/>
+          <line x1="20" y1="4"  x2="20" y2="9"/>
+          <line x1="20" y1="31" x2="20" y2="36"/>
+          <line x1="4"  y1="20" x2="9"  y2="20"/>
+          <line x1="31" y1="20" x2="36" y2="20"/>
+          <line x1="8.7"  y1="8.7"  x2="12.2" y2="12.2"/>
+          <line x1="27.8" y1="27.8" x2="31.3" y2="31.3"/>
+          <line x1="31.3" y1="8.7"  x2="27.8" y2="12.2"/>
+          <line x1="12.2" y1="27.8" x2="8.7"  y2="31.3"/>
+        </g>
+        <!-- Water drop -->
+        <g>
+          <path d="M60 5 C60 5 71 19 71 26 A11 11 0 0 1 49 26 C49 19 60 5 60 5 Z"
+                fill="#3E5A34" stroke="none"/>
+        </g>
+        <!-- Hardiness bell -->
+        <g>
+          <path d="M100 6 C92 6 88 12 88 20 C88 26 86 29 84 31 L116 31 C114 29 112 26 112 20 C112 12 108 6 100 6 Z"
+                fill="#3E5A34" stroke="none"/>
+          <path d="M96 33.5 A4 4 0 0 0 104 33.5" fill="none" stroke="#3E5A34" stroke-width="2.4"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+</body>
+</html>

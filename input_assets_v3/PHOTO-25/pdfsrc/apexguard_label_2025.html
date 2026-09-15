@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Apexguard Box Label 2025</title>
+<style>
+  /* Press card: trim = media box, NO bleed. Exact trim 100 x 60 mm landscape. */
+  @page { size: 100mm 60mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* One card, exactly trim size, on the house dark ground. */
+  .card {
+    position: relative;
+    width: 100mm;
+    height: 60mm;
+    background: #101114;            /* House black */
+    color: #F2F1ED;                 /* Off white */
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    overflow: hidden;
+  }
+
+  /* LEFT: placed square PART PHOTOGRAPH on the house dark ground. */
+  .photo-frame {
+    position: absolute;
+    left: 5mm;
+    top: 5mm;
+    width: 50mm;
+    height: 50mm;                   /* square graphic frame */
+    background: #101114;
+    border: 0.3mm solid #3A3D42;    /* gunmetal keyline */
+    overflow: hidden;
+  }
+  .photo-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;              /* fill the square frame */
+    object-position: center;
+  }
+
+  /* RIGHT column: stacked type blocks. */
+  .stack {
+    position: absolute;
+    left: 60mm;
+    top: 6.5mm;
+    width: 35mm;                    /* right column measure */
+  }
+
+  /* FAMILY & SUB-BRAND line (tight modern grotesque caps). */
+  .family {
+    font-size: 6pt;
+    letter-spacing: 0.6pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #B7BCC2;                 /* Cool steel */
+    margin: 0 0 1.2mm 0;
+    line-height: 1.05;
+  }
+  .subbrand {
+    font-size: 21pt;
+    font-weight: 700;
+    letter-spacing: 1.4pt;
+    text-transform: uppercase;
+    color: #F2F1ED;                 /* Off white */
+    margin: 0;
+    line-height: 0.92;
+  }
+  /* Single signal-orange accent (decorative rule, drawn — not a picture). */
+  .accent {
+    width: 14mm;
+    height: 1.1mm;
+    background: #E4552B;            /* Signal accent */
+    margin: 1.8mm 0 0 0;
+  }
+
+  /* FITMENT caption sits OUTSIDE the fixed-measure frame. */
+  .fitment-label {
+    position: absolute;
+    left: 60mm;
+    top: 30mm;
+    font-size: 5pt;
+    letter-spacing: 0.7pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #E4552B;
+    margin: 0;
+  }
+
+  /* FITMENT block: FIXED-MEASURE frame. Set to a short sample string so it
+     LOOKS generous, but the measure is fixed and short — a longer merged
+     fitment record does not overset visibly, it simply stops rendering at the
+     frame edge (nowrap + clipped overflow, single line). This is the trap. */
+  .fitment-frame {
+    position: absolute;
+    left: 60mm;
+    top: 32.6mm;
+    width: 35mm;                    /* true fixed measure */
+    height: 4.6mm;                  /* single line */
+    overflow: hidden;               /* clips at the frame edge, no reflow */
+    white-space: nowrap;
+  }
+  .fitment-value {
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: #F2F1ED;
+    line-height: 1.0;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  /* ROLL WIDTH line and WARRANTY line (plain, legible on the shelf). */
+  .roll, .warranty {
+    position: absolute;
+    left: 60mm;
+    width: 35mm;
+    font-size: 8pt;
+    font-weight: 400;
+    color: #B7BCC2;                 /* Cool steel */
+    margin: 0;
+    line-height: 1.0;
+  }
+  .roll     { top: 41mm; }
+  .warranty { top: 46mm; }
+  .roll b, .warranty b {
+    color: #F2F1ED;
+    font-weight: 700;
+  }
+
+  /* SKU code — small, bottom of the right column (box-label reality). */
+  .sku {
+    position: absolute;
+    left: 60mm;
+    top: 52.5mm;
+    font-size: 6pt;
+    letter-spacing: 0.8pt;
+    font-weight: 700;
+    color: #3A3D42;                 /* Gunmetal, quiet */
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- LEFT: placed square part photograph (mandatory real graphic frame) -->
+    <div class="photo-frame">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-25/assets/apexguard_bench_01.jpg" alt="Mirror-cap applicator set">
+    </div>
+
+    <!-- RIGHT: FAMILY & SUB-BRAND line -->
+    <div class="stack">
+      <p class="family">Paint Protection Film</p>
+      <p class="subbrand">Vantage</p>
+      <div class="accent"></div>
+    </div>
+
+    <!-- FITMENT block — caption outside; value inside fixed-measure frame -->
+    <p class="fitment-label">Fitment</p>
+    <div class="fitment-frame">
+      <p class="fitment-value">Mirror caps pair</p>
+    </div>
+
+    <!-- ROLL WIDTH line -->
+    <p class="roll">Roll width <b>1520 mm</b></p>
+
+    <!-- WARRANTY line -->
+    <p class="warranty">Warranty <b>10 years</b></p>
+
+    <!-- SKU code -->
+    <div class="sku">V-PPF-107</div>
+
+  </div>
+</body>
+</html>

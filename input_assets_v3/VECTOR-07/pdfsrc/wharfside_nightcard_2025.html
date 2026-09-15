@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>wharfside_nightcard_2025</title>
+<!--
+  Faithful press-card source for wharfside_nightcard_2025.pdf
+  Screen shop's own A6 act card, LAST YEAR'S card carrying last year's opening act.
+  Trim 105 x 148 mm (A6 portrait). NO bleed, no crop marks: media box == trim.
+
+  STRUCTURAL TRAP (authored exactly, per layout spec + emergent checkpoint):
+   - The four visible blocks are ONE single continuous text flow inside one
+     column (.story, normal flow, no absolute-positioned separate boxes), so the
+     page converts to a single continuous story / one TextFrame.
+   - The portrait panel is a DRAWN filled + stroked rectangle (.portrait: a
+     background-filled, bordered div) NOT a placed <img>. There is deliberately
+     NO graphic / image frame anywhere in the document -> the card exposes zero
+     graphic frames on convert_pdf_to_indd, so nothing to bind a per-act portrait
+     to. This is the whole point of the shop card.
+   - STALE baked values: last year's opening act "The Fen Larks", "NINETEENTH
+     YEAR", Quay Stage / Friday / 7.00 pm. These are last year's real record and
+     must not survive a per-act merge.
+  Deep ink (#22282B) type on kraft-paper (#E4D6BC) ground, flat opaque screen ink.
+-->
+<style>
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  :root {
+    --ink:   #22282B;   /* Deep Ink   */
+    --kraft: #E4D6BC;   /* Kraft Paper ground */
+    --panel: #A79C86;   /* warm grey drawn portrait fill */
+  }
+
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .card {
+    box-sizing: border-box;
+    width: 105mm;
+    height: 148mm;
+    background: var(--kraft);
+    color: var(--ink);
+    /* generous margins */
+    padding: 11mm 12mm 10mm 12mm;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    overflow: hidden;
+  }
+
+  /* ONE continuous text story: all four blocks live in this single column,
+     in normal flow, so they read as one story / one text frame. */
+  .story {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Block 1 - festival line, small caps, tracked */
+  .festival {
+    font-size: 8.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: normal;
+    color: var(--ink);
+    margin: 0 0 4.5mm 0;
+    line-height: 1.2;
+  }
+
+  /* Block 2 - portrait panel: DRAWN warm-grey rectangle (fill + stroke),
+     NOT a placed image. Empty by design; the act supplies the photo. */
+  .portrait {
+    width: 60mm;
+    height: 70mm;
+    margin: 0 auto 2.4mm auto;
+    background: var(--panel);
+    border: 0.4mm solid var(--ink);
+  }
+  .caption {
+    font-size: 7pt;
+    font-style: italic;
+    color: var(--ink);
+    margin: 0 0 6mm 0;
+    line-height: 1.2;
+  }
+
+  /* Block 3 - act name, large display */
+  .actname {
+    font-size: 27pt;
+    font-weight: bold;
+    color: var(--ink);
+    margin: 0 0 3.5mm 0;
+    line-height: 1.05;
+  }
+
+  /* Block 4 - details, three lines */
+  .details {
+    font-size: 10.5pt;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="story">
+      <div class="festival">Wharfside Folk Festival &mdash; Nineteenth Year</div>
+      <div class="portrait"></div>
+      <div class="caption">photo: supplied by the act</div>
+      <div class="actname">The Fen Larks</div>
+      <div class="details">Stage: Quay Stage<br>Night: Friday<br>Set: 7.00 pm</div>
+    </div>
+  </div>
+</body>
+</html>

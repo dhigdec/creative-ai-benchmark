@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lumora Laboratories — Counter Card (C-15)</title>
+<!--
+  Lumora Laboratories approved counter-card press proof, single record.
+  Trim = media box = 105 x 148 mm (A6 portrait). NO bleed box (0 mm bleed).
+  Record shown: Lumora C-15 Brightening Serum (lumora_skus.csv row 1),
+  bottle bound from lumora_range_frame_01.jpg (the neutral grade-target frame).
+
+  STRUCTURAL FIDELITY (matches the chain's real file, so convert_pdf_to_indd
+  exposes what the spec expects):
+    * ONE genuine rectangular GRAPHIC FRAME  -> the portrait product well (<img>).
+    * ONE continuous TEXT STORY (.story)     -> PRODUCT_NAME, ACTIVE_CONCENTRATION,
+      INCI, CLAIM and PRICE all flow inside a single text frame, separated only by
+      paragraph spacing. They are NOT five addressable field frames.
+    * Decorative RULE  -> a vector stroke (CSS border), not a field, not a frame edge.
+    * Decorative TINT  -> the Mineral Mist panel is a filled rectangle sitting UNDER
+      the one story, not a frame that binds a field.
+  All fonts are real system faces; Chrome subsets and embeds them on print.
+-->
+<style>
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  :root {
+    --lab-ink:      #1C2530;  /* product name + price          */
+    --clean-white:  #F7F8F8;  /* ground                        */
+    --slate-grey:   #5B6670;  /* specification + brand line    */
+    --mineral-mist: #DCE2E4;  /* specification tint            */
+    --clinical-blue:#3E6E8E;  /* hairline rule                 */
+    --disp: 'Helvetica Neue', Helvetica, Arial, sans-serif;  /* neo-grotesque display */
+    --text: Arial, 'Helvetica Neue', Helvetica, sans-serif;  /* clear text face       */
+  }
+
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    background: var(--clean-white);
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Block 0 — the genuine product-image GRAPHIC FRAME (portrait well, top of card). */
+  .well {
+    position: absolute;
+    top: 9mm;
+    left: 31mm;
+    width: 43mm;
+    height: 54mm;
+    overflow: hidden;
+    background: var(--clean-white);
+  }
+  .well img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* fill the portrait well proportionally, cropping the landscape master */
+    object-position: 50% 50%;
+  }
+
+  /* Block A — brand line + decorative hairline rule (a vector stroke, not a field). */
+  .brandline {
+    position: absolute;
+    left: 9mm;
+    top: 68mm;
+    width: 87mm;
+    font-family: var(--disp);
+    font-size: 6.5pt;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    color: var(--slate-grey);
+    text-transform: uppercase;
+  }
+  .rule {
+    position: absolute;
+    left: 9mm;
+    top: 72.4mm;
+    width: 87mm;
+    height: 0;
+    border-top: 0.5pt solid var(--clinical-blue);
+  }
+
+  /* Block C tint — a decorative filled rectangle sitting UNDER the one story. */
+  .mist {
+    position: absolute;
+    left: 7mm;
+    top: 92.6mm;
+    width: 91mm;
+    height: 20mm;
+    background: var(--mineral-mist);
+    opacity: 0.55;
+    z-index: 0;
+  }
+
+  /* Blocks B–D — ONE continuous text story in ONE text frame. */
+  .story {
+    position: absolute;
+    left: 9mm;
+    top: 77mm;
+    width: 87mm;
+    z-index: 1;
+    font-family: var(--text);
+    color: var(--lab-ink);
+  }
+  .story p { margin: 0; }
+
+  .p-name {
+    font-family: var(--disp);
+    font-size: 15.5pt;
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: -0.012em;
+    color: var(--lab-ink);
+    max-width: 60mm;         /* forces the name to sit two lines deep */
+  }
+  .p-active {
+    margin-top: 6.2mm !important;
+    padding: 0 3mm;
+    font-family: var(--text);
+    font-size: 9pt;
+    font-weight: 700;
+    color: var(--slate-grey);
+  }
+  .p-inci {
+    margin-top: 1.6mm !important;
+    padding: 0 3mm;
+    font-family: var(--text);
+    font-size: 7pt;
+    font-weight: 400;
+    line-height: 1.34;
+    color: var(--slate-grey);
+  }
+  .p-claim {
+    margin-top: 6.4mm !important;
+    font-family: var(--text);
+    font-size: 8.5pt;
+    font-weight: 400;
+    line-height: 1.32;
+    color: var(--lab-ink);
+    max-width: 57mm;         /* leaves a clear right column for the price */
+  }
+  .price {
+    position: absolute;
+    right: 0;
+    top: 2.6mm;              /* set quietly to the right, dropped clear of the claim's first line */
+    font-family: var(--disp);
+    font-size: 12pt;
+    font-weight: 700;
+    color: var(--lab-ink);
+    text-align: right;
+    line-height: 1;
+  }
+  .price .size {
+    display: block;
+    font-family: var(--text);
+    font-size: 6.5pt;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--slate-grey);
+    margin-bottom: 1.4mm;
+  }
+  .p-claimwrap { position: relative; }
+
+  /* Foot — shelf code, the kind of quiet proof-slug a chain print file carries. */
+  .shelfcode {
+    position: absolute;
+    left: 9mm;
+    bottom: 7mm;
+    font-family: var(--text);
+    font-size: 6pt;
+    letter-spacing: 0.14em;
+    color: var(--slate-grey);
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Block 0: the one genuine graphic frame — product image well (portrait) -->
+    <div class="well">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-03/assets/lumora_range_frame_01.jpg"
+           alt="Lumora C-15 Brightening Serum bottle">
+    </div>
+
+    <!-- Block A: brand line above a decorative hairline rule (vector stroke, not a field) -->
+    <div class="brandline">Lumora Laboratories</div>
+    <div class="rule"></div>
+
+    <!-- Block C tint: decorative filled rectangle, sits UNDER the one story -->
+    <div class="mist"></div>
+
+    <!-- Blocks B, C, D: ONE continuous text story in ONE text frame.
+         PRODUCT_NAME / ACTIVE_CONCENTRATION / INCI / CLAIM / PRICE all flow here,
+         separated only by paragraph spacing — not five addressable frames. -->
+    <div class="story">
+      <p class="p-name">Lumora C-15 Brightening Serum</p>
+      <p class="p-active">L-Ascorbic Acid 15%</p>
+      <p class="p-inci">Aqua, Ascorbic Acid, Propylene Glycol, Ferulic Acid, Tocopherol, Sodium Hyaluronate, Panthenol</p>
+      <p class="p-claim p-claimwrap">
+        Supports visible brightness and a more even-looking tone.
+        <span class="price"><span class="size">30 ml</span>$58</span>
+      </p>
+    </div>
+
+    <div class="shelfcode">LMR-CS15</div>
+
+  </div>
+</body>
+</html>

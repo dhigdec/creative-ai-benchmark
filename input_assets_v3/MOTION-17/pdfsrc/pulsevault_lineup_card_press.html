@@ -1,0 +1,146 @@
+<!-- Pulsevault monthly lineup card - flat press artwork, single record.
+     Trim 105 x 148 mm PORTRAIT (A6 handbill). Media box = trim, NO bleed box (0 mm bleed).
+     Faithful to LAYOUT SPEC in asset_plan.json for pulsevault_lineup_card_press.pdf.
+     Structural traps baked:
+       - ACT NAME / SLOT / SET TIME are ONE continuous text story in a single frame
+         flowing down the left (NOT three addressable frames); the BILLING pill is its
+         own separate short story adjacent to it (so a mapping readout drops the billing
+         run while keeping its line break).
+       - The act-name sits in a FIXED measure that does not spill (overflow clipped at
+         trim), so an over-long value stops rendering with no overset flag.
+       - The full-bleed photo IS a real placed graphic frame at a fixed 105x148 PORTRAIT
+         proportion (landscape source cropped to fill), unlike the landscape cover crop.
+       - Media box equals trim, no bleed box: press-ready-with-bleed cannot be honoured.
+     Single real record from pulsevault_lineup.csv row 1:
+       Slot 1 / VELOUR RATKING / 10.30 / opens / pulsevault_floor_still_04.jpg -->
+<meta charset="utf-8">
+<title>Pulsevault Lineup Card</title>
+<style>
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    overflow: hidden;
+    background: #0C0C0F;            /* Blackout ground */
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    color: #F2ECE0;                /* warm off-white ink */
+  }
+
+  /* Full-bleed floor still: a real placed graphic frame, fixed 105x148 PORTRAIT.
+     The 6000x4000 landscape source is cropped to the portrait card proportion. */
+  .photo {
+    position: absolute;
+    top: 0; left: 0;
+    width: 105mm;
+    height: 148mm;
+    object-fit: cover;
+    object-position: 50% 40%;
+    filter: brightness(0.5) contrast(1.02) saturate(1.08);
+  }
+  /* Screen the photo dark behind everything so the type carries on Blackout. */
+  .scrim {
+    position: absolute;
+    top: 0; left: 0;
+    width: 105mm;
+    height: 148mm;
+    background:
+      linear-gradient(180deg, rgba(12,12,15,0.72) 0%, rgba(12,12,15,0.20) 34%, rgba(12,12,15,0.55) 66%, rgba(12,12,15,0.94) 100%);
+  }
+
+  /* Masthead: painted-look PULSEVAULT wordmark, baked as flat artwork (raster stand-in,
+     not the recovered vector). Rendered as heavy condensed display type. */
+  .masthead {
+    position: absolute;
+    top: 8mm;
+    left: 0;
+    width: 105mm;
+    text-align: center;
+    font-family: 'Arial Narrow', 'Helvetica Neue Condensed', 'Arial Narrow Bold', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 26pt;
+    letter-spacing: 0.14em;
+    text-indent: 0.14em;
+    color: #F2ECE0;
+    text-shadow: 0 0.4mm 0.9mm rgba(0,0,0,0.65);
+  }
+
+  /* One continuous text story flowing down the left: ACT NAME, then SLOT, then SET TIME
+     in a SINGLE frame. Fixed measure + clipped: a longer value stops rendering at trim. */
+  .story {
+    position: absolute;
+    left: 9mm;
+    top: 86mm;
+    width: 82mm;         /* fixed measure - does not spill */
+    height: 50mm;        /* fixed frame - no overset, clips at trim */
+    overflow: hidden;
+  }
+  .actname {
+    display: block;
+    font-family: 'Arial Narrow', 'Helvetica Neue Condensed', 'Arial Narrow Bold', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 34pt;
+    line-height: 0.92;
+    letter-spacing: 0.005em;
+    color: #F2ECE0;
+    text-transform: uppercase;
+    text-shadow: 0 0.4mm 1mm rgba(0,0,0,0.7);
+    white-space: nowrap;   /* over-long name runs off the fixed measure at trim */
+  }
+  .slot {
+    display: block;
+    margin-top: 3.5mm;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 20pt;
+    line-height: 1;
+    color: #17C6D6;        /* Laser Cyan slot number */
+  }
+  .settime {
+    display: block;
+    margin-top: 1.6mm;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 400;
+    font-size: 12.5pt;
+    letter-spacing: 0.02em;
+    color: #4A4A50;        /* Concrete set-time line */
+  }
+
+  /* BILLING pill: its own short story, reversed out of a Stage Magenta chip.
+     A decorative typographic chip - NOT a picture well / not an <img>. */
+  .billing {
+    position: absolute;
+    left: 9mm;
+    top: 78mm;
+    display: inline-block;
+    padding: 1.1mm 3.4mm 1.3mm;
+    background: #E0247C;   /* Stage Magenta */
+    color: #F7EEF4;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 9.5pt;
+    letter-spacing: 0.18em;
+    text-transform: lowercase;
+    border-radius: 2.4mm;
+  }
+</style>
+
+<div class="card">
+  <img class="photo"
+       src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/MOTION-17/assets/pulsevault_floor_still_04.jpg"
+       alt="Pulsevault floor still, Saturday">
+  <div class="scrim"></div>
+
+  <div class="masthead">PULSEVAULT</div>
+
+  <!-- own short story -->
+  <div class="billing">opens</div>
+
+  <!-- one continuous story: act name / slot / set time in a single fixed frame -->
+  <div class="story">
+    <span class="actname">VELOUR RATKING</span><span class="slot">1</span><span class="settime">10.30</span>
+  </div>
+</div>

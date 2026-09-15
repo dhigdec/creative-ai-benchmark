@@ -1,0 +1,211 @@
+{
+ "task_id": "VECTOR-08",
+ "brand": "Coble & Vane",
+ "notes": "A full-colour engraved house mark whose weight is cross-hatch tone and a two-strand rope ring, fused onto warm laid paper; the printer's two-up die sheet PDF (front+back, continuous back story); a 12-row cask book whose photo column mis-binds three re-racked casks and transposes two adjacent date pairs; three phone packaging shots under two lights with an oxblood-on-black-glass seal; 12 cask bottle photos; and two clean text assets.",
+ "assets": [
+  {
+   "filename": "house_mark_colour.png",
+   "type": "image",
+   "role": "logo_text",
+   "model": "gemini-3-pro-image",
+   "size": "1024x1024",
+   "target_px": [3600, 3600],
+   "prompt": "A full-colour engraved / etched-style illustrated brand mark, square, flattened to a single image with NO transparency. Subject: a beached flat-bottomed fishing boat (a coble) resting on sand, viewed side-on, beneath and inside a circular rope ring. Reproduce these traps exactly: (1) the hull, the furled sail and the water are shaded entirely with fine ENGRAVED CROSS-HATCH lines so the tonal weight of the mark comes from density of hatching rather than from flat fills — there are no solid flat areas of ink anywhere; (2) the circular ROPE RING is drawn as TWO interleaved twisted rope strands printed in two very closely related muted inks, deep sea iron (#1F2A2E) and cold slate (#6E7B80), so the two strands are hard to tell apart; the words COBLE & VANE are set in small engraved serif caps following the top of the rope ring and the founding line 'EST. 2020 · NORTH SEA COAST' along the bottom of the ring. (3) The entire illustration is composited over a warm laid-paper texture — visible horizontal laid lines and a warm cream tone (#D9CFB8) — and then FLATTENED, so the paper warmth sits inside every light area of the artwork and there is no clean white anywhere. Muted, weathered, restrained coastal engraving. IP-safe fictional mark only.",
+   "defect_engineered": "weight carried by cross-hatch tone not line (one-ink reduction is a decision about what stops existing, not a trace); rope ring of two near-identical inks; warm laid-paper ground fused into the artwork so a lightness-based separation takes the paper with the ink"
+  },
+  {
+   "filename": "cask_labels_2025_PRINT.pdf",
+   "type": "pdf",
+   "role": "data",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": null,
+   "prompt": "",
+   "content": "LAYOUT SPEC for cask_labels_2025_PRINT.pdf — render as a genuine press PDF from a full layout engine with embedded font subsets (NOT a thin hand-authored PDF). One page, 210 x 148 mm landscape (A5 landscape). NO bleed, no crop marks.\n\nCRITICAL STRUCTURE (planted trap, author exactly): this page is NOT one label, it is the die SHEET — the FRONT label and the BACK label sit side by side on the one sheet because that is how the cutter is set. So one cask = one sheet carrying two dissimilar labels.\n\nLEFT HALF = FRONT LABEL (about 95 x 140 mm), richer structure:\n  - the house mark placed as an IMAGE frame (a small drawn placeholder rectangle standing in for house_mark_colour), top-centre\n  - a small drawn rectangle standing in for a cask/bottle PHOTOGRAPH, lower-centre\n  - between and around them, addressable text lines: EXPRESSION NAME (large), CASK No., STRENGTH (% ABV), OUTTURN (bottles), BOTTLED (date)\n  - author these front elements so the conversion yields separable text frames plus two graphic/image frames on this half.\n\nRIGHT HALF = BACK LABEL (about 95 x 140 mm): the ENTIRE back copy is ONE continuous story in ONE text frame, no separate frames — a running block reading: distilled-at line, FILLING DATE line, BOTTLING DATE line, VOLUME line, a two-sentence tasting note, and a small legal/ABV line. Set it as a single flowing paragraph sequence so the round-trip exposes it as one story.\n\nField labels the merge targets: EXPRESSION_NAME, CASK_NO, STRENGTH, OUTTURN, BOTTLED (front); DISTILLED_AT, FILLING_DATE, BOTTLING_DATE, VOLUME, TASTING_NOTE (back). Colours: deep-sea-iron (#1F2A2E) type on bleached-rope (#D9CFB8) ground, an oxblood (#5A1F1B) rule. Sample values are last season's, e.g. EXPRESSION 'Beached Coble', CASK No. 188, 58.2% ABV, OUTTURN 214, BOTTLED 03/2025. Restrained upper-craft typography, generous air.",
+   "defect_engineered": "the 'label' is really a two-up die sheet (front + back, front carries mark + photo image frames, back is a single continuous story) so front and back need two different mapping strategies; embedded font subsets make it a real press PDF"
+  },
+  {
+   "filename": "cask_release_2026.csv",
+   "type": "csv",
+   "role": "data",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": null,
+   "prompt": "",
+   "content": "cask_no,expression_name,strength,outturn,volume,filling_date,bottling_date,distilled_at,photo\n214,Cold Light Gin,43.0,320,700ml,2025-02-10,2026-01-14,Coble & Vane Still House,cask_photo_214.jpg\n217,Salt & Iron Navy Gin,57.2,240,700ml,2025-03-02,2026-01-20,Coble & Vane Still House,cask_photo_198.jpg\n221,Beached Coble,58.6,198,700ml,2016-06-11,2026-02-03,Coble & Vane Still House,cask_photo_221.jpg\n225,North Sea Cask,60.3,176,700ml,2015-09-22,2026-02-09,Coble & Vane Still House,cask_photo_225.jpg\n229,Coastal Botanical Gin,45.0,300,700ml,2025-04-18,2026-02-15,Coble & Vane Still House,cask_photo_229.jpg\n233,Iron & Brine,59.1,182,700ml,2026-02-21,2017-03-30,Coble & Vane Still House,cask_photo_233.jpg\n238,Winter Light,61.4,168,700ml,2026-02-27,2016-11-08,Coble & Vane Still House,cask_photo_238.jpg\n241,Harbour Reserve,57.8,205,700ml,2017-01-14,2026-03-05,Coble & Vane Still House,cask_photo_241.jpg\n246,Cold Slate Gin,44.0,312,700ml,2025-05-06,2026-03-11,Coble & Vane Still House,cask_photo_231.jpg\n250,Storm Petrel,62.0,159,700ml,2014-08-19,2026-03-17,Coble & Vane Still House,cask_photo_250.jpg\n254,Rope & Tar,58.9,190,700ml,2016-04-27,2026-03-23,Coble & Vane Still House,cask_photo_254.jpg\n259,First Light Gin,46.0,298,700ml,2025-06-02,2026-03-29,Coble & Vane Still House,cask_photo_240.jpg\n",
+   "defect_engineered": "12 rows; three re-racked casks (217, 246, 259) keep OLD photo filenames (cask_photo_198 / _231 / _240) that resolve but depict the wrong spirit (a dark malt against a gin row and vice versa), catchable only by reading strength against the picture; two adjacent rows (233, 238) have filling_date and bottling_date transposed (bottling before filling), settleable by age vs strength, not by validation"
+  },
+  {
+   "filename": "cask_photo_214.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [3000, 4000],
+   "prompt": "Product photograph of a single dark-glass 700ml spirit bottle of CLEAR gin (water-clear spirit visible through the glass) standing on a weathered oak cask head on a distillery bench, soft daylight, minimal unbranded label turned slightly away, restrained coastal mood, sharp.",
+   "defect_engineered": "none (correct: clear gin matches Cold Light Gin 43%)"
+  },
+  {
+   "filename": "cask_photo_198.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [3000, 4000],
+   "prompt": "Product photograph of a single dark-glass 700ml bottle filled with a DEEP AMBER single-malt whisky (clearly dark cask-strength spirit) on an oak cask head, distillery bench, soft daylight, minimal unbranded label, sharp.",
+   "defect_engineered": "wrong-cask binding: stale old-number file bound to row 217 (a 57.2% Navy GIN) but shows a dark amber malt"
+  },
+  {
+   "filename": "cask_photo_221.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [3000, 4000],
+   "prompt": "Product photograph of a single dark-glass 700ml bottle of amber single-malt whisky on an oak cask head, distillery bench, soft daylight, minimal unbranded label, sharp.",
+   "defect_engineered": "none (correct: amber malt matches Beached Coble 58.6%)"
+  },
+  {
+   "filename": "cask_photo_225.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [3000, 4000],
+   "prompt": "Product photograph of a single dark-glass 700ml bottle of deep amber single-malt whisky on an oak cask head, distillery bench, soft window light, minimal unbranded label, sharp.",
+   "defect_engineered": "none (correct: amber malt matches North Sea Cask 60.3%)"
+  },
+  {
+   "filename": "cask_photo_229.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [3000, 4000],
+   "prompt": "Product photograph of a single dark-glass 700ml bottle of CLEAR botanical gin (water-clear spirit visible) on an oak cask head, distillery bench, soft daylight, minimal unbranded label, sharp.",
+   "defect_engineered": "none (correct: clear gin matches Coastal Botanical Gin 45%)"
+  },
+  {
+   "filename": "cask_photo_233.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [3000, 4000],
+   "prompt": "Product photograph of a single dark-glass 700ml bottle of amber single-malt whisky on an oak cask head, distillery bench, soft daylight, minimal unbranded label, sharp.",
+   "defect_engineered": "none (correct spirit; this row also carries the transposed date pair)"
+  },
+  {
+   "filename": "cask_photo_238.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [3000, 4000],
+   "prompt": "Product photograph of a single dark-glass 700ml bottle of deep amber single-malt whisky on an oak cask head, distillery bench, soft daylight, minimal unbranded label, sharp.",
+   "defect_engineered": "none (correct spirit; this row also carries the transposed date pair)"
+  },
+  {
+   "filename": "cask_photo_241.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [3000, 4000],
+   "prompt": "Product photograph of a single dark-glass 700ml bottle of amber single-malt whisky on an oak cask head, distillery bench, soft daylight, minimal unbranded label, sharp.",
+   "defect_engineered": "none (correct: amber malt matches Harbour Reserve 57.8%)"
+  },
+  {
+   "filename": "cask_photo_231.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [3000, 4000],
+   "prompt": "Product photograph of a single dark-glass 700ml bottle of DEEP AMBER single-malt whisky (clearly dark cask-strength spirit) on an oak cask head, distillery bench, soft daylight, minimal unbranded label, sharp.",
+   "defect_engineered": "wrong-cask binding: stale old-number file bound to row 246 (a 44% Cold Slate GIN) but shows a dark amber malt"
+  },
+  {
+   "filename": "cask_photo_250.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [3000, 4000],
+   "prompt": "Product photograph of a single dark-glass 700ml bottle of amber single-malt whisky on an oak cask head, distillery bench, soft daylight, minimal unbranded label, sharp.",
+   "defect_engineered": "none (correct: amber malt matches Storm Petrel 62.0%)"
+  },
+  {
+   "filename": "cask_photo_254.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [3000, 4000],
+   "prompt": "Product photograph of a single dark-glass 700ml bottle of dark amber single-malt whisky on an oak cask head, distillery bench, soft daylight, minimal unbranded label, sharp.",
+   "defect_engineered": "none (correct: amber malt matches Rope & Tar 58.9%)"
+  },
+  {
+   "filename": "cask_photo_240.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [3000, 4000],
+   "prompt": "Product photograph of a single dark-glass 700ml bottle filled with a DEEP AMBER single-malt whisky (clearly dark cask-strength spirit) on an oak cask head, distillery bench, soft daylight, minimal unbranded label, sharp.",
+   "defect_engineered": "wrong-cask binding: stale old-number file bound to row 259 (a 46% First Light GIN) but shows a dark amber malt"
+  },
+  {
+   "filename": "cv_packaging_wax_seal.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4032, 3024],
+   "prompt": "A phone photograph, shot INDOORS under a warm tungsten work lamp (strong warm/orange colour cast), close on the neck of a NEAR-BLACK glass spirit bottle sealed with a deep OXBLOOD (#5A1F1B) wax seal dripping over the neck. Critical trap: the shadowed LOWER RIM of the oxblood wax and the dark glass beneath it sit at almost the same luminance, so the bottom edge of the wax blends into the black glass. Handheld, shallow depth of field, minor reflections, casual.",
+   "defect_engineered": "warm indoor illuminant (must be corrected to match the crate frame); oxblood-wax-on-near-black-glass luminance match so a subject knockout silently eats the lower rim of the seal"
+  },
+  {
+   "filename": "cv_packaging_crate_end.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4032, 3024],
+   "prompt": "A phone photograph shot OUTDOORS in flat neutral daylight (cool, even, no warm cast) of the end of a pale wooden shipping crate with a single deep-ink (#1F2A2E) stencilled mark and 'COBLE & VANE' stencil lettering on it, laid against a stone wall. Even exposure, sharp, one-ink stencil, weathered timber.",
+   "defect_engineered": "cool daylight illuminant that will not sit with the two warm indoor frames until each is corrected to one house neutral"
+  },
+  {
+   "filename": "cv_packaging_cap_top.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1024",
+   "target_px": [3024, 3024],
+   "prompt": "A phone photograph shot INDOORS under a warm tungsten work lamp (warm cast matching the wax frame) looking straight down on the top of a matte pewter-grey bottle CAP embossed with a single-ink coble mark, resting on a dark bench. Slight glare, handheld, shallow depth of field.",
+   "defect_engineered": "second warm indoor frame; together with the wax frame it must be pulled to the same neutral as the cool crate frame"
+  },
+  {
+   "filename": "supplier_emails.txt",
+   "type": "txt",
+   "role": "data",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": null,
+   "prompt": "",
+   "content": "Four forwarded supplier messages (pasted by the founders)\n\n--- 1. FROM: Aldous Wax & Seal Co. ---\nWe pour your neck seals from a single stamping die. We need the mark as ONE solid vector, black on transparent, no tints, no hairlines under 1mm, and nothing enclosed that has to stay open — our die floods any counter smaller than about 2mm. Last batch you sent a file with a fine rope outline and it filled solid on the seal. Send us the plate you actually want stamped.\n\n--- 2. FROM: Kerr Stencil Cutting ---\nStencils are cut on a plotter. One colour, and every shape must be a closed island the blade can lift — no open strokes, no shading, no cross-hatch. If it has more than a couple of thin bridges it falls apart on the crate. We need the simplest one-ink version you have.\n\n--- 3. FROM: Northgate Closures (caps) ---\nThe cap emboss is tooled from a single-depth relief, so give us one flat shape, high contrast, no gradient and no fine line. Roughly 14mm across on the cap top. If the hull goes to a black blob at that size tell us and we will simplify.\n\n--- 4. FROM: Redgate Print (labels) ---\nWe still hold your 2025 label file and can re-run it. Reminder it is set two-up on the cutter (front and back on one sheet) so whatever you change has to keep both. We never had the back copy as separate fields, it came to us as one block, so if you are re-flowing it be careful. No bleed on that die.\n",
+   "defect_engineered": "none (clean support asset: the four suppliers state the real one-ink / closed-island / min-line / no-gradient constraints that drive the variant architecture, plus Redgate's warning that the file is two-up and the back copy is one block)"
+  },
+  {
+   "filename": "house_words.txt",
+   "type": "txt",
+   "role": "data",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": null,
+   "prompt": "",
+   "content": "From Iris — how we talk about the work (no hex, no measurements, do not turn this into ad copy)\n\nSalt, iron, cold light. That is the whole feeling. Nothing shiny, nothing that shouts.\n\nOne ink doing the work, and plenty of air around it. The bottle should earn its place in a hand, not across a shop. If a version looks busy or clever it is wrong.\n\nThe wax is the colour of dried blood on the neck. The cap is cold grey. The crate is just the timber and one dark stamp. Keep it that quiet.\n\nWrite the supplier sheet like an instruction, not an advertisement. Say plainly what a version can and cannot do. And if something in our own list looks wrong to you, say so before you make it.\n",
+   "defect_engineered": "none (clean support asset: tone and colour intent with no hex or measurements, so the palette and restraint are the agent's to translate)"
+  }
+ ]
+}

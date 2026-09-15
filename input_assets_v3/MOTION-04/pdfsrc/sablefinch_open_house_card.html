@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sable &amp; Finch Open House Card</title>
+<style>
+  /* Trim = 178 x 127 mm landscape (7 x 5 in). Media box = trim, NO bleed box. */
+  @page { size: 178mm 127mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Real font stacks (single-quoted names so Chrome embeds proper subsets). */
+  :root{
+    --shell:#EFE9DE;   /* ground        */
+    --ink:#2B2724;     /* address, body */
+    --gold:#C9A24B;    /* price, rules  */
+    --slate:#3E5567;   /* town, facts   */
+    --mist:#8FA79E;    /* hairlines     */
+    --serif: Georgia, 'Times New Roman', 'Palatino Linotype', serif;
+    --sans: Arial, Helvetica, 'Helvetica Neue', sans-serif;
+  }
+
+  .card{
+    position: relative;
+    width: 178mm;
+    height: 127mm;
+    background: var(--shell);
+    overflow: hidden;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* --- THE ONE CONTINUOUS TEXT STORY -------------------------------------
+     Every printed "block" below (lockup, address, town, tagline, price,
+     facts, school, open house, agent, disclosure) is a line/paragraph break
+     inside THIS SINGLE frame. It is NOT eight addressable text frames.
+     The tagline line 'The North Shore, unhurried' is the small static run
+     that sits between TOWN and PRICE.                                     */
+  .story{
+    position: absolute;
+    left: 12mm;
+    top: 11mm;
+    width: 95mm;
+    height: 105mm;
+  }
+  .story .line{ display: block; }
+
+  .kicker{
+    font-family: var(--sans);
+    font-size: 7.5pt;
+    letter-spacing: 3.2px;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+  .lockup{
+    font-family: var(--serif);
+    font-size: 15pt;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-top: 1mm;
+  }
+  .finch{ vertical-align: -1px; margin-right: 1.6mm; }
+
+  .address{
+    font-family: var(--serif);
+    font-size: 23pt;
+    line-height: 1.06;
+    color: var(--ink);
+    margin-top: 9mm;
+  }
+  .town{
+    font-family: var(--sans);
+    font-size: 10.5pt;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-top: 2.4mm;
+  }
+  .tagline{                    /* the static run the readout drops */
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 11pt;
+    color: var(--mist);
+    margin-top: 2mm;
+  }
+
+  .price{
+    font-family: var(--serif);
+    font-size: 25pt;
+    color: var(--gold);
+    margin-top: 8mm;
+  }
+  .facts{
+    font-family: var(--sans);
+    font-size: 10pt;
+    letter-spacing: .4px;
+    color: var(--slate);
+    margin-top: 2.6mm;
+  }
+  .school{
+    font-family: var(--sans);
+    font-size: 10pt;
+    color: var(--ink);
+    margin-top: 1.6mm;
+  }
+
+  .openhouse{
+    font-family: var(--serif);
+    font-size: 11.5pt;
+    color: var(--ink);
+    margin-top: 8mm;
+  }
+  .agent{
+    font-family: var(--sans);
+    font-size: 9pt;
+    letter-spacing: .6px;
+    color: var(--slate);
+    margin-top: 1.8mm;
+  }
+  .disclosure{
+    font-family: var(--sans);
+    font-size: 6.4pt;
+    line-height: 1.35;
+    color: var(--mist);
+    margin-top: 6mm;
+    max-width: 92mm;
+  }
+
+  /* --- Decorative graphic rules (NOT text; Finch Gold + Sea Mist) ------- */
+  .rule-gold{
+    position: absolute;
+    left: 12mm;
+    width: 22mm;
+    height: 1.1mm;
+    background: var(--gold);
+  }
+  .rule-mist{
+    position: absolute;
+    left: 12mm;
+    width: 95mm;
+    height: 0.28mm;
+    background: var(--mist);
+  }
+  .r1{ top: 55mm; }     /* under address/town block */
+  .r2{ top: 90mm; }     /* under facts block        */
+
+  /* --- The ONE real rectangular graphic frame: the neighbourhood panel.
+     A licensed coastal-town streetscape binds into it cleanly.           */
+  .panel{
+    position: absolute;
+    right: 10mm;
+    top: 12mm;
+    width: 50mm;
+    height: 103mm;
+    border: 0.9mm solid var(--gold);
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #dcd6c9;
+  }
+  .panel img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .panel .cap{
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    font-family: var(--sans);
+    font-size: 6.2pt;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--shell);
+    background: rgba(43,39,36,0.62);
+    padding: 1.4mm 2mm;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- ONE continuous text story (single frame). Block gaps are just
+         paragraph breaks; there are no separate per-field frames. -->
+    <div class="story">
+      <span class="line kicker">Open House</span>
+      <span class="line lockup"><svg class="finch" width="16" height="14" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1 12.4 C4 12.1 6.6 11.2 8.4 9.4" stroke="#C9A24B" stroke-width="0.9" fill="none" stroke-linecap="round"/><path d="M9.2 3.1 C11.1 2.2 13 2.5 14.2 3.9 C13.1 4.2 12.4 4.7 12.1 5.6 C11.9 7 11 8.2 9.4 8.7 C8.2 9 7.1 8.6 6.6 7.7 C6.2 6.9 6.4 5.9 7.1 5.2 C7.9 4.4 8.7 3.7 9.2 3.1 Z" fill="#C9A24B"/><circle cx="10.6" cy="4.6" r="0.55" fill="#EFE9DE"/><path d="M6.7 7.5 L4.9 9.1" stroke="#C9A24B" stroke-width="0.8" fill="none" stroke-linecap="round"/></svg>Sable &amp; Finch</span>
+
+      <span class="line address">14 Gingerbread Hill Lane</span>
+      <span class="line town">Marblehead</span>
+      <span class="line tagline">The North Shore, unhurried</span>
+
+      <span class="line price">$1,225,000</span>
+      <span class="line facts">4 Beds&nbsp;&nbsp;&middot;&nbsp;&nbsp;2.5 Baths&nbsp;&nbsp;&middot;&nbsp;&nbsp;2,840 Sq Ft</span>
+      <span class="line school">Marblehead Public Schools</span>
+
+      <span class="line openhouse">Open Saturday, Sep&nbsp;19&nbsp;&middot;&nbsp;11:00&ndash;1:00</span>
+      <span class="line agent">Sable &amp; Finch Realty</span>
+      <span class="line disclosure">Sable &amp; Finch Realty. Figures and dimensions are approximate and not guaranteed; buyers should verify all information. Equal Housing Opportunity.</span>
+    </div>
+
+    <!-- decorative rules (graphic elements, not text) -->
+    <div class="rule-gold r1"></div>
+    <div class="rule-mist r2"></div>
+
+    <!-- the single real picture well: neighbourhood panel -->
+    <div class="panel">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/MOTION-04/assets/sablefinch_exterior_06.jpg" alt="Coastal-town streetscape, Marblehead">
+      <span class="cap">The Neighbourhood</span>
+    </div>
+
+  </div>
+</body>
+</html>

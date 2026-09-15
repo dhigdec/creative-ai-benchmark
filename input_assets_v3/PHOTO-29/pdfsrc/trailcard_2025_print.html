@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cape Marren Coast Alliance - Member Trail Card</title>
+<style>
+  /* A6 portrait press card: media box = trim, NO bleed (105 x 148 mm) */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  .card {
+    width: 105mm;
+    height: 148mm;
+    position: relative;
+    overflow: hidden;
+    background: #E7DDC9;            /* Wool Cream ground */
+    color: #2E3A3C;                /* Deep Harbour ink   */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Placed OBJECT photograph fills the top ~55% of the card */
+  .photo-well {
+    width: 105mm;
+    height: 82mm;                  /* ~55% of 148mm */
+    overflow: hidden;
+  }
+  .photo-well img {
+    width: 105mm;
+    height: 82mm;
+    object-fit: cover;
+    object-position: 50% 46%;
+    display: block;
+  }
+
+  /* Thin warm rule dividing photo from copy */
+  .rule {
+    height: 0.5mm;
+    background: #C8894B;           /* Warm October Sun */
+    margin: 0;
+  }
+
+  /* ONE continuous text story: member name, trail number, description,
+     opening months and contact all live inside a single text block,
+     set as inline runs separated by line breaks (not one frame per field). */
+  .story {
+    box-sizing: border-box;
+    padding: 6.5mm 9mm 0 9mm;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.28;
+  }
+  .story .member {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20pt;
+    font-weight: 400;
+    letter-spacing: 0.2pt;
+    color: #2E3A3C;
+  }
+  .story .trailno {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30pt;
+    font-weight: 700;
+    letter-spacing: 0.5pt;
+    color: #C8894B;               /* large trail NUMBER */
+  }
+  .story .trailno .lbl {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 2.4pt;
+    color: #5B5F5C;               /* Wet Stone */
+    vertical-align: 0.9ex;
+  }
+  .story .desc {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 11.5pt;
+    color: #2E3A3C;
+  }
+  .story .months {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10.5pt;
+    font-weight: 700;
+    letter-spacing: 0.3pt;
+    color: #2E3A3C;
+  }
+  .story .contact {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8.5pt;
+    letter-spacing: 0.4pt;
+    color: #5B5F5C;               /* Wet Stone */
+  }
+  /* vertical rhythm inside the single story via run spacing */
+  .gap-s { display: block; height: 2.2mm; }
+  .gap-m { display: block; height: 3.4mm; }
+
+  /* Alliance compass mark: FLATTENED into the card's background artwork,
+     drawn as inline vector ink on the wool-cream ground (NOT a placed graphic,
+     NO white boxing rectangle, real viewBox so it renders at size). */
+  .mark {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 6mm;
+    text-align: center;
+  }
+  .mark svg { width: 27mm; height: auto; display: inline-block; }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- MANDATORY placed image: the member's signature object photograph -->
+    <div class="photo-well">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-29/assets/cape_marren_object_books.jpg" alt="Coastal titles and driftwood work">
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- ONE continuous text story (single text frame). Values are last year's
+         (2025) card exactly as it went to press: Tidewrack Gallery, trail 7,
+         a summer 'May to September' schedule -- the stale run this year's
+         reconciliation must catch (the member has since closed). -->
+    <div class="story">Tidewrack Gallery<span class="gap-s"></span><span class="trailno"><span class="lbl">TRAIL No.</span>&nbsp;7</span><span class="gap-m"></span><span class="desc">Coastal prints and driftwood work.</span><span class="gap-m"></span><span class="months">May to September, weekends</span><span class="gap-s"></span><span class="contact">tidewrack@capemarren.example</span></div>
+
+    <!-- style hooks applied to the runs of the single story block above -->
+    <script type="application/note">
+      The story block is one continuous flow; the classes below are applied by
+      wrapping each run. Rendered inline so the copy is a single text story.
+    </script>
+
+    <div class="mark">
+      <svg viewBox="0 0 600 560" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#2E3A3C" stroke-width="4">
+          <circle cx="300" cy="236" r="128"/>
+          <circle cx="300" cy="236" r="98"/>
+        </g>
+        <g fill="#2E3A3C" stroke="none">
+          <path d="M300 118 L316 236 L300 354 L284 236 Z"/>
+          <path d="M182 236 L300 220 L418 236 L300 252 Z"/>
+        </g>
+        <g fill="none" stroke="#2E3A3C" stroke-width="3">
+          <path d="M216 152 L300 236 L384 320"/>
+          <path d="M384 152 L300 236 L216 320"/>
+        </g>
+        <text x="300" y="470" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="48" font-weight="400" letter-spacing="5" fill="#2E3A3C">CAPE MARREN</text>
+        <text x="300" y="512" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" font-weight="400" letter-spacing="7" fill="#5B5F5C">COAST ALLIANCE</text>
+      </svg>
+    </div>
+
+  </div>
+</body>
+</html>

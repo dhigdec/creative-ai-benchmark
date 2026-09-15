@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gable &amp; Grove Project Card</title>
+<style>
+  /* A6 portrait press card, trim 105 x 148 mm, NO bleed. Media box = trim. */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
+
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    background: #EDE9E1;          /* Bone stock */
+    color: #17140F;               /* Honest Black */
+    overflow: hidden;
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif; /* humanist sans */
+  }
+
+  /* Placed photograph well: NEAR-SQUARE, 89 x 84 mm, 8 mm margin left/right/top.
+     A wide after-crop bound to this near-square frame is centre-cropped and can
+     lose the finished feature at its left/right edges. */
+  .well {
+    position: absolute;
+    top: 8mm;
+    left: 8mm;
+    width: 89mm;
+    height: 84mm;
+    overflow: hidden;
+    background: #C9C3B8;          /* Stone Neutral fallback under the plate */
+  }
+  .well img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;           /* fills the near-square well -> centre-crop */
+    object-position: center;
+    display: block;
+  }
+
+  /* Maker's-stamp: engraved gable emblem + wordmark, ~22 mm wide, centred. */
+  .mark {
+    position: absolute;
+    top: 96mm;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+  .mark svg { display: block; width: 12mm; height: 7mm; margin: 0 auto 1.4mm; }
+  .wordmark {
+    font-family: Georgia, 'Times New Roman', serif; /* display serif */
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    color: #17140F;
+    line-height: 1;
+  }
+  .mark .rule {                    /* thin hairline rule under the wordmark */
+    width: 22mm;
+    height: 0.35pt;
+    background: #17140F;
+    margin: 1.2mm auto 0;
+  }
+
+  /* FOUR copy lines authored as ONE CONTINUOUS TEXT FLOW in a single frame.
+     They read as four lines but are one story -- no separate field boxes. */
+  .copy {
+    position: absolute;
+    top: 110mm;
+    left: 8mm;
+    right: 8mm;
+    text-align: center;
+    text-wrap: balance;
+  }
+  .copy .job {
+    font-family: Georgia, 'Times New Roman', serif; /* display serif */
+    font-size: 13pt;
+    letter-spacing: 0.01em;
+  }
+  .copy .loc,
+  .copy .scope {
+    font-size: 8.5pt;             /* humanist sans */
+    line-height: 1.32;
+  }
+  .copy .loc { color: #4A4E4C; }  /* Slate */
+  .copy .season {
+    font-size: 7.5pt;
+    font-variant: small-caps;     /* humanist sans small caps */
+    letter-spacing: 0.10em;
+    color: #1E3A2F;               /* Grove Green */
+  }
+  .copy br.line { line-height: 2.6; }
+
+  /* Footer: hairline rule + small caps tagline, ~6.5 pt, centred. */
+  .footer {
+    position: absolute;
+    bottom: 8mm;
+    left: 8mm;
+    right: 8mm;
+    text-align: center;
+  }
+  .footer .rule {
+    width: 22mm;
+    height: 0.3pt;
+    background: #4A4E4C;
+    margin: 0 auto 1.6mm;
+  }
+  .footer .tag {
+    font-size: 6.5pt;
+    font-variant: small-caps;
+    letter-spacing: 0.18em;
+    color: #17140F;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- MANDATORY placed photograph, reproduced within the near-square well at 300 dpi -->
+    <div class="well">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-07/assets/marbledale_after.jpg"
+           alt="Finished exterior renovation, rebuilt entry and stone steps">
+    </div>
+
+    <!-- Engraved gable emblem drawn as vector (not a placed image) + wordmark -->
+    <div class="mark">
+      <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg" fill="none"
+           stroke="#17140F" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 46 L60 12 L108 46"/>
+        <path d="M26 40 L60 24 L94 40"/>
+        <path d="M60 24 L60 46"/>
+      </svg>
+      <div class="wordmark">GABLE &amp; GROVE</div>
+      <div class="rule"></div>
+    </div>
+
+    <!-- ONE continuous story: job name, location, scope, season in a single frame -->
+    <div class="copy">
+      <span class="job">Sabin Road</span><br class="line">
+      <span class="loc">Cornwall, Connecticut</span><br class="line">
+      <span class="scope">Front walk and steps rebuilt in granite, regraded approach, planting.</span><br class="line">
+      <span class="season">Autumn 2024</span>
+    </div>
+
+    <div class="footer">
+      <div class="rule"></div>
+      <div class="tag">Built to last, sold twice</div>
+    </div>
+
+  </div>
+</body>
+</html>

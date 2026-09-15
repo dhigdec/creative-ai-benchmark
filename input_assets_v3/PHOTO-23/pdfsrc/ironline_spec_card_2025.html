@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ironline Forge spec card IL-108</title>
+<style>
+  /* A6 portrait, media box = trim, NO bleed */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  :root {
+    --iron-black: #1A1A1C;
+    --furnace-orange: #C6591F;
+    --cast-bronze: #7A5A2E;
+    --ash-grey: #6E6E6B;
+    --foundry-sand: #C9BCA3;
+  }
+
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    box-sizing: border-box;
+    background: var(--foundry-sand);
+    color: var(--iron-black);
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  }
+
+  /* 1. PHOTOGRAPH FRAME — graphic frame, top ~50% of the card, tinted casting photo */
+  .photo-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 105mm;
+    height: 74mm;
+    overflow: hidden;
+    background: var(--iron-black);
+  }
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+    display: block;
+    /* commit the frame to the single dark foundry tone */
+    filter: grayscale(1) brightness(0.94) contrast(1.12) sepia(0.42) hue-rotate(-12deg) saturate(1.45);
+  }
+  .photo-tint {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(198,89,31,0.30) 0%, rgba(26,26,28,0.30) 55%, rgba(26,26,28,0.62) 100%);
+    mix-blend-mode: multiply;
+  }
+
+  /* thin furnace rule dividing the picture from the letterpress panel */
+  .keyline {
+    position: absolute;
+    top: 74mm;
+    left: 0;
+    width: 105mm;
+    height: 1.4mm;
+    background: var(--furnace-orange);
+  }
+
+  /* 2-5. THE STORY — reference, name, alloy&finish, weight&lead-time set as
+     ONE continuous text frame (a single story), not four separate frames.
+     The reference run is the first run and is followed by a single line break. */
+  .story {
+    position: absolute;
+    top: 84mm;
+    left: 9mm;
+    width: 87mm;
+    line-height: 1.5;
+    color: var(--iron-black);
+  }
+  .reference {
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 9.5pt;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--furnace-orange);
+  }
+  .name {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 29pt;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--iron-black);
+  }
+  .alloy,
+  .weight {
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 9.5pt;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: var(--ash-grey);
+  }
+
+  /* footer — plain heritage line, iron-black ink, numbers set plainly */
+  .footer {
+    position: absolute;
+    left: 9mm;
+    bottom: 8mm;
+    width: 87mm;
+    padding-top: 3mm;
+    border-top: 0.3mm solid var(--ash-grey);
+    font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cast-bronze);
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="photo-frame">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-23/assets/floor_frames_03.jpg" alt="Cast iron warehouse bracket cooling on foundry sand">
+      <div class="photo-tint"></div>
+    </div>
+
+    <div class="keyline"></div>
+
+    <div class="story"><span class="reference">IL-108</span><br>
+<span class="name">Warehouse Bracket</span><br>
+<span class="alloy">Cast iron - Blackened and waxed</span><br>
+<span class="weight">12 kg - 8 weeks</span></div>
+
+    <div class="footer">Ironline Forge &mdash; Cast in this building since 1911</div>
+  </div>
+</body>
+</html>

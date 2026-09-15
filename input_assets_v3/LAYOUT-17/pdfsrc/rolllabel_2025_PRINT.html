@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Apexguard box-end roll label AG-GE-48</title>
+<style>
+  /* Trim = 4 x 6 in portrait box-end film-roll label = 101.6mm x 152.4mm.
+     Media box = trim. NO bleed. */
+  @page { size: 101.6mm 152.4mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  :root {
+    --graphite: #191C21;   /* Graphite Black ink */
+    --titanium: #F3F4F5;   /* Titanium White stock */
+    --bronze:   #B08A54;   /* Guard Bronze hairline accent */
+  }
+
+  /* Tight modern grotesque for tier name / headings; clean humanist sans for rows/body.
+     Real system faces so Chrome embeds subsets. Single-quoted CSS names. */
+  .grotesque { font-family: 'Helvetica Neue', Arial, sans-serif; }
+  .humanist  { font-family: 'Helvetica Neue', 'Segoe UI', Arial, sans-serif; }
+
+  .card {
+    box-sizing: border-box;
+    width: 101.6mm;
+    height: 152.4mm;
+    background: var(--titanium);
+    color: var(--graphite);
+    padding: 7mm 7mm 6mm 7mm;
+    position: relative;
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Top graphic frame: real placed product photograph (box-end shows the film rolls). */
+  .photo-frame {
+    width: 100%;
+    height: 38mm;
+    overflow: hidden;
+    background: var(--graphite);
+  }
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Masthead wordmark set as live text (not a placed logo). */
+  .masthead {
+    margin-top: 4mm;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .wordmark {
+    font-size: 11pt;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+  .wordmark-sub {
+    font-size: 6.5pt;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--graphite);
+    opacity: 0.72;
+  }
+
+  /* The single Guard Bronze hairline rule. */
+  .bronze-rule {
+    height: 0.35mm;
+    background: var(--bronze);
+    margin: 2.6mm 0 3mm 0;
+  }
+
+  /* ONE CONTINUOUS TEXT STORY: tier name, width line, six performance rows,
+     the warranty run and the dealer price all live in this single frame with
+     no per-field boxes -- a printer's flat label set as one flowing block. */
+  .story {
+    padding: 0;
+  }
+  .story .tier {
+    font-size: 23pt;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.02;
+    margin: 0;
+  }
+  .story .widthline {
+    font-size: 11pt;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    margin: 1.2mm 0 3.2mm 0;
+  }
+  .story .perf-head {
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin: 0 0 1.4mm 0;
+  }
+  .story .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 10pt;
+    line-height: 1.55;
+    border-bottom: 0.15mm solid rgba(25,28,33,0.16);
+    padding: 0.2mm 0;
+  }
+  .story .row .lbl { font-weight: 400; }
+  .story .row .val { font-weight: 700; letter-spacing: 0.01em; }
+
+  /* Warranty: FIXED-MEASURE frame, locked to exactly 3 short lines sized to last
+     season's ~12-word statement. A longer statement silently stops at the frame
+     edge -- no spill, no overset marker, no error. */
+  .story .warranty {
+    font-size: 8.5pt;
+    line-height: 1.32;
+    height: calc(8.5pt * 1.32 * 3);
+    overflow: hidden;
+    margin: 3mm 0 0 0;
+  }
+  .story .warranty .wlabel {
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 6.5pt;
+    display: block;
+    opacity: 0.65;
+    margin-bottom: 0.6mm;
+  }
+
+  .story .price {
+    font-size: 14pt;
+    font-weight: 700;
+    letter-spacing: 0.005em;
+    margin-top: 3.4mm;
+  }
+
+  /* SKU / reference code in its own small text frame pinned at the very bottom. */
+  .sku {
+    position: absolute;
+    left: 7mm;
+    bottom: 6mm;
+    font-size: 9pt;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- placed graphic: real photoreal frame (matte-black PPF rolls on the bay rack) -->
+    <div class="photo-frame">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-17/assets/bay_frame_01.jpg" alt="Apexguard paint-protection film rolls">
+    </div>
+
+    <div class="masthead grotesque">
+      <span class="wordmark">Apexguard</span>
+      <span class="wordmark-sub">Surface Systems</span>
+    </div>
+
+    <div class="bronze-rule"></div>
+
+    <!-- one continuous story: tier / width / performance / warranty / price -->
+    <div class="story">
+      <div class="tier grotesque">Guard Elite</div>
+      <div class="widthline humanist">48 in&nbsp;&times;&nbsp;100 ft</div>
+
+      <div class="perf-head grotesque">Performance</div>
+      <div class="row humanist"><span class="lbl">Film gauge</span><span class="val">8.0 mil</span></div>
+      <div class="row humanist"><span class="lbl">Clarity retained</span><span class="val">92%</span></div>
+      <div class="row humanist"><span class="lbl">Self-healing topcoat</span><span class="val">Yes</span></div>
+      <div class="row humanist"><span class="lbl">Hydrophobic contact angle</span><span class="val">110&deg;</span></div>
+      <div class="row humanist"><span class="lbl">UV rejection</span><span class="val">99%</span></div>
+      <div class="row humanist"><span class="lbl">Finish</span><span class="val">Gloss</span></div>
+
+      <div class="warranty humanist">
+        <span class="wlabel">Warranty</span>
+        Ten year limited warranty against yellowing, cracking, peeling and delamination.
+      </div>
+
+      <div class="price grotesque">$3,760&nbsp;/&nbsp;roll</div>
+    </div>
+
+    <div class="sku grotesque">AG-GE-48</div>
+
+  </div>
+</body>
+</html>

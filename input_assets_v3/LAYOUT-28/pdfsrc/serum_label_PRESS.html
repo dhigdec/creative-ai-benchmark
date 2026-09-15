@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SEVE Atelier serum label — last season press proof</title>
+<style>
+  /* Trim = media box = 58 x 92 mm PORTRAIT. NO bleed box (0 mm bleed). */
+  @page { size: 58mm 92mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* One card, exactly trim size, on the Deep Botanical ground. */
+  .card {
+    position: relative;
+    width: 58mm;
+    height: 92mm;
+    background: #22352B;            /* Deep Botanical ground */
+    overflow: hidden;              /* media box stays at trim */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  /* --- Wordmark (its own small gold mark on the deep ground) --- */
+  .wordmark {
+    position: absolute;
+    top: 5mm; left: 0; width: 58mm;
+    text-align: center;
+    font-family: 'Didot', 'Bodoni 72', Georgia, 'Times New Roman', serif;
+    font-size: 9pt;
+    letter-spacing: 2.4pt;
+    color: #C2A15A;                /* Warm Gold */
+    text-transform: uppercase;
+  }
+  .wordmark-rule {
+    position: absolute;
+    top: 10.6mm; left: 19mm; width: 20mm; height: 0.25mm;
+    background: #A9B79E;           /* Soft Sage hairline rule */
+  }
+
+  /* --- Two graphic frames, separable only by bounds + link --- */
+  /* PACKSHOT_WELL: rectangular, left of centre, holds the bottle photograph */
+  .packshot-well {
+    position: absolute;
+    top: 15mm; left: 5mm; width: 27mm; height: 31mm;
+    overflow: hidden;
+    border: 0.3mm solid #C2A15A;
+    background: #1b2b23;
+  }
+  .packshot-well img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 33% 42%;      /* keep the bottle + gold collar in frame */
+    display: block;
+  }
+  /* SWATCH_CHIP: small square, right of the well, holds the shade colour */
+  .swatch-chip {
+    position: absolute;
+    top: 20mm; left: 39mm; width: 15mm; height: 15mm;
+    overflow: hidden;
+    border: 0.3mm solid #C2A15A;
+    background: #F6F1E7;
+  }
+  .swatch-chip img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 66% 53%;      /* sample the heavy, fully-saturated end of the drawdown */
+    transform: scale(2.4);
+    transform-origin: 66% 53%;
+    display: block;
+  }
+
+  /* --- Bone Card body panel (lower third) --- */
+  .body-panel {
+    position: absolute;
+    top: 49mm; left: 3mm; width: 52mm; height: 40mm;
+    background: #F6F1E7;           /* Bone Card */
+  }
+
+  /*
+    THE STRUCTURAL TRAP: shade name + ingredient paragraph + net weight + batch
+    are ONE continuous threaded story in a SINGLE text frame (this one div),
+    running top to bottom, separated only by forced line breaks — NOT four
+    addressable frames. The may-contain clause sits on ITS OWN LINE beneath the
+    ingredient run. The NET WEIGHT and the BATCH line are just runs near the end
+    of the same story.
+  */
+  .story {
+    position: absolute;
+    top: 51mm; left: 6mm; width: 46mm; height: 37mm;
+    color: #23211E;               /* Charcoal Ink (body default) */
+  }
+  .story .shade-name {
+    font-family: 'Didot', 'Bodoni 72', Georgia, 'Times New Roman', serif;
+    font-size: 12.5pt;
+    letter-spacing: 0.6pt;
+    color: #22352B;               /* Deep Botanical, high-contrast serif */
+    margin: 0 0 1.6mm 0;
+  }
+  .story .ingredients {
+    font-size: 4.7pt;
+    line-height: 1.32;
+    text-align: justify;
+    color: #23211E;               /* Charcoal Ink */
+    margin: 0;
+  }
+  .story .may-contain {
+    font-size: 4.7pt;
+    line-height: 1.32;
+    color: #23211E;
+    margin: 0.9mm 0 0 0;          /* own line, beneath the ingredient run */
+  }
+  .story .netweight {
+    font-size: 7pt;
+    color: #23211E;
+    margin: 3.0mm 0 0 0;
+    padding-top: 1.4mm;
+    border-top: 0.25mm solid #A9B79E;   /* Soft Sage divider */
+    letter-spacing: 0.3pt;
+  }
+  .story .batch {
+    font-size: 5.5pt;
+    color: #4b4a44;
+    margin: 1.4mm 0 0 0;
+    letter-spacing: 0.8pt;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Wordmark: survives here small, Warm Gold on Deep Botanical -->
+    <div class="wordmark">Seve Botanicals</div>
+    <div class="wordmark-rule"></div>
+
+    <!-- Graphic frame 1: PACKSHOT_WELL (the placed bottle photograph) -->
+    <div class="packshot-well">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-28/assets/sample_packshot_06.jpg" alt="">
+    </div>
+
+    <!-- Graphic frame 2: SWATCH_CHIP (the shade colour, from the drawdown card) -->
+    <div class="swatch-chip">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-28/assets/drawdown_03.jpg" alt="">
+    </div>
+
+    <!-- Bone Card body panel -->
+    <div class="body-panel"></div>
+
+    <!-- SINGLE threaded story frame: shade name / ingredients / may-contain / net weight / batch -->
+    <div class="story">
+      <div class="shade-name">Sable Rose</div>
+      <div class="ingredients">Caprylic/Capric Triglyceride, Squalane, Mica, Iron Oxides (CI 77491), Tocopherol, Bisabolol.</div>
+      <div class="may-contain">May contain: Mica, CI 77491, CI 77492, CI 77891.</div>
+      <div class="netweight">15 ml</div>
+      <div class="batch">LOT SEVE-____-___</div>
+    </div>
+
+  </div>
+</body>
+</html>

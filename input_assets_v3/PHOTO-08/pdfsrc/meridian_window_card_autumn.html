@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Meridian Motors Window Card</title>
+<style>
+  /* US LETTER PORTRAIT, trim 8.5 x 11 in = 215.9 x 279.4 mm. Media box = trim. NO bleed. */
+  @page { size: 215.9mm 279.4mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1F2A3A;  /* Meridian Navy   */
+    --white:  #F6F7F8;  /* Showroom White  */
+    --graph:  #2E3237;  /* Graphite        */
+    --teal:   #3C6E71;  /* Compass Teal    */
+    --steel:  #9AA1A8;  /* Steel Grey      */
+  }
+
+  body { background: #ffffff; }
+
+  /* One card, exactly the trim size. */
+  .card {
+    position: relative;
+    box-sizing: border-box;
+    width: 215.9mm;
+    height: 279.4mm;
+    padding: 12.7mm;                 /* 0.5 in margins */
+    background: var(--white);
+    color: var(--graph);
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    overflow: hidden;
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead { height: 16mm; }
+  .brand {
+    font-size: 21pt;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    color: var(--navy);
+    line-height: 1;
+    margin: 0;
+  }
+  .tagline {
+    font-size: 9pt;
+    font-style: italic;
+    color: var(--graph);
+    margin: 1.6mm 0 0 0;
+    letter-spacing: 0.02em;
+  }
+  .rule {
+    height: 0.6mm;
+    background: var(--teal);
+    margin: 2.4mm 0 0 0;
+  }
+
+  /* ---------- Vehicle photo well: the ONE real placed image frame ---------- */
+  .well {
+    position: relative;
+    width: 190.5mm;                  /* 7.5 in  */
+    height: 106.68mm;                /* 4.2 in  */
+    margin: 6mm 0 8mm 0;
+    border: 0.4mm solid var(--steel);
+    overflow: hidden;
+    background: #dfe2e5;
+  }
+  .well img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;               /* reproduced to fill the well at 300 dpi source */
+    object-position: 50% 46%;
+  }
+
+  /* ---------- Certification seal: VECTOR ART (inline SVG), never a placed image ---------- */
+  .seal {
+    position: absolute;
+    top: 30.5mm;                     /* over the upper-right corner of the photo well */
+    right: 16.5mm;
+    width: 27.94mm;                  /* ~1.1 in */
+    height: 27.94mm;
+  }
+
+  /* ---------- Six ruled boxes drawn as keylines BEHIND a single flowing story ---------- */
+  .grid-wrap {
+    position: relative;
+    width: 190.5mm;
+    height: 108mm;                   /* 3 rows * 33 + 2 gaps * 4.5 */
+  }
+  /* Layer A: six empty Steel-Grey keyline rectangles, 2 x 3. Decorative rules only. */
+  .boxes {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 92.25mm 92.25mm;
+    grid-template-rows: 33mm 33mm 33mm;
+    column-gap: 6mm;
+    row-gap: 4.5mm;
+  }
+  .kbox { border: 0.35mm solid var(--steel); }
+
+  /* Layer B: ONE continuous text story flowing box to box (inline run headers in the
+     same story). The keylines above are just drawn rectangles behind this single flow. */
+  .story {
+    position: absolute;
+    inset: 0;
+    font-size: 0;                    /* collapse inter-run whitespace so runs tile exactly */
+  }
+  .run {
+    display: inline-block;
+    vertical-align: top;
+    box-sizing: border-box;
+    width: 92.25mm;
+    height: 33mm;
+    padding: 5.5mm 6mm;
+    margin: 0 6mm 4.5mm 0;           /* column gap on left cells, row gap under */
+  }
+  .run:nth-child(2n) { margin-right: 0; }        /* right column: no column gap */
+  .run:nth-child(n+5) { margin-bottom: 0; }      /* last row: no bottom gap */
+
+  .label {
+    display: block;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    color: var(--navy);
+    text-transform: uppercase;
+    margin: 0 0 2.6mm 0;
+  }
+  .value      { font-size: 14pt; color: var(--graph); line-height: 1.18; }
+  .value.big  { font-size: 23pt; font-weight: 700; color: var(--navy); letter-spacing: 0.01em; }
+  .value.small{ font-size: 9.5pt; line-height: 1.3; }
+  .value.muted{ font-size: 9pt; color: var(--steel); }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Masthead -->
+    <div class="masthead">
+      <p class="brand">MERIDIAN MOTORS</p>
+      <p class="tagline">Certified, and nothing to hide</p>
+      <div class="rule"></div>
+    </div>
+
+    <!-- Vehicle photograph well (the single real image frame) -->
+    <div class="well">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-08/assets/M2417_calder_vireo_front34.jpg" alt="Certified pre-owned vehicle, three-quarter front">
+    </div>
+
+    <!-- Certification seal, vector (SVG paths + live text), NOT a placed image -->
+    <svg class="seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Meridian Certified">
+      <defs>
+        <path id="arcTop" d="M 26 100 A 74 74 0 0 1 174 100" />
+        <path id="arcBot" d="M 30 100 A 70 70 0 0 0 170 100" />
+      </defs>
+      <circle cx="100" cy="100" r="96" fill="#1F2A3A"/>
+      <circle cx="100" cy="100" r="83" fill="none" stroke="#F6F7F8" stroke-width="1.4"/>
+      <text font-family="Arial, Helvetica, sans-serif" fill="#F6F7F8" font-weight="700"
+            font-size="17" letter-spacing="3" text-anchor="middle">
+        <textPath href="#arcTop" startOffset="50%">CERTIFIED</textPath>
+      </text>
+      <text font-family="Arial, Helvetica, sans-serif" fill="#9AA1A8" font-weight="700"
+            font-size="9.5" letter-spacing="2.4" text-anchor="middle">
+        <textPath href="#arcBot" startOffset="50%">MERIDIAN MOTORS</textPath>
+      </text>
+      <!-- four-point compass rose -->
+      <g fill="#F6F7F8">
+        <polygon points="100,52 108,100 100,108 92,100"/>
+        <polygon points="100,148 92,100 100,92 108,100"/>
+        <polygon points="52,100 100,92 108,100 100,108"/>
+        <polygon points="148,100 100,108 92,100 100,92"/>
+      </g>
+      <g fill="#3C6E71">
+        <polygon points="100,60 105,100 100,105 95,100"/>
+        <polygon points="100,140 95,100 100,95 105,100"/>
+      </g>
+      <circle cx="100" cy="100" r="5.5" fill="#F6F7F8"/>
+    </svg>
+
+    <!-- Six ruled boxes (Steel-Grey keylines) as a 2x3 grid, drawn behind the story -->
+    <div class="grid-wrap">
+      <div class="boxes">
+        <div class="kbox"></div><div class="kbox"></div>
+        <div class="kbox"></div><div class="kbox"></div>
+        <div class="kbox"></div><div class="kbox"></div>
+      </div>
+
+      <!-- ONE continuous story; labels are inline run headers within the same story.
+           Static content exactly as it went to press last season (stale placeholder,
+           to be replaced by the merge). -->
+      <div class="story"
+        ><span class="run"><span class="label">Stock No.</span><span class="value">M2290</span></span
+        ><span class="run"><span class="label">Year &amp; Model</span><span class="value">2016 Calder Vireo</span></span
+        ><span class="run"><span class="label">Mileage</span><span class="value">71,300 mi</span></span
+        ><span class="run"><span class="label">Price</span><span class="value big">$22,900</span></span
+        ><span class="run"><span class="label">Certification</span><span class="value small">Meridian Certified &mdash; 172-point,<br>3-month / 3,000-mi warranty</span></span
+        ><span class="run"><span class="value muted">Meridian Motors &middot; Portland, ME</span></span
+      ></div>
+    </div>
+
+  </div>
+</body>
+</html>

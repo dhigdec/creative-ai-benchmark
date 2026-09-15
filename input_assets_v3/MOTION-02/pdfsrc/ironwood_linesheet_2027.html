@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ironwood Kitchen line sheet</title>
+<style>
+  /* A4 portrait, trim = media box, 0mm bleed. No bleed box. */
+  @page { size: 210mm 297mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Bench White ground, one plain high-legibility grotesque sans throughout. */
+  body {
+    background: #F6F5F1;
+    font-family: 'Helvetica Neue', Arial, 'Liberation Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* One card, exactly the trim: 210mm x 297mm. */
+  .card {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    background: #F6F5F1;   /* Bench White */
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  /* The product photograph in its own rectangular GRAPHIC FRAME (a genuine
+     picture well). 4:3 landscape, occupying the top of the page. This is a
+     real placed image, not a caption. */
+  .well {
+    position: absolute;
+    left: 13mm;
+    top: 13mm;
+    width: 184mm;
+    height: 138mm;          /* 184 x 3/4 = 138mm -> 4:3 landscape */
+    overflow: hidden;
+    background: #E9E7E1;
+  }
+  .well img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* the placed frame crops the 3:2 source to 4:3 */
+    display: block;
+  }
+
+  /* THE reverse-engineering trap: BOWL NAME, DESCRIPTION, MACRO LINE,
+     ALLERGEN LINE and PRICE are a SINGLE continuous text story in ONE text
+     frame (name / description / macros / allergens / price), NOT five
+     addressable frames. Below are ordinary flowing paragraphs inside this one
+     positioned frame -- one story, five runs. */
+  .story {
+    position: absolute;
+    left: 13mm;
+    top: 162mm;
+    width: 184mm;
+    box-sizing: border-box;
+  }
+  .story p { margin: 0; }
+
+  /* BOWL NAME: large bold grotesque, Ink Charcoal. */
+  .name {
+    font-weight: 700;
+    font-size: 33pt;
+    line-height: 1.04;
+    letter-spacing: -0.4px;
+    color: #23262A;         /* Ink Charcoal */
+  }
+
+  /* DESCRIPTION: two lines, same family, regular weight, Ink Charcoal. */
+  .desc {
+    margin-top: 6mm !important;
+    font-weight: 400;
+    font-size: 14pt;
+    line-height: 1.36;
+    color: #23262A;         /* Ink Charcoal */
+  }
+
+  /* MACRO LINE (kcal . protein . carbs . fat): small, Steel Grey. */
+  .macros {
+    margin-top: 7mm !important;
+    font-weight: 500;
+    font-size: 10.5pt;
+    letter-spacing: 0.2px;
+    color: #9AA0A6;         /* Steel Grey */
+  }
+
+  /* ALLERGEN LINE ('Contains: ...'): Field Green. For a food business the
+     allergen line is not optional. */
+  .allergen {
+    margin-top: 2.5mm !important;
+    font-weight: 600;
+    font-size: 11.5pt;
+    color: #3F7D4E;         /* Field Green */
+  }
+
+  /* PRICE: large, Salsa Clay, sitting bottom-right -- still the last run of
+     the same continuous story, right aligned within the one frame. */
+  .price {
+    margin-top: 9mm !important;
+    text-align: right;
+    font-weight: 800;
+    font-size: 40pt;
+    letter-spacing: -0.5px;
+    color: #E2593B;         /* Salsa Clay */
+  }
+
+  /* Printer's slug: this is last season's proof reused for the relaunch --
+     the stale edition value the file still carries. */
+  .slug {
+    position: absolute;
+    left: 13mm;
+    bottom: 9mm;
+    font-weight: 500;
+    font-size: 8pt;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #9AA0A6;         /* Steel Grey */
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Placed product photograph: real graphic frame, one bowl per page. -->
+    <div class="well">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/MOTION-02/assets/ironwood_bowls_01.jpg"
+           alt="Chipotle Chicken and Brown Rice bowl, top down on the steel bench">
+    </div>
+
+    <!-- ONE continuous text story in ONE frame: name / description / macros /
+         allergens / price. Real record from ironwood_skus.csv row 1. -->
+    <div class="story">
+      <p class="name">Chipotle Chicken &amp; Brown Rice</p>
+      <p class="desc">Grilled chipotle chicken over brown rice with black beans, roasted corn, pico and lime crema.</p>
+      <p class="macros">555 kcal . 38g protein . 52g carbs . 18g fat</p>
+      <p class="allergen">Contains: dairy</p>
+      <p class="price">$12</p>
+    </div>
+
+    <div class="slug">Ironwood Kitchen &middot; Line Sheet &middot; 2026 Season</div>
+
+  </div>
+</body>
+</html>

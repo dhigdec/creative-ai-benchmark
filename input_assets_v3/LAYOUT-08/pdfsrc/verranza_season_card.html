@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Verranza Season Card - specimen</title>
+<style>
+  /* A6 portrait, 105 x 148 mm. Media box == trim. NO bleed box (0 mm bleed). */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Brand palette (from the printer's specimen):
+     Linen #F3EEE4 ground, Warm Charcoal #33302B type, Deep Olive #4E5A43 hairline,
+     Verranza Stone #D8C9B4 note panel, Coast Blue #6E8CA0 accent rule. */
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    background: #F3EEE4;            /* Linen ground */
+    overflow: hidden;              /* trim clips everything; there is no bleed box */
+    color: #33302B;               /* Warm Charcoal ink */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* PHOTO PANEL: a REAL rectangular picture frame / image well.
+     Full width across the top, ~105 x 82 mm, bled to the three outer card edges. */
+  .photo-well {
+    position: absolute;
+    top: 0; left: 0;
+    width: 105mm;
+    height: 82mm;
+    overflow: hidden;
+  }
+  .photo-well img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;            /* photograph binds cleanly into the frame */
+    object-position: 50% 58%;
+  }
+
+  /* SINGLE continuous story in ONE text frame:
+     VILLA NAME + SEASON NAME + RATE/MIN-STAY are one story joined by soft returns,
+     NOT three addressable frames. */
+  .story {
+    position: absolute;
+    left: 0;
+    top: 88mm;
+    width: 105mm;
+    text-align: center;
+    line-height: 1.15;
+  }
+  .story .villa {
+    display: block;
+    font-family: Georgia, 'Times New Roman', 'Times', serif;
+    font-variant: small-caps;
+    font-weight: 400;
+    font-size: 12pt;
+    letter-spacing: 0.14em;
+    color: #33302B;
+    margin: 0 0 3.2mm 0;
+  }
+  .story .season {
+    display: block;
+    font-family: Georgia, 'Times New Roman', 'Times', serif;
+    font-weight: 400;
+    font-size: 22pt;
+    letter-spacing: 0.005em;
+    color: #33302B;
+    margin: 0 0 4.0mm 0;
+  }
+  .story .rate {
+    display: block;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 9.5pt;
+    letter-spacing: 0.02em;
+    color: #33302B;
+    margin: 0;
+  }
+
+  /* Coast Blue thin accent rule (reserved accent). */
+  .accent-rule {
+    position: absolute;
+    left: 50%;
+    top: 116mm;
+    width: 16mm;
+    height: 0.5mm;
+    margin-left: -8mm;
+    background: #6E8CA0;
+  }
+
+  /* SEASON NOTE panel: Verranza Stone ground, Deep Olive hairline rule at its top edge. */
+  .note-panel {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 105mm;
+    height: 24mm;
+    background: #D8C9B4;          /* Verranza Stone */
+    border-top: 0.2mm solid #4E5A43;  /* Deep Olive hairline rule */
+  }
+
+  /* SEASON NOTE: its OWN separate FIXED frame, sized to the shortest specimen the
+     printer set (exactly two lines of the High Season note). No auto-size, no
+     threaded/overflow outlet: a longer merged note stops at the frame edge, does
+     not spill, does not reflow, does not warn. Baked as a fixed-height clip.
+     Nested inside the stone panel; positioned relative to it. */
+  .note-frame {
+    position: absolute;
+    left: 11mm;
+    right: 11mm;               /* width 83mm */
+    top: 7.0mm;                /* centred within the 24mm stone panel */
+    height: 9.4mm;            /* == exactly two set lines at 8.6pt / 1.34 */
+    overflow: hidden;         /* fixed frame: text simply stops at the bottom edge */
+    text-align: center;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 8.6pt;
+    line-height: 1.34;
+    color: #33302B;
+  }
+</style>
+</head>
+<body>
+  <!-- Printer's single specimen record: Villa Solane / High Season.
+       Real field values from verranza_rates.csv (row: Villa Solane, High Season). -->
+  <div class="card">
+
+    <!-- PHOTO field: real placed graphic (Villa Solane hero, solane_02.jpg) -->
+    <div class="photo-well">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-08/assets/solane_02.jpg" alt="Villa Solane exterior, pool terrace in warm afternoon light">
+    </div>
+
+    <!-- ONE text story / ONE frame: VILLA_NAME, SEASON_NAME, NIGHTLY_RATE + MIN_STAY
+         joined by soft returns (line breaks), read on the printed face as three fields. -->
+    <div class="story"><span class="villa">Villa Solane</span><span class="season">High Season</span><span class="rate">$3,400 per night&nbsp;&nbsp;&mdash;&nbsp;&nbsp;5 nights minimum</span></div>
+
+    <div class="accent-rule"></div>
+
+    <!-- SEASON_NOTE: fixed two-line frame nested in the stone panel. -->
+    <div class="note-panel">
+      <div class="note-frame">Long light and warm water. The terrace holds the afternoon until late.</div>
+    </div>
+
+  </div>
+</body>
+</html>

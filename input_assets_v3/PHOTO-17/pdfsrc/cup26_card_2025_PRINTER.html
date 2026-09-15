@@ -1,0 +1,189 @@
+<meta charset="utf-8">
+<title>Continental Cup 2025 Collector Card</title>
+<style>
+  /* Trading-card trim = 63.5 mm x 88.9 mm (2.5in x 3.5in) portrait.
+     Media box = trim. NO bleed box. */
+  @page { size: 63.5mm 88.9mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
+
+  .card {
+    position: relative;
+    width: 63.5mm;
+    height: 88.9mm;
+    overflow: hidden;
+    /* Floodlit Black fading into Pitch Deep Navy toward the lower third */
+    background: linear-gradient(180deg, #0B0E14 0%, #0B0E14 58%, #101B33 100%);
+    color: #C7CCD1;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+  }
+
+  /* PLAYER PHOTOGRAPH: floodlit portrait, upper ~62% of the card, bled to the side edges.
+     A real placed <img> => a genuine raster graphic frame after PDF->InDesign conversion. */
+  .photo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 63.5mm;
+    height: 55.1mm; /* 62% of 88.9mm */
+    object-fit: cover;
+    object-position: 50% 20%;
+    display: block;
+    z-index: 1;
+  }
+
+  /* Narrow Cup Gold rule separating the photo zone from the data zone */
+  .gold-rule {
+    position: absolute;
+    left: 0;
+    top: 55.1mm;
+    width: 63.5mm;
+    height: 0.9mm;
+    background: #C9A233;
+    z-index: 3;
+  }
+
+  /* Thin Stadium Silver hairline frame inset 2 mm from trim */
+  .frame {
+    position: absolute;
+    left: 2mm;
+    top: 2mm;
+    width: calc(63.5mm - 4mm);
+    height: calc(88.9mm - 4mm);
+    border: 0.18mm solid #C7CCD1;
+    z-index: 6;
+    pointer-events: none;
+  }
+
+  /* ---- TEXT FRAME 1: one continuous multi-line story over the navy field ----
+     Name (with the squad number set inline at the right of the name line),
+     Position and the Honours line all live inside THIS single text block.
+     They are NOT five separately labelled field frames: the honours line sits
+     inside a shared story alongside its neighbouring lines. */
+  .story-main {
+    position: absolute;
+    left: 4.4mm;
+    top: 57.6mm;
+    width: 54.7mm;
+    z-index: 4;
+  }
+  .name-line {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5mm;
+  }
+  .player-name {
+    font-family: 'Arial Narrow', 'Arial', sans-serif;
+    font-weight: 700;
+    font-size: 15pt;
+    line-height: 1;
+    letter-spacing: 0.2pt;
+    text-transform: uppercase;
+    color: #C7CCD1;
+    white-space: nowrap;
+  }
+  .squad-number {
+    font-family: 'Arial Narrow', 'Arial', sans-serif;
+    font-weight: 700;
+    font-size: 30pt;
+    line-height: 0.72;
+    color: #B32433; /* Signal Red */
+  }
+  .position {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    font-variant: small-caps;
+    font-weight: 700;
+    font-size: 8pt;
+    letter-spacing: 1.6pt;
+    color: #C7CCD1;
+    margin-top: 1.4mm;
+  }
+  .honours {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    font-weight: 400;
+    font-size: 6pt;
+    line-height: 1.1;
+    letter-spacing: 0.1pt;
+    color: #C7CCD1;
+    margin-top: 1.5mm;
+    white-space: nowrap;
+  }
+
+  /* ---- TEXT FRAME 2: the Set Year, tiny, at the very bottom-left corner ---- */
+  .set-year {
+    position: absolute;
+    left: 4.4mm;
+    bottom: 3mm;
+    z-index: 4;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    font-weight: 700;
+    font-size: 6.5pt;
+    letter-spacing: 0.6pt;
+    color: #C9A233; /* Cup Gold */
+  }
+
+  /* ---- SMALL PLACED CREST: the competition mark, bottom-right, ~9 mm wide only.
+     Drawn as inline vector (the recovered mark), deliberately far smaller than the
+     card visually suggests -- the reproduction geometry a later merge inherits. ---- */
+  .crest {
+    position: absolute;
+    right: 3.6mm;
+    bottom: 2.4mm;
+    width: 9mm;
+    height: 9mm;
+    z-index: 5;
+  }
+  .crest svg { display: block; width: 100%; height: 100%; }
+</style>
+
+<div class="card">
+  <img class="photo"
+       src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-17/assets/cup26_portrait_solano.jpg"
+       alt="floodlit pitch-side player portrait">
+
+  <div class="gold-rule"></div>
+
+  <!-- TEXT FRAME 1: continuous story (name + number + position + honours) -->
+  <div class="story-main">
+    <div class="name-line">
+      <span class="player-name">Emile Sorensen</span><span class="squad-number">8</span>
+    </div>
+    <div class="position">Midfielder</div>
+    <div class="honours">2024 Continental Cup Team of the Tournament</div>
+  </div>
+
+  <!-- TEXT FRAME 2: set year -->
+  <div class="set-year">2025</div>
+
+  <!-- CREST (~9 mm placed graphic) -->
+  <div class="crest">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="crestTop" d="M50,50 m-38,0 a38,38 0 1,1 76,0" fill="none"/>
+        <path id="crestBot" d="M50,50 m38,0 a38,38 0 1,1 -76,0" fill="none"/>
+      </defs>
+      <!-- outer ring -->
+      <circle cx="50" cy="50" r="47" fill="none" stroke="#C9A233" stroke-width="3"/>
+      <!-- ring lettering: competition mark -->
+      <text font-family="Arial, Helvetica, sans-serif" font-size="9.5" font-weight="700"
+            letter-spacing="1.2" fill="#C7CCD1">
+        <textPath href="#crestTop" startOffset="50%" text-anchor="middle">CONTINENTAL CUP</textPath>
+      </text>
+      <text font-family="Arial, Helvetica, sans-serif" font-size="9.5" font-weight="700"
+            letter-spacing="2" fill="#C9A233">
+        <textPath href="#crestBot" startOffset="50%" text-anchor="middle">&#9733; 2025 &#9733;</textPath>
+      </text>
+      <!-- inner hairline rule ring -->
+      <circle cx="50" cy="50" r="29" fill="none" stroke="#C7CCD1" stroke-width="1.4"/>
+      <!-- central emblem: abstract upward chevron of three stacked bars -->
+      <g fill="none" stroke-linecap="square">
+        <polyline points="35,54 50,40 65,54" stroke="#C9A233" stroke-width="5"/>
+        <polyline points="37,61 50,49 63,61" stroke="#C7CCD1" stroke-width="4"/>
+        <polyline points="39,68 50,58 61,68" stroke="#C9A233" stroke-width="3.4"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="frame"></div>
+</div>

@@ -1,0 +1,228 @@
+{
+ "task_id": "LAYOUT-27",
+ "brand": "Girdermark Components",
+ "notes": "Two vendor press PDFs (spec sheet + bin label) to be re-templated, a stock export whose specs are mis-ordered vs the printed sheet with 3 values packed in an attributes blob and one part emitted as two revision rows, a cast-aluminium nameplate shot 4 ways (raking vs square), and 16 bench frames across two bench mats with 4 void-enclosing parts.",
+ "assets": [
+  {
+   "filename": "sheet_2026_PRESS.pdf",
+   "type": "pdf",
+   "role": "data",
+   "defect_engineered": "interleaved story order (printed rows read across two columns but the content story runs the whole left visual column then the whole right; the ordering-code panel is the SAME continuous story); two graphic frames (part photograph + certification strip) separable only by bounds and link, neither named for what it holds",
+   "content": "PRESS PDF TO RENDER: Girdermark Components per-part DATA SHEET, US Letter portrait (8.5 x 11 in), one part per page, all fonts embedded, produced through a full print engine (must convert cleanly to INDD/IDML). Set the page from the placeholder part GSV-800 so it round-trips.\n\nLAYOUT (what the eye reads on the printed page):\n- HEADER BAND (top): the cast Girdermark house mark at left (a raised condensed wordmark GIRDERMARK over small ELEVATOR & ELECTRIC with an I-beam/girder device inside a thin rectangular keyline, printed here in ONE deep charcoal ink #1A1C1E on Warehouse White #F4F5F6), and at right the words 'DATA SHEET' and 'Cleveland, Ohio'.\n- IDENTITY LINE: Part Number (large) and Description beneath it.\n- SPEC TABLE, set as a two-column grid whose ROWS visually read ACROSS: left cell / right cell per row.\n    Row 1:  Duty Rating        |  Load Rating\n    Row 2:  Bore Diameter      |  Mount Type\n    Row 3:  Material           |  Finish\n    Row 4:  Certification Code |  Seismic Rating\n- PART PHOTOGRAPH: a placed graphic frame, roughly square, right side, holding the part photo.\n- CERTIFICATION STRIP: a second placed graphic frame, a narrow horizontal band, holding a row of small monochrome certification/agency glyphs. NOTE: this frame and the photograph frame are the same graphic-frame kind and are distinguishable ONLY by their bounds and their existing image link; neither is named.\n- ORDERING-CODE PANEL (lower, reads as its own boxed panel): labels Ordering Code, List Price (USD), Dealer Price (USD), and a 'Superseded By' line.\n- FOOTER: 'Flat, accurate, in stock' and a season line '2026 season'.\n\nHIDDEN STRUCTURE the render must carry so the checkpoint fires: the spec table + ordering panel are ONE continuous text story whose content order runs DOWN the whole left visual column (Duty Rating, Bore Diameter, Material, Certification Code) and THEN down the whole right visual column (Load Rating, Mount Type, Finish, Seismic Rating), and the ordering-code panel text is appended to that same story. So the printed reading order (across rows) and the document story order (down then down) diverge from row 2 onward. Typography is the printer's neutral grotesque; no brand font. No live bleed anywhere in the file."
+  },
+  {
+   "filename": "label_2026_PRESS.pdf",
+   "type": "pdf",
+   "role": "data",
+   "defect_engineered": "description sits in a fixed-measure frame sized to last season's longest string (silently stops rendering at the frame edge, no overset warning); die outline is a placed graphic, not a document bleed, so no real bleed exists and none can be introduced",
+   "content": "PRESS PDF TO RENDER: Girdermark Components bin/warehouse rack LABEL, trim 100 x 62 mm landscape, one label per page, all fonts embedded, produced through a full print engine (must convert cleanly). Set the page from placeholder part GSV-800.\n\nLAYOUT (picker reads this at arm's length under warehouse light, so it is big and blunt):\n- Small house mark (the Girdermark keyline mark, one ink) top-left.\n- PART NUMBER set very large and bold across the top (e.g. GSV-800).\n- DESCRIPTION line beneath, set in a fixed-width text frame roughly 68 mm wide occupying one line only (sized to last season's longest description). This frame does NOT auto-size and does NOT spill.\n- ORDERING CODE (e.g. GM-GSV-800) set clearly at lower-left.\n- Small part picture in a graphic frame at right, roughly 30 x 30 mm.\n- A hairline DIE OUTLINE rectangle drawn as a PLACED graphic exactly at the 100 x 62 mm trim (this is decorative, it is not a document bleed and no true bleed exists in the file).\n- Girder Blue #1C3A5E rule under the part number; everything else Ink Black #1A1C1E on Warehouse White #F4F5F6.\n\nHIDDEN STRUCTURE: the description frame is a fixed measure; a longer record simply stops rendering mid-word at the frame edge with no warning. Nothing in the file carries real bleed. Printer's neutral grotesque type, no brand font."
+  },
+  {
+   "filename": "range_export.csv",
+   "type": "csv",
+   "role": "data",
+   "defect_engineered": "spec columns sit in the stock system's own order (NOT the printed sheet's order); certification code, seismic rating and superseded-by are packed into one semicolon-delimited attributes blob rather than being columns; finishes are internal two-letter codes; the image column holds full local paths without the merge prefix; part BRC-560 is emitted as two revision rows (Rev A superseded-by B, Rev B current) so row count (17) is not the current-part count (16)",
+   "content": "part_number,description,load_rating,mount_type,bore_diameter,material,duty_rating,finish_code,ordering_code,list_price,dealer_price,attributes,image\nGSV-800,Governor Sheave Assembly,4500 lb,Shaft keyed,1.500 in,Cast Iron,Continuous,MF,GM-GSV-800,8950.00,7160.00,CERT=A17.1-2019;SEIS=Zone 4;SUPBY=,/mnt/stock/components/gsv_800_final.jpg\nDOA-450,Door Operator Arm Assembly,1200 lb,Bracket 4-bolt,0.750 in,Steel welded,Heavy,PC,GM-DOA-450,6200.00,4960.00,CERT=A17.1-2019;SEIS=Zone 4;SUPBY=,/mnt/stock/components/doa_450.jpg\nRBK-120,Overspeed Governor Restrictor Bracket,800 lb,Rail clamp,0.500 in,Steel,Standard,GV,GM-RBK-120,1480.00,1184.00,CERT=A17.1-2019;SEIS=Zone 2;SUPBY=,/mnt/stock/components/rbk_120.jpg\nCCL-210,Traction Cable Clamp,2200 lb,Wedge,0.625 in,Ductile Iron,Standard,ZP,GM-CCL-210,520.00,416.00,CERT=A17.1-2019;SEIS=Zone 2;SUPBY=,/mnt/stock/components/ccl_210.jpg\nRSK-008,Relay Socket 8-Pin,10 A,DIN rail,—,Polyamide,Control,MF,GM-RSK-008,410.00,328.00,CERT=UL508A;SEIS=N/A;SUPBY=,/mnt/stock/components/rsk_008.jpg\nCTB-303,Contactor Block 3-Pole,25 A,DIN rail,—,Thermoplastic,AC-3,MF,GM-CTB-303,865.00,692.00,CERT=UL60947;SEIS=N/A;SUPBY=,/mnt/stock/components/ctb_303.jpg\nDIL-330,Door Interlock Switch,6 A,Surface 2-bolt,—,Zinc die-cast,Control,ZP,GM-DIL-330,1120.00,896.00,CERT=A17.1-2019;SEIS=Zone 2;SUPBY=,/mnt/stock/components/dil_330.jpg\nHLS-140,Hoistway Limit Switch,10 A,Rail mount,—,Steel,Control,ZP,GM-HLS-140,640.00,512.00,CERT=A17.1-2019;SEIS=Zone 2;SUPBY=,/mnt/stock/components/hls_140.jpg\nBRC-560,Brake Coil Assembly (Rev A),1.8 A,Flange 4-bolt,—,Copper/Steel,Continuous,PC,GM-BRC-560A,3750.00,3000.00,CERT=A17.1-2019;SEIS=Zone 4;SUPBY=BRC-560B,/mnt/stock/components/brc_560a.jpg\nBRC-560,Brake Coil Assembly (Rev B),1.8 A,Flange 4-bolt,—,Copper/Steel,Continuous,PC,GM-BRC-560B,3900.00,3120.00,CERT=A17.1-2019;SEIS=Zone 4;SUPBY=,/mnt/stock/components/brc_560b.jpg\nGTW-090,Governor Tension Weight,90 lb,Sheave hang,0.875 in,Cast Iron,Standard,MF,GM-GTW-090,980.00,784.00,CERT=A17.1-2019;SEIS=Zone 4;SUPBY=,/mnt/stock/components/gtw_090.jpg\nSLC-070,Selector Cam,40 lb,Rail clamp,0.375 in,Steel,Standard,BO,GM-SLC-070,445.00,356.00,CERT=A17.1-2019;SEIS=Zone 2;SUPBY=,/mnt/stock/components/slc_070.jpg\nLPB-115,Landing Pushbutton Fixture,5 A,Flush wall,—,Stainless Steel,Control,SS,GM-LPB-115,720.00,576.00,CERT=UL508A;SEIS=N/A;SUPBY=,/mnt/stock/components/lpb_115.jpg\nCTI-380,Car Top Inspection Station,10 A,Surface,—,Steel enclosure,Control,PC,GM-CTI-380,2340.00,1872.00,CERT=A17.1-2019;SEIS=Zone 2;SUPBY=,/mnt/stock/components/cti_380.jpg\nPMR-045,Phase Monitor Relay,5 A,DIN rail,—,Polycarbonate,Control,MF,GM-PMR-045,430.00,344.00,CERT=UL60947;SEIS=N/A;SUPBY=,/mnt/stock/components/pmr_045.jpg\nMCM-720,Motor Contactor Main,65 A,Panel 4-bolt,—,Thermoplastic,AC-3,MF,GM-MCM-720,2980.00,2384.00,CERT=UL60947;SEIS=N/A;SUPBY=,/mnt/stock/components/mcm_720.jpg\nENC-160,Encoder Coupling,30 lb,Shaft clamp,0.625 in,Aluminum,Standard,AN,GM-ENC-160,560.00,448.00,CERT=A17.1-2019;SEIS=Zone 2;SUPBY=,/mnt/stock/components/enc_160.jpg\n"
+  },
+  {
+   "filename": "nameplate_01.jpg",
+   "type": "image",
+   "role": "logo_text",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4200, 2800],
+   "defect_engineered": "raking-light frame: lettering most legible (deep cast shadows) but geometry worst (plate keystoned, not square) — the trade the agent must pick against",
+   "prompt": "Handheld phone photograph of a small rectangular CAST ALUMINIUM nameplate riveted with four dome rivets to the painted steel housing of an old elevator traction machine in the back of a warehouse. The plate carries a RAISED-relief cast house mark, all in bare aluminium the same colour as the plate so it reads only by shadow: a condensed industrial wordmark GIRDERMARK across the top, a small line ELEVATOR & ELECTRIC beneath, a simple raised I-beam / girder device to the left, all inside a thin raised rectangular keyline (a hairline rule). Lit by a single hard shop droplight raking sharply across the casting from the upper left, so the raised letters throw strong crisp shadows and read clearly, but the plate is shot at a distinct oblique angle so it is visibly keystoned and NOT square to the camera. Greasy machine surround, shop grime, realistic snapshot, no studio look, no colour in the mark (metal on metal)."
+  },
+  {
+   "filename": "nameplate_02.jpg",
+   "type": "image",
+   "role": "logo_text",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4200, 2800],
+   "defect_engineered": "square frame: geometry best (straight-on, level) but lettering weakest (flat even light gives almost no relief contrast) — the opposite side of the same trade",
+   "prompt": "Handheld phone photograph of the same small rectangular CAST ALUMINIUM elevator-machine nameplate with four dome rivets, carrying the same RAISED bare-aluminium house mark (condensed wordmark GIRDERMARK, small ELEVATOR & ELECTRIC line, a raised I-beam/girder device, inside a thin raised rectangular keyline), all metal-on-metal so it reads only by shadow. This time shot nearly straight on and level, so the plate is square to the camera, but lit by soft flat diffuse ambient warehouse light with almost no directional rake, so the raised lettering has very little shadow and the mark is faint and low-contrast and hard to separate from the plate. Machine housing behind, shop grime, realistic snapshot, no colour in the mark."
+  },
+  {
+   "filename": "nameplate_03.jpg",
+   "type": "image",
+   "role": "logo_text",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4200, 2800],
+   "defect_engineered": "three-quarter frame with a specular glare hotspot burning out part of the mark",
+   "prompt": "Handheld phone photograph of the same CAST ALUMINIUM elevator-machine nameplate with four dome rivets and the same RAISED bare-aluminium house mark (condensed GIRDERMARK wordmark, small ELEVATOR & ELECTRIC line, raised I-beam/girder device, thin raised rectangular keyline), metal-on-metal reading only by shadow. Shot from a three-quarter angle with the shop droplight bouncing off the polished raised metal, throwing a bright blown-out specular glare band across the centre-right of the plate that washes out several letters, while the rest reads by shadow. Oily machine surround, realistic snapshot, no colour in the mark."
+  },
+  {
+   "filename": "nameplate_04.jpg",
+   "type": "image",
+   "role": "logo_text",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4200, 2800],
+   "defect_engineered": "tilted frame with oxidation/weathering on the left third where raised metal and plate run close in value (value-match zone plus rotation to straighten)",
+   "prompt": "Handheld phone photograph of the same CAST ALUMINIUM elevator-machine nameplate with four dome rivets and the same RAISED bare-aluminium house mark (condensed GIRDERMARK wordmark, small ELEVATOR & ELECTRIC line, raised I-beam/girder device, thin raised rectangular keyline). The whole frame is rotated a few degrees so the plate sits noticeably off-level. The left third of the casting is weathered and lightly oxidised with a dull grey-white bloom, so there the raised lettering and the plate surface run to almost the same value and the mark nearly disappears; the right two thirds are cleaner and read by a moderate side rake. Warehouse machine behind, shop grime, realistic snapshot, no colour in the mark."
+  },
+  {
+   "filename": "bench_photo_01.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "MID-GREY bench mat; VOID part (governor sheave through-bore + spoke openings) — a one-call knockout will fill the bore and spokes with captured mat and report success",
+   "prompt": "Flat technical in-house product photograph of a heavy cast-iron elevator GOVERNOR SHEAVE ASSEMBLY: a large grooved pulley wheel with an open central hub bore and several open spoke windows between the rim and the hub, so the bench mat is clearly visible THROUGH the central bore and through each spoke opening. The whole part is in frame, standing on a plain MID-GREY rubber photography bench mat under flat shop fluorescent light, neutral even exposure, one part centred, no props, no styling, mechanical parts-catalogue look, sharp focus. The part is bare mill-finish cast iron."
+  },
+  {
+   "filename": "bench_photo_02.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "MID-GREY bench mat; VOID part (door operator arm open welded frame) — knockout fills the open frame with captured mat",
+   "prompt": "Flat technical in-house product photograph of a welded-steel elevator DOOR OPERATOR ARM ASSEMBLY: a long articulated linkage of flat steel bars and a pivot, forming several open triangular and rectangular gaps between the members, so the bench mat shows clearly THROUGH those open gaps. The whole arm is in frame lying on a plain MID-GREY rubber photography bench mat under flat shop fluorescent light, neutral even exposure, one part centred, no props, black powder-coat finish, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_03.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "NEAR-BLACK bench mat + underexposed (later shoot day); VOID part (restrictor bracket open frame + bolt holes)",
+   "prompt": "Flat technical in-house product photograph of a galvanized-steel elevator OVERSPEED GOVERNOR RESTRICTOR BRACKET: an open L-shaped or U-shaped bent-steel bracket with a large open window and several open bolt holes, so the bench surface shows THROUGH the window and holes. The whole bracket is in frame on a plain NEAR-BLACK rubber photography bench mat under shop fluorescent light, noticeably UNDER-exposed and darker than a normal product shot (shot on a later, dimmer day), one part centred, no props, dull galvanized zinc finish, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_04.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "NEAR-BLACK bench mat + underexposed; VOID part (cable clamp through-bore / wedge opening)",
+   "prompt": "Flat technical in-house product photograph of a ductile-iron elevator TRACTION CABLE CLAMP: a wedge-type clamp body with an open through-channel and an open bolt bore, so the bench surface shows THROUGH the channel and the bore. The whole clamp is in frame on a plain NEAR-BLACK rubber photography bench mat under shop fluorescent light, noticeably UNDER-exposed and darker than normal, one part centred, no props, zinc-plated finish, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_05.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "MID-GREY bench mat; solid-body part (relay socket)",
+   "prompt": "Flat technical in-house product photograph of an 8-PIN RELAY SOCKET: a small black polyamide DIN-rail socket block with eight screw terminals and a retaining clip, a coherent solid body with no large open voids. The whole part is in frame on a plain MID-GREY rubber photography bench mat under flat shop fluorescent light, neutral even exposure, one part centred, no props, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_06.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "MID-GREY bench mat; solid-body part (contactor block)",
+   "prompt": "Flat technical in-house product photograph of a 3-POLE CONTACTOR BLOCK: a grey-and-black thermoplastic industrial contactor with three power poles and screw terminals, a coherent solid body. The whole part is in frame on a plain MID-GREY rubber photography bench mat under flat shop fluorescent light, neutral even exposure, one part centred, no props, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_07.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "NEAR-BLACK bench mat + underexposed; solid-body part (door interlock switch)",
+   "prompt": "Flat technical in-house product photograph of an elevator DOOR INTERLOCK SWITCH: a zinc die-cast switch body with a roller lever and a cable gland, a coherent solid body. The whole part is in frame on a plain NEAR-BLACK rubber photography bench mat under shop fluorescent light, noticeably UNDER-exposed and darker than normal, one part centred, no props, zinc-plated finish, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_08.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "NEAR-BLACK bench mat + underexposed; solid-body part (hoistway limit switch)",
+   "prompt": "Flat technical in-house product photograph of a HOISTWAY LIMIT SWITCH: a steel-bodied lever limit switch on a small mounting plate with a long actuator arm, a coherent solid body. The whole part is in frame on a plain NEAR-BLACK rubber photography bench mat under shop fluorescent light, noticeably UNDER-exposed and darker than normal, one part centred, no props, zinc-plated finish, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_09.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "MID-GREY bench mat; solid-body part (brake coil assembly — single frame serves both BRC-560 revision rows)",
+   "prompt": "Flat technical in-house product photograph of an elevator BRAKE COIL ASSEMBLY: a cylindrical electromagnetic coil in a black powder-coated steel housing with a flange and lead wires, a coherent solid body. The whole part is in frame on a plain MID-GREY rubber photography bench mat under flat shop fluorescent light, neutral even exposure, one part centred, no props, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_10.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "MID-GREY bench mat; solid-body part (governor tension weight)",
+   "prompt": "Flat technical in-house product photograph of a cast-iron GOVERNOR TENSION WEIGHT: a heavy circular cast weight with a central boss and a lifting eye, a coherent solid body (small central hole only). The whole part is in frame on a plain MID-GREY rubber photography bench mat under flat shop fluorescent light, neutral even exposure, one part centred, no props, mill-finish cast iron, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_11.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "NEAR-BLACK bench mat + underexposed; solid-body part (selector cam)",
+   "prompt": "Flat technical in-house product photograph of a steel SELECTOR CAM: a black-oxide profiled cam plate with a mounting slot and a shaped edge, a mostly coherent flat body. The whole part is in frame on a plain NEAR-BLACK rubber photography bench mat under shop fluorescent light, noticeably UNDER-exposed and darker than normal, one part centred, no props, black-oxide finish, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_12.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "NEAR-BLACK bench mat + underexposed; solid-body part (landing pushbutton fixture)",
+   "prompt": "Flat technical in-house product photograph of a stainless-steel LANDING PUSHBUTTON FIXTURE: a brushed stainless faceplate with two illuminated call buttons, a coherent solid body. The whole fixture is in frame on a plain NEAR-BLACK rubber photography bench mat under shop fluorescent light, noticeably UNDER-exposed and darker than normal, one part centred, no props, brushed stainless finish, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_13.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "MID-GREY bench mat; solid-body part (car top inspection station)",
+   "prompt": "Flat technical in-house product photograph of a CAR TOP INSPECTION STATION: a black powder-coated steel enclosure box with a run/stop switch, an inspection toggle and an emergency-stop mushroom button on its face, a coherent solid body. The whole unit is in frame on a plain MID-GREY rubber photography bench mat under flat shop fluorescent light, neutral even exposure, one part centred, no props, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_14.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "MID-GREY bench mat; solid-body part (phase monitor relay)",
+   "prompt": "Flat technical in-house product photograph of a PHASE MONITOR RELAY: a small grey polycarbonate DIN-rail relay module with an indicator LED, an adjustment dial and screw terminals, a coherent solid body. The whole part is in frame on a plain MID-GREY rubber photography bench mat under flat shop fluorescent light, neutral even exposure, one part centred, no props, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_15.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "NEAR-BLACK bench mat + underexposed; solid-body part (main motor contactor)",
+   "prompt": "Flat technical in-house product photograph of a MAIN MOTOR CONTACTOR: a large black thermoplastic industrial contactor with heavy power terminals and an auxiliary block, a coherent solid body. The whole part is in frame on a plain NEAR-BLACK rubber photography bench mat under shop fluorescent light, noticeably UNDER-exposed and darker than normal, one part centred, no props, mechanical parts-catalogue look, sharp focus."
+  },
+  {
+   "filename": "bench_photo_16.jpg",
+   "type": "image",
+   "role": "photoreal",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [4800, 3200],
+   "defect_engineered": "NEAR-BLACK bench mat + underexposed; solid-body part (encoder coupling — small central bore only, treat as coherent body)",
+   "prompt": "Flat technical in-house product photograph of an ENCODER COUPLING: a small anodized-aluminium flexible shaft coupling, two clamped hubs with a bellows or beam section between them, a compact coherent body with only small bores. The whole part is in frame on a plain NEAR-BLACK rubber photography bench mat under shop fluorescent light, noticeably UNDER-exposed and darker than normal, one part centred, no props, clear-anodized aluminium finish, mechanical parts-catalogue look, sharp focus."
+  }
+ ]
+}

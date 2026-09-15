@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Umbra Loft Season Card</title>
+<style>
+  /* A5 portrait, TRIM = MEDIA = BLEED: 148 x 210 mm, zero bleed, no crop marks */
+  @page { size: 148mm 210mm; margin: 0; }
+  html, body { margin: 0; padding: 0; background: #0E0E10; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* Printer's default pairing: a heavy condensed grotesque display + a plain
+     condensed grotesque for the small lines. NOT the venue's series typeface;
+     this type is baked into the converted artwork and cannot be re-set here. */
+  .card {
+    position: relative;
+    width: 148mm;
+    height: 210mm;
+    background: #0E0E10;          /* Pitch ground */
+    color: #E9E4D8;              /* Bone White ink */
+    overflow: hidden;
+    font-family: 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  /* ---- Continuous story frame 1: DATE + HEADLINE + SUPPORT set as ONE
+          continuous story (not one addressable frame per label). ---- */
+  .story-top {
+    position: absolute;
+    top: 12mm; left: 11mm; right: 11mm;
+  }
+  .story-top .date {
+    display: block;
+    font-family: 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 30pt;
+    line-height: 0.92;
+    letter-spacing: 0.5pt;
+    color: #E4863B;              /* Sodium — second colour of the two-colour job */
+    text-transform: uppercase;
+    transform: scaleY(1.08);
+    transform-origin: left top;
+  }
+  .story-top .headline {
+    display: block;
+    font-family: 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 62pt;
+    line-height: 0.86;
+    letter-spacing: -0.5pt;
+    color: #E9E4D8;
+    text-transform: uppercase;
+    transform: scaleY(1.12);
+    transform-origin: left top;
+    margin-top: 4mm;
+  }
+  .story-top .support {
+    display: block;
+    font-family: 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 19pt;
+    line-height: 1.0;
+    letter-spacing: 0.3pt;
+    color: #E9E4D8;
+    opacity: 0.86;
+    margin-top: 5mm;
+  }
+
+  /* ---- Placed-image frame: full-width picture panel, middle band.
+          A real placed graphic (mandatory for convert_pdf_to_indd). ---- */
+  .image-panel {
+    position: absolute;
+    top: 96mm; left: 0; right: 0;
+    height: 74mm;
+    background: #2A2A2E;          /* Ash — frame ground behind the photo */
+    overflow: hidden;
+  }
+  .image-panel img {
+    display: block;
+    width: 148mm;
+    height: 74mm;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  /* ---- Continuous story frame 2: DOOR / SET / PRICE line + STAGE NOTE
+          set as ONE continuous story. ---- */
+  .story-bottom {
+    position: absolute;
+    top: 174mm; left: 11mm; right: 11mm;
+  }
+  .story-bottom .lineup {
+    display: block;
+    font-family: 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 15pt;
+    line-height: 1.0;
+    letter-spacing: 0.4pt;
+    color: #E9E4D8;
+    text-transform: uppercase;
+  }
+  .story-bottom .lineup .price { color: #E4863B; }   /* Sodium accent on price */
+  .story-bottom .stagenote {
+    display: block;
+    font-family: 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.0;
+    letter-spacing: 0.3pt;
+    color: #E9E4D8;
+    opacity: 0.78;
+    margin-top: 2.6mm;
+  }
+
+  /* Thin rule of the second colour, drawn into the artwork above the footer. */
+  .rule {
+    position: absolute;
+    left: 11mm; right: 11mm; top: 190mm;
+    height: 0.5mm;
+    background: #E4863B;
+    opacity: 0.55;
+  }
+
+  /* ---- Static footer LICENCE line, small caps, on every card. ---- */
+  .licence {
+    position: absolute;
+    left: 11mm; right: 11mm; bottom: 9mm;
+    font-family: 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 7.4pt;
+    line-height: 1.28;
+    letter-spacing: 0.35pt;
+    color: #E9E4D8;
+    opacity: 0.7;
+    font-variant: small-caps;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Continuous story frame 1: date, headline and support flow as one story -->
+    <div class="story-top">
+      <span class="date">Fri 25 Sep</span>
+      <span class="headline">Sable Quartet</span>
+      <span class="support">with Odette Lang</span>
+    </div>
+
+    <!-- Placed picture frame (real graphic) -->
+    <div class="image-panel">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-12/assets/umbra_archive_night_01.jpg" alt="Sable Quartet, Umbra Loft">
+    </div>
+
+    <!-- Continuous story frame 2: door / set / price and stage note as one story -->
+    <div class="story-bottom">
+      <span class="lineup">Doors 8:00 PM&nbsp;&nbsp;|&nbsp;&nbsp;Sets 9:00 PM&nbsp;&nbsp;|&nbsp;&nbsp;<span class="price">$28</span></span>
+      <span class="stagenote">Two sets one interval</span>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- Static licence footer, printed on every card -->
+    <div class="licence">Umbra Loft, 14 Foundry Court (basement), Providence RI. Licensed under City of Providence Entertainment Licence PVD-2021-0846. 18 to 32 dollars. Downstairs, after dark.</div>
+
+  </div>
+</body>
+</html>

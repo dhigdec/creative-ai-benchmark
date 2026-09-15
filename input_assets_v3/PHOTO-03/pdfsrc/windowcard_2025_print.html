@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cedarline and Vale office window card — 9 Ledgewood Road (2025 press file)</title>
+<style>
+  /* A5 PORTRAIT, media box == trim, NO bleed (spec: 148 x 210 mm, 4 mm safety) */
+  @page { size: 148mm 210mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  /* one card, exactly the trim size */
+  .card {
+    position: relative;
+    width: 148mm;
+    height: 210mm;
+    background: #F2F1ED;                 /* Plaster White ground */
+    overflow: hidden;
+    color: #3C444B;                      /* Marin Slate default */
+    font-family: Arial, Helvetica, 'Helvetica Neue', sans-serif; /* neutral grotesque */
+  }
+
+  /* TEXT FRAME A -- ONE continuous story: address + description + beds/baths.
+     The three runs share a single positioned block so the card does NOT expose
+     five addressable frames after conversion (structural trap). */
+  .frameA { position: absolute; left: 10mm; top: 13mm; width: 128mm; }
+  .frameA .address {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;   /* quiet transitional serif */
+    font-size: 20pt; line-height: 1.05; letter-spacing: 0.2pt;
+    color: #1E2124;                     /* Deep Charcoal */
+  }
+  .frameA .desc {
+    margin: 3mm 0 0 0;
+    font-size: 10pt; line-height: 1.35; color: #3C444B; max-width: 110mm; /* neutral grotesque */
+  }
+  .frameA .beds {
+    margin: 1.8mm 0 0 0;
+    font-size: 10pt; line-height: 1.2; letter-spacing: 0.3pt; color: #3C444B;
+  }
+
+  /* Bay Grey hairline rules (thin graphic rectangles, not text frames) */
+  .rule { position: absolute; left: 10mm; width: 128mm; height: 0.25mm; background: #7E8A8C; }
+  .ruleA { top: 46mm; }
+  .ruleB { top: 154mm; }
+
+  /* GRAPHIC FRAME -- placed room photograph, full width inside margins, ~140 x 95 mm.
+     A ~3:2 landscape link (1536x1024 = 1.500) placed into a 1.474 frame, so object-fit:cover
+     leaves the true placed aspect to be read from the interchange file, not assumed. */
+  .photo {
+    position: absolute; left: 4mm; top: 52mm; width: 140mm; height: 95mm;
+    object-fit: cover; object-position: 50% 42%; display: block;
+  }
+
+  /* TEXT FRAME B -- a SEPARATE story: price + agent as one flow of two runs,
+     split from frame A by the placed photograph. */
+  .frameB { position: absolute; left: 10mm; top: 160mm; width: 128mm; }
+  .frameB .price {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;   /* quiet transitional serif */
+    font-size: 16pt; line-height: 1.1; color: #1E2124;  /* Deep Charcoal */
+  }
+  .frameB .agent {
+    margin: 2.4mm 0 0 0;
+    font-size: 9pt; line-height: 1.2; letter-spacing: 0.2pt; color: #3C444B;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- TEXT FRAME A: one story, three runs (ADDRESS / DESCRIPTION / BEDS_BATHS).
+         Values are the 2025 press record verbatim -- 9 Ledgewood Road, a sold house
+         that is NOT one of the current active listings, so downstream must re-map it. -->
+    <div class="frameA">
+      <p class="address">9 Ledgewood Road</p>
+      <p class="desc">Single-level modernist home above the reservoir, glass to the west, mature oaks.</p>
+      <p class="beds">3 bd / 2 ba</p>
+    </div>
+
+    <div class="rule ruleA"></div>
+
+    <!-- GRAPHIC FRAME: the placed room photograph (mandatory real image XObject) -->
+    <img class="photo"
+         src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-03/assets/room_01.jpg"
+         alt="9 Ledgewood Road living room, glass wall to the bay">
+
+    <div class="rule ruleB"></div>
+
+    <!-- TEXT FRAME B: a separate story, two runs (PRICE / AGENT) -->
+    <div class="frameB">
+      <p class="price">1,650,000</p>
+      <p class="agent">Priya Anand, Cedarline and Vale</p>
+    </div>
+
+  </div>
+</body>
+</html>

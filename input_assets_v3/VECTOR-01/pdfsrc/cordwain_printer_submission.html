@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cordwain Overland — Printer Artwork Submission</title>
+<style>
+  /* Media box = trim. A4 portrait, NO bleed. */
+  @page { size: 210mm 297mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  * { box-sizing: border-box; }
+
+  :root{
+    --basalt:#2A2E2B;      /* near-black warm charcoal, workhorse ink */
+    --trailsand:#C7B299;   /* muted tan/oat */
+    --pine:#3E4A3D;        /* deep muted green */
+    --rust:#9C5A38;        /* burnt orange accent */
+    --bone:#EDE7DA;        /* warm off-white */
+    --paper:#FFFFFF;
+    --rule:#2A2E2B;
+  }
+
+  body{
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    color: var(--basalt);
+    background: var(--paper);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* One card = one page, exactly trim, no bleed */
+  .card{
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    background: var(--paper);
+    overflow: hidden;
+  }
+
+  /* ---- Masthead ---- */
+  .masthead{ position:absolute; left:14mm; top:12mm; width:182mm; height:23mm; }
+  .shop{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight:700;
+    font-size:19pt;
+    letter-spacing:0.3pt;
+    color:var(--basalt);
+    line-height:1.02;
+  }
+  .shop .amp{ color:var(--rust); }
+  .shop-sub{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:8.5pt; letter-spacing:2.4pt; text-transform:uppercase;
+    color:var(--pine); margin-top:2.2mm;
+  }
+  .shop-loc{ font-size:8pt; color:var(--basalt); margin-top:0.8mm; letter-spacing:0.4pt; }
+
+  .meta{
+    position:absolute; right:0; top:0; width:66mm; text-align:right;
+    font-size:8pt; line-height:1.5; color:var(--basalt);
+  }
+  .meta .k{ color:var(--pine); letter-spacing:1pt; text-transform:uppercase; font-size:6.6pt; }
+  .meta .v{ font-weight:700; }
+  .meta .rev{ margin-top:1.6mm; color:#8a8f88; font-size:6.6pt; letter-spacing:0.6pt; }
+
+  .doctitle{
+    position:absolute; left:14mm; top:36mm; width:130mm;
+    font-size:8pt; letter-spacing:2.4pt; text-transform:uppercase; color:var(--basalt);
+  }
+  .doctitle .thin{ color:var(--pine); letter-spacing:1.4pt; }
+
+  .hr{ position:absolute; left:14mm; width:182mm; height:0; border-top:0.6mm solid var(--rule); }
+  .hr.top{ top:41mm; }
+  .hr.foot{ top:272mm; border-top:0.4mm solid var(--rule); }
+
+  /* ---- Artwork window (image frame) ---- */
+  .window{
+    position:absolute; left:14mm; top:47mm; width:182mm; height:114mm;
+    border:0.5mm solid var(--basalt); background:var(--paper);
+  }
+  .window .winlabel{
+    position:absolute; left:0; top:-0.5mm; transform:translateY(-100%);
+    font-size:6.6pt; letter-spacing:2pt; text-transform:uppercase; color:var(--pine);
+    padding-bottom:1mm;
+  }
+  .window .art{
+    position:absolute; inset:5mm;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .window .art img{ max-width:100%; max-height:100%; object-fit:contain; display:block; }
+  .window .corner{ position:absolute; width:5mm; height:5mm; border:0.5mm solid var(--rust); }
+  .window .corner.tl{ left:2mm; top:2mm; border-right:none; border-bottom:none; }
+  .window .corner.tr{ right:2mm; top:2mm; border-left:none; border-bottom:none; }
+  .window .corner.bl{ left:2mm; bottom:2mm; border-right:none; border-top:none; }
+  .window .corner.br{ right:2mm; bottom:2mm; border-left:none; border-top:none; }
+
+  /* ---- Details region ---- */
+  /* LEFT: one continuous text story (graphic name / garment colour / placement / max width) */
+  .story{
+    position:absolute; left:14mm; top:168mm; width:118mm;
+    font-size:10.5pt; line-height:1.32; color:var(--basalt);
+  }
+  .story .lab{
+    font-size:7pt; letter-spacing:1.8pt; text-transform:uppercase; color:var(--pine);
+    margin-top:5.5mm;
+  }
+  .story .lab:first-child{ margin-top:0; }
+  .story .val{ font-weight:700; font-size:12pt; margin-top:0.8mm; }
+  .story .val.sm{ font-size:10.5pt; font-weight:400; }
+
+  /* RIGHT: INKS / PLATES — FIXED-MEASURE frame that does not spill (silent truncation) */
+  .inks{
+    position:absolute; left:138mm; top:168mm; width:58mm;
+  }
+  .inks .lab{
+    font-size:7pt; letter-spacing:1.8pt; text-transform:uppercase; color:var(--pine);
+    margin-bottom:2.2mm;
+  }
+  .inks .row{ display:flex; align-items:baseline; margin-bottom:2.4mm; }
+  .inks .plate{
+    flex:0 0 auto; width:12mm;
+    font-size:7pt; letter-spacing:0.6pt; color:var(--rust); text-transform:uppercase; font-weight:700;
+  }
+  /* the fixed measure: a stocked ink name longer than this stops at the trim edge, no ellipsis, no wrap */
+  .inks .measure{
+    flex:0 0 auto;
+    width:30mm;                 /* fixed measure */
+    overflow:hidden;            /* does not spill */
+    white-space:nowrap;         /* does not wrap */
+    font-size:10.5pt; font-weight:700; color:var(--basalt);
+    border-bottom:0.2mm solid var(--trailsand);
+    padding-bottom:0.6mm;
+  }
+  .inks .note{
+    margin-top:2mm; font-size:7pt; color:#8a8f88; line-height:1.35; width:44mm;
+    white-space:normal;
+  }
+
+  /* ---- Footer ---- */
+  .footer{
+    position:absolute; left:14mm; top:276mm; width:150mm;
+    font-size:7.4pt; line-height:1.5; color:var(--basalt);
+  }
+  .footer .strong{ font-weight:700; }
+  .footer .muted{ color:#8a8f88; }
+
+  /* Decorative printer roundel / sunburst — inline SVG, bottom corner (NOT an image) */
+  .roundel{ position:absolute; right:14mm; top:260mm; width:26mm; height:26mm; }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- MASTHEAD -->
+    <div class="masthead">
+      <div class="shop">Cascade Screen <span class="amp">&amp;</span> Ink Co.</div>
+      <div class="shop-sub">Screen Printing &middot; Discharge &amp; Plastisol</div>
+      <div class="shop-loc">Bend, Oregon &middot; artwork submissions</div>
+
+      <div class="meta">
+        <div><span class="k">Client</span><br><span class="v">Cordwain Overland</span></div>
+        <div style="margin-top:1.4mm"><span class="k">Submitted</span><br><span class="v">2026&#8209;02&#8209;18 &middot; Spring Drop</span></div>
+        <div style="margin-top:1.4mm"><span class="k">Run ref</span><br><span class="v">CO&#8209;SPR26 &middot; Page 1 of 6</span></div>
+        <div class="rev">SUB&#8209;FORM v3 &middot; rev 02&#8209;2021</div>
+      </div>
+    </div>
+
+    <div class="doctitle">Artwork Submission Sheet</div>
+    <div class="hr top"></div>
+
+    <!-- ARTWORK WINDOW: carries this row's own artwork -->
+    <div class="window">
+      <div class="winlabel">Artwork window</div>
+      <div class="art">
+        <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/VECTOR-01/assets/ridgeline_back.png" alt="Ridgeline Back graphic — Cordwain Overland">
+      </div>
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+    </div>
+
+    <!-- LEFT: ONE CONTINUOUS TEXT STORY (four labelled blocks flow as a single frame) -->
+    <div class="story">
+      <div class="lab">Graphic name</div>
+      <div class="val">Ridgeline Back</div>
+
+      <div class="lab">Garment colour</div>
+      <div class="val">Bone <span style="font-weight:400">(light)</span></div>
+
+      <div class="lab">Placement</div>
+      <div class="val sm">Full back &mdash; centred, top of print 3&nbsp;in below the collar seam.</div>
+
+      <div class="lab">Max print width</div>
+      <div class="val">12&nbsp;in</div>
+    </div>
+
+    <!-- RIGHT: INKS / PLATES — FIXED-MEASURE frame, silent truncation at trim edge -->
+    <div class="inks">
+      <div class="lab">Inks / plates</div>
+
+      <div class="row">
+        <div class="plate">Plate&nbsp;1</div>
+        <div class="measure">Basalt Black</div>
+      </div>
+      <div class="row">
+        <div class="plate">Plate&nbsp;2</div>
+        <div class="measure">Pine Shadow Green</div>
+      </div>
+      <div class="row">
+        <div class="plate">Plate&nbsp;3</div>
+        <div class="measure">Rust Ridge Orange</div>
+      </div>
+
+      <div class="note">Three plates, all plastisol on a light garment. Two or three tight inks, honest registration.</div>
+    </div>
+
+    <div class="hr foot"></div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div><span class="strong">Cascade Screen &amp; Ink Co.</span> &middot; one page per graphic per garment colour &middot; artwork window carries that row&rsquo;s own art.</div>
+      <div class="muted">Inks named from the stocked list. Substitutions by request only. Convert all type to outlines &middot; no gradients, no halftones.</div>
+    </div>
+
+    <!-- Decorative roundel / sunburst — inline SVG in the bottom corner (not a placed image) -->
+    <svg class="roundel" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="50" cy="50" r="48" fill="none" stroke="#2A2E2B" stroke-width="1.6"/>
+      <circle cx="50" cy="50" r="40" fill="none" stroke="#9C5A38" stroke-width="1"/>
+      <!-- sunburst ticks -->
+      <g stroke="#2A2E2B" stroke-width="1.4">
+        <line x1="50" y1="2"  x2="50" y2="10"/>
+        <line x1="50" y1="90" x2="50" y2="98"/>
+        <line x1="2"  y1="50" x2="10" y2="50"/>
+        <line x1="90" y1="50" x2="98" y2="50"/>
+        <line x1="15.9" y1="15.9" x2="21.5" y2="21.5"/>
+        <line x1="78.5" y1="21.5" x2="84.1" y2="15.9"/>
+        <line x1="15.9" y1="84.1" x2="21.5" y2="78.5"/>
+        <line x1="78.5" y1="78.5" x2="84.1" y2="84.1"/>
+      </g>
+      <g stroke="#3E4A3D" stroke-width="0.9">
+        <line x1="50" y1="6" x2="50" y2="11"/>
+        <line x1="32.5" y1="9.7" x2="34.6" y2="14.4"/>
+        <line x1="67.5" y1="9.7" x2="65.4" y2="14.4"/>
+        <line x1="9.7" y1="32.5" x2="14.4" y2="34.6"/>
+        <line x1="90.3" y1="32.5" x2="85.6" y2="34.6"/>
+        <line x1="9.7" y1="67.5" x2="14.4" y2="65.4"/>
+        <line x1="90.3" y1="67.5" x2="85.6" y2="65.4"/>
+        <line x1="32.5" y1="90.3" x2="34.6" y2="85.6"/>
+        <line x1="67.5" y1="90.3" x2="65.4" y2="85.6"/>
+      </g>
+      <!-- inner emblem: a small ridgeline -->
+      <path d="M28 60 L40 42 L47 51 L57 36 L66 49 L72 60 Z" fill="#2A2E2B"/>
+      <rect x="28" y="60" width="44" height="3.4" fill="#9C5A38"/>
+      <text x="50" y="76" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="8.5" font-weight="700" fill="#2A2E2B" letter-spacing="0.5">CS&amp;I</text>
+      <text x="50" y="24" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="5.4" fill="#3E4A3D" letter-spacing="1">EST 2011</text>
+    </svg>
+
+  </div>
+</body>
+</html>

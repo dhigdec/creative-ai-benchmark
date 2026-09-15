@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Harbor Crest Realty — Open House Agent Card</title>
+<style>
+  /* Trim = media box = 2 x 3.5 in portrait (50.8 x 88.9 mm). NO bleed box. */
+  @page { size: 50.8mm 88.9mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  :root {
+    --paper-white: #FBFAF7;   /* card ground        */
+    --harbor-navy: #1F3A5F;   /* agent name         */
+    --crest-slate: #4A5A6A;   /* licence + detail   */
+    --warm-sand:   #E8DFCF;   /* footer band        */
+    --signal-copper:#C07A3E;  /* thin rule under name */
+  }
+
+  /* One card div, exactly the trim size. */
+  .card {
+    position: relative;
+    width: 50.8mm;
+    height: 88.9mm;
+    background: var(--paper-white);
+    overflow: hidden;
+    /* readable text sans for the body of the card */
+    font-family: Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Block 1: the ONE real picture frame on the card — the top photo well,
+     full card width, filling the top ~40 mm. A per-record headshot binds here. */
+  .photo-well {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50.8mm;
+    height: 40mm;
+    overflow: hidden;
+    background: var(--crest-slate);
+  }
+  .photo-well img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 30%;
+    display: block;
+  }
+
+  /* Warm Sand footer band sits behind the lower contact lines. Decorative. */
+  .sand-band {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50.8mm;
+    height: 17mm;
+    background: var(--warm-sand);
+  }
+
+  /* THE STRUCTURAL TRAP:
+     name -> licence -> office line 1 -> office line 2 -> direct number -> email
+     are ONE continuous text story in a SINGLE text frame (block spans in one
+     container), NOT four separately addressable frames. The card only LOOKS
+     like four tidy blocks. */
+  .story {
+    position: absolute;
+    top: 43.5mm;
+    left: 4.6mm;
+    right: 4.6mm;
+    color: var(--crest-slate);
+  }
+  .story span { display: block; }
+
+  .story .name {
+    /* warm humanist sans for the name */
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Segoe UI', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 14.5pt;
+    line-height: 1.05;
+    letter-spacing: 0.1pt;
+    color: var(--harbor-navy);
+    /* the thin Signal Copper rule under the name */
+    border-bottom: 1.1pt solid var(--signal-copper);
+    padding-bottom: 2.2mm;
+    margin-bottom: 2.6mm;
+  }
+  .story .lic {
+    font-size: 6.6pt;
+    line-height: 1.25;
+    color: var(--crest-slate);
+    margin-bottom: 3.0mm;
+  }
+  .story .office {
+    font-size: 7pt;
+    line-height: 1.35;
+    color: var(--crest-slate);
+  }
+  .story .office.first { margin-top: 0.5mm; }
+  .story .contact {
+    font-size: 7pt;
+    line-height: 1.4;
+    color: var(--crest-slate);
+  }
+  .story .contact.first { margin-top: 2.6mm; }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Block 1: the single genuine image/graphic frame (per-record headshot). -->
+    <div class="photo-well">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-07/assets/agent_headshot_01.jpg"
+           alt="Dana Marsh, Harbor Crest Realty">
+    </div>
+
+    <!-- Warm Sand footer band (decorative ground behind the contact lines). -->
+    <div class="sand-band"></div>
+
+    <!-- Blocks 2-4 are ONE continuous story in ONE frame (the trap):
+         name, licence, static office line 1 "48 Rosewood Plaza" (17 chars),
+         static office line 2, direct number, email — flowing in that order. -->
+    <div class="story">
+      <span class="name">Dana Marsh</span>
+      <span class="lic">Calderon County RE Lic. #CC-01984771</span>
+      <span class="office first">48 Rosewood Plaza</span>
+      <span class="office">Rosewood, Calderon County</span>
+      <span class="contact first">Direct (555) 0148</span>
+      <span class="contact">dana@harborcrestrealty.co</span>
+    </div>
+
+  </div>
+</body>
+</html>

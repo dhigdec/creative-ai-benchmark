@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Maison Valcere spec card proof</title>
+<style>
+  /* Trim = spec's exact size: 105 x 148 mm A6 portrait. Media box = trim, NO bleed. */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Bench Ivory ground; one card div exactly at trim, non-spilling. */
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    background: #F4F1EA;            /* Bench Ivory */
+    overflow: hidden;
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* PIECE IMAGE — a genuine rectangular graphic frame (real picture well), ~72 x 72 mm centred. */
+  .piece {
+    position: absolute;
+    top: 14mm;
+    left: 16.5mm;                  /* (105 - 72) / 2 */
+    width: 72mm;
+    height: 72mm;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Warm Gold hairline rule (0.5 pt) between the image and L1. */
+  .rule {
+    position: absolute;
+    top: 91mm;
+    left: 16.5mm;
+    width: 72mm;
+    height: 0.5pt;
+    background: #C6A15B;           /* Warm Gold */
+  }
+
+  /*
+    THE TRAP: L1..L6 are NOT six addressable frames. They are ONE continuous text
+    story in a SINGLE, FIXED, non-spilling text frame, flowing top to bottom with
+    forced line breaks. If a mapped value runs longer than its line's room the story
+    simply stops rendering at the frame edge (overflow:hidden, no overset flow).
+  */
+  .story {
+    position: absolute;
+    top: 96mm;
+    left: 16.5mm;
+    width: 72mm;
+    height: 44mm;                  /* fixed height -> over-long fields truncate at trim */
+    overflow: hidden;
+    line-height: 7.4mm;            /* generous, uniform leading */
+    font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, sans-serif; /* restrained humanist sans */
+    font-size: 9.5pt;
+    color: #0B0B0D;               /* House Black */
+    text-align: left;
+  }
+
+  /* L1 PIECE NAME — high-contrast neoclassical serif, large display, House Black. */
+  .name {
+    font-family: 'Didot', 'Bodoni 72', 'Bodoni MT', 'Hoefler Text', Georgia, 'Times New Roman', serif;
+    font-size: 18pt;
+    letter-spacing: 0.4px;
+    color: #0B0B0D;
+  }
+
+  /* L2 REFERENCE — humanist sans, small caps, Fine Grey. */
+  .ref {
+    font-variant: small-caps;
+    letter-spacing: 1.6px;
+    color: #8A8A8F;               /* Fine Grey */
+    font-size: 8pt;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <!-- Real placed graphic: the reference's own bench photograph (Solenne / MV-101). -->
+    <img class="piece"
+         src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-05/assets/valcere_bench_01.jpg"
+         alt="Solenne, reference MV-101">
+
+    <div class="rule"></div>
+
+    <!-- ONE continuous story in one fixed frame; forced line breaks between the six lines.
+         Values are the printer's baked static sample content (what shows when a field
+         never becomes a placeholder): the regulated ASSAY line and the discreet
+         'shown on request' price carried as the printer's original sample wording. -->
+    <div class="story"><span class="name">Solenne</span><br><span class="ref">MV-101</span><br>18K white gold<br>18K 750<br>Old-cut diamond, 1.05 ct<br>2.0 mm — shown on request</div>
+  </div>
+</body>
+</html>

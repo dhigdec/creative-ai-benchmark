@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Argent &amp; Faith Provenance Card</title>
+<!--
+  Argent & Faith — boxed provenance card, single-record printer's proof.
+  Trim 105 mm x 74 mm LANDSCAPE. Media box = trim, NO bleed box (margin:0).
+  One real record from capsule_inventory.csv: Vesper Medallion (AF-SP26-002).
+
+  STRUCTURAL TRAPS baked to match the layout spec's "how it is actually set":
+   1. piece_name + metal_finish + dimensions are authored as ONE continuous
+      story (single .story block, soft <br> breaks) -> conversion collapses
+      them to one text frame addressable only by ordered offsets.
+   2. The A&F maker's mark at the foot is NOT a placed graphic frame: it is
+      flattened into the card's background artwork as inline <svg> vector, so
+      there is no addressable frame the recovered mark can bind into.
+   3. provenance_line and piece_number sit in their OWN separate frames.
+   4. The ONLY graphic frame is the piece photograph (real <img>), so
+      convert_pdf_to_indd exposes exactly one graphic frame.
+   Note: the provenance_line carried here is the inventory value verbatim,
+   which for the Vesper Medallion is the SWAPPED/wrong "cast...hand chased"
+   line -> the stale value the spec calls for, baked as the printer would.
+-->
+<style>
+  @page { size: 105mm 74mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  .card {
+    position: relative;
+    box-sizing: border-box;
+    width: 105mm;
+    height: 74mm;
+    background: #F6F4EF;            /* Paper White ground */
+    color: #1E1C1A;                /* Ink */
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---- LEFT: the ONLY graphic frame, ~40 x 52 mm, photo on warm ivory ---- */
+  .photo-frame {
+    position: absolute;
+    left: 7mm;
+    top: 8.5mm;
+    width: 40mm;
+    height: 52mm;
+    background: #EFE7D9;           /* Warm Ivory Ground */
+    overflow: hidden;
+  }
+  .photo-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 46%;
+  }
+
+  /* ---- RIGHT COLUMN, top: ONE continuous story (name/metal/dimensions) ---- */
+  .story {
+    position: absolute;
+    left: 54mm;
+    top: 11mm;
+    width: 44mm;
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.28;
+  }
+  .story .name {
+    font-size: 15pt;
+    letter-spacing: 0.2pt;
+    color: #1E1C1A;
+  }
+  .story .sub {
+    font-size: 8pt;
+    letter-spacing: 0.1pt;
+    color: #3A3A3D;               /* toward Oxidised Recess */
+  }
+
+  /* ---- RIGHT COLUMN, lower: provenance_line, its OWN frame, italic serif ---- */
+  .prov {
+    position: absolute;
+    left: 54mm;
+    top: 33mm;
+    width: 43mm;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 8pt;
+    line-height: 1.42;
+    color: #2B2B2E;               /* Oxidised Recess */
+  }
+
+  /* ---- BOTTOM-RIGHT: piece_number, its OWN small frame ---- */
+  .pnum {
+    position: absolute;
+    right: 7mm;
+    bottom: 6mm;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 1.4pt;
+    color: #6B6A66;               /* quiet grey */
+    text-align: right;
+  }
+
+  /* ---- FOOT, centered: maker's mark FLATTENED into background artwork ----
+     Drawn as inline vector (no <img>, no placeable frame). ------------------ */
+  .foot-mark {
+    position: absolute;
+    left: 50%;
+    bottom: 3.2mm;
+    width: 12mm;
+    height: 12mm;
+    transform: translateX(-50%);
+  }
+  .foot-mark svg { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- The ONLY graphic frame on the card: the piece photograph -->
+    <div class="photo-frame">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-13/assets/bench_capsule_02.jpg" alt="Vesper Medallion">
+    </div>
+
+    <!-- ONE continuous story: piece_name + metal_finish + dimensions,
+         soft breaks only, a single text frame -->
+    <div class="story"><span class="name">Vesper Medallion</span><br>
+<span class="sub">Sterling silver, oxidised</span><br>
+<span class="sub">28 mm dia, 1.4 mm</span></div>
+
+    <!-- provenance_line: standalone frame, italic serif (inventory value verbatim) -->
+    <div class="prov">Cast in sterling silver, hand chased lattice, oxidised and finished at the bench.</div>
+
+    <!-- piece_number: standalone small frame, bottom-right -->
+    <div class="pnum">AF-SP26-002</div>
+
+    <!-- Maker's mark: flattened background artwork, inline vector, NOT a frame.
+         Fine assay-style border ring with enclosed interior, A&F monogram
+         (closed counters on A and &), small geometric device below. -->
+    <div class="foot-mark" aria-hidden="true">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#1E1C1A" stroke-width="1.4"/>
+        <circle cx="50" cy="50" r="41.5" fill="none" stroke="#1E1C1A" stroke-width="0.7"/>
+        <text x="50" y="52.5" text-anchor="middle"
+              font-family="Georgia, 'Times New Roman', serif"
+              font-size="30" font-weight="600" letter-spacing="0.5"
+              fill="#1E1C1A" style="font-variant: small-caps;">A&amp;F</text>
+        <path d="M50 68 L54 73 L50 78 L46 73 Z" fill="#1E1C1A"/>
+      </svg>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Northgrove Colour Approval Card</title>
+<style>
+  /* A5 LANDSCAPE press card. Trim 210 x 148 mm. Media box = trim, NO bleed box. */
+  @page { size: 210mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Off-White #F5F2EC stock, Charcoal #2E2E2C ink (brand palette). */
+  .card {
+    position: relative;
+    width: 210mm;
+    height: 148mm;
+    box-sizing: border-box;
+    background: #F5F2EC;
+    color: #2E2E2C;
+    overflow: hidden;
+    /* text in a calm humanist sans, generous leading */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* LEFT THIRD: genuine placed IMAGE frame, ~70 x 70 mm swatch window.
+     This is a real graphic frame carrying the carrier style's fabric. */
+  .swatch {
+    position: absolute;
+    left: 15mm;
+    top: 33mm;
+    width: 70mm;
+    height: 70mm;
+    border: 0.3mm solid #2E2E2C;
+    background: #C9C4BA; /* warm grey paper, shows if image is late */
+    overflow: hidden;
+  }
+  .swatch img {
+    display: block;
+    width: 70mm;
+    height: 70mm;
+    object-fit: cover;
+    object-position: 50% 42%;
+  }
+  .swatch-cap {
+    position: absolute;
+    left: 15mm;
+    top: 105mm;
+    width: 70mm;
+    font-size: 7.5pt;
+    letter-spacing: 0.02em;
+    color: #2E2E2C;
+  }
+
+  /* RIGHT TWO-THIRDS: header block + spec story + footer. */
+  .body {
+    position: absolute;
+    left: 98mm;
+    right: 15mm;
+    top: 18mm;
+  }
+
+  /* HEADER in the charcoal condensed wordmark face, set tight. */
+  .wordmark {
+    font-family: 'Arial Narrow', 'Helvetica Neue Condensed', 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-stretch: condensed;
+    font-size: 20pt;
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+    text-transform: uppercase;
+    color: #2E2E2C;
+    margin: 0;
+  }
+  .season {
+    font-family: 'Arial Narrow', 'Helvetica Neue Condensed', sans-serif;
+    font-weight: 400;
+    font-size: 10.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6B7248; /* olive accent from the palette */
+    margin: 2.5mm 0 0 0;
+  }
+  .rule {
+    height: 0;
+    border-top: 0.35mm solid #2E2E2C;
+    margin: 5mm 0 6mm 0;
+  }
+
+  /* SPECIFICATION BLOCK.
+     Authored as ONE CONTINUOUS TEXT STORY (a single flow / single frame),
+     NOT five separate frames. It only *visually* reads as five labelled
+     rows because of the <br> line breaks inside this one element. */
+  .spec {
+    font-size: 11.5pt;
+    line-height: 2.05;   /* generous leading so the one story reads as five rows */
+    letter-spacing: 0.01em;
+    color: #2E2E2C;
+    margin: 0;
+    max-width: 92mm;
+  }
+  .spec .lbl {
+    display: inline-block;
+    min-width: 34mm;
+    color: #6f6f68;
+    font-size: 9.5pt;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .spec .val {
+    font-weight: 600;
+  }
+
+  /* FOOTER: sign-off lines, pinned to the trim's lower area. */
+  .footer {
+    position: absolute;
+    left: 98mm;
+    right: 15mm;
+    bottom: 15mm;
+    font-size: 9.5pt;
+    line-height: 2.4;
+    letter-spacing: 0.02em;
+    color: #2E2E2C;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Genuine placed image frame: carrier-style fabric in the swatch window -->
+    <div class="swatch">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-10/assets/northgrove_style_01_loopback_crew.jpg" alt="Loopback crew fabric swatch">
+    </div>
+    <div class="swatch-cap">Approved swatch &mdash; reproduce at 300&nbsp;dpi</div>
+
+    <div class="body">
+      <div class="wordmark">Northgrove &mdash; Colour&nbsp;Approval</div>
+      <div class="season">AW / capsule</div>
+      <div class="rule"></div>
+
+      <!-- ONE CONTINUOUS STORY: five labelled rows in a single text flow,
+           separated only by <br>. Do NOT split into per-field frames. -->
+      <div class="spec"><span class="lbl">Colourway</span><span class="val">Slate</span><br><span class="lbl">Colour code</span><span class="val">NG-SLT-03</span><br><span class="lbl">Fabric</span><span class="val">80/20 loopback cotton, 340 gsm</span><br><span class="lbl">Dye lot</span><span class="val">DL-2411-C</span><br><span class="lbl">Carrier style</span><span class="val">Loopback Crew</span></div>
+    </div>
+
+    <div class="footer">
+      Mill approved&nbsp;&nbsp;__________________&nbsp;&nbsp;&nbsp;Date&nbsp;&nbsp;__________<br>
+      Brand approved&nbsp;&nbsp;_________________&nbsp;&nbsp;&nbsp;Date&nbsp;&nbsp;__________
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lumen Quarterly — Spring press proof</title>
+<style>
+  /* Perfect-bound magazine trim 210 x 273 mm portrait. Media box = trim: NO bleed box. */
+  @page { size: 210mm 273mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  :root {
+    --paper: #F3EEE3;   /* Uncoated Paper ground */
+    --ink:   #1F3A3C;   /* Masthead Ink — headline + section word */
+    --body:  #26262A;   /* Charcoal — body */
+    --rule:  #9C968B;   /* Rule Grey — hairline rules + folio */
+    --ochre: #B4762E;   /* Signal Ochre — pull-quote marks + standfirst tint */
+  }
+
+  .page {
+    position: relative;
+    width: 210mm; height: 273mm;
+    background: var(--paper);
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* Page-level anchored hero image (flattens on conversion — no graphic frame). */
+  .hero {
+    position: absolute; top: 0; left: 0;
+    width: 210mm; height: 116mm;
+    object-fit: cover; object-position: 50% 62%;
+    z-index: 0;
+  }
+
+  /* ONE continuous threaded story: headline + standfirst + byline + both body
+     columns + all three pull quotes flow in a single frame with an internal
+     2-column setting. Not two addressable frames. */
+  .story {
+    position: relative; z-index: 2;
+    margin: 62mm 44mm 22mm 20mm;   /* wide outer (right) margin carries the caption story */
+    column-width: 64mm;            /* house measure the file actually carries: 64 mm */
+    column-gap: 9mm;
+    color: var(--body);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 10pt;               /* body applied 10 / 14 (disagrees with guide's 9.5/13) */
+    line-height: 14pt;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .story .headline {
+    column-span: all;
+    margin: 0 0 3mm 0;
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 600;              /* opener applied Semibold (guide says Light — stale) */
+    font-size: 34pt;
+    line-height: 1.02;
+    letter-spacing: 0.1pt;
+  }
+  .story .standfirst {
+    column-span: all;
+    margin: 0 0 3mm 0;
+    padding: 3.5mm 5mm 3.5mm 8mm;
+    background: rgba(180,118,46,0.20);  /* Signal Ochre tint band; photo reads behind */
+    color: var(--body);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 13pt; line-height: 17pt;
+    text-align: left; text-indent: 0;
+  }
+  .story .byline {
+    column-span: all;
+    margin: 0 0 5mm 0;
+    color: var(--ink);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 8pt; letter-spacing: 0.6pt; text-transform: uppercase;
+  }
+  .story p.body { margin: 0 0 3.4mm 0; text-indent: 5mm; }
+  .story p.body.first { text-indent: 0; }
+
+  /* Pull quotes are inline anchored runs INSIDE the one story, not separate frames. */
+  .pq {
+    margin: 2mm 0 3mm 0;
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 600; font-size: 15pt; line-height: 1.16;
+    text-align: left; text-indent: 0;
+  }
+  .pq::before { content: '\201C'; color: var(--ochre); font-size: 18pt; line-height: 0; }
+  .pq.span { column-span: all; font-size: 18pt; padding: 2mm 0; border-top: 0.3mm solid var(--rule); border-bottom: 0.3mm solid var(--rule); }
+
+  /* The four captions are a SECOND short story of their own, down the outer margin.
+     Single line each, small sans, NO credit line (Spring set carried no credits). */
+  .captions {
+    position: absolute; z-index: 3;
+    top: 126mm; right: 8mm; width: 32mm;
+    color: var(--body);
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 7.5pt; line-height: 9.5pt;   /* Coble Grotesque 7.5 */
+  }
+  .captions .cap { margin: 0 0 6mm 0; }
+  .captions .cap::before { content: ''; display: block; width: 10mm; border-top: 0.3mm solid var(--rule); margin-bottom: 1.5mm; }
+
+  /* Filled rectangle (not a frame) — tint slab reference at foot of column area is folio. */
+  .folio {
+    position: absolute; z-index: 3;
+    left: 20mm; right: 20mm; bottom: 9mm;
+    display: flex; justify-content: space-between;
+    color: var(--rule);
+    font-family: Helvetica, Arial, sans-serif;
+    font-variant: small-caps; letter-spacing: 1pt;
+    font-size: 6.5pt;
+    border-top: 0.3mm solid var(--rule); padding-top: 2mm;
+  }
+
+  /* PAGE 2 — section opener: one very large display word + a hairline rule, white space. */
+  .section-opener { display: flex; flex-direction: column; justify-content: center; align-items: center; height: 273mm; }
+  .section-kicker { font-family: Helvetica, Arial, sans-serif; font-size: 8pt; letter-spacing: 4pt; text-transform: uppercase; color: var(--rule); margin-bottom: 10mm; }
+  .section-word { font-family: Georgia, 'Times New Roman', serif; font-weight: 600; font-size: 96pt; color: var(--ink); line-height: 1; }
+  .section-rule { width: 46mm; border-top: 0.4mm solid var(--rule); margin-top: 12mm; }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 — Spring feature opener -->
+<section class="page">
+  <img class="hero" src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-14/assets/lumen_autumn_essay_14.jpg" alt="Boat shed at the end of the afternoon, gold light across the plank floor">
+
+  <div class="story">
+    <h1 class="headline">What the Wood Remembers</h1>
+    <p class="standfirst">For forty years Emory Vaughn has built the same small boat the same way, in the same shed above Sennet Cove. On one long afternoon in October we watched him begin another&nbsp;&mdash; and learned that almost nothing about it is quick, and almost nothing about it is decided in advance.</p>
+    <p class="byline">Words by Nora Ellison&nbsp;&nbsp;&middot;&nbsp;&nbsp;Photographs by Perrin Doyle</p>
+
+    <p class="body first">Emory Vaughn keeps the same length of chalk in the same coat pocket he has kept it in for longer than most of the boats on this reach have been afloat. He is seventy-one. The shed sits a hundred yards above Sennet Cove on a slope that has never been level, propped at its downhill corner on a granite block his father set there, and from the wide door you can see the whole working water of the cove: two lobster boats on their moorings, a skiff hauled out and turned turtle, and the grey line on the mud where the tide was an hour ago and is not now.</p>
+
+    <p class="body">&ldquo;People think the hard part is the shape,&rdquo; he says, before he has picked up a single tool. &ldquo;The shape is the easy part. The shape is decided. The hard part is the wood, because the wood has not agreed to it yet.&rdquo;</p>
+
+    <p class="pq">He has built the same hull the same way for forty years, and he still stops to look at the grain before the first cut.</p>
+
+    <p class="body">He builds peapods&nbsp;&mdash; double-ended rowing and sailing boats, thirteen and fifteen feet, the kind of small workboat that was rowed out to tend traps along this coast a century ago and is now bought, mostly, by people who love the look of them and the quiet of them and the fact that they were made by a pair of hands and not pressed out of a mould in a shed on the other side of the world.</p>
+
+    <p class="body">The shape itself lives on the wall of the shed, and it is older than he is. It is a half-model&nbsp;&mdash; one side of a hull carved from laminated pine, glued up in stripes of light and dark so that when he wants to know a dimension he can lift the offsets straight off it. His father carved it, and his father&rsquo;s shape it remains, refined over the decades by nothing more violent than a spokeshave taken to it on the two or three winters when a boat came out and something about her did not sit right in the water.</p>
+  </div>
+
+  <div class="captions">
+    <p class="cap">The shed above Sennet Cove, an hour before the light turns.</p>
+    <p class="cap">Lapped cedar, spiled plank by plank so each edge lands sweet on the last.</p>
+    <p class="cap">A single unbroken shaving; the plane is sharp or it is nothing.</p>
+    <p class="cap">The double end, where the planks meet and the boat becomes symmetrical.</p>
+  </div>
+
+  <div class="folio">
+    <span>Lumen Quarterly</span>
+    <span>Spring&nbsp;&middot;&nbsp;The Feature</span>
+    <span>24</span>
+  </div>
+</section>
+
+<!-- PAGE 2 — section opener -->
+<section class="page">
+  <div class="section-opener">
+    <div class="section-kicker">The Feature</div>
+    <div class="section-word">Craft</div>
+    <div class="section-rule"></div>
+  </div>
+  <div class="folio">
+    <span>Lumen Quarterly</span>
+    <span>Spring</span>
+    <span>23</span>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+{
+ "task_id": "LAYOUT-30",
+ "brand": "Emberwell Brew House",
+ "notes": "Fourteen-room brew-house estate run: a 14-row price+availability sheet (unavailable line = blank price cell, two store names carry trailing spaces, 'Portland' spelled 'Portland'/'Portand'), last season's single-flow press insert PDF (name+desc+price share one story, one graphic frame, no bleed), six dish/pour frames on dark walnut across two mornings (stout and cortado shoulders at walnut value so a one-call knockout bites the rim invisibly, two frames the SAME Winter Squash Toast so a featured line has no photo and the two never-shot seasonals force stock), the enamel apron pin as a compound kettle-in-ring lockup on curved reflective metal with a lower-left specular band, plus clean approved copy and the canonical store roster that reconciles the sheet. MULTI-TEMPLATE / MULTI-TIER hardening: a SECOND template PDF (last season's counter card for the four kitchenless rooms Nashua/Keene/Montpelier/Mystic — tab-aligned two-column drinks story, NO graphic frame, own footer + on-now frames, no bleed, so a plates mapping binds to nothing) and a store-directory CSV supplying the NON-NUMERIC per-store content (street address, hours, rotating on-now line) that must be JOINED to the price sheet on the store name; the directory uses clean roster spellings so the two trailing-space names ('Concord ', 'Camden ') miss the join silently (blank footer), Keene (counter, no kitchen) features a PLATE it can't make so the feature must be reconciled to the service model, hours formats vary per row, and Northampton's long address + Portsmouth's long on-now line overset the fixed footer/feature frames both templates inherited from their single-sample press files. Both press files also now carry the footer + on-now frames sized to one short sample.",
+ "assets": [
+  {
+   "filename": "emberwell_price_availability.csv",
+   "type": "csv",
+   "role": "data",
+   "defect_engineered": "the operations working sheet: a line a store does not offer arrives as a BLANK price cell (no header hint) rather than an absent line, so an untreated empty prints a naked dish name with its leader running to nothing; two store names carry a TRAILING SPACE ('Concord ', 'Camden ') and the Portland town is spelled two ways ('Portland' vs 'Portand') so per-store filenames diverge from the roster unless cleaned first (trigger for the checkpoint after step 14 when files are named from response labels/position instead of reconciled content)",
+   "content": "Store,Town,Ember Skillet Hash,Kettle Roast Chicken,Braised Short Rib,Smoked Trout Plate,Winter Squash Toast,Maple Pork Belly,Spiced Pear Tart,House Drip,Cortado,Cold Brew,Maple Oat Latte,Emberwell Stout,Spiced Chai\nPortsmouth,Portsmouth,16,23,26,19,15,21,9,4.50,5,5.50,6.50,7,5.50\nBurlington,Burlington,16,22,26,20,15,21,9,4.50,5,5.50,6.50,7,5.50\nOld Port,Portland,15,22,,18,14,20,8.50,4.50,5,5.50,6,7,5\nMunjoy Hill,Portand,15,21,25,,14,20,8.50,4.50,5,5.50,6,7,5\nConcord ,Concord,15,21,24,17,14,,8,4.50,4.50,5,6,6.50,5\nBrattleboro,Brattleboro,14,20,,17,14,19,,4,4.50,5,6,6.50,4.50\nCamden ,Camden,16,22,26,19,,20,9,5,5.50,6,7,7,6\nNorthampton,Northampton,15,21,25,18,14,,8.50,4.50,5,5.50,6.50,7,5.50\nNashua,Nashua,,,,,,,,4.50,5,5.50,6,6.50,5\nKeene,Keene,,,,,,,,4,4.50,5,5.50,6.50,5\nMontpelier,Montpelier,,,,,,,,4.50,5,5.50,6,7,5.50\nMystic,Mystic,,,,,,,,5,5.50,6,6.50,7,6\nSalem,Salem,16,22,26,19,,21,9,5,5.50,6,7,7,6\nProvidence,Providence,16,23,26,,15,21,9,5,5.50,6,7,7,6\n"
+  },
+  {
+   "filename": "emberwell_insert_spring_prior.pdf",
+   "type": "pdf",
+   "role": "data",
+   "defect_engineered": "the printer's press file: dish name + description + price are ONE continuous story flow so no separate price frame is exposed and every price is reachable only by position; only ONE graphic frame exists to bind a picture; media box equals trim so there is NO bleed and none can be introduced by conversion; a fixed-height FOOTER frame (one sample store's address+hours) and a one-line FEATURE frame (the on-now line) were set to one short sample so per-store address/hours/on-now values of real length overset and clip at trim on merge",
+   "content": "LAYOUT SPEC for last season's spring insert press file (flat, single record; to be reverse-engineered downstream into a live merge template).\n\nDocument: single insert page, 5.5 x 8.5 in (half-letter) PORTRAIT, NO bleed box present (trim = media box, 0 in bleed on all four edges), all fonts embedded and subset. This is the exact file the printer still holds and reruns.\n\nWHAT IT LOOKS LIKE PRINTED (reads as several tidy fields):\n- Top: the house MARK (kettle-in-ring lockup) placed small and centered above a thin rule.\n- Header: 'Emberwell Brew House' in the display serif, 'Good coffee, kept close' beneath in the humanist sans.\n- Left column: the PLATES list - each line is a dish NAME in the display serif, a one-line DESCRIPTION in the sans, then a PRICE set flush right at the end of the line with a faint leader rule running out to it.\n- Right column: the DRINKS list, set the same way, name then price at the end of the line, over a faint Steam panel.\n- One placed DISH PHOTOGRAPH: a single silhouetted plate given air, lower right.\n- Bottom: the fixed ALLERGEN line, small, in the sans.\n\nHOW IT IS ACTUALLY SET (the reverse-engineering trap):\n- The dish NAME, its DESCRIPTION and its PRICE are ONE continuous text story flowing down the column - name, description and price number are a single run per line, NOT three addressable frames and NOT a separate price frame. Each price can only be reached by its character offset inside the shared story, and that offset depends on the exact string the story holds, not on where the price sits on the printed page.\n- On conversion the whole insert exposes roughly: two long threaded text frames (plates story, drinks story), one small text frame (allergen), ONE graphic frame (the dish photo), and the placed mark artwork. Conversion granularity is a property of how the PDF was produced and is not controllable; the tidy printed columns are not evidence of separate frames.\n- There is exactly ONE graphic frame (the dish photo) to bind a per-store picture into.\n\nNO BLEED: because the media box equals the trim and no bleed box exists, a press-ready-with-bleed delivery cannot be produced from this file however the render or export is called. This has to be stated to the printer, not assumed away.\n\nFIELD ROLES the downstream mapping must resolve (present as content, not as visible placeholder tokens): DISH_NAME | DISH_DESC | PRICE | DRINK_NAME | DRINK_PRICE | ALLERGEN | FEATURED_PHOTO (one graphic frame) | MARK (placed artwork).\n\nColours: Warm Cream #F4EDE0 ground, Roast #3B2A21 body and dish names, Ember #B4552D thin rules and the price accent, Kettle Brass #A8823F the mark's ring, Slate Ink #2B2622 the allergen line, Steam #D8CBB8 the faint panel behind the drinks column.\nType: a warm high-contrast display serif for names and header (generously leaded); a quiet humanist sans for descriptions, prices and the allergen line.\n\nFOOTER AND FEATURE (per-store non-numeric content, joined per store from the store directory): last season's file also carries, below the allergen line, a small FIXED-HEIGHT FOOTER frame holding one sample store's street address and opening hours, and above the plates a single ON NOW line in a one-line frame for the room's rotating tap or special. Both were set to that one short sample store, so they are sized to short text; a per-store address, hours line or feature of any real length OVERSETS these frames and the tail clips at trim, and the merge reports success. Additional field roles the downstream mapping must also resolve (present as content, not visible tokens), joined per store from the store directory: STORE_ADDRESS | STORE_HOURS | FEATURE."
+  },
+  {
+   "filename": "emberwell_counter_card_prior.pdf",
+   "type": "pdf",
+   "role": "data",
+   "defect_engineered": "the SECOND template with a DIFFERENT structure from the plates file: drink name + price set as one TAB-ALIGNED TWO-COLUMN story (prices at different offsets than the plates single flow), NO graphic frame anywhere (this tier carries no dish photo, so the per-store picture column must NOT be sent here or it binds to nothing), its own fixed FOOTER + ON-NOW frames sized to one short sample so long address/hours/feature overset and clip at trim, and NO bleed; a mapping built for the plates template binds to nothing on this file",
+   "content": "LAYOUT SPEC for last season's COUNTER CARD press file (flat, single record; the SECOND template, for the four kitchenless counter rooms; to be reverse-engineered downstream into a live merge template separate from the plates insert).\n\nDocument: single counter card page, 5.5 x 8.5 in (half-letter) PORTRAIT, SAME TRIM as the plates insert so the two tiers combine into one estate PDF, NO bleed box present (trim = media box, 0 in bleed on all four edges), all fonts embedded and subset. This is the file the printer holds for the counter rooms and reruns.\n\nWHAT IT LOOKS LIKE PRINTED:\n- Top: the house MARK (kettle-in-ring lockup) small and centered above a thin rule.\n- Header: 'Emberwell Brew House' in the display serif, 'Good coffee, kept close' beneath in the humanist sans.\n- A single ON NOW line under the header, in the sans, for the room's rotating tap or special.\n- DRINKS: the coffee program and cold drinks, each line a drink NAME at the left and its PRICE flush right, aligned to a tab, over a faint Steam panel. NO plates section anywhere.\n- A short FROM THE CASE line naming the pastry/case items (no prices), in the sans.\n- FOOTER: the room's STREET ADDRESS and its HOURS, small, in the sans.\n- Bottom: the fixed ALLERGEN line, small, in the sans.\n- NO dish photograph anywhere on the card.\n\nHOW IT IS ACTUALLY SET (the reverse-engineering trap, and it is NOT the plates file's trap):\n- The drink NAME and its PRICE are set as ONE tab-aligned TWO-COLUMN story: name, tab, price on each line, flowing down the column as a single story. Each price is reached by its character offset inside THIS story, which sits at completely different positions than the plates file's single flow; a mapping or offset set built against the plates template binds to nothing here.\n- On conversion this card exposes roughly: one two-column drinks story, one short ON NOW frame, one short FROM THE CASE story, one small FOOTER frame (address + hours), one allergen frame, and the placed mark artwork.\n- There is NO graphic frame anywhere on this card, because the counter tier carries no dish photograph. The per-store picture column has nothing to bind into here and must NOT be passed to this template's merge.\n- The FOOTER frame and the ON NOW frame were set to ONE short sample store, so they are sized to short text; a per-store address, hours line or feature of real length OVERSETS them and the tail clips at trim on merge, with the merge reporting success.\n\nNO BLEED: because the media box equals the trim and no bleed box exists, a press-ready-with-bleed delivery cannot be produced from this file however the render or export is called. This has to be stated to the printer, not assumed away.\n\nFIELD ROLES the downstream mapping must resolve (present as content, not visible tokens), joined per store from the price sheet and the store directory: DRINK_NAME | DRINK_PRICE | FEATURE (on now) | STORE_ADDRESS | STORE_HOURS | ALLERGEN | MARK (placed artwork). NOTE: there is NO DISH_NAME, NO DISH_DESC, NO plates PRICE column and NO FEATURED_PHOTO on this template.\n\nColours: Warm Cream #F4EDE0 ground, Roast #3B2A21 body and drink names, Ember #B4552D thin rules and the price accent, Kettle Brass #A8823F the mark's ring, Slate Ink #2B2622 the allergen and footer lines, Steam #D8CBB8 the faint panel behind the drinks.\nType: the warm high-contrast display serif for the header and drink names (generously leaded); the quiet humanist sans for the on-now line, prices, the case line, the footer and the allergen line."
+  },
+  {
+   "filename": "emberwell_store_directory.csv",
+   "type": "csv",
+   "role": "data",
+   "defect_engineered": "the operations store directory that supplies the NON-NUMERIC per-store content (street address, hours, rotating on-now line) for BOTH templates; must be JOINED to the price sheet on the store name to build the merge data. Engineered messiness: it carries the CLEAN roster spellings, so the price sheet's two TRAILING-SPACE names ('Concord ', 'Camden ') MISS the join in silence and those two rooms merge with a BLANK footer no error reports; KEENE is counter-service (no kitchen) yet its on-now line names a PLATE ('Maple Pork Belly') it cannot make, so the feature must be reconciled against the service model, not passed through; the hours are written a different way on almost every row; and Northampton's long address and Portsmouth's long on-now line OVERSET the fixed footer/feature frames both templates inherited from their single-sample press files",
+   "content": "Store,Street Address,Hours,On Now\nPortsmouth,\"44 Ceres Street, Portsmouth, NH\",Mon-Sun 7-7,\"On the bar now: the last of the Winter Porter, then the Amber comes on\"\nBurlington,\"210 College Street, Burlington, VT\",7am to 7pm daily,On now: Maple Pork Belly is back for spring\nOld Port,\"8 Wharf Street, Portland, ME\",\"Mon-Fri 7-7, Sat-Sun 8-5\",This week: Smoked Trout Plate\nMunjoy Hill,\"155 Congress Street, Portland, ME\",Daily 7-6,On the bar: Cold Brew season is here\nConcord,\"19 North Main Street, Concord, NH\",7-7,On now: Spiced Pear Tart\nBrattleboro,\"88 Elliot Street, Brattleboro, VT\",\"Mon-Sat 7-6, Sun 8-4\",This week: Kettle Roast Chicken\nCamden,\"21 Bay View Street, Camden, ME\",8 to 6 daily,On the bar: Emberwell Stout\nNorthampton,\"1180 Pleasant Street, Suite 2, corner of Strong Avenue, Northampton, MA\",\"Mon-Fri 7am-7pm / Sat-Sun 8am-5pm\",On now: the spring plates\nNashua,\"7 Main Street, Nashua, NH\",Open 6:30-4,On now: Maple Oat Latte\nKeene,\"33 Central Square, Keene, NH\",6:30am-4pm,On now: Maple Pork Belly is back\nMontpelier,\"5 State Street, Montpelier, VT\",7-3 daily,On now: Spiced Chai\nMystic,\"12 Water Street, Mystic, CT\",Daily 7-4,On now: Cold Brew on tap\nSalem,\"90 Derby Street, Salem, MA\",Mon-Sun 7-7,On now: Braised Short Rib\nProvidence,\"140 Wickenden Street, Providence, RI\",7-7 daily,This week: Ember Skillet Hash\n"
+  },
+  {
+   "filename": "emberwell_dish_01.jpg",
+   "type": "image",
+   "role": "product",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [
+    4000,
+    6000
+   ],
+   "defect_engineered": "EMBERWELL STOUT pour: dark stout and dark glass shoulder sit at almost the value of the dark walnut counter, so a one-call knockout returns a clean-looking cutout that has bitten the rim there - invisible on the dark ground, obvious once silhouetted on cream (fires the checkpoint after step 12)",
+   "prompt": "Photorealistic product photograph for a menu, a single tall glass of dark near-black stout beer with a thin tan head, standing on a dark walnut counter, soft natural window light from the left, first morning so the white balance is faintly warm. Single subject given generous empty space around it for silhouetting. CRITICALLY the dark glass and the dark stout at the rounded glass shoulder sit at almost exactly the same tonal value as the dark walnut counter behind and beneath, so along the glass shoulder the subject edge blends into the counter with very little contrast; the rim still reads clean against this dark ground. Restrained, elevated, no props, no hands, sharp focus."
+  },
+  {
+   "filename": "emberwell_dish_02.jpg",
+   "type": "image",
+   "role": "product",
+   "model": "gpt-image-2.5-flare",
+   "size": "1024x1536",
+   "target_px": [
+    4000,
+    6000
+   ],
+   "defect_engineered": "CORTADO: dark coffee surface and dark glass shoulder sit at almost the value of the dark walnut counter, so the one-call knockout bites the shoulder edge invisibly on the dark ground and obviously on cream (second of the two frames that fire the checkpoint after step 12)",
+   "prompt": "Photorealistic product photograph for a menu, a single small cortado glass holding espresso topped with a thin layer of steamed milk, dark coffee in dark glass, standing on a dark walnut counter, soft natural window light, second morning so the white balance is faintly cooler than the first. Single subject with generous empty space for silhouetting. CRITICALLY the dark coffee surface and the dark glass at the shoulder sit at almost the value of the dark walnut counter where they meet, so the subject edge blends into the counter with very little contrast along the shoulder; clean against this dark ground. Restrained, elevated, no props, no hands, sharp focus."
+  },
+  {
+   "filename": "emberwell_dish_03.jpg",
+   "type": "image",
+   "role": "product",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [
+    6000,
+    4000
+   ],
+   "defect_engineered": "Ember Skillet Hash plate; first-morning faintly WARM white balance - part of the two-morning grading spread the set must be brought to one house target; shot on dark walnut",
+   "prompt": "Photorealistic product photograph for a menu, a single small cast-iron skillet of root-vegetable hash with a farm egg on top, on a dark walnut counter, soft natural window light from the left, first morning so the white balance is faintly warm. Single plated dish given generous empty space for silhouetting, elevated and restrained, no props, no hands, sharp focus."
+  },
+  {
+   "filename": "emberwell_dish_04.jpg",
+   "type": "image",
+   "role": "product",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [
+    6000,
+    4000
+   ],
+   "defect_engineered": "Kettle Roast Chicken plate; second-morning faintly COOLER white balance than frame 03 - the grading spread across the set that one batched call would get wrong",
+   "prompt": "Photorealistic product photograph for a menu, a single plate of half a roasted chicken with a small heap of the day's greens, on a dark walnut counter, soft natural window light, second morning so the white balance is faintly cooler than the first morning's frames. Single plated dish, generous empty space for silhouetting, elevated and restrained, no props, no hands, sharp focus."
+  },
+  {
+   "filename": "emberwell_dish_05.jpg",
+   "type": "image",
+   "role": "product",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [
+    6000,
+    4000
+   ],
+   "defect_engineered": "Winter Squash Toast (seasonal), angle A; frames 05 and 06 are the SAME plate shot twice, so the six frames cover one seasonal line twice - a featured line is left with no photograph of its own, and with Maple Pork Belly and Spiced Pear Tart never photographed (per copy) this forces stock sourcing (fires the checkpoint after step 8)",
+   "prompt": "Photorealistic product photograph for a menu, a single plate of roasted winter squash on a thick slice of grilled levain toast with sage and brown butter, on a dark walnut counter, soft natural window light from the left, first morning faintly warm. Shot straight-on, single plated dish with generous empty space for silhouetting, elevated and restrained, no props, no hands, sharp focus."
+  },
+  {
+   "filename": "emberwell_dish_06.jpg",
+   "type": "image",
+   "role": "product",
+   "model": "gpt-image-2.5-flare",
+   "size": "1536x1024",
+   "target_px": [
+    6000,
+    4000
+   ],
+   "defect_engineered": "DUPLICATE of frame 05 - the same Winter Squash Toast plate on the same counter and light, a slightly different angle; two of six frames being the same plate is the coverage-gap defect behind the checkpoint after step 8",
+   "prompt": "Photorealistic product photograph for a menu, the SAME single plate of roasted winter squash on grilled levain toast with sage and brown butter as the previous frame, on the same dark walnut counter under the same soft natural window light, first morning faintly warm, but shot from a slightly higher three-quarter angle and moved a little within the frame. Single plated dish, generous empty space for silhouetting, elevated and restrained, no props, no hands, sharp focus."
+  },
+  {
+   "filename": "emberwell_pin.jpg",
+   "type": "image",
+   "role": "logo_text",
+   "model": "gemini-3-pro-image",
+   "size": "1024x1024",
+   "target_px": [
+    2400,
+    2400
+   ],
+   "defect_engineered": "compound kettle-in-ring lockup on a curved reflective enamel pin: naming 'the pin' returns the pin not the mark, a compound-prompt selection returns the letter ring while silently dropping the ENCLOSED kettle, background removal on the enclosed ring returns a solid OPAQUE disc, and a specular band across the LOWER-LEFT runs the dark-brown enamel letters and the brass plating to the same value; small letter counters alias at the size the mark must still read on the insert",
+   "prompt": "Extreme close-up smartphone macro photograph of a small round enamel lapel pin fastened to the strap of a dark canvas apron. The pin carries a compound brand lockup: a solid KETTLE silhouette (a squat stovetop kettle with a curved spout and a handle) enameled in warm rust-orange at the centre, enclosed by a RING of letterspaced small-cap letters reading E M B E R W E L L B R E W H O U S E enameled in deep dark brown, struck on polished plated brass metal. The pin face is domed and reflective. CRITICALLY, uneven light throws a bright specular band across the LOWER-LEFT of the ring, and there the dark-brown enamel of the letters and the brass plating fall to almost the same tonal value so the letters nearly disappear into the metal along that shadowed-then-glared third. The enclosed centre inside the ring is fully filled by the kettle, a true compound lockup with an enclosed interior. Realistic enamel texture, tiny reflections, casual real-world close-up, not a studio shot. No other text and no real brand names."
+  },
+  {
+   "filename": "emberwell_copy.txt",
+   "type": "txt",
+   "role": "data",
+   "defect_engineered": "none - the clean approved wording; the allergen line is fixed, and the copy names all three seasonal lines (Winter Squash Toast, Maple Pork Belly, Spiced Pear Tart) so the missing-photo reconciliation - one seasonal shot twice, two seasonals never shot - is checkable",
+   "content": "EMBERWELL BREW HOUSE - SPRING INSERT COPY (approved wording; the allergen line is fixed and cannot change)\n\nPLATES\nEmber Skillet Hash - Root vegetables and a farm egg, crisped in the cast iron, kept simple.\nKettle Roast Chicken - Half a bird, brined overnight and roasted, with the day's greens.\nBraised Short Rib - A long braise, root mash, a spoon of pan gravy.\nSmoked Trout Plate - Trout smoked in the house, rye toast, pickled onion.\n\nTHIS SEASON (three seasonal lines this spring)\nWinter Squash Toast - Roasted squash on grilled levain, brown butter, sage.\nMaple Pork Belly - Maple-glazed belly, cider apples, a little mustard.\nSpiced Pear Tart - Poached pear, warm spice, a short crust.\n\nDRINKS\nHouse Drip - The daily roast, black or with cream.\nCortado - Two shots and a little steamed milk, no more.\nCold Brew - Slow steeped overnight, poured over ice.\nMaple Oat Latte - Espresso, oat milk, a line of maple.\nEmberwell Stout - On until the barrel is done, then it is not.\nSpiced Chai - Our house blend, steamed, a little heat.\n\nALLERGEN STATEMENT (fixed - do not reword)\nPlease tell us about any allergies before you order. Our kitchens handle gluten, dairy, eggs, nuts and shellfish in a small space, and we cannot promise any dish is free of them.\n\nA NOTE ON PRICE\nPrices sit quiet at the end of the line. No specials language, no combos, no value words. Every room sets its own price from the operations sheet.\n"
+  },
+  {
+   "filename": "emberwell_store_roster.txt",
+   "type": "txt",
+   "role": "data",
+   "defect_engineered": "none - the canonical public spellings that reconcile the sheet's two trailing-space store names and the Portland/Portand town, and mark the four counter-service rooms (Nashua, Keene, Montpelier, Mystic) with no kitchen; the per-store filenames must match these strings exactly",
+   "content": "EMBERWELL BREW HOUSE - the rooms, written the way we write them in public. Name the file for each store with these spellings exactly.\n\nPortsmouth - Portsmouth, New Hampshire (flagship kitchen)\nBurlington - Burlington, Vermont (flagship kitchen)\nOld Port - Portland, Maine\nMunjoy Hill - Portland, Maine\nConcord - Concord, New Hampshire\nBrattleboro - Brattleboro, Vermont\nCamden - Camden, Maine\nNorthampton - Northampton, Massachusetts\nNashua - Nashua, New Hampshire (counter service, no kitchen)\nKeene - Keene, New Hampshire (counter service, no kitchen)\nMontpelier - Montpelier, Vermont (counter service, no kitchen)\nMystic - Mystic, Connecticut (counter service, no kitchen)\nSalem - Salem, Massachusetts\nProvidence - Providence, Rhode Island\n\nThe four counter service rooms are Nashua, Keene, Montpelier and Mystic; they have no kitchen and run the coffee program only. Old Port and Munjoy Hill are both in Portland, Maine. Fourteen rooms in all. There is no trailing space on any store name and the town is Portland, spelled one way.\n"
+  }
+ ]
+}

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Anvil and Oak Strength - Exercise Card</title>
+<style>
+  /* Media box = trim, no bleed. 127 x 178 mm (5 x 7 in). */
+  @page { size: 127mm 178mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  * { box-sizing: border-box; }
+
+  :root {
+    --anvil-iron: #2B2B2E;   /* movement name + cue text */
+    --oak:        #6B4A2E;   /* cue numerals + wordmark */
+    --whitewash:  #EDE8DF;   /* wall / hairline */
+    --chalk:      #F4F2ED;   /* card ground */
+    --ember-rust: #A6552F;   /* thin rule */
+    --steel-grey: #8A9099;   /* muscle-group line */
+  }
+
+  body {
+    background: #ffffff;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .card {
+    position: relative;
+    width: 127mm;
+    height: 178mm;
+    background: var(--chalk);
+    overflow: hidden;               /* trim clip; no bleed */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* --- PICTURE BOX: genuine rectangular graphic frame, top ~46%,
+         runs to the top and side trim edges, holds the poster frame --- */
+  .picture-box {
+    position: absolute;
+    top: 0; left: 0;
+    width: 127mm;
+    height: 82mm;
+    overflow: hidden;
+    background: var(--whitewash);
+    border-bottom: 0.5mm solid var(--anvil-iron);
+  }
+  .picture-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 38%;   /* keep the lockout / torso in frame */
+    display: block;
+  }
+
+  /* --- CONTENT area below the picture box --- */
+  .content {
+    position: absolute;
+    top: 82mm; left: 0;
+    width: 127mm;
+    height: 96mm;
+    padding: 6mm 9mm 0 9mm;
+  }
+
+  /* MOVEMENT NAME - separate text frame, heavy slightly-condensed slab display */
+  .movement-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    font-size: 22pt;
+    line-height: 1.02;
+    letter-spacing: -0.4px;
+    color: var(--anvil-iron);
+    margin: 0 0 1.6mm 0;
+    transform: scaleX(0.96);        /* the slight condensation */
+    transform-origin: left center;
+  }
+
+  /* MUSCLE GROUP line - separate short text frame, plain humanist sans, small */
+  .muscle-group {
+    font-family: Arial, Helvetica, 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 8.5pt;
+    line-height: 1.28;
+    color: var(--steel-grey);
+    margin: 0 0 2.4mm 0;
+    max-width: 104mm;
+  }
+
+  /* Ember Rust thin rule between the name/header and the cue block */
+  .rule {
+    height: 0.5mm;
+    width: 104mm;
+    background: var(--ember-rust);
+    margin: 0 0 3.2mm 0;
+  }
+
+  /* --- CUE LIST: ONE single fixed-height text frame ---
+     auto-size OFF (fixed height), no threaded overflow, no overset marker.
+     Height drawn to last year's longest six-cue list, so a record whose
+     cue list runs longer renders to the frame's bottom edge and simply
+     STOPS - mid-line, no ellipsis. This is the reverse-engineering trap. */
+  .cue-frame {
+    height: 42mm;                   /* fixed: last year's six-cue depth */
+    width: 105mm;
+    overflow: hidden;               /* non-spilling, no overset indicator */
+    counter-reset: cue;
+  }
+  .cue {
+    counter-increment: cue;
+    position: relative;
+    padding-left: 7mm;
+    margin: 0 0 2.2mm 0;
+    font-family: Arial, Helvetica, 'Helvetica Neue', sans-serif;
+    font-weight: 400;
+    font-size: 9.5pt;
+    line-height: 1.36;
+    color: var(--anvil-iron);      /* cue text: Anvil Iron */
+  }
+  .cue::before {
+    content: counter(cue);
+    position: absolute;
+    left: 0; top: 0;
+    width: 5mm;
+    text-align: right;
+    font-weight: 700;
+    color: var(--oak);             /* numerals: Oak */
+  }
+
+  /* --- Bottom-left lockup: recovered wordmark + certification seal --- */
+  .lockup {
+    position: absolute;
+    left: 9mm;
+    bottom: 8mm;
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+  .seal { width: 13mm; height: 13mm; display: block; }
+  .wordmark { line-height: 1; }
+  .wordmark .mark {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 700;
+    font-size: 11pt;
+    letter-spacing: 0.3px;
+    color: var(--oak);
+    display: block;
+    transform: scaleX(0.94);
+    transform-origin: left center;
+  }
+  .wordmark .sub {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 5.6pt;
+    letter-spacing: 3px;
+    color: var(--anvil-iron);
+    display: block;
+    margin-top: 0.8mm;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Poster frame bound into the picture box (mandatory placed graphic) -->
+    <div class="picture-box">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/MOTION-15/assets/deadlift_poster.jpg" alt="Conventional Deadlift poster frame">
+    </div>
+
+    <div class="content">
+      <div class="movement-name">Conventional Deadlift</div>
+      <div class="muscle-group">Posterior chain - hamstrings, glutes, spinal erectors, lats, grip</div>
+      <div class="rule"></div>
+
+      <!-- Single fixed-height, non-spilling cue frame (the trap).
+           Conventional Deadlift carries 8 cues; the frame was drawn to
+           six-cue depth, so cues run to the frame's bottom edge and stop. -->
+      <div class="cue-frame">
+        <p class="cue">Set the bar over mid-foot</p>
+        <p class="cue">Grip just outside the knees</p>
+        <p class="cue">Drop the hips, chest up, flatten the back</p>
+        <p class="cue">Take the slack out of the bar</p>
+        <p class="cue">Brace hard against the belt</p>
+        <p class="cue">Push the floor away, bar close to the shins</p>
+        <p class="cue">Stand tall, lock the hips, do not lean back</p>
+        <p class="cue">Return it the way it came up, hinge first</p>
+      </div>
+    </div>
+
+    <!-- Bottom-left lockup: wordmark + compound ring certification seal.
+         Seal drawn as inline SVG vector (arc type + inner hairline rule +
+         central anvil glyph), NOT a picture of the seal. -->
+    <div class="lockup">
+      <svg class="seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anvil and Oak certification seal">
+        <defs>
+          <path id="arcTop" d="M 12 50 A 38 38 0 0 1 88 50" fill="none"/>
+          <path id="arcBot" d="M 14 50 A 36 36 0 0 0 86 50" fill="none"/>
+        </defs>
+        <circle cx="50" cy="50" r="47" fill="none" stroke="#2B2B2E" stroke-width="2.4"/>
+        <circle cx="50" cy="50" r="40.5" fill="none" stroke="#2B2B2E" stroke-width="0.9"/>
+        <text font-family="Georgia, 'Times New Roman', serif" font-size="9" font-weight="700" letter-spacing="1.2" fill="#2B2B2E">
+          <textPath href="#arcTop" startOffset="50%" text-anchor="middle">ANVIL AND OAK</textPath>
+        </text>
+        <text font-family="Georgia, 'Times New Roman', serif" font-size="7" font-weight="700" letter-spacing="2" fill="#2B2B2E">
+          <textPath href="#arcBot" startOffset="50%" text-anchor="middle">STRENGTH &#183; EST 2020</textPath>
+        </text>
+        <!-- central anvil glyph -->
+        <g fill="#2B2B2E">
+          <path d="M 34 44 L 66 44 L 66 48 L 60 48 L 62 56 L 38 56 L 40 48 L 34 48 Z"/>
+          <path d="M 30 42 L 44 42 L 44 45 L 33 45 Z"/>
+          <rect x="45" y="56" width="10" height="9"/>
+          <rect x="40" y="64" width="20" height="3.4"/>
+        </g>
+      </svg>
+      <div class="wordmark">
+        <span class="mark">ANVIL &amp; OAK</span>
+        <span class="sub">STRENGTH</span>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fernwell &amp; Rowe — Hartley thank-you card</title>
+<style>
+  /* A6 landscape, media box = trim (148 x 105 mm), NO bleed box */
+  @page { size: 148mm 105mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  .card {
+    position: relative;
+    width: 148mm;
+    height: 105mm;
+    background: #F7F1E6;            /* Soft Cream */
+    overflow: hidden;
+    color: #2E2A24;                /* Fernwell Ink */
+    font-family: Georgia, 'Times New Roman', 'Times', serif;
+  }
+
+  /* LEFT PANEL — the wedding photograph, filling the left half to the edges */
+  .photo {
+    position: absolute;
+    top: 0; left: 0;
+    width: 74mm;
+    height: 105mm;
+    overflow: hidden;
+  }
+  .photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 42%;
+  }
+
+  /* RIGHT PANEL — warm cream, carrying the type */
+  .panel {
+    position: absolute;
+    top: 0; left: 74mm;
+    width: 74mm;
+    height: 105mm;
+    box-sizing: border-box;
+    padding: 13mm 11mm 12mm 11mm;
+    background: #F7F1E6;           /* Soft Cream */
+  }
+
+  /* ONE continuous story: household line + message + names live in a single
+     text frame (single block, no per-field divs). This is the structural trap. */
+  .story {
+    font-size: 10.5pt;
+    line-height: 1.62;
+    color: #2E2A24;
+    max-width: 52mm;
+  }
+  .story .greeting { display: block; margin-bottom: 3.2mm; }
+  .story .names {
+    display: block;
+    margin-top: 3.4mm;
+    font-size: 15pt;
+    color: #7A2E28;               /* Seal Wax Red */
+    letter-spacing: 0.2pt;
+  }
+
+  /* SEPARATE text frame: the date line sits alone near the bottom, set small
+     in the humanist sans, distinct from the serif story above. */
+  .dateline {
+    position: absolute;
+    left: 11mm;
+    bottom: 12mm;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-size: 7pt;
+    letter-spacing: 1.4pt;
+    text-transform: uppercase;
+    color: #4A5A3E;               /* Walled Garden Green */
+  }
+
+  /* Studio wax seal — a dark red wax-seal MARK on a pale panel, ~14 mm across.
+     Drawn as inline vector geometry (not a placed picture well). */
+  .sealpanel {
+    position: absolute;
+    right: 9mm;
+    bottom: 9mm;
+    width: 20mm;
+    height: 20mm;
+    background: #EFE7D8;          /* Warm Vellum pale panel */
+    border-radius: 1.2mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 0.35mm rgba(46,42,36,0.06) inset;
+  }
+  .sealpanel svg { width: 14mm; height: 14mm; display: block; }
+
+  /* A hairline gold rule under the greeting, quiet and traditional */
+  .rule {
+    width: 14mm;
+    height: 0;
+    border-top: 0.4mm solid #C9A15A;   /* Golden Hour */
+    margin: 0 0 4mm 0;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- MANDATORY placed image: the album-cover / thank-you-card hero frame -->
+    <div class="photo">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-18/assets/hartley_select_07.jpg" alt="Hartley wedding, golden hour in the walled garden">
+    </div>
+
+    <div class="panel">
+      <div class="rule"></div>
+
+      <!-- ONE CONTINUOUS STORY (single text frame): household line, message, names -->
+      <div class="story">
+        <span class="greeting">Dear The Hartley Family,</span>Thank you for celebrating our wedding with us. It meant the world to have you there. With love,<span class="names">Emma &amp; Tom</span>
+      </div>
+
+      <!-- SEPARATE text frame: the date line, alone -->
+      <div class="dateline">14 September 2025</div>
+
+      <!-- Studio wax seal, pale panel, bottom-right -->
+      <div class="sealpanel">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fernwell and Rowe wax seal">
+          <circle cx="50" cy="50" r="47" fill="#7A2E28"/>
+          <circle cx="50" cy="50" r="47" fill="none" stroke="#5F231F" stroke-width="1.4"/>
+          <circle cx="50" cy="50" r="39" fill="none" stroke="#E7CFA0" stroke-width="1.1" opacity="0.8"/>
+          <circle cx="50" cy="50" r="36" fill="none" stroke="#5F231F" stroke-width="0.7" opacity="0.55"/>
+          <text x="38.5" y="60.5" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-style="italic" fill="#EFDDBE" text-anchor="middle">F</text>
+          <text x="61.5" y="63" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-style="italic" fill="#EFDDBE" text-anchor="middle">R</text>
+          <text x="50" y="45" font-family="Georgia, 'Times New Roman', serif" font-size="9" fill="#E7CFA0" text-anchor="middle" opacity="0.85">&amp;</text>
+        </svg>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

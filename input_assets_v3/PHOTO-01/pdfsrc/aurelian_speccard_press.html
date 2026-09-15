@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Aurelian Skin shelf-edge spec card</title>
+<style>
+  /* Media box = trim only (A6 portrait 105 x 148 mm). NO bleed box, no trim marks. */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  * { box-sizing: border-box; }
+
+  .card {
+    position: relative;
+    width: 105mm;
+    height: 148mm;
+    overflow: hidden;
+    background: #F4F6F7;            /* Clinical White ground */
+    color: #232729;                /* Graphite ink */
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ---- Real graphic frame: the square PRODUCT IMAGE well (top-right). ---- */
+  .well {
+    position: absolute;
+    top: 9mm;
+    left: 56.5mm;                  /* right margin ~8.5mm */
+    width: 40mm;
+    height: 40mm;
+    object-fit: cover;
+    object-position: center;
+    background: #FFFFFF;
+  }
+
+  /* ---- ONE continuous threaded story: name -> INCI panel -> claim. ----
+     These three parts flow inside a SINGLE container (one text story),
+     NOT three separately positioned fields. The INCI is an offset inside
+     this flow, not an addressable field of its own. */
+  .story {
+    position: absolute;
+    top: 10mm;
+    left: 8.5mm;
+    width: 88mm;
+  }
+  .name {
+    width: 44mm;                   /* narrow column, clears the image well */
+    min-height: 40mm;              /* holds the flow open above the INCI panel */
+    font-weight: 300;              /* the quiet display cut */
+    font-size: 16.5pt;
+    line-height: 1.12;
+    letter-spacing: 0.1pt;
+    color: #232729;
+  }
+  .inci {
+    margin-top: 2mm;
+    padding: 3mm 3mm 3.2mm 3mm;    /* text sits inside the decorative keyline box */
+    min-height: 25mm;
+  }
+  .inci-label {
+    font-weight: 500;
+    font-size: 6.5pt;
+    letter-spacing: 1.1pt;
+    text-transform: uppercase;
+    color: #9BA5AA;                /* Cool Mineral Grey */
+    margin-bottom: 1.6mm;
+  }
+  .inci-body {
+    font-weight: 400;
+    font-size: 8pt;
+    line-height: 1.42;
+    color: #232729;
+  }
+  .claim {
+    margin-top: 5mm;
+    font-weight: 400;
+    font-size: 9.5pt;
+    line-height: 1.2;
+    color: #232729;                /* Graphite */
+  }
+
+  /* ---- Separate SHORT story frame: the PRICE (bottom-left, display cut). ---- */
+  .price {
+    position: absolute;
+    left: 8.5mm;
+    top: 120mm;
+    font-weight: 300;
+    font-size: 30pt;
+    line-height: 1;
+    color: #232729;
+  }
+
+  /* ---- Decorative vector paths (NOT text frames, NOT the image well). ---- */
+  .rule {                          /* Signal Blue hairline rule under the name */
+    position: absolute;
+    left: 8.5mm;
+    top: 40mm;
+    width: 45mm;
+    height: 0.5mm;
+    background: #3E6076;
+  }
+  .keyline {                       /* Cool Mineral Grey panel keyline around the INCI */
+    position: absolute;
+    left: 8.5mm;
+    top: 50.5mm;
+    width: 88mm;
+    height: 30mm;
+    border: 0.3mm solid #9BA5AA;
+    background: transparent;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Real bindable graphic frame: the SKU's own bottle photograph. -->
+    <img class="well"
+         src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-01/assets/aurelian_launch_shoot_03.jpg"
+         alt="Reservoir Hyaluronic Serum bottle on white">
+
+    <!-- Decorative paths, drawn behind/around the story text. -->
+    <div class="rule"></div>
+    <div class="keyline"></div>
+
+    <!-- ONE threaded story: PRODUCT_NAME + INCI + CLAIM flow as a single text story. -->
+    <div class="story">
+      <div class="name">Reservoir Hyaluronic Serum (30ml frosted)</div>
+      <div class="inci">
+        <div class="inci-label">Ingredients (INCI)</div>
+        <div class="inci-body">Aqua, Sodium Hyaluronate, Glycerin, Pentylene Glycol, Sodium PCA</div>
+      </div>
+      <div class="claim">Delivers lightweight, layered hydration.</div>
+    </div>
+
+    <!-- Separate short story frame. -->
+    <div class="price">34</div>
+
+  </div>
+</body>
+</html>

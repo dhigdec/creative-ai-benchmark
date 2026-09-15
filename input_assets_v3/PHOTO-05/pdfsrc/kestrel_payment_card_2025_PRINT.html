@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kestrel Home Lending payment card</title>
+<style>
+  /* Media box = TRIM, no bleed. 148 x 105 mm landscape. */
+  @page { size: 148mm 105mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
+
+  .card {
+    position: relative;
+    width: 148mm;
+    height: 105mm;
+    overflow: hidden;
+    background: #EDE7DB;                 /* Bone Paper ground */
+    color: #22304A;                      /* Blue Hour type   */
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  /* GRAPHIC FRAME 1 — placed apartment plate, left ~48% of card, full height inside 3 mm margins. */
+  .plate {
+    position: absolute;
+    left: 3mm; top: 3mm;
+    width: 68mm; height: 99mm;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Right column geometry */
+  .col { position: absolute; left: 77mm; width: 68mm; }
+
+  /* TEXT FRAME A — ONE continuous story: apartment type, price, deposit. */
+  .frameA { top: 13mm; }
+  .frameA .type  { font-family: Georgia, 'Times New Roman', serif; font-size: 16pt; line-height: 1.15; margin: 0; }
+  .frameA .price { font-family: Georgia, 'Times New Roman', serif; font-size: 13pt; margin: 3.4mm 0 0 0; }
+  .frameA .dep   { font-family: Arial, Helvetica, sans-serif; font-size: 10pt; letter-spacing: .2px; margin: 2.6mm 0 0 0; }
+
+  /* Brass hairline rule */
+  .rule {
+    position: absolute;
+    left: 77mm; width: 68mm; top: 41mm; height: 0.30mm;
+    background: #A67C3D;                 /* Brass */
+  }
+
+  /* TEXT FRAME B — the regulated block, ONE continuous story with tabbed runs. */
+  .frameB { top: 48mm; font-family: Arial, Helvetica, sans-serif; }
+  .frameB .pay { font-size: 10pt; line-height: 1.2; white-space: nowrap; margin: 0; }
+  .frameB .pay .c1 { display: inline-block; width: 26mm; }
+  .frameB .pay .c2 { display: inline-block; width: 18mm; }
+  .frameB .pay .c3 { display: inline-block; }
+  .frameB .rate  { font-size: 8.5pt; line-height: 1.3; margin: 4.0mm 0 0 0; }
+  .frameB .small { font-size: 7.5pt; line-height: 1.3; margin: 4.0mm 0 0 0; color: #3E5266; }
+
+  /* GRAPHIC FRAME 2 — small lender wordmark, bottom-right corner. */
+  .wordmark {
+    position: absolute;
+    right: 3mm; bottom: 3mm;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 6.5pt; letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #A67C3D;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <!-- GRAPHIC FRAME 1: mandatory placed photograph (the apartment plate) -->
+    <img class="plate"
+         src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-05/assets/halcyon_show_apartment.jpg"
+         alt="Halcyon Quarter show apartment">
+
+    <!-- TEXT FRAME A: single story (type / price / deposit) -->
+    <div class="col frameA">
+      <p class="type">The Spindle - 2 bed</p>
+      <p class="price">From 895,000</p>
+      <p class="dep">Deposit 10%</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <!-- TEXT FRAME B: single story, tabbed runs (scenario / rate &amp; term / small print) -->
+    <div class="col frameB">
+      <p class="pay"><span class="c1">Est. monthly</span><span class="c2">$3,780</span><span class="c3">over 30 yrs</span></p>
+      <p class="rate">Representative: 5.85% fixed 5 yrs, then 7.99% SVR. Overall cost for comparison 6.4% APRC.</p>
+      <p class="small">Kestrel Home Lending. Your home may be repossessed if you do not keep up repayments. NMLS #000000.</p>
+    </div>
+
+    <!-- GRAPHIC FRAME 2: lender wordmark -->
+    <div class="wordmark">Kestrel Home Lending</div>
+  </div>
+</body>
+</html>

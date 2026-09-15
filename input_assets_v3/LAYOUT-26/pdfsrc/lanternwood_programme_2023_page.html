@@ -1,0 +1,146 @@
+<!-- Lanternwood Folk Fest — 2023 performer profile page (plainer design).
+     Faithful printer's proof re-authored as real press-PDF HTML.
+     Trim = media box = 148 x 210 mm A5 portrait, NO bleed box.
+     Real record: The Bramble Sisters (from lanternwood_lineup.csv).
+     Structural trap baked: portrait is a GENUINELY PLACED image in its own small
+     near-square (~52x56mm) graphic frame; act name / stage-time line / biography are
+     SEPARATE addressable text frames; the biography frame is FIXED-HEIGHT and does not
+     reflow, so this year's long bio OVERSETS and ends mid-sentence at trim. -->
+<meta charset="utf-8">
+<title>Lanternwood 2023 Profile Page</title>
+<style>
+  @page { size: 148mm 210mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+
+  .card {
+    position: relative;
+    width: 148mm;
+    height: 210mm;
+    overflow: hidden;
+    background: #EFE6D2;            /* Weathered Cream ground */
+    padding: 15mm 14mm 12mm 14mm;
+    font-family: Georgia, 'Times New Roman', serif;
+    color: #2C2823;                /* Barn Charcoal body */
+  }
+
+  /* Portrait: a real placed graphic frame, near-square and smaller than the print
+     implies (~52 x 56 mm), seated in the upper third. */
+  .portrait-frame {
+    width: 52mm;
+    height: 56mm;
+    margin: 0 auto 0 0;
+    overflow: hidden;
+    border: 0.4mm solid #C6822E;   /* Lantern Amber rule */
+  }
+  .portrait-frame img {
+    width: 52mm;
+    height: 56mm;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Separate, individually addressable text frames below the portrait. */
+  .rule {
+    height: 0.5mm;
+    background: #C6822E;           /* Lantern Amber rule lines */
+    margin: 6mm 0 4mm 0;
+    width: 40mm;
+  }
+  .act-name {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 27pt;
+    line-height: 1.02;
+    font-weight: 700;
+    color: #1F3A2E;               /* Laurel Deep act name */
+    margin: 0;
+    letter-spacing: 0.2pt;
+  }
+  .stage-line {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10.5pt;
+    letter-spacing: 1.2pt;
+    text-transform: uppercase;
+    color: #2C2823;
+    margin: 3.5mm 0 0 0;
+  }
+
+  /* Biography: a FIXED-HEIGHT, non-reflowing frame set tight to 2023's short bios.
+     This year's long bio does not fit and is clipped mid-sentence at trim, while a
+     data merge would still report the record complete. */
+  .bio-frame {
+    position: absolute;
+    left: 14mm;
+    right: 14mm;
+    top: 118mm;
+    height: 52mm;                 /* tight fixed height — no auto-size, no overflow */
+    overflow: hidden;
+  }
+  .bio {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 10pt;
+    line-height: 1.45;
+    color: #2C2823;
+    margin: 0;
+    text-align: justify;
+  }
+
+  .crest-foot {
+    position: absolute;
+    left: 50%;
+    bottom: 9mm;
+    transform: translateX(-50%);
+    width: 20mm;
+    height: 22mm;
+  }
+</style>
+
+<div class="card">
+
+  <div class="portrait-frame">
+    <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-26/assets/lanternwood_press_photo_06.jpg" alt="The Bramble Sisters">
+  </div>
+
+  <div class="rule"></div>
+  <h1 class="act-name">The Bramble Sisters</h1>
+  <p class="stage-line">The Orchard Stage&nbsp;&nbsp;&middot;&nbsp;&nbsp;Saturday&nbsp;&nbsp;&middot;&nbsp;&nbsp;3:00pm</p>
+
+  <div class="bio-frame">
+    <p class="bio">The Bramble Sisters are not sisters, and only one of them is called Bramble, but the name stuck the way the good ones do. The three of them met singing in a chapel choir and discovered, somewhere between the hymns, that their voices did something strange and lovely when they leaned into a minor chord together. For eight years now they have carried that sound around the country, unaccompanied for whole songs at a time, letting three voices do the work of a full band. Their set moves from old shape-note hymns to their own writing and back again without ever quite telling you where the seam was. It is the kind of thing that can stop a noisy field halfway through a sentence. We have put them on the Orchard Stage in the afternoon light entirely on purpose. Find a bale of hay, sit yourself down, and let them get to work on you.</p>
+  </div>
+
+  <!-- Crest as inline vector (never existed as a file) — two paints on cream. -->
+  <svg class="crest-foot" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg" aria-label="Lanternwood crest">
+    <defs>
+      <path id="arc23" d="M 34 96 A 66 66 0 0 1 166 96" fill="none"></path>
+    </defs>
+    <text font-family="Georgia, 'Times New Roman', serif" font-size="15" font-weight="700" letter-spacing="1.2" fill="#1F3A2E">
+      <textPath href="#arc23" startOffset="50%" text-anchor="middle">LANTERNWOOD FOLK FEST</textPath>
+    </text>
+    <!-- laurel ring -->
+    <circle cx="100" cy="140" r="58" fill="none" stroke="#3B5137" stroke-width="3"></circle>
+    <g fill="#3B5137">
+      <ellipse cx="100" cy="82" rx="5" ry="9"></ellipse>
+      <ellipse cx="129" cy="88" rx="5" ry="9" transform="rotate(30 129 88)"></ellipse>
+      <ellipse cx="152" cy="111" rx="5" ry="9" transform="rotate(60 152 111)"></ellipse>
+      <ellipse cx="160" cy="140" rx="5" ry="9" transform="rotate(90 160 140)"></ellipse>
+      <ellipse cx="152" cy="169" rx="5" ry="9" transform="rotate(120 152 169)"></ellipse>
+      <ellipse cx="129" cy="192" rx="5" ry="9" transform="rotate(150 129 192)"></ellipse>
+      <ellipse cx="71" cy="88" rx="5" ry="9" transform="rotate(-30 71 88)"></ellipse>
+      <ellipse cx="48" cy="111" rx="5" ry="9" transform="rotate(-60 48 111)"></ellipse>
+      <ellipse cx="40" cy="140" rx="5" ry="9" transform="rotate(-90 40 140)"></ellipse>
+      <ellipse cx="48" cy="169" rx="5" ry="9" transform="rotate(-120 48 169)"></ellipse>
+      <ellipse cx="71" cy="192" rx="5" ry="9" transform="rotate(-150 71 192)"></ellipse>
+    </g>
+    <!-- hanging lantern in amber, with glazing bars -->
+    <g fill="#C6822E" stroke="#C6822E">
+      <line x1="100" y1="98" x2="100" y2="108" stroke-width="2"></line>
+      <path d="M 92 112 L 108 112 L 104 118 L 96 118 Z" stroke="none"></path>
+      <rect x="90" y="118" width="20" height="34" rx="2" fill="none" stroke-width="3"></rect>
+      <line x1="97" y1="120" x2="97" y2="150" stroke-width="1.4"></line>
+      <line x1="103" y1="120" x2="103" y2="150" stroke-width="1.4"></line>
+      <path d="M 93 152 L 107 152 L 104 160 L 96 160 Z" stroke="none"></path>
+    </g>
+  </svg>
+
+</div>

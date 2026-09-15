@@ -1,0 +1,125 @@
+<!--
+  Norvant regional event card — press-ready proof, exactly as it went to the printer.
+  105 x 148 mm A6 portrait, single record, NO bleed (media box = trim).
+  ONE continuous text story (city / venue / address / date / host name / host title /
+  seat tier / standing line) in ONE text frame — no per-field frames.
+  Genuine picture well (placed venue photograph) in its own graphic frame.
+  Fixed one-line venue measure that truncates a long name at the trim edge.
+-->
+<meta charset="utf-8">
+<title>Norvant Launch Card 2025</title>
+<style>
+  /* Media box = trim. A6 portrait, zero bleed. */
+  @page { size: 105mm 148mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  .card {
+    position: relative;
+    box-sizing: border-box;
+    width: 105mm;
+    height: 148mm;
+    background: #F6F4EF;            /* Paper White ground */
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;  /* plain neutral grotesque, detail lines */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Picture well — its own graphic frame, top ~45% of the card.
+     The per-city venue photograph is placed here (bound per row this year). */
+  .well {
+    position: relative;
+    width: 105mm;
+    height: 66.6mm;                /* 45% of 148mm */
+    overflow: hidden;
+    background: #33404B;           /* slate backing behind the placed image */
+  }
+  .well img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+  }
+
+  /* ONE text story in ONE frame. Runs are styled inline and separated by forced
+     line breaks — city \n venue \n address \n date \n host name \n host title \n
+     seat tier \n standing line — not eight addressable frames. */
+  .story {
+    position: absolute;
+    left: 9mm;
+    right: 9mm;
+    top: 73mm;
+    line-height: 1.42;
+  }
+  .story span { display: inline; }
+
+  .city {
+    font-family: Georgia, 'Times New Roman', serif;  /* measured serif companion, heading */
+    font-size: 25pt;
+    font-weight: 700;
+    letter-spacing: 0.2pt;
+    color: #33404B;                /* Slate */
+  }
+  .venue {
+    /* Fixed one-line detail measure: a long venue name does not spill or reflow,
+       it simply stops rendering and truncates at the trim edge. */
+    display: inline-block;
+    max-width: 87mm;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: bottom;
+    font-size: 12pt;
+    font-weight: 600;
+    color: #191F24;                /* Ink Near-Black */
+  }
+  .address {
+    font-size: 9pt;
+    color: #8A929A;                /* Cool Grey */
+  }
+  .date {
+    font-size: 12pt;
+    font-weight: 600;
+    color: #191F24;                /* Ink Near-Black */
+  }
+  .hostname {
+    font-size: 12pt;
+    font-weight: 600;
+    color: #191F24;                /* Ink Near-Black */
+  }
+  .hosttitle {
+    font-size: 9pt;
+    color: #8A929A;                /* Cool Grey */
+  }
+  .seattier {
+    font-size: 10pt;
+    font-weight: 600;
+    font-variant: small-caps;
+    text-transform: lowercase;     /* small-caps renders from lowercase runs */
+    letter-spacing: 0.6pt;
+    color: #E0A02C;                /* Amber */
+  }
+  .standing {
+    font-size: 8.5pt;
+    color: #8A929A;                /* Cool Grey */
+  }
+  /* Leading between the eight lines of the one story. */
+  .gap { display: inline-block; line-height: 0; font-size: 3pt; }
+</style>
+
+<div class="card">
+
+  <div class="well">
+    <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/MOTION-07/assets/norvant_venue_minneapolis.jpg" alt="Minneapolis venue">
+  </div>
+
+  <div class="story"><span class="city">Minneapolis</span><br>
+<span class="gap"><br></span><span class="venue">The Halvorsen Assembly Room</span><br>
+<span class="address">318 Marquette Ave, Minneapolis, MN 55402</span><br>
+<span class="gap"><br></span><span class="date">March 3, 2026</span><br>
+<span class="gap"><br></span><span class="hostname">Elise Marchetti</span><br>
+<span class="hosttitle">Founder &amp; CEO</span><br>
+<span class="gap"><br></span><span class="seattier">Founding-customer tier — 40 seats</span><br>
+<span class="gap"><br></span><span class="standing">Doors 6:00pm. Talk at 6:30pm. Seating is limited — register at norvant.com/march.</span></div>
+
+</div>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ferncroft Hanging Tag</title>
+<style>
+  /* Trim = media box, 55 x 90 mm portrait, NO bleed. */
+  @page { size: 55mm 90mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+
+  .card {
+    position: relative;
+    width: 55mm;
+    height: 90mm;
+    background: #EFE9DC;            /* Bench Cream ground */
+    overflow: hidden;
+    font-family: Georgia, 'Times New Roman', serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* 6 mm hang-hole punched top-centre (die-cut) */
+  .hole {
+    position: absolute;
+    top: 3mm;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6mm;
+    height: 6mm;
+    border-radius: 50%;
+    background: #E7E0D0;
+    border: 0.25mm solid #9C9686;
+  }
+
+  /* FRAME A: ONE continuous text block (common name + botanical italic).
+     In the real artwork the placed photo below splits the story into two
+     text frames; this is the top frame. */
+  .frameA {
+    position: absolute;
+    top: 13mm;
+    left: 5mm;
+    right: 5mm;
+    text-align: center;
+    line-height: 1.08;
+  }
+  .frameA .common {
+    font-size: 15.5pt;
+    letter-spacing: 0.1pt;
+    color: #4A4E48;                 /* Slate Grey */
+  }
+  .frameA .botanical {
+    font-style: italic;
+    font-size: 10pt;
+    color: #3E5A34;                 /* Fern Green */
+  }
+
+  /* Placed variety photograph in a real rectangular graphic frame. */
+  .photo {
+    position: absolute;
+    top: 27mm;
+    left: 5mm;
+    width: 45mm;
+    height: 32mm;
+    border: 0.3mm solid #9C9686;
+    overflow: hidden;
+    background: #DAD3C2;
+  }
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* FRAME B: ONE continuous text block (care line + pot size + price).
+     This is the lower text frame of the split story. */
+  .frameB {
+    position: absolute;
+    top: 61.5mm;
+    left: 5mm;
+    right: 5mm;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .frameB .care {
+    display: block;
+    font-size: 7.5pt;
+    line-height: 1.25;
+    color: #6B4E36;                 /* Bark Brown */
+  }
+  .frameB .pot {
+    display: block;
+    margin-top: 1.6mm;
+    font-size: 8pt;
+    letter-spacing: 0.3pt;
+    color: #4A4E48;                 /* Slate Grey */
+  }
+  .frameB .price {
+    display: block;
+    margin-top: 0.8mm;
+    font-size: 9pt;                 /* small on purpose: restraint is the house rule */
+    color: #4A4E48;                 /* Slate Grey */
+  }
+
+  /* Care icon row: grouped vector paths (sun / water drop / hardiness bell),
+     NOT font glyphs and NOT a placed image. */
+  .icons {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5mm;
+    text-align: center;
+  }
+  .icons svg { width: 30mm; height: 7mm; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="hole"></div>
+
+    <div class="frameA">
+      <span class="common">Coneflower</span><br>
+      <span class="botanical">Echinacea purpurea</span>
+    </div>
+
+    <div class="photo">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-34/assets/ferncroft_variety_01.jpg" alt="Coneflower">
+    </div>
+
+    <div class="frameB">
+      <span class="care">Full sun. Leave the seedheads for the finches.</span>
+      <span class="pot">1 gal</span>
+      <span class="price">$22</span>
+    </div>
+
+    <div class="icons">
+      <svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" fill="none"
+           stroke="#3E5A34" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Sun -->
+        <g>
+          <circle cx="20" cy="20" r="7" fill="#3E5A34" stroke="none"/>
+          <line x1="20" y1="4"  x2="20" y2="9"/>
+          <line x1="20" y1="31" x2="20" y2="36"/>
+          <line x1="4"  y1="20" x2="9"  y2="20"/>
+          <line x1="31" y1="20" x2="36" y2="20"/>
+          <line x1="8.7"  y1="8.7"  x2="12.2" y2="12.2"/>
+          <line x1="27.8" y1="27.8" x2="31.3" y2="31.3"/>
+          <line x1="31.3" y1="8.7"  x2="27.8" y2="12.2"/>
+          <line x1="12.2" y1="27.8" x2="8.7"  y2="31.3"/>
+        </g>
+        <!-- Water drop -->
+        <g>
+          <path d="M60 5 C60 5 71 19 71 26 A11 11 0 0 1 49 26 C49 19 60 5 60 5 Z"
+                fill="#3E5A34" stroke="none"/>
+        </g>
+        <!-- Hardiness bell -->
+        <g>
+          <path d="M100 6 C92 6 88 12 88 20 C88 26 86 29 84 31 L116 31 C114 29 112 26 112 20 C112 12 108 6 100 6 Z"
+                fill="#3E5A34" stroke="none"/>
+          <path d="M96 33.5 A4 4 0 0 0 104 33.5" fill="none" stroke="#3E5A34" stroke-width="2.4"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>

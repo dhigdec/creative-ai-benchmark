@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Quill and Kiln piece card</title>
+<style>
+  /* Media box == trim. 70 x 100 mm portrait, NO bleed box. */
+  @page { size: 70mm 100mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; }
+
+  /* One card, exactly trim size, on the Warm Ground colour. */
+  .card {
+    position: relative;
+    width: 70mm;
+    height: 100mm;
+    background: #E7D9C4;                 /* Warm Ground ground */
+    overflow: hidden;
+    color: #33291F;                      /* Bench Ink default ink */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* The ONLY real graphic frame on the card: the square piece photo,
+     ~58 x 58 mm, matted on the Warm Ground of the card around it. */
+  .photo-well {
+    position: absolute;
+    left: 6mm;
+    top: 6mm;
+    width: 58mm;
+    height: 58mm;
+    background: #E7D9C4;
+    overflow: hidden;
+  }
+  .photo-well .piece-photo {
+    display: block;
+    width: 58mm;
+    height: 58mm;
+    object-fit: cover;                   /* bind the piece's own picture into the frame */
+    object-position: center 42%;
+  }
+
+  /* ONE continuous text story flowing top to bottom in a SINGLE frame:
+     piece name -> glaze line -> price. NOT three addressable frames. */
+  .story {
+    position: absolute;
+    left: 6mm;
+    top: 66mm;
+    width: 58mm;
+    text-align: center;
+    line-height: 1.15;
+  }
+  .story .name {
+    font-family: Georgia, 'Times New Roman', 'Palatino Linotype', serif;
+    font-size: 15pt;
+    font-weight: 600;
+    letter-spacing: 0.1pt;
+    color: #33291F;                      /* Bench Ink */
+  }
+  .story .glaze {
+    font-family: Arial, Helvetica, 'Helvetica Neue', sans-serif;
+    font-size: 8.5pt;
+    letter-spacing: 0.4pt;
+    color: #33291F;
+    margin-top: 2.4mm;
+    white-space: nowrap;
+  }
+  /* The round GLAZE DOT: a DECORATIVE inline vector path in the glaze's
+     own colour, printed beside the glaze line. It reads like a per-glaze
+     swatch well but is NOT a picture/graphic frame -- nothing binds here. */
+  .story .glaze .glaze-dot {
+    display: inline-block;
+    width: 3.2mm;
+    height: 3.2mm;
+    vertical-align: -0.4mm;
+    margin-right: 1.4mm;
+  }
+  .story .price {
+    font-family: Georgia, 'Times New Roman', 'Palatino Linotype', serif;
+    font-size: 13pt;
+    font-weight: 600;
+    color: #33291F;                      /* Bench Ink */
+    margin-top: 2.6mm;
+  }
+
+  /* A SEPARATE short footer story: the fixed maker line, then the
+     collaboration credit sitting at the TAIL of the same story. */
+  .footer {
+    position: absolute;
+    left: 6mm;
+    bottom: 6mm;
+    width: 58mm;
+    text-align: center;
+    font-family: Arial, Helvetica, 'Helvetica Neue', sans-serif;
+    font-size: 6.4pt;
+    line-height: 1.35;
+    letter-spacing: 0.2pt;
+    color: #6E7A4E;                      /* Sprig Green footer text */
+  }
+  .footer .credit {
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Real rectangular graphic frame: the piece's own photograph. -->
+    <div class="photo-well">
+      <img class="piece-photo"
+           src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-21/assets/marlo_autumn_month_09.jpg"
+           alt="Bench Pour-over Set">
+    </div>
+
+    <!-- Single continuous story: name / glaze / price in one text frame. -->
+    <div class="story">
+      <div class="name">Bench Pour-over Set</div>
+      <div class="glaze"><svg class="glaze-dot" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#B4855C"></circle></svg>Kiln Clay glaze</div>
+      <div class="price">$90</div>
+    </div>
+
+    <!-- Separate footer story: fixed maker line, then the collaboration
+         credit at the tail (present on this card because the piece carries one). -->
+    <div class="footer">Hand-thrown in a shared studio in Portland by Marlo Quill. <span class="credit">In collaboration with Fernhollow Coffee. Beans roasted on Alder Street.</span></div>
+
+  </div>
+</body>
+</html>

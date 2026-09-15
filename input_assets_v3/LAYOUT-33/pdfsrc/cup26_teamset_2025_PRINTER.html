@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Continental Cup 2026 Team-Set Card</title>
+<style>
+  /* Media box = trim, NO bleed box. Exact trading-card trim 63.5 x 88.9 mm portrait. */
+  @page { size: 63.5mm 88.9mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* One card, exactly one trim in size, full-bleed Pitch Black field. */
+  .card {
+    position: relative;
+    width: 63.5mm;
+    height: 88.9mm;
+    overflow: hidden;
+    background: #0B0E12;               /* Pitch Black field */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* PHOTO frame: printer geometry 52.0 x 74.0 mm, centred, knocked onto the dark field.
+     This is the single real placed graphic frame the converted document needs. */
+  .photo {
+    position: absolute;
+    left: 5.75mm;
+    top: 3mm;
+    width: 52mm;
+    height: 74mm;
+    object-fit: cover;
+    object-position: 50% 16%;
+  }
+
+  /* Name band: dark gradient rising off the photo so the type reads. */
+  .band {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 32mm;
+    background: linear-gradient(to bottom,
+      rgba(11,14,18,0) 0%,
+      rgba(11,14,18,0.80) 34%,
+      #0B0E12 74%);
+  }
+
+  /* Thin Kit Crimson rule separating photo from the name band. */
+  .rule {
+    position: absolute;
+    left: 5.75mm;
+    top: 59mm;
+    width: 52mm;
+    height: 0.6mm;
+    background: #B4232B;               /* Kit Crimson */
+  }
+
+  /* PLAYER_NAME — its own frame, heavy near-metallic display face, Floodlight Gold. */
+  .player-name {
+    position: absolute;
+    left: 5mm;
+    top: 61mm;
+    width: 37mm;
+    font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 6mm;
+    line-height: 0.98;
+    letter-spacing: 0.1mm;
+    text-transform: uppercase;
+    color: #E7B24C;                    /* Floodlight Gold */
+  }
+
+  /* POSITION + CLUB_LINE on one small condensed-sans line under the name. */
+  .position-club {
+    position: absolute;
+    left: 5mm;
+    top: 74.5mm;
+    width: 40mm;
+    font-family: 'Arial Narrow', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 2.7mm;
+    letter-spacing: 0.25mm;
+    text-transform: uppercase;
+    color: #F4F1EA;                    /* Card White */
+  }
+
+  /* SET_YEAR — small, bottom-left, Steel Rule. Carries last season's stale value. */
+  .set-year {
+    position: absolute;
+    left: 5mm;
+    bottom: 3.5mm;
+    font-family: 'Arial Narrow', Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    font-size: 2.6mm;
+    letter-spacing: 0.5mm;
+    color: #8A94A0;                    /* Steel Rule */
+  }
+
+  /* SQUAD_NUMBER — very large, bottom-right corner, same gold display face. */
+  .squad-number {
+    position: absolute;
+    right: 4mm;
+    bottom: 0.5mm;
+    font-family: 'Arial Black', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 900;
+    font-size: 15.5mm;
+    line-height: 1;
+    color: #E7B24C;                    /* Floodlight Gold */
+  }
+
+  /* TOURNAMENT MARK — placed in a tiny 9.5 x 9.5 mm frame, anchored TOP-LEFT,
+     printed REVERSED (Floodlight Gold) on the near-black field, NOT on the pale
+     board it was photographed from. Drawn as inline vector, not a picture well. */
+  .mark {
+    position: absolute;
+    left: 4mm;
+    top: 4mm;
+    width: 9.5mm;
+    height: 9.5mm;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <!-- Single real placed photograph at the 52 x 74 mm photo-frame geometry. -->
+    <img class="photo"
+         src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-33/assets/cup26_portrait_08.jpg"
+         alt="Andre Mensah">
+
+    <!-- Tournament mark: compound wordmark-in-ring lockup, reversed gold, tiny, top-left. -->
+    <svg class="mark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="markArc"
+              d="M 50,50 m -31,0 a 31,31 0 1,1 62,0 a 31,31 0 1,1 -62,0"
+              fill="none"/>
+      </defs>
+      <!-- bold ring -->
+      <circle cx="50" cy="50" r="45" fill="none" stroke="#E7B24C" stroke-width="8"/>
+      <!-- thin hairline concentric rule between ring and words -->
+      <circle cx="50" cy="50" r="37" fill="none" stroke="#E7B24C" stroke-width="1"/>
+      <!-- wordmark set around the inside of the ring, tight counters -->
+      <text font-family="'Arial Narrow', Arial, sans-serif" font-size="8.5"
+            font-weight="700" letter-spacing="0.6" fill="#E7B24C">
+        <textPath href="#markArc" startOffset="1%">CONTINENTAL CUP &#183; 2026 &#183; </textPath>
+      </text>
+      <!-- small central football device -->
+      <circle cx="50" cy="50" r="9.5" fill="none" stroke="#E7B24C" stroke-width="2.4"/>
+      <polygon points="50,43.5 55.8,47.8 53.6,54.6 46.4,54.6 44.2,47.8" fill="#E7B24C"/>
+    </svg>
+
+    <div class="rule"></div>
+    <div class="band"></div>
+
+    <!-- Five separate text frames (NOT one flowing story), per the layout spec. -->
+    <div class="player-name">Andre Mensah</div>
+    <div class="position-club">CM &#183; Kingsbridge United</div>
+    <div class="set-year">2025</div>
+    <div class="squad-number">8</div>
+  </div>
+</body>
+</html>

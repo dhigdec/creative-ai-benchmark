@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Verranza Coastal Retreats — Casa Oliveto rate card (2025)</title>
+<style>
+  /* Trim = media box. 148 x 105 mm landscape, NO bleed. */
+  @page { size: 148mm 105mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Brand palette (from the printer's layout spec) */
+  /* Lime Wash #EFE9DC ground · Verranza Blue #24425A house name
+     Ink Charcoal #2A2925 body · Cove Water #4C7A8C hairline */
+
+  .card {
+    position: relative;
+    width: 148mm;
+    height: 105mm;
+    box-sizing: border-box;
+    background: #EFE9DC;              /* Lime Wash ground */
+    color: #2A2925;                  /* Ink Charcoal body */
+    overflow: hidden;
+    /* humanist detail face; low-contrast serif used per-run below */
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* GRAPHIC FRAME 1 — placed villa photograph, left column, ~80 x 99 mm,
+     full height inside the 3 mm safety. One linked raster image. */
+  .photo-frame {
+    position: absolute;
+    left: 3mm;
+    top: 3mm;
+    width: 80mm;
+    height: 99mm;
+    overflow: hidden;
+    background: #C4B5A0;             /* Ligurian Stone, shows if image slow */
+  }
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* GRAPHIC FRAME 2 — placed MARK, top-right corner. The frame is ~34 x 34 mm
+     but the printer scaled the gate-plate mark DOWN inside it, so the image
+     actually reproduces at only ~18 x 18 mm (true size lives in the geometry,
+     not in how big the frame looks). One linked raster image. */
+  .mark-frame {
+    position: absolute;
+    right: 3mm;
+    top: 3mm;
+    width: 34mm;
+    height: 34mm;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .mark-frame img {
+    width: 18mm;
+    height: 18mm;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Right column text lives between the photo and the right edge. */
+  /* TEXT FRAME A — ONE continuous story: HOUSE NAME run + SEASON run. */
+  .frame-a {
+    position: absolute;
+    left: 87mm;
+    top: 44mm;
+    width: 58mm;
+  }
+  .run-house {
+    font-family: 'Georgia', 'Times New Roman', serif;   /* low-contrast serif */
+    font-size: 18pt;
+    line-height: 1.05;
+    color: #24425A;                 /* Verranza Blue */
+    letter-spacing: 0.2pt;
+  }
+  .run-season {
+    font-family: 'Helvetica', 'Arial', sans-serif;      /* humanist sans */
+    font-size: 10pt;
+    line-height: 1.4;
+    color: #2A2925;
+    letter-spacing: 0.6pt;
+    text-transform: none;
+  }
+
+  /* Cove Water hairline divider between the two stories. */
+  .hairline {
+    position: absolute;
+    left: 87mm;
+    top: 66mm;
+    width: 40mm;
+    height: 0;
+    border-top: 0.3mm solid #4C7A8C;   /* Cove Water */
+  }
+
+  /* TEXT FRAME B — a SEPARATE continuous story:
+     NIGHTLY RATE run + MINIMUM STAY run + CONTACT run, in that order,
+     all in ONE flowing text block (the minimum-stay run is an interior
+     run of this single story). */
+  .frame-b {
+    position: absolute;
+    left: 87mm;
+    top: 70mm;
+    width: 58mm;
+  }
+  .run-rate {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 15pt;
+    line-height: 1.2;
+    color: #2A2925;
+  }
+  .run-min {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.45;
+    color: #2A2925;
+  }
+  .run-contact {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8.5pt;
+    line-height: 1.4;
+    color: #2A2925;
+  }
+
+  /* Discreet printer's-proof footer — carries the 2025 year (last year's
+     card, not the 2027 season). */
+  .footer {
+    position: absolute;
+    left: 87mm;
+    bottom: 3mm;
+    width: 58mm;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 6.5pt;
+    letter-spacing: 0.4pt;
+    color: #4C7A8C;                 /* Cove Water */
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- GRAPHIC FRAME 1: the placed villa photograph (Casa Oliveto) -->
+    <div class="photo-frame">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-04/assets/oliveto_terrace.jpg"
+           alt="Casa Oliveto terrace">
+    </div>
+
+    <!-- GRAPHIC FRAME 2: the placed MARK, scaled to ~18x18mm inside a ~34x34mm frame -->
+    <div class="mark-frame">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-04/assets/gate_plate.jpg"
+           alt="Verranza gate-plate monogram">
+    </div>
+
+    <!-- TEXT FRAME A: one continuous story (house name + season) -->
+    <div class="frame-a">
+      <span class="run-house">Casa Oliveto</span><br>
+      <span class="run-season">High Summer</span>
+    </div>
+
+    <div class="hairline"></div>
+
+    <!-- TEXT FRAME B: a separate continuous story (rate + minimum stay + contact) -->
+    <div class="frame-b">
+      <span class="run-rate">720 EUR / night</span><br>
+      <span class="run-min">Minimum stay 7 nights</span><br>
+      <span class="run-contact">Direct: stay@verranza.example&nbsp;&nbsp;+39 000 000 000</span>
+    </div>
+
+    <div class="footer">Verranza Coastal Retreats · agent rate card · 2025</div>
+
+  </div>
+</body>
+</html>

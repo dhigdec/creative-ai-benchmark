@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lanternwood Pass 2026 — Marah Delune</title>
+<style>
+  /* Press proof: single portrait laminate, 100 x 140 mm.
+     Media box = trim. NO bleed box (0 mm bleed) — exactly as the printer returned it. */
+  @page { size: 100mm 140mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Last year's (2026) palette carried in this file — STALE on purpose.
+     ground Old Pine #223A34 / cream Bone-Old #EAE0C8 / role bar Faded Teal #2E5A63 /
+     low-contrast handle Shade Pine #34473F. This year is meant to be reset to the new
+     brand palette; this pass is the printer's returned proof, so it stays last year's. */
+  .card {
+    position: relative;
+    width: 100mm;
+    height: 140mm;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #223A34;           /* Old Pine ground */
+    color: #EAE0C8;               /* Bone-Old cream ink */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* PHOTO — a REAL placed image (graphic frame), thin cream keyline.
+     Occupies the portrait picture area across the top of the pass. */
+  .photo {
+    display: block;
+    width: 84mm;
+    height: 62mm;
+    margin: 8mm auto 0;
+    object-fit: cover;
+    object-position: 50% 42%;
+    border: 0.4mm solid #EAE0C8;  /* thin cream keyline */
+  }
+
+  /* THE ONE CONTINUOUS STORY.
+     Name, act, social handle, the role word, and the stage & day strip are a SINGLE
+     flowing text block beneath the photo — NOT five addressable per-field frames.
+     This is the reverse-engineering trap the pass carries. */
+  .story {
+    padding: 4.5mm 8mm 0;
+    font-family: 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+  .name {
+    font-family: 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 25pt;
+    line-height: 1.0;
+    letter-spacing: 0.2pt;
+  }
+  .act {
+    font-family: 'Arial Narrow', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 11pt;
+    line-height: 1.12;
+    margin-top: 1.6mm;
+  }
+  /* Low-contrast social handle — Shade Pine on Old Pine, close in value to the ground.
+     Present in the story, but it reads faint; this is the run a lossy mapping readout
+     drops while keeping its line break. */
+  .handle {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 9pt;
+    line-height: 1.2;
+    color: #34473F;              /* Shade Pine — low contrast */
+    margin-top: 2mm;
+  }
+  /* ROLE — the coloured bar's Faded Teal fill is a SEPARATE drawn rectangle sitting
+     behind the role word; the word itself lives inside the one flowing story.
+     Full pass width via negative side margins; role reversed out in cream. */
+  .role {
+    margin: 3mm -8mm 0;
+    padding: 2.7mm 8mm;
+    background: #2E5A63;         /* Faded Teal bar */
+    color: #EAE0C8;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 14pt;
+    line-height: 1.0;
+    letter-spacing: 2.2pt;
+    text-align: center;
+  }
+  /* STAGE & DAY STRIP — still part of the one story, flowing down to the foot. */
+  .strip {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 8.5pt;
+    line-height: 1.35;
+    margin-top: 9mm;
+  }
+  .strip .lbl { font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <!-- MANDATORY real placed graphic: a live frame of this performer.
+         Gives convert_pdf_to_indd a genuine graphic frame to work from. -->
+    <img class="photo"
+         src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-11/assets/lanternwood_stage_frames_01.jpg"
+         alt="Marah Delune, main field stage">
+
+    <!-- ONE continuous text story: name / act / handle / role word / stages / days. -->
+    <div class="story">
+      <div class="name">Marah Delune</div>
+      <div class="act">Marah Delune (solo acoustic set — Barn Stage only)</div>
+      <div class="handle">@marahdelune</div>
+      <div class="role">PERFORMER</div>
+      <div class="strip">
+        <div><span class="lbl">Stages:</span> Main Field, Barn</div>
+        <div><span class="lbl">Days:</span> Fri, Sat, Sun</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

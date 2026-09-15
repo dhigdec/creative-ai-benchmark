@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Emberline daily companion card</title>
+<style>
+  /* Emberline daily companion card - A6 landscape, 148 x 105 mm.
+     Media box = trim, NO bleed box (0 mm bleed) - matches the office file. */
+  @page { size: 148mm 105mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  .card {
+    position: relative;
+    width: 148mm;
+    height: 105mm;
+    overflow: hidden;
+    background: #FBF4E7;                 /* Fresh Cream ground */
+    font-family: Helvetica, Arial, sans-serif;
+  }
+
+  /* The ONE real picture frame: the photo panel, right two-thirds. */
+  .photo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 99mm;                          /* right two-thirds of 148 mm */
+    height: 105mm;
+    object-fit: cover;
+    object-position: 60% 50%;
+    display: block;
+  }
+
+  /* Left third: the cream text column. */
+  .left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 49mm;
+    height: 105mm;
+    padding: 8mm 6mm 7mm 7mm;
+  }
+
+  /* The SEGMENT NUMBER, SEGMENT NAME and APPROX TIME are ONE continuous
+     text story in a single frame flowing top-left - NOT three addressable
+     frames. Kept as one .story block on purpose. */
+  .story { margin: 0; }
+
+  .story .segno {
+    display: block;
+    width: 15mm;
+    height: 15mm;
+    border-radius: 50%;
+    background: #E8623D;                  /* Ember Coral disc */
+    color: #FBF4E7;                       /* number reversed out of the disc */
+    font-family: Georgia, 'Times New Roman', serif;   /* warm slab display */
+    font-weight: bold;
+    font-size: 25pt;
+    line-height: 15mm;
+    text-align: center;
+    margin-bottom: 4mm;
+  }
+  .story .name {
+    display: block;
+    color: #33302B;                       /* Warm Charcoal */
+    font-family: 'Arial Rounded MT Bold', 'Helvetica Neue', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 20pt;
+    line-height: 1.04;
+    letter-spacing: -0.2pt;
+  }
+  .story .time {
+    display: block;
+    color: #5FA05A;                       /* Herb Green */
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12pt;
+    margin-top: 2.5mm;
+  }
+
+  /* CARD_NOTE - its own line, Herb Green. */
+  .note {
+    color: #5FA05A;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 9pt;
+    line-height: 1.25;
+    margin-top: 5mm;
+    max-width: 35mm;
+  }
+
+  /* STRAP - its own short story, at the foot in the rounded sans. */
+  .strap {
+    position: absolute;
+    left: 7mm;
+    bottom: 7mm;
+    width: 36mm;
+    color: #33302B;
+    font-family: 'Arial Rounded MT Bold', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.15;
+  }
+
+  /* The EMBER BUG - top-right corner. Reads like a placed logo but is a
+     DECORATIVE grouped vector path, NOT a picture frame. Drawn inline. */
+  .bug {
+    position: absolute;
+    top: 5mm;
+    right: 5mm;
+    width: 42mm;
+    height: auto;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- ONE real picture frame: the segment's still (Dish of the Day). -->
+    <img class="photo"
+         src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/MOTION-13/assets/emberline_keyframe_05.jpg"
+         alt="Dish of the Day - white bean and rosemary gratin, plated">
+
+    <!-- Left column -->
+    <div class="left">
+      <!-- ONE continuous text story: number + name + time in one frame -->
+      <div class="story">
+        <span class="segno">06</span>
+        <span class="name">Dish of the Day</span>
+        <span class="time">1:30</span>
+      </div>
+
+      <!-- CARD_NOTE -->
+      <p class="note">White bean and rosemary gratin, plated.</p>
+
+      <!-- STRAP - its own short story -->
+      <div class="strap">A good kitchen, every day.</div>
+    </div>
+
+    <!-- EMBER BUG: decorative inline SVG path group (compound ember glyph +
+         'Emberline' wordmark + hairline underline flourish). NOT a picture
+         frame - it cannot receive artwork. Sits on a soft cream pill so it
+         reads on the photo, on the show's cream/coral grounds not white. -->
+    <svg class="bug" viewBox="0 0 168 46" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Emberline">
+      <!-- decorative cream pill behind the mark (part of the path group) -->
+      <rect x="1" y="4" width="166" height="38" rx="19" fill="#FBF4E7" opacity="0.92"/>
+      <!-- ember glyph: main flame lick -->
+      <path d="M23 8 C 31 17, 35 24, 30 33 C 27 39, 17 39, 14 33 C 11 27, 15 16, 23 8 Z" fill="#E8623D"/>
+      <!-- inner ember lick -->
+      <path d="M23 19 C 27 24, 28 29, 24 33 C 22 35, 18 34, 18 30 C 18 26, 20 22, 23 19 Z" fill="#F2C14E"/>
+      <!-- wordmark -->
+      <text x="46" y="30" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="20" fill="#E8623D" letter-spacing="0.3">Emberline</text>
+      <!-- hairline underline flourish beneath the word -->
+      <line x1="46" y1="35" x2="150" y2="35" stroke="#E8623D" stroke-width="1.1"/>
+    </svg>
+
+  </div>
+</body>
+</html>

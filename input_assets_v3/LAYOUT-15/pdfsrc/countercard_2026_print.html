@@ -1,0 +1,119 @@
+<!--
+  Aldervale Mutual - Northern-district producer counter card (2026 press file, single flat record).
+  Faithful reconstruction of the retired printer's flat 4x6" portrait counter-card press PDF,
+  to be Chrome-printed to a real, font-embedded PDF that convert_pdf_to_indd can ingest.
+  Trim = 101.6 x 152.4 mm (4 x 6 in). NO bleed: media box == trim.
+  Structural traps preserved verbatim from the LAYOUT SPEC:
+    * PRODUCER_NAME + LICENSE_LINE + OFFICE are ONE continuous text story in ONE frame
+      (.story) separated only by returns - NOT three addressable frames.
+    * PHOTO sits in a real rectangular graphic well (the <img>) - the per-producer plate binds here.
+    * DISCLOSURE is a separate FIXED-MEASURE box (~88mm x 15mm, 8/10pt), auto-size OFF,
+      overflow:hidden -> a longer 2027 state-specific paragraph is SILENTLY CLIPPED at trim,
+      no overflow marker. Sized here to the 2026 single-sentence disclosure.
+  Real record: row 1 of producer_roster_northern.csv (Raymond Hollis, Active).
+-->
+<style>
+  @page { size: 101.6mm 152.4mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* House ground = Document Paper #F4F2EC. One card, exactly trim size, no bleed. */
+  .card {
+    position: relative;
+    width: 101.6mm;
+    height: 152.4mm;
+    background: #F4F2EC;
+    overflow: hidden;                 /* media box == trim; nothing extends past the edge */
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Real rectangular graphic well - fills roughly the top 52% of the card. */
+  .photo {
+    position: absolute;
+    left: 4mm;
+    top: 4mm;
+    width: 93.6mm;
+    height: 75mm;                     /* bottom edge ~79mm ~= 52% of 152.4mm */
+    object-fit: cover;
+    object-position: 50% 22%;         /* keep head-and-shoulders in the well */
+    display: block;
+  }
+
+  /* Heritage Green #3C6B54 hairline rule beneath the photograph. */
+  .rule-photo {
+    position: absolute;
+    left: 4mm;
+    top: 80.4mm;
+    width: 93.6mm;
+    height: 0.3mm;
+    background: #3C6B54;
+  }
+
+  /* ONE continuous text story: name -> license -> office, in a single frame. */
+  .story {
+    position: absolute;
+    left: 4mm;
+    top: 85mm;
+    width: 93.6mm;
+    color: #4A5560;                   /* default run colour = Slate (licence/office) */
+    line-height: 1.28;
+  }
+  .story .name {
+    font-family: Georgia, 'Times New Roman', serif;   /* transitional text serif */
+    font-size: 21pt;
+    font-weight: 400;
+    letter-spacing: 0.2pt;
+    color: #1E2A3A;                   /* Ink Navy */
+  }
+  .story .license,
+  .story .office {
+    font-family: Arial, Helvetica, sans-serif;        /* grotesque sans, small */
+    font-size: 8.5pt;
+    color: #4A5560;                   /* Slate */
+  }
+  .story .license { letter-spacing: 0.1pt; }
+
+  /* Heritage Green hairline above the disclosure. */
+  .rule-disc {
+    position: absolute;
+    left: 6.8mm;                      /* (101.6 - 88) / 2 */
+    top: 127mm;
+    width: 88mm;
+    height: 0.3mm;
+    background: #3C6B54;
+  }
+
+  /* FIXED-MEASURE disclosure box: fixed 88 x 15 mm, auto-size OFF, no spill.
+     Anything longer than the 2026 single sentence oversets and is clipped. */
+  .disclosure {
+    position: absolute;
+    left: 6.8mm;
+    top: 129mm;
+    width: 88mm;
+    height: 15mm;
+    overflow: hidden;                 /* frame does not grow and does not spill */
+    font-family: Georgia, 'Times New Roman', serif;   /* small text serif */
+    font-size: 8pt;
+    line-height: 10pt;                /* 8/10 as set in 2026 */
+    color: #1E2A3A;                   /* Ink Navy disclosure body */
+    text-align: left;
+  }
+</style>
+
+<div class="card">
+  <img class="photo"
+       src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-15/assets/producer_headshot_01.jpg"
+       alt="Producer headshot">
+
+  <div class="rule-photo"></div>
+
+  <!-- Single concatenated flow: PRODUCER_NAME / LICENSE_LINE / OFFICE in one frame -->
+  <div class="story"><span class="name">Raymond Hollis</span><br>
+<span class="license">Licensed Life &amp; Health Producer, NH #LH-04821</span><br>
+<span class="office">Concord Branch, 212 North Main St, Concord NH 03301</span></div>
+
+  <div class="rule-disc"></div>
+
+  <!-- 2026 single-sentence disclosure, sized exactly to this fixed box -->
+  <div class="disclosure">Aldervale Mutual is a policyholder-owned life insurer; policies are issued on approved applications and all guarantees are subject to the claims-paying ability of the company.</div>
+</div>

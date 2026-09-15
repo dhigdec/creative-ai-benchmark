@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fennhollow Summer Shelf-Talker</title>
+<style>
+  /* Media box = trim, NO bleed box (0 mm bleed). Card runs 90 x 130 mm portrait. */
+  @page { size: 90mm 130mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  .card {
+    position: relative;
+    width: 90mm;
+    height: 130mm;
+    background: #F4ECD8;            /* Warm Cream Ground */
+    overflow: hidden;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color: #2C2A24;                /* Deep Ink */
+  }
+
+  /* --- The ONE real picture frame: the per-row CAN image, running to the top trim edge --- */
+  .can-frame {
+    position: absolute;
+    top: 0; left: 0;
+    width: 90mm;
+    height: 60mm;                  /* 90:60 = 3:2, matches the 5472x3648 packshot exactly */
+    background: #FFFFFF;
+    overflow: hidden;
+  }
+  .can-frame img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;             /* exact-ratio fill, no crop, no white bars */
+    object-position: center;
+  }
+
+  /* --- ONE continuous text story: NOW POURING + FLAVOUR + STORE + TOWN in a single frame --- */
+  .story {
+    position: absolute;
+    left: 7mm;
+    top: 64mm;
+    width: 58mm;
+  }
+  .story .rule {
+    border-top: 0.5mm solid #C56E68;   /* thin Rhubarb Rose rule under the NOW POURING label */
+    width: 22mm;
+    margin: 0 0 1.6mm 0;
+    padding: 0;
+    height: 0;
+  }
+  .story .nowpouring {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;   /* humanist sans, letterspaced */
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    color: #C56E68;                /* Rhubarb Rose */
+    margin: 0 0 2.2mm 0;
+  }
+  .story .flavour {
+    display: block;
+    font-family: Georgia, 'Times New Roman', serif;  /* friendly display cut */
+    font-size: 20pt;
+    line-height: 1.02;
+    font-weight: 700;
+    color: #3F6B3A;                /* Label Green */
+    margin: 0 0 3.4mm 0;
+  }
+  .story .store {
+    display: block;
+    font-family: Georgia, 'Times New Roman', serif;  /* display cut, medium */
+    font-size: 12.5pt;
+    line-height: 1.05;
+    font-weight: 400;
+    color: #2C2A24;                /* Deep Ink */
+    margin: 0 0 0.8mm 0;
+  }
+  .story .town {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;       /* sans, small */
+    font-size: 8pt;
+    letter-spacing: 0.06em;
+    color: #57534A;
+  }
+
+  /* --- Decorative amber price FLAG: a grouped vector path, NOT a field --- */
+  .flag {
+    position: absolute;
+    right: 6mm;
+    top: 78mm;
+    width: 26mm;
+    height: 15mm;
+  }
+  /* --- The price NUMBER: its own separate short story sitting OVER the flag --- */
+  .pricenum {
+    position: absolute;
+    right: 6mm;
+    top: 78mm;
+    width: 26mm;
+    height: 15mm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 15pt;
+    font-weight: 700;
+    color: #FFFFFF;                /* reversed out of the amber tag */
+    letter-spacing: 0.01em;
+    padding-left: 2mm;            /* nudge off the tag's punch-hole */
+  }
+
+  /* --- Fixed foot: sourcing line + co-packer nutrition claim. Static, baked, not fields. --- */
+  .foot {
+    position: absolute;
+    left: 7mm;
+    right: 7mm;
+    bottom: 6mm;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #2C2A24;
+  }
+  .foot .rule {
+    border-top: 0.3mm solid #3F6B3A;
+    opacity: 0.45;
+    margin: 0 0 1.8mm 0;
+    height: 0;
+  }
+  .foot .sourcing {
+    font-size: 6.6pt;
+    line-height: 1.35;
+    margin: 0 0 1.4mm 0;
+  }
+  .foot .claim {
+    font-size: 6.6pt;
+    line-height: 1.35;
+    font-style: italic;
+    color: #3F6B3A;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- CAN_IMAGE: the single real picture frame, bound per row. Runs to the top trim edge;
+         with the media box equal to trim there is no bleed box behind it. -->
+    <div class="can-frame">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/PHOTO-27/assets/fennhollow_packshot_01.jpg" alt="Elderflower &amp; Lime can">
+    </div>
+
+    <!-- One continuous text story (one frame): NOW POURING / FEATURED_FLAVOUR / STORE_NAME / TOWN.
+         The offsets a mapping tool needs must be reconstructed from this single story string. -->
+    <div class="story">
+      <div class="rule"></div>
+      <span class="nowpouring">NOW POURING</span>
+      <span class="flavour">Elderflower &amp; Lime</span>
+      <span class="store">Hollow Root Market</span>
+      <span class="town">Rhinebeck</span>
+    </div>
+
+    <!-- Decorative amber tag device (grouped vector path). It carries NO price field. -->
+    <svg class="flag" viewBox="0 0 260 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M22 8
+               L238 8
+               C247 8 254 15 254 24
+               L254 126
+               C254 135 247 142 238 142
+               L22 142
+               C13 142 6 135 6 126
+               L6 24
+               C6 15 13 8 22 8 Z"
+            fill="#E5AF54"/>
+      <!-- punch-hole eyelet, part of the same decorative group -->
+      <circle cx="30" cy="75" r="8" fill="#F4ECD8"/>
+    </svg>
+
+    <!-- Price NUMBER: its own separate small story sitting over the flag, NOT inside the tag path. -->
+    <div class="pricenum">$3.50</div>
+
+    <!-- Fixed foot content, baked into the template on every card and never reworded. -->
+    <div class="foot">
+      <div class="rule"></div>
+      <div class="sourcing">Botanicals grown and foraged across the Hudson Valley, pressed and canned upstate.</div>
+      <div class="claim">&ldquo;40 calories a can. No cane sugar, no artificial anything.&rdquo;</div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cedar Commons Farmers Market - Stall Plate</title>
+<style>
+  /* Media box = trim. 6 x 6 inch square = 152.4 x 152.4 mm. NO bleed, no crop marks. */
+  @page { size: 152.4mm 152.4mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+
+  /* Sign-shop stall-plate artwork. Two visible elements only:
+     a STALL NUMBER block (top two-thirds) and a VENDOR NAME line (bottom third).
+     Heavy bold grotesque, high contrast, read at arm's length. */
+  .card {
+    width: 152.4mm;
+    height: 152.4mm;
+    box-sizing: border-box;
+    background: #FBFAF5;              /* Sign White */
+    padding: 11mm 10mm;              /* safe margin, no bleed */
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* STALL NUMBER block: very large numeral, top two-thirds, centred. */
+  .number-zone {
+    flex: 2 1 0;                     /* top two-thirds */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .stall-number {
+    font-weight: 900;
+    font-size: 92mm;
+    line-height: 0.9;
+    color: #23301F;                 /* Cedar Ink */
+    letter-spacing: -2mm;
+    text-align: center;
+  }
+
+  /* Divider rule in Meadow Green - a plate detail, not a merge field. */
+  .rule {
+    flex: 0 0 auto;
+    width: 46mm;
+    height: 2.2mm;
+    margin: 0 auto 5mm auto;
+    background: #3F7D44;            /* Meadow Green */
+  }
+
+  /* VENDOR NAME line: bottom third. */
+  .name-zone {
+    flex: 1 1 0;                     /* bottom third */
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  /* CRITICAL TRAP: fixed-measure name frame.
+     Fixed width spanning most of the card, single line height.
+     It does NOT auto-size, does NOT wrap to a second line, and does NOT shrink-to-fit.
+     Overflow is CLIPPED at the frame edge, so a vendor name longer than the frame
+     is truncated at the frame edge and simply stops rendering, while the page
+     still renders and the page count still matches the roster. */
+  .name-frame {
+    width: 132mm;                   /* fixed measure */
+    height: 15mm;                   /* single line height */
+    overflow: hidden;               /* clip at frame edge - no overset reflow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .vendor-name {
+    white-space: nowrap;            /* no wrap to a second line */
+    font-weight: 800;
+    font-size: 30pt;
+    line-height: 1;
+    color: #3F7D44;                /* Meadow Green */
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <!-- Field labels the merge targets: STALL_NUMBER, VENDOR_NAME.
+       Baked sample values are the sign shop's own artwork from two seasons ago
+       (stall 12 / Green Mountain Produce) - stale against this season's roster,
+       where stall 12 is now the Highfield Heritage Orchard cider cooperative and
+       Green Mountain Produce is stall 1. -->
+  <div class="card">
+    <div class="number-zone">
+      <div class="stall-number">12</div>
+    </div>
+    <div class="rule"></div>
+    <div class="name-zone">
+      <div class="name-frame">
+        <div class="vendor-name">Green Mountain Produce</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

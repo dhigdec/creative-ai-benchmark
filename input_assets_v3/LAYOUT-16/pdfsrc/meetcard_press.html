@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ironside Barbell Club - Meet Card</title>
+<style>
+  /* Trim = media box = 127 x 178 mm (5 x 7 in) portrait. NO bleed box. */
+  @page { size: 127mm 178mm; margin: 0; }
+  html, body { margin: 0; padding: 0; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
+
+  .card {
+    position: relative;
+    width: 127mm;
+    height: 178mm;
+    overflow: hidden;
+    background: #171310;            /* Forge Black ground */
+    color: #EDE6D6;                 /* warm cream */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+
+  /* ---- ONE continuous text story: name + three stats + quote flow top to
+         bottom inside a single frame; the stat numbers are inline runs. It is
+         deliberately NOT five separately positioned fields. ---- */
+  .story {
+    position: absolute;
+    left: 9mm;
+    top: 9.5mm;
+    width: 84mm;                     /* clears the crest at top-right */
+  }
+  .story .name {
+    font-family: 'Arial Narrow', 'Helvetica Neue Condensed', 'Roboto Condensed', Arial, sans-serif;
+    font-weight: 700;
+    font-stretch: condensed;
+    font-size: 30pt;
+    line-height: 0.98;
+    letter-spacing: 0.4pt;
+    text-transform: uppercase;
+    color: #EDE6D6;
+    /* thin horizontal brass rule under the name */
+    border-bottom: 1.4pt solid #A87B3A;
+    padding-bottom: 2.4mm;
+    margin: 0 0 3.4mm 0;
+    max-width: 70mm;
+  }
+  .story .stat {
+    font-family: 'Arial Narrow', 'Helvetica Neue Condensed', Arial, sans-serif;
+    font-weight: 700;
+    font-stretch: condensed;
+    text-transform: uppercase;
+    color: #A87B3A;                  /* brass label */
+    font-size: 11pt;
+    letter-spacing: 1.6pt;
+    line-height: 1;
+    margin: 0 0 2.9mm 0;
+    white-space: nowrap;
+  }
+  .story .stat .num {                /* inline run inside the same flow */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 700;
+    font-stretch: normal;
+    color: #EDE6D6;                  /* cream number */
+    font-size: 20pt;
+    letter-spacing: 0;
+    margin-left: 3.5mm;
+    vertical-align: -1.5pt;
+  }
+  .story .quote {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #EDE6D6;
+    font-size: 10.5pt;
+    line-height: 1.28;
+    margin: 4.6mm 0 0 0;
+    max-width: 80mm;
+  }
+
+  /* ---- Club crest: DRAWN vector artwork (inline SVG, grouped paths). It reads
+         as a small roundel picture but is NOT a placed image / picture well. ---- */
+  .crest {
+    position: absolute;
+    top: 8mm;
+    right: 8mm;
+    width: 26mm;
+    height: 26mm;
+  }
+
+  /* ---- The photograph: a REAL placed graphic frame (image well). Sits in the
+         tinted photo panel occupying the lower portion of the card. ---- */
+  .panel {
+    position: absolute;
+    left: 9mm;
+    right: 9mm;
+    top: 66mm;
+    bottom: 9mm;
+    background: #3A3C33;             /* muted steel-olive panel tint */
+    border: 1.4pt solid #A87B3A;     /* brass frame */
+    overflow: hidden;
+  }
+  .panel img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 30%;
+  }
+  .panel .tint {                     /* subtle steel-olive tint over the frame */
+    position: absolute;
+    inset: 0;
+    background: #3A3C33;
+    opacity: 0.20;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+  .panel .footline {                 /* tiny separate footer story */
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 3mm 4mm;
+    background: linear-gradient(to top, rgba(20,17,13,0.86), rgba(20,17,13,0));
+    font-family: 'Arial Narrow', 'Helvetica Neue Condensed', Arial, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2.2pt;
+    font-size: 7.5pt;
+    color: #A87B3A;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Single continuous text story: name, stats, quote in ONE frame -->
+    <div class="story">
+      <div class="name">Theo Marsh</div>
+      <div class="stat">Squat<span class="num">210</span></div>
+      <div class="stat">Bench<span class="num">140</span></div>
+      <div class="stat">Deadlift<span class="num">250</span></div>
+      <div class="quote">&ldquo;The bar doesn&rsquo;t care how you feel. Load it.&rdquo;</div>
+    </div>
+
+    <!-- Club crest drawn as vector (grouped paths), not a placed image -->
+    <svg class="crest" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="img" aria-label="Ironside Barbell Club crest">
+      <defs>
+        <path id="crestTop" d="M 22,100 A 78,78 0 0 1 178,100" fill="none"/>
+        <path id="crestBot" d="M 178,100 A 78,78 0 0 1 22,100" fill="none"/>
+      </defs>
+      <circle cx="100" cy="100" r="94" fill="none" stroke="#A87B3A" stroke-width="3"/>
+      <circle cx="100" cy="100" r="74" fill="none" stroke="#A87B3A" stroke-width="1.4"/>
+      <text font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="15" letter-spacing="2.4" fill="#A87B3A" text-anchor="middle">
+        <textPath href="#crestTop" xlink:href="#crestTop" startOffset="50%">IRONSIDE</textPath>
+      </text>
+      <text font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="12.5" letter-spacing="2.2" fill="#A87B3A" text-anchor="middle">
+        <textPath href="#crestBot" xlink:href="#crestBot" startOffset="50%">BARBELL CLUB</textPath>
+      </text>
+      <!-- barbell -->
+      <g fill="#A87B3A">
+        <rect x="58" y="96.5" width="84" height="7" rx="2.5"/>
+        <rect x="50" y="86" width="9" height="28" rx="2.5"/>
+        <rect x="141" y="86" width="9" height="28" rx="2.5"/>
+        <rect x="41" y="92" width="7" height="16" rx="2.5"/>
+        <rect x="152" y="92" width="7" height="16" rx="2.5"/>
+      </g>
+      <!-- laurel sprigs beneath the bar -->
+      <g fill="none" stroke="#A87B3A" stroke-width="2.4" stroke-linecap="round">
+        <path d="M 78,128 C 86,134 92,140 96,148"/>
+        <path d="M 122,128 C 114,134 108,140 104,148"/>
+      </g>
+      <g fill="#A87B3A">
+        <ellipse cx="82" cy="131" rx="3.4" ry="1.8" transform="rotate(40 82 131)"/>
+        <ellipse cx="88" cy="137" rx="3.4" ry="1.8" transform="rotate(40 88 137)"/>
+        <ellipse cx="93" cy="143" rx="3.4" ry="1.8" transform="rotate(40 93 143)"/>
+        <ellipse cx="118" cy="131" rx="3.4" ry="1.8" transform="rotate(-40 118 131)"/>
+        <ellipse cx="112" cy="137" rx="3.4" ry="1.8" transform="rotate(-40 112 137)"/>
+        <ellipse cx="107" cy="143" rx="3.4" ry="1.8" transform="rotate(-40 107 143)"/>
+      </g>
+    </svg>
+
+    <!-- Tinted photo panel with a REAL placed image (graphic frame / image well) -->
+    <div class="panel">
+      <img src="file:///Users/dhiren/Downloads/Deccan/Adobe-Freelance-Leads/input_assets_v3/LAYOUT-16/assets/athlete_portrait_02.jpg" alt="Theo Marsh">
+      <div class="tint"></div>
+      <div class="footline">Ironside Barbell Club &middot; Spring Meet</div>
+    </div>
+
+  </div>
+</body>
+</html>
