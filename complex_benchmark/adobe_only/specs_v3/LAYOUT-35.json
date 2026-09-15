@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-35",
+ "task_code": "SB3-080-LAY",
+ "task_name": "Marrow and Vane - Exhibition wall-label system",
+ "global_order": 80,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-35",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-080-LAY__marrow-and-vane-exhibition-wall-label-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-080-LAY__marrow-and-vane-exhibition-wall-label-system/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Flagship integrated engagement",
- "engagement_title": "Editorial and production designer for Marrow and Vane: Autumn wall label run",
+ "engagement_title": "SB3-080-LAY: Marrow and Vane - Exhibition wall-label system",
  "marketplace_listing": {
   "title": "Editorial and production designer for Marrow and Vane: Autumn wall label run",
   "experience_level": "Expert",
@@ -396,16 +407,6 @@
     "id": "A5",
     "text": "Every field the label carries is present as a live placeholder in the prepared template, including the credit line and the accession number.",
     "how": "Round trip the prepared template to its interchange form and search its stories for each expected placeholder token."
-   },
-   {
-    "id": "A6",
-    "text": "Each record's label carries its own reference binding rather than one static picture repeated across the run.",
-    "how": "Compare the picture reference resolved on each merged page against the per work column in the delivered merge data."
-   },
-   {
-    "id": "A7",
-    "text": "The per room installer files are single record files whose named room and position match the signed off hang order.",
-    "how": "Open each named file, read its identifying field, and check the name against the reconciliation table."
    }
   ],
   "human_craft_checks": [
@@ -437,19 +438,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered record image exceeds its source frame's pixel dimensions and no crop tradeoff record carries an upscale entry.",
-    "how": "Read the pixel dimensions of every delivered record against its source per the manifest, and diff the captured tradeoffs objects against the resize table in the note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The checklist exported with its declared page count, the works arrived as a real table, and no reference picture resolved to the importer's placeholder.",
-    "how": "Read the slide count and per page markup in the export response, count table cell structures, and search the markup for placeholder image data."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "Every text element in the exported checklist carries a resolved licensed PostScript face rather than a fallback default.",
-    "how": "Read the font family attribute on every text node in the returned markup and check it against the families the kit call returned."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -487,33 +488,23 @@
    "id": "A5",
    "text": "Every field the label carries is present as a live placeholder in the prepared template, including the credit line and the accession number.",
    "how": "Round trip the prepared template to its interchange form and search its stories for each expected placeholder token."
-  },
-  {
-   "id": "A6",
-   "text": "Each record's label carries its own reference binding rather than one static picture repeated across the run.",
-   "how": "Compare the picture reference resolved on each merged page against the per work column in the delivered merge data."
-  },
-  {
-   "id": "A7",
-   "text": "The per room installer files are single record files whose named room and position match the signed off hang order.",
-   "how": "Open each named file, read its identifying field, and check the name against the reconciliation table."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered record image exceeds its source frame's pixel dimensions and no crop tradeoff record carries an upscale entry.",
-   "how": "Read the pixel dimensions of every delivered record against its source per the manifest, and diff the captured tradeoffs objects against the resize table in the note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The checklist exported with its declared page count, the works arrived as a real table, and no reference picture resolved to the importer's placeholder.",
-   "how": "Read the slide count and per page markup in the export response, count table cell structures, and search the markup for placeholder image data."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "Every text element in the exported checklist carries a resolved licensed PostScript face rather than a fallback default.",
-   "how": "Read the font family attribute on every text node in the returned markup and check it against the families the kit call returned."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

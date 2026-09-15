@@ -20,14 +20,30 @@ const toolInventory = JSON.parse(fs.readFileSync(path.join(repo, "complex_benchm
 const allowedTools = new Set(toolInventory.tools);
 const deliverableNames = new Map();
 const marketplaceTitles = new Map();
+const taskCodes = new Map();
+const taskNames = new Map();
 const bannedClientTerms = /export_html_to_express|html_export_readiness_skill|create_visual_design_express_skill|find_fonts|get_fontkit_embed_url|image_vectorize|video_render|asset_search/i;
 const processPattern = /tradeoff|tool response|connector response|success message|returned field|raw response/i;
 
 for (const spec of specs) {
   const id = spec.new_id;
+  const [legacyFamily, legacySequenceText] = id.split("-");
+  const namingConfig = { PHOTO: [0, "PHO"], VECTOR: [30, "VEC"], LAYOUT: [45, "LAY"], MOTION: [80, "MOT"] }[legacyFamily];
+  const expectedOrder = namingConfig ? namingConfig[0] + Number(legacySequenceText) : NaN;
+  const expectedCode = namingConfig ? `SB3-${String(expectedOrder).padStart(3, "0")}-${namingConfig[1]}` : "";
   tierCounts[spec.complexity_tier] = (tierCounts[spec.complexity_tier] || 0) + 1;
   familyCounts[spec.family] = (familyCounts[spec.family] || 0) + 1;
   if (spec.schema_version !== "3.1") addError(id, "schema_version is not 3.1");
+  if (spec.task_code !== expectedCode || spec.global_order !== expectedOrder) addError(id, `canonical order mismatch; expected ${expectedCode} at ${expectedOrder}`);
+  if (!spec.task_name || spec.task_name.length > 120) addError(id, "canonical task name missing or too long");
+  if (spec.legacy_id !== id) addError(id, "legacy ID does not match source task ID");
+  if (!spec.storage?.s3_prefix?.startsWith(`s3://annotationprod/creative-ai-benchmark/v3.1/tasks/${spec.task_code}__`)) addError(id, "canonical S3 prefix is missing or malformed");
+  const taskCodeKey = String(spec.task_code || "").toLowerCase();
+  const taskNameKey = String(spec.task_name || "").toLowerCase();
+  if (!taskCodes.has(taskCodeKey)) taskCodes.set(taskCodeKey, []);
+  if (!taskNames.has(taskNameKey)) taskNames.set(taskNameKey, []);
+  taskCodes.get(taskCodeKey).push(id);
+  taskNames.get(taskNameKey).push(id);
   if (!spec.marketplace_listing?.title || spec.marketplace_listing.title.length > 120) addError(id, "marketplace title missing or too long");
   const marketplaceTitle = (spec.marketplace_listing?.title || "").toLowerCase();
   if (!marketplaceTitles.has(marketplaceTitle)) marketplaceTitles.set(marketplaceTitle, []);
@@ -50,7 +66,13 @@ for (const spec of specs) {
     if (!deliverableNames.has(key)) deliverableNames.set(key, []);
     deliverableNames.get(key).push(id);
   }
-  if (!spec.verifier_contract || spec.verifier_contract.artifact_checks.length < 3 || spec.verifier_contract.human_craft_checks.length < 3) addError(id, "verifier contract incomplete");
+  if (!spec.verifier_contract || spec.verifier_contract.artifact_checks.length < 3 || spec.verifier_contract.normalized_process_checks.length < 3 || spec.verifier_contract.human_craft_checks.length < 3) addError(id, "verifier contract incomplete");
+  for (const [category, checks] of Object.entries({ artifact: spec.verifier_contract.artifact_checks, process: spec.verifier_contract.normalized_process_checks, human: spec.verifier_contract.human_craft_checks })) {
+    const ids = checks.map((check) => check.id);
+    const bodies = checks.map((check) => `${check.text}|${check.how}`.toLowerCase());
+    if (new Set(ids).size !== ids.length) addError(id, `${category} verifier IDs are not unique`);
+    if (new Set(bodies).size !== bodies.length) addError(id, `${category} verifier checks contain duplicates`);
+  }
   for (const check of spec.verifier_contract.artifact_checks) if (processPattern.test(`${check.text} ${check.how}`)) addError(id, `artifact check ${check.id} depends on process evidence`);
   const profile = spec.connector_profile;
   if (!profile || profile.autonomy?.startsWith("zero-human") !== true) addError(id, "zero-human connector profile missing");
@@ -71,6 +93,8 @@ for (const spec of specs) {
 
 for (const [name, ids] of deliverableNames) if (ids.length > 1) addError("CORPUS", `duplicate deliverable name '${name}' in ${ids.join(", ")}`);
 for (const [title, ids] of marketplaceTitles) if (title && ids.length > 1) addError("CORPUS", `duplicate marketplace title '${title}' in ${ids.join(", ")}`);
+for (const [code, ids] of taskCodes) if (code && ids.length > 1) addError("CORPUS", `duplicate task code '${code}' in ${ids.join(", ")}`);
+for (const [name, ids] of taskNames) if (name && ids.length > 1) addError("CORPUS", `duplicate task name '${name}' in ${ids.join(", ")}`);
 
 const expectedTiers = { "Flagship integrated engagement": 30, "Expert standard engagement": 45, "Specialist stress test": 25 };
 for (const [tier, count] of Object.entries(expectedTiers)) if (tierCounts[tier] !== count) addError("CORPUS", `tier ${tier} expected ${count}, found ${tierCounts[tier] || 0}`);
@@ -101,6 +125,8 @@ const report = {
   operation_counts: Object.fromEntries(Object.entries(opCounts).sort((a, b) => a[0].localeCompare(b[0]))),
   exact_duplicate_deliverable_names: [...deliverableNames.entries()].filter(([, ids]) => ids.length > 1).map(([name, ids]) => ({ name, ids })),
   exact_duplicate_marketplace_titles: [...marketplaceTitles.entries()].filter(([, ids]) => ids.length > 1).map(([title, ids]) => ({ title, ids })),
+  exact_duplicate_task_codes: [...taskCodes.entries()].filter(([, ids]) => ids.length > 1).map(([code, ids]) => ({ code, ids })),
+  exact_duplicate_task_names: [...taskNames.entries()].filter(([, ids]) => ids.length > 1).map(([name, ids]) => ({ name, ids })),
   errors,
   warnings,
 };

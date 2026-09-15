@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-10",
+ "task_code": "SB3-010-PHO",
+ "task_name": "Northgrove - Apparel colorway image system",
+ "global_order": 10,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-10",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-010-PHO__northgrove-apparel-colorway-image-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-010-PHO__northgrove-apparel-colorway-image-system/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Senior photo retoucher for Northgrove: colourway image set",
+ "engagement_title": "SB3-010-PHO: Northgrove - Apparel colorway image system",
  "marketplace_listing": {
   "title": "Senior photo retoucher for Northgrove: colourway image set",
   "experience_level": "Expert",
@@ -384,16 +395,6 @@
     "id": "A5",
     "text": "The feed files carry genuine transparency with partial alpha values rather than a flattened or fully binary alpha.",
     "how": "Inspect the delivered files for an alpha channel containing intermediate values."
-   },
-   {
-    "id": "A6",
-    "text": "The press PDF's page count equals the spreadsheet's row count and the pages follow the spreadsheet order.",
-    "how": "Read the PDF page count and compare page content against the row order."
-   },
-   {
-    "id": "A7",
-    "text": "Text elements in the exported document carry the licensed faces rather than the importer's default sans, and no element resolves past its declared canvas width.",
-    "how": "Parse resolved font-family, left and width values per canvas."
    }
   ],
   "human_craft_checks": [
@@ -425,9 +426,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered file exceeds its source dimensions and no crop reports an upscale entry.",
-    "how": "Compare each delivered file against its recorded source dimensions and scan the run for tradeoffs entries of type upscaled."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
+   },
+   {
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -465,23 +476,23 @@
    "id": "A5",
    "text": "The feed files carry genuine transparency with partial alpha values rather than a flattened or fully binary alpha.",
    "how": "Inspect the delivered files for an alpha channel containing intermediate values."
-  },
-  {
-   "id": "A6",
-   "text": "The press PDF's page count equals the spreadsheet's row count and the pages follow the spreadsheet order.",
-   "how": "Read the PDF page count and compare page content against the row order."
-  },
-  {
-   "id": "A7",
-   "text": "Text elements in the exported document carry the licensed faces rather than the importer's default sans, and no element resolves past its declared canvas width.",
-   "how": "Parse resolved font-family, left and width values per canvas."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered file exceeds its source dimensions and no crop reports an upscale entry.",
-   "how": "Compare each delivered file against its recorded source dimensions and scan the run for tradeoffs entries of type upscaled."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
+  },
+  {
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

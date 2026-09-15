@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-13",
+ "task_code": "SB3-013-PHO",
+ "task_name": "Argent and Faith - Spring jewelry capsule photography",
+ "global_order": 13,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-13",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-013-PHO__argent-and-faith-spring-jewelry-capsule-photography",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-013-PHO__argent-and-faith-spring-jewelry-capsule-photography/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Senior photo retoucher for Argent & Faith: spring capsule photography",
+ "engagement_title": "SB3-013-PHO: Argent and Faith - Spring jewelry capsule photography",
  "marketplace_listing": {
   "title": "Senior photo retoucher for Argent & Faith: spring capsule photography",
   "experience_level": "Expert",
@@ -388,14 +399,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "Exactly ten per-piece card files exist, each named to a piece, each containing the piece its name claims.",
-    "how": "Confirm exactly 10 single-page files. Read the piece_name / piece_number off the content of each file and confirm it matches the piece asserted by its filename (e.g. the file named for AF-SP26-005 / Reliquary Locket must contain the Reliquary Locket card); reject any check that relies on the order the files were returned in, since multi-record raster order is documented as reversed."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "On every piece that encloses genuine negative space, the delivered on-ground listing image carries the exact agreed ground colour inside the enclosed interior, not the captured grey sweep. This applies to the four open bands (Quarry Band, Cloister Band, Vigil Band, Meridian Band) and the hand-pierced Vesper Medallion; it does NOT apply to the Lattice Pendant, which is closed cast relief with no holes.",
-    "how": "For each of those five enclosed pieces, sample the pixels inside the enclosed interior region (the band centre, or the sawn piercings of the medallion) and require them to match the delivered ground hex within a tight tolerance (delta-E <= 3 against whichever ground was agreed at step 8: Paper White #F6F4EF or Warm Ivory Ground #EFE7D9), and require them NOT to match the captured light-grey paper sweep the pieces were shot on (about North Window Grey #B9BBB8). Do NOT test for alpha transparency through the enclosed interior: the connector cannot punch an enclosed alpha hole (remove_background clears only the outer background and fill_area is solid-fill only), so the connector-correct, gradeable outcome is the interior filled to the delivered ground so the centre reads open. Reject any interior still carrying the captured sweep, and do not apply this check to the Lattice Pendant."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -427,14 +443,19 @@
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "Exactly ten per-piece card files exist, each named to a piece, each containing the piece its name claims.",
-   "how": "Confirm exactly 10 single-page files. Read the piece_name / piece_number off the content of each file and confirm it matches the piece asserted by its filename (e.g. the file named for AF-SP26-005 / Reliquary Locket must contain the Reliquary Locket card); reject any check that relies on the order the files were returned in, since multi-record raster order is documented as reversed."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "On every piece that encloses genuine negative space, the delivered on-ground listing image carries the exact agreed ground colour inside the enclosed interior, not the captured grey sweep. This applies to the four open bands (Quarry Band, Cloister Band, Vigil Band, Meridian Band) and the hand-pierced Vesper Medallion; it does NOT apply to the Lattice Pendant, which is closed cast relief with no holes.",
-   "how": "For each of those five enclosed pieces, sample the pixels inside the enclosed interior region (the band centre, or the sawn piercings of the medallion) and require them to match the delivered ground hex within a tight tolerance (delta-E <= 3 against whichever ground was agreed at step 8: Paper White #F6F4EF or Warm Ivory Ground #EFE7D9), and require them NOT to match the captured light-grey paper sweep the pieces were shot on (about North Window Grey #B9BBB8). Do NOT test for alpha transparency through the enclosed interior: the connector cannot punch an enclosed alpha hole (remove_background clears only the outer background and fill_area is solid-fill only), so the connector-correct, gradeable outcome is the interior filled to the delivered ground so the centre reads open. Reject any interior still carrying the captured sweep, and do not apply this check to the Lattice Pendant."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

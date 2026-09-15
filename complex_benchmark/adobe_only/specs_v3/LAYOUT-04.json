@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-04",
+ "task_code": "SB3-049-LAY",
+ "task_name": "Northgrove - Wholesale lookbook and hang-tag system",
+ "global_order": 49,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-04",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-049-LAY__northgrove-wholesale-lookbook-and-hang-tag-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-049-LAY__northgrove-wholesale-lookbook-and-hang-tag-system/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Editorial and production designer for NORTHGROVE: hang-tag run",
+ "engagement_title": "SB3-049-LAY: Northgrove - Wholesale lookbook and hang-tag system",
  "marketplace_listing": {
   "title": "Editorial and production designer for NORTHGROVE: hang-tag run",
   "experience_level": "Expert",
@@ -404,16 +415,6 @@
     "id": "A5",
     "text": "The prepared merge template's story contains a placeholder for every field the tag is supposed to carry, and its graphic frame carries a merge binding rather than its original static link.",
     "how": "Export the interchange format of the prepared template, grep the stories for all five expected field tokens (PIECE_NAME, PRICE, FABRIC, MAKE and the SWATCH image field), and read the graphic frame's link state (it must carry an @-prefixed data-merge image binding, not the original static swatch link)."
-   },
-   {
-    "id": "A6",
-    "text": "The press file's page count equals the CSV row count (10 pages for 10 rows) and the pages are in row order, and ten per-piece files exist at 300 DPI print resolution.",
-    "how": "Read the page count of the press file (must be 10, one page per CSV row) and its per-page text against the CSV row order, and read the pixel density of each of the ten per-piece files (must be density 300x300, i.e. the 55x90 mm tag rendered at 300 DPI, about 650x1063 px, produced via document_render_layout rather than the merge's own ~72 DPI raster output)."
-   },
-   {
-    "id": "A7",
-    "text": "Each per-piece file carries the piece its filename claims, and the picture on each tag is that row's cut-out rather than the template's swatch.",
-    "how": "Read the rendered text and the placed picture on each per-piece file against the CSV row and against the cut-out manifest (e.g. the Fell Overshirt file must render 'Fell Overshirt' and '$128' and carry cutouts/fell_overshirt.png, not the template's static swatch)."
    }
   ],
   "human_craft_checks": [
@@ -445,14 +446,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered file exceeds the pixel dimensions of the frame it derives from and no returned tradeoff record in the run carries an upscale entry.",
-    "how": "Read the pixel dimensions of every delivered file against its source per the manifest (garment sources are 5792x8688, hardware sources 6000x4000; no delivered file may exceed its own source dimensions) and diff the captured tradeoffs objects against the resize table in the note for any upscale entry."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Every text element in every exported root carries a resolved licensed face rather than a fallback default.",
-    "how": "Read the font-family attribute on every text node in the returned markup and check it against the families the kit call returned."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -490,28 +496,23 @@
    "id": "A5",
    "text": "The prepared merge template's story contains a placeholder for every field the tag is supposed to carry, and its graphic frame carries a merge binding rather than its original static link.",
    "how": "Export the interchange format of the prepared template, grep the stories for all five expected field tokens (PIECE_NAME, PRICE, FABRIC, MAKE and the SWATCH image field), and read the graphic frame's link state (it must carry an @-prefixed data-merge image binding, not the original static swatch link)."
-  },
-  {
-   "id": "A6",
-   "text": "The press file's page count equals the CSV row count (10 pages for 10 rows) and the pages are in row order, and ten per-piece files exist at 300 DPI print resolution.",
-   "how": "Read the page count of the press file (must be 10, one page per CSV row) and its per-page text against the CSV row order, and read the pixel density of each of the ten per-piece files (must be density 300x300, i.e. the 55x90 mm tag rendered at 300 DPI, about 650x1063 px, produced via document_render_layout rather than the merge's own ~72 DPI raster output)."
-  },
-  {
-   "id": "A7",
-   "text": "Each per-piece file carries the piece its filename claims, and the picture on each tag is that row's cut-out rather than the template's swatch.",
-   "how": "Read the rendered text and the placed picture on each per-piece file against the CSV row and against the cut-out manifest (e.g. the Fell Overshirt file must render 'Fell Overshirt' and '$128' and carry cutouts/fell_overshirt.png, not the template's static swatch)."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered file exceeds the pixel dimensions of the frame it derives from and no returned tradeoff record in the run carries an upscale entry.",
-   "how": "Read the pixel dimensions of every delivered file against its source per the manifest (garment sources are 5792x8688, hardware sources 6000x4000; no delivered file may exceed its own source dimensions) and diff the captured tradeoffs objects against the resize table in the note for any upscale entry."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Every text element in every exported root carries a resolved licensed face rather than a fallback default.",
-   "how": "Read the font-family attribute on every text node in the returned markup and check it against the families the kit call returned."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

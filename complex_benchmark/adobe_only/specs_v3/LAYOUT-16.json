@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-16",
+ "task_code": "SB3-061-LAY",
+ "task_name": "Anvil and Oak - Gym opening member collateral",
+ "global_order": 61,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-16",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-061-LAY__anvil-and-oak-gym-opening-member-collateral",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-061-LAY__anvil-and-oak-gym-opening-member-collateral/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Editorial and production designer for Anvil and Oak: Opening roster athlete card run",
+ "engagement_title": "SB3-061-LAY: Anvil and Oak - Gym opening member collateral",
  "marketplace_listing": {
   "title": "Editorial and production designer for Anvil and Oak: Opening roster athlete card run",
   "experience_level": "Expert",
@@ -372,16 +383,6 @@
     "id": "A5",
     "text": "Every field the mapping claimed to create exists as a placeholder in the prepared template before any merge is run.",
     "how": "Export the interchange file from the prepared template, unzip it and search the stories for each field token."
-   },
-   {
-    "id": "A6",
-    "text": "Each per-athlete file contains the athlete its filename claims and that athlete's own three figures on the single stated basis (kilograms), with the two pound-logged athletes reconciled to that basis rather than copied verbatim.",
-    "how": "Open every per-athlete file, read its name and its three figures, and compare against the normalised (reconciled) data file on the single stated basis, NOT against the raw roster row. Every kilogram-logged athlete's figures must equal their raw CSV values; Marcus Reyes (raw 405/275/500 lb) and Wyatt Cole (raw 365/245/455 lb) were logged in pounds inside an otherwise-kilogram column, so their delivered figures must be the converted kilogram values and must therefore DIFFER from their raw roster row (Marcus approx 184/125/227 kg, Wyatt approx 166/111/206 kg). A card whose figures verbatim-copy the raw pound values, or that mixes units across the run, fails."
-   },
-   {
-    "id": "A7",
-    "text": "The proofs are at true print resolution at card trim (127 x 178 mm, 5 x 7 in) rather than screen scale: exactly 1500 x 2100 px at 300 DPI.",
-    "how": "Read the pixel dimensions and density metadata of each proof; assert 1500 x 2100 px (5 in x 300 = 1500, 7 in x 300 = 2100) at 300 DPI density, matching the 127 x 178 mm card trim, and reject any proof at screen scale (e.g. 72/96 DPI or roughly 360 x 504 px, the PDF's own 72-dpi media box)."
    }
   ],
   "human_craft_checks": [
@@ -413,19 +414,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered image exceeds its source frame's dimensions and no crop or resize tradeoff record carries an enlargement entry.",
-    "how": "Compare each delivered file against its source per the manifest and diff the captured tradeoffs objects."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The schedule grid and the tier comparison arrived as real tables and every text element carries a resolved licensed face.",
-    "how": "Parse the returned markup for table structures and check every font-family attribute against the families the kit call returned."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "Every text element declares the correct non-standard numeric font weight for its role, taken from the family's real style inventory rather than an assumed standard weight, and its font-family uses the kit call's returned slug.",
-    "how": "For each role, parse the returned markup for its font-family and its numeric font-weight; assert each declared weight is an actual weight present in that family's font_styles inventory (for example the display headline and schedule-grid role resolving to the family's real heavy/condensed cut rather than a defaulted 400 or 700), and assert every CSS font-family uses the slug the kit call returned rather than an unlaundered display name. Any element whose weight is absent from its family's real inventory, or that assumes a standard weight the family does not carry, fails."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -463,33 +464,23 @@
    "id": "A5",
    "text": "Every field the mapping claimed to create exists as a placeholder in the prepared template before any merge is run.",
    "how": "Export the interchange file from the prepared template, unzip it and search the stories for each field token."
-  },
-  {
-   "id": "A6",
-   "text": "Each per-athlete file contains the athlete its filename claims and that athlete's own three figures on the single stated basis (kilograms), with the two pound-logged athletes reconciled to that basis rather than copied verbatim.",
-   "how": "Open every per-athlete file, read its name and its three figures, and compare against the normalised (reconciled) data file on the single stated basis, NOT against the raw roster row. Every kilogram-logged athlete's figures must equal their raw CSV values; Marcus Reyes (raw 405/275/500 lb) and Wyatt Cole (raw 365/245/455 lb) were logged in pounds inside an otherwise-kilogram column, so their delivered figures must be the converted kilogram values and must therefore DIFFER from their raw roster row (Marcus approx 184/125/227 kg, Wyatt approx 166/111/206 kg). A card whose figures verbatim-copy the raw pound values, or that mixes units across the run, fails."
-  },
-  {
-   "id": "A7",
-   "text": "The proofs are at true print resolution at card trim (127 x 178 mm, 5 x 7 in) rather than screen scale: exactly 1500 x 2100 px at 300 DPI.",
-   "how": "Read the pixel dimensions and density metadata of each proof; assert 1500 x 2100 px (5 in x 300 = 1500, 7 in x 300 = 2100) at 300 DPI density, matching the 127 x 178 mm card trim, and reject any proof at screen scale (e.g. 72/96 DPI or roughly 360 x 504 px, the PDF's own 72-dpi media box)."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered image exceeds its source frame's dimensions and no crop or resize tradeoff record carries an enlargement entry.",
-   "how": "Compare each delivered file against its source per the manifest and diff the captured tradeoffs objects."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The schedule grid and the tier comparison arrived as real tables and every text element carries a resolved licensed face.",
-   "how": "Parse the returned markup for table structures and check every font-family attribute against the families the kit call returned."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "Every text element declares the correct non-standard numeric font weight for its role, taken from the family's real style inventory rather than an assumed standard weight, and its font-family uses the kit call's returned slug.",
-   "how": "For each role, parse the returned markup for its font-family and its numeric font-weight; assert each declared weight is an actual weight present in that family's font_styles inventory (for example the display headline and schedule-grid role resolving to the family's real heavy/condensed cut rather than a defaulted 400 or 700), and assert every CSS font-family uses the slug the kit call returned rather than an unlaundered display name. Any element whose weight is absent from its family's real inventory, or that assumes a standard weight the family does not carry, fails."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

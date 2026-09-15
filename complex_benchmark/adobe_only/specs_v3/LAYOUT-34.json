@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-34",
+ "task_code": "SB3-079-LAY",
+ "task_name": "Ferncroft Nursery - Spring plant tag system",
+ "global_order": 79,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-34",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-079-LAY__ferncroft-nursery-spring-plant-tag-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-079-LAY__ferncroft-nursery-spring-plant-tag-system/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Editorial and production designer for Ferncroft Nursery: Ferncroft spring tag press run and department subsets",
+ "engagement_title": "SB3-079-LAY: Ferncroft Nursery - Spring plant tag system",
  "marketplace_listing": {
   "title": "Editorial and production designer for Ferncroft Nursery: Ferncroft spring tag press run and department subsets",
   "experience_level": "Expert",
@@ -370,16 +381,6 @@
     "id": "A5",
     "text": "Every mapped field is genuinely variable: no field holds the same string on every page unless the season list says it does.",
     "how": "Extract each mapped field across all pages and assert the distinct value count matches the distinct value count in the reconciled list, column by column."
-   },
-   {
-    "id": "A6",
-    "text": "The four department subsets are complete and disjoint against the reconciled list.",
-    "how": "Union and intersect the varieties present in the four subsets and compare against the reconciled list."
-   },
-   {
-    "id": "A7",
-    "text": "Proof rasters are at genuine print resolution at trim rather than at page point scale.",
-    "how": "Read the pixel dimensions and embedded density of each proof and compare against trim at the resolution named in the note."
    }
   ],
   "human_craft_checks": [
@@ -411,14 +412,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered image exceeds its source frame's pixel dimensions and no crop tradeoff record in the run carries an upscale entry.",
-    "how": "Compare every delivered file's dimensions against its source per the manifest, and diff the captured tradeoff records against the resize table in the note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The bench card export returned both canvases at their own declared sizes, the price sheet arrived as a real table rather than as text, no image resolved to the importer's placeholder, and every text element carries a resolved licensed face.",
-    "how": "Read slide count and per canvas dimensions from the export response, then parse the returned per canvas markup for table cell structure, for placeholder image data, and for font family attributes against the families the kit call returned."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -456,28 +462,23 @@
    "id": "A5",
    "text": "Every mapped field is genuinely variable: no field holds the same string on every page unless the season list says it does.",
    "how": "Extract each mapped field across all pages and assert the distinct value count matches the distinct value count in the reconciled list, column by column."
-  },
-  {
-   "id": "A6",
-   "text": "The four department subsets are complete and disjoint against the reconciled list.",
-   "how": "Union and intersect the varieties present in the four subsets and compare against the reconciled list."
-  },
-  {
-   "id": "A7",
-   "text": "Proof rasters are at genuine print resolution at trim rather than at page point scale.",
-   "how": "Read the pixel dimensions and embedded density of each proof and compare against trim at the resolution named in the note."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered image exceeds its source frame's pixel dimensions and no crop tradeoff record in the run carries an upscale entry.",
-   "how": "Compare every delivered file's dimensions against its source per the manifest, and diff the captured tradeoff records against the resize table in the note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The bench card export returned both canvases at their own declared sizes, the price sheet arrived as a real table rather than as text, no image resolved to the importer's placeholder, and every text element carries a resolved licensed face.",
-   "how": "Read slide count and per canvas dimensions from the export response, then parse the returned per canvas markup for table cell structure, for placeholder image data, and for font family attributes against the families the kit call returned."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

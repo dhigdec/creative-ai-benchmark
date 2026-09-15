@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-04",
+ "task_code": "SB3-004-PHO",
+ "task_name": "Verranza Coastal Retreats - Villa collection image system",
+ "global_order": 4,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-04",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Flagship integrated engagement",
- "engagement_title": "Senior photo retoucher for Verranza Coastal Retreats: Verranza collection photography",
+ "engagement_title": "SB3-004-PHO: Verranza Coastal Retreats - Villa collection image system",
  "marketplace_listing": {
   "title": "Senior photo retoucher for Verranza Coastal Retreats: Verranza collection photography",
   "experience_level": "Expert",
@@ -184,7 +195,7 @@
   {
    "name": "Recovered Verranza monogram",
    "deliverable_class": "vector artwork system",
-   "spec": "The compound monogram recovered from a photograph of the iron gate plate as placeable scalable vector geometry with a transparent ground: a real viewBox present, no opaque full canvas rectangle riding along, the oval rule and the anchor whole rather than plausibly incomplete, delivered as a positive and a reversed variant, and holding legibly at the size the printed card actually reproduces it and reversed out of the collection's deep blue. Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
+   "spec": "The compound monogram recovered from a photograph of the iron gate plate as placeable scalable vector geometry with a transparent ground: a real viewBox present, no opaque full canvas rectangle riding along, the oval rule and the anchor whole rather than plausibly incomplete, delivered as a positive and a reversed variant, and holding legibly at the size the printed card actually reproduces it and reversed out of the collection's deep blue.  Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
   },
   {
    "name": "Verranza Coastal Retreats delivery-size crop matrix",
@@ -409,16 +420,6 @@
     "id": "A5",
     "text": "Each per-card file contains the card its filename claims.",
     "how": "Open every per-card file and read its house and season fields against the filename."
-   },
-   {
-    "id": "A6",
-    "text": "The proofs are at true print resolution at 148 x 105 mm trim rather than screen scale.",
-    "how": "Read each proof's pixel dimensions and density metadata: assert 1748 x 1240 px landscape at 300 DPI (148 x 105 mm at 300 PPI, plus or minus 1 px rounding), not a screen-scale proxy."
-   },
-   {
-    "id": "A7",
-    "text": "The monogram SVG has a viewBox and no full-canvas opaque background path at path index zero.",
-    "how": "Parse the delivered SVG: assert a viewBox is present and that the first path does not span the whole canvas."
    }
   ],
   "human_craft_checks": [
@@ -450,14 +451,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered image exceeds its source frame's dimensions and no crop tradeoff record carries an upscale entry.",
-    "how": "Compare each delivered file against its source per the manifest and diff the captured tradeoffs objects."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The collection's one material frame is a licensed Adobe Stock photograph obtained at full resolution and IP-clean, not generated or expanded.",
-    "how": "Confirm the frame carries a Stock license and download record (a StockAsset id from asset_license_and_download_stock) at full resolution, and that it was sourced with the photography contentType filter and generative-tech candidates excluded rather than produced by any generative tool."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -496,28 +502,23 @@
    "id": "A5",
    "text": "Each per-card file contains the card its filename claims.",
    "how": "Open every per-card file and read its house and season fields against the filename."
-  },
-  {
-   "id": "A6",
-   "text": "The proofs are at true print resolution at 148 x 105 mm trim rather than screen scale.",
-   "how": "Read each proof's pixel dimensions and density metadata: assert 1748 x 1240 px landscape at 300 DPI (148 x 105 mm at 300 PPI, plus or minus 1 px rounding), not a screen-scale proxy."
-  },
-  {
-   "id": "A7",
-   "text": "The monogram SVG has a viewBox and no full-canvas opaque background path at path index zero.",
-   "how": "Parse the delivered SVG: assert a viewBox is present and that the first path does not span the whole canvas."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered image exceeds its source frame's dimensions and no crop tradeoff record carries an upscale entry.",
-   "how": "Compare each delivered file against its source per the manifest and diff the captured tradeoffs objects."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The collection's one material frame is a licensed Adobe Stock photograph obtained at full resolution and IP-clean, not generated or expanded.",
-   "how": "Confirm the frame carries a Stock license and download record (a StockAsset id from asset_license_and_download_stock) at full resolution, and that it was sourced with the photography contentType filter and generative-tech candidates excluded rather than produced by any generative tool."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

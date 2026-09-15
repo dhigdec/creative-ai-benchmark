@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-27",
+ "task_code": "SB3-072-LAY",
+ "task_name": "Girdermark - Technical data-sheet and bin-label library",
+ "global_order": 72,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-27",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-072-LAY__girdermark-technical-data-sheet-and-bin-label-library",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-072-LAY__girdermark-technical-data-sheet-and-bin-label-library/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Flagship integrated engagement",
- "engagement_title": "Editorial and production designer for Girdermark Components: Data-sheet library: press file",
+ "engagement_title": "SB3-072-LAY: Girdermark - Technical data-sheet and bin-label library",
  "marketplace_listing": {
   "title": "Editorial and production designer for Girdermark Components: Data-sheet library: press file",
   "experience_level": "Expert",
@@ -406,11 +417,6 @@
     "id": "A5",
     "text": "Every field the printed sheet carries, including the three values packed in the attributes blob, is present on every merged page.",
     "how": "Round-trip the prepared template to IDML and grep for every expected placeholder, then read the text off each rendered page against its export row."
-   },
-   {
-    "id": "A6",
-    "text": "The label run has one label per current part at 100 x 62 mm trim, and no description ends before its roster string does.",
-    "how": "Compare each rendered label's description against the composed field for that row, character for character, at trim rather than at proof scale."
    }
   ],
   "human_craft_checks": [
@@ -433,28 +439,28 @@
     "id": "H4",
     "text": "The handover escalates rather than conceals, naming the revision-row question, everything that would not fit, the mark's size limits and the fact that neither supplied layout can be given bleed.",
     "how": "Read the handover against the triage, conversion, render and reconciliation findings and check each is disclosed with the decision taken."
+   },
+   {
+    "text": "The scoped deliverables read as one deliberate professional system rather than unrelated outputs.",
+    "how": "Review the final package side by side at the sizes and in the sequence the audience will encounter it.",
+    "id": "H5"
    }
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "The sheet press file has exactly one page per current part in roster order and renders at 300 ppi at US Letter trim (2550 x 3300 px).",
-    "how": "Count pages in the rendered file against the reconciled part count, and check the render call's resolution against the output raster dimensions."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Sixteen named single-part sheet files and sixteen named single-part label files exist, each containing the part its filename claims.",
-    "how": "Read the part number off each single-record file and compare it with its filename, never with its position in the returned list."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "No delivered picture exceeds its source frame on either axis and no crop or knockout response carried an upscale or downscale entry that went undisclosed.",
-    "how": "Compare delivered dimensions against source dimensions and inspect every tradeoffs array against the handover's resize list."
-   },
-   {
-    "id": "P4",
-    "text": "The exported document holds two canvases at their declared sizes, with every photograph resolved to real image data, the mark present as path shapes, the range present as real table cells and every text element carrying a resolved licensed face at the intended numeric weight.",
-    "how": "Read slide_count and per-slide dimensions from the export response and parse each canvas's returned markup for placeholder images, path-type shapes, table cell structure, resolved font families and weights, and out-of-canvas resolved positions."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -492,33 +498,23 @@
    "id": "A5",
    "text": "Every field the printed sheet carries, including the three values packed in the attributes blob, is present on every merged page.",
    "how": "Round-trip the prepared template to IDML and grep for every expected placeholder, then read the text off each rendered page against its export row."
-  },
-  {
-   "id": "A6",
-   "text": "The label run has one label per current part at 100 x 62 mm trim, and no description ends before its roster string does.",
-   "how": "Compare each rendered label's description against the composed field for that row, character for character, at trim rather than at proof scale."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "The sheet press file has exactly one page per current part in roster order and renders at 300 ppi at US Letter trim (2550 x 3300 px).",
-   "how": "Count pages in the rendered file against the reconciled part count, and check the render call's resolution against the output raster dimensions."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Sixteen named single-part sheet files and sixteen named single-part label files exist, each containing the part its filename claims.",
-   "how": "Read the part number off each single-record file and compare it with its filename, never with its position in the returned list."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "No delivered picture exceeds its source frame on either axis and no crop or knockout response carried an upscale or downscale entry that went undisclosed.",
-   "how": "Compare delivered dimensions against source dimensions and inspect every tradeoffs array against the handover's resize list."
-  },
-  {
-   "id": "P4",
-   "text": "The exported document holds two canvases at their declared sizes, with every photograph resolved to real image data, the mark present as path shapes, the range present as real table cells and every text element carrying a resolved licensed face at the intended numeric weight.",
-   "how": "Read slide_count and per-slide dimensions from the export response and parse each canvas's returned markup for placeholder images, path-type shapes, table cell structure, resolved font families and weights, and out-of-canvas resolved positions."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [
@@ -541,6 +537,11 @@
    "id": "H4",
    "text": "The handover escalates rather than conceals, naming the revision-row question, everything that would not fit, the mark's size limits and the fact that neither supplied layout can be given bleed.",
    "how": "Read the handover against the triage, conversion, render and reconciliation findings and check each is disclosed with the decision taken."
+  },
+  {
+   "text": "The scoped deliverables read as one deliberate professional system rather than unrelated outputs.",
+   "how": "Review the final package side by side at the sizes and in the sequence the audience will encounter it.",
+   "id": "H5"
   }
  ],
  "why_not_vlm": "Paste this brief and these files into a frontier image model and it returns a plausible picture of a data sheet. IDENTITY: the mark is this client's actual mark, cast into a plate on their own machine, and a redrawn approximation is a different company's mark on sixteen labels and a dealer portal. The parts are specific components with specific finishes that a technician orders and installs. SPEC: the client needs one page per active part at US Letter and 300 ppi with every value bound verbatim from their own stock export and paired with the parameter it belongs to, one label per part at 100 x 62 mm trim, thirty-two separately named single-record files each containing the part their filename claims, and no delivered picture larger than its source. None of that is produced or checkable by generation. EDITABILITY: three deliverables are defined by being editable, two live merge templates so next season is a data change rather than a re-commission, and a native document with live text, a real table and real vector artwork. And the middle of this engagement is verification against material reality: did this placeholder get created, is this value against the right label, does this description reach its end at trim, does this mark still read at fourteen millimetres. That is not a generation problem.",

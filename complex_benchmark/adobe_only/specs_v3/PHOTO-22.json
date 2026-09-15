@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-22",
+ "task_code": "SB3-022-PHO",
+ "task_name": "Nordhaven - Outerwear signature image system",
+ "global_order": 22,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-22",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-022-PHO__nordhaven-outerwear-signature-image-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-022-PHO__nordhaven-outerwear-signature-image-system/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Senior photo retoucher for Nordhaven: signature image set",
+ "engagement_title": "SB3-022-PHO: Nordhaven - Outerwear signature image system",
  "marketplace_listing": {
   "title": "Senior photo retoucher for Nordhaven: signature image set",
   "experience_level": "Expert",
@@ -361,16 +372,6 @@
     "id": "A5",
     "text": "The three cut-out files carry genuine partial-alpha transparency rather than a flattened or fully binary edge.",
     "how": "Inspect the delivered files for an alpha channel containing intermediate values."
-   },
-   {
-    "id": "A6",
-    "text": "No element on any canvas resolves to a position beyond its declared canvas width.",
-    "how": "Parse resolved left and width values per canvas."
-   },
-   {
-    "id": "A7",
-    "text": "Every mapped field is genuinely present in the prepared template rather than reported as successful.",
-    "how": "Round-trip the prepared template to IDML and search the stories for each expected placeholder."
    }
   ],
   "human_craft_checks": [
@@ -402,24 +403,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered file exceeds its source dimensions and no crop reports an upscale entry.",
-    "how": "Compare each delivered file against its recorded source dimensions and scan the run for tradeoffs entries of type upscaled or downscaled."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Every photograph in the exported document resolved to real image data on all three canvases.",
-    "how": "Parse the returned per-canvas markup for placeholder image elements."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "The three canvases each keep their own declared size inside one document.",
-    "how": "Read per-canvas width and height in the export response and require the three declared aspect ratios to be present and distinct: the lookbook spread at 2:1, the social canvas at 4:5 and the story canvas at 9:16."
-   },
-   {
-    "id": "P4",
-    "text": "Text elements carry the licensed faces at the intended weights rather than the importer's default sans.",
-    "how": "Parse resolved font-family and font-weight values in the returned markup against the kit metadata and the style inventory."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -457,38 +453,23 @@
    "id": "A5",
    "text": "The three cut-out files carry genuine partial-alpha transparency rather than a flattened or fully binary edge.",
    "how": "Inspect the delivered files for an alpha channel containing intermediate values."
-  },
-  {
-   "id": "A6",
-   "text": "No element on any canvas resolves to a position beyond its declared canvas width.",
-   "how": "Parse resolved left and width values per canvas."
-  },
-  {
-   "id": "A7",
-   "text": "Every mapped field is genuinely present in the prepared template rather than reported as successful.",
-   "how": "Round-trip the prepared template to IDML and search the stories for each expected placeholder."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered file exceeds its source dimensions and no crop reports an upscale entry.",
-   "how": "Compare each delivered file against its recorded source dimensions and scan the run for tradeoffs entries of type upscaled or downscaled."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Every photograph in the exported document resolved to real image data on all three canvases.",
-   "how": "Parse the returned per-canvas markup for placeholder image elements."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "The three canvases each keep their own declared size inside one document.",
-   "how": "Read per-canvas width and height in the export response and require the three declared aspect ratios to be present and distinct: the lookbook spread at 2:1, the social canvas at 4:5 and the story canvas at 9:16."
-  },
-  {
-   "id": "P4",
-   "text": "Text elements carry the licensed faces at the intended weights rather than the importer's default sans.",
-   "how": "Parse resolved font-family and font-weight values in the returned markup against the kit metadata and the style inventory."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

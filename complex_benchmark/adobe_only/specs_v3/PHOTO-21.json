@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-21",
+ "task_code": "SB3-021-PHO",
+ "task_name": "Quill and Kiln - Autumn ceramics signature look",
+ "global_order": 21,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-21",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-021-PHO__quill-and-kiln-autumn-ceramics-signature-look",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-021-PHO__quill-and-kiln-autumn-ceramics-signature-look/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Senior photo retoucher for Marlo Quill (Quill and Kiln): The autumn month at one signature look",
+ "engagement_title": "SB3-021-PHO: Quill and Kiln - Autumn ceramics signature look",
  "marketplace_listing": {
   "title": "Senior photo retoucher for Marlo Quill (Quill and Kiln): The autumn month at one signature look",
   "experience_level": "Expert",
@@ -212,13 +223,12 @@
   "note": "Handover is a professional completion requirement and is not counted as a separate creative deliverable class."
  },
  "acceptance_bar": [
+  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
   "Seen as a nine-tile grid at grid scale, the drop reads as ONE hand rather than as a month of separate frames, and it still reads as real rooms rather than as a filter pass.",
   "No delivered file exceeds its source frame's pixel dimensions, and no crop's returned tradeoff record carries an upscale entry.",
   "A look recipe she can hand to the next person: what the look is, what was applied per frame and why that frame differed, every resize any tool reported, and what to shoot differently next month.",
   "The piece card run produces one card per piece carrying that piece's own price and glaze, page count equalling catalogue row count, rendered at 300 ppi at trim, each card binding its own picture cut from the graded masters rather than one picture repeated, and per-piece files identifiable where the two Kiln Tumbler sizes share a name.",
-  "The glazes read as the swatch frame says they read. A treatment that shifts the clay or glaze colour away from the fired reference fails even if the frame looks attractive.",
-  "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
+  "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently."
  ],
  "connector_profile": {
   "profile_id": "chatgpt-adobe-2026-09-15",
@@ -412,34 +422,28 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered file exceeds its source frame's pixel dimensions, and no crop tradeoff record in the run carries an upscale entry.",
-    "how": "Read the pixel dimensions of every delivered file against the frame it derives from per the manifest, and diff the captured tradeoff objects against the resize table in the recipe."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Every frame whose short axis was extended rather than cropped is named in the recipe, and the extended masters were re-graded after extension.",
-    "how": "Cross-check the expand calls in the run against the recipe's extension list and against the order of grading calls per frame."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "The collaboration credit appears verbatim and unshortened as a text node on every canvas that carries it, and the drop date is text rather than part of an image.",
-    "how": "String-match the exact collaboration-credit string \"In collaboration with Fernhollow Coffee. Beans roasted on Alder Street.\" against the returned markup on each canvas that carries it, asserting it is present verbatim and unshortened, and locate the drop date and time as an editable text node rather than pixels baked into an image."
-   },
-   {
-    "id": "P4",
-    "text": "Every text element in the exported markup carries a resolved licensed PostScript face rather than a fallback default.",
-    "how": "Read the font-family attribute on every text node in the returned markup and check it against the families the kit call returned."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
+   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
    "Seen as a nine-tile grid at grid scale, the drop reads as ONE hand rather than as a month of separate frames, and it still reads as real rooms rather than as a filter pass.",
    "No delivered file exceeds its source frame's pixel dimensions, and no crop's returned tradeoff record carries an upscale entry.",
    "A look recipe she can hand to the next person: what the look is, what was applied per frame and why that frame differed, every resize any tool reported, and what to shoot differently next month.",
    "The piece card run produces one card per piece carrying that piece's own price and glaze, page count equalling catalogue row count, rendered at 300 ppi at trim, each card binding its own picture cut from the graded masters rather than one picture repeated, and per-piece files identifiable where the two Kiln Tumbler sizes share a name.",
-   "The glazes read as the swatch frame says they read. A treatment that shifts the clay or glaze colour away from the fired reference fails even if the frame looks attractive.",
-   "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
+   "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently."
   ]
  },
  "verifiers_auto": [
@@ -471,24 +475,19 @@
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered file exceeds its source frame's pixel dimensions, and no crop tradeoff record in the run carries an upscale entry.",
-   "how": "Read the pixel dimensions of every delivered file against the frame it derives from per the manifest, and diff the captured tradeoff objects against the resize table in the recipe."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Every frame whose short axis was extended rather than cropped is named in the recipe, and the extended masters were re-graded after extension.",
-   "how": "Cross-check the expand calls in the run against the recipe's extension list and against the order of grading calls per frame."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "The collaboration credit appears verbatim and unshortened as a text node on every canvas that carries it, and the drop date is text rather than part of an image.",
-   "how": "String-match the exact collaboration-credit string \"In collaboration with Fernhollow Coffee. Beans roasted on Alder Street.\" against the returned markup on each canvas that carries it, asserting it is present verbatim and unshortened, and locate the drop date and time as an editable text node rather than pixels baked into an image."
-  },
-  {
-   "id": "P4",
-   "text": "Every text element in the exported markup carries a resolved licensed PostScript face rather than a fallback default.",
-   "how": "Read the font-family attribute on every text node in the returned markup and check it against the families the kit call returned."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

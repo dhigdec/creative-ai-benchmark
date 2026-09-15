@@ -217,6 +217,137 @@ function marketplaceTitle(spec, deliverable, family) {
   return `${prefix}${cut.slice(0, cut.lastIndexOf(" ")).trim()}`;
 }
 
+const canonicalTaskNames = {
+  "PHOTO-01": "Aurelian Skin - Ecommerce skincare image system",
+  "PHOTO-02": "Corner and Cure - Spring dish launch photography",
+  "PHOTO-03": "Cedarline and Vale - Ridgeway Lane listing image system",
+  "PHOTO-04": "Verranza Coastal Retreats - Villa collection image system",
+  "PHOTO-05": "Halcyon Quarter - Mixed-use launch photography",
+  "PHOTO-06": "Hollis Family Archive - Ada Hollis archival restoration",
+  "PHOTO-07": "Gable and Grove - Home services before-and-after library",
+  "PHOTO-08": "Meridian Motors - Showroom vehicle image system",
+  "PHOTO-09": "OSTRA - Restaurant plate photography system",
+  "PHOTO-10": "Northgrove - Apparel colorway image system",
+  "PHOTO-11": "Lumora - Lip oil shade concept set",
+  "PHOTO-12": "Kilnmore - Ceramic ecommerce image system",
+  "PHOTO-13": "Argent and Faith - Spring jewelry capsule photography",
+  "PHOTO-14": "Girdermark - Industrial component image system",
+  "PHOTO-15": "Summit and Sable - Watch campaign master set",
+  "PHOTO-16": "SlabVault - Collectible card marketplace image system",
+  "PHOTO-17": "Continental Cup - Player portrait card system",
+  "PHOTO-18": "Fernwell and Rowe - Hartley wedding gallery finishing",
+  "PHOTO-19": "Cascadia Founders Summit - Executive portrait set",
+  "PHOTO-20": "Astrid Vellacourt - Editorial portrait session",
+  "PHOTO-21": "Quill and Kiln - Autumn ceramics signature look",
+  "PHOTO-22": "Nordhaven - Outerwear signature image system",
+  "PHOTO-23": "Ironline Forge - Blacksmith editorial image set",
+  "PHOTO-24": "Lunara Chronometry - Autumn watch campaign",
+  "PHOTO-25": "Apexguard - Industrial surfaces launch photography",
+  "PHOTO-26": "Thornmere Home - Autumn interiors image system",
+  "PHOTO-27": "Fennhollow - Botanical soda summer campaign",
+  "PHOTO-28": "Verda Reformer Studio - Fitness campaign image system",
+  "PHOTO-29": "Cape Marren - Shoulder-season tourism campaign",
+  "PHOTO-30": "Palewell Health - Licensed care image campaign",
+  "VECTOR-01": "Cordwain Overland - Identity master graphics",
+  "VECTOR-02": "Redecker Machine Works - Restored mark system",
+  "VECTOR-03": "Apex Rally Club - Motorsport face and livery system",
+  "VECTOR-04": "Meridian and Ash - Sticker artwork production masters",
+  "VECTOR-05": "Isla Verde - Monogram and wayfinding pictogram system",
+  "VECTOR-06": "Ridgeway Rovers - Football crest master system",
+  "VECTOR-07": "Wharfside Folk Festival - Restored festival identity",
+  "VECTOR-08": "Coble and Vane - One-color mark system",
+  "VECTOR-09": "Halcyon Grid - Production logo family",
+  "VECTOR-10": "Evergreen Provisions - Restored crest system",
+  "VECTOR-11": "Cedar Commons - Farmers market identity restoration",
+  "VECTOR-12": "Static Union - Manufacturing artwork system",
+  "VECTOR-13": "Maison Serault - Wordmark and monogram master set",
+  "VECTOR-14": "Ironway Run Club - Numbering and club mark system",
+  "VECTOR-15": "Marchfield Exchange - Crest and engraving geometry system",
+  "LAYOUT-01": "Kantyna Nova - Private dining menu and campaign system",
+  "LAYOUT-02": "Corner and Cure - Cold-case label system",
+  "LAYOUT-03": "Lumora Laboratories - Retail launch and paid social system",
+  "LAYOUT-04": "Northgrove - Wholesale lookbook and hang-tag system",
+  "LAYOUT-05": "Maison Valcere - Brand story deck and campaign document",
+  "LAYOUT-06": "Nordheim Atelier - Showroom line-card system",
+  "LAYOUT-07": "Harbor Crest Realty - Open-house card campaign",
+  "LAYOUT-08": "Verranza Coastal Retreats - In-villa seasonal collateral",
+  "LAYOUT-09": "Nimbadesk - B2B sell-sheet system",
+  "LAYOUT-10": "Alderwood Scholars Fund - Multi-center appeal campaign",
+  "LAYOUT-11": "Lanternwood Folk Fest - Performer credential system",
+  "LAYOUT-12": "Umbra Loft - After Dark event campaign",
+  "LAYOUT-13": "Marisol Cove - Shoulder-season hospitality campaign",
+  "LAYOUT-14": "Lumen Quarterly - Autumn editorial issue",
+  "LAYOUT-15": "Aldervale Mutual - District insurance counter-card run",
+  "LAYOUT-16": "Anvil and Oak - Gym opening member collateral",
+  "LAYOUT-17": "Apexguard - Product label and dealer collateral system",
+  "LAYOUT-18": "Kilnmore - Wholesale relaunch campaign",
+  "LAYOUT-19": "Northwind Advisory - Team page and recruitment collateral",
+  "LAYOUT-20": "Walter Fernwood Memorial - Service print and remembrance set",
+  "LAYOUT-21": "Harborline Realty - Weekly listing sheet system",
+  "LAYOUT-22": "Cedarline Institute - Cohort credential system",
+  "LAYOUT-23": "Meridian Summit - Conference badge and wayfinding system",
+  "LAYOUT-24": "Halden and Roe - Marlow trade catalog",
+  "LAYOUT-25": "Aldervale Mutual - Personalized autumn renewal mailer",
+  "LAYOUT-26": "Lanternwood Folk Fest - Festival programme and wayfinding",
+  "LAYOUT-27": "Girdermark - Technical data-sheet and bin-label library",
+  "LAYOUT-28": "SEVE Botanicals - Cosmetic launch label system",
+  "LAYOUT-29": "Rivermeadow Trust - Year-end donor acknowledgement system",
+  "LAYOUT-30": "Emberwell Brew House - Live insert and taproom collateral",
+  "LAYOUT-31": "Cellar and Cru - Autumn shelf-talker campaign",
+  "LAYOUT-32": "Vanguard Motors - Forecourt sales card system",
+  "LAYOUT-33": "Continental Cup - Squad press and partner kit",
+  "LAYOUT-34": "Ferncroft Nursery - Spring plant tag system",
+  "LAYOUT-35": "Marrow and Vane - Exhibition wall-label system",
+  "MOTION-01": "Ember and Oak - Restaurant launch reel system",
+  "MOTION-02": "Ironwood Kitchen - Product launch video package",
+  "MOTION-03": "Halden Greens - Creator ad and social cutdowns",
+  "MOTION-04": "Sable and Finch Realty - Property listing tour package",
+  "MOTION-05": "Sterling Row - Venue opening film and teaser",
+  "MOTION-06": "Meridian Academy - Lesson video package",
+  "MOTION-07": "Norvant - Product explainer motion system",
+  "MOTION-08": "SentinelMesh - Product demo and narration package",
+  "MOTION-09": "Voltcast - Podcast short and audio treatment",
+  "MOTION-10": "DAYDRIFT - Vertical interview short series",
+  "MOTION-11": "STATIC FOX - Thumbnail and animated channel package",
+  "MOTION-12": "NIGHTFORM - Low Beam music release package",
+  "MOTION-13": "Emberline - Food channel thumbnail and motion package",
+  "MOTION-14": "Halden Diaries - Season recap video package",
+  "MOTION-15": "Anvil and Oak Strength - Movement coaching clip library",
+  "MOTION-16": "Vitale Labs - Wellness editorial video package",
+  "MOTION-17": "Pulsevault - Event recap package",
+  "MOTION-18": "Velvet Hour - Social film and story cutdowns",
+  "MOTION-19": "Milepost Driving Academy - Scenario clip training library",
+  "MOTION-20": "FOLD and GRAIN Studio - Dual-client sizzle and service package",
+};
+
+function canonicalTaskIdentity(spec, deliverable) {
+  const [legacyFamily, legacySequenceText] = spec.new_id.split("-");
+  const legacySequence = Number(legacySequenceText);
+  const familyConfig = {
+    PHOTO: { offset: 0, code: "PHO" },
+    VECTOR: { offset: 30, code: "VEC" },
+    LAYOUT: { offset: 45, code: "LAY" },
+    MOTION: { offset: 80, code: "MOT" },
+  }[legacyFamily];
+  if (!familyConfig || !Number.isInteger(legacySequence)) throw new Error(`Cannot assign canonical identity to ${spec.new_id}`);
+
+  const globalOrder = familyConfig.offset + legacySequence;
+  const taskCode = `SB3-${String(globalOrder).padStart(3, "0")}-${familyConfig.code}`;
+  const taskName = canonicalTaskNames[spec.new_id];
+  if (!taskName) throw new Error(`Canonical task name missing for ${spec.new_id}`);
+  const slug = taskName.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 96).replace(/-+$/g, "");
+  const storageFolder = `${taskCode}__${slug}`;
+  return {
+    task_code: taskCode,
+    task_name: taskName,
+    global_order: globalOrder,
+    family_code: familyConfig.code,
+    legacy_id: spec.new_id,
+    storage_folder: storageFolder,
+    s3_prefix: `s3://annotationprod/creative-ai-benchmark/v3.1/tasks/${storageFolder}/`,
+  };
+}
+
 function roleFor(family) {
   return {
     "Photo & Imaging": "Senior photo retoucher",
@@ -605,6 +736,15 @@ function acceptanceFor(spec, deliverables) {
 }
 
 function verifierContract(spec, deliverables, acceptance) {
+  const uniqueChecks = (items) => {
+    const seen = new Set();
+    return items.filter((item) => {
+      const key = `${cleanText(item.text).toLowerCase()}|${cleanText(item.how).toLowerCase()}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  };
   const processPattern = /tradeoff|tool|call|returned|response|run log|parameter log|operation record|success message|connector/i;
   const artifactSafe = (spec.verifiers_auto || []).filter((item) => !processPattern.test(`${item.text} ${item.how}`) && !referencesExcluded(`${item.text} ${item.how}`, spec)).slice(0, 5);
   const process = (spec.verifiers_auto || []).filter((item) => processPattern.test(`${item.text} ${item.how}`) && !referencesExcluded(`${item.text} ${item.how}`, spec)).slice(0, 4);
@@ -614,18 +754,27 @@ function verifierContract(spec, deliverables, acceptance) {
     { id: "A0-2", text: "Every supplied input has a recorded disposition.", how: "Compare the input inventory with the manifest and require one of used, reference-only, superseded, or rejected-with-reason for every file." },
     { id: "A0-3", text: "Every final file is readable and matches its declared format and dimensions.", how: "Open each file with a format-aware parser and compare measured properties with the deliverable manifest." },
   ];
-  const auto = [...baseline, ...artifactSafe].slice(0, 7).map((item, index) => ({ ...item, id: `A${index + 1}` }));
-  const humanRanked = (spec.verifiers_human || []).filter((item) => !referencesExcluded(`${item.text} ${item.how}`, spec)).map((item, index) => ({ item, index, score: relevanceScore(`${item.text} ${item.how}`, deliverables) })).sort((a, b) => b.score - a.score || a.index - b.index).slice(0, 5).map(({ item }, index) => ({ ...item, id: `H${index + 1}` }));
-  if (humanRanked.length < 3) {
-    humanRanked.push({ id: `H${humanRanked.length + 1}`, text: "The scoped deliverables read as one deliberate professional system rather than unrelated outputs.", how: "Review the final package side by side at the sizes and in the sequence the audience will encounter it." });
-  }
+  const processBaseline = [
+    { text: "Every required connector operation has a normalized execution record.", how: "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording." },
+    { text: "Material creative decisions are traceable to evidence and alternatives.", how: "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit." },
+    { text: "The revision loop closes every failed production or craft gate.", how: "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions." },
+  ];
+  const auto = uniqueChecks([...baseline, ...artifactSafe]).slice(0, 7).map((item, index) => ({ ...item, id: `A${index + 1}` }));
+  const processChecks = uniqueChecks([...processBaseline, ...process]).slice(0, 7).map((item, index) => ({ ...item, id: `P${index + 1}` }));
+  const humanCandidates = (spec.verifiers_human || []).filter((item) => !referencesExcluded(`${item.text} ${item.how}`, spec)).map((item, index) => ({ item, index, score: relevanceScore(`${item.text} ${item.how}`, deliverables) })).sort((a, b) => b.score - a.score || a.index - b.index).map(({ item }) => item);
+  const humanFallback = [
+    { text: "The scoped deliverables read as one deliberate professional system rather than unrelated outputs.", how: "Review the final package side by side at the sizes and in the sequence the audience will encounter it." },
+    { text: "The work remains clear and credible at its actual delivery sizes.", how: "Judge hierarchy, edge quality, legibility, pacing, and reproduction behavior in the final contexts rather than only at full-canvas zoom." },
+    { text: "The creative direction fits the stated client, audience, and price position.", how: "Compare the final system with the supplied brand references and business context, then identify any generic or off-brand choice." },
+  ];
+  const humanRanked = uniqueChecks([...humanCandidates, ...humanFallback]).slice(0, 5).map((item, index) => ({ ...item, id: `H${index + 1}` }));
   return {
     version: "3.1",
     ranking_rule: "Rank agents first on host-neutral final artifacts. Report connector completion and normalized process quality as separate dimensions.",
     scoring: { artifact_checks: 35, human_craft_review: 35, connector_completion: 15, normalized_process_quality: 15 },
     artifact_checks: auto,
     human_craft_checks: humanRanked,
-    normalized_process_checks: process.map((item, index) => ({ ...item, id: `P${index + 1}` })),
+    normalized_process_checks: processChecks,
     acceptance_snapshot: acceptance,
   };
 }
@@ -871,6 +1020,7 @@ function assetReadiness(spec, motionFact) {
 const rewritten = [];
 const matrix = [];
 const allocation = [];
+const namingRegistry = [];
 
 for (const file of files) {
   const filePath = path.join(specsDir, file);
@@ -888,6 +1038,7 @@ for (const file of files) {
   }
   if (motionFact) spec.assets_supplied = normalizeMotionAssets(spec, motionFact);
   const deliverables = chooseDeliverables(spec, tier, motionFact);
+  const identity = canonicalTaskIdentity(spec, deliverables[0]);
   const constraints = truthConstraints(spec, deliverables);
   const acceptance = acceptanceFor(spec, deliverables);
   const profile = operationsFor(spec, deliverables, motionFact);
@@ -901,9 +1052,20 @@ for (const file of files) {
     schema_version: "3.1",
     revision_date: "2026-09-15",
     new_id: id,
+    task_code: identity.task_code,
+    task_name: identity.task_name,
+    global_order: identity.global_order,
+    family_code: identity.family_code,
+    legacy_id: identity.legacy_id,
+    storage: {
+      bucket: "annotationprod",
+      region: "ap-south-1",
+      folder: identity.storage_folder,
+      s3_prefix: identity.s3_prefix,
+    },
     family: spec.family,
     complexity_tier: tiers[tier].label,
-    engagement_title: title,
+    engagement_title: `${identity.task_code}: ${identity.task_name}`,
     marketplace_listing: {
       title,
       experience_level: "Expert",
@@ -961,9 +1123,15 @@ for (const file of files) {
 
   fs.writeFileSync(filePath, `${JSON.stringify(out, null, 1)}\n`);
   rewritten.push(out);
-  allocation.push({ task_id: id, tier: tiers[tier].label, primary_surface: family, required_operations: profile.required_operations, conditional_operations: profile.conditional_operations });
+  namingRegistry.push(identity);
+  allocation.push({ task_code: identity.task_code, task_name: identity.task_name, legacy_id: id, s3_prefix: identity.s3_prefix, tier: tiers[tier].label, primary_surface: family, required_operations: profile.required_operations, conditional_operations: profile.conditional_operations });
   matrix.push({
-    task_id: id,
+    task_code: identity.task_code,
+    task_name: identity.task_name,
+    global_order: identity.global_order,
+    family_code: identity.family_code,
+    legacy_id: id,
+    s3_prefix: identity.s3_prefix,
     tier: tiers[tier].label,
     title,
     deliverable_count: deliverables.length,
@@ -982,11 +1150,15 @@ for (const file of files) {
 fs.writeFileSync(path.join(repo, "complex_benchmark/adobe_only/TASKS_V3_ALL100.json"), `${JSON.stringify(rewritten, null, 1)}\n`);
 fs.writeFileSync(path.join(auditDir, "ADOBE_CONNECTOR_ALLOCATION_V3_1.json"), `${JSON.stringify({ generated_at: "2026-09-15", host_profile: "chatgpt-adobe-2026-09-15", tasks: allocation }, null, 2)}\n`);
 fs.writeFileSync(path.join(auditDir, "TASK_PORTFOLIO_MATRIX_V3_1.json"), `${JSON.stringify(matrix, null, 2)}\n`);
+fs.writeFileSync(path.join(auditDir, "TASK_NAMING_REGISTRY_V3_1.json"), `${JSON.stringify(namingRegistry.sort((a, b) => a.global_order - b.global_order), null, 2)}\n`);
 
 const csvCell = (value) => `"${String(value ?? "").replaceAll('"', '""')}"`;
 const headers = Object.keys(matrix[0]);
 const csv = [headers.map(csvCell).join(","), ...matrix.map((row) => headers.map((header) => csvCell(row[header])).join(","))].join("\n");
 fs.writeFileSync(path.join(auditDir, "TASK_PORTFOLIO_MATRIX_V3_1.csv"), `${csv}\n`);
+const namingHeaders = Object.keys(namingRegistry[0]);
+const namingCsv = [namingHeaders.map(csvCell).join(","), ...namingRegistry.map((row) => namingHeaders.map((header) => csvCell(row[header])).join(","))].join("\n");
+fs.writeFileSync(path.join(auditDir, "TASK_NAMING_REGISTRY_V3_1.csv"), `${namingCsv}\n`);
 fs.writeFileSync(path.join(auditDir, "ADOBE_CHATGPT_TOOL_INVENTORY_2026-09-15.json"), `${JSON.stringify({ captured_at: "2026-09-15", count: currentTools.size, tools: [...currentTools].sort() }, null, 2)}\n`);
 
 console.log(`Rewrote ${rewritten.length} tasks to schema 3.1.`);

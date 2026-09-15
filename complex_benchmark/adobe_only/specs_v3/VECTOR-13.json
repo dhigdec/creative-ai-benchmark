@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "VECTOR-13",
+ "task_code": "SB3-043-VEC",
+ "task_name": "Maison Serault - Wordmark and monogram master set",
+ "global_order": 43,
+ "family_code": "VEC",
+ "legacy_id": "VECTOR-13",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-043-VEC__maison-serault-wordmark-and-monogram-master-set",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-043-VEC__maison-serault-wordmark-and-monogram-master-set/"
+ },
  "family": "Vector & Print",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Production vector designer for Maison Serault: wordmark and monogram masters",
+ "engagement_title": "SB3-043-VEC: Maison Serault - Wordmark and monogram master set",
  "marketplace_listing": {
   "title": "Production vector designer for Maison Serault: wordmark and monogram masters",
   "experience_level": "Expert",
@@ -391,16 +402,6 @@
     "id": "A5",
     "text": "The engrave outlines are each a single closed path and every counter is present as a hole rather than as a filled shape.",
     "how": "Inspect the delivered outline SVGs for path count, closure and the fill rule that makes counters read as holes."
-   },
-   {
-    "id": "A6",
-    "text": "The reversed artwork differs from a straight inversion of the positive mark.",
-    "how": "Compare stroke and counter geometry between the positive and reversed files."
-   },
-   {
-    "id": "A7",
-    "text": "A single house colour value is carried consistently across every deliverable that names one.",
-    "how": "Compare the stated colour in the production note against the values used in the authored source."
    }
   ],
   "human_craft_checks": [
@@ -432,24 +433,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered file exceeds its source dimensions and no crop reports an upscale entry.",
-    "how": "Compare each delivered file against its recorded source dimensions and scan the run for tradeoffs entries of type upscaled."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Both marks arrived in the exported document as vector shapes rather than raster.",
-    "how": "Parse the returned per canvas markup for path or shape elements at each mark's position."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "Every element the sheet's design depends on is present in the returned markup on both canvases, and the licensed photograph resolved to real image data.",
-    "how": "Parse the returned per canvas markup element by element against the authored source and check for placeholder image elements."
-   },
-   {
-    "id": "P4",
-    "text": "Both canvases keep their own declared size and no element resolves past its canvas width.",
-    "how": "Read per canvas width and height in the export response and parse resolved left and width values per canvas."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -488,38 +484,23 @@
    "id": "A5",
    "text": "The engrave outlines are each a single closed path and every counter is present as a hole rather than as a filled shape.",
    "how": "Inspect the delivered outline SVGs for path count, closure and the fill rule that makes counters read as holes."
-  },
-  {
-   "id": "A6",
-   "text": "The reversed artwork differs from a straight inversion of the positive mark.",
-   "how": "Compare stroke and counter geometry between the positive and reversed files."
-  },
-  {
-   "id": "A7",
-   "text": "A single house colour value is carried consistently across every deliverable that names one.",
-   "how": "Compare the stated colour in the production note against the values used in the authored source."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered file exceeds its source dimensions and no crop reports an upscale entry.",
-   "how": "Compare each delivered file against its recorded source dimensions and scan the run for tradeoffs entries of type upscaled."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Both marks arrived in the exported document as vector shapes rather than raster.",
-   "how": "Parse the returned per canvas markup for path or shape elements at each mark's position."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "Every element the sheet's design depends on is present in the returned markup on both canvases, and the licensed photograph resolved to real image data.",
-   "how": "Parse the returned per canvas markup element by element against the authored source and check for placeholder image elements."
-  },
-  {
-   "id": "P4",
-   "text": "Both canvases keep their own declared size and no element resolves past its canvas width.",
-   "how": "Read per canvas width and height in the export response and parse resolved left and width values per canvas."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

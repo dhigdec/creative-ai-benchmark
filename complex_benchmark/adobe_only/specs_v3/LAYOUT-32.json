@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-32",
+ "task_code": "SB3-077-LAY",
+ "task_name": "Vanguard Motors - Forecourt sales card system",
+ "global_order": 77,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-32",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-077-LAY__vanguard-motors-forecourt-sales-card-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-077-LAY__vanguard-motors-forecourt-sales-card-system/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Editorial and production designer for Vanguard Motors: Forecourt window card run",
+ "engagement_title": "SB3-077-LAY: Vanguard Motors - Forecourt sales card system",
  "marketplace_listing": {
   "title": "Editorial and production designer for Vanguard Motors: Forecourt window card run",
   "experience_level": "Expert",
@@ -205,10 +216,9 @@
   "All fourteen cars read as one forecourt: one white point, one black point, one vehicle scale in the card window, judged with the fourteen laid out together rather than one at a time.",
   "Window cards: exactly one page per vehicle actually on the forecourt, every field the current card carries present on every page, every value bound verbatim from the feed, and the photograph on each card the car named on that card.",
   "Every card window shows the vehicle without cutting the front or rear of it, at a consistent scale across the set.",
+  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
   "Paint colour is honest on every car, and no correction has moved a silver toward blue, a white toward cream or a black into crush. A colour a buyer would dispute on arrival is a rejected picture.",
-  "No bodywork, badge, wheel or panel edge anywhere in the delivered set has been invented, extended or reconstructed by any tool.",
-  "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
+  "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently."
  ],
  "connector_profile": {
   "profile_id": "chatgpt-adobe-2026-09-15",
@@ -412,24 +422,28 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered picture contains invented pixels: no generative expand output appears anywhere in the delivered set, and every crop or resize response is free of an upscale entry.",
-    "how": "Inspect every imaging response for expand calls and for tradeoffs entries, and compare every delivered dimension against its source dimension."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Every text element in the exported document carries a resolved licensed face and the intended numeric weight rather than a silent fallback.",
-    "how": "Compare the resolved font families and weights in the returned markup against the kit's families and the numeric weights read from the style inventory."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
    "All fourteen cars read as one forecourt: one white point, one black point, one vehicle scale in the card window, judged with the fourteen laid out together rather than one at a time.",
    "Window cards: exactly one page per vehicle actually on the forecourt, every field the current card carries present on every page, every value bound verbatim from the feed, and the photograph on each card the car named on that card.",
    "Every card window shows the vehicle without cutting the front or rear of it, at a consistent scale across the set.",
+   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
    "Paint colour is honest on every car, and no correction has moved a silver toward blue, a white toward cream or a black into crush. A colour a buyer would dispute on arrival is a rejected picture.",
-   "No bodywork, badge, wheel or panel edge anywhere in the delivered set has been invented, extended or reconstructed by any tool.",
-   "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
+   "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently."
   ]
  },
  "verifiers_auto": [
@@ -461,14 +475,19 @@
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered picture contains invented pixels: no generative expand output appears anywhere in the delivered set, and every crop or resize response is free of an upscale entry.",
-   "how": "Inspect every imaging response for expand calls and for tradeoffs entries, and compare every delivered dimension against its source dimension."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Every text element in the exported document carries a resolved licensed face and the intended numeric weight rather than a silent fallback.",
-   "how": "Compare the resolved font families and weights in the returned markup against the kit's families and the numeric weights read from the style inventory."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

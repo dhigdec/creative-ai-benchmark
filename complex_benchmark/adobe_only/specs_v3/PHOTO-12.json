@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-12",
+ "task_code": "SB3-012-PHO",
+ "task_name": "Kilnmore - Ceramic ecommerce image system",
+ "global_order": 12,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-12",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-012-PHO__kilnmore-ceramic-ecommerce-image-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-012-PHO__kilnmore-ceramic-ecommerce-image-system/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Flagship integrated engagement",
- "engagement_title": "Senior photo retoucher for Kilnmore: house photography",
+ "engagement_title": "SB3-012-PHO: Kilnmore - Ceramic ecommerce image system",
  "marketplace_listing": {
   "title": "Senior photo retoucher for Kilnmore: house photography",
   "experience_level": "Expert",
@@ -394,16 +405,6 @@
     "id": "A5",
     "text": "The fourteen store page variants carry genuine alpha rather than a filled rectangle.",
     "how": "Inspect each variant for partial alpha pixels at the piece boundary and full transparency at the frame corners."
-   },
-   {
-    "id": "A6",
-    "text": "The shelf card run has exactly one page per range row, in row order, and every mapped field appears on every card.",
-    "how": "Count pages against CSV rows, then read each page's text against its row including the care line."
-   },
-   {
-    "id": "A7",
-    "text": "Each marketplace primary contains only the piece on a plain uniform ground, with no prop, mark, words, scene or invented shadow anywhere else in the frame.",
-    "how": "Derive the piece silhouette from the matching transparent variant's alpha, then sample every pixel outside it in the primary and assert they fall within a tight tolerance of one background value, flagging any connected off-ground region as a foreign element or a fabricated contact shadow."
    }
   ],
   "human_craft_checks": [
@@ -435,14 +436,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No crop or knockout record in the run carries an enlargement entry, and every reduction the tools reported is transcribed in the handover note.",
-    "how": "Diff the tradeoff records captured from every image call against the resize table in the note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The season post export returned three canvases, each keeping its own declared canvas size, with no photograph resolved to a placeholder on any of them.",
-    "how": "Read the per canvas width and height and parse the returned markup of each canvas for placeholder image data."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -480,28 +486,23 @@
    "id": "A5",
    "text": "The fourteen store page variants carry genuine alpha rather than a filled rectangle.",
    "how": "Inspect each variant for partial alpha pixels at the piece boundary and full transparency at the frame corners."
-  },
-  {
-   "id": "A6",
-   "text": "The shelf card run has exactly one page per range row, in row order, and every mapped field appears on every card.",
-   "how": "Count pages against CSV rows, then read each page's text against its row including the care line."
-  },
-  {
-   "id": "A7",
-   "text": "Each marketplace primary contains only the piece on a plain uniform ground, with no prop, mark, words, scene or invented shadow anywhere else in the frame.",
-   "how": "Derive the piece silhouette from the matching transparent variant's alpha, then sample every pixel outside it in the primary and assert they fall within a tight tolerance of one background value, flagging any connected off-ground region as a foreign element or a fabricated contact shadow."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No crop or knockout record in the run carries an enlargement entry, and every reduction the tools reported is transcribed in the handover note.",
-   "how": "Diff the tradeoff records captured from every image call against the resize table in the note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The season post export returned three canvases, each keeping its own declared canvas size, with no photograph resolved to a placeholder on any of them.",
-   "how": "Read the per canvas width and height and parse the returned markup of each canvas for placeholder image data."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

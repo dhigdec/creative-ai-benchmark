@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-22",
+ "task_code": "SB3-067-LAY",
+ "task_name": "Cedarline Institute - Cohort credential system",
+ "global_order": 67,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-22",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-067-LAY__cedarline-institute-cohort-credential-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-067-LAY__cedarline-institute-cohort-credential-system/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Editorial and production designer for Cedarline Institute: Autumn cohort credential run: printer's file",
+ "engagement_title": "SB3-067-LAY: Cedarline Institute - Cohort credential system",
  "marketplace_listing": {
   "title": "Editorial and production designer for Cedarline Institute: Autumn cohort credential run: printer's file",
   "experience_level": "Expert",
@@ -399,16 +410,6 @@
     "id": "A5",
     "text": "Every field the printed face carries exists as a placeholder in each prepared template before any merge.",
     "how": "Export the interchange (IDML) file from each prepared template, unzip it and search the stories for every field token: the community template must carry all five (RECIPIENT_NAME, PROGRAMME_TITLE, COMPLETION_DATE, CREDENTIAL_NUMBER, HONOURS) with HONOURS present as the load-bearing check that the dropped letterspaced credential-number run did not push it out, and the executive template must carry all five (NAME, PROGRAMME_TITLE, COMPLETION_DATE, CREDENTIAL_NUMBER, HONOURS); five placeholders present in each, zero missing."
-   },
-   {
-    "id": "A6",
-    "text": "No credential number appears twice and every name is set as the register file spells it.",
-    "how": "Extract the credential number and name from all 29 rendered pages: confirm no credential-number value appears on more than one page (the CL-2026-0119 duplicate on André Silva and Theresa Lamb must be resolved to 29 distinct numbers) and every name matches the reconciled register file byte-for-byte including precomposed diacritics (e.g. André Silva, Søren Halvorsen, Beatriz Álvarez, Zoë Hartmann, Łukasz Nowak, Agnès Mercier, Renée Duval, Tomás Beckett, José Ramírez, Camille Béranger, Ingrid Sørensen) and the registrar-confirmed spelling of the two flagged names (Bjoern Aas, Karl Muller)."
-   },
-   {
-    "id": "A7",
-    "text": "Both proofs are at true print resolution at credential trim rather than at screen scale.",
-    "how": "Read the pixel dimensions and density of each proof: the community proof (A4 landscape, 297 x 210 mm) must be 3508 x 2480 px at 300 PPI and the executive proof (A3 landscape, 420 x 297 mm) must be 4961 x 3508 px at 300 PPI (allow +/-2 px rounding); reject any proof at screen scale (materially smaller pixel dimensions or density near 72-150 PPI)."
    }
   ],
   "human_craft_checks": [
@@ -440,14 +441,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "Each per candidate file contains the candidate its filename claims.",
-    "how": "Open each of the 29 per-candidate single-page files and confirm its rendered name field equals the candidate named in its filename byte-for-byte (diacritics included): 29 files, 29 exact name-to-filename matches, none established by position in the returned list."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The programme's roster table contains every candidate in both registers.",
-    "how": "Parse the returned per-canvas markup for the roster table and count its data rows: exactly 29 (20 community completing + 9 executive completing), with the withdrawn David Renner absent, each row matching one candidate in the reconciled register files."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -485,28 +491,23 @@
    "id": "A5",
    "text": "Every field the printed face carries exists as a placeholder in each prepared template before any merge.",
    "how": "Export the interchange (IDML) file from each prepared template, unzip it and search the stories for every field token: the community template must carry all five (RECIPIENT_NAME, PROGRAMME_TITLE, COMPLETION_DATE, CREDENTIAL_NUMBER, HONOURS) with HONOURS present as the load-bearing check that the dropped letterspaced credential-number run did not push it out, and the executive template must carry all five (NAME, PROGRAMME_TITLE, COMPLETION_DATE, CREDENTIAL_NUMBER, HONOURS); five placeholders present in each, zero missing."
-  },
-  {
-   "id": "A6",
-   "text": "No credential number appears twice and every name is set as the register file spells it.",
-   "how": "Extract the credential number and name from all 29 rendered pages: confirm no credential-number value appears on more than one page (the CL-2026-0119 duplicate on André Silva and Theresa Lamb must be resolved to 29 distinct numbers) and every name matches the reconciled register file byte-for-byte including precomposed diacritics (e.g. André Silva, Søren Halvorsen, Beatriz Álvarez, Zoë Hartmann, Łukasz Nowak, Agnès Mercier, Renée Duval, Tomás Beckett, José Ramírez, Camille Béranger, Ingrid Sørensen) and the registrar-confirmed spelling of the two flagged names (Bjoern Aas, Karl Muller)."
-  },
-  {
-   "id": "A7",
-   "text": "Both proofs are at true print resolution at credential trim rather than at screen scale.",
-   "how": "Read the pixel dimensions and density of each proof: the community proof (A4 landscape, 297 x 210 mm) must be 3508 x 2480 px at 300 PPI and the executive proof (A3 landscape, 420 x 297 mm) must be 4961 x 3508 px at 300 PPI (allow +/-2 px rounding); reject any proof at screen scale (materially smaller pixel dimensions or density near 72-150 PPI)."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "Each per candidate file contains the candidate its filename claims.",
-   "how": "Open each of the 29 per-candidate single-page files and confirm its rendered name field equals the candidate named in its filename byte-for-byte (diacritics included): 29 files, 29 exact name-to-filename matches, none established by position in the returned list."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The programme's roster table contains every candidate in both registers.",
-   "how": "Parse the returned per-canvas markup for the roster table and count its data rows: exactly 29 (20 community completing + 9 executive completing), with the withdrawn David Renner absent, each row matching one candidate in the reconciled register files."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

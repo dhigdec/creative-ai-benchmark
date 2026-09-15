@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-06",
+ "task_code": "SB3-051-LAY",
+ "task_name": "Nordheim Atelier - Showroom line-card system",
+ "global_order": 51,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-06",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-051-LAY__nordheim-atelier-showroom-line-card-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-051-LAY__nordheim-atelier-showroom-line-card-system/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Editorial and production designer for Nordheim Atelier: Showroom line card run",
+ "engagement_title": "SB3-051-LAY: Nordheim Atelier - Showroom line-card system",
  "marketplace_listing": {
   "title": "Editorial and production designer for Nordheim Atelier: Showroom line card run",
   "experience_level": "Expert",
@@ -389,16 +400,6 @@
     "id": "A5",
     "text": "Each card carries a distinct photograph and the photograph on each card is the one belonging to that look.",
     "how": "Extract the embedded image from each of the 12 pages, SHA-256 hash them to confirm 12 distinct images, and compare each hash against the agent's prepared per-look file named in the manifest after the numbering reconciliation (Look 6 to shoot_07, Look 7 to shoot_08, Look 8 to shoot_09, all others to their like-numbered frame)."
-   },
-   {
-    "id": "A6",
-    "text": "Every mapped field became a real placeholder in the merge template before any merge was run.",
-    "how": "Round-trip the prepared template to IDML and grep the stories for each of the six expected field tokens (LOOK_NAME, FABRIC, COLOURWAY, WHOLESALE, RETAIL and LOOK_IMAGE); all six must be present as real placeholders, including the LOOK_IMAGE graphics-frame binding."
-   },
-   {
-    "id": "A7",
-    "text": "The cutouts carry genuine alpha rather than a filled plate.",
-    "how": "Inspect the alpha channel of each cutout for partial-alpha pixels at the garment boundary and full transparency at the frame corners."
    }
   ],
   "human_craft_checks": [
@@ -430,24 +431,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered file exceeds its source frame's pixel dimensions and no tradeoff record in the run carries an upscale entry.",
-    "how": "Read the pixel dimensions of every delivered raster against the frame it derives from per the manifest, asserting none exceeds the 5504 x 8256 source look-frame dimensions (and the licensed ground stays at or below its 7360 x 4912 source), and diff the captured tradeoffs objects against the resize table in the note so no entry records an upscale."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Each export returned its full complement of roots, each keeping its own declared canvas size: the lookbook one root per look (twelve) plus the range grid, the two essay pages and the linesheet page, and the campaign document exactly five roots (two posters plus the square, four-by-five and tall social canvases).",
-    "how": "Read slide_count against the enumerated root list for each document (twelve look pages + range grid + two essay pages + linesheet page for the lookbook; exactly five for the campaign) and read each root's declared width and height, asserting the three social roots carry three distinct declared canvas sizes rather than one globally overridden size."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "No image in any root resolved to the importer's placeholder, the essay text frames carry an explicit measure rather than a single unbounded flow, the linesheet arrived as a real table with one row per look, and every text element carries a resolved licensed face.",
-    "how": "Parse the returned per-root markup for placeholder image data, for essay text-frame sizing behaviour (a bounded measure versus one unbounded column running past the edge), for the linesheet table's row count (assert exactly twelve data rows, one per look, with addressable per-cell shapes) and font-family values against the exact family slugs the kit call returned."
-   },
-   {
-    "id": "P4",
-    "text": "On the second poster direction the two-tone treatment reads through the look photograph rather than covering it: no opaque full-canvas shape sits above the image where the blend overlay was intended.",
-    "how": "Parse the second poster root's returned markup and assert the look photograph element is present and visible, with no sibling shape spanning the full root bounds at opacity 1 stacked above it; confirm the two-tone effect is carried in the embedded raster pixels (an upstream image treatment) rather than as a page-level mix-blend-mode panel that the importer flattens to an opaque fill."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -485,38 +481,23 @@
    "id": "A5",
    "text": "Each card carries a distinct photograph and the photograph on each card is the one belonging to that look.",
    "how": "Extract the embedded image from each of the 12 pages, SHA-256 hash them to confirm 12 distinct images, and compare each hash against the agent's prepared per-look file named in the manifest after the numbering reconciliation (Look 6 to shoot_07, Look 7 to shoot_08, Look 8 to shoot_09, all others to their like-numbered frame)."
-  },
-  {
-   "id": "A6",
-   "text": "Every mapped field became a real placeholder in the merge template before any merge was run.",
-   "how": "Round-trip the prepared template to IDML and grep the stories for each of the six expected field tokens (LOOK_NAME, FABRIC, COLOURWAY, WHOLESALE, RETAIL and LOOK_IMAGE); all six must be present as real placeholders, including the LOOK_IMAGE graphics-frame binding."
-  },
-  {
-   "id": "A7",
-   "text": "The cutouts carry genuine alpha rather than a filled plate.",
-   "how": "Inspect the alpha channel of each cutout for partial-alpha pixels at the garment boundary and full transparency at the frame corners."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered file exceeds its source frame's pixel dimensions and no tradeoff record in the run carries an upscale entry.",
-   "how": "Read the pixel dimensions of every delivered raster against the frame it derives from per the manifest, asserting none exceeds the 5504 x 8256 source look-frame dimensions (and the licensed ground stays at or below its 7360 x 4912 source), and diff the captured tradeoffs objects against the resize table in the note so no entry records an upscale."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Each export returned its full complement of roots, each keeping its own declared canvas size: the lookbook one root per look (twelve) plus the range grid, the two essay pages and the linesheet page, and the campaign document exactly five roots (two posters plus the square, four-by-five and tall social canvases).",
-   "how": "Read slide_count against the enumerated root list for each document (twelve look pages + range grid + two essay pages + linesheet page for the lookbook; exactly five for the campaign) and read each root's declared width and height, asserting the three social roots carry three distinct declared canvas sizes rather than one globally overridden size."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "No image in any root resolved to the importer's placeholder, the essay text frames carry an explicit measure rather than a single unbounded flow, the linesheet arrived as a real table with one row per look, and every text element carries a resolved licensed face.",
-   "how": "Parse the returned per-root markup for placeholder image data, for essay text-frame sizing behaviour (a bounded measure versus one unbounded column running past the edge), for the linesheet table's row count (assert exactly twelve data rows, one per look, with addressable per-cell shapes) and font-family values against the exact family slugs the kit call returned."
-  },
-  {
-   "id": "P4",
-   "text": "On the second poster direction the two-tone treatment reads through the look photograph rather than covering it: no opaque full-canvas shape sits above the image where the blend overlay was intended.",
-   "how": "Parse the second poster root's returned markup and assert the look photograph element is present and visible, with no sibling shape spanning the full root bounds at opacity 1 stacked above it; confirm the two-tone effect is carried in the embedded raster pixels (an upstream image treatment) rather than as a page-level mix-blend-mode panel that the importer flattens to an opaque fill."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

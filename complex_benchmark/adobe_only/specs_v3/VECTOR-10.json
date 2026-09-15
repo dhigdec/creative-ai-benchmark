@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "VECTOR-10",
+ "task_code": "SB3-040-VEC",
+ "task_name": "Evergreen Provisions - Restored crest system",
+ "global_order": 40,
+ "family_code": "VEC",
+ "legacy_id": "VECTOR-10",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-040-VEC__evergreen-provisions-restored-crest-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-040-VEC__evergreen-provisions-restored-crest-system/"
+ },
  "family": "Vector & Print",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Production vector designer for Evergreen Provisions: Recovered Evergreen crest system",
+ "engagement_title": "SB3-040-VEC: Evergreen Provisions - Restored crest system",
  "marketplace_listing": {
   "title": "Production vector designer for Evergreen Provisions: Recovered Evergreen crest system",
   "experience_level": "Expert",
@@ -190,10 +201,9 @@
   "At the print width the schedule states, on the garment colour that design actually prints on, each crest keeps its hairlines and its counters stay open. Judged at reproduction size on the real ground, never at canvas scale.",
   "The six panels read as one capsule palette, not as six paintings shot on two different days. A panel that cannot be brought to the set is named rather than shipped at eighty percent.",
   "The note names, per design, the ink count as separated rather than as guessed, the plate order, anything that could not be recovered from the paintings, and anything the print process cannot be given.",
-  "Every plate is a separate piece of single ink geometry that a decorator could burn a screen from. A sheet showing a picture of a separation is not a separation.",
+  "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness.",
   "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
-  "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness."
+  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
  ],
  "connector_profile": {
   "profile_id": "chatgpt-adobe-2026-09-15",
@@ -387,24 +397,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered file exceeds its source frame's pixel dimensions, and no tradeoff record captured in the run carries an upscale entry.",
-    "how": "Compare the pixel dimensions of every delivered file against its source per the manifest, and diff the captured tradeoffs objects against the resize table in the note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "No image on any canvas resolved to the importer's placeholder, and each crest arrived as vector path shapes rather than as a single picture.",
-    "how": "Parse the returned per canvas markup for 1x1 placeholder image data and count path shape elements in each crest's region."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "On every separation sheet each plate is independently present in the returned markup rather than covered by the plate above it.",
-    "how": "Read per element fill, opacity and geometry on each separation root and confirm each declared plate resolves to its own visible element."
-   },
-   {
-    "id": "P4",
-    "text": "Every text element in the exported markup carries a resolved licensed PostScript face rather than a fallback default.",
-    "how": "Read the font-family attribute on every text node in the returned markup and check it against the families the kit call returned."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -412,10 +417,9 @@
    "At the print width the schedule states, on the garment colour that design actually prints on, each crest keeps its hairlines and its counters stay open. Judged at reproduction size on the real ground, never at canvas scale.",
    "The six panels read as one capsule palette, not as six paintings shot on two different days. A panel that cannot be brought to the set is named rather than shipped at eighty percent.",
    "The note names, per design, the ink count as separated rather than as guessed, the plate order, anything that could not be recovered from the paintings, and anything the print process cannot be given.",
-   "Every plate is a separate piece of single ink geometry that a decorator could burn a screen from. A sheet showing a picture of a separation is not a separation.",
+   "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness.",
    "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
-   "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness."
+   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
   ]
  },
  "verifiers_auto": [
@@ -447,24 +451,19 @@
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered file exceeds its source frame's pixel dimensions, and no tradeoff record captured in the run carries an upscale entry.",
-   "how": "Compare the pixel dimensions of every delivered file against its source per the manifest, and diff the captured tradeoffs objects against the resize table in the note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "No image on any canvas resolved to the importer's placeholder, and each crest arrived as vector path shapes rather than as a single picture.",
-   "how": "Parse the returned per canvas markup for 1x1 placeholder image data and count path shape elements in each crest's region."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "On every separation sheet each plate is independently present in the returned markup rather than covered by the plate above it.",
-   "how": "Read per element fill, opacity and geometry on each separation root and confirm each declared plate resolves to its own visible element."
-  },
-  {
-   "id": "P4",
-   "text": "Every text element in the exported markup carries a resolved licensed PostScript face rather than a fallback default.",
-   "how": "Read the font-family attribute on every text node in the returned markup and check it against the families the kit call returned."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

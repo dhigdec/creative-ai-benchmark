@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-15",
+ "task_code": "SB3-015-PHO",
+ "task_name": "Summit and Sable - Watch campaign master set",
+ "global_order": 15,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-15",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-015-PHO__summit-and-sable-watch-campaign-master-set",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-015-PHO__summit-and-sable-watch-campaign-master-set/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Flagship integrated engagement",
- "engagement_title": "Senior photo retoucher for Summit & Sable: range masters",
+ "engagement_title": "SB3-015-PHO: Summit and Sable - Watch campaign master set",
  "marketplace_listing": {
   "title": "Senior photo retoucher for Summit & Sable: range masters",
   "experience_level": "Expert",
@@ -380,16 +391,6 @@
     "id": "A5",
     "text": "On the three SKUs whose eyes are holes, the delivered transparent variant is transparent inside the eye and not merely at the outer edge.",
     "how": "Inspect the alpha channel inside the eye region of each of those three variants for full transparency rather than opaque fill."
-   },
-   {
-    "id": "A6",
-    "text": "The labelled export set is complete against the deliverable list and each file's name identifies its SKU, its ratio and its ground without the file being opened.",
-    "how": "Read the export manifest against the deliverable list and the naming scheme stated in the note."
-   },
-   {
-    "id": "A7",
-    "text": "Each marketplace primary contains only the product on a plain uniform ground, with no mark, words, dirt, scene or invented shadow anywhere else in the frame.",
-    "how": "Derive the product silhouette from the matching transparent variant's alpha, then sample every pixel outside it in the primary and assert they fall within a tight tolerance of one background value, flagging any connected off-ground region as a foreign element or a fabricated contact shadow."
    }
   ],
   "human_craft_checks": [
@@ -421,19 +422,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No crop or knockout record in the run carries an enlargement entry, the mark placement included, and every reduction the tools reported is transcribed in the note.",
-    "how": "Diff the tradeoff records captured from every image call against the resize table in the note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The storefront export returned five canvases, each keeping its own declared canvas size.",
-    "how": "Read the slide count and the per canvas width and height in the export response."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "Every text element in the exported markup carries a resolved licensed face rather than a fallback default.",
-    "how": "Read the font family on every text node in the returned markup against the families the kit call returned."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -471,33 +472,23 @@
    "id": "A5",
    "text": "On the three SKUs whose eyes are holes, the delivered transparent variant is transparent inside the eye and not merely at the outer edge.",
    "how": "Inspect the alpha channel inside the eye region of each of those three variants for full transparency rather than opaque fill."
-  },
-  {
-   "id": "A6",
-   "text": "The labelled export set is complete against the deliverable list and each file's name identifies its SKU, its ratio and its ground without the file being opened.",
-   "how": "Read the export manifest against the deliverable list and the naming scheme stated in the note."
-  },
-  {
-   "id": "A7",
-   "text": "Each marketplace primary contains only the product on a plain uniform ground, with no mark, words, dirt, scene or invented shadow anywhere else in the frame.",
-   "how": "Derive the product silhouette from the matching transparent variant's alpha, then sample every pixel outside it in the primary and assert they fall within a tight tolerance of one background value, flagging any connected off-ground region as a foreign element or a fabricated contact shadow."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No crop or knockout record in the run carries an enlargement entry, the mark placement included, and every reduction the tools reported is transcribed in the note.",
-   "how": "Diff the tradeoff records captured from every image call against the resize table in the note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The storefront export returned five canvases, each keeping its own declared canvas size.",
-   "how": "Read the slide count and the per canvas width and height in the export response."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "Every text element in the exported markup carries a resolved licensed face rather than a fallback default.",
-   "how": "Read the font family on every text node in the returned markup against the families the kit call returned."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

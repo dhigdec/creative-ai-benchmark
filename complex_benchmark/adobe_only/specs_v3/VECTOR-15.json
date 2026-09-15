@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "VECTOR-15",
+ "task_code": "SB3-045-VEC",
+ "task_name": "Marchfield Exchange - Crest and engraving geometry system",
+ "global_order": 45,
+ "family_code": "VEC",
+ "legacy_id": "VECTOR-15",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-045-VEC__marchfield-exchange-crest-and-engraving-geometry-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-045-VEC__marchfield-exchange-crest-and-engraving-geometry-system/"
+ },
  "family": "Vector & Print",
  "complexity_tier": "Flagship integrated engagement",
- "engagement_title": "Production vector designer for The Marchfield Exchange: Recovered Marchfield crest and engraving geometry",
+ "engagement_title": "SB3-045-VEC: Marchfield Exchange - Crest and engraving geometry system",
  "marketplace_listing": {
   "title": "Production vector designer for The Marchfield Exchange: Recovered Marchfield crest and engraving geometry",
   "experience_level": "Expert",
@@ -207,11 +218,10 @@
   "The crest still reads at the smallest size it reproduces, the suite plate, with its interior holes still open, judged on brass and never on white.",
   "The plate run is one press file whose page count equals the reconciled suite count in schedule order, plus a named file per suite, and no plate carries a blank field where a tenant name should be.",
   "The sign document is editable by the managing agent next season: live retypeable text, the crest as real vector shapes, and the source it was built from delivered alongside.",
+  "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness.",
   "The engraving artwork is a single closed outline with counters present as true holes, a real viewBox, and no opaque field underneath. Artwork that looks correct on screen and routes solid on the machine fails.",
-  "Proofs are genuinely at press resolution at trim rather than a screen scale page enlarged to look like one.",
   "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
-  "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness."
+  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
  ],
  "connector_profile": {
   "profile_id": "chatgpt-adobe-2026-09-15",
@@ -425,16 +435,6 @@
     "id": "A5",
     "text": "The engraving artwork's counters exist as real interior subpaths rather than as painted shapes.",
     "how": "Parse the outline's path data for interior subpaths and check the fill rule that makes them read as holes."
-   },
-   {
-    "id": "A6",
-    "text": "The plate press file's page count equals the reconciled suite count and the per suite file count matches it, each file one page.",
-    "how": "Read the PDF page count, count the delivered per suite files and compare both against the reconciled run file named in the handover."
-   },
-   {
-    "id": "A7",
-    "text": "The fabricator proofs are at press resolution at trim rather than a screen scale page.",
-    "how": "Read the pixel dimensions against the surveyed plate trim and check the reported image density in the file headers."
    }
   ],
   "human_craft_checks": [
@@ -466,35 +466,29 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "The authored export returned one root per surveyed panel, each keeping its own declared canvas size derived from the survey's millimetre dimensions.",
-    "how": "Read the slide count and per slide width and height from the export response and compare against the survey."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "No image in any panel resolved to the importer's placeholder, the crest arrived as vector path shapes rather than one picture, and the directory arrived as a real table with per cell text.",
-    "how": "Parse the returned per panel markup for one by one placeholder image data, count path shape elements in the crest region, and assert per cell text nodes inside the table."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "Every text element in the exported markup carries a resolved licensed face rather than the importer's default.",
-    "how": "Read the font family attribute on every text node and check it against the families the kit call returned."
-   },
-   {
-    "id": "P4",
-    "text": "No delivered file exceeds its source pixel dimensions and no captured tool response carries an upscale tradeoff entry.",
-    "how": "Compare every delivered file against its source per the manifest and diff the captured tradeoffs objects against the resize table in the note."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
    "The crest still reads at the smallest size it reproduces, the suite plate, with its interior holes still open, judged on brass and never on white.",
    "The plate run is one press file whose page count equals the reconciled suite count in schedule order, plus a named file per suite, and no plate carries a blank field where a tenant name should be.",
    "The sign document is editable by the managing agent next season: live retypeable text, the crest as real vector shapes, and the source it was built from delivered alongside.",
+   "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness.",
    "The engraving artwork is a single closed outline with counters present as true holes, a real viewBox, and no opaque field underneath. Artwork that looks correct on screen and routes solid on the machine fails.",
-   "Proofs are genuinely at press resolution at trim rather than a screen scale page enlarged to look like one.",
    "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
-   "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness."
+   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
   ]
  },
  "verifiers_auto": [
@@ -522,38 +516,23 @@
    "id": "A5",
    "text": "The engraving artwork's counters exist as real interior subpaths rather than as painted shapes.",
    "how": "Parse the outline's path data for interior subpaths and check the fill rule that makes them read as holes."
-  },
-  {
-   "id": "A6",
-   "text": "The plate press file's page count equals the reconciled suite count and the per suite file count matches it, each file one page.",
-   "how": "Read the PDF page count, count the delivered per suite files and compare both against the reconciled run file named in the handover."
-  },
-  {
-   "id": "A7",
-   "text": "The fabricator proofs are at press resolution at trim rather than a screen scale page.",
-   "how": "Read the pixel dimensions against the surveyed plate trim and check the reported image density in the file headers."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "The authored export returned one root per surveyed panel, each keeping its own declared canvas size derived from the survey's millimetre dimensions.",
-   "how": "Read the slide count and per slide width and height from the export response and compare against the survey."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "No image in any panel resolved to the importer's placeholder, the crest arrived as vector path shapes rather than one picture, and the directory arrived as a real table with per cell text.",
-   "how": "Parse the returned per panel markup for one by one placeholder image data, count path shape elements in the crest region, and assert per cell text nodes inside the table."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "Every text element in the exported markup carries a resolved licensed face rather than the importer's default.",
-   "how": "Read the font family attribute on every text node and check it against the families the kit call returned."
-  },
-  {
-   "id": "P4",
-   "text": "No delivered file exceeds its source pixel dimensions and no captured tool response carries an upscale tradeoff entry.",
-   "how": "Compare every delivered file against its source per the manifest and diff the captured tradeoffs objects against the resize table in the note."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

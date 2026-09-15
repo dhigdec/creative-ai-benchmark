@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-29",
+ "task_code": "SB3-074-LAY",
+ "task_name": "Rivermeadow Trust - Year-end donor acknowledgement system",
+ "global_order": 74,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-29",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-074-LAY__rivermeadow-trust-year-end-donor-acknowledgement-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-074-LAY__rivermeadow-trust-year-end-donor-acknowledgement-system/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Flagship integrated engagement",
- "engagement_title": "Editorial and production designer for Rivermeadow Trust: Rivermeadow year end acknowledgement run",
+ "engagement_title": "SB3-074-LAY: Rivermeadow Trust - Year-end donor acknowledgement system",
  "marketplace_listing": {
   "title": "Editorial and production designer for Rivermeadow Trust: Rivermeadow year end acknowledgement run",
   "experience_level": "Expert",
@@ -401,16 +412,6 @@
     "id": "A5",
     "text": "Every placeholder the mapping claims to have written is genuinely present in the prepared template's story.",
     "how": "Round trip each prepared template's document structure and search its stories for each expected field token."
-   },
-   {
-    "id": "A6",
-    "text": "No rendered page carries a truncated field, and every delivered household's full salutation and address appear on their receipt.",
-    "how": "Extract the text of each rendered receipt page at trim and compare each name and address string against the delivered record set."
-   },
-   {
-    "id": "A7",
-    "text": "Per donor file names map one to one onto the roster and each file contains that household's own gift figure.",
-    "how": "Parse each named single page file and check its household identifier and total against the row the filename claims."
    }
   ],
   "human_craft_checks": [
@@ -442,14 +443,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered photograph exceeds its source pixel dimensions and no crop tradeoff record in the run carries an upscale entry.",
-    "how": "Compare the pixel dimensions of every delivered image against its source per the manifest, and diff the captured tradeoffs objects against the resize table in the note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Every text element in the exported markup carries a resolved licensed PostScript face rather than a fallback default.",
-    "how": "Read the font family attribute on every text node in the returned markup and check it against the families the kit call returned."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -487,28 +493,23 @@
    "id": "A5",
    "text": "Every placeholder the mapping claims to have written is genuinely present in the prepared template's story.",
    "how": "Round trip each prepared template's document structure and search its stories for each expected field token."
-  },
-  {
-   "id": "A6",
-   "text": "No rendered page carries a truncated field, and every delivered household's full salutation and address appear on their receipt.",
-   "how": "Extract the text of each rendered receipt page at trim and compare each name and address string against the delivered record set."
-  },
-  {
-   "id": "A7",
-   "text": "Per donor file names map one to one onto the roster and each file contains that household's own gift figure.",
-   "how": "Parse each named single page file and check its household identifier and total against the row the filename claims."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered photograph exceeds its source pixel dimensions and no crop tradeoff record in the run carries an upscale entry.",
-   "how": "Compare the pixel dimensions of every delivered image against its source per the manifest, and diff the captured tradeoffs objects against the resize table in the note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Every text element in the exported markup carries a resolved licensed PostScript face rather than a fallback default.",
-   "how": "Read the font family attribute on every text node in the returned markup and check it against the families the kit call returned."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

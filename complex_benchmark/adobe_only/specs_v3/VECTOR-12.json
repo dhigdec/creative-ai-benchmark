@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "VECTOR-12",
+ "task_code": "SB3-042-VEC",
+ "task_name": "Static Union - Manufacturing artwork system",
+ "global_order": 42,
+ "family_code": "VEC",
+ "legacy_id": "VECTOR-12",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-042-VEC__static-union-manufacturing-artwork-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-042-VEC__static-union-manufacturing-artwork-system/"
+ },
  "family": "Vector & Print",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Production vector designer for Static Union: manufacture art",
+ "engagement_title": "SB3-042-VEC: Static Union - Manufacturing artwork system",
  "marketplace_listing": {
   "title": "Production vector designer for Static Union: manufacture art",
   "experience_level": "Expert",
@@ -197,14 +208,13 @@
   "note": "Handover is a professional completion requirement and is not counted as a separate creative deliverable class."
  },
  "acceptance_bar": [
+  "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness.",
   "Each of the three media gets art built for that medium, not one drawing scaled three ways, and the pack still reads as one mark across all three.",
   "Each piece of manufacture art is legible at its true reproduction size on its true ground, judged there and not at canvas size: patch on dark twill, pin at one inch, sticker on white vinyl.",
   "The words in that file are live text the client can retype and the marks in it are real vector artwork rather than pictures of a layout.",
   "Every delivered vector carries a viewBox and no full canvas opaque background path, so it can sit on any ground without a box behind it.",
-  "The hang tag run is one press ready file with one item per page, twelve pages in the order the spreadsheet gives, and every field on every page is complete rather than ending early.",
   "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
-  "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness."
+  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
  ],
  "connector_profile": {
   "profile_id": "chatgpt-adobe-2026-09-15",
@@ -364,16 +374,6 @@
     "id": "A5",
     "text": "The patch plate's distinct fill count is at or under the thread count stated in the maker limits file.",
     "how": "Count distinct fill values in the delivered patch SVG against the stated limit."
-   },
-   {
-    "id": "A6",
-    "text": "The sticker cut line is a separate path from the face art and lies outside the art silhouette at every point.",
-    "how": "Inspect the delivered sticker SVG for a distinct cut path and compare its extent against the face art extent."
-   },
-   {
-    "id": "A7",
-    "text": "The extracted masters carry genuine transparency rather than a flattened ground.",
-    "how": "Inspect the delivered files for an alpha channel with partial values rather than a uniform one."
    }
   ],
   "human_craft_checks": [
@@ -405,35 +405,29 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered file exceeds its source dimensions and no crop reports an upscale entry.",
-    "how": "Compare each delivered file against its recorded source dimensions and scan the run for tradeoffs entries of type upscaled."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Every plate in the exported document arrived as vector shapes and every photograph resolved to real image data.",
-    "how": "Parse the returned per canvas markup for path or shape elements and for placeholder image elements."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "Each canvas in the exported document keeps its own declared size and no element resolves past its canvas width.",
-    "how": "Read per canvas width and height in the export response and parse resolved left and width values per canvas."
-   },
-   {
-    "id": "P4",
-    "text": "Text elements carry the licensed faces rather than the importer's default sans.",
-    "how": "Parse resolved font-family values in the returned markup."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
+   "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness.",
    "Each of the three media gets art built for that medium, not one drawing scaled three ways, and the pack still reads as one mark across all three.",
    "Each piece of manufacture art is legible at its true reproduction size on its true ground, judged there and not at canvas size: patch on dark twill, pin at one inch, sticker on white vinyl.",
    "The words in that file are live text the client can retype and the marks in it are real vector artwork rather than pictures of a layout.",
    "Every delivered vector carries a viewBox and no full canvas opaque background path, so it can sit on any ground without a box behind it.",
-   "The hang tag run is one press ready file with one item per page, twelve pages in the order the spreadsheet gives, and every field on every page is complete rather than ending early.",
    "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
-   "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness."
+   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
   ]
  },
  "verifiers_auto": [
@@ -461,38 +455,23 @@
    "id": "A5",
    "text": "The patch plate's distinct fill count is at or under the thread count stated in the maker limits file.",
    "how": "Count distinct fill values in the delivered patch SVG against the stated limit."
-  },
-  {
-   "id": "A6",
-   "text": "The sticker cut line is a separate path from the face art and lies outside the art silhouette at every point.",
-   "how": "Inspect the delivered sticker SVG for a distinct cut path and compare its extent against the face art extent."
-  },
-  {
-   "id": "A7",
-   "text": "The extracted masters carry genuine transparency rather than a flattened ground.",
-   "how": "Inspect the delivered files for an alpha channel with partial values rather than a uniform one."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered file exceeds its source dimensions and no crop reports an upscale entry.",
-   "how": "Compare each delivered file against its recorded source dimensions and scan the run for tradeoffs entries of type upscaled."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Every plate in the exported document arrived as vector shapes and every photograph resolved to real image data.",
-   "how": "Parse the returned per canvas markup for path or shape elements and for placeholder image elements."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "Each canvas in the exported document keeps its own declared size and no element resolves past its canvas width.",
-   "how": "Read per canvas width and height in the export response and parse resolved left and width values per canvas."
-  },
-  {
-   "id": "P4",
-   "text": "Text elements carry the licensed faces rather than the importer's default sans.",
-   "how": "Parse resolved font-family values in the returned markup."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

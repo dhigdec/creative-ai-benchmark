@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-20",
+ "task_code": "SB3-065-LAY",
+ "task_name": "Walter Fernwood Memorial - Service print and remembrance set",
+ "global_order": 65,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-20",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-065-LAY__walter-fernwood-memorial-service-print-and-remembrance-set",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-065-LAY__walter-fernwood-memorial-service-print-and-remembrance-set/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Flagship integrated engagement",
- "engagement_title": "Editorial and production designer for In Memory of Walter Fernwood: Service print run",
+ "engagement_title": "SB3-065-LAY: Walter Fernwood Memorial - Service print and remembrance set",
  "marketplace_listing": {
   "title": "Editorial and production designer for In Memory of Walter Fernwood: Service print run",
   "experience_level": "Expert",
@@ -461,16 +472,6 @@
     "id": "A5",
     "text": "Every copy field exists as a placeholder in each prepared template before any merge is run.",
     "how": "Export the interchange file from each prepared template, unzip it and search the stories for every expected field token."
-   },
-   {
-    "id": "A6",
-    "text": "Every relationship line is present in full on its rendered card, with no entry ending short of the source string.",
-    "how": "Extract the rendered text from each card page and compare it character for character against the normalised data source entry."
-   },
-   {
-    "id": "A7",
-    "text": "The framed page is rendered at true print resolution at A4 trim rather than at screen scale.",
-    "how": "Read the pixel dimensions and density metadata of the rendered page and compare against A4 at the stated resolution."
    }
   ],
   "human_craft_checks": [
@@ -502,24 +503,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered image exceeds its source scan's pixel dimensions and no captured tradeoff record carries an unreported resize.",
-    "how": "Compare every delivered file's dimensions against its source per the manifest and diff the captured tradeoffs objects against the written note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The editable document carries every book root plus the share card at their declared canvas sizes, with every plate present as real image content rather than a placeholder.",
-    "how": "Parse the returned per root markup for root count, per root canvas dimensions and image elements carrying actual image data."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "Every text element in the editable document carries a licensed family and an explicit numeric weight, and the eulogy's emphasis survives as inline runs rather than as flattened plain text.",
-    "how": "Parse the returned markup for per element family and weight attributes and for inline run structure inside the eulogy text frames."
-   },
-   {
-    "id": "P4",
-    "text": "Every postcard front is paired with its own reverse and with the family's transcription of that reverse, with no pairing crossed.",
-    "how": "Read the pairing recorded in the manifest against the plate pages in the returned markup and against the transcription file."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -557,38 +553,23 @@
    "id": "A5",
    "text": "Every copy field exists as a placeholder in each prepared template before any merge is run.",
    "how": "Export the interchange file from each prepared template, unzip it and search the stories for every expected field token."
-  },
-  {
-   "id": "A6",
-   "text": "Every relationship line is present in full on its rendered card, with no entry ending short of the source string.",
-   "how": "Extract the rendered text from each card page and compare it character for character against the normalised data source entry."
-  },
-  {
-   "id": "A7",
-   "text": "The framed page is rendered at true print resolution at A4 trim rather than at screen scale.",
-   "how": "Read the pixel dimensions and density metadata of the rendered page and compare against A4 at the stated resolution."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered image exceeds its source scan's pixel dimensions and no captured tradeoff record carries an unreported resize.",
-   "how": "Compare every delivered file's dimensions against its source per the manifest and diff the captured tradeoffs objects against the written note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The editable document carries every book root plus the share card at their declared canvas sizes, with every plate present as real image content rather than a placeholder.",
-   "how": "Parse the returned per root markup for root count, per root canvas dimensions and image elements carrying actual image data."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "Every text element in the editable document carries a licensed family and an explicit numeric weight, and the eulogy's emphasis survives as inline runs rather than as flattened plain text.",
-   "how": "Parse the returned markup for per element family and weight attributes and for inline run structure inside the eulogy text frames."
-  },
-  {
-   "id": "P4",
-   "text": "Every postcard front is paired with its own reverse and with the family's transcription of that reverse, with no pairing crossed.",
-   "how": "Read the pairing recorded in the manifest against the plate pages in the returned markup and against the transcription file."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

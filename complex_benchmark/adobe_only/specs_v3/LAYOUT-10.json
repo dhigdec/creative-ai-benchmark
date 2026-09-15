@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-10",
+ "task_code": "SB3-055-LAY",
+ "task_name": "Alderwood Scholars Fund - Multi-center appeal campaign",
+ "global_order": 55,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-10",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-055-LAY__alderwood-scholars-fund-multi-center-appeal-campaign",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-055-LAY__alderwood-scholars-fund-multi-center-appeal-campaign/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Flagship integrated engagement",
- "engagement_title": "Editorial and production designer for Alderwood Scholars Fund: Five centre appeal banner run",
+ "engagement_title": "SB3-055-LAY: Alderwood Scholars Fund - Multi-center appeal campaign",
  "marketplace_listing": {
   "title": "Editorial and production designer for Alderwood Scholars Fund: Five centre appeal banner run",
   "experience_level": "Expert",
@@ -204,7 +215,7 @@
   {
    "name": "Recovered Alderwood crest",
    "deliverable_class": "vector artwork system",
-   "spec": "The compound crest recovered from a photograph of an enamel sign as placeable scalable vector geometry: transparent ground, real viewBox present, no opaque full canvas rectangle underneath, lamp device and inner rule intact, delivered as a single colour mark and a reverse variant, holding at banner scale seen from the road and at report footer size. Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
+   "spec": "The compound crest recovered from a photograph of an enamel sign as placeable scalable vector geometry: transparent ground, real viewBox present, no opaque full canvas rectangle underneath, lamp device and inner rule intact, delivered as a single colour mark and a reverse variant, holding at banner scale seen from the road and at report footer size.  Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
   }
  ],
  "handover_requirements": {
@@ -467,11 +478,6 @@
     "id": "A5",
     "text": "The delivered crest has a viewBox attribute and no full canvas opaque background path at path index zero, and a reverse variant exists.",
     "how": "Parse each delivered SVG: assert the viewBox is present and assert the first path's geometry does not span the whole canvas."
-   },
-   {
-    "id": "A6",
-    "text": "The banner output is exactly five pages, one per centre row, and its rendered proofs carry true press density rather than screen density.",
-    "how": "Read the page count of the merged output and the recorded density of the rendered files, and match each file against the centre list."
    }
   ],
   "human_craft_checks": [
@@ -503,24 +509,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No crop tradeoff record captured in the run carries an upscale entry, and every downscale entry appears in the handover note.",
-    "how": "Diff the tradeoff objects captured from every image call against the resize table in the note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The merge template contains every intended placeholder, confirmed after preparation rather than assumed from the success message.",
-    "how": "Round trip the prepared document and search its stories for each expected placeholder token."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "The report exported with every intended page present, each keeping its declared canvas size, and no text content runs past its canvas.",
-    "how": "Read the page count and per page dimensions from the export response and check every text block's resolved geometry in the returned markup against its canvas bounds."
-   },
-   {
-    "id": "P4",
-    "text": "No image in any exported root resolved to the importer's placeholder, and the crest arrived as vector path shapes rather than a single picture.",
-    "how": "Parse the returned per root markup for placeholder image data and count path shape elements in the crest region on every root."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -559,33 +560,23 @@
    "id": "A5",
    "text": "The delivered crest has a viewBox attribute and no full canvas opaque background path at path index zero, and a reverse variant exists.",
    "how": "Parse each delivered SVG: assert the viewBox is present and assert the first path's geometry does not span the whole canvas."
-  },
-  {
-   "id": "A6",
-   "text": "The banner output is exactly five pages, one per centre row, and its rendered proofs carry true press density rather than screen density.",
-   "how": "Read the page count of the merged output and the recorded density of the rendered files, and match each file against the centre list."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No crop tradeoff record captured in the run carries an upscale entry, and every downscale entry appears in the handover note.",
-   "how": "Diff the tradeoff objects captured from every image call against the resize table in the note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The merge template contains every intended placeholder, confirmed after preparation rather than assumed from the success message.",
-   "how": "Round trip the prepared document and search its stories for each expected placeholder token."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "The report exported with every intended page present, each keeping its declared canvas size, and no text content runs past its canvas.",
-   "how": "Read the page count and per page dimensions from the export response and check every text block's resolved geometry in the returned markup against its canvas bounds."
-  },
-  {
-   "id": "P4",
-   "text": "No image in any exported root resolved to the importer's placeholder, and the crest arrived as vector path shapes rather than a single picture.",
-   "how": "Parse the returned per root markup for placeholder image data and count path shape elements in the crest region on every root."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

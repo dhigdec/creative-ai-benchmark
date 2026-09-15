@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "VECTOR-11",
+ "task_code": "SB3-041-VEC",
+ "task_name": "Cedar Commons - Farmers market identity restoration",
+ "global_order": 41,
+ "family_code": "VEC",
+ "legacy_id": "VECTOR-11",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-041-VEC__cedar-commons-farmers-market-identity-restoration",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-041-VEC__cedar-commons-farmers-market-identity-restoration/"
+ },
  "family": "Vector & Print",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Production vector designer for Cedar Commons Farmers Market: Recovered Cedar Commons mark system",
+ "engagement_title": "SB3-041-VEC: Cedar Commons - Farmers market identity restoration",
  "marketplace_listing": {
   "title": "Production vector designer for Cedar Commons Farmers Market: Recovered Cedar Commons mark system",
   "experience_level": "Expert",
@@ -199,12 +210,11 @@
  "acceptance_bar": [
   "The recovered mark is placeable artwork rather than a picture of artwork: transparent, with a real viewBox present, no opaque full canvas rectangle riding underneath it, and no filled disc where the ring's interior should be open.",
   "The mark is recovered rather than redrawn, complete with its bough, its arched wordmark and its ring rule, and a volunteer who has worn the apron for nine years recognises it.",
+  "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness.",
   "There is a cut of the mark that survives at six inches on a stall plate and a cut that survives on a banner read from across a car park, and each is the one actually used in that place.",
   "The entrance banner canvas is at the true proportion of the fence run the committee gave, its absolute units resolve to the stated scale, and the scale factor is named on the sheet the sign shop receives.",
-  "The directional signs are legible as a driver reads them: a few flat inks, one clear instruction each, and type sized for distance rather than for a screen.",
   "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
-  "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness."
+  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
  ],
  "connector_profile": {
   "profile_id": "chatgpt-adobe-2026-09-15",
@@ -395,35 +405,29 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "Two distinct cuts of the mark are delivered and the one used on each canvas is the cut intended for that size.",
-    "how": "Diff the two delivered SVGs for path count and stroke weight, then check which file identifier appears in each canvas of the returned markup."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "No delivered file exceeds its source frame's pixel dimensions and no tradeoff record captured in the run carries an upscale entry.",
-    "how": "Compare pixel dimensions of every delivered file against its source per the manifest, and diff the captured tradeoffs objects against the resize table in the note."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "No image on any canvas resolved to the importer's placeholder, and the mark arrived as vector path shapes rather than as a single picture, on every canvas that carries it.",
-    "how": "Parse the returned per canvas markup for 1x1 placeholder image data and count path shape elements in the mark's region on each canvas."
-   },
-   {
-    "id": "P4",
-    "text": "Every text element in the exported markup carries a resolved licensed PostScript face at the numeric weight the family actually defines.",
-    "how": "Read the font-family and font-weight attributes on every text node in the returned markup and check them against the families and style inventories the font calls returned."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
    "The recovered mark is placeable artwork rather than a picture of artwork: transparent, with a real viewBox present, no opaque full canvas rectangle riding underneath it, and no filled disc where the ring's interior should be open.",
    "The mark is recovered rather than redrawn, complete with its bough, its arched wordmark and its ring rule, and a volunteer who has worn the apron for nine years recognises it.",
+   "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness.",
    "There is a cut of the mark that survives at six inches on a stall plate and a cut that survives on a banner read from across a car park, and each is the one actually used in that place.",
    "The entrance banner canvas is at the true proportion of the fence run the committee gave, its absolute units resolve to the stated scale, and the scale factor is named on the sheet the sign shop receives.",
-   "The directional signs are legible as a driver reads them: a few flat inks, one clear instruction each, and type sized for distance rather than for a screen.",
    "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
-   "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness."
+   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
   ]
  },
  "verifiers_auto": [
@@ -455,24 +459,19 @@
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "Two distinct cuts of the mark are delivered and the one used on each canvas is the cut intended for that size.",
-   "how": "Diff the two delivered SVGs for path count and stroke weight, then check which file identifier appears in each canvas of the returned markup."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "No delivered file exceeds its source frame's pixel dimensions and no tradeoff record captured in the run carries an upscale entry.",
-   "how": "Compare pixel dimensions of every delivered file against its source per the manifest, and diff the captured tradeoffs objects against the resize table in the note."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "No image on any canvas resolved to the importer's placeholder, and the mark arrived as vector path shapes rather than as a single picture, on every canvas that carries it.",
-   "how": "Parse the returned per canvas markup for 1x1 placeholder image data and count path shape elements in the mark's region on each canvas."
-  },
-  {
-   "id": "P4",
-   "text": "Every text element in the exported markup carries a resolved licensed PostScript face at the numeric weight the family actually defines.",
-   "how": "Read the font-family and font-weight attributes on every text node in the returned markup and check them against the families and style inventories the font calls returned."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

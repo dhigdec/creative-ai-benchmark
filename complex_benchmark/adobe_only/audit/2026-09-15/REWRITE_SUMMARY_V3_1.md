@@ -8,7 +8,13 @@ All 100 Adobe benchmark specifications were rewritten as source-derived composit
 
 The corpus validator passes with no errors or warnings.
 
-The format-aware asset audit also passes: 1,861 of 1,861 manifest-listed files are present, non-empty, and decodable, with no unmanifested files or declared-dimension mismatches. The frozen corpus contains 4,410,789,346 asset bytes and has SHA-256 fingerprint `d0ed9e4fc48c5067bb36d0a1de99b078ca263d138bf6dcf9ad0297a8581e2c52`.
+The format-aware asset audit also passes: 1,861 of 1,861 manifest-listed files are present, non-empty, and decodable, with no unmanifested files or declared-dimension mismatches. The frozen corpus contains 4,410,789,346 asset bytes and has SHA-256 fingerprint `c642fcd80d142c3dcff0a01cef879750ad52624c4c4b2779bb7e3ac68eef5ef7`.
+
+## Canonical Naming And Storage
+
+Every task now has a globally sortable reference code, a curated client-and-commission name, its original family ID, and a deterministic S3 prefix. The order is Photo `SB3-001-PHO` through `SB3-030-PHO`, Vector `SB3-031-VEC` through `SB3-045-VEC`, Layout `SB3-046-LAY` through `SB3-080-LAY`, and Motion `SB3-081-MOT` through `SB3-100-MOT`. Legacy IDs remain in every record so historical runs and source manifests stay traceable.
+
+Asset storage is rooted at `s3://annotationprod/creative-ai-benchmark/v3.1/tasks/`, with one sortable task folder per canonical code. `TASK_NAMING_REGISTRY_V3_1.csv` is the authoritative code-to-name-to-prefix crosswalk.
 
 ## Portfolio Shape
 
@@ -76,6 +82,7 @@ Every task now has:
 - A current-host Adobe connector profile with required and conditional operations plus per-operation rationale.
 - A seven-phase trajectory built around evidence, first proof, reconciliation, artifact QA, correction, and handoff.
 - Separate artifact checks, normalized process checks, and human craft review. Final artifact quality is host-neutral and does not depend on raw connector response fields.
+- At least three unique checks in each verifier category. Shared artifact checks cover scope, input disposition, and file integrity; shared process checks cover normalized execution evidence, creative-decision traceability, and closed revision loops.
 - Explicit limits for generated truth, physical-sample color, documentary imagery, legal claims, print readiness, and manufacturing readiness.
 
 Vectorization is never accepted by itself as proof of engraving, cutting, embroidery, or press readiness. Quick Cut is used only for visually led selection, never for semantic speech editing. Interactive Acrobat page-organization routes are excluded from the zero-human profile.

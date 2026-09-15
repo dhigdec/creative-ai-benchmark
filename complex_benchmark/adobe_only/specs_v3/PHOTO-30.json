@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-30",
+ "task_code": "SB3-030-PHO",
+ "task_name": "Palewell Health - Licensed care image campaign",
+ "global_order": 30,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-30",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-030-PHO__palewell-health-licensed-care-image-campaign",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-030-PHO__palewell-health-licensed-care-image-campaign/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Senior photo retoucher for Palewell Health: Palewell licensed care set",
+ "engagement_title": "SB3-030-PHO: Palewell Health - Licensed care image campaign",
  "marketplace_listing": {
   "title": "Senior photo retoucher for Palewell Health: Palewell licensed care set",
   "experience_level": "Expert",
@@ -429,24 +440,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No crop or knockout tradeoff record captured during the run carries an upscale entry, and every downscale entry is transcribed in the note.",
-    "how": "Diff the tradeoff objects captured from every image call against the resize table in the handover note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Every licensed frame in the manifest resolves to a real licence state, and no shipped frame is flagged as a generative tech result.",
-    "how": "Cross check each manifest asset id against the licence responses captured in the run and against the generative tech flag returned by search."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "The export returned four slides, each keeping its own declared canvas size.",
-    "how": "Read slide_count and the per slide width and height in the export response."
-   },
-   {
-    "id": "P4",
-    "text": "No image on any of the four canvases resolved to the importer's placeholder, and every text element carries a resolved licensed face rather than a fallback default.",
-    "how": "Parse the returned per slide markup for placeholder image data and check every text node's font family against the families the kit call returned."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -488,24 +494,19 @@
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No crop or knockout tradeoff record captured during the run carries an upscale entry, and every downscale entry is transcribed in the note.",
-   "how": "Diff the tradeoff objects captured from every image call against the resize table in the handover note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Every licensed frame in the manifest resolves to a real licence state, and no shipped frame is flagged as a generative tech result.",
-   "how": "Cross check each manifest asset id against the licence responses captured in the run and against the generative tech flag returned by search."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "The export returned four slides, each keeping its own declared canvas size.",
-   "how": "Read slide_count and the per slide width and height in the export response."
-  },
-  {
-   "id": "P4",
-   "text": "No image on any of the four canvases resolved to the importer's placeholder, and every text element carries a resolved licensed face rather than a fallback default.",
-   "how": "Parse the returned per slide markup for placeholder image data and check every text node's font family against the families the kit call returned."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

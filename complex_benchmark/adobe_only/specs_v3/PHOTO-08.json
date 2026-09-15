@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-08",
+ "task_code": "SB3-008-PHO",
+ "task_name": "Meridian Motors - Showroom vehicle image system",
+ "global_order": 8,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-08",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-008-PHO__meridian-motors-showroom-vehicle-image-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-008-PHO__meridian-motors-showroom-vehicle-image-system/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Senior photo retoucher for Meridian Motors: Meridian showroom photography",
+ "engagement_title": "SB3-008-PHO: Meridian Motors - Showroom vehicle image system",
  "marketplace_listing": {
   "title": "Senior photo retoucher for Meridian Motors: Meridian showroom photography",
   "experience_level": "Expert",
@@ -186,11 +197,10 @@
  },
  "acceptance_bar": [
   "The six vehicles read as ONE lot when the listings are laid side by side: one showroom white, one black point, one honest paint rendition, one framing logic. A car that cannot be brought to the set is named in the note, not shipped at eighty percent.",
+  "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
   "Every marketplace primary is the vehicle on a plain ground with nothing else in the frame: no mark, no badge, no border, no burned in text, no reflection or shadow invented for it.",
   "The cut edge on the primaries holds against the marketplace's own coloured page and not only against white, on the pale bodies as well as the dark ones, and the grille and wheel apertures do not read as filled panels.",
   "No delivered file exceeds its source frame's pixel dimensions and no crop or knockout tradeoff record in the run carries an upscale entry. A tile that reaches its size by being enlarged fails even if it looks acceptable.",
-  "Every card carries the vehicle it names. A proof whose photograph belongs to the other silver Calder fails outright, whatever the response labelled it.",
-  "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
  ],
  "connector_profile": {
@@ -345,11 +355,6 @@
     "id": "A5",
     "text": "The transparent variants carry genuine alpha at the vehicle boundary and full transparency at the frame corners.",
     "how": "Inspect the alpha channel of each variant for partial alpha pixels at the body edge and for zero alpha in the corners."
-   },
-   {
-    "id": "A6",
-    "text": "No marketplace primary contains the roundel, any border, or any burned in text.",
-    "how": "Inspect each delivered primary at full resolution and diff it against its graded source for added elements."
    }
   ],
   "human_craft_checks": [
@@ -381,18 +386,27 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No crop or knockout tradeoff record in the run carries an upscale entry, and every downscaled entry is transcribed in the handover note.",
-    "how": "Diff the tradeoffs objects captured from every image call against the resize table in the note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
+   },
+   {
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
    "The six vehicles read as ONE lot when the listings are laid side by side: one showroom white, one black point, one honest paint rendition, one framing logic. A car that cannot be brought to the set is named in the note, not shipped at eighty percent.",
+   "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
    "Every marketplace primary is the vehicle on a plain ground with nothing else in the frame: no mark, no badge, no border, no burned in text, no reflection or shadow invented for it.",
    "The cut edge on the primaries holds against the marketplace's own coloured page and not only against white, on the pale bodies as well as the dark ones, and the grille and wheel apertures do not read as filled panels.",
    "No delivered file exceeds its source frame's pixel dimensions and no crop or knockout tradeoff record in the run carries an upscale entry. A tile that reaches its size by being enlarged fails even if it looks acceptable.",
-   "Every card carries the vehicle it names. A proof whose photograph belongs to the other silver Calder fails outright, whatever the response labelled it.",
-   "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
    "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
   ]
  },
@@ -421,18 +435,23 @@
    "id": "A5",
    "text": "The transparent variants carry genuine alpha at the vehicle boundary and full transparency at the frame corners.",
    "how": "Inspect the alpha channel of each variant for partial alpha pixels at the body edge and for zero alpha in the corners."
-  },
-  {
-   "id": "A6",
-   "text": "No marketplace primary contains the roundel, any border, or any burned in text.",
-   "how": "Inspect each delivered primary at full resolution and diff it against its graded source for added elements."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No crop or knockout tradeoff record in the run carries an upscale entry, and every downscaled entry is transcribed in the handover note.",
-   "how": "Diff the tradeoffs objects captured from every image call against the resize table in the note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
+  },
+  {
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

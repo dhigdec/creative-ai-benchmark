@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-20",
+ "task_code": "SB3-020-PHO",
+ "task_name": "Astrid Vellacourt - Editorial portrait session",
+ "global_order": 20,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-20",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-020-PHO__astrid-vellacourt-editorial-portrait-session",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-020-PHO__astrid-vellacourt-editorial-portrait-session/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Senior photo retoucher for Astrid Vellacourt: Vellacourt session set",
+ "engagement_title": "SB3-020-PHO: Astrid Vellacourt - Editorial portrait session",
  "marketplace_listing": {
   "title": "Senior photo retoucher for Astrid Vellacourt: Vellacourt session set",
   "experience_level": "Expert",
@@ -210,7 +221,7 @@
   {
    "name": "Recovered AV monogram",
    "deliverable_class": "vector artwork system",
-   "spec": "The monogram recovered from a photograph of a blind-debossed card as placeable, scalable vector geometry with a real viewBox and no opaque full-canvas ground path, delivered as a transparent mark and a solid variant for reversing, together with an honest written statement of where it holds and where it does not, specifically at profile-picture size and reversed on the deep ground, and what to use instead wherever it does not. Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
+   "spec": "The monogram recovered from a photograph of a blind-debossed card as placeable, scalable vector geometry with a real viewBox and no opaque full-canvas ground path, delivered as a transparent mark and a solid variant for reversing, together with an honest written statement of where it holds and where it does not, specifically at profile-picture size and reversed on the deep ground, and what to use instead wherever it does not.  Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
   }
  ],
  "handover_requirements": {
@@ -467,16 +478,6 @@
     "id": "A5",
     "text": "The ground-free files carry genuine transparency rather than a flattened ground.",
     "how": "Inspect the delivered files for an alpha channel with partial values rather than a uniform one."
-   },
-   {
-    "id": "A6",
-    "text": "The monogram carries a viewBox and no full-canvas opaque background path.",
-    "how": "Inspect the delivered SVG source."
-   },
-   {
-    "id": "A7",
-    "text": "No element in any canvas resolves to a position beyond its declared canvas width.",
-    "how": "Parse resolved left and width values per canvas."
    }
   ],
   "human_craft_checks": [
@@ -508,24 +509,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered file exceeds its source dimensions and no crop reports an upscale entry.",
-    "how": "Compare each delivered file against its recorded source dimensions and scan the run for tradeoffs entries of type upscaled or downscaled."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Every photograph in the exported document resolved to real image data on all three canvases.",
-    "how": "Parse the returned per-canvas markup for placeholder image elements."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "The monogram arrived in the exported document as vector shapes rather than a raster.",
-    "how": "Parse the returned markup for path or shape elements at the monogram's position on each canvas."
-   },
-   {
-    "id": "P4",
-    "text": "The three canvases each keep their own declared size in one document.",
-    "how": "Read per-canvas width and height in the export response against the three declared sizes."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -564,38 +560,23 @@
    "id": "A5",
    "text": "The ground-free files carry genuine transparency rather than a flattened ground.",
    "how": "Inspect the delivered files for an alpha channel with partial values rather than a uniform one."
-  },
-  {
-   "id": "A6",
-   "text": "The monogram carries a viewBox and no full-canvas opaque background path.",
-   "how": "Inspect the delivered SVG source."
-  },
-  {
-   "id": "A7",
-   "text": "No element in any canvas resolves to a position beyond its declared canvas width.",
-   "how": "Parse resolved left and width values per canvas."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered file exceeds its source dimensions and no crop reports an upscale entry.",
-   "how": "Compare each delivered file against its recorded source dimensions and scan the run for tradeoffs entries of type upscaled or downscaled."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Every photograph in the exported document resolved to real image data on all three canvases.",
-   "how": "Parse the returned per-canvas markup for placeholder image elements."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "The monogram arrived in the exported document as vector shapes rather than a raster.",
-   "how": "Parse the returned markup for path or shape elements at the monogram's position on each canvas."
-  },
-  {
-   "id": "P4",
-   "text": "The three canvases each keep their own declared size in one document.",
-   "how": "Read per-canvas width and height in the export response against the three declared sizes."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

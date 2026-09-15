@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-24",
+ "task_code": "SB3-069-LAY",
+ "task_name": "Halden and Roe - Marlow trade catalog",
+ "global_order": 69,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-24",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-069-LAY__halden-and-roe-marlow-trade-catalog",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-069-LAY__halden-and-roe-marlow-trade-catalog/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Editorial and production designer for Halden and Roe: Marlow trade book",
+ "engagement_title": "SB3-069-LAY: Halden and Roe - Marlow trade catalog",
  "marketplace_listing": {
   "title": "Editorial and production designer for Halden and Roe: Marlow trade book",
   "experience_level": "Expert",
@@ -365,16 +376,6 @@
     "id": "A5",
     "text": "Every spec parameter, the caption, the firing and care line, the lead time and the trade price appear on every page and match the price file verbatim.",
     "how": "Round-trip the prepared template to IDML and grep the story for all twelve expected placeholders (PIECE_CODE, DIMENSIONS, CAPACITY, GLAZE, FIRING, CARE, LEAD_TIME, CARTON, TRADE_PRICE, CAPTION, PHOTOGRAPH, FOOTER_MARK), confirming in particular that LEAD_TIME and CARTON — the two fields the lossy mapping readout silently drops past the combined firing/care run — are both present, then read text off each of the 16 rendered pages and compare each field character-for-character against that piece's price-file row."
-   },
-   {
-    "id": "A6",
-    "text": "Trade prices appear in one consistent money format across every page, and no page carries an empty price.",
-    "how": "Read the trade-price line off all 16 pages and confirm every one matches a single money format (one currency-symbol-plus-integer form such as $62, normalising the source's three mixed forms: bare integer 62, one-decimal 58.0 and symbol-only $96), and confirm the two made-to-order rows MRL-111 and MRL-115 — whose source trade price is empty — carry a resolved token (e.g. an explicit made-to-order/POA value) rather than a blank that prints as free."
-   },
-   {
-    "id": "A7",
-    "text": "Each page carries its own piece's photograph rather than one static image repeated, and the piece shown matches the row's piece code and its delivered state.",
-    "how": "For each of the 16 pages, confirm the bound photograph is the graded master whose filename matches that row's piece code (16 distinct images, not one static image repeated), and that the piece shown matches the row identity per the triage note — in particular MRL-105, whose price-file photograph column points at the lid-standing-beside-the-jar frame, must show the jar in the correct catalogue state (lid seated or the identity conflict resolved) rather than the wrong studio state."
    }
   ],
   "human_craft_checks": [
@@ -406,19 +407,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered file exceeds its source frame on either axis and no crop or resize response carried an unreported upscale entry.",
-    "how": "Confirm no delivered piece frame exceeds its 4000 x 5000 px source on either axis and the recovered stamp raster does not exceed its 3600 x 3600 px source, then inspect every crop_and_resize and remove_background response's tradeoffs array in the run log for an interpolation/upscale entry and check each against the handover's transcription (an upscale entry present in the log but absent from the handover fails)."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Sixteen per-piece sheet files exist, each named to a piece code, each containing the piece its name claims.",
-    "how": "Confirm exactly 16 single-page sheet files exist, one per current piece MRL-101..116, and for each open the file and read the piece code off its rendered content, comparing it against the piece code in the filename (never against its position in the returned list, since multi-record raster output is documented to come back reversed)."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "The exported document holds three canvases at three distinct declared sizes with the stand panel at true physical dimensions, every photograph resolved to real image data, the stamp present as path shapes, the range comparison present as real table cells, and every text element carrying a resolved licensed face at the intended numeric weight.",
-    "how": "Confirm the export response reports slide_count = 3 with the three canvases at their true physical pixel sizes (A1 stand panel 2245 x 3179 px and A5 order form 559 x 794 px, both from mm at 96 dpi, plus the 16:9 appointment slide, e.g. 1920 x 1080 px), then parse each canvas's returned markup for base64/embedded image data on every photograph (no external-URL grey boxes), path-type shapes for the stamp, real table-cell structure for the range comparison, and a resolved licensed font family plus numeric weight declared on every text element."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -456,33 +457,23 @@
    "id": "A5",
    "text": "Every spec parameter, the caption, the firing and care line, the lead time and the trade price appear on every page and match the price file verbatim.",
    "how": "Round-trip the prepared template to IDML and grep the story for all twelve expected placeholders (PIECE_CODE, DIMENSIONS, CAPACITY, GLAZE, FIRING, CARE, LEAD_TIME, CARTON, TRADE_PRICE, CAPTION, PHOTOGRAPH, FOOTER_MARK), confirming in particular that LEAD_TIME and CARTON — the two fields the lossy mapping readout silently drops past the combined firing/care run — are both present, then read text off each of the 16 rendered pages and compare each field character-for-character against that piece's price-file row."
-  },
-  {
-   "id": "A6",
-   "text": "Trade prices appear in one consistent money format across every page, and no page carries an empty price.",
-   "how": "Read the trade-price line off all 16 pages and confirm every one matches a single money format (one currency-symbol-plus-integer form such as $62, normalising the source's three mixed forms: bare integer 62, one-decimal 58.0 and symbol-only $96), and confirm the two made-to-order rows MRL-111 and MRL-115 — whose source trade price is empty — carry a resolved token (e.g. an explicit made-to-order/POA value) rather than a blank that prints as free."
-  },
-  {
-   "id": "A7",
-   "text": "Each page carries its own piece's photograph rather than one static image repeated, and the piece shown matches the row's piece code and its delivered state.",
-   "how": "For each of the 16 pages, confirm the bound photograph is the graded master whose filename matches that row's piece code (16 distinct images, not one static image repeated), and that the piece shown matches the row identity per the triage note — in particular MRL-105, whose price-file photograph column points at the lid-standing-beside-the-jar frame, must show the jar in the correct catalogue state (lid seated or the identity conflict resolved) rather than the wrong studio state."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered file exceeds its source frame on either axis and no crop or resize response carried an unreported upscale entry.",
-   "how": "Confirm no delivered piece frame exceeds its 4000 x 5000 px source on either axis and the recovered stamp raster does not exceed its 3600 x 3600 px source, then inspect every crop_and_resize and remove_background response's tradeoffs array in the run log for an interpolation/upscale entry and check each against the handover's transcription (an upscale entry present in the log but absent from the handover fails)."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Sixteen per-piece sheet files exist, each named to a piece code, each containing the piece its name claims.",
-   "how": "Confirm exactly 16 single-page sheet files exist, one per current piece MRL-101..116, and for each open the file and read the piece code off its rendered content, comparing it against the piece code in the filename (never against its position in the returned list, since multi-record raster output is documented to come back reversed)."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "The exported document holds three canvases at three distinct declared sizes with the stand panel at true physical dimensions, every photograph resolved to real image data, the stamp present as path shapes, the range comparison present as real table cells, and every text element carrying a resolved licensed face at the intended numeric weight.",
-   "how": "Confirm the export response reports slide_count = 3 with the three canvases at their true physical pixel sizes (A1 stand panel 2245 x 3179 px and A5 order form 559 x 794 px, both from mm at 96 dpi, plus the 16:9 appointment slide, e.g. 1920 x 1080 px), then parse each canvas's returned markup for base64/embedded image data on every photograph (no external-URL grey boxes), path-type shapes for the stamp, real table-cell structure for the range comparison, and a resolved licensed font family plus numeric weight declared on every text element."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-16",
+ "task_code": "SB3-016-PHO",
+ "task_name": "SlabVault - Collectible card marketplace image system",
+ "global_order": 16,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-16",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-016-PHO__slabvault-collectible-card-marketplace-image-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-016-PHO__slabvault-collectible-card-marketplace-image-system/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Senior photo retoucher for SlabVault Cards: SlabVault house photography",
+ "engagement_title": "SB3-016-PHO: SlabVault - Collectible card marketplace image system",
  "marketplace_listing": {
   "title": "Senior photo retoucher for SlabVault Cards: SlabVault house photography",
   "experience_level": "Expert",
@@ -391,16 +402,6 @@
     "id": "A5",
     "text": "Each ticket carries a distinct holder thumbnail bound to its own lot rather than one image repeated.",
     "how": "Hash the thumbnail region of each rendered page and confirm fourteen distinct hashes matched to fourteen lot numbers."
-   },
-   {
-    "id": "A6",
-    "text": "The transparent cross-listing versions carry genuine alpha rather than a filled rectangle.",
-    "how": "Inspect the alpha channel of each version for partial-alpha pixels at the holder boundary and full transparency at the frame corners."
-   },
-   {
-    "id": "A7",
-    "text": "The delivered auction-week source HTML is self-contained: every lot picture and the licensed band is embedded as image data rather than referenced, so the file renders complete on its own.",
-    "how": "Confirm the source HTML file is present as a delivered artefact and parse it for external resource references: every img and CSS-background reference must be a data: URI, with no external http(s) image or media URL."
    }
   ],
   "human_craft_checks": [
@@ -432,19 +433,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered file exceeds its source frame's pixel dimensions, and no crop or knockout tradeoff record in the run carries an upscale entry.",
-    "how": "Read the pixel dimensions of every delivered file against the frame it derives from per the manifest, and diff the captured tradeoff objects against the resize table in the note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "No lot picture in any canvas resolved to the importer's placeholder, and the closing date is a text element rather than part of an image.",
-    "how": "Parse the returned per-slide markup for 1x1 placeholder image data and locate the closing date as a text node."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "Every text element in the exported markup carries a resolved licensed PostScript face rather than a fallback default.",
-    "how": "Read the font-family attribute on every text node in the returned markup and check it against the families the kit call returned."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -482,33 +483,23 @@
    "id": "A5",
    "text": "Each ticket carries a distinct holder thumbnail bound to its own lot rather than one image repeated.",
    "how": "Hash the thumbnail region of each rendered page and confirm fourteen distinct hashes matched to fourteen lot numbers."
-  },
-  {
-   "id": "A6",
-   "text": "The transparent cross-listing versions carry genuine alpha rather than a filled rectangle.",
-   "how": "Inspect the alpha channel of each version for partial-alpha pixels at the holder boundary and full transparency at the frame corners."
-  },
-  {
-   "id": "A7",
-   "text": "The delivered auction-week source HTML is self-contained: every lot picture and the licensed band is embedded as image data rather than referenced, so the file renders complete on its own.",
-   "how": "Confirm the source HTML file is present as a delivered artefact and parse it for external resource references: every img and CSS-background reference must be a data: URI, with no external http(s) image or media URL."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered file exceeds its source frame's pixel dimensions, and no crop or knockout tradeoff record in the run carries an upscale entry.",
-   "how": "Read the pixel dimensions of every delivered file against the frame it derives from per the manifest, and diff the captured tradeoff objects against the resize table in the note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "No lot picture in any canvas resolved to the importer's placeholder, and the closing date is a text element rather than part of an image.",
-   "how": "Parse the returned per-slide markup for 1x1 placeholder image data and locate the closing date as a text node."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "Every text element in the exported markup carries a resolved licensed PostScript face rather than a fallback default.",
-   "how": "Read the font-family attribute on every text node in the returned markup and check it against the families the kit call returned."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "VECTOR-04",
+ "task_code": "SB3-034-VEC",
+ "task_name": "Meridian and Ash - Sticker artwork production masters",
+ "global_order": 34,
+ "family_code": "VEC",
+ "legacy_id": "VECTOR-04",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-034-VEC__meridian-and-ash-sticker-artwork-production-masters",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-034-VEC__meridian-and-ash-sticker-artwork-production-masters/"
+ },
  "family": "Vector & Print",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Production vector designer for Meridian and Ash: sticker artwork masters",
+ "engagement_title": "SB3-034-VEC: Meridian and Ash - Sticker artwork production masters",
  "marketplace_listing": {
   "title": "Production vector designer for Meridian and Ash: sticker artwork masters",
   "experience_level": "Expert",
@@ -392,24 +403,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "Each sticker has exactly one closed cut contour associated with it, and that contour exists as its own object rather than as a stroke or effect on the artwork element.",
-    "how": "Count closed subpaths per cut object and assert each cut object is a sibling of, not an attribute on, the artwork it belongs to, in both the source HTML and the returned per canvas markup."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The sheet root declares the printer's stated sheet size in absolute physical units and the export returned it at the corresponding pixel size.",
-    "how": "Read the root's declared canvas size in the source and the per slide width and height in the export response, and convert against the printer's note."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "The export returned four roots, each keeping its own declared canvas size, and no global canvas override was passed.",
-    "how": "Read slide_count and the per slide dimensions in the export response and check the call arguments for canvas or selector overrides."
-   },
-   {
-    "id": "P4",
-    "text": "No image anywhere in the exported markup resolved to the importer's placeholder, and each sticker arrived as vector path shapes rather than one picture.",
-    "how": "Parse the returned per canvas markup for placeholder image data and count path shapes in each sticker's region on each canvas."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -447,24 +453,19 @@
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "Each sticker has exactly one closed cut contour associated with it, and that contour exists as its own object rather than as a stroke or effect on the artwork element.",
-   "how": "Count closed subpaths per cut object and assert each cut object is a sibling of, not an attribute on, the artwork it belongs to, in both the source HTML and the returned per canvas markup."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The sheet root declares the printer's stated sheet size in absolute physical units and the export returned it at the corresponding pixel size.",
-   "how": "Read the root's declared canvas size in the source and the per slide width and height in the export response, and convert against the printer's note."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "The export returned four roots, each keeping its own declared canvas size, and no global canvas override was passed.",
-   "how": "Read slide_count and the per slide dimensions in the export response and check the call arguments for canvas or selector overrides."
-  },
-  {
-   "id": "P4",
-   "text": "No image anywhere in the exported markup resolved to the importer's placeholder, and each sticker arrived as vector path shapes rather than one picture.",
-   "how": "Parse the returned per canvas markup for placeholder image data and count path shapes in each sticker's region on each canvas."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

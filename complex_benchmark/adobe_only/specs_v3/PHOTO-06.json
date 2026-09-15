@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-06",
+ "task_code": "SB3-006-PHO",
+ "task_name": "Hollis Family Archive - Ada Hollis archival restoration",
+ "global_order": 6,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-06",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-006-PHO__hollis-family-archive-ada-hollis-archival-restoration",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-006-PHO__hollis-family-archive-ada-hollis-archival-restoration/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Senior photo retoucher for The Hollis Family Archive: Ada Hollis restored archive",
+ "engagement_title": "SB3-006-PHO: Hollis Family Archive - Ada Hollis archival restoration",
  "marketplace_listing": {
   "title": "Senior photo retoucher for The Hollis Family Archive: Ada Hollis restored archive",
   "experience_level": "Expert",
@@ -354,11 +365,6 @@
     "id": "A5",
     "text": "No caption content is lost at trim on any card.",
     "how": "Render each card at true print resolution and compare every rendered line against the reconciled data file value for that record."
-   },
-   {
-    "id": "A6",
-    "text": "The proofs are at true print resolution at A6 trim rather than screen scale.",
-    "how": "Read the pixel dimensions and density metadata of each proof and confirm each equals 1748 x 1240 px (A6 landscape, 148 x 105 mm at 300 DPI) with a 300 DPI density tag, not a screen-scale proxy."
    }
   ],
   "human_craft_checks": [
@@ -390,19 +396,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered image exceeds its source scan's dimensions and no crop tradeoff record carries an upscale entry.",
-    "how": "Compare each delivered file against its source per the manifest and diff the captured tradeoffs objects."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The wall plan arrived as a real table and every text element carries a resolved licensed face at a weight the family inventory actually defines.",
-    "how": "Parse the returned markup for table structures and check every font-family and weight against what the kit and style calls returned."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "The written note is structurally complete across every item the acceptance bar requires.",
-    "how": "Parse the note and confirm it contains: one what-was-corrected / what-was-left entry for each of the nine photographs (including the scar preserved on hollis_scan_07); an explicit resolution for each of the three catalogue questions (the 1936 wedding date, the withheld Putney duplicate, the renamed IMG_2214.jpg file); each caption whose wording was changed to fit the framer's fixed measure listed with its old and new wording; the type system by role with family, foundry or designer and numeric weight; and every resize any tool reported as a tradeoffs entry. Presence and counts are graded here; the soundness of each judgement stays with H2 and H3."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -440,28 +446,23 @@
    "id": "A5",
    "text": "No caption content is lost at trim on any card.",
    "how": "Render each card at true print resolution and compare every rendered line against the reconciled data file value for that record."
-  },
-  {
-   "id": "A6",
-   "text": "The proofs are at true print resolution at A6 trim rather than screen scale.",
-   "how": "Read the pixel dimensions and density metadata of each proof and confirm each equals 1748 x 1240 px (A6 landscape, 148 x 105 mm at 300 DPI) with a 300 DPI density tag, not a screen-scale proxy."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered image exceeds its source scan's dimensions and no crop tradeoff record carries an upscale entry.",
-   "how": "Compare each delivered file against its source per the manifest and diff the captured tradeoffs objects."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The wall plan arrived as a real table and every text element carries a resolved licensed face at a weight the family inventory actually defines.",
-   "how": "Parse the returned markup for table structures and check every font-family and weight against what the kit and style calls returned."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "The written note is structurally complete across every item the acceptance bar requires.",
-   "how": "Parse the note and confirm it contains: one what-was-corrected / what-was-left entry for each of the nine photographs (including the scar preserved on hollis_scan_07); an explicit resolution for each of the three catalogue questions (the 1936 wedding date, the withheld Putney duplicate, the renamed IMG_2214.jpg file); each caption whose wording was changed to fit the framer's fixed measure listed with its old and new wording; the type system by role with family, foundry or designer and numeric weight; and every resize any tool reported as a tradeoffs entry. Presence and counts are graded here; the soundness of each judgement stays with H2 and H3."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

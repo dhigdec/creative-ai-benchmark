@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "VECTOR-06",
+ "task_code": "SB3-036-VEC",
+ "task_name": "Ridgeway Rovers - Football crest master system",
+ "global_order": 36,
+ "family_code": "VEC",
+ "legacy_id": "VECTOR-06",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-036-VEC__ridgeway-rovers-football-crest-master-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-036-VEC__ridgeway-rovers-football-crest-master-system/"
+ },
  "family": "Vector & Print",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Production vector designer for Ridgeway Rovers FC: Ridgeway crest master system",
+ "engagement_title": "SB3-036-VEC: Ridgeway Rovers - Football crest master system",
  "marketplace_listing": {
   "title": "Production vector designer for Ridgeway Rovers FC: Ridgeway crest master system",
   "experience_level": "Expert",
@@ -178,12 +189,12 @@
   {
    "name": "Ridgeway crest master system",
    "deliverable_class": "vector artwork system",
-   "spec": "The crest recovered from a photograph of stitching as placeable scalable geometry with a transparent ground: a real viewBox, no opaque full canvas rectangle, every element that is on the shirt present including the hairline rule and centre motif, delivered as the crest, a single ink version drawn to survive at shirt breast size, and a reversed version that holds on navy. Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
+   "spec": "The crest recovered from a photograph of stitching as placeable scalable geometry with a transparent ground: a real viewBox, no opaque full canvas rectangle, every element that is on the shirt present including the hairline rule and centre motif, delivered as the crest, a single ink version drawn to survive at shirt breast size, and a reversed version that holds on navy.  Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
   },
   {
    "name": "Ridgeway numbering and lettering set",
    "deliverable_class": "vector artwork system",
-   "spec": "Thirty six glyphs rebuilt from the founder's drawn sheets as original geometry: even consistent strokes, closed counters, single spot colour, no graph rule and no stray path, weighted to survive a blade and a heat press, reading as one set when a name sits above a number at back of shirt proportion, plus a written statement of what the sheets cannot supply for this squad. Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
+   "spec": "Thirty six glyphs rebuilt from the founder's drawn sheets as original geometry: even consistent strokes, closed counters, single spot colour, no graph rule and no stray path, weighted to survive a blade and a heat press, reading as one set when a name sits above a number at back of shirt proportion, plus a written statement of what the sheets cannot supply for this squad.  Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
   }
  ],
  "handover_requirements": {
@@ -200,11 +211,10 @@
   "The crest is placeable artwork rather than a picture of a crest: scalable, a real viewBox present, no opaque full canvas rectangle underneath, delivered as the crest, a single ink version and a version that holds on navy.",
   "Every element that is on the shirt is on the recovered crest. A crest that is recognisable but missing an interior element is not the crest.",
   "The crest still reads at the size it reproduces on the shirt breast, not only at full canvas.",
+  "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness.",
   "Thirty six glyphs are delivered, and the letters and the digits read as ONE set when a name sits above a number at back of shirt proportion.",
-  "No glyph carries the graph rule, a stray blue path or an unclosed counter, and every glyph is a single closed spot colour shape the supplier can cut.",
   "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
-  "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness."
+  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
  ],
  "connector_profile": {
   "profile_id": "chatgpt-adobe-2026-09-15",
@@ -364,11 +374,6 @@
     "id": "A5",
     "text": "Thirty six glyph files exist covering A to Z and 0 to 9, each a single closed shape in one fill colour with no path matching the graph rule spacing.",
     "how": "Enumerate the set, count distinct fills per file and check for repeated evenly spaced straight paths."
-   },
-   {
-    "id": "A6",
-    "text": "Each per player proof file's name matches the player whose name is rendered inside it.",
-    "how": "Extract the rendered name from each proof and compare against the filename and the corresponding CSV row."
    }
   ],
   "human_craft_checks": [
@@ -400,25 +405,29 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "The crest arrived as vector path shapes rather than one picture, and every text element carries a resolved licensed PostScript face.",
-    "how": "Count path shape elements in the crest region and check every font family attribute against the families the kit call returned."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "No delivered raster exceeds the pixel dimensions of its source frame and no image call's tradeoff record carries an upscale entry.",
-    "how": "Compare delivered dimensions against the manifest and diff every captured tradeoffs object against the note's resize table."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
    "The crest is placeable artwork rather than a picture of a crest: scalable, a real viewBox present, no opaque full canvas rectangle underneath, delivered as the crest, a single ink version and a version that holds on navy.",
    "Every element that is on the shirt is on the recovered crest. A crest that is recognisable but missing an interior element is not the crest.",
    "The crest still reads at the size it reproduces on the shirt breast, not only at full canvas.",
+   "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness.",
    "Thirty six glyphs are delivered, and the letters and the digits read as ONE set when a name sits above a number at back of shirt proportion.",
-   "No glyph carries the graph rule, a stray blue path or an unclosed counter, and every glyph is a single closed spot colour shape the supplier can cut.",
    "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
-   "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness."
+   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
   ]
  },
  "verifiers_auto": [
@@ -446,23 +455,23 @@
    "id": "A5",
    "text": "Thirty six glyph files exist covering A to Z and 0 to 9, each a single closed shape in one fill colour with no path matching the graph rule spacing.",
    "how": "Enumerate the set, count distinct fills per file and check for repeated evenly spaced straight paths."
-  },
-  {
-   "id": "A6",
-   "text": "Each per player proof file's name matches the player whose name is rendered inside it.",
-   "how": "Extract the rendered name from each proof and compare against the filename and the corresponding CSV row."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "The crest arrived as vector path shapes rather than one picture, and every text element carries a resolved licensed PostScript face.",
-   "how": "Count path shape elements in the crest region and check every font family attribute against the families the kit call returned."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "No delivered raster exceeds the pixel dimensions of its source frame and no image call's tradeoff record carries an upscale entry.",
-   "how": "Compare delivered dimensions against the manifest and diff every captured tradeoffs object against the note's resize table."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

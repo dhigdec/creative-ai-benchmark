@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-15",
+ "task_code": "SB3-060-LAY",
+ "task_name": "Aldervale Mutual - District insurance counter-card run",
+ "global_order": 60,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-15",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-060-LAY__aldervale-mutual-district-insurance-counter-card-run",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-060-LAY__aldervale-mutual-district-insurance-counter-card-run/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Editorial and production designer for Aldervale Mutual: Northern district counter card run",
+ "engagement_title": "SB3-060-LAY: Aldervale Mutual - District insurance counter-card run",
  "marketplace_listing": {
   "title": "Editorial and production designer for Aldervale Mutual: Northern district counter card run",
   "experience_level": "Expert",
@@ -372,16 +383,6 @@
     "id": "A5",
     "text": "All four copy blocks exist as placeholders in the prepared template before any merge is run.",
     "how": "Export the interchange file from the prepared template, unzip it and search the stories for each field token."
-   },
-   {
-    "id": "A6",
-    "text": "Every rendered card's disclosure matches its roster cell in full, character for character, with no early stop.",
-    "how": "Extract the disclosure text from each rendered card and diff it against the roster row it was merged from."
-   },
-   {
-    "id": "A7",
-    "text": "Each per-producer file contains the producer its filename claims.",
-    "how": "Open every per-producer file and read its name block against the filename."
    }
   ],
   "human_craft_checks": [
@@ -413,14 +414,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered image exceeds its source frame's dimensions and no crop or resize tradeoff record carries an enlargement entry.",
-    "how": "Compare each delivered file against its source per the manifest and diff the captured tradeoffs objects."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The plan comparison arrived as a real table, its qualifying footnote is one continuous text run, and every text element carries a resolved licensed face.",
-    "how": "Parse the returned markup for table structures, read the footnote element's runs, and check every font-family attribute against the families the kit call returned."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -458,28 +464,23 @@
    "id": "A5",
    "text": "All four copy blocks exist as placeholders in the prepared template before any merge is run.",
    "how": "Export the interchange file from the prepared template, unzip it and search the stories for each field token."
-  },
-  {
-   "id": "A6",
-   "text": "Every rendered card's disclosure matches its roster cell in full, character for character, with no early stop.",
-   "how": "Extract the disclosure text from each rendered card and diff it against the roster row it was merged from."
-  },
-  {
-   "id": "A7",
-   "text": "Each per-producer file contains the producer its filename claims.",
-   "how": "Open every per-producer file and read its name block against the filename."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered image exceeds its source frame's dimensions and no crop or resize tradeoff record carries an enlargement entry.",
-   "how": "Compare each delivered file against its source per the manifest and diff the captured tradeoffs objects."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The plan comparison arrived as a real table, its qualifying footnote is one continuous text run, and every text element carries a resolved licensed face.",
-   "how": "Parse the returned markup for table structures, read the footnote element's runs, and check every font-family attribute against the families the kit call returned."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

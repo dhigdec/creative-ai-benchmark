@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-07",
+ "task_code": "SB3-052-LAY",
+ "task_name": "Harbor Crest Realty - Open-house card campaign",
+ "global_order": 52,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-07",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-052-LAY__harbor-crest-realty-open-house-card-campaign",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-052-LAY__harbor-crest-realty-open-house-card-campaign/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Editorial and production designer for Harbor Crest Realty: Open house card run",
+ "engagement_title": "SB3-052-LAY: Harbor Crest Realty - Open-house card campaign",
  "marketplace_listing": {
   "title": "Editorial and production designer for Harbor Crest Realty: Open house card run",
   "experience_level": "Expert",
@@ -411,16 +422,6 @@
     "id": "A5",
     "text": "The merged card document has exactly six pages and the pages follow roster order.",
     "how": "Read the merged press document's page count and assert it equals exactly 6, then read each page's agent-name field and assert the sequence is exactly the roster order: Dana Marsh, Theo Brandt, Colleen Vasquez, Raymond Okafor, Nadia Feldman, Gregory Lin."
-   },
-   {
-    "id": "A6",
-    "text": "Every field the roster carries is present on every card page, with none silently absent.",
-    "how": "Extract the rendered text of each of the 6 card pages and, for that page's roster row, assert the exact Name, Licence Line, Direct Number and Email strings all appear, plus the static office lines '48 Rosewood Plaza' and 'Rosewood, Calderon County'; any page missing any one of these (in particular a Direct Number or Email dropped by the 17-character offset trap) fails."
-   },
-   {
-    "id": "A7",
-    "text": "Each card page carries the photograph belonging to its own roster row and no other.",
-    "how": "For each of the 6 rendered pages, compare the bound photograph against the prepared agent plate named by that row's Headshot column; every page must carry its own row's plate and no other."
    }
   ],
   "human_craft_checks": [
@@ -452,24 +453,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No crop or knockout tradeoff record in the run carries an upscale entry, and every downscaled entry is transcribed in the handover note.",
-    "how": "For every image call captured in the run, read metadata.tradeoffs and assert no record has an upscale_factor greater than 1.0 (any upscale entry is a hard fail); then assert every record whose resize factor is below 1.0 appears verbatim in the handover note's resize table."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The prepared merge template's story contains every expected placeholder.",
-    "how": "Export IDML from the prepared template, unzip it, and grep the story XML for each of the four placeholder tokens AGENT_NAME, LICENCE_LINE, DIRECT_NUMBER and EMAIL; all four must be present in the story (a VALID validator verdict or a prepare-step success message is not accepted as proof)."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "The export returned the expected number of roots and each kept its own declared canvas size, including the A4 flyer at true physical dimensions.",
-    "how": "Read slide_count from the export response and assert it equals exactly 5 (one-pager, A4 flyer, and three social canvases), then read each root's declared width and height and assert the A4 flyer root is exactly 794x1123 px (210x297 mm at 96 dpi) and the three social roots carry three distinct declared canvas sizes at square (1:1), story (9:16) and four-by-five (4:5) ratios; a single global canvas size collapsing the set fails."
-   },
-   {
-    "id": "P4",
-    "text": "No image in any canvas resolved to the importer's placeholder, and every text element carries a resolved licensed PostScript face rather than a fallback default.",
-    "how": "Parse the returned per-root markup: assert no image element resolves to the importer's grey placeholder data-URI (every photograph is embedded image data), and assert every text element's font-family attribute matches one of the licensed PostScript family slugs returned by the font kit call, with none falling back to a default system face."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -507,38 +503,23 @@
    "id": "A5",
    "text": "The merged card document has exactly six pages and the pages follow roster order.",
    "how": "Read the merged press document's page count and assert it equals exactly 6, then read each page's agent-name field and assert the sequence is exactly the roster order: Dana Marsh, Theo Brandt, Colleen Vasquez, Raymond Okafor, Nadia Feldman, Gregory Lin."
-  },
-  {
-   "id": "A6",
-   "text": "Every field the roster carries is present on every card page, with none silently absent.",
-   "how": "Extract the rendered text of each of the 6 card pages and, for that page's roster row, assert the exact Name, Licence Line, Direct Number and Email strings all appear, plus the static office lines '48 Rosewood Plaza' and 'Rosewood, Calderon County'; any page missing any one of these (in particular a Direct Number or Email dropped by the 17-character offset trap) fails."
-  },
-  {
-   "id": "A7",
-   "text": "Each card page carries the photograph belonging to its own roster row and no other.",
-   "how": "For each of the 6 rendered pages, compare the bound photograph against the prepared agent plate named by that row's Headshot column; every page must carry its own row's plate and no other."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No crop or knockout tradeoff record in the run carries an upscale entry, and every downscaled entry is transcribed in the handover note.",
-   "how": "For every image call captured in the run, read metadata.tradeoffs and assert no record has an upscale_factor greater than 1.0 (any upscale entry is a hard fail); then assert every record whose resize factor is below 1.0 appears verbatim in the handover note's resize table."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The prepared merge template's story contains every expected placeholder.",
-   "how": "Export IDML from the prepared template, unzip it, and grep the story XML for each of the four placeholder tokens AGENT_NAME, LICENCE_LINE, DIRECT_NUMBER and EMAIL; all four must be present in the story (a VALID validator verdict or a prepare-step success message is not accepted as proof)."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "The export returned the expected number of roots and each kept its own declared canvas size, including the A4 flyer at true physical dimensions.",
-   "how": "Read slide_count from the export response and assert it equals exactly 5 (one-pager, A4 flyer, and three social canvases), then read each root's declared width and height and assert the A4 flyer root is exactly 794x1123 px (210x297 mm at 96 dpi) and the three social roots carry three distinct declared canvas sizes at square (1:1), story (9:16) and four-by-five (4:5) ratios; a single global canvas size collapsing the set fails."
-  },
-  {
-   "id": "P4",
-   "text": "No image in any canvas resolved to the importer's placeholder, and every text element carries a resolved licensed PostScript face rather than a fallback default.",
-   "how": "Parse the returned per-root markup: assert no image element resolves to the importer's grey placeholder data-URI (every photograph is embedded image data), and assert every text element's font-family attribute matches one of the licensed PostScript family slugs returned by the font kit call, with none falling back to a default system face."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

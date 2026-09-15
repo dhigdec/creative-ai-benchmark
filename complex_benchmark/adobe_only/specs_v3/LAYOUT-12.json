@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-12",
+ "task_code": "SB3-057-LAY",
+ "task_name": "Umbra Loft - After Dark event campaign",
+ "global_order": 57,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-12",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-057-LAY__umbra-loft-after-dark-event-campaign",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-057-LAY__umbra-loft-after-dark-event-campaign/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Editorial and production designer for Umbra Loft: Umbra after dark gig poster run",
+ "engagement_title": "SB3-057-LAY: Umbra Loft - After Dark event campaign",
  "marketplace_listing": {
   "title": "Editorial and production designer for Umbra Loft: Umbra after dark gig poster run",
   "experience_level": "Expert",
@@ -415,11 +426,6 @@
     "id": "A5",
     "text": "Every mapped field placeholder is present in the prepared card template's story, with none silently dropped.",
     "how": "Export the prepared template's interchange form (IDML) and grep the stories for all eight expected field tokens: <<DATE>>, <<HEADLINE>>, <<SUPPORT>>, <<IMAGE>>, <<DOOR>>, <<SET>>, <<PRICE>>, <<STAGE_NOTE>>; assert every one is present and none silently dropped."
-   },
-   {
-    "id": "A6",
-    "text": "Each of the nine cards carries its own picture rather than one picture repeated across the run.",
-    "how": "Compare the image region of each rendered card against the others and against the per-night filenames; assert exactly 8 distinct picture files across the 9 cards, with only the two residency cards (rows 4 and 5, The Blue Hour, 3 and 4 Oct) sharing seasoncard_img_04.jpg, and no single picture repeated across all nine."
    }
   ],
   "human_craft_checks": [
@@ -451,24 +457,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "Each Express export returned its declared number of roots, each keeping its own declared canvas size.",
-    "how": "Read the returned root count and per-canvas width and height from every export response; assert the poster document returns 3 roots (three A2 canvases), the promoter deck 5 roots, the social set 3 roots (square 1:1, tall 9:16 and four-by-five 4:5, each a distinct declared size), and the basis page 1 root; assert no two social canvases share the same declared size."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The promoter deck's room data arrived as a real table with per cell text rather than as an image or a flowed paragraph.",
-    "how": "Parse the deck's returned markup for <table>/<tr>/<td> structures (not an image or a flowed paragraph) and string-match specific cell values against umbra_room_specs.txt: capacity 250 standing / 120 seated, stage 5.2 m x 3.0 m x 0.4 m, door split 70/30, and the six monthly draw values (Sep 168, Oct 201, Nov 187, Dec 224, Jan 142, Feb 176)."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "Every text element across the exports carries a resolved licensed face rather than a fallback default, and the required licence line appears on every printed card.",
-    "how": "Read the font-family attribute on every text node in the returned markup and assert each resolves to a family the kit call returned (no fallback default such as sans-serif or Times), and string-match the exact required licence line on each rendered card: 'Umbra Loft, 14 Foundry Court (basement), Providence RI. Licensed under City of Providence Entertainment Licence PVD-2021-0846.'"
-   },
-   {
-    "id": "P4",
-    "text": "No delivered raster exceeds its source frame's pixel dimensions and no crop record in the run carries an enlargement entry.",
-    "how": "Compare each delivered raster's pixel dimensions against its source per the manifest and assert none exceeds source: no archive-frame derivative exceeds 4000 x 2667 px and no wordmark derivative exceeds 4032 x 3024 px; diff the captured crop_and_resize tradeoff records against the note's resize table and assert no entry reports an enlargement (upscale)."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -506,33 +507,23 @@
    "id": "A5",
    "text": "Every mapped field placeholder is present in the prepared card template's story, with none silently dropped.",
    "how": "Export the prepared template's interchange form (IDML) and grep the stories for all eight expected field tokens: <<DATE>>, <<HEADLINE>>, <<SUPPORT>>, <<IMAGE>>, <<DOOR>>, <<SET>>, <<PRICE>>, <<STAGE_NOTE>>; assert every one is present and none silently dropped."
-  },
-  {
-   "id": "A6",
-   "text": "Each of the nine cards carries its own picture rather than one picture repeated across the run.",
-   "how": "Compare the image region of each rendered card against the others and against the per-night filenames; assert exactly 8 distinct picture files across the 9 cards, with only the two residency cards (rows 4 and 5, The Blue Hour, 3 and 4 Oct) sharing seasoncard_img_04.jpg, and no single picture repeated across all nine."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "Each Express export returned its declared number of roots, each keeping its own declared canvas size.",
-   "how": "Read the returned root count and per-canvas width and height from every export response; assert the poster document returns 3 roots (three A2 canvases), the promoter deck 5 roots, the social set 3 roots (square 1:1, tall 9:16 and four-by-five 4:5, each a distinct declared size), and the basis page 1 root; assert no two social canvases share the same declared size."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The promoter deck's room data arrived as a real table with per cell text rather than as an image or a flowed paragraph.",
-   "how": "Parse the deck's returned markup for <table>/<tr>/<td> structures (not an image or a flowed paragraph) and string-match specific cell values against umbra_room_specs.txt: capacity 250 standing / 120 seated, stage 5.2 m x 3.0 m x 0.4 m, door split 70/30, and the six monthly draw values (Sep 168, Oct 201, Nov 187, Dec 224, Jan 142, Feb 176)."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "Every text element across the exports carries a resolved licensed face rather than a fallback default, and the required licence line appears on every printed card.",
-   "how": "Read the font-family attribute on every text node in the returned markup and assert each resolves to a family the kit call returned (no fallback default such as sans-serif or Times), and string-match the exact required licence line on each rendered card: 'Umbra Loft, 14 Foundry Court (basement), Providence RI. Licensed under City of Providence Entertainment Licence PVD-2021-0846.'"
-  },
-  {
-   "id": "P4",
-   "text": "No delivered raster exceeds its source frame's pixel dimensions and no crop record in the run carries an enlargement entry.",
-   "how": "Compare each delivered raster's pixel dimensions against its source per the manifest and assert none exceeds source: no archive-frame derivative exceeds 4000 x 2667 px and no wordmark derivative exceeds 4032 x 3024 px; diff the captured crop_and_resize tradeoff records against the note's resize table and assert no entry reports an enlargement (upscale)."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

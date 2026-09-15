@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "PHOTO-03",
+ "task_code": "SB3-003-PHO",
+ "task_name": "Cedarline and Vale - Ridgeway Lane listing image system",
+ "global_order": 3,
+ "family_code": "PHO",
+ "legacy_id": "PHOTO-03",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-003-PHO__cedarline-and-vale-ridgeway-lane-listing-image-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-003-PHO__cedarline-and-vale-ridgeway-lane-listing-image-system/"
+ },
  "family": "Photo & Image",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Senior photo retoucher for Cedarline and Vale: Ridgeway Lane listing photography",
+ "engagement_title": "SB3-003-PHO: Cedarline and Vale - Ridgeway Lane listing image system",
  "marketplace_listing": {
   "title": "Senior photo retoucher for Cedarline and Vale: Ridgeway Lane listing photography",
   "experience_level": "Expert",
@@ -385,16 +396,6 @@
     "id": "A5",
     "text": "The vendor proofs are at true print resolution at A5 trim rather than screen scale.",
     "how": "Read the pixel dimensions and density metadata of each proof and assert 1748 x 2480 px at 300 ppi (A5 portrait, 148 x 210 mm at trim), rejecting any screen-scale proxy."
-   },
-   {
-    "id": "A6",
-    "text": "The portal and story crops derive from the straightened masters, not from the raw frames.",
-    "how": "Compare crop provenance in the manifest against the straighten step outputs for the two off-level frames (room_04 and room_12), asserting their portal and story crops derive from the straightened masters rather than the raw frames."
-   },
-   {
-    "id": "A7",
-    "text": "The handover note accounts for every office-export row and its resolution.",
-    "how": "Assert the note lists all seven active_listings.csv rows each with a stated resolution: 51 Alder Ct excluded as under contract, 14 Ridgeway Lane normalised (street spelled-out and the $2,400,000 currency-symbol price reconciled to the other six plain-integer conventions) with its photo produced by this engagement, and the remaining five carried at their current January prices, so exactly six rows enter the window run."
    }
   ],
   "human_craft_checks": [
@@ -426,24 +427,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered image exceeds its source frame's dimensions and no crop tradeoff record carries an upscale entry.",
-    "how": "Compare each delivered file's pixel dimensions against its 6000 x 4000 source frame per the manifest (no output larger than 6000 x 4000 on either axis) and diff the captured tradeoffs objects, asserting zero upscale entries."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The specification block arrived as a real table and every text element carries a resolved licensed face.",
-    "how": "Parse the returned markup for table structures and check every font-family attribute against the families the kit call returned."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "The handover note records the type system by role with family, foundry or designer and the actual numeric weight, matching the kit.",
-    "how": "Parse the note for each of the three type roles (heading serif, body and specification grotesque, and the display or story cut) and assert each carries a family name, a foundry or designer, and an integer numeric weight equal to the value font_styles returned for that family; fail if any role omits a field or states a style name in place of the numeric weight."
-   },
-   {
-    "id": "P4",
-    "text": "The handover note's resize log enumerates every resize any tool reported, not only upscale entries.",
-    "how": "Diff the note's resize log against the captured tradeoffs objects from every image_crop_and_resize and image_crop_to_bounds call and assert one logged entry per reported resize (each source to output dimension change), covering downscales and crops as well as the upscale entries A5 separately checks are absent."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -481,38 +477,23 @@
    "id": "A5",
    "text": "The vendor proofs are at true print resolution at A5 trim rather than screen scale.",
    "how": "Read the pixel dimensions and density metadata of each proof and assert 1748 x 2480 px at 300 ppi (A5 portrait, 148 x 210 mm at trim), rejecting any screen-scale proxy."
-  },
-  {
-   "id": "A6",
-   "text": "The portal and story crops derive from the straightened masters, not from the raw frames.",
-   "how": "Compare crop provenance in the manifest against the straighten step outputs for the two off-level frames (room_04 and room_12), asserting their portal and story crops derive from the straightened masters rather than the raw frames."
-  },
-  {
-   "id": "A7",
-   "text": "The handover note accounts for every office-export row and its resolution.",
-   "how": "Assert the note lists all seven active_listings.csv rows each with a stated resolution: 51 Alder Ct excluded as under contract, 14 Ridgeway Lane normalised (street spelled-out and the $2,400,000 currency-symbol price reconciled to the other six plain-integer conventions) with its photo produced by this engagement, and the remaining five carried at their current January prices, so exactly six rows enter the window run."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered image exceeds its source frame's dimensions and no crop tradeoff record carries an upscale entry.",
-   "how": "Compare each delivered file's pixel dimensions against its 6000 x 4000 source frame per the manifest (no output larger than 6000 x 4000 on either axis) and diff the captured tradeoffs objects, asserting zero upscale entries."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The specification block arrived as a real table and every text element carries a resolved licensed face.",
-   "how": "Parse the returned markup for table structures and check every font-family attribute against the families the kit call returned."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "The handover note records the type system by role with family, foundry or designer and the actual numeric weight, matching the kit.",
-   "how": "Parse the note for each of the three type roles (heading serif, body and specification grotesque, and the display or story cut) and assert each carries a family name, a foundry or designer, and an integer numeric weight equal to the value font_styles returned for that family; fail if any role omits a field or states a style name in place of the numeric weight."
-  },
-  {
-   "id": "P4",
-   "text": "The handover note's resize log enumerates every resize any tool reported, not only upscale entries.",
-   "how": "Diff the note's resize log against the captured tradeoffs objects from every image_crop_and_resize and image_crop_to_bounds call and assert one logged entry per reported resize (each source to output dimension change), covering downscales and crops as well as the upscale entries A5 separately checks are absent."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

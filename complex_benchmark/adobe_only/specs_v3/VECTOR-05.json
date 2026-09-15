@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "VECTOR-05",
+ "task_code": "SB3-035-VEC",
+ "task_name": "Isla Verde - Monogram and wayfinding pictogram system",
+ "global_order": 35,
+ "family_code": "VEC",
+ "legacy_id": "VECTOR-05",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-035-VEC__isla-verde-monogram-and-wayfinding-pictogram-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-035-VEC__isla-verde-monogram-and-wayfinding-pictogram-system/"
+ },
  "family": "Vector & Print",
  "complexity_tier": "Flagship integrated engagement",
- "engagement_title": "Production vector designer for Isla Verde: Recovered Isla Verde monogram master",
+ "engagement_title": "SB3-035-VEC: Isla Verde - Monogram and wayfinding pictogram system",
  "marketplace_listing": {
   "title": "Production vector designer for Isla Verde: Recovered Isla Verde monogram master",
   "experience_level": "Expert",
@@ -189,7 +200,7 @@
   {
    "name": "Facility pictogram set, eight symbols at two optical cuts",
    "deliverable_class": "vector artwork system",
-   "spec": "Eight facility symbols as editable vector geometry built from the monogram's own stroke weight, terminal and corner language, drawn at each destination size rather than one drawing scaled, in one chosen direction with the rejected direction shown and the pick argued against the monogram's construction and the band. Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
+   "spec": "Eight facility symbols as editable vector geometry built from the monogram's own stroke weight, terminal and corner language, drawn at each destination size rather than one drawing scaled, in one chosen direction with the rejected direction shown and the pick argued against the monogram's construction and the band.  Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
   },
   {
    "name": "Twenty four door plates as a live run",
@@ -435,11 +446,6 @@
     "id": "A5",
     "text": "The door plate output has page count equal to CSV row count, at the same page geometry as the supplied 2016 artwork.",
     "how": "Read the page count and page geometry of the merged file and compare against the supplied PDF."
-   },
-   {
-    "id": "A6",
-    "text": "Every facility's full English and Spanish name is present on its page, character for character against the data file, or is listed in the handover as an agreed abbreviation or an escalation.",
-    "how": "Extract the text of each merged page and diff against the schedule, then reconcile every mismatch against the handover note."
    }
   ],
   "human_craft_checks": [
@@ -471,24 +477,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "Every panel root declares a canvas in absolute physical units matching a size on the fabricator's cut list, and the export returned each at the corresponding pixel size.",
-    "how": "Read each root's declared canvas in the source and the per slide width and height in the export response, and convert against the fabricator's note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "No element in any exported root has geometry extending beyond its root's canvas bounds, and no wrapper resolved to zero width.",
-    "how": "Parse the returned per canvas markup and compare every element's resolved position and size against the canvas dimensions for that root."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "Each pictogram exists at more than one authored size, and the symbols placed on the plate face and on the directional panels do not share identical stroke geometry.",
-    "how": "Compare the path data and stroke attributes of each symbol across the roots it appears in, in both the source and the returned markup."
-   },
-   {
-    "id": "P4",
-    "text": "Every text element in the exported markup carries a resolved licensed face rather than a fallback default, and no text is set below the stated minimum size.",
-    "how": "Read the font family and size attributes on every text node in the returned markup and check them against the kit response and the stated minimum."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -527,33 +528,23 @@
    "id": "A5",
    "text": "The door plate output has page count equal to CSV row count, at the same page geometry as the supplied 2016 artwork.",
    "how": "Read the page count and page geometry of the merged file and compare against the supplied PDF."
-  },
-  {
-   "id": "A6",
-   "text": "Every facility's full English and Spanish name is present on its page, character for character against the data file, or is listed in the handover as an agreed abbreviation or an escalation.",
-   "how": "Extract the text of each merged page and diff against the schedule, then reconcile every mismatch against the handover note."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "Every panel root declares a canvas in absolute physical units matching a size on the fabricator's cut list, and the export returned each at the corresponding pixel size.",
-   "how": "Read each root's declared canvas in the source and the per slide width and height in the export response, and convert against the fabricator's note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "No element in any exported root has geometry extending beyond its root's canvas bounds, and no wrapper resolved to zero width.",
-   "how": "Parse the returned per canvas markup and compare every element's resolved position and size against the canvas dimensions for that root."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "Each pictogram exists at more than one authored size, and the symbols placed on the plate face and on the directional panels do not share identical stroke geometry.",
-   "how": "Compare the path data and stroke attributes of each symbol across the roots it appears in, in both the source and the returned markup."
-  },
-  {
-   "id": "P4",
-   "text": "Every text element in the exported markup carries a resolved licensed face rather than a fallback default, and no text is set below the stated minimum size.",
-   "how": "Read the font family and size attributes on every text node in the returned markup and check them against the kit response and the stated minimum."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

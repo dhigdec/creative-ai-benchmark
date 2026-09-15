@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-14",
+ "task_code": "SB3-059-LAY",
+ "task_name": "Lumen Quarterly - Autumn editorial issue",
+ "global_order": 59,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-14",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-059-LAY__lumen-quarterly-autumn-editorial-issue",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-059-LAY__lumen-quarterly-autumn-editorial-issue/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Flagship integrated engagement",
- "engagement_title": "Editorial and production designer for Lumen Quarterly: Autumn issue document",
+ "engagement_title": "SB3-059-LAY: Lumen Quarterly - Autumn editorial issue",
  "marketplace_listing": {
   "title": "Editorial and production designer for Lumen Quarterly: Autumn issue document",
   "experience_level": "Expert",
@@ -483,24 +494,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered image exceeds the pixel dimensions of the frame it derives from, and no crop or knockout tradeoff record in the run carries an upscale entry.",
-    "how": "Read the pixel dimensions of every delivered file against the manifest, and diff every captured tradeoffs object against the resize table in the note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The Express export returned every expected canvas, each keeping its own declared canvas size, with the cover at the stated 210 x 273 mm trim.",
-    "how": "Read slide_count and per slide width and height in the export response; assert every authored canvas is present each at its own declared size, and assert the cover canvas equals the 210 x 273 mm magazine trim converted at 96 dpi (210 mm = 793.7 px, 273 mm = 1031.8 px, i.e. 794 x 1032 px within +/- 1 px rounding)."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "No canvas resolved an image to the importer's placeholder, and the masthead arrived as vector path shapes rather than as one picture.",
-    "how": "Parse the returned per canvas markup for 1x1 placeholder image data and count path shape elements in the masthead region on the cover."
-   },
-   {
-    "id": "P4",
-    "text": "The feature body arrived as multiple column containers rather than one reflowed block, and every pull quote and every caption credit line is present in the markup.",
-    "how": "Parse the returned per canvas markup for the spread roots: assert 2 or more column containers are present (not one reflowed single block), and match all 3 pull-quote strings (PQ1, PQ2, PQ3) and all 14 caption credit lines (C01 through C14, each ending 'Photograph: Perrin Doyle') against the editor's copy file."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -543,24 +549,19 @@
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered image exceeds the pixel dimensions of the frame it derives from, and no crop or knockout tradeoff record in the run carries an upscale entry.",
-   "how": "Read the pixel dimensions of every delivered file against the manifest, and diff every captured tradeoffs object against the resize table in the note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The Express export returned every expected canvas, each keeping its own declared canvas size, with the cover at the stated 210 x 273 mm trim.",
-   "how": "Read slide_count and per slide width and height in the export response; assert every authored canvas is present each at its own declared size, and assert the cover canvas equals the 210 x 273 mm magazine trim converted at 96 dpi (210 mm = 793.7 px, 273 mm = 1031.8 px, i.e. 794 x 1032 px within +/- 1 px rounding)."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "No canvas resolved an image to the importer's placeholder, and the masthead arrived as vector path shapes rather than as one picture.",
-   "how": "Parse the returned per canvas markup for 1x1 placeholder image data and count path shape elements in the masthead region on the cover."
-  },
-  {
-   "id": "P4",
-   "text": "The feature body arrived as multiple column containers rather than one reflowed block, and every pull quote and every caption credit line is present in the markup.",
-   "how": "Parse the returned per canvas markup for the spread roots: assert 2 or more column containers are present (not one reflowed single block), and match all 3 pull-quote strings (PQ1, PQ2, PQ3) and all 14 caption credit lines (C01 through C14, each ending 'Photograph: Perrin Doyle') against the editor's copy file."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

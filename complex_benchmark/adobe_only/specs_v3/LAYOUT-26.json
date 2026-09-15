@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-26",
+ "task_code": "SB3-071-LAY",
+ "task_name": "Lanternwood Folk Fest - Festival programme and wayfinding",
+ "global_order": 71,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-26",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-071-LAY__lanternwood-folk-fest-festival-programme-and-wayfinding",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-071-LAY__lanternwood-folk-fest-festival-programme-and-wayfinding/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Editorial and production designer for Lanternwood Folk Fest: Lanternwood programme",
+ "engagement_title": "SB3-071-LAY: Lanternwood Folk Fest - Festival programme and wayfinding",
  "marketplace_listing": {
   "title": "Editorial and production designer for Lanternwood Folk Fest: Lanternwood programme",
   "experience_level": "Expert",
@@ -395,16 +406,6 @@
     "id": "A5",
     "text": "The prepared template contains every field the profile page carries, not a subset.",
     "how": "Export the IDML of the prepared template and grep the stories for every expected placeholder token, asserting the full set is present."
-   },
-   {
-    "id": "A6",
-    "text": "Every page's photograph is distinct and matches the act named on that page.",
-    "how": "Extract the embedded images page by page, hash them, assert fourteen distinct hashes, and check each page's hash against its row's image value."
-   },
-   {
-    "id": "A7",
-    "text": "The cover proof is genuinely at print resolution rather than a screen sized page enlarged.",
-    "how": "Read the delivered raster's pixel dimensions and embedded density against the page's physical trim size."
    }
   ],
   "human_craft_checks": [
@@ -427,18 +428,28 @@
     "id": "H4",
     "text": "The note tells the committee something they did not already know, including anything that could not be delivered.",
     "how": "Read the note against the run and confirm the template decision, every fitted biography and every limitation is named."
+   },
+   {
+    "text": "The scoped deliverables read as one deliberate professional system rather than unrelated outputs.",
+    "how": "Review the final package side by side at the sizes and in the sequence the audience will encounter it.",
+    "id": "H5"
    }
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered raster exceeds its source frame's pixel dimensions and no crop tradeoff record in the run carries an upscale entry.",
-    "how": "Compare every delivered file's dimensions against its source per the manifest and diff the captured tradeoffs objects against the resize table in the note."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "Every text element in the exported markup carries a resolved licensed face rather than a fallback default, and the schedule block survives as more than one positioned container.",
-    "how": "Read the font family attribute on every text node in the returned markup and count the positioned sibling blocks in the schedule region."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -476,28 +487,23 @@
    "id": "A5",
    "text": "The prepared template contains every field the profile page carries, not a subset.",
    "how": "Export the IDML of the prepared template and grep the stories for every expected placeholder token, asserting the full set is present."
-  },
-  {
-   "id": "A6",
-   "text": "Every page's photograph is distinct and matches the act named on that page.",
-   "how": "Extract the embedded images page by page, hash them, assert fourteen distinct hashes, and check each page's hash against its row's image value."
-  },
-  {
-   "id": "A7",
-   "text": "The cover proof is genuinely at print resolution rather than a screen sized page enlarged.",
-   "how": "Read the delivered raster's pixel dimensions and embedded density against the page's physical trim size."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered raster exceeds its source frame's pixel dimensions and no crop tradeoff record in the run carries an upscale entry.",
-   "how": "Compare every delivered file's dimensions against its source per the manifest and diff the captured tradeoffs objects against the resize table in the note."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "Every text element in the exported markup carries a resolved licensed face rather than a fallback default, and the schedule block survives as more than one positioned container.",
-   "how": "Read the font family attribute on every text node in the returned markup and count the positioned sibling blocks in the schedule region."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [
@@ -520,6 +526,11 @@
    "id": "H4",
    "text": "The note tells the committee something they did not already know, including anything that could not be delivered.",
    "how": "Read the note against the run and confirm the template decision, every fitted biography and every limitation is named."
+  },
+  {
+   "text": "The scoped deliverables read as one deliberate professional system rather than unrelated outputs.",
+   "how": "Review the final package side by side at the sizes and in the sequence the audience will encounter it.",
+   "id": "H5"
   }
  ],
  "why_not_vlm": "Paste the brief and the assets into a frontier image model and it returns a picture of a festival programme page. IDENTITY: these are fourteen real acts whose own photographs and own words have to appear on their own pages, and the crest has to be RECOVERED off a photograph of the painted banner the audience recognises the festival by, because a regenerated crest is a different festival's crest. SPEC: the booklet's page count must equal the bill, the pages must run in the order the weekend runs, every act must carry its own photograph and its own set time, and the cover proof must be at real print resolution, none of which a generated image satisfies or can be checked for. EDITABILITY: the day boards exist because the times change every year and the committee explicitly intends to edit them itself. And the middle of the engagement is verification against material reality: does this page convert into something that can hold a photograph, does this biography end in a sentence, does this crest still read at the size it prints.",

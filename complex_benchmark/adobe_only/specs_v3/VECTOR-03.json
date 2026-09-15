@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "VECTOR-03",
+ "task_code": "SB3-033-VEC",
+ "task_name": "Apex Rally Club - Motorsport face and livery system",
+ "global_order": 33,
+ "family_code": "VEC",
+ "legacy_id": "VECTOR-03",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-033-VEC__apex-rally-club-motorsport-face-and-livery-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-033-VEC__apex-rally-club-motorsport-face-and-livery-system/"
+ },
  "family": "Vector & Print",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Production vector designer for Apex Rally Club: Apex face system",
+ "engagement_title": "SB3-033-VEC: Apex Rally Club - Motorsport face and livery system",
  "marketplace_listing": {
   "title": "Production vector designer for Apex Rally Club: Apex face system",
   "experience_level": "Expert",
@@ -350,16 +361,6 @@
     "id": "A5",
     "text": "Each design's coin plate is line only and closed, with no filled interior where struck metal should show.",
     "how": "Parse each raised metal SVG for fill on interior subpaths and for unclosed segments."
-   },
-   {
-    "id": "A6",
-    "text": "No enamel face exceeds the mint's colour ceiling, and the spec sheet's colour list matches the fills present in the artwork.",
-    "how": "Count distinct fills per enamel SVG and diff against the colour list on the spec sheet canvas."
-   },
-   {
-    "id": "A7",
-    "text": "The card file has exactly six pages, one SKU per page, and each page's bound artwork differs from every other page's.",
-    "how": "Read the page count and the SKU code per page, and compare placed artwork across pages for collisions."
    }
   ],
   "human_craft_checks": [
@@ -391,14 +392,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered raster exceeds the dimensions of its source frame and every reported resize is transcribed in the handover.",
-    "how": "Compare each output's dimensions against its source per the manifest, and diff tradeoff records against the handover's resize table."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "The export returned three canvases at their own declared sizes, with no placeholder image and the faces present as vector path shapes.",
-    "how": "Read the canvas count and dimensions, then parse the markup for placeholder image data and count path shapes per face."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -437,28 +443,23 @@
    "id": "A5",
    "text": "Each design's coin plate is line only and closed, with no filled interior where struck metal should show.",
    "how": "Parse each raised metal SVG for fill on interior subpaths and for unclosed segments."
-  },
-  {
-   "id": "A6",
-   "text": "No enamel face exceeds the mint's colour ceiling, and the spec sheet's colour list matches the fills present in the artwork.",
-   "how": "Count distinct fills per enamel SVG and diff against the colour list on the spec sheet canvas."
-  },
-  {
-   "id": "A7",
-   "text": "The card file has exactly six pages, one SKU per page, and each page's bound artwork differs from every other page's.",
-   "how": "Read the page count and the SKU code per page, and compare placed artwork across pages for collisions."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered raster exceeds the dimensions of its source frame and every reported resize is transcribed in the handover.",
-   "how": "Compare each output's dimensions against its source per the manifest, and diff tradeoff records against the handover's resize table."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "The export returned three canvases at their own declared sizes, with no placeholder image and the faces present as vector path shapes.",
-   "how": "Read the canvas count and dimensions, then parse the markup for placeholder image data and count path shapes per face."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

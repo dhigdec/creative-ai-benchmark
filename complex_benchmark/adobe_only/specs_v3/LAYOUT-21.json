@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-21",
+ "task_code": "SB3-066-LAY",
+ "task_name": "Harborline Realty - Weekly listing sheet system",
+ "global_order": 66,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-21",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-066-LAY__harborline-realty-weekly-listing-sheet-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-066-LAY__harborline-realty-weekly-listing-sheet-system/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Specialist stress test",
- "engagement_title": "Editorial and production designer for Harborline Realty: Weekly listing sheet run: printer's book",
+ "engagement_title": "SB3-066-LAY: Harborline Realty - Weekly listing sheet system",
  "marketplace_listing": {
   "title": "Editorial and production designer for Harborline Realty: Weekly listing sheet run: printer's book",
   "experience_level": "Expert",
@@ -355,16 +366,6 @@
     "id": "A5",
     "text": "Every copy field, including the small reference code, exists as a placeholder in the prepared template before any merge.",
     "how": "Export the interchange file (IDML) from the prepared template, unzip it and confirm all nine copy placeholders are present as tokens in the stories -- ADDRESS, HEADLINE, DESCRIPTION, BEDS, BATHS, SQFT, PRICE, AGENT and REF_CODE -- plus the one HERO graphic-frame placeholder (10 placeholders in total); REF_CODE in particular must be present despite the convenience readout silently dropping its run."
-   },
-   {
-    "id": "A6",
-    "text": "The flagship proof is at true print resolution at sheet trim rather than at screen scale.",
-    "how": "Read the proof's pixel dimensions and density metadata: it must be exactly 2550 x 3300 px at 300 DPI (US Letter 8.5 x 11 in at trim), not a screen-scale raster."
-   },
-   {
-    "id": "A7",
-    "text": "The sheet heroes derive from the straightened masters rather than from the raw agent frames.",
-    "how": "For the two off-level agent frames -- hero_select_06 (7 Mechanic St) and hero_select_09 (6 Elm St), each shot ~1.5 degrees off level -- measure the dominant roofline/horizon angle in the delivered sheet hero and confirm it is level (|angle| <= 0.3 degrees) where the raw source measures ~1.5 degrees, so the straighten is proven applied to the master before the crop by pixel evidence rather than by the manifest's self-reported provenance label."
    }
   ],
   "human_craft_checks": [
@@ -396,19 +397,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "Each per property file contains the property its filename claims.",
-    "how": "Open each of the 11 per-property files and confirm its ADDRESS field string matches the address the filename claims, for all 11, established by opening the file rather than by the order the files were returned."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
    },
    {
-    "id": "P2",
-    "text": "No delivered image exceeds its source dimensions and no crop tradeoff record carries an upscale entry.",
-    "how": "For every delivered hero, confirm its pixel dimensions do not exceed its source frame's (estate sources 4200 x 2800, agent sources 4032 x 3024) and that no captured crop_and_resize tradeoffs object carries an upscale_factor above 1.0."
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
    },
    {
-    "id": "P3",
-    "text": "The schedule arrived as a real table and every text element carries a resolved licensed face at a declared weight.",
-    "how": "Parse the returned markup for at least one genuine <table> element carrying the open-house schedule, and confirm every text element's font-family is a returned Adobe Fonts slug (not a PostScript name) with a declared numeric weight (100-900) matching what the kit call returned."
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -446,33 +447,23 @@
    "id": "A5",
    "text": "Every copy field, including the small reference code, exists as a placeholder in the prepared template before any merge.",
    "how": "Export the interchange file (IDML) from the prepared template, unzip it and confirm all nine copy placeholders are present as tokens in the stories -- ADDRESS, HEADLINE, DESCRIPTION, BEDS, BATHS, SQFT, PRICE, AGENT and REF_CODE -- plus the one HERO graphic-frame placeholder (10 placeholders in total); REF_CODE in particular must be present despite the convenience readout silently dropping its run."
-  },
-  {
-   "id": "A6",
-   "text": "The flagship proof is at true print resolution at sheet trim rather than at screen scale.",
-   "how": "Read the proof's pixel dimensions and density metadata: it must be exactly 2550 x 3300 px at 300 DPI (US Letter 8.5 x 11 in at trim), not a screen-scale raster."
-  },
-  {
-   "id": "A7",
-   "text": "The sheet heroes derive from the straightened masters rather than from the raw agent frames.",
-   "how": "For the two off-level agent frames -- hero_select_06 (7 Mechanic St) and hero_select_09 (6 Elm St), each shot ~1.5 degrees off level -- measure the dominant roofline/horizon angle in the delivered sheet hero and confirm it is level (|angle| <= 0.3 degrees) where the raw source measures ~1.5 degrees, so the straighten is proven applied to the master before the crop by pixel evidence rather than by the manifest's self-reported provenance label."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "Each per property file contains the property its filename claims.",
-   "how": "Open each of the 11 per-property files and confirm its ADDRESS field string matches the address the filename claims, for all 11, established by opening the file rather than by the order the files were returned."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
   },
   {
-   "id": "P2",
-   "text": "No delivered image exceeds its source dimensions and no crop tradeoff record carries an upscale entry.",
-   "how": "For every delivered hero, confirm its pixel dimensions do not exceed its source frame's (estate sources 4200 x 2800, agent sources 4032 x 3024) and that no captured crop_and_resize tradeoffs object carries an upscale_factor above 1.0."
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
   },
   {
-   "id": "P3",
-   "text": "The schedule arrived as a real table and every text element carries a resolved licensed face at a declared weight.",
-   "how": "Parse the returned markup for at least one genuine <table> element carrying the open-house schedule, and confirm every text element's font-family is a returned Adobe Fonts slug (not a PostScript name) with a declared numeric weight (100-900) matching what the kit call returned."
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

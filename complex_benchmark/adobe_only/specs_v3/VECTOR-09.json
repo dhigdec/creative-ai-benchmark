@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "VECTOR-09",
+ "task_code": "SB3-039-VEC",
+ "task_name": "Halcyon Grid - Production logo family",
+ "global_order": 39,
+ "family_code": "VEC",
+ "legacy_id": "VECTOR-09",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-039-VEC__halcyon-grid-production-logo-family",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-039-VEC__halcyon-grid-production-logo-family/"
+ },
  "family": "Vector & Print",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Production vector designer for Halcyon Grid: production mark family",
+ "engagement_title": "SB3-039-VEC: Halcyon Grid - Production logo family",
  "marketplace_listing": {
   "title": "Production vector designer for Halcyon Grid: production mark family",
   "experience_level": "Expert",
@@ -210,12 +221,11 @@
  "acceptance_bar": [
   "The mark sheet is one working file we can edit ourselves, every canvas at its own size, every mark as real artwork and the words as live text, plus the source it was built from, in one type system whose family, foundry and weight you name per role, stating plainly that the wordmark type is a face you chose rather than the one the generator drew.",
   "The three marks read as one family laid out together at one size, matched on weight, corner treatment and proportion, not merely filed together.",
+  "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness.",
   "Each mark comes back as artwork we can hand to a printer, a fabricator or an app store: placeable, scalable, transparent, with nothing behind it and no box appearing on a dark background.",
   "A version claimed as one ink is genuinely one ink, not a family of near-identical inks.",
-  "Enclosed shapes stay enclosed. A ring that has filled in or a counter that has closed is a rejected file.",
   "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
-  "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness."
+  "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
  ],
  "connector_profile": {
   "profile_id": "chatgpt-adobe-2026-09-15",
@@ -406,20 +416,29 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "No delivered image exceeds its true source frame on either axis, and no crop call reported an upscale entry the handover fails to transcribe.",
-    "how": "Compare every delivered file's dimensions against its true source frame, including the web-copy portrait, and check every crop response's tradeoffs array for upscale entries."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
+   },
+   {
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
    "The mark sheet is one working file we can edit ourselves, every canvas at its own size, every mark as real artwork and the words as live text, plus the source it was built from, in one type system whose family, foundry and weight you name per role, stating plainly that the wordmark type is a face you chose rather than the one the generator drew.",
    "The three marks read as one family laid out together at one size, matched on weight, corner treatment and proportion, not merely filed together.",
+   "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness.",
    "Each mark comes back as artwork we can hand to a printer, a fabricator or an app store: placeable, scalable, transparent, with nothing behind it and no box appearing on a dark background.",
    "A version claimed as one ink is genuinely one ink, not a family of near-identical inks.",
-   "Enclosed shapes stay enclosed. A ring that has filled in or a counter that has closed is a rejected file.",
    "Every supplied asset is listed in the delivery manifest as used, reference-only, superseded, or rejected with a concrete reason; no input disappears silently.",
-   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them.",
-   "Production-readiness claims are limited to geometry that can be inspected; vectorization alone is never accepted as evidence of fabrication readiness."
+   "Final files open successfully, use unambiguous names, match the stated dimensions and formats, and include editable sources only where the scoped deliverable requires them."
   ]
  },
  "verifiers_auto": [
@@ -451,9 +470,19 @@
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "No delivered image exceeds its true source frame on either axis, and no crop call reported an upscale entry the handover fails to transcribe.",
-   "how": "Compare every delivered file's dimensions against its true source frame, including the web-copy portrait, and check every crop response's tradeoffs array for upscale entries."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
+  },
+  {
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [

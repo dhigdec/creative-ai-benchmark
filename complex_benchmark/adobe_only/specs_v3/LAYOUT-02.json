@@ -2,9 +2,20 @@
  "schema_version": "3.1",
  "revision_date": "2026-09-15",
  "new_id": "LAYOUT-02",
+ "task_code": "SB3-047-LAY",
+ "task_name": "Corner and Cure - Cold-case label system",
+ "global_order": 47,
+ "family_code": "LAY",
+ "legacy_id": "LAYOUT-02",
+ "storage": {
+  "bucket": "annotationprod",
+  "region": "ap-south-1",
+  "folder": "SB3-047-LAY__corner-and-cure-cold-case-label-system",
+  "s3_prefix": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-047-LAY__corner-and-cure-cold-case-label-system/"
+ },
  "family": "Layout & Data",
  "complexity_tier": "Expert standard engagement",
- "engagement_title": "Editorial and production designer for Corner & Cure: Cold case label run",
+ "engagement_title": "SB3-047-LAY: Corner and Cure - Cold-case label system",
  "marketplace_listing": {
   "title": "Editorial and production designer for Corner & Cure: Cold case label run",
   "experience_level": "Expert",
@@ -185,7 +196,7 @@
   {
    "name": "Recovered Corner & Cure sign",
    "deliverable_class": "vector artwork system",
-   "spec": "The hand painted board recovered as placeable scalable cutting artwork with a transparent ground: a real viewBox present, no opaque full canvas rectangle riding along, the knife device present beside the word, delivered as a single colour cutting version and a colour accurate variant, holding its counters at the height it actually goes on the glass and on the glass colour, with a stated safe minimum height. Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
+   "spec": "The hand painted board recovered as placeable scalable cutting artwork with a transparent ground: a real viewBox present, no opaque full canvas rectangle riding along, the knife device present beside the word, delivered as a single colour cutting version and a colour accurate variant, holding its counters at the height it actually goes on the glass and on the glass colour, with a stated safe minimum height.  Vectorization is a starting operation, not proof of production readiness: deliver transparent SVG, rendered small-size proofs, and an inspectable geometry report. Any unverified contour or fabrication tolerance must be labeled for supplier review."
   },
   {
    "name": "Marketplace item tile set",
@@ -409,16 +420,6 @@
     "id": "A5",
     "text": "The recovered sign's SVG has a viewBox attribute, no full canvas opaque background path at path index zero, and contains geometry for both the word and the knife device.",
     "how": "Parse the delivered SVG: assert a numeric viewBox attribute is present, assert the element at path index zero is not an axis-aligned rectangle spanning the full viewBox (no opaque full-canvas ground path), and count the top-level path groups, asserting at least two distinct groups so both the word and the knife device carry geometry."
-   },
-   {
-    "id": "A6",
-    "text": "The merge template's re-exported interchange file contains all four content placeholders, and the printer's merged run has exactly one page per item row (38).",
-    "how": "Unzip the re-exported IDML and grep the Story XML for each of the four field tokens ITEM_NAME, SIZE, PRICE and DIETARY_TAGS, asserting each is present; then read the merged output's page count and assert it equals 38, the CSV row count."
-   },
-   {
-    "id": "A7",
-    "text": "Every per item proof's filename matches the item name, size and price rendered inside it, there is exactly one proof per row (38), and no two proofs collide on the name-plus-size key.",
-    "how": "Deliver proofs via the trustworthy PDF or createSeparateFiles per-record route so each proof carries an extractable text layer (no OCR); extract each proof's rendered text, assert its item name, size and price equal the roster row it is named for, assert the proof count is 38, and assert filenames key on item name plus size so the duplicate-name pairs (The Corner Reuben Half/Whole, Cold Cut Platter Small/Large, Minestrone Cup/Bowl) resolve to distinct files with none overwritten."
    }
   ],
   "human_craft_checks": [
@@ -450,9 +451,19 @@
   ],
   "normalized_process_checks": [
    {
-    "id": "P1",
-    "text": "Every text element in every export carries a resolved licensed face rather than a fallback default, and the same two kit families appear across all four documents.",
-    "how": "Enumerate every text node in each export's returned markup, read its resolved font-family attribute, and assert it equals one of the two kit families the font kit call returned (the condensed display face and the workhorse sans) with no node falling back to a system default; then assert both families appear in all four exported documents."
+    "text": "Every required connector operation has a normalized execution record.",
+    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+    "id": "P1"
+   },
+   {
+    "text": "Material creative decisions are traceable to evidence and alternatives.",
+    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+    "id": "P2"
+   },
+   {
+    "text": "The revision loop closes every failed production or craft gate.",
+    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+    "id": "P3"
    }
   ],
   "acceptance_snapshot": [
@@ -491,23 +502,23 @@
    "id": "A5",
    "text": "The recovered sign's SVG has a viewBox attribute, no full canvas opaque background path at path index zero, and contains geometry for both the word and the knife device.",
    "how": "Parse the delivered SVG: assert a numeric viewBox attribute is present, assert the element at path index zero is not an axis-aligned rectangle spanning the full viewBox (no opaque full-canvas ground path), and count the top-level path groups, asserting at least two distinct groups so both the word and the knife device carry geometry."
-  },
-  {
-   "id": "A6",
-   "text": "The merge template's re-exported interchange file contains all four content placeholders, and the printer's merged run has exactly one page per item row (38).",
-   "how": "Unzip the re-exported IDML and grep the Story XML for each of the four field tokens ITEM_NAME, SIZE, PRICE and DIETARY_TAGS, asserting each is present; then read the merged output's page count and assert it equals 38, the CSV row count."
-  },
-  {
-   "id": "A7",
-   "text": "Every per item proof's filename matches the item name, size and price rendered inside it, there is exactly one proof per row (38), and no two proofs collide on the name-plus-size key.",
-   "how": "Deliver proofs via the trustworthy PDF or createSeparateFiles per-record route so each proof carries an extractable text layer (no OCR); extract each proof's rendered text, assert its item name, size and price equal the roster row it is named for, assert the proof count is 38, and assert filenames key on item name plus size so the duplicate-name pairs (The Corner Reuben Half/Whole, Cold Cut Platter Small/Large, Minestrone Cup/Bowl) resolve to distinct files with none overwritten."
   }
  ],
  "verifiers_process": [
   {
-   "id": "P1",
-   "text": "Every text element in every export carries a resolved licensed face rather than a fallback default, and the same two kit families appear across all four documents.",
-   "how": "Enumerate every text node in each export's returned markup, read its resolved font-family attribute, and assert it equals one of the two kit families the font kit call returned (the condensed display face and the workhorse sans) with no node falling back to a system default; then assert both families appear in all four exported documents."
+   "text": "Every required connector operation has a normalized execution record.",
+   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
+   "id": "P1"
+  },
+  {
+   "text": "Material creative decisions are traceable to evidence and alternatives.",
+   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
+   "id": "P2"
+  },
+  {
+   "text": "The revision loop closes every failed production or craft gate.",
+   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
+   "id": "P3"
   }
  ],
  "verifiers_human": [
