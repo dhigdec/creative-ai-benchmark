@@ -133,18 +133,18 @@ overview.freezePanes.freezeRows(2);
 
 const register = workbook.worksheets.add("Task Register");
 register.tabColor = colors.green;
-addTitle(register, "Task Register", "SB3 codes are the primary references; legacy IDs remain for source and historical-run traceability", 14, colors.green);
-const registerHeaders = ["Task code", "Task name", "Family", "Legacy ID", "Marketplace title", "Budget", "Revision structure", "Deliverables", "Assets", "Auto verifiers", "Human verifiers", "S3 prefix", "S3 console", "Upload status"];
+addTitle(register, "Task Register", "SB3 codes are the primary references; legacy IDs remain for source and historical-run traceability", 13, colors.green);
+const registerHeaders = ["Task code", "Task name", "Family", "Legacy ID", "Marketplace title", "Revision structure", "Deliverables", "Assets", "Auto verifiers", "Human verifiers", "S3 prefix", "S3 console", "Upload status"];
 const registerRows = specs.map((spec) => {
   const task = s3TaskByCode.get(spec.task_code);
-  return [spec.task_code, spec.task_name, spec.family, spec.new_id, spec.marketplace_listing.title, spec.project_terms.modeled_marketplace_budget, spec.project_terms.revision_structure, spec.deliverables.length, task.asset_count, spec.verifiers_auto.length + spec.verifiers_process.length, spec.verifiers_human.length, task.s3_prefix, task.console_url, task.upload_status];
+  return [spec.task_code, spec.task_name, spec.family, spec.new_id, spec.marketplace_listing.title, spec.project_terms.revision_structure, spec.deliverables.length, task.asset_count, spec.verifiers_auto.length + spec.verifiers_process.length, spec.verifiers_human.length, task.s3_prefix, task.console_url, task.upload_status];
 });
 addDataTable(register, registerHeaders, registerRows, "TaskRegisterTable");
-register.getRange("H5:K104").format.numberFormat = "#,##0";
-register.getRange("A5:N104").format.rowHeightPx = 34;
-register.getRange("B5:G104").format.wrapText = true;
-register.getRange("L5:N104").format.wrapText = true;
-setColumnWidths(register, [115, 310, 125, 85, 310, 125, 290, 85, 70, 105, 110, 420, 260, 150], 104);
+register.getRange("G5:J104").format.numberFormat = "#,##0";
+register.getRange("A5:M104").format.rowHeightPx = 34;
+register.getRange("B5:F104").format.wrapText = true;
+register.getRange("K5:M104").format.wrapText = true;
+setColumnWidths(register, [115, 310, 125, 85, 310, 290, 85, 70, 105, 110, 420, 260, 150], 104);
 
 const brandSheet = workbook.worksheets.add("Brand Identity");
 brandSheet.tabColor = colors.violet;
@@ -254,7 +254,7 @@ const previewDir = path.join(outputDir, "previews");
 await fs.mkdir(previewDir, { recursive: true });
 const previewRanges = {
   "Overview": "A1:H17",
-  "Task Register": "A1:N22",
+  "Task Register": "A1:M22",
   "Brand Identity": "A1:P12",
   "Photo Tasks": "A1:H12",
   "Vector Tasks": "A1:H12",
