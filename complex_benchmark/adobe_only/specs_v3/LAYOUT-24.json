@@ -354,71 +354,58 @@
   "artifact_checks": [
    {
     "id": "A1",
-    "text": "The delivery manifest contains every scoped deliverable and no undeclared substitute.",
-    "how": "Match the manifest against these exact deliverable names: Marlow trade book, press file plus per-piece named sheets; Marlow range photography, sixteen pieces at one page white."
+    "text": "The delivery manifest contains every scoped deliverable and no undeclared substitute."
    },
    {
     "id": "A2",
-    "text": "Every supplied input has a recorded disposition.",
-    "how": "Compare the input inventory with the manifest and require one of used, reference-only, superseded, or rejected-with-reason for every file."
+    "text": "Every supplied input has a recorded disposition."
    },
    {
     "id": "A3",
-    "text": "Every final file is readable and matches its declared format and dimensions.",
-    "how": "Open each file with a format-aware parser and compare measured properties with the deliverable manifest."
+    "text": "Every final file is readable and matches its declared format and dimensions."
    },
    {
     "id": "A4",
-    "text": "The press book has exactly one page per current piece in line order and renders at 300 ppi at A4 trim (2480 x 3508 px).",
-    "how": "Confirm the rendered file has exactly 16 pages (the reconciled current-piece count MRL-101 through MRL-116, after excluding retired MRL-088 and MRL-093 and the mixed carton MRL-CTN-STARTER), that page order follows the price file's MRL-101..116 line order, and that every rendered page raster measures exactly 2480 x 3508 px (A4 210 x 297 mm at 300 ppi)."
+    "text": "The press book has exactly one page per current piece in line order and renders at 300 ppi at A4 trim (2480 x 3508 px)."
    },
    {
     "id": "A5",
-    "text": "Every spec parameter, the caption, the firing and care line, the lead time and the trade price appear on every page and match the price file verbatim.",
-    "how": "Round-trip the prepared template to IDML and grep the story for all twelve expected placeholders (PIECE_CODE, DIMENSIONS, CAPACITY, GLAZE, FIRING, CARE, LEAD_TIME, CARTON, TRADE_PRICE, CAPTION, PHOTOGRAPH, FOOTER_MARK), confirming in particular that LEAD_TIME and CARTON — the two fields the lossy mapping readout silently drops past the combined firing/care run — are both present, then read text off each of the 16 rendered pages and compare each field character-for-character against that piece's price-file row."
+    "text": "Every spec parameter, the caption, the firing and care line, the lead time and the trade price appear on every page and match the price file verbatim."
    }
   ],
   "human_craft_checks": [
    {
     "id": "H1",
-    "text": "Laid out as the book, the sixteen pieces read as one range shot on one day at one page white.",
-    "how": "View the sixteen page photographs together and judge ground, white point, black point and piece scale as a set rather than one page at a time."
+    "text": "Laid out as the book, the sixteen pieces read as one range shot on one day at one page white."
    },
    {
     "id": "H2",
-    "text": "The three glazes remain clearly distinguishable, none has been pushed toward a colour it is not, and the gloss celadon pieces still have a readable rim against the delivered page ground.",
-    "how": "Compare the delivered pictures of oatmeal, celadon and slate against the glaze note and against each other, then view the four affected celadon pieces at page size on the delivered ground."
+    "text": "The three glazes remain clearly distinguishable, none has been pushed toward a colour it is not, and the gloss celadon pieces still have a readable rim against the delivered page ground."
    },
    {
     "id": "H3",
-    "text": "The book and the trade-show set read airy, quiet and made, appropriate to a 38 to 410 dollar trade piece, rather than dense, bright or price-shouting.",
-    "how": "Review the book pages, the stand panel, the order form and the slides against the price band and audience description and reject tight-grid, saturated or discount-register treatments."
+    "text": "The book and the trade-show set read airy, quiet and made, appropriate to a 38 to 410 dollar trade piece, rather than dense, bright or price-shouting."
    },
    {
     "id": "H4",
-    "text": "Handle loops, pierced walls and lifted lids are genuinely open in the page photographs, and every piece is shown in the state a buyer would receive it.",
-    "how": "Place each isolated piece on a contrasting ground and look through the voids, and check each against its price-row description."
+    "text": "Handle loops, pierced walls and lifted lids are genuinely open in the page photographs, and every piece is shown in the state a buyer would receive it."
    },
    {
     "id": "H5",
-    "text": "The handover note is present and escalates rather than conceals: it names every price-file row excluded or questioned and what was done, the two empty made-to-order prices, the care strings that will not fit the page, the four gloss-celadon frames whose rims cannot be recovered and the ground decision taken because of them, the two stamp artworks with the minimum footer size below which the full trace must not be set, the isolation route per piece, the per-frame parameter log with every reported resize, and the disclosure that no chosen Adobe Fonts face reaches the printed book.",
-    "how": "Read the handover note against this checklist and confirm each escalation item is present and specific rather than boilerplate: the excluded retired rows (MRL-088, MRL-093) and the mixed carton (MRL-CTN-STARTER) with the resolution stated; the two empty prices (MRL-111, MRL-115); the two over-length care strings (MRL-105, MRL-111); the explicit record of the four unrecoverable celadon frames; the stamp's two-artwork split with a stated minimum size for the full trace; the isolation route per piece; the mapping decisions taken against what the conversion exposed; and the explicit statement that the book's typography remains the printer's because no font file can reach the InDesign surface. Mark incomplete if any item is missing or generic."
+    "text": "The handover note is present and escalates rather than conceals: it names every price-file row excluded or questioned and what was done, the two empty made-to-order prices, the care strings that will not fit the page, the four gloss-celadon frames whose rims cannot be recovered and the ground decision taken because of them, the two stamp artworks with the minimum footer size below which the full trace must not be set, the isolation route per piece, the per-frame parameter log with every reported resize, and the disclosure that no chosen Adobe Fonts face reaches the printed book."
    }
   ],
   "normalized_process_checks": [
    {
     "text": "Every required connector operation has a normalized execution record.",
-    "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
     "id": "P1"
    },
    {
     "text": "Material creative decisions are traceable to evidence and alternatives.",
-    "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
     "id": "P2"
    },
    {
     "text": "The revision loop closes every failed production or craft gate.",
-    "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
     "id": "P3"
    }
   ],
@@ -435,72 +422,59 @@
  "verifiers_auto": [
   {
    "id": "A1",
-   "text": "The delivery manifest contains every scoped deliverable and no undeclared substitute.",
-   "how": "Match the manifest against these exact deliverable names: Marlow trade book, press file plus per-piece named sheets; Marlow range photography, sixteen pieces at one page white."
+   "text": "The delivery manifest contains every scoped deliverable and no undeclared substitute."
   },
   {
    "id": "A2",
-   "text": "Every supplied input has a recorded disposition.",
-   "how": "Compare the input inventory with the manifest and require one of used, reference-only, superseded, or rejected-with-reason for every file."
+   "text": "Every supplied input has a recorded disposition."
   },
   {
    "id": "A3",
-   "text": "Every final file is readable and matches its declared format and dimensions.",
-   "how": "Open each file with a format-aware parser and compare measured properties with the deliverable manifest."
+   "text": "Every final file is readable and matches its declared format and dimensions."
   },
   {
    "id": "A4",
-   "text": "The press book has exactly one page per current piece in line order and renders at 300 ppi at A4 trim (2480 x 3508 px).",
-   "how": "Confirm the rendered file has exactly 16 pages (the reconciled current-piece count MRL-101 through MRL-116, after excluding retired MRL-088 and MRL-093 and the mixed carton MRL-CTN-STARTER), that page order follows the price file's MRL-101..116 line order, and that every rendered page raster measures exactly 2480 x 3508 px (A4 210 x 297 mm at 300 ppi)."
+   "text": "The press book has exactly one page per current piece in line order and renders at 300 ppi at A4 trim (2480 x 3508 px)."
   },
   {
    "id": "A5",
-   "text": "Every spec parameter, the caption, the firing and care line, the lead time and the trade price appear on every page and match the price file verbatim.",
-   "how": "Round-trip the prepared template to IDML and grep the story for all twelve expected placeholders (PIECE_CODE, DIMENSIONS, CAPACITY, GLAZE, FIRING, CARE, LEAD_TIME, CARTON, TRADE_PRICE, CAPTION, PHOTOGRAPH, FOOTER_MARK), confirming in particular that LEAD_TIME and CARTON — the two fields the lossy mapping readout silently drops past the combined firing/care run — are both present, then read text off each of the 16 rendered pages and compare each field character-for-character against that piece's price-file row."
+   "text": "Every spec parameter, the caption, the firing and care line, the lead time and the trade price appear on every page and match the price file verbatim."
   }
  ],
  "verifiers_process": [
   {
    "text": "Every required connector operation has a normalized execution record.",
-   "how": "Record the operation name, input asset IDs, output artifact IDs, completion state, retry count, and any exception without relying on host-specific response wording.",
    "id": "P1"
   },
   {
    "text": "Material creative decisions are traceable to evidence and alternatives.",
-   "how": "For each decision gate, record the alternatives compared, the selected option, the evidence used, and the condition that would trigger a revisit.",
    "id": "P2"
   },
   {
    "text": "The revision loop closes every failed production or craft gate.",
-   "how": "Link each failed check to a corrective action, a new artifact version, and the subsequent passing result; unresolved failures must remain declared exceptions.",
    "id": "P3"
   }
  ],
  "verifiers_human": [
   {
    "id": "H1",
-   "text": "Laid out as the book, the sixteen pieces read as one range shot on one day at one page white.",
-   "how": "View the sixteen page photographs together and judge ground, white point, black point and piece scale as a set rather than one page at a time."
+   "text": "Laid out as the book, the sixteen pieces read as one range shot on one day at one page white."
   },
   {
    "id": "H2",
-   "text": "The three glazes remain clearly distinguishable, none has been pushed toward a colour it is not, and the gloss celadon pieces still have a readable rim against the delivered page ground.",
-   "how": "Compare the delivered pictures of oatmeal, celadon and slate against the glaze note and against each other, then view the four affected celadon pieces at page size on the delivered ground."
+   "text": "The three glazes remain clearly distinguishable, none has been pushed toward a colour it is not, and the gloss celadon pieces still have a readable rim against the delivered page ground."
   },
   {
    "id": "H3",
-   "text": "The book and the trade-show set read airy, quiet and made, appropriate to a 38 to 410 dollar trade piece, rather than dense, bright or price-shouting.",
-   "how": "Review the book pages, the stand panel, the order form and the slides against the price band and audience description and reject tight-grid, saturated or discount-register treatments."
+   "text": "The book and the trade-show set read airy, quiet and made, appropriate to a 38 to 410 dollar trade piece, rather than dense, bright or price-shouting."
   },
   {
    "id": "H4",
-   "text": "Handle loops, pierced walls and lifted lids are genuinely open in the page photographs, and every piece is shown in the state a buyer would receive it.",
-   "how": "Place each isolated piece on a contrasting ground and look through the voids, and check each against its price-row description."
+   "text": "Handle loops, pierced walls and lifted lids are genuinely open in the page photographs, and every piece is shown in the state a buyer would receive it."
   },
   {
    "id": "H5",
-   "text": "The handover note is present and escalates rather than conceals: it names every price-file row excluded or questioned and what was done, the two empty made-to-order prices, the care strings that will not fit the page, the four gloss-celadon frames whose rims cannot be recovered and the ground decision taken because of them, the two stamp artworks with the minimum footer size below which the full trace must not be set, the isolation route per piece, the per-frame parameter log with every reported resize, and the disclosure that no chosen Adobe Fonts face reaches the printed book.",
-   "how": "Read the handover note against this checklist and confirm each escalation item is present and specific rather than boilerplate: the excluded retired rows (MRL-088, MRL-093) and the mixed carton (MRL-CTN-STARTER) with the resolution stated; the two empty prices (MRL-111, MRL-115); the two over-length care strings (MRL-105, MRL-111); the explicit record of the four unrecoverable celadon frames; the stamp's two-artwork split with a stated minimum size for the full trace; the isolation route per piece; the mapping decisions taken against what the conversion exposed; and the explicit statement that the book's typography remains the printer's because no font file can reach the InDesign surface. Mark incomplete if any item is missing or generic."
+   "text": "The handover note is present and escalates rather than conceals: it names every price-file row excluded or questioned and what was done, the two empty made-to-order prices, the care strings that will not fit the page, the four gloss-celadon frames whose rims cannot be recovered and the ground decision taken because of them, the two stamp artworks with the minimum footer size below which the full trace must not be set, the isolation route per piece, the per-frame parameter log with every reported resize, and the disclosure that no chosen Adobe Fonts face reaches the printed book."
   }
  ],
  "why_not_vlm": "Paste this brief and these frames into a frontier image model and it returns pictures of pottery. IDENTITY: these are sixteen specific thrown pieces in three specific glazes that a shop orders by code and receives in a carton, and a generated pot fabricates a glaze, which on a page that also carries a firing note and a trade price is a false product claim. SPEC: the client needs one page per current piece at A4 and 300 ppi with every spec value bound verbatim from their own order book, sixteen separately named sheets each containing the piece their filename claims, one consistent money format across the whole book, and no delivered file larger than its source. None of that can be produced or checked by generation. EDITABILITY: two deliverables are defined by being editable, a live merge template so next season is a data change, and a native document with live text, a real table and real vector artwork so January's prices can move. And the middle of this engagement is verification against material reality: is there anything left in this highlight, did this placeholder get created, is this photograph in the photograph's frame, does this mark still read at the size it actually prints. That is not a generation problem.",

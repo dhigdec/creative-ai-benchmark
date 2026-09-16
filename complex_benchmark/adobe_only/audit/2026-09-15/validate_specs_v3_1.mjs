@@ -69,11 +69,11 @@ for (const spec of specs) {
   if (!spec.verifier_contract || spec.verifier_contract.artifact_checks.length < 3 || spec.verifier_contract.normalized_process_checks.length < 3 || spec.verifier_contract.human_craft_checks.length < 3) addError(id, "verifier contract incomplete");
   for (const [category, checks] of Object.entries({ artifact: spec.verifier_contract.artifact_checks, process: spec.verifier_contract.normalized_process_checks, human: spec.verifier_contract.human_craft_checks })) {
     const ids = checks.map((check) => check.id);
-    const bodies = checks.map((check) => `${check.text}|${check.how}`.toLowerCase());
+    const bodies = checks.map((check) => check.text.toLowerCase());
     if (new Set(ids).size !== ids.length) addError(id, `${category} verifier IDs are not unique`);
     if (new Set(bodies).size !== bodies.length) addError(id, `${category} verifier checks contain duplicates`);
   }
-  for (const check of spec.verifier_contract.artifact_checks) if (processPattern.test(`${check.text} ${check.how}`)) addError(id, `artifact check ${check.id} depends on process evidence`);
+  for (const check of spec.verifier_contract.artifact_checks) if (processPattern.test(check.text)) addError(id, `artifact check ${check.id} depends on process evidence`);
   const profile = spec.connector_profile;
   if (!profile || profile.autonomy?.startsWith("zero-human") !== true) addError(id, "zero-human connector profile missing");
   for (const tool of [...(profile.required_operations || []), ...(profile.conditional_operations || []), ...(profile.transport_and_inspection_helpers || [])]) {
