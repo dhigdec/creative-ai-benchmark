@@ -218,7 +218,7 @@ setColumnWidths(deliverablesSheet, [115, 300, 125, 75, 160, 340, 720], deliverab
 
 const verifiersSheet = workbook.worksheets.add("Verifiers");
 verifiersSheet.tabColor = colors.orange;
-addTitle(verifiersSheet, "Verifier Register", "Auto verifiers combine artifact and normalized process checks; human verifiers judge professional craft", 8, colors.orange);
+addTitle(verifiersSheet, "Verifier Register", "Auto verifiers combine artifact and normalized process checks; human verifiers judge professional craft", 6, colors.orange);
 const verifierRows = [];
 for (const spec of specs) {
   const groups = [
@@ -227,14 +227,13 @@ for (const spec of specs) {
     ["Human", spec.verifiers_human, spec.verifier_contract.scoring.human_craft_review],
   ];
   for (const [category, checks, categoryWeight] of groups) {
-    for (const check of checks) verifierRows.push([spec.task_code, spec.task_name, spec.family, category, check.id, check.text, categoryWeight, categoryWeight / checks.length]);
+    for (const check of checks) verifierRows.push([spec.task_code, spec.task_name, spec.family, category, check.id, check.text]);
   }
 }
-const verifierInfo = addDataTable(verifiersSheet, ["Task code", "Task name", "Family", "Verifier type", "Verifier ID", "Check", "Component weight", "Per-check reference weight"], verifierRows, "VerifiersTable");
-verifiersSheet.getRange(`G5:H${verifierInfo.endRow}`).format.numberFormat = "0.0";
-verifiersSheet.getRange(`A5:H${verifierInfo.endRow}`).format.rowHeightPx = 58;
+const verifierInfo = addDataTable(verifiersSheet, ["Task code", "Task name", "Family", "Verifier type", "Verifier ID", "Check"], verifierRows, "VerifiersTable");
+verifiersSheet.getRange(`A5:F${verifierInfo.endRow}`).format.rowHeightPx = 58;
 verifiersSheet.getRange(`B5:F${verifierInfo.endRow}`).format.wrapText = true;
-setColumnWidths(verifiersSheet, [115, 300, 125, 100, 75, 560, 110, 170], verifierInfo.endRow);
+setColumnWidths(verifiersSheet, [115, 300, 125, 100, 75, 680], verifierInfo.endRow);
 
 const assetsSheet = workbook.worksheets.add("Assets");
 assetsSheet.tabColor = colors.red;
@@ -262,7 +261,7 @@ const previewRanges = {
   "Layout Tasks": "A1:H12",
   "Motion Tasks": "A1:H12",
   "Deliverables": "A1:G20",
-  "Verifiers": "A1:H20",
+  "Verifiers": "A1:F20",
   "Assets": "A1:L24",
 };
 for (const [sheetName, range] of Object.entries(previewRanges)) {
