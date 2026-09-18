@@ -1,224 +1,164 @@
 # SB3-002-PHO atomic output verifiers
 
-Result: not assessed. These checks evaluate final files, not process claims.
+Result: not assessed. Answer every acceptance statement Yes or No. Only Yes passes. Each row evaluates one named output and one observable condition; subjective creative judgement is recorded separately.
 
-| Output | Check ID | Type | Check |
-|---|---|---|---|
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/A001 | auto | deliverables/dish-card-r002.pdf — File is present. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/A002 | auto | deliverables/dish-card-r002.pdf — The file opens in a format-aware reader. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/A003 | auto | deliverables/dish-card-r002.pdf — The PDF contains 1 page. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/A004 | auto | deliverables/dish-card-r002.pdf — The page trim width is 105.156 mm. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/A005 | auto | deliverables/dish-card-r002.pdf — The page trim height is 148.167 mm. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/H001 | human | deliverables/dish-card-r002.pdf — The hero photograph shows the named dish. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/H002 | human | deliverables/dish-card-r002.pdf — The dish description is readable at printed size. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/H003 | human | deliverables/dish-card-r002.pdf — The plate retains natural food texture. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/H004 | human | deliverables/dish-card-r002.pdf — The restaurant identity is visible. |
-| deliverables/dish-card-r002.pdf, source dishes.csv, row 2, field Dish Name | PHOTO-02/dish-card-r002/H005 | human | deliverables/dish-card-r002.pdf / source dishes.csv, row 2, field Dish Name — The printed Dish Name matches the authoritative record. |
-| deliverables/dish-card-r002.pdf, source dishes.csv, row 2, field Description | PHOTO-02/dish-card-r002/H006 | human | deliverables/dish-card-r002.pdf / source dishes.csv, row 2, field Description — The printed Description matches the authoritative record. |
-| deliverables/dish-card-r002.pdf, source dishes.csv, row 2, field Allergens | PHOTO-02/dish-card-r002/H007 | human | deliverables/dish-card-r002.pdf / source dishes.csv, row 2, field Allergens — The printed Allergens matches the authoritative record. |
-| deliverables/dish-card-r002.pdf, source dishes.csv, row 2, field PRICE | PHOTO-02/dish-card-r002/H008 | human | deliverables/dish-card-r002.pdf / source dishes.csv, row 2, field PRICE — The printed PRICE matches the authoritative record. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/H009 | human | deliverables/dish-card-r002.pdf — The finishing looks polished at the delivered size. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/H010 | human | deliverables/dish-card-r002.pdf — The visual character feels like Corner and Cure. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/H011 | human | deliverables/dish-card-r002.pdf — The intended reading order is clear. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/H012 | human | deliverables/dish-card-r002.pdf — The creative treatment suits the audience described in the brand brief. |
-| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/H013 | human | deliverables/dish-card-r002.pdf — The composition feels native to its stated delivery format. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/A001 | auto | deliverables/dish-card-r003.pdf — File is present. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/A002 | auto | deliverables/dish-card-r003.pdf — The file opens in a format-aware reader. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/A003 | auto | deliverables/dish-card-r003.pdf — The PDF contains 1 page. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/A004 | auto | deliverables/dish-card-r003.pdf — The page trim width is 105.156 mm. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/A005 | auto | deliverables/dish-card-r003.pdf — The page trim height is 148.167 mm. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/H001 | human | deliverables/dish-card-r003.pdf — The hero photograph shows the named dish. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/H002 | human | deliverables/dish-card-r003.pdf — The dish description is readable at printed size. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/H003 | human | deliverables/dish-card-r003.pdf — The plate retains natural food texture. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/H004 | human | deliverables/dish-card-r003.pdf — The restaurant identity is visible. |
-| deliverables/dish-card-r003.pdf, source dishes.csv, row 3, field Dish Name | PHOTO-02/dish-card-r003/H005 | human | deliverables/dish-card-r003.pdf / source dishes.csv, row 3, field Dish Name — The printed Dish Name matches the authoritative record. |
-| deliverables/dish-card-r003.pdf, source dishes.csv, row 3, field Description | PHOTO-02/dish-card-r003/H006 | human | deliverables/dish-card-r003.pdf / source dishes.csv, row 3, field Description — The printed Description matches the authoritative record. |
-| deliverables/dish-card-r003.pdf, source dishes.csv, row 3, field Allergens | PHOTO-02/dish-card-r003/H007 | human | deliverables/dish-card-r003.pdf / source dishes.csv, row 3, field Allergens — The printed Allergens matches the authoritative record. |
-| deliverables/dish-card-r003.pdf, source dishes.csv, row 3, field PRICE | PHOTO-02/dish-card-r003/H008 | human | deliverables/dish-card-r003.pdf / source dishes.csv, row 3, field PRICE — The printed PRICE matches the authoritative record. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/H009 | human | deliverables/dish-card-r003.pdf — The finishing looks polished at the delivered size. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/H010 | human | deliverables/dish-card-r003.pdf — The visual character feels like Corner and Cure. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/H011 | human | deliverables/dish-card-r003.pdf — The intended reading order is clear. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/H012 | human | deliverables/dish-card-r003.pdf — The creative treatment suits the audience described in the brand brief. |
-| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/H013 | human | deliverables/dish-card-r003.pdf — The composition feels native to its stated delivery format. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/A001 | auto | deliverables/dish-card-r004.pdf — File is present. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/A002 | auto | deliverables/dish-card-r004.pdf — The file opens in a format-aware reader. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/A003 | auto | deliverables/dish-card-r004.pdf — The PDF contains 1 page. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/A004 | auto | deliverables/dish-card-r004.pdf — The page trim width is 105.156 mm. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/A005 | auto | deliverables/dish-card-r004.pdf — The page trim height is 148.167 mm. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/H001 | human | deliverables/dish-card-r004.pdf — The hero photograph shows the named dish. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/H002 | human | deliverables/dish-card-r004.pdf — The dish description is readable at printed size. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/H003 | human | deliverables/dish-card-r004.pdf — The plate retains natural food texture. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/H004 | human | deliverables/dish-card-r004.pdf — The restaurant identity is visible. |
-| deliverables/dish-card-r004.pdf, source dishes.csv, row 4, field Dish Name | PHOTO-02/dish-card-r004/H005 | human | deliverables/dish-card-r004.pdf / source dishes.csv, row 4, field Dish Name — The printed Dish Name matches the authoritative record. |
-| deliverables/dish-card-r004.pdf, source dishes.csv, row 4, field Description | PHOTO-02/dish-card-r004/H006 | human | deliverables/dish-card-r004.pdf / source dishes.csv, row 4, field Description — The printed Description matches the authoritative record. |
-| deliverables/dish-card-r004.pdf, source dishes.csv, row 4, field Allergens | PHOTO-02/dish-card-r004/H007 | human | deliverables/dish-card-r004.pdf / source dishes.csv, row 4, field Allergens — The printed Allergens matches the authoritative record. |
-| deliverables/dish-card-r004.pdf, source dishes.csv, row 4, field PRICE | PHOTO-02/dish-card-r004/H008 | human | deliverables/dish-card-r004.pdf / source dishes.csv, row 4, field PRICE — The printed PRICE matches the authoritative record. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/H009 | human | deliverables/dish-card-r004.pdf — The finishing looks polished at the delivered size. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/H010 | human | deliverables/dish-card-r004.pdf — The visual character feels like Corner and Cure. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/H011 | human | deliverables/dish-card-r004.pdf — The intended reading order is clear. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/H012 | human | deliverables/dish-card-r004.pdf — The creative treatment suits the audience described in the brand brief. |
-| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/H013 | human | deliverables/dish-card-r004.pdf — The composition feels native to its stated delivery format. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/A001 | auto | deliverables/dish-card-r005.pdf — File is present. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/A002 | auto | deliverables/dish-card-r005.pdf — The file opens in a format-aware reader. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/A003 | auto | deliverables/dish-card-r005.pdf — The PDF contains 1 page. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/A004 | auto | deliverables/dish-card-r005.pdf — The page trim width is 105.156 mm. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/A005 | auto | deliverables/dish-card-r005.pdf — The page trim height is 148.167 mm. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/H001 | human | deliverables/dish-card-r005.pdf — The hero photograph shows the named dish. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/H002 | human | deliverables/dish-card-r005.pdf — The dish description is readable at printed size. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/H003 | human | deliverables/dish-card-r005.pdf — The plate retains natural food texture. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/H004 | human | deliverables/dish-card-r005.pdf — The restaurant identity is visible. |
-| deliverables/dish-card-r005.pdf, source dishes.csv, row 5, field Dish Name | PHOTO-02/dish-card-r005/H005 | human | deliverables/dish-card-r005.pdf / source dishes.csv, row 5, field Dish Name — The printed Dish Name matches the authoritative record. |
-| deliverables/dish-card-r005.pdf, source dishes.csv, row 5, field Description | PHOTO-02/dish-card-r005/H006 | human | deliverables/dish-card-r005.pdf / source dishes.csv, row 5, field Description — The printed Description matches the authoritative record. |
-| deliverables/dish-card-r005.pdf, source dishes.csv, row 5, field Allergens | PHOTO-02/dish-card-r005/H007 | human | deliverables/dish-card-r005.pdf / source dishes.csv, row 5, field Allergens — The printed Allergens matches the authoritative record. |
-| deliverables/dish-card-r005.pdf, source dishes.csv, row 5, field PRICE | PHOTO-02/dish-card-r005/H008 | human | deliverables/dish-card-r005.pdf / source dishes.csv, row 5, field PRICE — The printed PRICE matches the authoritative record. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/H009 | human | deliverables/dish-card-r005.pdf — The finishing looks polished at the delivered size. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/H010 | human | deliverables/dish-card-r005.pdf — The visual character feels like Corner and Cure. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/H011 | human | deliverables/dish-card-r005.pdf — The intended reading order is clear. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/H012 | human | deliverables/dish-card-r005.pdf — The creative treatment suits the audience described in the brand brief. |
-| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/H013 | human | deliverables/dish-card-r005.pdf — The composition feels native to its stated delivery format. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/A001 | auto | deliverables/dish-card-r006.pdf — File is present. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/A002 | auto | deliverables/dish-card-r006.pdf — The file opens in a format-aware reader. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/A003 | auto | deliverables/dish-card-r006.pdf — The PDF contains 1 page. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/A004 | auto | deliverables/dish-card-r006.pdf — The page trim width is 105.156 mm. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/A005 | auto | deliverables/dish-card-r006.pdf — The page trim height is 148.167 mm. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/H001 | human | deliverables/dish-card-r006.pdf — The hero photograph shows the named dish. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/H002 | human | deliverables/dish-card-r006.pdf — The dish description is readable at printed size. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/H003 | human | deliverables/dish-card-r006.pdf — The plate retains natural food texture. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/H004 | human | deliverables/dish-card-r006.pdf — The restaurant identity is visible. |
-| deliverables/dish-card-r006.pdf, source dishes.csv, row 6, field Dish Name | PHOTO-02/dish-card-r006/H005 | human | deliverables/dish-card-r006.pdf / source dishes.csv, row 6, field Dish Name — The printed Dish Name matches the authoritative record. |
-| deliverables/dish-card-r006.pdf, source dishes.csv, row 6, field Description | PHOTO-02/dish-card-r006/H006 | human | deliverables/dish-card-r006.pdf / source dishes.csv, row 6, field Description — The printed Description matches the authoritative record. |
-| deliverables/dish-card-r006.pdf, source dishes.csv, row 6, field Allergens | PHOTO-02/dish-card-r006/H007 | human | deliverables/dish-card-r006.pdf / source dishes.csv, row 6, field Allergens — The printed Allergens matches the authoritative record. |
-| deliverables/dish-card-r006.pdf, source dishes.csv, row 6, field PRICE | PHOTO-02/dish-card-r006/H008 | human | deliverables/dish-card-r006.pdf / source dishes.csv, row 6, field PRICE — The printed PRICE matches the authoritative record. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/H009 | human | deliverables/dish-card-r006.pdf — The finishing looks polished at the delivered size. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/H010 | human | deliverables/dish-card-r006.pdf — The visual character feels like Corner and Cure. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/H011 | human | deliverables/dish-card-r006.pdf — The intended reading order is clear. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/H012 | human | deliverables/dish-card-r006.pdf — The creative treatment suits the audience described in the brand brief. |
-| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/H013 | human | deliverables/dish-card-r006.pdf — The composition feels native to its stated delivery format. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/A001 | auto | deliverables/dish-card-r007.pdf — File is present. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/A002 | auto | deliverables/dish-card-r007.pdf — The file opens in a format-aware reader. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/A003 | auto | deliverables/dish-card-r007.pdf — The PDF contains 1 page. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/A004 | auto | deliverables/dish-card-r007.pdf — The page trim width is 105.156 mm. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/A005 | auto | deliverables/dish-card-r007.pdf — The page trim height is 148.167 mm. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/H001 | human | deliverables/dish-card-r007.pdf — The hero photograph shows the named dish. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/H002 | human | deliverables/dish-card-r007.pdf — The dish description is readable at printed size. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/H003 | human | deliverables/dish-card-r007.pdf — The plate retains natural food texture. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/H004 | human | deliverables/dish-card-r007.pdf — The restaurant identity is visible. |
-| deliverables/dish-card-r007.pdf, source dishes.csv, row 7, field Dish Name | PHOTO-02/dish-card-r007/H005 | human | deliverables/dish-card-r007.pdf / source dishes.csv, row 7, field Dish Name — The printed Dish Name matches the authoritative record. |
-| deliverables/dish-card-r007.pdf, source dishes.csv, row 7, field Description | PHOTO-02/dish-card-r007/H006 | human | deliverables/dish-card-r007.pdf / source dishes.csv, row 7, field Description — The printed Description matches the authoritative record. |
-| deliverables/dish-card-r007.pdf, source dishes.csv, row 7, field Allergens | PHOTO-02/dish-card-r007/H007 | human | deliverables/dish-card-r007.pdf / source dishes.csv, row 7, field Allergens — The printed Allergens matches the authoritative record. |
-| deliverables/dish-card-r007.pdf, source dishes.csv, row 7, field PRICE | PHOTO-02/dish-card-r007/H008 | human | deliverables/dish-card-r007.pdf / source dishes.csv, row 7, field PRICE — The printed PRICE matches the authoritative record. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/H009 | human | deliverables/dish-card-r007.pdf — The finishing looks polished at the delivered size. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/H010 | human | deliverables/dish-card-r007.pdf — The visual character feels like Corner and Cure. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/H011 | human | deliverables/dish-card-r007.pdf — The intended reading order is clear. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/H012 | human | deliverables/dish-card-r007.pdf — The creative treatment suits the audience described in the brand brief. |
-| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/H013 | human | deliverables/dish-card-r007.pdf — The composition feels native to its stated delivery format. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/A001 | auto | deliverables/dish-card-r008.pdf — File is present. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/A002 | auto | deliverables/dish-card-r008.pdf — The file opens in a format-aware reader. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/A003 | auto | deliverables/dish-card-r008.pdf — The PDF contains 1 page. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/A004 | auto | deliverables/dish-card-r008.pdf — The page trim width is 105.156 mm. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/A005 | auto | deliverables/dish-card-r008.pdf — The page trim height is 148.167 mm. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/H001 | human | deliverables/dish-card-r008.pdf — The hero photograph shows the named dish. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/H002 | human | deliverables/dish-card-r008.pdf — The dish description is readable at printed size. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/H003 | human | deliverables/dish-card-r008.pdf — The plate retains natural food texture. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/H004 | human | deliverables/dish-card-r008.pdf — The restaurant identity is visible. |
-| deliverables/dish-card-r008.pdf, source dishes.csv, row 8, field Dish Name | PHOTO-02/dish-card-r008/H005 | human | deliverables/dish-card-r008.pdf / source dishes.csv, row 8, field Dish Name — The printed Dish Name matches the authoritative record. |
-| deliverables/dish-card-r008.pdf, source dishes.csv, row 8, field Description | PHOTO-02/dish-card-r008/H006 | human | deliverables/dish-card-r008.pdf / source dishes.csv, row 8, field Description — The printed Description matches the authoritative record. |
-| deliverables/dish-card-r008.pdf, source dishes.csv, row 8, field Allergens | PHOTO-02/dish-card-r008/H007 | human | deliverables/dish-card-r008.pdf / source dishes.csv, row 8, field Allergens — The printed Allergens matches the authoritative record. |
-| deliverables/dish-card-r008.pdf, source dishes.csv, row 8, field PRICE | PHOTO-02/dish-card-r008/H008 | human | deliverables/dish-card-r008.pdf / source dishes.csv, row 8, field PRICE — The printed PRICE matches the authoritative record. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/H009 | human | deliverables/dish-card-r008.pdf — The finishing looks polished at the delivered size. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/H010 | human | deliverables/dish-card-r008.pdf — The visual character feels like Corner and Cure. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/H011 | human | deliverables/dish-card-r008.pdf — The intended reading order is clear. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/H012 | human | deliverables/dish-card-r008.pdf — The creative treatment suits the audience described in the brand brief. |
-| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/H013 | human | deliverables/dish-card-r008.pdf — The composition feels native to its stated delivery format. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/A001 | auto | deliverables/dish-card-r009.pdf — File is present. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/A002 | auto | deliverables/dish-card-r009.pdf — The file opens in a format-aware reader. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/A003 | auto | deliverables/dish-card-r009.pdf — The PDF contains 1 page. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/A004 | auto | deliverables/dish-card-r009.pdf — The page trim width is 105.156 mm. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/A005 | auto | deliverables/dish-card-r009.pdf — The page trim height is 148.167 mm. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/H001 | human | deliverables/dish-card-r009.pdf — The hero photograph shows the named dish. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/H002 | human | deliverables/dish-card-r009.pdf — The dish description is readable at printed size. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/H003 | human | deliverables/dish-card-r009.pdf — The plate retains natural food texture. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/H004 | human | deliverables/dish-card-r009.pdf — The restaurant identity is visible. |
-| deliverables/dish-card-r009.pdf, source dishes.csv, row 9, field Dish Name | PHOTO-02/dish-card-r009/H005 | human | deliverables/dish-card-r009.pdf / source dishes.csv, row 9, field Dish Name — The printed Dish Name matches the authoritative record. |
-| deliverables/dish-card-r009.pdf, source dishes.csv, row 9, field Description | PHOTO-02/dish-card-r009/H006 | human | deliverables/dish-card-r009.pdf / source dishes.csv, row 9, field Description — The printed Description matches the authoritative record. |
-| deliverables/dish-card-r009.pdf, source dishes.csv, row 9, field Allergens | PHOTO-02/dish-card-r009/H007 | human | deliverables/dish-card-r009.pdf / source dishes.csv, row 9, field Allergens — The printed Allergens matches the authoritative record. |
-| deliverables/dish-card-r009.pdf, source dishes.csv, row 9, field PRICE | PHOTO-02/dish-card-r009/H008 | human | deliverables/dish-card-r009.pdf / source dishes.csv, row 9, field PRICE — The printed PRICE matches the authoritative record. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/H009 | human | deliverables/dish-card-r009.pdf — The finishing looks polished at the delivered size. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/H010 | human | deliverables/dish-card-r009.pdf — The visual character feels like Corner and Cure. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/H011 | human | deliverables/dish-card-r009.pdf — The intended reading order is clear. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/H012 | human | deliverables/dish-card-r009.pdf — The creative treatment suits the audience described in the brand brief. |
-| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/H013 | human | deliverables/dish-card-r009.pdf — The composition feels native to its stated delivery format. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/A001 | auto | deliverables/dish-card-r010.pdf — File is present. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/A002 | auto | deliverables/dish-card-r010.pdf — The file opens in a format-aware reader. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/A003 | auto | deliverables/dish-card-r010.pdf — The PDF contains 1 page. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/A004 | auto | deliverables/dish-card-r010.pdf — The page trim width is 105.156 mm. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/A005 | auto | deliverables/dish-card-r010.pdf — The page trim height is 148.167 mm. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/H001 | human | deliverables/dish-card-r010.pdf — The hero photograph shows the named dish. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/H002 | human | deliverables/dish-card-r010.pdf — The dish description is readable at printed size. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/H003 | human | deliverables/dish-card-r010.pdf — The plate retains natural food texture. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/H004 | human | deliverables/dish-card-r010.pdf — The restaurant identity is visible. |
-| deliverables/dish-card-r010.pdf, source dishes.csv, row 10, field Dish Name | PHOTO-02/dish-card-r010/H005 | human | deliverables/dish-card-r010.pdf / source dishes.csv, row 10, field Dish Name — The printed Dish Name matches the authoritative record. |
-| deliverables/dish-card-r010.pdf, source dishes.csv, row 10, field Description | PHOTO-02/dish-card-r010/H006 | human | deliverables/dish-card-r010.pdf / source dishes.csv, row 10, field Description — The printed Description matches the authoritative record. |
-| deliverables/dish-card-r010.pdf, source dishes.csv, row 10, field Allergens | PHOTO-02/dish-card-r010/H007 | human | deliverables/dish-card-r010.pdf / source dishes.csv, row 10, field Allergens — The printed Allergens matches the authoritative record. |
-| deliverables/dish-card-r010.pdf, source dishes.csv, row 10, field PRICE | PHOTO-02/dish-card-r010/H008 | human | deliverables/dish-card-r010.pdf / source dishes.csv, row 10, field PRICE — The printed PRICE matches the authoritative record. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/H009 | human | deliverables/dish-card-r010.pdf — The finishing looks polished at the delivered size. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/H010 | human | deliverables/dish-card-r010.pdf — The visual character feels like Corner and Cure. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/H011 | human | deliverables/dish-card-r010.pdf — The intended reading order is clear. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/H012 | human | deliverables/dish-card-r010.pdf — The creative treatment suits the audience described in the brand brief. |
-| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/H013 | human | deliverables/dish-card-r010.pdf — The composition feels native to its stated delivery format. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/A001 | auto | deliverables/dish-card-r011.pdf — File is present. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/A002 | auto | deliverables/dish-card-r011.pdf — The file opens in a format-aware reader. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/A003 | auto | deliverables/dish-card-r011.pdf — The PDF contains 1 page. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/A004 | auto | deliverables/dish-card-r011.pdf — The page trim width is 105.156 mm. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/A005 | auto | deliverables/dish-card-r011.pdf — The page trim height is 148.167 mm. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/H001 | human | deliverables/dish-card-r011.pdf — The hero photograph shows the named dish. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/H002 | human | deliverables/dish-card-r011.pdf — The dish description is readable at printed size. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/H003 | human | deliverables/dish-card-r011.pdf — The plate retains natural food texture. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/H004 | human | deliverables/dish-card-r011.pdf — The restaurant identity is visible. |
-| deliverables/dish-card-r011.pdf, source dishes.csv, row 11, field Dish Name | PHOTO-02/dish-card-r011/H005 | human | deliverables/dish-card-r011.pdf / source dishes.csv, row 11, field Dish Name — The printed Dish Name matches the authoritative record. |
-| deliverables/dish-card-r011.pdf, source dishes.csv, row 11, field Description | PHOTO-02/dish-card-r011/H006 | human | deliverables/dish-card-r011.pdf / source dishes.csv, row 11, field Description — The printed Description matches the authoritative record. |
-| deliverables/dish-card-r011.pdf, source dishes.csv, row 11, field Allergens | PHOTO-02/dish-card-r011/H007 | human | deliverables/dish-card-r011.pdf / source dishes.csv, row 11, field Allergens — The printed Allergens matches the authoritative record. |
-| deliverables/dish-card-r011.pdf, source dishes.csv, row 11, field PRICE | PHOTO-02/dish-card-r011/H008 | human | deliverables/dish-card-r011.pdf / source dishes.csv, row 11, field PRICE — The printed PRICE matches the authoritative record. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/H009 | human | deliverables/dish-card-r011.pdf — The finishing looks polished at the delivered size. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/H010 | human | deliverables/dish-card-r011.pdf — The visual character feels like Corner and Cure. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/H011 | human | deliverables/dish-card-r011.pdf — The intended reading order is clear. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/H012 | human | deliverables/dish-card-r011.pdf — The creative treatment suits the audience described in the brand brief. |
-| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/H013 | human | deliverables/dish-card-r011.pdf — The composition feels native to its stated delivery format. |
-| deliverables/dish-card-combined.pdf | PHOTO-02/dish-card-combined/A001 | auto | deliverables/dish-card-combined.pdf — The named combined production file is delivered. |
-| deliverables/dish-card-combined.pdf | PHOTO-02/dish-card-combined/A002 | auto | deliverables/dish-card-combined.pdf — The combined file opens as a PDF. |
-| deliverables/dish-card-combined.pdf | PHOTO-02/dish-card-combined/A003 | auto | deliverables/dish-card-combined.pdf — The combined PDF contains 10 pages. |
-| deliverables/dish-card-combined.pdf, page 1 | PHOTO-02/dish-card-combined/A004 | auto | deliverables/dish-card-combined.pdf / page 1 — The trim width of page 1 is 105.156 mm. |
-| deliverables/dish-card-combined.pdf, page 1 | PHOTO-02/dish-card-combined/A005 | auto | deliverables/dish-card-combined.pdf / page 1 — The trim height of page 1 is 148.167 mm. |
-| deliverables/dish-card-combined.pdf, page 1 | PHOTO-02/dish-card-combined/H001 | human | deliverables/dish-card-combined.pdf / page 1 — This page matches deliverables/dish-card-r002.pdf, page 1. |
-| deliverables/dish-card-combined.pdf, page 2 | PHOTO-02/dish-card-combined/A006 | auto | deliverables/dish-card-combined.pdf / page 2 — The trim width of page 2 is 105.156 mm. |
-| deliverables/dish-card-combined.pdf, page 2 | PHOTO-02/dish-card-combined/A007 | auto | deliverables/dish-card-combined.pdf / page 2 — The trim height of page 2 is 148.167 mm. |
-| deliverables/dish-card-combined.pdf, page 2 | PHOTO-02/dish-card-combined/H002 | human | deliverables/dish-card-combined.pdf / page 2 — This page matches deliverables/dish-card-r003.pdf, page 1. |
-| deliverables/dish-card-combined.pdf, page 3 | PHOTO-02/dish-card-combined/A008 | auto | deliverables/dish-card-combined.pdf / page 3 — The trim width of page 3 is 105.156 mm. |
-| deliverables/dish-card-combined.pdf, page 3 | PHOTO-02/dish-card-combined/A009 | auto | deliverables/dish-card-combined.pdf / page 3 — The trim height of page 3 is 148.167 mm. |
-| deliverables/dish-card-combined.pdf, page 3 | PHOTO-02/dish-card-combined/H003 | human | deliverables/dish-card-combined.pdf / page 3 — This page matches deliverables/dish-card-r004.pdf, page 1. |
-| deliverables/dish-card-combined.pdf, page 4 | PHOTO-02/dish-card-combined/A010 | auto | deliverables/dish-card-combined.pdf / page 4 — The trim width of page 4 is 105.156 mm. |
-| deliverables/dish-card-combined.pdf, page 4 | PHOTO-02/dish-card-combined/A011 | auto | deliverables/dish-card-combined.pdf / page 4 — The trim height of page 4 is 148.167 mm. |
-| deliverables/dish-card-combined.pdf, page 4 | PHOTO-02/dish-card-combined/H004 | human | deliverables/dish-card-combined.pdf / page 4 — This page matches deliverables/dish-card-r005.pdf, page 1. |
-| deliverables/dish-card-combined.pdf, page 5 | PHOTO-02/dish-card-combined/A012 | auto | deliverables/dish-card-combined.pdf / page 5 — The trim width of page 5 is 105.156 mm. |
-| deliverables/dish-card-combined.pdf, page 5 | PHOTO-02/dish-card-combined/A013 | auto | deliverables/dish-card-combined.pdf / page 5 — The trim height of page 5 is 148.167 mm. |
-| deliverables/dish-card-combined.pdf, page 5 | PHOTO-02/dish-card-combined/H005 | human | deliverables/dish-card-combined.pdf / page 5 — This page matches deliverables/dish-card-r006.pdf, page 1. |
-| deliverables/dish-card-combined.pdf, page 6 | PHOTO-02/dish-card-combined/A014 | auto | deliverables/dish-card-combined.pdf / page 6 — The trim width of page 6 is 105.156 mm. |
-| deliverables/dish-card-combined.pdf, page 6 | PHOTO-02/dish-card-combined/A015 | auto | deliverables/dish-card-combined.pdf / page 6 — The trim height of page 6 is 148.167 mm. |
-| deliverables/dish-card-combined.pdf, page 6 | PHOTO-02/dish-card-combined/H006 | human | deliverables/dish-card-combined.pdf / page 6 — This page matches deliverables/dish-card-r007.pdf, page 1. |
-| deliverables/dish-card-combined.pdf, page 7 | PHOTO-02/dish-card-combined/A016 | auto | deliverables/dish-card-combined.pdf / page 7 — The trim width of page 7 is 105.156 mm. |
-| deliverables/dish-card-combined.pdf, page 7 | PHOTO-02/dish-card-combined/A017 | auto | deliverables/dish-card-combined.pdf / page 7 — The trim height of page 7 is 148.167 mm. |
-| deliverables/dish-card-combined.pdf, page 7 | PHOTO-02/dish-card-combined/H007 | human | deliverables/dish-card-combined.pdf / page 7 — This page matches deliverables/dish-card-r008.pdf, page 1. |
-| deliverables/dish-card-combined.pdf, page 8 | PHOTO-02/dish-card-combined/A018 | auto | deliverables/dish-card-combined.pdf / page 8 — The trim width of page 8 is 105.156 mm. |
-| deliverables/dish-card-combined.pdf, page 8 | PHOTO-02/dish-card-combined/A019 | auto | deliverables/dish-card-combined.pdf / page 8 — The trim height of page 8 is 148.167 mm. |
-| deliverables/dish-card-combined.pdf, page 8 | PHOTO-02/dish-card-combined/H008 | human | deliverables/dish-card-combined.pdf / page 8 — This page matches deliverables/dish-card-r009.pdf, page 1. |
-| deliverables/dish-card-combined.pdf, page 9 | PHOTO-02/dish-card-combined/A020 | auto | deliverables/dish-card-combined.pdf / page 9 — The trim width of page 9 is 105.156 mm. |
-| deliverables/dish-card-combined.pdf, page 9 | PHOTO-02/dish-card-combined/A021 | auto | deliverables/dish-card-combined.pdf / page 9 — The trim height of page 9 is 148.167 mm. |
-| deliverables/dish-card-combined.pdf, page 9 | PHOTO-02/dish-card-combined/H009 | human | deliverables/dish-card-combined.pdf / page 9 — This page matches deliverables/dish-card-r010.pdf, page 1. |
-| deliverables/dish-card-combined.pdf, page 10 | PHOTO-02/dish-card-combined/A022 | auto | deliverables/dish-card-combined.pdf / page 10 — The trim width of page 10 is 105.156 mm. |
-| deliverables/dish-card-combined.pdf, page 10 | PHOTO-02/dish-card-combined/A023 | auto | deliverables/dish-card-combined.pdf / page 10 — The trim height of page 10 is 148.167 mm. |
-| deliverables/dish-card-combined.pdf, page 10 | PHOTO-02/dish-card-combined/H010 | human | deliverables/dish-card-combined.pdf / page 10 — This page matches deliverables/dish-card-r011.pdf, page 1. |
-| sources/dish-card.zip | PHOTO-02/dish-card-source/A001 | auto | sources/dish-card.zip — The named source archive is delivered. |
-| sources/dish-card.zip | PHOTO-02/dish-card-source/A002 | auto | sources/dish-card.zip — The source archive opens. |
-| sources/dish-card.zip | PHOTO-02/dish-card-source/A003 | auto | sources/dish-card.zip — The archive contains a native source or an editable-document reference. |
-| sources/dish-card.zip | PHOTO-02/dish-card-source/H001 | human | sources/dish-card.zip — The source opens in its stated editing application. |
-| sources/dish-card.zip | PHOTO-02/dish-card-source/H002 | human | sources/dish-card.zip — The text can be edited independently of the photograph. |
+| Output | Check ID | Type | Pass condition | Evidence | Answer |
+|---|---|---|---|---|---|
+| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/A001 | auto | deliverables/dish-card-r002.pdf — File is present. | Automated file_exists result | Yes / No |
+| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/A002 | auto | deliverables/dish-card-r002.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
+| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/A003 | auto | deliverables/dish-card-r002.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
+| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/A004 | auto | deliverables/dish-card-r002.pdf — The page trim width is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/A005 | auto | deliverables/dish-card-r002.pdf — The page trim height is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/H001 | human | deliverables/dish-card-r002.pdf — The hero photograph shows the named dish. | Source table dishes.csv, row 2 | Yes / No |
+| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/H002 | human | deliverables/dish-card-r002.pdf — On a 100% scale export proof, OCR returns the complete approved text for dish description. | Source table dishes.csv, row 2 | Yes / No |
+| deliverables/dish-card-r002.pdf | PHOTO-02/dish-card-r002/H003 | human | deliverables/dish-card-r002.pdf — The approved restaurant identity appears within the delivered output boundaries. | Source table dishes.csv, row 2 | Yes / No |
+| deliverables/dish-card-r002.pdf, source dishes.csv, row 2, field Dish Name | PHOTO-02/dish-card-r002/H004 | human | deliverables/dish-card-r002.pdf / source dishes.csv, row 2, field Dish Name — The printed Dish Name matches the authoritative record exactly. | Source table dishes.csv, row 2, field Dish Name | Yes / No |
+| deliverables/dish-card-r002.pdf, source dishes.csv, row 2, field Description | PHOTO-02/dish-card-r002/H005 | human | deliverables/dish-card-r002.pdf / source dishes.csv, row 2, field Description — The printed Description matches the authoritative record exactly. | Source table dishes.csv, row 2, field Description | Yes / No |
+| deliverables/dish-card-r002.pdf, source dishes.csv, row 2, field Allergens | PHOTO-02/dish-card-r002/H006 | human | deliverables/dish-card-r002.pdf / source dishes.csv, row 2, field Allergens — The printed Allergens matches the authoritative record exactly. | Source table dishes.csv, row 2, field Allergens | Yes / No |
+| deliverables/dish-card-r002.pdf, source dishes.csv, row 2, field PRICE | PHOTO-02/dish-card-r002/H007 | human | deliverables/dish-card-r002.pdf / source dishes.csv, row 2, field PRICE — The printed PRICE matches the authoritative record exactly. | Source table dishes.csv, row 2, field PRICE | Yes / No |
+| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/A001 | auto | deliverables/dish-card-r003.pdf — File is present. | Automated file_exists result | Yes / No |
+| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/A002 | auto | deliverables/dish-card-r003.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
+| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/A003 | auto | deliverables/dish-card-r003.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
+| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/A004 | auto | deliverables/dish-card-r003.pdf — The page trim width is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/A005 | auto | deliverables/dish-card-r003.pdf — The page trim height is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/H001 | human | deliverables/dish-card-r003.pdf — The hero photograph shows the named dish. | Source table dishes.csv, row 3 | Yes / No |
+| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/H002 | human | deliverables/dish-card-r003.pdf — On a 100% scale export proof, OCR returns the complete approved text for dish description. | Source table dishes.csv, row 3 | Yes / No |
+| deliverables/dish-card-r003.pdf | PHOTO-02/dish-card-r003/H003 | human | deliverables/dish-card-r003.pdf — The approved restaurant identity appears within the delivered output boundaries. | Source table dishes.csv, row 3 | Yes / No |
+| deliverables/dish-card-r003.pdf, source dishes.csv, row 3, field Dish Name | PHOTO-02/dish-card-r003/H004 | human | deliverables/dish-card-r003.pdf / source dishes.csv, row 3, field Dish Name — The printed Dish Name matches the authoritative record exactly. | Source table dishes.csv, row 3, field Dish Name | Yes / No |
+| deliverables/dish-card-r003.pdf, source dishes.csv, row 3, field Description | PHOTO-02/dish-card-r003/H005 | human | deliverables/dish-card-r003.pdf / source dishes.csv, row 3, field Description — The printed Description matches the authoritative record exactly. | Source table dishes.csv, row 3, field Description | Yes / No |
+| deliverables/dish-card-r003.pdf, source dishes.csv, row 3, field Allergens | PHOTO-02/dish-card-r003/H006 | human | deliverables/dish-card-r003.pdf / source dishes.csv, row 3, field Allergens — The printed Allergens matches the authoritative record exactly. | Source table dishes.csv, row 3, field Allergens | Yes / No |
+| deliverables/dish-card-r003.pdf, source dishes.csv, row 3, field PRICE | PHOTO-02/dish-card-r003/H007 | human | deliverables/dish-card-r003.pdf / source dishes.csv, row 3, field PRICE — The printed PRICE matches the authoritative record exactly. | Source table dishes.csv, row 3, field PRICE | Yes / No |
+| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/A001 | auto | deliverables/dish-card-r004.pdf — File is present. | Automated file_exists result | Yes / No |
+| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/A002 | auto | deliverables/dish-card-r004.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
+| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/A003 | auto | deliverables/dish-card-r004.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
+| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/A004 | auto | deliverables/dish-card-r004.pdf — The page trim width is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/A005 | auto | deliverables/dish-card-r004.pdf — The page trim height is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/H001 | human | deliverables/dish-card-r004.pdf — The hero photograph shows the named dish. | Source table dishes.csv, row 4 | Yes / No |
+| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/H002 | human | deliverables/dish-card-r004.pdf — On a 100% scale export proof, OCR returns the complete approved text for dish description. | Source table dishes.csv, row 4 | Yes / No |
+| deliverables/dish-card-r004.pdf | PHOTO-02/dish-card-r004/H003 | human | deliverables/dish-card-r004.pdf — The approved restaurant identity appears within the delivered output boundaries. | Source table dishes.csv, row 4 | Yes / No |
+| deliverables/dish-card-r004.pdf, source dishes.csv, row 4, field Dish Name | PHOTO-02/dish-card-r004/H004 | human | deliverables/dish-card-r004.pdf / source dishes.csv, row 4, field Dish Name — The printed Dish Name matches the authoritative record exactly. | Source table dishes.csv, row 4, field Dish Name | Yes / No |
+| deliverables/dish-card-r004.pdf, source dishes.csv, row 4, field Description | PHOTO-02/dish-card-r004/H005 | human | deliverables/dish-card-r004.pdf / source dishes.csv, row 4, field Description — The printed Description matches the authoritative record exactly. | Source table dishes.csv, row 4, field Description | Yes / No |
+| deliverables/dish-card-r004.pdf, source dishes.csv, row 4, field Allergens | PHOTO-02/dish-card-r004/H006 | human | deliverables/dish-card-r004.pdf / source dishes.csv, row 4, field Allergens — The printed Allergens matches the authoritative record exactly. | Source table dishes.csv, row 4, field Allergens | Yes / No |
+| deliverables/dish-card-r004.pdf, source dishes.csv, row 4, field PRICE | PHOTO-02/dish-card-r004/H007 | human | deliverables/dish-card-r004.pdf / source dishes.csv, row 4, field PRICE — The printed PRICE matches the authoritative record exactly. | Source table dishes.csv, row 4, field PRICE | Yes / No |
+| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/A001 | auto | deliverables/dish-card-r005.pdf — File is present. | Automated file_exists result | Yes / No |
+| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/A002 | auto | deliverables/dish-card-r005.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
+| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/A003 | auto | deliverables/dish-card-r005.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
+| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/A004 | auto | deliverables/dish-card-r005.pdf — The page trim width is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/A005 | auto | deliverables/dish-card-r005.pdf — The page trim height is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/H001 | human | deliverables/dish-card-r005.pdf — The hero photograph shows the named dish. | Source table dishes.csv, row 5 | Yes / No |
+| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/H002 | human | deliverables/dish-card-r005.pdf — On a 100% scale export proof, OCR returns the complete approved text for dish description. | Source table dishes.csv, row 5 | Yes / No |
+| deliverables/dish-card-r005.pdf | PHOTO-02/dish-card-r005/H003 | human | deliverables/dish-card-r005.pdf — The approved restaurant identity appears within the delivered output boundaries. | Source table dishes.csv, row 5 | Yes / No |
+| deliverables/dish-card-r005.pdf, source dishes.csv, row 5, field Dish Name | PHOTO-02/dish-card-r005/H004 | human | deliverables/dish-card-r005.pdf / source dishes.csv, row 5, field Dish Name — The printed Dish Name matches the authoritative record exactly. | Source table dishes.csv, row 5, field Dish Name | Yes / No |
+| deliverables/dish-card-r005.pdf, source dishes.csv, row 5, field Description | PHOTO-02/dish-card-r005/H005 | human | deliverables/dish-card-r005.pdf / source dishes.csv, row 5, field Description — The printed Description matches the authoritative record exactly. | Source table dishes.csv, row 5, field Description | Yes / No |
+| deliverables/dish-card-r005.pdf, source dishes.csv, row 5, field Allergens | PHOTO-02/dish-card-r005/H006 | human | deliverables/dish-card-r005.pdf / source dishes.csv, row 5, field Allergens — The printed Allergens matches the authoritative record exactly. | Source table dishes.csv, row 5, field Allergens | Yes / No |
+| deliverables/dish-card-r005.pdf, source dishes.csv, row 5, field PRICE | PHOTO-02/dish-card-r005/H007 | human | deliverables/dish-card-r005.pdf / source dishes.csv, row 5, field PRICE — The printed PRICE matches the authoritative record exactly. | Source table dishes.csv, row 5, field PRICE | Yes / No |
+| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/A001 | auto | deliverables/dish-card-r006.pdf — File is present. | Automated file_exists result | Yes / No |
+| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/A002 | auto | deliverables/dish-card-r006.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
+| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/A003 | auto | deliverables/dish-card-r006.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
+| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/A004 | auto | deliverables/dish-card-r006.pdf — The page trim width is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/A005 | auto | deliverables/dish-card-r006.pdf — The page trim height is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/H001 | human | deliverables/dish-card-r006.pdf — The hero photograph shows the named dish. | Source table dishes.csv, row 6 | Yes / No |
+| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/H002 | human | deliverables/dish-card-r006.pdf — On a 100% scale export proof, OCR returns the complete approved text for dish description. | Source table dishes.csv, row 6 | Yes / No |
+| deliverables/dish-card-r006.pdf | PHOTO-02/dish-card-r006/H003 | human | deliverables/dish-card-r006.pdf — The approved restaurant identity appears within the delivered output boundaries. | Source table dishes.csv, row 6 | Yes / No |
+| deliverables/dish-card-r006.pdf, source dishes.csv, row 6, field Dish Name | PHOTO-02/dish-card-r006/H004 | human | deliverables/dish-card-r006.pdf / source dishes.csv, row 6, field Dish Name — The printed Dish Name matches the authoritative record exactly. | Source table dishes.csv, row 6, field Dish Name | Yes / No |
+| deliverables/dish-card-r006.pdf, source dishes.csv, row 6, field Description | PHOTO-02/dish-card-r006/H005 | human | deliverables/dish-card-r006.pdf / source dishes.csv, row 6, field Description — The printed Description matches the authoritative record exactly. | Source table dishes.csv, row 6, field Description | Yes / No |
+| deliverables/dish-card-r006.pdf, source dishes.csv, row 6, field Allergens | PHOTO-02/dish-card-r006/H006 | human | deliverables/dish-card-r006.pdf / source dishes.csv, row 6, field Allergens — The printed Allergens matches the authoritative record exactly. | Source table dishes.csv, row 6, field Allergens | Yes / No |
+| deliverables/dish-card-r006.pdf, source dishes.csv, row 6, field PRICE | PHOTO-02/dish-card-r006/H007 | human | deliverables/dish-card-r006.pdf / source dishes.csv, row 6, field PRICE — The printed PRICE matches the authoritative record exactly. | Source table dishes.csv, row 6, field PRICE | Yes / No |
+| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/A001 | auto | deliverables/dish-card-r007.pdf — File is present. | Automated file_exists result | Yes / No |
+| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/A002 | auto | deliverables/dish-card-r007.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
+| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/A003 | auto | deliverables/dish-card-r007.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
+| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/A004 | auto | deliverables/dish-card-r007.pdf — The page trim width is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/A005 | auto | deliverables/dish-card-r007.pdf — The page trim height is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/H001 | human | deliverables/dish-card-r007.pdf — The hero photograph shows the named dish. | Source table dishes.csv, row 7 | Yes / No |
+| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/H002 | human | deliverables/dish-card-r007.pdf — On a 100% scale export proof, OCR returns the complete approved text for dish description. | Source table dishes.csv, row 7 | Yes / No |
+| deliverables/dish-card-r007.pdf | PHOTO-02/dish-card-r007/H003 | human | deliverables/dish-card-r007.pdf — The approved restaurant identity appears within the delivered output boundaries. | Source table dishes.csv, row 7 | Yes / No |
+| deliverables/dish-card-r007.pdf, source dishes.csv, row 7, field Dish Name | PHOTO-02/dish-card-r007/H004 | human | deliverables/dish-card-r007.pdf / source dishes.csv, row 7, field Dish Name — The printed Dish Name matches the authoritative record exactly. | Source table dishes.csv, row 7, field Dish Name | Yes / No |
+| deliverables/dish-card-r007.pdf, source dishes.csv, row 7, field Description | PHOTO-02/dish-card-r007/H005 | human | deliverables/dish-card-r007.pdf / source dishes.csv, row 7, field Description — The printed Description matches the authoritative record exactly. | Source table dishes.csv, row 7, field Description | Yes / No |
+| deliverables/dish-card-r007.pdf, source dishes.csv, row 7, field Allergens | PHOTO-02/dish-card-r007/H006 | human | deliverables/dish-card-r007.pdf / source dishes.csv, row 7, field Allergens — The printed Allergens matches the authoritative record exactly. | Source table dishes.csv, row 7, field Allergens | Yes / No |
+| deliverables/dish-card-r007.pdf, source dishes.csv, row 7, field PRICE | PHOTO-02/dish-card-r007/H007 | human | deliverables/dish-card-r007.pdf / source dishes.csv, row 7, field PRICE — The printed PRICE matches the authoritative record exactly. | Source table dishes.csv, row 7, field PRICE | Yes / No |
+| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/A001 | auto | deliverables/dish-card-r008.pdf — File is present. | Automated file_exists result | Yes / No |
+| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/A002 | auto | deliverables/dish-card-r008.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
+| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/A003 | auto | deliverables/dish-card-r008.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
+| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/A004 | auto | deliverables/dish-card-r008.pdf — The page trim width is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/A005 | auto | deliverables/dish-card-r008.pdf — The page trim height is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/H001 | human | deliverables/dish-card-r008.pdf — The hero photograph shows the named dish. | Source table dishes.csv, row 8 | Yes / No |
+| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/H002 | human | deliverables/dish-card-r008.pdf — On a 100% scale export proof, OCR returns the complete approved text for dish description. | Source table dishes.csv, row 8 | Yes / No |
+| deliverables/dish-card-r008.pdf | PHOTO-02/dish-card-r008/H003 | human | deliverables/dish-card-r008.pdf — The approved restaurant identity appears within the delivered output boundaries. | Source table dishes.csv, row 8 | Yes / No |
+| deliverables/dish-card-r008.pdf, source dishes.csv, row 8, field Dish Name | PHOTO-02/dish-card-r008/H004 | human | deliverables/dish-card-r008.pdf / source dishes.csv, row 8, field Dish Name — The printed Dish Name matches the authoritative record exactly. | Source table dishes.csv, row 8, field Dish Name | Yes / No |
+| deliverables/dish-card-r008.pdf, source dishes.csv, row 8, field Description | PHOTO-02/dish-card-r008/H005 | human | deliverables/dish-card-r008.pdf / source dishes.csv, row 8, field Description — The printed Description matches the authoritative record exactly. | Source table dishes.csv, row 8, field Description | Yes / No |
+| deliverables/dish-card-r008.pdf, source dishes.csv, row 8, field Allergens | PHOTO-02/dish-card-r008/H006 | human | deliverables/dish-card-r008.pdf / source dishes.csv, row 8, field Allergens — The printed Allergens matches the authoritative record exactly. | Source table dishes.csv, row 8, field Allergens | Yes / No |
+| deliverables/dish-card-r008.pdf, source dishes.csv, row 8, field PRICE | PHOTO-02/dish-card-r008/H007 | human | deliverables/dish-card-r008.pdf / source dishes.csv, row 8, field PRICE — The printed PRICE matches the authoritative record exactly. | Source table dishes.csv, row 8, field PRICE | Yes / No |
+| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/A001 | auto | deliverables/dish-card-r009.pdf — File is present. | Automated file_exists result | Yes / No |
+| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/A002 | auto | deliverables/dish-card-r009.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
+| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/A003 | auto | deliverables/dish-card-r009.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
+| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/A004 | auto | deliverables/dish-card-r009.pdf — The page trim width is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/A005 | auto | deliverables/dish-card-r009.pdf — The page trim height is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/H001 | human | deliverables/dish-card-r009.pdf — The hero photograph shows the named dish. | Source table dishes.csv, row 9 | Yes / No |
+| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/H002 | human | deliverables/dish-card-r009.pdf — On a 100% scale export proof, OCR returns the complete approved text for dish description. | Source table dishes.csv, row 9 | Yes / No |
+| deliverables/dish-card-r009.pdf | PHOTO-02/dish-card-r009/H003 | human | deliverables/dish-card-r009.pdf — The approved restaurant identity appears within the delivered output boundaries. | Source table dishes.csv, row 9 | Yes / No |
+| deliverables/dish-card-r009.pdf, source dishes.csv, row 9, field Dish Name | PHOTO-02/dish-card-r009/H004 | human | deliverables/dish-card-r009.pdf / source dishes.csv, row 9, field Dish Name — The printed Dish Name matches the authoritative record exactly. | Source table dishes.csv, row 9, field Dish Name | Yes / No |
+| deliverables/dish-card-r009.pdf, source dishes.csv, row 9, field Description | PHOTO-02/dish-card-r009/H005 | human | deliverables/dish-card-r009.pdf / source dishes.csv, row 9, field Description — The printed Description matches the authoritative record exactly. | Source table dishes.csv, row 9, field Description | Yes / No |
+| deliverables/dish-card-r009.pdf, source dishes.csv, row 9, field Allergens | PHOTO-02/dish-card-r009/H006 | human | deliverables/dish-card-r009.pdf / source dishes.csv, row 9, field Allergens — The printed Allergens matches the authoritative record exactly. | Source table dishes.csv, row 9, field Allergens | Yes / No |
+| deliverables/dish-card-r009.pdf, source dishes.csv, row 9, field PRICE | PHOTO-02/dish-card-r009/H007 | human | deliverables/dish-card-r009.pdf / source dishes.csv, row 9, field PRICE — The printed PRICE matches the authoritative record exactly. | Source table dishes.csv, row 9, field PRICE | Yes / No |
+| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/A001 | auto | deliverables/dish-card-r010.pdf — File is present. | Automated file_exists result | Yes / No |
+| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/A002 | auto | deliverables/dish-card-r010.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
+| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/A003 | auto | deliverables/dish-card-r010.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
+| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/A004 | auto | deliverables/dish-card-r010.pdf — The page trim width is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/A005 | auto | deliverables/dish-card-r010.pdf — The page trim height is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/H001 | human | deliverables/dish-card-r010.pdf — The hero photograph shows the named dish. | Source table dishes.csv, row 10 | Yes / No |
+| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/H002 | human | deliverables/dish-card-r010.pdf — On a 100% scale export proof, OCR returns the complete approved text for dish description. | Source table dishes.csv, row 10 | Yes / No |
+| deliverables/dish-card-r010.pdf | PHOTO-02/dish-card-r010/H003 | human | deliverables/dish-card-r010.pdf — The approved restaurant identity appears within the delivered output boundaries. | Source table dishes.csv, row 10 | Yes / No |
+| deliverables/dish-card-r010.pdf, source dishes.csv, row 10, field Dish Name | PHOTO-02/dish-card-r010/H004 | human | deliverables/dish-card-r010.pdf / source dishes.csv, row 10, field Dish Name — The printed Dish Name matches the authoritative record exactly. | Source table dishes.csv, row 10, field Dish Name | Yes / No |
+| deliverables/dish-card-r010.pdf, source dishes.csv, row 10, field Description | PHOTO-02/dish-card-r010/H005 | human | deliverables/dish-card-r010.pdf / source dishes.csv, row 10, field Description — The printed Description matches the authoritative record exactly. | Source table dishes.csv, row 10, field Description | Yes / No |
+| deliverables/dish-card-r010.pdf, source dishes.csv, row 10, field Allergens | PHOTO-02/dish-card-r010/H006 | human | deliverables/dish-card-r010.pdf / source dishes.csv, row 10, field Allergens — The printed Allergens matches the authoritative record exactly. | Source table dishes.csv, row 10, field Allergens | Yes / No |
+| deliverables/dish-card-r010.pdf, source dishes.csv, row 10, field PRICE | PHOTO-02/dish-card-r010/H007 | human | deliverables/dish-card-r010.pdf / source dishes.csv, row 10, field PRICE — The printed PRICE matches the authoritative record exactly. | Source table dishes.csv, row 10, field PRICE | Yes / No |
+| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/A001 | auto | deliverables/dish-card-r011.pdf — File is present. | Automated file_exists result | Yes / No |
+| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/A002 | auto | deliverables/dish-card-r011.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
+| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/A003 | auto | deliverables/dish-card-r011.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
+| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/A004 | auto | deliverables/dish-card-r011.pdf — The page trim width is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/A005 | auto | deliverables/dish-card-r011.pdf — The page trim height is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/H001 | human | deliverables/dish-card-r011.pdf — The hero photograph shows the named dish. | Source table dishes.csv, row 11 | Yes / No |
+| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/H002 | human | deliverables/dish-card-r011.pdf — On a 100% scale export proof, OCR returns the complete approved text for dish description. | Source table dishes.csv, row 11 | Yes / No |
+| deliverables/dish-card-r011.pdf | PHOTO-02/dish-card-r011/H003 | human | deliverables/dish-card-r011.pdf — The approved restaurant identity appears within the delivered output boundaries. | Source table dishes.csv, row 11 | Yes / No |
+| deliverables/dish-card-r011.pdf, source dishes.csv, row 11, field Dish Name | PHOTO-02/dish-card-r011/H004 | human | deliverables/dish-card-r011.pdf / source dishes.csv, row 11, field Dish Name — The printed Dish Name matches the authoritative record exactly. | Source table dishes.csv, row 11, field Dish Name | Yes / No |
+| deliverables/dish-card-r011.pdf, source dishes.csv, row 11, field Description | PHOTO-02/dish-card-r011/H005 | human | deliverables/dish-card-r011.pdf / source dishes.csv, row 11, field Description — The printed Description matches the authoritative record exactly. | Source table dishes.csv, row 11, field Description | Yes / No |
+| deliverables/dish-card-r011.pdf, source dishes.csv, row 11, field Allergens | PHOTO-02/dish-card-r011/H006 | human | deliverables/dish-card-r011.pdf / source dishes.csv, row 11, field Allergens — The printed Allergens matches the authoritative record exactly. | Source table dishes.csv, row 11, field Allergens | Yes / No |
+| deliverables/dish-card-r011.pdf, source dishes.csv, row 11, field PRICE | PHOTO-02/dish-card-r011/H007 | human | deliverables/dish-card-r011.pdf / source dishes.csv, row 11, field PRICE — The printed PRICE matches the authoritative record exactly. | Source table dishes.csv, row 11, field PRICE | Yes / No |
+| deliverables/dish-card-combined.pdf | PHOTO-02/dish-card-combined/A001 | auto | deliverables/dish-card-combined.pdf — The named combined production file is delivered. | Automated file_exists result | Yes / No |
+| deliverables/dish-card-combined.pdf | PHOTO-02/dish-card-combined/A002 | auto | deliverables/dish-card-combined.pdf — The combined file opens as a PDF. | Automated decodable result | Yes / No |
+| deliverables/dish-card-combined.pdf | PHOTO-02/dish-card-combined/A003 | auto | deliverables/dish-card-combined.pdf — The combined PDF contains 10 pages. | Automated pages result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 1 | PHOTO-02/dish-card-combined/A004 | auto | deliverables/dish-card-combined.pdf / page 1 — The trim width of page 1 is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 1 | PHOTO-02/dish-card-combined/A005 | auto | deliverables/dish-card-combined.pdf / page 1 — The trim height of page 1 is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 1 | PHOTO-02/dish-card-combined/H001 | human | deliverables/dish-card-combined.pdf / page 1 — Page 1 matches its approved source page. | deliverables/dish-card-r002.pdf, page 1 | Yes / No |
+| deliverables/dish-card-combined.pdf, page 2 | PHOTO-02/dish-card-combined/A006 | auto | deliverables/dish-card-combined.pdf / page 2 — The trim width of page 2 is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 2 | PHOTO-02/dish-card-combined/A007 | auto | deliverables/dish-card-combined.pdf / page 2 — The trim height of page 2 is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 2 | PHOTO-02/dish-card-combined/H002 | human | deliverables/dish-card-combined.pdf / page 2 — Page 2 matches its approved source page. | deliverables/dish-card-r003.pdf, page 1 | Yes / No |
+| deliverables/dish-card-combined.pdf, page 3 | PHOTO-02/dish-card-combined/A008 | auto | deliverables/dish-card-combined.pdf / page 3 — The trim width of page 3 is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 3 | PHOTO-02/dish-card-combined/A009 | auto | deliverables/dish-card-combined.pdf / page 3 — The trim height of page 3 is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 3 | PHOTO-02/dish-card-combined/H003 | human | deliverables/dish-card-combined.pdf / page 3 — Page 3 matches its approved source page. | deliverables/dish-card-r004.pdf, page 1 | Yes / No |
+| deliverables/dish-card-combined.pdf, page 4 | PHOTO-02/dish-card-combined/A010 | auto | deliverables/dish-card-combined.pdf / page 4 — The trim width of page 4 is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 4 | PHOTO-02/dish-card-combined/A011 | auto | deliverables/dish-card-combined.pdf / page 4 — The trim height of page 4 is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 4 | PHOTO-02/dish-card-combined/H004 | human | deliverables/dish-card-combined.pdf / page 4 — Page 4 matches its approved source page. | deliverables/dish-card-r005.pdf, page 1 | Yes / No |
+| deliverables/dish-card-combined.pdf, page 5 | PHOTO-02/dish-card-combined/A012 | auto | deliverables/dish-card-combined.pdf / page 5 — The trim width of page 5 is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 5 | PHOTO-02/dish-card-combined/A013 | auto | deliverables/dish-card-combined.pdf / page 5 — The trim height of page 5 is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 5 | PHOTO-02/dish-card-combined/H005 | human | deliverables/dish-card-combined.pdf / page 5 — Page 5 matches its approved source page. | deliverables/dish-card-r006.pdf, page 1 | Yes / No |
+| deliverables/dish-card-combined.pdf, page 6 | PHOTO-02/dish-card-combined/A014 | auto | deliverables/dish-card-combined.pdf / page 6 — The trim width of page 6 is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 6 | PHOTO-02/dish-card-combined/A015 | auto | deliverables/dish-card-combined.pdf / page 6 — The trim height of page 6 is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 6 | PHOTO-02/dish-card-combined/H006 | human | deliverables/dish-card-combined.pdf / page 6 — Page 6 matches its approved source page. | deliverables/dish-card-r007.pdf, page 1 | Yes / No |
+| deliverables/dish-card-combined.pdf, page 7 | PHOTO-02/dish-card-combined/A016 | auto | deliverables/dish-card-combined.pdf / page 7 — The trim width of page 7 is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 7 | PHOTO-02/dish-card-combined/A017 | auto | deliverables/dish-card-combined.pdf / page 7 — The trim height of page 7 is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 7 | PHOTO-02/dish-card-combined/H007 | human | deliverables/dish-card-combined.pdf / page 7 — Page 7 matches its approved source page. | deliverables/dish-card-r008.pdf, page 1 | Yes / No |
+| deliverables/dish-card-combined.pdf, page 8 | PHOTO-02/dish-card-combined/A018 | auto | deliverables/dish-card-combined.pdf / page 8 — The trim width of page 8 is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 8 | PHOTO-02/dish-card-combined/A019 | auto | deliverables/dish-card-combined.pdf / page 8 — The trim height of page 8 is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 8 | PHOTO-02/dish-card-combined/H008 | human | deliverables/dish-card-combined.pdf / page 8 — Page 8 matches its approved source page. | deliverables/dish-card-r009.pdf, page 1 | Yes / No |
+| deliverables/dish-card-combined.pdf, page 9 | PHOTO-02/dish-card-combined/A020 | auto | deliverables/dish-card-combined.pdf / page 9 — The trim width of page 9 is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 9 | PHOTO-02/dish-card-combined/A021 | auto | deliverables/dish-card-combined.pdf / page 9 — The trim height of page 9 is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 9 | PHOTO-02/dish-card-combined/H009 | human | deliverables/dish-card-combined.pdf / page 9 — Page 9 matches its approved source page. | deliverables/dish-card-r010.pdf, page 1 | Yes / No |
+| deliverables/dish-card-combined.pdf, page 10 | PHOTO-02/dish-card-combined/A022 | auto | deliverables/dish-card-combined.pdf / page 10 — The trim width of page 10 is 105.156 mm. | Automated trim_width_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 10 | PHOTO-02/dish-card-combined/A023 | auto | deliverables/dish-card-combined.pdf / page 10 — The trim height of page 10 is 148.167 mm. | Automated trim_height_mm result | Yes / No |
+| deliverables/dish-card-combined.pdf, page 10 | PHOTO-02/dish-card-combined/H010 | human | deliverables/dish-card-combined.pdf / page 10 — Page 10 matches its approved source page. | deliverables/dish-card-r011.pdf, page 1 | Yes / No |
+| sources/dish-card.zip | PHOTO-02/dish-card-source/A001 | auto | sources/dish-card.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
+| sources/dish-card.zip | PHOTO-02/dish-card-source/A002 | auto | sources/dish-card.zip — The source archive opens. | Automated decodable result | Yes / No |
+| sources/dish-card.zip | PHOTO-02/dish-card-source/A003 | auto | sources/dish-card.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
+| sources/dish-card.zip | PHOTO-02/dish-card-source/H001 | human | sources/dish-card.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
+| sources/dish-card.zip | PHOTO-02/dish-card-source/H002 | human | sources/dish-card.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |

@@ -9,8 +9,9 @@
 - Explicit soundtrack requirements and playable-video acceptance checks for motion work; still-based animation is no longer capped by zero source-video duration.
 - Objective verifier runner and regression tests for missing outputs, dimensions, transparency, SVG geometry, native-source presence and silent video.
 - Per-page checks for combined print runs; restored 36-character lettering sets; source-specific sticker and signage tolerances; complete motion/audio, codec and frame-rate requirements.
-- Output-bound professional ratings for brand empathy, hierarchy, craft and audience/format suitability, kept separate from automatic checks.
-- Exact deliverable paths are written into the verifier sentences themselves. The release validator rejects `each`/`every` wording and aggregate checks across multiple deliverables.
+- A strict binary acceptance contract for every verifier: `Yes` passes and `No` fails. Every row names one exact output, one observable condition and the evidence to compare.
+- Subjective brand empathy, hierarchy, craft and audience/format suitability criteria are stored only in the separate expert-review rubric; they do not appear in acceptance verifiers.
+- Exact deliverable paths are written into the verifier statements themselves. The release validator rejects `each`/`every` wording, aggregate checks across multiple deliverables, rating fields and subjective acceptance language.
 - Separate local review HTML. Previous Gatsby pages and execution histories are unchanged.
 
 ## Not Complete
@@ -20,7 +21,7 @@
 - Exact-image placement, editable-layout and motion end-to-end capability trials on both connector surfaces.
 - Independent professional review of task quality and creative outputs.
 - Re-execution of the ten worked samples under the revised contracts.
-- Publication to the live Google Sheet, S3 and GitHub Pages. The local revision is not yet a production release.
+- Independent production approval remains pending even after the refreshed task catalog is published to the live Google Sheet and GitHub Pages.
 
 The 1,861 source files were structurally inventoried. Image/PDF/CSV readability checks reported no errors; this does not certify every image's visual quality, every video's full decode, or every source fact. All release gates remain held until the necessary checks and source repairs are actually completed.
 
@@ -38,6 +39,6 @@ Run `node benchmark_v4/build_release.mjs`, then `node benchmark_v4/validate_rele
 
 The isolated Python environment is declared in `requirements.txt`. On this Mac, Cairo is installed in `/opt/homebrew/lib`; launch tests with `DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib benchmark_v4/.venv/bin/python benchmark_v4/test_verifiers.py`.
 
-The structural validator passes all 100 tasks and every output/check binding. All 15 objective-verifier regression tests pass. Desktop and mobile review-page tests pass for task navigation, previews, verifier filtering, professional rating visibility, source gates and layout overflow. The original V3 source checksum is unchanged. These tests do not certify professional creative quality.
+The structural validator passes all 100 tasks, 1,708 outputs and 18,540 verifier bindings. Every verifier uses the same Yes/No schema; there are zero `each`/`every` aggregate checks, zero multi-deliverable checks and zero subjective rating checks in acceptance. All 15 objective-verifier regression tests pass. Desktop and mobile review-page tests cover task navigation, previews, verifier filtering, binary guidance, source gates and layout overflow. The original V3 source checksum is unchanged. These tests do not certify professional creative quality.
 
 Run an objective output evaluation using `verify_outputs.py --spec <TASK_SPEC.json> --artifacts <run-directory> --out <verifier-results.json>`. Human judgements remain pending. Missing dependencies produce evaluation errors, not creative-quality passes.
