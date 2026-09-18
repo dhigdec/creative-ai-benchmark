@@ -14,7 +14,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/house-story.zip | LAYOUT-05/house-story-source/A002 | auto | sources/house-story.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/house-story.zip | LAYOUT-05/house-story-source/A003 | auto | sources/house-story.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/house-story.zip | LAYOUT-05/house-story-source/H001 | human | sources/house-story.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/house-story.zip | LAYOUT-05/house-story-source/H002 | human | sources/house-story.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/house-story.zip | LAYOUT-05/house-story-source/H002 | human | sources/house-story.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/campaign-poster.pdf | LAYOUT-05/campaign-poster/A001 | auto | deliverables/campaign-poster.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/campaign-poster.pdf | LAYOUT-05/campaign-poster/A002 | auto | deliverables/campaign-poster.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/campaign-poster.pdf | LAYOUT-05/campaign-poster/A003 | auto | deliverables/campaign-poster.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
@@ -26,18 +26,17 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/campaign-poster.zip | LAYOUT-05/campaign-poster-source/A002 | auto | sources/campaign-poster.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/campaign-poster.zip | LAYOUT-05/campaign-poster-source/A003 | auto | sources/campaign-poster.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/campaign-poster.zip | LAYOUT-05/campaign-poster-source/H001 | human | sources/campaign-poster.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/campaign-poster.zip | LAYOUT-05/campaign-poster-source/H002 | human | sources/campaign-poster.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/campaign-poster.zip | LAYOUT-05/campaign-poster-source/H002 | human | sources/campaign-poster.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/campaign-feed.png | LAYOUT-05/campaign-feed/A001 | auto | deliverables/campaign-feed.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/campaign-feed.png | LAYOUT-05/campaign-feed/A002 | auto | deliverables/campaign-feed.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/campaign-feed.png | LAYOUT-05/campaign-feed/A003 | auto | deliverables/campaign-feed.png — The width is 1080 px. | Automated width result | Yes / No |
 | deliverables/campaign-feed.png | LAYOUT-05/campaign-feed/A004 | auto | deliverables/campaign-feed.png — The height is 1350 px. | Automated height result | Yes / No |
-| deliverables/campaign-feed.png | LAYOUT-05/campaign-feed/H001 | human | deliverables/campaign-feed.png — At the delivered dimensions, OCR returns the complete approved text for approved message. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/campaign-feed.png | LAYOUT-05/campaign-feed/H002 | human | deliverables/campaign-feed.png — The brand treatment reflects the stated price position. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/campaign-feed.png | LAYOUT-05/campaign-feed/H001 | human | deliverables/campaign-feed.png — At the delivered dimensions, the message text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
 | sources/campaign-feed.zip | LAYOUT-05/campaign-feed-source/A001 | auto | sources/campaign-feed.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/campaign-feed.zip | LAYOUT-05/campaign-feed-source/A002 | auto | sources/campaign-feed.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/campaign-feed.zip | LAYOUT-05/campaign-feed-source/A003 | auto | sources/campaign-feed.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/campaign-feed.zip | LAYOUT-05/campaign-feed-source/H001 | human | sources/campaign-feed.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/campaign-feed.zip | LAYOUT-05/campaign-feed-source/H002 | human | sources/campaign-feed.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/campaign-feed.zip | LAYOUT-05/campaign-feed-source/H002 | human | sources/campaign-feed.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/campaign-story.png | LAYOUT-05/campaign-story/A001 | auto | deliverables/campaign-story.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/campaign-story.png | LAYOUT-05/campaign-story/A002 | auto | deliverables/campaign-story.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/campaign-story.png | LAYOUT-05/campaign-story/A003 | auto | deliverables/campaign-story.png — The width is 1080 px. | Automated width result | Yes / No |
@@ -47,4 +46,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/campaign-story.zip | LAYOUT-05/campaign-story-source/A002 | auto | sources/campaign-story.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/campaign-story.zip | LAYOUT-05/campaign-story-source/A003 | auto | sources/campaign-story.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/campaign-story.zip | LAYOUT-05/campaign-story-source/H001 | human | sources/campaign-story.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/campaign-story.zip | LAYOUT-05/campaign-story-source/H002 | human | sources/campaign-story.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/campaign-story.zip | LAYOUT-05/campaign-story-source/H002 | human | sources/campaign-story.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

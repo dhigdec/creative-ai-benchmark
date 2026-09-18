@@ -4,9 +4,9 @@ The contracts below have been revised. No new creative execution is claimed. Eac
 
 | Task | Exports | Editable sources | Auto | Human | Release |
 |---|---|---|---|---|---|
-| PHOTO-01 | 14 | 3 | 65 | 62 | held |
+| PHOTO-01 | 14 | 3 | 65 | 54 | held |
 | PHOTO-02 | 11 | 1 | 76 | 82 | held |
-| PHOTO-03 | 5 | 3 | 30 | 17 | held |
+| PHOTO-03 | 5 | 3 | 30 | 16 | held |
 | PHOTO-04 | 4 | 2 | 23 | 15 | held |
 | PHOTO-05 | 3 | 3 | 23 | 12 | held |
 | PHOTO-06 | 18 | 0 | 63 | 38 | held |
@@ -27,7 +27,7 @@ The contracts below have been revised. No new creative execution is claimed. Eac
 | PHOTO-21 | 7 | 2 | 35 | 11 | held |
 | PHOTO-22 | 16 | 3 | 73 | 93 | held |
 | PHOTO-23 | 2 | 2 | 16 | 7 | held |
-| PHOTO-24 | 7 | 3 | 38 | 34 | held |
+| PHOTO-24 | 7 | 3 | 38 | 33 | held |
 | PHOTO-25 | 8 | 3 | 43 | 45 | held |
 | PHOTO-26 | 2 | 2 | 16 | 6 | held |
 | PHOTO-27 | 7 | 3 | 38 | 15 | held |
@@ -35,25 +35,25 @@ The contracts below have been revised. No new creative execution is claimed. Eac
 | PHOTO-29 | 8 | 3 | 43 | 16 | held |
 | PHOTO-30 | 4 | 3 | 27 | 15 | held |
 | VECTOR-01 | 5 | 2 | 28 | 13 | held |
-| VECTOR-02 | 3 | 2 | 20 | 9 | held |
+| VECTOR-02 | 3 | 2 | 20 | 8 | held |
 | VECTOR-03 | 7 | 1 | 32 | 15 | held |
 | VECTOR-04 | 19 | 1 | 92 | 39 | held |
-| VECTOR-05 | 34 | 1 | 210 | 180 | held |
-| VECTOR-06 | 40 | 1 | 200 | 81 | held |
+| VECTOR-05 | 34 | 1 | 210 | 179 | held |
+| VECTOR-06 | 40 | 1 | 200 | 71 | held |
 | VECTOR-07 | 4 | 2 | 24 | 11 | held |
 | VECTOR-08 | 15 | 2 | 102 | 104 | held |
 | VECTOR-09 | 5 | 2 | 27 | 10 | held |
-| VECTOR-10 | 7 | 1 | 32 | 16 | held |
+| VECTOR-10 | 7 | 1 | 32 | 10 | held |
 | VECTOR-11 | 47 | 2 | 326 | 227 | held |
 | VECTOR-12 | 5 | 1 | 24 | 12 | held |
 | VECTOR-13 | 4 | 2 | 24 | 10 | held |
-| VECTOR-14 | 76 | 1 | 456 | 239 | held |
-| VECTOR-15 | 21 | 4 | 141 | 110 | held |
-| LAYOUT-01 | 20 | 7 | 142 | 129 | held |
+| VECTOR-14 | 76 | 1 | 456 | 229 | held |
+| VECTOR-15 | 21 | 4 | 141 | 109 | held |
+| LAYOUT-01 | 20 | 7 | 142 | 127 | held |
 | LAYOUT-02 | 77 | 2 | 427 | 498 | held |
 | LAYOUT-03 | 15 | 3 | 69 | 60 | held |
 | LAYOUT-04 | 12 | 2 | 84 | 95 | held |
-| LAYOUT-05 | 4 | 4 | 30 | 14 | held |
+| LAYOUT-05 | 4 | 4 | 30 | 13 | held |
 | LAYOUT-06 | 13 | 1 | 90 | 98 | held |
 | LAYOUT-07 | 8 | 2 | 56 | 60 | held |
 | LAYOUT-08 | 13 | 1 | 90 | 110 | held |
@@ -68,7 +68,7 @@ The contracts below have been revised. No new creative execution is claimed. Eac
 | LAYOUT-17 | 14 | 2 | 98 | 113 | held |
 | LAYOUT-18 | 19 | 6 | 97 | 136 | held |
 | LAYOUT-19 | 3 | 3 | 22 | 10 | held |
-| LAYOUT-20 | 30 | 4 | 211 | 118 | held |
+| LAYOUT-20 | 30 | 4 | 211 | 92 | held |
 | LAYOUT-21 | 12 | 1 | 83 | 145 | held |
 | LAYOUT-22 | 31 | 1 | 216 | 302 | held |
 | LAYOUT-23 | 23 | 2 | 157 | 200 | held |
@@ -100,7 +100,7 @@ The contracts below have been revised. No new creative execution is claimed. Eac
 | MOTION-14 | 5 | 1 | 37 | 7 | held |
 | MOTION-15 | 12 | 0 | 132 | 30 | held |
 | MOTION-16 | 6 | 0 | 66 | 12 | held |
-| MOTION-17 | 3 | 2 | 25 | 9 | held |
+| MOTION-17 | 3 | 2 | 25 | 8 | held |
 | MOTION-18 | 3 | 1 | 30 | 7 | held |
 | MOTION-19 | 9 | 0 | 99 | 26 | held |
 | MOTION-20 | 7 | 2 | 64 | 11 | held |

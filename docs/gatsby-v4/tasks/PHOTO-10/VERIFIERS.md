@@ -50,7 +50,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/style-pdp.zip | PHOTO-10/style-pdp-source/A002 | auto | sources/style-pdp.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/style-pdp.zip | PHOTO-10/style-pdp-source/A003 | auto | sources/style-pdp.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/style-pdp.zip | PHOTO-10/style-pdp-source/H001 | human | sources/style-pdp.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/style-pdp.zip | PHOTO-10/style-pdp-source/H002 | human | sources/style-pdp.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/style-pdp.zip | PHOTO-10/style-pdp-source/H002 | human | sources/style-pdp.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/capsule-carousel-p01.png | PHOTO-10/capsule-carousel-p01/A001 | auto | deliverables/capsule-carousel-p01.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/capsule-carousel-p01.png | PHOTO-10/capsule-carousel-p01/A002 | auto | deliverables/capsule-carousel-p01.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/capsule-carousel-p01.png | PHOTO-10/capsule-carousel-p01/A003 | auto | deliverables/capsule-carousel-p01.png — The width is 1080 px. | Automated width result | Yes / No |
@@ -85,4 +85,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/capsule-carousel.zip | PHOTO-10/capsule-carousel-source/A002 | auto | sources/capsule-carousel.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/capsule-carousel.zip | PHOTO-10/capsule-carousel-source/A003 | auto | sources/capsule-carousel.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/capsule-carousel.zip | PHOTO-10/capsule-carousel-source/H001 | human | sources/capsule-carousel.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/capsule-carousel.zip | PHOTO-10/capsule-carousel-source/H002 | human | sources/capsule-carousel.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/capsule-carousel.zip | PHOTO-10/capsule-carousel-source/H002 | human | sources/capsule-carousel.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

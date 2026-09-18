@@ -47,4 +47,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/episode-cover.zip | MOTION-14/episode-cover-source/A002 | auto | sources/episode-cover.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/episode-cover.zip | MOTION-14/episode-cover-source/A003 | auto | sources/episode-cover.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/episode-cover.zip | MOTION-14/episode-cover-source/H001 | human | sources/episode-cover.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/episode-cover.zip | MOTION-14/episode-cover-source/H002 | human | sources/episode-cover.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/episode-cover.zip | MOTION-14/episode-cover-source/H002 | human | sources/episode-cover.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

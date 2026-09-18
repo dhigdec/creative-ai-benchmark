@@ -15,7 +15,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/destination-poster.zip | PHOTO-29/destination-poster-source/A002 | auto | sources/destination-poster.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/destination-poster.zip | PHOTO-29/destination-poster-source/A003 | auto | sources/destination-poster.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/destination-poster.zip | PHOTO-29/destination-poster-source/H001 | human | sources/destination-poster.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/destination-poster.zip | PHOTO-29/destination-poster-source/H002 | human | sources/destination-poster.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/destination-poster.zip | PHOTO-29/destination-poster-source/H002 | human | sources/destination-poster.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/itinerary-carousel-p01.png | PHOTO-29/itinerary-carousel-p01/A001 | auto | deliverables/itinerary-carousel-p01.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/itinerary-carousel-p01.png | PHOTO-29/itinerary-carousel-p01/A002 | auto | deliverables/itinerary-carousel-p01.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/itinerary-carousel-p01.png | PHOTO-29/itinerary-carousel-p01/A003 | auto | deliverables/itinerary-carousel-p01.png — The width is 1080 px. | Automated width result | Yes / No |
@@ -50,7 +50,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/itinerary-carousel.zip | PHOTO-29/itinerary-carousel-source/A002 | auto | sources/itinerary-carousel.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/itinerary-carousel.zip | PHOTO-29/itinerary-carousel-source/A003 | auto | sources/itinerary-carousel.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/itinerary-carousel.zip | PHOTO-29/itinerary-carousel-source/H001 | human | sources/itinerary-carousel.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/itinerary-carousel.zip | PHOTO-29/itinerary-carousel-source/H002 | human | sources/itinerary-carousel.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/itinerary-carousel.zip | PHOTO-29/itinerary-carousel-source/H002 | human | sources/itinerary-carousel.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/member-feature.pdf | PHOTO-29/member-feature/A001 | auto | deliverables/member-feature.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/member-feature.pdf | PHOTO-29/member-feature/A002 | auto | deliverables/member-feature.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/member-feature.pdf | PHOTO-29/member-feature/A003 | auto | deliverables/member-feature.pdf — The PDF contains 2 pages. | Automated pages result | Yes / No |
@@ -62,4 +62,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/member-feature.zip | PHOTO-29/member-feature-source/A002 | auto | sources/member-feature.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/member-feature.zip | PHOTO-29/member-feature-source/A003 | auto | sources/member-feature.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/member-feature.zip | PHOTO-29/member-feature-source/H001 | human | sources/member-feature.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/member-feature.zip | PHOTO-29/member-feature-source/H002 | human | sources/member-feature.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/member-feature.zip | PHOTO-29/member-feature-source/H002 | human | sources/member-feature.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

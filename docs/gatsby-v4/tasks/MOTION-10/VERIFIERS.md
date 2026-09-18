@@ -62,4 +62,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/short-cover.zip | MOTION-10/short-cover-source/A002 | auto | sources/short-cover.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/short-cover.zip | MOTION-10/short-cover-source/A003 | auto | sources/short-cover.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/short-cover.zip | MOTION-10/short-cover-source/H001 | human | sources/short-cover.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/short-cover.zip | MOTION-10/short-cover-source/H002 | human | sources/short-cover.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/short-cover.zip | MOTION-10/short-cover-source/H002 | human | sources/short-cover.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

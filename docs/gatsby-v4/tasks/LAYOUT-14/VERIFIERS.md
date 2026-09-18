@@ -16,7 +16,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/autumn-issue.zip | LAYOUT-14/autumn-issue-source/A002 | auto | sources/autumn-issue.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/autumn-issue.zip | LAYOUT-14/autumn-issue-source/A003 | auto | sources/autumn-issue.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/autumn-issue.zip | LAYOUT-14/autumn-issue-source/H001 | human | sources/autumn-issue.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/autumn-issue.zip | LAYOUT-14/autumn-issue-source/H002 | human | sources/autumn-issue.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/autumn-issue.zip | LAYOUT-14/autumn-issue-source/H002 | human | sources/autumn-issue.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/plate-card-r002.pdf | LAYOUT-14/plate-card-r002/A001 | auto | deliverables/plate-card-r002.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/plate-card-r002.pdf | LAYOUT-14/plate-card-r002/A002 | auto | deliverables/plate-card-r002.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/plate-card-r002.pdf | LAYOUT-14/plate-card-r002/A003 | auto | deliverables/plate-card-r002.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
@@ -220,4 +220,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/plate-card.zip | LAYOUT-14/plate-card-source/A002 | auto | sources/plate-card.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/plate-card.zip | LAYOUT-14/plate-card-source/A003 | auto | sources/plate-card.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/plate-card.zip | LAYOUT-14/plate-card-source/H001 | human | sources/plate-card.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/plate-card.zip | LAYOUT-14/plate-card-source/H002 | human | sources/plate-card.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/plate-card.zip | LAYOUT-14/plate-card-source/H002 | human | sources/plate-card.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

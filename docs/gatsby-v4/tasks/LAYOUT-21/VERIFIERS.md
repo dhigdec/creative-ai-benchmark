@@ -231,4 +231,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/listing-sheet.zip | LAYOUT-21/listing-sheet-source/A002 | auto | sources/listing-sheet.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/listing-sheet.zip | LAYOUT-21/listing-sheet-source/A003 | auto | sources/listing-sheet.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/listing-sheet.zip | LAYOUT-21/listing-sheet-source/H001 | human | sources/listing-sheet.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/listing-sheet.zip | LAYOUT-21/listing-sheet-source/H002 | human | sources/listing-sheet.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/listing-sheet.zip | LAYOUT-21/listing-sheet-source/H002 | human | sources/listing-sheet.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

@@ -89,7 +89,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/bowl-tile.zip | MOTION-02/bowl-tile-source/A002 | auto | sources/bowl-tile.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/bowl-tile.zip | MOTION-02/bowl-tile-source/A003 | auto | sources/bowl-tile.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/bowl-tile.zip | MOTION-02/bowl-tile-source/H001 | human | sources/bowl-tile.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/bowl-tile.zip | MOTION-02/bowl-tile-source/H002 | human | sources/bowl-tile.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/bowl-tile.zip | MOTION-02/bowl-tile-source/H002 | human | sources/bowl-tile.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/lunch-range.pdf | MOTION-02/lunch-range/A001 | auto | deliverables/lunch-range.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/lunch-range.pdf | MOTION-02/lunch-range/A002 | auto | deliverables/lunch-range.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/lunch-range.pdf | MOTION-02/lunch-range/A003 | auto | deliverables/lunch-range.pdf — The PDF contains 2 pages. | Automated pages result | Yes / No |
@@ -100,14 +100,14 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/lunch-range.zip | MOTION-02/lunch-range-source/A002 | auto | sources/lunch-range.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/lunch-range.zip | MOTION-02/lunch-range-source/A003 | auto | sources/lunch-range.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/lunch-range.zip | MOTION-02/lunch-range-source/H001 | human | sources/lunch-range.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/lunch-range.zip | MOTION-02/lunch-range-source/H002 | human | sources/lunch-range.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/lunch-range.zip | MOTION-02/lunch-range-source/H002 | human | sources/lunch-range.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/product-cover.png | MOTION-02/product-cover/A001 | auto | deliverables/product-cover.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/product-cover.png | MOTION-02/product-cover/A002 | auto | deliverables/product-cover.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/product-cover.png | MOTION-02/product-cover/A003 | auto | deliverables/product-cover.png — The width is 1080 px. | Automated width result | Yes / No |
 | deliverables/product-cover.png | MOTION-02/product-cover/A004 | auto | deliverables/product-cover.png — The height is 1350 px. | Automated height result | Yes / No |
-| deliverables/product-cover.png | MOTION-02/product-cover/H001 | human | deliverables/product-cover.png — At the delivered dimensions, OCR returns the complete approved text for range name. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/product-cover.png | MOTION-02/product-cover/H001 | human | deliverables/product-cover.png — At the delivered dimensions, the range name text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
 | sources/product-cover.zip | MOTION-02/product-cover-source/A001 | auto | sources/product-cover.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/product-cover.zip | MOTION-02/product-cover-source/A002 | auto | sources/product-cover.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/product-cover.zip | MOTION-02/product-cover-source/A003 | auto | sources/product-cover.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/product-cover.zip | MOTION-02/product-cover-source/H001 | human | sources/product-cover.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/product-cover.zip | MOTION-02/product-cover-source/H002 | human | sources/product-cover.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/product-cover.zip | MOTION-02/product-cover-source/H002 | human | sources/product-cover.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

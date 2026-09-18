@@ -38,4 +38,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/explainer-cover.zip | MOTION-07/explainer-cover-source/A002 | auto | sources/explainer-cover.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/explainer-cover.zip | MOTION-07/explainer-cover-source/A003 | auto | sources/explainer-cover.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/explainer-cover.zip | MOTION-07/explainer-cover-source/H001 | human | sources/explainer-cover.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/explainer-cover.zip | MOTION-07/explainer-cover-source/H002 | human | sources/explainer-cover.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/explainer-cover.zip | MOTION-07/explainer-cover-source/H002 | human | sources/explainer-cover.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

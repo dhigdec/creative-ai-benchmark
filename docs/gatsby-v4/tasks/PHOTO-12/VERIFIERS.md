@@ -162,7 +162,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/ceramic-pdp.zip | PHOTO-12/ceramic-pdp-source/A002 | auto | sources/ceramic-pdp.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/ceramic-pdp.zip | PHOTO-12/ceramic-pdp-source/A003 | auto | sources/ceramic-pdp.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/ceramic-pdp.zip | PHOTO-12/ceramic-pdp-source/H001 | human | sources/ceramic-pdp.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/ceramic-pdp.zip | PHOTO-12/ceramic-pdp-source/H002 | human | sources/ceramic-pdp.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/ceramic-pdp.zip | PHOTO-12/ceramic-pdp-source/H002 | human | sources/ceramic-pdp.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/wholesale-range.pdf | PHOTO-12/wholesale-range/A001 | auto | deliverables/wholesale-range.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/wholesale-range.pdf | PHOTO-12/wholesale-range/A002 | auto | deliverables/wholesale-range.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/wholesale-range.pdf | PHOTO-12/wholesale-range/A003 | auto | deliverables/wholesale-range.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
@@ -173,7 +173,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/wholesale-range.zip | PHOTO-12/wholesale-range-source/A002 | auto | sources/wholesale-range.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/wholesale-range.zip | PHOTO-12/wholesale-range-source/A003 | auto | sources/wholesale-range.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/wholesale-range.zip | PHOTO-12/wholesale-range-source/H001 | human | sources/wholesale-range.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/wholesale-range.zip | PHOTO-12/wholesale-range-source/H002 | human | sources/wholesale-range.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/wholesale-range.zip | PHOTO-12/wholesale-range-source/H002 | human | sources/wholesale-range.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/launch-carousel-p01.png | PHOTO-12/launch-carousel-p01/A001 | auto | deliverables/launch-carousel-p01.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/launch-carousel-p01.png | PHOTO-12/launch-carousel-p01/A002 | auto | deliverables/launch-carousel-p01.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/launch-carousel-p01.png | PHOTO-12/launch-carousel-p01/A003 | auto | deliverables/launch-carousel-p01.png — The width is 1080 px. | Automated width result | Yes / No |
@@ -203,4 +203,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/launch-carousel.zip | PHOTO-12/launch-carousel-source/A002 | auto | sources/launch-carousel.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/launch-carousel.zip | PHOTO-12/launch-carousel-source/A003 | auto | sources/launch-carousel.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/launch-carousel.zip | PHOTO-12/launch-carousel-source/H001 | human | sources/launch-carousel.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/launch-carousel.zip | PHOTO-12/launch-carousel-source/H002 | human | sources/launch-carousel.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/launch-carousel.zip | PHOTO-12/launch-carousel-source/H002 | human | sources/launch-carousel.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

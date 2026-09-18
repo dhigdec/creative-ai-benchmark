@@ -27,8 +27,8 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | deliverables/performance-story.mp4 | MOTION-18/performance-story/A009 | auto | deliverables/performance-story.mp4 — The picture changes over time. | Automated moving_picture result | Yes / No |
 | deliverables/performance-story.mp4 | MOTION-18/performance-story/A010 | auto | deliverables/performance-story.mp4 — The export contains an audio stream. | Automated audio_stream result | Yes / No |
 | deliverables/performance-story.mp4 | MOTION-18/performance-story/A011 | auto | deliverables/performance-story.mp4 — The audio is not wholly silent. | Automated non_silent_audio result | Yes / No |
-| deliverables/performance-story.mp4 | MOTION-18/performance-story/H001 | human | deliverables/performance-story.mp4 — The approved main performer appears within the delivered output boundaries. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/performance-story.mp4 | MOTION-18/performance-story/H002 | human | deliverables/performance-story.mp4 — At the delivered dimensions, OCR returns the complete approved text for next-show action. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/performance-story.mp4 | MOTION-18/performance-story/H001 | human | deliverables/performance-story.mp4 — The main performer remains inside the output boundaries. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/performance-story.mp4 | MOTION-18/performance-story/H002 | human | deliverables/performance-story.mp4 — At the delivered dimensions, the next-show action text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/show-poster.pdf | MOTION-18/show-poster/A001 | auto | deliverables/show-poster.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/show-poster.pdf | MOTION-18/show-poster/A002 | auto | deliverables/show-poster.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/show-poster.pdf | MOTION-18/show-poster/A003 | auto | deliverables/show-poster.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
@@ -40,4 +40,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/show-poster.zip | MOTION-18/show-poster-source/A002 | auto | sources/show-poster.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/show-poster.zip | MOTION-18/show-poster-source/A003 | auto | sources/show-poster.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/show-poster.zip | MOTION-18/show-poster-source/H001 | human | sources/show-poster.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/show-poster.zip | MOTION-18/show-poster-source/H002 | human | sources/show-poster.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/show-poster.zip | MOTION-18/show-poster-source/H002 | human | sources/show-poster.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

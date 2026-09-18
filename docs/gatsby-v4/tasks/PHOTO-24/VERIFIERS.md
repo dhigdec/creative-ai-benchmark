@@ -13,7 +13,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/watch-keyvisual.zip | PHOTO-24/watch-keyvisual-source/A002 | auto | sources/watch-keyvisual.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/watch-keyvisual.zip | PHOTO-24/watch-keyvisual-source/A003 | auto | sources/watch-keyvisual.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/watch-keyvisual.zip | PHOTO-24/watch-keyvisual-source/H001 | human | sources/watch-keyvisual.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/watch-keyvisual.zip | PHOTO-24/watch-keyvisual-source/H002 | human | sources/watch-keyvisual.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/watch-keyvisual.zip | PHOTO-24/watch-keyvisual-source/H002 | human | sources/watch-keyvisual.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/watch-feature-r002.png | PHOTO-24/watch-feature-r002/A001 | auto | deliverables/watch-feature-r002.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/watch-feature-r002.png | PHOTO-24/watch-feature-r002/A002 | auto | deliverables/watch-feature-r002.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/watch-feature-r002.png | PHOTO-24/watch-feature-r002/A003 | auto | deliverables/watch-feature-r002.png — The width is 1440 px. | Automated width result | Yes / No |
@@ -63,16 +63,15 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/watch-feature.zip | PHOTO-24/watch-feature-source/A002 | auto | sources/watch-feature.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/watch-feature.zip | PHOTO-24/watch-feature-source/A003 | auto | sources/watch-feature.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/watch-feature.zip | PHOTO-24/watch-feature-source/H001 | human | sources/watch-feature.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/watch-feature.zip | PHOTO-24/watch-feature-source/H002 | human | sources/watch-feature.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/watch-feature.zip | PHOTO-24/watch-feature-source/H002 | human | sources/watch-feature.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/dealer-launch.pdf | PHOTO-24/dealer-launch/A001 | auto | deliverables/dealer-launch.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/dealer-launch.pdf | PHOTO-24/dealer-launch/A002 | auto | deliverables/dealer-launch.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/dealer-launch.pdf | PHOTO-24/dealer-launch/A003 | auto | deliverables/dealer-launch.pdf — The PDF contains 2 pages. | Automated pages result | Yes / No |
 | deliverables/dealer-launch.pdf | PHOTO-24/dealer-launch/A004 | auto | deliverables/dealer-launch.pdf — The page trim width is 210 mm. | Automated trim_width_mm result | Yes / No |
 | deliverables/dealer-launch.pdf | PHOTO-24/dealer-launch/A005 | auto | deliverables/dealer-launch.pdf — The page trim height is 297 mm. | Automated trim_height_mm result | Yes / No |
-| deliverables/dealer-launch.pdf | PHOTO-24/dealer-launch/H001 | human | deliverables/dealer-launch.pdf — The exact approved Model identities identifiers are present. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/dealer-launch.pdf | PHOTO-24/dealer-launch/H002 | human | deliverables/dealer-launch.pdf — The layout reflects the stated price position. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/dealer-launch.pdf | PHOTO-24/dealer-launch/H001 | human | deliverables/dealer-launch.pdf — The model identities match the approved source exactly. | Approved task brief and supplied source pack | Yes / No |
 | sources/dealer-launch.zip | PHOTO-24/dealer-launch-source/A001 | auto | sources/dealer-launch.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/dealer-launch.zip | PHOTO-24/dealer-launch-source/A002 | auto | sources/dealer-launch.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/dealer-launch.zip | PHOTO-24/dealer-launch-source/A003 | auto | sources/dealer-launch.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/dealer-launch.zip | PHOTO-24/dealer-launch-source/H001 | human | sources/dealer-launch.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/dealer-launch.zip | PHOTO-24/dealer-launch-source/H002 | human | sources/dealer-launch.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/dealer-launch.zip | PHOTO-24/dealer-launch-source/H002 | human | sources/dealer-launch.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

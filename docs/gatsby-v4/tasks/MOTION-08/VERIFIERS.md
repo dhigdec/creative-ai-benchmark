@@ -40,7 +40,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/website-band.zip | MOTION-08/website-band-source/A002 | auto | sources/website-band.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/website-band.zip | MOTION-08/website-band-source/A003 | auto | sources/website-band.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/website-band.zip | MOTION-08/website-band-source/H001 | human | sources/website-band.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/website-band.zip | MOTION-08/website-band-source/H002 | human | sources/website-band.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/website-band.zip | MOTION-08/website-band-source/H002 | human | sources/website-band.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/website-feature.png | MOTION-08/website-feature/A001 | auto | deliverables/website-feature.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/website-feature.png | MOTION-08/website-feature/A002 | auto | deliverables/website-feature.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/website-feature.png | MOTION-08/website-feature/A003 | auto | deliverables/website-feature.png — The width is 1440 px. | Automated width result | Yes / No |
@@ -50,4 +50,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/website-feature.zip | MOTION-08/website-feature-source/A002 | auto | sources/website-feature.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/website-feature.zip | MOTION-08/website-feature-source/A003 | auto | sources/website-feature.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/website-feature.zip | MOTION-08/website-feature-source/H001 | human | sources/website-feature.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/website-feature.zip | MOTION-08/website-feature-source/H002 | human | sources/website-feature.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/website-feature.zip | MOTION-08/website-feature-source/H002 | human | sources/website-feature.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

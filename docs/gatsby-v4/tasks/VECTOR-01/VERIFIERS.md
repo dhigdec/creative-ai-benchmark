@@ -33,7 +33,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/graphics-sheet.zip | VECTOR-01/graphics-sheet-source/A002 | auto | sources/graphics-sheet.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/graphics-sheet.zip | VECTOR-01/graphics-sheet-source/A003 | auto | sources/graphics-sheet.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/graphics-sheet.zip | VECTOR-01/graphics-sheet-source/H001 | human | sources/graphics-sheet.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/graphics-sheet.zip | VECTOR-01/graphics-sheet-source/H002 | human | sources/graphics-sheet.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/graphics-sheet.zip | VECTOR-01/graphics-sheet-source/H002 | human | sources/graphics-sheet.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/lookbook.pdf | VECTOR-01/lookbook/A001 | auto | deliverables/lookbook.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/lookbook.pdf | VECTOR-01/lookbook/A002 | auto | deliverables/lookbook.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/lookbook.pdf | VECTOR-01/lookbook/A003 | auto | deliverables/lookbook.pdf — The PDF contains 4 pages. | Automated pages result | Yes / No |
@@ -44,4 +44,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/lookbook.zip | VECTOR-01/lookbook-source/A002 | auto | sources/lookbook.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/lookbook.zip | VECTOR-01/lookbook-source/A003 | auto | sources/lookbook.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/lookbook.zip | VECTOR-01/lookbook-source/H001 | human | sources/lookbook.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/lookbook.zip | VECTOR-01/lookbook-source/H002 | human | sources/lookbook.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/lookbook.zip | VECTOR-01/lookbook-source/H002 | human | sources/lookbook.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

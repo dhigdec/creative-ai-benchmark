@@ -14,7 +14,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/capsule-poster.zip | PHOTO-13/capsule-poster-source/A002 | auto | sources/capsule-poster.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/capsule-poster.zip | PHOTO-13/capsule-poster-source/A003 | auto | sources/capsule-poster.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/capsule-poster.zip | PHOTO-13/capsule-poster-source/H001 | human | sources/capsule-poster.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/capsule-poster.zip | PHOTO-13/capsule-poster-source/H002 | human | sources/capsule-poster.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/capsule-poster.zip | PHOTO-13/capsule-poster-source/H002 | human | sources/capsule-poster.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/jewellery-detail-r002.png | PHOTO-13/jewellery-detail-r002/A001 | auto | deliverables/jewellery-detail-r002.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/jewellery-detail-r002.png | PHOTO-13/jewellery-detail-r002/A002 | auto | deliverables/jewellery-detail-r002.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/jewellery-detail-r002.png | PHOTO-13/jewellery-detail-r002/A003 | auto | deliverables/jewellery-detail-r002.png — The width is 1440 px. | Automated width result | Yes / No |
@@ -109,7 +109,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/jewellery-detail.zip | PHOTO-13/jewellery-detail-source/A002 | auto | sources/jewellery-detail.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/jewellery-detail.zip | PHOTO-13/jewellery-detail-source/A003 | auto | sources/jewellery-detail.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/jewellery-detail.zip | PHOTO-13/jewellery-detail-source/H001 | human | sources/jewellery-detail.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/jewellery-detail.zip | PHOTO-13/jewellery-detail-source/H002 | human | sources/jewellery-detail.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/jewellery-detail.zip | PHOTO-13/jewellery-detail-source/H002 | human | sources/jewellery-detail.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/retailer-look-sheet.pdf | PHOTO-13/retailer-look-sheet/A001 | auto | deliverables/retailer-look-sheet.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/retailer-look-sheet.pdf | PHOTO-13/retailer-look-sheet/A002 | auto | deliverables/retailer-look-sheet.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/retailer-look-sheet.pdf | PHOTO-13/retailer-look-sheet/A003 | auto | deliverables/retailer-look-sheet.pdf — The PDF contains 2 pages. | Automated pages result | Yes / No |
@@ -120,4 +120,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/retailer-look-sheet.zip | PHOTO-13/retailer-look-sheet-source/A002 | auto | sources/retailer-look-sheet.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/retailer-look-sheet.zip | PHOTO-13/retailer-look-sheet-source/A003 | auto | sources/retailer-look-sheet.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/retailer-look-sheet.zip | PHOTO-13/retailer-look-sheet-source/H001 | human | sources/retailer-look-sheet.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/retailer-look-sheet.zip | PHOTO-13/retailer-look-sheet-source/H002 | human | sources/retailer-look-sheet.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/retailer-look-sheet.zip | PHOTO-13/retailer-look-sheet-source/H002 | human | sources/retailer-look-sheet.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

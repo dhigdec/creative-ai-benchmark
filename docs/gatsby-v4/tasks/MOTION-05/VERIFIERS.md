@@ -15,7 +15,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | deliverables/opening-film.mp4 | MOTION-05/opening-film/A009 | auto | deliverables/opening-film.mp4 — The picture changes over time. | Automated moving_picture result | Yes / No |
 | deliverables/opening-film.mp4 | MOTION-05/opening-film/A010 | auto | deliverables/opening-film.mp4 — The export contains an audio stream. | Automated audio_stream result | Yes / No |
 | deliverables/opening-film.mp4 | MOTION-05/opening-film/A011 | auto | deliverables/opening-film.mp4 — The audio is not wholly silent. | Automated non_silent_audio result | Yes / No |
-| deliverables/opening-film.mp4 | MOTION-05/opening-film/H001 | human | deliverables/opening-film.mp4 — The room progression describes the supplied residences. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/opening-film.mp4 | MOTION-05/opening-film/H001 | human | deliverables/opening-film.mp4 — The video contains no blank frame lasting longer than one second. | Delivered output | Yes / No |
 | deliverables/opening-teaser.mp4 | MOTION-05/opening-teaser/A001 | auto | deliverables/opening-teaser.mp4 — File is present. | Automated file_exists result | Yes / No |
 | deliverables/opening-teaser.mp4 | MOTION-05/opening-teaser/A002 | auto | deliverables/opening-teaser.mp4 — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/opening-teaser.mp4 | MOTION-05/opening-teaser/A003 | auto | deliverables/opening-teaser.mp4 — The width is 1080 px. | Automated width result | Yes / No |
@@ -80,14 +80,14 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/residence-brochure.zip | MOTION-05/residence-brochure-source/A002 | auto | sources/residence-brochure.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/residence-brochure.zip | MOTION-05/residence-brochure-source/A003 | auto | sources/residence-brochure.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/residence-brochure.zip | MOTION-05/residence-brochure-source/H001 | human | sources/residence-brochure.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/residence-brochure.zip | MOTION-05/residence-brochure-source/H002 | human | sources/residence-brochure.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/residence-brochure.zip | MOTION-05/residence-brochure-source/H002 | human | sources/residence-brochure.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/residence-cover.png | MOTION-05/residence-cover/A001 | auto | deliverables/residence-cover.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/residence-cover.png | MOTION-05/residence-cover/A002 | auto | deliverables/residence-cover.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/residence-cover.png | MOTION-05/residence-cover/A003 | auto | deliverables/residence-cover.png — The width is 1920 px. | Automated width result | Yes / No |
 | deliverables/residence-cover.png | MOTION-05/residence-cover/A004 | auto | deliverables/residence-cover.png — The height is 1080 px. | Automated height result | Yes / No |
-| deliverables/residence-cover.png | MOTION-05/residence-cover/H001 | human | deliverables/residence-cover.png — At the delivered dimensions, OCR returns the complete approved text for development name. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/residence-cover.png | MOTION-05/residence-cover/H001 | human | deliverables/residence-cover.png — At the delivered dimensions, the development name text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
 | sources/residence-cover.zip | MOTION-05/residence-cover-source/A001 | auto | sources/residence-cover.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/residence-cover.zip | MOTION-05/residence-cover-source/A002 | auto | sources/residence-cover.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/residence-cover.zip | MOTION-05/residence-cover-source/A003 | auto | sources/residence-cover.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/residence-cover.zip | MOTION-05/residence-cover-source/H001 | human | sources/residence-cover.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/residence-cover.zip | MOTION-05/residence-cover-source/H002 | human | sources/residence-cover.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/residence-cover.zip | MOTION-05/residence-cover-source/H002 | human | sources/residence-cover.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

@@ -65,7 +65,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/hook-card.zip | MOTION-03/hook-card-source/A002 | auto | sources/hook-card.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/hook-card.zip | MOTION-03/hook-card-source/A003 | auto | sources/hook-card.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/hook-card.zip | MOTION-03/hook-card-source/H001 | human | sources/hook-card.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/hook-card.zip | MOTION-03/hook-card-source/H002 | human | sources/hook-card.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/hook-card.zip | MOTION-03/hook-card-source/H002 | human | sources/hook-card.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/end-card.png | MOTION-03/end-card/A001 | auto | deliverables/end-card.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/end-card.png | MOTION-03/end-card/A002 | auto | deliverables/end-card.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/end-card.png | MOTION-03/end-card/A003 | auto | deliverables/end-card.png — The width is 1080 px. | Automated width result | Yes / No |
@@ -75,4 +75,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/end-card.zip | MOTION-03/end-card-source/A002 | auto | sources/end-card.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/end-card.zip | MOTION-03/end-card-source/A003 | auto | sources/end-card.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/end-card.zip | MOTION-03/end-card-source/H001 | human | sources/end-card.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/end-card.zip | MOTION-03/end-card-source/H002 | human | sources/end-card.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/end-card.zip | MOTION-03/end-card-source/H002 | human | sources/end-card.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

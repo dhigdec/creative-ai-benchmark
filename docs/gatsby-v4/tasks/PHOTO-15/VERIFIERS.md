@@ -15,7 +15,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/gear-poster.zip | PHOTO-15/gear-poster-source/A002 | auto | sources/gear-poster.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/gear-poster.zip | PHOTO-15/gear-poster-source/A003 | auto | sources/gear-poster.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/gear-poster.zip | PHOTO-15/gear-poster-source/H001 | human | sources/gear-poster.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/gear-poster.zip | PHOTO-15/gear-poster-source/H002 | human | sources/gear-poster.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/gear-poster.zip | PHOTO-15/gear-poster-source/H002 | human | sources/gear-poster.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/equipment-pdp-r002.png | PHOTO-15/equipment-pdp-r002/A001 | auto | deliverables/equipment-pdp-r002.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/equipment-pdp-r002.png | PHOTO-15/equipment-pdp-r002/A002 | auto | deliverables/equipment-pdp-r002.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/equipment-pdp-r002.png | PHOTO-15/equipment-pdp-r002/A003 | auto | deliverables/equipment-pdp-r002.png — The width is 1440 px. | Automated width result | Yes / No |
@@ -110,16 +110,16 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/equipment-pdp.zip | PHOTO-15/equipment-pdp-source/A002 | auto | sources/equipment-pdp.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/equipment-pdp.zip | PHOTO-15/equipment-pdp-source/A003 | auto | sources/equipment-pdp.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/equipment-pdp.zip | PHOTO-15/equipment-pdp-source/H001 | human | sources/equipment-pdp.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/equipment-pdp.zip | PHOTO-15/equipment-pdp-source/H002 | human | sources/equipment-pdp.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/equipment-pdp.zip | PHOTO-15/equipment-pdp-source/H002 | human | sources/equipment-pdp.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/dealer-sheet.pdf | PHOTO-15/dealer-sheet/A001 | auto | deliverables/dealer-sheet.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/dealer-sheet.pdf | PHOTO-15/dealer-sheet/A002 | auto | deliverables/dealer-sheet.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/dealer-sheet.pdf | PHOTO-15/dealer-sheet/A003 | auto | deliverables/dealer-sheet.pdf — The PDF contains 2 pages. | Automated pages result | Yes / No |
 | deliverables/dealer-sheet.pdf | PHOTO-15/dealer-sheet/A004 | auto | deliverables/dealer-sheet.pdf — The page trim width is 210 mm. | Automated trim_width_mm result | Yes / No |
 | deliverables/dealer-sheet.pdf | PHOTO-15/dealer-sheet/A005 | auto | deliverables/dealer-sheet.pdf — The page trim height is 297 mm. | Automated trim_height_mm result | Yes / No |
 | deliverables/dealer-sheet.pdf | PHOTO-15/dealer-sheet/H001 | human | deliverables/dealer-sheet.pdf — The approved range name is present. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/dealer-sheet.pdf | PHOTO-15/dealer-sheet/H002 | human | deliverables/dealer-sheet.pdf — On a 100% scale export proof, OCR returns the complete approved text for specifications. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/dealer-sheet.pdf | PHOTO-15/dealer-sheet/H002 | human | deliverables/dealer-sheet.pdf — On a 100% scale export proof, the specifications text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
 | sources/dealer-sheet.zip | PHOTO-15/dealer-sheet-source/A001 | auto | sources/dealer-sheet.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/dealer-sheet.zip | PHOTO-15/dealer-sheet-source/A002 | auto | sources/dealer-sheet.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/dealer-sheet.zip | PHOTO-15/dealer-sheet-source/A003 | auto | sources/dealer-sheet.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/dealer-sheet.zip | PHOTO-15/dealer-sheet-source/H001 | human | sources/dealer-sheet.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/dealer-sheet.zip | PHOTO-15/dealer-sheet-source/H002 | human | sources/dealer-sheet.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/dealer-sheet.zip | PHOTO-15/dealer-sheet-source/H002 | human | sources/dealer-sheet.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

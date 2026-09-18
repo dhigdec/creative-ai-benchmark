@@ -15,19 +15,18 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/menu.zip | LAYOUT-01/menu-source/A002 | auto | sources/menu.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/menu.zip | LAYOUT-01/menu-source/A003 | auto | sources/menu.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/menu.zip | LAYOUT-01/menu-source/H001 | human | sources/menu.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/menu.zip | LAYOUT-01/menu-source/H002 | human | sources/menu.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/menu.zip | LAYOUT-01/menu-source/H002 | human | sources/menu.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/partner-deck.pdf | LAYOUT-01/partner-deck/A001 | auto | deliverables/partner-deck.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/partner-deck.pdf | LAYOUT-01/partner-deck/A002 | auto | deliverables/partner-deck.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/partner-deck.pdf | LAYOUT-01/partner-deck/A003 | auto | deliverables/partner-deck.pdf — The PDF contains 8 pages. | Automated pages result | Yes / No |
 | deliverables/partner-deck.pdf | LAYOUT-01/partner-deck/A004 | auto | deliverables/partner-deck.pdf — The page trim width is 338.667 mm. | Automated trim_width_mm result | Yes / No |
 | deliverables/partner-deck.pdf | LAYOUT-01/partner-deck/A005 | auto | deliverables/partner-deck.pdf — The page trim height is 190.5 mm. | Automated trim_height_mm result | Yes / No |
-| deliverables/partner-deck.pdf | LAYOUT-01/partner-deck/H001 | human | deliverables/partner-deck.pdf — The deck explains the private-dining offer. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/partner-deck.pdf | LAYOUT-01/partner-deck/H002 | human | deliverables/partner-deck.pdf — The price build-up follows approved copy. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/partner-deck.pdf | LAYOUT-01/partner-deck/H001 | human | deliverables/partner-deck.pdf — The price build-up follows approved copy. | Approved task brief and supplied source pack | Yes / No |
 | sources/partner-deck.zip | LAYOUT-01/partner-deck-source/A001 | auto | sources/partner-deck.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/partner-deck.zip | LAYOUT-01/partner-deck-source/A002 | auto | sources/partner-deck.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/partner-deck.zip | LAYOUT-01/partner-deck-source/A003 | auto | sources/partner-deck.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/partner-deck.zip | LAYOUT-01/partner-deck-source/H001 | human | sources/partner-deck.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/partner-deck.zip | LAYOUT-01/partner-deck-source/H002 | human | sources/partner-deck.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/partner-deck.zip | LAYOUT-01/partner-deck-source/H002 | human | sources/partner-deck.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/reservations.pdf | LAYOUT-01/reservations/A001 | auto | deliverables/reservations.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/reservations.pdf | LAYOUT-01/reservations/A002 | auto | deliverables/reservations.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/reservations.pdf | LAYOUT-01/reservations/A003 | auto | deliverables/reservations.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
@@ -38,40 +37,39 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/reservations.zip | LAYOUT-01/reservations-source/A002 | auto | sources/reservations.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/reservations.zip | LAYOUT-01/reservations-source/A003 | auto | sources/reservations.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/reservations.zip | LAYOUT-01/reservations-source/H001 | human | sources/reservations.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/reservations.zip | LAYOUT-01/reservations-source/H002 | human | sources/reservations.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/reservations.zip | LAYOUT-01/reservations-source/H002 | human | sources/reservations.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/opening-feed.png | LAYOUT-01/opening-feed/A001 | auto | deliverables/opening-feed.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/opening-feed.png | LAYOUT-01/opening-feed/A002 | auto | deliverables/opening-feed.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/opening-feed.png | LAYOUT-01/opening-feed/A003 | auto | deliverables/opening-feed.png — The width is 1080 px. | Automated width result | Yes / No |
 | deliverables/opening-feed.png | LAYOUT-01/opening-feed/A004 | auto | deliverables/opening-feed.png — The height is 1350 px. | Automated height result | Yes / No |
 | deliverables/opening-feed.png | LAYOUT-01/opening-feed/H001 | human | deliverables/opening-feed.png — Kantyna Nova is visibly identified. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/opening-feed.png | LAYOUT-01/opening-feed/H002 | human | deliverables/opening-feed.png — At the delivered dimensions, OCR returns the complete approved text for approved booking action. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/opening-feed.png | LAYOUT-01/opening-feed/H002 | human | deliverables/opening-feed.png — At the delivered dimensions, the booking action text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
 | sources/opening-feed.zip | LAYOUT-01/opening-feed-source/A001 | auto | sources/opening-feed.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/opening-feed.zip | LAYOUT-01/opening-feed-source/A002 | auto | sources/opening-feed.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/opening-feed.zip | LAYOUT-01/opening-feed-source/A003 | auto | sources/opening-feed.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/opening-feed.zip | LAYOUT-01/opening-feed-source/H001 | human | sources/opening-feed.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/opening-feed.zip | LAYOUT-01/opening-feed-source/H002 | human | sources/opening-feed.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/opening-feed.zip | LAYOUT-01/opening-feed-source/H002 | human | sources/opening-feed.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/opening-story.png | LAYOUT-01/opening-story/A001 | auto | deliverables/opening-story.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/opening-story.png | LAYOUT-01/opening-story/A002 | auto | deliverables/opening-story.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/opening-story.png | LAYOUT-01/opening-story/A003 | auto | deliverables/opening-story.png — The width is 1080 px. | Automated width result | Yes / No |
 | deliverables/opening-story.png | LAYOUT-01/opening-story/A004 | auto | deliverables/opening-story.png — The height is 1920 px. | Automated height result | Yes / No |
 | deliverables/opening-story.png | LAYOUT-01/opening-story/H001 | human | deliverables/opening-story.png — The booking action remains in the safe area. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/opening-story.png | LAYOUT-01/opening-story/H002 | human | deliverables/opening-story.png — At the delivered dimensions, OCR returns the complete approved text for restaurant name. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/opening-story.png | LAYOUT-01/opening-story/H002 | human | deliverables/opening-story.png — At the delivered dimensions, the restaurant name text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
 | sources/opening-story.zip | LAYOUT-01/opening-story-source/A001 | auto | sources/opening-story.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/opening-story.zip | LAYOUT-01/opening-story-source/A002 | auto | sources/opening-story.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/opening-story.zip | LAYOUT-01/opening-story-source/A003 | auto | sources/opening-story.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/opening-story.zip | LAYOUT-01/opening-story-source/H001 | human | sources/opening-story.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/opening-story.zip | LAYOUT-01/opening-story-source/H002 | human | sources/opening-story.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/opening-story.zip | LAYOUT-01/opening-story-source/H002 | human | sources/opening-story.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/opening-banner.png | LAYOUT-01/opening-banner/A001 | auto | deliverables/opening-banner.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/opening-banner.png | LAYOUT-01/opening-banner/A002 | auto | deliverables/opening-banner.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/opening-banner.png | LAYOUT-01/opening-banner/A003 | auto | deliverables/opening-banner.png — The width is 1920 px. | Automated width result | Yes / No |
 | deliverables/opening-banner.png | LAYOUT-01/opening-banner/A004 | auto | deliverables/opening-banner.png — The height is 1080 px. | Automated height result | Yes / No |
 | deliverables/opening-banner.png | LAYOUT-01/opening-banner/H001 | human | deliverables/opening-banner.png — The opening information matches the approved source exactly. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/opening-banner.png | LAYOUT-01/opening-banner/H002 | human | deliverables/opening-banner.png — The food remains the focal point. | Approved task brief and supplied source pack | Yes / No |
 | sources/opening-banner.zip | LAYOUT-01/opening-banner-source/A001 | auto | sources/opening-banner.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/opening-banner.zip | LAYOUT-01/opening-banner-source/A002 | auto | sources/opening-banner.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/opening-banner.zip | LAYOUT-01/opening-banner-source/A003 | auto | sources/opening-banner.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/opening-banner.zip | LAYOUT-01/opening-banner-source/H001 | human | sources/opening-banner.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/opening-banner.zip | LAYOUT-01/opening-banner-source/H002 | human | sources/opening-banner.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/opening-banner.zip | LAYOUT-01/opening-banner-source/H002 | human | sources/opening-banner.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/pairing-card-r002.pdf | LAYOUT-01/pairing-card-r002/A001 | auto | deliverables/pairing-card-r002.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/pairing-card-r002.pdf | LAYOUT-01/pairing-card-r002/A002 | auto | deliverables/pairing-card-r002.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/pairing-card-r002.pdf | LAYOUT-01/pairing-card-r002/A003 | auto | deliverables/pairing-card-r002.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
@@ -274,4 +272,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/pairing-card.zip | LAYOUT-01/pairing-card-source/A002 | auto | sources/pairing-card.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/pairing-card.zip | LAYOUT-01/pairing-card-source/A003 | auto | sources/pairing-card.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/pairing-card.zip | LAYOUT-01/pairing-card-source/H001 | human | sources/pairing-card.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/pairing-card.zip | LAYOUT-01/pairing-card-source/H002 | human | sources/pairing-card.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/pairing-card.zip | LAYOUT-01/pairing-card-source/H002 | human | sources/pairing-card.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

@@ -44,7 +44,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/sell-sheet.zip | LAYOUT-09/sell-sheet-source/A002 | auto | sources/sell-sheet.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/sell-sheet.zip | LAYOUT-09/sell-sheet-source/A003 | auto | sources/sell-sheet.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/sell-sheet.zip | LAYOUT-09/sell-sheet-source/H001 | human | sources/sell-sheet.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/sell-sheet.zip | LAYOUT-09/sell-sheet-source/H002 | human | sources/sell-sheet.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/sell-sheet.zip | LAYOUT-09/sell-sheet-source/H002 | human | sources/sell-sheet.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/pitch-deck.pdf | LAYOUT-09/pitch-deck/A001 | auto | deliverables/pitch-deck.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/pitch-deck.pdf | LAYOUT-09/pitch-deck/A002 | auto | deliverables/pitch-deck.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/pitch-deck.pdf | LAYOUT-09/pitch-deck/A003 | auto | deliverables/pitch-deck.pdf — The PDF contains 10 pages. | Automated pages result | Yes / No |
@@ -55,27 +55,27 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/pitch-deck.zip | LAYOUT-09/pitch-deck-source/A002 | auto | sources/pitch-deck.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/pitch-deck.zip | LAYOUT-09/pitch-deck-source/A003 | auto | sources/pitch-deck.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/pitch-deck.zip | LAYOUT-09/pitch-deck-source/H001 | human | sources/pitch-deck.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/pitch-deck.zip | LAYOUT-09/pitch-deck-source/H002 | human | sources/pitch-deck.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/pitch-deck.zip | LAYOUT-09/pitch-deck-source/H002 | human | sources/pitch-deck.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/launch-post-workflow.png | LAYOUT-09/launch-post-workflow/A001 | auto | deliverables/launch-post-workflow.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/launch-post-workflow.png | LAYOUT-09/launch-post-workflow/A002 | auto | deliverables/launch-post-workflow.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/launch-post-workflow.png | LAYOUT-09/launch-post-workflow/A003 | auto | deliverables/launch-post-workflow.png — The width is 1080 px. | Automated width result | Yes / No |
 | deliverables/launch-post-workflow.png | LAYOUT-09/launch-post-workflow/A004 | auto | deliverables/launch-post-workflow.png — The height is 1350 px. | Automated height result | Yes / No |
 | deliverables/launch-post-workflow.png | LAYOUT-09/launch-post-workflow/H001 | human | deliverables/launch-post-workflow.png — The approved product name is present. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/launch-post-workflow.png | LAYOUT-09/launch-post-workflow/H002 | human | deliverables/launch-post-workflow.png — The approved request-demo action appears within the delivered output boundaries. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/launch-post-workflow.png | LAYOUT-09/launch-post-workflow/H002 | human | deliverables/launch-post-workflow.png — The request-demo action remains inside the output boundaries. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/launch-post-team.png | LAYOUT-09/launch-post-team/A001 | auto | deliverables/launch-post-team.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/launch-post-team.png | LAYOUT-09/launch-post-team/A002 | auto | deliverables/launch-post-team.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/launch-post-team.png | LAYOUT-09/launch-post-team/A003 | auto | deliverables/launch-post-team.png — The width is 1080 px. | Automated width result | Yes / No |
 | deliverables/launch-post-team.png | LAYOUT-09/launch-post-team/A004 | auto | deliverables/launch-post-team.png — The height is 1350 px. | Automated height result | Yes / No |
 | deliverables/launch-post-team.png | LAYOUT-09/launch-post-team/H001 | human | deliverables/launch-post-team.png — The approved product name is present. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/launch-post-team.png | LAYOUT-09/launch-post-team/H002 | human | deliverables/launch-post-team.png — The approved request-demo action appears within the delivered output boundaries. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/launch-post-team.png | LAYOUT-09/launch-post-team/H002 | human | deliverables/launch-post-team.png — The request-demo action remains inside the output boundaries. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/launch-post-reporting.png | LAYOUT-09/launch-post-reporting/A001 | auto | deliverables/launch-post-reporting.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/launch-post-reporting.png | LAYOUT-09/launch-post-reporting/A002 | auto | deliverables/launch-post-reporting.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/launch-post-reporting.png | LAYOUT-09/launch-post-reporting/A003 | auto | deliverables/launch-post-reporting.png — The width is 1080 px. | Automated width result | Yes / No |
 | deliverables/launch-post-reporting.png | LAYOUT-09/launch-post-reporting/A004 | auto | deliverables/launch-post-reporting.png — The height is 1350 px. | Automated height result | Yes / No |
 | deliverables/launch-post-reporting.png | LAYOUT-09/launch-post-reporting/H001 | human | deliverables/launch-post-reporting.png — The approved product name is present. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/launch-post-reporting.png | LAYOUT-09/launch-post-reporting/H002 | human | deliverables/launch-post-reporting.png — The approved request-demo action appears within the delivered output boundaries. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/launch-post-reporting.png | LAYOUT-09/launch-post-reporting/H002 | human | deliverables/launch-post-reporting.png — The request-demo action remains inside the output boundaries. | Approved task brief and supplied source pack | Yes / No |
 | sources/launch-post.zip | LAYOUT-09/launch-post-source/A001 | auto | sources/launch-post.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/launch-post.zip | LAYOUT-09/launch-post-source/A002 | auto | sources/launch-post.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/launch-post.zip | LAYOUT-09/launch-post-source/A003 | auto | sources/launch-post.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/launch-post.zip | LAYOUT-09/launch-post-source/H001 | human | sources/launch-post.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/launch-post.zip | LAYOUT-09/launch-post-source/H002 | human | sources/launch-post.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/launch-post.zip | LAYOUT-09/launch-post-source/H002 | human | sources/launch-post.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

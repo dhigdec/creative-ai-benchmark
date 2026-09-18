@@ -10,12 +10,12 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | deliverables/care-poster.pdf | PHOTO-30/care-poster/A004 | auto | deliverables/care-poster.pdf — The page trim width is 420 mm. | Automated trim_width_mm result | Yes / No |
 | deliverables/care-poster.pdf | PHOTO-30/care-poster/A005 | auto | deliverables/care-poster.pdf — The page trim height is 594 mm. | Automated trim_height_mm result | Yes / No |
 | deliverables/care-poster.pdf | PHOTO-30/care-poster/H001 | human | deliverables/care-poster.pdf — The service wording stays within approved claims. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/care-poster.pdf | PHOTO-30/care-poster/H002 | human | deliverables/care-poster.pdf — At the delivered dimensions, OCR returns the complete approved text for care contact. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/care-poster.pdf | PHOTO-30/care-poster/H002 | human | deliverables/care-poster.pdf — At the delivered dimensions, the care contact text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
 | sources/care-poster.zip | PHOTO-30/care-poster-source/A001 | auto | sources/care-poster.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/care-poster.zip | PHOTO-30/care-poster-source/A002 | auto | sources/care-poster.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/care-poster.zip | PHOTO-30/care-poster-source/A003 | auto | sources/care-poster.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/care-poster.zip | PHOTO-30/care-poster-source/H001 | human | sources/care-poster.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/care-poster.zip | PHOTO-30/care-poster-source/H002 | human | sources/care-poster.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/care-poster.zip | PHOTO-30/care-poster-source/H002 | human | sources/care-poster.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/care-header.png | PHOTO-30/care-header/A001 | auto | deliverables/care-header.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/care-header.png | PHOTO-30/care-header/A002 | auto | deliverables/care-header.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/care-header.png | PHOTO-30/care-header/A003 | auto | deliverables/care-header.png — The width is 1920 px. | Automated width result | Yes / No |
@@ -27,7 +27,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/care-header.zip | PHOTO-30/care-header-source/A002 | auto | sources/care-header.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/care-header.zip | PHOTO-30/care-header-source/A003 | auto | sources/care-header.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/care-header.zip | PHOTO-30/care-header-source/H001 | human | sources/care-header.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/care-header.zip | PHOTO-30/care-header-source/H002 | human | sources/care-header.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/care-header.zip | PHOTO-30/care-header-source/H002 | human | sources/care-header.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/clinical-lead.png | PHOTO-30/clinical-lead/A001 | auto | deliverables/clinical-lead.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/clinical-lead.png | PHOTO-30/clinical-lead/A002 | auto | deliverables/clinical-lead.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/clinical-lead.png | PHOTO-30/clinical-lead/A003 | auto | deliverables/clinical-lead.png — The width is 1600 px. | Automated width result | Yes / No |
@@ -45,4 +45,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/referral-panel.zip | PHOTO-30/referral-panel-source/A002 | auto | sources/referral-panel.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/referral-panel.zip | PHOTO-30/referral-panel-source/A003 | auto | sources/referral-panel.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/referral-panel.zip | PHOTO-30/referral-panel-source/H001 | human | sources/referral-panel.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/referral-panel.zip | PHOTO-30/referral-panel-source/H002 | human | sources/referral-panel.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/referral-panel.zip | PHOTO-30/referral-panel-source/H002 | human | sources/referral-panel.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

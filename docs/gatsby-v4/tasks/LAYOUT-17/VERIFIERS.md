@@ -203,7 +203,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/roll-label.zip | LAYOUT-17/roll-label-source/A002 | auto | sources/roll-label.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/roll-label.zip | LAYOUT-17/roll-label-source/A003 | auto | sources/roll-label.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/roll-label.zip | LAYOUT-17/roll-label-source/H001 | human | sources/roll-label.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/roll-label.zip | LAYOUT-17/roll-label-source/H002 | human | sources/roll-label.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/roll-label.zip | LAYOUT-17/roll-label-source/H002 | human | sources/roll-label.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/dealer-collateral.pdf | LAYOUT-17/dealer-collateral/A001 | auto | deliverables/dealer-collateral.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/dealer-collateral.pdf | LAYOUT-17/dealer-collateral/A002 | auto | deliverables/dealer-collateral.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/dealer-collateral.pdf | LAYOUT-17/dealer-collateral/A003 | auto | deliverables/dealer-collateral.pdf — The PDF contains 4 pages. | Automated pages result | Yes / No |
@@ -214,4 +214,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/dealer-collateral.zip | LAYOUT-17/dealer-collateral-source/A002 | auto | sources/dealer-collateral.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/dealer-collateral.zip | LAYOUT-17/dealer-collateral-source/A003 | auto | sources/dealer-collateral.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/dealer-collateral.zip | LAYOUT-17/dealer-collateral-source/H001 | human | sources/dealer-collateral.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/dealer-collateral.zip | LAYOUT-17/dealer-collateral-source/H002 | human | sources/dealer-collateral.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/dealer-collateral.zip | LAYOUT-17/dealer-collateral-source/H002 | human | sources/dealer-collateral.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

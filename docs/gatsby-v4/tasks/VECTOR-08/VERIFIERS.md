@@ -197,16 +197,16 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/release-label.zip | VECTOR-08/release-label-source/A002 | auto | sources/release-label.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/release-label.zip | VECTOR-08/release-label-source/A003 | auto | sources/release-label.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/release-label.zip | VECTOR-08/release-label-source/H001 | human | sources/release-label.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/release-label.zip | VECTOR-08/release-label-source/H002 | human | sources/release-label.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/release-label.zip | VECTOR-08/release-label-source/H002 | human | sources/release-label.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/supplier-sheet.pdf | VECTOR-08/supplier-sheet/A001 | auto | deliverables/supplier-sheet.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/supplier-sheet.pdf | VECTOR-08/supplier-sheet/A002 | auto | deliverables/supplier-sheet.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/supplier-sheet.pdf | VECTOR-08/supplier-sheet/A003 | auto | deliverables/supplier-sheet.pdf — The PDF contains 2 pages. | Automated pages result | Yes / No |
 | deliverables/supplier-sheet.pdf | VECTOR-08/supplier-sheet/A004 | auto | deliverables/supplier-sheet.pdf — The page trim width is 210 mm. | Automated trim_width_mm result | Yes / No |
 | deliverables/supplier-sheet.pdf | VECTOR-08/supplier-sheet/A005 | auto | deliverables/supplier-sheet.pdf — The page trim height is 297 mm. | Automated trim_height_mm result | Yes / No |
-| deliverables/supplier-sheet.pdf | VECTOR-08/supplier-sheet/H001 | human | deliverables/supplier-sheet.pdf — The exact approved ink treatment identifier is present. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/supplier-sheet.pdf | VECTOR-08/supplier-sheet/H001 | human | deliverables/supplier-sheet.pdf — The ink treatment matches the approved source exactly. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/supplier-sheet.pdf | VECTOR-08/supplier-sheet/H002 | human | deliverables/supplier-sheet.pdf — The application scale is stated. | Approved task brief and supplied source pack | Yes / No |
 | sources/supplier-sheet.zip | VECTOR-08/supplier-sheet-source/A001 | auto | sources/supplier-sheet.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/supplier-sheet.zip | VECTOR-08/supplier-sheet-source/A002 | auto | sources/supplier-sheet.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/supplier-sheet.zip | VECTOR-08/supplier-sheet-source/A003 | auto | sources/supplier-sheet.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/supplier-sheet.zip | VECTOR-08/supplier-sheet-source/H001 | human | sources/supplier-sheet.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/supplier-sheet.zip | VECTOR-08/supplier-sheet-source/H002 | human | sources/supplier-sheet.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/supplier-sheet.zip | VECTOR-08/supplier-sheet-source/H002 | human | sources/supplier-sheet.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

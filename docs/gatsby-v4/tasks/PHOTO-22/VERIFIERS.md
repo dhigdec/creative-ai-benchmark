@@ -14,7 +14,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/booking-hero.zip | PHOTO-22/booking-hero-source/A002 | auto | sources/booking-hero.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/booking-hero.zip | PHOTO-22/booking-hero-source/A003 | auto | sources/booking-hero.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/booking-hero.zip | PHOTO-22/booking-hero-source/H001 | human | sources/booking-hero.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/booking-hero.zip | PHOTO-22/booking-hero-source/H002 | human | sources/booking-hero.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/booking-hero.zip | PHOTO-22/booking-hero-source/H002 | human | sources/booking-hero.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/amenities.png | PHOTO-22/amenities/A001 | auto | deliverables/amenities.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/amenities.png | PHOTO-22/amenities/A002 | auto | deliverables/amenities.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/amenities.png | PHOTO-22/amenities/A003 | auto | deliverables/amenities.png — The width is 1440 px. | Automated width result | Yes / No |
@@ -24,7 +24,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/amenities.zip | PHOTO-22/amenities-source/A002 | auto | sources/amenities.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/amenities.zip | PHOTO-22/amenities-source/A003 | auto | sources/amenities.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/amenities.zip | PHOTO-22/amenities-source/H001 | human | sources/amenities.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/amenities.zip | PHOTO-22/amenities-source/H002 | human | sources/amenities.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/amenities.zip | PHOTO-22/amenities-source/H002 | human | sources/amenities.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/room-campaign-r002.png | PHOTO-22/room-campaign-r002/A001 | auto | deliverables/room-campaign-r002.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/room-campaign-r002.png | PHOTO-22/room-campaign-r002/A002 | auto | deliverables/room-campaign-r002.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/room-campaign-r002.png | PHOTO-22/room-campaign-r002/A003 | auto | deliverables/room-campaign-r002.png — The width is 1080 px. | Automated width result | Yes / No |
@@ -169,4 +169,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/room-campaign.zip | PHOTO-22/room-campaign-source/A002 | auto | sources/room-campaign.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/room-campaign.zip | PHOTO-22/room-campaign-source/A003 | auto | sources/room-campaign.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/room-campaign.zip | PHOTO-22/room-campaign-source/H001 | human | sources/room-campaign.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/room-campaign.zip | PHOTO-22/room-campaign-source/H002 | human | sources/room-campaign.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/room-campaign.zip | PHOTO-22/room-campaign-source/H002 | human | sources/room-campaign.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

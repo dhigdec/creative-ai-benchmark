@@ -38,7 +38,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/autumn-carousel.zip | PHOTO-21/autumn-carousel-source/A002 | auto | sources/autumn-carousel.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/autumn-carousel.zip | PHOTO-21/autumn-carousel-source/A003 | auto | sources/autumn-carousel.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/autumn-carousel.zip | PHOTO-21/autumn-carousel-source/H001 | human | sources/autumn-carousel.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/autumn-carousel.zip | PHOTO-21/autumn-carousel-source/H002 | human | sources/autumn-carousel.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/autumn-carousel.zip | PHOTO-21/autumn-carousel-source/H002 | human | sources/autumn-carousel.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/journal-feature.pdf | PHOTO-21/journal-feature/A001 | auto | deliverables/journal-feature.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/journal-feature.pdf | PHOTO-21/journal-feature/A002 | auto | deliverables/journal-feature.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/journal-feature.pdf | PHOTO-21/journal-feature/A003 | auto | deliverables/journal-feature.pdf — The PDF contains 4 pages. | Automated pages result | Yes / No |
@@ -49,4 +49,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/journal-feature.zip | PHOTO-21/journal-feature-source/A002 | auto | sources/journal-feature.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/journal-feature.zip | PHOTO-21/journal-feature-source/A003 | auto | sources/journal-feature.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/journal-feature.zip | PHOTO-21/journal-feature-source/H001 | human | sources/journal-feature.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/journal-feature.zip | PHOTO-21/journal-feature-source/H002 | human | sources/journal-feature.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/journal-feature.zip | PHOTO-21/journal-feature-source/H002 | human | sources/journal-feature.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

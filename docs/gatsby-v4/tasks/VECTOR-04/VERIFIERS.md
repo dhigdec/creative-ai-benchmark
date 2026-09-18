@@ -129,9 +129,9 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | deliverables/gang-sheet.pdf | VECTOR-04/gang-sheet/A005 | auto | deliverables/gang-sheet.pdf — The page trim height is 457 mm. | Automated trim_height_mm result | Yes / No |
 | deliverables/gang-sheet.pdf | VECTOR-04/gang-sheet/H001 | human | deliverables/gang-sheet.pdf — The minimum cut-contour distance from the sheet edge is 10 mm. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/gang-sheet.pdf | VECTOR-04/gang-sheet/H002 | human | deliverables/gang-sheet.pdf — Adjacent cut contours have at least 6 mm gutter. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/gang-sheet.pdf | VECTOR-04/gang-sheet/H003 | human | deliverables/gang-sheet.pdf — The CutContour layer can be selected separately from the artwork. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/gang-sheet.pdf | VECTOR-04/gang-sheet/H003 | human | deliverables/gang-sheet.pdf — The cutContour layer can be selected separately from the artwork. | Approved task brief and supplied source pack | Yes / No |
 | sources/gang-sheet.zip | VECTOR-04/gang-sheet-source/A001 | auto | sources/gang-sheet.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/gang-sheet.zip | VECTOR-04/gang-sheet-source/A002 | auto | sources/gang-sheet.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/gang-sheet.zip | VECTOR-04/gang-sheet-source/A003 | auto | sources/gang-sheet.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/gang-sheet.zip | VECTOR-04/gang-sheet-source/H001 | human | sources/gang-sheet.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/gang-sheet.zip | VECTOR-04/gang-sheet-source/H002 | human | sources/gang-sheet.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/gang-sheet.zip | VECTOR-04/gang-sheet-source/H002 | human | sources/gang-sheet.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

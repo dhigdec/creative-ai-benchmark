@@ -68,7 +68,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/campaign-board.zip | MOTION-20/campaign-board-source/A002 | auto | sources/campaign-board.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/campaign-board.zip | MOTION-20/campaign-board-source/A003 | auto | sources/campaign-board.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/campaign-board.zip | MOTION-20/campaign-board-source/H001 | human | sources/campaign-board.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/campaign-board.zip | MOTION-20/campaign-board-source/H002 | human | sources/campaign-board.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/campaign-board.zip | MOTION-20/campaign-board-source/H002 | human | sources/campaign-board.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/studio-service.png | MOTION-20/studio-service/A001 | auto | deliverables/studio-service.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/studio-service.png | MOTION-20/studio-service/A002 | auto | deliverables/studio-service.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/studio-service.png | MOTION-20/studio-service/A003 | auto | deliverables/studio-service.png — The width is 1440 px. | Automated width result | Yes / No |
@@ -78,4 +78,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/studio-service.zip | MOTION-20/studio-service-source/A002 | auto | sources/studio-service.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/studio-service.zip | MOTION-20/studio-service-source/A003 | auto | sources/studio-service.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/studio-service.zip | MOTION-20/studio-service-source/H001 | human | sources/studio-service.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/studio-service.zip | MOTION-20/studio-service-source/H002 | human | sources/studio-service.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/studio-service.zip | MOTION-20/studio-service-source/H002 | human | sources/studio-service.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

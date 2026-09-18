@@ -23,9 +23,8 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | deliverables/engraving.svg | VECTOR-15/engraving/A003 | auto | deliverables/engraving.svg — The SVG contains no embedded raster image. | Automated no_raster_image result | Yes / No |
 | deliverables/engraving.svg | VECTOR-15/engraving/A004 | auto | deliverables/engraving.svg — The background contains genuinely transparent pixels. | Automated transparent_background result | Yes / No |
 | deliverables/engraving.svg | VECTOR-15/engraving/A005 | auto | deliverables/engraving.svg — Cutting contours are closed. | Automated closed_paths result | Yes / No |
-| deliverables/engraving.svg | VECTOR-15/engraving/H001 | human | deliverables/engraving.svg — The original crest identity survives the production simplification. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/engraving.svg | VECTOR-15/engraving/H002 | human | deliverables/engraving.svg — Small counters remain open at 32 mm. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/engraving.svg | VECTOR-15/engraving/H003 | human | deliverables/engraving.svg — The thinnest engraved stroke is at least 0.50 mm at a 32 mm crest width. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/engraving.svg | VECTOR-15/engraving/H001 | human | deliverables/engraving.svg — Small counters remain open at 32 mm. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/engraving.svg | VECTOR-15/engraving/H002 | human | deliverables/engraving.svg — The thinnest engraved stroke is at least 0.50 mm at a 32 mm crest width. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/suite-plate-r002.pdf | VECTOR-15/suite-plate-r002/A001 | auto | deliverables/suite-plate-r002.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/suite-plate-r002.pdf | VECTOR-15/suite-plate-r002/A002 | auto | deliverables/suite-plate-r002.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/suite-plate-r002.pdf | VECTOR-15/suite-plate-r002/A003 | auto | deliverables/suite-plate-r002.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
@@ -215,7 +214,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/suite-plate.zip | VECTOR-15/suite-plate-source/A002 | auto | sources/suite-plate.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/suite-plate.zip | VECTOR-15/suite-plate-source/A003 | auto | sources/suite-plate.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/suite-plate.zip | VECTOR-15/suite-plate-source/H001 | human | sources/suite-plate.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/suite-plate.zip | VECTOR-15/suite-plate-source/H002 | human | sources/suite-plate.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/suite-plate.zip | VECTOR-15/suite-plate-source/H002 | human | sources/suite-plate.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/entrance-plaque.pdf | VECTOR-15/entrance-plaque/A001 | auto | deliverables/entrance-plaque.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/entrance-plaque.pdf | VECTOR-15/entrance-plaque/A002 | auto | deliverables/entrance-plaque.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/entrance-plaque.pdf | VECTOR-15/entrance-plaque/A003 | auto | deliverables/entrance-plaque.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
@@ -228,7 +227,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/entrance-plaque.zip | VECTOR-15/entrance-plaque-source/A002 | auto | sources/entrance-plaque.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/entrance-plaque.zip | VECTOR-15/entrance-plaque-source/A003 | auto | sources/entrance-plaque.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/entrance-plaque.zip | VECTOR-15/entrance-plaque-source/H001 | human | sources/entrance-plaque.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/entrance-plaque.zip | VECTOR-15/entrance-plaque-source/H002 | human | sources/entrance-plaque.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/entrance-plaque.zip | VECTOR-15/entrance-plaque-source/H002 | human | sources/entrance-plaque.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/directory-board.pdf | VECTOR-15/directory-board/A001 | auto | deliverables/directory-board.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/directory-board.pdf | VECTOR-15/directory-board/A002 | auto | deliverables/directory-board.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/directory-board.pdf | VECTOR-15/directory-board/A003 | auto | deliverables/directory-board.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
@@ -241,7 +240,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/directory-board.zip | VECTOR-15/directory-board-source/A002 | auto | sources/directory-board.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/directory-board.zip | VECTOR-15/directory-board-source/A003 | auto | sources/directory-board.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/directory-board.zip | VECTOR-15/directory-board-source/H001 | human | sources/directory-board.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/directory-board.zip | VECTOR-15/directory-board-source/H002 | human | sources/directory-board.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/directory-board.zip | VECTOR-15/directory-board-source/H002 | human | sources/directory-board.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/fabrication-proof.pdf | VECTOR-15/fabrication-proof/A001 | auto | deliverables/fabrication-proof.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/fabrication-proof.pdf | VECTOR-15/fabrication-proof/A002 | auto | deliverables/fabrication-proof.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/fabrication-proof.pdf | VECTOR-15/fabrication-proof/A003 | auto | deliverables/fabrication-proof.pdf — The PDF contains 3 pages. | Automated pages result | Yes / No |
@@ -254,4 +253,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/fabrication-proof.zip | VECTOR-15/fabrication-proof-source/A002 | auto | sources/fabrication-proof.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/fabrication-proof.zip | VECTOR-15/fabrication-proof-source/A003 | auto | sources/fabrication-proof.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/fabrication-proof.zip | VECTOR-15/fabrication-proof-source/H001 | human | sources/fabrication-proof.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/fabrication-proof.zip | VECTOR-15/fabrication-proof-source/H002 | human | sources/fabrication-proof.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/fabrication-proof.zip | VECTOR-15/fabrication-proof-source/H002 | human | sources/fabrication-proof.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

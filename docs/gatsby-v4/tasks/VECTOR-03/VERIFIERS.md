@@ -50,4 +50,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/livery.zip | VECTOR-03/livery-source/A002 | auto | sources/livery.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/livery.zip | VECTOR-03/livery-source/A003 | auto | sources/livery.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/livery.zip | VECTOR-03/livery-source/H001 | human | sources/livery.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/livery.zip | VECTOR-03/livery-source/H002 | human | sources/livery.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/livery.zip | VECTOR-03/livery-source/H002 | human | sources/livery.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

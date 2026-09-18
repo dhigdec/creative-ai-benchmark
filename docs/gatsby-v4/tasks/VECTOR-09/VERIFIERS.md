@@ -25,12 +25,12 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | deliverables/identity-usage.pdf | VECTOR-09/identity-usage/A004 | auto | deliverables/identity-usage.pdf — The page trim width is 210 mm. | Automated trim_width_mm result | Yes / No |
 | deliverables/identity-usage.pdf | VECTOR-09/identity-usage/A005 | auto | deliverables/identity-usage.pdf — The page trim height is 297 mm. | Automated trim_height_mm result | Yes / No |
 | deliverables/identity-usage.pdf | VECTOR-09/identity-usage/H001 | human | deliverables/identity-usage.pdf — The guide contains the specified logo clearance examples. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/identity-usage.pdf | VECTOR-09/identity-usage/H002 | human | deliverables/identity-usage.pdf — The exact approved variant naming identifier is present. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/identity-usage.pdf | VECTOR-09/identity-usage/H002 | human | deliverables/identity-usage.pdf — The variant naming matches the approved source exactly. | Approved task brief and supplied source pack | Yes / No |
 | sources/identity-usage.zip | VECTOR-09/identity-usage-source/A001 | auto | sources/identity-usage.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/identity-usage.zip | VECTOR-09/identity-usage-source/A002 | auto | sources/identity-usage.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/identity-usage.zip | VECTOR-09/identity-usage-source/A003 | auto | sources/identity-usage.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/identity-usage.zip | VECTOR-09/identity-usage-source/H001 | human | sources/identity-usage.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/identity-usage.zip | VECTOR-09/identity-usage-source/H002 | human | sources/identity-usage.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/identity-usage.zip | VECTOR-09/identity-usage-source/H002 | human | sources/identity-usage.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/team-lockup.png | VECTOR-09/team-lockup/A001 | auto | deliverables/team-lockup.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/team-lockup.png | VECTOR-09/team-lockup/A002 | auto | deliverables/team-lockup.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/team-lockup.png | VECTOR-09/team-lockup/A003 | auto | deliverables/team-lockup.png — The width is 1440 px. | Automated width result | Yes / No |
@@ -40,4 +40,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/team-lockup.zip | VECTOR-09/team-lockup-source/A002 | auto | sources/team-lockup.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/team-lockup.zip | VECTOR-09/team-lockup-source/A003 | auto | sources/team-lockup.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/team-lockup.zip | VECTOR-09/team-lockup-source/H001 | human | sources/team-lockup.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/team-lockup.zip | VECTOR-09/team-lockup-source/H002 | human | sources/team-lockup.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/team-lockup.zip | VECTOR-09/team-lockup-source/H002 | human | sources/team-lockup.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

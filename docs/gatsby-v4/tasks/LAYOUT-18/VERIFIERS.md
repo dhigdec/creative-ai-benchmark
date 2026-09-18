@@ -14,22 +14,22 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/wholesale-deck.zip | LAYOUT-18/wholesale-deck-source/A002 | auto | sources/wholesale-deck.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/wholesale-deck.zip | LAYOUT-18/wholesale-deck-source/A003 | auto | sources/wholesale-deck.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/wholesale-deck.zip | LAYOUT-18/wholesale-deck-source/H001 | human | sources/wholesale-deck.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/wholesale-deck.zip | LAYOUT-18/wholesale-deck-source/H002 | human | sources/wholesale-deck.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/wholesale-deck.zip | LAYOUT-18/wholesale-deck-source/H002 | human | sources/wholesale-deck.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/paid-canvas-range.png | LAYOUT-18/paid-canvas-range/A001 | auto | deliverables/paid-canvas-range.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/paid-canvas-range.png | LAYOUT-18/paid-canvas-range/A002 | auto | deliverables/paid-canvas-range.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/paid-canvas-range.png | LAYOUT-18/paid-canvas-range/A003 | auto | deliverables/paid-canvas-range.png — The width is 1080 px. | Automated width result | Yes / No |
 | deliverables/paid-canvas-range.png | LAYOUT-18/paid-canvas-range/A004 | auto | deliverables/paid-canvas-range.png — The height is 1350 px. | Automated height result | Yes / No |
-| deliverables/paid-canvas-range.png | LAYOUT-18/paid-canvas-range/H001 | human | deliverables/paid-canvas-range.png — The approved trade enquiry action appears within the delivered output boundaries. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/paid-canvas-range.png | LAYOUT-18/paid-canvas-range/H001 | human | deliverables/paid-canvas-range.png — The trade enquiry action remains inside the output boundaries. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/paid-canvas-material.png | LAYOUT-18/paid-canvas-material/A001 | auto | deliverables/paid-canvas-material.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/paid-canvas-material.png | LAYOUT-18/paid-canvas-material/A002 | auto | deliverables/paid-canvas-material.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/paid-canvas-material.png | LAYOUT-18/paid-canvas-material/A003 | auto | deliverables/paid-canvas-material.png — The width is 1080 px. | Automated width result | Yes / No |
 | deliverables/paid-canvas-material.png | LAYOUT-18/paid-canvas-material/A004 | auto | deliverables/paid-canvas-material.png — The height is 1350 px. | Automated height result | Yes / No |
-| deliverables/paid-canvas-material.png | LAYOUT-18/paid-canvas-material/H001 | human | deliverables/paid-canvas-material.png — The approved trade enquiry action appears within the delivered output boundaries. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/paid-canvas-material.png | LAYOUT-18/paid-canvas-material/H001 | human | deliverables/paid-canvas-material.png — The trade enquiry action remains inside the output boundaries. | Approved task brief and supplied source pack | Yes / No |
 | sources/paid-canvas.zip | LAYOUT-18/paid-canvas-source/A001 | auto | sources/paid-canvas.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/paid-canvas.zip | LAYOUT-18/paid-canvas-source/A002 | auto | sources/paid-canvas.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/paid-canvas.zip | LAYOUT-18/paid-canvas-source/A003 | auto | sources/paid-canvas.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/paid-canvas.zip | LAYOUT-18/paid-canvas-source/H001 | human | sources/paid-canvas.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/paid-canvas.zip | LAYOUT-18/paid-canvas-source/H002 | human | sources/paid-canvas.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/paid-canvas.zip | LAYOUT-18/paid-canvas-source/H002 | human | sources/paid-canvas.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/storefront-banner.png | LAYOUT-18/storefront-banner/A001 | auto | deliverables/storefront-banner.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/storefront-banner.png | LAYOUT-18/storefront-banner/A002 | auto | deliverables/storefront-banner.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/storefront-banner.png | LAYOUT-18/storefront-banner/A003 | auto | deliverables/storefront-banner.png — The width is 1920 px. | Automated width result | Yes / No |
@@ -40,7 +40,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/storefront-banner.zip | LAYOUT-18/storefront-banner-source/A002 | auto | sources/storefront-banner.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/storefront-banner.zip | LAYOUT-18/storefront-banner-source/A003 | auto | sources/storefront-banner.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/storefront-banner.zip | LAYOUT-18/storefront-banner-source/H001 | human | sources/storefront-banner.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/storefront-banner.zip | LAYOUT-18/storefront-banner-source/H002 | human | sources/storefront-banner.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/storefront-banner.zip | LAYOUT-18/storefront-banner-source/H002 | human | sources/storefront-banner.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/spec-tile-r002.png | LAYOUT-18/spec-tile-r002/A001 | auto | deliverables/spec-tile-r002.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/spec-tile-r002.png | LAYOUT-18/spec-tile-r002/A002 | auto | deliverables/spec-tile-r002.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/spec-tile-r002.png | LAYOUT-18/spec-tile-r002/A003 | auto | deliverables/spec-tile-r002.png — The width is 1200 px. | Automated width result | Yes / No |
@@ -214,7 +214,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/spec-tile.zip | LAYOUT-18/spec-tile-source/A002 | auto | sources/spec-tile.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/spec-tile.zip | LAYOUT-18/spec-tile-source/A003 | auto | sources/spec-tile.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/spec-tile.zip | LAYOUT-18/spec-tile-source/H001 | human | sources/spec-tile.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/spec-tile.zip | LAYOUT-18/spec-tile-source/H002 | human | sources/spec-tile.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/spec-tile.zip | LAYOUT-18/spec-tile-source/H002 | human | sources/spec-tile.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/range-sheet.pdf | LAYOUT-18/range-sheet/A001 | auto | deliverables/range-sheet.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/range-sheet.pdf | LAYOUT-18/range-sheet/A002 | auto | deliverables/range-sheet.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/range-sheet.pdf | LAYOUT-18/range-sheet/A003 | auto | deliverables/range-sheet.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
@@ -225,7 +225,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/range-sheet.zip | LAYOUT-18/range-sheet-source/A002 | auto | sources/range-sheet.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/range-sheet.zip | LAYOUT-18/range-sheet-source/A003 | auto | sources/range-sheet.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/range-sheet.zip | LAYOUT-18/range-sheet-source/H001 | human | sources/range-sheet.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/range-sheet.zip | LAYOUT-18/range-sheet-source/H002 | human | sources/range-sheet.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/range-sheet.zip | LAYOUT-18/range-sheet-source/H002 | human | sources/range-sheet.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/identity-page.pdf | LAYOUT-18/identity-page/A001 | auto | deliverables/identity-page.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/identity-page.pdf | LAYOUT-18/identity-page/A002 | auto | deliverables/identity-page.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/identity-page.pdf | LAYOUT-18/identity-page/A003 | auto | deliverables/identity-page.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
@@ -236,4 +236,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/identity-page.zip | LAYOUT-18/identity-page-source/A002 | auto | sources/identity-page.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/identity-page.zip | LAYOUT-18/identity-page-source/A003 | auto | sources/identity-page.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/identity-page.zip | LAYOUT-18/identity-page-source/H001 | human | sources/identity-page.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/identity-page.zip | LAYOUT-18/identity-page-source/H002 | human | sources/identity-page.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/identity-page.zip | LAYOUT-18/identity-page-source/H002 | human | sources/identity-page.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

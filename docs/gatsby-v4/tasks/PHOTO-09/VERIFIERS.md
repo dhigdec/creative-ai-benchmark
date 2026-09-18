@@ -10,12 +10,12 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | deliverables/menu-launch.png | PHOTO-09/menu-launch/A004 | auto | deliverables/menu-launch.png — The height is 1350 px. | Automated height result | Yes / No |
 | deliverables/menu-launch.png | PHOTO-09/menu-launch/H001 | human | deliverables/menu-launch.png — OSTRA is identified. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/menu-launch.png | PHOTO-09/menu-launch/H002 | human | deliverables/menu-launch.png — The featured dish agrees with the seasonal menu. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/menu-launch.png | PHOTO-09/menu-launch/H003 | human | deliverables/menu-launch.png — The approved reservation action appears within the delivered output boundaries. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/menu-launch.png | PHOTO-09/menu-launch/H003 | human | deliverables/menu-launch.png — The reservation action remains inside the output boundaries. | Approved task brief and supplied source pack | Yes / No |
 | sources/menu-launch.zip | PHOTO-09/menu-launch-source/A001 | auto | sources/menu-launch.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/menu-launch.zip | PHOTO-09/menu-launch-source/A002 | auto | sources/menu-launch.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/menu-launch.zip | PHOTO-09/menu-launch-source/A003 | auto | sources/menu-launch.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/menu-launch.zip | PHOTO-09/menu-launch-source/H001 | human | sources/menu-launch.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/menu-launch.zip | PHOTO-09/menu-launch-source/H002 | human | sources/menu-launch.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/menu-launch.zip | PHOTO-09/menu-launch-source/H002 | human | sources/menu-launch.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/menu-tile-ostra-service-one-01.png | PHOTO-09/menu-tile-ostra-service-one-01/A001 | auto | deliverables/menu-tile-ostra-service-one-01.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/menu-tile-ostra-service-one-01.png | PHOTO-09/menu-tile-ostra-service-one-01/A002 | auto | deliverables/menu-tile-ostra-service-one-01.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/menu-tile-ostra-service-one-01.png | PHOTO-09/menu-tile-ostra-service-one-01/A003 | auto | deliverables/menu-tile-ostra-service-one-01.png — The width is 1200 px. | Automated width result | Yes / No |
@@ -98,15 +98,15 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/menu-tile.zip | PHOTO-09/menu-tile-source/A002 | auto | sources/menu-tile.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/menu-tile.zip | PHOTO-09/menu-tile-source/A003 | auto | sources/menu-tile.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/menu-tile.zip | PHOTO-09/menu-tile-source/H001 | human | sources/menu-tile.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/menu-tile.zip | PHOTO-09/menu-tile-source/H002 | human | sources/menu-tile.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/menu-tile.zip | PHOTO-09/menu-tile-source/H002 | human | sources/menu-tile.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/reservation-story.png | PHOTO-09/reservation-story/A001 | auto | deliverables/reservation-story.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/reservation-story.png | PHOTO-09/reservation-story/A002 | auto | deliverables/reservation-story.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/reservation-story.png | PHOTO-09/reservation-story/A003 | auto | deliverables/reservation-story.png — The width is 1080 px. | Automated width result | Yes / No |
 | deliverables/reservation-story.png | PHOTO-09/reservation-story/A004 | auto | deliverables/reservation-story.png — The height is 1920 px. | Automated height result | Yes / No |
 | deliverables/reservation-story.png | PHOTO-09/reservation-story/H001 | human | deliverables/reservation-story.png — The booking action sits within the defined safe area. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/reservation-story.png | PHOTO-09/reservation-story/H002 | human | deliverables/reservation-story.png — At 320 px display width, OCR returns the complete approved text for restaurant name. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/reservation-story.png | PHOTO-09/reservation-story/H002 | human | deliverables/reservation-story.png — At 320 px display width, the restaurant name text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
 | sources/reservation-story.zip | PHOTO-09/reservation-story-source/A001 | auto | sources/reservation-story.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/reservation-story.zip | PHOTO-09/reservation-story-source/A002 | auto | sources/reservation-story.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/reservation-story.zip | PHOTO-09/reservation-story-source/A003 | auto | sources/reservation-story.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/reservation-story.zip | PHOTO-09/reservation-story-source/H001 | human | sources/reservation-story.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/reservation-story.zip | PHOTO-09/reservation-story-source/H002 | human | sources/reservation-story.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/reservation-story.zip | PHOTO-09/reservation-story-source/H002 | human | sources/reservation-story.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

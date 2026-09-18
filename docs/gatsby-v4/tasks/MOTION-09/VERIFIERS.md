@@ -28,7 +28,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | deliverables/podcast-vertical.mp4 | MOTION-09/podcast-vertical/A009 | auto | deliverables/podcast-vertical.mp4 — The picture changes over time. | Automated moving_picture result | Yes / No |
 | deliverables/podcast-vertical.mp4 | MOTION-09/podcast-vertical/A010 | auto | deliverables/podcast-vertical.mp4 — The export contains an audio stream. | Automated audio_stream result | Yes / No |
 | deliverables/podcast-vertical.mp4 | MOTION-09/podcast-vertical/A011 | auto | deliverables/podcast-vertical.mp4 — The audio is not wholly silent. | Automated non_silent_audio result | Yes / No |
-| deliverables/podcast-vertical.mp4 | MOTION-09/podcast-vertical/H001 | human | deliverables/podcast-vertical.mp4 — The approved active speaker appears within the delivered output boundaries. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/podcast-vertical.mp4 | MOTION-09/podcast-vertical/H001 | human | deliverables/podcast-vertical.mp4 — The active speaker remains inside the output boundaries. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/podcast-square.mp4 | MOTION-09/podcast-square/A001 | auto | deliverables/podcast-square.mp4 — File is present. | Automated file_exists result | Yes / No |
 | deliverables/podcast-square.mp4 | MOTION-09/podcast-square/A002 | auto | deliverables/podcast-square.mp4 — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/podcast-square.mp4 | MOTION-09/podcast-square/A003 | auto | deliverables/podcast-square.mp4 — The width is 1080 px. | Automated width result | Yes / No |
@@ -50,4 +50,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/episode-cover.zip | MOTION-09/episode-cover-source/A002 | auto | sources/episode-cover.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/episode-cover.zip | MOTION-09/episode-cover-source/A003 | auto | sources/episode-cover.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/episode-cover.zip | MOTION-09/episode-cover-source/H001 | human | sources/episode-cover.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/episode-cover.zip | MOTION-09/episode-cover-source/H002 | human | sources/episode-cover.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/episode-cover.zip | MOTION-09/episode-cover-source/H002 | human | sources/episode-cover.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

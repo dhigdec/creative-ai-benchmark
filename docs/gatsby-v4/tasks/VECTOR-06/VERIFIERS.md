@@ -27,71 +27,61 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | deliverables/number-0.svg | VECTOR-06/number-0/A003 | auto | deliverables/number-0.svg — The SVG contains no embedded raster image. | Automated no_raster_image result | Yes / No |
 | deliverables/number-0.svg | VECTOR-06/number-0/A004 | auto | deliverables/number-0.svg — The background contains genuinely transparent pixels. | Automated transparent_background result | Yes / No |
 | deliverables/number-0.svg | VECTOR-06/number-0/A005 | auto | deliverables/number-0.svg — Cutting contours are closed. | Automated closed_paths result | Yes / No |
-| deliverables/number-0.svg | VECTOR-06/number-0/H001 | human | deliverables/number-0.svg — The numeral is unambiguous at kit viewing distance. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/number-0.svg | VECTOR-06/number-0/H002 | human | deliverables/number-0.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/number-0.svg | VECTOR-06/number-0/H001 | human | deliverables/number-0.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/number-1.svg | VECTOR-06/number-1/A001 | auto | deliverables/number-1.svg — File is present. | Automated file_exists result | Yes / No |
 | deliverables/number-1.svg | VECTOR-06/number-1/A002 | auto | deliverables/number-1.svg — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/number-1.svg | VECTOR-06/number-1/A003 | auto | deliverables/number-1.svg — The SVG contains no embedded raster image. | Automated no_raster_image result | Yes / No |
 | deliverables/number-1.svg | VECTOR-06/number-1/A004 | auto | deliverables/number-1.svg — The background contains genuinely transparent pixels. | Automated transparent_background result | Yes / No |
 | deliverables/number-1.svg | VECTOR-06/number-1/A005 | auto | deliverables/number-1.svg — Cutting contours are closed. | Automated closed_paths result | Yes / No |
-| deliverables/number-1.svg | VECTOR-06/number-1/H001 | human | deliverables/number-1.svg — The numeral is unambiguous at kit viewing distance. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/number-1.svg | VECTOR-06/number-1/H002 | human | deliverables/number-1.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/number-1.svg | VECTOR-06/number-1/H001 | human | deliverables/number-1.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/number-2.svg | VECTOR-06/number-2/A001 | auto | deliverables/number-2.svg — File is present. | Automated file_exists result | Yes / No |
 | deliverables/number-2.svg | VECTOR-06/number-2/A002 | auto | deliverables/number-2.svg — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/number-2.svg | VECTOR-06/number-2/A003 | auto | deliverables/number-2.svg — The SVG contains no embedded raster image. | Automated no_raster_image result | Yes / No |
 | deliverables/number-2.svg | VECTOR-06/number-2/A004 | auto | deliverables/number-2.svg — The background contains genuinely transparent pixels. | Automated transparent_background result | Yes / No |
 | deliverables/number-2.svg | VECTOR-06/number-2/A005 | auto | deliverables/number-2.svg — Cutting contours are closed. | Automated closed_paths result | Yes / No |
-| deliverables/number-2.svg | VECTOR-06/number-2/H001 | human | deliverables/number-2.svg — The numeral is unambiguous at kit viewing distance. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/number-2.svg | VECTOR-06/number-2/H002 | human | deliverables/number-2.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/number-2.svg | VECTOR-06/number-2/H001 | human | deliverables/number-2.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/number-3.svg | VECTOR-06/number-3/A001 | auto | deliverables/number-3.svg — File is present. | Automated file_exists result | Yes / No |
 | deliverables/number-3.svg | VECTOR-06/number-3/A002 | auto | deliverables/number-3.svg — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/number-3.svg | VECTOR-06/number-3/A003 | auto | deliverables/number-3.svg — The SVG contains no embedded raster image. | Automated no_raster_image result | Yes / No |
 | deliverables/number-3.svg | VECTOR-06/number-3/A004 | auto | deliverables/number-3.svg — The background contains genuinely transparent pixels. | Automated transparent_background result | Yes / No |
 | deliverables/number-3.svg | VECTOR-06/number-3/A005 | auto | deliverables/number-3.svg — Cutting contours are closed. | Automated closed_paths result | Yes / No |
-| deliverables/number-3.svg | VECTOR-06/number-3/H001 | human | deliverables/number-3.svg — The numeral is unambiguous at kit viewing distance. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/number-3.svg | VECTOR-06/number-3/H002 | human | deliverables/number-3.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/number-3.svg | VECTOR-06/number-3/H001 | human | deliverables/number-3.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/number-4.svg | VECTOR-06/number-4/A001 | auto | deliverables/number-4.svg — File is present. | Automated file_exists result | Yes / No |
 | deliverables/number-4.svg | VECTOR-06/number-4/A002 | auto | deliverables/number-4.svg — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/number-4.svg | VECTOR-06/number-4/A003 | auto | deliverables/number-4.svg — The SVG contains no embedded raster image. | Automated no_raster_image result | Yes / No |
 | deliverables/number-4.svg | VECTOR-06/number-4/A004 | auto | deliverables/number-4.svg — The background contains genuinely transparent pixels. | Automated transparent_background result | Yes / No |
 | deliverables/number-4.svg | VECTOR-06/number-4/A005 | auto | deliverables/number-4.svg — Cutting contours are closed. | Automated closed_paths result | Yes / No |
-| deliverables/number-4.svg | VECTOR-06/number-4/H001 | human | deliverables/number-4.svg — The numeral is unambiguous at kit viewing distance. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/number-4.svg | VECTOR-06/number-4/H002 | human | deliverables/number-4.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/number-4.svg | VECTOR-06/number-4/H001 | human | deliverables/number-4.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/number-5.svg | VECTOR-06/number-5/A001 | auto | deliverables/number-5.svg — File is present. | Automated file_exists result | Yes / No |
 | deliverables/number-5.svg | VECTOR-06/number-5/A002 | auto | deliverables/number-5.svg — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/number-5.svg | VECTOR-06/number-5/A003 | auto | deliverables/number-5.svg — The SVG contains no embedded raster image. | Automated no_raster_image result | Yes / No |
 | deliverables/number-5.svg | VECTOR-06/number-5/A004 | auto | deliverables/number-5.svg — The background contains genuinely transparent pixels. | Automated transparent_background result | Yes / No |
 | deliverables/number-5.svg | VECTOR-06/number-5/A005 | auto | deliverables/number-5.svg — Cutting contours are closed. | Automated closed_paths result | Yes / No |
-| deliverables/number-5.svg | VECTOR-06/number-5/H001 | human | deliverables/number-5.svg — The numeral is unambiguous at kit viewing distance. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/number-5.svg | VECTOR-06/number-5/H002 | human | deliverables/number-5.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/number-5.svg | VECTOR-06/number-5/H001 | human | deliverables/number-5.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/number-6.svg | VECTOR-06/number-6/A001 | auto | deliverables/number-6.svg — File is present. | Automated file_exists result | Yes / No |
 | deliverables/number-6.svg | VECTOR-06/number-6/A002 | auto | deliverables/number-6.svg — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/number-6.svg | VECTOR-06/number-6/A003 | auto | deliverables/number-6.svg — The SVG contains no embedded raster image. | Automated no_raster_image result | Yes / No |
 | deliverables/number-6.svg | VECTOR-06/number-6/A004 | auto | deliverables/number-6.svg — The background contains genuinely transparent pixels. | Automated transparent_background result | Yes / No |
 | deliverables/number-6.svg | VECTOR-06/number-6/A005 | auto | deliverables/number-6.svg — Cutting contours are closed. | Automated closed_paths result | Yes / No |
-| deliverables/number-6.svg | VECTOR-06/number-6/H001 | human | deliverables/number-6.svg — The numeral is unambiguous at kit viewing distance. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/number-6.svg | VECTOR-06/number-6/H002 | human | deliverables/number-6.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/number-6.svg | VECTOR-06/number-6/H001 | human | deliverables/number-6.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/number-7.svg | VECTOR-06/number-7/A001 | auto | deliverables/number-7.svg — File is present. | Automated file_exists result | Yes / No |
 | deliverables/number-7.svg | VECTOR-06/number-7/A002 | auto | deliverables/number-7.svg — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/number-7.svg | VECTOR-06/number-7/A003 | auto | deliverables/number-7.svg — The SVG contains no embedded raster image. | Automated no_raster_image result | Yes / No |
 | deliverables/number-7.svg | VECTOR-06/number-7/A004 | auto | deliverables/number-7.svg — The background contains genuinely transparent pixels. | Automated transparent_background result | Yes / No |
 | deliverables/number-7.svg | VECTOR-06/number-7/A005 | auto | deliverables/number-7.svg — Cutting contours are closed. | Automated closed_paths result | Yes / No |
-| deliverables/number-7.svg | VECTOR-06/number-7/H001 | human | deliverables/number-7.svg — The numeral is unambiguous at kit viewing distance. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/number-7.svg | VECTOR-06/number-7/H002 | human | deliverables/number-7.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/number-7.svg | VECTOR-06/number-7/H001 | human | deliverables/number-7.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/number-8.svg | VECTOR-06/number-8/A001 | auto | deliverables/number-8.svg — File is present. | Automated file_exists result | Yes / No |
 | deliverables/number-8.svg | VECTOR-06/number-8/A002 | auto | deliverables/number-8.svg — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/number-8.svg | VECTOR-06/number-8/A003 | auto | deliverables/number-8.svg — The SVG contains no embedded raster image. | Automated no_raster_image result | Yes / No |
 | deliverables/number-8.svg | VECTOR-06/number-8/A004 | auto | deliverables/number-8.svg — The background contains genuinely transparent pixels. | Automated transparent_background result | Yes / No |
 | deliverables/number-8.svg | VECTOR-06/number-8/A005 | auto | deliverables/number-8.svg — Cutting contours are closed. | Automated closed_paths result | Yes / No |
-| deliverables/number-8.svg | VECTOR-06/number-8/H001 | human | deliverables/number-8.svg — The numeral is unambiguous at kit viewing distance. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/number-8.svg | VECTOR-06/number-8/H002 | human | deliverables/number-8.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/number-8.svg | VECTOR-06/number-8/H001 | human | deliverables/number-8.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/number-9.svg | VECTOR-06/number-9/A001 | auto | deliverables/number-9.svg — File is present. | Automated file_exists result | Yes / No |
 | deliverables/number-9.svg | VECTOR-06/number-9/A002 | auto | deliverables/number-9.svg — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/number-9.svg | VECTOR-06/number-9/A003 | auto | deliverables/number-9.svg — The SVG contains no embedded raster image. | Automated no_raster_image result | Yes / No |
 | deliverables/number-9.svg | VECTOR-06/number-9/A004 | auto | deliverables/number-9.svg — The background contains genuinely transparent pixels. | Automated transparent_background result | Yes / No |
 | deliverables/number-9.svg | VECTOR-06/number-9/A005 | auto | deliverables/number-9.svg — Cutting contours are closed. | Automated closed_paths result | Yes / No |
-| deliverables/number-9.svg | VECTOR-06/number-9/H001 | human | deliverables/number-9.svg — The numeral is unambiguous at kit viewing distance. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/number-9.svg | VECTOR-06/number-9/H002 | human | deliverables/number-9.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/number-9.svg | VECTOR-06/number-9/H001 | human | deliverables/number-9.svg — The glyph follows the founder's drawing. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/letter-a.svg | VECTOR-06/letter-a/A001 | auto | deliverables/letter-a.svg — File is present. | Automated file_exists result | Yes / No |
 | deliverables/letter-a.svg | VECTOR-06/letter-a/A002 | auto | deliverables/letter-a.svg — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/letter-a.svg | VECTOR-06/letter-a/A003 | auto | deliverables/letter-a.svg — The SVG contains no embedded raster image. | Automated no_raster_image result | Yes / No |
@@ -284,4 +274,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/kit-sheet.zip | VECTOR-06/kit-sheet-source/A002 | auto | sources/kit-sheet.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/kit-sheet.zip | VECTOR-06/kit-sheet-source/A003 | auto | sources/kit-sheet.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/kit-sheet.zip | VECTOR-06/kit-sheet-source/H001 | human | sources/kit-sheet.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/kit-sheet.zip | VECTOR-06/kit-sheet-source/H002 | human | sources/kit-sheet.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/kit-sheet.zip | VECTOR-06/kit-sheet-source/H002 | human | sources/kit-sheet.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

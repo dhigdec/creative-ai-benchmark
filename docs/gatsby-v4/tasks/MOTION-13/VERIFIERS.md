@@ -33,12 +33,12 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | deliverables/show-thumbnail.png | MOTION-13/show-thumbnail/A002 | auto | deliverables/show-thumbnail.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/show-thumbnail.png | MOTION-13/show-thumbnail/A003 | auto | deliverables/show-thumbnail.png — The width is 1920 px. | Automated width result | Yes / No |
 | deliverables/show-thumbnail.png | MOTION-13/show-thumbnail/A004 | auto | deliverables/show-thumbnail.png — The height is 1080 px. | Automated height result | Yes / No |
-| deliverables/show-thumbnail.png | MOTION-13/show-thumbnail/H001 | human | deliverables/show-thumbnail.png — At the delivered dimensions, OCR returns the complete approved text for programme title. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/show-thumbnail.png | MOTION-13/show-thumbnail/H001 | human | deliverables/show-thumbnail.png — At the delivered dimensions, the programme title text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
 | sources/show-thumbnail.zip | MOTION-13/show-thumbnail-source/A001 | auto | sources/show-thumbnail.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
 | sources/show-thumbnail.zip | MOTION-13/show-thumbnail-source/A002 | auto | sources/show-thumbnail.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/show-thumbnail.zip | MOTION-13/show-thumbnail-source/A003 | auto | sources/show-thumbnail.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/show-thumbnail.zip | MOTION-13/show-thumbnail-source/H001 | human | sources/show-thumbnail.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/show-thumbnail.zip | MOTION-13/show-thumbnail-source/H002 | human | sources/show-thumbnail.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/show-thumbnail.zip | MOTION-13/show-thumbnail-source/H002 | human | sources/show-thumbnail.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/programme-card-r002.png | MOTION-13/programme-card-r002/A001 | auto | deliverables/programme-card-r002.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/programme-card-r002.png | MOTION-13/programme-card-r002/A002 | auto | deliverables/programme-card-r002.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/programme-card-r002.png | MOTION-13/programme-card-r002/A003 | auto | deliverables/programme-card-r002.png — The width is 1080 px. | Automated width result | Yes / No |
@@ -115,4 +115,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/programme-card.zip | MOTION-13/programme-card-source/A002 | auto | sources/programme-card.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/programme-card.zip | MOTION-13/programme-card-source/A003 | auto | sources/programme-card.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/programme-card.zip | MOTION-13/programme-card-source/H001 | human | sources/programme-card.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/programme-card.zip | MOTION-13/programme-card-source/H002 | human | sources/programme-card.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/programme-card.zip | MOTION-13/programme-card-source/H002 | human | sources/programme-card.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

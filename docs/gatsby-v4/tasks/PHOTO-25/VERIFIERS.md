@@ -15,7 +15,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/dealer-poster.zip | PHOTO-25/dealer-poster-source/A002 | auto | sources/dealer-poster.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/dealer-poster.zip | PHOTO-25/dealer-poster-source/A003 | auto | sources/dealer-poster.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/dealer-poster.zip | PHOTO-25/dealer-poster-source/H001 | human | sources/dealer-poster.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/dealer-poster.zip | PHOTO-25/dealer-poster-source/H002 | human | sources/dealer-poster.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/dealer-poster.zip | PHOTO-25/dealer-poster-source/H002 | human | sources/dealer-poster.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/surface-pdp-r005.png | PHOTO-25/surface-pdp-r005/A001 | auto | deliverables/surface-pdp-r005.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/surface-pdp-r005.png | PHOTO-25/surface-pdp-r005/A002 | auto | deliverables/surface-pdp-r005.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/surface-pdp-r005.png | PHOTO-25/surface-pdp-r005/A003 | auto | deliverables/surface-pdp-r005.png — The width is 1440 px. | Automated width result | Yes / No |
@@ -80,7 +80,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/surface-pdp.zip | PHOTO-25/surface-pdp-source/A002 | auto | sources/surface-pdp.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/surface-pdp.zip | PHOTO-25/surface-pdp-source/A003 | auto | sources/surface-pdp.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/surface-pdp.zip | PHOTO-25/surface-pdp-source/H001 | human | sources/surface-pdp.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/surface-pdp.zip | PHOTO-25/surface-pdp-source/H002 | human | sources/surface-pdp.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/surface-pdp.zip | PHOTO-25/surface-pdp-source/H002 | human | sources/surface-pdp.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/identity-applications.pdf | PHOTO-25/identity-applications/A001 | auto | deliverables/identity-applications.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/identity-applications.pdf | PHOTO-25/identity-applications/A002 | auto | deliverables/identity-applications.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/identity-applications.pdf | PHOTO-25/identity-applications/A003 | auto | deliverables/identity-applications.pdf — The PDF contains 2 pages. | Automated pages result | Yes / No |
@@ -91,4 +91,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/identity-applications.zip | PHOTO-25/identity-applications-source/A002 | auto | sources/identity-applications.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/identity-applications.zip | PHOTO-25/identity-applications-source/A003 | auto | sources/identity-applications.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/identity-applications.zip | PHOTO-25/identity-applications-source/H001 | human | sources/identity-applications.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/identity-applications.zip | PHOTO-25/identity-applications-source/H002 | human | sources/identity-applications.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/identity-applications.zip | PHOTO-25/identity-applications-source/H002 | human | sources/identity-applications.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

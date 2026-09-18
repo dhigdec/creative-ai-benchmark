@@ -28,7 +28,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | deliverables/release-vertical.mp4 | MOTION-12/release-vertical/A010 | auto | deliverables/release-vertical.mp4 — The export contains an audio stream. | Automated audio_stream result | Yes / No |
 | deliverables/release-vertical.mp4 | MOTION-12/release-vertical/A011 | auto | deliverables/release-vertical.mp4 — The audio is not wholly silent. | Automated non_silent_audio result | Yes / No |
 | deliverables/release-vertical.mp4 | MOTION-12/release-vertical/H001 | human | deliverables/release-vertical.mp4 — The performer matches the identity-defining features in the supplied reference. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/release-vertical.mp4 | MOTION-12/release-vertical/H002 | human | deliverables/release-vertical.mp4 — At the delivered dimensions, OCR returns the complete approved text for release action. | Approved task brief and supplied source pack | Yes / No |
+| deliverables/release-vertical.mp4 | MOTION-12/release-vertical/H002 | human | deliverables/release-vertical.mp4 — At the delivered dimensions, the release action text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
 | deliverables/release-cover.png | MOTION-12/release-cover/A001 | auto | deliverables/release-cover.png — File is present. | Automated file_exists result | Yes / No |
 | deliverables/release-cover.png | MOTION-12/release-cover/A002 | auto | deliverables/release-cover.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/release-cover.png | MOTION-12/release-cover/A003 | auto | deliverables/release-cover.png — The width is 1200 px. | Automated width result | Yes / No |
@@ -39,4 +39,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/release-cover.zip | MOTION-12/release-cover-source/A002 | auto | sources/release-cover.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/release-cover.zip | MOTION-12/release-cover-source/A003 | auto | sources/release-cover.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/release-cover.zip | MOTION-12/release-cover-source/H001 | human | sources/release-cover.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/release-cover.zip | MOTION-12/release-cover-source/H002 | human | sources/release-cover.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/release-cover.zip | MOTION-12/release-cover-source/H002 | human | sources/release-cover.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |

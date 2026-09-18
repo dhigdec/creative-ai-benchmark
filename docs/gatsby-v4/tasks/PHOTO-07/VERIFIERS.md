@@ -44,7 +44,7 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/case-study.zip | PHOTO-07/case-study-source/A002 | auto | sources/case-study.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/case-study.zip | PHOTO-07/case-study-source/A003 | auto | sources/case-study.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/case-study.zip | PHOTO-07/case-study-source/H001 | human | sources/case-study.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/case-study.zip | PHOTO-07/case-study-source/H002 | human | sources/case-study.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/case-study.zip | PHOTO-07/case-study-source/H002 | human | sources/case-study.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
 | deliverables/estimate-cover.pdf | PHOTO-07/estimate-cover/A001 | auto | deliverables/estimate-cover.pdf — File is present. | Automated file_exists result | Yes / No |
 | deliverables/estimate-cover.pdf | PHOTO-07/estimate-cover/A002 | auto | deliverables/estimate-cover.pdf — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
 | deliverables/estimate-cover.pdf | PHOTO-07/estimate-cover/A003 | auto | deliverables/estimate-cover.pdf — The PDF contains 1 page. | Automated pages result | Yes / No |
@@ -56,4 +56,4 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 | sources/estimate-cover.zip | PHOTO-07/estimate-cover-source/A002 | auto | sources/estimate-cover.zip — The source archive opens. | Automated decodable result | Yes / No |
 | sources/estimate-cover.zip | PHOTO-07/estimate-cover-source/A003 | auto | sources/estimate-cover.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
 | sources/estimate-cover.zip | PHOTO-07/estimate-cover-source/H001 | human | sources/estimate-cover.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/estimate-cover.zip | PHOTO-07/estimate-cover-source/H002 | human | sources/estimate-cover.zip — The text can be edited independently of the photograph. | Editable source archive | Yes / No |
+| sources/estimate-cover.zip | PHOTO-07/estimate-cover-source/H002 | human | sources/estimate-cover.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
