@@ -1,0 +1,13 @@
+# Milepost Driving Academy - Scenario clip training library: output register
+
+| Output | File | Specification |
+|---|---|---|
+| Driving-scenario training clip - Lane changes | deliverables/scenario-r002.mp4 | {"format":"mp4","duration_seconds":{"min":20,"max":35},"ratio":"16:9","audio":"speech","codec":"h264","pixel_format":"yuv420p","fps":24,"width":1920,"height":1080,"authored_animation":false} |
+| Driving-scenario training clip - Right turns | deliverables/scenario-r003.mp4 | {"format":"mp4","duration_seconds":{"min":20,"max":35},"ratio":"16:9","audio":"speech","codec":"h264","pixel_format":"yuv420p","fps":24,"width":1920,"height":1080,"authored_animation":false} |
+| Driving-scenario training clip - Left turns across traffic | deliverables/scenario-r004.mp4 | {"format":"mp4","duration_seconds":{"min":20,"max":35},"ratio":"16:9","audio":"speech","codec":"h264","pixel_format":"yuv420p","fps":24,"width":1920,"height":1080,"authored_animation":false} |
+| Driving-scenario training clip - Roundabouts | deliverables/scenario-r005.mp4 | {"format":"mp4","duration_seconds":{"min":20,"max":35},"ratio":"16:9","audio":"speech","codec":"h264","pixel_format":"yuv420p","fps":24,"width":1920,"height":1080,"authored_animation":false} |
+| Driving-scenario training clip - Parallel parking | deliverables/scenario-r006.mp4 | {"format":"mp4","duration_seconds":{"min":20,"max":35},"ratio":"16:9","audio":"speech","codec":"h264","pixel_format":"yuv420p","fps":24,"width":1920,"height":1080,"authored_animation":false} |
+| Driving-scenario training clip - Merging | deliverables/scenario-r007.mp4 | {"format":"mp4","duration_seconds":{"min":20,"max":35},"ratio":"16:9","audio":"speech","codec":"h264","pixel_format":"yuv420p","fps":24,"width":1920,"height":1080,"authored_animation":false} |
+| Driving-scenario training clip - Four-way stops | deliverables/scenario-r008.mp4 | {"format":"mp4","duration_seconds":{"min":20,"max":35},"ratio":"16:9","audio":"speech","codec":"h264","pixel_format":"yuv420p","fps":24,"width":1920,"height":1080,"authored_animation":false} |
+| Driving-scenario training clip - Hazard recognition | deliverables/scenario-r009.mp4 | {"format":"mp4","duration_seconds":{"min":20,"max":35},"ratio":"16:9","audio":"speech","codec":"h264","pixel_format":"yuv420p","fps":24,"width":1920,"height":1080,"authored_animation":false} |
+| Vertical training example | deliverables/scenario-tall.mp4 | {"format":"mp4","duration_seconds":{"min":20,"max":35},"ratio":"9:16","audio":"speech","codec":"h264","pixel_format":"yuv420p","fps":24,"width":1080,"height":1920,"authored_animation":false} |

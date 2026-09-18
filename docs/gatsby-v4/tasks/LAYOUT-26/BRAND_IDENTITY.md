@@ -1,0 +1,27 @@
+# Lanternwood Folk Fest
+
+Lanternwood Folk Fest is the repeat client for this benchmark series. The canonical client context is outside Burlington, Vermont, and this commission covers phase 2: keepsake programme and venue wayfinding.
+
+## Audience
+A roots and Americana crowd broadly thirty to sixty, many of them returning regulars who keep the programme, willing to pay for something that feels made rather than mass produced.
+
+## Positioning
+Sixty five pounds a day. A considered keepsake register: photographs given real room, editorial type with a proper hierarchy, generous margins, one act to a page breathing rather than a dense fair handout, and never a near empty boutique arts brochure.
+
+## Palette
+- Lantern Amber: #C6822E
+- Field Green: #3B5137
+- Weathered Cream: #EFE6D2
+- Barn Charcoal: #2C2823
+- Laurel Deep: #1F3A2E
+
+## Typography
+A keepsake editorial pairing: a warm serif for act names and headings with a clean, legible sans or serif for set times, stage and biographies. Readable at a glance in a field, generous in a programme, with a clear hierarchy so a reader finds the next act quickly.
+
+## Voice
+Friendly, plain and a little handmade, the voice of a committee that runs the thing itself. Example line the brand would write: "Grab a pint, find your stage, and we will see you down the front."
+
+## Supplied Identity
+No working files survive. The previous designer moved to Canada, leaving only two printed programme pages held by the printer (last year's and the year before) plus last year's printed cover. The crest has never existed as a file: it lives only as paint on the canvas banner over the main gate, photographed for reference. Fonts and colours must be inferred from the printed pages.
+
+Production identity and cross-image continuity remain subject to the release asset checks.

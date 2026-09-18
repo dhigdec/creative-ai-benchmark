@@ -1,0 +1,1029 @@
+# SB3-044-VEC atomic output verifiers
+
+Result: not assessed. These checks evaluate final files, not process claims.
+
+| Output | Check ID | Type | Check |
+|---|---|---|---|
+| deliverables/club-mark.svg | VECTOR-14/club-mark/A001 | auto | deliverables/club-mark.svg — File is present. |
+| deliverables/club-mark.svg | VECTOR-14/club-mark/A002 | auto | deliverables/club-mark.svg — The file opens in a format-aware reader. |
+| deliverables/club-mark.svg | VECTOR-14/club-mark/A003 | auto | deliverables/club-mark.svg — The SVG contains no embedded raster image. |
+| deliverables/club-mark.svg | VECTOR-14/club-mark/A004 | auto | deliverables/club-mark.svg — The background contains genuinely transparent pixels. |
+| deliverables/club-mark.svg | VECTOR-14/club-mark/H001 | human | deliverables/club-mark.svg — The source club identity is preserved. |
+| deliverables/club-mark.svg | VECTOR-14/club-mark/H002 | human | deliverables/club-mark.svg — The finishing looks polished at the delivered size. |
+| deliverables/club-mark.svg | VECTOR-14/club-mark/H003 | human | deliverables/club-mark.svg — The visual character feels like Ironway Run Club. |
+| deliverables/number-0.svg | VECTOR-14/number-0/A001 | auto | deliverables/number-0.svg — File is present. |
+| deliverables/number-0.svg | VECTOR-14/number-0/A002 | auto | deliverables/number-0.svg — The file opens in a format-aware reader. |
+| deliverables/number-0.svg | VECTOR-14/number-0/A003 | auto | deliverables/number-0.svg — The SVG contains no embedded raster image. |
+| deliverables/number-0.svg | VECTOR-14/number-0/A004 | auto | deliverables/number-0.svg — The background contains genuinely transparent pixels. |
+| deliverables/number-0.svg | VECTOR-14/number-0/A005 | auto | deliverables/number-0.svg — Cutting contours are closed. |
+| deliverables/number-0.svg | VECTOR-14/number-0/H001 | human | deliverables/number-0.svg — The numeral is distinguishable from similar digits at viewing distance. |
+| deliverables/number-0.svg | VECTOR-14/number-0/H002 | human | deliverables/number-0.svg — The numeral follows Del's 1994 drawing. |
+| deliverables/number-0.svg | VECTOR-14/number-0/H003 | human | deliverables/number-0.svg — The finishing looks polished at the delivered size. |
+| deliverables/number-0.svg | VECTOR-14/number-0/H004 | human | deliverables/number-0.svg — The visual character feels like Ironway Run Club. |
+| deliverables/number-1.svg | VECTOR-14/number-1/A001 | auto | deliverables/number-1.svg — File is present. |
+| deliverables/number-1.svg | VECTOR-14/number-1/A002 | auto | deliverables/number-1.svg — The file opens in a format-aware reader. |
+| deliverables/number-1.svg | VECTOR-14/number-1/A003 | auto | deliverables/number-1.svg — The SVG contains no embedded raster image. |
+| deliverables/number-1.svg | VECTOR-14/number-1/A004 | auto | deliverables/number-1.svg — The background contains genuinely transparent pixels. |
+| deliverables/number-1.svg | VECTOR-14/number-1/A005 | auto | deliverables/number-1.svg — Cutting contours are closed. |
+| deliverables/number-1.svg | VECTOR-14/number-1/H001 | human | deliverables/number-1.svg — The numeral is distinguishable from similar digits at viewing distance. |
+| deliverables/number-1.svg | VECTOR-14/number-1/H002 | human | deliverables/number-1.svg — The numeral follows Del's 1994 drawing. |
+| deliverables/number-1.svg | VECTOR-14/number-1/H003 | human | deliverables/number-1.svg — The finishing looks polished at the delivered size. |
+| deliverables/number-1.svg | VECTOR-14/number-1/H004 | human | deliverables/number-1.svg — The visual character feels like Ironway Run Club. |
+| deliverables/number-2.svg | VECTOR-14/number-2/A001 | auto | deliverables/number-2.svg — File is present. |
+| deliverables/number-2.svg | VECTOR-14/number-2/A002 | auto | deliverables/number-2.svg — The file opens in a format-aware reader. |
+| deliverables/number-2.svg | VECTOR-14/number-2/A003 | auto | deliverables/number-2.svg — The SVG contains no embedded raster image. |
+| deliverables/number-2.svg | VECTOR-14/number-2/A004 | auto | deliverables/number-2.svg — The background contains genuinely transparent pixels. |
+| deliverables/number-2.svg | VECTOR-14/number-2/A005 | auto | deliverables/number-2.svg — Cutting contours are closed. |
+| deliverables/number-2.svg | VECTOR-14/number-2/H001 | human | deliverables/number-2.svg — The numeral is distinguishable from similar digits at viewing distance. |
+| deliverables/number-2.svg | VECTOR-14/number-2/H002 | human | deliverables/number-2.svg — The numeral follows Del's 1994 drawing. |
+| deliverables/number-2.svg | VECTOR-14/number-2/H003 | human | deliverables/number-2.svg — The finishing looks polished at the delivered size. |
+| deliverables/number-2.svg | VECTOR-14/number-2/H004 | human | deliverables/number-2.svg — The visual character feels like Ironway Run Club. |
+| deliverables/number-3.svg | VECTOR-14/number-3/A001 | auto | deliverables/number-3.svg — File is present. |
+| deliverables/number-3.svg | VECTOR-14/number-3/A002 | auto | deliverables/number-3.svg — The file opens in a format-aware reader. |
+| deliverables/number-3.svg | VECTOR-14/number-3/A003 | auto | deliverables/number-3.svg — The SVG contains no embedded raster image. |
+| deliverables/number-3.svg | VECTOR-14/number-3/A004 | auto | deliverables/number-3.svg — The background contains genuinely transparent pixels. |
+| deliverables/number-3.svg | VECTOR-14/number-3/A005 | auto | deliverables/number-3.svg — Cutting contours are closed. |
+| deliverables/number-3.svg | VECTOR-14/number-3/H001 | human | deliverables/number-3.svg — The numeral is distinguishable from similar digits at viewing distance. |
+| deliverables/number-3.svg | VECTOR-14/number-3/H002 | human | deliverables/number-3.svg — The numeral follows Del's 1994 drawing. |
+| deliverables/number-3.svg | VECTOR-14/number-3/H003 | human | deliverables/number-3.svg — The finishing looks polished at the delivered size. |
+| deliverables/number-3.svg | VECTOR-14/number-3/H004 | human | deliverables/number-3.svg — The visual character feels like Ironway Run Club. |
+| deliverables/number-4.svg | VECTOR-14/number-4/A001 | auto | deliverables/number-4.svg — File is present. |
+| deliverables/number-4.svg | VECTOR-14/number-4/A002 | auto | deliverables/number-4.svg — The file opens in a format-aware reader. |
+| deliverables/number-4.svg | VECTOR-14/number-4/A003 | auto | deliverables/number-4.svg — The SVG contains no embedded raster image. |
+| deliverables/number-4.svg | VECTOR-14/number-4/A004 | auto | deliverables/number-4.svg — The background contains genuinely transparent pixels. |
+| deliverables/number-4.svg | VECTOR-14/number-4/A005 | auto | deliverables/number-4.svg — Cutting contours are closed. |
+| deliverables/number-4.svg | VECTOR-14/number-4/H001 | human | deliverables/number-4.svg — The numeral is distinguishable from similar digits at viewing distance. |
+| deliverables/number-4.svg | VECTOR-14/number-4/H002 | human | deliverables/number-4.svg — The numeral follows Del's 1994 drawing. |
+| deliverables/number-4.svg | VECTOR-14/number-4/H003 | human | deliverables/number-4.svg — The finishing looks polished at the delivered size. |
+| deliverables/number-4.svg | VECTOR-14/number-4/H004 | human | deliverables/number-4.svg — The visual character feels like Ironway Run Club. |
+| deliverables/number-5.svg | VECTOR-14/number-5/A001 | auto | deliverables/number-5.svg — File is present. |
+| deliverables/number-5.svg | VECTOR-14/number-5/A002 | auto | deliverables/number-5.svg — The file opens in a format-aware reader. |
+| deliverables/number-5.svg | VECTOR-14/number-5/A003 | auto | deliverables/number-5.svg — The SVG contains no embedded raster image. |
+| deliverables/number-5.svg | VECTOR-14/number-5/A004 | auto | deliverables/number-5.svg — The background contains genuinely transparent pixels. |
+| deliverables/number-5.svg | VECTOR-14/number-5/A005 | auto | deliverables/number-5.svg — Cutting contours are closed. |
+| deliverables/number-5.svg | VECTOR-14/number-5/H001 | human | deliverables/number-5.svg — The numeral is distinguishable from similar digits at viewing distance. |
+| deliverables/number-5.svg | VECTOR-14/number-5/H002 | human | deliverables/number-5.svg — The numeral follows Del's 1994 drawing. |
+| deliverables/number-5.svg | VECTOR-14/number-5/H003 | human | deliverables/number-5.svg — The finishing looks polished at the delivered size. |
+| deliverables/number-5.svg | VECTOR-14/number-5/H004 | human | deliverables/number-5.svg — The visual character feels like Ironway Run Club. |
+| deliverables/number-6.svg | VECTOR-14/number-6/A001 | auto | deliverables/number-6.svg — File is present. |
+| deliverables/number-6.svg | VECTOR-14/number-6/A002 | auto | deliverables/number-6.svg — The file opens in a format-aware reader. |
+| deliverables/number-6.svg | VECTOR-14/number-6/A003 | auto | deliverables/number-6.svg — The SVG contains no embedded raster image. |
+| deliverables/number-6.svg | VECTOR-14/number-6/A004 | auto | deliverables/number-6.svg — The background contains genuinely transparent pixels. |
+| deliverables/number-6.svg | VECTOR-14/number-6/A005 | auto | deliverables/number-6.svg — Cutting contours are closed. |
+| deliverables/number-6.svg | VECTOR-14/number-6/H001 | human | deliverables/number-6.svg — The numeral is distinguishable from similar digits at viewing distance. |
+| deliverables/number-6.svg | VECTOR-14/number-6/H002 | human | deliverables/number-6.svg — The numeral follows Del's 1994 drawing. |
+| deliverables/number-6.svg | VECTOR-14/number-6/H003 | human | deliverables/number-6.svg — The finishing looks polished at the delivered size. |
+| deliverables/number-6.svg | VECTOR-14/number-6/H004 | human | deliverables/number-6.svg — The visual character feels like Ironway Run Club. |
+| deliverables/number-7.svg | VECTOR-14/number-7/A001 | auto | deliverables/number-7.svg — File is present. |
+| deliverables/number-7.svg | VECTOR-14/number-7/A002 | auto | deliverables/number-7.svg — The file opens in a format-aware reader. |
+| deliverables/number-7.svg | VECTOR-14/number-7/A003 | auto | deliverables/number-7.svg — The SVG contains no embedded raster image. |
+| deliverables/number-7.svg | VECTOR-14/number-7/A004 | auto | deliverables/number-7.svg — The background contains genuinely transparent pixels. |
+| deliverables/number-7.svg | VECTOR-14/number-7/A005 | auto | deliverables/number-7.svg — Cutting contours are closed. |
+| deliverables/number-7.svg | VECTOR-14/number-7/H001 | human | deliverables/number-7.svg — The numeral is distinguishable from similar digits at viewing distance. |
+| deliverables/number-7.svg | VECTOR-14/number-7/H002 | human | deliverables/number-7.svg — The numeral follows Del's 1994 drawing. |
+| deliverables/number-7.svg | VECTOR-14/number-7/H003 | human | deliverables/number-7.svg — The finishing looks polished at the delivered size. |
+| deliverables/number-7.svg | VECTOR-14/number-7/H004 | human | deliverables/number-7.svg — The visual character feels like Ironway Run Club. |
+| deliverables/number-8.svg | VECTOR-14/number-8/A001 | auto | deliverables/number-8.svg — File is present. |
+| deliverables/number-8.svg | VECTOR-14/number-8/A002 | auto | deliverables/number-8.svg — The file opens in a format-aware reader. |
+| deliverables/number-8.svg | VECTOR-14/number-8/A003 | auto | deliverables/number-8.svg — The SVG contains no embedded raster image. |
+| deliverables/number-8.svg | VECTOR-14/number-8/A004 | auto | deliverables/number-8.svg — The background contains genuinely transparent pixels. |
+| deliverables/number-8.svg | VECTOR-14/number-8/A005 | auto | deliverables/number-8.svg — Cutting contours are closed. |
+| deliverables/number-8.svg | VECTOR-14/number-8/H001 | human | deliverables/number-8.svg — The numeral is distinguishable from similar digits at viewing distance. |
+| deliverables/number-8.svg | VECTOR-14/number-8/H002 | human | deliverables/number-8.svg — The numeral follows Del's 1994 drawing. |
+| deliverables/number-8.svg | VECTOR-14/number-8/H003 | human | deliverables/number-8.svg — The finishing looks polished at the delivered size. |
+| deliverables/number-8.svg | VECTOR-14/number-8/H004 | human | deliverables/number-8.svg — The visual character feels like Ironway Run Club. |
+| deliverables/number-9.svg | VECTOR-14/number-9/A001 | auto | deliverables/number-9.svg — File is present. |
+| deliverables/number-9.svg | VECTOR-14/number-9/A002 | auto | deliverables/number-9.svg — The file opens in a format-aware reader. |
+| deliverables/number-9.svg | VECTOR-14/number-9/A003 | auto | deliverables/number-9.svg — The SVG contains no embedded raster image. |
+| deliverables/number-9.svg | VECTOR-14/number-9/A004 | auto | deliverables/number-9.svg — The background contains genuinely transparent pixels. |
+| deliverables/number-9.svg | VECTOR-14/number-9/A005 | auto | deliverables/number-9.svg — Cutting contours are closed. |
+| deliverables/number-9.svg | VECTOR-14/number-9/H001 | human | deliverables/number-9.svg — The numeral is distinguishable from similar digits at viewing distance. |
+| deliverables/number-9.svg | VECTOR-14/number-9/H002 | human | deliverables/number-9.svg — The numeral follows Del's 1994 drawing. |
+| deliverables/number-9.svg | VECTOR-14/number-9/H003 | human | deliverables/number-9.svg — The finishing looks polished at the delivered size. |
+| deliverables/number-9.svg | VECTOR-14/number-9/H004 | human | deliverables/number-9.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-a.svg | VECTOR-14/letter-a/A001 | auto | deliverables/letter-a.svg — File is present. |
+| deliverables/letter-a.svg | VECTOR-14/letter-a/A002 | auto | deliverables/letter-a.svg — The file opens in a format-aware reader. |
+| deliverables/letter-a.svg | VECTOR-14/letter-a/A003 | auto | deliverables/letter-a.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-a.svg | VECTOR-14/letter-a/A004 | auto | deliverables/letter-a.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-a.svg | VECTOR-14/letter-a/A005 | auto | deliverables/letter-a.svg — Cutting contours are closed. |
+| deliverables/letter-a.svg | VECTOR-14/letter-a/H001 | human | deliverables/letter-a.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-a.svg | VECTOR-14/letter-a/H002 | human | deliverables/letter-a.svg — The weight is consistent with the restored set. |
+| deliverables/letter-a.svg | VECTOR-14/letter-a/H003 | human | deliverables/letter-a.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-a.svg | VECTOR-14/letter-a/H004 | human | deliverables/letter-a.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-b.svg | VECTOR-14/letter-b/A001 | auto | deliverables/letter-b.svg — File is present. |
+| deliverables/letter-b.svg | VECTOR-14/letter-b/A002 | auto | deliverables/letter-b.svg — The file opens in a format-aware reader. |
+| deliverables/letter-b.svg | VECTOR-14/letter-b/A003 | auto | deliverables/letter-b.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-b.svg | VECTOR-14/letter-b/A004 | auto | deliverables/letter-b.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-b.svg | VECTOR-14/letter-b/A005 | auto | deliverables/letter-b.svg — Cutting contours are closed. |
+| deliverables/letter-b.svg | VECTOR-14/letter-b/H001 | human | deliverables/letter-b.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-b.svg | VECTOR-14/letter-b/H002 | human | deliverables/letter-b.svg — The weight is consistent with the restored set. |
+| deliverables/letter-b.svg | VECTOR-14/letter-b/H003 | human | deliverables/letter-b.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-b.svg | VECTOR-14/letter-b/H004 | human | deliverables/letter-b.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-c.svg | VECTOR-14/letter-c/A001 | auto | deliverables/letter-c.svg — File is present. |
+| deliverables/letter-c.svg | VECTOR-14/letter-c/A002 | auto | deliverables/letter-c.svg — The file opens in a format-aware reader. |
+| deliverables/letter-c.svg | VECTOR-14/letter-c/A003 | auto | deliverables/letter-c.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-c.svg | VECTOR-14/letter-c/A004 | auto | deliverables/letter-c.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-c.svg | VECTOR-14/letter-c/A005 | auto | deliverables/letter-c.svg — Cutting contours are closed. |
+| deliverables/letter-c.svg | VECTOR-14/letter-c/H001 | human | deliverables/letter-c.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-c.svg | VECTOR-14/letter-c/H002 | human | deliverables/letter-c.svg — The weight is consistent with the restored set. |
+| deliverables/letter-c.svg | VECTOR-14/letter-c/H003 | human | deliverables/letter-c.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-c.svg | VECTOR-14/letter-c/H004 | human | deliverables/letter-c.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-d.svg | VECTOR-14/letter-d/A001 | auto | deliverables/letter-d.svg — File is present. |
+| deliverables/letter-d.svg | VECTOR-14/letter-d/A002 | auto | deliverables/letter-d.svg — The file opens in a format-aware reader. |
+| deliverables/letter-d.svg | VECTOR-14/letter-d/A003 | auto | deliverables/letter-d.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-d.svg | VECTOR-14/letter-d/A004 | auto | deliverables/letter-d.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-d.svg | VECTOR-14/letter-d/A005 | auto | deliverables/letter-d.svg — Cutting contours are closed. |
+| deliverables/letter-d.svg | VECTOR-14/letter-d/H001 | human | deliverables/letter-d.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-d.svg | VECTOR-14/letter-d/H002 | human | deliverables/letter-d.svg — The weight is consistent with the restored set. |
+| deliverables/letter-d.svg | VECTOR-14/letter-d/H003 | human | deliverables/letter-d.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-d.svg | VECTOR-14/letter-d/H004 | human | deliverables/letter-d.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-e.svg | VECTOR-14/letter-e/A001 | auto | deliverables/letter-e.svg — File is present. |
+| deliverables/letter-e.svg | VECTOR-14/letter-e/A002 | auto | deliverables/letter-e.svg — The file opens in a format-aware reader. |
+| deliverables/letter-e.svg | VECTOR-14/letter-e/A003 | auto | deliverables/letter-e.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-e.svg | VECTOR-14/letter-e/A004 | auto | deliverables/letter-e.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-e.svg | VECTOR-14/letter-e/A005 | auto | deliverables/letter-e.svg — Cutting contours are closed. |
+| deliverables/letter-e.svg | VECTOR-14/letter-e/H001 | human | deliverables/letter-e.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-e.svg | VECTOR-14/letter-e/H002 | human | deliverables/letter-e.svg — The weight is consistent with the restored set. |
+| deliverables/letter-e.svg | VECTOR-14/letter-e/H003 | human | deliverables/letter-e.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-e.svg | VECTOR-14/letter-e/H004 | human | deliverables/letter-e.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-f.svg | VECTOR-14/letter-f/A001 | auto | deliverables/letter-f.svg — File is present. |
+| deliverables/letter-f.svg | VECTOR-14/letter-f/A002 | auto | deliverables/letter-f.svg — The file opens in a format-aware reader. |
+| deliverables/letter-f.svg | VECTOR-14/letter-f/A003 | auto | deliverables/letter-f.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-f.svg | VECTOR-14/letter-f/A004 | auto | deliverables/letter-f.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-f.svg | VECTOR-14/letter-f/A005 | auto | deliverables/letter-f.svg — Cutting contours are closed. |
+| deliverables/letter-f.svg | VECTOR-14/letter-f/H001 | human | deliverables/letter-f.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-f.svg | VECTOR-14/letter-f/H002 | human | deliverables/letter-f.svg — The weight is consistent with the restored set. |
+| deliverables/letter-f.svg | VECTOR-14/letter-f/H003 | human | deliverables/letter-f.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-f.svg | VECTOR-14/letter-f/H004 | human | deliverables/letter-f.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-g.svg | VECTOR-14/letter-g/A001 | auto | deliverables/letter-g.svg — File is present. |
+| deliverables/letter-g.svg | VECTOR-14/letter-g/A002 | auto | deliverables/letter-g.svg — The file opens in a format-aware reader. |
+| deliverables/letter-g.svg | VECTOR-14/letter-g/A003 | auto | deliverables/letter-g.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-g.svg | VECTOR-14/letter-g/A004 | auto | deliverables/letter-g.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-g.svg | VECTOR-14/letter-g/A005 | auto | deliverables/letter-g.svg — Cutting contours are closed. |
+| deliverables/letter-g.svg | VECTOR-14/letter-g/H001 | human | deliverables/letter-g.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-g.svg | VECTOR-14/letter-g/H002 | human | deliverables/letter-g.svg — The weight is consistent with the restored set. |
+| deliverables/letter-g.svg | VECTOR-14/letter-g/H003 | human | deliverables/letter-g.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-g.svg | VECTOR-14/letter-g/H004 | human | deliverables/letter-g.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-h.svg | VECTOR-14/letter-h/A001 | auto | deliverables/letter-h.svg — File is present. |
+| deliverables/letter-h.svg | VECTOR-14/letter-h/A002 | auto | deliverables/letter-h.svg — The file opens in a format-aware reader. |
+| deliverables/letter-h.svg | VECTOR-14/letter-h/A003 | auto | deliverables/letter-h.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-h.svg | VECTOR-14/letter-h/A004 | auto | deliverables/letter-h.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-h.svg | VECTOR-14/letter-h/A005 | auto | deliverables/letter-h.svg — Cutting contours are closed. |
+| deliverables/letter-h.svg | VECTOR-14/letter-h/H001 | human | deliverables/letter-h.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-h.svg | VECTOR-14/letter-h/H002 | human | deliverables/letter-h.svg — The weight is consistent with the restored set. |
+| deliverables/letter-h.svg | VECTOR-14/letter-h/H003 | human | deliverables/letter-h.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-h.svg | VECTOR-14/letter-h/H004 | human | deliverables/letter-h.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-i.svg | VECTOR-14/letter-i/A001 | auto | deliverables/letter-i.svg — File is present. |
+| deliverables/letter-i.svg | VECTOR-14/letter-i/A002 | auto | deliverables/letter-i.svg — The file opens in a format-aware reader. |
+| deliverables/letter-i.svg | VECTOR-14/letter-i/A003 | auto | deliverables/letter-i.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-i.svg | VECTOR-14/letter-i/A004 | auto | deliverables/letter-i.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-i.svg | VECTOR-14/letter-i/A005 | auto | deliverables/letter-i.svg — Cutting contours are closed. |
+| deliverables/letter-i.svg | VECTOR-14/letter-i/H001 | human | deliverables/letter-i.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-i.svg | VECTOR-14/letter-i/H002 | human | deliverables/letter-i.svg — The weight is consistent with the restored set. |
+| deliverables/letter-i.svg | VECTOR-14/letter-i/H003 | human | deliverables/letter-i.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-i.svg | VECTOR-14/letter-i/H004 | human | deliverables/letter-i.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-j.svg | VECTOR-14/letter-j/A001 | auto | deliverables/letter-j.svg — File is present. |
+| deliverables/letter-j.svg | VECTOR-14/letter-j/A002 | auto | deliverables/letter-j.svg — The file opens in a format-aware reader. |
+| deliverables/letter-j.svg | VECTOR-14/letter-j/A003 | auto | deliverables/letter-j.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-j.svg | VECTOR-14/letter-j/A004 | auto | deliverables/letter-j.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-j.svg | VECTOR-14/letter-j/A005 | auto | deliverables/letter-j.svg — Cutting contours are closed. |
+| deliverables/letter-j.svg | VECTOR-14/letter-j/H001 | human | deliverables/letter-j.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-j.svg | VECTOR-14/letter-j/H002 | human | deliverables/letter-j.svg — The weight is consistent with the restored set. |
+| deliverables/letter-j.svg | VECTOR-14/letter-j/H003 | human | deliverables/letter-j.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-j.svg | VECTOR-14/letter-j/H004 | human | deliverables/letter-j.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-k.svg | VECTOR-14/letter-k/A001 | auto | deliverables/letter-k.svg — File is present. |
+| deliverables/letter-k.svg | VECTOR-14/letter-k/A002 | auto | deliverables/letter-k.svg — The file opens in a format-aware reader. |
+| deliverables/letter-k.svg | VECTOR-14/letter-k/A003 | auto | deliverables/letter-k.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-k.svg | VECTOR-14/letter-k/A004 | auto | deliverables/letter-k.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-k.svg | VECTOR-14/letter-k/A005 | auto | deliverables/letter-k.svg — Cutting contours are closed. |
+| deliverables/letter-k.svg | VECTOR-14/letter-k/H001 | human | deliverables/letter-k.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-k.svg | VECTOR-14/letter-k/H002 | human | deliverables/letter-k.svg — The weight is consistent with the restored set. |
+| deliverables/letter-k.svg | VECTOR-14/letter-k/H003 | human | deliverables/letter-k.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-k.svg | VECTOR-14/letter-k/H004 | human | deliverables/letter-k.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-l.svg | VECTOR-14/letter-l/A001 | auto | deliverables/letter-l.svg — File is present. |
+| deliverables/letter-l.svg | VECTOR-14/letter-l/A002 | auto | deliverables/letter-l.svg — The file opens in a format-aware reader. |
+| deliverables/letter-l.svg | VECTOR-14/letter-l/A003 | auto | deliverables/letter-l.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-l.svg | VECTOR-14/letter-l/A004 | auto | deliverables/letter-l.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-l.svg | VECTOR-14/letter-l/A005 | auto | deliverables/letter-l.svg — Cutting contours are closed. |
+| deliverables/letter-l.svg | VECTOR-14/letter-l/H001 | human | deliverables/letter-l.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-l.svg | VECTOR-14/letter-l/H002 | human | deliverables/letter-l.svg — The weight is consistent with the restored set. |
+| deliverables/letter-l.svg | VECTOR-14/letter-l/H003 | human | deliverables/letter-l.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-l.svg | VECTOR-14/letter-l/H004 | human | deliverables/letter-l.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-m.svg | VECTOR-14/letter-m/A001 | auto | deliverables/letter-m.svg — File is present. |
+| deliverables/letter-m.svg | VECTOR-14/letter-m/A002 | auto | deliverables/letter-m.svg — The file opens in a format-aware reader. |
+| deliverables/letter-m.svg | VECTOR-14/letter-m/A003 | auto | deliverables/letter-m.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-m.svg | VECTOR-14/letter-m/A004 | auto | deliverables/letter-m.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-m.svg | VECTOR-14/letter-m/A005 | auto | deliverables/letter-m.svg — Cutting contours are closed. |
+| deliverables/letter-m.svg | VECTOR-14/letter-m/H001 | human | deliverables/letter-m.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-m.svg | VECTOR-14/letter-m/H002 | human | deliverables/letter-m.svg — The weight is consistent with the restored set. |
+| deliverables/letter-m.svg | VECTOR-14/letter-m/H003 | human | deliverables/letter-m.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-m.svg | VECTOR-14/letter-m/H004 | human | deliverables/letter-m.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-n.svg | VECTOR-14/letter-n/A001 | auto | deliverables/letter-n.svg — File is present. |
+| deliverables/letter-n.svg | VECTOR-14/letter-n/A002 | auto | deliverables/letter-n.svg — The file opens in a format-aware reader. |
+| deliverables/letter-n.svg | VECTOR-14/letter-n/A003 | auto | deliverables/letter-n.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-n.svg | VECTOR-14/letter-n/A004 | auto | deliverables/letter-n.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-n.svg | VECTOR-14/letter-n/A005 | auto | deliverables/letter-n.svg — Cutting contours are closed. |
+| deliverables/letter-n.svg | VECTOR-14/letter-n/H001 | human | deliverables/letter-n.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-n.svg | VECTOR-14/letter-n/H002 | human | deliverables/letter-n.svg — The weight is consistent with the restored set. |
+| deliverables/letter-n.svg | VECTOR-14/letter-n/H003 | human | deliverables/letter-n.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-n.svg | VECTOR-14/letter-n/H004 | human | deliverables/letter-n.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-o.svg | VECTOR-14/letter-o/A001 | auto | deliverables/letter-o.svg — File is present. |
+| deliverables/letter-o.svg | VECTOR-14/letter-o/A002 | auto | deliverables/letter-o.svg — The file opens in a format-aware reader. |
+| deliverables/letter-o.svg | VECTOR-14/letter-o/A003 | auto | deliverables/letter-o.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-o.svg | VECTOR-14/letter-o/A004 | auto | deliverables/letter-o.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-o.svg | VECTOR-14/letter-o/A005 | auto | deliverables/letter-o.svg — Cutting contours are closed. |
+| deliverables/letter-o.svg | VECTOR-14/letter-o/H001 | human | deliverables/letter-o.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-o.svg | VECTOR-14/letter-o/H002 | human | deliverables/letter-o.svg — The weight is consistent with the restored set. |
+| deliverables/letter-o.svg | VECTOR-14/letter-o/H003 | human | deliverables/letter-o.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-o.svg | VECTOR-14/letter-o/H004 | human | deliverables/letter-o.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-p.svg | VECTOR-14/letter-p/A001 | auto | deliverables/letter-p.svg — File is present. |
+| deliverables/letter-p.svg | VECTOR-14/letter-p/A002 | auto | deliverables/letter-p.svg — The file opens in a format-aware reader. |
+| deliverables/letter-p.svg | VECTOR-14/letter-p/A003 | auto | deliverables/letter-p.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-p.svg | VECTOR-14/letter-p/A004 | auto | deliverables/letter-p.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-p.svg | VECTOR-14/letter-p/A005 | auto | deliverables/letter-p.svg — Cutting contours are closed. |
+| deliverables/letter-p.svg | VECTOR-14/letter-p/H001 | human | deliverables/letter-p.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-p.svg | VECTOR-14/letter-p/H002 | human | deliverables/letter-p.svg — The weight is consistent with the restored set. |
+| deliverables/letter-p.svg | VECTOR-14/letter-p/H003 | human | deliverables/letter-p.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-p.svg | VECTOR-14/letter-p/H004 | human | deliverables/letter-p.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-q.svg | VECTOR-14/letter-q/A001 | auto | deliverables/letter-q.svg — File is present. |
+| deliverables/letter-q.svg | VECTOR-14/letter-q/A002 | auto | deliverables/letter-q.svg — The file opens in a format-aware reader. |
+| deliverables/letter-q.svg | VECTOR-14/letter-q/A003 | auto | deliverables/letter-q.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-q.svg | VECTOR-14/letter-q/A004 | auto | deliverables/letter-q.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-q.svg | VECTOR-14/letter-q/A005 | auto | deliverables/letter-q.svg — Cutting contours are closed. |
+| deliverables/letter-q.svg | VECTOR-14/letter-q/H001 | human | deliverables/letter-q.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-q.svg | VECTOR-14/letter-q/H002 | human | deliverables/letter-q.svg — The weight is consistent with the restored set. |
+| deliverables/letter-q.svg | VECTOR-14/letter-q/H003 | human | deliverables/letter-q.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-q.svg | VECTOR-14/letter-q/H004 | human | deliverables/letter-q.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-r.svg | VECTOR-14/letter-r/A001 | auto | deliverables/letter-r.svg — File is present. |
+| deliverables/letter-r.svg | VECTOR-14/letter-r/A002 | auto | deliverables/letter-r.svg — The file opens in a format-aware reader. |
+| deliverables/letter-r.svg | VECTOR-14/letter-r/A003 | auto | deliverables/letter-r.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-r.svg | VECTOR-14/letter-r/A004 | auto | deliverables/letter-r.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-r.svg | VECTOR-14/letter-r/A005 | auto | deliverables/letter-r.svg — Cutting contours are closed. |
+| deliverables/letter-r.svg | VECTOR-14/letter-r/H001 | human | deliverables/letter-r.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-r.svg | VECTOR-14/letter-r/H002 | human | deliverables/letter-r.svg — The weight is consistent with the restored set. |
+| deliverables/letter-r.svg | VECTOR-14/letter-r/H003 | human | deliverables/letter-r.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-r.svg | VECTOR-14/letter-r/H004 | human | deliverables/letter-r.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-s.svg | VECTOR-14/letter-s/A001 | auto | deliverables/letter-s.svg — File is present. |
+| deliverables/letter-s.svg | VECTOR-14/letter-s/A002 | auto | deliverables/letter-s.svg — The file opens in a format-aware reader. |
+| deliverables/letter-s.svg | VECTOR-14/letter-s/A003 | auto | deliverables/letter-s.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-s.svg | VECTOR-14/letter-s/A004 | auto | deliverables/letter-s.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-s.svg | VECTOR-14/letter-s/A005 | auto | deliverables/letter-s.svg — Cutting contours are closed. |
+| deliverables/letter-s.svg | VECTOR-14/letter-s/H001 | human | deliverables/letter-s.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-s.svg | VECTOR-14/letter-s/H002 | human | deliverables/letter-s.svg — The weight is consistent with the restored set. |
+| deliverables/letter-s.svg | VECTOR-14/letter-s/H003 | human | deliverables/letter-s.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-s.svg | VECTOR-14/letter-s/H004 | human | deliverables/letter-s.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-t.svg | VECTOR-14/letter-t/A001 | auto | deliverables/letter-t.svg — File is present. |
+| deliverables/letter-t.svg | VECTOR-14/letter-t/A002 | auto | deliverables/letter-t.svg — The file opens in a format-aware reader. |
+| deliverables/letter-t.svg | VECTOR-14/letter-t/A003 | auto | deliverables/letter-t.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-t.svg | VECTOR-14/letter-t/A004 | auto | deliverables/letter-t.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-t.svg | VECTOR-14/letter-t/A005 | auto | deliverables/letter-t.svg — Cutting contours are closed. |
+| deliverables/letter-t.svg | VECTOR-14/letter-t/H001 | human | deliverables/letter-t.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-t.svg | VECTOR-14/letter-t/H002 | human | deliverables/letter-t.svg — The weight is consistent with the restored set. |
+| deliverables/letter-t.svg | VECTOR-14/letter-t/H003 | human | deliverables/letter-t.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-t.svg | VECTOR-14/letter-t/H004 | human | deliverables/letter-t.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-u.svg | VECTOR-14/letter-u/A001 | auto | deliverables/letter-u.svg — File is present. |
+| deliverables/letter-u.svg | VECTOR-14/letter-u/A002 | auto | deliverables/letter-u.svg — The file opens in a format-aware reader. |
+| deliverables/letter-u.svg | VECTOR-14/letter-u/A003 | auto | deliverables/letter-u.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-u.svg | VECTOR-14/letter-u/A004 | auto | deliverables/letter-u.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-u.svg | VECTOR-14/letter-u/A005 | auto | deliverables/letter-u.svg — Cutting contours are closed. |
+| deliverables/letter-u.svg | VECTOR-14/letter-u/H001 | human | deliverables/letter-u.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-u.svg | VECTOR-14/letter-u/H002 | human | deliverables/letter-u.svg — The weight is consistent with the restored set. |
+| deliverables/letter-u.svg | VECTOR-14/letter-u/H003 | human | deliverables/letter-u.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-u.svg | VECTOR-14/letter-u/H004 | human | deliverables/letter-u.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-v.svg | VECTOR-14/letter-v/A001 | auto | deliverables/letter-v.svg — File is present. |
+| deliverables/letter-v.svg | VECTOR-14/letter-v/A002 | auto | deliverables/letter-v.svg — The file opens in a format-aware reader. |
+| deliverables/letter-v.svg | VECTOR-14/letter-v/A003 | auto | deliverables/letter-v.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-v.svg | VECTOR-14/letter-v/A004 | auto | deliverables/letter-v.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-v.svg | VECTOR-14/letter-v/A005 | auto | deliverables/letter-v.svg — Cutting contours are closed. |
+| deliverables/letter-v.svg | VECTOR-14/letter-v/H001 | human | deliverables/letter-v.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-v.svg | VECTOR-14/letter-v/H002 | human | deliverables/letter-v.svg — The weight is consistent with the restored set. |
+| deliverables/letter-v.svg | VECTOR-14/letter-v/H003 | human | deliverables/letter-v.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-v.svg | VECTOR-14/letter-v/H004 | human | deliverables/letter-v.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-w.svg | VECTOR-14/letter-w/A001 | auto | deliverables/letter-w.svg — File is present. |
+| deliverables/letter-w.svg | VECTOR-14/letter-w/A002 | auto | deliverables/letter-w.svg — The file opens in a format-aware reader. |
+| deliverables/letter-w.svg | VECTOR-14/letter-w/A003 | auto | deliverables/letter-w.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-w.svg | VECTOR-14/letter-w/A004 | auto | deliverables/letter-w.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-w.svg | VECTOR-14/letter-w/A005 | auto | deliverables/letter-w.svg — Cutting contours are closed. |
+| deliverables/letter-w.svg | VECTOR-14/letter-w/H001 | human | deliverables/letter-w.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-w.svg | VECTOR-14/letter-w/H002 | human | deliverables/letter-w.svg — The weight is consistent with the restored set. |
+| deliverables/letter-w.svg | VECTOR-14/letter-w/H003 | human | deliverables/letter-w.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-w.svg | VECTOR-14/letter-w/H004 | human | deliverables/letter-w.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-x.svg | VECTOR-14/letter-x/A001 | auto | deliverables/letter-x.svg — File is present. |
+| deliverables/letter-x.svg | VECTOR-14/letter-x/A002 | auto | deliverables/letter-x.svg — The file opens in a format-aware reader. |
+| deliverables/letter-x.svg | VECTOR-14/letter-x/A003 | auto | deliverables/letter-x.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-x.svg | VECTOR-14/letter-x/A004 | auto | deliverables/letter-x.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-x.svg | VECTOR-14/letter-x/A005 | auto | deliverables/letter-x.svg — Cutting contours are closed. |
+| deliverables/letter-x.svg | VECTOR-14/letter-x/H001 | human | deliverables/letter-x.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-x.svg | VECTOR-14/letter-x/H002 | human | deliverables/letter-x.svg — The weight is consistent with the restored set. |
+| deliverables/letter-x.svg | VECTOR-14/letter-x/H003 | human | deliverables/letter-x.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-x.svg | VECTOR-14/letter-x/H004 | human | deliverables/letter-x.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-y.svg | VECTOR-14/letter-y/A001 | auto | deliverables/letter-y.svg — File is present. |
+| deliverables/letter-y.svg | VECTOR-14/letter-y/A002 | auto | deliverables/letter-y.svg — The file opens in a format-aware reader. |
+| deliverables/letter-y.svg | VECTOR-14/letter-y/A003 | auto | deliverables/letter-y.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-y.svg | VECTOR-14/letter-y/A004 | auto | deliverables/letter-y.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-y.svg | VECTOR-14/letter-y/A005 | auto | deliverables/letter-y.svg — Cutting contours are closed. |
+| deliverables/letter-y.svg | VECTOR-14/letter-y/H001 | human | deliverables/letter-y.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-y.svg | VECTOR-14/letter-y/H002 | human | deliverables/letter-y.svg — The weight is consistent with the restored set. |
+| deliverables/letter-y.svg | VECTOR-14/letter-y/H003 | human | deliverables/letter-y.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-y.svg | VECTOR-14/letter-y/H004 | human | deliverables/letter-y.svg — The visual character feels like Ironway Run Club. |
+| deliverables/letter-z.svg | VECTOR-14/letter-z/A001 | auto | deliverables/letter-z.svg — File is present. |
+| deliverables/letter-z.svg | VECTOR-14/letter-z/A002 | auto | deliverables/letter-z.svg — The file opens in a format-aware reader. |
+| deliverables/letter-z.svg | VECTOR-14/letter-z/A003 | auto | deliverables/letter-z.svg — The SVG contains no embedded raster image. |
+| deliverables/letter-z.svg | VECTOR-14/letter-z/A004 | auto | deliverables/letter-z.svg — The background contains genuinely transparent pixels. |
+| deliverables/letter-z.svg | VECTOR-14/letter-z/A005 | auto | deliverables/letter-z.svg — Cutting contours are closed. |
+| deliverables/letter-z.svg | VECTOR-14/letter-z/H001 | human | deliverables/letter-z.svg — The letter follows Del's 1994 drawing. |
+| deliverables/letter-z.svg | VECTOR-14/letter-z/H002 | human | deliverables/letter-z.svg — The weight is consistent with the restored set. |
+| deliverables/letter-z.svg | VECTOR-14/letter-z/H003 | human | deliverables/letter-z.svg — The finishing looks polished at the delivered size. |
+| deliverables/letter-z.svg | VECTOR-14/letter-z/H004 | human | deliverables/letter-z.svg — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r002.pdf | VECTOR-14/member-bib-r002/A001 | auto | deliverables/member-bib-r002.pdf — File is present. |
+| deliverables/member-bib-r002.pdf | VECTOR-14/member-bib-r002/A002 | auto | deliverables/member-bib-r002.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r002.pdf | VECTOR-14/member-bib-r002/A003 | auto | deliverables/member-bib-r002.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r002.pdf | VECTOR-14/member-bib-r002/A004 | auto | deliverables/member-bib-r002.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r002.pdf | VECTOR-14/member-bib-r002/A005 | auto | deliverables/member-bib-r002.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r002.pdf | VECTOR-14/member-bib-r002/H001 | human | deliverables/member-bib-r002.pdf — The runner number matches this member. |
+| deliverables/member-bib-r002.pdf | VECTOR-14/member-bib-r002/H002 | human | deliverables/member-bib-r002.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r002.pdf, source ironway_roster.csv, row 2, field Member Name | VECTOR-14/member-bib-r002/H003 | human | deliverables/member-bib-r002.pdf / source ironway_roster.csv, row 2, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r002.pdf, source ironway_roster.csv, row 2, field Assigned Number | VECTOR-14/member-bib-r002/H004 | human | deliverables/member-bib-r002.pdf / source ironway_roster.csv, row 2, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r002.pdf, source ironway_roster.csv, row 2, field Pace Group | VECTOR-14/member-bib-r002/H005 | human | deliverables/member-bib-r002.pdf / source ironway_roster.csv, row 2, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r002.pdf | VECTOR-14/member-bib-r002/H006 | human | deliverables/member-bib-r002.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r002.pdf | VECTOR-14/member-bib-r002/H007 | human | deliverables/member-bib-r002.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r002.pdf | VECTOR-14/member-bib-r002/H008 | human | deliverables/member-bib-r002.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r002.pdf | VECTOR-14/member-bib-r002/H009 | human | deliverables/member-bib-r002.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r002.pdf | VECTOR-14/member-bib-r002/H010 | human | deliverables/member-bib-r002.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r003.pdf | VECTOR-14/member-bib-r003/A001 | auto | deliverables/member-bib-r003.pdf — File is present. |
+| deliverables/member-bib-r003.pdf | VECTOR-14/member-bib-r003/A002 | auto | deliverables/member-bib-r003.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r003.pdf | VECTOR-14/member-bib-r003/A003 | auto | deliverables/member-bib-r003.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r003.pdf | VECTOR-14/member-bib-r003/A004 | auto | deliverables/member-bib-r003.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r003.pdf | VECTOR-14/member-bib-r003/A005 | auto | deliverables/member-bib-r003.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r003.pdf | VECTOR-14/member-bib-r003/H001 | human | deliverables/member-bib-r003.pdf — The runner number matches this member. |
+| deliverables/member-bib-r003.pdf | VECTOR-14/member-bib-r003/H002 | human | deliverables/member-bib-r003.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r003.pdf, source ironway_roster.csv, row 3, field Member Name | VECTOR-14/member-bib-r003/H003 | human | deliverables/member-bib-r003.pdf / source ironway_roster.csv, row 3, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r003.pdf, source ironway_roster.csv, row 3, field Assigned Number | VECTOR-14/member-bib-r003/H004 | human | deliverables/member-bib-r003.pdf / source ironway_roster.csv, row 3, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r003.pdf, source ironway_roster.csv, row 3, field Pace Group | VECTOR-14/member-bib-r003/H005 | human | deliverables/member-bib-r003.pdf / source ironway_roster.csv, row 3, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r003.pdf | VECTOR-14/member-bib-r003/H006 | human | deliverables/member-bib-r003.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r003.pdf | VECTOR-14/member-bib-r003/H007 | human | deliverables/member-bib-r003.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r003.pdf | VECTOR-14/member-bib-r003/H008 | human | deliverables/member-bib-r003.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r003.pdf | VECTOR-14/member-bib-r003/H009 | human | deliverables/member-bib-r003.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r003.pdf | VECTOR-14/member-bib-r003/H010 | human | deliverables/member-bib-r003.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r004.pdf | VECTOR-14/member-bib-r004/A001 | auto | deliverables/member-bib-r004.pdf — File is present. |
+| deliverables/member-bib-r004.pdf | VECTOR-14/member-bib-r004/A002 | auto | deliverables/member-bib-r004.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r004.pdf | VECTOR-14/member-bib-r004/A003 | auto | deliverables/member-bib-r004.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r004.pdf | VECTOR-14/member-bib-r004/A004 | auto | deliverables/member-bib-r004.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r004.pdf | VECTOR-14/member-bib-r004/A005 | auto | deliverables/member-bib-r004.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r004.pdf | VECTOR-14/member-bib-r004/H001 | human | deliverables/member-bib-r004.pdf — The runner number matches this member. |
+| deliverables/member-bib-r004.pdf | VECTOR-14/member-bib-r004/H002 | human | deliverables/member-bib-r004.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r004.pdf, source ironway_roster.csv, row 4, field Member Name | VECTOR-14/member-bib-r004/H003 | human | deliverables/member-bib-r004.pdf / source ironway_roster.csv, row 4, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r004.pdf, source ironway_roster.csv, row 4, field Assigned Number | VECTOR-14/member-bib-r004/H004 | human | deliverables/member-bib-r004.pdf / source ironway_roster.csv, row 4, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r004.pdf, source ironway_roster.csv, row 4, field Pace Group | VECTOR-14/member-bib-r004/H005 | human | deliverables/member-bib-r004.pdf / source ironway_roster.csv, row 4, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r004.pdf | VECTOR-14/member-bib-r004/H006 | human | deliverables/member-bib-r004.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r004.pdf | VECTOR-14/member-bib-r004/H007 | human | deliverables/member-bib-r004.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r004.pdf | VECTOR-14/member-bib-r004/H008 | human | deliverables/member-bib-r004.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r004.pdf | VECTOR-14/member-bib-r004/H009 | human | deliverables/member-bib-r004.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r004.pdf | VECTOR-14/member-bib-r004/H010 | human | deliverables/member-bib-r004.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r005.pdf | VECTOR-14/member-bib-r005/A001 | auto | deliverables/member-bib-r005.pdf — File is present. |
+| deliverables/member-bib-r005.pdf | VECTOR-14/member-bib-r005/A002 | auto | deliverables/member-bib-r005.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r005.pdf | VECTOR-14/member-bib-r005/A003 | auto | deliverables/member-bib-r005.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r005.pdf | VECTOR-14/member-bib-r005/A004 | auto | deliverables/member-bib-r005.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r005.pdf | VECTOR-14/member-bib-r005/A005 | auto | deliverables/member-bib-r005.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r005.pdf | VECTOR-14/member-bib-r005/H001 | human | deliverables/member-bib-r005.pdf — The runner number matches this member. |
+| deliverables/member-bib-r005.pdf | VECTOR-14/member-bib-r005/H002 | human | deliverables/member-bib-r005.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r005.pdf, source ironway_roster.csv, row 5, field Member Name | VECTOR-14/member-bib-r005/H003 | human | deliverables/member-bib-r005.pdf / source ironway_roster.csv, row 5, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r005.pdf, source ironway_roster.csv, row 5, field Assigned Number | VECTOR-14/member-bib-r005/H004 | human | deliverables/member-bib-r005.pdf / source ironway_roster.csv, row 5, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r005.pdf, source ironway_roster.csv, row 5, field Pace Group | VECTOR-14/member-bib-r005/H005 | human | deliverables/member-bib-r005.pdf / source ironway_roster.csv, row 5, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r005.pdf | VECTOR-14/member-bib-r005/H006 | human | deliverables/member-bib-r005.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r005.pdf | VECTOR-14/member-bib-r005/H007 | human | deliverables/member-bib-r005.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r005.pdf | VECTOR-14/member-bib-r005/H008 | human | deliverables/member-bib-r005.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r005.pdf | VECTOR-14/member-bib-r005/H009 | human | deliverables/member-bib-r005.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r005.pdf | VECTOR-14/member-bib-r005/H010 | human | deliverables/member-bib-r005.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r006.pdf | VECTOR-14/member-bib-r006/A001 | auto | deliverables/member-bib-r006.pdf — File is present. |
+| deliverables/member-bib-r006.pdf | VECTOR-14/member-bib-r006/A002 | auto | deliverables/member-bib-r006.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r006.pdf | VECTOR-14/member-bib-r006/A003 | auto | deliverables/member-bib-r006.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r006.pdf | VECTOR-14/member-bib-r006/A004 | auto | deliverables/member-bib-r006.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r006.pdf | VECTOR-14/member-bib-r006/A005 | auto | deliverables/member-bib-r006.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r006.pdf | VECTOR-14/member-bib-r006/H001 | human | deliverables/member-bib-r006.pdf — The runner number matches this member. |
+| deliverables/member-bib-r006.pdf | VECTOR-14/member-bib-r006/H002 | human | deliverables/member-bib-r006.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r006.pdf, source ironway_roster.csv, row 6, field Member Name | VECTOR-14/member-bib-r006/H003 | human | deliverables/member-bib-r006.pdf / source ironway_roster.csv, row 6, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r006.pdf, source ironway_roster.csv, row 6, field Assigned Number | VECTOR-14/member-bib-r006/H004 | human | deliverables/member-bib-r006.pdf / source ironway_roster.csv, row 6, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r006.pdf, source ironway_roster.csv, row 6, field Pace Group | VECTOR-14/member-bib-r006/H005 | human | deliverables/member-bib-r006.pdf / source ironway_roster.csv, row 6, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r006.pdf | VECTOR-14/member-bib-r006/H006 | human | deliverables/member-bib-r006.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r006.pdf | VECTOR-14/member-bib-r006/H007 | human | deliverables/member-bib-r006.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r006.pdf | VECTOR-14/member-bib-r006/H008 | human | deliverables/member-bib-r006.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r006.pdf | VECTOR-14/member-bib-r006/H009 | human | deliverables/member-bib-r006.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r006.pdf | VECTOR-14/member-bib-r006/H010 | human | deliverables/member-bib-r006.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r007.pdf | VECTOR-14/member-bib-r007/A001 | auto | deliverables/member-bib-r007.pdf — File is present. |
+| deliverables/member-bib-r007.pdf | VECTOR-14/member-bib-r007/A002 | auto | deliverables/member-bib-r007.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r007.pdf | VECTOR-14/member-bib-r007/A003 | auto | deliverables/member-bib-r007.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r007.pdf | VECTOR-14/member-bib-r007/A004 | auto | deliverables/member-bib-r007.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r007.pdf | VECTOR-14/member-bib-r007/A005 | auto | deliverables/member-bib-r007.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r007.pdf | VECTOR-14/member-bib-r007/H001 | human | deliverables/member-bib-r007.pdf — The runner number matches this member. |
+| deliverables/member-bib-r007.pdf | VECTOR-14/member-bib-r007/H002 | human | deliverables/member-bib-r007.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r007.pdf, source ironway_roster.csv, row 7, field Member Name | VECTOR-14/member-bib-r007/H003 | human | deliverables/member-bib-r007.pdf / source ironway_roster.csv, row 7, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r007.pdf, source ironway_roster.csv, row 7, field Assigned Number | VECTOR-14/member-bib-r007/H004 | human | deliverables/member-bib-r007.pdf / source ironway_roster.csv, row 7, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r007.pdf, source ironway_roster.csv, row 7, field Pace Group | VECTOR-14/member-bib-r007/H005 | human | deliverables/member-bib-r007.pdf / source ironway_roster.csv, row 7, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r007.pdf | VECTOR-14/member-bib-r007/H006 | human | deliverables/member-bib-r007.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r007.pdf | VECTOR-14/member-bib-r007/H007 | human | deliverables/member-bib-r007.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r007.pdf | VECTOR-14/member-bib-r007/H008 | human | deliverables/member-bib-r007.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r007.pdf | VECTOR-14/member-bib-r007/H009 | human | deliverables/member-bib-r007.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r007.pdf | VECTOR-14/member-bib-r007/H010 | human | deliverables/member-bib-r007.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r008.pdf | VECTOR-14/member-bib-r008/A001 | auto | deliverables/member-bib-r008.pdf — File is present. |
+| deliverables/member-bib-r008.pdf | VECTOR-14/member-bib-r008/A002 | auto | deliverables/member-bib-r008.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r008.pdf | VECTOR-14/member-bib-r008/A003 | auto | deliverables/member-bib-r008.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r008.pdf | VECTOR-14/member-bib-r008/A004 | auto | deliverables/member-bib-r008.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r008.pdf | VECTOR-14/member-bib-r008/A005 | auto | deliverables/member-bib-r008.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r008.pdf | VECTOR-14/member-bib-r008/H001 | human | deliverables/member-bib-r008.pdf — The runner number matches this member. |
+| deliverables/member-bib-r008.pdf | VECTOR-14/member-bib-r008/H002 | human | deliverables/member-bib-r008.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r008.pdf, source ironway_roster.csv, row 8, field Member Name | VECTOR-14/member-bib-r008/H003 | human | deliverables/member-bib-r008.pdf / source ironway_roster.csv, row 8, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r008.pdf, source ironway_roster.csv, row 8, field Assigned Number | VECTOR-14/member-bib-r008/H004 | human | deliverables/member-bib-r008.pdf / source ironway_roster.csv, row 8, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r008.pdf, source ironway_roster.csv, row 8, field Pace Group | VECTOR-14/member-bib-r008/H005 | human | deliverables/member-bib-r008.pdf / source ironway_roster.csv, row 8, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r008.pdf | VECTOR-14/member-bib-r008/H006 | human | deliverables/member-bib-r008.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r008.pdf | VECTOR-14/member-bib-r008/H007 | human | deliverables/member-bib-r008.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r008.pdf | VECTOR-14/member-bib-r008/H008 | human | deliverables/member-bib-r008.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r008.pdf | VECTOR-14/member-bib-r008/H009 | human | deliverables/member-bib-r008.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r008.pdf | VECTOR-14/member-bib-r008/H010 | human | deliverables/member-bib-r008.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r009.pdf | VECTOR-14/member-bib-r009/A001 | auto | deliverables/member-bib-r009.pdf — File is present. |
+| deliverables/member-bib-r009.pdf | VECTOR-14/member-bib-r009/A002 | auto | deliverables/member-bib-r009.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r009.pdf | VECTOR-14/member-bib-r009/A003 | auto | deliverables/member-bib-r009.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r009.pdf | VECTOR-14/member-bib-r009/A004 | auto | deliverables/member-bib-r009.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r009.pdf | VECTOR-14/member-bib-r009/A005 | auto | deliverables/member-bib-r009.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r009.pdf | VECTOR-14/member-bib-r009/H001 | human | deliverables/member-bib-r009.pdf — The runner number matches this member. |
+| deliverables/member-bib-r009.pdf | VECTOR-14/member-bib-r009/H002 | human | deliverables/member-bib-r009.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r009.pdf, source ironway_roster.csv, row 9, field Member Name | VECTOR-14/member-bib-r009/H003 | human | deliverables/member-bib-r009.pdf / source ironway_roster.csv, row 9, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r009.pdf, source ironway_roster.csv, row 9, field Assigned Number | VECTOR-14/member-bib-r009/H004 | human | deliverables/member-bib-r009.pdf / source ironway_roster.csv, row 9, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r009.pdf, source ironway_roster.csv, row 9, field Pace Group | VECTOR-14/member-bib-r009/H005 | human | deliverables/member-bib-r009.pdf / source ironway_roster.csv, row 9, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r009.pdf | VECTOR-14/member-bib-r009/H006 | human | deliverables/member-bib-r009.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r009.pdf | VECTOR-14/member-bib-r009/H007 | human | deliverables/member-bib-r009.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r009.pdf | VECTOR-14/member-bib-r009/H008 | human | deliverables/member-bib-r009.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r009.pdf | VECTOR-14/member-bib-r009/H009 | human | deliverables/member-bib-r009.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r009.pdf | VECTOR-14/member-bib-r009/H010 | human | deliverables/member-bib-r009.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r010.pdf | VECTOR-14/member-bib-r010/A001 | auto | deliverables/member-bib-r010.pdf — File is present. |
+| deliverables/member-bib-r010.pdf | VECTOR-14/member-bib-r010/A002 | auto | deliverables/member-bib-r010.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r010.pdf | VECTOR-14/member-bib-r010/A003 | auto | deliverables/member-bib-r010.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r010.pdf | VECTOR-14/member-bib-r010/A004 | auto | deliverables/member-bib-r010.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r010.pdf | VECTOR-14/member-bib-r010/A005 | auto | deliverables/member-bib-r010.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r010.pdf | VECTOR-14/member-bib-r010/H001 | human | deliverables/member-bib-r010.pdf — The runner number matches this member. |
+| deliverables/member-bib-r010.pdf | VECTOR-14/member-bib-r010/H002 | human | deliverables/member-bib-r010.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r010.pdf, source ironway_roster.csv, row 10, field Member Name | VECTOR-14/member-bib-r010/H003 | human | deliverables/member-bib-r010.pdf / source ironway_roster.csv, row 10, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r010.pdf, source ironway_roster.csv, row 10, field Assigned Number | VECTOR-14/member-bib-r010/H004 | human | deliverables/member-bib-r010.pdf / source ironway_roster.csv, row 10, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r010.pdf, source ironway_roster.csv, row 10, field Pace Group | VECTOR-14/member-bib-r010/H005 | human | deliverables/member-bib-r010.pdf / source ironway_roster.csv, row 10, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r010.pdf | VECTOR-14/member-bib-r010/H006 | human | deliverables/member-bib-r010.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r010.pdf | VECTOR-14/member-bib-r010/H007 | human | deliverables/member-bib-r010.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r010.pdf | VECTOR-14/member-bib-r010/H008 | human | deliverables/member-bib-r010.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r010.pdf | VECTOR-14/member-bib-r010/H009 | human | deliverables/member-bib-r010.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r010.pdf | VECTOR-14/member-bib-r010/H010 | human | deliverables/member-bib-r010.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r011.pdf | VECTOR-14/member-bib-r011/A001 | auto | deliverables/member-bib-r011.pdf — File is present. |
+| deliverables/member-bib-r011.pdf | VECTOR-14/member-bib-r011/A002 | auto | deliverables/member-bib-r011.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r011.pdf | VECTOR-14/member-bib-r011/A003 | auto | deliverables/member-bib-r011.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r011.pdf | VECTOR-14/member-bib-r011/A004 | auto | deliverables/member-bib-r011.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r011.pdf | VECTOR-14/member-bib-r011/A005 | auto | deliverables/member-bib-r011.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r011.pdf | VECTOR-14/member-bib-r011/H001 | human | deliverables/member-bib-r011.pdf — The runner number matches this member. |
+| deliverables/member-bib-r011.pdf | VECTOR-14/member-bib-r011/H002 | human | deliverables/member-bib-r011.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r011.pdf, source ironway_roster.csv, row 11, field Member Name | VECTOR-14/member-bib-r011/H003 | human | deliverables/member-bib-r011.pdf / source ironway_roster.csv, row 11, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r011.pdf, source ironway_roster.csv, row 11, field Assigned Number | VECTOR-14/member-bib-r011/H004 | human | deliverables/member-bib-r011.pdf / source ironway_roster.csv, row 11, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r011.pdf, source ironway_roster.csv, row 11, field Pace Group | VECTOR-14/member-bib-r011/H005 | human | deliverables/member-bib-r011.pdf / source ironway_roster.csv, row 11, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r011.pdf | VECTOR-14/member-bib-r011/H006 | human | deliverables/member-bib-r011.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r011.pdf | VECTOR-14/member-bib-r011/H007 | human | deliverables/member-bib-r011.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r011.pdf | VECTOR-14/member-bib-r011/H008 | human | deliverables/member-bib-r011.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r011.pdf | VECTOR-14/member-bib-r011/H009 | human | deliverables/member-bib-r011.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r011.pdf | VECTOR-14/member-bib-r011/H010 | human | deliverables/member-bib-r011.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r012.pdf | VECTOR-14/member-bib-r012/A001 | auto | deliverables/member-bib-r012.pdf — File is present. |
+| deliverables/member-bib-r012.pdf | VECTOR-14/member-bib-r012/A002 | auto | deliverables/member-bib-r012.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r012.pdf | VECTOR-14/member-bib-r012/A003 | auto | deliverables/member-bib-r012.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r012.pdf | VECTOR-14/member-bib-r012/A004 | auto | deliverables/member-bib-r012.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r012.pdf | VECTOR-14/member-bib-r012/A005 | auto | deliverables/member-bib-r012.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r012.pdf | VECTOR-14/member-bib-r012/H001 | human | deliverables/member-bib-r012.pdf — The runner number matches this member. |
+| deliverables/member-bib-r012.pdf | VECTOR-14/member-bib-r012/H002 | human | deliverables/member-bib-r012.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r012.pdf, source ironway_roster.csv, row 12, field Member Name | VECTOR-14/member-bib-r012/H003 | human | deliverables/member-bib-r012.pdf / source ironway_roster.csv, row 12, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r012.pdf, source ironway_roster.csv, row 12, field Assigned Number | VECTOR-14/member-bib-r012/H004 | human | deliverables/member-bib-r012.pdf / source ironway_roster.csv, row 12, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r012.pdf, source ironway_roster.csv, row 12, field Pace Group | VECTOR-14/member-bib-r012/H005 | human | deliverables/member-bib-r012.pdf / source ironway_roster.csv, row 12, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r012.pdf | VECTOR-14/member-bib-r012/H006 | human | deliverables/member-bib-r012.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r012.pdf | VECTOR-14/member-bib-r012/H007 | human | deliverables/member-bib-r012.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r012.pdf | VECTOR-14/member-bib-r012/H008 | human | deliverables/member-bib-r012.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r012.pdf | VECTOR-14/member-bib-r012/H009 | human | deliverables/member-bib-r012.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r012.pdf | VECTOR-14/member-bib-r012/H010 | human | deliverables/member-bib-r012.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r013.pdf | VECTOR-14/member-bib-r013/A001 | auto | deliverables/member-bib-r013.pdf — File is present. |
+| deliverables/member-bib-r013.pdf | VECTOR-14/member-bib-r013/A002 | auto | deliverables/member-bib-r013.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r013.pdf | VECTOR-14/member-bib-r013/A003 | auto | deliverables/member-bib-r013.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r013.pdf | VECTOR-14/member-bib-r013/A004 | auto | deliverables/member-bib-r013.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r013.pdf | VECTOR-14/member-bib-r013/A005 | auto | deliverables/member-bib-r013.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r013.pdf | VECTOR-14/member-bib-r013/H001 | human | deliverables/member-bib-r013.pdf — The runner number matches this member. |
+| deliverables/member-bib-r013.pdf | VECTOR-14/member-bib-r013/H002 | human | deliverables/member-bib-r013.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r013.pdf, source ironway_roster.csv, row 13, field Member Name | VECTOR-14/member-bib-r013/H003 | human | deliverables/member-bib-r013.pdf / source ironway_roster.csv, row 13, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r013.pdf, source ironway_roster.csv, row 13, field Assigned Number | VECTOR-14/member-bib-r013/H004 | human | deliverables/member-bib-r013.pdf / source ironway_roster.csv, row 13, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r013.pdf, source ironway_roster.csv, row 13, field Pace Group | VECTOR-14/member-bib-r013/H005 | human | deliverables/member-bib-r013.pdf / source ironway_roster.csv, row 13, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r013.pdf | VECTOR-14/member-bib-r013/H006 | human | deliverables/member-bib-r013.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r013.pdf | VECTOR-14/member-bib-r013/H007 | human | deliverables/member-bib-r013.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r013.pdf | VECTOR-14/member-bib-r013/H008 | human | deliverables/member-bib-r013.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r013.pdf | VECTOR-14/member-bib-r013/H009 | human | deliverables/member-bib-r013.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r013.pdf | VECTOR-14/member-bib-r013/H010 | human | deliverables/member-bib-r013.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r014.pdf | VECTOR-14/member-bib-r014/A001 | auto | deliverables/member-bib-r014.pdf — File is present. |
+| deliverables/member-bib-r014.pdf | VECTOR-14/member-bib-r014/A002 | auto | deliverables/member-bib-r014.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r014.pdf | VECTOR-14/member-bib-r014/A003 | auto | deliverables/member-bib-r014.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r014.pdf | VECTOR-14/member-bib-r014/A004 | auto | deliverables/member-bib-r014.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r014.pdf | VECTOR-14/member-bib-r014/A005 | auto | deliverables/member-bib-r014.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r014.pdf | VECTOR-14/member-bib-r014/H001 | human | deliverables/member-bib-r014.pdf — The runner number matches this member. |
+| deliverables/member-bib-r014.pdf | VECTOR-14/member-bib-r014/H002 | human | deliverables/member-bib-r014.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r014.pdf, source ironway_roster.csv, row 14, field Member Name | VECTOR-14/member-bib-r014/H003 | human | deliverables/member-bib-r014.pdf / source ironway_roster.csv, row 14, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r014.pdf, source ironway_roster.csv, row 14, field Assigned Number | VECTOR-14/member-bib-r014/H004 | human | deliverables/member-bib-r014.pdf / source ironway_roster.csv, row 14, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r014.pdf, source ironway_roster.csv, row 14, field Pace Group | VECTOR-14/member-bib-r014/H005 | human | deliverables/member-bib-r014.pdf / source ironway_roster.csv, row 14, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r014.pdf | VECTOR-14/member-bib-r014/H006 | human | deliverables/member-bib-r014.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r014.pdf | VECTOR-14/member-bib-r014/H007 | human | deliverables/member-bib-r014.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r014.pdf | VECTOR-14/member-bib-r014/H008 | human | deliverables/member-bib-r014.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r014.pdf | VECTOR-14/member-bib-r014/H009 | human | deliverables/member-bib-r014.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r014.pdf | VECTOR-14/member-bib-r014/H010 | human | deliverables/member-bib-r014.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r015.pdf | VECTOR-14/member-bib-r015/A001 | auto | deliverables/member-bib-r015.pdf — File is present. |
+| deliverables/member-bib-r015.pdf | VECTOR-14/member-bib-r015/A002 | auto | deliverables/member-bib-r015.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r015.pdf | VECTOR-14/member-bib-r015/A003 | auto | deliverables/member-bib-r015.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r015.pdf | VECTOR-14/member-bib-r015/A004 | auto | deliverables/member-bib-r015.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r015.pdf | VECTOR-14/member-bib-r015/A005 | auto | deliverables/member-bib-r015.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r015.pdf | VECTOR-14/member-bib-r015/H001 | human | deliverables/member-bib-r015.pdf — The runner number matches this member. |
+| deliverables/member-bib-r015.pdf | VECTOR-14/member-bib-r015/H002 | human | deliverables/member-bib-r015.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r015.pdf, source ironway_roster.csv, row 15, field Member Name | VECTOR-14/member-bib-r015/H003 | human | deliverables/member-bib-r015.pdf / source ironway_roster.csv, row 15, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r015.pdf, source ironway_roster.csv, row 15, field Assigned Number | VECTOR-14/member-bib-r015/H004 | human | deliverables/member-bib-r015.pdf / source ironway_roster.csv, row 15, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r015.pdf, source ironway_roster.csv, row 15, field Pace Group | VECTOR-14/member-bib-r015/H005 | human | deliverables/member-bib-r015.pdf / source ironway_roster.csv, row 15, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r015.pdf | VECTOR-14/member-bib-r015/H006 | human | deliverables/member-bib-r015.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r015.pdf | VECTOR-14/member-bib-r015/H007 | human | deliverables/member-bib-r015.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r015.pdf | VECTOR-14/member-bib-r015/H008 | human | deliverables/member-bib-r015.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r015.pdf | VECTOR-14/member-bib-r015/H009 | human | deliverables/member-bib-r015.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r015.pdf | VECTOR-14/member-bib-r015/H010 | human | deliverables/member-bib-r015.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r016.pdf | VECTOR-14/member-bib-r016/A001 | auto | deliverables/member-bib-r016.pdf — File is present. |
+| deliverables/member-bib-r016.pdf | VECTOR-14/member-bib-r016/A002 | auto | deliverables/member-bib-r016.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r016.pdf | VECTOR-14/member-bib-r016/A003 | auto | deliverables/member-bib-r016.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r016.pdf | VECTOR-14/member-bib-r016/A004 | auto | deliverables/member-bib-r016.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r016.pdf | VECTOR-14/member-bib-r016/A005 | auto | deliverables/member-bib-r016.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r016.pdf | VECTOR-14/member-bib-r016/H001 | human | deliverables/member-bib-r016.pdf — The runner number matches this member. |
+| deliverables/member-bib-r016.pdf | VECTOR-14/member-bib-r016/H002 | human | deliverables/member-bib-r016.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r016.pdf, source ironway_roster.csv, row 16, field Member Name | VECTOR-14/member-bib-r016/H003 | human | deliverables/member-bib-r016.pdf / source ironway_roster.csv, row 16, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r016.pdf, source ironway_roster.csv, row 16, field Assigned Number | VECTOR-14/member-bib-r016/H004 | human | deliverables/member-bib-r016.pdf / source ironway_roster.csv, row 16, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r016.pdf, source ironway_roster.csv, row 16, field Pace Group | VECTOR-14/member-bib-r016/H005 | human | deliverables/member-bib-r016.pdf / source ironway_roster.csv, row 16, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r016.pdf | VECTOR-14/member-bib-r016/H006 | human | deliverables/member-bib-r016.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r016.pdf | VECTOR-14/member-bib-r016/H007 | human | deliverables/member-bib-r016.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r016.pdf | VECTOR-14/member-bib-r016/H008 | human | deliverables/member-bib-r016.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r016.pdf | VECTOR-14/member-bib-r016/H009 | human | deliverables/member-bib-r016.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r016.pdf | VECTOR-14/member-bib-r016/H010 | human | deliverables/member-bib-r016.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r017.pdf | VECTOR-14/member-bib-r017/A001 | auto | deliverables/member-bib-r017.pdf — File is present. |
+| deliverables/member-bib-r017.pdf | VECTOR-14/member-bib-r017/A002 | auto | deliverables/member-bib-r017.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r017.pdf | VECTOR-14/member-bib-r017/A003 | auto | deliverables/member-bib-r017.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r017.pdf | VECTOR-14/member-bib-r017/A004 | auto | deliverables/member-bib-r017.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r017.pdf | VECTOR-14/member-bib-r017/A005 | auto | deliverables/member-bib-r017.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r017.pdf | VECTOR-14/member-bib-r017/H001 | human | deliverables/member-bib-r017.pdf — The runner number matches this member. |
+| deliverables/member-bib-r017.pdf | VECTOR-14/member-bib-r017/H002 | human | deliverables/member-bib-r017.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r017.pdf, source ironway_roster.csv, row 17, field Member Name | VECTOR-14/member-bib-r017/H003 | human | deliverables/member-bib-r017.pdf / source ironway_roster.csv, row 17, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r017.pdf, source ironway_roster.csv, row 17, field Assigned Number | VECTOR-14/member-bib-r017/H004 | human | deliverables/member-bib-r017.pdf / source ironway_roster.csv, row 17, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r017.pdf, source ironway_roster.csv, row 17, field Pace Group | VECTOR-14/member-bib-r017/H005 | human | deliverables/member-bib-r017.pdf / source ironway_roster.csv, row 17, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r017.pdf | VECTOR-14/member-bib-r017/H006 | human | deliverables/member-bib-r017.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r017.pdf | VECTOR-14/member-bib-r017/H007 | human | deliverables/member-bib-r017.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r017.pdf | VECTOR-14/member-bib-r017/H008 | human | deliverables/member-bib-r017.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r017.pdf | VECTOR-14/member-bib-r017/H009 | human | deliverables/member-bib-r017.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r017.pdf | VECTOR-14/member-bib-r017/H010 | human | deliverables/member-bib-r017.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r018.pdf | VECTOR-14/member-bib-r018/A001 | auto | deliverables/member-bib-r018.pdf — File is present. |
+| deliverables/member-bib-r018.pdf | VECTOR-14/member-bib-r018/A002 | auto | deliverables/member-bib-r018.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r018.pdf | VECTOR-14/member-bib-r018/A003 | auto | deliverables/member-bib-r018.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r018.pdf | VECTOR-14/member-bib-r018/A004 | auto | deliverables/member-bib-r018.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r018.pdf | VECTOR-14/member-bib-r018/A005 | auto | deliverables/member-bib-r018.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r018.pdf | VECTOR-14/member-bib-r018/H001 | human | deliverables/member-bib-r018.pdf — The runner number matches this member. |
+| deliverables/member-bib-r018.pdf | VECTOR-14/member-bib-r018/H002 | human | deliverables/member-bib-r018.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r018.pdf, source ironway_roster.csv, row 18, field Member Name | VECTOR-14/member-bib-r018/H003 | human | deliverables/member-bib-r018.pdf / source ironway_roster.csv, row 18, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r018.pdf, source ironway_roster.csv, row 18, field Assigned Number | VECTOR-14/member-bib-r018/H004 | human | deliverables/member-bib-r018.pdf / source ironway_roster.csv, row 18, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r018.pdf, source ironway_roster.csv, row 18, field Pace Group | VECTOR-14/member-bib-r018/H005 | human | deliverables/member-bib-r018.pdf / source ironway_roster.csv, row 18, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r018.pdf | VECTOR-14/member-bib-r018/H006 | human | deliverables/member-bib-r018.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r018.pdf | VECTOR-14/member-bib-r018/H007 | human | deliverables/member-bib-r018.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r018.pdf | VECTOR-14/member-bib-r018/H008 | human | deliverables/member-bib-r018.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r018.pdf | VECTOR-14/member-bib-r018/H009 | human | deliverables/member-bib-r018.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r018.pdf | VECTOR-14/member-bib-r018/H010 | human | deliverables/member-bib-r018.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r019.pdf | VECTOR-14/member-bib-r019/A001 | auto | deliverables/member-bib-r019.pdf — File is present. |
+| deliverables/member-bib-r019.pdf | VECTOR-14/member-bib-r019/A002 | auto | deliverables/member-bib-r019.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r019.pdf | VECTOR-14/member-bib-r019/A003 | auto | deliverables/member-bib-r019.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r019.pdf | VECTOR-14/member-bib-r019/A004 | auto | deliverables/member-bib-r019.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r019.pdf | VECTOR-14/member-bib-r019/A005 | auto | deliverables/member-bib-r019.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r019.pdf | VECTOR-14/member-bib-r019/H001 | human | deliverables/member-bib-r019.pdf — The runner number matches this member. |
+| deliverables/member-bib-r019.pdf | VECTOR-14/member-bib-r019/H002 | human | deliverables/member-bib-r019.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r019.pdf, source ironway_roster.csv, row 19, field Member Name | VECTOR-14/member-bib-r019/H003 | human | deliverables/member-bib-r019.pdf / source ironway_roster.csv, row 19, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r019.pdf, source ironway_roster.csv, row 19, field Assigned Number | VECTOR-14/member-bib-r019/H004 | human | deliverables/member-bib-r019.pdf / source ironway_roster.csv, row 19, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r019.pdf, source ironway_roster.csv, row 19, field Pace Group | VECTOR-14/member-bib-r019/H005 | human | deliverables/member-bib-r019.pdf / source ironway_roster.csv, row 19, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r019.pdf | VECTOR-14/member-bib-r019/H006 | human | deliverables/member-bib-r019.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r019.pdf | VECTOR-14/member-bib-r019/H007 | human | deliverables/member-bib-r019.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r019.pdf | VECTOR-14/member-bib-r019/H008 | human | deliverables/member-bib-r019.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r019.pdf | VECTOR-14/member-bib-r019/H009 | human | deliverables/member-bib-r019.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r019.pdf | VECTOR-14/member-bib-r019/H010 | human | deliverables/member-bib-r019.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r020.pdf | VECTOR-14/member-bib-r020/A001 | auto | deliverables/member-bib-r020.pdf — File is present. |
+| deliverables/member-bib-r020.pdf | VECTOR-14/member-bib-r020/A002 | auto | deliverables/member-bib-r020.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r020.pdf | VECTOR-14/member-bib-r020/A003 | auto | deliverables/member-bib-r020.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r020.pdf | VECTOR-14/member-bib-r020/A004 | auto | deliverables/member-bib-r020.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r020.pdf | VECTOR-14/member-bib-r020/A005 | auto | deliverables/member-bib-r020.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r020.pdf | VECTOR-14/member-bib-r020/H001 | human | deliverables/member-bib-r020.pdf — The runner number matches this member. |
+| deliverables/member-bib-r020.pdf | VECTOR-14/member-bib-r020/H002 | human | deliverables/member-bib-r020.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r020.pdf, source ironway_roster.csv, row 20, field Member Name | VECTOR-14/member-bib-r020/H003 | human | deliverables/member-bib-r020.pdf / source ironway_roster.csv, row 20, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r020.pdf, source ironway_roster.csv, row 20, field Assigned Number | VECTOR-14/member-bib-r020/H004 | human | deliverables/member-bib-r020.pdf / source ironway_roster.csv, row 20, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r020.pdf, source ironway_roster.csv, row 20, field Pace Group | VECTOR-14/member-bib-r020/H005 | human | deliverables/member-bib-r020.pdf / source ironway_roster.csv, row 20, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r020.pdf | VECTOR-14/member-bib-r020/H006 | human | deliverables/member-bib-r020.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r020.pdf | VECTOR-14/member-bib-r020/H007 | human | deliverables/member-bib-r020.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r020.pdf | VECTOR-14/member-bib-r020/H008 | human | deliverables/member-bib-r020.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r020.pdf | VECTOR-14/member-bib-r020/H009 | human | deliverables/member-bib-r020.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r020.pdf | VECTOR-14/member-bib-r020/H010 | human | deliverables/member-bib-r020.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r021.pdf | VECTOR-14/member-bib-r021/A001 | auto | deliverables/member-bib-r021.pdf — File is present. |
+| deliverables/member-bib-r021.pdf | VECTOR-14/member-bib-r021/A002 | auto | deliverables/member-bib-r021.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r021.pdf | VECTOR-14/member-bib-r021/A003 | auto | deliverables/member-bib-r021.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r021.pdf | VECTOR-14/member-bib-r021/A004 | auto | deliverables/member-bib-r021.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r021.pdf | VECTOR-14/member-bib-r021/A005 | auto | deliverables/member-bib-r021.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r021.pdf | VECTOR-14/member-bib-r021/H001 | human | deliverables/member-bib-r021.pdf — The runner number matches this member. |
+| deliverables/member-bib-r021.pdf | VECTOR-14/member-bib-r021/H002 | human | deliverables/member-bib-r021.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r021.pdf, source ironway_roster.csv, row 21, field Member Name | VECTOR-14/member-bib-r021/H003 | human | deliverables/member-bib-r021.pdf / source ironway_roster.csv, row 21, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r021.pdf, source ironway_roster.csv, row 21, field Assigned Number | VECTOR-14/member-bib-r021/H004 | human | deliverables/member-bib-r021.pdf / source ironway_roster.csv, row 21, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r021.pdf, source ironway_roster.csv, row 21, field Pace Group | VECTOR-14/member-bib-r021/H005 | human | deliverables/member-bib-r021.pdf / source ironway_roster.csv, row 21, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r021.pdf | VECTOR-14/member-bib-r021/H006 | human | deliverables/member-bib-r021.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r021.pdf | VECTOR-14/member-bib-r021/H007 | human | deliverables/member-bib-r021.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r021.pdf | VECTOR-14/member-bib-r021/H008 | human | deliverables/member-bib-r021.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r021.pdf | VECTOR-14/member-bib-r021/H009 | human | deliverables/member-bib-r021.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r021.pdf | VECTOR-14/member-bib-r021/H010 | human | deliverables/member-bib-r021.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r022.pdf | VECTOR-14/member-bib-r022/A001 | auto | deliverables/member-bib-r022.pdf — File is present. |
+| deliverables/member-bib-r022.pdf | VECTOR-14/member-bib-r022/A002 | auto | deliverables/member-bib-r022.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r022.pdf | VECTOR-14/member-bib-r022/A003 | auto | deliverables/member-bib-r022.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r022.pdf | VECTOR-14/member-bib-r022/A004 | auto | deliverables/member-bib-r022.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r022.pdf | VECTOR-14/member-bib-r022/A005 | auto | deliverables/member-bib-r022.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r022.pdf | VECTOR-14/member-bib-r022/H001 | human | deliverables/member-bib-r022.pdf — The runner number matches this member. |
+| deliverables/member-bib-r022.pdf | VECTOR-14/member-bib-r022/H002 | human | deliverables/member-bib-r022.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r022.pdf, source ironway_roster.csv, row 22, field Member Name | VECTOR-14/member-bib-r022/H003 | human | deliverables/member-bib-r022.pdf / source ironway_roster.csv, row 22, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r022.pdf, source ironway_roster.csv, row 22, field Assigned Number | VECTOR-14/member-bib-r022/H004 | human | deliverables/member-bib-r022.pdf / source ironway_roster.csv, row 22, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r022.pdf, source ironway_roster.csv, row 22, field Pace Group | VECTOR-14/member-bib-r022/H005 | human | deliverables/member-bib-r022.pdf / source ironway_roster.csv, row 22, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r022.pdf | VECTOR-14/member-bib-r022/H006 | human | deliverables/member-bib-r022.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r022.pdf | VECTOR-14/member-bib-r022/H007 | human | deliverables/member-bib-r022.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r022.pdf | VECTOR-14/member-bib-r022/H008 | human | deliverables/member-bib-r022.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r022.pdf | VECTOR-14/member-bib-r022/H009 | human | deliverables/member-bib-r022.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r022.pdf | VECTOR-14/member-bib-r022/H010 | human | deliverables/member-bib-r022.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r023.pdf | VECTOR-14/member-bib-r023/A001 | auto | deliverables/member-bib-r023.pdf — File is present. |
+| deliverables/member-bib-r023.pdf | VECTOR-14/member-bib-r023/A002 | auto | deliverables/member-bib-r023.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r023.pdf | VECTOR-14/member-bib-r023/A003 | auto | deliverables/member-bib-r023.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r023.pdf | VECTOR-14/member-bib-r023/A004 | auto | deliverables/member-bib-r023.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r023.pdf | VECTOR-14/member-bib-r023/A005 | auto | deliverables/member-bib-r023.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r023.pdf | VECTOR-14/member-bib-r023/H001 | human | deliverables/member-bib-r023.pdf — The runner number matches this member. |
+| deliverables/member-bib-r023.pdf | VECTOR-14/member-bib-r023/H002 | human | deliverables/member-bib-r023.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r023.pdf, source ironway_roster.csv, row 23, field Member Name | VECTOR-14/member-bib-r023/H003 | human | deliverables/member-bib-r023.pdf / source ironway_roster.csv, row 23, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r023.pdf, source ironway_roster.csv, row 23, field Assigned Number | VECTOR-14/member-bib-r023/H004 | human | deliverables/member-bib-r023.pdf / source ironway_roster.csv, row 23, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r023.pdf, source ironway_roster.csv, row 23, field Pace Group | VECTOR-14/member-bib-r023/H005 | human | deliverables/member-bib-r023.pdf / source ironway_roster.csv, row 23, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r023.pdf | VECTOR-14/member-bib-r023/H006 | human | deliverables/member-bib-r023.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r023.pdf | VECTOR-14/member-bib-r023/H007 | human | deliverables/member-bib-r023.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r023.pdf | VECTOR-14/member-bib-r023/H008 | human | deliverables/member-bib-r023.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r023.pdf | VECTOR-14/member-bib-r023/H009 | human | deliverables/member-bib-r023.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r023.pdf | VECTOR-14/member-bib-r023/H010 | human | deliverables/member-bib-r023.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r024.pdf | VECTOR-14/member-bib-r024/A001 | auto | deliverables/member-bib-r024.pdf — File is present. |
+| deliverables/member-bib-r024.pdf | VECTOR-14/member-bib-r024/A002 | auto | deliverables/member-bib-r024.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r024.pdf | VECTOR-14/member-bib-r024/A003 | auto | deliverables/member-bib-r024.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r024.pdf | VECTOR-14/member-bib-r024/A004 | auto | deliverables/member-bib-r024.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r024.pdf | VECTOR-14/member-bib-r024/A005 | auto | deliverables/member-bib-r024.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r024.pdf | VECTOR-14/member-bib-r024/H001 | human | deliverables/member-bib-r024.pdf — The runner number matches this member. |
+| deliverables/member-bib-r024.pdf | VECTOR-14/member-bib-r024/H002 | human | deliverables/member-bib-r024.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r024.pdf, source ironway_roster.csv, row 24, field Member Name | VECTOR-14/member-bib-r024/H003 | human | deliverables/member-bib-r024.pdf / source ironway_roster.csv, row 24, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r024.pdf, source ironway_roster.csv, row 24, field Assigned Number | VECTOR-14/member-bib-r024/H004 | human | deliverables/member-bib-r024.pdf / source ironway_roster.csv, row 24, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r024.pdf, source ironway_roster.csv, row 24, field Pace Group | VECTOR-14/member-bib-r024/H005 | human | deliverables/member-bib-r024.pdf / source ironway_roster.csv, row 24, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r024.pdf | VECTOR-14/member-bib-r024/H006 | human | deliverables/member-bib-r024.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r024.pdf | VECTOR-14/member-bib-r024/H007 | human | deliverables/member-bib-r024.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r024.pdf | VECTOR-14/member-bib-r024/H008 | human | deliverables/member-bib-r024.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r024.pdf | VECTOR-14/member-bib-r024/H009 | human | deliverables/member-bib-r024.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r024.pdf | VECTOR-14/member-bib-r024/H010 | human | deliverables/member-bib-r024.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r025.pdf | VECTOR-14/member-bib-r025/A001 | auto | deliverables/member-bib-r025.pdf — File is present. |
+| deliverables/member-bib-r025.pdf | VECTOR-14/member-bib-r025/A002 | auto | deliverables/member-bib-r025.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r025.pdf | VECTOR-14/member-bib-r025/A003 | auto | deliverables/member-bib-r025.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r025.pdf | VECTOR-14/member-bib-r025/A004 | auto | deliverables/member-bib-r025.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r025.pdf | VECTOR-14/member-bib-r025/A005 | auto | deliverables/member-bib-r025.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r025.pdf | VECTOR-14/member-bib-r025/H001 | human | deliverables/member-bib-r025.pdf — The runner number matches this member. |
+| deliverables/member-bib-r025.pdf | VECTOR-14/member-bib-r025/H002 | human | deliverables/member-bib-r025.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r025.pdf, source ironway_roster.csv, row 25, field Member Name | VECTOR-14/member-bib-r025/H003 | human | deliverables/member-bib-r025.pdf / source ironway_roster.csv, row 25, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r025.pdf, source ironway_roster.csv, row 25, field Assigned Number | VECTOR-14/member-bib-r025/H004 | human | deliverables/member-bib-r025.pdf / source ironway_roster.csv, row 25, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r025.pdf, source ironway_roster.csv, row 25, field Pace Group | VECTOR-14/member-bib-r025/H005 | human | deliverables/member-bib-r025.pdf / source ironway_roster.csv, row 25, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r025.pdf | VECTOR-14/member-bib-r025/H006 | human | deliverables/member-bib-r025.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r025.pdf | VECTOR-14/member-bib-r025/H007 | human | deliverables/member-bib-r025.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r025.pdf | VECTOR-14/member-bib-r025/H008 | human | deliverables/member-bib-r025.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r025.pdf | VECTOR-14/member-bib-r025/H009 | human | deliverables/member-bib-r025.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r025.pdf | VECTOR-14/member-bib-r025/H010 | human | deliverables/member-bib-r025.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r026.pdf | VECTOR-14/member-bib-r026/A001 | auto | deliverables/member-bib-r026.pdf — File is present. |
+| deliverables/member-bib-r026.pdf | VECTOR-14/member-bib-r026/A002 | auto | deliverables/member-bib-r026.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r026.pdf | VECTOR-14/member-bib-r026/A003 | auto | deliverables/member-bib-r026.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r026.pdf | VECTOR-14/member-bib-r026/A004 | auto | deliverables/member-bib-r026.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r026.pdf | VECTOR-14/member-bib-r026/A005 | auto | deliverables/member-bib-r026.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r026.pdf | VECTOR-14/member-bib-r026/H001 | human | deliverables/member-bib-r026.pdf — The runner number matches this member. |
+| deliverables/member-bib-r026.pdf | VECTOR-14/member-bib-r026/H002 | human | deliverables/member-bib-r026.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r026.pdf, source ironway_roster.csv, row 26, field Member Name | VECTOR-14/member-bib-r026/H003 | human | deliverables/member-bib-r026.pdf / source ironway_roster.csv, row 26, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r026.pdf, source ironway_roster.csv, row 26, field Assigned Number | VECTOR-14/member-bib-r026/H004 | human | deliverables/member-bib-r026.pdf / source ironway_roster.csv, row 26, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r026.pdf, source ironway_roster.csv, row 26, field Pace Group | VECTOR-14/member-bib-r026/H005 | human | deliverables/member-bib-r026.pdf / source ironway_roster.csv, row 26, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r026.pdf | VECTOR-14/member-bib-r026/H006 | human | deliverables/member-bib-r026.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r026.pdf | VECTOR-14/member-bib-r026/H007 | human | deliverables/member-bib-r026.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r026.pdf | VECTOR-14/member-bib-r026/H008 | human | deliverables/member-bib-r026.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r026.pdf | VECTOR-14/member-bib-r026/H009 | human | deliverables/member-bib-r026.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r026.pdf | VECTOR-14/member-bib-r026/H010 | human | deliverables/member-bib-r026.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r027.pdf | VECTOR-14/member-bib-r027/A001 | auto | deliverables/member-bib-r027.pdf — File is present. |
+| deliverables/member-bib-r027.pdf | VECTOR-14/member-bib-r027/A002 | auto | deliverables/member-bib-r027.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r027.pdf | VECTOR-14/member-bib-r027/A003 | auto | deliverables/member-bib-r027.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r027.pdf | VECTOR-14/member-bib-r027/A004 | auto | deliverables/member-bib-r027.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r027.pdf | VECTOR-14/member-bib-r027/A005 | auto | deliverables/member-bib-r027.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r027.pdf | VECTOR-14/member-bib-r027/H001 | human | deliverables/member-bib-r027.pdf — The runner number matches this member. |
+| deliverables/member-bib-r027.pdf | VECTOR-14/member-bib-r027/H002 | human | deliverables/member-bib-r027.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r027.pdf, source ironway_roster.csv, row 27, field Member Name | VECTOR-14/member-bib-r027/H003 | human | deliverables/member-bib-r027.pdf / source ironway_roster.csv, row 27, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r027.pdf, source ironway_roster.csv, row 27, field Assigned Number | VECTOR-14/member-bib-r027/H004 | human | deliverables/member-bib-r027.pdf / source ironway_roster.csv, row 27, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r027.pdf, source ironway_roster.csv, row 27, field Pace Group | VECTOR-14/member-bib-r027/H005 | human | deliverables/member-bib-r027.pdf / source ironway_roster.csv, row 27, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r027.pdf | VECTOR-14/member-bib-r027/H006 | human | deliverables/member-bib-r027.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r027.pdf | VECTOR-14/member-bib-r027/H007 | human | deliverables/member-bib-r027.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r027.pdf | VECTOR-14/member-bib-r027/H008 | human | deliverables/member-bib-r027.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r027.pdf | VECTOR-14/member-bib-r027/H009 | human | deliverables/member-bib-r027.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r027.pdf | VECTOR-14/member-bib-r027/H010 | human | deliverables/member-bib-r027.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r028.pdf | VECTOR-14/member-bib-r028/A001 | auto | deliverables/member-bib-r028.pdf — File is present. |
+| deliverables/member-bib-r028.pdf | VECTOR-14/member-bib-r028/A002 | auto | deliverables/member-bib-r028.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r028.pdf | VECTOR-14/member-bib-r028/A003 | auto | deliverables/member-bib-r028.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r028.pdf | VECTOR-14/member-bib-r028/A004 | auto | deliverables/member-bib-r028.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r028.pdf | VECTOR-14/member-bib-r028/A005 | auto | deliverables/member-bib-r028.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r028.pdf | VECTOR-14/member-bib-r028/H001 | human | deliverables/member-bib-r028.pdf — The runner number matches this member. |
+| deliverables/member-bib-r028.pdf | VECTOR-14/member-bib-r028/H002 | human | deliverables/member-bib-r028.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r028.pdf, source ironway_roster.csv, row 28, field Member Name | VECTOR-14/member-bib-r028/H003 | human | deliverables/member-bib-r028.pdf / source ironway_roster.csv, row 28, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r028.pdf, source ironway_roster.csv, row 28, field Assigned Number | VECTOR-14/member-bib-r028/H004 | human | deliverables/member-bib-r028.pdf / source ironway_roster.csv, row 28, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r028.pdf, source ironway_roster.csv, row 28, field Pace Group | VECTOR-14/member-bib-r028/H005 | human | deliverables/member-bib-r028.pdf / source ironway_roster.csv, row 28, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r028.pdf | VECTOR-14/member-bib-r028/H006 | human | deliverables/member-bib-r028.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r028.pdf | VECTOR-14/member-bib-r028/H007 | human | deliverables/member-bib-r028.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r028.pdf | VECTOR-14/member-bib-r028/H008 | human | deliverables/member-bib-r028.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r028.pdf | VECTOR-14/member-bib-r028/H009 | human | deliverables/member-bib-r028.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r028.pdf | VECTOR-14/member-bib-r028/H010 | human | deliverables/member-bib-r028.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r029.pdf | VECTOR-14/member-bib-r029/A001 | auto | deliverables/member-bib-r029.pdf — File is present. |
+| deliverables/member-bib-r029.pdf | VECTOR-14/member-bib-r029/A002 | auto | deliverables/member-bib-r029.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r029.pdf | VECTOR-14/member-bib-r029/A003 | auto | deliverables/member-bib-r029.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r029.pdf | VECTOR-14/member-bib-r029/A004 | auto | deliverables/member-bib-r029.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r029.pdf | VECTOR-14/member-bib-r029/A005 | auto | deliverables/member-bib-r029.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r029.pdf | VECTOR-14/member-bib-r029/H001 | human | deliverables/member-bib-r029.pdf — The runner number matches this member. |
+| deliverables/member-bib-r029.pdf | VECTOR-14/member-bib-r029/H002 | human | deliverables/member-bib-r029.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r029.pdf, source ironway_roster.csv, row 29, field Member Name | VECTOR-14/member-bib-r029/H003 | human | deliverables/member-bib-r029.pdf / source ironway_roster.csv, row 29, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r029.pdf, source ironway_roster.csv, row 29, field Assigned Number | VECTOR-14/member-bib-r029/H004 | human | deliverables/member-bib-r029.pdf / source ironway_roster.csv, row 29, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r029.pdf, source ironway_roster.csv, row 29, field Pace Group | VECTOR-14/member-bib-r029/H005 | human | deliverables/member-bib-r029.pdf / source ironway_roster.csv, row 29, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r029.pdf | VECTOR-14/member-bib-r029/H006 | human | deliverables/member-bib-r029.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r029.pdf | VECTOR-14/member-bib-r029/H007 | human | deliverables/member-bib-r029.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r029.pdf | VECTOR-14/member-bib-r029/H008 | human | deliverables/member-bib-r029.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r029.pdf | VECTOR-14/member-bib-r029/H009 | human | deliverables/member-bib-r029.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r029.pdf | VECTOR-14/member-bib-r029/H010 | human | deliverables/member-bib-r029.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r030.pdf | VECTOR-14/member-bib-r030/A001 | auto | deliverables/member-bib-r030.pdf — File is present. |
+| deliverables/member-bib-r030.pdf | VECTOR-14/member-bib-r030/A002 | auto | deliverables/member-bib-r030.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r030.pdf | VECTOR-14/member-bib-r030/A003 | auto | deliverables/member-bib-r030.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r030.pdf | VECTOR-14/member-bib-r030/A004 | auto | deliverables/member-bib-r030.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r030.pdf | VECTOR-14/member-bib-r030/A005 | auto | deliverables/member-bib-r030.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r030.pdf | VECTOR-14/member-bib-r030/H001 | human | deliverables/member-bib-r030.pdf — The runner number matches this member. |
+| deliverables/member-bib-r030.pdf | VECTOR-14/member-bib-r030/H002 | human | deliverables/member-bib-r030.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r030.pdf, source ironway_roster.csv, row 30, field Member Name | VECTOR-14/member-bib-r030/H003 | human | deliverables/member-bib-r030.pdf / source ironway_roster.csv, row 30, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r030.pdf, source ironway_roster.csv, row 30, field Assigned Number | VECTOR-14/member-bib-r030/H004 | human | deliverables/member-bib-r030.pdf / source ironway_roster.csv, row 30, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r030.pdf, source ironway_roster.csv, row 30, field Pace Group | VECTOR-14/member-bib-r030/H005 | human | deliverables/member-bib-r030.pdf / source ironway_roster.csv, row 30, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r030.pdf | VECTOR-14/member-bib-r030/H006 | human | deliverables/member-bib-r030.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r030.pdf | VECTOR-14/member-bib-r030/H007 | human | deliverables/member-bib-r030.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r030.pdf | VECTOR-14/member-bib-r030/H008 | human | deliverables/member-bib-r030.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r030.pdf | VECTOR-14/member-bib-r030/H009 | human | deliverables/member-bib-r030.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r030.pdf | VECTOR-14/member-bib-r030/H010 | human | deliverables/member-bib-r030.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r031.pdf | VECTOR-14/member-bib-r031/A001 | auto | deliverables/member-bib-r031.pdf — File is present. |
+| deliverables/member-bib-r031.pdf | VECTOR-14/member-bib-r031/A002 | auto | deliverables/member-bib-r031.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r031.pdf | VECTOR-14/member-bib-r031/A003 | auto | deliverables/member-bib-r031.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r031.pdf | VECTOR-14/member-bib-r031/A004 | auto | deliverables/member-bib-r031.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r031.pdf | VECTOR-14/member-bib-r031/A005 | auto | deliverables/member-bib-r031.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r031.pdf | VECTOR-14/member-bib-r031/H001 | human | deliverables/member-bib-r031.pdf — The runner number matches this member. |
+| deliverables/member-bib-r031.pdf | VECTOR-14/member-bib-r031/H002 | human | deliverables/member-bib-r031.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r031.pdf, source ironway_roster.csv, row 31, field Member Name | VECTOR-14/member-bib-r031/H003 | human | deliverables/member-bib-r031.pdf / source ironway_roster.csv, row 31, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r031.pdf, source ironway_roster.csv, row 31, field Assigned Number | VECTOR-14/member-bib-r031/H004 | human | deliverables/member-bib-r031.pdf / source ironway_roster.csv, row 31, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r031.pdf, source ironway_roster.csv, row 31, field Pace Group | VECTOR-14/member-bib-r031/H005 | human | deliverables/member-bib-r031.pdf / source ironway_roster.csv, row 31, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r031.pdf | VECTOR-14/member-bib-r031/H006 | human | deliverables/member-bib-r031.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r031.pdf | VECTOR-14/member-bib-r031/H007 | human | deliverables/member-bib-r031.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r031.pdf | VECTOR-14/member-bib-r031/H008 | human | deliverables/member-bib-r031.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r031.pdf | VECTOR-14/member-bib-r031/H009 | human | deliverables/member-bib-r031.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r031.pdf | VECTOR-14/member-bib-r031/H010 | human | deliverables/member-bib-r031.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r032.pdf | VECTOR-14/member-bib-r032/A001 | auto | deliverables/member-bib-r032.pdf — File is present. |
+| deliverables/member-bib-r032.pdf | VECTOR-14/member-bib-r032/A002 | auto | deliverables/member-bib-r032.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r032.pdf | VECTOR-14/member-bib-r032/A003 | auto | deliverables/member-bib-r032.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r032.pdf | VECTOR-14/member-bib-r032/A004 | auto | deliverables/member-bib-r032.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r032.pdf | VECTOR-14/member-bib-r032/A005 | auto | deliverables/member-bib-r032.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r032.pdf | VECTOR-14/member-bib-r032/H001 | human | deliverables/member-bib-r032.pdf — The runner number matches this member. |
+| deliverables/member-bib-r032.pdf | VECTOR-14/member-bib-r032/H002 | human | deliverables/member-bib-r032.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r032.pdf, source ironway_roster.csv, row 32, field Member Name | VECTOR-14/member-bib-r032/H003 | human | deliverables/member-bib-r032.pdf / source ironway_roster.csv, row 32, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r032.pdf, source ironway_roster.csv, row 32, field Assigned Number | VECTOR-14/member-bib-r032/H004 | human | deliverables/member-bib-r032.pdf / source ironway_roster.csv, row 32, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r032.pdf, source ironway_roster.csv, row 32, field Pace Group | VECTOR-14/member-bib-r032/H005 | human | deliverables/member-bib-r032.pdf / source ironway_roster.csv, row 32, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r032.pdf | VECTOR-14/member-bib-r032/H006 | human | deliverables/member-bib-r032.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r032.pdf | VECTOR-14/member-bib-r032/H007 | human | deliverables/member-bib-r032.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r032.pdf | VECTOR-14/member-bib-r032/H008 | human | deliverables/member-bib-r032.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r032.pdf | VECTOR-14/member-bib-r032/H009 | human | deliverables/member-bib-r032.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r032.pdf | VECTOR-14/member-bib-r032/H010 | human | deliverables/member-bib-r032.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r033.pdf | VECTOR-14/member-bib-r033/A001 | auto | deliverables/member-bib-r033.pdf — File is present. |
+| deliverables/member-bib-r033.pdf | VECTOR-14/member-bib-r033/A002 | auto | deliverables/member-bib-r033.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r033.pdf | VECTOR-14/member-bib-r033/A003 | auto | deliverables/member-bib-r033.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r033.pdf | VECTOR-14/member-bib-r033/A004 | auto | deliverables/member-bib-r033.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r033.pdf | VECTOR-14/member-bib-r033/A005 | auto | deliverables/member-bib-r033.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r033.pdf | VECTOR-14/member-bib-r033/H001 | human | deliverables/member-bib-r033.pdf — The runner number matches this member. |
+| deliverables/member-bib-r033.pdf | VECTOR-14/member-bib-r033/H002 | human | deliverables/member-bib-r033.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r033.pdf, source ironway_roster.csv, row 33, field Member Name | VECTOR-14/member-bib-r033/H003 | human | deliverables/member-bib-r033.pdf / source ironway_roster.csv, row 33, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r033.pdf, source ironway_roster.csv, row 33, field Assigned Number | VECTOR-14/member-bib-r033/H004 | human | deliverables/member-bib-r033.pdf / source ironway_roster.csv, row 33, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r033.pdf, source ironway_roster.csv, row 33, field Pace Group | VECTOR-14/member-bib-r033/H005 | human | deliverables/member-bib-r033.pdf / source ironway_roster.csv, row 33, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r033.pdf | VECTOR-14/member-bib-r033/H006 | human | deliverables/member-bib-r033.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r033.pdf | VECTOR-14/member-bib-r033/H007 | human | deliverables/member-bib-r033.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r033.pdf | VECTOR-14/member-bib-r033/H008 | human | deliverables/member-bib-r033.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r033.pdf | VECTOR-14/member-bib-r033/H009 | human | deliverables/member-bib-r033.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r033.pdf | VECTOR-14/member-bib-r033/H010 | human | deliverables/member-bib-r033.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r034.pdf | VECTOR-14/member-bib-r034/A001 | auto | deliverables/member-bib-r034.pdf — File is present. |
+| deliverables/member-bib-r034.pdf | VECTOR-14/member-bib-r034/A002 | auto | deliverables/member-bib-r034.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r034.pdf | VECTOR-14/member-bib-r034/A003 | auto | deliverables/member-bib-r034.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r034.pdf | VECTOR-14/member-bib-r034/A004 | auto | deliverables/member-bib-r034.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r034.pdf | VECTOR-14/member-bib-r034/A005 | auto | deliverables/member-bib-r034.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r034.pdf | VECTOR-14/member-bib-r034/H001 | human | deliverables/member-bib-r034.pdf — The runner number matches this member. |
+| deliverables/member-bib-r034.pdf | VECTOR-14/member-bib-r034/H002 | human | deliverables/member-bib-r034.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r034.pdf, source ironway_roster.csv, row 34, field Member Name | VECTOR-14/member-bib-r034/H003 | human | deliverables/member-bib-r034.pdf / source ironway_roster.csv, row 34, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r034.pdf, source ironway_roster.csv, row 34, field Assigned Number | VECTOR-14/member-bib-r034/H004 | human | deliverables/member-bib-r034.pdf / source ironway_roster.csv, row 34, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r034.pdf, source ironway_roster.csv, row 34, field Pace Group | VECTOR-14/member-bib-r034/H005 | human | deliverables/member-bib-r034.pdf / source ironway_roster.csv, row 34, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r034.pdf | VECTOR-14/member-bib-r034/H006 | human | deliverables/member-bib-r034.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r034.pdf | VECTOR-14/member-bib-r034/H007 | human | deliverables/member-bib-r034.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r034.pdf | VECTOR-14/member-bib-r034/H008 | human | deliverables/member-bib-r034.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r034.pdf | VECTOR-14/member-bib-r034/H009 | human | deliverables/member-bib-r034.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r034.pdf | VECTOR-14/member-bib-r034/H010 | human | deliverables/member-bib-r034.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r035.pdf | VECTOR-14/member-bib-r035/A001 | auto | deliverables/member-bib-r035.pdf — File is present. |
+| deliverables/member-bib-r035.pdf | VECTOR-14/member-bib-r035/A002 | auto | deliverables/member-bib-r035.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r035.pdf | VECTOR-14/member-bib-r035/A003 | auto | deliverables/member-bib-r035.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r035.pdf | VECTOR-14/member-bib-r035/A004 | auto | deliverables/member-bib-r035.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r035.pdf | VECTOR-14/member-bib-r035/A005 | auto | deliverables/member-bib-r035.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r035.pdf | VECTOR-14/member-bib-r035/H001 | human | deliverables/member-bib-r035.pdf — The runner number matches this member. |
+| deliverables/member-bib-r035.pdf | VECTOR-14/member-bib-r035/H002 | human | deliverables/member-bib-r035.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r035.pdf, source ironway_roster.csv, row 35, field Member Name | VECTOR-14/member-bib-r035/H003 | human | deliverables/member-bib-r035.pdf / source ironway_roster.csv, row 35, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r035.pdf, source ironway_roster.csv, row 35, field Assigned Number | VECTOR-14/member-bib-r035/H004 | human | deliverables/member-bib-r035.pdf / source ironway_roster.csv, row 35, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r035.pdf, source ironway_roster.csv, row 35, field Pace Group | VECTOR-14/member-bib-r035/H005 | human | deliverables/member-bib-r035.pdf / source ironway_roster.csv, row 35, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r035.pdf | VECTOR-14/member-bib-r035/H006 | human | deliverables/member-bib-r035.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r035.pdf | VECTOR-14/member-bib-r035/H007 | human | deliverables/member-bib-r035.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r035.pdf | VECTOR-14/member-bib-r035/H008 | human | deliverables/member-bib-r035.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r035.pdf | VECTOR-14/member-bib-r035/H009 | human | deliverables/member-bib-r035.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r035.pdf | VECTOR-14/member-bib-r035/H010 | human | deliverables/member-bib-r035.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r036.pdf | VECTOR-14/member-bib-r036/A001 | auto | deliverables/member-bib-r036.pdf — File is present. |
+| deliverables/member-bib-r036.pdf | VECTOR-14/member-bib-r036/A002 | auto | deliverables/member-bib-r036.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r036.pdf | VECTOR-14/member-bib-r036/A003 | auto | deliverables/member-bib-r036.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r036.pdf | VECTOR-14/member-bib-r036/A004 | auto | deliverables/member-bib-r036.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r036.pdf | VECTOR-14/member-bib-r036/A005 | auto | deliverables/member-bib-r036.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r036.pdf | VECTOR-14/member-bib-r036/H001 | human | deliverables/member-bib-r036.pdf — The runner number matches this member. |
+| deliverables/member-bib-r036.pdf | VECTOR-14/member-bib-r036/H002 | human | deliverables/member-bib-r036.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r036.pdf, source ironway_roster.csv, row 36, field Member Name | VECTOR-14/member-bib-r036/H003 | human | deliverables/member-bib-r036.pdf / source ironway_roster.csv, row 36, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r036.pdf, source ironway_roster.csv, row 36, field Assigned Number | VECTOR-14/member-bib-r036/H004 | human | deliverables/member-bib-r036.pdf / source ironway_roster.csv, row 36, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r036.pdf, source ironway_roster.csv, row 36, field Pace Group | VECTOR-14/member-bib-r036/H005 | human | deliverables/member-bib-r036.pdf / source ironway_roster.csv, row 36, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r036.pdf | VECTOR-14/member-bib-r036/H006 | human | deliverables/member-bib-r036.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r036.pdf | VECTOR-14/member-bib-r036/H007 | human | deliverables/member-bib-r036.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r036.pdf | VECTOR-14/member-bib-r036/H008 | human | deliverables/member-bib-r036.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r036.pdf | VECTOR-14/member-bib-r036/H009 | human | deliverables/member-bib-r036.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r036.pdf | VECTOR-14/member-bib-r036/H010 | human | deliverables/member-bib-r036.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r037.pdf | VECTOR-14/member-bib-r037/A001 | auto | deliverables/member-bib-r037.pdf — File is present. |
+| deliverables/member-bib-r037.pdf | VECTOR-14/member-bib-r037/A002 | auto | deliverables/member-bib-r037.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r037.pdf | VECTOR-14/member-bib-r037/A003 | auto | deliverables/member-bib-r037.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r037.pdf | VECTOR-14/member-bib-r037/A004 | auto | deliverables/member-bib-r037.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r037.pdf | VECTOR-14/member-bib-r037/A005 | auto | deliverables/member-bib-r037.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r037.pdf | VECTOR-14/member-bib-r037/H001 | human | deliverables/member-bib-r037.pdf — The runner number matches this member. |
+| deliverables/member-bib-r037.pdf | VECTOR-14/member-bib-r037/H002 | human | deliverables/member-bib-r037.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r037.pdf, source ironway_roster.csv, row 37, field Member Name | VECTOR-14/member-bib-r037/H003 | human | deliverables/member-bib-r037.pdf / source ironway_roster.csv, row 37, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r037.pdf, source ironway_roster.csv, row 37, field Assigned Number | VECTOR-14/member-bib-r037/H004 | human | deliverables/member-bib-r037.pdf / source ironway_roster.csv, row 37, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r037.pdf, source ironway_roster.csv, row 37, field Pace Group | VECTOR-14/member-bib-r037/H005 | human | deliverables/member-bib-r037.pdf / source ironway_roster.csv, row 37, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r037.pdf | VECTOR-14/member-bib-r037/H006 | human | deliverables/member-bib-r037.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r037.pdf | VECTOR-14/member-bib-r037/H007 | human | deliverables/member-bib-r037.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r037.pdf | VECTOR-14/member-bib-r037/H008 | human | deliverables/member-bib-r037.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r037.pdf | VECTOR-14/member-bib-r037/H009 | human | deliverables/member-bib-r037.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r037.pdf | VECTOR-14/member-bib-r037/H010 | human | deliverables/member-bib-r037.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r038.pdf | VECTOR-14/member-bib-r038/A001 | auto | deliverables/member-bib-r038.pdf — File is present. |
+| deliverables/member-bib-r038.pdf | VECTOR-14/member-bib-r038/A002 | auto | deliverables/member-bib-r038.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r038.pdf | VECTOR-14/member-bib-r038/A003 | auto | deliverables/member-bib-r038.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r038.pdf | VECTOR-14/member-bib-r038/A004 | auto | deliverables/member-bib-r038.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r038.pdf | VECTOR-14/member-bib-r038/A005 | auto | deliverables/member-bib-r038.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r038.pdf | VECTOR-14/member-bib-r038/H001 | human | deliverables/member-bib-r038.pdf — The runner number matches this member. |
+| deliverables/member-bib-r038.pdf | VECTOR-14/member-bib-r038/H002 | human | deliverables/member-bib-r038.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r038.pdf, source ironway_roster.csv, row 38, field Member Name | VECTOR-14/member-bib-r038/H003 | human | deliverables/member-bib-r038.pdf / source ironway_roster.csv, row 38, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r038.pdf, source ironway_roster.csv, row 38, field Assigned Number | VECTOR-14/member-bib-r038/H004 | human | deliverables/member-bib-r038.pdf / source ironway_roster.csv, row 38, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r038.pdf, source ironway_roster.csv, row 38, field Pace Group | VECTOR-14/member-bib-r038/H005 | human | deliverables/member-bib-r038.pdf / source ironway_roster.csv, row 38, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r038.pdf | VECTOR-14/member-bib-r038/H006 | human | deliverables/member-bib-r038.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r038.pdf | VECTOR-14/member-bib-r038/H007 | human | deliverables/member-bib-r038.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r038.pdf | VECTOR-14/member-bib-r038/H008 | human | deliverables/member-bib-r038.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r038.pdf | VECTOR-14/member-bib-r038/H009 | human | deliverables/member-bib-r038.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r038.pdf | VECTOR-14/member-bib-r038/H010 | human | deliverables/member-bib-r038.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-r039.pdf | VECTOR-14/member-bib-r039/A001 | auto | deliverables/member-bib-r039.pdf — File is present. |
+| deliverables/member-bib-r039.pdf | VECTOR-14/member-bib-r039/A002 | auto | deliverables/member-bib-r039.pdf — The file opens in a format-aware reader. |
+| deliverables/member-bib-r039.pdf | VECTOR-14/member-bib-r039/A003 | auto | deliverables/member-bib-r039.pdf — The PDF contains 1 page. |
+| deliverables/member-bib-r039.pdf | VECTOR-14/member-bib-r039/A004 | auto | deliverables/member-bib-r039.pdf — The page trim width is 210 mm. |
+| deliverables/member-bib-r039.pdf | VECTOR-14/member-bib-r039/A005 | auto | deliverables/member-bib-r039.pdf — The page trim height is 148 mm. |
+| deliverables/member-bib-r039.pdf | VECTOR-14/member-bib-r039/H001 | human | deliverables/member-bib-r039.pdf — The runner number matches this member. |
+| deliverables/member-bib-r039.pdf | VECTOR-14/member-bib-r039/H002 | human | deliverables/member-bib-r039.pdf — The number is the dominant visual. |
+| deliverables/member-bib-r039.pdf, source ironway_roster.csv, row 39, field Member Name | VECTOR-14/member-bib-r039/H003 | human | deliverables/member-bib-r039.pdf / source ironway_roster.csv, row 39, field Member Name — The printed Member Name matches the authoritative record. |
+| deliverables/member-bib-r039.pdf, source ironway_roster.csv, row 39, field Assigned Number | VECTOR-14/member-bib-r039/H004 | human | deliverables/member-bib-r039.pdf / source ironway_roster.csv, row 39, field Assigned Number — The printed Assigned Number matches the authoritative record. |
+| deliverables/member-bib-r039.pdf, source ironway_roster.csv, row 39, field Pace Group | VECTOR-14/member-bib-r039/H005 | human | deliverables/member-bib-r039.pdf / source ironway_roster.csv, row 39, field Pace Group — The printed Pace Group matches the authoritative record. |
+| deliverables/member-bib-r039.pdf | VECTOR-14/member-bib-r039/H006 | human | deliverables/member-bib-r039.pdf — The finishing looks polished at the delivered size. |
+| deliverables/member-bib-r039.pdf | VECTOR-14/member-bib-r039/H007 | human | deliverables/member-bib-r039.pdf — The visual character feels like Ironway Run Club. |
+| deliverables/member-bib-r039.pdf | VECTOR-14/member-bib-r039/H008 | human | deliverables/member-bib-r039.pdf — The intended reading order is clear. |
+| deliverables/member-bib-r039.pdf | VECTOR-14/member-bib-r039/H009 | human | deliverables/member-bib-r039.pdf — The creative treatment suits the audience described in the brand brief. |
+| deliverables/member-bib-r039.pdf | VECTOR-14/member-bib-r039/H010 | human | deliverables/member-bib-r039.pdf — The composition feels native to its stated delivery format. |
+| deliverables/member-bib-combined.pdf | VECTOR-14/member-bib-combined/A001 | auto | deliverables/member-bib-combined.pdf — The named combined production file is delivered. |
+| deliverables/member-bib-combined.pdf | VECTOR-14/member-bib-combined/A002 | auto | deliverables/member-bib-combined.pdf — The combined file opens as a PDF. |
+| deliverables/member-bib-combined.pdf | VECTOR-14/member-bib-combined/A003 | auto | deliverables/member-bib-combined.pdf — The combined PDF contains 38 pages. |
+| deliverables/member-bib-combined.pdf, page 1 | VECTOR-14/member-bib-combined/A004 | auto | deliverables/member-bib-combined.pdf / page 1 — The trim width of page 1 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 1 | VECTOR-14/member-bib-combined/A005 | auto | deliverables/member-bib-combined.pdf / page 1 — The trim height of page 1 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 1 | VECTOR-14/member-bib-combined/H001 | human | deliverables/member-bib-combined.pdf / page 1 — This page matches deliverables/member-bib-r002.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 2 | VECTOR-14/member-bib-combined/A006 | auto | deliverables/member-bib-combined.pdf / page 2 — The trim width of page 2 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 2 | VECTOR-14/member-bib-combined/A007 | auto | deliverables/member-bib-combined.pdf / page 2 — The trim height of page 2 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 2 | VECTOR-14/member-bib-combined/H002 | human | deliverables/member-bib-combined.pdf / page 2 — This page matches deliverables/member-bib-r003.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 3 | VECTOR-14/member-bib-combined/A008 | auto | deliverables/member-bib-combined.pdf / page 3 — The trim width of page 3 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 3 | VECTOR-14/member-bib-combined/A009 | auto | deliverables/member-bib-combined.pdf / page 3 — The trim height of page 3 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 3 | VECTOR-14/member-bib-combined/H003 | human | deliverables/member-bib-combined.pdf / page 3 — This page matches deliverables/member-bib-r004.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 4 | VECTOR-14/member-bib-combined/A010 | auto | deliverables/member-bib-combined.pdf / page 4 — The trim width of page 4 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 4 | VECTOR-14/member-bib-combined/A011 | auto | deliverables/member-bib-combined.pdf / page 4 — The trim height of page 4 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 4 | VECTOR-14/member-bib-combined/H004 | human | deliverables/member-bib-combined.pdf / page 4 — This page matches deliverables/member-bib-r005.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 5 | VECTOR-14/member-bib-combined/A012 | auto | deliverables/member-bib-combined.pdf / page 5 — The trim width of page 5 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 5 | VECTOR-14/member-bib-combined/A013 | auto | deliverables/member-bib-combined.pdf / page 5 — The trim height of page 5 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 5 | VECTOR-14/member-bib-combined/H005 | human | deliverables/member-bib-combined.pdf / page 5 — This page matches deliverables/member-bib-r006.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 6 | VECTOR-14/member-bib-combined/A014 | auto | deliverables/member-bib-combined.pdf / page 6 — The trim width of page 6 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 6 | VECTOR-14/member-bib-combined/A015 | auto | deliverables/member-bib-combined.pdf / page 6 — The trim height of page 6 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 6 | VECTOR-14/member-bib-combined/H006 | human | deliverables/member-bib-combined.pdf / page 6 — This page matches deliverables/member-bib-r007.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 7 | VECTOR-14/member-bib-combined/A016 | auto | deliverables/member-bib-combined.pdf / page 7 — The trim width of page 7 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 7 | VECTOR-14/member-bib-combined/A017 | auto | deliverables/member-bib-combined.pdf / page 7 — The trim height of page 7 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 7 | VECTOR-14/member-bib-combined/H007 | human | deliverables/member-bib-combined.pdf / page 7 — This page matches deliverables/member-bib-r008.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 8 | VECTOR-14/member-bib-combined/A018 | auto | deliverables/member-bib-combined.pdf / page 8 — The trim width of page 8 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 8 | VECTOR-14/member-bib-combined/A019 | auto | deliverables/member-bib-combined.pdf / page 8 — The trim height of page 8 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 8 | VECTOR-14/member-bib-combined/H008 | human | deliverables/member-bib-combined.pdf / page 8 — This page matches deliverables/member-bib-r009.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 9 | VECTOR-14/member-bib-combined/A020 | auto | deliverables/member-bib-combined.pdf / page 9 — The trim width of page 9 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 9 | VECTOR-14/member-bib-combined/A021 | auto | deliverables/member-bib-combined.pdf / page 9 — The trim height of page 9 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 9 | VECTOR-14/member-bib-combined/H009 | human | deliverables/member-bib-combined.pdf / page 9 — This page matches deliverables/member-bib-r010.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 10 | VECTOR-14/member-bib-combined/A022 | auto | deliverables/member-bib-combined.pdf / page 10 — The trim width of page 10 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 10 | VECTOR-14/member-bib-combined/A023 | auto | deliverables/member-bib-combined.pdf / page 10 — The trim height of page 10 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 10 | VECTOR-14/member-bib-combined/H010 | human | deliverables/member-bib-combined.pdf / page 10 — This page matches deliverables/member-bib-r011.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 11 | VECTOR-14/member-bib-combined/A024 | auto | deliverables/member-bib-combined.pdf / page 11 — The trim width of page 11 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 11 | VECTOR-14/member-bib-combined/A025 | auto | deliverables/member-bib-combined.pdf / page 11 — The trim height of page 11 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 11 | VECTOR-14/member-bib-combined/H011 | human | deliverables/member-bib-combined.pdf / page 11 — This page matches deliverables/member-bib-r012.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 12 | VECTOR-14/member-bib-combined/A026 | auto | deliverables/member-bib-combined.pdf / page 12 — The trim width of page 12 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 12 | VECTOR-14/member-bib-combined/A027 | auto | deliverables/member-bib-combined.pdf / page 12 — The trim height of page 12 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 12 | VECTOR-14/member-bib-combined/H012 | human | deliverables/member-bib-combined.pdf / page 12 — This page matches deliverables/member-bib-r013.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 13 | VECTOR-14/member-bib-combined/A028 | auto | deliverables/member-bib-combined.pdf / page 13 — The trim width of page 13 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 13 | VECTOR-14/member-bib-combined/A029 | auto | deliverables/member-bib-combined.pdf / page 13 — The trim height of page 13 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 13 | VECTOR-14/member-bib-combined/H013 | human | deliverables/member-bib-combined.pdf / page 13 — This page matches deliverables/member-bib-r014.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 14 | VECTOR-14/member-bib-combined/A030 | auto | deliverables/member-bib-combined.pdf / page 14 — The trim width of page 14 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 14 | VECTOR-14/member-bib-combined/A031 | auto | deliverables/member-bib-combined.pdf / page 14 — The trim height of page 14 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 14 | VECTOR-14/member-bib-combined/H014 | human | deliverables/member-bib-combined.pdf / page 14 — This page matches deliverables/member-bib-r015.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 15 | VECTOR-14/member-bib-combined/A032 | auto | deliverables/member-bib-combined.pdf / page 15 — The trim width of page 15 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 15 | VECTOR-14/member-bib-combined/A033 | auto | deliverables/member-bib-combined.pdf / page 15 — The trim height of page 15 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 15 | VECTOR-14/member-bib-combined/H015 | human | deliverables/member-bib-combined.pdf / page 15 — This page matches deliverables/member-bib-r016.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 16 | VECTOR-14/member-bib-combined/A034 | auto | deliverables/member-bib-combined.pdf / page 16 — The trim width of page 16 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 16 | VECTOR-14/member-bib-combined/A035 | auto | deliverables/member-bib-combined.pdf / page 16 — The trim height of page 16 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 16 | VECTOR-14/member-bib-combined/H016 | human | deliverables/member-bib-combined.pdf / page 16 — This page matches deliverables/member-bib-r017.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 17 | VECTOR-14/member-bib-combined/A036 | auto | deliverables/member-bib-combined.pdf / page 17 — The trim width of page 17 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 17 | VECTOR-14/member-bib-combined/A037 | auto | deliverables/member-bib-combined.pdf / page 17 — The trim height of page 17 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 17 | VECTOR-14/member-bib-combined/H017 | human | deliverables/member-bib-combined.pdf / page 17 — This page matches deliverables/member-bib-r018.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 18 | VECTOR-14/member-bib-combined/A038 | auto | deliverables/member-bib-combined.pdf / page 18 — The trim width of page 18 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 18 | VECTOR-14/member-bib-combined/A039 | auto | deliverables/member-bib-combined.pdf / page 18 — The trim height of page 18 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 18 | VECTOR-14/member-bib-combined/H018 | human | deliverables/member-bib-combined.pdf / page 18 — This page matches deliverables/member-bib-r019.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 19 | VECTOR-14/member-bib-combined/A040 | auto | deliverables/member-bib-combined.pdf / page 19 — The trim width of page 19 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 19 | VECTOR-14/member-bib-combined/A041 | auto | deliverables/member-bib-combined.pdf / page 19 — The trim height of page 19 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 19 | VECTOR-14/member-bib-combined/H019 | human | deliverables/member-bib-combined.pdf / page 19 — This page matches deliverables/member-bib-r020.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 20 | VECTOR-14/member-bib-combined/A042 | auto | deliverables/member-bib-combined.pdf / page 20 — The trim width of page 20 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 20 | VECTOR-14/member-bib-combined/A043 | auto | deliverables/member-bib-combined.pdf / page 20 — The trim height of page 20 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 20 | VECTOR-14/member-bib-combined/H020 | human | deliverables/member-bib-combined.pdf / page 20 — This page matches deliverables/member-bib-r021.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 21 | VECTOR-14/member-bib-combined/A044 | auto | deliverables/member-bib-combined.pdf / page 21 — The trim width of page 21 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 21 | VECTOR-14/member-bib-combined/A045 | auto | deliverables/member-bib-combined.pdf / page 21 — The trim height of page 21 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 21 | VECTOR-14/member-bib-combined/H021 | human | deliverables/member-bib-combined.pdf / page 21 — This page matches deliverables/member-bib-r022.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 22 | VECTOR-14/member-bib-combined/A046 | auto | deliverables/member-bib-combined.pdf / page 22 — The trim width of page 22 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 22 | VECTOR-14/member-bib-combined/A047 | auto | deliverables/member-bib-combined.pdf / page 22 — The trim height of page 22 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 22 | VECTOR-14/member-bib-combined/H022 | human | deliverables/member-bib-combined.pdf / page 22 — This page matches deliverables/member-bib-r023.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 23 | VECTOR-14/member-bib-combined/A048 | auto | deliverables/member-bib-combined.pdf / page 23 — The trim width of page 23 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 23 | VECTOR-14/member-bib-combined/A049 | auto | deliverables/member-bib-combined.pdf / page 23 — The trim height of page 23 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 23 | VECTOR-14/member-bib-combined/H023 | human | deliverables/member-bib-combined.pdf / page 23 — This page matches deliverables/member-bib-r024.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 24 | VECTOR-14/member-bib-combined/A050 | auto | deliverables/member-bib-combined.pdf / page 24 — The trim width of page 24 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 24 | VECTOR-14/member-bib-combined/A051 | auto | deliverables/member-bib-combined.pdf / page 24 — The trim height of page 24 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 24 | VECTOR-14/member-bib-combined/H024 | human | deliverables/member-bib-combined.pdf / page 24 — This page matches deliverables/member-bib-r025.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 25 | VECTOR-14/member-bib-combined/A052 | auto | deliverables/member-bib-combined.pdf / page 25 — The trim width of page 25 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 25 | VECTOR-14/member-bib-combined/A053 | auto | deliverables/member-bib-combined.pdf / page 25 — The trim height of page 25 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 25 | VECTOR-14/member-bib-combined/H025 | human | deliverables/member-bib-combined.pdf / page 25 — This page matches deliverables/member-bib-r026.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 26 | VECTOR-14/member-bib-combined/A054 | auto | deliverables/member-bib-combined.pdf / page 26 — The trim width of page 26 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 26 | VECTOR-14/member-bib-combined/A055 | auto | deliverables/member-bib-combined.pdf / page 26 — The trim height of page 26 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 26 | VECTOR-14/member-bib-combined/H026 | human | deliverables/member-bib-combined.pdf / page 26 — This page matches deliverables/member-bib-r027.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 27 | VECTOR-14/member-bib-combined/A056 | auto | deliverables/member-bib-combined.pdf / page 27 — The trim width of page 27 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 27 | VECTOR-14/member-bib-combined/A057 | auto | deliverables/member-bib-combined.pdf / page 27 — The trim height of page 27 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 27 | VECTOR-14/member-bib-combined/H027 | human | deliverables/member-bib-combined.pdf / page 27 — This page matches deliverables/member-bib-r028.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 28 | VECTOR-14/member-bib-combined/A058 | auto | deliverables/member-bib-combined.pdf / page 28 — The trim width of page 28 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 28 | VECTOR-14/member-bib-combined/A059 | auto | deliverables/member-bib-combined.pdf / page 28 — The trim height of page 28 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 28 | VECTOR-14/member-bib-combined/H028 | human | deliverables/member-bib-combined.pdf / page 28 — This page matches deliverables/member-bib-r029.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 29 | VECTOR-14/member-bib-combined/A060 | auto | deliverables/member-bib-combined.pdf / page 29 — The trim width of page 29 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 29 | VECTOR-14/member-bib-combined/A061 | auto | deliverables/member-bib-combined.pdf / page 29 — The trim height of page 29 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 29 | VECTOR-14/member-bib-combined/H029 | human | deliverables/member-bib-combined.pdf / page 29 — This page matches deliverables/member-bib-r030.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 30 | VECTOR-14/member-bib-combined/A062 | auto | deliverables/member-bib-combined.pdf / page 30 — The trim width of page 30 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 30 | VECTOR-14/member-bib-combined/A063 | auto | deliverables/member-bib-combined.pdf / page 30 — The trim height of page 30 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 30 | VECTOR-14/member-bib-combined/H030 | human | deliverables/member-bib-combined.pdf / page 30 — This page matches deliverables/member-bib-r031.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 31 | VECTOR-14/member-bib-combined/A064 | auto | deliverables/member-bib-combined.pdf / page 31 — The trim width of page 31 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 31 | VECTOR-14/member-bib-combined/A065 | auto | deliverables/member-bib-combined.pdf / page 31 — The trim height of page 31 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 31 | VECTOR-14/member-bib-combined/H031 | human | deliverables/member-bib-combined.pdf / page 31 — This page matches deliverables/member-bib-r032.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 32 | VECTOR-14/member-bib-combined/A066 | auto | deliverables/member-bib-combined.pdf / page 32 — The trim width of page 32 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 32 | VECTOR-14/member-bib-combined/A067 | auto | deliverables/member-bib-combined.pdf / page 32 — The trim height of page 32 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 32 | VECTOR-14/member-bib-combined/H032 | human | deliverables/member-bib-combined.pdf / page 32 — This page matches deliverables/member-bib-r033.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 33 | VECTOR-14/member-bib-combined/A068 | auto | deliverables/member-bib-combined.pdf / page 33 — The trim width of page 33 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 33 | VECTOR-14/member-bib-combined/A069 | auto | deliverables/member-bib-combined.pdf / page 33 — The trim height of page 33 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 33 | VECTOR-14/member-bib-combined/H033 | human | deliverables/member-bib-combined.pdf / page 33 — This page matches deliverables/member-bib-r034.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 34 | VECTOR-14/member-bib-combined/A070 | auto | deliverables/member-bib-combined.pdf / page 34 — The trim width of page 34 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 34 | VECTOR-14/member-bib-combined/A071 | auto | deliverables/member-bib-combined.pdf / page 34 — The trim height of page 34 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 34 | VECTOR-14/member-bib-combined/H034 | human | deliverables/member-bib-combined.pdf / page 34 — This page matches deliverables/member-bib-r035.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 35 | VECTOR-14/member-bib-combined/A072 | auto | deliverables/member-bib-combined.pdf / page 35 — The trim width of page 35 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 35 | VECTOR-14/member-bib-combined/A073 | auto | deliverables/member-bib-combined.pdf / page 35 — The trim height of page 35 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 35 | VECTOR-14/member-bib-combined/H035 | human | deliverables/member-bib-combined.pdf / page 35 — This page matches deliverables/member-bib-r036.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 36 | VECTOR-14/member-bib-combined/A074 | auto | deliverables/member-bib-combined.pdf / page 36 — The trim width of page 36 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 36 | VECTOR-14/member-bib-combined/A075 | auto | deliverables/member-bib-combined.pdf / page 36 — The trim height of page 36 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 36 | VECTOR-14/member-bib-combined/H036 | human | deliverables/member-bib-combined.pdf / page 36 — This page matches deliverables/member-bib-r037.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 37 | VECTOR-14/member-bib-combined/A076 | auto | deliverables/member-bib-combined.pdf / page 37 — The trim width of page 37 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 37 | VECTOR-14/member-bib-combined/A077 | auto | deliverables/member-bib-combined.pdf / page 37 — The trim height of page 37 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 37 | VECTOR-14/member-bib-combined/H037 | human | deliverables/member-bib-combined.pdf / page 37 — This page matches deliverables/member-bib-r038.pdf, page 1. |
+| deliverables/member-bib-combined.pdf, page 38 | VECTOR-14/member-bib-combined/A078 | auto | deliverables/member-bib-combined.pdf / page 38 — The trim width of page 38 is 210 mm. |
+| deliverables/member-bib-combined.pdf, page 38 | VECTOR-14/member-bib-combined/A079 | auto | deliverables/member-bib-combined.pdf / page 38 — The trim height of page 38 is 148 mm. |
+| deliverables/member-bib-combined.pdf, page 38 | VECTOR-14/member-bib-combined/H038 | human | deliverables/member-bib-combined.pdf / page 38 — This page matches deliverables/member-bib-r039.pdf, page 1. |
+| sources/member-bib.zip | VECTOR-14/member-bib-source/A001 | auto | sources/member-bib.zip — The named source archive is delivered. |
+| sources/member-bib.zip | VECTOR-14/member-bib-source/A002 | auto | sources/member-bib.zip — The source archive opens. |
+| sources/member-bib.zip | VECTOR-14/member-bib-source/A003 | auto | sources/member-bib.zip — The archive contains a native source or an editable-document reference. |
+| sources/member-bib.zip | VECTOR-14/member-bib-source/H001 | human | sources/member-bib.zip — The source opens in its stated editing application. |
+| sources/member-bib.zip | VECTOR-14/member-bib-source/H002 | human | sources/member-bib.zip — The text can be edited independently of the photograph. |

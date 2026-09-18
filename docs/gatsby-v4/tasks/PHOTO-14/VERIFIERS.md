@@ -1,0 +1,263 @@
+# SB3-014-PHO atomic output verifiers
+
+Result: not assessed. These checks evaluate final files, not process claims.
+
+| Output | Check ID | Type | Check |
+|---|---|---|---|
+| deliverables/sku-plate-r002.png | PHOTO-14/sku-plate-r002/A001 | auto | deliverables/sku-plate-r002.png — File is present. |
+| deliverables/sku-plate-r002.png | PHOTO-14/sku-plate-r002/A002 | auto | deliverables/sku-plate-r002.png — The file opens in a format-aware reader. |
+| deliverables/sku-plate-r002.png | PHOTO-14/sku-plate-r002/A003 | auto | deliverables/sku-plate-r002.png — The width is 1200 px. |
+| deliverables/sku-plate-r002.png | PHOTO-14/sku-plate-r002/A004 | auto | deliverables/sku-plate-r002.png — The height is 1200 px. |
+| deliverables/sku-plate-r002.png | PHOTO-14/sku-plate-r002/H001 | human | deliverables/sku-plate-r002.png — The part geometry agrees with the source component. |
+| deliverables/sku-plate-r002.png | PHOTO-14/sku-plate-r002/H002 | human | deliverables/sku-plate-r002.png — Surface defects affecting identification remain visible. |
+| deliverables/sku-plate-r002.png, source parts_export.csv, row 2, field part_number | PHOTO-14/sku-plate-r002/H003 | human | deliverables/sku-plate-r002.png / source parts_export.csv, row 2, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-plate-r002.png | PHOTO-14/sku-plate-r002/H004 | human | deliverables/sku-plate-r002.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-plate-r002.png | PHOTO-14/sku-plate-r002/H005 | human | deliverables/sku-plate-r002.png — The visual character feels like Girdermark Elevator & Electrical Supply. |
+| deliverables/sku-plate-r002.png | PHOTO-14/sku-plate-r002/H006 | human | deliverables/sku-plate-r002.png — The intended reading order is clear. |
+| deliverables/sku-plate-r002.png | PHOTO-14/sku-plate-r002/H007 | human | deliverables/sku-plate-r002.png — The creative treatment suits the audience described in the brand brief. |
+| deliverables/sku-plate-r002.png | PHOTO-14/sku-plate-r002/H008 | human | deliverables/sku-plate-r002.png — The composition feels native to its stated delivery format. |
+| deliverables/sku-plate-r003.png | PHOTO-14/sku-plate-r003/A001 | auto | deliverables/sku-plate-r003.png — File is present. |
+| deliverables/sku-plate-r003.png | PHOTO-14/sku-plate-r003/A002 | auto | deliverables/sku-plate-r003.png — The file opens in a format-aware reader. |
+| deliverables/sku-plate-r003.png | PHOTO-14/sku-plate-r003/A003 | auto | deliverables/sku-plate-r003.png — The width is 1200 px. |
+| deliverables/sku-plate-r003.png | PHOTO-14/sku-plate-r003/A004 | auto | deliverables/sku-plate-r003.png — The height is 1200 px. |
+| deliverables/sku-plate-r003.png | PHOTO-14/sku-plate-r003/H001 | human | deliverables/sku-plate-r003.png — The part geometry agrees with the source component. |
+| deliverables/sku-plate-r003.png | PHOTO-14/sku-plate-r003/H002 | human | deliverables/sku-plate-r003.png — Surface defects affecting identification remain visible. |
+| deliverables/sku-plate-r003.png, source parts_export.csv, row 3, field part_number | PHOTO-14/sku-plate-r003/H003 | human | deliverables/sku-plate-r003.png / source parts_export.csv, row 3, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-plate-r003.png | PHOTO-14/sku-plate-r003/H004 | human | deliverables/sku-plate-r003.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-plate-r003.png | PHOTO-14/sku-plate-r003/H005 | human | deliverables/sku-plate-r003.png — The visual character feels like Girdermark Elevator & Electrical Supply. |
+| deliverables/sku-plate-r003.png | PHOTO-14/sku-plate-r003/H006 | human | deliverables/sku-plate-r003.png — The intended reading order is clear. |
+| deliverables/sku-plate-r003.png | PHOTO-14/sku-plate-r003/H007 | human | deliverables/sku-plate-r003.png — The creative treatment suits the audience described in the brand brief. |
+| deliverables/sku-plate-r003.png | PHOTO-14/sku-plate-r003/H008 | human | deliverables/sku-plate-r003.png — The composition feels native to its stated delivery format. |
+| deliverables/sku-plate-r004.png | PHOTO-14/sku-plate-r004/A001 | auto | deliverables/sku-plate-r004.png — File is present. |
+| deliverables/sku-plate-r004.png | PHOTO-14/sku-plate-r004/A002 | auto | deliverables/sku-plate-r004.png — The file opens in a format-aware reader. |
+| deliverables/sku-plate-r004.png | PHOTO-14/sku-plate-r004/A003 | auto | deliverables/sku-plate-r004.png — The width is 1200 px. |
+| deliverables/sku-plate-r004.png | PHOTO-14/sku-plate-r004/A004 | auto | deliverables/sku-plate-r004.png — The height is 1200 px. |
+| deliverables/sku-plate-r004.png | PHOTO-14/sku-plate-r004/H001 | human | deliverables/sku-plate-r004.png — The part geometry agrees with the source component. |
+| deliverables/sku-plate-r004.png | PHOTO-14/sku-plate-r004/H002 | human | deliverables/sku-plate-r004.png — Surface defects affecting identification remain visible. |
+| deliverables/sku-plate-r004.png, source parts_export.csv, row 4, field part_number | PHOTO-14/sku-plate-r004/H003 | human | deliverables/sku-plate-r004.png / source parts_export.csv, row 4, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-plate-r004.png | PHOTO-14/sku-plate-r004/H004 | human | deliverables/sku-plate-r004.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-plate-r004.png | PHOTO-14/sku-plate-r004/H005 | human | deliverables/sku-plate-r004.png — The visual character feels like Girdermark Elevator & Electrical Supply. |
+| deliverables/sku-plate-r004.png | PHOTO-14/sku-plate-r004/H006 | human | deliverables/sku-plate-r004.png — The intended reading order is clear. |
+| deliverables/sku-plate-r004.png | PHOTO-14/sku-plate-r004/H007 | human | deliverables/sku-plate-r004.png — The creative treatment suits the audience described in the brand brief. |
+| deliverables/sku-plate-r004.png | PHOTO-14/sku-plate-r004/H008 | human | deliverables/sku-plate-r004.png — The composition feels native to its stated delivery format. |
+| deliverables/sku-plate-r005.png | PHOTO-14/sku-plate-r005/A001 | auto | deliverables/sku-plate-r005.png — File is present. |
+| deliverables/sku-plate-r005.png | PHOTO-14/sku-plate-r005/A002 | auto | deliverables/sku-plate-r005.png — The file opens in a format-aware reader. |
+| deliverables/sku-plate-r005.png | PHOTO-14/sku-plate-r005/A003 | auto | deliverables/sku-plate-r005.png — The width is 1200 px. |
+| deliverables/sku-plate-r005.png | PHOTO-14/sku-plate-r005/A004 | auto | deliverables/sku-plate-r005.png — The height is 1200 px. |
+| deliverables/sku-plate-r005.png | PHOTO-14/sku-plate-r005/H001 | human | deliverables/sku-plate-r005.png — The part geometry agrees with the source component. |
+| deliverables/sku-plate-r005.png | PHOTO-14/sku-plate-r005/H002 | human | deliverables/sku-plate-r005.png — Surface defects affecting identification remain visible. |
+| deliverables/sku-plate-r005.png, source parts_export.csv, row 5, field part_number | PHOTO-14/sku-plate-r005/H003 | human | deliverables/sku-plate-r005.png / source parts_export.csv, row 5, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-plate-r005.png | PHOTO-14/sku-plate-r005/H004 | human | deliverables/sku-plate-r005.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-plate-r005.png | PHOTO-14/sku-plate-r005/H005 | human | deliverables/sku-plate-r005.png — The visual character feels like Girdermark Elevator & Electrical Supply. |
+| deliverables/sku-plate-r005.png | PHOTO-14/sku-plate-r005/H006 | human | deliverables/sku-plate-r005.png — The intended reading order is clear. |
+| deliverables/sku-plate-r005.png | PHOTO-14/sku-plate-r005/H007 | human | deliverables/sku-plate-r005.png — The creative treatment suits the audience described in the brand brief. |
+| deliverables/sku-plate-r005.png | PHOTO-14/sku-plate-r005/H008 | human | deliverables/sku-plate-r005.png — The composition feels native to its stated delivery format. |
+| deliverables/sku-plate-r006.png | PHOTO-14/sku-plate-r006/A001 | auto | deliverables/sku-plate-r006.png — File is present. |
+| deliverables/sku-plate-r006.png | PHOTO-14/sku-plate-r006/A002 | auto | deliverables/sku-plate-r006.png — The file opens in a format-aware reader. |
+| deliverables/sku-plate-r006.png | PHOTO-14/sku-plate-r006/A003 | auto | deliverables/sku-plate-r006.png — The width is 1200 px. |
+| deliverables/sku-plate-r006.png | PHOTO-14/sku-plate-r006/A004 | auto | deliverables/sku-plate-r006.png — The height is 1200 px. |
+| deliverables/sku-plate-r006.png | PHOTO-14/sku-plate-r006/H001 | human | deliverables/sku-plate-r006.png — The part geometry agrees with the source component. |
+| deliverables/sku-plate-r006.png | PHOTO-14/sku-plate-r006/H002 | human | deliverables/sku-plate-r006.png — Surface defects affecting identification remain visible. |
+| deliverables/sku-plate-r006.png, source parts_export.csv, row 6, field part_number | PHOTO-14/sku-plate-r006/H003 | human | deliverables/sku-plate-r006.png / source parts_export.csv, row 6, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-plate-r006.png | PHOTO-14/sku-plate-r006/H004 | human | deliverables/sku-plate-r006.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-plate-r006.png | PHOTO-14/sku-plate-r006/H005 | human | deliverables/sku-plate-r006.png — The visual character feels like Girdermark Elevator & Electrical Supply. |
+| deliverables/sku-plate-r006.png | PHOTO-14/sku-plate-r006/H006 | human | deliverables/sku-plate-r006.png — The intended reading order is clear. |
+| deliverables/sku-plate-r006.png | PHOTO-14/sku-plate-r006/H007 | human | deliverables/sku-plate-r006.png — The creative treatment suits the audience described in the brand brief. |
+| deliverables/sku-plate-r006.png | PHOTO-14/sku-plate-r006/H008 | human | deliverables/sku-plate-r006.png — The composition feels native to its stated delivery format. |
+| deliverables/sku-plate-r007.png | PHOTO-14/sku-plate-r007/A001 | auto | deliverables/sku-plate-r007.png — File is present. |
+| deliverables/sku-plate-r007.png | PHOTO-14/sku-plate-r007/A002 | auto | deliverables/sku-plate-r007.png — The file opens in a format-aware reader. |
+| deliverables/sku-plate-r007.png | PHOTO-14/sku-plate-r007/A003 | auto | deliverables/sku-plate-r007.png — The width is 1200 px. |
+| deliverables/sku-plate-r007.png | PHOTO-14/sku-plate-r007/A004 | auto | deliverables/sku-plate-r007.png — The height is 1200 px. |
+| deliverables/sku-plate-r007.png | PHOTO-14/sku-plate-r007/H001 | human | deliverables/sku-plate-r007.png — The part geometry agrees with the source component. |
+| deliverables/sku-plate-r007.png | PHOTO-14/sku-plate-r007/H002 | human | deliverables/sku-plate-r007.png — Surface defects affecting identification remain visible. |
+| deliverables/sku-plate-r007.png, source parts_export.csv, row 7, field part_number | PHOTO-14/sku-plate-r007/H003 | human | deliverables/sku-plate-r007.png / source parts_export.csv, row 7, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-plate-r007.png | PHOTO-14/sku-plate-r007/H004 | human | deliverables/sku-plate-r007.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-plate-r007.png | PHOTO-14/sku-plate-r007/H005 | human | deliverables/sku-plate-r007.png — The visual character feels like Girdermark Elevator & Electrical Supply. |
+| deliverables/sku-plate-r007.png | PHOTO-14/sku-plate-r007/H006 | human | deliverables/sku-plate-r007.png — The intended reading order is clear. |
+| deliverables/sku-plate-r007.png | PHOTO-14/sku-plate-r007/H007 | human | deliverables/sku-plate-r007.png — The creative treatment suits the audience described in the brand brief. |
+| deliverables/sku-plate-r007.png | PHOTO-14/sku-plate-r007/H008 | human | deliverables/sku-plate-r007.png — The composition feels native to its stated delivery format. |
+| deliverables/sku-plate-r008.png | PHOTO-14/sku-plate-r008/A001 | auto | deliverables/sku-plate-r008.png — File is present. |
+| deliverables/sku-plate-r008.png | PHOTO-14/sku-plate-r008/A002 | auto | deliverables/sku-plate-r008.png — The file opens in a format-aware reader. |
+| deliverables/sku-plate-r008.png | PHOTO-14/sku-plate-r008/A003 | auto | deliverables/sku-plate-r008.png — The width is 1200 px. |
+| deliverables/sku-plate-r008.png | PHOTO-14/sku-plate-r008/A004 | auto | deliverables/sku-plate-r008.png — The height is 1200 px. |
+| deliverables/sku-plate-r008.png | PHOTO-14/sku-plate-r008/H001 | human | deliverables/sku-plate-r008.png — The part geometry agrees with the source component. |
+| deliverables/sku-plate-r008.png | PHOTO-14/sku-plate-r008/H002 | human | deliverables/sku-plate-r008.png — Surface defects affecting identification remain visible. |
+| deliverables/sku-plate-r008.png, source parts_export.csv, row 8, field part_number | PHOTO-14/sku-plate-r008/H003 | human | deliverables/sku-plate-r008.png / source parts_export.csv, row 8, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-plate-r008.png | PHOTO-14/sku-plate-r008/H004 | human | deliverables/sku-plate-r008.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-plate-r008.png | PHOTO-14/sku-plate-r008/H005 | human | deliverables/sku-plate-r008.png — The visual character feels like Girdermark Elevator & Electrical Supply. |
+| deliverables/sku-plate-r008.png | PHOTO-14/sku-plate-r008/H006 | human | deliverables/sku-plate-r008.png — The intended reading order is clear. |
+| deliverables/sku-plate-r008.png | PHOTO-14/sku-plate-r008/H007 | human | deliverables/sku-plate-r008.png — The creative treatment suits the audience described in the brand brief. |
+| deliverables/sku-plate-r008.png | PHOTO-14/sku-plate-r008/H008 | human | deliverables/sku-plate-r008.png — The composition feels native to its stated delivery format. |
+| deliverables/sku-plate-r009.png | PHOTO-14/sku-plate-r009/A001 | auto | deliverables/sku-plate-r009.png — File is present. |
+| deliverables/sku-plate-r009.png | PHOTO-14/sku-plate-r009/A002 | auto | deliverables/sku-plate-r009.png — The file opens in a format-aware reader. |
+| deliverables/sku-plate-r009.png | PHOTO-14/sku-plate-r009/A003 | auto | deliverables/sku-plate-r009.png — The width is 1200 px. |
+| deliverables/sku-plate-r009.png | PHOTO-14/sku-plate-r009/A004 | auto | deliverables/sku-plate-r009.png — The height is 1200 px. |
+| deliverables/sku-plate-r009.png | PHOTO-14/sku-plate-r009/H001 | human | deliverables/sku-plate-r009.png — The part geometry agrees with the source component. |
+| deliverables/sku-plate-r009.png | PHOTO-14/sku-plate-r009/H002 | human | deliverables/sku-plate-r009.png — Surface defects affecting identification remain visible. |
+| deliverables/sku-plate-r009.png, source parts_export.csv, row 9, field part_number | PHOTO-14/sku-plate-r009/H003 | human | deliverables/sku-plate-r009.png / source parts_export.csv, row 9, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-plate-r009.png | PHOTO-14/sku-plate-r009/H004 | human | deliverables/sku-plate-r009.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-plate-r009.png | PHOTO-14/sku-plate-r009/H005 | human | deliverables/sku-plate-r009.png — The visual character feels like Girdermark Elevator & Electrical Supply. |
+| deliverables/sku-plate-r009.png | PHOTO-14/sku-plate-r009/H006 | human | deliverables/sku-plate-r009.png — The intended reading order is clear. |
+| deliverables/sku-plate-r009.png | PHOTO-14/sku-plate-r009/H007 | human | deliverables/sku-plate-r009.png — The creative treatment suits the audience described in the brand brief. |
+| deliverables/sku-plate-r009.png | PHOTO-14/sku-plate-r009/H008 | human | deliverables/sku-plate-r009.png — The composition feels native to its stated delivery format. |
+| deliverables/sku-plate-r010.png | PHOTO-14/sku-plate-r010/A001 | auto | deliverables/sku-plate-r010.png — File is present. |
+| deliverables/sku-plate-r010.png | PHOTO-14/sku-plate-r010/A002 | auto | deliverables/sku-plate-r010.png — The file opens in a format-aware reader. |
+| deliverables/sku-plate-r010.png | PHOTO-14/sku-plate-r010/A003 | auto | deliverables/sku-plate-r010.png — The width is 1200 px. |
+| deliverables/sku-plate-r010.png | PHOTO-14/sku-plate-r010/A004 | auto | deliverables/sku-plate-r010.png — The height is 1200 px. |
+| deliverables/sku-plate-r010.png | PHOTO-14/sku-plate-r010/H001 | human | deliverables/sku-plate-r010.png — The part geometry agrees with the source component. |
+| deliverables/sku-plate-r010.png | PHOTO-14/sku-plate-r010/H002 | human | deliverables/sku-plate-r010.png — Surface defects affecting identification remain visible. |
+| deliverables/sku-plate-r010.png, source parts_export.csv, row 10, field part_number | PHOTO-14/sku-plate-r010/H003 | human | deliverables/sku-plate-r010.png / source parts_export.csv, row 10, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-plate-r010.png | PHOTO-14/sku-plate-r010/H004 | human | deliverables/sku-plate-r010.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-plate-r010.png | PHOTO-14/sku-plate-r010/H005 | human | deliverables/sku-plate-r010.png — The visual character feels like Girdermark Elevator & Electrical Supply. |
+| deliverables/sku-plate-r010.png | PHOTO-14/sku-plate-r010/H006 | human | deliverables/sku-plate-r010.png — The intended reading order is clear. |
+| deliverables/sku-plate-r010.png | PHOTO-14/sku-plate-r010/H007 | human | deliverables/sku-plate-r010.png — The creative treatment suits the audience described in the brand brief. |
+| deliverables/sku-plate-r010.png | PHOTO-14/sku-plate-r010/H008 | human | deliverables/sku-plate-r010.png — The composition feels native to its stated delivery format. |
+| deliverables/sku-plate-r011.png | PHOTO-14/sku-plate-r011/A001 | auto | deliverables/sku-plate-r011.png — File is present. |
+| deliverables/sku-plate-r011.png | PHOTO-14/sku-plate-r011/A002 | auto | deliverables/sku-plate-r011.png — The file opens in a format-aware reader. |
+| deliverables/sku-plate-r011.png | PHOTO-14/sku-plate-r011/A003 | auto | deliverables/sku-plate-r011.png — The width is 1200 px. |
+| deliverables/sku-plate-r011.png | PHOTO-14/sku-plate-r011/A004 | auto | deliverables/sku-plate-r011.png — The height is 1200 px. |
+| deliverables/sku-plate-r011.png | PHOTO-14/sku-plate-r011/H001 | human | deliverables/sku-plate-r011.png — The part geometry agrees with the source component. |
+| deliverables/sku-plate-r011.png | PHOTO-14/sku-plate-r011/H002 | human | deliverables/sku-plate-r011.png — Surface defects affecting identification remain visible. |
+| deliverables/sku-plate-r011.png, source parts_export.csv, row 11, field part_number | PHOTO-14/sku-plate-r011/H003 | human | deliverables/sku-plate-r011.png / source parts_export.csv, row 11, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-plate-r011.png | PHOTO-14/sku-plate-r011/H004 | human | deliverables/sku-plate-r011.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-plate-r011.png | PHOTO-14/sku-plate-r011/H005 | human | deliverables/sku-plate-r011.png — The visual character feels like Girdermark Elevator & Electrical Supply. |
+| deliverables/sku-plate-r011.png | PHOTO-14/sku-plate-r011/H006 | human | deliverables/sku-plate-r011.png — The intended reading order is clear. |
+| deliverables/sku-plate-r011.png | PHOTO-14/sku-plate-r011/H007 | human | deliverables/sku-plate-r011.png — The creative treatment suits the audience described in the brand brief. |
+| deliverables/sku-plate-r011.png | PHOTO-14/sku-plate-r011/H008 | human | deliverables/sku-plate-r011.png — The composition feels native to its stated delivery format. |
+| deliverables/sku-plate-r012.png | PHOTO-14/sku-plate-r012/A001 | auto | deliverables/sku-plate-r012.png — File is present. |
+| deliverables/sku-plate-r012.png | PHOTO-14/sku-plate-r012/A002 | auto | deliverables/sku-plate-r012.png — The file opens in a format-aware reader. |
+| deliverables/sku-plate-r012.png | PHOTO-14/sku-plate-r012/A003 | auto | deliverables/sku-plate-r012.png — The width is 1200 px. |
+| deliverables/sku-plate-r012.png | PHOTO-14/sku-plate-r012/A004 | auto | deliverables/sku-plate-r012.png — The height is 1200 px. |
+| deliverables/sku-plate-r012.png | PHOTO-14/sku-plate-r012/H001 | human | deliverables/sku-plate-r012.png — The part geometry agrees with the source component. |
+| deliverables/sku-plate-r012.png | PHOTO-14/sku-plate-r012/H002 | human | deliverables/sku-plate-r012.png — Surface defects affecting identification remain visible. |
+| deliverables/sku-plate-r012.png, source parts_export.csv, row 12, field part_number | PHOTO-14/sku-plate-r012/H003 | human | deliverables/sku-plate-r012.png / source parts_export.csv, row 12, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-plate-r012.png | PHOTO-14/sku-plate-r012/H004 | human | deliverables/sku-plate-r012.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-plate-r012.png | PHOTO-14/sku-plate-r012/H005 | human | deliverables/sku-plate-r012.png — The visual character feels like Girdermark Elevator & Electrical Supply. |
+| deliverables/sku-plate-r012.png | PHOTO-14/sku-plate-r012/H006 | human | deliverables/sku-plate-r012.png — The intended reading order is clear. |
+| deliverables/sku-plate-r012.png | PHOTO-14/sku-plate-r012/H007 | human | deliverables/sku-plate-r012.png — The creative treatment suits the audience described in the brand brief. |
+| deliverables/sku-plate-r012.png | PHOTO-14/sku-plate-r012/H008 | human | deliverables/sku-plate-r012.png — The composition feels native to its stated delivery format. |
+| deliverables/sku-plate-r013.png | PHOTO-14/sku-plate-r013/A001 | auto | deliverables/sku-plate-r013.png — File is present. |
+| deliverables/sku-plate-r013.png | PHOTO-14/sku-plate-r013/A002 | auto | deliverables/sku-plate-r013.png — The file opens in a format-aware reader. |
+| deliverables/sku-plate-r013.png | PHOTO-14/sku-plate-r013/A003 | auto | deliverables/sku-plate-r013.png — The width is 1200 px. |
+| deliverables/sku-plate-r013.png | PHOTO-14/sku-plate-r013/A004 | auto | deliverables/sku-plate-r013.png — The height is 1200 px. |
+| deliverables/sku-plate-r013.png | PHOTO-14/sku-plate-r013/H001 | human | deliverables/sku-plate-r013.png — The part geometry agrees with the source component. |
+| deliverables/sku-plate-r013.png | PHOTO-14/sku-plate-r013/H002 | human | deliverables/sku-plate-r013.png — Surface defects affecting identification remain visible. |
+| deliverables/sku-plate-r013.png, source parts_export.csv, row 13, field part_number | PHOTO-14/sku-plate-r013/H003 | human | deliverables/sku-plate-r013.png / source parts_export.csv, row 13, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-plate-r013.png | PHOTO-14/sku-plate-r013/H004 | human | deliverables/sku-plate-r013.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-plate-r013.png | PHOTO-14/sku-plate-r013/H005 | human | deliverables/sku-plate-r013.png — The visual character feels like Girdermark Elevator & Electrical Supply. |
+| deliverables/sku-plate-r013.png | PHOTO-14/sku-plate-r013/H006 | human | deliverables/sku-plate-r013.png — The intended reading order is clear. |
+| deliverables/sku-plate-r013.png | PHOTO-14/sku-plate-r013/H007 | human | deliverables/sku-plate-r013.png — The creative treatment suits the audience described in the brand brief. |
+| deliverables/sku-plate-r013.png | PHOTO-14/sku-plate-r013/H008 | human | deliverables/sku-plate-r013.png — The composition feels native to its stated delivery format. |
+| sources/sku-plate.zip | PHOTO-14/sku-plate-source/A001 | auto | sources/sku-plate.zip — The named source archive is delivered. |
+| sources/sku-plate.zip | PHOTO-14/sku-plate-source/A002 | auto | sources/sku-plate.zip — The source archive opens. |
+| sources/sku-plate.zip | PHOTO-14/sku-plate-source/A003 | auto | sources/sku-plate.zip — The archive contains a native source or an editable-document reference. |
+| sources/sku-plate.zip | PHOTO-14/sku-plate-source/H001 | human | sources/sku-plate.zip — The source opens in its stated editing application. |
+| sources/sku-plate.zip | PHOTO-14/sku-plate-source/H002 | human | sources/sku-plate.zip — The text can be edited independently of the photograph. |
+| deliverables/sku-cutout-r002.png | PHOTO-14/sku-cutout-r002/A001 | auto | deliverables/sku-cutout-r002.png — File is present. |
+| deliverables/sku-cutout-r002.png | PHOTO-14/sku-cutout-r002/A002 | auto | deliverables/sku-cutout-r002.png — The file opens in a format-aware reader. |
+| deliverables/sku-cutout-r002.png | PHOTO-14/sku-cutout-r002/A003 | auto | deliverables/sku-cutout-r002.png — The width is 1600 px. |
+| deliverables/sku-cutout-r002.png | PHOTO-14/sku-cutout-r002/A004 | auto | deliverables/sku-cutout-r002.png — The height is 1600 px. |
+| deliverables/sku-cutout-r002.png | PHOTO-14/sku-cutout-r002/A005 | auto | deliverables/sku-cutout-r002.png — The background contains genuinely transparent pixels. |
+| deliverables/sku-cutout-r002.png | PHOTO-14/sku-cutout-r002/H001 | human | deliverables/sku-cutout-r002.png — The silhouette preserves all functional holes. |
+| deliverables/sku-cutout-r002.png | PHOTO-14/sku-cutout-r002/H002 | human | deliverables/sku-cutout-r002.png — The edge has no visible halo. |
+| deliverables/sku-cutout-r002.png, source parts_export.csv, row 2, field part_number | PHOTO-14/sku-cutout-r002/H003 | human | deliverables/sku-cutout-r002.png / source parts_export.csv, row 2, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-cutout-r002.png | PHOTO-14/sku-cutout-r002/H004 | human | deliverables/sku-cutout-r002.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-cutout-r003.png | PHOTO-14/sku-cutout-r003/A001 | auto | deliverables/sku-cutout-r003.png — File is present. |
+| deliverables/sku-cutout-r003.png | PHOTO-14/sku-cutout-r003/A002 | auto | deliverables/sku-cutout-r003.png — The file opens in a format-aware reader. |
+| deliverables/sku-cutout-r003.png | PHOTO-14/sku-cutout-r003/A003 | auto | deliverables/sku-cutout-r003.png — The width is 1600 px. |
+| deliverables/sku-cutout-r003.png | PHOTO-14/sku-cutout-r003/A004 | auto | deliverables/sku-cutout-r003.png — The height is 1600 px. |
+| deliverables/sku-cutout-r003.png | PHOTO-14/sku-cutout-r003/A005 | auto | deliverables/sku-cutout-r003.png — The background contains genuinely transparent pixels. |
+| deliverables/sku-cutout-r003.png | PHOTO-14/sku-cutout-r003/H001 | human | deliverables/sku-cutout-r003.png — The silhouette preserves all functional holes. |
+| deliverables/sku-cutout-r003.png | PHOTO-14/sku-cutout-r003/H002 | human | deliverables/sku-cutout-r003.png — The edge has no visible halo. |
+| deliverables/sku-cutout-r003.png, source parts_export.csv, row 3, field part_number | PHOTO-14/sku-cutout-r003/H003 | human | deliverables/sku-cutout-r003.png / source parts_export.csv, row 3, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-cutout-r003.png | PHOTO-14/sku-cutout-r003/H004 | human | deliverables/sku-cutout-r003.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-cutout-r004.png | PHOTO-14/sku-cutout-r004/A001 | auto | deliverables/sku-cutout-r004.png — File is present. |
+| deliverables/sku-cutout-r004.png | PHOTO-14/sku-cutout-r004/A002 | auto | deliverables/sku-cutout-r004.png — The file opens in a format-aware reader. |
+| deliverables/sku-cutout-r004.png | PHOTO-14/sku-cutout-r004/A003 | auto | deliverables/sku-cutout-r004.png — The width is 1600 px. |
+| deliverables/sku-cutout-r004.png | PHOTO-14/sku-cutout-r004/A004 | auto | deliverables/sku-cutout-r004.png — The height is 1600 px. |
+| deliverables/sku-cutout-r004.png | PHOTO-14/sku-cutout-r004/A005 | auto | deliverables/sku-cutout-r004.png — The background contains genuinely transparent pixels. |
+| deliverables/sku-cutout-r004.png | PHOTO-14/sku-cutout-r004/H001 | human | deliverables/sku-cutout-r004.png — The silhouette preserves all functional holes. |
+| deliverables/sku-cutout-r004.png | PHOTO-14/sku-cutout-r004/H002 | human | deliverables/sku-cutout-r004.png — The edge has no visible halo. |
+| deliverables/sku-cutout-r004.png, source parts_export.csv, row 4, field part_number | PHOTO-14/sku-cutout-r004/H003 | human | deliverables/sku-cutout-r004.png / source parts_export.csv, row 4, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-cutout-r004.png | PHOTO-14/sku-cutout-r004/H004 | human | deliverables/sku-cutout-r004.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-cutout-r005.png | PHOTO-14/sku-cutout-r005/A001 | auto | deliverables/sku-cutout-r005.png — File is present. |
+| deliverables/sku-cutout-r005.png | PHOTO-14/sku-cutout-r005/A002 | auto | deliverables/sku-cutout-r005.png — The file opens in a format-aware reader. |
+| deliverables/sku-cutout-r005.png | PHOTO-14/sku-cutout-r005/A003 | auto | deliverables/sku-cutout-r005.png — The width is 1600 px. |
+| deliverables/sku-cutout-r005.png | PHOTO-14/sku-cutout-r005/A004 | auto | deliverables/sku-cutout-r005.png — The height is 1600 px. |
+| deliverables/sku-cutout-r005.png | PHOTO-14/sku-cutout-r005/A005 | auto | deliverables/sku-cutout-r005.png — The background contains genuinely transparent pixels. |
+| deliverables/sku-cutout-r005.png | PHOTO-14/sku-cutout-r005/H001 | human | deliverables/sku-cutout-r005.png — The silhouette preserves all functional holes. |
+| deliverables/sku-cutout-r005.png | PHOTO-14/sku-cutout-r005/H002 | human | deliverables/sku-cutout-r005.png — The edge has no visible halo. |
+| deliverables/sku-cutout-r005.png, source parts_export.csv, row 5, field part_number | PHOTO-14/sku-cutout-r005/H003 | human | deliverables/sku-cutout-r005.png / source parts_export.csv, row 5, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-cutout-r005.png | PHOTO-14/sku-cutout-r005/H004 | human | deliverables/sku-cutout-r005.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-cutout-r006.png | PHOTO-14/sku-cutout-r006/A001 | auto | deliverables/sku-cutout-r006.png — File is present. |
+| deliverables/sku-cutout-r006.png | PHOTO-14/sku-cutout-r006/A002 | auto | deliverables/sku-cutout-r006.png — The file opens in a format-aware reader. |
+| deliverables/sku-cutout-r006.png | PHOTO-14/sku-cutout-r006/A003 | auto | deliverables/sku-cutout-r006.png — The width is 1600 px. |
+| deliverables/sku-cutout-r006.png | PHOTO-14/sku-cutout-r006/A004 | auto | deliverables/sku-cutout-r006.png — The height is 1600 px. |
+| deliverables/sku-cutout-r006.png | PHOTO-14/sku-cutout-r006/A005 | auto | deliverables/sku-cutout-r006.png — The background contains genuinely transparent pixels. |
+| deliverables/sku-cutout-r006.png | PHOTO-14/sku-cutout-r006/H001 | human | deliverables/sku-cutout-r006.png — The silhouette preserves all functional holes. |
+| deliverables/sku-cutout-r006.png | PHOTO-14/sku-cutout-r006/H002 | human | deliverables/sku-cutout-r006.png — The edge has no visible halo. |
+| deliverables/sku-cutout-r006.png, source parts_export.csv, row 6, field part_number | PHOTO-14/sku-cutout-r006/H003 | human | deliverables/sku-cutout-r006.png / source parts_export.csv, row 6, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-cutout-r006.png | PHOTO-14/sku-cutout-r006/H004 | human | deliverables/sku-cutout-r006.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-cutout-r007.png | PHOTO-14/sku-cutout-r007/A001 | auto | deliverables/sku-cutout-r007.png — File is present. |
+| deliverables/sku-cutout-r007.png | PHOTO-14/sku-cutout-r007/A002 | auto | deliverables/sku-cutout-r007.png — The file opens in a format-aware reader. |
+| deliverables/sku-cutout-r007.png | PHOTO-14/sku-cutout-r007/A003 | auto | deliverables/sku-cutout-r007.png — The width is 1600 px. |
+| deliverables/sku-cutout-r007.png | PHOTO-14/sku-cutout-r007/A004 | auto | deliverables/sku-cutout-r007.png — The height is 1600 px. |
+| deliverables/sku-cutout-r007.png | PHOTO-14/sku-cutout-r007/A005 | auto | deliverables/sku-cutout-r007.png — The background contains genuinely transparent pixels. |
+| deliverables/sku-cutout-r007.png | PHOTO-14/sku-cutout-r007/H001 | human | deliverables/sku-cutout-r007.png — The silhouette preserves all functional holes. |
+| deliverables/sku-cutout-r007.png | PHOTO-14/sku-cutout-r007/H002 | human | deliverables/sku-cutout-r007.png — The edge has no visible halo. |
+| deliverables/sku-cutout-r007.png, source parts_export.csv, row 7, field part_number | PHOTO-14/sku-cutout-r007/H003 | human | deliverables/sku-cutout-r007.png / source parts_export.csv, row 7, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-cutout-r007.png | PHOTO-14/sku-cutout-r007/H004 | human | deliverables/sku-cutout-r007.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-cutout-r008.png | PHOTO-14/sku-cutout-r008/A001 | auto | deliverables/sku-cutout-r008.png — File is present. |
+| deliverables/sku-cutout-r008.png | PHOTO-14/sku-cutout-r008/A002 | auto | deliverables/sku-cutout-r008.png — The file opens in a format-aware reader. |
+| deliverables/sku-cutout-r008.png | PHOTO-14/sku-cutout-r008/A003 | auto | deliverables/sku-cutout-r008.png — The width is 1600 px. |
+| deliverables/sku-cutout-r008.png | PHOTO-14/sku-cutout-r008/A004 | auto | deliverables/sku-cutout-r008.png — The height is 1600 px. |
+| deliverables/sku-cutout-r008.png | PHOTO-14/sku-cutout-r008/A005 | auto | deliverables/sku-cutout-r008.png — The background contains genuinely transparent pixels. |
+| deliverables/sku-cutout-r008.png | PHOTO-14/sku-cutout-r008/H001 | human | deliverables/sku-cutout-r008.png — The silhouette preserves all functional holes. |
+| deliverables/sku-cutout-r008.png | PHOTO-14/sku-cutout-r008/H002 | human | deliverables/sku-cutout-r008.png — The edge has no visible halo. |
+| deliverables/sku-cutout-r008.png, source parts_export.csv, row 8, field part_number | PHOTO-14/sku-cutout-r008/H003 | human | deliverables/sku-cutout-r008.png / source parts_export.csv, row 8, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-cutout-r008.png | PHOTO-14/sku-cutout-r008/H004 | human | deliverables/sku-cutout-r008.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-cutout-r009.png | PHOTO-14/sku-cutout-r009/A001 | auto | deliverables/sku-cutout-r009.png — File is present. |
+| deliverables/sku-cutout-r009.png | PHOTO-14/sku-cutout-r009/A002 | auto | deliverables/sku-cutout-r009.png — The file opens in a format-aware reader. |
+| deliverables/sku-cutout-r009.png | PHOTO-14/sku-cutout-r009/A003 | auto | deliverables/sku-cutout-r009.png — The width is 1600 px. |
+| deliverables/sku-cutout-r009.png | PHOTO-14/sku-cutout-r009/A004 | auto | deliverables/sku-cutout-r009.png — The height is 1600 px. |
+| deliverables/sku-cutout-r009.png | PHOTO-14/sku-cutout-r009/A005 | auto | deliverables/sku-cutout-r009.png — The background contains genuinely transparent pixels. |
+| deliverables/sku-cutout-r009.png | PHOTO-14/sku-cutout-r009/H001 | human | deliverables/sku-cutout-r009.png — The silhouette preserves all functional holes. |
+| deliverables/sku-cutout-r009.png | PHOTO-14/sku-cutout-r009/H002 | human | deliverables/sku-cutout-r009.png — The edge has no visible halo. |
+| deliverables/sku-cutout-r009.png, source parts_export.csv, row 9, field part_number | PHOTO-14/sku-cutout-r009/H003 | human | deliverables/sku-cutout-r009.png / source parts_export.csv, row 9, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-cutout-r009.png | PHOTO-14/sku-cutout-r009/H004 | human | deliverables/sku-cutout-r009.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-cutout-r010.png | PHOTO-14/sku-cutout-r010/A001 | auto | deliverables/sku-cutout-r010.png — File is present. |
+| deliverables/sku-cutout-r010.png | PHOTO-14/sku-cutout-r010/A002 | auto | deliverables/sku-cutout-r010.png — The file opens in a format-aware reader. |
+| deliverables/sku-cutout-r010.png | PHOTO-14/sku-cutout-r010/A003 | auto | deliverables/sku-cutout-r010.png — The width is 1600 px. |
+| deliverables/sku-cutout-r010.png | PHOTO-14/sku-cutout-r010/A004 | auto | deliverables/sku-cutout-r010.png — The height is 1600 px. |
+| deliverables/sku-cutout-r010.png | PHOTO-14/sku-cutout-r010/A005 | auto | deliverables/sku-cutout-r010.png — The background contains genuinely transparent pixels. |
+| deliverables/sku-cutout-r010.png | PHOTO-14/sku-cutout-r010/H001 | human | deliverables/sku-cutout-r010.png — The silhouette preserves all functional holes. |
+| deliverables/sku-cutout-r010.png | PHOTO-14/sku-cutout-r010/H002 | human | deliverables/sku-cutout-r010.png — The edge has no visible halo. |
+| deliverables/sku-cutout-r010.png, source parts_export.csv, row 10, field part_number | PHOTO-14/sku-cutout-r010/H003 | human | deliverables/sku-cutout-r010.png / source parts_export.csv, row 10, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-cutout-r010.png | PHOTO-14/sku-cutout-r010/H004 | human | deliverables/sku-cutout-r010.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-cutout-r011.png | PHOTO-14/sku-cutout-r011/A001 | auto | deliverables/sku-cutout-r011.png — File is present. |
+| deliverables/sku-cutout-r011.png | PHOTO-14/sku-cutout-r011/A002 | auto | deliverables/sku-cutout-r011.png — The file opens in a format-aware reader. |
+| deliverables/sku-cutout-r011.png | PHOTO-14/sku-cutout-r011/A003 | auto | deliverables/sku-cutout-r011.png — The width is 1600 px. |
+| deliverables/sku-cutout-r011.png | PHOTO-14/sku-cutout-r011/A004 | auto | deliverables/sku-cutout-r011.png — The height is 1600 px. |
+| deliverables/sku-cutout-r011.png | PHOTO-14/sku-cutout-r011/A005 | auto | deliverables/sku-cutout-r011.png — The background contains genuinely transparent pixels. |
+| deliverables/sku-cutout-r011.png | PHOTO-14/sku-cutout-r011/H001 | human | deliverables/sku-cutout-r011.png — The silhouette preserves all functional holes. |
+| deliverables/sku-cutout-r011.png | PHOTO-14/sku-cutout-r011/H002 | human | deliverables/sku-cutout-r011.png — The edge has no visible halo. |
+| deliverables/sku-cutout-r011.png, source parts_export.csv, row 11, field part_number | PHOTO-14/sku-cutout-r011/H003 | human | deliverables/sku-cutout-r011.png / source parts_export.csv, row 11, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-cutout-r011.png | PHOTO-14/sku-cutout-r011/H004 | human | deliverables/sku-cutout-r011.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-cutout-r012.png | PHOTO-14/sku-cutout-r012/A001 | auto | deliverables/sku-cutout-r012.png — File is present. |
+| deliverables/sku-cutout-r012.png | PHOTO-14/sku-cutout-r012/A002 | auto | deliverables/sku-cutout-r012.png — The file opens in a format-aware reader. |
+| deliverables/sku-cutout-r012.png | PHOTO-14/sku-cutout-r012/A003 | auto | deliverables/sku-cutout-r012.png — The width is 1600 px. |
+| deliverables/sku-cutout-r012.png | PHOTO-14/sku-cutout-r012/A004 | auto | deliverables/sku-cutout-r012.png — The height is 1600 px. |
+| deliverables/sku-cutout-r012.png | PHOTO-14/sku-cutout-r012/A005 | auto | deliverables/sku-cutout-r012.png — The background contains genuinely transparent pixels. |
+| deliverables/sku-cutout-r012.png | PHOTO-14/sku-cutout-r012/H001 | human | deliverables/sku-cutout-r012.png — The silhouette preserves all functional holes. |
+| deliverables/sku-cutout-r012.png | PHOTO-14/sku-cutout-r012/H002 | human | deliverables/sku-cutout-r012.png — The edge has no visible halo. |
+| deliverables/sku-cutout-r012.png, source parts_export.csv, row 12, field part_number | PHOTO-14/sku-cutout-r012/H003 | human | deliverables/sku-cutout-r012.png / source parts_export.csv, row 12, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-cutout-r012.png | PHOTO-14/sku-cutout-r012/H004 | human | deliverables/sku-cutout-r012.png — The finishing looks polished at the delivered size. |
+| deliverables/sku-cutout-r013.png | PHOTO-14/sku-cutout-r013/A001 | auto | deliverables/sku-cutout-r013.png — File is present. |
+| deliverables/sku-cutout-r013.png | PHOTO-14/sku-cutout-r013/A002 | auto | deliverables/sku-cutout-r013.png — The file opens in a format-aware reader. |
+| deliverables/sku-cutout-r013.png | PHOTO-14/sku-cutout-r013/A003 | auto | deliverables/sku-cutout-r013.png — The width is 1600 px. |
+| deliverables/sku-cutout-r013.png | PHOTO-14/sku-cutout-r013/A004 | auto | deliverables/sku-cutout-r013.png — The height is 1600 px. |
+| deliverables/sku-cutout-r013.png | PHOTO-14/sku-cutout-r013/A005 | auto | deliverables/sku-cutout-r013.png — The background contains genuinely transparent pixels. |
+| deliverables/sku-cutout-r013.png | PHOTO-14/sku-cutout-r013/H001 | human | deliverables/sku-cutout-r013.png — The silhouette preserves all functional holes. |
+| deliverables/sku-cutout-r013.png | PHOTO-14/sku-cutout-r013/H002 | human | deliverables/sku-cutout-r013.png — The edge has no visible halo. |
+| deliverables/sku-cutout-r013.png, source parts_export.csv, row 13, field part_number | PHOTO-14/sku-cutout-r013/H003 | human | deliverables/sku-cutout-r013.png / source parts_export.csv, row 13, field part_number — The printed part_number matches the authoritative record. |
+| deliverables/sku-cutout-r013.png | PHOTO-14/sku-cutout-r013/H004 | human | deliverables/sku-cutout-r013.png — The finishing looks polished at the delivered size. |
