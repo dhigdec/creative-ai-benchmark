@@ -25,3 +25,8 @@
 | Plant variety tag - Fothergilla | deliverables/plant-tag-r022.pdf | {"format":"pdf","width_mm":148.167,"height_mm":209.889,"pages":1,"template_reference":"ferncroft_benchtag_2025_PRINTER.pdf"} |
 | Plant variety tag - combined production run | deliverables/plant-tag-combined.pdf | {"format":"pdf","pages":21,"width_mm":148.167,"height_mm":209.889} |
 | Plant variety tag - reusable editable source | sources/plant-tag.zip | {"format":"zip","native_extensions":[".indd",".idml",".ai",".psd",".svg",".pptx"],"remote_document_alternative":"A persistent editable Adobe document link may be included as document.json inside the ZIP; access and editability require independent validation."} |
+| Department tag production run - Perennials (PER) | deliverables/department-run-perennials-per.pdf | {"format":"pdf","width_mm":55,"height_mm":85,"pages":7} |
+| Department tag production run - Herbs (HRB) | deliverables/department-run-herbs-hrb.pdf | {"format":"pdf","width_mm":55,"height_mm":85,"pages":6} |
+| Department tag production run - Shrubs (SHR) | deliverables/department-run-shrubs-shr.pdf | {"format":"pdf","width_mm":55,"height_mm":85,"pages":5} |
+| Department tag production run - Specimen (SPC) | deliverables/department-run-specimen-spc.pdf | {"format":"pdf","width_mm":55,"height_mm":85,"pages":3} |
+| Department tag production run - reusable editable source | sources/department-run.zip | {"format":"zip","native_extensions":[".indd",".idml",".ai",".psd",".svg",".pptx"],"remote_document_alternative":"A persistent editable Adobe document link may be included as document.json inside the ZIP; access and editability require independent validation."} |

@@ -8,7 +8,7 @@ The commission
 
  One-colour packaging identity: 1 named export. The mark uses the approved one-ink treatment. The counter spaces remain open on the stated stock.
 
- Cask-release label artwork: 13 named exports. The release details match this record. The label respects the supplied packaging area.
+ Cask-release label artwork: 8 named exports. The release details match this record. The label respects the supplied packaging area.
 
  Packaging supplier application sheet: 1 named export. The ink treatment is unambiguous. The application scale is stated.
 

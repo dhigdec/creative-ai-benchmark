@@ -5,7 +5,7 @@ Make eight advisers look like one firm across the site and leave-behind
 Northwind Advisory's team photographs were taken on three separate mornings. At present, we look like three different firms. We need a coherent portrait treatment and the team page, capabilities leave-behind and announcement posts built around it.
 
 Please prepare
-- Advisory team-page composition: 1 named export. Each portrait is paired with the correct adviser. Professional credentials match the supplied record.
+- Advisory team-page composition: 1 named export. 
 - Capabilities leave-behind: 1 named export. The sector offer is clearly structured. No unsupported credential is added.
 - Recruitment announcement: 1 named export. The approved role or recruitment offer is clear. The application action is readable.
 

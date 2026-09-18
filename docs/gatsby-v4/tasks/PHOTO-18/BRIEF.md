@@ -6,7 +6,7 @@ We are Fernwell & Rowe, and this is a pilot using the Hartley wedding shortlist.
 
 Scope
 1. Wedding review image: 16 named exports. The people retain their source identities. Skin retains natural texture. The scene remains faithful to the event.
-2. Full-resolution wedding keeper: 6 named exports. The keeper matches the explicitly supplied selection. Highlight detail is retained where present in the source.
+2. Full-resolution wedding keeper: 6 named exports. The delivered keeper is derived from its named source photograph. Highlight detail is retained where present in the source.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
 

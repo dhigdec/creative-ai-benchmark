@@ -6,7 +6,7 @@ Deliverables
 1. Food-show programme promo: 1 named export. The host introduction is intelligible. The sequence follows the approved rundown.
 2. Food-show vertical promo: 1 named export. The featured dish remains recognisable.
 3. Food-show thumbnail: 1 named export. The programme title is readable.
-4. Programme segment card: 9 named exports. The card content matches the segment.
+4. Programme segment card: 9 named exports. If this record names a supplied picture, that picture appears on the card; otherwise the card contains no invented image.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
 - Video delivery means a playable MP4, not a storyboard, still montage PDF or editing log. Audio expectations are stated on each film. Speech-led work requires supplied or explicitly authorised synthetic speech; do not invent documentary speech.

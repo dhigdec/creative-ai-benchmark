@@ -6,7 +6,7 @@ Twenty-two people need correct performer laminates. Our designer left in 2024, a
 
 The commission
 
- Performer credential: 23 named exports. The access category matches the performer record. The portrait belongs to the named performer. The credential remains readable when worn.
+ Festival access credential: 22 named exports. The role and access areas match this person record. When a headshot is supplied, it belongs to the named person; otherwise the credential contains no invented portrait. The credential remains readable when worn.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
 

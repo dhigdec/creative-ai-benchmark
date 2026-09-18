@@ -6,7 +6,7 @@ Our dealer meetings need a reliable label system, not another set of labels asse
 
 The commission
 
- Product roll label: 13 named exports. The tier is identified accurately. The required installation copy fits at label size.
+ Product roll label: 13 named exports. The tier is identified accurately. The complete warranty_statement remains inside the label trim.
 
  Dealer range brochure: 1 named export. The product tiers are easy to compare. The uses are supported by the approved range data.
 

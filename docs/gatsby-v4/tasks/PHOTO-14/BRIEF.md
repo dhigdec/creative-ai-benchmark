@@ -6,7 +6,7 @@ Girdermark sells replacement components. A buyer needs to recognise the finish a
 
 The commission
 
- Industrial SKU plate: 12 named exports. The part geometry agrees with the source component. Surface defects affecting identification remain visible.
+ Industrial SKU plate: 12 named exports. The part geometry agrees with the source component. Source wear, machining marks and identification defects are not retouched away.
 
  Industrial SKU cutout: 12 named exports. The silhouette preserves all functional holes. The edge has no visible halo.
 

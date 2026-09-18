@@ -8,7 +8,7 @@ Final handoff
 
  Recovered Isla Verde monogram: 1 named export. The letterforms match the authoritative source. The inter-letter relationships preserve the original identity.
 
- Facility pictogram: 8 named exports. The symbol communicates the named facility. The symbol remains legible at 12 mm.
+ Wordless facility pictogram: 8 named exports. The complete symbol remains inside the export boundary. The symbol retains an open interior counter at 12 mm.
 
  Bilingual door plate: 25 named exports. The language pairing matches the schedule. The room identifier is unambiguous. The approved monogram is used.
 

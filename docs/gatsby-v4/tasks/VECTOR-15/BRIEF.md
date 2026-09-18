@@ -7,7 +7,7 @@ Marchfield Exchange is a listed 1911 building. The crest needs recovering from b
 Deliverables
 1. Marchfield shield-and-wreath crest: 2 named exports. The shield matches the authoritative source crest. The wreath matches the authoritative source crest. The original lettering is preserved.
 2. Marchfield engraving artwork: 1 named export. The original crest identity survives the production simplification. Small counters remain open at 32 mm. The thinnest engraved stroke is at least 0.50 mm at a 32 mm crest width.
-3. Suite plate: 15 named exports. The tenant name fits inside the plate trim. The approved shield-and-wreath crest is used. The artwork leaves a 12 mm clear margin.
+3. Suite plate: 15 named exports. The suite number matches this schedule record. The approved shield-and-wreath crest is used. The artwork leaves a 12 mm clear margin.
 4. Entrance plaque artwork: 1 named export. The crest is 180 mm across. Artwork stays at least 15 mm from each bolt centre. The building name is correct.
 5. Lobby directory artwork: 1 named export. The crest is 120 mm across. Artwork leaves a 20 mm clear margin. Tenants appear in reconciled suite order.
 6. Brass reproduction proof: 1 named export. The proof shows the crest on satin brass. The stated reproduction size is accurate. The proof identifies details that fail the 0.50 mm stroke limit.

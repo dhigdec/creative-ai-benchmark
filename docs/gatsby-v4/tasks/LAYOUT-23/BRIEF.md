@@ -6,7 +6,7 @@ The Meridian Summit registration desk needs a correct badge for every attending 
 
 The commission
 
- Conference delegate badge: 20 named exports. The access category matches the registration. The portrait belongs to the delegate. The delegate name is readable when worn.
+ Conference delegate badge: 20 named exports. The access category matches the registration. When a headshot is supplied, it belongs to the named delegate; otherwise the badge contains no invented portrait. The delegate name is readable when worn.
 
  Conference track direction sign: 3 named exports. The track name follows the approved track note. The arrow points in the specified direction.
 

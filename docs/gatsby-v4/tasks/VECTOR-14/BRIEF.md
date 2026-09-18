@@ -12,7 +12,7 @@ The commission
 
  Club letter glyph: 26 named exports. The letter follows Del's 1994 drawing. The weight is consistent with the restored set.
 
- Founders Five member bib: 39 named exports. The runner number matches this member. The number is the dominant visual.
+ Founders Five member bib: 36 named exports. The runner number matches this member. The number is the dominant visual.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
 

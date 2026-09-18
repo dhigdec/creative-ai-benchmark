@@ -8,7 +8,7 @@ Final handoff
 
  Festival programme: 1 named export. The running order matches the approved lineup. Stage changes are easy to follow. Performer names are readable at print size.
 
- Festival wayfinding sign: 3 named exports. The destination matches the site information. The direction is unambiguous.
+ Festival wayfinding sign: 3 named exports. Use the approved destination and arrow direction for the Main stage, Acoustic stage and Information signs.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
 

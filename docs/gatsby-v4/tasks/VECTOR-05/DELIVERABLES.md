@@ -3,14 +3,14 @@
 | Output | File | Specification |
 |---|---|---|
 | Recovered Isla Verde monogram | deliverables/monogram.svg | {"format":"svg","transparent":true} |
-| Facility pictogram - Reception | deliverables/pictogram-reception.svg | {"format":"svg","transparent":true} |
-| Facility pictogram - Pool | deliverables/pictogram-pool.svg | {"format":"svg","transparent":true} |
-| Facility pictogram - Restaurant | deliverables/pictogram-restaurant.svg | {"format":"svg","transparent":true} |
-| Facility pictogram - Bar | deliverables/pictogram-bar.svg | {"format":"svg","transparent":true} |
-| Facility pictogram - Spa | deliverables/pictogram-spa.svg | {"format":"svg","transparent":true} |
-| Facility pictogram - Gym | deliverables/pictogram-gym.svg | {"format":"svg","transparent":true} |
-| Facility pictogram - Restroom | deliverables/pictogram-restroom.svg | {"format":"svg","transparent":true} |
-| Facility pictogram - Beach | deliverables/pictogram-beach.svg | {"format":"svg","transparent":true} |
+| Wordless facility pictogram - Reception | deliverables/pictogram-reception.svg | {"format":"svg","transparent":true} |
+| Wordless facility pictogram - Pool | deliverables/pictogram-pool.svg | {"format":"svg","transparent":true} |
+| Wordless facility pictogram - Restaurant | deliverables/pictogram-restaurant.svg | {"format":"svg","transparent":true} |
+| Wordless facility pictogram - Bar | deliverables/pictogram-bar.svg | {"format":"svg","transparent":true} |
+| Wordless facility pictogram - Spa | deliverables/pictogram-spa.svg | {"format":"svg","transparent":true} |
+| Wordless facility pictogram - Gym | deliverables/pictogram-gym.svg | {"format":"svg","transparent":true} |
+| Wordless facility pictogram - Restroom | deliverables/pictogram-restroom.svg | {"format":"svg","transparent":true} |
+| Wordless facility pictogram - Beach | deliverables/pictogram-beach.svg | {"format":"svg","transparent":true} |
 | Bilingual door plate - 1 | deliverables/door-plate-r002.pdf | {"format":"pdf","width_mm":200,"height_mm":75,"pages":1} |
 | Bilingual door plate - 2 | deliverables/door-plate-r003.pdf | {"format":"pdf","width_mm":200,"height_mm":75,"pages":1} |
 | Bilingual door plate - 3 | deliverables/door-plate-r004.pdf | {"format":"pdf","width_mm":200,"height_mm":75,"pages":1} |

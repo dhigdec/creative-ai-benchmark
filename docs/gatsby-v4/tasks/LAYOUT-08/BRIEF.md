@@ -6,7 +6,7 @@ Looking at our Verranza photographs together, you could believe they describe th
 
 Final handoff
 
- In-villa seasonal card: 13 named exports. The season dates match this record. The villa information is unambiguous. The rate conditions are readable.
+ In-villa seasonal card: 13 named exports. The season label matches this record. The villa information is unambiguous. The rate conditions are readable.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
 

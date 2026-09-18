@@ -7,7 +7,7 @@ Umbra Loft's autumn programme needs to feel like a series, even though our six u
 Deliverables
 1. After Dark poster direction: 3 named exports. The billing order follows the supplied list. The event information is readable.
 2. Promoter pitch deck: 1 named export. The three directions are meaningfully distinct. The sequence explains the series identity.
-3. Night release post: 9 named exports. The date matches this event. The ticket action is readable.
+3. Night release post: 9 named exports. The date matches this event. The advance price is readable.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
 

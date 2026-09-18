@@ -5,8 +5,11 @@ One streetwear graphic family adapted properly for four manufacturing methods
 Static Union needs production-minded artwork adaptation for small goods. The same detailed drawing will not work unchanged as embroidery, enamel, a sticker and a woven label. We are looking for someone who understands those differences and can make deliberate reductions.
 
 Scope
-1. Manufacturing artwork: 4 named exports. The artwork respects the medium-specific vendor tolerance. The smallest reproduced detail remains open.
-2. Supplier production guide: 1 named export. The intended medium is stated on the relevant page. The physical reproduction size is unambiguous.
+1. Eagle Bolt embroidery artwork: 1 named export. The artwork respects the embroidery vendor tolerance. The smallest reproduced detail remains open.
+2. Arc Badge enamel-pin artwork: 1 named export. The artwork respects the enamel-pin vendor tolerance. The smallest reproduced detail remains open.
+3. Bolt Icon sticker artwork: 1 named export. The artwork respects the sticker vendor tolerance. The smallest reproduced detail remains open.
+4. Union Stripe woven-label artwork: 1 named export. The artwork respects the woven-label vendor tolerance. The smallest reproduced detail remains open.
+5. Supplier production guide: 1 named export. The intended medium is stated on the relevant page. The physical reproduction size is unambiguous.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
 

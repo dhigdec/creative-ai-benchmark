@@ -41,8 +41,6 @@
 | Club letter glyph - Z | deliverables/letter-z.svg | {"format":"svg","transparent":true,"closed_paths":true} |
 | Founders Five member bib - Del Marchetti | deliverables/member-bib-r002.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
 | Founders Five member bib - Marcus Abernathy | deliverables/member-bib-r003.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
-| Founders Five member bib - Tom Kowalski | deliverables/member-bib-r004.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
-| Founders Five member bib - Ray Delvecchio | deliverables/member-bib-r005.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
 | Founders Five member bib - Nina Alvarez | deliverables/member-bib-r006.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
 | Founders Five member bib - Su Yun | deliverables/member-bib-r007.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
 | Founders Five member bib - Priya Venkataraman | deliverables/member-bib-r008.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
@@ -58,7 +56,6 @@
 | Founders Five member bib - Gabriela Santos | deliverables/member-bib-r018.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
 | Founders Five member bib - Andy Poole | deliverables/member-bib-r019.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
 | Founders Five member bib - Rachel Kaminski | deliverables/member-bib-r020.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
-| Founders Five member bib - Owen Fitzgerald | deliverables/member-bib-r021.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
 | Founders Five member bib - Terrence Bell | deliverables/member-bib-r022.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
 | Founders Five member bib - Sandra Delacroix | deliverables/member-bib-r023.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
 | Founders Five member bib - Kevin Nguyen | deliverables/member-bib-r024.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
@@ -77,5 +74,5 @@
 | Founders Five member bib - Grace Abello | deliverables/member-bib-r037.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
 | Founders Five member bib - Vince Russo | deliverables/member-bib-r038.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
 | Founders Five member bib - Harriet Blackwell | deliverables/member-bib-r039.pdf | {"format":"pdf","width_mm":210,"height_mm":148,"pages":1} |
-| Founders Five member bib - combined production run | deliverables/member-bib-combined.pdf | {"format":"pdf","pages":38,"width_mm":210,"height_mm":148} |
+| Founders Five member bib - combined production run | deliverables/member-bib-combined.pdf | {"format":"pdf","pages":35,"width_mm":210,"height_mm":148} |
 | Founders Five member bib - reusable editable source | sources/member-bib.zip | {"format":"zip","native_extensions":[".indd",".idml",".ai",".psd",".svg",".pptx"],"remote_document_alternative":"A persistent editable Adobe document link may be included as document.json inside the ZIP; access and editability require independent validation."} |

@@ -19,9 +19,9 @@
 | Ceramic product-page module - reusable editable source | sources/ceramic-pdp.zip | {"format":"zip","native_extensions":[".indd",".idml",".ai",".psd",".svg",".pptx"],"remote_document_alternative":"A persistent editable Adobe document link may be included as document.json inside the ZIP; access and editability require independent validation."} |
 | Wholesale range one-sheet | deliverables/wholesale-range.pdf | {"format":"pdf","width_mm":210,"height_mm":297,"pages":1} |
 | Wholesale range one-sheet - reusable editable source | sources/wholesale-range.zip | {"format":"zip","native_extensions":[".indd",".idml",".ai",".psd",".svg",".pptx"],"remote_document_alternative":"A persistent editable Adobe document link may be included as document.json inside the ZIP; access and editability require independent validation."} |
-| Ceramic range launch carousel | deliverables/launch-carousel-p01.png | {"format":"png","width":1080,"height":1350} |
-| Ceramic range launch carousel | deliverables/launch-carousel-p02.png | {"format":"png","width":1080,"height":1350} |
-| Ceramic range launch carousel | deliverables/launch-carousel-p03.png | {"format":"png","width":1080,"height":1350} |
-| Ceramic range launch carousel | deliverables/launch-carousel-p04.png | {"format":"png","width":1080,"height":1350} |
-| Ceramic range launch carousel | deliverables/launch-carousel-p05.png | {"format":"png","width":1080,"height":1350} |
+| Ceramic range launch carousel - Page 1 | deliverables/launch-carousel-p01.png | {"format":"png","width":1080,"height":1350} |
+| Ceramic range launch carousel - Page 2 | deliverables/launch-carousel-p02.png | {"format":"png","width":1080,"height":1350} |
+| Ceramic range launch carousel - Page 3 | deliverables/launch-carousel-p03.png | {"format":"png","width":1080,"height":1350} |
+| Ceramic range launch carousel - Page 4 | deliverables/launch-carousel-p04.png | {"format":"png","width":1080,"height":1350} |
+| Ceramic range launch carousel - Page 5 | deliverables/launch-carousel-p05.png | {"format":"png","width":1080,"height":1350} |
 | Ceramic range launch carousel - reusable editable source | sources/launch-carousel.zip | {"format":"zip","native_extensions":[".indd",".idml",".ai",".psd",".svg",".pptx"],"remote_document_alternative":"A persistent editable Adobe document link may be included as document.json inside the ZIP; access and editability require independent validation."} |

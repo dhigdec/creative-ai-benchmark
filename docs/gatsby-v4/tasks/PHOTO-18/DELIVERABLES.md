@@ -18,9 +18,9 @@
 | Wedding review image - hartley_select_14 | deliverables/review-hartley-select-14.jpg | {"format":"jpg","long_edge":1600} |
 | Wedding review image - hartley_select_15 | deliverables/review-hartley-select-15.jpg | {"format":"jpg","long_edge":1600} |
 | Wedding review image - hartley_select_16 | deliverables/review-hartley-select-16.jpg | {"format":"jpg","long_edge":1600} |
-| Full-resolution wedding keeper - Keeper 1 | deliverables/keeper-keeper-1.png | {"format":"png","source_dimensions":true} |
-| Full-resolution wedding keeper - Keeper 2 | deliverables/keeper-keeper-2.png | {"format":"png","source_dimensions":true} |
-| Full-resolution wedding keeper - Keeper 3 | deliverables/keeper-keeper-3.png | {"format":"png","source_dimensions":true} |
-| Full-resolution wedding keeper - Keeper 4 | deliverables/keeper-keeper-4.png | {"format":"png","source_dimensions":true} |
-| Full-resolution wedding keeper - Keeper 5 | deliverables/keeper-keeper-5.png | {"format":"png","source_dimensions":true} |
-| Full-resolution wedding keeper - Keeper 6 | deliverables/keeper-keeper-6.png | {"format":"png","source_dimensions":true} |
+| Full-resolution wedding keeper - hartley_select_01 | deliverables/keeper-hartley-select-01.png | {"format":"png","source_dimensions":true,"width":4000,"height":6000} |
+| Full-resolution wedding keeper - hartley_select_05 | deliverables/keeper-hartley-select-05.png | {"format":"png","source_dimensions":true,"width":6000,"height":4000} |
+| Full-resolution wedding keeper - hartley_select_08 | deliverables/keeper-hartley-select-08.png | {"format":"png","source_dimensions":true,"width":6000,"height":4000} |
+| Full-resolution wedding keeper - hartley_select_11 | deliverables/keeper-hartley-select-11.png | {"format":"png","source_dimensions":true,"width":6000,"height":4000} |
+| Full-resolution wedding keeper - hartley_select_13 | deliverables/keeper-hartley-select-13.png | {"format":"png","source_dimensions":true,"width":6000,"height":4000} |
+| Full-resolution wedding keeper - hartley_select_16 | deliverables/keeper-hartley-select-16.png | {"format":"png","source_dimensions":true,"width":6000,"height":4000} |

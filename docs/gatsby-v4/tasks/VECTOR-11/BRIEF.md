@@ -10,7 +10,7 @@ Final handoff
 
  Seasonal market poster: 1 named export. The market date is accurate. The location is readable.
 
- Market stall sign: 45 named exports. The trader name matches this stall record. The sign is legible at the intended stall distance.
+ Market stall sign: 43 named exports. The trader name matches this stall record. The sign is legible at the intended stall distance.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
 

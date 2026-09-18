@@ -6,7 +6,7 @@ Argent & Faith needs ten seasonal pieces prepared as a consistent listing set. T
 
 What we need back
 - Jewellery capsule campaign poster: 1 named export. The jewellery remains the primary visual focus. The campaign identifies Argent and Faith.
-- Jewellery product detail: 10 named exports. The stone setting matches the named piece. Metal colour remains believable.
+- Jewellery product detail: 10 named exports. The construction or setting method matches the named piece. Metal colour remains believable.
 - Retailer capsule look sheet: 1 named export. Product labels identify the pictured pieces. The layout communicates the capsule relationship.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.

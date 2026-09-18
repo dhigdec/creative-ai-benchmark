@@ -8,9 +8,9 @@ The commission
 
  Speaker booking one-pager: 1 named export. The biography preserves approved facts. The talk offer is clear. The booking contact is readable.
 
- Event-specific speaker announcement: 1 named export. The event name is visible. The event date matches the supplied talk record. The speaker name is clear.
+ Confirmed-talk speaker announcement: 3 named exports. The event name is visible. The event date matches this talk record. The speaker name is clear.
 
- Speaker event banner: 1 named export. The banner identifies the specific talk. The speaker portrait is recognisable.
+ Confirmed-talk speaker banner: 3 named exports. The banner identifies this talk. The supplied talk portrait belongs to this record.
 
  Speaker talk card: 9 named exports. The talk title matches this record. The event identity is visible.
 
