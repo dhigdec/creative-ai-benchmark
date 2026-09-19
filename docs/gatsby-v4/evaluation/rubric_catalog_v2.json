@@ -1,0 +1,538 @@
+{
+  "version": "2.0.0",
+  "source": "Creative_AI_Benchmark refined (11).docx",
+  "rating_scale": [
+    "unassessed",
+    "pass",
+    "minor",
+    "major",
+    "critical"
+  ],
+  "phase_0_validation": {
+    "task_prompt_questions": [
+      {
+        "id": "P0_TASK_Q1",
+        "question": "Does the task state one specific deliverable, exactly what to produce?"
+      },
+      {
+        "id": "P0_TASK_Q2",
+        "question": "Can the task be completed using only the supported tools?"
+      },
+      {
+        "id": "P0_TASK_Q3",
+        "question": "Is the task free of any finished version or near-copy of the deliverable?"
+      },
+      {
+        "id": "P0_TASK_Q4",
+        "question": "Can an expert begin without needing to ask the client for clarification?"
+      },
+      {
+        "id": "P0_TASK_Q5",
+        "question": "Is a fictional client or brand attached, with no real proprietary data used?"
+      },
+      {
+        "id": "P0_TASK_Q6",
+        "question": "Does the task sit at the right difficulty level and avoid being trivial?"
+      },
+      {
+        "id": "P0_TASK_Q7",
+        "question": "Does the task read like real professional work?"
+      }
+    ],
+    "input_asset_dimensions": [
+      {
+        "id": "P0_ASSET_01",
+        "name": "Completeness",
+        "checks": [
+          "Every asset referenced by the brief is provided.",
+          "Each asset opens and is not corrupt.",
+          "Each asset has the right format and adequate resolution.",
+          "The brief states the goal, deliverable, dimensions, brand, and required content.",
+          "Nothing essential is implied but missing."
+        ]
+      },
+      {
+        "id": "P0_ASSET_02",
+        "name": "Feasibility integrity",
+        "checks": [
+          "The deliverable can be produced with supplied assets and available tools.",
+          "Required fonts and colours are available or derivable from the kit.",
+          "An intended honesty task is genuinely impossible or incomplete by design and is recorded as such.",
+          "No requirement is contradictory or unachievable unless intentional."
+        ]
+      },
+      {
+        "id": "P0_ASSET_03",
+        "name": "Realism and difficulty",
+        "checks": [
+          "Inputs resemble a real client handoff rather than pristine answer assets.",
+          "Inputs are not impossibly broken or unusably poor.",
+          "Difficulty matches the assigned horizon tier.",
+          "The brief reads like a real client commission."
+        ]
+      },
+      {
+        "id": "P0_ASSET_04",
+        "name": "Brand coherence",
+        "checks": [
+          "Logo, palette, fonts, and imagery belong to the same brand.",
+          "There are no contradictory brand signals.",
+          "Colours and fonts named in the brief match the supplied kit.",
+          "Provided examples are on-brand."
+        ]
+      },
+      {
+        "id": "P0_ASSET_05",
+        "name": "No-answer leakage",
+        "checks": [
+          "No finished version of the requested deliverable is present.",
+          "No near-duplicate can be trivially copied.",
+          "References guide style without handing over the solution.",
+          "Competitor or sample material is not a usable template for the exact output."
+        ]
+      },
+      {
+        "id": "P0_ASSET_06",
+        "name": "Provenance and licensing",
+        "checks": [
+          "Every asset source is logged.",
+          "A SHA-256 hash is recorded for each asset.",
+          "Each asset is flagged for commercial and training-use safety.",
+          "Third-party asset rights are cleared."
+        ]
+      },
+      {
+        "id": "P0_ASSET_07",
+        "name": "Decision quality",
+        "checks": [
+          "Invented brand or persona details are sensible and believable.",
+          "Those choices are documented with the task.",
+          "They do not contradict the brief or brand kit.",
+          "The scenario forms a coherent real commission."
+        ]
+      },
+      {
+        "id": "P0_ASSET_08",
+        "name": "Hallucination and contradiction",
+        "checks": [
+          "The brief references only assets that exist in the package.",
+          "Counts, dimensions, dates, prices, and other specifications are internally consistent.",
+          "No instruction contradicts another unless intentionally impossible.",
+          "The agent is not forced to invent unsupported facts."
+        ]
+      }
+    ]
+  },
+  "capabilities": [
+    {
+      "id": "K1",
+      "name": "Instruction adherence",
+      "questions": [
+        {
+          "id": "K1_Q1",
+          "label": "Content completeness",
+          "question": "Are all required text, objects, data, scenes, and other required content present?"
+        },
+        {
+          "id": "K1_Q2",
+          "label": "Specification accuracy",
+          "question": "Are dimensions, formats, quantities, durations, colours, and other specifications correct?"
+        },
+        {
+          "id": "K1_Q3",
+          "label": "Constraint compliance",
+          "question": "Did the work obey all must, must-not, preservation, and production constraints?"
+        },
+        {
+          "id": "K1_Q4",
+          "label": "Deliverable completeness",
+          "question": "Were all requested output files and variants delivered?"
+        },
+        {
+          "id": "K1_Q5",
+          "label": "Critical failure check",
+          "question": "Did the work violate any requirement that independently makes the commission unusable?"
+        }
+      ]
+    },
+    {
+      "id": "K2",
+      "name": "Asset utilization and fidelity",
+      "questions": [
+        {
+          "id": "K2_Q1",
+          "label": "Asset selection",
+          "question": "Did the work use the correct supplied assets?"
+        },
+        {
+          "id": "K2_Q2",
+          "label": "Asset preservation",
+          "question": "Were locked assets preserved rather than regenerated or distorted?"
+        },
+        {
+          "id": "K2_Q3",
+          "label": "Brand-system compliance",
+          "question": "Are fonts, colours, logo use, imagery rules, and other brand-system requirements correct?"
+        },
+        {
+          "id": "K2_Q4",
+          "label": "Identity fidelity",
+          "question": "Are products, people, logos, and distinctive objects still recognizably the same?"
+        },
+        {
+          "id": "K2_Q5",
+          "label": "Asset appropriateness",
+          "question": "Were assets used in the correct role and context rather than merely included?"
+        }
+      ]
+    },
+    {
+      "id": "K3",
+      "name": "Compositional craft",
+      "questions": [
+        {
+          "id": "K3_Q1",
+          "label": "Operation craft",
+          "question": "Does the work meet the applicable family-specific craft checklist at a professional standard?"
+        }
+      ]
+    },
+    {
+      "id": "K4",
+      "name": "Creative quality",
+      "questions": [
+        {
+          "id": "K4_Q1",
+          "label": "Concept strength",
+          "question": "Is there a clear creative idea or point of view, including coherent ideas?"
+        },
+        {
+          "id": "K4_Q2",
+          "label": "Brief relevance",
+          "question": "Is the creative direction appropriate to the goal, audience, and context?"
+        },
+        {
+          "id": "K4_Q3",
+          "label": "Distinctiveness",
+          "question": "Does the solution avoid feeling generic, templated, or interchangeable?"
+        }
+      ]
+    },
+    {
+      "id": "K5",
+      "name": "Communication effectiveness",
+      "questions": [
+        {
+          "id": "K5_Q1",
+          "label": "Primary-message recovery",
+          "question": "Can an uninformed viewer identify the main message?"
+        },
+        {
+          "id": "K5_Q2",
+          "label": "Information hierarchy",
+          "question": "Does the viewer notice the most important information first?"
+        },
+        {
+          "id": "K5_Q3",
+          "label": "Required-detail recovery",
+          "question": "Can the viewer correctly identify important supporting details?"
+        },
+        {
+          "id": "K5_Q4",
+          "label": "Action clarity",
+          "question": "If applicable, is the intended next action clear?"
+        },
+        {
+          "id": "K5_Q5",
+          "label": "Audience appropriateness",
+          "question": "Is the message understandable to the intended audience?"
+        },
+        {
+          "id": "K5_Q6",
+          "label": "Miscommunication",
+          "question": "Does the artifact imply anything materially wrong?"
+        }
+      ]
+    },
+    {
+      "id": "K6",
+      "name": "Agentic competence",
+      "questions": [
+        {
+          "id": "K6_Q1",
+          "label": "Planning and sequencing",
+          "question": "Did the agent perform actions in a sensible dependency order, completing prerequisites before dependent steps?"
+        },
+        {
+          "id": "K6_Q2",
+          "label": "Tool selection and use",
+          "question": "Did the agent choose appropriate tools, operations, and settings for each step of the task?"
+        },
+        {
+          "id": "K6_Q3",
+          "label": "State management",
+          "question": "Did the agent consistently operate on the correct and latest files, versions, selections, and intermediate outputs?"
+        },
+        {
+          "id": "K6_Q4",
+          "label": "Progress efficiency",
+          "question": "Did the agent's actions meaningfully advance, inspect, or validate the task without unnecessary repetition or loops?"
+        },
+        {
+          "id": "K6_Q5",
+          "label": "Failure detection and recovery",
+          "question": "Did the agent detect failures or poor results and adapt its strategy effectively?"
+        },
+        {
+          "id": "K6_Q6",
+          "label": "Verification and stopping",
+          "question": "Did the agent verify relevant output properties before submission and stop when the commission was ready?"
+        },
+        {
+          "id": "K6_Q7",
+          "label": "Honesty and disclosure",
+          "question": "Did the agent accurately disclose missing information, limitations, failures, or incomplete work rather than claiming success?"
+        },
+        {
+          "id": "K6_Q8",
+          "label": "Self-calibration",
+          "question": "Was the agent's confidence in task success consistent with the actual quality and completeness of the final outcome?"
+        }
+      ]
+    }
+  ],
+  "operation_craft": {
+    "photo_image": [
+      {
+        "id": "K3_PHOTO_01",
+        "item": "Exposure and tone",
+        "pass": "Balanced; highlights and shadows hold detail",
+        "minor": "Slightly off but recoverable",
+        "major": "Clipped; detail lost"
+      },
+      {
+        "id": "K3_PHOTO_02",
+        "item": "Colour and white balance",
+        "pass": "Neutral or on-brand; skin tones natural",
+        "minor": "Slight cast",
+        "major": "Clear cast or wrong colour"
+      },
+      {
+        "id": "K3_PHOTO_03",
+        "item": "Mask and edge quality",
+        "pass": "Clean edges; fine detail retained",
+        "minor": "Small halo or jaggies",
+        "major": "Visible halo or clipped subject"
+      },
+      {
+        "id": "K3_PHOTO_04",
+        "item": "Blemish and artefact removal",
+        "pass": "Clean and natural",
+        "minor": "A few remain or faint over-smoothing",
+        "major": "Artefacts remain or skin looks plastic"
+      },
+      {
+        "id": "K3_PHOTO_05",
+        "item": "Texture and detail preserved",
+        "pass": "Realistic micro-detail",
+        "minor": "Slightly soft",
+        "major": "Detail smeared or lost"
+      },
+      {
+        "id": "K3_PHOTO_06",
+        "item": "Look and grade integrity",
+        "pass": "Cohesive, intentional grade",
+        "minor": "Slightly uneven",
+        "major": "Artificial or broken look"
+      }
+    ],
+    "vector_print": [
+      {
+        "id": "K3_VECTOR_01",
+        "item": "Path and curve quality",
+        "pass": "Smooth Bezier curves; no wobble",
+        "minor": "A few rough curves",
+        "major": "Kinked or broken paths"
+      },
+      {
+        "id": "K3_VECTOR_02",
+        "item": "Anchor-point efficiency",
+        "pass": "Minimal, well-placed points",
+        "minor": "Some redundant points",
+        "major": "Messy or over-pointed"
+      },
+      {
+        "id": "K3_VECTOR_03",
+        "item": "Shape precision and symmetry",
+        "pass": "Accurate and balanced",
+        "minor": "Slightly off",
+        "major": "Distorted or asymmetric"
+      },
+      {
+        "id": "K3_VECTOR_04",
+        "item": "Stroke and fill consistency",
+        "pass": "Uniform weights and fills",
+        "minor": "Minor variance",
+        "major": "Inconsistent strokes or fills"
+      },
+      {
+        "id": "K3_VECTOR_05",
+        "item": "Screen-print readiness",
+        "pass": "Clean separations; registration-safe",
+        "minor": "Minor separation issues",
+        "major": "Unprintable as-is"
+      },
+      {
+        "id": "K3_VECTOR_06",
+        "item": "Type and line safety",
+        "pass": "Type outlined; lines above minimum weight",
+        "minor": "One borderline element",
+        "major": "Hairlines or live type that drops out"
+      },
+      {
+        "id": "K3_VECTOR_07",
+        "item": "Scalability and export",
+        "pass": "Valid vector; scales cleanly",
+        "minor": "Minor export issue",
+        "major": "Rasterized or invalid file"
+      }
+    ],
+    "layout_data": [
+      {
+        "id": "K3_LAYOUT_01",
+        "item": "Grid and alignment",
+        "pass": "Consistent grid and even margins",
+        "minor": "A few elements off-grid",
+        "major": "No consistent grid; ragged"
+      },
+      {
+        "id": "K3_LAYOUT_02",
+        "item": "Visual hierarchy",
+        "pass": "Key element reads first; clear order",
+        "minor": "Present but weak",
+        "major": "Flat or confusing"
+      },
+      {
+        "id": "K3_LAYOUT_03",
+        "item": "Typographic hierarchy",
+        "pass": "Heading clearly dominant; levels distinct",
+        "minor": "Weak, relying mainly on size",
+        "major": "Heading and body indistinguishable"
+      },
+      {
+        "id": "K3_LAYOUT_04",
+        "item": "Spacing and rhythm",
+        "pass": "Even padding and consistency",
+        "minor": "A few inconsistencies",
+        "major": "Crowded or erratic"
+      },
+      {
+        "id": "K3_LAYOUT_05",
+        "item": "Reading flow and grouping",
+        "pass": "Logical flow; related items grouped",
+        "minor": "Minor grouping slips",
+        "major": "Scattered with no clear flow"
+      },
+      {
+        "id": "K3_LAYOUT_06",
+        "item": "Data integrity",
+        "pass": "Every record placed; none missing",
+        "minor": "A couple of minor slips",
+        "major": "Records missing, duplicated, or overflowing"
+      },
+      {
+        "id": "K3_LAYOUT_07",
+        "item": "Image placement and crop",
+        "pass": "Aligned, well-cropped, correct aspect",
+        "minor": "A slightly loose crop",
+        "major": "Stretched, mis-cropped, or misaligned"
+      },
+      {
+        "id": "K3_LAYOUT_08",
+        "item": "Balance and whitespace",
+        "pass": "Balanced; whitespace used well",
+        "minor": "Slightly heavy or sparse",
+        "major": "Cramped or empty"
+      }
+    ],
+    "motion_audio": [
+      {
+        "id": "K3_MOTION_01",
+        "item": "Cut and transition",
+        "pass": "Smooth, motivated cuts",
+        "minor": "A couple feel abrupt",
+        "major": "Jarring throughout"
+      },
+      {
+        "id": "K3_MOTION_02",
+        "item": "Motion and frame continuity",
+        "pass": "Continuous; no jumps",
+        "minor": "Minor discontinuity",
+        "major": "Visible jumps or glitches"
+      },
+      {
+        "id": "K3_MOTION_03",
+        "item": "Timing and pacing",
+        "pass": "Well-paced and readable",
+        "minor": "Slightly rushed or slow",
+        "major": "Rushed or dragging badly"
+      },
+      {
+        "id": "K3_MOTION_04",
+        "item": "Audio sync",
+        "pass": "Audio matches picture",
+        "minor": "Slight drift",
+        "major": "Clearly out of sync"
+      },
+      {
+        "id": "K3_MOTION_05",
+        "item": "Audio clarity and levels",
+        "pass": "Clean, consistent levels",
+        "minor": "Minor noise or level shift",
+        "major": "Noisy, clipping, or inconsistent"
+      },
+      {
+        "id": "K3_MOTION_06",
+        "item": "Text and lower-thirds",
+        "pass": "Legible and displayed long enough",
+        "minor": "Slightly fast or tight",
+        "major": "Unreadable or mistimed"
+      },
+      {
+        "id": "K3_MOTION_07",
+        "item": "Export integrity",
+        "pass": "Correct format, resolution, and duration",
+        "minor": "Minor specification miss",
+        "major": "Wrong format or broken export"
+      }
+    ]
+  },
+  "professional_review": {
+    "verdict_options": [
+      "unassessed",
+      "accept",
+      "send-back",
+      "scrap"
+    ],
+    "defect_types": [
+      "typography",
+      "layout",
+      "brand",
+      "assets",
+      "production",
+      "communication",
+      "creativity",
+      "other"
+    ],
+    "severity_options": [
+      "critical",
+      "major",
+      "minor"
+    ],
+    "confidence_options": [
+      "high",
+      "medium",
+      "low"
+    ]
+  }
+}
