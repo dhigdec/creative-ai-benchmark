@@ -4,28 +4,28 @@ Result: not assessed. Answer every acceptance statement Yes or No. Only Yes pass
 
 | Output | Check ID | Type | Pass condition | Evidence | Answer |
 |---|---|---|---|---|---|
-| deliverables/lesson.mp4 | MOTION-06/lesson/A001 | auto | deliverables/lesson.mp4 — File is present. | Automated file_exists result | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/A002 | auto | deliverables/lesson.mp4 — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/A003 | auto | deliverables/lesson.mp4 — The width is 1920 px. | Automated width result | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/A004 | auto | deliverables/lesson.mp4 — The height is 1080 px. | Automated height result | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/A005 | auto | deliverables/lesson.mp4 — The runtime is between 45 and 60 seconds. | Automated duration_range result | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/A006 | auto | deliverables/lesson.mp4 — The video codec is H.264. | Automated video_codec result | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/A007 | auto | deliverables/lesson.mp4 — The pixel format is yuv420p. | Automated pixel_format result | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/A008 | auto | deliverables/lesson.mp4 — The frame rate is 24 fps. | Automated frame_rate result | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/A009 | auto | deliverables/lesson.mp4 — The picture changes over time. | Automated moving_picture result | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/A010 | auto | deliverables/lesson.mp4 — The export contains an audio stream. | Automated audio_stream result | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/A011 | auto | deliverables/lesson.mp4 — The audio is not wholly silent. | Automated non_silent_audio result | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/H001 | human | deliverables/lesson.mp4 — The worked example reaches its stated conclusion. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/H002 | human | deliverables/lesson.mp4 — At the delivered dimensions, the instructional text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/lesson.mp4 | MOTION-06/lesson/H003 | human | deliverables/lesson.mp4 — The captions follow the spoken explanation. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/lesson-cover.png | MOTION-06/lesson-cover/A001 | auto | deliverables/lesson-cover.png — File is present. | Automated file_exists result | Yes / No |
-| deliverables/lesson-cover.png | MOTION-06/lesson-cover/A002 | auto | deliverables/lesson-cover.png — The file opens in a format-aware reader. | Automated decodable result | Yes / No |
-| deliverables/lesson-cover.png | MOTION-06/lesson-cover/A003 | auto | deliverables/lesson-cover.png — The width is 1920 px. | Automated width result | Yes / No |
-| deliverables/lesson-cover.png | MOTION-06/lesson-cover/A004 | auto | deliverables/lesson-cover.png — The height is 1080 px. | Automated height result | Yes / No |
-| deliverables/lesson-cover.png | MOTION-06/lesson-cover/H001 | human | deliverables/lesson-cover.png — The lesson number matches the approved source exactly. | Approved task brief and supplied source pack | Yes / No |
-| deliverables/lesson-cover.png | MOTION-06/lesson-cover/H002 | human | deliverables/lesson-cover.png — At the delivered dimensions, the topic text has no clipped characters. | Approved task brief and supplied source pack | Yes / No |
-| sources/lesson-cover.zip | MOTION-06/lesson-cover-source/A001 | auto | sources/lesson-cover.zip — The named source archive is delivered. | Automated file_exists result | Yes / No |
-| sources/lesson-cover.zip | MOTION-06/lesson-cover-source/A002 | auto | sources/lesson-cover.zip — The source archive opens. | Automated decodable result | Yes / No |
-| sources/lesson-cover.zip | MOTION-06/lesson-cover-source/A003 | auto | sources/lesson-cover.zip — The archive contains at least one allowed editable source artifact. | Automated editable_source_present result | Yes / No |
-| sources/lesson-cover.zip | MOTION-06/lesson-cover-source/H001 | human | sources/lesson-cover.zip — The source opens in its stated editing application. | Editable source archive | Yes / No |
-| sources/lesson-cover.zip | MOTION-06/lesson-cover-source/H002 | human | sources/lesson-cover.zip — The text can be edited without changing the placed artwork. | Editable source archive | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/A001 | auto | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): File is included in the delivery. | Automated file_exists result | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/A002 | auto | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): MP4 file opens without a decoding error. | Automated decodable result | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/A003 | auto | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): Image width is 1920 pixels. | Automated width result | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/A004 | auto | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): Image height is 1080 pixels. | Automated height result | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/A005 | auto | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): Video lasts 45 to 60 seconds. | Automated duration_range result | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/A006 | auto | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): Video uses H.264 encoding. | Automated video_codec result | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/A007 | auto | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): Video uses the required yuv420p colour format. | Automated pixel_format result | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/A008 | auto | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): Video plays at 24 frames per second. | Automated frame_rate result | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/A009 | auto | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): Video picture changes during playback. | Automated moving_picture result | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/A010 | auto | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): Video includes an audio track. | Automated audio_stream result | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/A011 | auto | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): Audio track contains audible sound. | Automated non_silent_audio result | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/H001 | human | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): The worked example reaches its stated conclusion. | meridian_captions.csv; meridian_lesson4_outline.txt | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/H002 | human | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): At full export size, the instructional text has no cut-off letters. | meridian_captions.csv; meridian_lesson4_outline.txt | Yes / No |
+| deliverables/lesson.mp4 | MOTION-06/lesson/H003 | human | deliverables/lesson.mp4 — Meridian Academy / Worked lesson excerpt (lesson.mp4): The captions follow the spoken explanation. | meridian_captions.csv; meridian_lesson4_outline.txt | Yes / No |
+| deliverables/lesson-cover.png | MOTION-06/lesson-cover/A001 | auto | deliverables/lesson-cover.png — Meridian Academy / Lesson cover (lesson-cover.png): File is included in the delivery. | Automated file_exists result | Yes / No |
+| deliverables/lesson-cover.png | MOTION-06/lesson-cover/A002 | auto | deliverables/lesson-cover.png — Meridian Academy / Lesson cover (lesson-cover.png): PNG file opens without a decoding error. | Automated decodable result | Yes / No |
+| deliverables/lesson-cover.png | MOTION-06/lesson-cover/A003 | auto | deliverables/lesson-cover.png — Meridian Academy / Lesson cover (lesson-cover.png): Image width is 1920 pixels. | Automated width result | Yes / No |
+| deliverables/lesson-cover.png | MOTION-06/lesson-cover/A004 | auto | deliverables/lesson-cover.png — Meridian Academy / Lesson cover (lesson-cover.png): Image height is 1080 pixels. | Automated height result | Yes / No |
+| deliverables/lesson-cover.png | MOTION-06/lesson-cover/H001 | human | deliverables/lesson-cover.png — Meridian Academy / Lesson cover (lesson-cover.png): The lesson number matches meridian_captions.csv exactly. | meridian_captions.csv | Yes / No |
+| deliverables/lesson-cover.png | MOTION-06/lesson-cover/H002 | human | deliverables/lesson-cover.png — Meridian Academy / Lesson cover (lesson-cover.png): At full export size, the topic text has no cut-off letters. | meridian_captions.csv; meridian_lesson4_outline.txt | Yes / No |
+| sources/lesson-cover.zip | MOTION-06/lesson-cover-source/A001 | auto | sources/lesson-cover.zip — Meridian Academy / Lesson cover - editable source (lesson-cover.zip): File is included in the delivery. | Automated file_exists result | Yes / No |
+| sources/lesson-cover.zip | MOTION-06/lesson-cover-source/A002 | auto | sources/lesson-cover.zip — Meridian Academy / Lesson cover - editable source (lesson-cover.zip): ZIP file opens without a decoding error. | Automated decodable result | Yes / No |
+| sources/lesson-cover.zip | MOTION-06/lesson-cover-source/A003 | auto | sources/lesson-cover.zip — Meridian Academy / Lesson cover - editable source (lesson-cover.zip): ZIP contains an allowed editable design file or an Adobe document link. | Automated editable_source_present result | Yes / No |
+| sources/lesson-cover.zip | MOTION-06/lesson-cover-source/H001 | human | sources/lesson-cover.zip — Meridian Academy / Lesson cover - editable source (lesson-cover.zip): Editable design opens in the application named in the source package. | Editable source archive | Yes / No |
+| sources/lesson-cover.zip | MOTION-06/lesson-cover-source/H002 | human | sources/lesson-cover.zip — Meridian Academy / Lesson cover - editable source (lesson-cover.zip): Text remains editable separately from placed artwork. | Editable source archive | Yes / No |
