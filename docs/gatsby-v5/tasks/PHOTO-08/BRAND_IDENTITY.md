@@ -1,0 +1,27 @@
+# Meridian Motors
+
+Meridian Motors sells certified pre-owned vehicles between 22,000 and 38,000 dollars to families replacing an ageing car. The listings are the whole business, and the visual argument is simple: this is an orderly operation with nothing to hide. Every car should look as if it were photographed in one clean, evenly lit showroom, with honest paint and legible plain information.
+
+## Audience
+Buyers aged 30 to 55 replacing a ten year old family car, deciding on trust before they decide on the vehicle.
+
+## Positioning
+22,000 to 38,000 dollars certified pre-owned. The treatment is an even, neutral, well lit showroom white with the full vehicle in frame and honest colour. Never a dark dramatic studio look, which reads as evasive at this price, and never hot saturated pictures with starbursts and a price slash, which read as a buy here pay here lot.
+
+## Palette
+- Meridian Navy: #1F2A3A
+- Showroom White: #F6F7F8
+- Graphite: #2E3237
+- Compass Teal: #3C6E71
+- Steel Grey: #9AA1A8
+
+## Typography
+A clear humanist sans doing most of the work, sized so a price and a mileage read at a glance, with a slightly firmer cut for the roundel wordmark. Organised and plainly legible, neither luxury nor discount.
+
+## Voice
+Straightforward and unadorned, the voice of a desk that states the facts. Example line the brand would write: "2017 Calder Kestrel, 68,400 miles. Certified. 24,900 dollars."
+
+## Supplied Identity
+The only mark on file is the compass roundel as the sign shop supplied it years ago, a small flat raster on a white square at signage thumbnail size, which has never mattered until now. The window cards survive only as the retired printer's press PDF, and the room now hand writes them. The roundel belongs on the firm's own collateral and never on a marketplace primary.
+
+Production identity and cross-image continuity remain subject to the release asset checks.
