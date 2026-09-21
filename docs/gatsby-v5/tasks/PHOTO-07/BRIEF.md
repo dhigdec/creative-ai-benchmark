@@ -1,4 +1,4 @@
-# SB3-007-PHO | Gable and Grove - Home services before-and-after library
+# SB3-007-PHO | Gable & Grove - Home services before-and-after library
 
 Before-and-after renovation photographs that clients can trust
 
@@ -6,7 +6,7 @@ Gable & Grove needs five before-and-after pairs prepared for the website and sal
 
 What we need back
 - Completed project case-study panel: 4 named exports. The comparison preserves meaningful structural differences. The project caption identifies the work actually shown.
-- Estimate-pack cover: 1 named export. The cover identifies Gable and Grove. The selected project demonstrates the service without claiming an invented result.
+- Estimate-pack cover: 1 named export. The cover identifies Gable & Grove. The selected project demonstrates the service without claiming an invented result.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
 

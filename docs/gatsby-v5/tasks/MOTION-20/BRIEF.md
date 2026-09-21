@@ -1,6 +1,6 @@
-# SB3-100-MOT | FOLD and GRAIN Studio - Dual-client sizzle and service package
+# SB3-100-MOT | FOLD & GRAIN Studio - Dual-client sizzle and service package
 
-FOLD and GRAIN needs the two client packages and the service page. Each client's afternoon pass reaches the edit as short silent segments off the same sweep, same light, same grey card, so cut from those segments and nothing else. We are adding three more segments per client from the same pass so there is enough to cut a film that is not one move repeated.
+FOLD & GRAIN needs the two client packages and the service page. Each client's afternoon pass reaches the edit as short silent segments off the same sweep, same light, same grey card, so cut from those segments and nothing else. We are adding three more segments per client from the same pass so there is enough to cut a film that is not one move repeated.
 
 Keep the two identities apart. Cobbleway is bright, warm and honest. Lunara is cool, restrained and full of air. Same method, two results, and a viewer should never mistake one package for the other.
 

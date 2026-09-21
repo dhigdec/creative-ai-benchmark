@@ -1,11 +1,11 @@
-# SB3-015-PHO | Summit and Sable - Recovery-gear launch campaign
+# SB3-015-PHO | Summit & Sable - Recovery-gear launch campaign
 
 Recovery-gear image system with a controlled Ridge Blue colourway
 
 We need Summit & Sable's field and bench photographs to read as one recovery-gear range. There are twenty supplied captures, with webbing, stitching and hardware that need to remain convincing at close range.
 
 Deliverables
-1. Recovery-gear launch poster: 1 named export. The actual Summit and Sable equipment is shown. The poster contains no unsupported safety claim.
+1. Recovery-gear launch poster: 1 named export. The actual Summit & Sable equipment is shown. The poster contains no unsupported safety claim.
 2. Recovery equipment product-page module: 9 named exports. The component geometry matches the named equipment. The load or use wording matches supplied approved copy.
 3. Recovery-gear dealer sheet: 1 named export. The range is clearly identified. Specifications are readable at print size.
 

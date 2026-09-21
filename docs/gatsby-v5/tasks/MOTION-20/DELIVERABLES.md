@@ -1,4 +1,4 @@
-# FOLD and GRAIN Studio - Dual-client sizzle and service package: output register
+# FOLD & GRAIN Studio - Dual-client sizzle and service package: output register
 
 | Output | File | Specification |
 |---|---|---|

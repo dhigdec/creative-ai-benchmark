@@ -1,4 +1,4 @@
-# Corner and Cure - Cold-case label system: output register
+# Corner & Cure - Cold-case label system: output register
 
 | Output | File | Specification |
 |---|---|---|

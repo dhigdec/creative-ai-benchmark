@@ -2,7 +2,7 @@
 
 Coffee sticker collection: recover four designs, add two, prepare the cutting sheet
 
-Four recovered designs + two new designs = one six-sticker collection for Meridian & Ash.
+Four recovered designs + two new designs = one six-sticker collection for Meridian and Ash.
 
 Please prepare
 - Recovered sticker artwork: 4 named exports. The design preserves its photographed original. Interior negative space remains open at 55 mm.

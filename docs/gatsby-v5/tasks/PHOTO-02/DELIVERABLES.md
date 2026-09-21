@@ -1,4 +1,4 @@
-# Corner and Cure - Spring dish launch photography: output register
+# Corner & Cure - Spring dish launch photography: output register
 
 | Output | File | Specification |
 |---|---|---|

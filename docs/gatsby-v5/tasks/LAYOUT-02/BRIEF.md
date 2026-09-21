@@ -1,4 +1,4 @@
-# SB3-047-LAY | Corner and Cure - Cold-case label system
+# SB3-047-LAY | Corner & Cure - Cold-case label system
 
 Cold-case labels and ordering tiles from our cafe's existing materials
 

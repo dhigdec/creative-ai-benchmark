@@ -2,7 +2,7 @@
 
 Athlete cards and spotlight portraits for our gym opening
 
-Anvil & Oak needs opening-roster cards and a consistent portrait set. Sixteen members were photographed across three evenings, and the colour differences are obvious when the portraits sit on our dark ground.
+Anvil and Oak needs opening-roster cards and a consistent portrait set. Sixteen members were photographed across three evenings, and the colour differences are obvious when the portraits sit on our dark ground.
 
 What we need back
 - Opening-roster athlete card: 17 named exports. The portrait belongs to the named athlete. The squat, bench and deadlift figures match this athlete record.

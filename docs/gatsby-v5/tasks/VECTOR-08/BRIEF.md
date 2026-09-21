@@ -1,4 +1,4 @@
-# SB3-038-VEC | Coble and Vane - One-color mark system
+# SB3-038-VEC | Coble & Vane - One-color mark system
 
 Distillery mark recovery and a matching founder portrait set
 

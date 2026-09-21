@@ -2,7 +2,7 @@
 
 Exhibition wall labels, reconciled artwork records and installer files by room
 
-Marrow & Vane is hanging thirty-nine approved works. Reuse the spring printer's label construction, reconcile the interns' two photo shoots to the accession register, and package the final labels in the approved clockwise room order.
+Marrow and Vane is hanging thirty-nine approved works. Reuse the spring printer's label construction, reconcile the interns' two photo shoots to the accession register, and package the final labels in the approved clockwise room order.
 
 The commission
 

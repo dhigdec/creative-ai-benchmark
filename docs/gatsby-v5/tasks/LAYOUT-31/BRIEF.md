@@ -1,4 +1,4 @@
-# SB3-076-LAY | Cellar and Cru - Autumn shelf-talker campaign
+# SB3-076-LAY | Cellar & Cru - Autumn shelf-talker campaign
 
 Autumn shelf talkers that match the bottles and the sellable wine list
 

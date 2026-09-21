@@ -2,7 +2,7 @@
 
 An autumn image library that still looks like my ceramics
 
-Hi, I am Marlo Quill, the maker behind Quill & Kiln. I have a month's worth of photographs from my phone and a borrowed camera, taken under four different kinds of light. I need help turning them into a usable autumn collection.
+Hi, I am Marlo Quill, the maker behind Quill and Kiln. I have a month's worth of photographs from my phone and a borrowed camera, taken under four different kinds of light. I need help turning them into a usable autumn collection.
 
 Deliverables
 1. Autumn studio journal carousel: 6 named exports. The image sequence tells a coherent making story. The captions match the pictured work.

@@ -1,6 +1,6 @@
 # SB3-069-LAY | Halden and Roe - Marlow trade catalog
 
-A reusable A4 trade catalogue for Halden & Roe's Marlow range
+A reusable A4 trade catalogue for Halden and Roe's Marlow range
 
 Sixteen pieces need to reach the trade show as one coherent Marlow range. Our studio photography covers two days, and the only page artwork is the flat PDF the printer made three seasons ago.
 

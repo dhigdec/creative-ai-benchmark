@@ -1,4 +1,4 @@
-# Summit and Sable - Recovery-gear launch campaign: output register
+# Summit & Sable - Recovery-gear launch campaign: output register
 
 | Output | File | Specification |
 |---|---|---|

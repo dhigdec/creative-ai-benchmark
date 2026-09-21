@@ -1,4 +1,4 @@
-# Argent and Faith - Spring jewelry capsule photography: output register
+# Argent & Faith - Spring jewelry capsule photography: output register
 
 | Output | File | Specification |
 |---|---|---|

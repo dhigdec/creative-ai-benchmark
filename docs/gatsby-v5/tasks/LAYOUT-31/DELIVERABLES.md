@@ -1,4 +1,4 @@
-# Cellar and Cru - Autumn shelf-talker campaign: output register
+# Cellar & Cru - Autumn shelf-talker campaign: output register
 
 | Output | File | Specification |
 |---|---|---|

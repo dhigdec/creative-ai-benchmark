@@ -1,4 +1,4 @@
-# Fernwell and Rowe - Hartley wedding gallery finishing: output register
+# Fernwell & Rowe - Hartley wedding gallery finishing: output register
 
 | Output | File | Specification |
 |---|---|---|

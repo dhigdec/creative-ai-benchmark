@@ -1,4 +1,4 @@
-# SB3-002-PHO | Corner and Cure - Spring dish launch photography
+# SB3-002-PHO | Corner & Cure - Spring dish launch photography
 
 Spring dish photography and a reusable printed card set for Corner & Cure
 

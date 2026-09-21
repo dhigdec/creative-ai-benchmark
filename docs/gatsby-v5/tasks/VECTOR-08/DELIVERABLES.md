@@ -1,4 +1,4 @@
-# Coble and Vane - One-color mark system: output register
+# Coble & Vane - One-color mark system: output register
 
 | Output | File | Specification |
 |---|---|---|

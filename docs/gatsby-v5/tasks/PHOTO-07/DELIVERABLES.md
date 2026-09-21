@@ -1,4 +1,4 @@
-# Gable and Grove - Home services before-and-after library: output register
+# Gable & Grove - Home services before-and-after library: output register
 
 | Output | File | Specification |
 |---|---|---|

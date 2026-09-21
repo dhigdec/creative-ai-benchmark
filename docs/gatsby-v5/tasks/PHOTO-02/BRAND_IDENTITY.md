@@ -1,6 +1,6 @@
-# Corner and Cure
+# Corner & Cure
 
-Corner and Cure is the repeat client for this benchmark series. The canonical client context is Brooklyn, New York, and this commission covers phase 1: food image system and seasonal launch assets.
+Corner & Cure is the repeat client for this benchmark series. The canonical client context is Brooklyn, New York, and this commission covers phase 1: food image system and seasonal launch assets.
 
 ## Audience
 Neighbourhood regulars aged 25 to 45 who come in twice a week, know the counter staff, and read the screens over the pass from across the room. Local, food-literate, loyal, and quick to distrust anything that reads as styled to death.

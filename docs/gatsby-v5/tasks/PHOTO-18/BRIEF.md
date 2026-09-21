@@ -1,4 +1,4 @@
-# SB3-018-PHO | Fernwell and Rowe - Hartley wedding gallery finishing
+# SB3-018-PHO | Fernwell & Rowe - Hartley wedding gallery finishing
 
 Wedding retouching pilot: one warm house look across changing light
 
