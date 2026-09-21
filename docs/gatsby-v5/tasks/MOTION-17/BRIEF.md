@@ -1,14 +1,16 @@
 # SB3-097-MOT | Pulsevault - Event recap package
 
-Pulsevault needs a recap of Saturday's night while people still remember being there, plus a cover and next-event announcement. Make it feel like our room and our crowd, not a generic festival montage. The music needs to support the edit and be cleared for the intended use. Use the approved next-date file for the closing card and announcement. Any replacement source material must represent the event honestly; do not substitute stock attendees and pass them off as ours.
+Saturday was the best room we have had all year and we want it up while people still remember being in it. Make it feel like our room and our crowd, not a generic festival montage. Cut it upright, because that is how the night was filmed and that is where it goes. The clips we handed over are short and silent, so the night is carried by the cut and by the type on screen. Nobody talks in these films: no voice over, no narration, no fake crowd audio. We are supplying the instrumental bed and it is cleared for this use, so use that and nothing else.
 
 What we need back
-- Saturday event recap: 1 named export. The sequence represents the supplied event. The final card gives the correct next-event date.
-- Event recap cover: 1 named export. The event identity is readable.
-- Next-event announcement: 1 named export. The date matches the approved next-date file. The ticket action remains in the safe area.
+1. Saturday recap film: 1 named export, 1080 by 1920, 12 to 15 seconds, music from the supplied bed. At least three different clips from the pack. The closing card carries the next date and the ticket link.
+2. Square recap cutdown: 1 named export, 1080 by 1080, 6 to 10 seconds, same bed, tighter, for the feed.
+3. Event recap cover: 1 named export, unchanged at 1080 by 1350. The event identity is readable.
+4. Next event announcement: 1 named export, unchanged at 1080 by 1920. The date matches the approved next date file and the ticket action stays in the safe area.
+
+Things that get a cut sent straight back: the warehouse address on anything public (it goes out with the ticket, never on the post), the pocket clip that is nothing but black, and the same drop cut in twice because two phones filmed it from a few feet apart. The running order in the lineup file is the running order, so do not reorder it, and do not substitute stock attendees for our crowd.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
-- Video delivery means a playable MP4, not a storyboard, still montage PDF or editing log. Audio expectations are stated on each film. Speech-led work requires supplied or explicitly authorised synthetic speech; do not invent documentary speech.
-- Authored animation can exceed the duration of still source images. Live-action edits require adequate distinct footage; looping a short clip is not a substitute for the missing coverage.
-
+Video delivery means a playable MP4, not a storyboard, a still montage PDF or an editing log. Audio expectations are stated on each film. No film in this commission carries speech: the message is carried by on screen text you set, and any music is the cleared bed we supply.
+Authored animation can exceed the duration of still source images. Live action edits require adequate distinct footage; looping a short clip is not a substitute for missing coverage.
 Use the attached brand identity and the source files listed in the asset manifest. The output register defines exact filenames, pages, sizes and record bindings. Supporting previews are welcome but cannot replace those files.

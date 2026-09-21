@@ -1,19 +1,23 @@
 # SB3-089-MOT | Voltcast - Podcast short and audio treatment
 
-Please turn a complete spoken idea from the Voltcast episode into wide, upright and square excerpts. We want people to recognise the conversation, not see isolated reactions edited to suggest a different opinion. Keep the correct speaker attribution and accurate captions, and give the episode a readable cover. A source recording with intelligible speech and enough conversational context is required before this commission can be released. There is no licence to manufacture a quote from silent footage.
+Episode 42 is the three power station test, and what I need from you is the short form pack that goes out with it, not the long episode.
+
+Everything I am sending is silent picture. There is no usable production audio on any of it, so build these the way our shorts already play in the feed with the sound off: the verdict lives in the on screen text you set. Nothing on screen may claim I said something, and do not write captions for speech that is not on the file. A cleared instrumental bed is in the pack as voltcast_bed.wav. Use that and nothing else.
 
 Final handoff
 
- Podcast excerpt: 1 named export. The excerpt contains one complete spoken idea. The speaker identity is correct. Captions preserve the spoken wording.
+Episode 42 verdict short: one named export, square, twelve to fifteen seconds, music bed only. It carries my verdict order for the three units and the episode number. Build it from at least three different shots. Do not loop one clip to fill the length.
 
- Podcast upright excerpt: 1 named export. The active speaker remains visible.
+Verdict short vertical cutdown: one named export, upright, eight to ten seconds, music bed only. Same story told tighter, cut from the same shots.
 
- Podcast square excerpt: 1 named export. The speaker labels remain readable.
+Podcast episode cover: one named export, square still, as before.
 
- Podcast episode cover: 1 named export. The episode number is correct.
+House rules. The bug goes bottom right on everything and it stays small. Volt Orange is the only accent. The Meridian logo lives on the sponsor card and nowhere else, so keep it off the cover. Unit names are spelled the way my notes spell them.
 
 Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
-- Video delivery means a playable MP4, not a storyboard, still montage PDF or editing log. Audio expectations are stated on each film. Speech-led work requires supplied or explicitly authorised synthetic speech; do not invent documentary speech.
-- Authored animation can exceed the duration of still source images. Live-action edits require adequate distinct footage; looping a short clip is not a substitute for the missing coverage.
 
-Use the attached brand identity and the source files listed in the asset manifest. The output register defines exact filenames, pages, sizes and record bindings. Supporting previews are welcome but cannot replace those files.
+Video delivery means a playable MP4, not a storyboard, a still montage PDF or an editing log. Audio expectations are stated on each film, and no film in this pack carries speech.
+
+Live action edits require adequate distinct footage. Looping a short clip is not a substitute for the missing coverage.
+
+Use the attached brand identity and the source files listed in the asset manifest. The output register defines exact filenames, sizes and record bindings. Supporting previews are welcome but cannot replace those files.

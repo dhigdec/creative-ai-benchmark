@@ -1,17 +1,7 @@
 # SB3-083-MOT | Halden Greens - Creator ad and social cutdowns
 
-We need three creator-led ads for Halden Greens, each with a genuinely different opening hook. They should feel like someone explaining a daily habit in their own kitchen, while still landing the product and subscription action clearly. Please preserve the approved claims exactly. Do not turn a qualified statement into a promised result. The pack must contain the authorised spoken takes before editing begins; silent footage is not evidence of what the creator said. Give each ad a matching hook card and use one coherent end-card treatment.
+We need three creator ads for Halden Greens, each opening on a genuinely different hook. Every take we have is five seconds and silent, so nobody is talking in these. The hook is typed on screen the way a creator captions their own video, and a plain instrumental bed sits underneath. That suits us. We were never going to sound like an advert anyway, and most people watch these muted.
 
-Final handoff
+Please cut each ad at 10 to 12 seconds in 9:16, from no fewer than four different supplied takes, so none of them reads as one clip held far too long. The hook line comes straight out of halden_hooks.txt and must be H1, H2, H3 or H6. H4 and H5 are not cleared and must not appear anywhere. Keep the approved claims exactly as written: a qualified line stays qualified, and a benefit never becomes a promised result. Each ad closes on the approved subscription action from halden_hooks.txt, treated the same way in all three so the set reads as one campaign.
 
- Creator-led ad: 3 named exports. The hook introduces the approved product benefit. The spoken claim matches the cleared copy. The product packaging is consistent.
-
- Creator ad hook card: 3 named exports. The hook copy matches its corresponding ad.
-
- Creator ad end card: 1 named export. The call to action is clear.
-
-Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
-- Video delivery means a playable MP4, not a storyboard, still montage PDF or editing log. Audio expectations are stated on each film. Speech-led work requires supplied or explicitly authorised synthetic speech; do not invent documentary speech.
-- Authored animation can exceed the duration of still source images. Live-action edits require adequate distinct footage; looping a short clip is not a substitute for the missing coverage.
-
-Use the attached brand identity and the source files listed in the asset manifest. The output register defines exact filenames, pages, sizes and record bindings. Supporting previews are welcome but cannot replace those files.
+The rest of the package is unchanged. We still need the three hook cards, each carrying the same hook line as the ad it belongs to, and the single end card.

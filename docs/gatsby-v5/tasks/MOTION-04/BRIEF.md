@@ -1,14 +1,9 @@
 # SB3-084-MOT | Sable and Finch Realty - Property listing tour package
 
-For Sable and Finch, the tour needs to help a buyer understand the house, not simply admire a sequence of rooms. Please establish the property, move through the rooms in a plausible order and end with the viewing action. The short upright version can be more selective, but must not imply that two different properties are one home. Keep the broker's wording tied to the listing facts. The open-house cards belong to the same package and must use the correct details for each listing.
+For Sable and Finch the tour needs to help a buyer understand the house, not simply admire a sequence of rooms. Everything the videographer left us is five seconds and silent, so we are treating this as a short form pair that plays muted on the listing page and in social. The agent recording stays out of this round. The facts sit on screen as captions instead, which is how a buyer reads them on a phone anyway.
 
-Scope
-1. Property listing tour: 1 named export. The room sequence is spatially understandable. The narration does not invent property features.
-2. Vertical property tour: 1 named export. The key rooms remain recognisable.
-3. Listing open-house card: 13 named exports. The listing details agree with the supplied facts.
+Please cut a 12 to 15 second listing tour in 16:9, built from at least five different takes, that opens on the exterior, moves through the rooms in an order a buyer could actually walk, and closes on the viewing action. The lower third carries the address “14 Gingerbread Hill Lane” with the price set under it, both exactly as row 2 of sablefinch_listings.csv has them. The upright cutdown runs 8 to 10 seconds and can be far more selective, but every room in it belongs to this house. One property per film, no exceptions: two houses in one tour is the single mistake we cannot put in front of a buyer.
 
-Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
-- Video delivery means a playable MP4, not a storyboard, still montage PDF or editing log. Audio expectations are stated on each film. Speech-led work requires supplied or explicitly authorised synthetic speech; do not invent documentary speech.
-- Authored animation can exceed the duration of still source images. Live-action edits require adequate distinct footage; looping a short clip is not a substitute for the missing coverage.
+Both films carry the supplied instrumental bed and nothing else on the audio. The completed source pack adds four five second shots, including the exterior coverage we never received.
 
-Use the attached brand identity and the source files listed in the asset manifest. The output register defines exact filenames, pages, sizes and record bindings. Supporting previews are welcome but cannot replace those files.
+The rest of the package is unchanged. We still need the twelve open house cards, each bound to its own row of sablefinch_listings.csv, the combined print run, and the disclosure line from sablefinch_facts_and_disclosure.txt carried word for word.
