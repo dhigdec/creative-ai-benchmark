@@ -18,7 +18,7 @@ Automatic verification: **17/17 passed**. Human verification: **22 checks pendin
 | PHOTO-04/booking-hero-verranza/A002 | Yes | passed | Decoded successfully as PNG. |
 | PHOTO-04/booking-hero-verranza/A003 | Yes | passed | Measured width: 1920 px (required 1920 px). |
 | PHOTO-04/booking-hero-verranza/A004 | Yes | passed | Measured height: 1080 px (required 1080 px). |
-| PHOTO-04/villa-collection/A001 | Yes | passed | File exists (5,458,645 bytes; SHA-256 e0678d0fd45d750da0441e34efa23c46c71bf003180d1d0ee3507784d6696a22). |
+| PHOTO-04/villa-collection/A001 | Yes | passed | File exists (5,458,645 bytes; SHA-256 8ba02a9661ebd1b4fe542d9e046c23372d45aed2697955c148118c7729522e04). |
 | PHOTO-04/villa-collection/A002 | Yes | passed | Decoded successfully as PDF. |
 | PHOTO-04/villa-collection/A003 | Yes | passed | Counted 6 PDF page(s) (required 6). |
 | PHOTO-04/villa-collection/A004 | Yes | passed | Measured trim width: 210.00 mm (required 210 +/- 0.2 mm). |

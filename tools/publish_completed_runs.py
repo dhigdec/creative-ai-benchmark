@@ -8,8 +8,10 @@ import hashlib
 import json
 import re
 import shutil
-from pathlib import Path
+import unicodedata
+from pathlib import Path, PurePosixPath
 from typing import Any
+from urllib.parse import quote
 
 from PIL import Image
 from pypdf import PdfReader
@@ -30,11 +32,11 @@ TASK_CONFIG = {
             },
             "K6_Q4": {
                 "grade": "Minor",
-                "evidence": "The run advanced steadily, but included an avoidable batch/preset retry and one crop-quality parameter retry before the accepted exports.",
+                "evidence": "The run completed, but a 22-image straighten call returned only 10 outputs and two concurrent auto-tone chunks returned HTTP 504 before connector-safe recovery.",
             },
             "K6_Q5": {
                 "grade": "Pass",
-                "evidence": "The agent detected the rejected crop quality and center-crop fallback, corrected the parameter, then visually checked the resulting compositions.",
+                "evidence": "The agent detected the incomplete batch and HTTP 504 responses, retried only missing inputs in smaller chunks, then reviewed all outputs and the three center-fallback hero crops.",
             },
             "K6_Q6": {
                 "grade": "Pass",
@@ -58,11 +60,11 @@ TASK_CONFIG = {
             },
             "K6_Q4": {
                 "grade": "Minor",
-                "evidence": "The work progressed to completion, but the initial all-image preset batch returned no results and had to be rerun in smaller chunks.",
+                "evidence": "The work completed, but the initial 22-image straighten call was truncated and concurrent auto-tone chunks returned HTTP 504 before smaller sequential retries succeeded.",
             },
             "K6_Q5": {
                 "grade": "Pass",
-                "evidence": "The zero-result batch and Adobe PDF parsing failure were detected; image processing was retried in chunks and approved task-register sources were used for print specifications.",
+                "evidence": "The incomplete batch and Adobe HTTP 504 responses were detected; only missing inputs were retried in connector-safe chunks, and final product/PDF renders were inspected.",
             },
             "K6_Q6": {
                 "grade": "Pass",
@@ -99,6 +101,284 @@ def pdf_measurements(path: Path) -> tuple[int, float, float]:
     width_mm = float(page.mediabox.width) * 25.4 / 72
     height_mm = float(page.mediabox.height) * 25.4 / 72
     return len(reader.pages), width_mm, height_mm
+
+
+SNAPSHOT_FIELDS = ("snapshot_url", "snapshot", "snapshot_path", "intermediate_snapshot")
+EVIDENCE_ARTIFACT_PATHS = {
+    "contact_sheet_image": "trajectory/contact-sheet.png",
+    "contact_sheet_report": "trajectory/contact-sheet.html",
+    "decision_evidence_report": "trajectory/decision-evidence.html",
+}
+
+
+def step_snapshot_reference(step: dict[str, Any]) -> str | None:
+    """Return a snapshot reference, rejecting conflicting aliases."""
+    found: list[tuple[str, str]] = []
+    for field in SNAPSHOT_FIELDS:
+        value = step.get(field)
+        if isinstance(value, str) and value.strip():
+            found.append((field, value.strip()))
+    if not found:
+        return None
+    if len({value for _, value in found}) != 1:
+        labels = ", ".join(f"{field}={value!r}" for field, value in found)
+        raise ValueError(f"Conflicting trajectory snapshot aliases: {labels}")
+    return found[0][1]
+
+
+def is_external_snapshot(reference: str) -> bool:
+    return bool(re.match(r"^[A-Za-z][A-Za-z0-9+.-]*:", reference)) or reference.startswith(("//", "/"))
+
+
+def canonical_package_reference(reference: str, label: str, prefix: tuple[str, ...]) -> PurePosixPath:
+    """Validate a local POSIX package reference with a required directory prefix."""
+    if not isinstance(reference, str) or not reference.strip():
+        raise ValueError(f"{label} must be a non-empty string")
+    reference = reference.strip()
+    if is_external_snapshot(reference) or reference.startswith("runs/"):
+        raise ValueError(f"{label} must be a local package path: {reference}")
+    if "\\" in reference or "?" in reference or "#" in reference:
+        raise ValueError(f"{label} contains unsafe path syntax: {reference}")
+    if any(ord(character) < 32 or ord(character) == 127 for character in reference):
+        raise ValueError(f"{label} contains control characters")
+    segments = reference.split("/")
+    if any(segment in {"", ".", ".."} for segment in segments):
+        raise ValueError(f"{label} is not a canonical package path: {reference}")
+    if tuple(segments[: len(prefix)]) != prefix:
+        raise ValueError(f"{label} must start with {'/'.join(prefix)}/: {reference}")
+    return PurePosixPath(*segments)
+
+
+def reject_symlink_components(source: Path, reference: PurePosixPath, label: str) -> None:
+    cursor = source
+    for segment in reference.parts:
+        cursor = cursor / segment
+        if cursor.is_symlink():
+            raise ValueError(f"{label} traverses a symlink: {reference.as_posix()}")
+
+
+def resolve_package_file(source: Path, reference: PurePosixPath, label: str) -> Path:
+    source_root = source.resolve()
+    reject_symlink_components(source_root, reference, label)
+    candidate = source_root.joinpath(*reference.parts)
+    resolved = candidate.resolve()
+    try:
+        resolved.relative_to(source_root)
+    except ValueError as exc:
+        raise ValueError(f"{label} escapes the run source: {reference.as_posix()}") from exc
+    if not resolved.is_file():
+        raise FileNotFoundError(f"{label} was not found: {candidate}")
+    return resolved
+
+
+def verify_snapshot_evidence(
+    snapshot: Path,
+    reference: PurePosixPath,
+    evidence: Any,
+    label: str,
+) -> None:
+    if not isinstance(evidence, dict):
+        raise TypeError(f"{label}.snapshot_evidence must be an object")
+    packaged_path = evidence.get("packaged_path")
+    if packaged_path != reference.as_posix():
+        raise ValueError(
+            f"{label}.snapshot_evidence.packaged_path does not match {reference.as_posix()!r}"
+        )
+    claimed_bytes = evidence.get("bytes")
+    if isinstance(claimed_bytes, bool) or not isinstance(claimed_bytes, int):
+        raise TypeError(f"{label}.snapshot_evidence.bytes must be an integer")
+    if claimed_bytes != snapshot.stat().st_size:
+        raise ValueError(f"{label} byte count does not match the packaged file")
+    claimed_sha = evidence.get("sha256")
+    if not isinstance(claimed_sha, str) or claimed_sha.lower() != sha256(snapshot):
+        raise ValueError(f"{label} SHA-256 does not match the packaged file")
+    claimed_pixels = evidence.get("pixels")
+    if not (
+        isinstance(claimed_pixels, list)
+        and len(claimed_pixels) == 2
+        and all(isinstance(value, int) and not isinstance(value, bool) for value in claimed_pixels)
+    ):
+        raise TypeError(f"{label}.snapshot_evidence.pixels must be [width, height]")
+    with Image.open(snapshot) as image:
+        image.verify()
+    with Image.open(snapshot) as image:
+        actual_pixels = [image.width, image.height]
+    if claimed_pixels != actual_pixels:
+        raise ValueError(f"{label} pixel dimensions do not match the packaged file")
+
+
+def normalized_destination_key(reference: PurePosixPath) -> str:
+    return unicodedata.normalize("NFC", reference.as_posix()).casefold()
+
+
+def add_copy_plan_item(
+    plan: list[tuple[Path, PurePosixPath, str]],
+    targets: dict[str, str],
+    source_file: Path,
+    reference: PurePosixPath,
+    label: str,
+) -> None:
+    key = normalized_destination_key(reference)
+    if key in targets:
+        raise RuntimeError(f"Published trajectory path collision: {targets[key]} and {label}")
+    targets[key] = label
+    plan.append((source_file, reference, label))
+
+
+def install_copy_plan(
+    destination: Path,
+    plan: list[tuple[Path, PurePosixPath, str]],
+) -> None:
+    for source_file, reference, label in plan:
+        target = destination.joinpath(*reference.parts)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source_file, target)
+        if sha256(target) != sha256(source_file):
+            raise RuntimeError(f"Published copy failed SHA-256 verification for {label}")
+
+
+def find_snapshot_source(source: Path, reference: str) -> Path | None:
+    """Resolve a canonical primary trajectory snapshot inside the run source."""
+    try:
+        canonical = canonical_package_reference(
+            reference, "trajectory snapshot", ("trajectory", "intermediate")
+        )
+        if len(canonical.parts) != 3:
+            return None
+        return resolve_package_file(source, canonical, "trajectory snapshot")
+    except (FileNotFoundError, TypeError, ValueError):
+        return None
+
+
+def copy_step_snapshots(source: Path, destination: Path, trajectory: dict[str, Any]) -> None:
+    """Preflight and copy primary plus underlying snapshots from trajectory_steps."""
+    steps = trajectory.get("trajectory_steps")
+    if steps is None:
+        return
+    if not isinstance(steps, list):
+        raise TypeError("trajectory_steps must be an ordered array")
+    plan: list[tuple[Path, PurePosixPath, str]] = []
+    targets: dict[str, str] = {}
+    for position, step in enumerate(steps, start=1):
+        if not isinstance(step, dict):
+            raise TypeError(f"trajectory_steps[{position - 1}] must be an object")
+        reference = step_snapshot_reference(step)
+        if not reference:
+            raise ValueError(f"Trajectory step {position} does not record a snapshot")
+        label = f"trajectory_steps[{position - 1}]"
+        canonical = canonical_package_reference(reference, f"{label}.snapshot", ("trajectory", "intermediate"))
+        if len(canonical.parts) != 3:
+            raise ValueError(f"{label}.snapshot must be directly inside trajectory/intermediate")
+        snapshot = resolve_package_file(source, canonical, f"{label}.snapshot")
+        verify_snapshot_evidence(snapshot, canonical, step.get("snapshot_evidence"), label)
+        add_copy_plan_item(plan, targets, snapshot, canonical, f"{label}.snapshot")
+
+        assets = step.get("asset_snapshots")
+        if assets is None:
+            continue
+        if not isinstance(assets, list):
+            raise TypeError(f"{label}.asset_snapshots must be an array")
+        for asset_position, asset in enumerate(assets):
+            asset_label = f"{label}.asset_snapshots[{asset_position}]"
+            if not isinstance(asset, dict):
+                raise TypeError(f"{asset_label} must be an object")
+            for field in ("asset_id", "name", "path"):
+                if not isinstance(asset.get(field), str) or not asset[field].strip():
+                    raise ValueError(f"{asset_label}.{field} must be a non-empty string")
+            asset_reference = canonical_package_reference(
+                asset["path"], f"{asset_label}.path", ("trajectory", "underlying")
+            )
+            if len(asset_reference.parts) < 4:
+                raise ValueError(f"{asset_label}.path must include a stage directory and filename")
+            asset_source = resolve_package_file(source, asset_reference, f"{asset_label}.path")
+            verify_snapshot_evidence(
+                asset_source,
+                asset_reference,
+                asset.get("snapshot_evidence"),
+                asset_label,
+            )
+            add_copy_plan_item(plan, targets, asset_source, asset_reference, asset_label)
+    install_copy_plan(destination, plan)
+
+
+def copy_evidence_artifacts(source: Path, destination: Path, trajectory: dict[str, Any]) -> None:
+    artifacts = trajectory.get("evidence_artifacts")
+    if artifacts is None:
+        return
+    if not isinstance(artifacts, dict):
+        raise TypeError("evidence_artifacts must be an object")
+    plan: list[tuple[Path, PurePosixPath, str]] = []
+    targets: dict[str, str] = {}
+    for field, expected in EVIDENCE_ARTIFACT_PATHS.items():
+        value = artifacts.get(field)
+        if value != expected:
+            raise ValueError(f"evidence_artifacts.{field} must equal {expected!r}")
+        canonical = canonical_package_reference(value, f"evidence_artifacts.{field}", ("trajectory",))
+        if canonical.as_posix() != expected:
+            raise ValueError(f"evidence_artifacts.{field} must equal {expected!r}")
+        artifact_source = resolve_package_file(source, canonical, f"evidence_artifacts.{field}")
+        add_copy_plan_item(plan, targets, artifact_source, canonical, f"evidence_artifacts.{field}")
+    install_copy_plan(destination, plan)
+
+
+def public_package_url(task_id: str, reference: PurePosixPath) -> str:
+    segments = ("runs", task_id, *reference.parts)
+    return "/".join(quote(segment, safe="-._~") for segment in segments)
+
+
+def public_evidence_artifacts(trajectory: dict[str, Any], task_id: str) -> dict[str, str] | None:
+    artifacts = trajectory.get("evidence_artifacts")
+    if artifacts is None:
+        return None
+    if not isinstance(artifacts, dict):
+        raise TypeError("evidence_artifacts must be an object")
+    result: dict[str, str] = {}
+    for field, expected in EVIDENCE_ARTIFACT_PATHS.items():
+        if artifacts.get(field) != expected:
+            raise ValueError(f"evidence_artifacts.{field} must equal {expected!r}")
+        canonical = canonical_package_reference(expected, f"evidence_artifacts.{field}", ("trajectory",))
+        result[field] = public_package_url(task_id, canonical)
+    return result
+
+
+def public_trajectory_steps(trajectory: dict[str, Any], task_id: str) -> list[dict[str, Any]] | None:
+    """Preserve source order and expose copied snapshot paths to the static site."""
+    steps = trajectory.get("trajectory_steps")
+    if steps is None:
+        return None
+    if not isinstance(steps, list):
+        raise TypeError("trajectory_steps must be an ordered array")
+    public_steps: list[dict[str, Any]] = []
+    for position, step in enumerate(steps, start=1):
+        if not isinstance(step, dict):
+            raise TypeError(f"trajectory_steps[{position - 1}] must be an object")
+        public_step = dict(step)
+        reference = step_snapshot_reference(step)
+        if not reference:
+            raise ValueError(f"Trajectory step {position} does not record a snapshot")
+        label = f"trajectory_steps[{position - 1}]"
+        canonical = canonical_package_reference(reference, f"{label}.snapshot", ("trajectory", "intermediate"))
+        if len(canonical.parts) != 3:
+            raise ValueError(f"{label}.snapshot must be directly inside trajectory/intermediate")
+        public_step["snapshot_url"] = public_package_url(task_id, canonical)
+        assets = step.get("asset_snapshots")
+        if assets is not None:
+            if not isinstance(assets, list):
+                raise TypeError(f"{label}.asset_snapshots must be an array")
+            public_assets: list[dict[str, Any]] = []
+            for asset_position, asset in enumerate(assets):
+                asset_label = f"{label}.asset_snapshots[{asset_position}]"
+                if not isinstance(asset, dict):
+                    raise TypeError(f"{asset_label} must be an object")
+                canonical_asset = canonical_package_reference(
+                    asset.get("path"), f"{asset_label}.path", ("trajectory", "underlying")
+                )
+                public_asset = dict(asset)
+                public_asset["snapshot_url"] = public_package_url(task_id, canonical_asset)
+                public_assets.append(public_asset)
+            public_step["asset_snapshots"] = public_assets
+        public_steps.append(public_step)
+    return public_steps
 
 
 def verify_check(check: dict[str, Any], artifact: Path) -> tuple[bool, str]:
@@ -146,6 +426,7 @@ def copy_run(source_root: Path, site: Path, task_id: str, cfg: dict[str, Any]) -
     (destination / "package").mkdir(exist_ok=True)
 
     manifest = load_json(source / "manifest.json")
+    trajectory = load_json(source / "trajectory" / "trajectory.json")
     for output in manifest["outputs"]:
         src = source / output["path"]
         if not src.is_file():
@@ -155,11 +436,13 @@ def copy_run(source_root: Path, site: Path, task_id: str, cfg: dict[str, Any]) -
         shutil.copy2(source / "trajectory" / name, destination / "trajectory" / name)
     intermediate = source / "trajectory" / "intermediate" / cfg["intermediate"]
     shutil.copy2(intermediate, destination / "trajectory" / "intermediate" / intermediate.name)
+    copy_step_snapshots(source, destination, trajectory)
+    copy_evidence_artifacts(source, destination, trajectory)
     for name in ("manifest.json", "README.md"):
         shutil.copy2(source / name, destination / name)
     package = source_root / "packages" / cfg["package"]
     shutil.copy2(package, destination / "package" / package.name)
-    return destination, manifest, load_json(source / "trajectory" / "trajectory.json")
+    return destination, manifest, trajectory
 
 
 def enrich_outputs(outputs: list[dict[str, Any]], manifest: dict[str, Any], task_id: str, cfg: dict[str, Any]) -> list[dict[str, Any]]:
@@ -225,7 +508,7 @@ def make_run_result(task_id: str, title: str, outputs: list[dict[str, Any]], che
     auto = [check for check in checks if check.get("type") == "auto"]
     human = [check for check in checks if check.get("type") == "human"]
     produced = [output for output in outputs if output.get("status") == "produced"]
-    return {
+    result = {
         "task_id": task_id,
         "task_code": cfg["code"],
         "title": title,
@@ -257,6 +540,21 @@ def make_run_result(task_id: str, title: str, outputs: list[dict[str, Any]], che
             "trajectory_report": f"runs/{task_id}/trajectory/trajectory.html",
         },
     }
+    trajectory_steps = public_trajectory_steps(trajectory, task_id)
+    if trajectory_steps is not None:
+        result["trajectory_steps"] = trajectory_steps
+        result["intermediate_snapshot"] = trajectory_steps[-1]["snapshot_url"]
+    evidence_artifacts = public_evidence_artifacts(trajectory, task_id)
+    if evidence_artifacts is not None:
+        result["evidence_artifacts"] = evidence_artifacts
+        result["links"].update(
+            {
+                "contact_sheet": evidence_artifacts["contact_sheet_report"],
+                "contact_sheet_image": evidence_artifacts["contact_sheet_image"],
+                "decision_evidence": evidence_artifacts["decision_evidence_report"],
+            }
+        )
+    return result
 
 
 def update_task_files(site: Path, task_id: str, cfg: dict[str, Any], manifest: dict[str, Any], trajectory: dict[str, Any]) -> dict[str, Any]:
@@ -316,6 +614,7 @@ def update_task_files(site: Path, task_id: str, cfg: dict[str, Any], manifest: d
 
 CSS = r"""
 .run-banner{margin:0 0 18px;padding:16px 18px;border:1px solid #a9cdbb;border-left:4px solid var(--green);border-radius:8px;background:#f2f8f5}.run-banner strong{display:block;font-size:16px;margin-bottom:4px}.run-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.run-actions a,.output-links a{display:inline-block;padding:6px 9px;border:1px solid var(--line);border-radius:5px;background:#fff;text-decoration:none}.output-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:12px 0 18px}.output-card{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}.output-card img,.output-card iframe{width:100%;height:240px;display:block;object-fit:contain;background:#f1f0ec;border:0}.output-card-body{padding:12px}.output-card h3{margin:0 0 5px;font-size:15px}.output-meta{color:var(--muted);font-size:12px;line-height:1.5}.output-hash{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.output-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.result-badge,.trajectory-grade{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em}.result-pass,.grade-pass{background:#dcefe5;color:#235f43}.result-pending,.grade-minor{background:#fdf0cd;color:#77570d}.grade-major{background:#f8d9d4;color:#8d2e25}.verifier-table table{min-width:880px}.verifier-table th:nth-child(1){width:43%}.verifier-table th:nth-child(2){width:35%}.verifier-table th:nth-child(3){width:9%}.verifier-table th:nth-child(4){width:13%}.verifier-table td{overflow-wrap:normal;word-break:normal}.trajectory-result{margin-top:10px;padding:10px 12px;border:1px solid var(--line);border-radius:6px;background:#fff}.trajectory-result p{margin:7px 0 0}.intermediate-card{display:grid;grid-template-columns:minmax(220px,420px) 1fr;gap:18px;align-items:start;margin:18px 0;padding:14px;border:1px solid var(--line);border-radius:8px;background:#fafbfa}.intermediate-card img{width:100%;max-height:340px;object-fit:contain;background:#eee}.intermediate-card h3{margin-top:0}@media(max-width:900px){.verifier-table table,.verifier-table tbody,.verifier-table tr,.verifier-table td{display:block;min-width:0;width:auto}.verifier-table thead{display:none}.verifier-table tr{margin:0 0 12px;padding:10px 12px;border:1px solid var(--line);border-radius:7px;background:#fff}.verifier-table td{padding:7px 0;border:0}.verifier-table td+td{border-top:1px solid #eceae4}.verifier-table td:nth-child(2)::before,.verifier-table td:nth-child(3)::before,.verifier-table td:nth-child(4)::before{display:block;color:var(--muted);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}.verifier-table td:nth-child(2)::before{content:'Evidence'}.verifier-table td:nth-child(3)::before{content:'Check'}.verifier-table td:nth-child(4)::before{content:'Answer'}}@media(max-width:760px){.intermediate-card{grid-template-columns:1fr}.output-card img,.output-card iframe{height:210px}}
+.trajectory-timeline{margin:22px 0}.trajectory-timeline-header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}.trajectory-timeline-header h3{margin:0}.trajectory-timeline-header span{color:var(--muted);font-size:12px}.trajectory-step{position:relative;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;padding-bottom:18px}.trajectory-step:not(:last-child)::before{content:'';position:absolute;left:16px;top:34px;bottom:0;width:2px;background:var(--line)}.trajectory-step-index{position:relative;z-index:1;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#253d35;color:#fff;font-size:12px;font-weight:700}.trajectory-step-card{border:1px solid var(--line);border-radius:8px;background:#fafbfa;overflow:hidden}.trajectory-step-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:13px 14px;border-bottom:1px solid var(--line);background:#fff}.trajectory-step-heading h4{margin:0;font-size:15px}.trajectory-step-stage,.trajectory-step-meta{color:var(--muted);font-size:11px}.trajectory-step-status{white-space:nowrap}.trajectory-step-body{display:grid;grid-template-columns:minmax(220px,360px) minmax(0,1fr);gap:16px;padding:14px}.trajectory-step-snapshot img{display:block;width:100%;max-height:300px;object-fit:contain;background:#eee}.trajectory-step-snapshot a{display:block}.trajectory-step-empty{display:grid;place-items:center;min-height:150px;padding:14px;border:1px dashed var(--line);color:var(--muted);font-size:12px;text-align:center}.trajectory-step-details p{margin:0 0 10px}.trajectory-step-details strong{display:block;margin-bottom:3px;font-size:11px;text-transform:uppercase;letter-spacing:.05em}.trajectory-step-details pre{margin:0 0 10px;padding:9px;overflow:auto;border-radius:5px;background:#eeefecci;font:11px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;word-break:break-word}.trajectory-step-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}.trajectory-links{margin-top:4px;padding:14px;border-top:1px solid var(--line)}@media(max-width:760px){.trajectory-step-body{grid-template-columns:1fr}.trajectory-step-heading{display:block}.trajectory-step-status{margin-top:7px}}
 """
 
 
@@ -323,6 +622,12 @@ JS_HELPERS = r"""
 const formatBytes=n=>{if(!n)return '';const u=['B','KB','MB','GB'];let i=0,v=n;while(v>=1024&&i<u.length-1){v/=1024;i++;}return `${v.toFixed(i?1:0)} ${u[i]}`;};
 const specLine=o=>Object.entries(o.spec||{}).filter(([k])=>['format','width','height','width_mm','height_mm','pages','duration_seconds','ratio','audio'].includes(k)).map(([k,v])=>`${k}: ${typeof v==='object'?JSON.stringify(v):v}`).join('; ');
 function outputCard(o){const url=o.artifact_url||'';const image=/\.(png|jpe?g|webp|gif)$/i.test(url);const pdf=/\.pdf$/i.test(url);const preview=image?`<a href="${esc(url)}" target="_blank" rel="noopener"><img loading="lazy" src="${esc(url)}" alt="${esc(o.name)}"></a>`:pdf?`<iframe loading="lazy" title="${esc(o.name)} PDF preview" src="${esc(url)}#view=FitH&toolbar=0"></iframe>`:'';const actual=o.actual_pixels?`${o.actual_pixels[0]} x ${o.actual_pixels[1]} px`:o.actual_pages?`${o.actual_pages} page${o.actual_pages===1?'':'s'}`:'';return `<article class="output-card">${preview}<div class="output-card-body"><h3>${esc(o.name)}</h3><span class="result-badge ${o.verification==='passed'?'result-pass':'result-pending'}">${esc(o.verification||o.status||'pending')}</span><p class="output-meta"><code>${esc(o.path)}</code><br>${esc(actual||specLine(o))}${o.bytes?` · ${esc(formatBytes(o.bytes))}`:''}${o.sha256?`<span class="output-hash" title="${esc(o.sha256)}">SHA-256 ${esc(o.sha256)}</span>`:''}</p><div class="output-links">${url?`<a href="${esc(url)}" target="_blank" rel="noopener">Open</a><a href="${esc(url)}" download>Download</a>`:''}</div></div></article>`;}
+"""
+
+
+JS_TRAJECTORY_HELPERS = r"""
+const trajectoryValue=value=>value===undefined||value===null||value===''?'':typeof value==='string'?value:JSON.stringify(value,null,2);
+function trajectoryTimeline(run){const steps=Array.isArray(run?.trajectory_steps)?run.trajectory_steps:[];if(!steps.length)return '';return `<section class="trajectory-timeline"><div class="trajectory-timeline-header"><h3>Complete intermediate trajectory</h3><span>${steps.length} recorded step${steps.length===1?'':'s'} · source order</span></div>${steps.map((s,i)=>{const number=s.stage??s.step??i+1;const title=s.title||s.name||s.action||`Step ${number}`;const snapshot=s.snapshot_url||s.snapshot||s.snapshot_path||s.intermediate_snapshot||'';const decision=trajectoryValue(s.decision??s.important_decision);const reasoning=trajectoryValue(s.reasoning??s.rationale);const action=trajectoryValue(s.action);const parameters=trajectoryValue(s.parameters);const timestamp=s.timestamp||s.created_at||s.started_at||s.completed_at||'';const requestId=s.request_id||s.requestId||'';return `<article class="trajectory-step"><div class="trajectory-step-index">${esc(number)}</div><div class="trajectory-step-card"><div class="trajectory-step-heading"><div><div class="trajectory-step-stage">Stage ${esc(number)}</div><h4>${esc(title)}</h4></div>${s.status?`<span class="result-badge trajectory-step-status">${esc(s.status)}</span>`:''}</div><div class="trajectory-step-body"><div class="trajectory-step-snapshot">${snapshot?`<a href="${esc(snapshot)}" target="_blank" rel="noopener"><img loading="lazy" src="${esc(snapshot)}" alt="Snapshot after stage ${esc(number)}: ${esc(title)}"></a>`:'<div class="trajectory-step-empty">No snapshot was recorded for this step.</div>'}</div><div class="trajectory-step-details">${action&&action!==title?`<p><strong>Action</strong>${esc(action)}</p>`:''}${parameters?`<strong>Parameters</strong><pre>${esc(parameters)}</pre>`:''}${decision?`<p><strong>Decision</strong>${esc(decision)}</p>`:''}${reasoning?`<p><strong>Reasoning</strong>${esc(reasoning)}</p>`:''}<div class="trajectory-step-meta">${timestamp?`<span><strong>Timestamp</strong>${esc(timestamp)}</span>`:''}${requestId?`<span><strong>Request ID</strong><code>${esc(requestId)}</code></span>`:''}</div></div></div></div></article>`;}).join('')}</section>`;}
 """
 
 
@@ -354,6 +659,8 @@ def update_index(site: Path, updates: dict[str, dict[str, Any]]) -> None:
     helper_anchor = "const sections=['Brief','Brand','Outputs','Auto verifiers','Human verifiers','Trajectory verifiers','Assets','Release gates'];"
     if "function outputCard(o)" not in html:
         html = html.replace(helper_anchor, JS_HELPERS + helper_anchor, 1)
+    if "function trajectoryTimeline(run)" not in html:
+        html = html.replace(helper_anchor, JS_TRAJECTORY_HELPERS + helper_anchor, 1)
 
     old_check_rows = "function checkRows(rows){return table(['Pass condition','Reference','Check','Answer'],rows.map(c=>[conditionHTML(c),evidenceHTML(c),`<span title=\"${esc(c.check_id)}\">${esc(c.check_id.split('/').at(-1))}</span>`,'<strong>Yes / No</strong>']));}"
     new_check_rows = "function checkRows(rows){return table(['Pass condition','Reference','Check','Answer'],rows.map(c=>[conditionHTML(c),evidenceHTML(c),`<span title=\"${esc(c.check_id)}\">${esc(c.check_id.split('/').at(-1))}</span>`,c.answer?`<span class=\"result-badge ${c.status==='passed'?'result-pass':'result-pending'}\">${esc(c.answer)} · ${esc(c.status)}</span>`:'<strong>Yes / No</strong>']));}"
@@ -372,14 +679,26 @@ def update_index(site: Path, updates: dict[str, dict[str, Any]]) -> None:
     html = html.replace(old_outputs, new_outputs, 1)
 
     old_trajectory = "html+=(k6?k6.questions:[]).map(q=>`<div class=\"k-question\"><h3>${esc(kShort(q.id))} · ${esc(q.label)}${objBadge(q)}</h3><p class=\"k-qtext\">${esc(q.question)}</p><details class=\"expected-copy\"><summary>Grading guide</summary><p><strong>Pass:</strong> ${esc(q.grades?.pass)}</p><p><strong>Minor:</strong> ${esc(q.grades?.minor)}</p><p><strong>Major:</strong> ${esc(q.grades?.major)}</p></details><p class=\"k-pending\">Pending: populated from the run trajectory after the task is executed.</p></div>`).join('');"
-    new_trajectory = "const scores=Object.fromEntries((t.run?.trajectory_scores||[]).map(x=>[x.question_id,x]));html+=(k6?k6.questions:[]).map(q=>{const s=scores[q.id];return `<div class=\"k-question\"><h3>${esc(kShort(q.id))} · ${esc(q.label)}${objBadge(q)}</h3><p class=\"k-qtext\">${esc(q.question)}</p><details class=\"expected-copy\"><summary>Grading guide</summary><p><strong>Pass:</strong> ${esc(q.grades?.pass)}</p><p><strong>Minor:</strong> ${esc(q.grades?.minor)}</p><p><strong>Major:</strong> ${esc(q.grades?.major)}</p></details>${s?`<div class=\"trajectory-result\"><span class=\"trajectory-grade grade-${esc(s.grade.toLowerCase())}\">${esc(s.grade)}</span><p>${esc(s.evidence)}</p></div>`:'<p class=\"k-pending\">Pending: populated from the run trajectory after the task is executed.</p>'}</div>`;}).join('');if(t.run){const l=t.run.links;html+=`<div class=\"intermediate-card\"><a href=\"${esc(t.run.intermediate_snapshot)}\" target=\"_blank\"><img loading=\"lazy\" src=\"${esc(t.run.intermediate_snapshot)}\" alt=\"Intermediate run snapshot\"></a><div><h3>Intermediate snapshot and full trajectory</h3><p>This snapshot records the asset after Adobe tone treatment and before final layout/export. The complete trajectory includes source/output bindings, Adobe actions, retries, and concise decision summaries.</p><div class=\"run-actions\"><a href=\"${esc(l.trajectory_report)}\" target=\"_blank\">Open trajectory report</a><a href=\"${esc(l.trajectory_json)}\" target=\"_blank\">Trajectory JSON</a><a href=\"${esc(l.trajectory_markdown)}\" target=\"_blank\">Trajectory Markdown</a></div></div></div>`;}"
-    html = html.replace(old_trajectory, new_trajectory, 1)
+    legacy_run_trajectory = "const scores=Object.fromEntries((t.run?.trajectory_scores||[]).map(x=>[x.question_id,x]));html+=(k6?k6.questions:[]).map(q=>{const s=scores[q.id];return `<div class=\"k-question\"><h3>${esc(kShort(q.id))} · ${esc(q.label)}${objBadge(q)}</h3><p class=\"k-qtext\">${esc(q.question)}</p><details class=\"expected-copy\"><summary>Grading guide</summary><p><strong>Pass:</strong> ${esc(q.grades?.pass)}</p><p><strong>Minor:</strong> ${esc(q.grades?.minor)}</p><p><strong>Major:</strong> ${esc(q.grades?.major)}</p></details>${s?`<div class=\"trajectory-result\"><span class=\"trajectory-grade grade-${esc(s.grade.toLowerCase())}\">${esc(s.grade)}</span><p>${esc(s.evidence)}</p></div>`:'<p class=\"k-pending\">Pending: populated from the run trajectory after the task is executed.</p>'}</div>`;}).join('');if(t.run){const l=t.run.links;html+=`<div class=\"intermediate-card\"><a href=\"${esc(t.run.intermediate_snapshot)}\" target=\"_blank\"><img loading=\"lazy\" src=\"${esc(t.run.intermediate_snapshot)}\" alt=\"Intermediate run snapshot\"></a><div><h3>Intermediate snapshot and full trajectory</h3><p>This snapshot records the asset after Adobe tone treatment and before final layout/export. The complete trajectory includes source/output bindings, Adobe actions, retries, and concise decision summaries.</p><div class=\"run-actions\"><a href=\"${esc(l.trajectory_report)}\" target=\"_blank\">Open trajectory report</a><a href=\"${esc(l.trajectory_json)}\" target=\"_blank\">Trajectory JSON</a><a href=\"${esc(l.trajectory_markdown)}\" target=\"_blank\">Trajectory Markdown</a></div></div></div>`;}"
+    new_trajectory = "const scores=Object.fromEntries((t.run?.trajectory_scores||[]).map(x=>[x.question_id,x]));html+=(k6?k6.questions:[]).map(q=>{const s=scores[q.id];return `<div class=\"k-question\"><h3>${esc(kShort(q.id))} · ${esc(q.label)}${objBadge(q)}</h3><p class=\"k-qtext\">${esc(q.question)}</p><details class=\"expected-copy\"><summary>Grading guide</summary><p><strong>Pass:</strong> ${esc(q.grades?.pass)}</p><p><strong>Minor:</strong> ${esc(q.grades?.minor)}</p><p><strong>Major:</strong> ${esc(q.grades?.major)}</p></details>${s?`<div class=\"trajectory-result\"><span class=\"trajectory-grade grade-${esc(s.grade.toLowerCase())}\">${esc(s.grade)}</span><p>${esc(s.evidence)}</p></div>`:'<p class=\"k-pending\">Pending: populated from the run trajectory after the task is executed.</p>'}</div>`;}).join('');if(t.run){const l=t.run.links;const timeline=trajectoryTimeline(t.run);html+=timeline||`<div class=\"intermediate-card\"><a href=\"${esc(t.run.intermediate_snapshot)}\" target=\"_blank\" rel=\"noopener\"><img loading=\"lazy\" src=\"${esc(t.run.intermediate_snapshot)}\" alt=\"Intermediate run snapshot\"></a><div><h3>Intermediate snapshot and full trajectory</h3><p>This run predates per-step snapshot logging. Its retained intermediate snapshot and full trajectory files remain available below.</p></div></div>`;html+=`<div class=\"run-actions trajectory-links\"><a href=\"${esc(l.trajectory_report)}\" target=\"_blank\" rel=\"noopener\">Open trajectory report</a><a href=\"${esc(l.trajectory_json)}\" target=\"_blank\" rel=\"noopener\">Trajectory JSON</a><a href=\"${esc(l.trajectory_markdown)}\" target=\"_blank\" rel=\"noopener\">Trajectory Markdown</a></div>`;}"
+    if legacy_run_trajectory in html:
+        html = html.replace(legacy_run_trajectory, new_trajectory, 1)
+    else:
+        html = html.replace(old_trajectory, new_trajectory, 1)
 
     old_release = "if(section==='Release gates')html=`<p class=\"status\">Release held pending validation</p>${table(['Gate','State'],Object.entries(t.readiness).filter(([k,v])=>typeof v==='string').map(([k,v])=>[esc(k.replaceAll('_',' ')),esc(v)]))}<h3>Open prerequisites</h3>${t.readiness.blockers.length?`<ul>${t.readiness.blockers.map(b=>`<li>${esc(b)}</li>`).join('')}</ul>`:'<p>No additional source prerequisite was detected by structural checks. Visual review and connector trials remain required.</p>'}<h3>Record exclusions</h3>${t.exclusions.length?table(['Group','Source row','Reason'],t.exclusions.map(e=>[esc(e.group),`${esc(e.table)}, row ${e.row_number}`,esc(e.reason)])):'<p>No rule-based exclusions were made.</p>'}`;"
     new_release = "if(section==='Release gates')html=`<p class=\"status\">${t.run?'Run complete · independent creative review pending':'Release held pending validation'}</p>${table(['Gate','State'],Object.entries(t.readiness).filter(([k,v])=>typeof v==='string').map(([k,v])=>[esc(k.replaceAll('_',' ')),esc(v)]))}<h3>Open prerequisites</h3>${t.readiness.blockers.length?`<ul>${t.readiness.blockers.map(b=>`<li>${esc(b)}</li>`).join('')}</ul>`:t.run?'<p>Contracted artifacts and connector execution are complete. Independent creative review remains pending.</p>':'<p>No additional source prerequisite was detected by structural checks. Visual review and connector trials remain required.</p>'}<h3>Record exclusions</h3>${t.exclusions.length?table(['Group','Source row','Reason'],t.exclusions.map(e=>[esc(e.group),`${esc(e.table)}, row ${e.row_number}`,esc(e.reason)])):'<p>No rule-based exclusions were made.</p>'}`;"
     html = html.replace(old_release, new_release, 1)
 
-    required_fragments = [new_check_rows, new_toolbar, new_heading, new_outputs, new_trajectory, new_release]
+    required_fragments = [
+        new_check_rows,
+        new_toolbar,
+        new_heading,
+        new_outputs,
+        "function trajectoryTimeline(run)",
+        new_trajectory,
+        new_release,
+    ]
     if not all(fragment in html for fragment in required_fragments):
         raise RuntimeError("One or more index renderer replacements did not apply")
     index.write_text(html)

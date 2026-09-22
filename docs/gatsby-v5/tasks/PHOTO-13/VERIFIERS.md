@@ -6,7 +6,7 @@ Automatic verification: **50/50 passed**. Human verification: **66 checks pendin
 
 | Check | Answer | Status | Measured evidence |
 |---|---|---|---|
-| PHOTO-13/capsule-poster/A001 | Yes | passed | File exists (1,160,070 bytes; SHA-256 5821f7158d70a8081ea5d368d99eaa72078c7e3864e39cd8264cc5aa9fc9fe52). |
+| PHOTO-13/capsule-poster/A001 | Yes | passed | File exists (1,160,070 bytes; SHA-256 f58b124e646daa1500f47fc6efdb7640563feacf59ef2f8944620b9023dd429d). |
 | PHOTO-13/capsule-poster/A002 | Yes | passed | Decoded successfully as PDF. |
 | PHOTO-13/capsule-poster/A003 | Yes | passed | Counted 1 PDF page(s) (required 1). |
 | PHOTO-13/capsule-poster/A004 | Yes | passed | Measured trim width: 420.00 mm (required 420 +/- 0.2 mm). |
@@ -47,11 +47,11 @@ Automatic verification: **50/50 passed**. Human verification: **66 checks pendin
 | PHOTO-13/jewellery-detail-r010/A002 | Yes | passed | Decoded successfully as PNG. |
 | PHOTO-13/jewellery-detail-r010/A003 | Yes | passed | Measured width: 1440 px (required 1440 px). |
 | PHOTO-13/jewellery-detail-r010/A004 | Yes | passed | Measured height: 1800 px (required 1800 px). |
-| PHOTO-13/jewellery-detail-r011/A001 | Yes | passed | File exists (1,120,732 bytes; SHA-256 22ba93ae49dac1402394d9817f76af0e46c6955de297f118f465d54957e36bfa). |
+| PHOTO-13/jewellery-detail-r011/A001 | Yes | passed | File exists (1,120,595 bytes; SHA-256 0c4078c48e944f106d5e2189822eed7cf7bff035f6a37f8e4030089bc0baea11). |
 | PHOTO-13/jewellery-detail-r011/A002 | Yes | passed | Decoded successfully as PNG. |
 | PHOTO-13/jewellery-detail-r011/A003 | Yes | passed | Measured width: 1440 px (required 1440 px). |
 | PHOTO-13/jewellery-detail-r011/A004 | Yes | passed | Measured height: 1800 px (required 1800 px). |
-| PHOTO-13/retailer-look-sheet/A001 | Yes | passed | File exists (990,707 bytes; SHA-256 d0d7bf8699458d41c872cbd4071ef143440250547bb46c344d33c040f20eaabd). |
+| PHOTO-13/retailer-look-sheet/A001 | Yes | passed | File exists (990,703 bytes; SHA-256 3b56d5cf00a4725ce63727e6cedc59c70dda725afdb17677fc072bb5b5df5224). |
 | PHOTO-13/retailer-look-sheet/A002 | Yes | passed | Decoded successfully as PDF. |
 | PHOTO-13/retailer-look-sheet/A003 | Yes | passed | Counted 2 PDF page(s) (required 2). |
 | PHOTO-13/retailer-look-sheet/A004 | Yes | passed | Measured trim width: 210.00 mm (required 210 +/- 0.2 mm). |
