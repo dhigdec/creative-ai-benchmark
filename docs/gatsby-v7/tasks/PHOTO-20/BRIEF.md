@@ -8,7 +8,7 @@ The commission
 
  Speaker booking one-pager: 1 named export. The biography preserves approved facts. The talk offer is clear: each talk in her bio and talk copy, with its title and its one-line subject, word for word. The booking contact is readable: it is her name and studio as her sign-off gives them, Astrid Vellacourt - Vellacourt & Sund.
 
- Confirmed-talk speaker announcement: 3 named exports. The event name is visible. The event date matches this talk record, written exactly as the record writes it. The speaker name is clear, and the post uses her announcement wording word for word, filled in with this talk's event name, date and title.
+ Confirmed-talk speaker announcement: 3 named exports. The event name is visible. The event date matches this talk record, written exactly as the record writes it. The speaker name is clear, and the post uses her announcement wording word for word, filled in with this talk's event name, date and title. Each announcement is 1080 x 1350 px (4:5), as the output register sets, not a square canvas.
 
  Confirmed-talk speaker banner: 3 named exports. The banner identifies this talk by its title, event name and date, each written as this talk's record writes it. The supplied talk portrait belongs to this record.
 

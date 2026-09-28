@@ -42,6 +42,6 @@ Rules:
 Exact, understated, collector to collector. Example line: 'Five references. Each one regulated by hand and signed.'
 
 ## Supplied Identity
-We have last season's certificate as it went to the printer and an approved wording note. The timing line is fixed and cannot be reworded, and the featured reference moves each season.
+We have last season's certificate as it went to the printer and an approved wording note. The certificate is a visual reference only; where it differs from the current type rules, the type rules govern. The timing line is fixed and cannot be reworded, and the featured reference moves each season.
 
 Production identity and cross-image continuity remain subject to the release asset checks.

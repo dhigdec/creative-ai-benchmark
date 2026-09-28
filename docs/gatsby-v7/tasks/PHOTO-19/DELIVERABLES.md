@@ -16,8 +16,8 @@
 | Summit speaker card - Bernadette Cruz | deliverables/speaker-card-r015.png | {"format":"png","width":1080,"height":1350} |
 | Summit speaker card - Hugo Almeida | deliverables/speaker-card-r016.png | {"format":"png","width":1080,"height":1350} |
 | Summit speaker card - Karin Voss | deliverables/speaker-card-r017.png | {"format":"png","width":1080,"height":1350} |
-| Summit speaker card - Laurel Beckett | deliverables/speaker-card-r018.png | {"format":"png","width":1080,"height":1350} |
-| Summit speaker card - Owen Faraday | deliverables/speaker-card-r019.png | {"format":"png","width":1080,"height":1350} |
-| Summit speaker card - Mireille Dufort | deliverables/speaker-card-r020.png | {"format":"png","width":1080,"height":1350} |
-| Summit speaker card - Jonah Pryce | deliverables/speaker-card-r021.png | {"format":"png","width":1080,"height":1350} |
+| Summit host card - Laurel Beckett | deliverables/speaker-card-r018.png | {"format":"png","width":1080,"height":1350} |
+| Summit host card - Owen Faraday | deliverables/speaker-card-r019.png | {"format":"png","width":1080,"height":1350} |
+| Summit host card - Mireille Dufort | deliverables/speaker-card-r020.png | {"format":"png","width":1080,"height":1350} |
+| Summit host card - Jonah Pryce | deliverables/speaker-card-r021.png | {"format":"png","width":1080,"height":1350} |
 | Summit announcement | deliverables/summit-announcement.png | {"format":"png","width":1920,"height":1080} |

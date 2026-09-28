@@ -2,7 +2,7 @@
 
 A calm launch image system for a reformer studio with a limited shoot
 
-Verda is a reformer studio, and the launch should feel calm, approachable and grounded in the room we actually have. Our two room photographs are dusky. We need them prepared alongside suitable licensed movement imagery, not replaced by a fictional studio. The launch page shows our own room from at least one of those two photographs.
+Verda is a reformer studio, and the launch should feel calm, approachable and grounded in the room we actually have. Our two room photographs are dusky. We need them prepared, not replaced by a fictional studio. The launch page shows our own room from at least one of those two photographs.
 
 Please prepare
 - Studio launch-page composition: 1 named export. The studio location is accurate. The class offer is clear: every class we teach, each with its price from roster_2027.csv. The booking action is visible.
