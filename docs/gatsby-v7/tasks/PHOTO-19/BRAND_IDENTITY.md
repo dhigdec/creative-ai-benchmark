@@ -1,0 +1,49 @@
+# Cascadia Founders Summit
+
+Cascadia Founders Summit is a two-day gathering for founders and the people who back them. Passes run six hundred to twelve hundred dollars and the room is roughly four hundred people who read the calibre of the event off its details. The summit sells seriousness and access rather than spectacle, and everything it puts in front of that audience is meant to look considered.
+
+## Audience
+Founders, operators and institutional investors aged 28 to 55 who expense the ticket and judge the event by how professional it feels.
+
+## Positioning
+Delegate passes 600 to 1,200 dollars, a credible professional summit priced above a free meetup and below a flagship conference. Restraint reads as calibre; a glossy or busy treatment would misprice it.
+
+## Palette
+- Cascadia Slate: #23303A · mandatory. The dark ground or band that carries the CFS mark, as the upper band of summit_badge_2025_PRINTER.pdf. Type on it is Warm Paper or Fog Grey. Never the ground behind a sitter.
+- Evergreen: #2C4A3B · optional accent. Not used on summit_badge_2025_PRINTER.pdf. If used at all, only for thin rules and dividers. Never a ground, a panel, a type colour or the ground behind a sitter.
+- Fog Grey: #D9DDDE · mandatory where the CFS mark sits on Cascadia Slate. The CFS mark and any small type on Cascadia Slate, as on summit_badge_2025_PRINTER.pdf, and the cool end of the Fog Grey to Warm Paper range for the ground behind each sitter (summit_brand_notes.txt). Never type on Warm Paper.
+- Warm Paper: #F2EEE7 · mandatory. The main light ground or panel that carries the speaker name, role line, affiliation and session, as the lower panel of summit_badge_2025_PRINTER.pdf; type reversed out of Cascadia Slate; the warm end of the house-ground range behind each sitter (summit_brand_notes.txt).
+- Signal Copper: #B06B3E · optional accent. The affiliation line on Warm Paper and a thin rule along the bottom trim, as on summit_badge_2025_PRINTER.pdf. Never a ground, a panel, the speaker name, the role line or a headline.
+- Near Black: #1A1F24 · mandatory where type sits on Warm Paper. The speaker name, role line, session, headline and running text on Warm Paper, as the name and role line on summit_badge_2025_PRINTER.pdf. Never a ground or panel.
+
+### Palette rules
+- Distribution: Grounds and panels are Warm Paper or Cascadia Slate and nothing else; the ground behind each sitter is the portrait's house ground (see photography). On Warm Paper all type is Near Black, apart from an affiliation line in Signal Copper, as on summit_badge_2025_PRINTER.pdf. On Cascadia Slate all type is Warm Paper or Fog Grey, and the CFS mark is Fog Grey on Cascadia Slate, as on the badge. Signal Copper (the affiliation line, thin rules) and Evergreen (thin rules and dividers only) are accents, together no more than 5% of the designed, non-photographic area, never a ground, a panel, a speaker name, a role line or a headline.
+- Opacity: Every palette colour is used solid, at 100% opacity. No tint, transparency, gradient, shadow or blend mode is applied to any palette colour, and no scrim, gradient or overlay of any colour, black and white included, is laid over a photograph: a text panel sits over or beside the portrait as a solid block.
+- Forbidden: No gloss, glow, drop shadow, outline, gradient, metallic or busy texture on any type, panel, rule, button or icon, since restraint reads as calibre and a glossy or busy treatment would misprice the room; no coloured or busy ground behind any sitter; and no colour outside the six palette hexes for type, grounds, panels, rules, buttons or icons, apart from the ground behind a sitter, which may be any soft, even tone in the Fog Grey #D9DDDE to Warm Paper #F2EEE7 range (summit_brand_notes.txt).
+- Photography: Portraits keep natural skin and their subjects' own colouring and are never recoloured toward the palette. The one palette-range tone in a portrait is its ground: a soft, even tone within the Fog Grey #D9DDDE to Warm Paper #F2EEE7 range, the same behind every sitter (summit_brand_notes.txt). Mixed-light casts, such as the green-tinged fluorescent light of speaker_portrait_04.jpg and staff_portrait_03.jpg, the warm lamplight of speaker_portrait_07.jpg and the cool open shade of speaker_portrait_12.jpg, are brought to natural skin, with no glossy warm filter and no flat, hard direct-flash look, and are not pushed toward Signal Copper or Evergreen.
+
+## Typography
+Display face: Piazzolla (Medium, optical size axis pinned to 8). Text face: Suisse Int'l (Regular and Medium, with Suisse Int'l Mono Regular).
+
+- 01 Display / H1, summit title and announcement headline: Piazzolla Medium, 96 px / 104 px, Medium, tracking -10 units.
+- 02 Subheading / H2, speaker name: Suisse Int'l Medium, 56 px / 62 px, Medium, tracking -5 units.
+- 03 Body, role line and running text: Suisse Int'l Regular, 30 px / 42 px, Regular, tracking 0 units, max 65 characters.
+- 04 Fine print, session times and affiliations: Suisse Int'l Mono Regular, 26 px / 34 px, Regular, tracking +15 units.
+
+Signature move: The pinned optical size. Every summit title and announcement headline is set in Piazzolla Medium with the optical size axis pinned to 8, so letterforms drawn for 8 pt appear at 96 px and the headline reads as printed rather than styled.
+
+Rules:
+- Never set a speaker name in Piazzolla.
+- Piazzolla always runs with its optical size axis pinned to 8, whatever the size on the page.
+- Piazzolla appears in Medium only, the single weight the house uses.
+- Session times are always set in Suisse Int'l Mono Regular so the day column aligns on the figures.
+- The printed programme holds title 28 pt and body 9.5 pt on 13 pt, matching this scale step for step.
+- Restraint reads as calibre: no glossy or busy treatment, which would misprice the room.
+
+## Voice
+Plain, direct and professional, confident without selling hard. Example line: Passes are limited and the room is small on purpose.
+
+## Supplied Identity
+The summit builds its own website and needs no pages. Its badge artwork exists only as the press PDF the venue printer ran last year, with no working file behind it. The house ground, mark and tone are described in the brand notes rather than handed over as a kit.
+
+Production identity and cross-image continuity remain subject to the release asset checks.
