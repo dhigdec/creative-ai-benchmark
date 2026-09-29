@@ -205,7 +205,6 @@ def render_outputs(outputs: list[dict], groups: list[dict]) -> str:
             source_parts.append(record["table"] + row_label)
         if output.get("source_image"):
             source_parts.append(output["source_image"])
-        requirements = output.get("required_content") or []
         parts.append(
             '<article class="output-row">'
             f'<div><strong>{esc(output["name"])}</strong><code>{esc(Path(output["path"]).name)}</code>'
@@ -213,10 +212,6 @@ def render_outputs(outputs: list[dict], groups: list[dict]) -> str:
         )
         if source_parts:
             parts.append(f'<p class="output-source"><strong>Source:</strong> {esc(" · ".join(source_parts))}</p>')
-        if requirements:
-            parts.append('<ul class="output-requirements">' + "".join(
-                f"<li>{esc(item)}</li>" for item in requirements
-            ) + "</ul>")
         parts.append("</article>")
     parts.append("</div>")
     return "".join(parts)
