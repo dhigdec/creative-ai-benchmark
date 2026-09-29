@@ -111,33 +111,44 @@ def render_type_system(brand: dict) -> str:
 
 
 def render_brand(brand: dict) -> str:
-    simple = [
-        "sector", "founded_place_size", "about", "personality", "audience",
-        "price_positioning", "values", "voice", "brand_assets_status",
-    ]
     parts = [
-        f'<p class="brand-name">{esc(brand["brand_name"])}</p>',
-        f'<p class="tagline">{esc(brand["tagline"])}</p>',
-        '<dl class="brand-facts">',
+        '<div class="brand-profile">',
+        f'<h3 class="brand-profile-name">{esc(brand["brand_name"])}</h3>',
+        f'<p class="brand-about">{esc(brand["about"])}</p>',
+        '<div class="brand-overview">',
+        f'<div><h3>Audience</h3><p>{esc(brand["audience"])}</p></div>',
+        f'<div><h3>Positioning</h3><p>{esc(brand["price_positioning"])}</p></div>',
+        '</div>',
+        '<h3>Palette</h3><div class="swatches rich">',
     ]
-    for key in simple:
-        parts.append(f"<div><dt>{esc(label(key))}</dt><dd>{render_value(brand[key])}</dd></div>")
-    parts.append("</dl>")
-    parts.append('<h3>Colour palette</h3><div class="palette-grid">')
     for colour in brand["palette"]:
         code = colour["hex"]
         if not re.fullmatch(r"#[0-9a-fA-F]{6}", code):
             raise ValueError(f"Invalid brand hex: {code}")
+        role = colour["role"]
+        required = " req" if role.lower().startswith("mandatory") else ""
         parts.append(
-            '<div class="palette-item">'
-            f'<span class="swatch" style="background:{code}"></span>'
-            f'<div><strong>{esc(colour["name"])}</strong> <code>{esc(code)}</code>'
-            f'<small>{esc(colour["role"])}</small><p>{esc(colour["usage"])}</p></div></div>'
+            '<div class="swatch">'
+            f'<i style="background:{code}" aria-hidden="true"></i>'
+            f'<span><strong>{esc(colour["name"])}</strong><br><code>{esc(code)}</code> '
+            f'<em class="pal-role{required}">{esc(role.lower())}</em>'
+            f'<small class="pal-use">{esc(colour["usage"])}</small></span></div>'
         )
     parts.append("</div>")
-    parts.append(f'<h3>Palette rules</h3>{render_value(brand["palette_rules"])}')
+    rules = brand["palette_rules"]
+    parts.append('<div class="pal-rules"><p class="pal-rules-h">Colour rules</p><dl>')
+    for key, title in (
+        ("distribution", "Distribution"), ("opacity", "Opacity"),
+        ("forbidden", "Not allowed"), ("photography", "Photography"),
+    ):
+        if rules.get(key):
+            parts.append(f'<dt>{title}</dt><dd>{esc(rules[key])}</dd>')
+    parts.append('</dl></div>')
     parts.append('<h3>Typography</h3>')
     parts.append(render_type_system(brand))
+    parts.append(f'<h3>Voice</h3><p>{esc(brand["voice"])}</p>')
+    parts.append(f'<h3>Identity sources</h3><p>{esc(brand["brand_assets_status"])}</p>')
+    parts.append('</div>')
     return "".join(parts)
 
 
@@ -224,7 +235,22 @@ CSS = """
 CSS += ".output-source{font-size:12px;color:#5b6760;margin:7px 0 0}"
 CSS += """
 .brief-text{line-height:1.68;color:#303b35}.brief-text::first-line{font-weight:700;font-size:17px;color:#202724}
-.brand-facts>div{padding:12px 0}.brand-facts dd{line-height:1.55}
+.page{max-width:1500px}.asset-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+.brand-profile-name{font-size:20px;line-height:1.3;margin:0 0 15px}
+.brand-about{max-width:100ch;margin:0 0 22px}
+.brand-overview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.brand-overview h3{margin:12px 0}.brand-overview p{line-height:1.55}
+.swatches.rich{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.swatches.rich .swatch{display:flex;align-items:flex-start;gap:9px;min-width:0;border:1px solid #dce1de;border-radius:6px;padding:10px 12px;background:#fcfcfb;font-size:12px}
+.swatches.rich .swatch i{flex:0 0 30px;width:30px;height:30px;border:1px solid #888;border-radius:50%}
+.swatches.rich .swatch span{min-width:0}.swatches.rich strong{font-weight:500}.swatches.rich code{font-size:11.5px}
+.pal-role{display:inline-block;margin-top:5px;padding:2px 8px;border-radius:999px;font-style:normal;font-size:10.5px;letter-spacing:.03em;background:#eef1ef;color:#59635f;overflow-wrap:anywhere}
+.pal-role.req{background:#dcefe5;color:#235f43;font-weight:700}
+.pal-use{display:block;margin-top:5px;color:#59635f;font-size:11.5px;line-height:1.45;overflow-wrap:anywhere}
+.pal-rules{margin:14px 0 6px;border:1px solid #dce1de;border-left:3px solid #1e7059;border-radius:6px;padding:12px 14px;background:#fcfcfb}
+.pal-rules-h{margin:0 0 6px;font-weight:700;font-size:13px}
+.pal-rules dl{display:grid;grid-template-columns:120px minmax(0,1fr);gap:6px 14px;margin:0}
+.pal-rules dt{color:#59635f;font-size:12px}.pal-rules dd{margin:0;font-size:12.5px;line-height:1.5;overflow-wrap:anywhere}
 .tsys{border:1px solid #dce1de;border-left:3px solid #b13a36;border-radius:6px;padding:18px 20px 6px;margin:6px 0 14px;background:#fcfcfb}
 .tsys-eyebrow{color:#b13a36;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 6px}
 .tsys-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;border-bottom:1px solid #dce1de;padding-bottom:14px;margin-bottom:2px;flex-wrap:wrap}
@@ -241,6 +267,7 @@ CSS += """
 .tsys-foot{border-top:1px solid #dce1de;margin-top:2px;padding:11px 0 12px}.tsys-foot ul{margin:5px 0 0;padding-left:18px}
 .tsys-foot li{color:#59635f;font-size:12px;line-height:1.55}
 @media(max-width:720px){.tsys{padding:16px 16px 5px}.tsys-row{grid-template-columns:24px minmax(0,1fr);gap:8px 12px}.tsys-row>div:last-child{grid-column:2}.tsys-head{align-items:flex-start}.tsys-name{font-size:27px}.tsys-faces{text-align:left;gap:10px 18px}}
+@media(max-width:720px){.brand-overview{grid-template-columns:1fr;gap:4px}.pal-rules dl{grid-template-columns:1fr;gap:3px}.pal-rules dd{margin-bottom:8px}}
 @media(max-width:470px){.tsys-row>div:last-child{grid-column:1/-1}.tsys-name{font-size:24px}.tsys-faces>div{max-width:140px}}
 """
 
