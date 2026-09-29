@@ -247,6 +247,16 @@ def platform_verifiers(verifiers: list[dict], outputs: list[dict]) -> list[dict]
     return result
 
 
+def write_review_verifiers(task_id: str, verifiers: list[dict]) -> None:
+    bank = OUT / "verifier-bank"
+    bank.mkdir(parents=True, exist_ok=True)
+    fields = ("check_id", "output_id", "type", "output_reference", "check", "reference_assets")
+    review_only = [{key: item[key] for key in fields if key in item} for item in verifiers]
+    (bank / f"{task_id}.json").write_text(
+        json.dumps(review_only, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+
+
 def sheet_row(index: int, task_id: str, assets: list[dict], verifiers: list[dict], outputs: list[dict]) -> list[object]:
     asset_names = ["Brief", "Brand identity"] + [a["filename"] for a in assets]
     rubrics = []
@@ -266,7 +276,7 @@ def sheet_row(index: int, task_id: str, assets: list[dict], verifiers: list[dict
         json.dumps(rubrics, ensure_ascii=False, separators=(",", ":")),
         json.dumps(review_checks, ensure_ascii=False, separators=(",", ":")),
         index, "", "NORMAL", "", BASE_URL + task_id + ".html",
-        f"https://dhigdec.github.io/creative-ai-benchmark/gatsby-v7/tasks/{task_id}/VERIFIERS.json",
+        BASE_URL + "verifier-bank/" + task_id + ".json",
         f"https://dhigdec.github.io/creative-ai-benchmark/gatsby-v7/tasks/{task_id}/ASSET_MANIFEST.json",
         len(assets), len(outputs), len(review_checks), len(verifiers),
     ]
@@ -294,6 +304,7 @@ def main() -> None:
         if any(not asset["public_url"].startswith("https://annotationprod.s3.ap-south-1.amazonaws.com/") for asset in assets):
             raise ValueError(f"Unexpected asset host for {task_id}")
         write_page(task_id, spec, assets, outputs)
+        write_review_verifiers(task_id, verifiers)
         row = sheet_row(index, task_id, assets, verifiers, outputs)
         rows.append(row)
         print(f"{task_id}: {len(assets)} assets, {len(outputs)} outputs, {row[12]}/{row[13]} platform/full checks; sheet cells {len(row[1])}/{len(row[2])} chars")
