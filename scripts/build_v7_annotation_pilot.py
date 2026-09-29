@@ -118,14 +118,15 @@ def render_assets(task_id: str, assets: list[dict]) -> str:
     for asset in assets:
         name = asset["filename"]
         url = esc(asset["public_url"])
-        size = asset["bytes"] / 1024 / 1024
+        size = (f'{asset["bytes"] / 1024:.1f} KB' if asset["bytes"] < 1024 * 1024
+                else f'{asset["bytes"] / 1024 / 1024:.2f} MB')
         parts.append(
             '<article class="asset-card">'
             f'<a class="asset-preview" href="{url}" target="_blank" rel="noopener noreferrer" '
             f'aria-label="Open {esc(name)} in a new tab">{source_preview(task_id, asset)}</a>'
             '<div class="asset-info">'
             f'<strong title="{esc(name)}">{esc(name)}</strong>'
-            f'<p>{esc(asset["role"].capitalize())} · {size:.2f} MB</p>'
+            f'<p>{esc(asset["role"].replace("_", " ").capitalize())} · {size}</p>'
             '<div class="asset-actions">'
             f'<a href="{url}" target="_blank" rel="noopener noreferrer">Open</a>'
             f'<a href="{url}" download="{esc(name)}" data-download>Download</a>'
