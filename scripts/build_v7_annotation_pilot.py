@@ -179,18 +179,22 @@ def render_assets(task_id: str, assets: list[dict]) -> str:
     parts = ['<div class="asset-grid">']
     for asset in assets:
         name = asset["filename"]
+        is_pdf = Path(name).suffix.lower() == ".pdf"
         url = esc(asset["public_url"])
         size = (f'{asset["bytes"] / 1024:.1f} KB' if asset["bytes"] < 1024 * 1024
                 else f'{asset["bytes"] / 1024 / 1024:.2f} MB')
+        role = asset["role"].replace("_", " ").capitalize()
+        details = f"PDF · {role} · {size}" if is_pdf else f"{role} · {size}"
+        view_label = "View full PDF" if is_pdf else "Open"
         parts.append(
             '<article class="asset-card">'
             f'<a class="asset-preview" href="{url}" target="_blank" rel="noopener noreferrer" '
             f'aria-label="Open {esc(name)} in a new tab">{source_preview(task_id, asset)}</a>'
             '<div class="asset-info">'
             f'<strong title="{esc(name)}">{esc(name)}</strong>'
-            f'<p>{esc(asset["role"].replace("_", " ").capitalize())} · {size}</p>'
+            f'<p>{esc(details)}</p>'
             '<div class="asset-actions">'
-            f'<a href="{url}" target="_blank" rel="noopener noreferrer">Open</a>'
+            f'<a href="{url}" target="_blank" rel="noopener noreferrer">{view_label}</a>'
             f'<a href="{url}" download="{esc(name)}" data-download>Download</a>'
             '</div></div></article>'
         )
