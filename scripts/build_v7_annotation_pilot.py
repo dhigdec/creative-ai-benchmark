@@ -281,7 +281,6 @@ def write_page(task_id: str, spec: dict, assets: list[dict], outputs: list[dict]
 <main class="page">
 <header><div class="eyebrow">Gatsby · Pilot brief · {esc(task_id)}</div><h1>{esc(title)}</h1><p class="subline">{esc(spec["task_code"])} · {esc(spec["family"])}</p></header>
 <section class="section" aria-labelledby="brief-title"><h2 id="brief-title">Client brief</h2><div class="brief-text">{esc(spec["client_brief"])}</div>
-<h3>Source of truth</h3><p>{esc(spec["source_of_truth"])}</p>
 <h3>Production constraints</h3><ul class="data-list">{"".join(f"<li>{esc(item)}</li>" for item in spec["truth_constraints"] + spec["production_requirements"])}</ul></section>
 <section class="section" aria-labelledby="brand-title"><h2 id="brand-title">Brand identity</h2>{render_brand(spec["brand_identity"])}</section>
 <section class="section" aria-labelledby="assets-title"><h2 id="assets-title">Source assets ({len(assets)})</h2>{render_assets(task_id, assets)}</section>
