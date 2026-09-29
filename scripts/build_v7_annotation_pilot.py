@@ -128,7 +128,7 @@ def render_assets(task_id: str, assets: list[dict]) -> str:
             f'<p>{esc(asset["role"].capitalize())} · {size:.2f} MB</p>'
             '<div class="asset-actions">'
             f'<a href="{url}" target="_blank" rel="noopener noreferrer">Open</a>'
-            f'<a href="{url}" download="{esc(name)}">Download</a>'
+            f'<a href="{url}" download="{esc(name)}" data-download>Download</a>'
             '</div></div></article>'
         )
     parts.append("</div>")
@@ -146,12 +146,21 @@ def render_outputs(outputs: list[dict], groups: list[dict]) -> str:
             last_group = group_id
         spec = output.get("spec", {})
         spec_text = " · ".join(f"{label(key)}: {value}" for key, value in spec.items())
+        record = output.get("source_record") or {}
+        source_parts = []
+        if record.get("table"):
+            row_label = f', row {record["row_number"]}' if record.get("row_number") else ""
+            source_parts.append(record["table"] + row_label)
+        if output.get("source_image"):
+            source_parts.append(output["source_image"])
         requirements = output.get("required_content") or []
         parts.append(
             '<article class="output-row">'
             f'<div><strong>{esc(output["name"])}</strong><code>{esc(Path(output["path"]).name)}</code>'
             f'<small>{esc(spec_text)}</small></div>'
         )
+        if source_parts:
+            parts.append(f'<p class="output-source"><strong>Source:</strong> {esc(" · ".join(source_parts))}</p>')
         if requirements:
             parts.append('<ul class="output-requirements">' + "".join(
                 f"<li>{esc(item)}</li>" for item in requirements
@@ -165,6 +174,35 @@ CSS = """
 :root{color-scheme:light;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#202724;background:#fff;font-size:15px;line-height:1.52}
 *{box-sizing:border-box}body{margin:0}.page{max-width:1050px;margin:auto;padding:28px 32px 56px}h1,h2,h3,p{margin-top:0}h1{font-size:27px;line-height:1.2;margin:8px 0 9px}h2{font-size:20px;line-height:1.3;margin-bottom:18px}h3{font-size:16px;line-height:1.35;margin:28px 0 12px}.eyebrow{color:#59645f;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.subline{color:#59645f;margin-bottom:28px}.section{border-top:1px solid #dce3df;padding-top:25px;margin-top:27px}.brief-text{white-space:pre-wrap;overflow-wrap:anywhere;max-width:83ch}.brand-name{font-size:20px;font-weight:700;margin-bottom:2px}.tagline{font-style:italic;color:#51605a}.brand-facts,.detail-list{margin:0}.brand-facts>div,.detail-list>div{display:grid;grid-template-columns:minmax(150px,23%) 1fr;gap:12px;padding:10px 0;border-bottom:1px solid #edf0ed}.brand-facts dt,.detail-list dt{font-weight:700;color:#52605a}.brand-facts dd,.detail-list dd{margin:0;min-width:0}.brand-facts dd p,.detail-list dd p{margin:0}.data-list{margin:0;padding-left:18px}.palette-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.palette-item{display:flex;gap:12px;border:1px solid #e0e6e1;border-radius:6px;padding:10px;min-width:0}.palette-item .swatch{width:55px;min-width:55px;height:55px;border-radius:3px;border:1px solid #0002}.palette-item strong{display:inline-block;margin-right:6px}.palette-item code{font-size:12px;color:#57645e}.palette-item small{display:block;text-transform:uppercase;color:#66726d;font-size:11px;font-weight:700;letter-spacing:.04em}.palette-item p{font-size:13px;margin:5px 0 0}.type-system>.detail-list>div{grid-template-columns:minmax(150px,23%) 1fr}.type-system .data-list li{margin-bottom:8px}.asset-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.asset-card{border:1px solid #dce3df;border-radius:6px;overflow:hidden;min-width:0;background:#fff}.asset-preview{display:flex;height:190px;align-items:center;justify-content:center;background:#f2f5f3;border-bottom:1px solid #e3e8e4;overflow:hidden;color:#386951}.asset-preview img{display:block;width:100%;height:100%;object-fit:contain}.asset-info{padding:11px 12px}.asset-info strong{display:block;font-size:13px;overflow-wrap:anywhere;line-height:1.35}.asset-info p{font-size:12px;color:#65716a;margin:4px 0 9px}.asset-actions{display:flex;gap:14px}.asset-actions a{font-size:12px;color:#176348;text-decoration:underline;text-underline-offset:2px}.file-excerpt{font-size:10px;line-height:1.35;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;padding:12px;width:100%;height:100%;color:#364a3e}.file-icon{font-size:24px;font-weight:700;color:#6d8577}.output-row{border:1px solid #e0e6e1;border-radius:6px;padding:13px 15px;margin-bottom:9px}.output-row>div:first-child{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}.output-row strong{font-size:14px}.output-row code{font-size:12px;color:#375d4d;overflow-wrap:anywhere}.output-row small{display:block;width:100%;font-size:12px;color:#5b6760}.output-requirements{font-size:13px;padding-left:20px;margin:8px 0 0}.output-requirements li{margin:3px 0}a:focus-visible{outline:2px solid #146344;outline-offset:2px}@media(max-width:720px){.page{padding:20px 18px 40px}.asset-grid,.palette-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.brand-facts>div,.detail-list>div,.type-system>.detail-list>div{display:block}.brand-facts dt,.detail-list dt{margin-bottom:3px}.asset-preview{height:150px}}@media(max-width:470px){.asset-grid,.palette-grid{grid-template-columns:1fr}.asset-preview{height:220px}h1{font-size:23px}}
 """
+CSS += ".output-source{font-size:12px;color:#5b6760;margin:7px 0 0}"
+
+DOWNLOAD_SCRIPT = """
+<script>
+document.addEventListener('click', async (event) => {
+  const link = event.target.closest('a[data-download]');
+  if (!link) return;
+  event.preventDefault();
+  const original = link.textContent;
+  link.textContent = 'Downloading...';
+  try {
+    const response = await fetch(link.href, {mode: 'cors'});
+    if (!response.ok) throw new Error(`Asset returned ${response.status}`);
+    const objectUrl = URL.createObjectURL(await response.blob());
+    const saveLink = document.createElement('a');
+    saveLink.href = objectUrl;
+    saveLink.download = link.getAttribute('download');
+    document.body.append(saveLink);
+    saveLink.click();
+    saveLink.remove();
+    setTimeout(() => URL.revokeObjectURL(objectUrl), 60000);
+  } catch (error) {
+    window.open(link.href, '_blank', 'noopener');
+  } finally {
+    link.textContent = original;
+  }
+});
+</script>
+"""
 
 
 def write_page(task_id: str, spec: dict, assets: list[dict], outputs: list[dict]) -> None:
@@ -174,11 +212,13 @@ def write_page(task_id: str, spec: dict, assets: list[dict], outputs: list[dict]
 <title>{esc(task_id)} · {esc(title)}</title><style>{CSS}</style></head><body>
 <main class="page">
 <header><div class="eyebrow">Gatsby · Pilot brief · {esc(task_id)}</div><h1>{esc(title)}</h1><p class="subline">{esc(spec["task_code"])} · {esc(spec["family"])}</p></header>
-<section class="section" aria-labelledby="brief-title"><h2 id="brief-title">Client brief</h2><div class="brief-text">{esc(spec["client_brief"])}</div></section>
+<section class="section" aria-labelledby="brief-title"><h2 id="brief-title">Client brief</h2><div class="brief-text">{esc(spec["client_brief"])}</div>
+<h3>Source of truth</h3><p>{esc(spec["source_of_truth"])}</p>
+<h3>Production constraints</h3><ul class="data-list">{"".join(f"<li>{esc(item)}</li>" for item in spec["truth_constraints"] + spec["production_requirements"])}</ul></section>
 <section class="section" aria-labelledby="brand-title"><h2 id="brand-title">Brand identity</h2>{render_brand(spec["brand_identity"])}</section>
 <section class="section" aria-labelledby="assets-title"><h2 id="assets-title">Source assets ({len(assets)})</h2>{render_assets(task_id, assets)}</section>
 <section class="section" aria-labelledby="outputs-title"><h2 id="outputs-title">Requested deliverables ({len(outputs)})</h2>{render_outputs(outputs, spec["deliverable_groups"])}</section>
-</main><script src="https://cdn.jsdelivr.net/npm/@iframe-resizer/child@5"></script></body></html>
+</main>{DOWNLOAD_SCRIPT}<script src="https://cdn.jsdelivr.net/npm/@iframe-resizer/child@5"></script></body></html>
 """
     (OUT / f"{task_id}.html").write_text(content, encoding="utf-8")
 
