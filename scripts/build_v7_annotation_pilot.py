@@ -56,6 +56,60 @@ def render_value(value: object) -> str:
     return f"<span>{esc(value)}</span>"
 
 
+def type_is_serif(face: str) -> bool:
+    return bool(re.search(
+        r"serif|didot|garamond|caslon|bodoni|playfair|freight|georgia|times|"
+        r"minion|baskerville|clarendon|tiempos|canela|lyon|chronicle|publico|"
+        r"financier|instrument|miller|piazzolla|boska|gt super",
+        face, re.IGNORECASE,
+    )) and not bool(re.search(r"sans", face, re.IGNORECASE))
+
+
+def render_type_system(brand: dict) -> str:
+    system = brand["type_system"]
+    sizes = [float(match.group()) for row in system["scale"]
+             if (match := re.search(r"\d+(?:\.\d+)?", str(row.get("size", ""))))]
+    largest = max(sizes, default=1)
+    faces = list(dict.fromkeys(filter(None, (system.get("display_face"), system.get("text_face")))))
+    parts = [
+        '<div class="tsys"><p class="tsys-eyebrow">// Type system</p>',
+        '<div class="tsys-head"><div>',
+        f'<p class="tsys-name{" serif" if type_is_serif(system.get("display_face", "")) else ""}">'
+        f'{esc(system.get("brand_name") or brand["brand_name"])}</p>',
+        f'<p class="tsys-tag">{esc(system.get("tagline", ""))}</p>',
+        '</div><div class="tsys-faces">',
+    ]
+    for face in faces:
+        serif = " serif" if type_is_serif(face) else ""
+        parts.append(
+            f'<div><div class="tsys-aa{serif}">Aa</div>'
+            f'<div class="tsys-facename">{esc(face)}</div></div>'
+        )
+    parts.append('</div></div>')
+    for row in system["scale"]:
+        match = re.search(r"\d+(?:\.\d+)?", str(row.get("size", "")))
+        size = float(match.group()) if match else 0
+        preview_size = max(12, min(34, 10 + 22 * size / largest)) if size else 14
+        serif = " serif" if type_is_serif(row.get("family", "")) else ""
+        tracking = f' · tracking {esc(row["tracking"])}' if row.get("tracking") else ""
+        leading = f' / {esc(row["leading"])}' if row.get("leading") else ""
+        parts.append(
+            '<div class="tsys-row">'
+            f'<div class="tsys-step">{esc(row.get("step", ""))}</div>'
+            f'<div><p class="tsys-role">{esc(row.get("role", ""))}</p>'
+            f'<div class="tsys-meta">{esc(row.get("family", ""))} · '
+            f'{esc(row.get("size", ""))}{leading}<br>'
+            f'{esc(row.get("weight", ""))}{tracking}</div></div>'
+            f'<div><div class="tsys-sample{serif}" style="font-size:{preview_size:.1f}px">'
+            f'{esc(row.get("sample", ""))}</div>'
+            f'<div class="tsys-note">{esc(row.get("note", ""))}</div></div></div>'
+        )
+    parts.append('<div class="tsys-foot"><ul>')
+    parts.extend(f'<li>{esc(rule)}</li>' for rule in system.get("rules", []))
+    parts.append('</ul></div></div>')
+    return "".join(parts)
+
+
 def render_brand(brand: dict) -> str:
     simple = [
         "sector", "founded_place_size", "about", "personality", "audience",
@@ -83,10 +137,7 @@ def render_brand(brand: dict) -> str:
     parts.append("</div>")
     parts.append(f'<h3>Palette rules</h3>{render_value(brand["palette_rules"])}')
     parts.append('<h3>Typography</h3>')
-    parts.append(f'<p>{esc(brand["typography"])}</p>')
-    parts.append(f'<p><strong>Signature move:</strong> {esc(brand["signature_type_move"])}</p>')
-    parts.append(f'<p><strong>Display face:</strong> {esc(brand["display_face"])}</p>')
-    parts.append(f'<div class="type-system">{render_value(brand["type_system"])}</div>')
+    parts.append(render_type_system(brand))
     return "".join(parts)
 
 
@@ -176,6 +227,27 @@ CSS = """
 *{box-sizing:border-box}body{margin:0}.page{max-width:1050px;margin:auto;padding:28px 32px 56px}h1,h2,h3,p{margin-top:0}h1{font-size:27px;line-height:1.2;margin:8px 0 9px}h2{font-size:20px;line-height:1.3;margin-bottom:18px}h3{font-size:16px;line-height:1.35;margin:28px 0 12px}.eyebrow{color:#59645f;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.subline{color:#59645f;margin-bottom:28px}.section{border-top:1px solid #dce3df;padding-top:25px;margin-top:27px}.brief-text{white-space:pre-wrap;overflow-wrap:anywhere;max-width:83ch}.brand-name{font-size:20px;font-weight:700;margin-bottom:2px}.tagline{font-style:italic;color:#51605a}.brand-facts,.detail-list{margin:0}.brand-facts>div,.detail-list>div{display:grid;grid-template-columns:minmax(150px,23%) 1fr;gap:12px;padding:10px 0;border-bottom:1px solid #edf0ed}.brand-facts dt,.detail-list dt{font-weight:700;color:#52605a}.brand-facts dd,.detail-list dd{margin:0;min-width:0}.brand-facts dd p,.detail-list dd p{margin:0}.data-list{margin:0;padding-left:18px}.palette-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.palette-item{display:flex;gap:12px;border:1px solid #e0e6e1;border-radius:6px;padding:10px;min-width:0}.palette-item .swatch{width:55px;min-width:55px;height:55px;border-radius:3px;border:1px solid #0002}.palette-item strong{display:inline-block;margin-right:6px}.palette-item code{font-size:12px;color:#57645e}.palette-item small{display:block;text-transform:uppercase;color:#66726d;font-size:11px;font-weight:700;letter-spacing:.04em}.palette-item p{font-size:13px;margin:5px 0 0}.type-system>.detail-list>div{grid-template-columns:minmax(150px,23%) 1fr}.type-system .data-list li{margin-bottom:8px}.asset-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.asset-card{border:1px solid #dce3df;border-radius:6px;overflow:hidden;min-width:0;background:#fff}.asset-preview{display:flex;height:190px;align-items:center;justify-content:center;background:#f2f5f3;border-bottom:1px solid #e3e8e4;overflow:hidden;color:#386951}.asset-preview img{display:block;width:100%;height:100%;object-fit:contain}.asset-info{padding:11px 12px}.asset-info strong{display:block;font-size:13px;overflow-wrap:anywhere;line-height:1.35}.asset-info p{font-size:12px;color:#65716a;margin:4px 0 9px}.asset-actions{display:flex;gap:14px}.asset-actions a{font-size:12px;color:#176348;text-decoration:underline;text-underline-offset:2px}.file-excerpt{font-size:10px;line-height:1.35;white-space:pre-wrap;overflow-wrap:anywhere;margin:0;padding:12px;width:100%;height:100%;color:#364a3e}.file-icon{font-size:24px;font-weight:700;color:#6d8577}.output-row{border:1px solid #e0e6e1;border-radius:6px;padding:13px 15px;margin-bottom:9px}.output-row>div:first-child{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}.output-row strong{font-size:14px}.output-row code{font-size:12px;color:#375d4d;overflow-wrap:anywhere}.output-row small{display:block;width:100%;font-size:12px;color:#5b6760}.output-requirements{font-size:13px;padding-left:20px;margin:8px 0 0}.output-requirements li{margin:3px 0}a:focus-visible{outline:2px solid #146344;outline-offset:2px}@media(max-width:720px){.page{padding:20px 18px 40px}.asset-grid,.palette-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.brand-facts>div,.detail-list>div,.type-system>.detail-list>div{display:block}.brand-facts dt,.detail-list dt{margin-bottom:3px}.asset-preview{height:150px}}@media(max-width:470px){.asset-grid,.palette-grid{grid-template-columns:1fr}.asset-preview{height:220px}h1{font-size:23px}}
 """
 CSS += ".output-source{font-size:12px;color:#5b6760;margin:7px 0 0}"
+CSS += """
+.brief-text{line-height:1.68;color:#303b35}.brief-text::first-line{font-weight:700;font-size:17px;color:#202724}
+.brand-facts>div{padding:12px 0}.brand-facts dd{line-height:1.55}
+.tsys{border:1px solid #dce1de;border-left:3px solid #b13a36;border-radius:6px;padding:18px 20px 6px;margin:6px 0 14px;background:#fcfcfb}
+.tsys-eyebrow{color:#b13a36;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 6px}
+.tsys-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;border-bottom:1px solid #dce1de;padding-bottom:14px;margin-bottom:2px;flex-wrap:wrap}
+.tsys-name{font-size:30px;line-height:1.1;letter-spacing:.01em;margin:0;overflow-wrap:anywhere}
+.tsys-name.serif,.tsys-aa.serif,.tsys-sample.serif{font-family:Georgia,"Times New Roman",serif}
+.tsys-tag{color:#59635f;font-size:12.5px;margin:4px 0 0}
+.tsys-faces{display:flex;gap:22px;text-align:center;flex-wrap:wrap}
+.tsys-faces>div{min-width:64px;max-width:210px}.tsys-aa{font-size:26px;line-height:1.1}
+.tsys-facename{color:#59635f;font-size:11px;margin-top:2px;overflow-wrap:anywhere}
+.tsys-row{display:grid;grid-template-columns:28px minmax(150px,210px) minmax(0,1fr);gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px solid #dce1de}
+.tsys-step{color:#b13a36;font-size:12px;font-variant-numeric:tabular-nums}
+.tsys-role{font-size:13.5px;margin:0 0 3px}.tsys-meta{color:#59635f;font-size:12px;line-height:1.5;font-variant-numeric:tabular-nums}
+.tsys-sample{line-height:1.25;overflow-wrap:anywhere}.tsys-note{color:#59635f;font-size:11.5px;margin-top:4px}
+.tsys-foot{border-top:1px solid #dce1de;margin-top:2px;padding:11px 0 12px}.tsys-foot ul{margin:5px 0 0;padding-left:18px}
+.tsys-foot li{color:#59635f;font-size:12px;line-height:1.55}
+@media(max-width:720px){.tsys{padding:16px 16px 5px}.tsys-row{grid-template-columns:24px minmax(0,1fr);gap:8px 12px}.tsys-row>div:last-child{grid-column:2}.tsys-head{align-items:flex-start}.tsys-name{font-size:27px}.tsys-faces{text-align:left;gap:10px 18px}}
+@media(max-width:470px){.tsys-row>div:last-child{grid-column:1/-1}.tsys-name{font-size:24px}.tsys-faces>div{max-width:140px}}
+"""
 
 DOWNLOAD_SCRIPT = """
 <script>
