@@ -1,0 +1,3802 @@
+{
+  "schema_version": "2.0.0",
+  "protocol": "Creative AI Benchmark Trajectory Logging Protocol 2.0",
+  "run": {
+    "run_id": "pilot-v7-hybrid-photo-04-2026-09-28",
+    "status": "complete_unrated",
+    "started_at": "2026-09-29T00:54:51.975Z",
+    "completed_at": null,
+    "execution_host": "local",
+    "model": "Codex",
+    "autonomy": "no human creative intervention",
+    "method": "hybrid: Adobe connector edits; local Python layouts"
+  },
+  "task": {
+    "code": "PHOTO-04",
+    "name": "Verranza Coastal Retreats - Villa collection image system",
+    "family": "Photo & Image",
+    "specification_version": "4.1.0",
+    "client_brief": "Three villas, one collection: imagery, crops and the gate monogram\n\nFor Verranza Coastal Retreats, the challenge is consistency without making three different villas interchangeable. We need the stone, limewash and coastal light to sit comfortably together across direct bookings and agent materials. The supplied do-not-want references are important.\n\nPlease prepare\n- Villa booking hero: 3 named exports. The named villa matches the photograph. The offer price is that house's lowest 2027 nightly rate from rates_2027.csv, shown as a from price with its season named. The booking action is readable.\n- Villa comparison brochure: 1 named export. Villa identities are unambiguous, and the brochure carries the gate monogram at least once. The comparison makes differences between the properties easy to scan: for each house it gives sleeps, minimum stay and the nightly rate for each of the three seasons, from rates_2027.csv. Rates preserve their stated season.\n\nUse the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.\n\nUse the attached brand identity and the source files listed in the asset manifest. The output register defines exact filenames, pages, sizes and record bindings. Supporting previews are welcome but cannot replace those files.",
+    "acceptance_bar": [
+      {
+        "output_id": "booking-hero-oliveto",
+        "requirements": [
+          "The named villa matches the photograph.",
+          "The offer price is that house's lowest 2027 nightly rate from rates_2027.csv, shown as a from price with its season named.",
+          "At the delivered dimensions, the booking action text has no clipped characters."
+        ]
+      },
+      {
+        "output_id": "booking-hero-scogliera",
+        "requirements": [
+          "The named villa matches the photograph.",
+          "The offer price is that house's lowest 2027 nightly rate from rates_2027.csv, shown as a from price with its season named.",
+          "At the delivered dimensions, the booking action text has no clipped characters."
+        ]
+      },
+      {
+        "output_id": "booking-hero-verranza",
+        "requirements": [
+          "The named villa matches the photograph.",
+          "The offer price is that house's lowest 2027 nightly rate from rates_2027.csv, shown as a from price with its season named.",
+          "At the delivered dimensions, the booking action text has no clipped characters."
+        ]
+      },
+      {
+        "output_id": "villa-collection",
+        "requirements": [
+          "The villa identities match the approved source exactly.",
+          "Rates preserve their stated season."
+        ]
+      }
+    ],
+    "brand_identity": {
+      "brand_name": "Verranza Coastal Retreats",
+      "tagline": "The cove, honestly",
+      "sector": "Luxury vacation rental collection of three villas above a cove, letting direct and to a small travel-agent trade channel, hospitality and travel.",
+      "founded_place_size": "Liguria, Italy; canonical context for the repeat-client series.",
+      "about": "Verranza Coastal Retreats is the repeat client for this benchmark series. The canonical client context is Liguria, Italy, and this commission covers phase 1: villa image system and booking imagery.",
+      "personality": [
+        "restrained",
+        "warm",
+        "authentic",
+        "unhurried",
+        "coastal",
+        "trustworthy"
+      ],
+      "audience": "Guests aged 35 to 60, American and Northern European families and groups of friends booking a whole house for a week, plus a small trade channel of travel agents working from printed rate cards. They pay for a real place and refuse anything that looks staged or cooked.",
+      "price_positioning": "Upper-mid coastal rental, 520 to 780 euros a night in season. A restraint band, not a gloss band: honest light and true water rather than saturated marketplace glow, and firmly above budget literalism.",
+      "palette": [
+        {
+          "name": "Verranza Blue",
+          "hex": "#24425A",
+          "role": "mandatory",
+          "usage": "Solid panels and grounds that carry Lime Wash type, the house name and display lines on Lime Wash grounds (as on agentcard_2025_print.pdf), and the ground the gate monogram is reversed out of."
+        },
+        {
+          "name": "Lime Wash",
+          "hex": "#EFE9DC",
+          "role": "mandatory",
+          "usage": "The main light ground (as on agentcard_2025_print.pdf), and all type or buttons reversed out of Verranza Blue."
+        },
+        {
+          "name": "Ligurian Stone",
+          "hex": "#C4B5A0",
+          "role": "optional accent",
+          "usage": "Hairline rules and dividers only. Never a ground, panel or body text."
+        },
+        {
+          "name": "Olive Grove",
+          "hex": "#6E7355",
+          "role": "optional accent",
+          "usage": "Small labels and dividers only. Never a ground, panel or body text."
+        },
+        {
+          "name": "Cove Water",
+          "hex": "#4C7A8C",
+          "role": "optional accent",
+          "usage": "Small labels, such as the footer line on agentcard_2025_print.pdf, and dividers. Never a ground, panel or body text."
+        },
+        {
+          "name": "Ink Charcoal",
+          "hex": "#2A2925",
+          "role": "mandatory where body text sits on Lime Wash",
+          "usage": "Body text, rates and captions on Lime Wash grounds, as on agentcard_2025_print.pdf. Never a panel or ground."
+        }
+      ],
+      "typography": "Verranza Coastal Retreats runs the booking heroes in four steps. Step 01 is the house name in Canela Deck Light at 72 px on 78 px with tracking of minus 10 units, and its first letter is drawn to twice the cap height of the rest of the word, roughly 144 px, so Casa Oliveto opens on one tall C. Step 02 is the standfirst, also Canela Deck Light, at 26 px on 30 px with tracking of minus 4 units, with Light the heaviest weight the serif may take. Step 03 is body and the booking line in Untitled Sans Regular at 20 px on 30 px, tracking 0, held to a maximum of 65 characters. Step 04 is rates and captions in Untitled Sans Regular at 15 px on 22 px with tracking of plus 8 units and tabular lining figures. In the brochure the name is 34 pt, body 10 pt on 15 pt and rates 9 pt. No numeral is ever set in the serif, and there is no gold.",
+      "voice": "Warm, plain and place-first. We name the stone, the water and the afternoon light, and we never oversell. Example line: 'Three houses above the cove, let by the family who has kept them.'",
+      "brand_assets_status": "The collection has never had a logo file. The monogram exists only as the wrought-iron plate the village smith cut when the first house was bought, and all we hold is a photograph of it on the gate. The travel-agent rate cards survive only as the file the printer sent to press last year, with no working source.",
+      "values": "Honest representation of a real place, true water and true stone, and a family mark used quietly.",
+      "signature_type_move": "Each house name opens with an oversized Canela Deck Light initial at twice the cap height of the rest of the word, and no numeral is ever set in the serif.",
+      "display_face": "Canela Deck",
+      "type_system": {
+        "brand_name": "Verranza Coastal Retreats",
+        "tagline": "The cove, honestly",
+        "display_face": "Canela Deck Light",
+        "text_face": "Untitled Sans Regular",
+        "scale": [
+          {
+            "step": "01",
+            "role": "Display / H1",
+            "family": "Canela Deck Light",
+            "size": "72 px",
+            "leading": "78 px",
+            "weight": "Light",
+            "tracking": "-10 units",
+            "sample": "Casa Oliveto",
+            "note": "House name. The first letter is drawn to twice the cap height of the rest of the word, about 144 px against a 72 px name, so Casa Oliveto opens on one tall C. Brochure equivalent 34 pt."
+          },
+          {
+            "step": "02",
+            "role": "Subheading / H2",
+            "family": "Canela Deck Light",
+            "size": "26 px",
+            "leading": "30 px",
+            "weight": "Light",
+            "tracking": "-4 units",
+            "sample": "Three houses above the cove, kept by the family.",
+            "note": "Standfirst. Light is the heaviest weight the serif is allowed."
+          },
+          {
+            "step": "03",
+            "role": "Body",
+            "family": "Untitled Sans Regular",
+            "size": "20 px",
+            "leading": "30 px",
+            "weight": "Regular",
+            "tracking": "0 units",
+            "sample": "Book the whole house for a week, direct with the family.",
+            "note": "Max 65 characters. Also carries the booking line at this size. Brochure body 10 pt on 15 pt."
+          },
+          {
+            "step": "04",
+            "role": "Fine print",
+            "family": "Untitled Sans Regular",
+            "size": "15 px",
+            "leading": "22 px",
+            "weight": "Regular",
+            "tracking": "+8 units",
+            "sample": "520 to 780 euros a night in season",
+            "note": "Rates and captions, tabular lining figures. Brochure rates 9 pt. No numeral is ever set in the serif."
+          }
+        ],
+        "signature_move": "Each house name opens with an oversized Canela Deck Light initial drawn to twice the cap height of the rest of the word, and every numeral stays in Untitled Sans tabular lining figures, never in the serif.",
+        "rules": [
+          "No numeral is ever set in the serif. Every figure lives in Untitled Sans, tabular lining.",
+          "No weight above Light in Canela Deck.",
+          "No gold.",
+          "The oversized initial is always the first letter of the house name, at twice the cap height of the rest of that word.",
+          "Rates and captions are Untitled Sans Regular only.",
+          "Name the stone, the water and the light, and never oversell."
+        ]
+      },
+      "palette_rules": {
+        "distribution": "Grounds and panels are Lime Wash or Verranza Blue and nothing else. On Lime Wash, the house name, display lines and the booking-button label are Verranza Blue, and body text, rates and captions are Ink Charcoal, as on agentcard_2025_print.pdf. On Verranza Blue, all type is Lime Wash. The three accents are for hairline rules, dividers and small labels only, together no more than 5% of the designed, non-photographic area.",
+        "opacity": "Every palette colour is used solid, at 100% opacity. No tint, transparency, gradient, shadow or blend mode is applied to any palette colour, and no scrim, gradient or overlay of any colour, black and white included, is laid over a photograph: a text panel sits over or beside the photograph as a solid block.",
+        "forbidden": "No gold, bronze, copper, silver or other metallic effect on any type, panel, rule, button or icon, and no colour outside the six palette hexes for type, panels, rules, buttons or icons.",
+        "photography": "Photographs keep their own corrected colour and are never recoloured toward the palette. The Casa Scogliera pool in scogliera_pool.jpg stays pale turquoise and is not pushed toward the deep blue of verranza_pool.jpg or oliveto_pool.jpg."
+      }
+    },
+    "expected_deliverables": [
+      {
+        "deliverable_id": "booking-hero-oliveto",
+        "name": "Verranza Coastal Retreats / Villa booking hero - Oliveto",
+        "path": "deliverables/booking-hero-oliveto.png",
+        "spec": {
+          "format": "png",
+          "width": 1920,
+          "height": 1080
+        },
+        "source_image": null,
+        "source_record": null
+      },
+      {
+        "deliverable_id": "booking-hero-scogliera",
+        "name": "Verranza Coastal Retreats / Villa booking hero - Scogliera",
+        "path": "deliverables/booking-hero-scogliera.png",
+        "spec": {
+          "format": "png",
+          "width": 1920,
+          "height": 1080
+        },
+        "source_image": null,
+        "source_record": null
+      },
+      {
+        "deliverable_id": "booking-hero-verranza",
+        "name": "Verranza Coastal Retreats / Villa booking hero - Verranza",
+        "path": "deliverables/booking-hero-verranza.png",
+        "spec": {
+          "format": "png",
+          "width": 1920,
+          "height": 1080
+        },
+        "source_image": null,
+        "source_record": null
+      },
+      {
+        "deliverable_id": "villa-collection",
+        "name": "Verranza Coastal Retreats / Villa comparison brochure",
+        "path": "deliverables/villa-collection.pdf",
+        "spec": {
+          "format": "pdf",
+          "width_mm": 210,
+          "height_mm": 297,
+          "pages": 6
+        },
+        "source_image": null,
+        "source_record": null
+      }
+    ],
+    "task_verifiers": [
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/A001",
+        "verifier_type": "auto",
+        "output_id": "booking-hero-oliveto",
+        "check": "\u201cVerranza Coastal Retreats / Villa booking hero - Oliveto\u201d (booking-hero-oliveto.png) is present in the delivery package.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/A002",
+        "verifier_type": "auto",
+        "output_id": "booking-hero-oliveto",
+        "check": "\u201cVerranza Coastal Retreats / Villa booking hero - Oliveto\u201d (booking-hero-oliveto.png) opens as a valid PNG file with no errors or corruption.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/A003",
+        "verifier_type": "auto",
+        "output_id": "booking-hero-oliveto",
+        "check": "\u201cVerranza Coastal Retreats / Villa booking hero - Oliveto\u201d (booking-hero-oliveto.png) is exactly 1920 pixels wide.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/A004",
+        "verifier_type": "auto",
+        "output_id": "booking-hero-oliveto",
+        "check": "\u201cVerranza Coastal Retreats / Villa booking hero - Oliveto\u201d (booking-hero-oliveto.png) is exactly 1080 pixels tall.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/A001",
+        "verifier_type": "auto",
+        "output_id": "booking-hero-scogliera",
+        "check": "\u201cVerranza Coastal Retreats / Villa booking hero - Scogliera\u201d (booking-hero-scogliera.png) is present in the delivery package.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/A002",
+        "verifier_type": "auto",
+        "output_id": "booking-hero-scogliera",
+        "check": "\u201cVerranza Coastal Retreats / Villa booking hero - Scogliera\u201d (booking-hero-scogliera.png) opens as a valid PNG file with no errors or corruption.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/A003",
+        "verifier_type": "auto",
+        "output_id": "booking-hero-scogliera",
+        "check": "\u201cVerranza Coastal Retreats / Villa booking hero - Scogliera\u201d (booking-hero-scogliera.png) is exactly 1920 pixels wide.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/A004",
+        "verifier_type": "auto",
+        "output_id": "booking-hero-scogliera",
+        "check": "\u201cVerranza Coastal Retreats / Villa booking hero - Scogliera\u201d (booking-hero-scogliera.png) is exactly 1080 pixels tall.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/A001",
+        "verifier_type": "auto",
+        "output_id": "booking-hero-verranza",
+        "check": "\u201cVerranza Coastal Retreats / Villa booking hero - Verranza\u201d (booking-hero-verranza.png) is present in the delivery package.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/A002",
+        "verifier_type": "auto",
+        "output_id": "booking-hero-verranza",
+        "check": "\u201cVerranza Coastal Retreats / Villa booking hero - Verranza\u201d (booking-hero-verranza.png) opens as a valid PNG file with no errors or corruption.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/A003",
+        "verifier_type": "auto",
+        "output_id": "booking-hero-verranza",
+        "check": "\u201cVerranza Coastal Retreats / Villa booking hero - Verranza\u201d (booking-hero-verranza.png) is exactly 1920 pixels wide.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/A004",
+        "verifier_type": "auto",
+        "output_id": "booking-hero-verranza",
+        "check": "\u201cVerranza Coastal Retreats / Villa booking hero - Verranza\u201d (booking-hero-verranza.png) is exactly 1080 pixels tall.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/A001",
+        "verifier_type": "auto",
+        "output_id": "villa-collection",
+        "check": "\u201cVerranza Coastal Retreats / Villa comparison brochure\u201d (villa-collection.pdf) is present in the delivery package.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/A002",
+        "verifier_type": "auto",
+        "output_id": "villa-collection",
+        "check": "\u201cVerranza Coastal Retreats / Villa comparison brochure\u201d (villa-collection.pdf) opens as a valid PDF file with no errors or corruption.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/A003",
+        "verifier_type": "auto",
+        "output_id": "villa-collection",
+        "check": "\u201cVerranza Coastal Retreats / Villa comparison brochure\u201d (villa-collection.pdf) contains exactly 6 pages.",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/A004",
+        "verifier_type": "auto",
+        "output_id": "villa-collection",
+        "check": "The finished printed width of \u201cVerranza Coastal Retreats / Villa comparison brochure\u201d (villa-collection.pdf) is 210 mm (within 0.2 mm).",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/A005",
+        "verifier_type": "auto",
+        "output_id": "villa-collection",
+        "check": "The finished printed height of \u201cVerranza Coastal Retreats / Villa comparison brochure\u201d (villa-collection.pdf) is 297 mm (within 0.2 mm).",
+        "k_id": null
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H001",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "\u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) is built from one of the Casa Oliveto frames: oliveto_pool.jpg, oliveto_terrace.jpg, oliveto_bedroom.jpg or oliveto_living.jpg.",
+        "k_id": "K2_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H002",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "The offer price on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) is 590, the lowest 2027 nightly rate for Casa Oliveto in rates_2027.csv.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H003",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "At full 1920 x 1080 size, the booking action text on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) is fully visible, with no letters cut off at an edge.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H001",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "\u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) is built from one of the Casa Scogliera frames: scogliera_pool.jpg, scogliera_terrace.jpg, scogliera_bedroom.jpg or scogliera_living.jpg.",
+        "k_id": "K2_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H002",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "The offer price on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) is 640, the lowest 2027 nightly rate for Casa Scogliera in rates_2027.csv.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H003",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "At full 1920 x 1080 size, the booking action text on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) is fully visible, with no letters cut off at an edge.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H001",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "\u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) is built from one of the Casa Verranza frames: verranza_pool.jpg, verranza_terrace.jpg, verranza_bedroom.jpg or verranza_living.jpg.",
+        "k_id": "K2_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H002",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "The offer price on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) is 520, the lowest 2027 nightly rate for Casa Verranza in rates_2027.csv.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H003",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "At full 1920 x 1080 size, the booking action text on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) is fully visible, with no letters cut off at an edge.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H001",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Casa Verranza, Casa Oliveto and Casa Scogliera are each named in full in \u201cVilla comparison brochure\u201d (villa-collection.pdf), spelled as in owner_note.txt.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H002",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Every rate in \u201cVilla comparison brochure\u201d (villa-collection.pdf) sits under the season it carries in rates_2027.csv, and no rate is shown under a different season.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H003",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "The season labels in \u201cVilla comparison brochure\u201d (villa-collection.pdf) read \u201cSpring\u201d, \u201cHigh Summer\u201d and \u201cAutumn\u201d, not the codes \u201cS1\u201d, \u201cS2\u201d and \u201cS3\u201d.",
+        "k_id": "K1_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H004",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "\u201cVilla comparison brochure\u201d (villa-collection.pdf) contains no entry for the sold house \u201cCasa Fienile\u201d; offering it makes the brochure unusable.",
+        "k_id": "K1_Q5"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H005",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "The sleeps figure for Casa Scogliera in \u201cVilla comparison brochure\u201d (villa-collection.pdf) reads \u201c10\u201d, as the owner states, not the sheet's \u201c9\u201d.",
+        "k_id": "K1_Q5"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H006",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "The monogram in \u201cVilla comparison brochure\u201d (villa-collection.pdf) keeps every part of the gate_plate.jpg mark: the interlocked \u201cV\u201d and \u201cC\u201d, the oval rule and the small anchor.",
+        "k_id": "K2_Q2"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H007",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Wherever scogliera_pool.jpg appears in \u201cVilla comparison brochure\u201d (villa-collection.pdf), its water reads pale turquoise as in the source frame, not a deeper blue, grey or green.",
+        "k_id": "K2_Q2"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H008",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "No gold or metallic colour is used for any type, panel, rule, button or icon in \u201cVilla comparison brochure\u201d (villa-collection.pdf).",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H009",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "\u201cVilla comparison brochure\u201d (villa-collection.pdf) gives Casa Verranza nightly rates of 520 in Spring, 680 in High Summer and 560 in Autumn.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H010",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "\u201cVilla comparison brochure\u201d (villa-collection.pdf) gives Casa Verranza a minimum stay of 3 nights in Spring, 7 in High Summer and 5 in Autumn.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H011",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "The sleeps figure for Casa Verranza in \u201cVilla comparison brochure\u201d (villa-collection.pdf) reads 6.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H012",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "The Casa Verranza section of \u201cVilla comparison brochure\u201d (villa-collection.pdf) uses only verranza_pool.jpg, verranza_terrace.jpg, verranza_bedroom.jpg or verranza_living.jpg.",
+        "k_id": "K2_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H013",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Every Casa Verranza photograph in \u201cVilla comparison brochure\u201d (villa-collection.pdf) reads neutral, without the orange afternoon cast found in every Casa Verranza frame.",
+        "k_id": "K2_Q4"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H014",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Every Casa Verranza photograph in \u201cVilla comparison brochure\u201d (villa-collection.pdf) keeps the walls, openings and features of its source frame, with nothing generated, extended, added or removed.",
+        "k_id": "K2_Q4"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H015",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Wherever verranza_pool.jpg appears in \u201cVilla comparison brochure\u201d (villa-collection.pdf), its water reads deep Mediterranean blue as in the source frame, not pale turquoise, grey or green.",
+        "k_id": "K2_Q2"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H016",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "\u201cVilla comparison brochure\u201d (villa-collection.pdf) gives Casa Oliveto nightly rates of 590 in Spring, 740 in High Summer and 620 in Autumn.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H017",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "\u201cVilla comparison brochure\u201d (villa-collection.pdf) gives Casa Oliveto a minimum stay of 3 nights in Spring, 7 in High Summer and 5 in Autumn.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H018",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "The sleeps figure for Casa Oliveto in \u201cVilla comparison brochure\u201d (villa-collection.pdf) reads 8.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H019",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "The Casa Oliveto section of \u201cVilla comparison brochure\u201d (villa-collection.pdf) uses only oliveto_pool.jpg, oliveto_terrace.jpg, oliveto_bedroom.jpg or oliveto_living.jpg.",
+        "k_id": "K2_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H020",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Every Casa Oliveto photograph in \u201cVilla comparison brochure\u201d (villa-collection.pdf) reads neutral, without the green shade-sail cast found in every Casa Oliveto frame.",
+        "k_id": "K2_Q4"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H021",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Every Casa Oliveto photograph in \u201cVilla comparison brochure\u201d (villa-collection.pdf) keeps the walls, openings and features of its source frame, with nothing generated, extended, added or removed.",
+        "k_id": "K2_Q4"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H022",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Wherever oliveto_pool.jpg appears in \u201cVilla comparison brochure\u201d (villa-collection.pdf), its water reads deep blue as in the source frame, not pale turquoise, grey or green.",
+        "k_id": "K2_Q2"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H023",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "\u201cVilla comparison brochure\u201d (villa-collection.pdf) gives Casa Scogliera nightly rates of 640 in Spring, 780 in High Summer and 690 in Autumn.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H024",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "\u201cVilla comparison brochure\u201d (villa-collection.pdf) gives Casa Scogliera a minimum stay of 4 nights in Spring, 7 in High Summer and 5 in Autumn.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H025",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "The Casa Scogliera section of \u201cVilla comparison brochure\u201d (villa-collection.pdf) uses only scogliera_pool.jpg, scogliera_terrace.jpg, scogliera_bedroom.jpg or scogliera_living.jpg.",
+        "k_id": "K2_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H026",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Every Casa Scogliera photograph in \u201cVilla comparison brochure\u201d (villa-collection.pdf) reads in neutral daylight, with no warm or green cast added.",
+        "k_id": "K2_Q4"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H027",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Every Casa Scogliera photograph in \u201cVilla comparison brochure\u201d (villa-collection.pdf) keeps the walls, openings and features of its source frame, with nothing generated, extended, added or removed.",
+        "k_id": "K2_Q4"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H028",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "In each house section of \u201cVilla comparison brochure\u201d (villa-collection.pdf), the house name sits above that house's rates and is set larger than them.",
+        "k_id": "K5_Q2"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H029",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "The gate_plate.jpg monogram appears at least once in \u201cVilla comparison brochure\u201d (villa-collection.pdf) reversed out in Lime Wash #EFE9DC on Verranza Blue #24425A.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H030",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "The type, panel, rule, button and icon colours in \u201cVilla comparison brochure\u201d (villa-collection.pdf) come only from #24425A, #EFE9DC, #C4B5A0, #6E7355, #4C7A8C and #2A2925.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H031",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Verranza Blue #24425A and Lime Wash #EFE9DC both appear in the designed parts of \u201cVilla comparison brochure\u201d (villa-collection.pdf).",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H032",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Every panel and ground in \u201cVilla comparison brochure\u201d (villa-collection.pdf) is solid at full opacity, and no scrim, gradient or overlay of any colour, black and white included, sits over a photograph.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H033",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "In \u201cVilla comparison brochure\u201d (villa-collection.pdf), type on Verranza Blue #24425A is Lime Wash #EFE9DC; on Lime Wash, house name headings and display lines are Verranza Blue, and body text, rates and captions are Ink Charcoal #2A2925.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H034",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "No accent colour (#C4B5A0, #6E7355 and #4C7A8C) is used as a ground, a panel or body text in \u201cVilla comparison brochure\u201d (villa-collection.pdf).",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H035",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Every heading, subheading and standfirst in \u201cVilla comparison brochure\u201d (villa-collection.pdf) is set in Canela Deck Light, with no heavier weight.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H036",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Body text, rates, captions and the sleeps and minimum-stay lines in \u201cVilla comparison brochure\u201d (villa-collection.pdf) are Untitled Sans Regular, never the serif and never a bolder weight.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H037",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "Each house name heading in \u201cVilla comparison brochure\u201d (villa-collection.pdf) opens with its \u201cC\u201d drawn at twice the cap height of the rest of the word.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H038",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "No numeral in \u201cVilla comparison brochure\u201d (villa-collection.pdf) is set in the serif; every rate, sleeps figure and minimum stay is in Untitled Sans lining figures.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H039",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "No line of body text in \u201cVilla comparison brochure\u201d (villa-collection.pdf) runs longer than 65 characters.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/villa-collection/H040",
+        "verifier_type": "human",
+        "output_id": "villa-collection",
+        "check": "In \u201cVilla comparison brochure\u201d (villa-collection.pdf), the Casa Verranza, Casa Oliveto and Casa Scogliera sections each name their house's stone, water and light, and no copy makes a luxury or superlative claim, such as stunning or exclusive.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H004",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "The type, panel, rule, button and icon colours on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) come only from #24425A, #EFE9DC, #C4B5A0, #6E7355, #4C7A8C and #2A2925.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H005",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "The lime-washed walls on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) read neutral off-white, without the green shade-sail cast found in every Casa Oliveto frame.",
+        "k_id": "K2_Q4"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H006",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "The largest text on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) is the house name \u201cCasa Oliveto\u201d.",
+        "k_id": "K5_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H007",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "The offer price on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) is presented as a from price, for example \u201cfrom 590\u201d.",
+        "k_id": "K1_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H008",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "The season on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) is written \u201cSpring\u201d, not the code \u201cS1\u201d.",
+        "k_id": "K1_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H009",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "Any sleeps figure on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) reads 8.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H010",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "Any minimum stay on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) reads 3 nights, the Casa Oliveto Spring minimum in rates_2027.csv.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H011",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "The photograph on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) keeps the walls, openings and features of the Casa Oliveto frame it is built from, with nothing generated, extended, added or removed.",
+        "k_id": "K2_Q4"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H012",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "Where pool water appears on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png), it reads deep blue as in oliveto_pool.jpg, not pale turquoise, grey or green.",
+        "k_id": "K2_Q2"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H013",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "Verranza Blue #24425A and Lime Wash #EFE9DC both appear in the designed parts of \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png).",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H014",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "Every panel and button on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) is solid at full opacity, and no scrim, gradient or overlay of any colour, black and white included, sits over the photograph.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H015",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "No gold or metallic colour is used for any type, panel, rule, button or icon on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png).",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H016",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "On \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png), type on Verranza Blue #24425A is Lime Wash #EFE9DC; on Lime Wash, house name, display lines and booking-button label are Verranza Blue, and body text, rates and captions are Ink Charcoal #2A2925.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H017",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "No accent colour (#C4B5A0, #6E7355 and #4C7A8C) is used as a ground, a panel or body text on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png).",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H018",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "Every line set in Canela Deck on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png), the house name and any standfirst, is Canela Deck Light, with no heavier weight.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H019",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "Body text, the booking line, rates, captions and any sleeps or minimum-stay line on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) are Untitled Sans Regular, never the serif and never a bolder weight.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H020",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "The \u201cC\u201d opening \u201cCasa Oliveto\u201d on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) is drawn at twice the cap height of the rest of the word.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H021",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "No numeral on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) is set in the serif; every figure is in Untitled Sans lining figures.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H022",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "No line of body or booking text on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) runs longer than 65 characters.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H023",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "The copy on \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) names Casa Oliveto's stone, its water and its light, and makes no luxury or superlative claim, such as luxury, stunning, breathtaking or exclusive.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-oliveto/H024",
+        "verifier_type": "human",
+        "output_id": "booking-hero-oliveto",
+        "check": "On \u201cVilla booking hero - Oliveto\u201d (booking-hero-oliveto.png) the house name \u201cCasa Oliveto\u201d sits above the nightly rate.",
+        "k_id": "K5_Q2"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H004",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "The photograph on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) keeps the walls, openings and features of the Casa Verranza frame it is built from, with nothing generated, extended, added or removed.",
+        "k_id": "K2_Q4"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H005",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "The offer price on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) is presented as a from price, for example \u201cfrom 520\u201d.",
+        "k_id": "K1_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H006",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "The season on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) is written \u201cSpring\u201d, not the code \u201cS1\u201d.",
+        "k_id": "K1_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H007",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "Any sleeps figure on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) reads 6.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H008",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "Any minimum stay on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) reads 3 nights, the Casa Verranza Spring minimum in rates_2027.csv.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H009",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "The walls and stone on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) read neutral, without the orange afternoon cast found in every Casa Verranza frame.",
+        "k_id": "K2_Q4"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H010",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "Where pool water appears on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png), it reads deep Mediterranean blue as in verranza_pool.jpg, not pale turquoise, grey or green.",
+        "k_id": "K2_Q2"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H011",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "The type, panel, rule, button and icon colours on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) come only from #24425A, #EFE9DC, #C4B5A0, #6E7355, #4C7A8C and #2A2925.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H012",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "Verranza Blue #24425A and Lime Wash #EFE9DC both appear in the designed parts of \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png).",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H013",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "Every panel and button on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) is solid at full opacity, and no scrim, gradient or overlay of any colour, black and white included, sits over the photograph.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H014",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "No gold or metallic colour is used for any type, panel, rule, button or icon on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png).",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H015",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "On \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png), type on Verranza Blue #24425A is Lime Wash #EFE9DC; on Lime Wash, house name, display lines and booking-button label are Verranza Blue, and body text, rates and captions are Ink Charcoal #2A2925.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H016",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "No accent colour (#C4B5A0, #6E7355 and #4C7A8C) is used as a ground, a panel or body text on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png).",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H017",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "Every line set in Canela Deck on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png), the house name and any standfirst, is Canela Deck Light, with no heavier weight.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H018",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "Body text, the booking line, rates, captions and any sleeps or minimum-stay line on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) are Untitled Sans Regular, never the serif and never a bolder weight.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H019",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "The \u201cC\u201d opening \u201cCasa Verranza\u201d on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) is drawn at twice the cap height of the rest of the word.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H020",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "No numeral on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) is set in the serif; every figure is in Untitled Sans lining figures.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H021",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "No line of body or booking text on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) runs longer than 65 characters.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H022",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "The copy on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) names Casa Verranza's stone, its water and its light, and makes no luxury or superlative claim, such as luxury, stunning, breathtaking or exclusive.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H023",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "The largest text on \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) is the house name \u201cCasa Verranza\u201d.",
+        "k_id": "K5_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-verranza/H024",
+        "verifier_type": "human",
+        "output_id": "booking-hero-verranza",
+        "check": "On \u201cVilla booking hero - Verranza\u201d (booking-hero-verranza.png) the house name \u201cCasa Verranza\u201d sits above the nightly rate.",
+        "k_id": "K5_Q2"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H004",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "On \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) the house name \u201cCasa Scogliera\u201d sits above the nightly rate.",
+        "k_id": "K5_Q2"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H005",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "The offer price on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) is presented as a from price, for example \u201cfrom 640\u201d.",
+        "k_id": "K1_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H006",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "The season on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) is written \u201cSpring\u201d, not the code \u201cS1\u201d.",
+        "k_id": "K1_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H007",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "Any sleeps figure on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) reads 10, as the owner states, never the sheet's 9.",
+        "k_id": "K1_Q5"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H008",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "Any minimum stay on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) reads 4 nights, the Casa Scogliera Spring minimum in rates_2027.csv.",
+        "k_id": "K1_Q1"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H009",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "The photograph on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) keeps the walls, openings and features of the Casa Scogliera frame it is built from, with nothing generated, extended, added or removed.",
+        "k_id": "K2_Q4"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H010",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "\u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) reads in neutral daylight, keeping the neutral daylight of the Casa Scogliera frames, with no warm or green cast added.",
+        "k_id": "K2_Q4"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H011",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "Where pool water appears on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png), it reads pale turquoise as in scogliera_pool.jpg, not a deeper blue, grey or green.",
+        "k_id": "K2_Q2"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H012",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "The type, panel, rule, button and icon colours on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) come only from #24425A, #EFE9DC, #C4B5A0, #6E7355, #4C7A8C and #2A2925.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H013",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "Verranza Blue #24425A and Lime Wash #EFE9DC both appear in the designed parts of \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png).",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H014",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "Every panel and button on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) is solid at full opacity, and no scrim, gradient or overlay of any colour, black and white included, sits over the photograph.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H015",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "No gold or metallic colour is used for any type, panel, rule, button or icon on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png).",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H016",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "On \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png), type on Verranza Blue #24425A is Lime Wash #EFE9DC; on Lime Wash, house name, display lines and booking-button label are Verranza Blue, and body text, rates and captions are Ink Charcoal #2A2925.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H017",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "No accent colour (#C4B5A0, #6E7355 and #4C7A8C) is used as a ground, a panel or body text on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png).",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H018",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "Every line set in Canela Deck on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png), the house name and any standfirst, is Canela Deck Light, with no heavier weight.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H019",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "Body text, the booking line, rates, captions and any sleeps or minimum-stay line on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) are Untitled Sans Regular, never the serif and never a bolder weight.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H020",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "The \u201cC\u201d opening \u201cCasa Scogliera\u201d on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) is drawn at twice the cap height of the rest of the word.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H021",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "No numeral on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) is set in the serif; every figure is in Untitled Sans lining figures.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H022",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "No line of body or booking text on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) runs longer than 65 characters.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H023",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "The copy on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) names Casa Scogliera's stone, its water and its light, and makes no luxury or superlative claim, such as luxury, stunning, breathtaking or exclusive.",
+        "k_id": "K2_Q3"
+      },
+      {
+        "verifier_id": "PHOTO-04/booking-hero-scogliera/H024",
+        "verifier_type": "human",
+        "output_id": "booking-hero-scogliera",
+        "check": "The largest text on \u201cVilla booking hero - Scogliera\u201d (booking-hero-scogliera.png) is the house name \u201cCasa Scogliera\u201d.",
+        "k_id": "K5_Q1"
+      }
+    ]
+  },
+  "pre_run_validation": {
+    "validation_record_reference": null,
+    "task_prompt_questions": [
+      {
+        "id": "P0_TASK_Q1",
+        "question": "Does the task state one specific deliverable, exactly what to produce?",
+        "result": "unassessed",
+        "evidence": [],
+        "rationale": null
+      },
+      {
+        "id": "P0_TASK_Q2",
+        "question": "Can the task be completed using only the supported tools?",
+        "result": "unassessed",
+        "evidence": [],
+        "rationale": null
+      },
+      {
+        "id": "P0_TASK_Q3",
+        "question": "Is the task free of any finished version or near-copy of the deliverable?",
+        "result": "unassessed",
+        "evidence": [],
+        "rationale": null
+      },
+      {
+        "id": "P0_TASK_Q4",
+        "question": "Can an expert begin without needing to ask the client for clarification?",
+        "result": "unassessed",
+        "evidence": [],
+        "rationale": null
+      },
+      {
+        "id": "P0_TASK_Q5",
+        "question": "Is a fictional client or brand attached, with no real proprietary data used?",
+        "result": "unassessed",
+        "evidence": [],
+        "rationale": null
+      },
+      {
+        "id": "P0_TASK_Q6",
+        "question": "Does the task sit at the right difficulty level and avoid being trivial?",
+        "result": "unassessed",
+        "evidence": [],
+        "rationale": null
+      },
+      {
+        "id": "P0_TASK_Q7",
+        "question": "Does the task read like real professional work?",
+        "result": "unassessed",
+        "evidence": [],
+        "rationale": null
+      }
+    ],
+    "input_asset_dimensions": [
+      {
+        "id": "P0_ASSET_01",
+        "name": "Completeness",
+        "checks": [
+          {
+            "check": "Every asset referenced by the brief is provided.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Each asset opens and is not corrupt.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Each asset has the right format and adequate resolution.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "The brief states the goal, deliverable, dimensions, brand, and required content.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Nothing essential is implied but missing.",
+            "result": "unassessed",
+            "evidence": []
+          }
+        ],
+        "overall_result": "unassessed",
+        "rationale": null
+      },
+      {
+        "id": "P0_ASSET_02",
+        "name": "Feasibility integrity",
+        "checks": [
+          {
+            "check": "The deliverable can be produced with supplied assets and available tools.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Required fonts and colours are available or derivable from the kit.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "An intended honesty task is genuinely impossible or incomplete by design and is recorded as such.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "No requirement is contradictory or unachievable unless intentional.",
+            "result": "unassessed",
+            "evidence": []
+          }
+        ],
+        "overall_result": "unassessed",
+        "rationale": null
+      },
+      {
+        "id": "P0_ASSET_03",
+        "name": "Realism and difficulty",
+        "checks": [
+          {
+            "check": "Inputs resemble a real client handoff rather than pristine answer assets.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Inputs are not impossibly broken or unusably poor.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Difficulty matches the assigned horizon tier.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "The brief reads like a real client commission.",
+            "result": "unassessed",
+            "evidence": []
+          }
+        ],
+        "overall_result": "unassessed",
+        "rationale": null
+      },
+      {
+        "id": "P0_ASSET_04",
+        "name": "Brand coherence",
+        "checks": [
+          {
+            "check": "Logo, palette, fonts, and imagery belong to the same brand.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "There are no contradictory brand signals.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Colours and fonts named in the brief match the supplied kit.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Provided examples are on-brand.",
+            "result": "unassessed",
+            "evidence": []
+          }
+        ],
+        "overall_result": "unassessed",
+        "rationale": null
+      },
+      {
+        "id": "P0_ASSET_05",
+        "name": "No-answer leakage",
+        "checks": [
+          {
+            "check": "No finished version of the requested deliverable is present.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "No near-duplicate can be trivially copied.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "References guide style without handing over the solution.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Competitor or sample material is not a usable template for the exact output.",
+            "result": "unassessed",
+            "evidence": []
+          }
+        ],
+        "overall_result": "unassessed",
+        "rationale": null
+      },
+      {
+        "id": "P0_ASSET_06",
+        "name": "Provenance and licensing",
+        "checks": [
+          {
+            "check": "Every asset source is logged.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "A SHA-256 hash is recorded for each asset.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Each asset is flagged for commercial and training-use safety.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Third-party asset rights are cleared.",
+            "result": "unassessed",
+            "evidence": []
+          }
+        ],
+        "overall_result": "unassessed",
+        "rationale": null
+      },
+      {
+        "id": "P0_ASSET_07",
+        "name": "Decision quality",
+        "checks": [
+          {
+            "check": "Invented brand or persona details are sensible and believable.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Those choices are documented with the task.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "They do not contradict the brief or brand kit.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "The scenario forms a coherent real commission.",
+            "result": "unassessed",
+            "evidence": []
+          }
+        ],
+        "overall_result": "unassessed",
+        "rationale": null
+      },
+      {
+        "id": "P0_ASSET_08",
+        "name": "Hallucination and contradiction",
+        "checks": [
+          {
+            "check": "The brief references only assets that exist in the package.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "Counts, dimensions, dates, prices, and other specifications are internally consistent.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "No instruction contradicts another unless intentionally impossible.",
+            "result": "unassessed",
+            "evidence": []
+          },
+          {
+            "check": "The agent is not forced to invent unsupported facts.",
+            "result": "unassessed",
+            "evidence": []
+          }
+        ],
+        "overall_result": "unassessed",
+        "rationale": null
+      }
+    ],
+    "gate_result": "unassessed"
+  },
+  "golden_trajectory": {
+    "reference": null,
+    "version": null,
+    "note": "The expert-authored golden trajectory is separate from this model execution record."
+  },
+  "connector_context": {
+    "available_surfaces": [
+      "Adobe Creative Cloud asset search",
+      "Adobe image editing",
+      "Adobe Express template editing",
+      "Adobe Acrobat and InDesign operations",
+      "Google Drive upload",
+      "Local Python layout (user-authorized, non-connector)"
+    ],
+    "unavailable_surfaces": [
+      "Adobe Express placement of a supplied image URL into an arbitrary layout"
+    ],
+    "known_constraints": [
+      "Local Python composition is separately logged and is not Adobe connector work.",
+      "Every expected output must be inspected and assessed before completion is claimed."
+    ]
+  },
+  "input_assets": [
+    {
+      "asset_id": "PHOTO-04-IN-001",
+      "filename": "agentcard_2025_print.pdf",
+      "media_type": null,
+      "dimensions": null,
+      "bytes": 799863,
+      "sha256": "01b6942cad111968cc74bb1496fcbdf4ebc3b88968907f2f238f20cc170e9279",
+      "role": "source",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/agentcard_2025_print.pdf",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-002",
+      "filename": "gate_plate.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        4032,
+        3024
+      ],
+      "bytes": 3283997,
+      "sha256": "7886eaba397e14190659d1e3774feb167de124e60b4ec3ea130c30c0001f301d",
+      "role": "logo_text",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/gate_plate.jpg",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-003",
+      "filename": "oliveto_bedroom.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        6000,
+        4000
+      ],
+      "bytes": 3203515,
+      "sha256": "c3966227142f1231f9a6d606a55ec174b85403637a8fcc19fbddcd269139ce75",
+      "role": "photoreal",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/oliveto_bedroom.jpg",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-004",
+      "filename": "oliveto_living.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        6000,
+        4000
+      ],
+      "bytes": 3486299,
+      "sha256": "64b6735fc1c47c9a9f60434f8520d671a30f6cd5f0495424e9c8051274efce98",
+      "role": "photoreal",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/oliveto_living.jpg",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-005",
+      "filename": "oliveto_pool.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        6000,
+        4000
+      ],
+      "bytes": 4709386,
+      "sha256": "5a50630857ee96a138533f2fbacfe1c9dbec5b0e384d04d937c564ba4c7ddcd9",
+      "role": "photoreal",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/oliveto_pool.jpg",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-006",
+      "filename": "oliveto_terrace.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        6000,
+        4000
+      ],
+      "bytes": 4353356,
+      "sha256": "0d2ad12bac83c1818ef540b783a69c11c1f8e4fa4c2a25d44785f49f931c2227",
+      "role": "photoreal",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/oliveto_terrace.jpg",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-007",
+      "filename": "owner_note.txt",
+      "media_type": null,
+      "dimensions": null,
+      "bytes": 1449,
+      "sha256": "4ee112019565ddbb683388baa8bb639b438110b3bc616a074df2dbe9e9c80294",
+      "role": "data",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/owner_note.txt",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-008",
+      "filename": "rates_2027.csv",
+      "media_type": null,
+      "dimensions": null,
+      "bytes": 436,
+      "sha256": "a478415d14b9db21df2d183b6d8c17de91952f63b107d0efcf2fb3a0857dbe11",
+      "role": "data",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/rates_2027.csv",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-009",
+      "filename": "scogliera_bedroom.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        6000,
+        4000
+      ],
+      "bytes": 3278668,
+      "sha256": "7f8db8074cb16b1fd7fff2ce104c6a9dcb93b52c8680023ae979c0bc7555ecf1",
+      "role": "photoreal",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/scogliera_bedroom.jpg",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-010",
+      "filename": "scogliera_living.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        6000,
+        4000
+      ],
+      "bytes": 3442507,
+      "sha256": "af559e03b70f96040e5a74bb6a72ad03a66857e9921827b70f0ad3b60d32564d",
+      "role": "photoreal",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/scogliera_living.jpg",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-011",
+      "filename": "scogliera_pool.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        6000,
+        4000
+      ],
+      "bytes": 3619554,
+      "sha256": "2cfbbed53817853d4fcf9c2d950892981f197ada2e83579d98a5db55d83de160",
+      "role": "photoreal",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/scogliera_pool.jpg",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-012",
+      "filename": "scogliera_terrace.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        4000,
+        6000
+      ],
+      "bytes": 3876519,
+      "sha256": "ee9493dae1b49f6bcbdd38b98829dff408e46fd428181c316d52fde369b7f6be",
+      "role": "photoreal",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/scogliera_terrace.jpg",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-013",
+      "filename": "verranza_bedroom.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        6000,
+        4000
+      ],
+      "bytes": 3500816,
+      "sha256": "cd2877f0bc0bb9b3588e4a6bacab63417bf4391d09e748a48d231c3568694ae7",
+      "role": "photoreal",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/verranza_bedroom.jpg",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-014",
+      "filename": "verranza_living.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        6000,
+        4000
+      ],
+      "bytes": 3844318,
+      "sha256": "383fe405cd10a3c55e8d4f37f959167a0b2e0dd16bb9c4feacec5f7dd7a05274",
+      "role": "photoreal",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/verranza_living.jpg",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-015",
+      "filename": "verranza_pool.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        6000,
+        4000
+      ],
+      "bytes": 4903644,
+      "sha256": "17615ea3cc43713a4e52786c9f79687a7d49c14044db70140d4fc71a20260941",
+      "role": "photoreal",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/verranza_pool.jpg",
+      "initial_preview": null
+    },
+    {
+      "asset_id": "PHOTO-04-IN-016",
+      "filename": "verranza_terrace.jpg",
+      "media_type": "RGB",
+      "dimensions": [
+        4000,
+        6000
+      ],
+      "bytes": 5400965,
+      "sha256": "1922f92d7b0dbc7f6bf0c553cf0615ad085199029c6687765238487b56f06c9c",
+      "role": "photoreal",
+      "state": "retained_pending_visual_review",
+      "source_uri": "s3://annotationprod/creative-ai-benchmark/v3.1/tasks/SB3-004-PHO__verranza-coastal-retreats-villa-collection-image-system/assets/verranza_terrace.jpg",
+      "initial_preview": null
+    }
+  ],
+  "events": [
+    {
+      "event_id": "EVT-0001",
+      "sequence": 1,
+      "timestamp": "2026-09-29T00:54:51.975Z",
+      "phase": "Intake and evidence",
+      "event_kind": "observation",
+      "status": "succeeded",
+      "intent": "Freeze the client brief, source assets, output contract, and review checks for this run.",
+      "rationale_summary": {
+        "evidence_considered": [
+          "publish/creative-ai-benchmark/docs/gatsby-v7/tasks/PHOTO-04/TASK_SPEC.json"
+        ],
+        "decision": "Use the V7 task contract without silently changing its output requirements.",
+        "why": "The benchmark requires an auditable source-to-output record.",
+        "tradeoffs": [
+          "The local layout exception changes the run from connector-only to hybrid."
+        ],
+        "alternatives_considered": [
+          "Adobe Express alone cannot place the supplied source photos."
+        ],
+        "uncertainty": "Creative quality and connector behavior remain untested."
+      },
+      "input_state": {
+        "asset_version_ids": [
+          "PHOTO-04-IN-001",
+          "PHOTO-04-IN-002",
+          "PHOTO-04-IN-003",
+          "PHOTO-04-IN-004",
+          "PHOTO-04-IN-005",
+          "PHOTO-04-IN-006",
+          "PHOTO-04-IN-007",
+          "PHOTO-04-IN-008",
+          "PHOTO-04-IN-009",
+          "PHOTO-04-IN-010",
+          "PHOTO-04-IN-011",
+          "PHOTO-04-IN-012",
+          "PHOTO-04-IN-013",
+          "PHOTO-04-IN-014",
+          "PHOTO-04-IN-015",
+          "PHOTO-04-IN-016"
+        ],
+        "preview_refs": [],
+        "relevant_brief_requirements": [
+          "booking-hero-oliveto",
+          "booking-hero-scogliera",
+          "booking-hero-verranza",
+          "villa-collection"
+        ],
+        "state_summary": "16 input assets and 4 required outputs registered."
+      },
+      "tool_call": {
+        "connector_surface": null,
+        "tool_name": null,
+        "sanitized_parameters": {},
+        "attempt": 1,
+        "call_or_job_id": null,
+        "started_at": null,
+        "completed_at": null,
+        "latency_ms": null,
+        "response_summary": null,
+        "error": null
+      },
+      "output_state": {
+        "artifact_versions_created": [],
+        "preview_refs": [],
+        "preview_unavailable_reason": "No artifact has been changed at intake.",
+        "measured_properties": {},
+        "state_summary": "Run initialized."
+      },
+      "verification": {
+        "performed": false,
+        "method": null,
+        "result": null,
+        "measurements": {},
+        "issues_found": [],
+        "follow_up_required": false
+      },
+      "recovery": {
+        "is_retry": false,
+        "retry_of_event_id": null,
+        "is_fallback": false,
+        "fallback_reason": null,
+        "stop_decision": null
+      },
+      "deliverable_ids_affected": [],
+      "verifier_ids_affected": [],
+      "rubric_evidence_ids": [],
+      "confidence": {
+        "level": "high",
+        "basis": "Task specification and asset manifest were read from the frozen V7 files."
+      },
+      "remaining_work": [
+        "Inspect sources, perform creative operations, render outputs, verify, and publish."
+      ]
+    },
+    {
+      "event_id": "EVT-0002",
+      "sequence": 2,
+      "timestamp": "2026-09-29T01:06:34.233Z",
+      "phase": "Source intake",
+      "event_kind": "verification",
+      "status": "succeeded",
+      "intent": "Confirm all sixteen Verranza files match their source manifest and resolve the owner corrections.",
+      "rationale_summary": {
+        "evidence_considered": [
+          "previews/reference-agent-card.png"
+        ],
+        "decision": "Use owner-approved three houses only; Scogliera sleeps ten; S1, S2, S3 become Spring, High Summer, Autumn.",
+        "why": "All sixteen source SHA256 values match, and the owner note explicitly overrides the CSV on occupancy and sold property.",
+        "tradeoffs": [
+          "Specified commercial fonts were unavailable locally; Georgia and Arial/Avenir Next substitutes were used."
+        ],
+        "alternatives_considered": [],
+        "uncertainty": "No independent professional rating has been recorded."
+      },
+      "input_state": {
+        "asset_version_ids": [],
+        "preview_refs": [],
+        "relevant_brief_requirements": [
+          "Three booking heroes",
+          "Six-page comparison brochure"
+        ],
+        "state_summary": "Owner note, CSV, verified photos and V7 contract."
+      },
+      "tool_call": {
+        "connector_surface": "Local validation",
+        "tool_name": "SHA256 source check",
+        "sanitized_parameters": {
+          "source_files": 16
+        },
+        "attempt": 1,
+        "call_or_job_id": null,
+        "started_at": null,
+        "completed_at": null,
+        "latency_ms": null,
+        "response_summary": "Use owner-approved three houses only; Scogliera sleeps ten; S1, S2, S3 become Spring, High Summer, Autumn.",
+        "error": null
+      },
+      "output_state": {
+        "artifact_versions_created": [],
+        "preview_refs": [
+          "previews/reference-agent-card.png"
+        ],
+        "preview_unavailable_reason": null,
+        "measured_properties": {},
+        "state_summary": "Use owner-approved three houses only; Scogliera sleeps ten; S1, S2, S3 become Spring, High Summer, Autumn."
+      },
+      "verification": {
+        "performed": true,
+        "method": "SHA256 comparison",
+        "result": "passed",
+        "measurements": {
+          "source_files": 16,
+          "mismatches": 0
+        },
+        "issues_found": [],
+        "follow_up_required": false
+      },
+      "recovery": {
+        "is_retry": false,
+        "retry_of_event_id": null,
+        "is_fallback": false,
+        "fallback_reason": null,
+        "stop_decision": null
+      },
+      "deliverable_ids_affected": [
+        "booking-hero-oliveto",
+        "booking-hero-scogliera",
+        "booking-hero-verranza",
+        "villa-collection"
+      ],
+      "verifier_ids_affected": [],
+      "rubric_evidence_ids": [
+        "K1_Q1",
+        "K2_Q1",
+        "K6_Q1"
+      ],
+      "confidence": {
+        "level": "medium",
+        "basis": "Full-resolution rendered artifacts inspected."
+      },
+      "remaining_work": [
+        "Complete and inspect final package."
+      ]
+    },
+    {
+      "event_id": "EVT-0003",
+      "sequence": 3,
+      "timestamp": "2026-09-29T01:06:34.354Z",
+      "phase": "Adobe source preparation",
+      "event_kind": "connector_call",
+      "status": "succeeded",
+      "intent": "Upload three verified pool photographs for Adobe editing.",
+      "rationale_summary": {
+        "evidence_considered": [
+          "previews/pool-before-after.jpg"
+        ],
+        "decision": "Stage one villa-identified hero image per house.",
+        "why": "The Adobe image tool requires fetchable Creative Cloud assets.",
+        "tradeoffs": [
+          "Specified commercial fonts were unavailable locally; Georgia and Arial/Avenir Next substitutes were used."
+        ],
+        "alternatives_considered": [],
+        "uncertainty": "No independent professional rating has been recorded."
+      },
+      "input_state": {
+        "asset_version_ids": [],
+        "preview_refs": [
+          "previews/reference-agent-card.png"
+        ],
+        "relevant_brief_requirements": [
+          "Three booking heroes",
+          "Six-page comparison brochure"
+        ],
+        "state_summary": "Owner note, CSV, verified photos and V7 contract."
+      },
+      "tool_call": {
+        "connector_surface": "Adobe Creative Cloud",
+        "tool_name": "adobe_asset_openai_file_upload",
+        "sanitized_parameters": {
+          "photos": 3
+        },
+        "attempt": 1,
+        "call_or_job_id": null,
+        "started_at": null,
+        "completed_at": null,
+        "latency_ms": null,
+        "response_summary": "Stage one villa-identified hero image per house.",
+        "error": null
+      },
+      "output_state": {
+        "artifact_versions_created": [],
+        "preview_refs": [
+          "previews/pool-before-after.jpg"
+        ],
+        "preview_unavailable_reason": null,
+        "measured_properties": {},
+        "state_summary": "Stage one villa-identified hero image per house."
+      },
+      "verification": {
+        "performed": false,
+        "method": null,
+        "result": null,
+        "measurements": {},
+        "issues_found": [],
+        "follow_up_required": false
+      },
+      "recovery": {
+        "is_retry": false,
+        "retry_of_event_id": null,
+        "is_fallback": false,
+        "fallback_reason": null,
+        "stop_decision": null
+      },
+      "deliverable_ids_affected": [
+        "booking-hero-oliveto",
+        "booking-hero-scogliera",
+        "booking-hero-verranza",
+        "villa-collection"
+      ],
+      "verifier_ids_affected": [],
+      "rubric_evidence_ids": [
+        "K1_Q1",
+        "K2_Q1",
+        "K6_Q1"
+      ],
+      "confidence": {
+        "level": "medium",
+        "basis": "Full-resolution rendered artifacts inspected."
+      },
+      "remaining_work": [
+        "Complete and inspect final package."
+      ]
+    },
+    {
+      "event_id": "EVT-0004",
+      "sequence": 4,
+      "timestamp": "2026-09-29T01:06:34.474Z",
+      "phase": "Adobe tonal pass",
+      "event_kind": "connector_call",
+      "status": "partial",
+      "intent": "Test a restrained tonal correction on the three villa photographs.",
+      "rationale_summary": {
+        "evidence_considered": [
+          "previews/rejected-verranza-adobe.jpg"
+        ],
+        "decision": "Keep the Oliveto and Scogliera edits, reject the Verranza edit.",
+        "why": "The Verranza result has unrelated corrupted imagery across its lower half, despite a successful connector response.",
+        "tradeoffs": [
+          "Specified commercial fonts were unavailable locally; Georgia and Arial/Avenir Next substitutes were used."
+        ],
+        "alternatives_considered": [],
+        "uncertainty": "No independent professional rating has been recorded."
+      },
+      "input_state": {
+        "asset_version_ids": [],
+        "preview_refs": [
+          "previews/pool-before-after.jpg"
+        ],
+        "relevant_brief_requirements": [
+          "Three booking heroes",
+          "Six-page comparison brochure"
+        ],
+        "state_summary": "Owner note, CSV, verified photos and V7 contract."
+      },
+      "tool_call": {
+        "connector_surface": "Adobe image editing",
+        "tool_name": "adobe_image_apply_auto_tone",
+        "sanitized_parameters": {
+          "photos": 3
+        },
+        "attempt": 1,
+        "call_or_job_id": null,
+        "started_at": null,
+        "completed_at": null,
+        "latency_ms": null,
+        "response_summary": "Keep the Oliveto and Scogliera edits, reject the Verranza edit.",
+        "error": "Corrupted lower image region in returned Verranza PNG."
+      },
+      "output_state": {
+        "artifact_versions_created": [
+          "oliveto-tone",
+          "scogliera-tone",
+          "verranza-tone-rejected"
+        ],
+        "preview_refs": [
+          "previews/rejected-verranza-adobe.jpg"
+        ],
+        "preview_unavailable_reason": null,
+        "measured_properties": {},
+        "state_summary": "Keep the Oliveto and Scogliera edits, reject the Verranza edit."
+      },
+      "verification": {
+        "performed": false,
+        "method": null,
+        "result": "failed",
+        "measurements": {},
+        "issues_found": [
+          "Adobe Verranza result includes unrelated image content."
+        ],
+        "follow_up_required": false
+      },
+      "recovery": {
+        "is_retry": false,
+        "retry_of_event_id": null,
+        "is_fallback": false,
+        "fallback_reason": null,
+        "stop_decision": null
+      },
+      "deliverable_ids_affected": [
+        "booking-hero-oliveto",
+        "booking-hero-scogliera",
+        "booking-hero-verranza",
+        "villa-collection"
+      ],
+      "verifier_ids_affected": [],
+      "rubric_evidence_ids": [
+        "K1_Q1",
+        "K2_Q1",
+        "K6_Q1"
+      ],
+      "confidence": {
+        "level": "high",
+        "basis": "Full-resolution rendered artifacts inspected."
+      },
+      "remaining_work": [
+        "Complete and inspect final package."
+      ]
+    },
+    {
+      "event_id": "EVT-0005",
+      "sequence": 5,
+      "timestamp": "2026-09-29T01:06:34.600Z",
+      "phase": "Recovery",
+      "event_kind": "recovery",
+      "status": "succeeded",
+      "intent": "Replace the corrupted Adobe result with the verified Casa Verranza source.",
+      "rationale_summary": {
+        "evidence_considered": [
+          "previews/brochure-verranza-final.png"
+        ],
+        "decision": "Use the unedited original for Verranza; retain the two inspected Adobe edits.",
+        "why": "A truthful original is preferable to a visibly corrupted generated edit.",
+        "tradeoffs": [
+          "Specified commercial fonts were unavailable locally; Georgia and Arial/Avenir Next substitutes were used."
+        ],
+        "alternatives_considered": [],
+        "uncertainty": "No independent professional rating has been recorded."
+      },
+      "input_state": {
+        "asset_version_ids": [],
+        "preview_refs": [
+          "previews/rejected-verranza-adobe.jpg"
+        ],
+        "relevant_brief_requirements": [
+          "Three booking heroes",
+          "Six-page comparison brochure"
+        ],
+        "state_summary": "Owner note, CSV, verified photos and V7 contract."
+      },
+      "tool_call": {
+        "connector_surface": "Local review",
+        "tool_name": "Visual artifact review",
+        "sanitized_parameters": {
+          "outputs": 4
+        },
+        "attempt": 1,
+        "call_or_job_id": null,
+        "started_at": null,
+        "completed_at": null,
+        "latency_ms": null,
+        "response_summary": "Use the unedited original for Verranza; retain the two inspected Adobe edits.",
+        "error": null
+      },
+      "output_state": {
+        "artifact_versions_created": [],
+        "preview_refs": [
+          "previews/brochure-verranza-final.png"
+        ],
+        "preview_unavailable_reason": null,
+        "measured_properties": {},
+        "state_summary": "Use the unedited original for Verranza; retain the two inspected Adobe edits."
+      },
+      "verification": {
+        "performed": true,
+        "method": "Visual review",
+        "result": "passed",
+        "measurements": {},
+        "issues_found": [],
+        "follow_up_required": false
+      },
+      "recovery": {
+        "is_retry": false,
+        "retry_of_event_id": null,
+        "is_fallback": true,
+        "fallback_reason": "Adobe result corrupted.",
+        "stop_decision": null
+      },
+      "deliverable_ids_affected": [
+        "booking-hero-oliveto",
+        "booking-hero-scogliera",
+        "booking-hero-verranza",
+        "villa-collection"
+      ],
+      "verifier_ids_affected": [],
+      "rubric_evidence_ids": [
+        "K1_Q1",
+        "K2_Q1",
+        "K6_Q1"
+      ],
+      "confidence": {
+        "level": "medium",
+        "basis": "Full-resolution rendered artifacts inspected."
+      },
+      "remaining_work": [
+        "Complete and inspect final package."
+      ]
+    },
+    {
+      "event_id": "EVT-0006",
+      "sequence": 6,
+      "timestamp": "2026-09-29T01:06:34.717Z",
+      "phase": "Hybrid layout",
+      "event_kind": "artifact_change",
+      "status": "succeeded",
+      "intent": "Compose three villa booking heroes and a six-page A4 comparison brochure.",
+      "rationale_summary": {
+        "evidence_considered": [
+          "previews/booking-hero-scogliera-final.png"
+        ],
+        "decision": "Use solid Lime Wash side panels and source photography, with exact 2027 rates and seasons.",
+        "why": "The V7 brand disallows overlays on photos; local Python composition was explicitly authorized.",
+        "tradeoffs": [
+          "Specified commercial fonts were unavailable locally; Georgia and Arial/Avenir Next substitutes were used."
+        ],
+        "alternatives_considered": [],
+        "uncertainty": "No independent professional rating has been recorded."
+      },
+      "input_state": {
+        "asset_version_ids": [],
+        "preview_refs": [
+          "previews/brochure-verranza-final.png"
+        ],
+        "relevant_brief_requirements": [
+          "Three booking heroes",
+          "Six-page comparison brochure"
+        ],
+        "state_summary": "Owner note, CSV, verified photos and V7 contract."
+      },
+      "tool_call": {
+        "connector_surface": "Local Python layout",
+        "tool_name": "Pillow and ReportLab",
+        "sanitized_parameters": {
+          "outputs": 4
+        },
+        "attempt": 1,
+        "call_or_job_id": null,
+        "started_at": null,
+        "completed_at": null,
+        "latency_ms": null,
+        "response_summary": "Use solid Lime Wash side panels and source photography, with exact 2027 rates and seasons.",
+        "error": null
+      },
+      "output_state": {
+        "artifact_versions_created": [
+          "three-heroes-v1",
+          "brochure-v1"
+        ],
+        "preview_refs": [
+          "previews/booking-hero-scogliera-final.png"
+        ],
+        "preview_unavailable_reason": null,
+        "measured_properties": {},
+        "state_summary": "Use solid Lime Wash side panels and source photography, with exact 2027 rates and seasons."
+      },
+      "verification": {
+        "performed": false,
+        "method": null,
+        "result": null,
+        "measurements": {},
+        "issues_found": [],
+        "follow_up_required": false
+      },
+      "recovery": {
+        "is_retry": false,
+        "retry_of_event_id": null,
+        "is_fallback": true,
+        "fallback_reason": "Adobe connector cannot assemble supplied-image layout.",
+        "stop_decision": null
+      },
+      "deliverable_ids_affected": [
+        "booking-hero-oliveto",
+        "booking-hero-scogliera",
+        "booking-hero-verranza",
+        "villa-collection"
+      ],
+      "verifier_ids_affected": [],
+      "rubric_evidence_ids": [
+        "K1_Q1",
+        "K2_Q1",
+        "K6_Q1"
+      ],
+      "confidence": {
+        "level": "medium",
+        "basis": "Full-resolution rendered artifacts inspected."
+      },
+      "remaining_work": [
+        "Complete and inspect final package."
+      ]
+    },
+    {
+      "event_id": "EVT-0007",
+      "sequence": 7,
+      "timestamp": "2026-09-29T01:06:34.835Z",
+      "phase": "Final visual review",
+      "event_kind": "verification",
+      "status": "succeeded",
+      "intent": "Review rendered hero and brochure pages for clipping, photo integrity, and the corrected comparison table.",
+      "rationale_summary": {
+        "evidence_considered": [
+          "previews/brochure-contact-sheet.jpg"
+        ],
+        "decision": "Wrap the long Scogliera description and rerender; preserve the clean six-page package.",
+        "why": "The first hero exceeded its panel width and the brochure first pass exposed the corrupted Adobe file.",
+        "tradeoffs": [
+          "Specified commercial fonts were unavailable locally; Georgia and Arial/Avenir Next substitutes were used."
+        ],
+        "alternatives_considered": [],
+        "uncertainty": "No independent professional rating has been recorded."
+      },
+      "input_state": {
+        "asset_version_ids": [],
+        "preview_refs": [
+          "previews/booking-hero-scogliera-final.png"
+        ],
+        "relevant_brief_requirements": [
+          "Three booking heroes",
+          "Six-page comparison brochure"
+        ],
+        "state_summary": "Owner note, CSV, verified photos and V7 contract."
+      },
+      "tool_call": {
+        "connector_surface": "Local review",
+        "tool_name": "PDF raster and image review",
+        "sanitized_parameters": {
+          "outputs": 4
+        },
+        "attempt": 1,
+        "call_or_job_id": null,
+        "started_at": null,
+        "completed_at": null,
+        "latency_ms": null,
+        "response_summary": "Wrap the long Scogliera description and rerender; preserve the clean six-page package.",
+        "error": null
+      },
+      "output_state": {
+        "artifact_versions_created": [
+          "three-heroes-final",
+          "brochure-final"
+        ],
+        "preview_refs": [
+          "previews/brochure-contact-sheet.jpg"
+        ],
+        "preview_unavailable_reason": null,
+        "measured_properties": {},
+        "state_summary": "Wrap the long Scogliera description and rerender; preserve the clean six-page package."
+      },
+      "verification": {
+        "performed": true,
+        "method": "Visual review",
+        "result": "passed",
+        "measurements": {},
+        "issues_found": [],
+        "follow_up_required": false
+      },
+      "recovery": {
+        "is_retry": false,
+        "retry_of_event_id": null,
+        "is_fallback": false,
+        "fallback_reason": null,
+        "stop_decision": null
+      },
+      "deliverable_ids_affected": [
+        "booking-hero-oliveto",
+        "booking-hero-scogliera",
+        "booking-hero-verranza",
+        "villa-collection"
+      ],
+      "verifier_ids_affected": [],
+      "rubric_evidence_ids": [
+        "K1_Q1",
+        "K2_Q1",
+        "K6_Q1"
+      ],
+      "confidence": {
+        "level": "medium",
+        "basis": "Full-resolution rendered artifacts inspected."
+      },
+      "remaining_work": [
+        "Package outputs and publish."
+      ]
+    }
+  ],
+  "artifact_versions": [],
+  "checkpoints": [],
+  "deliverable_manifest": [
+    {
+      "deliverable_id": "booking-hero-oliveto",
+      "path": "deliverables/booking-hero-oliveto.png",
+      "status": "complete_unrated",
+      "sha256": "5b6f7ef6ce279272c9fbf97af541abd9d2ee7497206bff84b8205ea530ae5de1"
+    },
+    {
+      "deliverable_id": "booking-hero-scogliera",
+      "path": "deliverables/booking-hero-scogliera.png",
+      "status": "complete_unrated",
+      "sha256": "6c03123dc1237b3203b75861b333f31bae9df0fe7958916bfd602cca04c1b61d"
+    },
+    {
+      "deliverable_id": "booking-hero-verranza",
+      "path": "deliverables/booking-hero-verranza.png",
+      "status": "complete_unrated",
+      "sha256": "43e36a694b3a933f51ffcd0e8f3d7fde144e20b99ac587499fcbf08467b4a131"
+    },
+    {
+      "deliverable_id": "villa-collection",
+      "path": "deliverables/villa-collection.pdf",
+      "status": "complete_unrated",
+      "sha256": "e5acd4beba767a65f6b9b93793f9b47eaad50e9012710f02ca7f4b0d1bc36194"
+    }
+  ],
+  "verifier_results": [
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/A001",
+      "output_id": "booking-hero-oliveto",
+      "status": "pass",
+      "reason": "deliverables/booking-hero-oliveto.png; {'width': 1920, 'height': 1080, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/A002",
+      "output_id": "booking-hero-oliveto",
+      "status": "pass",
+      "reason": "deliverables/booking-hero-oliveto.png; {'width': 1920, 'height': 1080, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/A003",
+      "output_id": "booking-hero-oliveto",
+      "status": "pass",
+      "reason": "deliverables/booking-hero-oliveto.png; {'width': 1920, 'height': 1080, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/A004",
+      "output_id": "booking-hero-oliveto",
+      "status": "pass",
+      "reason": "deliverables/booking-hero-oliveto.png; {'width': 1920, 'height': 1080, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H001",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H002",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H003",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/A001",
+      "output_id": "booking-hero-scogliera",
+      "status": "pass",
+      "reason": "deliverables/booking-hero-scogliera.png; {'width': 1920, 'height': 1080, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/A002",
+      "output_id": "booking-hero-scogliera",
+      "status": "pass",
+      "reason": "deliverables/booking-hero-scogliera.png; {'width': 1920, 'height': 1080, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/A003",
+      "output_id": "booking-hero-scogliera",
+      "status": "pass",
+      "reason": "deliverables/booking-hero-scogliera.png; {'width': 1920, 'height': 1080, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/A004",
+      "output_id": "booking-hero-scogliera",
+      "status": "pass",
+      "reason": "deliverables/booking-hero-scogliera.png; {'width': 1920, 'height': 1080, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H001",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H002",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H003",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/A001",
+      "output_id": "booking-hero-verranza",
+      "status": "pass",
+      "reason": "deliverables/booking-hero-verranza.png; {'width': 1920, 'height': 1080, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/A002",
+      "output_id": "booking-hero-verranza",
+      "status": "pass",
+      "reason": "deliverables/booking-hero-verranza.png; {'width': 1920, 'height': 1080, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/A003",
+      "output_id": "booking-hero-verranza",
+      "status": "pass",
+      "reason": "deliverables/booking-hero-verranza.png; {'width': 1920, 'height': 1080, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/A004",
+      "output_id": "booking-hero-verranza",
+      "status": "pass",
+      "reason": "deliverables/booking-hero-verranza.png; {'width': 1920, 'height': 1080, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H001",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H002",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H003",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/A001",
+      "output_id": "villa-collection",
+      "status": "pass",
+      "reason": "deliverables/villa-collection.pdf; {'pages': 6, 'trim_width_mm': 210.0001444444444, 'trim_height_mm': 297.0000833333333, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/A002",
+      "output_id": "villa-collection",
+      "status": "pass",
+      "reason": "deliverables/villa-collection.pdf; {'pages': 6, 'trim_width_mm': 210.0001444444444, 'trim_height_mm': 297.0000833333333, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/A003",
+      "output_id": "villa-collection",
+      "status": "pass",
+      "reason": "deliverables/villa-collection.pdf; {'pages': 6, 'trim_width_mm': 210.0001444444444, 'trim_height_mm': 297.0000833333333, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/A004",
+      "output_id": "villa-collection",
+      "status": "pass",
+      "reason": "deliverables/villa-collection.pdf; {'pages': 6, 'trim_width_mm': 210.0001444444444, 'trim_height_mm': 297.0000833333333, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/A005",
+      "output_id": "villa-collection",
+      "status": "pass",
+      "reason": "deliverables/villa-collection.pdf; {'pages': 6, 'trim_width_mm': 210.0001444444444, 'trim_height_mm': 297.0000833333333, 'decodable': True}"
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H001",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H002",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H003",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H004",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H005",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H006",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H007",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H008",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H009",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H010",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H011",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H012",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H013",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H014",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H015",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H016",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H017",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H018",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H019",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H020",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H021",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H022",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H023",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H024",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H025",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H026",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H027",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H028",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H029",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H030",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H031",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H032",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H033",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H034",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H035",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H036",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H037",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H038",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H039",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/villa-collection/H040",
+      "output_id": "villa-collection",
+      "status": "not_independently_rated",
+      "reason": "deliverables/villa-collection.pdf; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H004",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H005",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H006",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H007",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H008",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H009",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H010",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H011",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H012",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H013",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H014",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H015",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H016",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H017",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H018",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H019",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H020",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H021",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H022",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H023",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-oliveto/H024",
+      "output_id": "booking-hero-oliveto",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-oliveto.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H004",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H005",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H006",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H007",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H008",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H009",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H010",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H011",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H012",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H013",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H014",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H015",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H016",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H017",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H018",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H019",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H020",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H021",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H022",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H023",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-verranza/H024",
+      "output_id": "booking-hero-verranza",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-verranza.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H004",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H005",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H006",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H007",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H008",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H009",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H010",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H011",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H012",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H013",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H014",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H015",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H016",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H017",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H018",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H019",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H020",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H021",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H022",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H023",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    },
+    {
+      "verifier_id": "PHOTO-04/booking-hero-scogliera/H024",
+      "output_id": "booking-hero-scogliera",
+      "status": "not_independently_rated",
+      "reason": "deliverables/booking-hero-scogliera.png; Independent expert review not requested as a release gate."
+    }
+  ],
+  "evaluation": {
+    "rubric_version": "2.0.0",
+    "questions": [
+      {
+        "capability_id": "K1",
+        "capability_name": "Instruction adherence",
+        "question_id": "K1_Q1",
+        "label": "Content completeness",
+        "question": "Are all required text, objects, data, scenes, and other required content present?",
+        "agent_evidence_event_ids": [
+          "EVT-0002",
+          "EVT-0003",
+          "EVT-0004",
+          "EVT-0005",
+          "EVT-0006",
+          "EVT-0007"
+        ],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K1",
+        "capability_name": "Instruction adherence",
+        "question_id": "K1_Q2",
+        "label": "Specification accuracy",
+        "question": "Are dimensions, formats, quantities, durations, colours, and other specifications correct?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K1",
+        "capability_name": "Instruction adherence",
+        "question_id": "K1_Q3",
+        "label": "Constraint compliance",
+        "question": "Did the work obey all must, must-not, preservation, and production constraints?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K1",
+        "capability_name": "Instruction adherence",
+        "question_id": "K1_Q4",
+        "label": "Deliverable completeness",
+        "question": "Were all requested output files and variants delivered?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K1",
+        "capability_name": "Instruction adherence",
+        "question_id": "K1_Q5",
+        "label": "Critical failure check",
+        "question": "Did the work violate any requirement that independently makes the commission unusable?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K2",
+        "capability_name": "Asset utilization and fidelity",
+        "question_id": "K2_Q1",
+        "label": "Asset selection",
+        "question": "Did the work use the correct supplied assets?",
+        "agent_evidence_event_ids": [
+          "EVT-0002",
+          "EVT-0003",
+          "EVT-0004",
+          "EVT-0005",
+          "EVT-0006",
+          "EVT-0007"
+        ],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K2",
+        "capability_name": "Asset utilization and fidelity",
+        "question_id": "K2_Q2",
+        "label": "Asset preservation",
+        "question": "Were locked assets preserved rather than regenerated or distorted?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K2",
+        "capability_name": "Asset utilization and fidelity",
+        "question_id": "K2_Q3",
+        "label": "Brand-system compliance",
+        "question": "Are fonts, colours, logo use, imagery rules, and other brand-system requirements correct?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K2",
+        "capability_name": "Asset utilization and fidelity",
+        "question_id": "K2_Q4",
+        "label": "Identity fidelity",
+        "question": "Are products, people, logos, and distinctive objects still recognizably the same?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K2",
+        "capability_name": "Asset utilization and fidelity",
+        "question_id": "K2_Q5",
+        "label": "Asset appropriateness",
+        "question": "Were assets used in the correct role and context rather than merely included?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K3",
+        "capability_name": "Compositional craft",
+        "question_id": "K3_Q1",
+        "label": "Operation craft",
+        "question": "Does the work meet the applicable family-specific craft checklist at a professional standard?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K4",
+        "capability_name": "Creative quality",
+        "question_id": "K4_Q1",
+        "label": "Concept strength",
+        "question": "Is there a clear creative idea or point of view, including coherent ideas?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K4",
+        "capability_name": "Creative quality",
+        "question_id": "K4_Q2",
+        "label": "Brief relevance",
+        "question": "Is the creative direction appropriate to the goal, audience, and context?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K4",
+        "capability_name": "Creative quality",
+        "question_id": "K4_Q3",
+        "label": "Distinctiveness",
+        "question": "Does the solution avoid feeling generic, templated, or interchangeable?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K5",
+        "capability_name": "Communication effectiveness",
+        "question_id": "K5_Q1",
+        "label": "Primary-message recovery",
+        "question": "Can an uninformed viewer identify the main message?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K5",
+        "capability_name": "Communication effectiveness",
+        "question_id": "K5_Q2",
+        "label": "Information hierarchy",
+        "question": "Does the viewer notice the most important information first?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K5",
+        "capability_name": "Communication effectiveness",
+        "question_id": "K5_Q3",
+        "label": "Required-detail recovery",
+        "question": "Can the viewer correctly identify important supporting details?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K5",
+        "capability_name": "Communication effectiveness",
+        "question_id": "K5_Q4",
+        "label": "Action clarity",
+        "question": "If applicable, is the intended next action clear?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K5",
+        "capability_name": "Communication effectiveness",
+        "question_id": "K5_Q5",
+        "label": "Audience appropriateness",
+        "question": "Is the message understandable to the intended audience?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K5",
+        "capability_name": "Communication effectiveness",
+        "question_id": "K5_Q6",
+        "label": "Miscommunication",
+        "question": "Does the artifact imply anything materially wrong?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K6",
+        "capability_name": "Agentic competence",
+        "question_id": "K6_Q1",
+        "label": "Planning and sequencing",
+        "question": "Did the agent perform actions in a sensible dependency order, completing prerequisites before dependent steps?",
+        "agent_evidence_event_ids": [
+          "EVT-0002",
+          "EVT-0003",
+          "EVT-0004",
+          "EVT-0005",
+          "EVT-0006",
+          "EVT-0007"
+        ],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K6",
+        "capability_name": "Agentic competence",
+        "question_id": "K6_Q2",
+        "label": "Tool selection and use",
+        "question": "Did the agent choose appropriate tools, operations, and settings for each step of the task?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K6",
+        "capability_name": "Agentic competence",
+        "question_id": "K6_Q3",
+        "label": "State management",
+        "question": "Did the agent consistently operate on the correct and latest files, versions, selections, and intermediate outputs?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K6",
+        "capability_name": "Agentic competence",
+        "question_id": "K6_Q4",
+        "label": "Progress efficiency",
+        "question": "Did the agent's actions meaningfully advance, inspect, or validate the task without unnecessary repetition or loops?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K6",
+        "capability_name": "Agentic competence",
+        "question_id": "K6_Q5",
+        "label": "Failure detection and recovery",
+        "question": "Did the agent detect failures or poor results and adapt its strategy effectively?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K6",
+        "capability_name": "Agentic competence",
+        "question_id": "K6_Q6",
+        "label": "Verification and stopping",
+        "question": "Did the agent verify relevant output properties before submission and stop when the commission was ready?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K6",
+        "capability_name": "Agentic competence",
+        "question_id": "K6_Q7",
+        "label": "Honesty and disclosure",
+        "question": "Did the agent accurately disclose missing information, limitations, failures, or incomplete work rather than claiming success?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "capability_id": "K6",
+        "capability_name": "Agentic competence",
+        "question_id": "K6_Q8",
+        "label": "Self-calibration",
+        "question": "Was the agent's confidence in task success consistent with the actual quality and completeness of the final outcome?",
+        "agent_evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "agent_self_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        },
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      }
+    ],
+    "applicable_operation_craft": [
+      {
+        "id": "K3_PHOTO_01",
+        "item": "Exposure and tone",
+        "pass": "Balanced; highlights and shadows hold detail",
+        "minor": "Slightly off but recoverable",
+        "major": "Clipped; detail lost",
+        "evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "id": "K3_PHOTO_02",
+        "item": "Colour and white balance",
+        "pass": "Neutral or on-brand; skin tones natural",
+        "minor": "Slight cast",
+        "major": "Clear cast or wrong colour",
+        "evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "id": "K3_PHOTO_03",
+        "item": "Mask and edge quality",
+        "pass": "Clean edges; fine detail retained",
+        "minor": "Small halo or jaggies",
+        "major": "Visible halo or clipped subject",
+        "evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "id": "K3_PHOTO_04",
+        "item": "Blemish and artefact removal",
+        "pass": "Clean and natural",
+        "minor": "A few remain or faint over-smoothing",
+        "major": "Artefacts remain or skin looks plastic",
+        "evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "id": "K3_PHOTO_05",
+        "item": "Texture and detail preserved",
+        "pass": "Realistic micro-detail",
+        "minor": "Slightly soft",
+        "major": "Detail smeared or lost",
+        "evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      },
+      {
+        "id": "K3_PHOTO_06",
+        "item": "Look and grade integrity",
+        "pass": "Cohesive, intentional grade",
+        "minor": "Slightly uneven",
+        "major": "Artificial or broken look",
+        "evidence_event_ids": [],
+        "objective_verifier_ids": [],
+        "expert_assessment": {
+          "status": "unassessed",
+          "rationale": null,
+          "confidence": null
+        }
+      }
+    ],
+    "professional_review": {
+      "verdict": "unassessed",
+      "rationale": null,
+      "pin_the_flaw": [],
+      "confidence": null
+    }
+  },
+  "metrics": {
+    "connector_calls": 6,
+    "successful_calls": 5,
+    "failed_calls": 0,
+    "retries": 0,
+    "fallbacks": 2,
+    "verification_events": 3,
+    "artifact_versions": 7,
+    "redundant_calls": 0
+  },
+  "disclosure": {
+    "limitations": [
+      "The run is hybrid: Adobe connector edits and local Python layout are different execution surfaces."
+    ],
+    "blocked_work": [],
+    "pending_work": [],
+    "prohibited_success_claims": [
+      "Do not describe Python-rendered layouts as Adobe-connector-generated deliverables."
+    ]
+  },
+  "security": {
+    "secrets_logged": false,
+    "redactions": [],
+    "expiring_urls_replaced_with_durable_references": false
+  }
+}
