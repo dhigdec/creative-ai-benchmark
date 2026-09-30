@@ -9,6 +9,8 @@ import re
 import subprocess
 from pathlib import Path
 
+from annotation_pilot_client_copy import BRAND_ABOUT, BRIEFS
+
 
 ROOT = Path(__file__).resolve().parents[1]
 TASKS = ROOT / "docs/gatsby-v7/tasks"
@@ -147,7 +149,7 @@ def render_brand(brand: dict) -> str:
     parts.append('<h3>Typography</h3>')
     parts.append(render_type_system(brand))
     parts.append(f'<h3>Voice</h3><p>{esc(brand["voice"])}</p>')
-    parts.append(f'<h3>Identity sources</h3><p>{esc(brand["brand_assets_status"])}</p>')
+    parts.append(f'<h3>Existing brand materials</h3><p>{esc(brand["brand_assets_status"])}</p>')
     parts.append('</div>')
     return "".join(parts)
 
@@ -306,14 +308,14 @@ document.addEventListener('click', async (event) => {
 
 def write_page(task_id: str, spec: dict, assets: list[dict], outputs: list[dict]) -> None:
     title = spec["task_name"]
+    brand = {**spec["brand_identity"], "about": BRAND_ABOUT.get(task_id, spec["brand_identity"]["about"])}
     content = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(task_id)} · {esc(title)}</title><style>{CSS}</style></head><body>
 <main class="page">
-<header><div class="eyebrow">Gatsby · Pilot brief · {esc(task_id)}</div><h1>{esc(title)}</h1><p class="subline">{esc(spec["task_code"])} · {esc(spec["family"])}</p></header>
-<section class="section" aria-labelledby="brief-title"><h2 id="brief-title">Client brief</h2><div class="brief-text">{esc(spec["client_brief"])}</div>
-<h3>Production constraints</h3><ul class="data-list">{"".join(f"<li>{esc(item)}</li>" for item in spec["truth_constraints"] + spec["production_requirements"])}</ul></section>
-<section class="section" aria-labelledby="brand-title"><h2 id="brand-title">Brand identity</h2>{render_brand(spec["brand_identity"])}</section>
+<header><h1>{esc(title)}</h1></header>
+<section class="section" aria-labelledby="brief-title"><h2 id="brief-title">Client brief</h2><div class="brief-text">{esc(BRIEFS[task_id])}</div></section>
+<section class="section" aria-labelledby="brand-title"><h2 id="brand-title">Brand identity</h2>{render_brand(brand)}</section>
 <section class="section" aria-labelledby="assets-title"><h2 id="assets-title">Source assets ({len(assets)})</h2>{render_assets(task_id, assets)}</section>
 <section class="section" aria-labelledby="outputs-title"><h2 id="outputs-title">Requested deliverables ({len(outputs)})</h2>{render_outputs(outputs, spec["deliverable_groups"])}</section>
 </main>{DOWNLOAD_SCRIPT}<script src="https://cdn.jsdelivr.net/npm/@iframe-resizer/child@5"></script></body></html>
@@ -383,6 +385,8 @@ def sheet_row(index: int, task_id: str, assets: list[dict], verifiers: list[dict
 
 
 def main() -> None:
+    if set(BRIEFS) != set(TASK_IDS):
+        raise ValueError("Client-facing brief copy must cover the ten pilot tasks exactly")
     OUT.mkdir(parents=True, exist_ok=True)
     rows = [[
         "task_id", "MainSectionRepeater", "VerifiersRepeater", "uniqueId",
