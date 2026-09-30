@@ -25,20 +25,26 @@ Upper-mid coastal rentals, typically 520 to 780 euros a night in season. The pre
 ## Typography
 Display face: Canela Deck Light. Text face: Untitled Sans Regular.
 
-- 01 Display / H1: Canela Deck Light, 72 px / 78 px, Light, tracking -10 units.
-- 02 Subheading / H2: Canela Deck Light, 26 px / 30 px, Light, tracking -4 units.
-- 03 Body: Untitled Sans Regular, 20 px / 30 px, Regular, tracking 0 units.
-- 04 Fine print: Untitled Sans Regular, 15 px / 22 px, Regular, tracking +8 units.
+The samples show the hierarchy, not the licensed font outlines. Use the named fonts and settings below.
+
+Apply these settings to newly typeset text, including headings, supporting copy and fine print. Do not change lettering already inside a photograph or rebuild a supplied logo to match a font. A style listed here does not ask you to add copy or a deliverable that the brief does not request. If a named font is unavailable, ask us before substituting it.
+
+Sizes apply at the delivered canvas size, not the browser's zoom level. Tracking is in thousandths of an em: +20 means 0.020 em, not 20 pixels. Leading means the distance between text baselines. It applies only to multiline text. Where a point value is used on a digital canvas, 1 pt = 4/3 px; do not use the image's DPI metadata to change it.
+
+- 01 Display / H1: Canela Deck Light, 72 px / 78 px, Light, tracking -10 units. House name on a booking hero. Make its initial twice the cap height of the remaining letters; do not treat font size as cap height. In villa-collection.pdf, use 34 pt for the house name.
+- 02 Subheading / H2: Canela Deck Light, 26 px / 30 px, Light, tracking -4 units. Optional standfirst on a booking hero. In the brochure, keep secondary headings smaller than the 34 pt house names; their size and leading are flexible.
+- 03 Body: Untitled Sans Regular, 20 px / 30 px, Regular, tracking 0 units. Body and booking-action text on a hero; at most 65 characters per line. In villa-collection.pdf, body is 10 pt with 15 pt leading.
+- 04 Fine print: Untitled Sans Regular, 15 px / 22 px, Regular, tracking +8 units. Hero rates and captions use tabular lining figures. In villa-collection.pdf, rates are 9 pt; caption size and rate/caption leading are flexible. Numerals remain Untitled Sans Regular at the size of their surrounding text.
 
 Signature move: Each house name opens with an oversized Canela Deck Light initial drawn to twice the cap height of the rest of the word, and every numeral stays in Untitled Sans tabular lining figures, never in the serif.
 
 Rules:
-- No numeral is ever set in the serif. Every figure lives in Untitled Sans, tabular lining.
-- No weight above Light in Canela Deck.
-- No gold.
-- The oversized initial is always the first letter of the house name, at twice the cap height of the rest of that word.
-- Rates and captions are Untitled Sans Regular only.
-- Name the stone, the water and the light, and never oversell.
+- The hero sizes in the four rows apply to booking-hero-oliveto.png, booking-hero-scogliera.png and booking-hero-verranza.png. Use the brochure overrides in the notes for villa-collection.pdf.
+- The brochure keeps the same font roles and tracking as the heroes. Where a print size or leading is not specified, choose a readable value within that hierarchy.
+- All numerals use Untitled Sans Regular with tabular lining figures, including numerals within a heading.
+- Canela Deck is Light only. Rates, captions, body and booking text are Untitled Sans Regular.
+- A house-name initial is twice the cap height of its remaining letters on the heroes and in the brochure.
+- No gold or metallic treatment on any heading, supporting text or fine print.
 
 ## Voice
 Warm, plain and place-first. We name the stone, the water and the afternoon light, and we never oversell. Example line: 'Three houses above the cove, let by the family who has kept them.'

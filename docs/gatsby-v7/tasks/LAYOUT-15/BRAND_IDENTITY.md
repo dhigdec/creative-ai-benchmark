@@ -24,21 +24,26 @@ A regulated mutual with premiums from 45 to 180 dollars a month. Materials shoul
 ## Typography
 Display face: Lexend SemiBold. Text face: Miller Text Roman, with IBM Plex Sans Regular for figures.
 
-- 01 Display / H1: Lexend, 20 pt / 23 pt, SemiBold, tracking -5 units, sentence case.
-- 02 Subheading / H2: Lexend, 11 pt / 14 pt, SemiBold, tracking +20 units, sentence case.
-- 03 Body: Miller Text, 9 pt / 13 pt, Roman, tracking 0, max 65 characters.
-- 04 Fine print: Miller Text, 6.5 pt / 9 pt, Roman, tracking +15 units.
+The samples show the hierarchy, not the licensed font outlines. Use the named fonts and settings below.
 
-Signature move: The pair of rules. The producer name in Lexend SemiBold 20 pt sits directly on a 1 pt Heritage Green line running the full card width, and that identical rule repeats above the 6.5 pt disclosure, so every piece is bracketed top and bottom in green. Inside that bracket the premiums are always tabular lining figures in IBM Plex Sans Regular at 10 pt, aligned in a column.
+Apply these settings to newly typeset text, including headings, supporting copy and fine print. Do not change lettering already inside a photograph or rebuild a supplied logo to match a font. A style listed here does not ask you to add copy or a deliverable that the brief does not request. If a named font is unavailable, ask us before substituting it.
+
+Sizes apply at the delivered canvas size, not the browser's zoom level. Tracking is in thousandths of an em: +20 means 0.020 em, not 20 pixels. Leading means the distance between text baselines. It applies only to multiline text. Where a point value is used on a digital canvas, 1 pt = 4/3 px; do not use the image's DPI metadata to change it.
+
+- 01 Display / H1: Lexend, 20 pt / 23 pt, SemiBold, tracking -5 units, sentence case. Producer name in sentence case, using the stated -5 tracking. It sits above the full-width 1 pt Heritage Green rule. Do not add positive tracking.
+- 02 Secondary heading - not used in this run: Lexend, 11 pt / 14 pt, SemiBold, tracking +20 units, sentence case. Do not add a district line or another secondary heading to these producer cards. The supplied records do not contain district names.
+- 03 Body: Miller Text, 9 pt / 13 pt, Roman, tracking 0, max 65 characters. Licence and office text; at most 65 characters per line. Numerals use IBM Plex Sans Regular at the surrounding text size (9 pt here; 6.5 pt in disclosure). A premium, only when supplied and requested, uses 10 pt / 13 pt tabular lining figures.
+- 04 Fine print: Miller Text, 6.5 pt / 9 pt, Roman, tracking +15 units. The disclosure, always sitting directly beneath the second 1 pt Heritage Green rule. Compliance owns this copy, so it is set as supplied and never edited to fit.
+
+Signature move: A full-width 1 pt Heritage Green rule sits below the producer's name; a second identical rule sits above the disclosure. Keep both rules in the same position across the producer run.
 
 Rules:
-- Never italicise a premium.
-- The producer name sits directly on a 1 pt Heritage Green rule running the full card width, and the identical rule repeats above the disclosure, so every piece is bracketed top and bottom in green.
-- Premiums are always tabular lining figures in IBM Plex Sans Regular, aligned in a column. Never embolden or colour a premium.
-- Lexend SemiBold is set sentence case, never caps.
-- Miller Text Roman sets body and disclosure, and nothing at display size.
-- Compliance owns the disclosure language. Set it as supplied and never cut it to fit the space.
-- Nothing may read as an advertisement. No exclamation and no urgency at any step.
+- Use the same settings in the thirteen individual PDFs and their corresponding pages in producer-card-combined.pdf. Do not scale pages when combining them.
+- No district line or secondary heading is used in this commission.
+- The producer name is Lexend SemiBold 20 pt, sentence case, with -5 tracking; do not use all caps or expanded spacing.
+- Licence and office wording is Miller Text Roman 9 pt. Disclosure wording is Miller Text Roman 6.5 pt and must not be shortened to fit.
+- Numerals switch to IBM Plex Sans Regular at the surrounding text size. Only a supplied premium uses the separate 10 pt / 13 pt setting; it is never italic, bold or highlighted in a different colour.
+- Place one 1 pt Heritage Green rule beneath the producer name and another above the disclosure.
 
 ## Voice
 Sober, plain and reassuring, written the way a trusted advisor speaks across a table. No exclamation, no urgency. Example line the brand would write: A whole life policy is a promise that holds its value, and the premium you start with is the premium you keep.

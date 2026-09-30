@@ -24,22 +24,26 @@ Buyers aged 30 to 55 replacing a ten year old family car, deciding on trust befo
 ## Typography
 Display face: Publico Banner. Text face: Source Sans 3.
 
-- 01 Display / H1: Publico Banner, 68 px / 72 px, Bold, tracking minus 10 thousandths, tabular lining figures.
-- 02 Subheading / H2: Publico Banner, 44 px / 50 px, Bold, tracking minus 5 thousandths.
-- 03 Body: Source Sans 3, 26 px / 38 px, Regular, tracking 0.
-- 04 Fine print: Source Sans 3, 20 px / 30 px, Regular, tracking 20 thousandths.
+The samples show the hierarchy, not the licensed font outlines. Use the named fonts and settings below.
+
+Apply these settings to newly typeset text, including headings, supporting copy and fine print. Do not change lettering already inside a photograph or rebuild a supplied logo to match a font. A style listed here does not ask you to add copy or a deliverable that the brief does not request. If a named font is unavailable, ask us before substituting it.
+
+Sizes apply at the delivered canvas size, not the browser's zoom level. Tracking is in thousandths of an em: +20 means 0.020 em, not 20 pixels. Leading means the distance between text baselines. It applies only to multiline text. Where a point value is used on a digital canvas, 1 pt = 4/3 px; do not use the image's DPI metadata to change it.
+
+- 01 Display / H1: Publico Banner, 68 px / 72 px, Bold, tracking minus 10 thousandths, tabular lining figures. The price, and the ceiling of the scale: never above 68 px. The dollar sign runs at sixty percent of numeral height and is raised to the figure tops, and the figure seats on a 1 pt Compass Teal rule running the full card width.
+- 02 Subheading / H2: Publico Banner, 44 px / 50 px, Bold, tracking minus 5 thousandths. Year, make and model. A separately typeset Meridian Motors label beside the supplied roundel uses Publico Banner Bold at 22 px with +40 tracking. Do not retype the supplied roundel.
+- 03 Body: Source Sans 3, 26 px / 38 px, Regular, tracking 0. Mileage and listing detail, max 65 characters a line. Plain information, stated once.
+- 04 Fine print: Source Sans 3, 20 px / 30 px, Regular, tracking 20 thousandths. Disclosure on the seven PNG outputs. The older print setting does not apply to this commission.
 
 Signature move: The price is always Publico Banner Bold tabular lining figures, with the dollar sign shrunk to sixty percent of numeral height and raised to the figure tops, seated on a 1 pt Compass Teal rule running the full card width. That small lifted dollar against big newspaper figures registers first.
 
 Rules:
-- Never set a price above 68 px.
-- The price is always Publico Banner Bold tabular lining figures, with the dollar sign at sixty percent of numeral height and raised to the figure tops.
-- The price always seats on a 1 pt Compass Teal rule running the full card width.
-- The compass roundel wordmark sets at 22 px tracked 40 thousandths and belongs on the firm's own collateral, never on a marketplace primary.
-- Disclosure stays Source Sans 3 Regular, 20 px on screen and 9 pt on 13 pt in print, and is never dropped.
-- No starbursts and no price slash: those read as a buy here pay here lot.
-- No dark dramatic studio treatment behind the card: at this price it reads as evasive.
-- Every card carries the real vehicle, plainly, in an even neutral showroom white with honest colour.
+- Apply this scale to the six vehicle cards and inventory-campaign.png. A campaign panel may omit a price if the brief does not request one.
+- A price may be smaller than 68 px to fit, but never larger. Keep its Publico Banner Bold face, -10 tracking and tabular lining figures.
+- The dollar sign is 60% of the numerals' visible height and aligns with their tops.
+- A 1 pt Compass Teal rule sits below the price across the full vehicle-card width, or across that vehicle's panel in the campaign.
+- Place the supplied roundel artwork unchanged. Only a separately typeset label uses the 22 px / +40 setting.
+- Disclosure is Source Sans 3 Regular at 20 px with 30 px leading. Keep the approved disclosure text.
 
 ## Voice
 Straightforward and unadorned, the voice of a desk that states the facts. Example line the brand would write: "2017 Calder Kestrel, 68,400 miles. Certified. 24,900 dollars."

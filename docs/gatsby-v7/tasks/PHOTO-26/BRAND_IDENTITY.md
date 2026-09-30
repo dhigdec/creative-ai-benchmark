@@ -24,20 +24,24 @@ Mid-premium. Generous with white space, warm and truthful about material, never 
 ## Typography
 Display face: Druk. Text face: Publico Text.
 
-- 01 Display / H1: Druk Medium, 13 pt / 15 pt, Medium, all caps, tracking +200 thousandths.
-- 02 Subheading / H2: Druk Medium, 11 pt / 13 pt, Medium, all caps, tracking +160 thousandths.
-- 03 Body: Publico Text Roman, 10 pt / 15 pt, Roman, tracking 0, max 65 characters.
-- 04 Fine print: Graphik Regular, 8.5 pt / 12 pt, Regular, tracking +20 thousandths.
+The samples show the hierarchy, not the licensed font outlines. Use the named fonts and settings below.
 
-Signature move: The product name is set in heavy condensed Druk Medium caps at only 13 pt, tracked +200 thousandths open, alone at the head of the page above forty millimetres of bare paper, so the page reads as one small dense bar of type floating in cream.
+Apply these settings to newly typeset text, including headings, supporting copy and fine print. Do not change lettering already inside a photograph or rebuild a supplied logo to match a font. A style listed here does not ask you to add copy or a deliverable that the brief does not request. If a named font is unavailable, ask us before substituting it.
+
+Sizes apply at the delivered canvas size, not the browser's zoom level. Tracking is in thousandths of an em: +20 means 0.020 em, not 20 pixels. Leading means the distance between text baselines. It applies only to multiline text. Where a point value is used on a digital canvas, 1 pt = 4/3 px; do not use the image's DPI metadata to change it.
+
+- 01 Display / H1: Druk Medium, 13 pt / 15 pt, Medium, all caps, tracking +200 thousandths. Product names and main headings in the two PDFs. On a single-product page only, leave 40 mm of clear paper below the product heading. On a page showing several products, keep each name beside its own product; the 40 mm gap is not repeated for each item.
+- 02 Subheading / H2: Druk Medium, 11 pt / 13 pt, Medium, all caps, tracking +160 thousandths. Secondary headings, where needed. Do not add headings merely to use this style.
+- 03 Body: Publico Text Roman, 10 pt / 15 pt, Roman, tracking 0, max 65 characters. Descriptive text in both PDFs; at most 65 characters per line.
+- 04 Fine print: Graphik Regular, 8.5 pt / 12 pt, Regular, tracking +20 thousandths. Carries prices, dimensions and care lines.
+
+Signature move: Product names are Druk Medium capitals at 13 pt with +200 tracking. A single-product page leaves 40 mm of clear paper below its heading; multi-product pages keep names adjacent to the products.
 
 Rules:
-- Never set a product name above 16 pt.
-- The product name always stands alone at the head of the page, above forty millimetres of bare paper.
-- The product name is always Druk Medium caps tracked +200 thousandths open; the open tracking is not optional.
-- Care lines stay in the maker's own words, unreworded.
-- Graphik Regular, not Publico Text, carries prices, dimensions and care lines.
-- Step 02 size was invented because the brand prose states none; every family in this scale is the brand's own.
+- Use these point sizes in collection-spread.pdf and wholesale-presentation.pdf, including when the presentation is viewed on screen.
+- Product names use the 13 pt style, not the 11 pt secondary-heading style. Never enlarge a product name above 16 pt.
+- The 40 mm clear-space treatment applies only to a single-product page. It does not require extra pages or a separate page for every product.
+- Use Graphik Regular for prices, dimensions and care lines. Keep the maker's care wording unchanged.
 
 ## Voice
 Plain and warm. Short sentences about material and making, not about lifestyle. The maker writes the care lines and they stay in the maker's own words, unreworded.

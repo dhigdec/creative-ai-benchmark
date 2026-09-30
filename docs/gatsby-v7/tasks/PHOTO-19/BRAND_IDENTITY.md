@@ -25,20 +25,25 @@ Delegate passes 600 to 1,200 dollars, a credible professional summit priced abov
 ## Typography
 Display face: Piazzolla (Medium, optical size axis pinned to 8). Text face: Suisse Int'l (Regular and Medium, with Suisse Int'l Mono Regular).
 
-- 01 Display / H1, summit title and announcement headline: Piazzolla Medium, 96 px / 104 px, Medium, tracking -10 units.
-- 02 Subheading / H2, speaker name: Suisse Int'l Medium, 56 px / 62 px, Medium, tracking -5 units.
-- 03 Body, role line and running text: Suisse Int'l Regular, 30 px / 42 px, Regular, tracking 0 units, max 65 characters.
-- 04 Fine print, session times and affiliations: Suisse Int'l Mono Regular, 26 px / 34 px, Regular, tracking +15 units.
+The samples show the hierarchy, not the licensed font outlines. Use the named fonts and settings below.
+
+Apply these settings to newly typeset text, including headings, supporting copy and fine print. Do not change lettering already inside a photograph or rebuild a supplied logo to match a font. A style listed here does not ask you to add copy or a deliverable that the brief does not request. If a named font is unavailable, ask us before substituting it.
+
+Sizes apply at the delivered canvas size, not the browser's zoom level. Tracking is in thousandths of an em: +20 means 0.020 em, not 20 pixels. Leading means the distance between text baselines. It applies only to multiline text. Where a point value is used on a digital canvas, 1 pt = 4/3 px; do not use the image's DPI metadata to change it.
+
+- 01 Display / H1, summit title and announcement headline: Piazzolla Medium, 96 px / 104 px, Medium, tracking -10 units. Headline on summit-announcement.png only. Set the Piazzolla optical-size axis to 8 and disable automatic optical sizing. Do not add a 96 px summit headline to a portrait card.
+- 02 Speaker or host name: Suisse Int'l Medium, 56 px / 62 px, Medium, tracking -5 units. The person's name is the largest text on their portrait card. Use this same style if a name is included in the announcement.
+- 03 Body, role line and running text: Suisse Int'l Regular, 30 px / 42 px, Regular, tracking 0 units, max 65 characters. Role line and running text; at most 65 characters per line. This commission has no printed programme.
+- 04 Affiliation, session and time: Suisse Int'l Regular / Mono Regular, 26 px / 34 px, Regular, tracking +15 units. Affiliations and session titles use Suisse Int'l Regular. Only times use Suisse Int'l Mono Regular. Both use 26 px, 34 px leading and +15 tracking.
 
 Signature move: The pinned optical size. Every summit title and announcement headline is set in Piazzolla Medium with the optical size axis pinned to 8, so letterforms drawn for 8 pt appear at 96 px and the headline reads as printed rather than styled.
 
 Rules:
-- Never set a speaker name in Piazzolla.
-- Piazzolla always runs with its optical size axis pinned to 8, whatever the size on the page.
-- Piazzolla appears in Medium only, the single weight the house uses.
-- Session times are always set in Suisse Int'l Mono Regular so the day column aligns on the figures.
-- The printed programme holds title 28 pt and body 9.5 pt on 13 pt, matching this scale step for step.
-- Restraint reads as calibre: no glossy or busy treatment, which would misprice the room.
+- Use the same name, role, affiliation and session settings on the fourteen speaker cards and four host cards.
+- A speaker or host name is Suisse Int'l Medium, never Piazzolla, and is the largest text on that person's card.
+- Reserve the 96 px Piazzolla Medium headline for summit-announcement.png. Its optical-size setting is 8, not automatic.
+- Affiliations and session titles use Suisse Int'l Regular. Session times use Suisse Int'l Mono Regular.
+- The CFS mark is placed artwork, not text to reset in these fonts.
 
 ## Voice
 Plain, direct and professional, confident without selling hard. Example line: Passes are limited and the room is small on purpose.

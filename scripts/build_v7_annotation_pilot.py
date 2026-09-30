@@ -85,6 +85,9 @@ def render_type_system(brand: dict) -> str:
             f'<div class="tsys-facename">{esc(face)}</div></div>'
         )
     parts.append('</div></div>')
+    for key in ("specimen_note", "application", "measurement_notes"):
+        if system.get(key):
+            parts.append(f'<p class="tsys-note">{esc(system[key])}</p>')
     for row in system["scale"]:
         match = re.search(r"\d+(?:\.\d+)?", str(row.get("size", "")))
         size = float(match.group()) if match else 0
@@ -355,6 +358,7 @@ def platform_verifiers(verifiers: list[dict], outputs: list[dict]) -> list[dict]
         # remains available through the canonical verifier JSON linked in the sheet.
         chosen.extend(auto[:1])
         chosen.extend(human[:4 if len(outputs) <= 7 else 2])
+        chosen.extend(v for v in human if v.get("platform_priority"))
         if output_id == "producer-card-r015":
             chosen.extend(v for v in human if "no photograph presented as Priya" in v["check"])
     seen = set()

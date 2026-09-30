@@ -23,19 +23,24 @@ Premium neighborhood, not luxury. Intro pack 180 dollars, membership 220 a month
 ## Typography
 Display face: Monument Extended. Text face: Basis Grotesque.
 
-- 01 Display / H1: Monument Extended Regular, 88 px / 104 px, Regular, tracking -10 thousandths.
-- 02 Subheading / H2: Monument Extended Regular, 56 px / 68 px, Regular, tracking -5 thousandths.
-- 03 Body: Basis Grotesque Regular, 22 px / 34 px, Regular, tracking 0, max 65 characters.
-- 04 Fine print: Basis Grotesque Medium, 16 px / 24 px, Medium, tracking +15 thousandths.
+The samples show the hierarchy, not the licensed font outlines. Use the named fonts and settings below.
 
-Signature move: The wordmark is always Monument Extended caps on one line, tracked +320 thousandths open and never larger than 34 px on screen or 11 pt on the pass card, so it reads as a long calm horizontal band rather than a word. It sits above step 01 as its own lock.
+Apply these settings to newly typeset text, including headings, supporting copy and fine print. Do not change lettering already inside a photograph or rebuild a supplied logo to match a font. A style listed here does not ask you to add copy or a deliverable that the brief does not request. If a named font is unavailable, ask us before substituting it.
+
+Sizes apply at the delivered canvas size, not the browser's zoom level. Tracking is in thousandths of an em: +20 means 0.020 em, not 20 pixels. Leading means the distance between text baselines. It applies only to multiline text. Where a point value is used on a digital canvas, 1 pt = 4/3 px; do not use the image's DPI metadata to change it.
+
+- 01 Display / H1: Monument Extended Regular, 88 px / 104 px, Regular, tracking -10 thousandths. Headline on studio-launch.png. Place verda_logo_web.png separately above it; the headline font settings do not alter the supplied logo.
+- 02 Subheading / H2: Monument Extended Regular, 56 px / 68 px, Regular, tracking -5 thousandths. Headline on class-feed.png and booking-story.png; also the secondary-heading style if needed on studio-launch.png.
+- 03 Body: Basis Grotesque Regular, 22 px / 34 px, Regular, tracking 0, max 65 characters. Speaks to one person, not a crowd.
+- 04 Fine print: Basis Grotesque Medium, 16 px / 24 px, Medium, tracking +15 thousandths. Class times and prices. Use Medium, not the Regular weight used for running copy.
+
+Signature move: Place verda_logo_web.png above the headline, on one line with its original letterforms, spacing and proportions, no more than 34 px tall at the delivered canvas size.
 
 Rules:
-- Never stack the wordmark onto two lines.
-- The wordmark is never larger than 34 px on screen or 11 pt on the pass card.
-- The wordmark is always caps, on one line, tracked +320 thousandths open.
-- Basis Grotesque Medium, not Regular, carries class times and prices.
-- Step 04 leading was invented because the prose states none; every family in this scale is the brand's own.
+- The launch-page headline is 88 px / 104 px. Feed and story headlines are 56 px / 68 px. The body and fine-print settings apply to all three PNGs.
+- Use verda_logo_web.png as supplied. Do not retype it, change its letter spacing or stack it on two lines.
+- The placed wordmark is no more than 34 px tall at the delivered size. No pass card is requested in this commission.
+- Class times and prices are Basis Grotesque Medium; other running copy is Basis Grotesque Regular.
 
 ## Voice
 Plain, warm and unhurried. Speaks to one person rather than a crowd. Confident without hype, and honest about what the room actually is.

@@ -24,19 +24,25 @@ Four to twelve thousand dollars a piece, positioned as independent horology: abo
 ## Typography
 Display face: Boska. Text face: Suisse Int'l.
 
-- 01 Display / H1: Boska Medium small caps, 72 px / 76 px, Medium small caps, tracking 180 units.
-- 02 Subheading / H2: Boska Medium small caps, 40 px / 44 px, Medium small caps, tracking 180 units.
-- 03 Body: Suisse Int'l Regular, 20 px / 30 px, Regular, tracking 0 units · max 65 characters.
-- 04 Fine print: Suisse Int'l Regular, tabular lining, 16 px / 22 px, Regular, tracking +20 units.
+The samples show the hierarchy, not the licensed font outlines. Use the named fonts and settings below.
+
+Apply these settings to newly typeset text, including headings, supporting copy and fine print. Do not change lettering already inside a photograph or rebuild a supplied logo to match a font. A style listed here does not ask you to add copy or a deliverable that the brief does not request. If a named font is unavailable, ask us before substituting it.
+
+Sizes apply at the delivered canvas size, not the browser's zoom level. Tracking is in thousandths of an em: +20 means 0.020 em, not 20 pixels. Leading means the distance between text baselines. It applies only to multiline text. Where a point value is used on a digital canvas, 1 pt = 4/3 px; do not use the image's DPI metadata to change it.
+
+- 01 Display / H1: Boska Medium small caps, 72 px / 76 px, Medium small caps, tracking 180 units. The key visual wordmark, always stacked as Lunara over Chronometry, never on one line. On a dealer sheet the heading takes the same setting at 28 pt on 31 pt.
+- 02 Subheading / H2: Boska Medium small caps, 40 px / 44 px, Medium small caps, tracking 180 units. Reference names on the key visual: 40 px / 44 px. On the five product-page features: 48 px / 53 px. In dealer-launch.pdf, reference headings may be smaller than the 28 pt main heading; their size and leading are flexible. Numerals switch to Suisse Int'l Regular at the surrounding type size.
+- 03 Body: Suisse Int'l Regular, 20 px / 30 px, Regular, tracking 0 units · max 65 characters. Supporting copy: 20 px / 30 px. Digital specification text: 22 px / 32 px. All dealer-sheet body and specification text: 10 pt / 14 pt. At most 65 characters per line.
+- 04 Fine print: Suisse Int'l Regular, tabular lining, 16 px / 22 px, Regular, tracking +20 units. Digital prices, serials and timing results: 16 px / 22 px. On the dealer sheet use the 10 pt / 14 pt text setting, retaining +20 tracking and tabular lining figures.
 
 Signature move: No figure is ever set in the serif: every numeral, reference, price, serial and timing result switches to Suisse Int'l tabular lining, so a line of tracked small caps visibly cools wherever a number falls. Steps 01 and 02 hold the Boska small caps tracked 180 units, and any figure inside them drops to Suisse Int'l at the same size.
 
 Rules:
-- No figure is ever set in the serif: every numeral, reference, price, serial and timing result switches to Suisse Int'l tabular lining.
-- Never set the timing line in italic or in the serif.
-- The wordmark is always stacked as Lunara over Chronometry, in Boska Medium small caps tracked 180 units.
-- The timing line wording is fixed and cannot be reworded.
-- Figures always set tabular lining so columns of numbers align.
+- The 72 px wordmark is for watch-keyvisual.png and any wordmark on a product feature. The dealer-sheet heading is 28 pt / 31 pt. Follow the output-specific overrides in the row notes.
+- Newly typeset wordmarks are stacked as Lunara over Chronometry, in Boska Medium small caps with +180 tracking.
+- All numerals use Suisse Int'l Regular with tabular lining figures, including numerals inside a Boska heading. Match the surrounding font size.
+- Timing text uses Suisse Int'l Regular, never italic. Keep the approved timing wording unchanged.
+- The older certificate is a visual reference, not the current typography standard. Leave lettering inside watch photographs unchanged.
 
 ## Voice
 Exact, understated, collector to collector. Example line: 'Five references. Each one regulated by hand and signed.'

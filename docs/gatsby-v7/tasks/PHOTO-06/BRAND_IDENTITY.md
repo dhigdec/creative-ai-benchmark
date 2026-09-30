@@ -24,22 +24,26 @@ A private heritage commission of 650 to 1,600 dollars. The money buys restraint 
 ## Typography
 Display face: Financier Display. Text face: Freight Text Pro (Untitled Sans for accession codes).
 
-- 01 Display / H1: Financier Display, 34 pt / 38 pt, Light, tracking 140 thousandths, small caps.
-- 02 Subheading / H2: Financier Display, 18 pt / 21 pt, Light, tracking 20 thousandths.
-- 03 Body: Freight Text Pro, 9.5 pt / 13 pt, Book, tracking 0.
-- 04 Fine print: Untitled Sans, 7.5 pt / 11 pt, Regular, tracking 60 thousandths.
+The samples show the hierarchy, not the licensed font outlines. Use the named fonts and settings below.
 
-Signature move: Every card and folio page opens with a single oversized Financier Display Light plate numeral at 48 pt standing alone in the left margin, on the cap line of the sitter's name, which follows in the same face as small caps tracked 140 thousandths above a 0.25 pt Archive Black rule cut to exactly the width of the photograph. That thin numeral in empty paper registers first.
+Apply these settings to newly typeset text, including headings, supporting copy and fine print. Do not change lettering already inside a photograph or rebuild a supplied logo to match a font. A style listed here does not ask you to add copy or a deliverable that the brief does not request. If a named font is unavailable, ask us before substituting it.
+
+Sizes apply at the delivered canvas size, not the browser's zoom level. Tracking is in thousandths of an em: +20 means 0.020 em, not 20 pixels. Leading means the distance between text baselines. It applies only to multiline text. Where a point value is used on a digital canvas, 1 pt = 4/3 px; do not use the image's DPI metadata to change it.
+
+- 01 Sitter's name: Financier Display, 34 px / 38 px, Light, tracking +140 units. Small caps on a captioned share image. A plate numeral, when used, is Financier Display Light at 48 pt (64 px), aligned with the name's cap line in the left margin.
+- 02 Subheading / H2: Financier Display, 18 pt / 21 pt, Light, tracking 20 thousandths. Place and date below the name rule, using approved family notes. Upright Light, never italic.
+- 03 Body: Freight Text Pro, 9.5 pt / 13 pt, Book, tracking 0. Caption text on a share image; at most 65 characters per line. One photograph per share image.
+- 04 Fine print: Untitled Sans, 7.5 pt / 11 pt, Regular, tracking 60 thousandths. Supplied accession codes only. A scan date or descriptive caption uses the body style; do not invent an accession code.
+
+Signature move: On a captioned share image, a plate numeral stands in the left margin aligned with the sitter's name. The name is in small caps above a 0.25 pt Archive Black rule exactly as wide as the photograph.
 
 Rules:
-- Never set Ada's name in italic.
-- The plate numeral always stands alone in the left margin, Financier Display Light at 48 pt, on the cap line of the sitter's name.
-- The sitter's name is always small caps tracked 140 thousandths, never lower case.
-- The rule beneath the name is 0.25 pt Archive Black, cut to exactly the picture width, never wider and never narrower.
-- One photograph per page, with generous margins and the grain and paper left visible.
-- Accession codes stay in Untitled Sans Regular at 7.5 pt and never move into the serif.
-- Nothing in a caption is invented or tidied away: only what is actually in the photograph is stated.
-- The standard is a museum label, not a memory book.
+- The type system applies to the nine captioned share JPGs. Add no text, plate numeral or rule to the nine restoration PNG masters.
+- The digital name setting is 34 px with 38 px leading. The other point values in this card convert at 1 pt = 4/3 px on the delivered 1600 px share image.
+- Sitter names use small caps with +140 tracking, never italic.
+- A plate numeral, when included, is 48 pt (64 px) Financier Display Light in the left margin, aligned with the name's cap line.
+- The rule below a name is 0.25 pt (1/3 px) Archive Black and matches the photograph's width.
+- Keep accession codes in Untitled Sans Regular. Use the approved family notes for names, dates and caption facts.
 
 ## Voice
 Spare and factual, the voice of a caption card rather than a scrapbook. Example line the brand would write: "Ada Hollis, Brattleboro, 1912. Studio card portrait."

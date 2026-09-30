@@ -25,22 +25,25 @@ Elevated basics at 32 to 60 dollars. We sit above fast fashion and below heritag
 ## Typography
 Display face: GT Super Display. Text face: Freight Sans Pro.
 
-- 01 Display / H1: GT Super Display, 96 px / 102 px, Bold, tracking minus 20 thousandths.
-- 02 Subheading / H2: GT Super Display, 56 px / 62 px, Bold, tracking minus 10 thousandths.
-- 03 Body: Freight Sans Pro, 20 px / 32 px, Book, tracking 0.
-- 04 Fine print: Freight Sans Pro, 14 px / 20 px, Book, tracking 40 thousandths.
+The samples show the hierarchy, not the licensed font outlines. Use the named fonts and settings below.
 
-Signature move: NORTHGROVE is always all caps GT Super Display Bold with tracking closed to minus 20 thousandths, so the letters almost touch and read as one solid charcoal block, with the olive leaf locked at cap height one leaf width to its left. That airless word registers first.
+Apply these settings to newly typeset text, including headings, supporting copy and fine print. Do not change lettering already inside a photograph or rebuild a supplied logo to match a font. A style listed here does not ask you to add copy or a deliverable that the brief does not request. If a named font is unavailable, ask us before substituting it.
+
+Sizes apply at the delivered canvas size, not the browser's zoom level. Tracking is in thousandths of an em: +20 means 0.020 em, not 20 pixels. Leading means the distance between text baselines. It applies only to multiline text. Where a point value is used on a digital canvas, 1 pt = 4/3 px; do not use the image's DPI metadata to change it.
+
+- 01 Display / H1: GT Super Display, 96 px / 102 px, Bold, tracking minus 20 thousandths. Carousel headline only. Place the supplied Northgrove logo as artwork; the 96 px headline setting is not a logo size.
+- 02 Subheading / H2: GT Super Display, 56 px / 62 px, Bold, tracking minus 10 thousandths. Style name on a product-page module or carousel panel.
+- 03 Body: Freight Sans Pro, 20 px / 32 px, Book, tracking 0. Cloth notes and colourway names; at most 65 characters per line. Prices are a separate style: Freight Sans Pro Medium at 24 px, not Book.
+- 04 Fine print: Freight Sans Pro, 14 px / 20 px, Book, tracking 40 thousandths. Approved supporting terms, when included. Keep prices out of this Book-weight style.
+
+Signature move: Place the supplied Northgrove logo with its leaf and lettering together, retaining their proportions and spacing. Use GT Super Display Bold for newly typeset headlines and style names.
 
 Rules:
-- Never letterspace the wordmark open.
-- NORTHGROVE is always all caps GT Super Display Bold with tracking closed to minus 20 thousandths, the letters almost touching as one solid charcoal block.
-- The olive leaf is locked at cap height, one leaf width to the left of the wordmark.
-- The price is always Freight Sans Pro Medium at 24 px, never the display face.
-- Cloth notes and colourway names stay Freight Sans Pro Book at 20 px on 32 px.
-- Hold the jump of near five to one between the 96 px carousel headline and the 20 px body.
-- Nothing may read as cheaper or as more luxury than the parcel actually is.
-- Name the cloth and the cut and leave the adjectives out.
+- Use the 96 px headline only on capsule-carousel-p01.png through capsule-carousel-p06.png. A product-page module leads with its 56 px style name.
+- Place the supplied logo unchanged; do not retype NORTHGROVE, close up its letters or move its leaf.
+- Prices use Freight Sans Pro Medium at 24 px. This is the exception to the Book weight used for body and fine print.
+- Body copy is 20 px with 32 px leading. Fine print is 14 px with 20 px leading.
+- Do not stretch or condense type to fit. Wrap the approved wording within the stated type sizes.
 
 ## Voice
 Plain, specific, a little dry. We name the cloth and the cut and leave the adjectives out. Example line the brand would write: 'Loopback cotton, dyed in small lots, made to soften with wear.'

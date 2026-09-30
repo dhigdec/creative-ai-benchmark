@@ -25,21 +25,25 @@ Founder personal-brand package 900 to 1,800 dollars, pitched at institutional le
 ## Typography
 Display face: Instrument Serif Regular. Text face: Neue Haas Grotesk Text (Roman and Medium).
 
-- 01 Display / H1, her name and the AV monogram: Instrument Serif Regular, 34 pt / 38 pt, Regular, tracking +30 units.
-- 02 Subheading / H2, talk title on screen: Neue Haas Grotesk Text Medium, 64 px / 70 px, Medium, tracking -5 units.
-- 03 Body, bio and running text: Neue Haas Grotesk Text Roman, 9.5 pt / 13 pt, Roman, tracking 0 units, max 65 characters.
-- 04 Fine print, event and date line: Neue Haas Grotesk Text Roman, 28 px / 36 px, Roman, tracking +15 units.
+The samples show the hierarchy, not the licensed font outlines. Use the named fonts and settings below.
+
+Apply these settings to newly typeset text, including headings, supporting copy and fine print. Do not change lettering already inside a photograph or rebuild a supplied logo to match a font. A style listed here does not ask you to add copy or a deliverable that the brief does not request. If a named font is unavailable, ask us before substituting it.
+
+Sizes apply at the delivered canvas size, not the browser's zoom level. Tracking is in thousandths of an em: +20 means 0.020 em, not 20 pixels. Leading means the distance between text baselines. It applies only to multiline text. Where a point value is used on a digital canvas, 1 pt = 4/3 px; do not use the image's DPI metadata to change it.
+
+- 01 Astrid's name: Instrument Serif Regular, 34 pt / 38 pt, Regular, tracking +30 units. Her name sits below the AV monogram. Use 34 pt / 38 pt in the PDFs and the same point settings on digital canvases (45 1/3 px / 50 2/3 px). The monogram is artwork, not a 34 pt text character.
+- 02 Subheading / H2, talk title on screen: Neue Haas Grotesk Text Medium, 64 px / 70 px, Medium, tracking -5 units. Talk title on the six announcement/banner PNGs. PDF talk titles use Neue Haas Grotesk Text Medium; their size and leading may be chosen to fit the specified trim, below the 34 pt name. Keep -5 tracking.
+- 03 Body, bio and running text: Neue Haas Grotesk Text Roman, 9.5 pt / 13 pt, Roman, tracking 0 units, max 65 characters. PDF biography, talk subjects and booking contact; at most 65 characters per line. Any running copy on a PNG uses this same point setting converted at 1 pt = 4/3 px.
+- 04 Fine print, event and date line: Neue Haas Grotesk Text Roman, 28 px / 36 px, Roman, tracking +15 units. Event and date on PNGs. In talk-card PDFs, event, date and format use 9.5 pt / 13 pt with +15 tracking.
 
 Signature move: The shared stroke. The AV monogram in Instrument Serif interlocks so the two inner diagonals read as one hairline, pressed blind on Bone or printed in Ochre, once per surface and never under 18 mm wide, landing before the portrait does, with her name beneath it at 34 pt tracked 30 units.
 
 Rules:
-- Never set the monogram in Neue Haas.
-- The AV monogram appears once per surface and never under 18 mm wide.
-- The A and V always interlock so their inner diagonals read as one hairline.
-- The monogram is blind on Bone or printed in Ochre, and nothing else.
-- Her name always sits beneath the monogram at 34 pt, tracked 30 units, above the 9.5 pt body on 13 pt leading.
-- The mark lands before the portrait does in reading order.
-- Neither an over filtered influencer treatment nor a stiff corporate flash on white: understated is the point.
+- Use 64 px talk titles and 28 px event/date lines on the announcement and banner PNGs. Use the PDF overrides in the row notes on the one-pager and talk cards.
+- Instrument Serif Regular is for Astrid's name and the AV monogram only. Talk titles are Neue Haas Grotesk Text Medium; running copy and fine print are Roman.
+- The AV monogram appears once per surface, with its interlocking A and V retained. It sits above Astrid's name and before the portrait in reading order.
+- The AV monogram is at least 18 mm wide in a PDF and 69 px wide on a PNG. Use solid Ochre in digital exports; a blind impression on Bone is a physical-print finish, not a grey digital simulation.
+- The combined talk-card PDF retains the type settings of its eight individual cards without scaling the pages.
 
 ## Voice
 First person, plain and self-possessed. Example line: I want it to look like someone who runs a company, not someone who runs an account.
