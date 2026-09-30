@@ -1,13 +1,13 @@
 # SB3-010-PHO | Northgrove - Apparel colorway image system
 
-Colour-consistent apparel images and clean retailer cutouts
+Northgrove product modules and capsule launch
 
-Our Northgrove range is affordable premium basics. Customers choose between colours and fabrics, so a polished set that changes either of those is not useful to us.
+Our range is affordable premium basics. Customers choose between colours and fabrics, so a polished image that changes either of those is not useful to us. The garments should look consistent while keeping their real shape, colour and texture.
 
-Please prepare
-- Apparel style product-page module: 6 named exports. Each module is a 1440 x 1800 px PNG, as the output register sets; it is a designed module, not the 1600 x 2000 px JPEG hero listed in northgrove_placements.txt. The module names its style as northgrove_copy.txt does, and the garment geometry matches its source style. The colourway is identified accurately: each garment keeps the colour it was photographed in, and any colourway name it carries is one northgrove_colourways.csv approves for that style and whose line in northgrove_copy.txt describes that colour. Fabric texture survives the treatment.
-- Capsule launch carousel: 6 named exports. The capsule has a coherent visual direction. The opening page identifies Northgrove with our mark, recovered as real artwork and set to our type system. The closing page contains the approved shopping action: our tall post line from northgrove_copy.txt, word for word.
+We need six designed product-page modules, one for each supplied style, at 1440 x 1800 px as PNGs. The 1600 x 2000 px JPEG hero mentioned in northgrove_placements.txt is an older placement, not the file required for this job.
 
-Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
+Name each style as northgrove_copy.txt does. Keep the photographed garment's geometry and colour. Any colourway name you use must be approved for that style in northgrove_colourways.csv, and its description in northgrove_copy.txt must match the colour shown. Fabric texture should remain visible.
 
-Use the attached brand identity and the source files listed in the asset manifest. The output register defines exact filenames, pages, sizes and record bindings. Supporting previews are welcome but cannot replace those files.
+Please also make a six-page launch carousel at 1080 x 1350 px per page. Give the capsule a coherent visual direction. Open with Northgrove and our supplied mark, using the attached type system. Close with the exact line labelled "Tall post" in northgrove_copy.txt.
+
+The supplied transparent and reversed SVGs provide usable mark artwork alongside the original reference. Follow the attached brand identity and deliver the twelve files in the requested deliverables.

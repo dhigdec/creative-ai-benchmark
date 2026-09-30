@@ -9,9 +9,6 @@ import re
 import subprocess
 from pathlib import Path
 
-from annotation_pilot_client_copy import BRAND_ABOUT, BRIEFS
-
-
 ROOT = Path(__file__).resolve().parents[1]
 TASKS = ROOT / "docs/gatsby-v7/tasks"
 OUT = ROOT / "docs/gatsby-v7/annotation-pilot"
@@ -204,6 +201,30 @@ def render_assets(task_id: str, assets: list[dict]) -> str:
     return "".join(parts)
 
 
+def output_spec_text(spec: dict) -> str:
+    parts = [str(spec["format"]).upper()] if spec.get("format") else []
+    if "width" in spec and "height" in spec:
+        dimensions = f'{spec["width"]} x {spec["height"]} px'
+        parts.append(dimensions + (" (original dimensions)" if spec.get("source_dimensions") else ""))
+    if "width_mm" in spec and "height_mm" in spec:
+        parts.append(f'{spec["width_mm"]} x {spec["height_mm"]} mm')
+    if "pages" in spec:
+        parts.append(f'{spec["pages"]} page' + ("s" if spec["pages"] != 1 else ""))
+    if "long_edge" in spec:
+        parts.append(f'Long edge: {spec["long_edge"]} px')
+    if "safe_area" in spec:
+        insets = ", ".join(f"{edge} {amount} px" for edge, amount in spec["safe_area"].items())
+        parts.append(f"Keep the booking action inside these margins: {insets}")
+    if "template_reference" in spec:
+        parts.append(f'Template: {spec["template_reference"]}')
+    handled = {"format", "width", "height", "width_mm", "height_mm", "pages",
+               "long_edge", "source_dimensions", "safe_area", "template_reference"}
+    unknown = set(spec) - handled
+    if unknown:
+        raise ValueError(f"Unformatted output specifications: {sorted(unknown)}")
+    return " · ".join(parts)
+
+
 def render_outputs(outputs: list[dict], groups: list[dict]) -> str:
     group_names = {group["id"]: group["name"] for group in groups}
     parts = ['<div class="outputs">']
@@ -214,7 +235,7 @@ def render_outputs(outputs: list[dict], groups: list[dict]) -> str:
             parts.append(f'<h3>{esc(group_names.get(group_id, "Requested files"))}</h3>')
             last_group = group_id
         spec = output.get("spec", {})
-        spec_text = " · ".join(f"{label(key)}: {value}" for key, value in spec.items())
+        spec_text = output_spec_text(spec)
         record = output.get("source_record") or {}
         source_parts = []
         if record.get("table"):
@@ -308,13 +329,13 @@ document.addEventListener('click', async (event) => {
 
 def write_page(task_id: str, spec: dict, assets: list[dict], outputs: list[dict]) -> None:
     title = spec["task_name"]
-    brand = {**spec["brand_identity"], "about": BRAND_ABOUT.get(task_id, spec["brand_identity"]["about"])}
+    brand = spec["brand_identity"]
     content = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(task_id)} · {esc(title)}</title><style>{CSS}</style></head><body>
 <main class="page">
 <header><h1>{esc(title)}</h1></header>
-<section class="section" aria-labelledby="brief-title"><h2 id="brief-title">Client brief</h2><div class="brief-text">{esc(BRIEFS[task_id])}</div></section>
+<section class="section" aria-labelledby="brief-title"><h2 id="brief-title">Client brief</h2><div class="brief-text">{esc(spec["client_brief"])}</div></section>
 <section class="section" aria-labelledby="brand-title"><h2 id="brand-title">Brand identity</h2>{render_brand(brand)}</section>
 <section class="section" aria-labelledby="assets-title"><h2 id="assets-title">Source assets ({len(assets)})</h2>{render_assets(task_id, assets)}</section>
 <section class="section" aria-labelledby="outputs-title"><h2 id="outputs-title">Requested deliverables ({len(outputs)})</h2>{render_outputs(outputs, spec["deliverable_groups"])}</section>
@@ -385,8 +406,6 @@ def sheet_row(index: int, task_id: str, assets: list[dict], verifiers: list[dict
 
 
 def main() -> None:
-    if set(BRIEFS) != set(TASK_IDS):
-        raise ValueError("Client-facing brief copy must cover the ten pilot tasks exactly")
     OUT.mkdir(parents=True, exist_ok=True)
     rows = [[
         "task_id", "MainSectionRepeater", "VerifiersRepeater", "uniqueId",

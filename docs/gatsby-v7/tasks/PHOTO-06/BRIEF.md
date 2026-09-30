@@ -4,10 +4,10 @@ Help us prepare Ada's family photographs for the reunion
 
 Hello,
 
-Scope
-1. Archival restoration master: 9 named exports. The sitter remains faithful to the source photograph. Documentary details are not invented. Damage removal does not erase facial texture.
-2. Family archive share image: 9 named exports. The full intended picture area is retained: each share image shows the whole print edge to edge, including its own border; only the album page or scanner bed around the print may be trimmed. Each share image carries a short caption on a Paper White margin outside the picture, giving the year, the place and the people shown, taken from the approved record for that photograph. The tone remains appropriate to the photographic era: the five monochrome prints, hollis_scan_01.jpg to hollis_scan_05.jpg, stay monochrome and are not colourised, and the four colour prints, hollis_scan_06.jpg to hollis_scan_09.jpg, stay in colour.
+We are bringing Ada's photographs together for a family reunion. We have nine scans and would like two versions of each: a careful restoration master and a smaller image relatives can keep and share. The pictures should still feel like the prints we know, not newly made portraits.
 
-Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
+For the nine restoration masters, repair visible damage without changing Ada's features, removing facial texture or reconstructing details that the photograph does not show. Keep the original image dimensions. family_notes.txt explains which marks belong to the photograph and should remain.
 
-Use the attached brand identity and the source files listed in the asset manifest. The output register defines exact filenames, pages, sizes and record bindings. Supporting previews are welcome but cannot replace those files.
+For the nine share images, keep the whole print edge to edge, including its own border. Trim only the album page or scanner bed around it. Add a short caption on a Paper White margin outside the picture, naming the year, place and people. Use the catalogue together with family_notes.txt; where the family notes correct the catalogue, follow the notes. Export these as JPEGs with a 1600 px long edge.
+
+hollis_scan_01.jpg through hollis_scan_05.jpg are monochrome prints and should stay monochrome. hollis_scan_06.jpg through hollis_scan_09.jpg are colour photographs and should stay in colour. Please keep the grain and period character, following the attached archive identity for the captions. The requested deliverables list names all eighteen files.

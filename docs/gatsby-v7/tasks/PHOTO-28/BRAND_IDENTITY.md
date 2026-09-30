@@ -41,6 +41,6 @@ Rules:
 Plain, warm and unhurried. Speaks to one person rather than a crowd. Confident without hype, and honest about what the room actually is.
 
 ## Supplied Identity
-No brand guidelines were ever written. The wordmark was drawn by a designer who has since left, and the only surviving file is a small low resolution web export she handed over. There is no master artwork, no color specification and no font list on record, so the freelancer inherits the studio look from this brief and from the room itself.
+The original wordmark survives only as a small web export; no editable master was supplied. Keep that drawing rather than retyping it. The current colour and typography guidance is provided in this brief, alongside the room photographs and the earlier pass card.
 
 Production identity and cross-image continuity remain subject to the release asset checks.

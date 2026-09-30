@@ -1,15 +1,11 @@
 # SB3-008-PHO | Meridian Motors - Showroom vehicle image system
 
-Standardise a used-car photo set without changing the cars
+An honest, consistent showroom look for Meridian Motors
 
-We photograph stock in three different bays at Meridian Motors. That is showing up in our listings: the same forecourt can look like three dealerships, and paint colours move around with the light.
+Our stock is photographed in three different bays. The changing light makes one dealership look like three, and the paint colours are not consistent from photograph to photograph. We want a clean, evenly lit set that still shows the cars a buyer will see in person.
 
-The commission
+Please make six 1080 x 1350 px vehicle sales cards, one for each stock record in meridian_intake_week.csv. Use a photograph of the correct vehicle and include its stock number, year, make, model, trim, mileage, asking price and certification tier. Include a readable enquiry line asking buyers to enquire about that stock number at Meridian Motors in Portland, Maine. Keep visible condition details honest.
 
- Vehicle sales card: 6 named exports. The vehicle photograph matches this stock record, and the card states that record's stock number, year, make and model, trim, mileage, asking price and certification tier. The vehicle condition is not misrepresented by retouching. The enquiry action, asking the buyer to enquire about this stock number at Meridian Motors in Portland, Maine, is readable.
+We also need one 1920 x 1080 px forecourt campaign image. Show all six vehicles from the intake register and no others, using one of each vehicle's supplied photographs and a year, make and model caption. Make the dealership name clear and include the compass roundel.
 
- Forecourt inventory campaign: 1 named export. The dealership name is clear, and the campaign carries the compass roundel. The campaign shows every vehicle in the intake register and no other, each in one of its own supplied photographs and captioned with its year, make and model.
-
-Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
-
-Use the attached brand identity and the source files listed in the asset manifest. The output register defines exact filenames, pages, sizes and record bindings. Supporting previews are welcome but cannot replace those files.
+These are branded sales materials, not marketplace first-image photographs. The no-text, no-logo and 4:3 primary-image requirements in meridian_marketplace_rules.txt apply to marketplace primary images, which are not part of this delivery. Use the attached identity and the supplied roundel artwork. Deliver the seven files named below.

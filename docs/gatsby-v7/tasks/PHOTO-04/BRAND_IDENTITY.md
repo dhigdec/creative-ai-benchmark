@@ -1,12 +1,12 @@
 # Verranza Coastal Retreats
 
-Verranza Coastal Retreats is the repeat client for this benchmark series. The canonical client context is Liguria, Italy, and this commission covers phase 1: villa image system and booking imagery.
+Verranza Coastal Retreats is a collection of three coastal villas in Liguria, Italy. Guests book whole houses directly or through a small network of travel agents. The identity should reflect the real houses and their coastal setting, with honest photographs and a quietly used family monogram.
 
 ## Audience
 Guests aged 35 to 60, American and Northern European families and groups of friends booking a whole house for a week, plus a small trade channel of travel agents working from printed rate cards. They pay for a real place and refuse anything that looks staged or cooked.
 
 ## Positioning
-Upper-mid coastal rental, 520 to 780 euros a night in season. A restraint band, not a gloss band: honest light and true water rather than saturated marketplace glow, and firmly above budget literalism.
+Upper-mid coastal rentals, typically 520 to 780 euros a night in season. The presentation should feel warm and restrained: honest light and true water, not a glossy resort treatment. Use rates_2027.csv for the actual rates in this commission.
 
 ## Palette
 - Verranza Blue: #24425A · mandatory. Solid panels and grounds that carry Lime Wash type, the house name and display lines on Lime Wash grounds (as on agentcard_2025_print.pdf), and the ground the gate monogram is reversed out of.

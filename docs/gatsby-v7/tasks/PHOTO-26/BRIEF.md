@@ -1,15 +1,11 @@
 # SB3-026-PHO | Thornmere Home - Autumn interiors image system
 
-Wholesale product images that keep indigo and reactive glaze honest
+Thornmere's autumn wholesale collection
 
-Our homeware photographs were made under two lighting rigs. Thornmere needs the twenty ceramic and textile pieces to work as a range, both in retailer tiles and on a coloured wholesale band.
+Our ceramics and textiles were photographed under two different lighting rigs. We want the twenty pieces to read as one warm autumn range without changing the indigo, reactive glazes or woven patterns that make the objects recognisable.
 
-The commission
+Please create a four-page A4 collection spread. Bring all twenty supplied products into a coherent styled grouping across the spread, preserving the textiles' original patterns and the character of the materials.
 
- Autumn interiors collection spread: 1 named export. The textiles preserve their source patterns. The styled grouping shows every piece in the twenty product photographs as one range and feels coherent.
+We also need an eight-page landscape wholesale presentation for trade buyers. Open with Thornmere Home as the largest text on page one, then lead buyers through the range in an order that supports a buying conversation. For every featured object, include its correct product name, dimensions, materials, care line and price from thornmere_autumn_skus.csv. Keep the maker's care wording unchanged.
 
- Interiors wholesale presentation: 1 named export. Each featured object has its correct product name, with its dimensions, materials, care line and price from thornmere_autumn_skus.csv. The page sequence supports a trade buying conversation, opening on page 1 with the brand name Thornmere Home as its largest text.
-
-Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
-
-Use the attached brand identity and the source files listed in the asset manifest. The output register defines exact filenames, pages, sizes and record bindings. Supporting previews are welcome but cannot replace those files.
+The spring catalogue is a reference for the earlier work; this delivery is the collection spread and wholesale presentation listed below, not a new twenty-page catalogue or a set of retailer tiles. Use the attached brand identity and the specified page sizes for both PDFs.

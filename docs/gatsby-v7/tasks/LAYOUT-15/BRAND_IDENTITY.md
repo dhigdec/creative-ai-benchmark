@@ -1,12 +1,12 @@
 # Aldervale Mutual
 
-Aldervale Mutual is the repeat client for this benchmark series. The canonical client context is central Vermont, and this commission covers phase 1: producer sales and compliance kit.
+Aldervale Mutual is a policyholder-owned life insurer serving households in central Vermont. Its local producers need clear, dependable materials that explain cover and contact details without a hard sell. Accurate disclosure wording is central to the work.
 
 ## Audience
 Households aged 35 to 60 with modest savings, buying because they do not want to leave a burden. They trust plainness and distrust anything that reads like a sales pitch.
 
 ## Positioning
-Premiums run 45 to 180 dollars a month, drop in comparison irrelevant. A regulated mutual at a modest, accessible band, deliberately not a private wealth manager and not a discount direct response mailer.
+A regulated mutual with premiums from 45 to 180 dollars a month. Materials should feel accessible and dependable, neither like private-wealth advertising nor discount direct-response mail.
 
 ## Palette
 - Ink Navy: #1E2A3A · mandatory. The producer name and the Disclosure Text, as on countercard_2026_print.pdf, and any premium. Never a ground, panel or rule.

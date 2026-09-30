@@ -1,6 +1,6 @@
 # The Hollis Family Archive
 
-The archive holds nine photographs of Ada Hollis, who died in April at ninety nine, spanning roughly 1912 to 1974. It exists so that twenty two people who come home at Thanksgiving can hang one wall of her and carry one folio each. The standard is a museum label, not a memory book: honest, quiet, and true to what is actually in the photograph.
+The Hollis archive brings together nine family photographs of Ada, dated from 1912 to 1974. Twenty-two relatives are preparing a wall display and keepsakes for their Thanksgiving reunion. They want quiet, factual presentation that respects the photographs and the person they remember.
 
 ## Audience
 Three siblings commissioning on behalf of twenty two family members aged 8 to 74. Not a commercial audience: the work hangs in a family house and is judged by people who knew Ada.

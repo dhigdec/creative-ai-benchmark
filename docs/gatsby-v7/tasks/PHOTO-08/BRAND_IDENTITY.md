@@ -45,6 +45,6 @@ Rules:
 Straightforward and unadorned, the voice of a desk that states the facts. Example line the brand would write: "2017 Calder Kestrel, 68,400 miles. Certified. 24,900 dollars."
 
 ## Supplied Identity
-The only mark on file is the compass roundel as the sign shop supplied it years ago, a small flat raster on a white square at signage thumbnail size, which has never mattered until now. The window cards survive only as the retired printer's press PDF, and the room now hand writes them. The roundel belongs on the firm's own collateral and never on a marketplace primary.
+The original compass roundel survives as a small raster supplied by the sign shop. Transparent and reversed SVG versions are included for this commission. The old window card survives as the retired printer's press PDF, with no working layout file. Use the roundel on Meridian's own collateral, not on marketplace primary images.
 
 Production identity and cross-image continuity remain subject to the release asset checks.

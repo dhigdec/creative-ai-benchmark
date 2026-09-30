@@ -1,6 +1,6 @@
 # Northgrove
 
-Northgrove is the repeat client for this benchmark series. The canonical client context is Burlington, Vermont, and this commission covers phase 1: apparel colour and ecommerce proofing.
+Northgrove is an apparel label based in Burlington, Vermont, making elevated everyday basics. Customers shop by garment, colour and fabric, so the identity needs to make those differences easy to understand and trust.
 
 ## Audience
 Women and men aged 22 to 38 choosing on a phone, cross shopping against a 9 dollar fast fashion tee and a 140 dollar heritage one, buying a 32 to 60 dollar piece they expect to keep.
@@ -46,6 +46,6 @@ Rules:
 Plain, specific, a little dry. We name the cloth and the cut and leave the adjectives out. Example line the brand would write: 'Loopback cotton, dyed in small lots, made to soften with wear.'
 
 ## Supplied Identity
-Our olive leaf glyph and charcoal wordmark only survive as a picture lifted off an old lookbook page. The studio that drew them has closed and no one has the source file, so the mark needs recovering as real artwork before it can go on cards or launch pieces.
+The olive-leaf glyph and charcoal wordmark originally survived only in a picture from an old lookbook. Transparent and reversed SVG versions are now supplied alongside that reference for this commission. Keep the supplied mark and use the current type system for the surrounding text.
 
 Production identity and cross-image continuity remain subject to the release asset checks.

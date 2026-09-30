@@ -1,13 +1,11 @@
 # SB3-004-PHO | Verranza Coastal Retreats - Villa collection image system
 
-Three villas, one collection: imagery, crops and the gate monogram
+Three villas, one recognisable collection
 
-For Verranza Coastal Retreats, the challenge is consistency without making three different villas interchangeable. We need the stone, limewash and coastal light to sit comfortably together across direct bookings and agent materials. The supplied do-not-want references are important.
+We look after three houses on the Ligurian coast. We want the booking imagery for Oliveto, Scogliera and Verranza to feel like one collection without making the villas look interchangeable. Keep the real stone, limewash, water and coastal light. Please review the supplied do-not-want references before choosing the treatment.
 
-Please prepare
-- Villa booking hero: 3 named exports. The named villa matches the photograph. The offer price is that house's lowest 2027 nightly rate from rates_2027.csv, shown as a from price with its season named. The booking action is readable.
-- Villa comparison brochure: 1 named export. Villa identities are unambiguous, and the brochure carries the gate monogram at least once. The comparison makes differences between the properties easy to scan: for each house it gives sleeps, minimum stay and the nightly rate for each of the three seasons, from rates_2027.csv. Rates preserve their stated season.
+We need one 1920 x 1080 px booking hero for each villa. Use that villa's own photograph and name, show its lowest 2027 nightly rate from rates_2027.csv as a "from" price, and name the season that rate belongs to. Include a clear booking action.
 
-Use the supplied approved copy and factual records. Permission restrictions in the owner's notes take precedence over inclusion in a source table.
+We also need a six-page A4 comparison brochure. Give each house a distinct identity and include its sleeping capacity, minimum stay and nightly rate for all three seasons in rates_2027.csv. Keep each rate attached to its season, make the differences between the houses easy to scan, and use the gate monogram at least once.
 
-Use the attached brand identity and the source files listed in the asset manifest. The output register defines exact filenames, pages, sizes and record bindings. Supporting previews are welcome but cannot replace those files.
+rates_2027.csv supplies the rates for this job; the older agent card is a visual reference, not the current price list. Follow owner_note.txt for factual corrections, permissions and exclusions when choosing photographs and copy. Use the attached brand identity and deliver the four files named in the requested deliverables.
