@@ -1,0 +1,143 @@
+# CLAUDE.md: StudioBench (Creative AI Benchmark for Adobe)
+
+Start here. This file is the entry point for any Claude session picking up this project.
+Last full update: 2026-10-09. Detailed context lives in `context/` (index at the bottom).
+
+## What this project is
+
+StudioBench is a benchmark of **100 freelance-style creative commissions** used to evaluate creative AI
+agents that work through the **Adobe connector** (the "Adobe for creativity" MCP: Photoshop/Lightroom
+image ops, Express, InDesign data merge, Fonts, Stock, Acrobat, Premiere-style video). Owner: Dhiren
+(Deccan AI). Client: Adobe.
+
+- **Families and IDs:** PHOTO-01..30, VECTOR-01..15, LAYOUT-01..35, MOTION-01..20. Display codes look like
+  `SB3-004-PHO`. Every brand is fictional.
+- **Each task** = a client brief + brand identity (palette roles, colour rules, type system, voice) + supplied
+  input assets (photos, PDFs, CSVs, notes) that carry **engineered defects** (planned traps) + an output
+  register (exact filenames, sizes, pages, record bindings) + **verifiers**:
+  - **Auto checks** (`A###`): code-checkable facts (file exists, size, pages, text present).
+  - **Human checks** (`H###`): one observable Yes/No fact each, tagged with an objective rubric question
+    `K1_Q1..Q5` (instruction adherence), `K2_Q1..Q4` (asset use and fidelity), `K5_Q1..Q2` (communication).
+  - **Trajectory checks** (K6): scored from a run's step log.
+- **Evaluation pipeline** (from the rubrics doc, see `PILOT_AND_SESSION_CONTEXT.md` section 2): Phase 0 task
+  validation, Phase 1 input-asset validation (8 dims incl. "decision quality"), Phase 2 golden trajectory by
+  an expert, Phase 3 output scoring (K1 to K7). Humans judge; code checks only objective facts; no AI judge.
+
+## Current state (2026-10-09)
+
+1. **Gatsby V7 is the current full corpus**: https://dhigdec.github.io/creative-ai-benchmark/gatsby-v7/
+   (100 tasks, 1,436 exports, 44,527 checks = 11,217 auto + 33,310 human, per `docs/gatsby-v7/RELEASE_STATUS.json`).
+2. **A 10-task annotation pilot ran on V7**: PHOTO-04, 06, 08, 10, 19, 20, 24, 26, 28 and LAYOUT-15.
+   Pages: `https://dhigdec.github.io/creative-ai-benchmark/gatsby-v7/annotation-pilot/<ID>.html`.
+   Why these 10, and what was rejected: `context/PILOT_10.md`.
+3. **In-house creative expert feedback arrived 2026-10-07.** My assessment and a 5-part fix plan are in
+   `context/EXPERT_FEEDBACK_2026-10-07.md`. **Waiting on Dhiren for 3 decisions** (fonts: swap vs fallback;
+   logos: named deliverable vs supplied clean file; scope: pilot-v2 for 10 first vs all 100). Nothing from
+   that plan has been implemented yet.
+4. **MOTION tasks still need their fixes** (next after the expert-feedback work). Full queue: `context/OPEN_WORK.md`.
+
+## Where things are
+
+### Branches (one GitHub repo: `git@github.com:dhigdec/creative-ai-benchmark.git`, private; Pages public)
+
+| Branch | What it holds |
+|---|---|
+| `main` | Published site (`docs/`, served by GitHub Pages from `/docs`), page tooling (`scripts/`, `tools/`), all context docs. |
+| `codex/studiobench-v3-audit-rebalance` | **V3 corpus source**: `complex_benchmark/adobe_only/` (specs, rebuilt specs, rebuild guidance), `input_assets_v3/<ID>/asset_plan.json` + `manifest.json` (the `defect_engineered` field says which source contradictions are INTENDED traps), asset generators (`asset_pipeline/generate_v3*.py`, `render_v3_pdfs.py`), ChatGPT handoff docs, pilot handoff. |
+| `remediation/audit-fixes-2026-08-24` | Old AO-* corpus (pre-V3). Historical. |
+
+`main` and the `codex/...` branch have **unrelated histories** (a July history rewrite). Do not merge them.
+Read V3 files with `git show origin/codex/studiobench-v3-audit-rebalance:<path>` or a separate worktree.
+
+### Local checkouts on Dhiren's Mac
+
+- `~/Documents/ChatGPT/Adobe_Gpt/publish/creative-ai-benchmark` → `main` (partial clone, `blob:none`). Site work happens here.
+- `~/Downloads/Deccan/Adobe-Freelance-Leads` → `codex/studiobench-v3-audit-rebalance`. Input-asset media is on disk
+  here under `input_assets_v3/<ID>/assets/` (gitignored).
+
+### Input assets (media is NOT in git)
+
+- Public S3 (used by the pilot pages):
+  `https://annotationprod.s3.ap-south-1.amazonaws.com/creative-ai-benchmark/v3.1/tasks/<SB3-code>__<slug>/assets/<file>`
+  (the exact key per file is in `docs/gatsby-v7/tasks/<ID>/ASSET_MANIFEST.json`, field `s3_key`, with `sha256`).
+- Local copies: `Adobe-Freelance-Leads/input_assets_v3/<ID>/assets/`.
+- Older AO-* assets: GCS (see `README.md`).
+
+## Versions
+
+| Path | What it is | Status |
+|---|---|---|
+| `docs/gatsby/`, `gatsby-v2/`, `gatsby-v4/` | Earlier review pages | Frozen |
+| `docs/gatsby-v5/` | First objective-only verifier set, K-sectioned (18,118 checks at release; later got PHOTO-04/13 completed runs + trajectories) | Frozen. Do not edit. |
+| `docs/gatsby-v6/` | **A different team's build** ("task-contract review", commit `d5acf70`, tooling `tools/gatsby_v6/`) | **Never write here.** Its PHOTO-04 pin (High Summer EUR 680/740/780) differs from V7's (lowest 2027 rate, season named). |
+| `docs/gatsby-v7/` | V5 + reviewer feedback applied to all 100 tasks + ops-review fixes + pilot | **Current.** |
+| `docs/gatsby-v7/annotation-pilot/` | 10 client-facing pilot briefs + answer-free verifier bank | Used by annotators. Do not overwrite; build a v2 folder. |
+| `docs/pilot/` | July AO-13 / AO-115 pilot handoff | Historical |
+
+Detail and numbers per version: `context/VERSIONS.md`.
+
+## How a Gatsby version folder works (read before editing anything)
+
+`docs/gatsby-vN/index.html` (V7: ~84 MB) = CSS + app JS + one embedded blob
+`<script type="application/json" id="data">{tasks:[{id,code,title,family,brief,brand,storage,outputs,groups,checks,readiness,assets,exclusions,run?}],repairImages,kCatalog}</script>`.
+
+The same data is fanned out to: `TASKS_V5_ALL100.json`, `ATOMIC_VERIFIERS_ALL100.json`,
+`OUTPUT_REGISTER_ALL100.json`, `RELEASE_STATUS.json`, `data/*.csv`, and per task
+`tasks/<ID>/{TASK_SPEC.json, VERIFIERS.json, VERIFIERS.md, OUTPUT_REGISTER.json, BRIEF.md, BRAND_IDENTITY.json/.md,
+DELIVERABLES.md, ASSET_MANIFEST.json, RELEASE_GATES.json, RUN_RESULT.json}`.
+
+**Every edit must land in every copy.** After editing, verify: page blob == `tasks/<ID>/VERIFIERS.json` per
+check_id, all JSON parses, no duplicate check ids, counts in `RELEASE_STATUS.json` updated.
+Check id format: `<TASK>/<output_id>/<A###|H###>`.
+
+Pilot pages are generated, not hand-edited: `scripts/build_v7_annotation_pilot.py` (+ `sync_v7_pilot_content.py`,
+`fix_v7_pilot_typography.py`, `build_v7_pilot_site.py`, `build_v7_main_attachments.py`; tests `scripts/test_v7_*.py`).
+They read the V7 task files, so V7 task edits flow into the pilot when rebuilt.
+
+## Rules (non-negotiable, learned the hard way)
+
+1. **New version = new folder.** Never modify `gatsby-v5`, `gatsby-v6` or pages annotators already used.
+2. **Do not change briefs, brands or assets beyond what feedback requires.** Keep each task's own fonts and voice.
+3. **Never remove or give away an engineered trap.** Check `asset_plan.json` `defect_engineered` first. Pin ambiguity
+   by criterion (e.g. "that house's lowest 2027 nightly rate"), never by naming the trap or its answer.
+4. **Never edit auto checks.** PHOTO-04 and PHOTO-13 completed-run answers are keyed to them.
+5. **Check wording:** one observable fact, Yes/No, at most 40 words, names the deliverable as “Name” (file.ext) and
+   the exact source asset file; **no em or en dashes in prose**.
+6. **Never rename filenames or S3 keys.**
+7. **Git:** commit only when Dhiren asks. Identity `Dhiren Gangishetty <dhiren.gangishetty@deccan.ai>`.
+   `.gitignore` blocks `*.png/*.jpg/*.pdf/*.zip/...`: deliverables that a page shows must be `git add -f`'d or the
+   live page 404s (this happened on V7). Run `git status` and a secret scan before every push; `.env` files never.
+8. **JSON formatting:** the corpus JSON is `indent=1, ensure_ascii=False`. Re-dump with exactly that or the diff
+   explodes into millions of lines (this happened once on V7).
+9. **Size:** GitHub's hard limit is 100 MB per file; `index.html` and `TASKS_V5_ALL100.json` are ~85 MB.
+10. **Verify against what the user sees:** reproduce in the live page/browser before reporting a defect or a fix.
+11. **Illusion backend** (the separate API product Adobe also uses) is out of scope here and strictly read-only.
+
+## Recipes
+
+- **Serve locally:** `cd docs && python3 -m http.server 8806` → `http://localhost:8806/gatsby-v7/`.
+- **Pages build status:** `gh api repos/dhigdec/creative-ai-benchmark/pages/builds/latest --jq .status`.
+- **Edit one check everywhere:** exact-string replace of its full text across the files listed above (count
+  occurrences first; they must match per copy), or prune by `check_id` from every JSON list + the `.md` table row +
+  the csv row + the page blob. Then run the verification above.
+- **Vet a task for an assessment set:** the 6 lenses in `context/PILOT_10.md` (record vs image match, feasibility,
+  verifiability, cross-output checks, unplanned contradictions, real-world brand marks). Look at every bound image.
+- **Feedback patch tooling** (how V7 was produced): `tools/gatsby_v7_feedback/` (recovered snapshot, see its README).
+  The authoritative record of every V7 change is `git diff` between `docs/gatsby-v5/tasks/<ID>` and `docs/gatsby-v7/tasks/<ID>`.
+- **Adobe connector** (fonts, previews, running tasks): needs authorisation via `/mcp` in Claude Code.
+
+## Context index (`context/`)
+
+| File | Contents |
+|---|---|
+| `context/STATE_AND_HISTORY.md` | Timeline June to October 2026, what happened and why |
+| `context/VERSIONS.md` | Each Gatsby version, counts, commits, what changed |
+| `context/PILOT_10.md` | The 10 pilot tasks, fixes applied, rejected candidates with reasons, the vetting lenses |
+| `context/EXPERT_FEEDBACK_2026-10-07.md` | Expert feedback verbatim, my assessment with evidence, the 5-part plan, pending decisions |
+| `context/OPEN_WORK.md` | Everything still open, in priority order |
+| `context/memory/` | Copies of Claude's project memory notes for this project (point-in-time; verify before relying) |
+| `context/workflows/` | Multi-agent workflow scripts and their results (feedback pass on V7; V5 audits and the IP-mark sweep) |
+
+Older but still useful: `PILOT_AND_SESSION_CONTEXT.md` (evaluation pipeline, rubric source), `PROJECT_FULL_CONTEXT.md`
+and `PROJECT_CONTEXT_HANDOFF.md` (A to Z history up to mid-September: dataset, connector execution modes, asset
+pipeline). Those three stop at 2026-09-17.

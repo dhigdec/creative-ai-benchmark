@@ -1,5 +1,8 @@
 # Creative AI Benchmark (StudioBench)
 
+> **Picking this up in a new session? Read [`CLAUDE.md`](CLAUDE.md) first**, then `context/` (current state, versions,
+> the 10-task pilot, expert feedback and plan, open work). The sections below date from 2026-09-17.
+
 A benchmark for **professional creative work done by AI agents** — 100 real freelance
 design tasks, sourced verbatim from Upwork & Freelancer.com briefs, executed with real
 professional tools (Adobe connectors) across long, multi-step workflows. Unlike

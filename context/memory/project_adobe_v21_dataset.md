@@ -1,0 +1,18 @@
+---
+name: project_adobe_v21_dataset
+description: Adobe freelance dataset v2.1 — full re-grade vs Pro connector set + 12 new long-horizon flagship tasks + HQ video/audio pipeline
+metadata: 
+  node_type: memory
+  type: project
+  originSessionId: 32deee17-7cef-4cd9-a898-2dd5e9832c61
+---
+
+2026-06-16 expansion of the Adobe freelance benchmark (builds on [[project_adobe_mega_benchmark]]).
+
+**Re-grade + ADVERSARIAL AUDIT:** `adobe_doable_v2.json` (3,900 rows) — all 3,888 raw `db_all.json` briefs re-graded against the FULL Pro connector set, execution-mode aware (see [[reference_adobe_connector_exec_modes]]). First-pass v2.1 grades (full 149 · express 2,021 · partial 576 · no 1,142 · flagship 12) **OVER-CLAIMED** — a 2-pass adversarial audit (whole DB, 3,771 rows re-judged) found ~half the "doable" grades wrong, almost all because the deliverable needs **original logo/brand/illustration designed from scratch** (connector has NO text-to-image/illustration). **VERIFIED-FINAL grades: no 2,007 · express 1,018 · partial 723 · full 140 · flagship 12. TRULY doable (full+express+flagship) = 1,170, not 2,182 (1,012 over-claims removed).** Every row now carries `feasibility_v2` (first pass) + `feasibility_final` (audited truth) + `audit` verdict + `execution_mode` + `groups_v2`. Trustworthy export: `adobe_doable_VERIFIED.json`/`.csv` (1,170 rows). Builders: `build_doable_v2.py`, `finalize_audit.py`. Lesson: "fill a template with the client's OWN assets" = doable (express/Canva); "design something original" = NOT doable.
+
+**12 flagship long-horizon tasks:** `flagship_v2/specs/F2-01..12_*.json` (+ `briefs/*.md`, `INDEX.html`, `INDEX.md`). Each grounded in a REAL brief (url), 16–24 connector calls, every step exec-mode tagged, output→input chaining. Collectively hit all 4 previously-unused tools (animate_design, create_firefly_board, fill_text, search_design) + all secondary tools. Authored+verified+corrected via 2 workflows (adversarial verify found real tool-misuses, then fixed). Only F2-07 (perfume retouch) is fully headless; the rest are product-mode (need [W]/[A]/[T]). **Weakest: F2-03 + F2-06 carry `major` residuals; all 12 have documented `reverify.residual_issues`** — recurring caveat: agents over-used render_layout/render_vector as composers (they only export). Confirm those steps (→ local/Canva/authored-template) before executing.
+
+**Asset-quality fix** (user said video/audio were "too bad"): `asset_pipeline/adapters/media_gen.py` + `config.py` now HQ-first — Veo 3.1/3.0 @1080p (fast/720p demoted to fallback), TTS captured→48kHz+EBU-R128 loudnorm clean; `roughen_audio()` is repair-only. Pending: generate the HQ input assets + (optionally) execute the headless-doable slices.
+
+**WIDE-MIX ADOBE-ONLY task set (2026-06-16, user wanted variety + many Adobe tools/task, NOT the simple Canva-template gigs):** `complex_benchmark/adobe_only/specs/*.json` = **66 long-horizon tasks**, 100% Adobe connectors (0 Canva, 0 Express-widget — verified), grounded in real db_all briefs across 16 categories (product/jewelry/food retouch, color grade, vectorize, screen-print seps, restoration, real-estate, headshot, video, audio, data-merge, stock+expand, print/PDF). **avg ~20 Adobe calls + ~16 distinct tools per task, 94% output→input chaining, 48/50 Adobe tools covered.** Authored+adversarially-verified via workflow (74 authored → 66 clean; 8 dropped for compositing/render_vector misuse). Viewer: `Adobe_WideMix_Tasks.html` (shows each step's ◂inputs/▸outputs chain). Builders: candidate select in-bash + `build_adobe_only_html.py`. This is the set the user actually wanted vs the express-heavy `adobe_doable_VERIFIED` (which is mostly simple Canva-compose gigs — market reality).
