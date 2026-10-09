@@ -61,7 +61,7 @@ Read V3 files with `git show origin/codex/studiobench-v3-audit-rebalance:<path>`
   `https://annotationprod.s3.ap-south-1.amazonaws.com/creative-ai-benchmark/v3.1/tasks/<SB3-code>__<slug>/assets/<file>`
   (the exact key per file is in `docs/gatsby-v7/tasks/<ID>/ASSET_MANIFEST.json`, field `s3_key`, with `sha256`).
 - Local copies: `Adobe-Freelance-Leads/input_assets_v3/<ID>/assets/`.
-- Older AO-* assets: GCS (see `README.md`).
+- Older AO-* assets: `s3://annotationprod/creativegym/`. Full storage and AWS access details: `context/STORAGE_AWS.md`.
 
 ## Versions
 
@@ -135,6 +135,7 @@ They read the V7 task files, so V7 task edits flow into the pilot when rebuilt.
 | `context/PILOT_10.md` | The 10 pilot tasks, fixes applied, rejected candidates with reasons, the vetting lenses |
 | `context/EXPERT_FEEDBACK_2026-10-07.md` | Expert feedback verbatim, my assessment with evidence, the 5-part plan, pending decisions |
 | `context/OPEN_WORK.md` | Everything still open, in priority order |
+| `context/STORAGE_AWS.md` | AWS account, S3 bucket `annotationprod`, every asset prefix with sizes, SSO profile, local copies |
 | `context/memory/` | Copies of Claude's project memory notes for this project (point-in-time; verify before relying) |
 | `context/workflows/` | Multi-agent workflow scripts and their results (feedback pass on V7; V5 audits and the IP-mark sweep) |
 
