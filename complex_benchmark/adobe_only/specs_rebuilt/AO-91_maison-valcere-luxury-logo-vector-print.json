@@ -1,0 +1,283 @@
+{
+  "slot_id": "V06",
+  "category": "vectorize_logo",
+  "title": "Maison Valcere jewelry house: rebuild a production-clean vector wordmark master from the studio raster, fix the off-palette reverse, ship the web/print/foil size masters, and merge the logo usage sheet",
+  "slug": "maison-valcere-luxury-logo-remediation-print-masters",
+  "vertical": "jewelry_luxury_goods",
+  "source": {
+    "platform": "Freelancer.com",
+    "reference": "Luxury E-commerce Brand Visuals"
+  },
+  "grounding_note": "Adapted from a real Freelancer.com brief (\"Luxury E-commerce Brand Visuals\") for an independent high-jewelry identity that \"must feel unmistakably premium\" — a deep-black canvas with crisp white typography, \"purely typographic—no symbols, icons or complex marks,\" a strict monochrome palette, and usage rules so \"every asset—from product packaging to video title cards—stays consistent.\" The house name is fictional and IP-clean: \"Maison Valcere\" / \"Valcere\" is an invented luxury jewelry house, not a real company, product, person or trademark; the palette names (Valcere Noir, Champagne, Blanc) are generic. From-scratch letterform/logo DESIGN is out of connector scope (no text-to-image, no bespoke type). What IS squarely in scope — and is what the brief's real concern reduces to — is a PRODUCTION-REMEDIATION job on a pack an outside studio already delivered badly: the studio's vector master came back unusable (live/unexpanded hairline strokes, open contours, RGB fills, a stray non-typographic anchor), so it is discarded and a clean production master is REBUILT from the clean high-resolution raster artboard via a proper prep→trace pipeline (image_vectorize returns filled, closed paths — inherently expanded and contour-closed, which is exactly the fix); the reverse/knockout art the studio shipped on an off-palette near-black is re-grounded onto true Valcere Noir; the house's positive, reverse and Champagne-ground lockups plus the web / mobile / print-foil size masters are produced; and every card is composed into a press-ready logo USAGE SHEET via a genuine authored InDesign data-merge. Everything is a DESIGNED, delivered artifact (a vector master, raster masters, and a merged print piece) — nothing is authored from scratch and nothing is a findings/audit report. This is a REPLACE of the killed audit/analyze version of this slot, which produced only a marked-up report and pre-listed its own defects.",
+  "one_line_ask": "Maison Valcere's studio logo pack came back not production-ready — rebuild a clean, scalable vector wordmark master with solid filled closed outlines, deliver a corrected reverse / knockout master on true Valcere Noir, produce the positive / reverse / Champagne application lockups and the retina / mobile / print-foil size masters (never enlarged past the supplied art), grade the box photograph into a wide e-commerce header hero, and merge every usage into a press-ready A4 logo usage sheet, one card per usage.",
+  "full_brief": "Maison Valcere is a fictional independent high-jewelry house (fine rings, pendants and bespoke pieces). An outside studio delivered our new wordmark pack and it is not production-ready: the 'master' vector file our printer opened is unusable at the press — thin live strokes and unclosed outlines that drop out under foil — and the pack has no coherent set of size or ground masters we can hand to a printer. Our brand is meant to feel unmistakably premium — a deep-black canvas, crisp white typography, purely typographic with no symbols or icons, and rigorously consistent across embossed boxes, foil certificates, the e-commerce header and video title cards. We are NOT redesigning the letters; the letterforms are approved. What we need is the pack rebuilt clean, to production standard, and a usage sheet our printer and creative director can work from.\n\nHere is what you're given: (1) valcere_wordmark_artboard.png — a clean, high-resolution flat raster export of the approved positive wordmark (dark graphite letters on our Blanc off-white); (2) valcere_reverse_artboard.png — the reverse / knockout art (white letters on a dark ground) the studio delivered; (3) valcere_boxshot.jpg — a photograph of the wordmark foil-stamped on a presentation box; and (4) the usage-sheet InDesign template and its usage roster.\n\nWhat we need back, and the bar for each:\n• A production-clean VECTOR master of the wordmark, razor-sharp and scalable to any size — its outlines must be solid, filled, closed shapes (no thin strokes that vanish at small size or under foil), it must contain ONLY the lettering (no stray marks), and it must carry no background. This replaces the studio's broken master.\n• A corrected REVERSE / knockout master: the same white wordmark on our true house black, Valcere Noir #0E0E10 — plus a transparent-ground version for flexible placement. The knockout ground must be our exact brand Noir, not merely 'a dark'.\n• The POSITIVE master on transparent ground, plus Blanc-ground and Champagne-ground application lockups.\n• Size masters that must never be enlarged past the supplied art: a retina web-header lockup, a small mobile / minimum-size lockup that must still read cleanly, and a large print-foil master. Our guideline sets minimum print width at 22 mm with a stroke that survives foil — the small master must not go soft or thin.\n• The box photograph turned into a wide e-commerce header hero, graded to our dark house look — straightened, deep blacks, the champagne foil kept bright, not blown.\n• A press-ready A4 portrait LOGO USAGE SHEET assembled from the roster: one card per usage (primary positive, reverse on Noir, Champagne application, minimum print size, digital header), each card showing that usage's lockup on its correct ground with its rule text (ground, minimum width, clear space). One page per roster row.\n\nAlong with the files, hand us a short decisions log: which source file you used for which deliverable, the exact ground color you applied to each lockup tile, and the pixel size of each master — so we can confirm nothing was enlarged and nothing was mis-grounded.",
+  "inputs": [
+    {
+      "name": "valcere_wordmark_artboard.png",
+      "kind": "image",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "A clean, flat, high-resolution artboard export of a purely-typographic luxury jewelry wordmark reading 'VALCERE' in a high-contrast modern didone-style serif, with a small letter-spaced second line 'MAISON VALCERE · HAUTE JOAILLERIE' beneath it. Dark graphite (near-black) crisp letterforms sitting on a solid Blanc off-white (#FAF8F3) ground, generous even margin around the mark, perfectly level, razor-sharp anti-aliased edges, no gradients, no shadows, no photographic texture, no icons or symbols of any kind, no watermark. Rendered large: 4200 pixels wide by ~1400 tall.",
+      "realism_notes": "The APPROVED positive artwork as a clean flat raster — the correct, only source for the rebuilt vector master. Dark-on-light flat art with a hard letter/ground separation and a generous margin is exactly what forces genuine prep-before-trace (crisp → knock the ground to transparency → crop-to-bounds → vectorize); a raw trace of the padded artboard would capture the ground and waste trace resolution. Declared at 4200 px so every downstream master is a downscale (no upscaling). gemini-3-pro-image for clean legible type."
+    },
+    {
+      "name": "valcere_reverse_artboard.png",
+      "kind": "image",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "A flat, high-resolution reverse/knockout artboard of the SAME 'VALCERE' luxury jewelry wordmark (with the small 'MAISON VALCERE · HAUTE JOAILLERIE' line beneath): crisp WHITE didone-style serif letterforms on a solid dark near-black ground. The ground is deliberately an off-palette cool near-black #121216 (slightly bluer/lighter than a true brand black), even margin around the mark, level, sharp edges, no gradients, no icons, no watermark. 4200 pixels wide by ~1400 tall.",
+      "realism_notes": "The studio's reverse art delivered on the WRONG ground — #121216 instead of Valcere Noir #0E0E10. The remediation is to discard that ground entirely: remove_background lifts the white letters off the off-palette field, and re-grounding them onto true Valcere Noir (a supplied backgroundColor value the agent APPLIES, never reads) yields the corrected reverse lockup. Its white letters make it wrong to feed to vectorize (redundant second trace) — part of the file-triage decision. 4200 px so the reverse masters are downscales."
+    },
+    {
+      "name": "valcere_boxshot.jpg",
+      "kind": "image",
+      "gen_model": "gpt-image-2",
+      "gen_prompt": "Photoreal product photograph, real-camera look, a matte deep-charcoal luxury jewelry presentation box on a dark stone surface, the 'VALCERE' wordmark foil-stamped in soft champagne-gold on the box lid, shot under warm directional studio light with a specular glint along the foil edges, shallow depth of field, real box texture and subtle grain, the whole frame very slightly off-level (about 3 degrees), no text overlay, no props other than the box. 4800 pixels wide by 3200 tall.",
+      "realism_notes": "A LIFESTYLE application photo, NOT master art — the triage decoy. It looks like 'a third logo file' but tracing it yields a muddy silhouette blob (the sanctioned prep-before-trace trap); its correct treatment is a graded e-commerce hero (straighten → dark-house grade → wide crop). gpt-image-2 for photoreal foil/box texture. Declared at 4800 px camera scale so the 2400 px hero is an honest downscale (never a canvas-extend or upscale)."
+    },
+    {
+      "name": "valcere_usage_sheet_template.indd",
+      "kind": "template",
+      "gen_model": "n/a-authored-asset",
+      "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine hand-built Adobe InDesign single-record A4 portrait usage-sheet CARD template (.indd/.idml) — ONE usage per page. It carries live data-merge text fields <<usage>>, <<ground_spec>>, <<min_width>>, <<clear_space>>, <<notes>>, and exactly ONE image frame wired to an @-prefixed image-path merge column so the merge drops that usage's self-contained lockup tile into the card. Page ground is neutral Blanc; each row's colored ground is baked into its tile image, so the layout stays constant across the merge (data-merge cannot vary a frame fill per row). Built by hand so the merge fields bind; explicitly NOT a convert_pdf_to_indd output and NOT a multi-up grid (document_merge_data_layout emits one page per row).",
+      "realism_notes": "document_merge_data_layout REQUIRES a user-authored .indd with real <<fields>> AND a genuine @image-path column, and it emits one page per row — so a single-record usage card is the correct connector shape. Because a merge cannot change a frame's fill color per row, each lockup tile carries its own ground (produced via remove_background backgroundColor), and the @image column selects the right tile per row. Supplied input, not a chain output."
+    },
+    {
+      "name": "valcere_usage_roster.csv",
+      "kind": "data",
+      "gen_model": "n/a-authored-asset",
+      "gen_prompt": "AUTHORED asset (client-supplied): a 5-row data-merge CSV, one row per logo usage, columns usage,ground_spec,min_width,clear_space,notes,@tile. Rows: (1) usage='Primary Positive', ground_spec='Blanc #FAF8F3', min_width='22 mm', clear_space='1x cap-height', notes='Default light-ground lockup', @tile='@tile_positive_blanc.png'; (2) usage='Reverse / Knockout', ground_spec='Valcere Noir #0E0E10', min_width='22 mm', clear_space='1x cap-height', notes='Dark ground / packaging / video title cards — true Noir ground only', @tile='@tile_reverse_noir.png'; (3) usage='Champagne Application', ground_spec='Champagne #E8DCC2', min_width='24 mm', clear_space='1x cap-height', notes='Certificate / foil accent ground', @tile='@tile_positive_champagne.png'; (4) usage='Minimum Print Size', ground_spec='Blanc #FAF8F3', min_width='22 mm / min stroke survives foil', clear_space='1x cap-height', notes='Do not scale below 22 mm; strokes must hold foil', @tile='@tile_positive_blanc.png'; (5) usage='Digital Header', ground_spec='Blanc #FAF8F3', min_width='480 px mobile', clear_space='1x cap-height', notes='Retina header + mobile lockup', @tile='@tile_positive_blanc.png'. Column names must exactly match the template <<fields>> and the @tile image-path column.",
+      "realism_notes": "The @tile column is the binding contract: each row points at a self-contained lockup tile the agent produces (its ground baked in via remove_background backgroundColor), so document_merge_data_layout places the correct-ground lockup on each card. Five rows fixes the page=row acceptance gate at 5. A white-on-white or wrong-ground pairing (e.g. the reverse tile on a light card, or the positive tile named for the reverse row) is a visible fail. Text-only document_merge_data_vector is the WRONG tool — it cannot bind the @tile image column."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "valcere_wordmark_master.svg",
+      "kind": "vector",
+      "spec": "The rebuilt production-clean VECTOR master, traced only after the clean positive artboard is crisped, knocked to transparency and cropped to the tight bounds of the mark — solid filled closed paths (no live/unexpanded hairline strokes, no open contours), lettering ONLY (no stray anchor/symbol), no captured Blanc ground. Scalable and razor-sharp for foil dies and any output size. This replaces the studio's broken master. DELIVERABLE."
+    },
+    {
+      "name": "valcere_positive_master.png",
+      "kind": "image",
+      "spec": "The approved positive wordmark on a fully TRANSPARENT ground (dark graphite letters, clean alpha edges, no residual Blanc), full art scale (~4200 px wide, no upscale). The flexible positive master for placement on any light ground. DELIVERABLE."
+    },
+    {
+      "name": "valcere_reverse_master.png",
+      "kind": "image",
+      "spec": "The corrected reverse/knockout master: the white wordmark on a fully TRANSPARENT ground (clean alpha), lifted off the studio's off-palette #121216 field, ~4200 px, no upscale. For flexible placement on any dark ground. DELIVERABLE."
+    },
+    {
+      "name": "tile_reverse_noir.png",
+      "kind": "image",
+      "spec": "The reverse lockup as a self-contained tile: the white wordmark re-grounded on TRUE Valcere Noir #0E0E10 (the exact brand value applied as the fill, not #121216). Used as the @tile for the 'Reverse / Knockout' usage card and as the packaging/video-title-card master. DELIVERABLE + merge tile."
+    },
+    {
+      "name": "tile_positive_blanc.png",
+      "kind": "image",
+      "spec": "The positive lockup tile on Blanc #FAF8F3 ground (positive master composited onto the brand Blanc via remove_background backgroundColor). The @tile for the Primary Positive, Minimum Print Size and Digital Header usage cards. DELIVERABLE + merge tile."
+    },
+    {
+      "name": "tile_positive_champagne.png",
+      "kind": "image",
+      "spec": "The positive lockup tile on Champagne #E8DCC2 ground (positive master composited onto brand Champagne). The @tile for the 'Champagne Application' usage card. DELIVERABLE + merge tile."
+    },
+    {
+      "name": "valcere_header_master_1800.png",
+      "kind": "image",
+      "spec": "Retina web-header size master of the positive wordmark on transparent ground, 1800 px wide (honest downscale of the ~4200 px master, never enlarged), crisp edges. DELIVERABLE."
+    },
+    {
+      "name": "valcere_master_mobile_480.png",
+      "kind": "image",
+      "spec": "Small mobile / minimum-size master of the positive wordmark on transparent ground, 480 px wide (downscale only), which must still read cleanly at this size — the small-size legibility check standing in for the guideline's 22 mm / foil-stroke minimum. DELIVERABLE."
+    },
+    {
+      "name": "valcere_print_foil_master_2400.png",
+      "kind": "image",
+      "spec": "Large print / foil-stamp size master of the positive wordmark on transparent ground, 2400 px wide (downscale of the ~4200 px master), for the foil die and embossed box artwork. DELIVERABLE."
+    },
+    {
+      "name": "valcere_ecom_hero.jpg",
+      "kind": "image",
+      "spec": "The box lifestyle photograph straightened, graded to the dark house look (deep blacks held off pure zero, the champagne foil kept bright and not clipped), and cropped to a wide 2400x1000 e-commerce header hero (honest downscale/reframe of the 4800 px source, no canvas-extend). DELIVERABLE."
+    },
+    {
+      "name": "Valcere_Logo_Usage_Sheet.pdf",
+      "kind": "pdf",
+      "spec": "The primary composed print deliverable: a press-ready A4 portrait LOGO USAGE SHEET, one page per roster row (page-count = row-count = 5), produced by data-merging the authored .indd against the roster — each card places that usage's self-contained lockup tile (correct ground baked in) through the @tile image column and typesets <<usage>>, <<ground_spec>>, <<min_width>>, <<clear_space>>, <<notes>>. ~300 DPI print quality. DELIVERABLE."
+    }
+  ],
+  "connector_workflow": [
+    {
+      "n": 1,
+      "tool": "asset_add_file",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "valcere_wordmark_artboard.png, valcere_reverse_artboard.png, valcere_boxshot.jpg, valcere_usage_sheet_template.indd, valcere_usage_roster.csv",
+      "output": "pack_assets_uploaded",
+      "note": "Load the clean positive artboard, the off-palette reverse artboard, the box lifestyle shot, the authored usage-sheet .indd template and the usage roster CSV into the working project in one batch so every downstream step has real asset references. Single upload — plumbing, not the difficulty."
+    },
+    {
+      "n": 2,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "pack_assets_uploaded",
+      "output": "positive_crisped",
+      "note": "Prep-before-trace step 1 on the CLEAN positive artboard (triage: only this flat-art file becomes the vector master). Push contrast/clarity and drive the Blanc off-white ground toward clean white so the graphite letterforms separate hard from the ground before knockout — a soft, low-contrast separation traces into ragged, doubled edges. Authored primitive adjustments, not a preset. Consumes the uploaded positive artboard."
+    },
+    {
+      "n": 3,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "positive_crisped",
+      "output": "valcere_positive_master.png",
+      "note": "Prep-before-trace step 2 AND the positive master deliverable: knock the Blanc ground to transparency so only the graphite lettering remains (clean alpha, no residual ground). remove_background → transparency (NOT select→invert→fill). DELIVERABLE valcere_positive_master.png at full art scale. Consumes step 2."
+    },
+    {
+      "n": 4,
+      "tool": "image_crop_to_bounds",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "valcere_positive_master.png",
+      "output": "positive_trimmed",
+      "note": "Prep-before-trace step 3: crop the transparent positive to the tight bounds of the mark, removing the generous artboard margin so the trace spends its resolution on the letterforms only and leaves no stray border path. Consumes step 3."
+    },
+    {
+      "n": 5,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "positive_trimmed",
+      "output": "valcere_wordmark_master.svg",
+      "note": "Rebuild the production master: trace the prepared raster (crisped → knocked to transparency → cropped to bounds) into clean SVG. vectorize returns solid FILLED, CLOSED paths — which is precisely the remediation the studio's broken master needed (no live/unexpanded hairline strokes, no open contours, no captured ground, lettering only). DELIVERABLE valcere_wordmark_master.svg. This is a trace of SUPPLIED approved artwork, not a from-scratch letterform. Consumes step 4."
+    },
+    {
+      "n": 6,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "pack_assets_uploaded",
+      "output": "tile_reverse_noir.png",
+      "note": "Fix the reverse variant (triage: the reverse artboard is NOT re-traced). Lift the white letters off the studio's off-palette #121216 field and re-ground them on TRUE Valcere Noir by running remove_background with backgroundColor '#0E0E10' — the exact brand value the agent APPLIES (never reads/measures). Discarding the wrong ground entirely is the correction. DELIVERABLE + merge tile tile_reverse_noir.png. Consumes the uploaded reverse artboard."
+    },
+    {
+      "n": 7,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "pack_assets_uploaded",
+      "output": "valcere_reverse_master.png",
+      "note": "Produce the flexible reverse master: remove_background on the reverse artboard to a fully TRANSPARENT ground (white letters, clean alpha), off-palette field discarded, for placement on any dark ground. DELIVERABLE valcere_reverse_master.png. Consumes the uploaded reverse artboard."
+    },
+    {
+      "n": 8,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "valcere_positive_master.png",
+      "output": "tile_positive_blanc.png",
+      "note": "Compose the Blanc-ground positive lockup tile: run remove_background with backgroundColor '#FAF8F3' on the transparent positive master so the dark wordmark sits on the brand Blanc as a self-contained tile (its ground baked in, because a data-merge cannot set a per-row frame fill). Merge @tile for the Primary Positive / Minimum Print Size / Digital Header rows. Consumes step 3."
+    },
+    {
+      "n": 9,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "valcere_positive_master.png",
+      "output": "tile_positive_champagne.png",
+      "note": "Compose the Champagne-ground application tile: remove_background with backgroundColor '#E8DCC2' on the positive master — a DIFFERENT ground decision from step 8, a distinct required lockup, not a repeated call. Merge @tile for the Champagne Application row. Consumes step 3."
+    },
+    {
+      "n": 10,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "valcere_positive_master.png",
+      "output": "valcere_header_master_1800.png",
+      "note": "Cut the retina web-header size master: downscale the transparent positive master to 1800 px wide. Downscale/reframe of existing pixels only — never canvas-extend, never enlarge past the ~4200 px source. DELIVERABLE. Consumes step 3."
+    },
+    {
+      "n": 11,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "valcere_positive_master.png",
+      "output": "valcere_master_mobile_480.png",
+      "note": "Cut the small mobile / minimum-size master: downscale the positive master to 480 px wide, which must still read cleanly (the small-size legibility bar standing in for the 22 mm / foil-stroke minimum). Downscale only. DELIVERABLE. Consumes step 3."
+    },
+    {
+      "n": 12,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "valcere_positive_master.png",
+      "output": "valcere_print_foil_master_2400.png",
+      "note": "Cut the large print/foil size master: downscale the positive master to 2400 px wide for the foil die and embossed box artwork. Downscale only, from the ~4200 px source. DELIVERABLE. Consumes step 3."
+    },
+    {
+      "n": 13,
+      "tool": "image_auto_straighten",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "pack_assets_uploaded",
+      "output": "boxshot_level",
+      "note": "Triage payoff on the box lifestyle shot (NEVER traced): it is a photograph, so it is graded, not vectorized. Level the ~3 degree tilt first so the later wide crop is measured against a true horizon. Consumes the uploaded box shot."
+    },
+    {
+      "n": 14,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "boxshot_level",
+      "output": "boxshot_graded",
+      "note": "Grade the box shot to the dark Maison Valcere house look with authored primitives: pull blacks deep but hold them off pure zero (no crushed channel), protect the champagne foil specular so it stays bright and does not clip, add restrained clarity, keep the mood warm-neutral. A reasoned grade, not a preset or auto-tone. Consumes step 13."
+    },
+    {
+      "n": 15,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "boxshot_graded",
+      "output": "valcere_ecom_hero.jpg",
+      "note": "Reframe the graded box shot to a wide 2400x1000 e-commerce header hero — honest off-center downscale/reframe of the 4800 px source (foil lockup weighted so the header has clean negative space), never a canvas-extend, never upscaled. DELIVERABLE valcere_ecom_hero.jpg. Consumes step 14."
+    },
+    {
+      "n": 16,
+      "tool": "document_merge_data_layout",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "valcere_usage_sheet_template.indd, valcere_usage_roster.csv, tile_positive_blanc.png, tile_reverse_noir.png, tile_positive_champagne.png",
+      "output": "usage_sheet_merged",
+      "note": "One-page-per-row InDesign data-merge: bind each of the 5 usage rows (<<usage>>/<<ground_spec>>/<<min_width>>/<<clear_space>>/<<notes>>) into the authored single-record .indd and resolve each row's @tile to the correct self-contained lockup tile (Blanc positive, Noir reverse, or Champagne positive), placing it in the card's image frame. Emits exactly one card page per row (5 pages). Pairing the wrong tile to a row (e.g. the reverse tile onto a light card, or a positive tile on the reverse row) is a visible fail. document_merge_data_vector is WRONG here (text-only, cannot bind @tile); a convert_pdf_to_indd template would not bind."
+    },
+    {
+      "n": 17,
+      "tool": "document_render_layout",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "usage_sheet_merged",
+      "output": "Valcere_Logo_Usage_Sheet.pdf",
+      "note": "Export the merged usage cards to a press-ready ~300 DPI A4 portrait PDF, one page per usage. DELIVERABLE Valcere_Logo_Usage_Sheet.pdf. Acceptance: page-count = row-count = 5; a collapsed or short merge fails. Consumes step 16."
+    }
+  ],
+  "tools_used": [
+    "asset_add_file",
+    "image_apply_adjustments",
+    "image_remove_background",
+    "image_crop_to_bounds",
+    "image_vectorize",
+    "image_crop_and_resize",
+    "image_auto_straighten",
+    "document_merge_data_layout",
+    "document_render_layout"
+  ],
+  "tool_call_count": 17,
+  "distinct_adobe_tools": 9,
+  "workflow_nature": "create-edit",
+  "chaining_note": "One batch upload (1) fans into three source-file tributaries whose correct treatments DIFFER (the triage core). POSITIVE tributary (clean flat artboard → vector + raster masters): crisp adjustments (2) → remove_background to transparency (3, = positive master) → crop_to_bounds (4) → vectorize (5, = clean SVG master); step 3's transparent positive master then feeds the Blanc tile (8), the Champagne tile (9) and the three downscale size masters (10 header, 11 mobile, 12 print-foil). REVERSE tributary (off-palette artboard, NOT re-traced): remove_background with backgroundColor #0E0E10 (6, = corrected Noir tile) and remove_background to transparency (7, = flexible reverse master). BOXSHOT tributary (photo, NEVER traced): auto_straighten (13) → dark-house grade (14) → wide reframe (15, = e-commerce hero). The three lockup tiles (8 Blanc, 6 Noir, 9 Champagne) plus the authored .indd and the roster CSV converge at document_merge_data_layout (16), which emits one usage card per row; document_render_layout (17) exports the press-ready A4 usage sheet. Every post-upload step consumes a named prior output; the merge converges the tile chains. 17 calls, 9 distinct Adobe tools (14 substantive after stripping the single upload and the auto_straighten auto-op).",
+  "difficulty_rationale": "Long-horizon logo remediation + production build, difficulty from DEPTH not plumbing: 17 connector calls, 9 distinct Adobe tools across three groups (image_* prep/grade/vectorize/resize, asset_* storage, document_* merge/export), above the >=10-call / >=6-distinct-tool floor even after stripping the single upload and the auto_straighten auto-op. It is not one recipe repeated: the three superficially-interchangeable 'logo files' each demand a DIFFERENT correct pipeline — the clean flat artboard is the ONLY vector-master source and must be prep-traced (crisp → knock-to-transparency → crop-to-bounds → vectorize) so the rebuilt SVG has filled closed paths where the studio's had live hairline strokes and open contours; the reverse artboard must be re-grounded off its off-palette #121216 onto true Valcere Noir (remove_background backgroundColor), NOT re-traced; the photographed box shot must be graded to a hero, NEVER traced (a raw trace is a muddy blob). Layered on top are three distinct ground-composite decisions for the lockup tiles (Blanc, true Noir, Champagne — self-contained because a data-merge cannot set a per-row frame fill), three downscale-only size masters (web/mobile/print-foil that must not enlarge past the declared 4200 px source), a dark-house grade that holds blacks off zero and protects the foil highlight, and a one-page-per-row merge into a hand-authored .indd (page=row=5). Respects every hard limit: no generative fill/expand/text-to-image/upscaling/inpainting, no from-scratch letterform (the wordmark is supplied approved art, only traced), no image_fill_area (grounds set via remove_background backgroundColor, not solid-fill), no image_adjust_hsl rotation, convert_pdf_to_indd not used (authored .indd template), image column only in document_merge_data_layout (never _vector), no per-artboard export, every output px reachable by downscale from the declared source, and no agent-side pixel/hex measurement (brand hex values are APPLIED as params and reported).",
+  "hardness_rationale": "FAILURE GATE (a wrong DECISION, not a self-measurement): the three logo files look interchangeable but need three different correct treatments — vectorize ONLY the clean flat artboard; re-ground (do not re-trace) the reverse; grade (never trace) the box photo. Trace the box shot or the reverse and the 'master' is a muddy or redundant blob that looks fine as a thumbnail and is obviously broken on inspection; ship the reverse on the studio's off-palette #121216 instead of true Valcere Noir and the knockout lockup is wrong; enlarge a size master past the source and it goes soft. A second gate is the merge: page-count must equal roster row-count (5), and each card's @tile must match its named ground (a reverse tile on a light card, or a positive tile on the reverse row, is a visible fail). HUMAN-HARD ELEMENTS: (1) triage across three look-alike inputs to three different correct pipelines, where the wrong choice is invisible until the vector is inspected; (2) prep-before-trace discipline (crisp → knock-to-transparency → crop-to-bounds → vectorize) so the rebuilt master is clean filled/closed paths with no captured ground or stray mark; (3) constraint-reasoning around tool limits — fixing the off-palette reverse by DISCARDING its ground and re-grounding via remove_background backgroundColor (there is no recolor-to-hex tool), composing every lockup ground via remove_background backgroundColor rather than image_fill_area (which would flat-fill and destroy the mark), and placing images into a laid-out page only through a genuine @-image-column .indd merge; (4) downscale-only size-master production that must never upscale. TRAP: the naive path treats all three 'logo files' the same and vectorizes the box shot (or the reverse) — producing a garbage silhouette that passes a glance and fails on open; a second trap is leaving the reverse on #121216. MEASURABLE ACCEPTANCE (grader-side; the agent reports only APPLIED params, never a read value): the SVG master contains lettering-only filled closed paths with no captured ground/stray path; the positive and reverse masters have clean transparent alpha; tile_reverse_noir is grounded on #0E0E10 and the positive tiles on #FAF8F3 / #E8DCC2 (the exact values the agent applied as backgroundColor and logs); the three size masters are at 1800 / 480 / 2400 px, each <= the 4200 px source with no upscale; the e-commerce hero is 2400x1000 from the 4800 px box shot, straightened, blacks not crushed to zero, foil not clipped; and the usage-sheet PDF is A4 portrait with page-count == row-count == 5, each card's tile matching its named ground. The decisions log (source file used per deliverable, applied ground hex per tile, px size per master) makes all of this checkable without any agent-side measurement.",
+  "_severity": "pass",
+  "reverify": "{\"severity\": \"pass\", \"banned_capability_check\": \"PASS — no banned/generative capability anywhere. No generative AI: no text-to-image, no generative fill/expand (image_generative_expand not used), no AI object-removal-with-reconstruction/inpainting, no compositing of image A over image B, no upscaling/super-resolution, no bespoke font/letterform design — the wordmark is SUPPLIED approved artwork and image_vectorize only TRACES a prepared raster of it (crisped → remove_background to transparency → crop_to_bounds → vectorize), never invented. The reverse off-palette fix and every lockup ground are done with image_remove_background using a backgroundColor (the documented path to place a subject on a solid ground) — NOT image_fill_area (never used; it would flat-fill and destroy the mark) and NOT select→invert→fill. No image_adjust_hsl is used, so no >~90deg hue rotation risk. image_crop_and_resize is downscale/reframe only — the 1800/480/2400 px masters and the 2400x1000 hero are all reachable by downscale from the declared 4200 px artwork and 4800 px box shot; nothing is enlarged or canvas-extended. The composed endpoint is a genuine authored-.indd document_merge_data_layout with live <<fields>> AND an @-prefixed image column (one page per row, 5 rows → 5 pages) — NOT document_merge_data_vector (text-only, cannot bind @tile) and NOT a convert_pdf_to_indd target (would not bind); no placement-at-coordinates and no per-artboard named export. document_render_layout only EXPORTS the merged document. No measurement/eyedropper/hex-readout tool is used: brand hex values (#0E0E10, #FAF8F3, #E8DCC2) are APPLIED as backgroundColor params and reported in the decisions log, never read from pixels; the dark-house grade is reasoned by eye and its parameters reported. All 17 steps are server=='adobe' [C] headless.\", \"slot_match\": \"Confirmed in-slot: slot_id V06, category vectorize_logo, vertical jewelry_luxury_goods, source.platform Freelancer.com, source.reference 'Luxury E-commerce Brand Visuals', id AO-91 all preserved. workflow_nature=create-edit (edits/rebuilds the supplied art into clean masters and produces a merged print piece), never analyze — this REPLACES the killed audit/findings version. Endpoint is a DESIGNED, agent-owned artifact set: a rebuilt vector master SVG, positive/reverse/ground-tile raster masters, three size masters, a graded e-commerce hero, and a press-ready merged A4 usage sheet — no report/findings/CSV-only deliverable, no defect list pre-printed in the brief. IP-clean: fictional Maison Valcere and generic palette names only; no real person/brand/org/product/trademark named. Counts reconciled to the connector_workflow array: tool_call_count=17 (17 steps), distinct_adobe_tools=9 (asset_add_file, image_apply_adjustments, image_remove_background, image_crop_to_bounds, image_vectorize, image_crop_and_resize, image_auto_straighten, document_merge_data_layout, document_render_layout), no plumbing padding beyond the single required upload.\"}",
+  "id": "AO-91"
+}

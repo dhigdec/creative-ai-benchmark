@@ -1,0 +1,22 @@
+{
+  "id": "AO-58",
+  "disposition": "REPLACE",
+  "current_spec_file": "AO-58_exercise-reference-reel-pipeline.json",
+  "qa_audit": {
+    "client_brand": "IRONLINE COACHING (fictional personal-training gym)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional; \"IRONLINE COACHING\" is an invented gym brand, not a real company/trademark. Upwork (source) and Premiere Pro/Adobe (delivery/platform) are allowed references.",
+    "doable_verdict": "issue",
+    "doable_note": "No banned capability (no gen-fill/text-to-image/upscale/object-removal; image_fill_area used in allowed solid-color mode; async video is [A] product-doable). BUT the vector branch is broken: image_vectorize (step 9) emits SVG, then steps 10 image_fill_area and 11 image_crop_and_resize are raster-only tools — feeding an SVG into raster select-and-fill/crop is a type mismatch, so the claimed muscle_arrow_accent.svg vector deliverable cannot actually be produced by the chain. Also step 10 image_fill_area needs a preceding selection (image_select_by_prompt/subject) which is missing.",
+    "realism_verdict": "realistic",
+    "value_verdict": "high",
+    "presentation_verdict": "good",
+    "presentation_note": "Complete and well-formed: one deliverable set, verbatim grounding_note with honest enrichment, inputs with realism_notes, outputs with specs, coherent output->input chain, chaining/difficulty rationale, and a reverify block that itself candidly documents the vector-branch weakness.",
+    "overall": "minor",
+    "top_issue": "Vector branch mis-constructed: image_vectorize SVG output (step 9) is fed into raster-only image_fill_area/image_crop_and_resize (steps 10-11), and step 10 fill has no preceding selection step, so the claimed muscle_arrow_accent.svg vector deliverable cannot actually be produced by the chain — a fixable workflow nit, not a banned capability."
+  },
+  "where_to_read_full_findings": [
+    "TASK_QUALITY_AUDIT.md — find this id in THE KILL LIST; its row names a concrete replacement design for the slot",
+    "REBUILD_GROUND_TRUTH.md and REBUILD_HARDNESS_BAR.md — the doability boundary + the bar"
+  ]
+}

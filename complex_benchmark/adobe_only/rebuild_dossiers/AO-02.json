@@ -1,0 +1,18 @@
+{
+  "id": "AO-02",
+  "disposition": "STRENGTHEN",
+  "current_spec_file": "AO-02_meta-ad-product-creatives-whitebg-pipeli.json",
+  "qa_audit": {
+    "client_brand": "DONE (fictional DTC homeware brand, taken verbatim from the source Upwork brief)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — \"DONE\" is a common-word invented brand from the source brief; only real names used are the Adobe/Firefly platform and allowed channels (Meta/Facebook/Instagram, Slack). No real-company collision.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "The executable connector_workflow (all 23 steps) is clean and connector-doable: the previously-banned 3 image_generative_expand outpaint steps were removed and replaced with image_crop_and_resize + image_fill_area (solid brand-canvas fill, explicitly documented behavior). BUT the surrounding prose (full_brief, one_line_ask, grounding_note, chaining_note, and 3 output specs) STILL instructs \"AI outpaint\"/\"generative_expand\" for the ratio canvases — a banned capability — so the narrative contradicts the corrected workflow.",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Well-formed overall (reverify present, inputs w/ realism_notes, outputs w/ specs, coherent strict chain). Weaknesses: (1) outpaint-vs-solid-fill inconsistency — brief/one_line_ask/chaining_note/output-specs still say the 1:1/4:5/9:16 canvases are AI-outpainted, but the workflow correctly uses crop_and_resize+solid fill; needs the prose brought in line. (2) Pre-existing MINOR flagged in reverify: done_kitchen_lifestyle_plate.jpg is supplied as an input but never consumed by any workflow step (unused input). Also whole-image grade on a white-bg hero is cosmetically odd.",
+    "overall": "minor",
+    "top_issue": "Narrative inconsistency: full_brief/one_line_ask/chaining_note/output-specs still instruct \"AI outpaint / generative_expand\" (a banned capability) for the ratio canvases even though the executable workflow was corrected to solid-fill (crop_and_resize + image_fill_area). Executable chain is doable, but the prose an agent reads would push it to outpaint. Fixable text edit; secondary nit is the unused lifestyle-plate input."
+  },
+  "where": "TASK_QUALITY_AUDIT.md section 3 (STRENGTHEN groups G1-G6) names this task's failure pattern + the fix"
+}

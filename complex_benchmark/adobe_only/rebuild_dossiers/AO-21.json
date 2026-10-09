@@ -1,0 +1,18 @@
+{
+  "id": "AO-21",
+  "disposition": "STRENGTHEN",
+  "current_spec_file": "AO-21_creative-business-headshot-retouch-and-b.json",
+  "qa_audit": {
+    "client_brand": "Anonymous founder client with \"AV\" personal monogram (no company name)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — client is an unnamed founder with a generic two-letter \"AV\" personal monogram; only real names are Adobe (platform), Freelancer.com (source), and LinkedIn (allowed delivery channel). No real company/person/trademark.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "all steps connector-doable — executable connector_workflow uses only real [C] Adobe actions (upload, auto_straighten, auto_tone, color_temperature, select_by_prompt, adjust_light_portions, select_subject, invert_selection, gaussian_blur, crop_and_resize, monochromatic_tint, vectorize, create_folders, copy_assets, inline_preview). The originally-banned generative_expand/outpaint step was replaced by image_crop_and_resize (crop only, no pixels invented), confirmed in the reverify block. No banned capability remains in the runnable chain.",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Spec is complete and well-formed (one deliverable set, full_brief, inputs with realism_notes, outputs with specs, coherent chain, reverify present). But stale generative language survives the crop-only fix and contradicts the corrected workflow: grounding_note says the 16:9 crop is \"via outpaint\", input realism_notes references \"outpaint\", and difficulty_rationale explicitly claims \"It uses the ONE sanctioned generative step (generative_expand outpaint) legitimately for the 16:9 hero\" — while step 11 and reverify state it is a pure crop_and_resize with no pixels invented. Also note the 16:9 landscape 2560x1440 hero is derived purely by cropping a 4000x5000 portrait, which is a heavy reframe that relies heavily on the \"empty backdrop room\" and may leave little vertical headroom around the subject.",
+    "overall": "minor",
+    "top_issue": "Stale \"outpaint/generative_expand\" prose in grounding_note, input realism_notes, and difficulty_rationale contradicts the corrected crop-only workflow (executable chain is clean; text needs updating to match)."
+  },
+  "where": "TASK_QUALITY_AUDIT.md section 3 (STRENGTHEN groups G1-G6) names this task's failure pattern + the fix"
+}

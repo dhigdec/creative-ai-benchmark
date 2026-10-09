@@ -1,0 +1,579 @@
+[
+ {
+  "new_id": "VECTOR-01",
+  "family": "Vector & Print",
+  "engagement_title": "Cordwain Overland spring merch drop \u2014 screen-print apparel kit",
+  "vertical": "Apparel & Outdoor Gear",
+  "one_line_ask": "We've lost the layered art for three of our best-selling graphics and only have flat exports and a couple of photographed samples; turn them into a print-ready screen-print merch drop with mockups our printer and our store page can both use.",
+  "primary_deliverable": "A screen-print production pack: three garment graphics rebuilt as clean vector art with limited-colour separations, plus a mockup board showing each on its garment.",
+  "engine": "image-pipeline",
+  "signature_op": "spot-colour separation (mask-then-flatten each colour region, then vectorize per plate)",
+  "collateral_set": [
+   "3 recovered vector graphics (master SVG each)",
+   "per-graphic spot-colour separation sheets (1-3 plates)",
+   "1-colour reduction of each for dark garments",
+   "garment mockup board on licensed apparel shots",
+   "printer spec sheet: plate list, ink colours, placement + max print width",
+   "square social teaser set for the store page"
+  ],
+  "key_stages": [
+   "triage the three inputs (flat export vs photographed sample) and pick the trace source for each",
+   "neutralise the photographed sample to a true white point using its in-frame reference",
+   "extract each mark clean of substrate and keep enclosed counters as holes",
+   "reduce each graphic to a defensible spot-colour count and build one plate per colour",
+   "vectorize each plate and repair viewBox/background so plates register",
+   "author the mockup board + printer spec sheet as an editable print doc"
+  ],
+  "decision_gates": [
+   "Which of a graphic's two inputs is the trace source \u2014 the crisp flat export or the on-garment photo \u2014 and the photo must be neutralised first or its cast seeds the wrong plate colours",
+   "How many spot colours each graphic truly needs: over-separating inflates screen cost, under-separating loses the art; the count must be justified against the print budget",
+   "Enclosed letter counters must survive as holes \u2014 a background-knockout fills them solid and only shows broken once printed on a coloured garment"
+  ],
+  "element_reuse": "Each graphic is vectorized ONCE; that single master feeds its separation sheet, its 1-colour reduction, the mockup board and the social teasers \u2014 any redraw between pieces is visible brand drift.",
+  "absorbs": [
+   "AO-51",
+   "AO-92",
+   "AO-87"
+  ],
+  "price_demo": "Mid-tier outdoor apparel, tees $34 / hoodies $78, buyers 24-40 who screenshot the print detail before buying. Load-bearing: a premium outdoor buyer reads a tight 2-3 colour discharge look as quality, so a cheap-looking 6-colour plastisol separation would signal a bargain brand and misprice the whole line.",
+  "why_not_vlm": "A one-shot regen redraws the graphics and cannot emit registered per-colour plates; the client needs THEIR exact marks preserved and separated into printable plates, not a lookalike raster.",
+  "doability": "asset upload -> image_select_by_prompt(returnBbox) -> image_invert_selection -> image_crop_to_bounds -> image_fill_area (white knockout per colour region) / image_apply_halftone(blackAndWhite:true) for tonal fields -> image_vectorize -> local SVG hygiene (inject viewBox, strip path-0 background) -> author HTML (inline SVG plates + data:URI garment shots at mm canvas, Adobe Fonts kit) -> html_export_readiness_skill -> export_html_to_express. Garment photos come from licensed Stock at camera scale. No banned capability, no upscaling (crop_and_resize is downscale-only here), no Illustrator/vector-merge render.",
+  "options_moment": "Agent proposes 2-3 separation strategies per graphic (e.g. 2-colour discharge vs 3-colour with a base plate) and justifies the pick against the stated print budget and garment colour."
+ },
+ {
+  "new_id": "VECTOR-02",
+  "family": "Vector & Print",
+  "engagement_title": "Redecker Machine Works logo recovery & vector identity system",
+  "vertical": "Manufacturing & Industrial",
+  "one_line_ask": "Our only surviving artwork for the company mark is an old printed scan and a photo of it etched into a machine nameplate; we need a rebuilt, scalable logo master and a full set of usage-ready variants for everything from a laser-cut sign to a one-colour invoice stamp.",
+  "primary_deliverable": "A vector logo master plus a variant system (full-colour, one-colour, reversed/knockout, mono) delivered on a usage sheet.",
+  "engine": "image-pipeline",
+  "signature_op": "look-alike triage + recover-to-vector of a photographed mark",
+  "collateral_set": [
+   "master logo SVG (scalable, clean paths)",
+   "one-colour + reversed/knockout variants",
+   "full-colour vector version",
+   "clear-space + minimum-size usage sheet",
+   "stationery mockup (letterhead + stamp) as an editable doc",
+   "a laser/router-ready single-path outline of the mark"
+  ],
+  "key_stages": [
+   "triage the printed scan vs the etched-nameplate photo and choose the correct trace source",
+   "deskew and neutralise the chosen capture using its in-frame reference",
+   "select the ink/engraving at graphic level, not the metal substrate",
+   "invert polarity correctly before tracing so the mark comes out positive",
+   "vectorize, inject viewBox, strip the background rect, and verify counters are holes",
+   "author the usage sheet + stationery mockup as an editable print doc"
+  ],
+  "decision_gates": [
+   "The etched-nameplate photo is a trap source \u2014 glare and bevel shadows trace into noise; the flat scan is the correct master and the photo is only a cross-check",
+   "Selection prompt wording decides everything: naming the substrate ('the mark on the plate') grabs the metal; naming the graphic's own form/colour grabs the ink \u2014 the wrong prompt yields a plate-shaped blob that still 'succeeds'",
+   "Mask polarity before vectorize \u2014 trace the raw mask and you ship a filled box with the logo knocked out of it"
+  ],
+  "element_reuse": "One recovered master path is the single source for every variant and the stamp/sign outline; any variant re-traced instead of derived will not overlay the master exactly.",
+  "absorbs": [
+   "AO-93"
+  ],
+  "price_demo": "B2B capital-equipment maker, machines $40k-$300k, seen by procurement engineers. Load-bearing: this buyer equates precision with competence, so a wobbly auto-traced mark on a $200k machine's nameplate reads as sloppy engineering \u2014 the vector must be crisp and mechanically exact, not a soft hand-feel logo.",
+  "why_not_vlm": "A model would redraw a plausible but different mark; the company's actual registered logo must be recovered and preserved to the path, delivered as editable vector, not a raster impression.",
+  "doability": "image_select_by_prompt(returnBbox) -> image_invert_selection -> image_crop_to_bounds -> image_apply_adjustments (neutralise) -> image_vectorize -> SVG hygiene -> html-export usage sheet + stationery mockup. No banned capability, no upscaling, no OCR, no Illustrator render.",
+  "options_moment": "Agent generates 2-3 candidate one-colour reductions (line vs solid vs stencil-bridge) and defends which survives at invoice-stamp size."
+ },
+ {
+  "new_id": "VECTOR-03",
+  "family": "Vector & Print",
+  "engagement_title": "Apex Rally Club enamel-pin & challenge-coin collectible pack",
+  "vertical": "Automotive & Motorsport",
+  "one_line_ask": "We have reference sheets of our club crest and five event badge concepts shot under different lights; turn them into a matched set of production-ready pin and coin artwork with colourways and packaging cards for the merch table.",
+  "primary_deliverable": "A matched pin/coin artwork family: line-and-fill vector for each face plus colourway variants, sized and specified for enamel/coin manufacture.",
+  "engine": "image-pipeline",
+  "signature_op": "weight-matched multi-mark recover-to-vector + one-colour metal-line separation",
+  "collateral_set": [
+   "6 face vectors (crest + 5 badges), stroke-weight matched",
+   "hard-enamel colour-fill version of each",
+   "raised-metal line-only plate (single colour) of each",
+   "2-3 colourway options for the flagship crest",
+   "pin-backing card + coin capsule insert mockups",
+   "a spec sheet: sizes, metal/plating note, colour list per face"
+  ],
+  "key_stages": [
+   "neutralise each differently-lit reference sheet to one shared white point by its in-frame reference",
+   "extract each mark and match line weights across the six so they read as a family",
+   "split each into a metal-line plate and an enamel-fill plate",
+   "vectorize each plate and repair viewBox/background",
+   "build 2-3 colourways for the flagship by masked hue moves",
+   "author the packaging cards + spec sheet as an editable doc"
+  ],
+  "decision_gates": [
+   "Cross-mark consistency: six sheets lit differently must resolve to ONE white point and ONE line-weight system or the pins look like they came from six vendors",
+   "Metal line vs enamel fill is a separation decision made before tracing \u2014 the recessed metal must become its own plate, not merge into a colour fill",
+   "Colourway hue shifts are bounded \u2014 a near-complementary jump to a named brand hex is out of reach, so options must be defensible adjacent-hue/darken moves, not impossible swaps"
+  ],
+  "element_reuse": "The club crest is recovered once and reused as the pin face, the coin centre and the packaging-card logo; a redrawn crest between the pin and the coin is exactly the drift a collector notices.",
+  "absorbs": [
+   "AO-38"
+  ],
+  "price_demo": "Collector merch, $12 impulse pins to $95 numbered coins, buyers 20-45 club members. Load-bearing: a $95 coin must carry fine raised-metal detail and tight registration that a $12 pin simplifies away, so the same art is separated and reduced differently per SKU by price tier.",
+  "why_not_vlm": "A regen produces pretty pin mockups but not manufacturer-ready line/fill plates at correct sizes, and it redraws the club's actual crest rather than preserving it.",
+  "doability": "image_select_by_prompt(returnBbox) -> image_invert_selection -> image_crop_to_bounds -> image_fill_area (metal-line knockout) -> image_vectorize -> SVG hygiene; image_apply_adjustments (masked) for colourways -> html-export packaging cards + spec. No banned capability, no upscaling, no Illustrator render.",
+  "options_moment": "Agent proposes 2-3 flagship colourways and justifies one against the club palette and the enamel-count budget."
+ },
+ {
+  "new_id": "VECTOR-04",
+  "family": "Vector & Print",
+  "engagement_title": "Meridian & Ash roastery die-cut sticker range",
+  "vertical": "Food & Beverage (Specialty Coffee)",
+  "one_line_ask": "We want a fun sticker range for our roastery \u2014 pull our logo and a few of our existing printed illustrations into clean sticker art, and lay it all out as a die-cut sheet plus individual stickers we can sell and hand out.",
+  "primary_deliverable": "A die-cut sticker sheet layout plus individual transparent-background sticker vectors, print-ready with cut lines.",
+  "engine": "html-express",
+  "signature_op": "recover-to-vector + die-cut gang-sheet layout with kiss-cut lines",
+  "collateral_set": [
+   "4-6 individual sticker vectors (transparent)",
+   "a gang die-cut sheet layout (multiple stickers, one printable sheet)",
+   "kiss-cut outline layer per sticker",
+   "a peel-mockup card for the retail display",
+   "a small social announcement graphic set"
+  ],
+  "key_stages": [
+   "extract the roastery logo and each supplied illustration clean to transparency",
+   "vectorize each and repair viewBox/background so they scale on the sheet",
+   "derive a die-cut outline (offset silhouette) for each sticker",
+   "arrange the stickers into a gang sheet at a real sheet size with bleed and gutters",
+   "author individual sticker cards + the sheet as an editable print doc",
+   "export a peel-mockup + social set reusing the same vectors"
+  ],
+  "decision_gates": [
+   "Which supplied art is already flat vector-friendly vs a photographed print that must be cut out first \u2014 they need different prep or the sheet mixes crisp and fuzzy stickers",
+   "Cutline generation: a die-cut needs a single closed offset path, not the artwork's own edges; wrong offset direction/holes produces a cut that slices through the art",
+   "Gang-sheet packing must respect a minimum gutter and bleed at the true sheet size \u2014 eyeballed spacing wastes vinyl or overlaps cuts"
+  ],
+  "element_reuse": "The roastery logo vector is placed identically on the sheet, on a single sticker, on the peel-mockup and in the social set \u2014 one master, no redraws.",
+  "absorbs": [],
+  "price_demo": "Approachable retail, $3 single stickers / $9 four-packs, buyers 18-35 cafe regulars. Load-bearing: at this price the range must feel playful and abundant (many small pieces), so a luxury single-foil-emblem treatment would misread the impulse-buy context and kill volume.",
+  "why_not_vlm": "A model can draw new stickers but cannot output transparent scalable vectors with correct kiss-cut lines ganged on a real sheet, and it would not preserve the roastery's actual logo.",
+  "doability": "image_remove_background (transparent RGBA cutout) / image_select_by_prompt->invert->crop for photographed art -> image_vectorize -> SVG hygiene + offset-path cutline -> author HTML sheet at mm size with inline SVG -> html_export_readiness_skill -> export_html_to_express. Alpha verified to survive crops at outputFileType png. No banned capability, no upscaling.",
+  "options_moment": "Agent lays out 2 gang arrangements (tight-pack vs themed rows) and justifies one on vinyl yield and retail readability."
+ },
+ {
+  "new_id": "VECTOR-05",
+  "family": "Vector & Print",
+  "engagement_title": "Isla Verde resort wayfinding & signage vector system",
+  "vertical": "Hospitality & Travel",
+  "one_line_ask": "We're refreshing signage across our resort and only have a printed brochure showing our old monogram; recover it cleanly and build a coordinated wayfinding system \u2014 directional signs, a small icon set, and door/facility plates \u2014 all as editable artwork our sign shop can cut.",
+  "primary_deliverable": "A wayfinding vector system: recovered monogram, a coordinated pictogram set, and a set of sign panels at true physical dimensions.",
+  "engine": "html-express",
+  "signature_op": "monogram recovery-to-vector + coordinated pictogram/sign-panel authoring",
+  "collateral_set": [
+   "recovered monogram master SVG",
+   "a coordinated pictogram set (6-10 facility icons) as editable vector",
+   "directional sign panel(s) at physical size",
+   "door/facility ID plate template",
+   "a signage schedule sheet listing panels, sizes and copy",
+   "a mounted-panel mockup on a wall photo"
+  ],
+  "key_stages": [
+   "extract the monogram from the brochure scan and neutralise it to true colour",
+   "vectorize the monogram and repair viewBox/background",
+   "author a coordinated pictogram set as inline vector matched to the monogram's weight",
+   "lay out directional + ID panels at true mm dimensions with consistent margins and type",
+   "assemble the signage schedule as a table in the editable doc",
+   "render a mounted mockup reusing the monogram and one panel"
+  ],
+  "decision_gates": [
+   "Pictogram stroke weight and corner radius must be derived from the recovered monogram, not chosen freely, or the icons look bought-in against the house mark",
+   "Sign panels are hard physical sizes \u2014 type and clear space set in real units so a 60cm directional and a 12cm door plate stay legible and consistent; a relative-unit layout silently breaks at cut size",
+   "Right/bottom-anchored art without explicit width/height collapses in the layout engine \u2014 panels must be anchored top/left with fixed dimensions or art runs off the cut edge"
+  ],
+  "element_reuse": "The recovered monogram appears identically on every panel, the ID plate and the mockup; one master keeps the whole sign program visually single-authored.",
+  "absorbs": [],
+  "price_demo": "Upscale boutique resort, rooms $380-$650/night, guests 30-55 affluent leisure. Load-bearing: this tier expects quiet refined signage \u2014 generous negative space, restrained mono palette, a delicate monogram \u2014 whereas a budget-motel system would be louder, denser and higher-contrast, so the price band dictates the whole wayfinding tone.",
+  "why_not_vlm": "A model renders sign pictures, not editable panels at exact cut sizes with a consistent icon system built off the resort's own recovered monogram.",
+  "doability": "image_select_by_prompt->invert->image_crop_to_bounds->image_apply_adjustments(neutralise)->image_vectorize->SVG hygiene for the monogram; pictograms + panels authored as inline SVG/HTML at mm canvases with an Adobe Fonts kit; html_export_readiness_skill -> export_html_to_express. Icons are hand-authored SVG (no text-to-image). No banned capability, no upscaling.",
+  "options_moment": "Agent presents 2 pictogram directions (geometric line vs solid glyph) and justifies one against the recovered monogram's construction."
+ },
+ {
+  "new_id": "VECTOR-06",
+  "family": "Vector & Print",
+  "engagement_title": "Ridgeway Rovers amateur club full kit & numbering programme",
+  "vertical": "Sports & Recreation",
+  "one_line_ask": "We have a phone photo of our embroidered club crest and two hand-drawn sheets of our letters and numbers; turn them into a proper team kit package \u2014 a clean crest, a full numbering and lettering set for the shirt backs, and per-player back-of-shirt layouts for the whole squad.",
+  "primary_deliverable": "A team kit production pack: recovered crest vector, a complete A-Z + 0-9 numbering/lettering vector set, and per-player named/numbered shirt-back layouts.",
+  "engine": "image-pipeline",
+  "signature_op": "crest recovery-to-vector + apparel numbering/lettering vector set",
+  "collateral_set": [
+   "recovered crest master SVG (+ 1-colour and reversed)",
+   "A-Z + 0-9 vector glyph set, weight-matched",
+   "shirt-back placement template (name arc + number)",
+   "per-player back layouts for the squad (name + number)",
+   "printer spec sheet: colours, sizes, placement heights",
+   "home/away mockup board reusing the crest"
+  ],
+  "key_stages": [
+   "clean and deskew the phone-shot crest and neutralise it to true colour",
+   "extract the crest off the fabric/stitch texture and vectorize it",
+   "neutralise the two hand-drawn glyph sheets (cool letters, warm numbers) to a common white point",
+   "vectorize the letters and numbers and match their weights into one set",
+   "build the shirt-back template and lay out per-player named/numbered backs",
+   "author the mockup board + spec sheet as editable print docs"
+  ],
+  "decision_gates": [
+   "The letter sheet and number sheet were shot under different light \u2014 neutralise each separately to a shared white point or the finished set has two different blacks on one shirt",
+   "Stitch/relief texture on the crest photo must be selected at graphic level or the trace picks up embroidery noise; the recovered crest, not the noisy photo, seeds every downstream piece",
+   "Numbering weight must be normalised across two hand-drawn sheets so a '4' and a 'B' look like one typeface \u2014 an un-reconciled set is only obvious once a name+number sit together on a back"
+  ],
+  "element_reuse": "The single recovered crest is reused on every mockup and the number set is one master glyph library reused for all squad backs \u2014 a redrawn glyph between players is instantly visible on a team sheet.",
+  "absorbs": [
+   "AO-46",
+   "AO-88"
+  ],
+  "price_demo": "Grassroots club kit, shirts $28-$45, buyers players and parents. Load-bearing: at club price the numbering must be a bold single-colour heat-press/screen job, so the artwork is deliberately reduced to one robust spot colour and simple geometry \u2014 a pro-tier sublimated multi-layer number would blow the budget.",
+  "why_not_vlm": "A model cannot preserve the club's real crest or produce a registered, weight-consistent glyph set plus correct per-player back layouts as editable/print-ready artwork.",
+  "doability": "crest: image_select_by_prompt->invert->crop->image_vectorize->SVG hygiene; glyphs: image_auto_straighten->image_apply_adjustments(neutralise)->select->image_vectorize per sheet; per-player backs authored via html-export OR a roster run via convert_pdf_to_indd->prepare_indd_merge_template->document_merge_data_layout (one player per page, page-count=roster); mockups via html-export. No banned capability, no upscaling, no Illustrator/vector-merge render.",
+  "options_moment": "Agent proposes 2 numbering styles (block vs rounded) reconciled from the hand-drawn source and justifies one for heat-press durability."
+ },
+ {
+  "new_id": "VECTOR-07",
+  "family": "Vector & Print",
+  "engagement_title": "Wharfside Folk Festival poster spot-colour separation programme",
+  "vertical": "Arts, Culture & Music",
+  "one_line_ask": "We have an approved full-colour festival illustration but our printer runs a limited-colour screen press; turn the artwork into a screen-print-ready poster broken into printable colour layers, plus a matching handbill and a merch tee version.",
+  "primary_deliverable": "A screen-print-ready poster with its spot-colour separations (one plate per ink), plus a comped poster proof.",
+  "engine": "image-pipeline",
+  "signature_op": "spot-colour separation of a full-colour illustration + wordmark vectorize",
+  "collateral_set": [
+   "poster comp at true poster size",
+   "per-ink spot-colour separation plates",
+   "recovered/vectorized festival wordmark",
+   "a handbill version reusing the same separations",
+   "a tee-print reduction of the key motif",
+   "printer spec: ink list, plate order, registration marks"
+  ],
+  "key_stages": [
+   "decide the defensible ink count and assign artwork regions to plates",
+   "mask each colour region and flatten it to its own plate before tracing",
+   "halftone the continuous-tone passages at a chosen radius while keeping line art crisp",
+   "vectorize each plate and repair viewBox/background so plates register",
+   "recover and vectorize the wordmark and lock it into the layout",
+   "author the poster comp, handbill and tee reduction as editable print docs"
+  ],
+  "decision_gates": [
+   "Ink count is the whole job: too many plates blows the festival's print budget, too few flattens the illustration \u2014 the count must be argued against the press's colour limit",
+   "Halftone-vs-solid per region: tonal passages need a mono halftone plate at a chosen radius while flat shapes stay solid; halftoning the line art or solidifying a gradient both look wrong only at print",
+   "Separation happens BEFORE vectorize (mask->flatten->trace); tracing the full-colour art first produces dozens of near-identical fills no screen press can shoot"
+  ],
+  "element_reuse": "The vectorized wordmark and the key motif are extracted once and reused across poster, handbill and tee \u2014 a redrawn wordmark on the handbill is the drift a VLM introduces.",
+  "absorbs": [
+   "AO-52"
+  ],
+  "price_demo": "Community festival, tickets $35-$60, posters sold as $20 keepsakes. Load-bearing: the limited-colour hand-screened look IS the product's charm at this price, so the deliberate spot reduction is a design choice the band demands \u2014 a slick full-CMYK offset look would feel corporate and cheaper in spirit.",
+  "why_not_vlm": "A regen makes another pretty poster but cannot output registered per-ink plates from THIS approved illustration, and it would redraw the festival's wordmark.",
+  "doability": "image_select_by_prompt (name each colour region positively)->image_invert_selection->image_crop_to_bounds->image_fill_area(flatten plate)/image_apply_halftone(blackAndWhite:true, chosen radius) for tone->image_vectorize->SVG hygiene per plate; wordmark via select->invert->vectorize; comps authored via html-export at mm poster size. No banned capability, no upscaling, no Illustrator render.",
+  "options_moment": "Agent presents a 3-plate vs 4-plate separation and justifies the count against the press limit and the illustration's tonal load."
+ },
+ {
+  "new_id": "VECTOR-08",
+  "family": "Vector & Print",
+  "engagement_title": "Coble & Vane distillery one-colour mark system",
+  "vertical": "Spirits & Craft Manufacturing",
+  "one_line_ask": "Our logo only exists as a detailed full-colour file, but we print it one colour on bottle embossing, wax stamps, crates and caps; give us a single-colour version of the mark that holds up everywhere from a tiny cap to a stencilled crate, with the rules for using it.",
+  "primary_deliverable": "A one-colour logo system: a reduced single-colour master with size-specific variants (fine, standard, stencil-bridged) and a usage/clear-space sheet.",
+  "engine": "image-pipeline",
+  "signature_op": "one-colour reduction + recover-to-vector of a detailed mark",
+  "collateral_set": [
+   "single-colour master SVG",
+   "fine (foil/emboss) variant",
+   "stencil-bridged variant for crate/cap",
+   "reversed/knockout variant",
+   "minimum-size + clear-space usage sheet",
+   "application mockups (wax stamp, crate stencil, cap) as an editable doc"
+  ],
+  "key_stages": [
+   "extract the mark from the full-colour source clean of background",
+   "reduce it to a single colour, deciding what detail survives at each scale",
+   "build a stencil-bridged variant so enclosed shapes don't fall out when cut",
+   "vectorize each variant and repair viewBox/background, keeping counters as holes",
+   "author the usage sheet with real minimum-size and clear-space rules",
+   "render the wax/crate/cap application mockups reusing the master"
+  ],
+  "decision_gates": [
+   "A single-colour reduction must drop detail deliberately \u2014 hairlines that read on a foil emboss vanish on a stencilled crate, so size-specific variants need different simplification levels decided up front",
+   "Stencil bridging: enclosed counters that would float when cut must be bridged, and remove_background cannot punch an enclosed interior hole \u2014 the interior must be handled by select->invert->vectorize",
+   "Choosing the master ink colour is a legibility call, not a brand-hex call \u2014 on a dark crate the reversed variant must be specified or the mark disappears"
+  ],
+  "element_reuse": "Every variant derives from one reduced master path, so the cap, the wax stamp and the crate stencil are provably the same mark at different fidelities \u2014 not three redraws.",
+  "absorbs": [
+   "AO-69"
+  ],
+  "price_demo": "Premium craft spirits, bottles $55-$120, buyers 30-55 gift/collector. Load-bearing: at this price the one-colour treatments must feel restrained and heritage (deep single ink, generous space, foil-emboss finesse), so the disciplined mono reduction signals the tier \u2014 a value-spirits brand would use a louder higher-contrast multi-colour mark.",
+  "why_not_vlm": "A model would invent a new simplified logo; the client needs THEIR mark faithfully reduced to one colour as editable vector with cut-safe bridging, at multiple fidelities.",
+  "doability": "image_select_by_prompt->invert->image_crop_to_bounds->image_fill_area(flatten to one colour)->image_vectorize->SVG hygiene (viewBox, strip path-0, verify counters as holes); variants by re-prepping the raster before each trace; usage sheet + mockups via html-export. No banned capability, no upscaling, no Illustrator render.",
+  "options_moment": "Agent proposes 2-3 reduction levels and justifies which variant is mandated below a stated minimum size."
+ },
+ {
+  "new_id": "VECTOR-09",
+  "family": "Vector & Print",
+  "engagement_title": "Halcyon Grid AI-logo cleanup to production vector system",
+  "vertical": "Technology & SaaS",
+  "one_line_ask": "Our founder generated our logo and two sub-brand marks with an AI tool and all we have are fuzzy PNG exports; rebuild them as crisp, production-clean vector masters with the app icon, favicon and wordmark variants a real brand system needs.",
+  "primary_deliverable": "A production vector identity system: cleaned master mark + two sub-brand marks as SVG, plus wordmark, app-icon and favicon variants.",
+  "engine": "image-pipeline",
+  "signature_op": "prep-and-trace fuzzy AI raster into production-clean editable vector",
+  "collateral_set": [
+   "master mark SVG (clean paths, closed counters)",
+   "two sub-brand mark SVGs, weight-matched to the master",
+   "horizontal + stacked wordmark lockups",
+   "app-icon and favicon crops",
+   "1-colour and reversed variants",
+   "a brand-mark sheet as an editable doc"
+  ],
+  "key_stages": [
+   "deskew and clean each fuzzy AI export (denoise/contrast) before tracing",
+   "extract each mark clean of its AI-baked background/artefacts",
+   "reconcile the marks to one line-weight and corner system",
+   "vectorize each and repair viewBox/background, closing the ragged AI edges",
+   "derive wordmark lockups, app-icon and favicon crops from the masters",
+   "author the brand-mark sheet as an editable doc"
+  ],
+  "decision_gates": [
+   "AI exports carry soft edges and colour fringing \u2014 trace them raw and you inherit the wobble; the raster must be cleaned/contrasted first, an irreversible prep call that only shows at logo scale",
+   "The marks came out at inconsistent weights \u2014 reconciling them to one system is a judgement the tool won't make, and an un-reconciled set reads as unrelated logos in the app switcher",
+   "App-icon and favicon crops must be derived from the master (identical geometry), not separately traced, or the tiny favicon drifts from the header logo"
+  ],
+  "element_reuse": "The master mark is traced once and every lockup, the app icon and the favicon are crops/derivations of it \u2014 the failure mode a VLM shows is a favicon that isn't quite the header logo.",
+  "absorbs": [
+   "AO-48",
+   "AO-86"
+  ],
+  "price_demo": "Seed-stage B2B SaaS, seats $20-$60/user/mo, seen by technical buyers. Load-bearing: this audience reads pixel-crisp geometric restraint as engineering credibility, so a soft, over-detailed or gradient-heavy mark undercuts trust at this segment \u2014 the cleanup must resolve to sharp minimal geometry.",
+  "why_not_vlm": "Re-prompting the AI tool yields yet another different logo; the founder needs THESE specific generated marks preserved and turned into clean editable vectors, which a raster model cannot emit.",
+  "doability": "image_apply_auto_tone / image_apply_adjustments (clean) -> image_select_by_prompt->invert->image_crop_to_bounds -> image_vectorize -> SVG hygiene (viewBox, strip path-0, close counters) per mark; lockups/icons authored via html-export. Clean-then-trace, never enlarge the fuzzy source. No banned capability, no upscaling, no Illustrator render.",
+  "options_moment": "Agent proposes 2 weight-reconciliation approaches across the marks and justifies one for cross-product consistency."
+ },
+ {
+  "new_id": "VECTOR-10",
+  "family": "Vector & Print",
+  "engagement_title": "Evergreen Provisions dispensary apparel capsule from hand-painted crests",
+  "vertical": "Cannabis & Dispensary",
+  "one_line_ask": "We commissioned hand-painted crest panels for our shop and now want a small apparel capsule from them; recover the paintings into clean screen-print art and produce the print-ready separations and mockups for a short tee and hoodie run.",
+  "primary_deliverable": "A screen-print apparel capsule: hand-painted crests recovered to vector with spot separations, plus garment mockups.",
+  "engine": "image-pipeline",
+  "signature_op": "recover hand-painted art to vector + spot-colour separation",
+  "collateral_set": [
+   "recovered crest vectors (from the painted panels)",
+   "spot-colour separation sheets per design",
+   "1-colour reductions for dark garments",
+   "tee + hoodie mockup board",
+   "printer spec: ink list, plate order, placement",
+   "a square social teaser set"
+  ],
+  "key_stages": [
+   "neutralise each painted panel (shot under mixed studio light) to a common white point",
+   "extract the painted crest off the canvas/board texture",
+   "reduce painterly colour to a defensible spot count and split into plates",
+   "halftone soft painted gradients where a solid plate would band",
+   "vectorize each plate and repair viewBox/background",
+   "author mockups + spec sheet as editable docs"
+  ],
+  "decision_gates": [
+   "Painted panels shot under different studio light must neutralise to ONE white point or the capsule's crests don't share a black/base",
+   "Painterly gradients force a halftone-vs-solid call per region \u2014 solidifying a hand-blended field bands badly, halftoning a flat field adds needless screens",
+   "Canvas/brushstroke texture must be excluded at selection or it traces into the plates as noise \u2014 naming the painted mark's form, not 'the painting', is the gate"
+  ],
+  "element_reuse": "Each recovered crest is one master reused across its separations, its 1-colour reduction and the mockups \u2014 a crest redrawn between the tee and the hoodie is visible drift.",
+  "absorbs": [
+   "AO-49"
+  ],
+  "price_demo": "Dispensary lifestyle merch, tees $32 / hoodies $70, buyers 25-45. Load-bearing: a dispensary capsule leans craft/artisan (retain painterly texture via halftone, earthy limited palette) rather than corporate-flat, so a mass-retail treatment would erase the hand-painted origin that justifies the price.",
+  "why_not_vlm": "A model redraws the paintings into generic art; the client needs their commissioned crests preserved and turned into registered spot plates, not a lookalike.",
+  "doability": "image_apply_adjustments (neutralise per panel) -> image_select_by_prompt->invert->image_crop_to_bounds -> image_fill_area(flatten plate)/image_apply_halftone(mono, radius) -> image_vectorize -> SVG hygiene; mockups via html-export with data:URI garment shots (licensed Stock, camera scale). No banned capability, no upscaling, no Illustrator render.",
+  "options_moment": "Agent proposes 2 palette reductions (3-colour earthy vs 2-colour high-contrast) and justifies one for the dispensary's shelf/brand context."
+ },
+ {
+  "new_id": "VECTOR-11",
+  "family": "Vector & Print",
+  "engagement_title": "Cedar Commons Farmers Market signage & directional set",
+  "vertical": "Community & Civic Events",
+  "one_line_ask": "Our weekend market needs proper signage from our existing printed logo \u2014 a big entrance banner, directional yard signs pointing to parking and vendors, and stall number plates \u2014 all ready for our local sign printer.",
+  "primary_deliverable": "A market signage set: recovered market mark plus an entrance banner and a coordinated series of directional yard signs and stall plates at physical sizes.",
+  "engine": "html-express",
+  "signature_op": "mark recovery-to-vector + coordinated large-format sign authoring",
+  "collateral_set": [
+   "recovered market mark SVG",
+   "entrance banner at true banner dimensions",
+   "directional yard-sign series (parking / vendors / info)",
+   "stall/booth number plate template",
+   "a signage schedule sheet",
+   "a staked-sign mockup on a site photo"
+  ],
+  "key_stages": [
+   "extract the market mark from its printed source and neutralise it",
+   "vectorize the mark and repair viewBox/background",
+   "set a shared type + arrow system sized for outdoor legibility",
+   "lay out the banner and directional series at true physical dimensions",
+   "build the numbered stall-plate template and a schedule table",
+   "render a staked-sign mockup reusing the mark"
+  ],
+  "decision_gates": [
+   "Outdoor legibility is a real constraint: type size and stroke must be set in physical units for viewing distance, and a banner that reads fine on screen can be illegible at 3 metres \u2014 the sizing decision is load-bearing",
+   "One arrow/type system must carry across banner, yard signs and plates or the set looks assembled from three sources",
+   "Large-format elements anchored by right/bottom without explicit dimensions collapse in the layout engine \u2014 anchor top/left with fixed sizes or art runs off the sign edge"
+  ],
+  "element_reuse": "The recovered market mark is placed identically on the banner, every directional sign, the stall plates and the mockup \u2014 one master keeps a volunteer-run market looking coherent.",
+  "absorbs": [],
+  "price_demo": "Free community market, vendor stalls $25-$60/day. Load-bearing: the tiny budget forces a cheerful, high-contrast, few-colour large-format look printed on coroplast/vinyl, so a luxury-retail refined palette would be both unreadable outdoors and over budget \u2014 the price context dictates bold, legible, economical design.",
+  "why_not_vlm": "A model renders sign pictures, not editable large-format panels at true dimensions with a consistent system built on the market's own recovered mark.",
+  "doability": "image_select_by_prompt->invert->image_crop_to_bounds->image_apply_adjustments->image_vectorize->SVG hygiene for the mark; banner/signs authored as inline SVG + HTML at true cm/mm canvases with an Adobe Fonts kit; html_export_readiness_skill -> export_html_to_express. No banned capability, no upscaling, no text-to-image.",
+  "options_moment": "Agent presents 2 arrow/type systems and justifies one on outdoor legibility and print cost."
+ },
+ {
+  "new_id": "VECTOR-12",
+  "family": "Vector & Print",
+  "engagement_title": "Static Union streetwear patch, pin & sticker merch pack",
+  "vertical": "Streetwear & Fashion",
+  "one_line_ask": "We've got a few of our graphics as messy exports and want a small-goods merch pack from them \u2014 embroidered patches, enamel pins and stickers \u2014 each rebuilt as the right kind of art for how it's actually made.",
+  "primary_deliverable": "A small-goods merch pack: each graphic rebuilt as manufacture-appropriate vector (embroidery-simplified, pin line/fill, sticker cutout) with maker specs and mockups.",
+  "engine": "image-pipeline",
+  "signature_op": "medium-specific recover-to-vector (embroidery vs enamel vs die-cut)",
+  "collateral_set": [
+   "patch vectors: simplified, limited-colour, merrow-border outline",
+   "pin vectors: metal-line + enamel-fill plates",
+   "sticker vectors: transparent + kiss-cut line",
+   "a merch-pack mockup board",
+   "maker spec sheet per item (stitch note / enamel colours / cut)",
+   "a woven-label lockup"
+  ],
+  "key_stages": [
+   "triage which graphic suits which medium and simplify accordingly",
+   "extract each graphic clean to transparency",
+   "for patches, reduce to embroidery-safe colours and add a merrow-border outline",
+   "for pins, split metal-line and enamel-fill plates",
+   "for stickers, build the transparent cutout + kiss-cut offset",
+   "vectorize each and repair viewBox/background; author mockups + specs"
+  ],
+  "decision_gates": [
+   "The SAME graphic needs DIFFERENT reductions per medium: embroidery can't hold fine detail (simplify + limited thread colours), enamel needs metal bridges between colours, a sticker keeps full detail \u2014 one-size art fails at least two of the three",
+   "Embroidery colour count and minimum detail are hard limits \u2014 a gradient or hairline that survives on a sticker must be redrawn as solid thread blocks for a patch",
+   "Kiss-cut offset direction and enclosed holes must be right or the sticker cut slices the art / the pin enamel wells don't close"
+  ],
+  "element_reuse": "One extracted graphic seeds all three medium-specific versions and the woven label \u2014 a redraw between the patch and the pin is exactly the inconsistency that breaks a coordinated pack.",
+  "absorbs": [],
+  "price_demo": "Streetwear small-goods, stickers $4 / pins $14 / patches $18. Load-bearing: the price ladder maps to fidelity \u2014 the $4 sticker keeps full detail, the $18 patch is deliberately reduced to bold thread blocks \u2014 so the same art is simplified more as the item gets more 'made', a distinction a flat regen ignores.",
+  "why_not_vlm": "A model produces mockup images but not the three genuinely different manufacture-ready vector reductions of the brand's own graphics.",
+  "doability": "image_remove_background (transparent) / image_select_by_prompt->invert->crop for messy exports -> image_fill_area(flatten for patch/pin plates) -> image_vectorize -> SVG hygiene (viewBox, strip path-0, offset cutline for stickers); mockups + specs via html-export. No banned capability, no upscaling, no Illustrator render.",
+  "options_moment": "Agent proposes 2 embroidery reductions (3-thread vs 5-thread) and justifies one on stitch cost and legibility at patch size."
+ },
+ {
+  "new_id": "VECTOR-13",
+  "family": "Vector & Print",
+  "engagement_title": "Maison Solene jewelry wordmark & monogram recovery for foil packaging",
+  "vertical": "Jewelry & Luxury Goods",
+  "one_line_ask": "Our house wordmark and monogram survive only as a colour-cast flat export and two photos of them on a wall and a card shot under different light; recover the true mark and deliver the refined vector artwork our foil-stamp and engraving suppliers need.",
+  "primary_deliverable": "A refined vector wordmark + monogram master (true-colour recovered) with foil-stamp/engraving-ready single-path variants and a packaging application sheet.",
+  "engine": "image-pipeline",
+  "signature_op": "true-colour recovery + refined wordmark/monogram vectorize for foil/engrave",
+  "collateral_set": [
+   "wordmark master SVG (refined, closed counters)",
+   "monogram master SVG",
+   "single-path foil/engrave outline of each",
+   "reversed/knockout variant for dark stock",
+   "packaging application sheet (box, ribbon, card) as an editable doc",
+   "a foil-on-dark mockup"
+  ],
+  "key_stages": [
+   "neutralise the colour-cast flat export and the two mismatched-light photos to recover true brand colour",
+   "triage which capture is the cleanest trace source for each mark",
+   "extract the wordmark and monogram at graphic level, excluding substrate",
+   "vectorize both, refine counters and edges, repair viewBox/background",
+   "derive single-path foil/engrave outlines and a reversed variant",
+   "author the packaging application sheet + foil mockup"
+  ],
+  "decision_gates": [
+   "Three captures under different light disagree on the brand colour \u2014 recovering the TRUE colour (not averaging the casts) is the irreversible call that seeds every foil/print spec downstream",
+   "Which capture trace-sources each mark: the flat export is cleanest for the wordmark, but a photo may hold the monogram better \u2014 the wrong choice ships a soft mark on a luxury box",
+   "Foil/engrave art must be a single clean closed path with counters as holes \u2014 remove_background can't punch enclosed counters, so the interior must come via select->invert->vectorize"
+  ],
+  "element_reuse": "The recovered wordmark and monogram are single masters reused across box, ribbon, card and the foil mockup \u2014 at this tier any drift between the ribbon and the box mark reads as counterfeit-grade sloppiness.",
+  "absorbs": [
+   "AO-22"
+  ],
+  "price_demo": "Fine jewelry, pieces $600-$4,000, buyers 30-55 gift/self-purchase. Load-bearing: at this tier the mark must be hairline-refined for foil on dark stock with vast negative space, so a mass-market jewelry brand's bolder higher-contrast mark would be wrong \u2014 the delicate high-contrast refinement is exactly what the price band requires.",
+  "why_not_vlm": "A model can't recover the house's TRUE colour from mismatched captures or emit engraving-ready single-path vectors of the actual wordmark \u2014 it would invent a new one.",
+  "doability": "image_auto_straighten / image_apply_adjustments (neutralise each capture to true colour) -> image_select_by_prompt->invert->image_crop_to_bounds -> image_vectorize -> SVG hygiene (viewBox, strip path-0, refine counters); packaging sheet + foil mockup via html-export at mm sizes with Adobe Fonts kit. Foil/engrave delivered as the retrievable SVG outline, not an Express file. No banned capability, no upscaling, no Illustrator render.",
+  "options_moment": "Agent proposes 2 recovered-colour candidates from the conflicting captures and justifies which is the true brand colour and why."
+ },
+ {
+  "new_id": "VECTOR-14",
+  "family": "Vector & Print",
+  "engagement_title": "Ironway Run Club member numbering & race-bib kit",
+  "vertical": "Health, Wellness & Fitness",
+  "one_line_ask": "For our club's season we need a numbering system on our apparel and a personalised race bib for every member \u2014 build the numbering artwork from our hand-drawn style sheet and produce a print-ready bib for each member from our roster.",
+  "primary_deliverable": "A numbering system (vector glyph set + apparel placement) plus a personalised, print-ready race bib for each member (one per roster row).",
+  "engine": "indesign-merge",
+  "signature_op": "numbering vector set + per-member variable-data bib run",
+  "collateral_set": [
+   "0-9 (+ A-Z) vector glyph set from the style sheet",
+   "apparel numbering placement template",
+   "recovered club mark vector for the bib header",
+   "per-member race bibs (one print-ready page each)",
+   "a single press PDF of all bibs (page-count = roster)",
+   "a numbering + bib spec sheet"
+  ],
+  "key_stages": [
+   "neutralise and deskew the hand-drawn numbering style sheet",
+   "extract and vectorize the glyphs into one weight-matched set",
+   "recover the club mark and build the bib template around it",
+   "reverse-engineer the bib template into a variable-data merge template",
+   "reconstruct the true template story text and compute mapping offsets before merging",
+   "merge the roster to one bib per member and render at print resolution"
+  ],
+  "decision_gates": [
+   "Numbering glyphs from a hand-drawn sheet must be weight-normalised into one set, or a member's '7' and '1' look hand-lettered and mismatched on the same bib",
+   "The merge template's field offsets must be computed from the true reconstructed story text, not the tool's lossy readout \u2014 trusting the readout silently drops fields and ships bibs missing a name or number",
+   "Per-member identity must stay in order: a naive multi-record raster export comes back reversed/mislabelled, so delivery must be a page-ordered PDF or a per-record loop, not position-labelled images"
+  ],
+  "element_reuse": "One glyph set and one recovered club mark are reused on the apparel template and every single bib \u2014 the same number that prints on the shirt must be the number on the bib, from one master.",
+  "absorbs": [],
+  "price_demo": "Community run club, membership $40/season, bibs bundled free. Load-bearing: the near-zero budget forces a bold single-colour numbering and a one-colour bib that prints cheaply at volume, so a paid-race premium bib with a multi-colour timing-chip layout would be over-spec \u2014 the price context mandates the reduced high-legibility treatment.",
+  "why_not_vlm": "A model can't produce a page-ordered per-member print run with each member's real name/number from the roster, nor a consistent editable glyph set \u2014 it would hallucinate names and drift the numerals.",
+  "doability": "glyphs: image_auto_straighten->image_apply_adjustments->select->image_vectorize->SVG hygiene; bibs: asset upload->convert_pdf_to_indd->export_idml->generate_indd_mapping_prompt->(reconstruct offsets from IDML story)->prepare_indd_merge_template->document_merge_data_layout(application/pdf, recordRange:All -> one page per member)->document_render_layout(300dpi). No variable QR (unsupported), no banned capability, no upscaling, no Illustrator vector-merge.",
+  "options_moment": "Agent proposes 2 numeral treatments reconciled from the hand-drawn sheet and justifies one for print legibility on a moving runner."
+ },
+ {
+  "new_id": "VECTOR-15",
+  "family": "Vector & Print",
+  "engagement_title": "Wren & Halloway heritage property crest recovery, signage & plaque system",
+  "vertical": "Real Estate & Property",
+  "one_line_ask": "We manage a heritage building whose original crest survives only on a photographed brass plaque and a faded printed letterhead; recover it and build a coordinated exterior signage and directory system plus an engraving-ready plaque artwork.",
+  "primary_deliverable": "A recovered heritage crest vector plus a coordinated signage system (monument sign, directory board, suite plates) and an engraving-ready brass-plaque artwork.",
+  "engine": "html-express",
+  "signature_op": "crest recovery-to-vector from photographed metal + signage/plaque authoring",
+  "collateral_set": [
+   "recovered crest master SVG",
+   "engraving-ready single-path plaque artwork",
+   "monument/entrance sign at physical size",
+   "tenant directory board template",
+   "suite/floor ID plate template",
+   "a signage schedule sheet",
+   "a mounted-plaque mockup on a facade photo"
+  ],
+  "key_stages": [
+   "triage the brass-plaque photo vs the faded letterhead and choose the trace source",
+   "neutralise/deskew the chosen capture and recover the crest colour",
+   "extract the crest at graphic level, excluding the metal/paper substrate",
+   "vectorize and repair viewBox/background, keeping counters as holes",
+   "derive the engraving single-path outline and author the sign panels at true sizes",
+   "assemble the directory/ID templates + schedule and a mounted mockup"
+  ],
+  "decision_gates": [
+   "The brass-plaque photo is a trap \u2014 specular highlights and bevel shadows trace into noise; the faded letterhead may be the cleaner master despite lower contrast, a triage call that decides fidelity",
+   "Engraving artwork must be a single closed path with true interior holes \u2014 a background-knockout leaves enclosed counters solid and the engraver routes the wrong areas",
+   "Sign panels are exact physical sizes with heritage-appropriate restraint; type and clear space set in real units, anchored top/left with fixed dimensions, or panels break at cut size"
+  ],
+  "element_reuse": "The one recovered crest is reused on the plaque, the monument sign, the directory and every suite plate \u2014 a heritage identity that drifts between the plaque and the directory undermines the whole restoration.",
+  "absorbs": [],
+  "price_demo": "Heritage commercial property, suites leasing $45-$75/sqft/yr, tenants professional firms. Load-bearing: this tier expects understated traditional high-craft signage (engraved brass, serif type, generous space), so a budget strip-mall system would be plastic and loud \u2014 the positioning dictates the restrained heritage treatment throughout.",
+  "why_not_vlm": "A model would invent a plausible crest; the building's actual historic crest must be faithfully recovered and delivered as engraving-ready editable vector and exact-size sign panels.",
+  "doability": "image_select_by_prompt->invert->image_crop_to_bounds->image_apply_adjustments(neutralise)->image_vectorize->SVG hygiene for the crest; plaque outline as SVG; sign panels authored as inline SVG + HTML at true mm sizes with Adobe Fonts kit; html_export_readiness_skill -> export_html_to_express. No banned capability, no upscaling, no OCR, no Illustrator render.",
+  "options_moment": "Agent presents 2 recovered-crest interpretations (high-detail vs simplified-for-small-plates) and justifies which is used below a stated plate size."
+ }
+]

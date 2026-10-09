@@ -1,0 +1,18 @@
+{
+  "id": "AO-12",
+  "disposition": "STRENGTHEN",
+  "current_spec_file": "AO-12_bright-airy-food-photography-lightroom-g.json",
+  "qa_audit": {
+    "client_brand": "No named brand — a generic \"food-photography client\" (single hero dish: ricotta-fig honey toast)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — no client brand/company/person named at all; only Adobe platform tools (Stock, Express, Firefly board) and Instagram as a delivery channel, all allowed",
+    "doable_verdict": "fully_doable",
+    "doable_note": "all steps connector-doable — pure tonal/color grade, prompt-mask + invert + masked adjust, auto-tone, crop/resize, stock license, Firefly board present-only, one allowed local recipe-note (L); no gen-fill/object-removal/bg-replace/upscale, image_fill_area deliberately avoided",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Complete and well-formed (inputs w/ realism_notes, outputs w/ specs, strict output→input chain, reverify present). Two minor self-flagged nits: (1) step-3 licensed linen_backdrop_ref is a dangling output never consumed downstream (unused dead weight, since compositing is banned); (2) the 45°/side sub-chains (auto_tone→WB→highlights; auto_tone→dark_portions) don't fully replicate the flat-lay recipe's explicit exposure/shadow/vibrance ops, so notes' \"identical look\" is a slight overclaim. Neither is a constraint violation.",
+    "overall": "minor",
+    "top_issue": "Step-3 licensed stock backdrop (linen_backdrop_ref) is never consumed by any downstream step — a dangling, unused output; harmless to feasibility but logically loose."
+  },
+  "where": "TASK_QUALITY_AUDIT.md section 3 (STRENGTHEN groups G1-G6) names this task's failure pattern + the fix"
+}

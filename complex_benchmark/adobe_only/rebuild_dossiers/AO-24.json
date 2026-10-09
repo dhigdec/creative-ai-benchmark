@@ -1,0 +1,22 @@
+{
+  "id": "AO-24",
+  "disposition": "STRENGTHEN-to-exemplar",
+  "current_spec_path": "complex_benchmark/adobe_only/specs/AO-24_mortgage-open-house-flyer-asset-prep-and.json",
+  "qa_audit": {
+    "client_brand": "Harlan Home Lending",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — \"HARLAN HOME LENDING\" is an invented mortgage lender; only real names are Upwork (platform), Adobe tools, and real geographic places (Solano County / Vacaville / Fairfield / Benicia), none of which are client brands or trademarks.",
+    "doable_verdict": "issue",
+    "doable_note": "The executable connector_workflow is fully doable: n=8 was correctly fixed from image_generative_expand to image_crop_and_resize (reframe only). BUT stale banned-capability language survives in descriptive fields: the hero_property_banner OUTPUT spec (line 60) still requires \"canvas extended via generative outpaint on sky/foreground,\" and chaining_note (line 329) still says \"generative_expand consumes it for the banner (8).\" The deliverable spec thus still demands a banned generative-outpaint result even though the workflow no longer produces one.",
+    "realism_verdict": "realistic",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Otherwise complete and well-formed: one deliverable set, clear full_brief, inputs with realism_notes, outputs with specs, coherent output→input chain, reverify present. Blemish: internal inconsistency — hero_property_banner output spec and chaining_note still describe generative outpaint, contradicting the fixed n=8 image_crop_and_resize step. Both should be reworded to \"cropped/resized reframe, no invented pixels.\"",
+    "overall": "minor",
+    "top_issue": "Stale \"generative outpaint\" language in the hero_property_banner output spec (and chaining_note) contradicts the fixed n=8 image_crop_and_resize step — the deliverable spec still nominally demands a banned capability; reword both to a reframe/crop-resize description."
+  },
+  "where_to_read_full_findings": [
+    "TASK_QUALITY_AUDIT.md (locate this task id in the kill-list or STRENGTHEN groups)",
+    "TASK_QUALITY_AUDIT_exemplar_rechallenge.md (per-task lens verdicts + the 6-point bar)"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "AO-85",
+  "disposition": "REPLACE",
+  "current_spec_file": "AO-85_ironclad-parts-catalog-prepress-spec-aud.json",
+  "qa_audit": {
+    "client_brand": "Ironclad Elevator & Electrical Supply",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "Fictional. \"Ironclad Elevator & Electrical Supply\" is an invented client replacing the real \"Beta Electrical Supply\" from the source Upwork brief. The bare word \"Ironclad\" matches a real contract-management SaaS company, but that firm is in an unrelated legal-tech industry and the full elevator/electrical-parts-distributor brand carries no confusing collision. Upwork named only as the source freelance platform (allowed).",
+    "doable_verdict": "issue",
+    "doable_note": "Step 10 uses asset_preview_file to pull \"only the flagged pages\" of the proof PDF into a new subset flagged-pages PDF. Preview tools generate previews of a file; extracting/subsetting specific pages into a new multi-page PDF is a page-selection/split operation the preview tool does not natively perform, so the tool mapping is imperfect. The operation itself is benign and non-generative (no annotations drawn, no new content), so this is a mapping stretch, not a banned capability. All other steps (create folders, upload init/finalize, document_merge_data_layout [T] on client-authored .indd, document_render_layout, document_convert_pdf, asset_preview_file/inline_preview inspect, media_summarize [A], local write/zip) are real connector-doable actions with no banned capability.",
+    "realism_verdict": "realistic",
+    "value_verdict": "high",
+    "presentation_verdict": "good",
+    "presentation_note": "Complete and well-formed: one specific deliverable (audit package zip), detailed full_brief, four inputs with realism_notes, five outputs with specs, a coherent unbroken output->input connector_workflow chain, chaining_note, difficulty_rationale, and a reverify block (severity pass) that even documents feasibility fixes applied. The seeded data defects (blank cells, long part codes, section-count mismatch) plus the acceptance rule in brand_kit_note give the audit a concrete, objectively-checkable rubric.",
+    "overall": "minor",
+    "top_issue": "Step 10's use of asset_preview_file to extract only the flagged pages into a new subset PDF is an imperfect tool mapping (page-selection/split is not a preview-tool capability); the underlying operation is benign and non-generative, so it is a small fixable nit rather than a task-breaker."
+  },
+  "where_to_read_full_findings": [
+    "TASK_QUALITY_AUDIT.md — find this id in THE KILL LIST; its row names a concrete replacement design for the slot",
+    "REBUILD_GROUND_TRUTH.md and REBUILD_HARDNESS_BAR.md — the doability boundary + the bar"
+  ]
+}

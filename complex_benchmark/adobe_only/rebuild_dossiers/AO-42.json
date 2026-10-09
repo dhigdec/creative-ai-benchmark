@@ -1,0 +1,22 @@
+{
+  "id": "AO-42",
+  "disposition": "REPLACE",
+  "current_spec_file": "AO-42_overdrive-logo-production-variants-vector-brand-kit.json",
+  "qa_audit": {
+    "client_brand": "OVERDRIVE (scholarship-focused merch brand)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "Fictional. \"OVERDRIVE\" is a generic English dictionary word used as an invented scholarship-merch brand persona (grounded in an Upwork-style brief); not tied to or confusingly close to a specific real trademark. Only allowed real names appear as channels (social PFPs, hoodies) and the Adobe platform.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "All 14 steps are real connector actions with no banned capability. Fills are SOLID-color only (#000/#FFF/navy tint), bg-removal/crop/select/vectorize/mono-tint/font_recommend/firefly_board all allowed; step 14 is the one permitted local zip. Spec explicitly excludes from-scratch logo gen, AI object removal, compositing, and upscaling. Caveat: step 11 builds a multi-swatch palette via a single image_fill_area call — still solid-fill (not banned gen-fill) but over-claimed, since one fill_area is one selection + one color; realistically needs a built canvas with select + multiple fills.",
+    "realism_verdict": "realistic",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Complete and well-formed: one deliverable set, clear full_brief, inputs with realism_notes, outputs with specs, coherent output→input chain, reverify present, honest scoping note. Two minor weaknesses (both already caught in reverify): (1) step 13 create_firefly_board consumes overdrive_hoodie_mock.jpg as a tile, but that raw input is never uploaded via a connector step (only the logo lockup is uploaded in steps 1-2) — the board consumes asset URNs, so the hoodie needs its own upload step; (2) step 11 palette-swatch fill is loosely specified/over-claimed as one fill_area call.",
+    "overall": "minor",
+    "top_issue": "Chaining gap: the hoodie mock is added to the Firefly usage board (step 13) but is never uploaded via a connector step, so it has no referenceable asset URN — needs an explicit upload step. Also step 11's multi-swatch palette in a single fill_area is over-claimed. Both minor/fixable; no IP, banned-capability, or doability failure."
+  },
+  "where_to_read_full_findings": [
+    "TASK_QUALITY_AUDIT.md — find this id in THE KILL LIST; its row names a concrete replacement design for the slot",
+    "REBUILD_GROUND_TRUTH.md and REBUILD_HARDNESS_BAR.md — the doability boundary + the bar"
+  ]
+}

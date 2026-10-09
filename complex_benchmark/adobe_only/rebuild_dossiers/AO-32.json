@@ -1,0 +1,22 @@
+{
+  "id": "AO-32",
+  "disposition": "STRENGTHEN-to-exemplar",
+  "current_spec_path": "complex_benchmark/adobe_only/specs/AO-32_modern-house-listing-photo-grade.json",
+  "qa_audit": {
+    "client_brand": "Generic unnamed \"landlord\" client (no brand/persona name); channels = Airbnb, Zillow; source = Freelancer.com",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — no named client brand at all (a generic landlord); Airbnb/Zillow are allowed delivery platforms and Freelancer.com is the allowed source, none are the client",
+    "doable_verdict": "fully_doable",
+    "doable_note": "all steps connector-doable — image_fill_area used strictly as SOLID matched-RGB fill for scuff/dust (steps 8,16 explicitly \"solid fill only, NOT generative\"), selective brightening via select_by_prompt→adjust_light_portions is the allowed masked tonal edit; no gen-fill, upscaling, text-to-image, or reconstruction anywhere",
+    "realism_verdict": "realistic",
+    "value_verdict": "high",
+    "presentation_verdict": "good",
+    "presentation_note": "Complete and well-formed: one deliverable set, verbatim-grounded full_brief, inputs with realism_notes, outputs with specs, coherent output→input chain, reverify present. Minor nit (self-flagged in reverify): living_room_full.tif and bedroom_full.tif are asserted as the \"un-resized master at native resolution\" rather than produced by a discrete export step (only kitchen_full.tif is a literal step output), and TIFF is not an explicitly enumerated connector export format — an export-naming nuance, not a capability violation.",
+    "overall": "pass",
+    "top_issue": "none (only a cosmetic TIFF-export naming nuance: two of the three full-res TIFF outputs are the un-resized graded masters rather than discrete export-call outputs)"
+  },
+  "where_to_read_full_findings": [
+    "TASK_QUALITY_AUDIT.md (locate this task id in the kill-list or STRENGTHEN groups)",
+    "TASK_QUALITY_AUDIT_exemplar_rechallenge.md (per-task lens verdicts + the 6-point bar)"
+  ]
+}

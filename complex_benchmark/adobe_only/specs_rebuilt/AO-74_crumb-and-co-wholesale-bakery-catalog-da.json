@@ -1,0 +1,423 @@
+{
+  "slot_id": "L01",
+  "category": "datamerge_print",
+  "title": "Thornfield & Rye Bakehouse wholesale line sheets: neutralize ten mixed-light product shots to an in-frame grey card, prep + vectorize the wordmark, and data-merge one press-ready sell sheet per SKU",
+  "slug": "thornfield-and-rye-wholesale-line-sheets-datamerge",
+  "vertical": "retail_ecommerce",
+  "source": {
+    "platform": "Freelancer.com",
+    "reference": "Bakery B2B Catalog Development"
+  },
+  "grounding_note": "Adapted from a real Freelancer.com bakery B2B brief (a wholesale bakery wanting distributor-facing product material with 'comprehensive product descriptions, detailed pricing, and high-quality images for every product') and laundered to a fictional brand, 'Thornfield & Rye Bakehouse' — no real company, product, or trademark is named. REPOSITIONED for connector reality: the original brief implied a multi-product grid CATALOG, which is NOT connector-doable — document_merge_data_layout emits exactly ONE FILE PER ROW and cannot place several records on one page, and convert_pdf_to_indd output will not bind merge fields. So the client is modeled as needing what the merge tool genuinely produces: a per-SKU wholesale LINE SHEET (one letter-size single-record sell sheet per product) for the sales binder. The client supplies a genuinely hand-authored InDesign single-record line-sheet template (.indd, NOT a converted PDF) carrying live <<fields>> and TWO @-prefixed image-path columns (one for the product photo, one for the masthead wordmark), the roster as a CSV, ten raw product photos shot across two sessions under mismatched light with a photographic 18% grey card laid in frame, and a flat wordmark scan on off-white stock. The Adobe chain does the real work the brief rewards: neutralize every photo to its own in-frame grey card so the whole set shares one white point, hold a house warmth without wrecking any product's true color, recolor the holiday gift-box ribbon for a seasonal colorway without a reshoot, prep-and-vectorize the scanned wordmark, then run the authored template through a one-file-per-row data-merge and export a press-ready PDF per SKU.",
+  "one_line_ask": "Neutralize ten mixed-lighting bakery product photos to the 18% grey card each one carries so they read as one matched set, decide per frame how far to move white balance without killing any product's genuine color, recolor a gift-box ribbon to a seasonal colorway without reshooting, prep and vectorize the scanned wordmark, then data-merge the client's authored single-record InDesign template against the roster to produce one press-ready line sheet per SKU.",
+  "full_brief": "Thornfield & Rye Bakehouse sells to cafes and grocers wholesale and needs a per-product sell sheet for its distributor binder — one clean letter-size sheet per SKU, each carrying the product's name, code, description, case pack, and wholesale price alongside a high-quality photo, with the bakehouse wordmark crisp at the top. We are NOT reshooting. We are handing you ten existing product photos, and here is the problem: they were shot over two mornings under different light — some under cool fluorescents, some under warm window light, a couple underexposed, one overexposed — so straight out of the folder they look like a mismatched jumble, and a binder of mismatched shots reads cheap. To make this checkable we laid a photographic 18% grey card into the corner of every shot. Your job on the photos: bring every image to a consistent, true-to-product look by neutralizing each one to the grey card it contains — the card must read as a clean neutral grey (equal across the channels) in your finished frame, and once every card is neutral the whole set will share one white point. Hold a subtle warm bakehouse feel in the final look, but do NOT force one blanket correction across the batch: each photo was lit differently and needs its own white-balance, exposure, and tone decision to land on the shared target. Be careful — at least one product is genuinely golden (the butter croissant is supposed to look warm and brown); if its grey card already reads neutral, do not 'cool' it chasing an imagined blue cast, or you will strip the color the client is selling. When you are done, tell us the final white-balance and exposure moves you made on each frame so we can confirm they are matched, not eyeballed. Second, a color variant without a reshoot: on the holiday gift-box hero, our ribbon is currently a bright red — give us a deeper seasonal oxblood/burgundy version of the same shot (a rich, dark wine-red in the SAME color family, just deepened and slightly muted — not a jump to a far-off hue), and the recolor has to sit under the real folds, highlights and shadows of the ribbon. No flat dead-fill color, no whole-image tint that bleeds onto the box and the baked goods — just the ribbon, with its sheen and shadow intact. Third, our wordmark only exists as a flat scan on off-white paper — get it clean and razor-sharp for the sheet header (it must not look like a fuzzy scan when printed). Finally, build the sheets: we have hand-built the InDesign line-sheet template with the real placeholder fields and two image slots (one for the product photo, one for the wordmark at the top of the sheet), and we are giving you the roster; merge them so every SKU gets its own single-page sheet with its copy bound, its matching graded photo dropped in, and the crisp wordmark dropped into the masthead, then hand back one press-ready ~300 DPI US Letter PDF covering every SKU (one page per SKU, the Holiday Gift Box hero simply among them). Bind the copy verbatim from the roster — do not rewrite our descriptions or prices. Acceptance: every grey card neutral (channel spread within a hair of zero) and the whole set matched to one white point; the ribbon recolor natural under the existing light; the wordmark crisp vector; and exactly one finished sheet per roster row.",
+  "inputs": [
+    {
+      "name": "thornfield_linesheet_template.indd",
+      "kind": "data",
+      "gen_model": "n/a-authored-asset",
+      "gen_prompt": "AUTHORED DELIVERABLE (cannot be model-generated): a genuine, hand-built Adobe InDesign document (.indd/.idml) for a SINGLE-RECORD US Letter (8.5x11) portrait wholesale line sheet — ONE product per page. It must contain live InDesign data-merge placeholder fields <<product_name>>, <<sku>>, <<description>>, <<case_pack>>, <<wholesale_price>>, and TWO @-prefixed image-path merge columns wired to two separate image frames: a product image frame bound to @image (the matching graded photo), and a masthead image frame at the top of the sheet bound to @Wordmark (the vectorized bakehouse wordmark). Because free-form image-at-coordinates placement is banned, the wordmark reaches the masthead ONLY as a merge bind through this second image frame — it is not dropped in by hand. Built by hand in InDesign so the merge fields and BOTH image fields actually bind. Explicitly NOT a convert_pdf_to_indd output and NOT a multi-record grid: document_merge_data_layout emits one file per row, so the template holds exactly one record's worth of fields; a converted-PDF template or a multi-up grid would not bind / cannot be produced.",
+      "realism_notes": "document_merge_data_layout is [T] and REQUIRES a user-authored .indd carrying real merge fields plus genuine @image-path columns, and it produces ONE FILE PER ROW — so a single-record line sheet is the correct, connector-doable shape. Supplied as an input, not a chain output; a PDF-converted .indd with literal typed text would not bind. TWO image columns (@image, @Wordmark) mean the merge resolves two prepped assets per row — the row's graded product photo AND the shared vectorized wordmark — so the chain-produced wordmark has a real, connector-doable path onto every sheet without any free-form placement."
+    },
+    {
+      "name": "thornfield_wholesale_roster.csv",
+      "kind": "data",
+      "gen_model": "gemini-2.5-flash",
+      "gen_prompt": "Generate a CSV with columns product_name,sku,description,case_pack,wholesale_price,@image,@Wordmark holding 10 wholesale bakery rows, one per SKU: Country Sourdough Boule, Seeded Deli Rye, Rustic Baguette, Butter Croissant, Pain au Chocolat, Cinnamon Morning Roll, Rosemary Focaccia, Holiday Gift Box, Vanilla Bean Shortbread, Pistachio Macaron Box. Each row carries a keyword-rich one-to-two-line B2B product description, a SKU code (e.g. TR-BRD-014), a case-pack quantity (e.g. 'Case of 12'), and a US-dollar wholesale price (e.g. $28.00 / case). The @image column names the matching prepped photo file (e.g. @sourdough_graded.jpg) so the [T] merge drops each graded photo into that row's single-record sheet. The @Wordmark column holds the SAME vectorized wordmark file — @thornfield_wordmark.svg — in EVERY row, so the merge drops the one shared masthead mark onto every SKU's sheet as a merge bind (never free-form placement). Column names must exactly match the template merge fields <<product_name>>,<<sku>>,<<description>>,<<case_pack>>,<<wholesale_price>> and the two @image-path columns @image and @Wordmark.",
+      "realism_notes": "Honors the brief's 'comprehensive product descriptions' + 'detailed pricing'; headers match the authored .indd fields and BOTH @-image columns so the one-file-per-row [T] merge binds copy, the correct photo, AND the shared wordmark per SKU. @Wordmark carries the identical vectorized SVG path in all ten rows, giving the chain-produced wordmark a connector-doable path onto every sheet via the merge (mirrors AO-75's two-image-column pattern). Ten rows => the merge must produce exactly ten finished sheets."
+    },
+    {
+      "name": "raw_product_photos_x10.zip",
+      "kind": "image",
+      "gen_model": "real-camera-capture",
+      "gen_prompt": "A set of 10 REAL full-frame DSLR/mirrorless camera captures of wholesale bakery products, each ~4000-4500 px on the long edge (full-resolution stills straight off the camera, roughly 4000x4000 or larger before crop), each with a photographic 18% grey card laid flat in one corner of the frame as a neutral reference. Shot across two mornings under mismatched light: (1) round country sourdough boule, cool bluish fluorescent cast, frame tilted ~4 deg; (2) dark seeded deli rye loaf, cool cast, level; (3) rustic baguette, near-neutral light but frame tilted ~3 deg; (4) flaky butter croissant that is GENUINELY deep golden-brown, shot under near-neutral light so its grey card already reads neutral (the warmth is the real product, not a white-balance error); (5) pain au chocolat under warm tungsten light, tilted ~3 deg; (6) glazed cinnamon morning roll, warm window light, level; (7) rosemary focaccia, cool cast, tilted ~4 deg; (8) a holiday gift box of assorted bakes tied with a bright RED satin ribbon, mixed window+warm light, level (hero for the ribbon recolor); (9) vanilla bean shortbread rounds, flat and underexposed; (10) a box of pistachio macarons, slightly overexposed and warm. Every shot has real crumb/crust/glaze/fabric texture, cluttered bakery-counter surroundings, candid documentary feel, no studio gloss, no CGI. The grey card is clearly visible and uncropped in each.",
+      "realism_notes": "REAL-CAMERA capture at ~4000-4500 px long edge (NOT an AI-gen ~1024-1536 px raster) precisely so each 1:1 square crop can fill the line-sheet image frame at ~300 DPI by DOWNSCALE ONLY — no upscaling anywhere in the chain. Deliberately mismatched (per-frame WB, exposure, and tilt vary) so a single blanket correction cannot fix the set — each frame needs its own decision. The in-frame 18% grey card is the free, checkable neutral target. Photo 4 is the trap: its warmth is real product color and its card is already neutral, so cooling it is wrong. Photo 8 carries the red ribbon for the masked recolor. Delivered as a zip of 10 individually addressable full-resolution JPEGs."
+    },
+    {
+      "name": "thornfield_wordmark_scan.png",
+      "kind": "image",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "A flat desktop scan of the 'Thornfield & Rye Bakehouse' wordmark inked on off-white textured paper: a warm hand-lettered serif with a small wheat-sheaf mark, deep espresso-brown letters. Rendered as a scan — the paper is a slightly warm off-white (NOT transparent, NOT pure white), the whole thing sits very slightly rotated (~2 deg) on the scan bed, there is extra paper margin around the mark, and edges are a touch soft as a real scan would be. High enough contrast that, once cleaned, it will vectorize cleanly.",
+      "realism_notes": "Scanned-on-paper (off-white ground, slight rotation, margin, soft edges) so image_vectorize would trace the paper and the skew if fed raw — forcing genuine prep-before-trace: straighten, boost contrast/crispness, crop to the mark, knock the off-white ground to transparency, THEN vectorize. gemini-3-pro-image for clean legible lettering."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Thornfield_LineSheets_perSKU_x10.pdf",
+      "kind": "pdf",
+      "spec": "Exactly ten press-ready US Letter (8.5x11) portrait line sheets — ONE single-record sheet per roster row (page-count = row-count = 10) — exported from the one-file-per-row InDesign data-merge; each sheet binds its product_name/sku/description/case_pack/wholesale_price verbatim from the roster with its matching grey-card-neutralized 1:1 photo dropped into the product image frame (via @image) and the vectorized wordmark dropped into the masthead image frame (via @Wordmark) — both by merge bind, never free-form placement; ~300 DPI print quality."
+    },
+    {
+      "name": "graded_product_photos_x10",
+      "kind": "image",
+      "spec": "Ten grey-card-neutralized, straightened bakery product photos, delivered as the product-framed 1:1 crops (grey card cropped OUT) that bind into the merge, alongside their RETAINED pre-crop neutralized masters (the *_neutralized full-res frames, grey card still in frame) which the harness keeps as the neutrality-grading artifacts. Acceptance (grader-checked, two SEPARATE claims): (a) neutralisation is graded on the RETAINED pre-crop neutralized master of each frame (the *_neutralized output, its in-frame 18% grey card still present) — the card region reads a clean neutral (per-channel spread near zero) with the whole set matched to one shared white point while holding a subtle warm bakehouse tone, and true-to-product (no product's genuine color forced off); (b) card-exclusion is checked separately on each delivered product-framed 1:1 crop (the *_graded output that binds into that SKU's sheet) — it is framed on the product with the grey card fully cropped OUT (no card pixels present). The neutrality tolerance is never evaluated on the product crop. Accompanied by a report of the final white-balance and exposure move applied to each frame."
+    },
+    {
+      "name": "variant_giftbox_ribbon_burgundy.jpg",
+      "kind": "image",
+      "spec": "Recolored variant of the Holiday Gift Box hero: the bright red satin ribbon deepened to the seasonal oxblood/burgundy house color via a masked, luminosity-preserving image_adjust_hsl pass pair (a small within-family hue nudge plus a saturation/luminance drop that darkens and mutes the red — an in-band adjacent shift, no near-complementary rotation) riding the ribbon's existing luminosity, so its folds, sheen highlights and cast shadow stay natural and the box and baked goods are untouched — no whole-image overlay, no flat fill."
+    },
+    {
+      "name": "thornfield_wordmark.svg",
+      "kind": "vector",
+      "spec": "Clean vector SVG of the wordmark, traced only after the scan is straightened, crisped, cropped to the mark, and knocked to transparency — razor-sharp at masthead scale with no captured paper ground or skew."
+    }
+  ],
+  "connector_workflow": [
+    {
+      "n": 1,
+      "tool": "image_auto_straighten",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "raw_product_photos_x10.zip#01_sourdough",
+      "output": "sourdough_straight",
+      "note": "Triage: this frame is tilted ~4 deg, so level it first. (Only the tilted frames 1/3/5/7 get straightened; the level frames skip this — deciding which is part of the job.)"
+    },
+    {
+      "n": 2,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "sourdough_straight",
+      "output": "sourdough_neutralized",
+      "note": "Cool bluish cast: WARM it (positive temperature) and set tint until the in-frame 18% grey card reads neutral (R=G=B), then set exposure/highlights/shadows so the card sits at mid-grey and hold a subtle warm bakehouse tone with a touch of vibrance/clarity. Reason the exact temperature/exposure to the card — do NOT reuse another frame's numbers. Report the final move. Single primitive-built adjustments call (replaces the deprecated image_adjust_color_temperature / _vibrance_and_saturation)."
+    },
+    {
+      "n": 3,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "sourdough_neutralized",
+      "output": "sourdough_graded",
+      "note": "Crop the neutralized frame to the 1:1 square the line-sheet image frame expects, framing on the product with the grey card cropped OUT — this product crop (card removed) is what binds into the sheet. The pre-crop neutralized master (sourdough_neutralized, grey card still in frame) is RETAINED by the harness as the neutrality-grading artifact; the card's neutrality is graded THERE, never on this product crop, and card-exclusion is the separate check on this crop. onSubjectClipping='extract', downscale-only, never generative-expand."
+    },
+    {
+      "n": 4,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "raw_product_photos_x10.zip#02_rye",
+      "output": "rye_neutralized",
+      "note": "Level frame, cool cast: warm to neutralize its grey card and match the shared white point established on frame 1; rye is dark, so lift shadows carefully without crushing. Distinct numbers from frame 1 because the light differed. Report the move."
+    },
+    {
+      "n": 5,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "rye_neutralized",
+      "output": "rye_graded",
+      "note": "Crop to the 1:1 line-sheet frame. onSubjectClipping='extract', downscale-only."
+    },
+    {
+      "n": 6,
+      "tool": "image_auto_straighten",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "raw_product_photos_x10.zip#03_baguette",
+      "output": "baguette_straight",
+      "note": "Tilted ~3 deg — level it."
+    },
+    {
+      "n": 7,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "baguette_straight",
+      "output": "baguette_neutralized",
+      "note": "Near-neutral light: its grey card is close to neutral, so only a small WB nudge is needed to land on the shared white point — over-correcting would push it off the set. Set exposure to match set brightness, hold the warm tone. Report the (small) move."
+    },
+    {
+      "n": 8,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "baguette_neutralized",
+      "output": "baguette_graded",
+      "note": "Crop to the 1:1 line-sheet frame. onSubjectClipping='extract', downscale-only."
+    },
+    {
+      "n": 9,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "raw_product_photos_x10.zip#04_croissant",
+      "output": "croissant_neutralized",
+      "note": "THE TRAP FRAME. The croissant is genuinely deep golden-brown and it was shot under near-neutral light, so its in-frame grey card ALREADY reads neutral. The correct move is essentially NO white-balance shift (only match exposure/brightness to the set). A naive agent that batch-applies the same 'warm the cool cast' correction used on frames 1/2/7, or that 'cools an imagined blue cast', will neutralize the card off-neutral and strip the product's real color. Decision must be driven by THIS card, not the batch. Report that WB was held."
+    },
+    {
+      "n": 10,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "croissant_neutralized",
+      "output": "croissant_graded",
+      "note": "Crop to the 1:1 line-sheet frame. onSubjectClipping='extract', downscale-only."
+    },
+    {
+      "n": 11,
+      "tool": "image_auto_straighten",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "raw_product_photos_x10.zip#05_pain_au_chocolat",
+      "output": "pac_straight",
+      "note": "Tilted ~3 deg under warm tungsten — level it."
+    },
+    {
+      "n": 12,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "pac_straight",
+      "output": "pac_neutralized",
+      "note": "Warm tungsten cast: this frame must move the OPPOSITE direction from the cool frames — COOL it (negative temperature) until its grey card reads neutral and it matches the shared white point. Adaptive: the batch is not uniformly cool, so a blanket 'warm everything' pass fails here. Report the move."
+    },
+    {
+      "n": 13,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "pac_neutralized",
+      "output": "pac_graded",
+      "note": "Crop to the 1:1 line-sheet frame. onSubjectClipping='extract', downscale-only."
+    },
+    {
+      "n": 14,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "raw_product_photos_x10.zip#06_cinnamon_roll",
+      "output": "cinnamon_neutralized",
+      "note": "Warm window light, level: cool toward neutral against its grey card to the shared white point; protect the glaze highlights from clipping. Report the move."
+    },
+    {
+      "n": 15,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "cinnamon_neutralized",
+      "output": "cinnamon_graded",
+      "note": "Crop to the 1:1 line-sheet frame. onSubjectClipping='extract', downscale-only."
+    },
+    {
+      "n": 16,
+      "tool": "image_auto_straighten",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "raw_product_photos_x10.zip#07_focaccia",
+      "output": "focaccia_straight",
+      "note": "Tilted ~4 deg, cool cast — level it."
+    },
+    {
+      "n": 17,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "focaccia_straight",
+      "output": "focaccia_neutralized",
+      "note": "Cool cast: warm to neutralize its grey card to the shared white point; keep the rosemary green true (don't oversaturate). Report the move."
+    },
+    {
+      "n": 18,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "focaccia_neutralized",
+      "output": "focaccia_graded",
+      "note": "Crop to the 1:1 line-sheet frame. onSubjectClipping='extract', downscale-only."
+    },
+    {
+      "n": 19,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "raw_product_photos_x10.zip#08_giftbox",
+      "output": "giftbox_neutralized",
+      "note": "Hero. Mixed window+warm light: neutralize its grey card to the shared white point (a modest correction). This graded full-res frame feeds BOTH the 1:1 crop for the sheet AND the ribbon-recolor branch, so keep it before cropping. Report the move."
+    },
+    {
+      "n": 20,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "giftbox_neutralized",
+      "output": "giftbox_graded",
+      "note": "Crop the neutralized hero to the 1:1 line-sheet frame (the red-ribbon version that binds into the Holiday Gift Box sheet). onSubjectClipping='extract', downscale-only."
+    },
+    {
+      "n": 21,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "raw_product_photos_x10.zip#09_shortbread",
+      "output": "shortbread_neutralized",
+      "note": "Flat and underexposed: LIFT exposure and add contrast/clarity, then neutralize its grey card to the shared white point. The dominant move here is tonal, not WB — different problem from the cool/warm frames. Report the move."
+    },
+    {
+      "n": 22,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "shortbread_neutralized",
+      "output": "shortbread_graded",
+      "note": "Crop to the 1:1 line-sheet frame. onSubjectClipping='extract', downscale-only."
+    },
+    {
+      "n": 23,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "raw_product_photos_x10.zip#10_macaron",
+      "output": "macaron_neutralized",
+      "note": "Overexposed and warm: PULL exposure/highlights down to recover the blown box, then cool to neutralize its grey card to the shared white point. Opposite tonal AND WB direction from frame 9 — proving the batch needs per-frame reasoning. Report the move."
+    },
+    {
+      "n": 24,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "macaron_neutralized",
+      "output": "macaron_graded",
+      "note": "Crop to the 1:1 line-sheet frame. onSubjectClipping='extract', downscale-only. Frames 1-10 now share one white point, each neutralized to its own grey card."
+    },
+    {
+      "n": 25,
+      "tool": "image_select_by_prompt",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "giftbox_neutralized",
+      "output": "ribbon_mask",
+      "note": "On the graded full-res hero, semantically select only the red satin ribbon ('the red satin ribbon tied around the gift box'). Isolates the recolor to the part so the box and baked goods are untouched. Returns a maskURI. Not a hue/coordinate selection — a real object."
+    },
+    {
+      "n": 26,
+      "tool": "image_adjust_hsl",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "giftbox_neutralized, ribbon_mask",
+      "output": "ribbon_hue_shifted",
+      "note": "Masked recolor pass 1 (consumes hero + ribbon mask): keep the ribbon in the red family but deepen it toward oxblood — a small within-band hue nudge (well under ~60 deg, staying in red/wine; NOT a near-complementary rotation) together with a luminance drop that darkens the satin, letting the ribbon's existing luminosity carry the folds, sheen highlights and cast shadow. Confined to the mask. image_adjust_hsl is the ONLY masked recolor path; image_apply_color_overlay is whole-image (would tint the whole box) and image_fill_area is flat solid dead-fill (kills the satin sheen) — both are wrong here."
+    },
+    {
+      "n": 27,
+      "tool": "image_adjust_hsl",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "ribbon_hue_shifted, ribbon_mask",
+      "output": "ribbon_burgundy_fullres",
+      "note": "Masked recolor pass 2 (same mask): trim the red-band saturation and settle the luminance so the ribbon lands on the rich oxblood/burgundy house target instead of a flat brick or a still-bright candy red, still riding the original luminosity so the satin sheen and shadow stay natural. A deepen-and-mute in the same hue family, not a swing to a new hue."
+    },
+    {
+      "n": 28,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "ribbon_burgundy_fullres",
+      "output": "variant_giftbox_ribbon_burgundy.jpg",
+      "note": "Resize the finished oxblood/burgundy ribbon variant to the same web/sheet frame as the set. onSubjectClipping='extract', downscale-only."
+    },
+    {
+      "n": 29,
+      "tool": "image_auto_straighten",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "thornfield_wordmark_scan.png",
+      "output": "wordmark_deskewed",
+      "note": "Prep-before-trace step 1: the scan sits ~2 deg rotated on the bed — straighten so the vector edges are square. Feeding the raw skewed scan to vectorize would bake in the rotation."
+    },
+    {
+      "n": 30,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "wordmark_deskewed",
+      "output": "wordmark_crisped",
+      "note": "Prep-before-trace step 2: push contrast/clarity and drop the off-white paper toward white so the espresso lettering separates hard from the ground — a soft low-contrast scan traces into ragged, doubled edges."
+    },
+    {
+      "n": 31,
+      "tool": "image_crop_to_bounds",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "wordmark_crisped",
+      "output": "wordmark_cropped",
+      "note": "Prep-before-trace step 3: crop away the scan margin to the tight bounds of the mark so vectorize traces only the wordmark, not the paper field."
+    },
+    {
+      "n": 32,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "wordmark_cropped",
+      "output": "wordmark_knockout",
+      "note": "Prep-before-trace step 4: knock the off-white paper ground to transparency so the trace captures the letterforms only, not a rectangle of paper. remove_background -> transparency (NOT select->invert->fill)."
+    },
+    {
+      "n": 33,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "wordmark_knockout",
+      "output": "thornfield_wordmark.svg",
+      "note": "Now trace the prepared raster (straightened, crisped, cropped, transparent) into a clean SVG for the masthead. Tracing the raw scan instead would produce a skewed, paper-bounded, fuzzy silhouette — the trap this prep chain avoids."
+    },
+    {
+      "n": 34,
+      "tool": "asset_initialize_file_upload",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "sourdough_graded, rye_graded, baguette_graded, croissant_graded, pac_graded, cinnamon_graded, focaccia_graded, giftbox_graded, shortbread_graded, macaron_graded, thornfield_wordmark.svg",
+      "output": "upload_session",
+      "note": "Initialize an upload session for the ten grey-card-neutralized 1:1 photos plus the vector wordmark so the merge can resolve them by the @image column (per-row product photo) and the @Wordmark column (the shared masthead mark). Files uploaded under the exact names the roster references (e.g. thornfield_wordmark.svg for @Wordmark)."
+    },
+    {
+      "n": 35,
+      "tool": "asset_finalize_file_upload",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "upload_session",
+      "output": "uploaded_asset_urns",
+      "note": "Finalize the upload; returns the asset URNs the roster's @image and @Wordmark columns resolve to — the per-SKU graded photo and the shared vectorized wordmark — for each single-record sheet's product frame and masthead frame."
+    },
+    {
+      "n": 36,
+      "tool": "document_merge_data_layout",
+      "server": "adobe",
+      "exec_mode": "T",
+      "inputs_from": "thornfield_linesheet_template.indd, thornfield_wholesale_roster.csv, uploaded_asset_urns",
+      "output": "linesheets_merged_set",
+      "note": "One-file-per-row InDesign data-merge: bind each of the ten roster rows (product_name/sku/description/case_pack/wholesale_price) into the authored SINGLE-RECORD .indd's live <<fields>> and resolve BOTH image columns per row — drop that row's graded photo into the @image product frame AND the vectorized wordmark (from @Wordmark, the same SVG in every row) into the masthead frame — producing EXACTLY ONE merged sheet per row (ten sheets). Binding the wordmark through the @Wordmark image column is what puts it on the sheet: free-form image-at-coordinates placement is banned, so the merge is its only connector-doable path. [T] requires the hand-authored template with its two merge-wired image frames. This is the correct shape for this tool — a multi-record grid catalog is impossible here, and a convert_pdf_to_indd template would not bind."
+    },
+    {
+      "n": 37,
+      "tool": "document_render_layout",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "linesheets_merged_set",
+      "output": "Thornfield_LineSheets_perSKU_x10.pdf",
+      "note": "Export the merged single-record sheets to press-ready ~300 DPI US Letter PDF, one sheet per SKU. document_render_layout exports the WHOLE merged multi-page document (all ten sheets, one page per SKU) in a single call — it cannot export one named record on its own, so the Holiday Gift Box hero is simply one page of this set, not a separate file. Acceptance: page-count = row-count = 10; if fewer, the merge collapsed rows and failed."
+    }
+  ],
+  "tools_used": [
+    "image_auto_straighten",
+    "image_apply_adjustments",
+    "image_crop_and_resize",
+    "image_select_by_prompt",
+    "image_adjust_hsl",
+    "image_crop_to_bounds",
+    "image_remove_background",
+    "image_vectorize",
+    "asset_initialize_file_upload",
+    "asset_finalize_file_upload",
+    "document_merge_data_layout",
+    "document_render_layout"
+  ],
+  "tool_call_count": 37,
+  "distinct_adobe_tools": 12,
+  "chaining_note": "Strict output-to-input chaining throughout. Ten per-photo grade sub-chains fan out from the raw zip, each an image_apply_adjustments neutralization (adaptive per frame: warm the cool frames 1/2/7, cool the warm frames 5/6/10, hold WB on the genuinely-golden croissant 4, lift exposure on the flat shortbread 9, recover the overexposed macaron 10) followed by a 1:1 crop, with image_auto_straighten inserted only on the tilted frames 1/3/5/7 — every neutralization is driven to that frame's own in-frame grey card so all ten converge on one shared white point. The hero's neutralized full-res frame (giftbox_neutralized, step 19) feeds BOTH its 1:1 crop (step 20) AND the recolor branch: image_select_by_prompt(25) -> masked image_adjust_hsl(26) -> masked image_adjust_hsl(27) -> resize(28), the two HSL passes both consuming the ribbon_mask. The wordmark runs a genuine prep-before-trace chain: straighten(29) -> crisp adjustments(30) -> crop_to_bounds(31) -> remove_background to transparency(32) -> vectorize(33). The ten graded photos and the wordmark SVG converge into the upload session(34) -> finalize(35) -> document_merge_data_layout(36), which also consumes the authored single-record .indd and the roster CSV and emits one merged sheet per row, resolving BOTH the @image column (that row's graded product photo) and the @Wordmark column (the shared vectorized wordmark, identical in every row) into the template's two merge-wired image frames — the only connector-doable path for the wordmark since free-form placement is banned. The merged set is exported once, by document_render_layout(37), to the single press-ready ~300 DPI US Letter PDF carrying all ten sheets (one page per SKU); no per-record named export is attempted since document_render_layout can only export the whole merged document. Nothing after the raw loads originates outside the chain.",
+  "difficulty_rationale": "Long-horizon flagship with difficulty from DEPTH, not plumbing: 37 connector calls, 12 distinct Adobe tools across three groups (image_* grading/masking/vectorize, asset_* storage, document_* merge/export), above the >=10 call / >=6 distinct-tool floor even after stripping the 2 upload steps. The core is not a repeated recipe: each of the ten neutralizations is a DIFFERENT reasoned decision (cool frames warmed, warm frames cooled, one genuinely-golden frame held, one underexposed frame lifted, one overexposed frame recovered) all forced to converge on a single measurable target — the in-frame 18% grey card — so a blanket batch correction cannot pass. Layered on top are a masked luminosity-preserving ribbon recolor (a within-family bright-red -> oxblood/burgundy deepen, an in-band adjacent shift image_adjust_hsl can actually hold — no near-complementary rotation) executed as two HSL passes (with a written rationale for why color_overlay and fill_area are both wrong), a genuine prep-before-trace vectorize of a skewed off-white scan, and a two-image-column one-file-per-row data-merge into a hand-authored single-record template (the row's graded photo via @image and the shared vectorized wordmark via @Wordmark, so the wordmark reaches the masthead as a merge bind rather than banned free-form placement). Respects every hard limit: no generative fill/expand, no text-to-image, no upscaling, no inpainting, no from-scratch layout; convert_pdf_to_indd is NOT used (the template is a supplied authored .indd); image_crop_and_resize is downscale-only with onSubjectClipping='extract'; deprecated image_adjust_color_temperature / _vibrance_and_saturation / _highlights / _brightness_and_contrast are replaced by image_apply_adjustments.",
+  "hardness_rationale": "FAILURE GATE: every photo carries a physical 18% grey card in frame and the acceptance criterion is that each frame's card, graded on its RETAINED pre-crop neutralized master (the *_neutralized full-res frame the harness keeps, grey card still present), reads a clean neutral (per-channel spread within a hair of zero) with the whole set matched to one white point — a target the agent can miss, and it must REPORT the final white-balance and exposure move per frame so 'matched' is verifiable rather than asserted; card-exclusion is a SEPARATE gate checked on the product-framed 1:1 crops (the *_graded outputs, grey card cropped OUT) that bind into the sheets, so the neutrality tolerance is never evaluated on the card-removed product crop; the merge adds a third checkable gate (output page-count must equal roster row-count = 10, since document_merge_data_layout is one-file-per-row). HUMAN-HARD ELEMENTS: (1) cross-asset neutralization of ten differently-lit shots to a common measurable white point, each needing its own opposite-direction correction; (2) a masked, luminosity-preserving bright-red->oxblood/burgundy ribbon recolor (a within-family deepen-and-mute — a small in-band hue nudge plus a saturation/luminance drop, an adjacent shift image_adjust_hsl can reliably hold rather than a near-complementary rotation) that must keep satin sheen and shadow natural using the only masked recolor path (image_adjust_hsl), not color_overlay (whole-image) or fill_area (flat dead-fill); (3) prep-before-trace discipline on a skewed, off-white, margin-padded wordmark scan (straighten->crisp->crop-to-bounds->knock-to-transparency) before vectorize. TRAP: the butter croissant (frame 4) is genuinely golden and was shot under neutral light, so its grey card is already neutral — the naive path batch-applies the same 'warm the cool cast' correction used on the other frames (or 'cools an imagined blue cast'), which pushes its card off-neutral and strips the real product color; the correct path reads THAT card and holds white balance. A second trap sits in the merge: attempting a multi-product grid catalog, or feeding a convert_pdf_to_indd template, both fail to bind/produce, and only the supplied single-record authored .indd merges correctly. MEASURABLE ACCEPTANCE (stated as decoupled claims so no artifact is graded on a region it crops away): (a) grey card neutral (channel spread near zero) and one shared white point, evaluated on all ten RETAINED pre-crop neutralized masters (card still in frame), never on a card-removed product crop; (b) card-exclusion checked separately on the ten product-framed 1:1 crops that bind into the sheets (grey card fully cropped OUT); plus the agent reports per-frame WB/exposure params, ribbon recolored within its mask only, wordmark a clean skew-free transparent-ground vector, and exactly one press-ready ~300 DPI US Letter sheet per roster row.",
+  "workflow_nature": "create-edit",
+  "reverify": "{\"severity\": \"pass\", \"banned_capability_check\": \"None of the banned capabilities are used. No generative AI: no text-to-image, no generative fill/expand (image_generative_expand not used), no AI object-removal-with-reconstruction/inpainting, no compositing of image A over image B, no upscaling/super-resolution, no bespoke font design. image_crop_and_resize is downscale-only reframe pinned to onSubjectClipping='extract' so it never routes to generative canvas expansion. convert_pdf_to_indd is NOT used and is not a merge target here: document_merge_data_layout [T] binds into a SUPPLIED hand-authored single-record .indd carrying real <<fields>> plus TWO genuine @image-path columns (@image for the per-row product photo, @Wordmark for the shared vectorized masthead wordmark), and it emits ONE FILE PER ROW (ten rows => ten sheets) — no multi-record-per-page grid is attempted (that was the killed original design). The wordmark reaches the masthead ONLY as a merge bind through the second image column; free-form image-at-coordinates placement is banned and is NOT used anywhere (mirrors AO-75's @Portrait/@TierBadge two-image-column pattern). document_render_layout [C] only EXPORTS the WHOLE merged multi-page document (all ten sheets, one page per SKU) in a single call — no per-record named export is attempted (the Holiday Gift Box hero is simply one page of the merged PDF, not a separately exported file). The ten raw product photos are REAL-CAMERA captures at ~4000-4500 px long edge, so every 1:1 crop fills the line-sheet frame at ~300 DPI by DOWNSCALE ONLY — no upscaling of the primary deliverable. The wordmark is a supplied scan only vectorized after non-generative prep (straighten/adjust/crop/remove_background-to-transparency), not generated. Recolor uses masked image_adjust_hsl (the only masked recolor path); image_apply_color_overlay (whole-image) and image_fill_area (flat solid fill) are deliberately NOT used. image_remove_background produces transparency, not a select->invert->fill knockout. Deprecated tools (image_adjust_color_temperature, image_adjust_vibrance_and_saturation, image_adjust_highlights, image_adjust_brightness_and_contrast) are replaced by image_apply_adjustments. No measurement tool (eyedropper/ruler/hex readout) is used — the grey card is a visual target the agent reasons to and reports, not a tool readout. All descriptions/prices bind verbatim from the roster CSV; no copywriting or price invention claimed.\", \"slot_match\": \"Rebuilt in-slot: slot_id L01, category datamerge_print, vertical retail_ecommerce, source.platform Freelancer.com preserved; id AO-74 preserved. The endpoint is still a data-merge/print deliverable (operation 'Layout & Data', output_modality document, workflow_nature create-edit), now connector-correct as one-file-per-row single-record line sheets rather than the impossible multi-record grid. Brand laundered to fictional 'Thornfield & Rye Bakehouse' — no real person/brand/org/trademark named anywhere. Counts reconciled to the array: 37 connector steps => tool_call_count=37; 12 distinct adobe tools => distinct_adobe_tools=12 (both above the >=10 / >=6 floors) even after stripping the 2 asset_* upload steps and the auto_straighten auto-ops.\", \"surgical_fix\": \"Gave the chain-produced vector wordmark a real, connector-doable path onto the delivered line sheets by adding a SECOND @-image merge column, exactly like AO-75's two-image-column (@Portrait/@TierBadge) pattern. Concretely: (1) the roster CSV now carries an @Wordmark column holding the SAME vectorized wordmark file (thornfield_wordmark.svg) in every one of the ten rows; (2) the authored .indd now has TWO merge-wired image frames — the product frame bound to @image and a masthead frame bound to @Wordmark — stated in the template input; (3) the merge step (36) now resolves BOTH @image (that row's graded product photo) and @Wordmark (the shared vectorized wordmark) per row, so the wordmark lands on every sheet as a MERGE BIND, never as banned free-form image-at-coordinates placement. The prior surgical fix is preserved intact: grey-card neutrality is still graded ONLY on the RETAINED pre-crop neutralized master of each frame (grey card in frame), with card-EXCLUSION a separate check on the product crop. Also preserved: the ten-shot divergent grey-card grade neutralized on the retained card-bearing master, the red->deep-burgundy masked recolor, the prep-before-trace vectorize (still the source of the wordmark SVG), the one-record-per-page single export, camera-scale sources, and the croissant trap. No connector steps were added or removed — the @Wordmark bind reuses the already-uploaded wordmark SVG — so tool_call_count=37 / distinct_adobe_tools=12 / tools_used remain reconciled to the unchanged 37-step array; no per-record named export and no upscaling introduced.\"}",
+  "id": "AO-74"
+}

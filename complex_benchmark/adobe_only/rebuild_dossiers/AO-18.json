@@ -1,0 +1,18 @@
+{
+  "id": "AO-18",
+  "disposition": "STRENGTHEN",
+  "current_spec_file": "AO-18_premium-dark-mode-restaurant-food-photo-.json",
+  "qa_audit": {
+    "client_brand": "Casa Polvo (logo wordmark) — a Portugal-based boutique digital agency client building a premium dark-mode restaurant site",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — \"Casa Polvo\" (\"House of Octopus\" in Portuguese) is an invented, generic descriptive restaurant name with no real-company match; Upwork is an allowed source platform, Framer is only referenced as the dev's tool (out of scope). Clean.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "The actual connector_workflow is fully connector-doable: step 7 is image_crop_and_resize (a true 21:9 letterbox crop of the 4000x2667 3:2 source — math checks out, no invented pixels), image_fill_area is solid #0B0B0D only, image_vectorize is legit raster->SVG. NO banned capability in the executable steps or tools_used. HOWEVER two descriptive fields are stale and reference the removed banned capability: outputs[0].spec (hero_banner_ultrawide) still says \"canvas-extended (outpainted) bleed\", and chaining_note still says \"generative_expand outpaint (7)\". These contradict the workflow, tools_used, and the reverify block (which confirms generative_expand was removed) — a stale-edit text inconsistency, not a live banned step.",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Overall well-formed: 3 inputs with gen_prompts + realism_notes, 6 outputs with specs, coherent output->input chain with 3 genuine hero-grade reuse points, reverify present, honest grounding_note separating verbatim vs enriched. Defect: partial-edit inconsistency — outputs[0].spec (\"canvas-extended (outpainted) bleed\") and chaining_note (\"generative_expand outpaint (7)\") were not synced when step 7 was changed from generative_expand to a crop, so the deliverable description still claims a banned outpaint that the workflow does not perform. Fix = delete \"outpainted\"/\"generative_expand\" language from those two fields to match the clean workflow.",
+    "overall": "minor",
+    "top_issue": "Stale text: outputs[0].spec and chaining_note still describe generative-outpaint/canvas-extension for the hero banner, contradicting the actual workflow (step 7 is a plain image_crop_and_resize) and the reverify block; the executable workflow is clean and doable, so this is a text-sync nit, not a live banned capability."
+  },
+  "where": "TASK_QUALITY_AUDIT.md section 3 (STRENGTHEN groups G1-G6) names this task's failure pattern + the fix"
+}

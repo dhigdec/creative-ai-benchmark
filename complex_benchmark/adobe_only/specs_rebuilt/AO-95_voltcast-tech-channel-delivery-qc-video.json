@@ -1,0 +1,294 @@
+{
+  "id": "AO-95",
+  "slot_id": "M02",
+  "category": "video_edit",
+  "title": "Voltcast E42 channel-delivery package: distill the 4K review master into a highlight short + 9:16/1:1 reframes, then grade a matched thumbnail pack off pulled frames and vectorize the channel bug",
+  "slug": "voltcast-tech-channel-delivery-package-video",
+  "vertical": "Music, Film, Publishing & Media",
+  "source": {
+    "platform": "Freelancer.com",
+    "reference": "Tech Channel Video Editor Needed"
+  },
+  "grounding_note": "Adapted from a real Freelancer.com brief ('Tech Channel Video Editor Needed'): an independent consumer-tech review channel publishes 'several times a week', needs 'both long-form reviews (8-12 minutes) and short vertical cuts for YouTube Shorts, Reels and TikTok', wants 'a 16:9 master ... plus a reformatted 9:16 or 1:1 version', supplies '4K footage, screen recordings, b-roll and a rough talking-head guide', and wants thumbnails and channel branding that read on-brand across the grid. The channel, host and episode are fictional and IP-clean (Voltcast / Voltcast Media is invented; no real company, trademark, person or phone brand is named). REASONABLY SCOPED to what the Adobe connector can actually do on the video track: it does NOT do NLE timeline trims-to-timestamp, motion graphics, burned-in overlays, or compositing, so this is NOT a from-scratch edit. It IS a delivery-PACKAGE build the connector fully supports: distill the supplied 4K long-form master into a short-form highlight cut (video_create_quick_cut, where the AI picks the cut), clean the narration on that short (media_enhance_speech), reframe it to vertical 9:16 and square 1:1 (video_resize, same-length), pull clean hero stills from the episode's scene selects (video_render_frame) and GRADE them to one channel house look as a thumbnail pack (image_apply_adjustments), and vectorize the channel bug for retina use (remove_background -> crop_to_bounds -> vectorize). Nothing is typeset onto the footage or the stills; the bug ships as a separate vector asset, not composited. ENRICHMENT (needed to make the chain concrete, failable and measurable): the episode was shot on a two-camera set under two different lighting setups -- a warm ~3200K tungsten host desk and a cooler ~5600K daylight product table -- and the crew keeps a small neutral 18% grey + white reference card clipped to the edge of every camera's frame (standard tethered-shoot practice) so white balance can be reconciled after the fact; the channel supplies the long-form master plus three short scene selects (host intro, product table, verdict) so hero stills can be pulled without scrubbing the full master. The two-setup lighting split, the in-frame reference card, and the scene-select count are reasonable enrichment; nothing contradicts the source.",
+  "one_line_ask": "Build Voltcast's full E42 publish package from the supplied 4K long-form master and its scene selects: a highlight short (quick-cut) with cleaned narration, reframed to 9:16 and 1:1; a matched thumbnail pack graded off three differently-lit pulled stills to one channel house white point; and the channel bug vectorized for the dark player UI -- and hand back the per-still grade parameters you dialed.",
+  "full_brief": "Voltcast is a fictional independent consumer-tech review channel run by Voltcast Media. We publish several times a week -- a long-form review plus short vertical cuts for Shorts / Reels / TikTok -- and everything has to look like it came from the same channel when it lands in the feed. This episode is 'Voltcast E42 -- Budget Phone Shootout'. We are handing you the finished 4K 16:9 long-form master and three short scene selects our editor exported from the same shoot (the host intro at the desk, the product table close-ups, and the verdict). We shot on two cameras under two lighting setups that do NOT match out of camera: the host desk runs warm off our tungsten key (orange cast, a touch dark), the product table runs cool off the window daylight (blue cast, a touch bright), and the verdict take at the desk came out warm AND brighter than the intro. On every camera we keep a small neutral grey + white reference card clipped just inside the frame edge so you have something honest to balance against.\n\nWhat we need back is the whole publish package, and it has to be genuinely on-brand, not just exported:\n\n(1) A short-form highlight cut of the episode for Shorts/Reels -- pull the strongest ~30-50 seconds of hook and verdict out of the long-form master. Clean up the host's narration on that short so it sits clear over the room tone. Then give us that same short reframed two ways: a full vertical 9:16 and a square 1:1, both keeping the host and the phone in frame.\n\n(2) A thumbnail pack, and this is where channels usually fall apart: we want one 16:9 thumbnail (our main grid tile), one 1:1, and one 9:16 story tile, each built from a clean hero still off a DIFFERENT scene of the episode -- but all three have to read as the SAME channel. That means every still neutralised to its own grey card and then carried to ONE Voltcast house look: a slightly cool, punchy, contrast-forward grade with a deep-but-not-crushed black. The three stills start from opposite casts and different exposures (a warm-ish dark desk, a cool-ish bright table, and a brighter warm verdict), so getting them all to land on the same house look is the whole job -- figure out what each frame needs on its own to reach the shared target. A pack where each still was just 'auto-fixed' to look fine on its own will read like three different shows in the grid, and we will send it back. Keep skin tones believable on the host and don't blow the phone screens or the specular on the glass. Crop the reference card out of every finished thumbnail.\n\n(3) Our channel bug (the little Voltcast wordmark + bolt glyph) cleaned to a transparent PNG and vectorized to a crisp SVG so it stays sharp as the corner bug on the dark player and on retina.\n\nHard rules: this is a package build, NOT a re-edit -- do not promise timeline trims to exact timestamps, motion graphics, or burned-in text; we know the tooling doesn't do that. Let the highlight tool choose the cut, clean the speech on the cut, reframe the cleaned cut, and pull your thumbnail stills from the scene selects. Deliver the short + its 9:16 and 1:1 reframes, the three matched thumbnails, and the vector bug. Along with the files, hand back a short sheet listing, per thumbnail still, the white-balance (temperature/tint), exposure and black-point you landed on, so we can confirm the pack was matched to one house target and not eyeballed frame by frame.",
+  "inputs": [
+    {
+      "name": "voltcast_e42_master_16x9.mp4",
+      "kind": "video",
+      "gen_model": "veo-3.1",
+      "gen_prompt": "A realistic ~10-minute 4K (3840x2160) 16:9 consumer-tech review episode: a talking-head host at a warm-lit desk reviewing fictional budget smartphones, intercut with product b-roll on a cooler-lit product table and screen-recorded benchmark charts. Real motion, real room audio with clear host narration and low background room tone. Two-camera two-light look: the desk shots run warm (~3200K tungsten, slight orange cast, marginally dark); the product-table shots run cool (~5600K daylight, slight blue cast, marginally bright). A small neutral 18% grey + white reference card is clipped just inside the frame edge on both cameras. No burned-in lower-thirds or callouts (the channel adds branding separately). Genuine .mp4 with real motion and audio.",
+      "realism_notes": "The long-form source for the highlight short and the reframes. Must be a genuine multi-minute 4K .mp4 with real narration so video_create_quick_cut has material to distill and media_enhance_speech has speech to clean. 4K declared so every thumbnail still (pulled at 3840x2160) downscales to the thumbnail targets -- never an upscale. The two-camera cast split is the lighting reality the thumbnail grade must reconcile."
+    },
+    {
+      "name": "voltcast_e42_select_host_intro.mp4",
+      "kind": "video",
+      "gen_model": "veo-3.1",
+      "gen_prompt": "A ~12-second 4K (3840x2160) 16:9 scene select exported from the same episode: the host at the warm tungsten desk delivering the opening hook, budget phone held up to camera. Warm ~3200K cast, slightly under-exposed, natural skin tones, a neutral 18% grey + white reference card clipped at the far-left frame edge. Real motion; a clean, well-composed hero moment mid-clip suitable for a thumbnail still.",
+      "realism_notes": "Scene A -- WARM/dark desk. The frame pulled here is the main 16:9 thumbnail base. Warm cast + slightly dark => the correct grade cools the WB and lifts slightly to reach the house white point; the reference card at the far-left edge is neutralised first, then cropped out. Its correction is the OPPOSITE sign to the cool product-table still."
+    },
+    {
+      "name": "voltcast_e42_select_product_table.mp4",
+      "kind": "video",
+      "gen_model": "veo-3.1",
+      "gen_prompt": "A ~12-second 4K (3840x2160) 16:9 scene select from the same episode: overhead-ish product-table b-roll of the budget phones on a neutral mat under cooler window daylight, hands turning a phone, screen lit. Cool ~5600K cast, slightly bright and a touch flat, real glass specular on the phone screen, a neutral 18% grey + white reference card clipped at the lower-right frame edge. Real motion; a crisp product hero frame available mid-clip.",
+      "realism_notes": "Scene B -- COOL/bright product table. The frame pulled here is the 1:1 thumbnail base. Cool + bright => the correct grade WARMS the WB and pulls exposure DOWN toward the SAME house white point the warm desk still is carried to -- the opposite-direction correction that makes the naive 'one global grade / auto-tone each' path fail the match. The bright phone screen and glass specular must be protected from clipping."
+    },
+    {
+      "name": "voltcast_e42_select_verdict.mp4",
+      "kind": "video",
+      "gen_model": "veo-3.1",
+      "gen_prompt": "A ~12-second 4K (3840x2160) 16:9 scene select from the same episode: the host back at the warm desk delivering the verdict, leaning in, one phone on the desk. Warm ~3200K cast like the intro but noticeably BRIGHTER exposure than the intro take, natural skin tones, a neutral 18% grey + white reference card clipped at the frame edge. Real motion; a strong vertical-friendly hero frame with the host offset for a portrait crop.",
+      "realism_notes": "Scene C -- WARM but BRIGHT desk. The frame pulled here is the 9:16 story-tile thumbnail base. Same warm cast as Scene A but a different exposure, so its correction toward the common house target is close in WB sign to the intro's yet must pull exposure DOWN, not lift -- proving per-frame reasoning rather than copying the intro's numbers onto every warm frame. Host offset so an honest portrait crop to 9:16 needs no canvas extend."
+    },
+    {
+      "name": "voltcast_channel_bug.png",
+      "kind": "image",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "A clean minimalist channel bug: the wordmark 'VOLTCAST' in a modern condensed sans-serif, solid near-black charcoal lettering, with a small simple lightning-bolt glyph to the left of the word, on a plain flat white background. Flat two-colour mark, crisp hard edges, centred, generous white margin, high resolution, no gradients, no shadows, no photographic texture.",
+      "realism_notes": "Flat two-colour text-bearing raster on white -- exactly the clean-edged art image_vectorize traces well. The generous white margin is what makes the crop_to_bounds prep step matter before tracing; the flat white ground drops out cleanly to transparency. This is the corner bug for the dark player UI, a genuine channel-branding asset need, delivered as a separate vector -- never composited onto the footage."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "voltcast_e42_short_cleaned.mp4",
+      "kind": "video",
+      "spec": "The short-form highlight cut: video_create_quick_cut distils the strongest ~30-50s of hook+verdict from voltcast_e42_master_16x9.mp4 (the AI chooses the cut), then media_enhance_speech cleans the host narration on that short so it sits clear over room tone. 16:9, audio present and enhanced. Intermediate + a delivered horizontal short. The agent does NOT choose timestamps or add graphics -- it selects the tool order."
+    },
+    {
+      "name": "voltcast_e42_short_9x16.mp4",
+      "kind": "video",
+      "spec": "The cleaned short reframed to full vertical 9:16 (1080x1920) via video_resize (same-length, subject-aware reframe keeping the host and phone in frame). Downscale/reframe of the 4K short only -- never upscaled, never canvas-extended. Carries the enhanced audio. DELIVERABLE."
+    },
+    {
+      "name": "voltcast_e42_short_1x1.mp4",
+      "kind": "video",
+      "spec": "The cleaned short reframed to square 1:1 (1080x1080) via video_resize (same-length, subject-aware). Downscale/reframe of the 4K short only. Carries the enhanced audio. DELIVERABLE."
+    },
+    {
+      "name": "voltcast_thumb_master_intro_card.png",
+      "kind": "image",
+      "spec": "RETAINED card-bearing neutralized MASTER for the WARM host-intro scene -- the full 3840x2160 pulled still graded to neutral, WITH the in-frame grey/white reference card STILL IN FRAME (not cropped). This is the artifact the grader measures for neutrality: the intro still's own grey card cooled to true neutral (kills the ~3200K warm cast) and lifted slightly to the common Voltcast house white point, shadows floored at the shared near-black held OFF zero, contrast-forward house tonality, skin believable. No resize/crop -- same px as the pulled source, sRGB PNG. DELIVERABLE (retained master; neutrality tolerance is graded HERE, on the card in frame). The card-cropped grid tile derived from this master is a SEPARATE deliverable (voltcast_thumb_main_16x9.png)."
+    },
+    {
+      "name": "voltcast_thumb_master_table_card.png",
+      "kind": "image",
+      "spec": "RETAINED card-bearing neutralized MASTER for the COOL product-table scene -- the full 3840x2160 pulled still graded to the SAME house target as the intro master, WITH its in-frame grey/white reference card STILL IN FRAME. Opposite-direction correction from the warm masters: WARM the WB to drive this frame's own grey card to true neutral and pull exposure DOWN, protect the bright phone screen and glass specular from clipping, then apply the SAME shared near-black floor and contrast curve. No resize/crop -- same px as source, sRGB PNG. DELIVERABLE (retained master; neutrality graded HERE on the card in frame). The card-cropped square tile derived from this master is a SEPARATE deliverable (voltcast_thumb_square_1x1.png)."
+    },
+    {
+      "name": "voltcast_thumb_master_verdict_card.png",
+      "kind": "image",
+      "spec": "RETAINED card-bearing neutralized MASTER for the WARM-but-BRIGHT verdict scene -- the full 3840x2160 pulled still graded to the SAME house target, WITH its in-frame grey/white reference card STILL IN FRAME. Warm cast like the intro so the WB sign is similar (cool it, neutralise its own grey card), but BRIGHTER so exposure is pulled DOWN, not lifted; SAME shared near-black floor and contrast. No resize/crop -- same px as source, sRGB PNG. DELIVERABLE (retained master; neutrality graded HERE on the card in frame). The card-cropped story tile derived from this master is a SEPARATE deliverable (voltcast_thumb_story_9x16.png)."
+    },
+    {
+      "name": "voltcast_thumb_main_16x9.png",
+      "kind": "image",
+      "spec": "Main grid thumbnail, 1280x720 (16:9), an honest downscale/crop of voltcast_thumb_master_intro_card.png (the retained warm-intro master) that removes the far-left grey/white reference card from frame in the same move. This is the card-CROPPED delivery crop -- neutrality is NOT graded on this file (it has no card); it is checked only for card-EXCLUSION (the reference card must not appear) plus that it reads as the SAME channel look as the other two tiles, inherited from its already-neutralized master. Existing pixels only, no upscale, no canvas extend, sRGB PNG. DELIVERABLE."
+    },
+    {
+      "name": "voltcast_thumb_square_1x1.png",
+      "kind": "image",
+      "spec": "Square thumbnail, 1080x1080 (1:1), an honest subject-aware downscale/crop of voltcast_thumb_master_table_card.png (the retained cool-table master) with the phone hero centred and the lower-right reference card cropped OUT. Card-CROPPED delivery crop -- neutrality NOT graded here (no card in frame); checked only for card-EXCLUSION and for reading as the same channel look, inherited from its neutralized master. Existing pixels only, no upscale, sRGB PNG. DELIVERABLE."
+    },
+    {
+      "name": "voltcast_thumb_story_9x16.png",
+      "kind": "image",
+      "spec": "Story-tile thumbnail, 1080x1920 (9:16), an honest portrait downscale/crop of voltcast_thumb_master_verdict_card.png (the retained warm-bright verdict master) with the offset host kept in frame and the reference card cropped OUT. Card-CROPPED delivery crop -- neutrality NOT graded here (no card in frame); checked only for card-EXCLUSION and same-channel read, inherited from its neutralized master. Existing pixels only (the 3840x2160 source is 2160 px tall, so a 1080x1920 portrait crop is a genuine downscale), no upscale, no canvas extend, sRGB PNG. DELIVERABLE."
+    },
+    {
+      "name": "voltcast_bug.svg",
+      "kind": "vector",
+      "spec": "The Voltcast channel bug vectorized to crisp SVG (charcoal wordmark + bolt glyph) for retina/corner-bug use on the dark player, produced by white drop-out to transparency -> trim-to-bounds -> raster-to-vector trace (plus the transparent-PNG intermediate). DELIVERABLE."
+    },
+    {
+      "name": "thumbnail_grade_report.txt",
+      "kind": "reference",
+      "spec": "A plain parameter sheet the agent authors and returns: for each of the three card-bearing neutralized masters (host-intro warm, product-table cool, verdict warm-bright), the white-balance temperature and tint, the exposure offset, and the black-point it dialed, plus the single common Voltcast house white point and black-floor all three were matched to. This is the acceptance artifact -- it makes 'the pack was matched to one house target' checkable and forces the corrections to be non-identical across the warm vs cool stills. It reports APPLIED settings the agent chose, never a measured/recovered pixel value."
+    }
+  ],
+  "connector_workflow": [
+    {
+      "n": 1,
+      "tool": "asset_add_file",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "voltcast_e42_master_16x9.mp4, voltcast_e42_select_host_intro.mp4, voltcast_e42_select_product_table.mp4, voltcast_e42_select_verdict.mp4, voltcast_channel_bug.png",
+      "output": "package_assets_uploaded",
+      "note": "Bring the 4K long-form master, the three scene selects and the flat channel-bug raster into the working project in one batch so every downstream video and image step has real asset references. Single upload -- plumbing, not the difficulty."
+    },
+    {
+      "n": 2,
+      "tool": "video_metadata",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "package_assets_uploaded",
+      "output": "master_metadata",
+      "note": "Read the master's real dimensions/frame-rate/duration to confirm it is 4K 16:9 before distilling -- so the agent knows the pulled thumbnail stills (3840x2160) genuinely downscale to every thumbnail target and never need upscaling, and that the source is long enough for a highlight cut. Inspection read, no re-encode."
+    },
+    {
+      "n": 3,
+      "tool": "video_create_quick_cut",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "package_assets_uploaded",
+      "output": "short_raw",
+      "note": "Distil the long-form master into a short-form highlight cut. The tool's AI CHOOSES the cut (the creative selection is the tool's, not the agent's) -- the agent's job is to run this FIRST, on the full master, rather than attempting a timeline trim-to-timestamp (which the connector cannot do). Feeds the speech-clean and reframe chain."
+    },
+    {
+      "n": 4,
+      "tool": "media_enhance_speech",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "short_raw",
+      "output": "voltcast_e42_short_cleaned",
+      "note": "Clean the host narration ON THE SHORT so speech sits clear over room tone. Order discipline: enhance the CUT, not the 10-minute master (cheaper and the enhanced audio must live on exactly the segment that ships), and BEFORE the reframes so both the 9:16 and 1:1 inherit the cleaned track. DELIVERABLE (cleaned horizontal short) + the source for both reframes."
+    },
+    {
+      "n": 5,
+      "tool": "video_resize",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "voltcast_e42_short_cleaned",
+      "output": "voltcast_e42_short_9x16",
+      "note": "Same-length subject-aware reframe of the cleaned short to full vertical 9:16 (1080x1920), keeping the host and phone in frame. Downscale/reframe of the 4K short only -- never upscaled, never canvas-extended, no motion graphics added. Carries the enhanced audio. DELIVERABLE."
+    },
+    {
+      "n": 6,
+      "tool": "video_resize",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "voltcast_e42_short_cleaned",
+      "output": "voltcast_e42_short_1x1",
+      "note": "Same-length subject-aware reframe of the cleaned short to square 1:1 (1080x1080). Reframed from the cleaned short (not from a 9:16 already-cropped file) so the square crop has the full frame to work from. Carries the enhanced audio. DELIVERABLE."
+    },
+    {
+      "n": 7,
+      "tool": "video_render_frame",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "package_assets_uploaded",
+      "output": "still_intro_raw",
+      "note": "Pull a clean hero still from the WARM host-intro select for the main 16:9 thumbnail. Pulling from the scene select (not scrubbing the full master) gives a well-composed frame with the grey reference card in shot. 3840x2160 still -> a raster the grade chain treats as an image."
+    },
+    {
+      "n": 8,
+      "tool": "video_render_frame",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "package_assets_uploaded",
+      "output": "still_table_raw",
+      "note": "Pull a clean hero still from the COOL product-table select for the 1:1 thumbnail. 3840x2160 still with the grey card and the phone specular in frame -- a differently-lit base than the intro still, which is what forces a different correction toward the common house look."
+    },
+    {
+      "n": 9,
+      "tool": "video_render_frame",
+      "server": "adobe",
+      "exec_mode": "A",
+      "inputs_from": "package_assets_uploaded",
+      "output": "still_verdict_raw",
+      "note": "Pull a clean hero still from the WARM-but-BRIGHT verdict select for the 9:16 story tile, host offset so an honest portrait crop needs no canvas extend. 3840x2160 still with the grey card in frame -- warm like the intro but a different exposure, so its correction differs."
+    },
+    {
+      "n": 10,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "still_intro_raw",
+      "output": "voltcast_thumb_master_intro_card",
+      "note": "ESTABLISH the Voltcast house look on the warm host-intro still and record it as the target the other two must hit. The grey/white reference card is STILL IN FRAME at this step (it is only cropped later at the crop step), so this graded full-frame still IS the RETAINED card-bearing neutralized master and is the artifact the grader measures neutrality on. Using the in-frame card as reference, COOL the temperature and set tint to drive the card to true neutral (kills the ~3200K warm cast), LIFT exposure slightly (it was under-exposed) to the house brightness, then build the house tonality with image_apply_adjustments primitives: set blacks so the darkest tones floor deep but held OFF zero (no channel clipped), add contrast/clarity for the punchy contrast-forward look, protect skin and the phone screen. A reasoned authored grade -- NOT a preset, NOT auto-tone. No resize -- stays 3840x2160 with the card in frame. The reported temp/tint/exposure/black here DEFINE the common house target. DELIVERABLE voltcast_thumb_master_intro_card.png (retained master)."
+    },
+    {
+      "n": 11,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "still_table_raw",
+      "output": "voltcast_thumb_master_table_card",
+      "note": "Grade the COOL product-table still to the SAME house target -- the OPPOSITE-direction correction. The grey card is STILL IN FRAME here, so this graded full-frame still IS the RETAINED card-bearing neutralized master the grader measures neutrality on. It is cool (~5600K) and brighter than the intro, so WARM the WB to neutralise its own grey card and pull exposure DOWN, protect the bright phone screen and glass specular from clipping, then apply the SAME house black-floor and contrast curve so a cool daylight table reads as the same channel. Copying the intro's cooling/lifting numbers here is exactly the trap that fails the match. No resize -- stays 3840x2160 with the card in frame. Report its distinct temp/tint/exposure/black. DELIVERABLE voltcast_thumb_master_table_card.png (retained master)."
+    },
+    {
+      "n": 12,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "still_verdict_raw",
+      "output": "voltcast_thumb_master_verdict_card",
+      "note": "Grade the WARM-but-BRIGHT verdict still to the common house target. The grey card is STILL IN FRAME here, so this graded full-frame still IS the RETAINED card-bearing neutralized master the grader measures neutrality on. Warm cast like the intro so the WB sign is similar (cool it, neutralise its grey card), but it is BRIGHTER, so exposure must be pulled DOWN, not lifted -- the numbers are close to the intro's yet NOT copied. Same house black-floor and contrast. No resize -- stays 3840x2160 with the card in frame. Report its distinct temp/tint/exposure/black. Three masters, three non-identical corrections converging on one white point. DELIVERABLE voltcast_thumb_master_verdict_card.png (retained master)."
+    },
+    {
+      "n": 13,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "voltcast_thumb_master_intro_card",
+      "output": "voltcast_thumb_main_16x9",
+      "note": "Derive the card-CROPPED grid tile FROM the retained neutralized intro master: honest off-centre crop of the graded 3840x2160 master to 16:9, cropping the far-left grey/white reference card OUT of frame in the same move, then resize to the 1280x720 main-thumbnail spec. Neutrality was already graded on the card-bearing master; this crop is checked only for card-EXCLUSION (card must be gone) and same-channel read. Downscale/reframe of existing pixels only -- never a canvas extend, never an upscale. DELIVERABLE voltcast_thumb_main_16x9.png."
+    },
+    {
+      "n": 14,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "voltcast_thumb_master_table_card",
+      "output": "voltcast_thumb_square_1x1",
+      "note": "Derive the card-CROPPED square tile FROM the retained neutralized table master: subject-aware square crop of the graded 3840x2160 master to 1:1 with the phone hero centred and the lower-right reference card cropped out, resized to 1080x1080. Neutrality was already graded on the card-bearing master; this crop is checked only for card-EXCLUSION and same-channel read. Honest downscale/crop only. DELIVERABLE voltcast_thumb_square_1x1.png."
+    },
+    {
+      "n": 15,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "voltcast_thumb_master_verdict_card",
+      "output": "voltcast_thumb_story_9x16",
+      "note": "Derive the card-CROPPED story tile FROM the retained neutralized verdict master: portrait crop of the graded 3840x2160 master to 9:16 with the offset host kept in frame and the reference card cropped out, resized to 1080x1920. Neutrality was already graded on the card-bearing master; this crop is checked only for card-EXCLUSION and same-channel read. Because the source frame is 2160 px tall, a 1080x1920 portrait crop is a genuine downscale of existing pixels -- no canvas extend, no upscale. DELIVERABLE voltcast_thumb_story_9x16.png."
+    },
+    {
+      "n": 16,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "package_assets_uploaded",
+      "output": "bug_transparent_png",
+      "note": "Drop the flat white background of the channel bug to transparency so the mark sits cleanly as a corner bug on the dark player. White drop-out, no reconstruction. Intermediate transparent PNG. Consumes the uploaded bug raster."
+    },
+    {
+      "n": 17,
+      "tool": "image_crop_to_bounds",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "bug_transparent_png",
+      "output": "bug_trimmed",
+      "note": "Prep-before-trace: trim the transparent bug to its own tight bounds (removes the generous white margin now transparent) so the vectorize step traces only the wordmark and bolt glyph. Tracing the untrimmed frame wastes trace resolution on empty canvas and can leave a stray border path."
+    },
+    {
+      "n": 18,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "bug_trimmed",
+      "output": "voltcast_bug",
+      "note": "Vectorize the trimmed transparent bug to crisp SVG for retina/corner-bug use on the dark player. Raster-to-vector trace of a PREPARED raster (flat 2-colour mark, background knocked to transparency, cropped to bounds). Triage discipline: this flat logo takes the vectorize path while the photographic thumbnail stills take the grade path -- tracing a photo, or grading the logo, would be the wrong treatment. DELIVERABLE voltcast_bug.svg."
+    }
+  ],
+  "tools_used": [
+    "asset_add_file",
+    "video_metadata",
+    "video_create_quick_cut",
+    "media_enhance_speech",
+    "video_resize",
+    "video_render_frame",
+    "image_apply_adjustments",
+    "image_crop_and_resize",
+    "image_remove_background",
+    "image_crop_to_bounds",
+    "image_vectorize"
+  ],
+  "tool_call_count": 18,
+  "distinct_adobe_tools": 11,
+  "workflow_nature": "create-edit",
+  "chaining_note": "One batch upload (1) feeds three tributaries that converge on a single on-brand publish package. INSPECT: video_metadata (2) confirms the master is 4K 16:9 and long enough to distil (so the pulled stills downscale to the thumbnail targets and the cut has material). VIDEO tributary (strict dependent chain): quick_cut (3, AI picks the highlight) -> media_enhance_speech (4, clean the narration ON the cut) -> the cleaned short is reframed twice, video_resize to 9:16 (5) and to 1:1 (6), BOTH from the cleaned short so each has the full frame and the enhanced audio -- the order (cut, then clean, then reframe) is the creative discipline, not a timeline trim. THUMBNAIL tributary: three video_render_frame pulls (7 intro/warm, 8 table/cool, 9 verdict/warm-bright) each feed a per-still image_apply_adjustments grade (10 establishes the house target; 11 corrects the cool frame the OPPOSITE way; 12 corrects the warm-bright frame with a similar WB sign but a downward exposure) -- and because the grey card is still in frame at the grade step, each grade output IS a RETAINED card-bearing neutralized master (voltcast_thumb_master_intro/table/verdict_card.png) and is the file the grader measures neutrality on. A per-still crop_and_resize (13 -> 1280x720, 14 -> 1080x1080, 15 -> 1080x1920) then derives the card-CROPPED delivery tile FROM its own master, cropping the reference card out -- so master and tile are SEPARATE deliverables: neutrality is graded on the card-bearing master, card-EXCLUSION is checked on the tile, and no single file is asked to be both card-present-neutral and card-cropped. BUG tributary: remove_background (16, white drop-out) -> crop_to_bounds (17, prep-before-trace) -> vectorize (18, SVG). Cross-asset consistency is NOT one recipe repeated -- each of steps 10/11/12 is a distinct correction whose only invariant is the shared house white point and black-floor from step 10, and the agent reports all three so the match is auditable. 18 calls, 11 distinct Adobe tools.",
+  "difficulty_rationale": "Long-horizon video_edit package rebuilt from the killed report-only audit into an OWNED designed deliverable set: 18 connector calls, 11 distinct Adobe tools spanning the video track (video_metadata, video_create_quick_cut, media_enhance_speech, video_resize, video_render_frame), the image-grade track (image_apply_adjustments, image_crop_and_resize) and the vector track (image_remove_background, image_crop_to_bounds, image_vectorize) -- above the >=10-call / >=6-distinct-tool floor. Difficulty is DEPTH, not breadth: (a) the video chain is a strict dependency (cut -> clean-speech -> reframe x2) where the agent must reason the correct ORDER against real tool limits -- let quick_cut choose the cut, enhance the SHORT not the master, reframe the CLEANED short -- rather than promise NLE trims or motion graphics the connector cannot do; (b) the thumbnail pack is a cross-asset grade-MATCH of three stills pulled from three differently-lit scenes to ONE house white point and black-floor, which forces NON-identical per-frame corrections (warm-dark intro cooled+lifted, cool-bright table warmed+pulled-down, warm-bright verdict cooled+pulled-down), authored from image_apply_adjustments primitives, with the reference-card crop and honest downscale-only reframes to three aspect ratios from 4K source; (c) prep-before-trace vector discipline plus a triage (grade the photographic stills, vectorize the flat logo -- never cross them). The agent reports its final per-still parameters, making 'matched' checkable. Every image/vector step is headless [C] server=adobe; the video/metadata/speech steps are [A] async as the connector requires. No banned capability: no generative fill/expand, no upscaling/super-resolution, no text-to-image, no compositing (the bug ships as a separate vector, never composited onto footage), no burned-in overlays/motion graphics, no timeline trim-to-timestamp, no canvas extend, no image_fill_area, no whole-image color_overlay sold as a masked edit, no per-artboard export, no merge.",
+  "hardness_rationale": "FAILURE GATE (a wrong DECISION, not a self-measurement): the thumbnail pack is accepted only if all three tiles read as ONE channel -- every still's in-frame grey card neutralised to ONE common Voltcast white point and the shadows floored at ONE common near-black (deep, not clipped to 0) -- and the agent must return a sheet of the per-still temperature/tint/exposure/black it applied. This is trippable: three stills each 'auto-fixed' to look fine alone diverge at the grey cards and read as three different shows in the grid; identical reported numbers across the warm and cool stills are a visible fail. HUMAN-HARD ELEMENTS: (1) cross-asset consistency to a measurable common target across three frames shot under two opposite casts and three exposures, demanding the counter-intuitive insight that a MATCHED output needs DIFFERENT per-frame corrections (warm frames cooled, cool frame warmed, bright frames pulled down) reasoned from each frame's own card -- not one global grade; (2) order-discipline constraint-reasoning around the video tool limits -- the connector has no trim-to-timestamp, motion graphics, or burned-in text, so the only correct package is quick_cut (tool picks the cut) -> enhance speech on the cut -> reframe the cleaned short, and getting the order wrong (enhance the master, or reframe before cutting/cleaning) wastes the work or drops the enhanced audio off the shipped segment; (3) prep-before-trace vector discipline (white drop-out -> trim-to-bounds -> vectorize) plus the grade-vs-vectorize triage. TRAP: the naive path -- run auto-tone (or one channel preset) on each of the three thumbnail stills and call it a matched pack -- looks right because every tile reads fine alone, but auto-tone keys off each frame's own histogram so the cool table stays cooler/brighter than the warm desk stills, the grey cards do not agree, and the pack fails the one-white-point gate; secondary traps are copying the intro's exact temp/exposure onto the opposite-cast table still, lifting (instead of pulling down) the warm-BRIGHT verdict frame, and cropping the reference card out BEFORE neutralising. MEASURABLE ACCEPTANCE (grader-side, the connector has no eyedropper so the agent works by eye and reports applied params): grey card visually neutral (R,G,B within a tight tolerance) at the common white point measured on the three RETAINED card-bearing neutralized masters (voltcast_thumb_master_intro/table/verdict_card.png -- the card is still in frame there) with shadows at the shared near-black and no channel clipped to 0; the three card-CROPPED delivery tiles at exactly 1280x720 / 1080x1080 / 1080x1920 checked ONLY for card-EXCLUSION (the reference card must be gone) and same-channel read, with no upscaling past the 3840x2160 pulled source -- neutrality is never graded on a tile the card was cropped out of; the short reframes at 1080x1920 and 1080x1080 carrying the enhanced audio; the bug delivered as transparent PNG + trimmed SVG; and the returned per-still parameter sheet showing non-identical corrections converging on the one stated house target.",
+  "_severity": "pass",
+  "reverify": "{\"severity\": \"pass\", \"banned_capability_check\": \"No banned capability is used. VIDEO track respects the connector reality: video_create_quick_cut lets the tool pick the cut (no timeline trim-to-timestamp), media_enhance_speech only cleans speech, video_resize is a same-length subject-aware reframe (9:16 and 1:1 are downscale/reframes of the 4K short, never upscaled, never canvas-extended), video_render_frame only pulls stills, video_metadata only reads -- no motion graphics, no burned-in overlays, no compositing, no re-mix beyond speech enhance. THUMBNAIL grade is authored from image_apply_adjustments primitives (temperature/tint/exposure/contrast/highlights/shadows/blacks/clarity, mask-capable) -- not a preset, not image_apply_auto_tone (auto_tone is named only as the trap), not image_apply_color_overlay (whole-image) and not image_fill_area (solid flat fill; not used at all). image_crop_and_resize only crops/downscales existing pixels to 1280x720 / 1080x1080 / 1080x1920 from a declared 3840x2160 pulled source -- every output px is reachable by downscale, no canvas extend, no upscale/super-resolution. The bug: image_remove_background is a white drop-out to transparency (no reconstruction), image_crop_to_bounds trims, image_vectorize traces a prepared raster to SVG -- delivered as a SEPARATE vector asset, never composited onto the footage or stills. No image_adjust_hsl >~90-degree rotation (no hue-rotate recolor is used at all). No generative expand/outpaint, no gen-fill, no text-to-image, no from-scratch art/logo/layout/video (the master, the three scene selects and the bug are SUPPLIED inputs), no object-removal-with-reconstruction, no bespoke font design, no convert_pdf_to_indd, no document_merge_data_vector image column, no per-artboard export. No measurement/eyedropper/hex/channel readout: the agent neutralises each grey card BY EYE and REPORTS the parameters it applied; the numeric tolerance is the grader's rubric on the output. Card-bearing-master split: the grey-card neutrality tolerance is graded on the three RETAINED card-bearing neutralized masters (voltcast_thumb_master_intro/table/verdict_card.png), which keep the in-frame reference card and are real outputs[] entries, NEVER on a file the card is cropped out of; the three card-CROPPED delivery tiles are separate deliverables checked only for card-EXCLUSION -- no single output is asked to be both card-present-neutral and card-cropped. Deprecated tool names are absent (all tone/WB via image_apply_adjustments). Image/vector steps are headless [C] server=adobe; the video/metadata/speech steps are [A] async per the connector.\", \"slot_match\": \"Slot preserved: id=AO-95, slot_id=M02, category=video_edit, vertical='Music, Film, Publishing & Media', source.platform=Freelancer.com all unchanged. Still a tech-channel video-delivery job on the Voltcast episode (the same fictional client and episode as the killed spec, and its declared video/bug inputs are reused), REPLACED from a report-only 'analyze' audit into a create-edit package that ENDS IN OWNED DESIGNED ARTIFACTS -- a highlight short + 9:16/1:1 reframes, a matched thumbnail pack whose grade is the agent's authored look, and a vectorized channel bug -- never a findings PDF/CSV. workflow_nature=create-edit. IP-clean and consistent: Voltcast/Voltcast Media is fictional, the host, episode and phones are fictional/generic, no real brand/person/org/product/trademark named anywhere; Shorts/Reels/TikTok are delivery-channel names, not scene brands. tool_call_count=18 matches the 18-step connector_workflow; distinct_adobe_tools=11 matches tools_used; the single asset_add_file upload is counted once with no init/finalize or folder plumbing padding.\", \"notes\": \"REPLACE of the killed report-only audit (which handed the agent the answer key verbatim and leaned on measurements no connector can take -- overlay-position-at-timecode, typeface identification). Rebuilt to the kill-list replacement concept: a real channel package (quick-cut short, 9:16/1:1 reframes, graded thumbnail pack off video_render_frame pulls, vectorized bug). The failure gate is now a craft DECISION -- divergent per-still corrections toward one house white point -- with the auto-tone/one-global-grade trap, the video order-discipline constraint, and prep-before-trace vector triage; the agent works by eye and reports applied params, the grader measures the output.\"}"
+}

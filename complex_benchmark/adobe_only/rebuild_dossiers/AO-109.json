@@ -1,0 +1,18 @@
+{
+  "id": "AO-109",
+  "disposition": "STRENGTHEN",
+  "current_spec_file": "AO-109_kantyna-nova-restaurant-website-food-pho.json",
+  "qa_audit": {
+    "client_brand": "Kantyna Nova (owner persona Marta Zawadzka)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — \"Kantyna Nova\" is an invented brand explicitly replacing the real Polish brand \"Nasza Kantyna\" per the grounding note; generic descriptive name (\"new canteen\"), no real-company/trademark collision. Persona Marta Zawadzka is fictional. Adobe/Firefly are the platform; no real client named.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "all steps connector-doable — every step is a real headless Adobe action (straighten, auto-tone, color-temp, dark-portions, vibrance, brightness/contrast, list_presets→apply_preset for cohesion, lens_blur, exposure, crop_and_resize to 1920x1080/1080x1350, asset folders/upload, create_firefly_board). No banned capability: no generative expand/fill, no text-to-image/from-scratch art, no upscaling (crops downscale/reframe existing pixels), no inpainting/object-removal, image_fill_area unused.",
+    "value_verdict": "high",
+    "presentation_verdict": "good",
+    "presentation_note": "Complete and well-formed: one deliverable set, detailed full_brief, 9 inputs with realism_notes, 5 outputs with specs, strict output→input chaining (39 calls / 15 distinct tools), reverify present (severity pass). Only nit: spec describes image_apply_lens_blur as \"whole-frame/whole-image\" blur, but the tool is a subject-aware background DoF/bokeh blur that keeps the subject sharp — creative intent (blur busy background so food reads as hero) matches, but the mechanism label is imprecise. Minor descriptive nit, not a doability issue.",
+    "overall": "minor",
+    "top_issue": "image_apply_lens_blur is repeatedly mischaracterized as \"whole-frame/whole-image\" blur when the connector is actually a subject-aware background DoF blur (keeps subject sharp); intent matches but the wording is imprecise — small fixable nit."
+  },
+  "where": "TASK_QUALITY_AUDIT.md section 3 (STRENGTHEN groups G1-G6) names this task's failure pattern + the fix"
+}

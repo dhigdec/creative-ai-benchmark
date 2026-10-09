@@ -1,0 +1,22 @@
+{
+  "id": "AO-25",
+  "disposition": "REPLACE",
+  "current_spec_file": "AO-25_villa-hdr-realestate-grade-and-package.json",
+  "qa_audit": {
+    "client_brand": "Unnamed Saint-Martin (Caribbean) luxury vacation-rental management company (generic persona, no brand name; ~100 villas)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "Client is a generic unnamed Saint-Martin vacation-rental management company (persona, no brand). \"Nodalview\" appears but only as the HDR capture/source workflow context, not as the client brand; Saint-Martin is a real place (allowed as location), Firefly/Adobe are the platform (allowed). No real client brand used or impersonated.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "All steps connector-doable. 13 tools = image_* photo/raster grade + crop_and_resize export + asset upload/finalize + create_firefly_board, all headless-confirmed [C]. No banned capability: no generative expand/fill, no text-to-image, no upscale, no object-removal reconstruction, no perspective/vertical warp. Selective single-color saturation + gentle vibrance (not global pump). Spec explicitly flags converging-vertical warp and cable/stain cloning as OUT of connector scope and hands them to the human finisher rather than faking them.",
+    "realism_verdict": "realistic",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Well-formed: one deliverable set, full_brief with ordered requirements, inputs with realism_notes, outputs with specs, coherent output-to-input chain, reverify present. Weakness (already self-flagged in reverify, severity minor): the pool and terrace upload steps are folded into the prose of steps 1-2 rather than enumerated, so steps 9 (pool_assetURI) and 14 (terrace_assetURI) consume raw asset URIs not produced by any numbered step, and tool_call_count=19 under-counts by 4 real upload calls (each of the two extra assets needs its own initialize+finalize). Every actual op is a valid [C] tool; this is an enumeration/accounting nit, not a correctness or doability problem.",
+    "overall": "minor",
+    "top_issue": "Pool/terrace upload steps are described in prose instead of being enumerated, so steps 9/14 consume un-numbered raw asset URIs and tool_call_count (19) under-counts the true call total by ~4 upload calls — an enumeration nit, not a real defect."
+  },
+  "where_to_read_full_findings": [
+    "TASK_QUALITY_AUDIT.md — find this id in THE KILL LIST; its row names a concrete replacement design for the slot",
+    "REBUILD_GROUND_TRUTH.md and REBUILD_HARDNESS_BAR.md — the doability boundary + the bar"
+  ]
+}

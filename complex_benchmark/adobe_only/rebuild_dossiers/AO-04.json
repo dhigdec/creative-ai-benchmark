@@ -1,0 +1,18 @@
+{
+  "id": "AO-04",
+  "disposition": "STRENGTHEN",
+  "current_spec_file": "AO-04_silver-jewelry-iphone-whitebg-ecom-retou.json",
+  "qa_audit": {
+    "client_brand": "Unnamed silver jewellery line (anonymous Freelancer.com client; no brand name given)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — no client brand/company/product/person named; only 'Nagpur' (a city) and allowed platforms (Freelancer.com source, Adobe tools) appear. No real trademark.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "All 16 connector_workflow steps are real Adobe connector actions and banned-capability-free: image_fill_area is a SOLID pure-white fill of an inverted subject mask (allowed), the square is reached via image_crop_to_bounds + image_crop_and_resize (deterministic, non-generative), and the transparent PNG via image_remove_background. The formerly-banned image_generative_expand was removed from the workflow and tools_used. NOTE: the stale chaining_note and difficulty_rationale still narrate the old 'generative_expand outpaint-to-square' path, but it is NOT present in the authoritative workflow, so execution is clean.",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Spec is complete and well-formed (one deliverable set, clear full_brief, input with realism_notes, outputs with specs, coherent output→input chain, reverify present). Weakness: chaining_note (line 211) and difficulty_rationale (line 212) are stale — they still describe 'graded_master -> generative_expand(square_canvas)' and call image_generative_expand 'the only allowed generative op', contradicting the corrected connector_workflow (step 11 is now image_crop_to_bounds) and the reverify block. These narrative fields should be updated to match the executable workflow.",
+    "overall": "minor",
+    "top_issue": "Stale metadata: chaining_note and difficulty_rationale still reference the removed banned step image_generative_expand, contradicting the corrected 16-step workflow (which is doable and banned-capability-free). Documentation nit, not an execution failure."
+  },
+  "where": "TASK_QUALITY_AUDIT.md section 3 (STRENGTHEN groups G1-G6) names this task's failure pattern + the fix"
+}

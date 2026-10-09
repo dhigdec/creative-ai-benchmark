@@ -1,0 +1,22 @@
+{
+  "id": "AO-20",
+  "disposition": "REPLACE",
+  "current_spec_path": "complex_benchmark/adobe_only/specs/AO-20_corporate-website-photo-retouch-responsi.json",
+  "qa_audit": {
+    "client_brand": "Unnamed fictional industrial / CNC-machining company (anonymous corporate client; no brand name given)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — client is a generic unnamed industrial/CNC-machining business; only Adobe/Firefly (platform) referenced, which is allowed",
+    "doable_verdict": "fully_doable",
+    "doable_note": "all steps connector-doable; brief's \"remove unwanted objects\" is correctly routed through select_subject→invert→image_fill_area (SOLID fill only)→lens_blur, NOT AI object removal; single permitted local zip at end",
+    "realism_verdict": "realistic",
+    "value_verdict": "high",
+    "presentation_verdict": "good",
+    "presentation_note": "Complete and well-formed: one deliverable set, full_brief, inputs with realism_notes, outputs with specs, coherent output→input chain, reverify present. Two self-flagged minor nits: (1) step-10 lens_blur is whole-image (no mask) yet the note/spec imply background-selective blur with \"subject sharp\" — call is legal, only the description overstates selectivity; (2) declared output hero_graded_master.png is called \"the locked premium look,\" but the post-preset hero_look_locked (step 12) is what actually fans out to crops/board/zip — deliverable name vs. delivered URN slightly misaligned.",
+    "overall": "minor",
+    "top_issue": "Descriptive/naming slips: lens_blur is whole-image but described as background-selective (\"subject sharp\"), and hero_graded_master vs. hero_look_locked naming is misaligned with what downstream steps consume — both minor, calls are legal and chain is coherent."
+  },
+  "where_to_read_full_findings": [
+    "TASK_QUALITY_AUDIT.md (locate this task id in the kill-list or STRENGTHEN groups)",
+    "TASK_QUALITY_AUDIT_exemplar_rechallenge.md (per-task lens verdicts + the 6-point bar)"
+  ]
+}

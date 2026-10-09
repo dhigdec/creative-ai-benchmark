@@ -1,0 +1,18 @@
+{
+  "id": "AO-60",
+  "disposition": "STRENGTHEN",
+  "current_spec_file": "AO-60_studio-packaging-sizzle-reel-hero-video.json",
+  "qa_audit": {
+    "client_brand": "Unnamed small packaging design studio / packaging designer (no brand name given)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — client is an unnamed generic packaging-studio persona; depicted packages (tea carton, cosmetics jar, coffee bag, beer can, perfume box, chocolate sleeve) are unbranded; only Adobe tools, Instagram, website-hero, and Upwork (source platform) appear, all allowed. No real company/product/trademark.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "all steps connector-doable — the executable connector_workflow uses only real connectors; the previously-banned image_generative_expand (outpaint) was removed and replaced at step 10 with image_fill_area (solid charcoal fill only), confirmed by the reverify block. image_remove_background=bg-strip, stock license, Quick Cut / video_resize [A] all allowed. No banned capability remains in the workflow. (Stale narrative text still names generative_expand — see presentation note — but no actual step invokes it.)",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Workflow, outputs, and reverify are clean and well-formed. But three narrative fields were NOT updated after the outpaint→fill_area fix and now contradict the corrected step 10: (1) grounding_note (line 11) \"one bare hero box that needs the frame extended\"; (2) input realism_notes for pkg_kraft_box_titlecard.jpg (line 62) \"so image_generative_expand (outpaint) must extend it to a wide full-bleed plate — the only legitimate generative step\"; (3) chaining_note (line 288) \"the graded kraft frame feeds generative_expand (10 -> titlecard_fullbleed)\". These should be rewritten to describe the solid-fill charcoal plate to match the executable workflow.",
+    "overall": "minor",
+    "top_issue": "Stale narrative text (grounding_note, kraft-box realism_notes, chaining_note) still describes banned generative outpaint as \"the only legitimate generative step,\" contradicting the corrected step 10 which now uses image_fill_area (solid fill). Documentation-only inconsistency; the actual connector_workflow is clean and fully doable."
+  },
+  "where": "TASK_QUALITY_AUDIT.md section 3 (STRENGTHEN groups G1-G6) names this task's failure pattern + the fix"
+}

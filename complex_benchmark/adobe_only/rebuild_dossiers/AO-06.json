@@ -1,0 +1,22 @@
+{
+  "id": "AO-06",
+  "disposition": "REPLACE",
+  "current_spec_file": "AO-06_firearms-optics-shopify-product-image-cl.json",
+  "qa_audit": {
+    "client_brand": "Unnamed hands-off firearms/optics/outdoor Shopify store (no invented brand name; distributor badge is a generic fictional flat optics logo)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — client is a generic unnamed Shopify store; distributor brand badge is an invented flat single-color reticle-and-mountain mark with no real brand. Shopify/Amazon are allowed delivery-platform channels. No real company, product, person, or trademark named.",
+    "doable_verdict": "issue",
+    "doable_note": "Step 10 (image_fill_area to \"place the white-bg hero onto a solid pure-#FFFFFF square 1:1 canvas... extends the white field to a square\") is not connector-doable: image_fill_area is a SOLID-color fill of a selection WITHIN the existing canvas — it cannot extend/grow the canvas or composite an image onto a larger square canvas. Squaring a non-square image requires canvas padding/extension, which only the banned image_generative_expand does. The reverify explicitly swapped the banned generative_expand for image_fill_area, but image_fill_area physically cannot produce a square 2048x2048 canvas from the non-square source. All other 15 steps are real, doable [C] Adobe actions.",
+    "realism_verdict": "realistic",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Spec is complete and well-formed (one deliverable set, full_brief, inputs with realism_notes, outputs with specs, coherent chain, reverify present). Nits: (1) `vertical` is mislabeled \"Nonprofit, Religious & Community\" for a firearms/optics ecom store; (2) the scope_hero_square_2048 output spec still says \"generative-expanded to a square canvas\" — stale wording left over from the pre-rework version, which also flags the underlying doability gap in step 10.",
+    "overall": "major",
+    "top_issue": "Step 10 uses image_fill_area to turn a non-square white-bg hero into a square 1:1 2048px canvas, but image_fill_area only solid-fills a selection within the existing canvas and cannot extend/pad the canvas — the one tool that squares by extension (image_generative_expand) is banned and was deliberately removed, so this step cannot produce its stated square-hero deliverable."
+  },
+  "where_to_read_full_findings": [
+    "TASK_QUALITY_AUDIT.md — find this id in THE KILL LIST; its row names a concrete replacement design for the slot",
+    "REBUILD_GROUND_TRUTH.md and REBUILD_HARDNESS_BAR.md — the doability boundary + the bar"
+  ]
+}

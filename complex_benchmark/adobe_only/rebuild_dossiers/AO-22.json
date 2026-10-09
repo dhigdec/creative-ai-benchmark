@@ -1,0 +1,22 @@
+{
+  "id": "AO-22",
+  "disposition": "REPLACE",
+  "current_spec_path": "complex_benchmark/adobe_only/specs/AO-22_modern-vibrant-abstract-logo-production-.json",
+  "qa_audit": {
+    "client_brand": "None named — anonymous first-person brand-refresh brief (unnamed client); only Adobe tools and Freelancer.com (source platform) appear",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — no client brand/product/person/trademark named at all; the brief is an anonymous \"I'm refreshing my brand identity\" commission. Only Adobe tool names (platform) and Freelancer.com (allowed source platform) referenced. Nothing real or risky.",
+    "doable_verdict": "issue",
+    "doable_note": "No BANNED capability remains (prior generative_expand was swapped out; vectorize/halftone/remove_bg/solid-fill are all allowed and headless). But two connector-fidelity gaps: (1) Step 14 uses image_fill_area to build a \"wide banner / social-header lockup\" from a square mark — image_fill_area only fills a masked region of an EXISTING image with solid color; it cannot expand/create a differently-sized canvas or composite a transparent foreground onto a new banner-sized background, so this deliverable is not achievable with the named tool (a true wide-banner would need canvas expansion = banned, or a layout/composite tool). (2) Step 12's single-color recolor uses the select_subject→invert_selection→fill_area chain that the image_fill_area docs explicitly warn against (transparent-PNG-as-mask = wrong polarity). Also step 11 image_invert_selection is a dead/unused step (spec self-admits).",
+    "realism_verdict": "realistic",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Well-formed: verbatim grounding_note + source URL, inputs with realism_notes, outputs with specs, strict chaining_note, reverify present. Weak spots: category field is \"headshot_portrait\" — mismatched with a logo brief (spec self-flags it, passes it through unchanged); dead step 11; and the reverify passes over the step-14 fill_area-can't-build-a-banner overreach and the step-12 anti-pattern flagged by the tool docs.",
+    "overall": "minor",
+    "top_issue": "Step 14 relies on image_fill_area to build a wide banner-sized header lockup, but that tool only solid-fills a masked region of an existing image and cannot resize/expand the canvas or composite the transparent mark onto a new banner canvas — so that deliverable isn't cleanly doable as written (nudging toward banned canvas-expansion); secondary: step 12 uses the exact mask chain the tool docs warn against, and dead step 11 + mislabeled category."
+  },
+  "where_to_read_full_findings": [
+    "TASK_QUALITY_AUDIT.md (locate this task id in the kill-list or STRENGTHEN groups)",
+    "TASK_QUALITY_AUDIT_exemplar_rechallenge.md (per-task lens verdicts + the 6-point bar)"
+  ]
+}

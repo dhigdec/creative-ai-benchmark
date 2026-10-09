@@ -1,0 +1,18 @@
+{
+  "id": "AO-23",
+  "disposition": "STRENGTHEN",
+  "current_spec_file": "AO-23_luxury-realestate-youtube-teaser-thumbna.json",
+  "qa_audit": {
+    "client_brand": "STERLING ROW (luxury Manhattan real-estate broker's YouTube channel wordmark)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — \"STERLING ROW\" is an invented luxury real-estate wordmark; Manhattan/Tribeca are real places and YouTube/LinkedIn are allowed delivery platforms, not the client.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "All 18 workflow steps are real connector actions with no banned capability; the old generative_expand outpaint was replaced by image_crop_to_bounds (crop only, no invented pixels), and on-thumbnail TYPE is correctly punted to a local packaging step. HOWEVER the chaining_note prose (line 268) is stale and still says \"crop_and_resize(hero_16x9) -> generative_expand(thumbnail_base_1280x720)\" — the executable connector_workflow array correctly uses image_crop_to_bounds, so this is a documentation-only inconsistency, not a banned step in the runnable task.",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Spec is complete and well-formed (one package deliverable, full_brief, inputs with realism_notes, outputs with specs, coherent branched chain, reverify present). Two small nits: (1) chaining_note prose still references the removed generative_expand step, contradicting the corrected workflow array/tools_used/reverify; (2) category is labeled \"headshot_portrait\" but this is a multi-deliverable thumbnail+teaser+end-card content package, so the taxonomy tag is mismatched.",
+    "overall": "minor",
+    "top_issue": "Stale chaining_note prose still names the banned generative_expand step (contradicting the fixed workflow array); plus a mismatched \"headshot_portrait\" category — both documentation-only nits, executable task is clean and doable."
+  },
+  "where": "TASK_QUALITY_AUDIT.md section 3 (STRENGTHEN groups G1-G6) names this task's failure pattern + the fix"
+}

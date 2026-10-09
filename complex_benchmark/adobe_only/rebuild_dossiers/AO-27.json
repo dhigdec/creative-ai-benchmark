@@ -1,0 +1,22 @@
+{
+  "id": "AO-27",
+  "disposition": "REPLACE",
+  "current_spec_path": "complex_benchmark/adobe_only/specs/AO-27_streetline-style-real-estate-interior-edit-ch.json",
+  "qa_audit": {
+    "client_brand": "Kimberley (Dutch real-estate photographer / photography business persona)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "Client is a fictional individual persona (\"Kimberley,\" a Dutch real-estate photographer). \"Streetline\" appears only as a style benchmark the client herself names (verbatim from the source Upwork brief) — a third-party look reference like \"clean like Apple,\" NOT the client brand — so it does not make the CLIENT a real company. Netherlands/European market and Upwork are context, not brands. Client itself is fictional and clean.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "All 19 steps are real connector actions and connector-doable. The spec explicitly re-maps the brief's tempting-but-banned asks to legal equivalents: true HDR merge -> single-frame auto_tone + selective highlight/shadow/exposure recovery; window pull -> select_by_prompt(windows) + masked highlights/exposure pulldown (allowed selective tonal edit); AI object removal -> image_fill_area SOLID fill of the outlet (allowed). No generative expand/fill, no text-to-image, no upscaling, no inpainting-reconstruction, no external systems. Step 18 uses asset_finalize_file_upload on an edit output (not an upload session) — semantically imprecise but not a banned capability.",
+    "realism_verdict": "realistic",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Spec is complete and well-formed: one specific deliverable, clear full_brief, two inputs with realism_notes, outputs with specs, coherent output->input chain, and an honest reverify block. Two minor nits (self-flagged): (a) step 18 calls asset_finalize_file_upload on an edit output rather than a matching upload session — should be asset_get_presigned_urls or a direct edit-chain output; (b) bracket_asset (steps 3-4) is loaded but never consumed as an inputs_from by any edit step (only a described \"visual reference\"), so those two load steps are dead-weight in the active chain. Neither breaks doability.",
+    "overall": "minor",
+    "top_issue": "Step 18 uses asset_finalize_file_upload to \"save\" an in-place edit result (no matching initialize), which is a semantically imprecise call; secondarily the bracket reference is loaded but never actually consumed by any edit step."
+  },
+  "where_to_read_full_findings": [
+    "TASK_QUALITY_AUDIT.md (locate this task id in the kill-list or STRENGTHEN groups)",
+    "TASK_QUALITY_AUDIT_exemplar_rechallenge.md (per-task lens verdicts + the 6-point bar)"
+  ]
+}

@@ -1,0 +1,1160 @@
+[
+ {
+  "new_id": "PHOTO-A-01",
+  "family": "Photo & Image",
+  "engagement_title": "Aurelian Skin \u2014 8-SKU clinical launch photography, PDP-ready",
+  "vertical": "Beauty, Cosmetics & Personal Care (clinical skincare)",
+  "one_line_ask": "Our eight launch products were shot over three afternoons in mixed light and don't look like one range \u2014 make them read as one clinical set and hand us the store-ready hero, texture and ingredient images each product page needs.",
+  "primary_deliverable": "A cross-consistent 8-SKU product photo set delivered as actual store image files: one white-ground hero, one on-skin/texture detail and one ingredient-macro per SKU, plus a 4:5 launch ad hero and a plain-ground marketplace primary for the lead SKU \u2014 all agreeing on one neutral, one white point and one black point.",
+  "engine": "image-pipeline",
+  "signature_op": "Grade-to-one-look neutralisation of a mixed-light batch judged against the grey card each frame carries",
+  "collateral_set": [
+   "8 white-ground PDP hero tiles (1:1, store files)",
+   "8 texture/on-skin detail tiles",
+   "8 ingredient-macro tiles",
+   "one 4:5 paid-social launch hero",
+   "a plain-ground marketplace primary for the lead SKU (no logo, aperture-clean)",
+   "an applied-settings log (params per frame, one line why each differs)"
+  ],
+  "key_stages": [
+   "Look at every frame against its own card before touching a parameter",
+   "Diagnose each of 8 frames independently (cast, exposure, level)",
+   "Dial 8 distinct correction sets toward one shared neutral/white/black",
+   "Straighten the one off-level frame before its master crop",
+   "Crop per destination from camera-scale source, downscale only",
+   "Isolate the lead SKU on a plain ground with its dropper aperture genuinely clear",
+   "Export PNG store files + write the per-frame settings log"
+  ],
+  "decision_gates": [
+   "Choosing ONE neutral/white-point target for all 8 and correcting each frame individually to it \u2014 not one global move, not an auto-tone per frame, not two tidy group corrections that fracture when all eight sit adjacent in the PDP row",
+   "Triage of look-alikes: frosted/matte jars need different highlight recovery than clear glass and glossy pumps, so the same slider plan applied to all silently blows the glass and muddies the matte",
+   "On the marketplace primary, recognising that background-removal leaves a dropper/pump aperture filled and reading as a pale disc \u2014 the clean route is a material-named selection, inverted, filled to the ground colour"
+  ],
+  "element_reuse": "The single neutral target (white point + black point) is fixed once from the best-carded frame and every one of the 8 SKUs is corrected to it; the same eight corrected masters then feed the hero, detail, ad and marketplace crops, so a surviving cast is visible everywhere at once, most glaringly where corrected frames sit side-by-side in the PDP grid.",
+  "absorbs": [
+   "AO-01 \u2014 QYZANTHRA clinical-skincare mixed-light neutralise batch becomes the grade-to-one stage",
+   "AO-64 \u2014 premium skincare packaging print-prep neutralise supplies the ingredient-macro / packaging-detail stage"
+  ],
+  "price_demo": "Prestige-mass clinical actives, $34\u2013$68 per SKU, buyer 26\u201342 ingredient-literate who reads the INCI before buying; load-bearing because the clinical band demands a cool, near-clinical white ground and restrained styling \u2014 at a $12 mass-market band the same range would want warm, saturated, prop-heavy shots, which would read as downmarket and wrong here.",
+  "options_moment": "Agent proposes 2\u20133 candidate neutral targets (which frame's card is the reference, how cool to run the white) and defends the pick against the clinical price band before committing all eight.",
+  "why_not_vlm": "A one-shot model redraws the bottles and invents label text \u2014 these are real products with fixed labels and fill levels the customer receives; the job is identity-preserving correction to an exact store-tile spec and cross-8 consistency, none of which a regen can guarantee.",
+  "doability": "upload chain (asset_initialize/finalize) \u2192 asset_inline_preview \u2192 per-frame image_apply_adjustments (CIELAB tempA/tempB/tempLuminance + exposure/gamma + highlights/lights/darks/shadows + vibrance/saturation) \u2192 image_auto_straighten on the canted frame \u2192 image_select_by_prompt + image_invert_selection + image_fill_area for the aperture-clean primary \u2192 image_crop_to_bounds / image_crop_and_resize downscaling only from a declared ~4200px source, tradeoffs read for silent 2x. No text-to-image, no generative fill, no background-replace-by-prompt, no upscaling."
+ },
+ {
+  "new_id": "PHOTO-A-02",
+  "family": "Photo & Image",
+  "engagement_title": "Corner & Cure \u2014 all-day cafe dish photography for board, print & delivery",
+  "vertical": "Food, Hospitality & Travel (casual all-day cafe)",
+  "one_line_ask": "Our dishes were photographed across two services under different light and look inconsistent \u2014 grade them to one warm, appetising house look and give us the images sized for the menu board, the printed insert and the delivery apps.",
+  "primary_deliverable": "A grade-to-one-look set of 8\u201310 dish photos delivered as three sized families of image files: menu-board hero tiles, a printed-menu photo strip at the insert's dimensions, and square delivery-app thumbnails \u2014 all one appetite-warm grade.",
+  "engine": "image-pipeline",
+  "signature_op": "Warm appetite grade of a mixed-service dish batch to one consistent look without pushing food into orange",
+  "collateral_set": [
+   "8\u201310 menu-board hero tiles (16:9)",
+   "a printed-menu photo strip at insert size",
+   "square delivery-app thumbnails per dish",
+   "2\u20133 lifestyle wide crops for the storefront screen",
+   "an applied-settings log with the per-dish reasoning"
+  ],
+  "key_stages": [
+   "Preview every plate shot and read its neutral against the in-frame card",
+   "Diagnose per-dish cast and exposure independently",
+   "Set the shared warm house look and correct each dish to it",
+   "Decide per-dish crop logic so the hero food isn't clipped at each ratio",
+   "Downscale-only crops to board / insert / thumbnail sizes",
+   "Export the three sized families + settings log"
+  ],
+  "decision_gates": [
+   "Holding one warm-but-neutral target across every dish \u2014 a global warm push turns white plates and cream sauces yellow, so each frame needs its own correction toward the shared look",
+   "Per-destination crop logic, not one crop rescaled: the 16:9 board hero, the tall insert strip and the 1:1 thumbnail clip the plate differently, and reusing a single crop loses the dish at one ratio",
+   "Cross-aspect crops must decline the connector's pre-filled generative-expand tradeoff and downscale only \u2014 no invented plate edge, no interpolated enlargement into the board tile"
+  ],
+  "element_reuse": "One warm house-look target is set once and every dish is corrected to it; the same corrected masters are re-cropped per destination rather than one crop rescaled, so the board, the printed insert and the delivery thumbnail all carry the identical grade.",
+  "absorbs": [
+   "AO-107 \u2014 Corner & Cure deli storefront dish captures are the core client batch and board/thumbnail sizing stage",
+   "AO-12 \u2014 Sunroom brunch mixed-light dish grade folds in as additional dishes",
+   "AO-78 \u2014 Emberwell caf\u00e9 food neutralise supplies further dish frames"
+  ],
+  "price_demo": "Mid-market all-day cafe, mains $16\u2013$24, neighbourhood regulars 25\u201345; load-bearing because a warm, generous, slightly rustic grade suits this band \u2014 a $90 tasting-menu treatment (cool, sparse, dark) would misprice the room, and a $9 fast-casual look (flat, saturated, over-lit) would cheapen it.",
+  "why_not_vlm": "A regen invents different food than what the kitchen actually plates and can't hold one look across ten real dishes; the client needs their real dishes, correctly coloured and consistent, at exact board/insert/thumbnail pixel specs.",
+  "doability": "upload \u2192 asset_inline_preview \u2192 per-dish image_apply_adjustments (warm CIELAB + tone) \u2192 image_crop_and_resize / image_crop_to_bounds per destination with onSubjectClipping ignore/pad and tradeoffs read, downscale only from ~4000px source \u2192 PNG/JPEG file export. No generative expand, no upscaling, no text-to-image."
+ },
+ {
+  "new_id": "PHOTO-A-03",
+  "family": "Photo & Image",
+  "engagement_title": "Obsidia \u2014 fine-dining dark-mode plate photography, web & delivery image set",
+  "vertical": "Food, Restaurant & Beverage (fine-dining tasting menu)",
+  "one_line_ask": "Our plates were shot in mixed light and need to read as one restrained, dark, high-end set \u2014 grade them and hand us the plate images for the website hero, the delivery apps and the in-venue screens.",
+  "primary_deliverable": "A cross-consistent set of tasting-plate photos graded to one cool low-key look, delivered as image files: a website hero plate, per-course dark-mode tiles, square delivery-app tiles and 16:9 in-venue screen stills \u2014 all agreeing on one white point and black floor with specular highlights protected. No menu document.",
+  "engine": "image-pipeline",
+  "signature_op": "Low-key cool grade of mixed-light plate shots to one dark-mode-safe look with protected specular highlights",
+  "collateral_set": [
+   "a website hero plate file",
+   "per-course dark-mode plate tiles",
+   "square delivery-app tiles per dish",
+   "16:9 in-venue screen stills",
+   "an applied-settings log with the per-plate reasoning"
+  ],
+  "key_stages": [
+   "Preview each plate and diagnose its cast against the card",
+   "Set the shared cool low-key target and correct each plate to it",
+   "Protect specular highlights so plates don't crush on the dark ground",
+   "Straighten any canted frame before its master crop",
+   "Crop per destination (hero / tile / square / screen), downscale only",
+   "Export the sized families + settings log"
+  ],
+  "decision_gates": [
+   "One low-key target across all plates, corrected individually \u2014 crushing blacks globally to force the dark mood destroys shadow detail unevenly across differently-exposed frames",
+   "Protecting specular highlights per-plate: glossy sauces and glassware blow out under a highlight setting that a matte plate needs, so the same recovery on all plates either glares or muddies",
+   "Cross-aspect crops decline the pre-filled generative-expand tradeoff and downscale only \u2014 no invented plate edge into the 16:9 screen still"
+  ],
+  "element_reuse": "One cool low-key target is set once from the best-carded frame and every plate corrected to it; the same graded masters feed the hero, tiles, delivery squares and screen stills, so a surviving cast or a crushed shadow shows everywhere at once.",
+  "absorbs": [
+   "AO-18 \u2014 OBSIDIA dark-mode plate-matching batch is the source photography and the one-white-point consistency target"
+  ],
+  "price_demo": "$165 fixed tasting menu, diners 35\u201360 booking a special occasion; load-bearing because the price demands a dark, sparse, one-plate-per-frame grammar with protected speculars \u2014 a bright, crowded, saturated diner grade would read like a $14 room and break trust at this cheque size.",
+  "why_not_vlm": "A one-shot regen fabricates dishes that aren't the kitchen's real plating and can't hold one low-key look across the course set; the restaurant needs its real plates, identity-preserving, at exact dark-mode tile specs.",
+  "doability": "image upload \u2192 asset_inline_preview \u2192 per-plate image_apply_adjustments (cool CIELAB, protected highlights/lights/darks/shadows) \u2192 image_auto_straighten as needed \u2192 image_crop_and_resize / image_crop_to_bounds per destination downscale-only, tradeoffs read \u2192 PNG/JPEG files. No generative expand, no upscaling, no text-to-image, no menu doc."
+ },
+ {
+  "new_id": "PHOTO-A-04",
+  "family": "Photo & Image",
+  "engagement_title": "Summit & Sable \u2014 recovery-gear catalog + PDP image set, one house look",
+  "vertical": "E-commerce, Retail & Product (outdoor recovery gear)",
+  "one_line_ask": "Our gear shots came from different suppliers under different light and don't match \u2014 make them read as one catalog and give us the PDP heroes and detail tiles at the sizes our store needs.",
+  "primary_deliverable": "A cross-consistent product photo set neutralised to one house look, delivered as store image files: a PDP hero and 1\u20132 detail tiles per SKU, a 16:9 category banner crop and a 4:5 promo hero \u2014 all agreeing on one white point across mixed-supplier sources.",
+  "engine": "image-pipeline",
+  "signature_op": "Grade-to-one house look across a mixed-supplier, mixed-light product batch judged frame-by-frame against the reference wedge",
+  "collateral_set": [
+   "PDP hero tiles per SKU (store files)",
+   "1\u20132 detail/close-up tiles per SKU",
+   "a 16:9 category banner crop",
+   "a 4:5 promo hero",
+   "an applied-settings log with the per-frame correction reasoning"
+  ],
+  "key_stages": [
+   "Preview each supplier frame and read its neutral against the in-frame wedge",
+   "Diagnose per-frame cast and exposure independently",
+   "Set one house-look target and correct each frame to it",
+   "Triage matte webbing/strap vs metallic hardware for highlight handling",
+   "Crop per destination from camera-scale source, downscale only",
+   "Export the sized store files + settings log"
+  ],
+  "decision_gates": [
+   "One house-look target corrected per-frame across supplier sources shot under different light \u2014 a single global correction leaves half the catalog tinted where two SKUs sit adjacent on a category page",
+   "Matte-vs-metallic triage: anodised hardware and buckles blow specular under a setting that matte webbing and powder-coat need, so the same highlight plan on all silently glares the metal or flattens the fabric",
+   "Per-destination crops downscale only and decline the generative-expand tradeoff \u2014 square-ish product frames re-aspected to a 16:9 banner must contain/crop, never interpolate a stretched edge"
+  ],
+  "element_reuse": "One house-look target is set once and every SKU corrected to it; the same corrected masters feed PDP hero, detail, banner and promo crops, so a mismatched frame is obvious the moment two products share a category row.",
+  "absorbs": [
+   "AO-110 \u2014 Summit & Sable eCommerce catalog mixed-light product neutralise is the core batch",
+   "AO-72 \u2014 Cindergrove storefront product-batch neutralise folds in as additional SKUs and the house-look consistency stage"
+  ],
+  "price_demo": "Serious overland/recovery gear, $60\u2013$260 per SKU, buyers 28\u201350 who research load ratings before buying; load-bearing because the technical-credibility band wants clean, honest, true-colour product on a plain ground \u2014 a $9 impulse-accessory band would tolerate a punchy saturated generic grade that here would read as untrustworthy and drive returns.",
+  "why_not_vlm": "A regen invents gear that isn't the brand's real product and can't hold one house look across mixed-supplier frames; the store needs its actual SKUs, true-coloured and consistent, at exact PDP pixel specs.",
+  "doability": "upload \u2192 asset_inline_preview \u2192 per-frame image_apply_adjustments (neutralise to wedge + tone) \u2192 image_auto_straighten where needed \u2192 image_crop_and_resize / image_crop_to_bounds per destination downscale-only, onSubjectClipping ignore/pad, tradeoffs read \u2192 PNG/JPEG store files. No generative expand, no upscaling, no text-to-image."
+ },
+ {
+  "new_id": "PHOTO-A-05",
+  "family": "Photo & Image",
+  "engagement_title": "Kilnmore \u2014 ceramics marketplace + PDP hero imagery",
+  "vertical": "E-commerce, Retail & Product (handmade ceramics)",
+  "one_line_ask": "Our glaze colours photograph differently in every shot and the marketplace keeps rejecting our primary images \u2014 make the glazes true and consistent and give us a compliant marketplace primary plus our own PDP heroes.",
+  "primary_deliverable": "A glaze-accurate, cross-consistent ceramics photo set delivered as store files: a plain-ground marketplace-compliant primary per lead SKU (no logo, no added graphic, aperture/handle clean) plus PDP hero and detail tiles on the house ground.",
+  "engine": "image-pipeline",
+  "signature_op": "Glaze-true neutralisation plus material-named product isolation onto a plain compliant ground",
+  "collateral_set": [
+   "marketplace-compliant primary tiles (plain ground, no mark)",
+   "PDP hero tiles on the house ground",
+   "glaze-detail macro tiles",
+   "a 4:5 social hero",
+   "an applied-settings log + a written house-vs-marketplace reconciliation note"
+  ],
+  "key_stages": [
+   "Preview each piece, read glaze colour against the card",
+   "Set one neutral and correct each frame to true glaze colour",
+   "Isolate the lead SKUs by material-named selection for the plain primary",
+   "Fill the mug-handle void / vessel interior to the ground colour so no captured surface shows through",
+   "Crop PDP heroes on the house ground, downscale only",
+   "Export compliant primaries + PDP files + reconciliation note"
+  ],
+  "decision_gates": [
+   "Glaze fidelity across frames \u2014 a warm cast turns a sage glaze olive and a sand glaze yellow, and the customer returns the mug; each frame corrected to one neutral, not a shared warm push",
+   "Marketplace isolation done right: background-removal leaves the mug-handle aperture and vessel interior filled with the captured surface, reading as a disc \u2014 the correct route is material-named selection \u2192 invert \u2192 fill to the plain ground so the void fills too",
+   "Reconciling the marketplace's no-mark plain-ground rule (exactly the primary tile) against the house full-frame look \u2014 applying it everywhere kills the brand, ignoring it gets the listing rejected"
+  ],
+  "element_reuse": "One glaze-neutral target governs the whole line; the isolated silhouette produced for the marketplace primary is reused as the PDP hero cut-in, and the same corrected masters feed every tile \u2014 one bad handle-aperture fill would repeat across placements.",
+  "absorbs": [
+   "AO-02 \u2014 Kilnmore ceramics two-session neutralise is the core batch (marketplace-primary concept merges PHOTO-B-10; layout suite is left to LAYOUT-A-18)",
+   "AO-83 \u2014 Halden Sleep wholesale two-setup match folds in as the cross-consistency stage",
+   "AO-85 \u2014 Girdermark bench-product neutralise adds the material-isolation practice"
+  ],
+  "price_demo": "$38\u2013$95 handmade stoneware, buyers 30\u201355 who value craft and true colour; load-bearing because at this considered band the glaze colour IS the product and must be faithful \u2014 a $6 mass-import mug could tolerate a punchy generic grade, but here a wrong glaze hue is a returns problem.",
+  "why_not_vlm": "A regen invents pottery that isn't the maker's and can't honour a marketplace's plain-ground/no-mark spec on the real SKU; identity, an exact compliant primary spec, and a genuinely clear aperture are all required.",
+  "doability": "upload \u2192 asset_inline_preview \u2192 image_apply_adjustments per frame \u2192 image_select_by_prompt (material-named) \u2192 image_invert_selection \u2192 image_fill_area to ground colour \u2192 image_crop_to_bounds / image_crop_and_resize downscale-only \u2192 PNG/JPEG files. remove_background used only where a solid outer silhouette suffices, never for the enclosed aperture. No upscaling, no generative fill, no text-to-image."
+ },
+ {
+  "new_id": "PHOTO-A-06",
+  "family": "Photo & Image",
+  "engagement_title": "Northgrove \u2014 apparel colourway system from one hero shot",
+  "vertical": "Fashion & Apparel (basics capsule)",
+  "one_line_ask": "We shot each style once but sell it in several colours \u2014 build us a believable colourway image set for every style from the shots we have, matched to one studio look, ready for the product pages.",
+  "primary_deliverable": "A masked-recolour colourway system: for each hero garment, a set of believable colour variants produced by region-confined recolour of one shot, all matched to one studio neutral, delivered as PDP-ready image files per colourway.",
+  "engine": "image-pipeline",
+  "signature_op": "Masked, region-confined garment recolour into multiple believable colourways from a single shot",
+  "collateral_set": [
+   "colourway variant tiles per style (PDP files)",
+   "the matched base hero per style",
+   "a swatch-accurate colour reference contact sheet",
+   "flat-lay detail crops",
+   "an applied-settings log with the recolour params per colourway"
+  ],
+  "key_stages": [
+   "Preview each garment, neutralise to one studio look",
+   "Select only the fabric of the garment (not skin, tag, background)",
+   "Apply per-colourway masked adjustments as adjacent-hue moves",
+   "Sanity-check each variant reads as real dyed fabric, not a flat fill",
+   "Crop the variants to PDP size, downscale only",
+   "Export per-colourway files + params log"
+  ],
+  "decision_gates": [
+   "Recolour confined to the fabric mask \u2014 an unmasked move drags the model's skin, the woven tag and the ground, and the garment stops reading as a real dyed textile; the only whole-image colour tool has no mask at all",
+   "Colourways as adjacent-hue + saturation/lightness moves preserving fabric shading, NOT a rotation to a named brand hex (which produces flat mud and kills the weave); the achievable range is moderate, so extreme swaps must be flagged as not faithfully producible",
+   "Deciding which shots can carry a recolour at all \u2014 a heavily patterned or already-saturated garment won't recolour believably and needs a real reshoot call, not a forced tint"
+  ],
+  "element_reuse": "One studio-neutral target and one fabric mask per style are produced once, then reused for every colourway of that style, so all variants share identical lighting, shadow and fit \u2014 only the hue moves, which is exactly what makes them read as one shoot.",
+  "absorbs": [
+   "AO-39 \u2014 Northgrove apparel isolate/recolour batch is the core system",
+   "AO-113 \u2014 Loomhearth wholesale flat-lay pack folds in the flat-lay detail stage",
+   "AO-63 \u2014 Maple Cricket streetwear grade supplies additional garment frames"
+  ],
+  "price_demo": "$32\u2013$60 elevated basics, buyers 22\u201338 shopping online; load-bearing because at this band colourways must look like true dyed cotton under one consistent studio light \u2014 a fast-fashion $9 band could get away with obvious flat recolours, but here a fake-looking tint reads as a scam and drives returns.",
+  "why_not_vlm": "A regen changes the garment's cut, drape and stitching between colours so they don't read as one product; the job is identity-preserving, region-confined recolour of the real shot to an exact PDP spec.",
+  "doability": "upload \u2192 asset_inline_preview \u2192 image_apply_adjustments (neutralise) \u2192 image_select_by_prompt (fabric, returnBbox) \u2192 image_apply_adjustments with maskURI (hslHue/Saturation/Lightness, adjacent-hue) per colourway \u2192 image_crop_to_bounds downscale-only \u2192 PNG files. No generative fill, no background-replace-by-prompt, no upscaling."
+ },
+ {
+  "new_id": "PHOTO-A-07",
+  "family": "Photo & Image",
+  "engagement_title": "Lumora \u2014 lip-oil shade-range PDP imagery from one bottle shot",
+  "vertical": "Beauty, Cosmetics & Personal Care (colour cosmetics)",
+  "one_line_ask": "We're launching one lip oil in several shades but only budgeted one photo shoot \u2014 build the shade-range imagery from the shots we have, all matched, and give us the PDP hero grid and swatches.",
+  "primary_deliverable": "A masked-recolour shade system built from one matched hero shot: per-shade PDP hero tiles plus a shade-swatch grid, all sharing one grade so the range reads as one shoot, delivered as store image files.",
+  "engine": "image-pipeline",
+  "signature_op": "Region-confined recolour of the oil/product to a believable shade range from one shot",
+  "collateral_set": [
+   "per-shade PDP hero tiles",
+   "a shade-swatch grid tile",
+   "an on-lip/texture detail per shade",
+   "a 4:5 launch hero",
+   "params log per shade + a reconciliation note on which shades are faithfully producible"
+  ],
+  "key_stages": [
+   "Neutralise the base hero shot to one clinical look",
+   "Mask only the oil (exclude dropper, glass, skin, card)",
+   "Apply per-shade adjacent-hue masked moves",
+   "Build the swatch grid from the same masked geometry",
+   "Crop PDP heroes, downscale only",
+   "Export per-shade files + params/limits note"
+  ],
+  "decision_gates": [
+   "Mask confined to the oil so the clear glass, the dropper and the skin don't shift \u2014 an unmasked recolour turns the whole frame and the product stops looking like a real oil",
+   "Adjacent-hue shade moves that keep the oil's translucency and gloss, not a hard rotation to a named lipstick hex (which flattens it); deep vamp/berry shades from a nude base may be out of faithful range and must be flagged rather than faked",
+   "Deciding shade order and how many are actually distinguishable at PDP-thumbnail scale \u2014 near-identical nudes read as duplicates and confuse the grid"
+  ],
+  "element_reuse": "One neutral grade and one oil mask are made once and reused for every shade tile and every swatch, so the whole range shares identical bottle, light and gloss \u2014 only the hue changes, which sells the range as one coherent shoot.",
+  "absorbs": [
+   "AO-114 \u2014 Lumora Dewdrop lip-oil PDP mixed-light batch is the base and shade system"
+  ],
+  "price_demo": "$24 lip oil, buyers 18\u201332 shopping shade-first on mobile; load-bearing because at this trend-beauty band the shade grid is the entire buying decision and must look like true product, and shades that can't be faithfully produced from the base must be declared, not faked, to avoid a wrong-colour returns spiral.",
+  "why_not_vlm": "A regen invents a different bottle per shade and breaks range coherence; the client needs their real bottle recoloured believably and consistently to an exact PDP-grid spec, with honest limits on which shades are achievable.",
+  "doability": "upload \u2192 asset_inline_preview \u2192 image_apply_adjustments (neutralise) \u2192 image_select_by_prompt (the oil, returnBbox) \u2192 image_apply_adjustments maskURI per shade \u2192 image_crop_to_bounds downscale-only \u2192 PNG files. No generative fill, no upscaling, no text-to-image."
+ },
+ {
+  "new_id": "PHOTO-A-08",
+  "family": "Photo & Image",
+  "engagement_title": "Fennhollow Botanical Soda \u2014 summer campaign heroes from packshots + licensed lifestyle stock",
+  "vertical": "Food, Restaurant & Beverage (craft botanical soda / premium CPG)",
+  "one_line_ask": "We have two studio packshots and no lifestyle photography \u2014 source a few genuinely on-brand summer lifestyle frames, grade everything to one warm-daylight look, and hand us the campaign heroes at the sizes we run.",
+  "primary_deliverable": "Two packshots neutralised to their grey cards plus several licensed lifestyle stock frames, all graded to one warm-daylight look, re-aspected without upscaling into campaign hero files (wide, 1:1, 4:5, 9:16), delivered with a licensing/source manifest.",
+  "engine": "image-pipeline",
+  "signature_op": "Match-grade card-neutral packshots and differently-lit licensed stock to one shared warm-daylight look + no-upscale multi-aspect renditioning",
+  "collateral_set": [
+   "a wide campaign hero (landscape file)",
+   "1:1 / 4:5 / 9:16 social heroes",
+   "the two graded packshots on plain ground",
+   "a licensed shortlist / mood board",
+   "a source/licensing manifest (asset ids, isGenTech excluded)"
+  ],
+  "key_stages": [
+   "Neutralise both packshots to their in-frame grey cards",
+   "Search stock and shortlist genuinely on-brand summer lifestyle frames",
+   "License and download the chosen frames at full resolution",
+   "Grade packshots and stock to one warm-daylight target",
+   "Re-aspect per placement, downscale only, subject preserved",
+   "Assemble the board + write the licensing manifest"
+  ],
+  "decision_gates": [
+   "Reconciling a card-neutral studio packshot with sun-lit licensed lifestyle stock onto ONE warm-daylight target \u2014 matching clean studio to lifestyle daylight is opposite corrections toward a shared white point, not one global warm push",
+   "Shot selection judged against the craft-soda band and excluding AI-generated stock (isGenTech) \u2014 a hyper-saturated clich\u00e9 beverage shot is wrong here and an AI-gen frame is a licensing risk",
+   "Cross-aspect renditions downscale only and decline the pre-filled generative-expand tradeoff \u2014 licensed sources are camera-scale, so 9:16 is a crop/contain, never an interpolated stretch"
+  ],
+  "element_reuse": "One warm-daylight target is applied to the packshots and every licensed frame, and each master is re-cropped per placement rather than one crop rescaled, so packshot and lifestyle heroes read as one coherent campaign.",
+  "absorbs": [
+   "AO-118 \u2014 Fennhollow packshot-neutralise + licensed-lifestyle-grade summer campaign is the core engagement"
+  ],
+  "price_demo": "Craft botanical soda ~$3.50/can premium CPG, buyers 25\u201340 shopping natural-grocer aisles; load-bearing because the better-for-you craft band wants sun-lit, natural, restrained imagery \u2014 a mass-market $0.99 soda would use hyper-saturated high-gloss frames that here would read as artificial and off-brand.",
+  "why_not_vlm": "A generated hero is unlicensed and possibly synthetic for a CPG label context, and a regen can't hold the real packshot bottle's label; licensed stock gives provenance and camera-scale resolution while the packshot preserves product identity.",
+  "doability": "upload packshots \u2192 asset_inline_preview \u2192 image_apply_adjustments (neutralise to card) \u2192 asset_search(entityScope StockAsset, contentType Photo) excluding isGenTech \u2192 asset_license_and_download_stock \u2192 curl full-res \u2192 image_apply_adjustments (one warm-daylight grade on all) \u2192 image_crop_and_resize per aspect downscale-only, onSubjectClipping ignore/pad, tradeoffs read \u2192 boards_create_new_board + boards_add_items_to_board \u2192 files + manifest. No upscaling, no generative expand, no text-to-image."
+ },
+ {
+  "new_id": "PHOTO-A-09",
+  "family": "Photo & Image",
+  "engagement_title": "Continental Cup \u2014 pitch-side player portraits graded to one cinematic set",
+  "vertical": "General / Cross-Industry (sports / editorial portrait)",
+  "one_line_ask": "Our eight pitch-side player portraits were shot under different stadium light and don't match \u2014 grade them to one cinematic house look and hand us each player cleanly separated from the stadium for the card heroes.",
+  "primary_deliverable": "Eight mixed-light portraits neutralised to their grey cards and graded to one cinematic look, each subject cleanly isolated off the dark stadium, delivered as player-card hero image files (portrait crop) plus a 16:9 lead-hero variant.",
+  "engine": "image-pipeline",
+  "signature_op": "Grade-to-one cinematic look across mixed-light portraits + clean subject isolation off a busy dark background",
+  "collateral_set": [
+   "8 player-card portrait hero files (matched grade, subject isolated)",
+   "a 16:9 lead-hero",
+   "a hero-on-dark composite tile",
+   "a per-portrait settings log"
+  ],
+  "key_stages": [
+   "Preview and diagnose each portrait against its card",
+   "Set one cinematic target and correct each portrait to it",
+   "Isolate each subject positively off the cluttered stadium",
+   "Deepen / knock the background consistently across the set",
+   "Crop to card + lead-hero, downscale only",
+   "Export files + settings log"
+  ],
+  "decision_gates": [
+   "One cinematic target corrected per-frame across eight stadium lights \u2014 a single global grade leaves skin tones swinging warm/green under mixed floodlight",
+   "Subject isolation on a busy dark stadium: select the player positively then treat the background, because remove_background collapses on a cluttered non-solid ground and 'the background' can't be selected directly",
+   "Keeping every skin tone faithful while matching the look \u2014 the failure mode is pushing all players to one skin colour instead of one lighting feel"
+  ],
+  "element_reuse": "One cinematic target and one background treatment are set once and reused across all eight, so a mismatched portrait is obvious the moment the cards sit in a row.",
+  "absorbs": [
+   "AO-29 \u2014 Continental Cup mixed-light pitch-side portrait grade + hero-off-stadium is the core batch"
+  ],
+  "price_demo": "Premium tournament licensing programme, fan buyers 16\u201345 collecting official cards; load-bearing because a flagship-cup set wants a dramatic, saturated, high-contrast cinematic look \u2014 a community-league treatment (flat, bright, cheap) would undersell the marquee event.",
+  "why_not_vlm": "A regen invents athletes who aren't the real, licensed players (likeness), unusable for an official card set; the job is identity-preserving grade + isolation to an exact card spec.",
+  "doability": "upload \u2192 asset_inline_preview \u2192 per-portrait image_apply_adjustments (cinematic CIELAB + tone) \u2192 image_select_by_prompt (the player, returnBbox) \u2192 image_invert_selection \u2192 image_apply_adjustments/darken on the background, or image_remove_background(backgroundColor) only where a solid knock suffices \u2192 image_crop_to_bounds / image_crop_and_resize downscale-only \u2192 PNG files. No generative fill, no face regen, no upscaling."
+ },
+ {
+  "new_id": "PHOTO-A-10",
+  "family": "Photo & Image",
+  "engagement_title": "Keepsake restoration \u2014 faded family photo to a framed A4 print",
+  "vertical": "Media, Publishing & Personal (photo restoration)",
+  "one_line_ask": "This is the only photo we have of my grandmother \u2014 it's faded, colour-shifted and a bit crooked; bring it back to something we'd be proud to frame at A4 and give us a print-ready file.",
+  "primary_deliverable": "A restored, neutralised, straightened master of the single keepsake photo, output as a print-ready A4-proportioned image file plus a web-share version \u2014 preserving true identity, correcting fade/cast/tilt without inventing detail.",
+  "engine": "image-pipeline",
+  "signature_op": "Tonal restoration \u2014 fade recovery, colour-cast neutralisation and de-tilt \u2014 without upscaling or fabricated detail",
+  "collateral_set": [
+   "the restored A4-proportioned print file",
+   "a web/social share rendition",
+   "a before/after contrast reference",
+   "a short note on what was corrected vs deliberately left"
+  ],
+  "key_stages": [
+   "Look closely and separate real damage from age character",
+   "Neutralise the colour cast and recover faded tone",
+   "Rebalance highlights/shadows without crushing detail",
+   "Straighten the frame and crop to A4 proportion",
+   "Size print and web renditions, downscale only",
+   "Export files + the corrections note"
+  ],
+  "decision_gates": [
+   "Judging what is damage to fix versus patina/grain to preserve \u2014 over-correcting scrubs the photo of its age and identity, which the family will reject",
+   "No upscaling to hit A4: the source is a scan of finite resolution, so the A4 file must come from that resolution at print DPI, not an interpolated 2x enlargement (crop_and_resize will silently upscale and only flag it in tradeoffs)",
+   "Cast correction on a faded print is a global-then-verify judgement, not a slam to neutral \u2014 pushing too far turns aged whites blue and skin grey"
+  ],
+  "element_reuse": "The one restored master is the single source for both the print and web renditions, so the correction is decided once and every output inherits it identically.",
+  "absorbs": [
+   "AO-111 \u2014 faded/scratched family keepsake restoration to a framed A4 print is the engagement"
+  ],
+  "price_demo": "One-off personal restoration commission, $120\u2013$250, sentimental client 40\u201370; load-bearing because this is a keepsake, not a product \u2014 the value is faithful, restrained restoration of the real person, so an aggressive 'enhanced' or re-imagined look (however slick) is a failure at any price.",
+  "why_not_vlm": "A generative restore invents a face that isn't the grandmother \u2014 fabricated eyes, teeth, hairline \u2014 which is the one unforgivable outcome here; the job is identity-preserving correction of the actual pixels at a real print spec, no invented detail.",
+  "doability": "upload \u2192 asset_inline_preview \u2192 image_apply_adjustments (neutralise cast, recover fade, tone) \u2192 image_auto_straighten \u2192 image_crop_to_bounds to A4 proportion \u2192 image_crop_and_resize downscale-only at print size, tradeoffs read \u2192 PNG files. No generative fill, no AI restore, no upscaling, no text-to-image."
+ },
+ {
+  "new_id": "PHOTO-A-11",
+  "family": "Photo & Image",
+  "engagement_title": "Heritage archive \u2014 mixed-era family scans graded to one respectful archival tone",
+  "vertical": "Media, Publishing & Personal (heritage / memorial)",
+  "one_line_ask": "We have scans from different decades that all look different \u2014 bring them to one respectful archival tone, correct the fade, cast and tilt, and hand us print-ready archival masters and web versions we can keep and reprint.",
+  "primary_deliverable": "A set of mixed-era heritage scans archivally graded to one consistent respectful tone (fade/cast corrected, tilt fixed, damage judged, nothing fabricated), delivered as print-ready archival master image files plus web-share renditions and a corrections log. No book or plate document \u2014 those go to a separate Layout row.",
+  "engine": "image-pipeline",
+  "signature_op": "Archival grade-to-one-tone of mixed-era scans at a common black point without fabricating detail",
+  "collateral_set": [
+   "print-ready archival master files (one per scan)",
+   "web-share renditions",
+   "a before/after contrast reference sheet",
+   "a corrections log noting what was corrected vs left"
+  ],
+  "key_stages": [
+   "Inspect each scan; separate damage from era character",
+   "Set one respectful archival tone and black point",
+   "Correct each scan individually toward it; straighten as needed",
+   "Apply a shared duotone/monochrome floor where the era mix demands it",
+   "Size print and web renditions, downscale only",
+   "Export masters + corrections log"
+  ],
+  "decision_gates": [
+   "One archival tone across eras \u2014 a 1900s sepia scan and a 1960s colour scan need opposite corrections toward a shared respectful neutral/duotone, not a single uniform sepia wash that erases their differences wrongly",
+   "Restraint on damage: scratches and grain that carry age are judged case-by-case, not blanket-removed, and nothing is fabricated where emulsion is lost",
+   "No upscaling to hit print: each master comes from the scan's finite resolution at print DPI, not an interpolated enlargement (crop_and_resize silently upscales and only warns in tradeoffs)"
+  ],
+  "element_reuse": "One archival tone and black point are fixed once and every scan corrected to it, so the whole set reads as one archive \u2014 an un-matched scan is glaring the moment two sit adjacent in a frame or album spread.",
+  "absorbs": [
+   "AO-35 \u2014 Veranda Marvelli 1910 memorial postcard-front neutralise is the core batch (the memorial book itself is left to a Layout row)",
+   "AO-37 \u2014 Marden Vale heritage five-scan archival duotone grade folds in the mixed-era consistency stage"
+  ],
+  "price_demo": "Heritage/memorial restoration commission, $300\u2013$600, family 45\u201375; load-bearing because the occasion demands a quiet, dignified, classical archival treatment \u2014 a bright modern 'refreshed' grade would read as disrespectful regardless of technical polish.",
+  "why_not_vlm": "A regen fabricates missing faces and detail in irreplaceable family scans; the family needs faithful, identity-preserving correction of the actual scanned pixels at a real print spec, with nothing invented.",
+  "doability": "upload \u2192 asset_inline_preview \u2192 per-scan image_apply_adjustments (neutralise cast, recover fade, tone) + image_apply_monochromatic_tint for a shared duotone floor where needed \u2192 image_auto_straighten \u2192 image_crop_to_bounds / image_crop_and_resize downscale-only at print size, tradeoffs read \u2192 PNG files + corrections log. No generative fill/restore, no upscaling, no text-to-image."
+ },
+ {
+  "new_id": "PHOTO-A-12",
+  "family": "Photo & Image",
+  "engagement_title": "Northwind Advisory \u2014 team headshot rescue, one matched professional set",
+  "vertical": "Professional Services (advisory firm)",
+  "one_line_ask": "Our team headshots were taken at different times against different backgrounds and skin tones look all over the place \u2014 make them read as one professional set and hand us the matched files ready to drop onto our site.",
+  "primary_deliverable": "A cross-consistent headshot set matched to one skin-tone-faithful professional look on a consistent treatment, delivered as image files: uniform-crop headshots, tight square directory avatars and a leadership hero variant. Files only \u2014 no web page.",
+  "engine": "image-pipeline",
+  "signature_op": "Skin-tone-faithful grade-to-one-look across differently-lit portraits, matched not homogenised",
+  "collateral_set": [
+   "the matched headshot files (uniform crop / treatment)",
+   "tight square directory-avatar crops",
+   "a leadership hero variant",
+   "a per-portrait settings log"
+  ],
+  "key_stages": [
+   "Preview each headshot; diagnose cast and exposure",
+   "Set one professional target and correct each portrait to it, faithfully across skin tones",
+   "Normalise crop framing and eyeline across the set",
+   "Produce the square directory-avatar crops from the matched masters",
+   "Downscale-only crops to headshot and avatar sizes",
+   "Export files + settings log"
+  ],
+  "decision_gates": [
+   "Matching to one look while keeping every skin tone accurate \u2014 a single global correction that neutralises one person's warm cast tints another's skin unnaturally; each portrait needs its own correction toward the shared target",
+   "Faithful skin, not homogenised: the failure mode is pushing everyone to one skin colour; the goal is one lighting/background feel with true individual complexions preserved",
+   "Consistent crop / eyeline / head-size across headshots shot at different distances \u2014 mismatched framing reads as unprofessional even when colour is fixed"
+  ],
+  "element_reuse": "One professional-look target and one crop spec are set once and applied to every portrait, and the same matched headshots feed the directory avatars and the leadership hero \u2014 an off portrait stands out immediately in the grid.",
+  "absorbs": [
+   "AO-104 \u2014 Northwind Advisory six-headshot rescue is the core batch",
+   "AO-20 \u2014 Continental Forge leadership-gallery neutralise folds in additional portraits"
+  ],
+  "price_demo": "Boutique advisory billing $350\u2013$600/hr, clients are institutions; load-bearing because the firm's fee band demands understated, uniform, credible portraiture \u2014 a heavily-retouched glamour or a cheap flat-flash look would both signal the wrong tier to an institutional client.",
+  "why_not_vlm": "A regen replaces real people's faces \u2014 unusable for a firm's actual staff; the firm needs its real employees, matched and consistent, at exact headshot/avatar crop specs.",
+  "doability": "upload \u2192 asset_inline_preview \u2192 per-portrait image_apply_adjustments (skin-faithful neutralise + tone) \u2192 image_auto_straighten \u2192 image_crop_to_bounds / image_crop_and_resize to uniform framing and avatar sizes, downscale-only \u2192 PNG files. No generative fill, no face regen, no upscaling."
+ },
+ {
+  "new_id": "PHOTO-A-13",
+  "family": "Photo & Image",
+  "engagement_title": "Founder personal-brand portrait kit \u2014 one look, every placement",
+  "vertical": "General / Cross-Industry Personal Branding (founder / creator)",
+  "one_line_ask": "I got a mix of shots from a quick session and they don't match \u2014 grade them to one signature look and cut them to everything I need: profile avatars, a press headshot, a banner and a speaker photo.",
+  "primary_deliverable": "A single-session portrait batch graded to one signature look and re-cropped without upscaling into a placement kit \u2014 square avatars, a press-ratio headshot, a wide banner and a speaker/bio crop \u2014 delivered as final image files.",
+  "engine": "image-pipeline",
+  "signature_op": "Grade-to-one signature look on a portrait session + multi-placement cropping without upscaling",
+  "collateral_set": [
+   "square avatar renditions (multiple sizes)",
+   "a press-ratio headshot file",
+   "a wide profile/banner crop",
+   "a speaker/bio crop",
+   "a per-shot settings log"
+  ],
+  "key_stages": [
+   "Preview the session; pick the frames that carry each placement",
+   "Set one signature look and correct each chosen frame to it",
+   "Decide per-placement crop so the face survives each ratio",
+   "Downscale-only crops to avatar / press / banner / speaker sizes",
+   "Export the placement kit files",
+   "Log the look params and crop rationale"
+  ],
+  "decision_gates": [
+   "Which frames serve which placement \u2014 a full-height frame makes the banner but a tight frame makes the avatar; forcing one frame across all ratios either upscales or clips the face",
+   "One signature look across the session so a profile avatar and a press headshot read as the same person's brand, corrected per-frame not globally",
+   "Banner and avatar crops must be downscales from the session's native resolution \u2014 no interpolated enlargement to fill a wide banner"
+  ],
+  "element_reuse": "One signature-look target is set once and every placement inherits it; the face crop logic is decided per ratio from the best frame for that ratio, so the whole kit reads as one deliberate personal brand.",
+  "absorbs": [
+   "AO-21 \u2014 founder personal-brand six-shot headshot session is the engagement"
+  ],
+  "price_demo": "Founder/creator personal-brand package, $400\u2013$900, client 30\u201350 raising or speaking; load-bearing because a fundraising/keynote-tier founder wants a composed, credible, understated look consistent across placements \u2014 an over-filtered influencer grade would misprice them to investors and press.",
+  "why_not_vlm": "A regen invents a different person; the founder needs their own real face, one consistent look, at exact platform crop specs \u2014 identity and spec fidelity a one-shot can't guarantee.",
+  "doability": "upload \u2192 asset_inline_preview \u2192 image_apply_adjustments (one look) per chosen frame \u2192 image_crop_to_bounds / image_crop_and_resize per placement, downscale-only, tradeoffs read \u2192 PNG files. No generative fill, no face regen, no upscaling."
+ },
+ {
+  "new_id": "PHOTO-A-14",
+  "family": "Photo & Image",
+  "engagement_title": "Nordheim Atelier \u2014 FW26 editorial look grade + duotone hero image set",
+  "vertical": "Fashion & Apparel (designer atelier / editorial)",
+  "one_line_ask": "Our six FW26 looks were shot on different days and don't hang together \u2014 grade them to one editorial mood and give us a couple of dramatic duotone treatments for the campaign, as finished image files.",
+  "primary_deliverable": "Six fashion looks graded to one editorial mood plus a duotone/monochromatic-tint hero treatment, delivered as image files (the graded look masters + the duotone hero) sized for the campaign. No laid-out lookbook or poster \u2014 those go to a separate Layout row.",
+  "engine": "image-pipeline",
+  "signature_op": "Editorial grade-to-one-mood across mixed-day fashion frames + a controlled duotone / monochromatic-tint hero treatment",
+  "collateral_set": [
+   "the six graded look masters as files",
+   "a duotone/monochromatic-tint hero",
+   "a cover-crop hero variant",
+   "1:1 and 4:5 campaign crops",
+   "a treatment log with per-look reasoning"
+  ],
+  "key_stages": [
+   "Preview the six looks; diagnose per-frame cast/exposure",
+   "Set one editorial mood target and correct each look to it",
+   "Choose the single frame whose tonal range survives the duotone",
+   "Produce the duotone/monochromatic-tint hero",
+   "Crop the campaign variants, downscale only",
+   "Export the graded + duotone files + treatment log"
+  ],
+  "decision_gates": [
+   "One editorial mood across six shoot-days \u2014 differently-lit frames each need their own correction toward the shared mood; a global filter leaves half the looks mismatched when placed side by side",
+   "Duotone as a controlled monochromatic tint that preserves tonal separation in the garment, not a flat two-colour treatment where the clothing detail collapses",
+   "Choosing which look carries the duotone hero \u2014 the frame with the widest surviving tonal range, since a low-contrast look turns to mud under a tint"
+  ],
+  "element_reuse": "One editorial mood target governs all six looks and the cover crop; the duotone hero is derived from that same graded set, so an un-matched look breaks the moment the campaign frames sit together.",
+  "absorbs": [
+   "AO-106 \u2014 Nordheim Atelier FW26 editorial six-look neutralise is the core batch and the mood-consistency target"
+  ],
+  "price_demo": "Designer atelier, garments $600\u2013$2,400, buyers 30\u201355 and press; load-bearing because the couture-adjacent band demands restrained editorial grading and a disciplined duotone \u2014 saturated, busy, discount-styled imagery would destroy the collection's perceived value.",
+  "why_not_vlm": "A regen restyles the actual garments and models; the atelier needs its real FW26 pieces, identity-preserving, graded to one mood with a controlled duotone at exact campaign specs.",
+  "doability": "upload \u2192 asset_inline_preview \u2192 per-look image_apply_adjustments (editorial grade) \u2192 image_apply_monochromatic_tint for the duotone hero \u2192 image_crop_and_resize / image_crop_to_bounds per campaign size downscale-only, tradeoffs read \u2192 PNG files. No generative fill, no upscaling, no text-to-image."
+ },
+ {
+  "new_id": "PHOTO-A-15",
+  "family": "Photo & Image",
+  "engagement_title": "Slabvault \u2014 collectible product re-aspect heroes + clean cutouts",
+  "vertical": "E-commerce, Retail & Product (graded-collectible consignment)",
+  "one_line_ask": "Our consignment items were shot square but we need them as listing heroes, marketplace primaries and a wide banner \u2014 make them consistent and give us every size cleanly, including a plain-ground cut-out primary.",
+  "primary_deliverable": "A cross-consistent collectible photo set neutralised to one look and re-aspected without upscaling into listing hero, marketplace primary (clean cutout on plain ground) and a wide banner \u2014 delivered as final image files.",
+  "engine": "image-pipeline",
+  "signature_op": "Neutralise-to-one-look + no-upscale cross-aspect re-aspecting + clean product cutout for a compliant primary",
+  "collateral_set": [
+   "square listing hero tiles (files)",
+   "plain-ground marketplace primary cutouts",
+   "a wide banner crop",
+   "detail / grade-label macro crops",
+   "a settings log + a note on crops that would require upscaling and were declined"
+  ],
+  "key_stages": [
+   "Preview each item; neutralise to one consistent look",
+   "Isolate the item by material-named selection for the plain primary",
+   "Fill any enclosed void to the ground colour so nothing shows through",
+   "Re-aspect square sources to banner / primary without upscaling",
+   "Export the sized file families",
+   "Log the look params and any declined upscale/expand crops"
+  ],
+  "decision_gates": [
+   "Square source to wide banner without generative expand or upscaling \u2014 there aren't pixels to the sides, so the answer is a downscaled letterboxed/contained crop or a reshoot flag, never an interpolated stretch or a pre-filled expand chain",
+   "Clean cutout on the plain primary: background-removal leaves any enclosed slab-window or case aperture filled and reading as a disc \u2014 material-named selection \u2192 invert \u2192 fill to ground is the correct route",
+   "One neutral look across items shot in mixed light so the listings read as one consistent store"
+  ],
+  "element_reuse": "One neutral look target governs the set and the isolated cutout is reused as both the marketplace primary and the PDP cut-in, so a single silhouette/aperture error would repeat across placements.",
+  "absorbs": [
+   "AO-112 \u2014 Slabvault graded-slab consignment neutralise is the core batch and supplies the cutout / re-aspect practice (single owner; merges PHOTO-B-11)"
+  ],
+  "price_demo": "Graded collectibles $150\u2013$4,000 on consignment, buyers 25\u201355 detail-obsessed; load-bearing because at high consignment values the imagery must be crisp, honest and blemish-true \u2014 no invented edges, no interpolated softness \u2014 since buyers scrutinise the exact item; a cheap generic grade would read as a scam listing.",
+  "why_not_vlm": "A regen invents a different item and can't honour a marketplace's exact plain-ground primary spec on the real graded piece; identity, an exact compliant crop spec, and a genuinely clear aperture rule it out.",
+  "doability": "upload \u2192 asset_inline_preview \u2192 image_apply_adjustments (neutralise) \u2192 image_select_by_prompt (material) \u2192 image_invert_selection \u2192 image_fill_area to ground \u2192 image_crop_and_resize per aspect with onSubjectClipping ignore/pad, downscale-only, tradeoffs read \u2192 PNG/JPEG files. remove_background only for solid outer silhouettes, never the enclosed aperture. No generative expand, no upscaling, no text-to-image."
+ },
+ {
+  "new_id": "PHOTO-B-01",
+  "family": "Photo & Image",
+  "engagement_title": "Cedarline & Vale \u2014 flagship listing photo-finishing set",
+  "vertical": "Real Estate & Property",
+  "one_line_ask": "Finish the ten-room shoot for our new flagship listing so every room reads as one calm, true-to-life home with the windows actually showing the view, and hand back both the full listing set and the tiles the portals and the printed feature sheet need.",
+  "primary_deliverable": "Ten cohesive, window-recovered interior masters plus a per-room set of portal-spec and feature-sheet crops, all agreeing on one white point and one black point",
+  "engine": "image-pipeline",
+  "signature_op": "cross-room tonal grade to one house white point, with masked window/highlight recovery so blown glazing regains the view without crushing the interior",
+  "collateral_set": [
+   "ten neutralised full-room masters (PNG)",
+   "portal-spec 4:3 crops per room",
+   "one 3:2 hero per room for the feature sheet",
+   "a vertical 9:16 crop of the three lead rooms for a listing story",
+   "an applied-settings log naming the per-room parameters and why each room's set differs",
+   "an editable one-listing feature sheet as an Express doc + source HTML"
+  ],
+  "key_stages": [
+   "look-first review of every room",
+   "set the shared neutral / white / black target from the best-lit room",
+   "grade each room to that target reasoning its own light",
+   "mask and recover each blown window region",
+   "straighten the one off-level frame",
+   "crop each room to portal + feature-sheet + story ratios",
+   "assemble the feature sheet and verify photos actually embed"
+  ],
+  "decision_gates": [
+   "the shared white point and black point are chosen once, early, from one reference room; pick it off an over-warm room and all ten masters ship yellow and the error is invisible until they sit adjacent on the sheet",
+   "window recovery must be a masked highlight/exposure pull on the glazing only \u2014 a whole-frame highlight reduction to save the window murders the interior, and the failure only shows at portal scale",
+   "which rooms can take the 9:16 story crop without gen-expand vs which must be left at 3:2 because cropping in loses the room"
+  ],
+  "options_moment": "the agent proposes two house looks (a cooler airy neutral vs a warmer domestic neutral), renders one lead room each way, and defends the pick against the price band and buyer before grading the other nine",
+  "element_reuse": "one shared neutral/white/black target derived once and applied identically across all ten rooms; the same corrected masters are re-cropped per destination from the camera-scale source rather than one crop rescaled to every shape",
+  "absorbs": [
+   "AO-32",
+   "AO-26",
+   "AO-27",
+   "AO-79"
+  ],
+  "price_demo": "A $2.4M architect-designed listing, buyers 40-60 with $400k+ HHI who read the light as a proxy for build quality \u2014 so a cooler, restrained, true-white look is load-bearing; the same brief on a $320k starter home would want a warmer, brighter, more welcoming grade, and shipping the luxury look on the starter (or vice-versa) reads wrong to the target buyer.",
+  "why_not_vlm": "The rooms are a specific physical house a buyer will walk; a one-shot model invents different rooms and fabricates a view through the window that isn't the real view. It cannot hold ten real rooms to one measurable white point, cannot return portal-spec pixel crops of the actual property, and cannot deliver an editable feature sheet.",
+  "doability": "asset_initialize/finalize upload of camera-scale (~4000-4500px) room frames \u2192 asset_inline_preview \u2192 image_apply_adjustments (exposure/gamma/highlights/lights/darks/tempA/tempB/tempLuminance) per room \u2192 image_select_by_prompt('the bright window') + image_apply_adjustments with maskURI for window recovery \u2192 image_auto_straighten \u2192 image_crop_and_resize / image_crop_to_bounds (downscale only) \u2192 export_html_to_express for the sheet. No banned capability; no upscaling \u2014 every crop stays at or below source and no interpolated enlargement is taken."
+ },
+ {
+  "new_id": "PHOTO-B-02",
+  "family": "Photo & Image",
+  "engagement_title": "Halcyon Quarter \u2014 development launch twilight exterior + amenity set",
+  "vertical": "Real Estate & Property",
+  "one_line_ask": "Grade our exterior and amenity photography for the sales launch so the whole scheme reads at that premium dusk-glow moment even though it was shot across a cloudy afternoon, and give us hero frames big enough for the site hoarding as well as the portal and the launch flyer.",
+  "primary_deliverable": "A cohesive twilight-look exterior + amenity master set at one warm-glow grade, delivered with a large-format hoarding hero and portal/flyer crops",
+  "engine": "image-pipeline",
+  "signature_op": "unify a mixed-daylight set to one warm dusk grade, pushing lit interiors/lamps to glow via masked warmth-and-light lift while holding the sky and facade cool",
+  "collateral_set": [
+   "six twilight-graded exterior + amenity masters (PNG)",
+   "one large-format hoarding hero crop",
+   "portal 3:2 crops",
+   "a 4:5 amenity set for social",
+   "applied-settings log with per-frame reasoning",
+   "an editable launch flyer Express doc + source HTML carrying the hero"
+  ],
+  "key_stages": [
+   "review all frames and choose the reference facade",
+   "set the shared dusk warmth/contrast target",
+   "grade each frame to the target reasoning its own daylight",
+   "mask the windows and lamps to glow-lift them against a held-cool sky",
+   "re-aspect the widest exterior for the hoarding hero without clipping the building",
+   "crop the portal/social ratios and lay out the flyer"
+  ],
+  "decision_gates": [
+   "the dusk warmth target is set once from one facade; setting it too warm turns the concrete facade sickly, and the whole scheme ships that way",
+   "the glow must be masked to windows/lamps \u2014 a global warm push makes the sky look polluted rather than premium",
+   "the hoarding needs a wider frame than any crop can take, so the one sanctioned generative-expand of the short axis is the correct move, not an upscaled crop"
+  ],
+  "options_moment": "the agent renders the reference facade at two dusk intensities (a restrained blue-hour vs a saturated golden-glow) and argues which sells this price band and neighbourhood before committing the set",
+  "element_reuse": "one dusk warmth/contrast target set once and carried across all exteriors and amenities; the same graded facade hero is the single frame that feeds hoarding, portal and flyer, re-cropped not re-graded",
+  "absorbs": [
+   "AO-24",
+   "AO-119"
+  ],
+  "price_demo": "Off-plan apartments from $780k aimed at professional downsizers 50-65; the premium is sold on lifestyle and light, so an evening warm-glow look is load-bearing \u2014 a mid-market rental scheme at $1,600/mo would be shot flat, bright and daytime, and the dusk treatment would read as overselling.",
+  "why_not_vlm": "The hoarding must show the actual building being sold at real pixel size; a generated dusk render is a fabricated building and legally unusable for a property launch. Cross-frame grade consistency and a true large-format crop of the real facade are exactly what a one-shot regen cannot preserve.",
+  "doability": "upload camera-scale exteriors \u2192 asset_inline_preview \u2192 image_apply_adjustments for the shared dusk grade \u2192 image_select_by_prompt('the lit windows') / ('the lamps') + masked image_apply_adjustments for glow \u2192 image_generative_expand (short axis, sole sanctioned generative call, seeds for reproducibility) then image_crop_and_resize for the hoarding \u2192 crops for portal/social \u2192 export_html_to_express for the flyer. No banned capability (no sky-replace-by-prompt); no upscaling \u2014 crops downscale only."
+ },
+ {
+  "new_id": "PHOTO-B-03",
+  "family": "Photo & Image",
+  "engagement_title": "Gable & Grove \u2014 home-services before/after transformation library",
+  "vertical": "Home & Property Services",
+  "one_line_ask": "Turn our messy phone-and-camera job photos into a credible before/after library for the website and quote packs, where the 'before' stays honest and unglamorous and the 'after' looks like the premium finish we actually deliver, with the finished feature cleanly lifted out for the hero.",
+  "primary_deliverable": "Matched before/after pairs across several jobs \u2014 befores left honest, afters graded to one premium finish look \u2014 plus an isolated finished-feature hero cutout",
+  "engine": "image-pipeline",
+  "signature_op": "asymmetric treatment triage: minimal honest correction on the 'before' vs a full premium grade on the 'after', held consistent across differently-lit jobs, with the finished element isolated for reuse",
+  "collateral_set": [
+   "matched before/after master pairs (PNG) across several jobs",
+   "a plain-ground isolated cutout of one flagship finished feature",
+   "web 3:2 and square crops of each pair",
+   "an applied-settings log stating why befores and afters were treated differently",
+   "an editable services one-pager Express doc + source HTML"
+  ],
+  "key_stages": [
+   "review and pair each before with its after",
+   "correct befores only enough to be honest and legible",
+   "set and apply the premium 'after' grade across jobs",
+   "isolate the flagship finished feature onto a plain ground",
+   "crop pairs to web and square",
+   "lay out the one-pager and confirm photos embed"
+  ],
+  "decision_gates": [
+   "look-alike inputs need opposite treatments \u2014 over-grading the 'before' destroys the credibility of the whole before/after story, which is the entire sales mechanism",
+   "the isolated feature is a real object with a clean outline (remove_background onto a solid ground works) \u2014 attempting the same isolation on a job with a disjoint fenced boundary collapses and must instead be a select-then-crop",
+   "one 'after' look must hold across jobs shot in different light or the library looks like different companies did the work"
+  ],
+  "options_moment": "the agent proposes two 'after' finishes (a bright clean-contemporary vs a warm lived-in premium) and justifies which matches the firm's price band and clientele",
+  "element_reuse": "a single 'after' grade recipe applied identically to every finished job; one isolated flagship feature cutout reused as the site hero and the one-pager hero",
+  "absorbs": [
+   "AO-41",
+   "AO-47"
+  ],
+  "price_demo": "A premium renovation/landscaping firm charging $45k-$120k per project for households 45-65; the 'after' must look restrained and high-end rather than saturated-and-flyer-ish, because a HGTV-bright over-grade signals a cheap $8k contractor to this clientele and undercuts the price.",
+  "why_not_vlm": "The whole product is proof that THIS firm did THIS job; a generated 'after' is a fabricated result and is fraud in a quote pack. The model cannot keep the before honest, the after real, and both matched to the same physical site.",
+  "doability": "upload job photos \u2192 asset_inline_preview \u2192 light image_apply_adjustments on befores, full grade on afters \u2192 image_remove_background({backgroundColor}) for the solid-ground feature hero (or image_select_by_prompt\u2192crop where remove_background would collapse) \u2192 image_crop_and_resize for web/square \u2192 export_html_to_express for the one-pager. No banned capability (no AI object add/remove); no upscaling."
+ },
+ {
+  "new_id": "PHOTO-B-04",
+  "family": "Photo & Image",
+  "engagement_title": "Verranza Coastal Retreats \u2014 three-villa booking portfolio cohesion",
+  "vertical": "Hospitality & Travel",
+  "one_line_ask": "Finish the photography for our three separate coastal rental villas so that, even though they are different houses shot on different days, they read online as one premium collection under our brand \u2014 and hand back the per-villa booking galleries plus a single collection sheet a guest can browse.",
+  "primary_deliverable": "Twelve HDR-finished frames (four per villa) graded and window-recovered to one collection look, delivered as per-villa booking galleries and one collection portfolio sheet",
+  "engine": "image-pipeline",
+  "signature_op": "cross-PROPERTY cohesion \u2014 grade three physically different villas, each shot in its own light, to one measurable collection white/black point with masked window recovery, so distinct houses read as one brand",
+  "collateral_set": [
+   "twelve HDR-finished, window-recovered villa masters (PNG, four per property)",
+   "per-villa booking-tile 4:5 crops",
+   "one 16:9 hero per villa for the listing header",
+   "a 9:16 crop of each villa's lead room for a booking story",
+   "an applied-settings log naming per-villa parameters and why each villa's light demanded a different correction to reach the same target",
+   "an editable collection portfolio sheet Express doc + source HTML"
+  ],
+  "key_stages": [
+   "review all twelve frames across the three villas",
+   "set the shared collection neutral/white/black target from the best-lit villa",
+   "grade each villa to that target reasoning its own light",
+   "mask and recover each blown window so the sea view returns without crushing the room",
+   "straighten any off-level frame",
+   "crop per-villa booking/hero/story ratios",
+   "assemble the collection sheet and verify photos embed"
+  ],
+  "decision_gates": [
+   "the collection target is chosen once from one reference villa \u2014 pick it off the villa with the warmest interior wood and the other two ship cold and mismatched, and the failure only shows when the three sit together on the collection sheet",
+   "window recovery must be a masked pull on the glazing alone \u2014 a whole-frame highlight reduction to save a blown sea-view window flattens the interior, visible only at booking-tile scale",
+   "three different houses must converge on ONE look without erasing each villa's real character; over-correcting a naturally darker stone villa to match a bright one makes it look like a different, cheaper property"
+  ],
+  "options_moment": "the agent proposes two collection looks (a crisp cool-coastal vs a warm sun-washed Mediterranean) on one reference villa and defends which sells this nightly band before grading the other two",
+  "element_reuse": "one collection white/black target derived once and applied across all three villas; each corrected master re-cropped per destination from the camera-scale source rather than one crop rescaled to every shape",
+  "absorbs": [
+   "AO-25"
+  ],
+  "price_demo": "Coastal villas at $520-$780/night for affluent families and groups 35-60 booking a premium retreat; a restrained, true-to-life premium look is load-bearing \u2014 a $110/night budget rental would be shot bright and literal, and the languid premium collection grade would misrepresent the property and invite refund disputes.",
+  "why_not_vlm": "Each villa is a specific house a guest will occupy, and the window shows the real view they are paying for; a one-shot model invents interiors and fabricates a false sea view, which is misrepresentation and a chargeback risk. It cannot hold three real properties to one measurable target, return booking-spec pixel crops of the actual villas, or deliver an editable collection sheet.",
+  "doability": "asset_initialize/finalize upload of camera-scale (~4000-4500px) villa frames \u2192 asset_inline_preview \u2192 image_apply_adjustments (exposure/gamma/highlights/lights/darks/tempA/tempB) per villa to one target \u2192 image_select_by_prompt('the bright window') + image_apply_adjustments with maskURI for view recovery \u2192 image_auto_straighten \u2192 image_crop_and_resize / image_crop_to_bounds (downscale only) \u2192 export_html_to_express for the collection sheet. No banned capability (no sky/view replacement by prompt); no upscaling \u2014 crops stay at or below source."
+ },
+ {
+  "new_id": "PHOTO-B-05",
+  "family": "Photo & Image",
+  "engagement_title": "N\u00f8r Haven \u2014 design-hotel stylized duotone lookbook set",
+  "vertical": "Hospitality & Travel",
+  "one_line_ask": "Give our micro design-hotel a distinctive, moody signature image treatment for the lookbook and social \u2014 a single stylized tone that runs across every amenity and detail shot so it looks unmistakably like us and nothing like a generic booking listing.",
+  "primary_deliverable": "A stylized monochromatic-tint + fine-grain treated image set applied uniformly across amenity and detail shots, delivered as lookbook spreads and a social set",
+  "engine": "image-pipeline",
+  "signature_op": "author a single stylized brand look \u2014 one monochromatic duotone tint plus calibrated grain \u2014 and apply it identically across a differently-lit set as the house signature",
+  "collateral_set": [
+   "a uniformly tinted-and-grained master set across amenity + detail shots (PNG)",
+   "lookbook 3:2 spread crops",
+   "a 4:5 and 9:16 social set",
+   "one full-frame room hero that keeps a hint of true colour for the booking page (the exception)",
+   "applied-settings log stating the tint hue, strength and grain",
+   "an editable lookbook cover Express doc + source HTML"
+  ],
+  "key_stages": [
+   "review the set and choose the signature tint hue",
+   "normalise exposure/contrast across frames first",
+   "apply the one monochromatic tint uniformly",
+   "add calibrated grain to the same degree on every frame",
+   "reserve one true-colour room hero for booking",
+   "crop lookbook and social ratios and build the cover"
+  ],
+  "decision_gates": [
+   "the tint must be applied on top of an exposure-normalised base \u2014 tinting frames that still disagree on brightness makes the 'signature' look accidental, and the fix is invisible until the set is seen together",
+   "the stylized treatment is right for the lookbook but the booking-page room must stay true-colour or guests feel misled \u2014 deciding which frames are exempt is the craft, and it must be stated in writing",
+   "a duotone here means a monochromatic tint, not RGB halftone \u2014 a colour halftone attempt returns garish rosettes, not a tone"
+  ],
+  "options_moment": "the agent generates the signature at two tint directions (a cool slate-teal vs a warm oxblood) on the same reference frame and defends the pick against the hotel's positioning",
+  "element_reuse": "one tint hue + strength + grain recipe produced once and applied identically to every lookbook frame; the same recipe defines the social set, so the whole channel reads as one signature",
+  "absorbs": [],
+  "price_demo": "A design-led micro-hotel at $600/night for design-literate 30-45 urban travellers who choose on aesthetic; a committed, restrained monochromatic signature is load-bearing \u2014 a $120/night chain property would need bright, literal, reassuring colour, and the moody tint would actively lose that booker.",
+  "why_not_vlm": "The lookbook must show this specific hotel's real rooms under a consistent bespoke treatment; a generated set invents interiors. The model cannot apply one measurable tint-and-grain recipe identically across real frames, nor keep the one true-colour booking exception, nor return an editable cover.",
+  "doability": "upload frames \u2192 asset_inline_preview \u2192 image_apply_adjustments to normalise exposure/contrast \u2192 image_apply_monochromatic_tint (one hue/strength) uniformly \u2192 image_add_grain (same amount) \u2192 image_crop_and_resize for lookbook/social \u2192 export_html_to_express for the cover. No banned capability (tint/grain are verified; no colour halftone claimed as duotone); no upscaling."
+ },
+ {
+  "new_id": "PHOTO-B-06",
+  "family": "Photo & Image",
+  "engagement_title": "Meridian Motors \u2014 used-inventory PDP cohesion + isolation run",
+  "vertical": "Automotive",
+  "one_line_ask": "Normalise the walk-around photos for a batch of used cars shot in our different lot bays so every listing looks like it came from one clean showroom, and give me an isolated hero of each car on a plain ground for the marketplace primary image where extra graphics aren't allowed.",
+  "primary_deliverable": "A per-vehicle set of showroom-normalised walk-around masters plus one plain-ground isolated hero per car for the marketplace primary slot",
+  "engine": "image-pipeline",
+  "signature_op": "normalise a mixed-bay vehicle batch to one neutral showroom white and isolate each hero onto a plain ground, reasoning where an enclosed-shape cutout will fail",
+  "collateral_set": [
+   "showroom-normalised walk-around masters per vehicle (PNG)",
+   "one plain-ground isolated hero per car for the marketplace primary image",
+   "branded lifestyle 4:5 secondary tiles (mark permitted here)",
+   "a 16:9 detail crop set",
+   "applied-settings log per bay/vehicle",
+   "an editable inventory tile Express doc + source HTML for the secondary slots"
+  ],
+  "key_stages": [
+   "review each vehicle's bay lighting",
+   "set the shared neutral showroom white",
+   "grade each vehicle to that white reasoning its bay",
+   "isolate each hero onto a plain ground",
+   "verify grille/wheel apertures didn't fill",
+   "crop primary/secondary/detail ratios and build the secondary tile"
+  ],
+  "decision_gates": [
+   "the neutral white is set once \u2014 pick it off a sodium-lit bay and the whole inventory ships warm and looks like a different lot per car",
+   "marketplace primary rule forbids any added mark, so the branded overlay belongs only on the secondary lifestyle tile \u2014 putting the logo on the primary gets the listing rejected",
+   "isolation onto a solid ground works on the car body but the open grille and wheel spokes are enclosed apertures remove_background leaves filled; the agent must notice and decide whether to accept it or select-then-composite"
+  ],
+  "options_moment": "the agent proposes two showroom whites (a cool clinical white vs a slightly warm neutral) and defends which suits the dealership tier and its buyers",
+  "element_reuse": "one showroom white target applied identically across every vehicle and bay; the isolated hero is the single asset reused for the primary slot while the same graded walk-arounds feed the detail crops",
+  "absorbs": [],
+  "price_demo": "A certified-pre-owned dealer selling $22k-$38k vehicles to value-conscious families 30-55; a clean neutral consistency signals a trustworthy operation, which is load-bearing \u2014 a $180k exotic-car specialist would want a dark dramatic studio look, and the flat showroom-white treatment would read as economy and cheapen the car.",
+  "why_not_vlm": "Each listing is a specific VIN a buyer inspects in person; a generated car is a different car and misrepresents inventory. The model cannot hold a whole batch to one white point, cannot produce a compliant mark-free plain-ground primary of the real vehicle, and cannot reason about the grille aperture that silently defeats naive isolation.",
+  "doability": "upload camera-scale walk-arounds \u2192 asset_inline_preview \u2192 image_apply_adjustments to one neutral white per vehicle \u2192 image_remove_background({backgroundColor}) for the plain-ground primary (with select_by_prompt\u2192invert\u2192composite fallback where apertures fill) \u2192 image_crop_and_resize (downscale only) \u2192 export_html_to_express for the secondary tile. No banned capability; no upscaling."
+ },
+ {
+  "new_id": "PHOTO-B-07",
+  "family": "Photo & Image",
+  "engagement_title": "Apexguard Performance \u2014 detailing & parts stylized hero + PDP cutouts",
+  "vertical": "Automotive",
+  "one_line_ask": "Build a dark, high-end hero look for our performance-parts and detailing brand across the product and installed-on-car shots, isolate each part cleanly for the product pages, and carry our recovered emblem across the whole set so it reads as one aggressive brand.",
+  "primary_deliverable": "A dark stylized hero image set across parts and installed shots, plus clean plain-ground part cutouts for PDPs, unified by one recovered brand emblem",
+  "engine": "image-pipeline",
+  "signature_op": "a dark dramatic grade with restrained accent, applied consistently across mixed part/installed shots, with the brand emblem recovered once and reused",
+  "collateral_set": [
+   "dark-graded hero masters across parts + installed-on-car frames (PNG)",
+   "plain-ground isolated part cutouts for PDPs",
+   "a recovered two-colour emblem SVG (viewBox injected, background path stripped) + a locally rasterised PNG",
+   "16:9 and 4:5 hero crops",
+   "applied-settings log",
+   "an editable hero-page Express doc + source HTML carrying the emblem"
+  ],
+  "key_stages": [
+   "recover the emblem from the photographed decal",
+   "clean the trace (strip background path, inject viewBox)",
+   "set the shared dark hero grade",
+   "grade parts and installed shots to that look",
+   "isolate each part onto a plain ground for PDPs",
+   "crop hero ratios and place the reused emblem"
+  ],
+  "decision_gates": [
+   "the emblem must be recovered by naming the ink at colour+medium level, not the decal substrate \u2014 a substrate-named selection returns a decal-shaped blob that ships as a rectangle across every placement",
+   "mask polarity before tracing must be inverted or the emblem lands as a knocked-out negative on the dark hero, looking fine only in isolation",
+   "the dark grade is set once; a whole-batch dark push that crushes the shadows loses part detail buyers need to judge fitment"
+  ],
+  "options_moment": "the agent proposes two accent directions for the dark system (a cold electric-blue accent vs a warm amber) and defends the pick against the performance-buyer demographic",
+  "element_reuse": "one emblem recovered and cleaned exactly once, reused as three colourways across hero page, PDP corner and installed shots; one dark grade target applied identically across parts and installed frames",
+  "absorbs": [
+   "AO-90"
+  ],
+  "price_demo": "Aftermarket performance parts at $250-$1,200 for enthusiasts 25-45 who buy on aggression and credibility; a dark, high-contrast, accented look is load-bearing \u2014 a mass-market $30 accessory brand would use bright friendly product-on-white, and the moody hero treatment would look pretentious for that price and buyer.",
+  "why_not_vlm": "PDPs must show the actual part a buyer fits to a real car; a generated part misrepresents fitment. The emblem is the client's real decal that must be traced at ink level, not redrawn \u2014 a plausible generated logo is not their logo, and that recovery is the job.",
+  "doability": "upload frames \u2192 image_select_by_prompt(ink by colour+medium) \u2192 image_invert_selection \u2192 image_crop_to_bounds \u2192 image_vectorize \u2192 strip path[0], inject viewBox locally \u2192 asset_inline_preview \u2192 image_apply_adjustments dark grade across frames \u2192 image_remove_background({backgroundColor}) for part cutouts \u2192 image_crop_and_resize \u2192 export_html_to_express (emblem inlined as SVG, photos as data URIs). No banned capability; no upscaling."
+ },
+ {
+  "new_id": "PHOTO-B-08",
+  "family": "Photo & Image",
+  "engagement_title": "Girdermark \u2014 industrial equipment spec-catalog image cohesion",
+  "vertical": "Industrial & Manufacturing",
+  "one_line_ask": "Standardise the bench photography for our machinery and parts range so every SKU across the spec catalogue looks like it was shot the same way on the same day, and give me clean isolated versions on a neutral ground for the data sheets alongside the in-context bench shots.",
+  "primary_deliverable": "A cohesive technical-white master set across the equipment range plus neutral-ground isolated versions per SKU for the spec sheets",
+  "engine": "image-pipeline",
+  "signature_op": "normalise a multi-SKU, multi-session bench set to one flat technical white with true material colour, and isolate each unit onto a neutral ground",
+  "collateral_set": [
+   "technical-white bench masters across the SKU range (PNG)",
+   "neutral-ground isolated SKU cutouts for data sheets",
+   "a consistent 1:1 catalogue-grid crop per SKU",
+   "a 3:2 in-context bench crop per SKU",
+   "applied-settings log per session/SKU",
+   "an editable spec-sheet header Express doc + source HTML"
+  ],
+  "key_stages": [
+   "review both shoot sessions and the material colours",
+   "set the shared technical-white target",
+   "grade each SKU to that target reasoning its session",
+   "protect true material colour (galvanised, anodised, painted) while neutralising",
+   "isolate each SKU onto a neutral ground",
+   "crop grid and bench ratios and build the sheet header"
+  ],
+  "decision_gates": [
+   "the technical white is set once from the best-lit session \u2014 a warm reference makes galvanised steel read brassy across the whole catalogue and engineers distrust the data sheet",
+   "isolation must not crush the material's true colour or a buyer specifying a finish gets the wrong impression; anodised vs galvanised must stay distinguishable",
+   "parts with enclosed bores/handles are apertures remove_background fills, so those SKUs need select-then-crop rather than a naive knockout"
+  ],
+  "options_moment": "the agent proposes two neutral grounds for the data-sheet cutouts (pure white vs a light technical grey) and justifies which reads more credible for an engineering audience",
+  "element_reuse": "one technical-white target applied identically across every SKU and both sessions; the same graded masters feed both the isolated data-sheet cutouts and the in-context bench crops",
+  "absorbs": [
+   "AO-85",
+   "AO-84"
+  ],
+  "price_demo": "Capital equipment and parts at $400-$9,000 sold to procurement engineers 35-60 who judge credibility by photographic consistency and accurate finish; flat neutral technical accuracy is load-bearing \u2014 a $15 consumer-tool brand would use bright lifestyle photography, and that styling would make the industrial buyer doubt the spec.",
+  "why_not_vlm": "Data sheets must show the exact part with its true finish and dimensions implied; a generated part fabricates a finish that is effectively a false spec claim. The model cannot hold a multi-session range to one white point nor preserve the real material colours a buyer selects on.",
+  "doability": "upload camera-scale bench shots \u2192 asset_inline_preview \u2192 image_apply_adjustments to one technical white (guarding material colour) \u2192 image_remove_background({backgroundColor}) for neutral-ground cutouts (select_by_prompt\u2192invert\u2192crop where bores fill) \u2192 image_crop_and_resize (downscale only) \u2192 export_html_to_express for the header. No banned capability; no upscaling."
+ },
+ {
+  "new_id": "PHOTO-B-09",
+  "family": "Photo & Image",
+  "engagement_title": "Ironline Forge \u2014 heritage brand-story mono-tint editorial + mark recovery",
+  "vertical": "Industrial & Manufacturing",
+  "one_line_ask": "Give our metalworks a dramatic, single-tone heritage image treatment for the brand-story page and trade-show panels, and recover the stamped maker's mark off one of our castings so it can run clean across the whole story as our emblem.",
+  "primary_deliverable": "A dramatic monochromatic-tint editorial image set across forge/foundry shots, unified by a recovered stamped maker's mark reused as vector",
+  "engine": "image-pipeline",
+  "signature_op": "a single heritage monochromatic tint + grain across a hot, mixed-light foundry set, plus ink-level recovery of a stamped mark from a photographed casting",
+  "collateral_set": [
+   "a mono-tint + grain editorial master set of forge/foundry frames (PNG)",
+   "a recovered two-colour maker's-mark SVG (background path stripped, viewBox injected) + on-dark and single-colour colourways",
+   "a locally rasterised mark PNG for the handover bundle",
+   "large trade-show panel crops + a 4:5 social set",
+   "applied-settings log with tint hue/strength/grain and the mask prompt used",
+   "an editable brand-story hero Express doc + source HTML"
+  ],
+  "key_stages": [
+   "recover the stamped mark from the casting photo",
+   "fix polarity and clean the trace (strip path, inject viewBox)",
+   "normalise exposure across the foundry frames",
+   "apply the one heritage tint uniformly",
+   "add matched grain",
+   "crop panel/social ratios and place the recovered mark"
+  ],
+  "decision_gates": [
+   "recovering a stamped mark off a textured casting needs the ink named by form and finish, not 'the casting' \u2014 the substrate prompt returns a casting-shaped blob that ships as a box across the story",
+   "tracing the raw mask gives a knocked-out negative that reads inverted on the dark editorial panels; one inversion is the whole difference",
+   "the tint sits on an exposure-normalised base or a hot bright forge frame and a dim one tint to visibly different tones and the 'signature' collapses"
+  ],
+  "options_moment": "the agent proposes two heritage tints (a warm iron-sepia vs a cool graphite-blue) on a reference frame and defends the pick against the foundry's positioning and buyer",
+  "element_reuse": "the maker's mark recovered and cleaned exactly once and reused across every panel and slide; one tint+grain recipe applied identically across the whole editorial set",
+  "absorbs": [
+   "AO-38",
+   "AO-93"
+  ],
+  "price_demo": "A heritage metalworks selling bespoke architectural and industrial castings at $5k-$60k to specifiers and developers 40-65 who buy craft and permanence; a committed monochromatic heritage look is load-bearing \u2014 a commodity fastener supplier would use bright literal catalogue shots, and the editorial mono treatment would misprice the offer.",
+  "why_not_vlm": "The mark is the client's real stamped emblem that must be traced from that specific casting, not a plausible redraw \u2014 the redraw is not their mark, which is the whole commission. The foundry frames are real facilities; a generated set fabricates a plant that doesn't exist.",
+  "doability": "upload casting photo \u2192 image_select_by_prompt(ink by form+finish) \u2192 image_invert_selection \u2192 image_crop_to_bounds \u2192 image_vectorize \u2192 strip path[0], inject viewBox \u2192 upload foundry frames \u2192 image_apply_adjustments normalise \u2192 image_apply_monochromatic_tint uniform \u2192 image_add_grain matched \u2192 image_crop_and_resize \u2192 export_html_to_express. No banned capability; no upscaling."
+ },
+ {
+  "new_id": "PHOTO-B-10",
+  "family": "Photo & Image",
+  "engagement_title": "Summit & Sable \u2014 overlanding recovery-gear marketplace relaunch",
+  "vertical": "E-commerce & Retail",
+  "one_line_ask": "Relaunch our rugged recovery-and-overlanding gear on the marketplace: our shots are a mess of clean bench packshots and gritty in-the-field action frames, so pull the whole range to one consistent look, give me a compliant plain-ground primary image per SKU where no graphics are allowed, and keep the field shots as branded lifestyle secondaries that still match.",
+  "primary_deliverable": "A cohesive one-look gear range across field and studio sources, plus a compliant plain-ground isolated primary per SKU and matching branded field-lifestyle secondary tiles",
+  "engine": "image-pipeline",
+  "signature_op": "reconcile a mixed field-and-studio gear batch to one look, then triage which frames can become a compliant clean-ground marketplace primary vs which stay branded lifestyle secondaries, isolating the studio hero per SKU",
+  "collateral_set": [
+   "normalised gear masters across field and studio sources (PNG)",
+   "a compliant plain-ground isolated primary per SKU (no mark)",
+   "branded field-lifestyle 1:1 and 4:5 secondary tiles (mark permitted)",
+   "a durability-detail 16:9 crop per SKU showing the hardware finish",
+   "applied-settings log per source/SKU stating the field-vs-studio treatment",
+   "an editable lifestyle-tile Express doc + source HTML"
+  ],
+  "key_stages": [
+   "review the batch and split field action frames from studio packshots",
+   "set the shared range look target",
+   "grade every frame to the target reasoning field vs studio light",
+   "isolate each studio hero onto a plain ground for the primary",
+   "confirm no woven-strap or shackle aperture filled and no mark on the primary",
+   "crop primary/secondary/detail ratios and build the lifestyle tile"
+  ],
+  "decision_gates": [
+   "only a clean studio packshot can legally become the plain-ground marketplace primary \u2014 trying to knock a muddy field action shot onto white produces a ragged cutout that gets the listing rejected, so the agent must triage source-by-source which frame feeds which slot",
+   "the range look is set once across field and studio sources \u2014 a warm field-golden-hour reference dragged onto the studio packshots ships the whole store inconsistent and the marketplace's own consistency signal punishes it",
+   "a recovery strap's woven loop and a shackle's bow are enclosed apertures remove_background leaves filled with captured background \u2014 the naive knockout ships a solid shape that only fails on the white primary"
+  ],
+  "options_moment": "the agent proposes two range looks (a cool technical high-contrast vs a warm rugged-earth tone) and defends the pick against the value price band and the overlanding buyer",
+  "element_reuse": "one range look target applied identically across field and studio sources; each studio hero isolated once and reused as the compliant primary while the same graded field frames feed the branded secondaries",
+  "absorbs": [
+   "AO-110"
+  ],
+  "price_demo": "Recovery straps, shackles and overlanding kit at $35-$220 for value-conscious off-road and 4x4 owners 25-50 who buy on rugged credibility and price; an honest, hard-wearing consistent look is load-bearing \u2014 a $900 premium expedition brand would use dark cinematic hero photography, and the flat value-consistent treatment would read as economy and undercut that price, while the reverse would look pretentious here.",
+  "why_not_vlm": "Each listing is a specific load-rated part a buyer trusts under a vehicle; a generated strap or shackle misrepresents rated hardware and is a safety and returns liability. The model cannot hold a mixed field-and-studio batch to one look, produce a compliant mark-free plain-ground primary of the real part, or reason about the woven-loop aperture that defeats naive isolation.",
+  "doability": "upload field + studio frames \u2192 asset_inline_preview \u2192 image_apply_adjustments to one target across sources \u2192 image_remove_background({backgroundColor:#ffffff}) for studio-hero primaries (image_select_by_prompt\u2192image_invert_selection\u2192composite/crop where strap/shackle apertures fill) \u2192 image_crop_and_resize (downscale only) \u2192 export_html_to_express for secondaries. No banned capability; no upscaling."
+ },
+ {
+  "new_id": "PHOTO-B-11",
+  "family": "Photo & Image",
+  "engagement_title": "SlabVault \u2014 graded-collectible consignment comp-card set",
+  "vertical": "E-commerce & Retail",
+  "one_line_ask": "Our consignment collectibles are photographed by different sellers in different light and half of them have glare across the slab; normalise them all to one neutral look, kill the plastic glare where it hides the item, and build clean comp cards that make the whole consignment look like one professional listing house.",
+  "primary_deliverable": "A neutral-normalised, glare-controlled master set across the consignment plus clean comp-card tiles that read as one listing house",
+  "engine": "image-pipeline",
+  "signature_op": "normalise a many-seller, mixed-light slab batch to one neutral look and control specular plastic glare via masked adjustments without flattening the item",
+  "collateral_set": [
+   "neutral-normalised slab masters across the consignment (PNG)",
+   "glare-reduced versions where reflection obscured the item",
+   "consistent 3:4 comp-card crops",
+   "a square catalogue-grid crop per lot",
+   "applied-settings log naming the mask prompt and per-lot params",
+   "an editable comp-card Express doc + source HTML"
+  ],
+  "key_stages": [
+   "review the consignment and flag glare cases",
+   "set the shared neutral target",
+   "grade each slab to the target reasoning its seller's light",
+   "mask and tame the specular glare band per affected slab",
+   "straighten crooked captures",
+   "crop comp-card and grid ratios and build the card"
+  ],
+  "decision_gates": [
+   "the neutral target is set once across many sellers \u2014 the wrong reference makes the whole consignment look inconsistent, defeating the 'one house' promise that justifies the fee",
+   "glare control must be masked to the reflection band; a global exposure pull to hide glare darkens the whole item and buyers can't grade condition, which is the entire value",
+   "straightening crops inside the rotated bounds by default, so a lot number placed near the corner can be clipped by the very fix meant to help"
+  ],
+  "options_moment": "the agent proposes two neutral grounds/looks for the comp cards (a stark auction-white vs a soft neutral grey) and defends which builds more buyer trust for this price tier",
+  "element_reuse": "one neutral target applied identically across every seller's capture; the same corrected master feeds the comp card and the catalogue grid, re-cropped per destination",
+  "absorbs": [
+   "AO-112"
+  ],
+  "price_demo": "A consignment house listing graded collectibles at $150-$5,000 for serious collectors 30-60 who judge condition from the photo; scrupulous neutral consistency and readable detail are load-bearing \u2014 a $5 bulk-lot reseller would tolerate rough phone shots, and the meticulous treatment would be wasted spend there but is essential at this value.",
+  "why_not_vlm": "Buyers grade the exact item's condition from the photo; a generated collectible is fraud and any 'cleanup' that invents detail misrepresents grade. The model cannot hold a many-seller batch to one neutral look nor mask real glare off the real slab without fabricating what's underneath.",
+  "doability": "upload seller captures \u2192 asset_inline_preview \u2192 image_apply_adjustments to one neutral target \u2192 image_select_by_prompt('the bright reflection band on the plastic case') + masked image_apply_adjustments (highlights/lights) \u2192 image_auto_straighten (mind constrainCrop) \u2192 image_crop_and_resize / crop_to_bounds \u2192 export_html_to_express for the card. No banned capability (no AI detail invention); no upscaling."
+ },
+ {
+  "new_id": "PHOTO-B-12",
+  "family": "Photo & Image",
+  "engagement_title": "Kilnmore Home \u2014 homeware catalog cohesion + duotone seasonal campaign",
+  "vertical": "E-commerce & Retail",
+  "one_line_ask": "Two jobs from one shoot: pull our ceramics-and-textiles range into one honest, true-colour catalogue look, and separately spin a stylized single-tone seasonal campaign set off the same photography for the sale push \u2014 so the catalogue tells the truth and the campaign has drama.",
+  "primary_deliverable": "One true-colour cohesive catalogue master set AND a separate stylized single-tone seasonal campaign set, both derived from the same shoot",
+  "engine": "image-pipeline",
+  "signature_op": "dual-output from one batch: true-colour catalogue normalisation vs a divergent stylized monochromatic campaign treatment, kept deliberately distinct",
+  "collateral_set": [
+   "true-colour catalogue masters across ceramics + textiles (PNG)",
+   "a stylized mono-tint + grain seasonal campaign set from the same frames",
+   "catalogue 1:1 grid crops",
+   "campaign 4:5 and 9:16 hero crops",
+   "applied-settings log covering both the true-colour and the campaign recipe",
+   "an editable seasonal-campaign hero Express doc + source HTML"
+  ],
+  "key_stages": [
+   "review the shoot and split intent (catalogue vs campaign)",
+   "set the true-colour catalogue target and grade the range",
+   "protect glaze and dye colour accuracy in the catalogue",
+   "derive the campaign tint+grain recipe from the corrected masters",
+   "crop catalogue and campaign ratios",
+   "build the campaign hero and confirm photos embed"
+  ],
+  "decision_gates": [
+   "the catalogue must stay true-colour because glaze and dye colours drive returns, while the campaign is deliberately stylized \u2014 treating them the same collapses two products into one and breaks the truthful catalogue",
+   "the campaign tint is derived from the corrected true-colour base, not the raw frames, or the drama is built on inconsistency",
+   "a colour halftone is not a duotone here \u2014 the stylized look must be a monochromatic tint or it returns garish rosettes"
+  ],
+  "options_moment": "the agent proposes two campaign tint directions (a warm terracotta-amber vs a cool clay-slate) and defends which fits the season and the brand's price band",
+  "element_reuse": "one true-colour target applied identically across the catalogue; the campaign recipe applied identically across the campaign set; both stem from the same corrected masters so the products are unmistakably the same objects",
+  "absorbs": [
+   "AO-02"
+  ],
+  "price_demo": "A mid-premium homeware brand at $45-$180 for design-conscious 30-50 nesters; true glaze/dye colour in the catalogue is load-bearing to avoid returns, while a restrained seasonal tint suits the tier \u2014 a $600+ collectible-ceramics house would shoot everything editorial, and a $10 discount-homeware brand would never invest in a separate campaign treatment.",
+  "why_not_vlm": "The catalogue must show the exact glaze and weave a buyer receives; a generated homeware set fabricates colours and drives returns. The model cannot deliver two measurably different, internally consistent treatments of the same real objects, nor an editable campaign hero.",
+  "doability": "upload frames \u2192 asset_inline_preview \u2192 image_apply_adjustments true-colour target (guard glaze/dye) \u2192 derive campaign: image_apply_monochromatic_tint + image_add_grain from the corrected masters \u2192 image_crop_and_resize (downscale only) \u2192 export_html_to_express for the campaign hero. No banned capability; no upscaling."
+ },
+ {
+  "new_id": "PHOTO-B-13",
+  "family": "Photo & Image",
+  "engagement_title": "Rukmini Silverworks \u2014 fine-jewellery macro catalog cohesion + reflection control",
+  "vertical": "Jewelry, Watches & Accessories",
+  "one_line_ask": "Bring our fine-jewellery macro shots \u2014 taken across two sittings \u2014 into one luminous, true-metal look for the catalogue and product pages, tame the hot reflections on the polished silver and stones so the pieces read clearly, and keep the gem colours honest.",
+  "primary_deliverable": "A cohesive luminous true-metal macro master set with controlled reflections and honest gem colour, delivered with PDP and lookbook crops",
+  "engine": "image-pipeline",
+  "signature_op": "normalise a two-sitting macro jewellery batch to one true-metal look and control specular hotspots on silver/stones via masked adjustments while preserving gem hue",
+  "collateral_set": [
+   "luminous true-metal macro masters across the range (PNG)",
+   "reflection-tamed versions where hotspots hid detail",
+   "PDP 1:1 crops per piece",
+   "a 4:5 lookbook set",
+   "applied-settings log naming per-sitting params and the reflection mask prompt",
+   "an editable lookbook spread Express doc + source HTML"
+  ],
+  "key_stages": [
+   "review both sittings and flag hotspot cases",
+   "set the shared true-metal target",
+   "grade each piece to the target reasoning its sitting",
+   "mask and tame specular hotspots on metal and facets",
+   "protect true gem hue during correction",
+   "crop PDP and lookbook ratios and build the spread"
+  ],
+  "decision_gates": [
+   "the true-metal white is set once across two sittings \u2014 a warm reference makes sterling silver read like cheap plate across the whole catalogue and misprices the piece",
+   "hotspot control must be masked to the specular regions; a global highlight pull greys the metal's lustre, which is exactly what a luxury buyer is paying to see",
+   "gem recolour, if attempted, is limited to adjacent-hue plus desaturate \u2014 a near-complementary shift to a 'nicer' stone colour is both undoable and dishonest, so honest hue must be preserved"
+  ],
+  "options_moment": "the agent proposes two catalogue looks (a bright high-key jeweller's-white vs a soft warm luminous neutral) and defends which matches the house's price tier and clientele",
+  "element_reuse": "one true-metal target applied identically across both sittings and every piece; the same corrected master feeds PDP and lookbook, re-cropped per destination",
+  "absorbs": [
+   "AO-115",
+   "AO-07"
+  ],
+  "price_demo": "A fine-jewellery house selling $1,200-$18,000 pieces to affluent 35-60 buyers who scrutinise metal and stone; luminous true-metal accuracy is load-bearing \u2014 a $40 fashion-jewellery brand would use bright saturated flat-lay, and that treatment on fine pieces would make them look costume and destroy the price.",
+  "why_not_vlm": "PDPs must show the exact piece with its real metal and stone; a generated gem is a false representation of a $10k object. The model cannot hold a two-sitting macro batch to one true-metal look nor mask real reflections without fabricating the surface beneath.",
+  "doability": "upload camera-scale macros \u2192 asset_inline_preview \u2192 image_apply_adjustments to one true-metal target (guard gem hue) \u2192 image_select_by_prompt('the bright specular highlight on the polished metal') + masked image_apply_adjustments \u2192 image_crop_and_resize (downscale only) \u2192 export_html_to_express for the spread. No banned capability (no near-complementary gem recolour, no detail invention); no upscaling."
+ },
+ {
+  "new_id": "PHOTO-B-14",
+  "family": "Photo & Image",
+  "engagement_title": "Argent & Faith \u2014 silver capsule isolation-to-PDP + maker's-mark recovery",
+  "vertical": "Jewelry, Watches & Accessories",
+  "one_line_ask": "Isolate our silver rings and pendants cleanly onto a plain ground for the product pages so the shapes read perfectly \u2014 including the open centres of the rings and the pierced pendants \u2014 normalise the whole capsule to one look, and recover our engraved maker's mark so it can sit on every page.",
+  "primary_deliverable": "A normalised silver capsule isolated onto a plain ground with genuinely open ring centres and pierced negative space, unified by a recovered maker's mark",
+  "engine": "image-pipeline",
+  "signature_op": "clean isolation of enclosed-aperture jewellery (open ring centres, pierced pendants) that defeats naive background removal, plus ink-level recovery of an engraved mark",
+  "collateral_set": [
+   "one-look normalised silver capsule masters (PNG)",
+   "plain-ground isolated cutouts with true open centres and pierced voids (transparent PNG)",
+   "a recovered maker's-mark SVG (background path stripped, viewBox injected) + on-light and on-dark colourways",
+   "PDP 1:1 crops per piece",
+   "applied-settings log naming the isolation route per piece and the mark mask prompt",
+   "an editable PDP header Express doc + source HTML carrying the mark"
+  ],
+  "key_stages": [
+   "recover the engraved maker's mark",
+   "fix polarity and clean the trace",
+   "set the shared silver look and normalise the capsule",
+   "isolate each piece onto a plain ground",
+   "punch the enclosed ring centres and pierced voids correctly",
+   "crop PDP ratios and place the reused mark"
+  ],
+  "decision_gates": [
+   "a ring's enclosed centre and a pendant's pierced void are apertures remove_background leaves filled with captured background \u2014 the correct route is select-then-invert-then-composite for transparency, and the naive knockout ships a solid disc that only fails on a coloured PDP ground",
+   "the engraved mark must be recovered by naming the incised line at form level, not 'the pendant', or it returns a pendant-shaped blob; and raw-mask polarity gives an inverted negative on the on-dark colourway",
+   "one silver look is set once across the capsule or pieces drift between cool and warm and the set looks mismatched"
+  ],
+  "options_moment": "the agent proposes two plain grounds for the PDP cutouts (pure white vs a soft warm ivory that flatters silver) and defends the pick against the capsule's price and buyer",
+  "element_reuse": "the maker's mark recovered and cleaned exactly once and placed on every PDP; one silver look applied identically across the whole capsule; each piece isolated once and reused",
+  "absorbs": [
+   "AO-08",
+   "AO-10",
+   "AO-11",
+   "AO-91"
+  ],
+  "price_demo": "A silver-jewellery house at $180-$900 for buyers 28-55 who value craft and negative-space design; genuinely open ring centres and clean isolation are load-bearing \u2014 a $25 costume-jewellery brand would tolerate a filled disc on a busy flat-lay, but at this tier a solid centre reads as a manufacturing or photography defect and loses the sale.",
+  "why_not_vlm": "PDPs must show the exact piece a buyer receives; a generated ring is a different object. The mark is the client's real engraving that must be traced, not redrawn. The enclosed-aperture reasoning and true transparency of the real piece are precisely what a one-shot regen cannot honestly produce.",
+  "doability": "upload frames \u2192 image_select_by_prompt(mark by incised form) \u2192 image_invert_selection \u2192 crop_to_bounds \u2192 image_vectorize \u2192 strip path[0], inject viewBox \u2192 normalise via image_apply_adjustments \u2192 for isolation: image_select_by_prompt(the piece) \u2192 image_invert_selection \u2192 composite/crop_to_bounds to a transparent PNG (NOT remove_background, which fills enclosed centres) \u2192 image_crop_and_resize (downscale only) \u2192 export_html_to_express. No banned capability; no upscaling."
+ },
+ {
+  "new_id": "PHOTO-B-15",
+  "family": "Photo & Image",
+  "engagement_title": "Lunara \u2014 luxury watch duotone hero set + dial isolation",
+  "vertical": "Jewelry, Watches & Accessories",
+  "one_line_ask": "Build a dramatic, single-tone signature hero look for our watch line across the campaign and detail shots, control the harsh reflections on the crystal and case, and isolate the dial cleanly for the product page \u2014 all reading as one unmistakable luxury brand.",
+  "primary_deliverable": "A stylized single-tone luxury watch hero set with controlled crystal/case reflections plus a clean isolated dial for the PDP",
+  "engine": "image-pipeline",
+  "signature_op": "a committed monochromatic-tint + grain luxury signature across mixed-light watch frames, with masked reflection control on crystal/case and a clean dial isolation",
+  "collateral_set": [
+   "a mono-tint + grain hero master set across campaign + detail frames (PNG)",
+   "reflection-tamed versions where the crystal glare hid the dial",
+   "a plain-ground isolated dial for the PDP",
+   "campaign 4:5 and 9:16 hero crops",
+   "one true-colour PDP frame reserved for accuracy (the exception)",
+   "applied-settings log with tint hue/strength/grain and the reflection mask prompt",
+   "an editable campaign hero Express doc + source HTML"
+  ],
+  "key_stages": [
+   "review frames and choose the signature tint",
+   "normalise exposure/contrast first",
+   "mask and tame crystal/case reflections",
+   "apply the one tint uniformly with matched grain",
+   "reserve one true-colour PDP frame and isolate the dial",
+   "crop campaign ratios and build the hero"
+  ],
+  "decision_gates": [
+   "the campaign is stylized mono but the PDP frame must stay true-colour or a $9k buyer feels misled about dial colour \u2014 deciding and stating which frames are exempt is the craft",
+   "the tint sits on an exposure-normalised base or a bright and a dim watch frame tint to different tones and the signature collapses",
+   "crystal reflection control must be masked to the glare; a global highlight pull deadens the metal lustre that signals luxury"
+  ],
+  "options_moment": "the agent generates the signature at two tint directions (a deep midnight-blue vs a warm graphite-bronze) on a reference frame and defends the pick against the watch line's price and buyer",
+  "element_reuse": "one tint+grain recipe produced once and applied identically across every campaign frame; the isolated dial reused on the PDP; the same normalised base underlies both the mono campaign and the true-colour exception",
+  "absorbs": [
+   "AO-99"
+  ],
+  "price_demo": "A luxury watch line at $4,000-$12,000 for collectors 35-60 who buy on presence and finish; a committed dramatic monochromatic signature is load-bearing \u2014 a $80 fashion-watch brand would use bright literal colour-on-white, and the moody mono treatment would look absurd for that price while the flat treatment would cheapen the luxury line.",
+  "why_not_vlm": "The PDP must show the exact dial a buyer purchases; a generated watch fabricates a timepiece. The model cannot apply one measurable tint recipe identically across real frames, keep the true-colour PDP exception, mask real crystal glare, or return an editable hero.",
+  "doability": "upload camera-scale watch frames \u2192 asset_inline_preview \u2192 image_apply_adjustments normalise \u2192 image_select_by_prompt('the bright reflection on the watch crystal') + masked image_apply_adjustments \u2192 image_apply_monochromatic_tint uniform + image_add_grain matched \u2192 for PDP: reserve a true-colour frame, image_select_by_prompt(the dial)\u2192invert\u2192crop_to_bounds for isolation \u2192 image_crop_and_resize (downscale only) \u2192 export_html_to_express. No banned capability (tint not RGB halftone); no upscaling."
+ }
+]

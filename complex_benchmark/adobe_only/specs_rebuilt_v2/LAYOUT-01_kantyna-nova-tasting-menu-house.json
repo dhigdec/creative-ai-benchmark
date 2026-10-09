@@ -1,0 +1,64 @@
+{
+  "id": "LAYOUT-01",
+  "slug": "kantyna-nova-tasting-menu-house",
+  "family": "Layout & Data",
+  "engine": "html-express",
+  "title": "Kantyna Nova tasting-menu house: menu suite, partner deck and reservations one-pager from one dark type-and-photo system",
+  "vertical": "Food, Restaurant & Beverage",
+  "cultural_frame": "Western / European (Copenhagen, Central European tasting menu)",
+  "one_line_ask": "Turn our raw plate photography and wordmark into one coherent set of editable documents for the tasting-menu concept: the printed menus, the deck we show partners, the page behind the reservation link, and the launch social set, all reading as one dark, high-end restaurant.",
+  "price_band": "$185 chef's tasting, wine pairing +$95; guests 30 to 55, dining as occasion",
+  "full_brief": "Kantyna Nova is a new tasting-menu house opening in Copenhagen: twenty-eight seats, one seating a night, a five-course Central European winter menu at $185 with an optional $95 wine pairing. We shot our dishes over two evenings under different service light, so they do not yet look like one restaurant. We need a working set of editable brand documents built from those photos and our wordmark, all sharing one dark, restrained, high-end look, so our team can keep editing them in-house after you hand over.\n\nWe are handing you the raw plate photography (a seared scallop hero, wild-mushroom pierogi, a sour rye soup, a veal schnitzel, a baked cheesecake) plus a dining-room interior shot and our wordmark. First, bring every plate to one house look: a single dark, neutral, slightly cool grade with the highlights held so the speculars on sauces and glass do not blow, appetising but never pushed into orange, and consistent enough that the dishes can sit side by side on one page without any of them looking like it came from a different night. That grade is the foundation for everything else, so get it right before you lay anything out.\n\nThen build the collateral, all as one coherent editable design system: a two-page printed menu (A4 portrait) with the tasting courses and a wine-pairing list set as real tables; a short partner deck (widescreen) that opens on the concept, shows the whole graded range on one slide, and closes on the price ladder; a single web page for the reservation link with our hours and how to book; and a launch social set sized for a square feed post, a portrait feed post and a vertical story. Choose the type system and the accent, and make the premium price visible in how restrained and generous the layout is, not by saying so. Hand back documents our team can open and keep editing, plus a short note on why you chose the type pairing and the accent.",
+  "inputs": [
+    {"name": "raw_hero_scallops.jpg", "kind": "image", "role": "hero dish", "note": "seared scallop, warm service light, camera-scale"},
+    {"name": "raw_hero_pierogi.jpg", "kind": "image", "role": "dish"},
+    {"name": "raw_soup_zurek.jpg", "kind": "image", "role": "dish (relabel to sour rye soup in copy)"},
+    {"name": "raw_hero_schnitzel.jpg", "kind": "image", "role": "dish"},
+    {"name": "raw_dessert_sernik.jpg", "kind": "image", "role": "dessert (relabel to baked cheesecake)"},
+    {"name": "raw_interior_dining_room.jpg", "kind": "image", "role": "concept slide backdrop"},
+    {"name": "restaurant_wordmark_logo.png", "kind": "image", "role": "wordmark reference (may be re-typeset in the chosen display face)"}
+  ],
+  "outputs": [
+    {"name": "graded_plate_masters", "kind": "image", "spec": "Six photos brought to one dark house look. Acceptance (grader-checked): consistent neutral and black point across all six; highlights not clipped on speculars; no plate reads warmer or cooler than the set when placed adjacent."},
+    {"name": "tasting_menu_two_page", "kind": "express-doc-slides", "spec": "A4 portrait, two pages, tasting courses and wine pairing as real editable tables, dark ground, one dish per emphasis."},
+    {"name": "partner_deck", "kind": "express-doc-slides", "spec": "Widescreen 1920x1080, three or more slides: concept, the full graded range on one slide, price ladder as a table."},
+    {"name": "reservations_one_pager", "kind": "express-doc-slide", "spec": "Single web canvas with an hours table and booking detail."},
+    {"name": "social_set", "kind": "express-doc-slides", "spec": "One mixed-canvas set: 1080x1080, 1080x1350, 1080x1920, one type-and-photo system."},
+    {"name": "editable_express_document", "kind": "express-doc", "spec": "All of the above delivered as ONE native, editable Adobe Express document (mixed canvas sizes in one doc), plus the handover note."}
+  ],
+  "connector_workflow": [
+    {"step": "upload the raw plates and interior", "tool": "asset_initialize_file_upload / asset_finalize_file_upload"},
+    {"step": "normalise each frame", "tool": "image_apply_auto_tone (batch)"},
+    {"step": "bring the batch to one dark house look", "tool": "image_apply_adjustments (one shared grade over the auto-toned set)"},
+    {"step": "pick and embed the type system", "tool": "font_recommend / find_fonts / get_fontkit_embed_url"},
+    {"step": "author the menu, deck, one-pager and social set as one self-contained multi-root HTML with the graded photos base64-inlined", "tool": "(authoring)"},
+    {"step": "validate before export", "tool": "html_export_readiness_skill"},
+    {"step": "export to a native editable Express document", "tool": "export_html_to_express"},
+    {"step": "verify each root by rendition and preview", "tool": "asset_search / asset_get_presigned_urls / asset_inline_preview"}
+  ],
+  "verifiers_auto": [
+    {"id": "A1", "text": "The export is one Adobe Express document containing 9 roots at the required canvas sizes.", "how": "slide_count and per-slide width/height from export_html_to_express"},
+    {"id": "A2", "text": "The document carries mixed canvas sizes in one file: A4 794x1123, widescreen 1920x1080, a 1200x1600 web page, and 1080x1080 plus 1080x1350 plus 1080x1920.", "how": "per-slide dimensions"},
+    {"id": "A3", "text": "The chosen Adobe Fonts (display and text) are present in the produced document, not a fallback.", "how": "font-family tokens in the returned HzHTML"},
+    {"id": "A4", "text": "Every dish photograph renders in the document (no empty boxes); photography is base64-inlined, not URL-referenced.", "how": "image fills in HzHTML plus rendition preview"},
+    {"id": "A5", "text": "The menu and wine list are real tables, not text lines faked with spaces.", "how": "table structure in HzHTML"},
+    {"id": "A6", "text": "No output exceeds its source resolution.", "how": "output px versus declared source px"},
+    {"id": "A7", "text": "No em dash appears anywhere in the brief, the deliverable copy, or the verifiers.", "how": "character scan"}
+  ],
+  "verifiers_human": [
+    {"id": "H1", "text": "The five plates read as one restaurant on the deck range slide, where they sit adjacent.", "how": "look for any plate warmer, cooler, brighter or muddier than the set"},
+    {"id": "H2", "text": "The dark premium band is legible in the layout: restrained grounds, generous held space, price set quietly at body size, no discount-flyer energy.", "how": "designer judgement against the $185 band"},
+    {"id": "H3", "text": "Type hierarchy holds: the display face carries the name and course titles, the text face carries descriptions and prices, and the price never shouts.", "how": "designer eye"},
+    {"id": "H4", "text": "Speculars on the scallop, sauces and glass are held, not blown, after the grade.", "how": "inspect highlights on the graded masters"},
+    {"id": "H5", "text": "The social set, the menu and the deck read as one system, not three unrelated pieces.", "how": "cross-artifact judgement"}
+  ],
+  "decision_gates": [
+    "The dark plate grade set before layout is irreversible downstream: a warm or muddy plate baked into the base64 crop looks fine alone but reads broken on the deck range slide where all five sit together.",
+    "Writing the reflexive font-weight 400 on the text face ships Light and collapses the editorial hierarchy the premium band depends on; the price weight is a deliberate 500.",
+    "Photography referenced by URL renders as empty grey boxes at HTTP 200; every dish must be base64-inlined as a data URI or the menu ships blank.",
+    "Menu architecture is a taste call: a single-column prix-fixe reads more premium at $185 than a busy coursed grid, and the agent must choose and justify it."
+  ],
+  "why_not_vlm": "A one-shot image model would redraw the plates and invent menu text and prices; the client needs their real dishes, correctly and consistently colour-managed, laid into editable documents their team keeps editing, at exact print and social specifications. None of consistency, editability or spec compliance survives a regeneration.",
+  "hardness_rationale": "Difficulty is depth, not length: one early craft decision (the shared dark grade) silently breaks a later deliverable (the range slide); the type system carries a non-obvious weight trap; the connector's URL-image failure forces a base64 discipline; and the layout must encode a price band by restraint. The agent orchestrates one extracted look and one type system across nine collateral surfaces and must hold consistency across all of them.",
+  "notes": "Absorbs AO-109 (Kantyna dish grade), AO-17 (dark-mode hero food). AO-15 (Japanese ramen and wagyu) is intentionally dropped under the Western cultural frame. Executed live 2026-09-10; produced a real editable Express document (9 roots, mixed canvas, Gastromond and IvyOra Text embedded, all plates rendered)."
+}

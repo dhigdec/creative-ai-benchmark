@@ -1,0 +1,22 @@
+{
+  "id": "AO-39",
+  "disposition": "REPLACE",
+  "current_spec_path": "complex_benchmark/adobe_only/specs/AO-39_apparel-shirt-isolation-bg-cleanup-ecomm.json",
+  "qa_audit": {
+    "client_brand": "NORTHGROVE (fictional apparel wordmark; olive-green leaf glyph + charcoal condensed sans wordmark)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — \"NORTHGROVE\" apparel brand returns no real company/trademark on web search; only generic \"North...\" clothing brands exist, none confusable. Adobe/Instagram references are allowed platform/channel names.",
+    "doable_verdict": "issue",
+    "doable_note": "Executable connector_workflow (steps 1-21) is clean and connector-doable — no banned generative step; the old image_generative_expand was replaced by image_fill_area solid-white fill. BUT stale text still prescribes a banned capability: output spec for hero_catalog_banner (line 46) says the banner is made \"after generative outpaint gave horizontal breathing room,\" and difficulty_rationale (line 275) says \"The single generative step is the allowed image_generative_expand outpaint\" and lists \"outpaint\" in the pipeline; chaining_note (line 274) names step 11 as \"generative_expand(11)\". These contradict the actual step 11 and the reverify note. Secondary: step 11 image_fill_area is solid-fill (in-scope, not banned) but is a mild mis-map since fill_area does not literally extend/widen a canvas.",
+    "realism_verdict": "realistic",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Well-formed overall: clear full_brief, 3 inputs with realism_notes, 5 concrete outputs with specs, coherent 3-branch converging chain, reverify present. Defect: documentation drift — the hero_catalog_banner deliverable spec (line 46), difficulty_rationale (line 275), and chaining_note (line 274) still describe/prescribe the removed generative outpaint (image_generative_expand), contradicting reverify and the actual image_fill_area step 11. An annotator grading the banner against its written spec would wrongly expect generatively-outpainted pixels.",
+    "overall": "minor",
+    "top_issue": "Stale \"generative outpaint / image_generative_expand\" language survives in the hero_catalog_banner output spec (line 46), difficulty_rationale (line 275), and chaining_note (line 274) — describing a banned capability the actual workflow no longer uses; needs a one-line cleanup to align narrative with the solid-fill step 11."
+  },
+  "where_to_read_full_findings": [
+    "TASK_QUALITY_AUDIT.md (locate this task id in the kill-list or STRENGTHEN groups)",
+    "TASK_QUALITY_AUDIT_exemplar_rechallenge.md (per-task lens verdicts + the 6-point bar)"
+  ]
+}

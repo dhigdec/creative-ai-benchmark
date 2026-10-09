@@ -1,0 +1,552 @@
+{
+  "id": "AO-47",
+  "slug": "redraw-vector-swimming-pools-web",
+  "title": "Halcyon Cove pool portfolio: neutralize a batch of mixed-lighting build photos to one house pool-blue by eye, redraw each genuine build into a clean flat-colour vector on a shared gallery canvas, decide which supplied file belongs on the page banner rather than the gallery redraw, and author the set into a one-build-per-page line-sheet",
+  "vertical": "General / Cross-Industry Branding & Graphics",
+  "category": "vectorize_logo",
+  "source": {
+    "platform": "Upwork",
+    "url": "https://www.upwork.com/nx/search/jobs/?q=Redraw%20Vector%20Images%20of%20Swimming%20Pools"
+  },
+  "grounding_note": "ADAPTED from a real Upwork brief (cand_47, db_i 1806): a pool-builder wants photos of finished swimming-pool installations 'redrawn' as high-quality, detailed vector graphics for the website gallery, 'visually appealing' and meeting the site's clean modern standard. The real post attaches no files and names no brand; the client is laundered to a fictional 'Halcyon Cove Pools & Spas' and no real brand, person, place, product, or software is named anywhere in a task-facing field. REASONABLY ENRICHED into a runnable, failable, gradable Adobe-connector benchmark and rebuilt to clear the hardness bar (the prior version was step-count padding on a single hero recipe with an asserted-but-unmeasurable 'one set', a select->invert->fill knockout the ground-truth flags as an anti-pattern, and no real wrong-decision gate). The rebuild models the client as supplying a genuine BATCH of six finished-build photographs shot on different days under deliberately different light (golden hour, flat overcast, hard midday, tungsten dusk, open shade, mixed shade/sun), each with a small neutral grey reference card set on the deck so white balance can be reconciled after the fact; plus one wide aerial capture that looks like 'just another pool photo' but is full of swimmers and moving-water caustics and is NOT redrawable (it is the page banner, a raster, not a trace); plus the studio's flat wordmark; plus a hand-authored InDesign line-sheet template. The core 'redraw as vector' path is image_vectorize on a properly prepped raster; the cross-build consistency target (one house pool-blue + one neutral stone across six differently-lit frames), the aerial triage, and the merged one-build-per-page line-sheet are what make it hard for a skilled human AND failable by the agent. No capability beyond the connector sheet is used: no generative fill/expand, no text-to-image, no compositing, no upscaling, no from-scratch illustration; backgrounds are knocked to a solid ground with image_remove_background({backgroundColor}) (not select->invert->fill), and image_crop_and_resize only reframes/downscales/format-converts existing pixels.",
+  "one_line_ask": "Redraw a batch of mixed-lighting pool-build photos into a matched set of clean flat-colour vector graphics that all resolve to one house pool-blue and one neutral stone (neutralising each frame's in-frame grey card by eye), decide which supplied file belongs on the graded page-top banner rather than a gallery redraw, vectorize the flat wordmark, and lay the finished builds into a one-build-per-page press line-sheet.",
+  "full_brief": "Halcyon Cove Pools & Spas is relaunching its website and needs its build portfolio turned into a single, coherent set of clean flat-colour pool graphics for the gallery and 'Our Builds' pages. We are handing you a batch of photographs from finished installations, shot on different days and in very different light — some at golden hour, some under flat overcast, some in hard midday sun, some at dusk, some in open shade — so straight out of the camera they do not match. Every frame has a small neutral grey reference card set on the deck so the colour can be reconciled after the fact; use it, then keep it out of the finished art.\n\nThe bar is that the whole gallery has to read as ONE brand. Across every finished graphic the water must resolve to a single house pool-blue and the coping and decking to one calm neutral stone, no matter what each photo looked like coming in — a set that is each 'fixed to look fine on its own' will come back with a different blue in every tile and we will reject it. The graphics have to be genuinely clean and flat: broad confident shapes, not a thousand speckled slivers of noise, and the busy backyard behind each pool needs to be gone so nothing bleeds in behind the shape.\n\nUse your judgement about what actually belongs in the gallery. Not every file we send is a buildable clean graphic — one of them earns its keep far better as a wide banner across the top of the page than as a redrawn gallery piece, and it will look like garbage if you force it through the redraw. Decide which, and build the banner from it. Our flat studio wordmark is in the batch too and needs a crisp scalable version for the site header.\n\nDeliverables: a matched set of flat-colour pool graphics (a scalable vector plus a web-ready raster twin of each) on one shared gallery canvas; a graded banner image for the top of the page; a scalable version of the wordmark; and a single print-ready gallery line-sheet that lays the finished set out one build per page for the sales walkthrough. Along with the files, hand back a short sheet listing, per photo, the white-balance and exposure you settled on and the colour move you used to bring its water and stone onto the house palette, so we can confirm the set was matched to one target rather than eyeballed frame by frame.",
+  "inputs": [
+    {
+      "name": "build_ref_01.jpg",
+      "kind": "image",
+      "gen_model": "gpt-image-2",
+      "gen_prompt": "Photoreal amateur real-estate-style photograph of a finished freeform lagoon-style backyard swimming pool, irregular curved edges, natural-rock waterfall feature, tan travertine coping and decking, clear turquoise water with subtle ripples and real specular sun glints, surrounded by a slightly cluttered suburban backyard (patio furniture, potted plants, fence, neighbouring rooftop). Shot handheld at golden hour with a strong warm amber cast, slightly underexposed, a very slight horizon tilt of about 2 degrees, mild lens distortion, true-to-life noise, individual leaves and water-surface detail, no CGI gloss. On the near deck at the frame edge sits a small neutral 18% grey reference card. 4:3, 4032x3024.",
+      "realism_notes": "Buildable source #1 and the frame that anchors the house look. DIAGNOSIS (grader-facing, never in the brief or step notes): warm amber golden-hour cast + slight underexposure + ~2deg tilt, so the correct move is to cool the white balance until its grey card reads neutral, lift exposure a touch, straighten, then nudge the turquoise water toward the single house pool-blue and desaturate the tan coping toward the house neutral stone before knocking the cluttered yard to a solid ground and tracing. The card sits at the frame edge so it can be neutralised first and cropped out of the delivered art. Speckled water + travertine texture are exactly what a raw trace turns into noisy paths, so the flatten/normalise prep is load-bearing."
+    },
+    {
+      "name": "build_ref_02.jpg",
+      "kind": "image",
+      "gen_model": "gpt-image-2",
+      "gen_prompt": "Photoreal handheld photograph of a modern rectangular infinity-edge swimming pool overlooking a hillside, dark grey porcelain coping, deep-blue water spilling over the vanishing edge, sun loungers on a wooden deck, distant trees, under FLAT OVERCAST light with a cool blue-grey cast and low contrast, real reflections and gentle water motion, true phone-camera grain, no tilt. On the wooden deck at the frame edge sits a small neutral 18% grey reference card. 4:3, 4032x3024.",
+      "realism_notes": "Buildable source #2, deliberately MISMATCHED to #1: cool and flat, not warm. DIAGNOSIS: warm the white balance and add contrast to land its grey card on the SAME neutral the lagoon reached, then pull its deep-blue water onto the same house pool-blue and desaturate the grey porcelain toward the house stone. Different geometry and palette (grey + deep blue vs tan + turquoise) means the normalisation must be re-reasoned, not copied — copying the lagoon's cooling move here drives this frame further off-neutral and the two tiles trace at different blues. No tilt, so straightening it would be a wrong call."
+    },
+    {
+      "name": "build_ref_03.jpg",
+      "kind": "image",
+      "gen_model": "gpt-image-2",
+      "gen_prompt": "Photoreal backyard snapshot of a classic kidney-shaped residential swimming pool with light-blue plaster interior, red-brick coping, a diving board and small slide, green lawn and a wooden privacy fence behind, HARD MIDDAY sun with blown highlights on the water and hard black shadows, a few floating leaves on the surface, slightly soft focus, real chromatic aberration at the edges, no tilt. On the lawn at the frame edge sits a small neutral 18% grey reference card. 4:3, 4032x3024.",
+      "realism_notes": "Buildable source #3. DIAGNOSIS: near-neutral cast but blown highlights and crushed shadows from hard sun, so the correct move is highlight recovery and a contrast pull to reopen the water and plaster (its grey card is already close to neutral — over-warming or over-cooling it is the error here), then bring the light-blue plaster onto the house pool-blue and STRONGLY desaturate the brick-red coping toward the house neutral stone (a heavy desaturate, within connector range — not a hue rotation to a brand hex). Floating leaves and speckle force real clean-up before the trace stays flat."
+    },
+    {
+      "name": "build_ref_04.jpg",
+      "kind": "image",
+      "gen_model": "gpt-image-2",
+      "gen_prompt": "Photoreal photograph of a long narrow geometric lap pool beside a modern house, poured-concrete coping, aquamarine water with a lane of gentle ripples, glass fence and planter boxes, shot at DUSK under warm tungsten deck lighting with a strong orange cast and dim ambient, a horizon tilt of about 3 degrees, real low-light grain and warm reflections on the water. On the concrete coping at the frame edge sits a small neutral 18% grey reference card. 4:3, 4032x3024.",
+      "realism_notes": "Buildable source #4, the strongest warm correction of the set. DIAGNOSIS: heavy tungsten orange cast + dim + ~3deg tilt, so the correct move is a large cooling white-balance shift and an exposure lift to land its grey card neutral, plus straightening, before pulling the aquamarine water onto the house pool-blue and neutralising the warm concrete. Its correcting angle and its temperature move both differ from every other frame; a single blind recipe leaves it orange and mismatched."
+    },
+    {
+      "name": "build_ref_05.jpg",
+      "kind": "image",
+      "gen_model": "gpt-image-2",
+      "gen_prompt": "Photoreal photograph of a compact plunge pool and raised spa with a spillway, dark-tile interior reading teal-blue, bluestone coping, a pergola casting even shade, shot in OPEN SHADE with a distinct cool blue cast and soft flat light, real water shimmer from the spillway, no harsh shadows, no tilt. On the bluestone coping at the frame edge sits a small neutral 18% grey reference card. 4:3, 4032x3024.",
+      "realism_notes": "Buildable source #5. DIAGNOSIS: open-shade blue cast (cooler than overcast but not flat), so the correct move is a warming white-balance shift to neutralise its grey card, then pull the teal-blue tile water onto the house pool-blue and desaturate the bluestone toward the house neutral. Distinct palette and a distinct amount of warming from every other cool frame keeps the chain non-degenerate; no tilt, so no straighten."
+    },
+    {
+      "name": "build_ref_06.jpg",
+      "kind": "image",
+      "gen_model": "gpt-image-2",
+      "gen_prompt": "Photoreal photograph of a natural-rock grotto swimming pool with a boulder waterfall and a slide, flagstone coping, blue-green water dappled by tree shade, lush landscaping and a dark fence behind, shot in MIXED dappled shade and sun so parts of the water are bright and parts are in cool shadow, uneven exposure across the frame, real leaf litter and water texture, no tilt. On the flagstone at the frame edge sits a small neutral 18% grey reference card. 4:3, 4032x3024.",
+      "realism_notes": "Buildable source #6, the trickiest normalisation. DIAGNOSIS: mixed shade/sun gives an uneven cast and split exposure, so the correct move is to even the exposure and neutralise its grey card by eye (it is neither uniformly warm nor uniformly cool), then unify the dappled blue-green water onto the single house pool-blue and calm the flagstone to the house neutral. Dappled water is the frame most likely to trace into noisy paths if the flatten/normalise prep is skipped."
+    },
+    {
+      "name": "build_ref_07.jpg",
+      "kind": "image",
+      "gen_model": "gpt-image-2",
+      "gen_prompt": "Photoreal wide drone aerial looking down on a large resort-style swimming pool with several people swimming and floating, bright sun creating strong moving caustics and specular sparkle across the whole water surface, splashes, lounge chairs and umbrellas around the deck, real motion blur on the swimmers, high detail across the entire frame. On the deck near one corner sits a small neutral 18% grey reference card. 16:9, 5120x2880.",
+      "realism_notes": "TRIAGE DECOY (the wrong-decision gate). It looks like 'just another pool photo' but it is a wide aerial full of swimmers and moving-water caustics — there is no clean flat pool shape to redraw, and running it through the same select-clean-vectorize path used on the six builds returns garbage caustic/swimmer paths, a failure invisible until the SVG path data is opened. Its ONLY correct use is as the graded raster PAGE BANNER: neutralise its grey card, apply the house look, reframe/downscale the 16:9 to the banner size — never trace it, never place it as a gallery build in the line-sheet. It is declared at 4K-scale (5120x2880) so the banner downscale is honest and never an upscale."
+    },
+    {
+      "name": "studio_wordmark.png",
+      "kind": "image",
+      "gen_model": "gemini-3-pro-image",
+      "gen_prompt": "A minimalist flat pool-builder wordmark, the two words HALCYON COVE set in a clean geometric sans-serif with a small stylised water-ripple glyph above, solid deep-teal lettering on a plain flat white background, perfectly flat vector-style with crisp clean edges, no gradients, no shadows, no photographic texture, generous white margin around the mark, centred, high resolution. 2400x2400.",
+      "realism_notes": "A DIFFERENT kind of vectorize than the photos: it is already flat art on a light/white ground, so the correct path is a straight white drop-out to transparency, a trim-to-bounds, then a raster-to-vector trace (its enclosed letter counters read as the light ground on a light/white mark, per the connector sheet, so a clean SVG results). It must NOT be run through the photo grade/normalise chain (grading a flat wordmark muddies it), and the photos must not be run through this bare knock-and-trace path (they need full prep first) — a second axis of the triage. The generous white margin is what makes the trim-before-trace step matter."
+    },
+    {
+      "name": "gallery_linesheet_template.indd",
+      "kind": "template",
+      "gen_model": "n/a (hand-authored InDesign template)",
+      "gen_prompt": "A genuine authored single-record InDesign line-sheet template, one build per page: a full-bleed page with a large image frame carrying the @build_image data-merge placeholder for the pool graphic, and live text placeholders <<build_name>>, <<pool_shape>>, <<dimensions>>, <<house_palette>> set in the studio type below the image, plus a footer bearing the placed wordmark. Authored natively with real <<fields>> and an @-prefixed image column so document_merge_data_layout binds one record per page; NOT produced by convert_pdf_to_indd.",
+      "realism_notes": "The merge target for the owned designed endpoint. It is a real authored .indd with live <<fields>> and an @-image column (the only kind document_merge_data_layout can bind), so the agent fills it with rows it assembles from its OWN finished outputs — the six traced builds' web PNGs — producing a six-page press PDF (one build per page). The template ships with placeholder rows only; the real rows and their @build_image paths are authored by the agent per its triage, so the decoy aerial must NOT appear as a page and the answer to the triage never sits in a field the agent is handed."
+    }
+  ],
+  "outputs": [
+    {
+      "name": "pool_build_vectors.svg_set",
+      "kind": "vector",
+      "spec": "Six clean flat-colour SVG pool graphics (freeform lagoon, rectangular infinity, kidney, geometric lap, plunge/spa, natural-rock grotto), each traced by image_vectorize from its straightened, grey-neutralised, house-normalised, background-knocked raster on one shared uniform 4:3 gallery canvas. Detailed but path-economical: water, coping, decking and feature as distinct broad flat fills, not thousands of noise paths. Because every frame was neutralised to one house white point and its water pulled onto the same house pool-blue, all six read as one set. Vectorised from a solid-white-knocked raster, so each carries a flat-white backing field around the pool (image_remove_background({backgroundColor}) knockout, no alpha step — not a transparent cut-out claim). Grey card cropped out of every delivered graphic."
+    },
+    {
+      "name": "pool_build_web.png_set",
+      "kind": "image",
+      "spec": "Six web-ready raster twins (~2048 px long edge, one per build) exported from the same house-normalised, background-knocked, uniform-canvas rasters, flat-white ground, for direct drop-in on the website gallery AND for binding as the @build_image column in the line-sheet merge. Grey card cropped out. Same-canvas reframe/downscale/format-convert only — no invented pixels, never upscaled past the 4032x3024 camera-scale source."
+    },
+    {
+      "name": "gallery_hero_banner.jpg",
+      "kind": "image",
+      "spec": "The page-top banner, ~2560x1440 (16:9), built from the aerial capture: grey card neutralised to the house white point, the house look applied, then reframed/downscaled from the 5120x2880 source (honest downscale, never an upscale, never canvas-extend). A RASTER with no vector paths — this file is the proof the aerial was correctly triaged as a banner photograph and NOT run through the tracer. Grey card cropped out."
+    },
+    {
+      "name": "studio_wordmark.svg",
+      "kind": "vector",
+      "spec": "The studio wordmark cleaned to a crisp scalable SVG for the site header: white ground dropped to transparency, trimmed to bounds, then raster-to-vector traced. Deep-teal lettering and ripple glyph as clean closed shapes on a light/white ground where the letter counters read correctly."
+    },
+    {
+      "name": "gallery_linesheet.pdf",
+      "kind": "document",
+      "spec": "The owned designed endpoint: a single press-ready PDF exported from the merged line-sheet, ONE BUILD PER PAGE, page-count = row-count = six (the aerial is excluded as a banner, not a build). Produced by document_merge_data_layout binding the agent-authored rows (<<build_name>>/<<pool_shape>>/<<dimensions>>/<<house_palette>> text + @build_image = each build's web PNG) into the authored .indd template, then document_render_layout exporting the whole merged document. The 'hero' is simply page 1. 300 DPI at trim, achievable because the placed PNGs and their source photos are at camera scale."
+    },
+    {
+      "name": "retained_neutralized_masters",
+      "kind": "reference",
+      "spec": "The six card-BEARING neutralised masters retained before the gallery crop removes the reference card — the artifacts on which the grader checks grey-card neutrality (the delivered gallery graphics have the card cropped out, so neutrality cannot be graded on them). One per build."
+    },
+    {
+      "name": "palette_report.txt",
+      "kind": "reference",
+      "spec": "A plain applied-settings sheet the agent authors and returns: per build photo, the white-balance (temperature/tint) and exposure it dialed to land that frame's grey card neutral, plus the hue/saturation move it used to bring that frame's water onto the house pool-blue and its stone onto the house neutral, and the single shared house white point + house pool-blue all six were matched to. An applied-parameters log (the settings the agent chose and knows because it set them), NOT a measured/recovered channel or hex readout. This makes 'matched to one target' checkable, and the reported corrections must be non-identical across the warm and cool frames."
+    }
+  ],
+  "connector_workflow": [
+    {
+      "n": 1,
+      "tool": "asset_add_file",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "build_ref_01.jpg, build_ref_02.jpg, build_ref_03.jpg, build_ref_04.jpg, build_ref_05.jpg, build_ref_06.jpg, build_ref_07.jpg, studio_wordmark.png, gallery_linesheet_template.indd",
+      "output": "assets_uploaded",
+      "note": "Single ingest: bring the six build photos, the aerial, the wordmark and the authored line-sheet template into the working project so every later step consumes a named prior output. Plumbing only — not the difficulty."
+    },
+    {
+      "n": 2,
+      "tool": "image_auto_straighten",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "assets_uploaded",
+      "output": "lagoon_straight",
+      "note": "Level the tilted horizon on the freeform-lagoon frame so the waterline and coping are true before any colour work or tracing. Report the correcting angle."
+    },
+    {
+      "n": 3,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "lagoon_straight",
+      "output": "lagoon_neutral",
+      "note": "Author the house white point on this build BY EYE using its in-frame grey reference card: dial temperature/tint until the card reads truly neutral and settle exposure, then flatten the speckled tone into broad even regions so the eventual trace emits clean shapes. This frame's settled white point and exposure are the target the other five must reach. Report the temperature/tint/exposure dialed. Retain this card-bearing frame as a neutralised master."
+    },
+    {
+      "n": 4,
+      "tool": "image_adjust_hsl",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "lagoon_neutral",
+      "output": "lagoon_house",
+      "note": "Bring this build onto the house palette: nudge the water hue/saturation onto the single house pool-blue and desaturate the coping/decking toward the one house neutral stone, riding the existing luminosity (a moderate same-family move, not a rotation to a foreign hue). Report the colour move."
+    },
+    {
+      "n": 5,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "lagoon_house",
+      "output": "lagoon_knocked",
+      "note": "Knock the cluttered backyard behind the pool to a solid flat white ground so no colored surround bleeds behind the shape in the trace. Direct subject-isolation to a solid backgroundColor (the sanctioned knockout), not a select-invert-fill and not an interior hole punch."
+    },
+    {
+      "n": 6,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "lagoon_knocked",
+      "output": "lagoon_canvas",
+      "note": "Reframe to the shared uniform 4:3 gallery canvas and crop the grey reference card out of frame. Reframe/downscale of existing pixels only — the surrounding solid-white field simply seats the pool on the shared canvas; no invented pixels."
+    },
+    {
+      "n": 7,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "lagoon_canvas",
+      "output": "pool_lagoon_vector.svg",
+      "note": "Trace the cleaned, flattened, house-normalised raster into a clean detailed flat-colour SVG — the core 'redraw as vector' deliverable for this build. Whole-raster colour trace (no selection) so the flat fills survive."
+    },
+    {
+      "n": 8,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "lagoon_canvas",
+      "output": "pool_lagoon_web.png",
+      "note": "Export the same uniform-canvas raster to the ~2048 px web PNG twin (format-convert/resize only). Feeds the website gallery and the @build_image column of the line-sheet merge."
+    },
+    {
+      "n": 9,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "assets_uploaded",
+      "output": "infinity_neutral",
+      "note": "Neutralise the rectangular-infinity build to the SAME house white point set on the lagoon, reasoning its OWN correction from its own grey card and exposure, then flatten its tone. Report the temperature/tint/exposure dialed — they must be settled per this frame, not copied. Retain as a neutralised master."
+    },
+    {
+      "n": 10,
+      "tool": "image_adjust_hsl",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "infinity_neutral",
+      "output": "infinity_house",
+      "note": "Bring this build's water onto the same house pool-blue and its coping onto the same house neutral stone as the lagoon, so the two tiles read as one set. Report the colour move."
+    },
+    {
+      "n": 11,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "infinity_house",
+      "output": "infinity_knocked",
+      "note": "Knock the hillside/sky surround to a solid flat white ground for a clean trace. Subject-isolation to solid backgroundColor."
+    },
+    {
+      "n": 12,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "infinity_knocked",
+      "output": "infinity_canvas",
+      "note": "Reframe to the shared uniform 4:3 gallery canvas and crop the grey card out. Reframe/downscale only."
+    },
+    {
+      "n": 13,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "infinity_canvas",
+      "output": "pool_infinity_vector.svg",
+      "note": "Trace the cleaned house-normalised raster into a matching flat-colour SVG on the shared canvas."
+    },
+    {
+      "n": 14,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "infinity_canvas",
+      "output": "pool_infinity_web.png",
+      "note": "Export the ~2048 px web PNG twin for the gallery and the merge."
+    },
+    {
+      "n": 15,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "assets_uploaded",
+      "output": "kidney_neutral",
+      "note": "Neutralise the kidney build to the shared house white point by eye from its grey card, recovering blown highlights and reopening crushed shadows so water and plaster detail survive, then flatten. Report the exposure/highlight/temperature/tint moves dialed. Retain as a neutralised master."
+    },
+    {
+      "n": 16,
+      "tool": "image_adjust_hsl",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "kidney_neutral",
+      "output": "kidney_house",
+      "note": "Bring the plaster water onto the house pool-blue and strongly desaturate the brick coping toward the house neutral stone (a heavy desaturate within range, not a hue rotation to a foreign colour). Report the colour move."
+    },
+    {
+      "n": 17,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "kidney_house",
+      "output": "kidney_knocked",
+      "note": "Knock the lawn/fence surround to a solid flat white ground for a clean trace."
+    },
+    {
+      "n": 18,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "kidney_knocked",
+      "output": "kidney_canvas",
+      "note": "Reframe to the shared uniform 4:3 gallery canvas and crop the grey card out."
+    },
+    {
+      "n": 19,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "kidney_canvas",
+      "output": "pool_kidney_vector.svg",
+      "note": "Trace the cleaned house-normalised raster into a matching flat-colour SVG."
+    },
+    {
+      "n": 20,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "kidney_canvas",
+      "output": "pool_kidney_web.png",
+      "note": "Export the ~2048 px web PNG twin for the gallery and the merge."
+    },
+    {
+      "n": 21,
+      "tool": "image_auto_straighten",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "assets_uploaded",
+      "output": "lap_straight",
+      "note": "Level the tilted horizon on the geometric lap-pool frame before colour work. Report the correcting angle — it differs from the lagoon's."
+    },
+    {
+      "n": 22,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "lap_straight",
+      "output": "lap_neutral",
+      "note": "Neutralise this dusk build to the shared house white point by eye from its grey card — the strongest correction of the set — and lift the dim exposure, then flatten. Report the temperature/tint/exposure dialed. Retain as a neutralised master."
+    },
+    {
+      "n": 23,
+      "tool": "image_adjust_hsl",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "lap_neutral",
+      "output": "lap_house",
+      "note": "Bring the aquamarine water onto the house pool-blue and neutralise the warm concrete coping toward the house stone. Report the colour move."
+    },
+    {
+      "n": 24,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "lap_house",
+      "output": "lap_knocked",
+      "note": "Knock the house/fence/planter surround to a solid flat white ground for a clean trace."
+    },
+    {
+      "n": 25,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "lap_knocked",
+      "output": "lap_canvas",
+      "note": "Reframe to the shared uniform 4:3 gallery canvas and crop the grey card out."
+    },
+    {
+      "n": 26,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "lap_canvas",
+      "output": "pool_lap_vector.svg",
+      "note": "Trace the cleaned house-normalised raster into a matching flat-colour SVG."
+    },
+    {
+      "n": 27,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "lap_canvas",
+      "output": "pool_lap_web.png",
+      "note": "Export the ~2048 px web PNG twin for the gallery and the merge."
+    },
+    {
+      "n": 28,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "assets_uploaded",
+      "output": "plunge_neutral",
+      "note": "Neutralise the plunge/spa build to the shared house white point by eye from its grey card, warming the open-shade cast its own distinct amount, then flatten. Report the temperature/tint/exposure dialed. Retain as a neutralised master."
+    },
+    {
+      "n": 29,
+      "tool": "image_adjust_hsl",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "plunge_neutral",
+      "output": "plunge_house",
+      "note": "Bring the teal tile water onto the house pool-blue and desaturate the bluestone toward the house neutral stone. Report the colour move."
+    },
+    {
+      "n": 30,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "plunge_house",
+      "output": "plunge_knocked",
+      "note": "Knock the pergola/landscaping surround to a solid flat white ground for a clean trace."
+    },
+    {
+      "n": 31,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "plunge_knocked",
+      "output": "plunge_canvas",
+      "note": "Reframe to the shared uniform 4:3 gallery canvas and crop the grey card out."
+    },
+    {
+      "n": 32,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "plunge_canvas",
+      "output": "pool_plunge_vector.svg",
+      "note": "Trace the cleaned house-normalised raster into a matching flat-colour SVG."
+    },
+    {
+      "n": 33,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "plunge_canvas",
+      "output": "pool_plunge_web.png",
+      "note": "Export the ~2048 px web PNG twin for the gallery and the merge."
+    },
+    {
+      "n": 34,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "assets_uploaded",
+      "output": "grotto_neutral",
+      "note": "Neutralise the natural-rock grotto build to the shared house white point by eye, evening the split shade/sun exposure so the frame reads uniformly, then flatten. Report the temperature/tint/exposure dialed. Retain as a neutralised master."
+    },
+    {
+      "n": 35,
+      "tool": "image_adjust_hsl",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "grotto_neutral",
+      "output": "grotto_house",
+      "note": "Unify the dappled blue-green water onto the single house pool-blue and calm the flagstone to the house neutral stone. Report the colour move."
+    },
+    {
+      "n": 36,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "grotto_house",
+      "output": "grotto_knocked",
+      "note": "Knock the landscaping/fence surround to a solid flat white ground for a clean trace."
+    },
+    {
+      "n": 37,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "grotto_knocked",
+      "output": "grotto_canvas",
+      "note": "Reframe to the shared uniform 4:3 gallery canvas and crop the grey card out."
+    },
+    {
+      "n": 38,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "grotto_canvas",
+      "output": "pool_grotto_vector.svg",
+      "note": "Trace the cleaned house-normalised raster into the sixth matching flat-colour SVG, completing the set."
+    },
+    {
+      "n": 39,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "grotto_canvas",
+      "output": "pool_grotto_web.png",
+      "note": "Export the ~2048 px web PNG twin for the gallery and the merge."
+    },
+    {
+      "n": 40,
+      "tool": "image_apply_adjustments",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "assets_uploaded",
+      "output": "banner_graded",
+      "note": "Grade the wide aerial capture to the house look by eye, neutralising its grey card to the shared house white point. This frame is prepared for the page-top banner, not the gallery redraw."
+    },
+    {
+      "n": 41,
+      "tool": "image_crop_and_resize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "banner_graded",
+      "output": "gallery_hero_banner.jpg",
+      "note": "Reframe/downscale the graded 16:9 aerial to the ~2560x1440 banner and crop the grey card out. Honest downscale from the 5120x2880 source — never an upscale, never canvas-extend. A raster deliverable with no vector paths."
+    },
+    {
+      "n": 42,
+      "tool": "image_remove_background",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "assets_uploaded",
+      "output": "wordmark_transparent",
+      "note": "Drop the flat white ground of the wordmark to transparency so the mark sits cleanly on the header. White drop-out, no reconstruction, no grade."
+    },
+    {
+      "n": 43,
+      "tool": "image_crop_to_bounds",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "wordmark_transparent",
+      "output": "wordmark_trimmed",
+      "note": "Prep-before-trace: trim the transparent wordmark to its tight bounds so the trace sees only the lettering and ripple glyph, not the wide empty margin."
+    },
+    {
+      "n": 44,
+      "tool": "image_vectorize",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "wordmark_trimmed",
+      "output": "studio_wordmark.svg",
+      "note": "Trace the trimmed flat wordmark to a crisp scalable SVG for the site header. Raster-to-vector trace of a prepared flat mark on a light/white ground."
+    },
+    {
+      "n": 45,
+      "tool": "document_merge_data_layout",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "gallery_linesheet_template.indd, pool_lagoon_web.png, pool_infinity_web.png, pool_kidney_web.png, pool_lap_web.png, pool_plunge_web.png, pool_grotto_web.png",
+      "output": "gallery_merged_indd",
+      "note": "Assemble the line-sheet: bind the six finished build web PNGs into the authored template's @build_image column with per-build <<build_name>>/<<pool_shape>>/<<dimensions>>/<<house_palette>> text, one build per page. The rows are authored from the agent's own finished gallery set — the aerial is a banner and is excluded. Produces a merged multi-page document (six rows -> six pages)."
+    },
+    {
+      "n": 46,
+      "tool": "document_render_layout",
+      "server": "adobe",
+      "exec_mode": "C",
+      "inputs_from": "gallery_merged_indd",
+      "output": "gallery_linesheet.pdf",
+      "note": "Export the whole merged line-sheet to a single press-ready PDF, one build per page (page-count = row-count = six), the hero being page 1. render_layout exports the merged document; it places nothing itself. 300 DPI at trim, held by the camera-scale sources."
+    }
+  ],
+  "tools_used": [
+    "asset_add_file",
+    "image_auto_straighten",
+    "image_apply_adjustments",
+    "image_adjust_hsl",
+    "image_remove_background",
+    "image_crop_and_resize",
+    "image_vectorize",
+    "image_crop_to_bounds",
+    "document_merge_data_layout",
+    "document_render_layout"
+  ],
+  "tool_call_count": 46,
+  "distinct_adobe_tools": 10,
+  "workflow_nature": "create-edit",
+  "chaining_note": "Single ingest at step 1 (assets_uploaded); every later step consumes a named prior output. Six BUILD tributaries each fork from assets_uploaded and run a per-frame-reasoned recipe that converges on ONE house look: for each build, (optional) auto_straighten -> image_apply_adjustments (neutralise its own grey card by eye to the shared house white point + flatten, retaining a card-bearing master) -> image_adjust_hsl (pull water onto the house pool-blue, stone onto the house neutral) -> image_remove_background({backgroundColor:white}) (solid knockout, the sanctioned path, NOT select->invert->fill) -> image_crop_and_resize (shared uniform 4:3 canvas, card cropped out) -> image_vectorize (flat-colour SVG) -> image_crop_and_resize (web PNG twin). Lagoon (2-8) and lap (21-27) are straightened because they are tilted; infinity (9-14), kidney (15-20), plunge (28-33) and grotto (34-39) are not. The corrections are non-identical: the warm golden-hour lagoon and tungsten-dusk lap are cooled and lifted, the cool overcast infinity and open-shade plunge are warmed, the hard-midday kidney is highlight-recovered near-neutral, the mixed grotto is exposure-evened — all landing one shared white point and one shared pool-blue. The AERIAL tributary (40-41) is deliberately different: grade + reframe/downscale to the raster banner, NEVER traced. The WORDMARK tributary (42-44) is a third path: white drop-out -> trim-to-bounds -> vectorize (flat art, no grade). The six web PNGs then feed document_merge_data_layout (45) into the authored .indd template as the @build_image column with agent-authored text rows, one build per page, and document_render_layout (46) exports the whole merged doc to the six-page press PDF. No convert_pdf_to_indd, no per-record export, no compositing, no generative step; image_crop_and_resize only reframes/downscales/format-converts existing pixels.",
+  "difficulty_rationale": "Depth, not breadth or plumbing: 46 dependent connector calls across 10 distinct Adobe tools, but the difficulty is reasoning, not the count. The agent must (a) recognise that a gallery that reads as one brand requires DIFFERENT per-frame corrections converging on one target — six builds under warm golden hour, flat overcast, hard midday, tungsten dusk, open shade and mixed shade/sun, each neutralised by eye from its own in-frame grey card to one shared house white point, then each water pulled onto ONE house pool-blue and each stone onto one house neutral, an authored look built from image_apply_adjustments + image_adjust_hsl primitives (never a preset or auto-tone); (b) run prep-before-trace discipline (straighten only the tilted frames, neutralise, flatten, house-normalise, knock the busy backyard to a solid ground, crop) so image_vectorize emits clean broad flat shapes instead of thousands of noise paths; (c) knock backgrounds with image_remove_background({backgroundColor}) rather than the select->invert->fill anti-pattern; (d) TRIAGE the wide aerial away from the tracer into a graded raster banner (running it through the redraw path returns garbage caustic/swimmer paths), and route the flat wordmark through a bare white-drop-out/trim/trace that the photos must NOT take; and (e) author the finished set into a genuine InDesign merge — six rows, one build per page, excluding the aerial — rendered to a 300 DPI press line-sheet. Every artifact is producible as written, no capability beyond the connector sheet: image_vectorize is the only raster->vector path, image_remove_background yields a solid/transparent ground (no compositing, no interior-hole punch), image_crop_and_resize never upscales or canvas-extends the 4032x3024 / 5120x2880 camera-scale sources, and the merge binds agent-produced @-image outputs into an authored .indd (never convert_pdf_to_indd, never a per-record export). The agent performs NO measurement: it works by eye and reports the parameters it applied.",
+  "hardness_rationale": "The FAILURE GATE is a set of CRAFT DECISIONS the agent can visibly get wrong, none of which requires it to measure a pixel. (1) DIVERGENT PER-FRAME NORMALISATION BY EYE TO ONE TARGET: six builds shot under opposite casts (two warm, three cool, one mixed) must each be neutralised from its own in-frame grey card and its water pulled onto a SINGLE house pool-blue; if the agent applies one blind recipe or per-frame auto-tone, the frames land at different white points and the six tiles trace at visibly different blues, so the gallery fails the client's 'reads as one brand' bar — the failure is visible without any measurement. (2) TRIAGE OF THE AERIAL: the wide aerial full of swimmers and moving-water caustics looks like 'just another pool photo' but has no clean flat shape to redraw; its correct route is a graded raster banner, and feeding it to image_vectorize like the six builds returns garbage paths, a failure invisible until the SVG is opened — and if it is wrongly traced it also shows up as a bogus seventh page in the line-sheet. (3) PREP-BEFORE-TRACE / KNOCKOUT POLARITY: skipping the flatten/house-normalise prep leaves the trace as thousands of noise paths, and using select->invert->fill (or trying to punch an interior hole) instead of image_remove_background({backgroundColor}) breaks the clean solid ground. The HUMAN-HARD ELEMENTS are cross-asset consistency to a measurable target across six deliberately mismatched frames (opposite-direction white-balance and a shared pool-blue, judged by eye and REPORTED as applied parameters so 'matched' is checkable) and constraint-reasoning around the tools (a photograph routed away from the tracer to a raster banner; a flat wordmark routed through a bare knock-and-trace the photos cannot take; the merge binding agent-named outputs into an authored .indd). The deliberate TRAP is the brief's tempting 'clean each so it looks fine' plus treating every supplied file as a build — both look right and both fail (mismatched blues; a traced aerial), and both are invisible until the SVGs and the PDF are inspected. The agent NEVER reads a pixel, hex or channel value: it neutralises each grey card by eye and REPORTS the temperature/tint/exposure and the water/stone colour move it dialed per build — an applied-settings log, not a measurement. ACCEPTANCE (grader-checked on the delivered files, never a step the agent performs): grey-card neutrality within a stated tolerance is checked on the six RETAINED card-bearing neutralised masters (the delivered gallery graphics have the card cropped out, checked separately for card-exclusion); all six SVG water fills fall within a stated hue tolerance of the single house pool-blue; gallery_hero_banner.jpg is a raster at ~2560x1440 with no vector paths; the merged gallery_linesheet.pdf has page-count = row-count = six with the aerial absent; and the returned palette_report.txt shows non-identical per-frame corrections converging on the stated shared white point and pool-blue.",
+  "_severity": "pass",
+  "reverify": "{\"severity\": \"pass\", \"banned_capability_check\": \"No banned capability is used. image_vectorize (steps 7,13,19,26,32,38,44) is the only raster->vector path and traces prepared whole rasters into flat-colour SVGs (the literal 'redraw as vector' deliverable); no selection is fed to it, so no black-silhouette misuse. image_remove_background (steps 5,11,17,24,30,36 to a solid white backgroundColor; step 42 white drop-out to transparency) isolates the outer background only — no compositing, no background-replace-by-prompt, no interior/enclosed-hole punch, and it REPLACES the select->invert->fill anti-pattern the prior version used. image_apply_adjustments (steps 3,9,15,22,28,34,40) does all white-balance/exposure/flatten neutralisation and carries the by-eye house grade (replacing the deprecated color_temperature/highlights/brightness_contrast names); image_adjust_hsl (steps 4,10,16,23,29,35) does the house-palette move as a moderate same-family nudge (pool water is already blue/cyan, so no >~90deg rotation to a foreign hue). image_crop_and_resize (canvas reframes, ~2048px PNG twins, and the 2560x1440 banner) only reframes/downscales/format-converts existing pixels from the 4032x3024 and 5120x2880 camera-scale sources — never upscales, never canvas-extends. image_crop_to_bounds (43) trims; image_auto_straighten (2,21) is the only tilt-rectifier and is used only on the two tilted frames. document_merge_data_layout (45) binds agent-produced @-image PNG outputs + <<fields>> into a genuine AUTHORED .indd (never convert_pdf_to_indd), producing one record per page; document_render_layout (46) EXPORTS the whole merged document to one press PDF (no per-record named export, no image placement by render_layout). No generative fill/expand, no upscale/super-resolution, no text-to-image, no object-removal-with-reconstruction, no from-scratch illustration, no image_fill_area, no whole-image color_overlay. All 46 steps are server=='adobe', exec_mode=C.\", \"no_measurement_check\": \"PASS. The agent neutralises each in-frame grey card BY EYE and REPORTS the temperature/tint/exposure and the water/stone colour move it applied per build (an applied-settings log in palette_report.txt) — it never reads a pixel, channel, hex or luminance value, and no eyedropper/ruler is invoked. Every numeric tolerance (grey-card neutrality, the shared pool-blue hue tolerance, banner px, page-count = row-count, 300 DPI at trim) is the GRADER's acceptance rubric evaluated on the delivered files, not a workflow step. Neutrality is graded on the six RETAINED card-bearing masters because the delivered gallery graphics crop the card out; card-exclusion on the delivered graphics is checked separately. The failure gate is a set of craft decisions (divergent per-frame normalisation to one target, aerial triage away from the tracer, prep-before-trace/knockout polarity), each with a visible failure mode, not a self-measured loop.\", \"slot_match\": \"Slot preserved: id=AO-47, slug=redraw-vector-swimming-pools-web, category=vectorize_logo, vertical='General / Cross-Industry Branding & Graphics', source.platform=Upwork all unchanged. Still the same job — redraw supplied swimming-pool photos into clean web-ready flat-colour vector graphics — strengthened from single-hero step-count padding into a six-build cross-asset consistency target with an in-frame grey card, an authored primitive-built house grade, an aerial triage gate, prep-before-trace discipline, a corrected knockout path, a reported-parameters acceptance artifact, and an agent-owned designed endpoint (the merged one-build-per-page line-sheet). IP is fictional: client laundered to 'Halcyon Cove Pools & Spas'; no real brand, person, place, product, team, school, or software (including no Adobe app names) is named in any task-facing field; only source.platform names the sourcing site. workflow_nature=create-edit. Counts reconciled: tool_call_count=46 matches the 46-step connector_workflow; distinct_adobe_tools=10 matches tools_used with no plumbing padding beyond the single asset_add_file ingest (no init/finalize pairs, no folder-create/copy inflation).\"}"
+}

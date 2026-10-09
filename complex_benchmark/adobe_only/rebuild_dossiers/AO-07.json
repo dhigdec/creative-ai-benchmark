@@ -1,0 +1,18 @@
+{
+  "id": "AO-07",
+  "disposition": "STRENGTHEN",
+  "current_spec_file": "AO-07_jewelry-pendant-spec-and-hero-prep.json",
+  "qa_audit": {
+    "client_brand": "Unnamed \"U.S.-based men's accessories brand\" (no proper-noun client name given)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional; client is only described generically as a \"U.S.-based men's accessories brand,\" no real company/product/person/trademark named. Adobe/Firefly are the platform; Upwork is the source. All clean.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "all steps connector-doable — every step in connector_workflow is a real Adobe action with no banned capability. The one former generative_expand step was replaced at n=15 with image_crop_and_resize (pure geometric reframe, no new pixels); reverify confirms. image_fill_area (14,23) is solid-fill only, image_vectorize traces existing line-art, remove_background/halftone/board all allowed.",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Spec is complete and well-formed (inputs w/ realism_notes, outputs w/ specs, fully chained workflow, reverify present). Nit: the narrative chaining_note and difficulty_rationale fields still describe step 15 as \"generative_expand outpaint\" / \"the single sanctioned generative step,\" contradicting the corrected workflow (which uses image_crop_and_resize per reverify). Stale-text drift in metadata only — does not affect the executable workflow, but should be cleaned up for consistency.",
+    "overall": "minor",
+    "top_issue": "Stale references to \"generative_expand\"/\"single sanctioned generative step\" remain in chaining_note and difficulty_rationale even though step 15 was correctly replaced with image_crop_and_resize; narrative text should be updated to match the fixed workflow."
+  },
+  "where": "TASK_QUALITY_AUDIT.md section 3 (STRENGTHEN groups G1-G6) names this task's failure pattern + the fix"
+}

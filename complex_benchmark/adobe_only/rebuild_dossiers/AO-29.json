@@ -1,0 +1,18 @@
+{
+  "id": "AO-29",
+  "disposition": "STRENGTHEN",
+  "current_spec_file": "AO-29_continental-2026-stars-poster-cinematic-grade-p.json",
+  "qa_audit": {
+    "client_brand": "Anonymous freelance client / poster studio (no client brand name); poster subjects named as Lionel Messi, Cristiano Ronaldo, and Kylian Mbappé around a fictional \"Continental Cup\" trophy",
+    "ip_verdict": "real_or_risky",
+    "ip_note": "The full_brief and one_line_ask explicitly name three real, living, world-famous footballers — Lionel Messi, Cristiano Ronaldo, and Kylian Mbappé — as the depicted subjects of a commercial poster. These are real people with right-of-publicity/likeness protection, so the brief as delivered commissions grading a poster built around named celebrity likenesses. The grounding_note and input gen_prompts try to launder this (\"faces generic, not actual celebrities\", no real flags/logos, fictional Continental Cup), and the actual generated assets are generic/unbranded — but the brief text the agent receives still names the three real players. This is the same category as using a real person's name/likeness; it should not be flagged only if it were a fictional brand, and here real individuals are named.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "all steps connector-doable — reverify already removed the banned image_generative_expand from step 17 and replaced it with geometric image_crop_to_bounds; every one of the 23 steps is a real headless [C] connector action (upload, straighten, auto-tone, contrast, temp, select_by_prompt masks, single-color-sat/HSL/color-overlay, invert, lens_blur, grain, crops/resize, vectorize, render_layout export-only, Firefly board) with no banned capability remaining",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Spec is otherwise very complete (one deliverable set, full_brief, inputs with realism_notes, outputs with specs, coherent output→input spine, reverify present). But the chaining_note (line 321) is stale: it still narrates \"generative_expand to A2 bleed(17)\" even though the workflow array and reverify correctly use image_crop_to_bounds at step 17 — a lingering inconsistency from the fix that should be reconciled. distinct_adobe_tools=18 vs tools_used array of 17 names (asset_initialize/finalize count separately in the workflow) is a minor bookkeeping mismatch.",
+    "overall": "major",
+    "top_issue": "IP: the full_brief/one_line_ask name three real living celebrities (Messi, Ronaldo, Mbappé) as poster subjects — a right-of-publicity/likeness problem — despite the reframing note claiming generic faces; the delivered brief still commissions their named likenesses."
+  },
+  "where": "TASK_QUALITY_AUDIT.md section 3 (STRENGTHEN groups G1-G6) names this task's failure pattern + the fix"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "AO-13",
+  "disposition": "STRENGTHEN",
+  "current_spec_file": "AO-13_mexican-restaurant-meta-ad-photo-asset-p.json",
+  "qa_audit": {
+    "client_brand": "El Vecino Cocina (fictional family-owned West Palm Beach Mexican restaurant)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — \"El Vecino Cocina\" is an invented restaurant name with no real-company/trademark match; Meta/Facebook/Instagram, Upwork, and Adobe Stock are allowed platforms/channels, not the client.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "all steps connector-doable — the three ratio steps (n=13/14/15) now use image_crop_and_resize (reframe of existing pixels), not the banned image_generative_expand; remove_background is a plain cutout, color-splash uses masked saturation (not fill), image_fill_area is not used. All 20 steps are real Adobe connector actions, exec_mode C.",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Complete and well-formed (one deliverable set, full_brief, inputs w/ realism_notes, outputs w/ specs, coherent chain, reverify present). But stale pre-fix language survives the outpaint→crop swap: the three ratio outputs (hero_1x1_feed/4x5_feed/9x16_story) still read \"Hero outpainted...scene extended\" and the chaining_note still says \"three generative_expand outpaints,\" both contradicting the actual image_crop_and_resize workflow (full_brief step 7 and the step notes are correct). Cosmetic wording fix needed for consistency; the executable workflow is clean and correctly scoped (layout/typesetting/text-to-image explicitly out of scope and handed off).",
+    "overall": "minor",
+    "top_issue": "Stale \"outpainted / scene extended / generative_expand\" wording in outputs[] specs and chaining_note contradicts the corrected crop-and-resize ratio steps — a documentation nit, not a doability problem."
+  },
+  "where": "TASK_QUALITY_AUDIT.md section 3 (STRENGTHEN groups G1-G6) names this task's failure pattern + the fix"
+}

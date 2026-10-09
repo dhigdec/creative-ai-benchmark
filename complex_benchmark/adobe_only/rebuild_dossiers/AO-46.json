@@ -1,0 +1,22 @@
+{
+  "id": "AO-46",
+  "disposition": "REPLACE",
+  "current_spec_path": "complex_benchmark/adobe_only/specs/AO-46_sports-jersey-font-vectorize-svg-eps-ai.json",
+  "qa_audit": {
+    "client_brand": "Unnamed generic \"custom football/soccer kit shop\" (no proper brand name assigned)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — client is an unnamed generic football/soccer kit shop; no real company, product, or trademark. Adobe Stock and DTF/Flex/Flock are generic tools/methods and allowed.",
+    "doable_verdict": "issue",
+    "doable_note": "The two .ai inputs (letters_AZ.ai_authored, numbers_09.ai_authored) fed to document_render_vector in steps 20/21 are neither in inputs[] (only 3 raster images) nor produced by any prior connector step — image_vectorize emits .svg, not .ai, and no connector converts SVG→.ai. So the .ai and .eps deliverables depend on an off-connector authoring/re-wrap step the spec discloses but never realizes with a connector. SVG deliverables (steps 11/19) are fully doable; AI/EPS half is not connector-produced. NOTE: reverify's headline claim that EPS is not a render_vector capability is FALSE — the tool schema explicitly lists application/eps as a supported outputMediaType.",
+    "realism_verdict": "realistic",
+    "value_verdict": "high",
+    "presentation_verdict": "good",
+    "presentation_note": "Complete and well-formed: one deliverable (SVG+EPS+AI glyph package), verbatim-grounded full_brief (cand_46, db_i 823), inputs with realism_notes, outputs with specs, coherent parallel-branch workflow, reverify present. Minor weakness: steps 6/14 narrate \"referencing collar_ink_ref_licensed\" for ink-tone matching, but color_temperature is a global WB adjustment with no target-color sampling, so the licensed collar stock (step 1) does no load-bearing work.",
+    "overall": "minor",
+    "top_issue": "The .ai/.eps deliverables (half the required outputs) hinge on an SVG→.ai \"authoring\" step that is not an enumerated input nor produced by any connector; the SVG core is fully doable and the spec is honest about the gap, so it stays a minor/borderline chain issue rather than a banned-capability failure."
+  },
+  "where_to_read_full_findings": [
+    "TASK_QUALITY_AUDIT.md (locate this task id in the kill-list or STRENGTHEN groups)",
+    "TASK_QUALITY_AUDIT_exemplar_rechallenge.md (per-task lens verdicts + the 6-point bar)"
+  ]
+}

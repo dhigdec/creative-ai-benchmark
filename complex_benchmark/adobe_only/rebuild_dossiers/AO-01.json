@@ -1,0 +1,18 @@
+{
+  "id": "AO-01",
+  "disposition": "STRENGTHEN",
+  "current_spec_file": "AO-01_clinical-skincare-brand-production-finis.json",
+  "qa_audit": {
+    "client_brand": "DERMAVERA (premium clinical skincare line)",
+    "ip_verdict": "fictional_clean",
+    "ip_note": "fictional — \"DERMAVERA\" is an invented brand, not a real company/product/trademark; Upwork (source platform) and Illustrator/InDesign/Firefly (Adobe tools) are allowed references.",
+    "doable_verdict": "fully_doable",
+    "doable_note": "All 18 steps are real Adobe connector actions; the former banned image_generative_expand (step 12) was replaced by image_fill_area (solid fill only). No text-to-image, upscaling, gen-fill, or object-removal-with-reconstruction remains. document_merge_data_vector is [T] on an authored label.ai with genuine Variables; document_render_layout is export-only. Minor semantic stretch: step 12 uses image_fill_area to \"place the hero on a 5000×2800 wide canvas\" — a solid-fill tool fills a region rather than expanding the canvas and compositing the product, so that placement is slightly under-specified, but it is not a banned capability.",
+    "value_verdict": "high",
+    "presentation_verdict": "issues",
+    "presentation_note": "Spec is complete and well-formed (inputs w/ realism_notes, outputs w/ specs, strict output→input chain, chaining_note, difficulty_rationale, reverify all present). Stale-language drift: after step 12 was corrected from generative_expand to image_fill_area (solid fill), the output spec for dermavera_hero_packaging_wide (line 72) still says \"Outpainted... generative_expand extends the white sweep,\" and the full_brief/one_line_ask/difficulty_rationale still say \"outpainted/outpainting.\" That contradicts the corrected non-generative workflow and should be reworded to \"solid pure-white field placement.\" reverify.notes also flags a pre-existing render_layout export-only nit left as-is.",
+    "overall": "minor",
+    "top_issue": "Stale \"outpainted/generative_expand\" wording in the output spec and full_brief contradicts the corrected image_fill_area (solid-fill) step 12 — cosmetic doc drift to reword, not a banned-capability or IP blocker."
+  },
+  "where": "TASK_QUALITY_AUDIT.md section 3 (STRENGTHEN groups G1-G6) names this task's failure pattern + the fix"
+}
